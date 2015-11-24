@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata"/>
-
-=======
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
@@ -1062,4 +1058,3 @@
         <url>/apex/UploadAsset?pid={!uw_Asset__c.Id}</url>
     </webLinks>
 </CustomObject>
->>>>>>> FETCH_HEAD

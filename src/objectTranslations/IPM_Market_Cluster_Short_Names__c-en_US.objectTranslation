@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM Market Cluster Short Names</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- Short Name --></label>
         <name>Short_Name__c</name>
@@ -18,6 +16,5 @@
         <label><!-- Unilever Cluster --></label>
         <name>Unilever_Cluster__c</name>
     </fields>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

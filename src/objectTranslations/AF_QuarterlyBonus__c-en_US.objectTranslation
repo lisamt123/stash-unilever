@@ -8,5 +8,17 @@
         <plural>true</plural>
         <value>AF_QuarterlyBonus</value>
     </caseValues>
+    <fields>
+        <label><!-- Minimum --></label>
+        <name>Minimum__c</name>
+    </fields>
+    <fields>
+        <label><!-- Outstanding --></label>
+        <name>Outstanding__c</name>
+    </fields>
+    <fields>
+        <label><!-- Stretching --></label>
+        <name>Stretching__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM Project Rollout</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- Added At Stage --></label>
         <name>Added_At_Stage__c</name>
@@ -407,6 +405,5 @@
         <label><!-- Regional Rollout --></label>
         <name>Regional_Rollout</name>
     </recordTypes>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

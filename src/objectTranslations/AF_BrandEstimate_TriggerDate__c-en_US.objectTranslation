@@ -8,5 +8,13 @@
         <plural>true</plural>
         <value>AF_BrandEstimate_TriggerDate</value>
     </caseValues>
+    <fields>
+        <label><!-- Currency_Uplpaded --></label>
+        <name>AF_Currency_Uploaded__c</name>
+    </fields>
+    <fields>
+        <label><!-- Trigger Date --></label>
+        <name>AF_Trigger_Date__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

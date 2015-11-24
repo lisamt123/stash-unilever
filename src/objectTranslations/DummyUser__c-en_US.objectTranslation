@@ -8,5 +8,9 @@
         <plural>true</plural>
         <value>AF_DummyUserID</value>
     </caseValues>
+    <fields>
+        <label><!-- User id --></label>
+        <name>User_id__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

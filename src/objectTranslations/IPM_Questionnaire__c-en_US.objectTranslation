@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM Questionnaires</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- External Id --></label>
         <name>External_Id__c</name>
@@ -282,6 +280,5 @@
         <label><!-- TradeMark --></label>
         <name>TradeMark</name>
     </recordTypes>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

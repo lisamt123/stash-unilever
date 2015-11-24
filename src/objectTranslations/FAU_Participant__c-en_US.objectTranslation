@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
-    <caseValues>
-        <plural>false</plural>
-        <value>Participant</value>
-    </caseValues>
-    <caseValues>
-        <plural>true</plural>
-        <value>Participants</value>
-    </caseValues>
-    <startsWith>Consonant</startsWith>
-</CustomObjectTranslation>
-=======
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <caseValues>
@@ -523,4 +509,3 @@ After you create the user, add the user to &apos;Personal Assistant&apos; field.
         <subject><!-- Create Personal Assistant --></subject>
     </workflowTasks>
 </CustomObjectTranslation>
->>>>>>> FETCH_HEAD

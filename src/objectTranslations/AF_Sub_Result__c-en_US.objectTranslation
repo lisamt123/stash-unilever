@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>Sub Result</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- Bonus Threshold --></label>
         <name>AF_Bonus_Threshold__c</name>
@@ -203,6 +201,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

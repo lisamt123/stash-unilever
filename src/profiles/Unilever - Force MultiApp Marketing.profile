@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-<<<<<<< HEAD
-    <custom>true</custom>
-    <description>Generic profile for Salesforce Application users who want to default to Unilever Way</description>
-=======
     <applicationVisibilities>
         <application>Agency_Fees</application>
         <default>false</default>
@@ -23429,7 +23425,6 @@
         <tab>uw_Terms_Conditions__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
->>>>>>> FETCH_HEAD
     <userLicense>Salesforce Platform</userLicense>
     <userPermissions>
         <enabled>true</enabled>

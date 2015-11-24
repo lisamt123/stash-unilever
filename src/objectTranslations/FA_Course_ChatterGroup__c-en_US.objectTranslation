@@ -8,5 +8,30 @@
         <plural>true</plural>
         <value>Course ChatterGroup</value>
     </caseValues>
+    <fields>
+        <label><!-- Chatter Group Name --></label>
+        <name>FA_Chatter_Group_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Course Occurence --></label>
+        <name>FA_Course_Occurence__c</name>
+        <relationshipLabel><!-- Course ChatterGroup --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Course --></label>
+        <name>FA_Course__c</name>
+        <relationshipLabel><!-- Course ChatterGroup --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Group ID --></label>
+        <name>FA_Group_ID__c</name>
+    </fields>
+    <layouts>
+        <layout>FA_Chattergroup_Course Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

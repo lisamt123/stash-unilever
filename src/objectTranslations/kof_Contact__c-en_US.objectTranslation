@@ -8,5 +8,371 @@
         <plural>true</plural>
         <value>Stakeholders</value>
     </caseValues>
+    <fields>
+        <label><!-- Enhancing Livelihoods Categories --></label>
+        <name>Better_Livelihoods_Categories__c</name>
+        <picklistValues>
+            <masterLabel>Fairness in the workplace</masterLabel>
+            <translation><!-- Fairness in the workplace --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Inclusive Business</masterLabel>
+            <translation><!-- Inclusive Business --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Opportunities for Women</masterLabel>
+            <translation><!-- Opportunities for Women --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Impact</masterLabel>
+            <translation><!-- Social Impact --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Enhancing Livelihoods --></label>
+        <name>Better_Livelihoods__c</name>
+    </fields>
+    <fields>
+        <label><!-- Blog --></label>
+        <name>Blog__c</name>
+    </fields>
+    <fields>
+        <label><!-- Confidence in Chemicals --></label>
+        <name>Confidence_in_Chemicals__c</name>
+    </fields>
+    <fields>
+        <label><!-- Corporate Categories --></label>
+        <name>Corporate_Categories__c</name>
+        <picklistValues>
+            <masterLabel>Alternatives to Animal Testing</masterLabel>
+            <translation><!-- Alternatives to Animal Testing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Corporate governance</masterLabel>
+            <translation><!-- Corporate governance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tax Transparency</masterLabel>
+            <translation><!-- Tax Transparency --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Corporate --></label>
+        <name>Corporate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Email --></label>
+        <name>Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook --></label>
+        <name>Facebook__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Name --></label>
+        <name>FirstName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Full Name --></label>
+        <name>FullName__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global Stakeholder --></label>
+        <name>Global_Stakeholder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Greenhouse Gases Categories --></label>
+        <name>Greenhouse_Gases_Categories__c</name>
+        <picklistValues>
+            <masterLabel>Agriculture and Forests</masterLabel>
+            <translation><!-- Agriculture and Forests --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumers</masterLabel>
+            <translation><!-- Consumers --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Energy Systems</masterLabel>
+            <translation><!-- Energy Systems --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Global Climate Negotiations</masterLabel>
+            <translation><!-- Global Climate Negotiations --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Refrigeration</masterLabel>
+            <translation><!-- Refrigeration --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Greenhouse Gases --></label>
+        <name>Greenhouse_Gases__c</name>
+    </fields>
+    <fields>
+        <label><!-- Health &amp; Hygiene Categories --></label>
+        <name>Health_Hygiene_Categories__c</name>
+        <picklistValues>
+            <masterLabel>Hand-washing</masterLabel>
+            <translation><!-- Hand-washing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Oral Health</masterLabel>
+            <translation><!-- Oral Health --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Safe drinking water</masterLabel>
+            <translation><!-- Safe drinking water --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sanitation</masterLabel>
+            <translation><!-- Sanitation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Self-esteem</masterLabel>
+            <translation><!-- Self-esteem --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Wash</masterLabel>
+            <translation><!-- Wash --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Health &amp; Hygiene --></label>
+        <name>Health_Hygiene__c</name>
+    </fields>
+    <fields>
+        <label><!-- Language --></label>
+        <name>Language__c</name>
+    </fields>
+    <fields>
+        <label><!-- Linkedin --></label>
+        <name>Linkedin__c</name>
+    </fields>
+    <fields>
+        <label><!-- City --></label>
+        <name>MailingCity__c</name>
+    </fields>
+    <fields>
+        <label><!-- Country --></label>
+        <name>MailingCountry__c</name>
+    </fields>
+    <fields>
+        <label><!-- Postcode --></label>
+        <name>MailingPostcode__c</name>
+    </fields>
+    <fields>
+        <label><!-- State --></label>
+        <name>MailingState__c</name>
+    </fields>
+    <fields>
+        <label><!-- Street --></label>
+        <name>MailingStreet__c</name>
+    </fields>
+    <fields>
+        <label><!-- Mobile --></label>
+        <name>Mobile__c</name>
+    </fields>
+    <fields>
+        <label><!-- Nutrition Categories --></label>
+        <name>Nutrition_Categories__c</name>
+        <picklistValues>
+            <masterLabel>Diet &amp; Health General</masterLabel>
+            <translation><!-- Diet &amp; Health General --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Heart Health</masterLabel>
+            <translation><!-- Heart Health --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Marketing to Children</masterLabel>
+            <translation><!-- Marketing to Children --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Nutrition Labelling</masterLabel>
+            <translation><!-- Nutrition Labelling --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Product Reformulation (salt, sugar, fat)</masterLabel>
+            <translation><!-- Product Reformulation (salt, sugar, fat) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Under-Nutrition</masterLabel>
+            <translation><!-- Under-Nutrition --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Nutrition --></label>
+        <name>Nutrition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Organisation --></label>
+        <name>Organisation__c</name>
+        <relationshipLabel><!-- Stakeholders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Other --></label>
+        <name>Other__c</name>
+    </fields>
+    <fields>
+        <help><!-- Identify the level of importance of this individual in his or her area of expertise with 1 being high and 5 being low --></help>
+        <label><!-- Personal Scale of Importance --></label>
+        <name>Personal_Scale_of_Importance__c</name>
+        <picklistValues>
+            <masterLabel>1</masterLabel>
+            <translation><!-- 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2</masterLabel>
+            <translation><!-- 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3</masterLabel>
+            <translation><!-- 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>4</masterLabel>
+            <translation><!-- 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>5</masterLabel>
+            <translation><!-- 5 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Phone --></label>
+        <name>Phone__c</name>
+    </fields>
+    <fields>
+        <label><!-- Post-2015 --></label>
+        <name>Post_2015__c</name>
+    </fields>
+    <fields>
+        <label><!-- Qualification --></label>
+        <name>Qualification__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Issue --></label>
+        <name>Related_Issue__c</name>
+        <relationshipLabel><!-- Stakeholders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Responsible Innovations Categories --></label>
+        <name>Responsible_Innovations_Categories__c</name>
+        <picklistValues>
+            <masterLabel>Nanotechnology</masterLabel>
+            <translation><!-- Nanotechnology --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Stem-cells</masterLabel>
+            <translation><!-- Stem-cells --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Responsible Innovations --></label>
+        <name>Responsible_Innovations__c</name>
+    </fields>
+    <fields>
+        <label><!-- Salutation --></label>
+        <name>Salutation__c</name>
+        <picklistValues>
+            <masterLabel>Dr.</masterLabel>
+            <translation><!-- Dr. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mr.</masterLabel>
+            <translation><!-- Mr. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mrs.</masterLabel>
+            <translation><!-- Mrs. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ms.</masterLabel>
+            <translation><!-- Ms. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Professor</masterLabel>
+            <translation><!-- Professor --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- SuperStakeholder --></label>
+        <name>SuperStakeholder__c</name>
+    </fields>
+    <fields>
+        <label><!-- Sustainable Sourcing Categories --></label>
+        <name>Sustainable_Sourcing_Categories__c</name>
+        <picklistValues>
+            <masterLabel>Fruits and Vegetables</masterLabel>
+            <translation><!-- Fruits and Vegetables --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Palm Oil</masterLabel>
+            <translation><!-- Palm Oil --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Soy</masterLabel>
+            <translation><!-- Soy --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sustainable Sourcing --></label>
+        <name>Sustainable_Sourcing__c</name>
+    </fields>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter --></label>
+        <name>Twitter__c</name>
+    </fields>
+    <fields>
+        <label><!-- Waste Categories --></label>
+        <name>Waste_Categories__c</name>
+        <picklistValues>
+            <masterLabel>Food Waste</masterLabel>
+            <translation><!-- Food Waste --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Packaging &amp; Recycling</masterLabel>
+            <translation><!-- Packaging &amp; Recycling --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Waste --></label>
+        <name>Waste__c</name>
+    </fields>
+    <fields>
+        <label><!-- Water Categories --></label>
+        <name>Water_Categories__c</name>
+        <picklistValues>
+            <masterLabel>Consumer Use</masterLabel>
+            <translation><!-- Consumer Use --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Water Scarcity</masterLabel>
+            <translation><!-- Water Scarcity --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Water --></label>
+        <name>Water__c</name>
+    </fields>
+    <layouts>
+        <layout>Stakeholder Layout</layout>
+        <sections>
+            <label><!-- Communication Information --></label>
+            <section>Communication Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Subject Matter Expert Details --></label>
+            <section>Subject Matter Expert Details</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

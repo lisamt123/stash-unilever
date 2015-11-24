@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM Tasks</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- ExternalField --></label>
         <name>ExternalField__c</name>
@@ -227,6 +225,5 @@
         <label><!-- IPM Tasks --></label>
         <name>IPM_Tasks</name>
     </recordTypes>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

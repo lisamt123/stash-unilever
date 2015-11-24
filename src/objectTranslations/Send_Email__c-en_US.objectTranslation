@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>Send_Email</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- CurrencyUpdateRequired --></label>
         <name>AF_CurrencyUpdateRequired__c</name>
@@ -65,6 +63,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

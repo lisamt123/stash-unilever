@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>PO Report</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- Adaptation FY Fee – LC --></label>
         <name>AF_Adaptation_Local__c</name>
@@ -289,6 +287,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata"/>
-
-=======
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>Accept</actionName>
@@ -1444,4 +1440,3 @@ Note: If you cannot find your brand then you can select any brand and uncheck &a
         <url>/apex/UploadBETBanner?pid={!uw_BET__c.Id}</url>
     </webLinks>
 </CustomObject>
->>>>>>> FETCH_HEAD

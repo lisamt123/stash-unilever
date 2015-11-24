@@ -48,11 +48,6 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Junction object for Product Category and Subscriptions objects</description>
     <enableActivities>true</enableActivities>
-<<<<<<< HEAD
-    <enableFeeds>false</enableFeeds>
-    <enableHistory>true</enableHistory>
-    <enableReports>true</enableReports>
-=======
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
@@ -60,7 +55,6 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
->>>>>>> FETCH_HEAD
     <fields>
         <fullName>mdo_id__c</fullName>
         <externalId>false</externalId>

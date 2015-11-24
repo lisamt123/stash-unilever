@@ -8,9 +8,6 @@
         <plural>true</plural>
         <value>IPM Financial Years</value>
     </caseValues>
-<<<<<<< HEAD
-    <startsWith>Consonant</startsWith>
-=======
     <fields>
         <label><!-- A&amp;P (% of T/O) Charter --></label>
         <name>AP_of_TO_Charter__c</name>
@@ -592,5 +589,4 @@
         <errorMessage><!-- Market Ready snapshot Financials cannot be changed once Market Readyt has been approved --></errorMessage>
         <name>MR_Locked</name>
     </validationRules>
->>>>>>> FETCH_HEAD
 </CustomObjectTranslation>

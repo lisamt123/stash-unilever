@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM Project Document Sections</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- Comments --></label>
         <name>Comments__c</name>
@@ -605,6 +603,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

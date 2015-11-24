@@ -5,6 +5,8 @@
     <excludeButtons>Edit</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <feedLayout>
+        <autocollapsePublisher>true</autocollapsePublisher>
+        <compactFeed>true</compactFeed>
         <feedFilterPosition>CenterDropDown</feedFilterPosition>
         <feedFilters>
             <feedFilterType>AllUpdates</feedFilterType>
@@ -13,7 +15,9 @@
             <feedFilterType>FeedItemType</feedFilterType>
             <feedItemType>TextPost</feedItemType>
         </feedFilters>
+        <fullWidthFeed>true</fullWidthFeed>
         <hideSidebar>false</hideSidebar>
+        <highlightExternalFeedItems>false</highlightExternalFeedItems>
         <rightComponents>
             <componentType>Following</componentType>
         </rightComponents>

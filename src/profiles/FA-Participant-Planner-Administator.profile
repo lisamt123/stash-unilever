@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-<<<<<<< HEAD
-    <custom>true</custom>
-=======
     <applicationVisibilities>
         <application>Agency_Fees</application>
         <default>false</default>
@@ -23611,7 +23608,6 @@
         <tab>uw_Asset__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
->>>>>>> FETCH_HEAD
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>

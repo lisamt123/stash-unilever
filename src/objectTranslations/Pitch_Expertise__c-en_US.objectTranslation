@@ -8,5 +8,15 @@
         <plural>true</plural>
         <value>Pitch Expertise</value>
     </caseValues>
+    <fields>
+        <label><!-- Account --></label>
+        <name>Account__c</name>
+        <relationshipLabel><!-- Pitch Expertise --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Expertise --></label>
+        <name>Expertise__c</name>
+        <relationshipLabel><!-- Pitch Expertise --></relationshipLabel>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

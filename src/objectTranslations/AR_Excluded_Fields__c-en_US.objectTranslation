@@ -8,5 +8,13 @@
         <plural>true</plural>
         <value>AR_Excluded_Fields</value>
     </caseValues>
+    <fields>
+        <label><!-- FieldName --></label>
+        <name>FieldName__c</name>
+    </fields>
+    <fields>
+        <label><!-- ObjectName --></label>
+        <name>ObjectName__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

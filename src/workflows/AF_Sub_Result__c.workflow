@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<Workflow xmlns="http://soap.sforce.com/2006/04/metadata"/>
-
-=======
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
         <fullName>AF_SubResult_ClassCode</fullName>
@@ -47,4 +43,3 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
 </Workflow>
->>>>>>> FETCH_HEAD

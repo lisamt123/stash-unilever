@@ -8,5 +8,9 @@
         <plural>true</plural>
         <value>WinatPOSBatchDownloadStats</value>
     </caseValues>
+    <fields>
+        <label><!-- Last_Calculated_Download_Stats --></label>
+        <name>Last_Calculated_Download_Stats__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

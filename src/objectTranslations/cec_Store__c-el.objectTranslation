@@ -40,7 +40,19 @@
         <plural>true</plural>
         <value><!-- Store --></value>
     </caseValues>
+    <fields>
+        <label>χώρα</label>
+        <name>Country__c</name>
+        <relationshipLabel>Καταστήματα</relationshipLabel>
+    </fields>
     <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Store Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel><!-- Store Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
 </CustomObjectTranslation>

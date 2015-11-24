@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM Gate CMIs</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- Approx. Results Timing --></label>
         <name>Approx_Results_Timing__c</name>
@@ -366,6 +364,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

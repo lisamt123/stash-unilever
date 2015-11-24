@@ -8,5 +8,13 @@
         <plural>true</plural>
         <value>CORE Chatter Approval MobileApp</value>
     </caseValues>
+    <fields>
+        <label><!-- Label --></label>
+        <name>Label__c</name>
+    </fields>
+    <fields>
+        <label><!-- Value --></label>
+        <name>Value__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

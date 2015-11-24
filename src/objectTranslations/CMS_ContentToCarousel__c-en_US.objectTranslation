@@ -8,5 +8,19 @@
         <plural>true</plural>
         <value>CMS Contents to Carousel</value>
     </caseValues>
+    <fields>
+        <label><!-- CMS Content --></label>
+        <name>CMS_Content__c</name>
+        <relationshipLabel><!-- CMS Contents to Carousel --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Carousel --></label>
+        <name>Carousel__c</name>
+        <relationshipLabel><!-- CMS Contents to Carousel --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

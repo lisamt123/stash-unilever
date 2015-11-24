@@ -8,9 +8,6 @@
         <plural>true</plural>
         <value>IPM Financials</value>
     </caseValues>
-<<<<<<< HEAD
-    <startsWith>Consonant</startsWith>
-=======
     <fields>
         <label><!-- Added At Stage --></label>
         <name>Added_At_Stage__c</name>
@@ -743,5 +740,4 @@
         <errorMessage><!-- Market Ready snapshot Financials cannot be changed once Market Ready has been approved --></errorMessage>
         <name>MR_Locked</name>
     </validationRules>
->>>>>>> FETCH_HEAD
 </CustomObjectTranslation>

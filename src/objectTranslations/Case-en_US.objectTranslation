@@ -8,8 +8,6 @@
         <name>subject_case</name>
         <startsWith>Consonant</startsWith>
     </fields>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- Action Taken --></label>
         <name>Action_Taken__c</name>
@@ -1009,5 +1007,4 @@
         <label><!-- Next_Case --></label>
         <name>Next_Case</name>
     </webLinks>
->>>>>>> FETCH_HEAD
 </CustomObjectTranslation>

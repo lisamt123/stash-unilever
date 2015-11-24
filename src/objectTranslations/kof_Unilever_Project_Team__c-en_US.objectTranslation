@@ -8,5 +8,26 @@
         <plural>true</plural>
         <value>Unilever Project Teams</value>
     </caseValues>
+    <fields>
+        <label><!-- Title --></label>
+        <name>Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- Unilever Project --></label>
+        <name>Unilever_Project__c</name>
+        <relationshipLabel><!-- Unilever Project Teams --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- User --></label>
+        <name>User__c</name>
+        <relationshipLabel><!-- Unilever Project Teams --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Unilever Project User Relationship Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

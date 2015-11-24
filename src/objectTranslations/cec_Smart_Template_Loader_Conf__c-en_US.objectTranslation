@@ -8,5 +8,17 @@
         <plural>true</plural>
         <value>cec Smart Template Loader Conf</value>
     </caseValues>
+    <fields>
+        <label><!-- Case Reason --></label>
+        <name>Case_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case Status --></label>
+        <name>Case_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- Template Name --></label>
+        <name>Template_Name__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

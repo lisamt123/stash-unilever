@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM Bosscard</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- External Id --></label>
         <name>External_Id__c</name>
@@ -238,6 +236,5 @@
             <section>Project Details</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

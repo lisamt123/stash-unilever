@@ -8,5 +8,31 @@
         <plural>true</plural>
         <value>Participants</value>
     </caseValues>
+    <fields>
+        <label><!-- Event --></label>
+        <name>Event__c</name>
+        <relationshipLabel><!-- Participants --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Link to Event --></label>
+        <name>Link_to_Event__c</name>
+    </fields>
+    <fields>
+        <label><!-- Participant Name --></label>
+        <name>Participant_Name__c</name>
+        <relationshipLabel><!-- Participants --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Proposed End Date --></label>
+        <name>Proposed_End_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Proposed Start Date --></label>
+        <name>Proposed_Start_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Re-approval email needed --></label>
+        <name>ReApprovalEmailNeeded__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

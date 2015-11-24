@@ -8,9 +8,6 @@
         <plural>true</plural>
         <value>IPM Milestones</value>
     </caseValues>
-<<<<<<< HEAD
-    <startsWith>Consonant</startsWith>
-=======
     <fields>
         <label><!-- BET Status Check Trigger --></label>
         <name>BET_Status_Check_Trigger__c</name>
@@ -367,5 +364,4 @@
         <errorMessage><!-- Due date of the milestone should not exceed its Gate&apos;s Due Date. --></errorMessage>
         <name>Check_Due_Date_for_optional_A_adhoc_MS</name>
     </validationRules>
->>>>>>> FETCH_HEAD
 </CustomObjectTranslation>

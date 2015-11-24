@@ -8,5 +8,15 @@
         <plural>true</plural>
         <value>BET Category Brands</value>
     </caseValues>
+    <fields>
+        <label><!-- Brand Centre Old --></label>
+        <name>BET_Brand__c</name>
+        <relationshipLabel><!-- BET Category Brands --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- BET Category --></label>
+        <name>BET_Category__c</name>
+        <relationshipLabel><!-- BET Category Brands --></relationshipLabel>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

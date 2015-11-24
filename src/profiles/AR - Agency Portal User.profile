@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-<<<<<<< HEAD
-    <custom>true</custom>
-=======
     <applicationVisibilities>
         <application>Agency_Fees</application>
         <default>false</default>
@@ -23443,7 +23440,6 @@
         <tab>standard-WorkBadgeDefinition</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
->>>>>>> FETCH_HEAD
     <userLicense>Partner Community</userLicense>
     <userPermissions>
         <enabled>true</enabled>

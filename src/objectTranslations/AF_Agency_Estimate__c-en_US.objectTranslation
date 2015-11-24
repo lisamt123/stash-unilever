@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>Agency Estimates</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- 1stSave --></label>
         <name>AF_1stSave__c</name>
@@ -533,6 +531,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

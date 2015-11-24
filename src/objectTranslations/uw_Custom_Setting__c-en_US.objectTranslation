@@ -8,5 +8,21 @@
         <plural>true</plural>
         <value>Custom Settings</value>
     </caseValues>
+    <fields>
+        <label><!-- Checkbox Value --></label>
+        <name>Checkbox_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Description --></label>
+        <name>Description__c</name>
+    </fields>
+    <fields>
+        <label><!-- Number Value --></label>
+        <name>Number_Value__c</name>
+    </fields>
+    <fields>
+        <label><!-- Text Value --></label>
+        <name>Text_Value__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

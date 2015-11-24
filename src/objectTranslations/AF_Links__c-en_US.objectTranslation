@@ -8,5 +8,13 @@
         <plural>true</plural>
         <value>AF Links</value>
     </caseValues>
+    <fields>
+        <label><!-- AF Community Link --></label>
+        <name>AF_Community_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_Internal link --></label>
+        <name>AF_Internal_link__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

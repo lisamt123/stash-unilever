@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-<<<<<<< HEAD
-    <custom>true</custom>
-=======
     <applicationVisibilities>
         <application>Agency_Fees</application>
         <default>false</default>
@@ -21522,13 +21519,10 @@
     <layoutAssignments>
         <layout>uw_Terms_Conditions__c-Terms %26 Conditions Layout</layout>
     </layoutAssignments>
->>>>>>> FETCH_HEAD
     <loginIpRanges>
         <endAddress>10.80.64.21</endAddress>
         <startAddress>10.80.64.0</startAddress>
     </loginIpRanges>
-<<<<<<< HEAD
-=======
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
@@ -23571,7 +23565,6 @@
         <tab>uw_BET__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
->>>>>>> FETCH_HEAD
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>

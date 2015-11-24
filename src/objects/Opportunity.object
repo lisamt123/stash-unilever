@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata"/>
-
-=======
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>AddInfluence</actionName>
@@ -383,4 +379,3 @@
     </searchLayouts>
     <sharingModel>Private</sharingModel>
 </CustomObject>
->>>>>>> FETCH_HEAD

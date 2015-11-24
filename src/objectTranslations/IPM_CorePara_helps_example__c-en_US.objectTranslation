@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM CoreParameter helps</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- Core Parameter example three --></label>
         <name>IMP_Core_Parameter_example_three__c</name>
@@ -49,6 +47,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

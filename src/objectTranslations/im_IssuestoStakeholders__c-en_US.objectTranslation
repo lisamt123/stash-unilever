@@ -8,5 +8,27 @@
         <plural>true</plural>
         <value>Issues Stakeholders Associations</value>
     </caseValues>
+    <fields>
+        <label><!-- Issue --></label>
+        <name>Issue__c</name>
+        <relationshipLabel><!-- Stakeholders --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Stakeholder (Organisation) --></label>
+        <name>StakeholderOrganisation__c</name>
+        <relationshipLabel><!-- Issues Stakeholders Associations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Stakeholder (Person) --></label>
+        <name>Stakeholder__c</name>
+        <relationshipLabel><!-- Issues --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Issues Stakeholders Association Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

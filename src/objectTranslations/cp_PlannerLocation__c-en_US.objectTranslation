@@ -8,5 +8,27 @@
         <plural>true</plural>
         <value>Planner Locations</value>
     </caseValues>
+    <fields>
+        <label><!-- Activate --></label>
+        <name>Activate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Event --></label>
+        <name>Event__c</name>
+        <relationshipLabel><!-- Planner Locations --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Reason --></label>
+        <name>OptOutReason__c</name>
+    </fields>
+    <fields>
+        <label><!-- Opt Out --></label>
+        <name>OptOut__c</name>
+    </fields>
+    <fields>
+        <label><!-- Planner --></label>
+        <name>Planner__c</name>
+        <relationshipLabel><!-- Planner Locations --></relationshipLabel>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

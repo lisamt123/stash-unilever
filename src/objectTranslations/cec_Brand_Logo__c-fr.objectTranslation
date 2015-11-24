@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value><!-- Brand Logo --></value>
     </caseValues>
+    <fields>
+        <label>Pays</label>
+        <name>Country__c</name>
+        <relationshipLabel>Logos de la marque</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Logo --></label>
+        <name>Logo__c</name>
+    </fields>
     <gender><!-- Masculine --></gender>
     <nameFieldLabel><!-- Brand Logo Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>

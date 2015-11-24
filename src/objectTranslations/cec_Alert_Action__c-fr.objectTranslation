@@ -8,7 +8,68 @@
         <plural>true</plural>
         <value><!-- Alert Action --></value>
     </caseValues>
+    <fields>
+        <label><!-- Alert Rule --></label>
+        <name>Alert_Rule_Id__c</name>
+        <relationshipLabel><!-- Alert Actions --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Developer name of the email template --></help>
+        <label>Nom du modèle d&apos;email</label>
+        <name>Email_Template_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Popup Message --></label>
+        <name>Popup_Message__c</name>
+    </fields>
+    <fields>
+        <label><!-- Questionnaire URL --></label>
+        <name>Questionnaire_URL__c</name>
+    </fields>
+    <fields>
+        <label>A</label>
+        <name>To__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Email</masterLabel>
+            <translation><!-- Email --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Popup</masterLabel>
+            <translation><!-- Popup --></translation>
+        </picklistValues>
+    </fields>
     <gender><!-- Masculine --></gender>
+    <layouts>
+        <layout>Alert Action Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <nameFieldLabel><!-- Alert Action Name --></nameFieldLabel>
     <startsWith><!-- Consonant --></startsWith>
+    <validationRules>
+        <errorMessage>Merci d&apos;entrer un type d&apos;alerte</errorMessage>
+        <name>Alert_Type_Mandatory_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Merci d&apos;entrer un nom de modèle d&apos;email comme le type est &apos;email&apos;</errorMessage>
+        <name>Email_Template_Name_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter value for Popup message as the type is &apos;Popup&apos; --></errorMessage>
+        <name>Popup_Message_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Veuillez saisir un URL puisque le type est &apos;questionnaire&apos;</errorMessage>
+        <name>Questionnaire_URL_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage>Merci d&apos;entrer une valeur pour le champ &apos;A&apos; comme le type est &apos;email&apos;</errorMessage>
+        <name>To_field_validation</name>
+    </validationRules>
 </CustomObjectTranslation>

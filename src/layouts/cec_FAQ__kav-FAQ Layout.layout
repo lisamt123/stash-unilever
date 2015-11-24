@@ -27,6 +27,15 @@
             <layoutItems>
                 <field>Related_PDF__c</field>
             </layoutItems>
+            <layoutItems>
+                <field>Related_PDF_2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Related_PDF_3__c</field>
+            </layoutItems>
+            <layoutItems>
+                <field>Meta_Tags__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>

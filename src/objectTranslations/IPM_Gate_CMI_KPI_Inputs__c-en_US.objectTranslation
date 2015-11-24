@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM Gate CMI KPI Inputs</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- IPM Input Size --></label>
         <name>IPM_Input_Size__c</name>
@@ -34,6 +32,5 @@
         <label><!-- IPM Test --></label>
         <name>IPM_Test__c</name>
     </fields>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

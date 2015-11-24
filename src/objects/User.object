@@ -9,6 +9,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>DeletePhotoAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>EditUserAction</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -45,11 +49,20 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>UpdatePhotoAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>UserActivationAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>ViewPhotoAction</actionName>
         <type>Default</type>
     </actionOverrides>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <enableFeeds>true</enableFeeds>
+    <externalSharingModel>Private</externalSharingModel>
     <fieldSets>
         <fullName>BET_Members_to_add</fullName>
         <description>/apex/AddMemebersToBET</description>
@@ -231,7 +244,7 @@
         <description>This represents Brands on the user level</description>
         <externalId>false</externalId>
         <inlineHelpText>List of brands assigned to user</inlineHelpText>
-        <label>AF Brand</label>
+        <label>Brand</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <type>LongTextArea</type>
@@ -253,7 +266,7 @@
         <description>This represents the categories</description>
         <externalId>false</externalId>
         <inlineHelpText>List of Categories assigned to the user</inlineHelpText>
-        <label>AF Category</label>
+        <label>Category</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <type>LongTextArea</type>
@@ -463,99 +476,6 @@
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Brand_Name__c</fullName>
-        <description>to store brand name from AD</description>
-        <externalId>false</externalId>
-        <label>Brand Name</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_Brand_Positioning__c</fullName>
-        <externalId>false</externalId>
-        <label>Brand Positioning</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Category__c</fullName>
-        <description>to store category of user(information will be fetch from AD)</description>
-        <externalId>false</externalId>
-        <label>Category</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_Role__c</fullName>
-        <description>to stroe role from AD</description>
-        <externalId>false</externalId>
-        <label>Role</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Finance</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>R&amp;D</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Supply Chain</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Project Leader</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Deputy Project Leader</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CMI</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Gate Keeper</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Technical Leader</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Sub_Category__c</fullName>
-        <externalId>false</externalId>
-        <label>Sub Category</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Language_Skills_List__c</fullName>
@@ -2156,9 +2076,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CORE.USERS.USERNAME</columns>
         <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>AF_Brand__c</columns>
-        <columns>AF_Category__c</columns>
-        <columns>IPM_Category__c</columns>
         <columns>CORE.USER_ROLE.NAME</columns>
         <columns>CORE.PROFILE.NAME</columns>
         <filterScope>Everything</filterScope>
@@ -2168,7 +2085,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
             <value>1</value>
         </filters>
         <label>Active Users</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Active_SMU_Never_Logged_on</fullName>
@@ -2232,6 +2148,19 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         </filters>
         <label>Active Admin Users</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>AllUsers</fullName>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.USERS.ACTIVE</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATED_BY_NAME</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Users</label>
     </listViews>
     <listViews>
         <fullName>Brand_Centre_or_Hub_Admins</fullName>
@@ -2610,38 +2539,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         </sharedTo>
     </listViews>
     <listViews>
-<<<<<<< HEAD
-        <fullName>Oblix_Project_Team</fullName>
-        <booleanFilter>(1 AND 2) OR (3 AND 4) OR (5 AND 6) OR (7 AND 8)</booleanFilter>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>CREATED_BY_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.USERS.LAST_NAME</field>
-            <operation>equals</operation>
-            <value>Hourigan</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.FIRST_NAME</field>
-            <operation>equals</operation>
-            <value>Tammy</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.LAST_NAME</field>
-            <operation>equals</operation>
-            <value>Tabone</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.FIRST_NAME</field>
-            <operation>equals</operation>
-            <value>Justine</value>
-=======
         <fullName>One_View_Users</fullName>
         <booleanFilter>1 AND (2 and 3) or (4)</booleanFilter>
         <columns>FULL_NAME</columns>
@@ -2658,35 +2555,15 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
             <field>CORE.USERS.ACTIVE</field>
             <operation>equals</operation>
             <value>1</value>
->>>>>>> FETCH_HEAD
         </filters>
         <filters>
             <field>CORE.USERS.LAST_NAME</field>
             <operation>equals</operation>
-<<<<<<< HEAD
-            <value>Ivanova</value>
-=======
             <value>,Spitzer,Buruncuk,Luthra,Jhingran,Vries,Janssen,Svoronou,Arora</value>
->>>>>>> FETCH_HEAD
         </filters>
         <filters>
             <field>CORE.USERS.FIRST_NAME</field>
             <operation>equals</operation>
-<<<<<<< HEAD
-            <value>Liliya</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.FIRST_NAME</field>
-            <operation>equals</operation>
-            <value>Matthew</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.LAST_NAME</field>
-            <operation>equals</operation>
-            <value>Shilvock</value>
-        </filters>
-        <label>Oblix Project Team</label>
-=======
             <value>,Gulcin,Wendy,Sanjay,Rakhi,Rakhi(GA),Patrick,Wouter-de,Ewa,Deepak</value>
         </filters>
         <filters>
@@ -2695,7 +2572,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
             <value>OV_</value>
         </filters>
         <label>One View Users</label>
->>>>>>> FETCH_HEAD
         <language>en_US</language>
     </listViews>
     <listViews>
@@ -2751,53 +2627,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
             <value>Ratings and Review - Customer Sevice</value>
         </filters>
         <label>Ratings and Review users</label>
-    </listViews>
-    <listViews>
-        <fullName>SWOP_QA_User_list</fullName>
-        <booleanFilter>1 OR 2</booleanFilter>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>MANAGER</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.USERS.LAST_NAME</field>
-            <operation>startsWith</operation>
-            <value>SWOP</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.FIRST_NAME</field>
-            <operation>startsWith</operation>
-            <value>SWOP</value>
-        </filters>
-        <label>SWOP QA User list</label>
-        <language>en_US</language>
-        <sharedTo>
-            <group>Admins</group>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>Tammy</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>CREATED_BY_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.USERS.LAST_NAME</field>
-            <operation>equals</operation>
-            <value>Hourigan</value>
-        </filters>
-        <label>Tammy</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Unilever_Way_Role</fullName>
@@ -2862,25 +2691,6 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
             <value>1</value>
         </filters>
         <label>chatter external users</label>
-    </listViews>
-    <listViews>
-        <fullName>oblix_com_user</fullName>
-        <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.USERNAME</columns>
-        <columns>CORE.USERS.LAST_LOGIN</columns>
-        <columns>CORE.USER_ROLE.NAME</columns>
-        <columns>CORE.USERS.ACTIVE</columns>
-        <columns>CORE.PROFILE.NAME</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>CREATED_BY_NAME</columns>
-        <filterScope>Everything</filterScope>
-        <filters>
-            <field>CORE.USERS.EMAIL</field>
-            <operation>equals</operation>
-            <value>shunt@salesforce.com</value>
-        </filters>
-        <label>Oblix Community Users</label>
-        <language>en_US</language>
     </listViews>
     <searchLayouts>
         <lookupDialogsAdditionalFields>FULL_NAME</lookupDialogsAdditionalFields>

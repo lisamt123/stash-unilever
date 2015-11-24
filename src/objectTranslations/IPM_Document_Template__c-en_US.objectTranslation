@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM Document Templates</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- IPM Document Order --></label>
         <name>IPM_Document_Order__c</name>
@@ -50,6 +48,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

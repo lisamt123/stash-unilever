@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD:src/objects/FeedItem.object
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata"/>
-
-=======
 <CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
     <actionOverrides>
         <actionName>CancelEdit</actionName>
@@ -49,4 +45,3 @@
     <pluralLabel>FilesConnect-SFDev</pluralLabel>
     <searchLayouts/>
 </CustomObject>
->>>>>>> FETCH_HEAD:src/objects/FilesConnect_SFDev__x.object

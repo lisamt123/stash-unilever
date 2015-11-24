@@ -6,16 +6,11 @@
     </caseValues>
     <caseValues>
         <plural>true</plural>
-<<<<<<< HEAD
-        <value>IPM Customer Channel Priority Order</value>
-    </caseValues>
-=======
         <value>IPM Customer Channel Priority</value>
     </caseValues>
     <fields>
         <label><!-- Priority Order Value --></label>
         <name>Priority_Order_Value__c</name>
     </fields>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

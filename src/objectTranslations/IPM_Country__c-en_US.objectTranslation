@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM Countries</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- Added At Stage --></label>
         <name>Added_At_Stage__c</name>
@@ -168,6 +166,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

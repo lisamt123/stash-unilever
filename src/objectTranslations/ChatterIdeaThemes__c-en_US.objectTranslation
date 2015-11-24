@@ -8,5 +8,13 @@
         <plural>true</plural>
         <value>ChatterIdeaThemes</value>
     </caseValues>
+    <fields>
+        <label><!-- DefaultIdeaCreatedPic --></label>
+        <name>DefaultIdeaCreatedPic__c</name>
+    </fields>
+    <fields>
+        <label><!-- DefaultIdeaThemeCreatedPic --></label>
+        <name>DefaultIdeaThemeCreatedPic__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

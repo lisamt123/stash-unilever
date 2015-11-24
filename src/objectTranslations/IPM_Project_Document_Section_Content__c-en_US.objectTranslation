@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM Project Document Section Contents</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- IPM_Assort_Channel_Name --></label>
         <name>IPM_Assort_Channel_Name__c</name>
@@ -1245,6 +1243,5 @@
             <section>OTIF Section Details</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

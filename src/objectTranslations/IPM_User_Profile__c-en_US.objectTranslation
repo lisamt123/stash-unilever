@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM User Profile</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- Export Portfolio Data --></label>
         <name>Export_Porfolio_Data__c</name>
@@ -204,6 +202,5 @@
             <section>User Role</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

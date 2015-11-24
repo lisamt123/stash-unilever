@@ -8,5 +8,13 @@
         <plural>true</plural>
         <value>Agency Bonus Access</value>
     </caseValues>
+    <fields>
+        <label><!-- Access Date --></label>
+        <name>AF_Access_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Fiscal Year --></label>
+        <name>AF_Fiscal_Year__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

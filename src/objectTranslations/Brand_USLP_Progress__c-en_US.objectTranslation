@@ -8,5 +8,36 @@
         <plural>true</plural>
         <value>Brand USLP Progress</value>
     </caseValues>
+    <fields>
+        <label><!-- Activating In Market --></label>
+        <name>Activating_In_Market__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Centre Link --></label>
+        <name>Brand_Centre_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- Learn More --></label>
+        <name>Case_Study__c</name>
+    </fields>
+    <fields>
+        <label><!-- Defined USLP Ambition --></label>
+        <name>Defined_USLP_Ambition__c</name>
+    </fields>
+    <fields>
+        <label><!-- Order Number --></label>
+        <name>Order_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Started --></label>
+        <name>Started__c</name>
+    </fields>
+    <layouts>
+        <layout>Brand USLP Progress Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

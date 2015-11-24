@@ -8,5 +8,9 @@
         <plural>true</plural>
         <value>BonusReportVisibletoAgency</value>
     </caseValues>
+    <fields>
+        <label><!-- AccessDate --></label>
+        <name>AccessDate__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

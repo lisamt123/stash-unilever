@@ -8,5 +8,22 @@
         <plural>true</plural>
         <value>Stakeholder Project Team</value>
     </caseValues>
+    <fields>
+        <label><!-- Stakeholder --></label>
+        <name>Stakeholder__c</name>
+        <relationshipLabel><!-- Stakeholder Project Team --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Unilever Project --></label>
+        <name>Unilever_Project__c</name>
+        <relationshipLabel><!-- Stakeholder Project Team --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Stakeholder Project Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

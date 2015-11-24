@@ -8,9 +8,6 @@
         <plural>true</plural>
         <value>IPM Company Card</value>
     </caseValues>
-<<<<<<< HEAD
-    <startsWith>Consonant</startsWith>
-=======
     <fields>
         <label><!-- Business partner users --></label>
         <name>Business_partner_users__c</name>
@@ -3016,5 +3013,4 @@
         <label><!-- New_Company_Card --></label>
         <name>New_Company_Card</name>
     </webLinks>
->>>>>>> FETCH_HEAD
 </CustomObjectTranslation>

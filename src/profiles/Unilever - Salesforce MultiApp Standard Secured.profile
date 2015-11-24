@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-<<<<<<< HEAD
-    <custom>true</custom>
-    <description>Profile for user or manager with IP restrictions</description>
-=======
     <applicationVisibilities>
         <application>Agency_Fees</application>
         <default>false</default>
@@ -21524,7 +21520,6 @@
     <layoutAssignments>
         <layout>uw_Terms_Conditions__c-Terms %26 Conditions Layout</layout>
     </layoutAssignments>
->>>>>>> FETCH_HEAD
     <loginIpRanges>
         <endAddress>1.23.255.255</endAddress>
         <startAddress>1.23.0.0</startAddress>
@@ -22521,8 +22516,6 @@
         <endAddress>223.229.255.255</endAddress>
         <startAddress>223.229.0.0</startAddress>
     </loginIpRanges>
-<<<<<<< HEAD
-=======
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
@@ -24636,7 +24629,6 @@
         <tab>uw_BET__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
->>>>>>> FETCH_HEAD
     <userLicense>Salesforce</userLicense>
     <userPermissions>
         <enabled>true</enabled>

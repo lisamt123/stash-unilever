@@ -8,5 +8,31 @@
         <plural>true</plural>
         <value>User Default Settings</value>
     </caseValues>
+    <fields>
+        <label><!-- Country Name --></label>
+        <name>Country_Name__c</name>
+    </fields>
+    <fields>
+        <help><!-- This data will get defaulted on phone cases --></help>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+        <relationshipLabel><!-- User Default Settings --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- UserId --></label>
+        <name>UserId__c</name>
+    </fields>
+    <fields>
+        <label><!-- UserName --></label>
+        <name>UserName__c</name>
+        <relationshipLabel><!-- User Default Settings --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>User default setting Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

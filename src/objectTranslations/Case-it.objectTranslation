@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<<<<<< HEAD
-<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata"/>
-
-=======
 <CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
     <fields>
         <label>Azione intrapresa</label>
@@ -1004,4 +1000,3 @@
         <name>Next_Case</name>
     </webLinks>
 </CustomObjectTranslation>
->>>>>>> FETCH_HEAD

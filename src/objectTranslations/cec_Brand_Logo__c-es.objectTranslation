@@ -8,6 +8,15 @@
         <plural>true</plural>
         <value><!-- Brand Logo --></value>
     </caseValues>
+    <fields>
+        <label>País</label>
+        <name>Country__c</name>
+        <relationshipLabel>Logos de marca</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Logo --></label>
+        <name>Logo__c</name>
+    </fields>
     <gender><!-- Feminine --></gender>
     <nameFieldLabel><!-- Brand Logo Name --></nameFieldLabel>
 </CustomObjectTranslation>

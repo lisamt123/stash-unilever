@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
-<<<<<<< HEAD
-    <custom>true</custom>
-=======
     <applicationVisibilities>
         <application>Agency_Fees</application>
         <default>false</default>
@@ -21507,7 +21504,6 @@
     <layoutAssignments>
         <layout>uw_Terms_Conditions__c-Terms %26 Conditions Layout</layout>
     </layoutAssignments>
->>>>>>> FETCH_HEAD
     <loginIpRanges>
         <endAddress>::fffe:ffff:ffff</endAddress>
         <startAddress>::</startAddress>
@@ -21520,8 +21516,6 @@
         <endAddress>ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff</endAddress>
         <startAddress>::1:0:0:0</startAddress>
     </loginIpRanges>
-<<<<<<< HEAD
-=======
     <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
@@ -23313,7 +23307,6 @@
         <tab>standard-WorkBadgeDefinition</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
->>>>>>> FETCH_HEAD
     <userLicense>Guest User License</userLicense>
     <userPermissions>
         <enabled>true</enabled>

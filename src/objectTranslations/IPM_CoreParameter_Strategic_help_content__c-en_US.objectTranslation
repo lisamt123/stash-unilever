@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM CoreParameter Strategic help content</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- IPM BLGPartTwo --></label>
         <name>IPM_BLGPartTwo__c</name>
@@ -45,6 +43,5 @@
         <label><!-- IPM Renovation --></label>
         <name>IPM_Renovation__c</name>
     </fields>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

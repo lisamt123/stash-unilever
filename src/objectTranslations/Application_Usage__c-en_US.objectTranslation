@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>Application Usage</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- Accessed --></label>
         <name>Accessed__c</name>
@@ -59,6 +57,5 @@
         <name>User__c</name>
         <relationshipLabel><!-- Application Usage --></relationshipLabel>
     </fields>
->>>>>>> FETCH_HEAD
     <startsWith>Vowel</startsWith>
 </CustomObjectTranslation>

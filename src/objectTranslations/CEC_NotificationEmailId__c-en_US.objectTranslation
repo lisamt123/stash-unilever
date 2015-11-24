@@ -8,5 +8,9 @@
         <plural>true</plural>
         <value>CEC_NotificationEmailId</value>
     </caseValues>
+    <fields>
+        <label><!-- EmailId --></label>
+        <name>EmailId__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

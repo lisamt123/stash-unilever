@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>IPM Project Documents</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- External Id --></label>
         <name>External_Id__c</name>
@@ -169,6 +167,5 @@
             <section>Custom Links</section>
         </sections>
     </layouts>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

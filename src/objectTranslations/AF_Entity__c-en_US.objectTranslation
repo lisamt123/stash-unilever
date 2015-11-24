@@ -8,8 +8,6 @@
         <plural>true</plural>
         <value>Entity</value>
     </caseValues>
-<<<<<<< HEAD
-=======
     <fields>
         <label><!-- Agency --></label>
         <name>AF_Agency__c</name>
@@ -693,6 +691,5 @@
         <label><!-- Unilever Entity --></label>
         <name>AF_Unilever_Entity</name>
     </recordTypes>
->>>>>>> FETCH_HEAD
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

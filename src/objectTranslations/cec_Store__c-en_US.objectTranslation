@@ -8,5 +8,17 @@
         <plural>true</plural>
         <value>Stores</value>
     </caseValues>
+    <fields>
+        <label><!-- Country --></label>
+        <name>Country__c</name>
+        <relationshipLabel><!-- Stores --></relationshipLabel>
+    </fields>
+    <layouts>
+        <layout>Store Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

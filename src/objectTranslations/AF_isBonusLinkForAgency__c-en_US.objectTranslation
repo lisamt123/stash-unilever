@@ -8,5 +8,9 @@
         <plural>true</plural>
         <value>AF_isBonusLinkForAgency</value>
     </caseValues>
+    <fields>
+        <label><!-- Bonus Date --></label>
+        <name>Bonus_Date__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

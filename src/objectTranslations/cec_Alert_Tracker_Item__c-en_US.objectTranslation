@@ -8,5 +8,15 @@
         <plural>true</plural>
         <value>Alert Tracker Item</value>
     </caseValues>
+    <fields>
+        <label><!-- Alert Tracker --></label>
+        <name>Alert_Tracker_Id__c</name>
+        <relationshipLabel><!-- Alert Tracker Item --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Case_Id --></label>
+        <name>Case_Id__c</name>
+        <relationshipLabel><!-- Alert Tracker Item --></relationshipLabel>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

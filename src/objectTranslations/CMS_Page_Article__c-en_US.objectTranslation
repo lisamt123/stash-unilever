@@ -8,5 +8,18 @@
         <plural>true</plural>
         <value>CMS Page Articles</value>
     </caseValues>
+    <fields>
+        <label><!-- CMS Article --></label>
+        <name>CMS_Article__c</name>
+        <relationshipLabel><!-- CMS Page Articles --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Order --></label>
+        <name>Order__c</name>
+    </fields>
+    <fields>
+        <label><!-- Page Name --></label>
+        <name>Page_Name__c</name>
+    </fields>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
