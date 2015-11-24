@@ -557,6 +557,7 @@
     <sf:deploy username="${sf.username}"
       password="${sf.password}"
       serverurl="${sf.serverurl}"
+      checkOnly="true"
       ignoreWarnings="true"
       deployRoot="${basedir}/undeploy"
       pollWaitMillis="${sfdc.pollWaitMillis}"
