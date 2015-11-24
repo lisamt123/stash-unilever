@@ -88,9 +88,11 @@ global without sharing class BET_AssetService {
     *************************************************************/
 	public static List<uw_Asset__c> updateFileId(List<uw_Asset__c> assets){
 
+		String validLinkPrefix = 'sfc/servlet.shepherd/version/download/';
+
 		Set<Id> identifiers = new Set<Id>();
 		for(uw_Asset__c asset : assets){
-			if(!String.isEmpty(asset.URL_of_Asset__c)){
+			if(!String.isEmpty(asset.URL_of_Asset__c) && asset.URL_of_Asset__c.contains(validLinkPrefix)){
 				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
 	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, startIdx+25);
 	        	identifiers.add(identifier);
@@ -103,7 +105,7 @@ global without sharing class BET_AssetService {
 		}
 
 		for(uw_Asset__c asset : assets){
-			if(!String.isEmpty(asset.URL_of_Asset__c)){
+			if(!String.isEmpty(asset.URL_of_Asset__c) && asset.URL_of_Asset__c.contains(validLinkPrefix)){
 				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
 	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, startIdx+25);
 				asset.File_Id__c = versionFileMap.get(identifier);
