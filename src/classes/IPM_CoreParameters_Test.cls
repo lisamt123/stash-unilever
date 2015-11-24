@@ -4,15 +4,11 @@
  *@Description : To test IPM_CoreParameters class functionalities
  *********************************************/@isTest
 private with sharing class IPM_CoreParameters_Test {
-    //*@Description: Object Variable decleration 
+    //*@Description: Object Variable declaration 
     private static IPM_Project__c projectWithOutBoss;
     private static IPM_Project__c testProject;
     private static User userInitialize;
     private static IPM_CoreParameters sic;
-    private static List < IPM_CoreParameter_Configration__c > coreConfigList;
-    private static List < IPM_CoreParameter_Questions__c > allQuestionsList;
-    private static List < IPM_InnovationRenovation__c > innovationRenoList;
-    private static List < IPM_Category__c > cateList;
     private static mdm_Product_Category__c mdmCategory;
     private static mdm_Brand_Position__c mdmPosition;
     private static user u4;
@@ -41,12 +37,12 @@ private with sharing class IPM_CoreParameters_Test {
     private static string readAccess = 'Current logged in user should have read access';
     private static string editAccess = 'Current logged in user should have edit access';
     private static string Laundry_STR = 'Laundry';
-	
+    
     /**************************************************
      * @description : Master data 
      ***************************************************/
     
-	static void initializedData() {
+    static void initializedData() {
 
         //insert users
         List < User > userList = new List < User > ();
@@ -78,16 +74,17 @@ private with sharing class IPM_CoreParameters_Test {
         System.assertEquals(userAllList[0].LastName, userLastName, sameName); //positive test
         //we need to create project as admin because after inserting resource in project then we are using subscription
         system.runAs(newAdminUser){
-            innovationRenoList = IPM_TestFactory_Helper.createIPMCoreParameterInnoReno();
-            allQuestionsList = IPM_TestFactory_Helper.createIPMCoreParameterAllQuestions();
+            
+            IPM_TestFactory_Helper.createIPMCoreParameterInnoReno();
+            IPM_TestFactory_Helper.createIPMCoreParameterAllQuestions();
             mdmCategory = IPM_TestFactory_Helper.createMDMCategory(true);
             System.assertEquals(mdmCategory.Name, 'Test Brand P', 'name should be Test Brand P'); //positive test
            
             mdmPosition = IPM_TestFactory_Helper.createMDMBrandPosition(true);
             System.assertEquals(mdmPosition.Category_Name__c, Laundry_STR, 'category should be ' + space_STR + Laundry_STR); //positive test
-            cateList = IPM_TestFactory_Helper.createIPMCategory();
+            IPM_TestFactory_Helper.createIPMCategory();
             //get coreparameter configuration
-            coreConfigList = IPM_TestFactory_Helper.createIPMCoreParameterConfig();
+            IPM_TestFactory_Helper.createIPMCoreParameterConfig();
             //insert coreparameter help text
             List < IPM_CorePara_helps_example__c > corehelpsList = new List < IPM_CorePara_helps_example__c > ();
             IPM_CorePara_helps_example__c coreParamHelp = IPM_TestFactory_Helper.createCoreParamHelpExapmle(false);
@@ -394,7 +391,7 @@ private with sharing class IPM_CoreParameters_Test {
      *@Description :To cover code for Search BET
      ***************************************************************/
     
-	static testmethod void testSearchBET() {
+    static testmethod void testSearchBET() {
         initializedData();
         //Handled mix dml
         system.runAs(newAdminUser){
