@@ -1,7 +1,7 @@
 @istest
 class IPM_BETHelper_Test {
 
-    /**static IPM_Project__c projectList[0]  = IPM_TestFactory_Helper.createIPMProject(false);
+    static IPM_Project__c projectList[0]  = IPM_TestFactory_Helper.createIPMProject(false);
     static IPM_Project__c projectList[1]  = IPM_TestFactory_Helper.createIPMProject(false);
     static IPM_Project__c projectList[2]  = IPM_TestFactory_Helper.createIPMProject(false);
     static IPM_Project__c projectList[3]  = IPM_TestFactory_Helper.createIPMProject(false);
@@ -11,8 +11,8 @@ class IPM_BETHelper_Test {
     static IPM_Project__c projectList[7]  = IPM_TestFactory_Helper.createIPMProject(false);
     static IPM_Project__c projectList[8]  = IPM_TestFactory_Helper.createIPMProject(false);
     static IPM_Project__c projectList[9] = IPM_TestFactory_Helper.createIPMProject(false);
-    static IPM_Project__c projectList[10] = IPM_TestFactory_Helper.createIPMProject(false); **/
-   /* public static list<IPM_Project__c> projectList=IPM_TestFactory_Helper.createIPMProjectList(false,11);
+    static IPM_Project__c projectList[10] = IPM_TestFactory_Helper.createIPMProject(false); 
+    public static list<IPM_Project__c> projectList=IPM_TestFactory_Helper.createIPMProjectList(false,11);
     static User runningUser = IPM_TestFactory_Helper.createUser(false);
     
     static uw_BET__c betRecord  = BET_TestUtils.getTestBet();
@@ -60,10 +60,10 @@ class IPM_BETHelper_Test {
          }  
          system.assertEquals(projectList.size(),11,'Projects are not created'); 
         
-    }*/
+    }
     
     
-    /*
+    
     // Test method for method to Update BET Milestones DueDate after BET is associated/updated to IPM Project  
     private static testmethod void testupdateBETmilestones() {
         
@@ -697,5 +697,4 @@ class IPM_BETHelper_Test {
             System.assertEquals([Select Launch_Date__c from uw_BET__c where id = : projectList[0].BET__c].Launch_Date__c, projectList[0].IPM_Target_Launch_Dates__c, 'Failed to send updates to BET on Project update in IPM');
         } 
     }
-*/
 }
