@@ -1512,6 +1512,10 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Core_CA_RemoteServiceCallControllerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Core_CA_RequestDetail</apexClass>
         <enabled>true</enabled>
     </classAccesses>
