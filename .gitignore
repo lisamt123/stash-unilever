@@ -1,0 +1,30 @@
+# IDE setup #
+######################
+*.sublime-project
+*.sublime-settings
+*.sublime-workspace
+config/*
+.project
+.settings
+salesforce.schema
+Referenced Packages
+
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Files breaking git for Windows users 
+######################
+***HELP***.homePageComponent
