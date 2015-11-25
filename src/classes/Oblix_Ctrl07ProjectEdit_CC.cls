@@ -694,8 +694,16 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
     }
 
     @RemoteAction
-    public static Map<String, String> getAbreviationForCardAssets(){
+    public static Map<String, String> getAbreviationForCardAssets() {
         return Oblix_Utils.getAbreViationForCardAssets();
     }
+
+    @RemoteAction
+    public static Oblix_Utils.AssetDetailWrapper getAssetDetails(String assetId) {
+        return new Oblix_Utils.AssetDetailWrapper([SELECT Id, Quantity__c, Additional_Description__c,
+                Actual_Delivery_Date__c, Asset_Picklist__c
+                FROM Oblix_Project_Assets__c WHERE Id = : assetId LIMIT 1]);
+    }
+
 
 }
