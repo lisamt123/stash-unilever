@@ -206,7 +206,7 @@
 <apex:param name="countries" assignTo="{!project.OblixCountries__c}" value="" />
 </apex:actionFunction>
 
-<apex:actionFunction name="setInfoStages" action="{!setInfoStages}" oncomplete="$.unblockUI()">
+<apex:actionFunction name="setInfoStages" action="{!setInfoStages}" oncomplete="$.unblockUI()" reRender="campaignFeeId">
 <apex:param name="projected" assignTo="{!project.Projected_Stage__c}" value="{!project.Projected_Stage__c}" />
 <apex:param name="completed" assignTo="{!project.Completed_Stage__c}" value="{!project.Completed_Stage__c}" />
 <apex:param name="stage" assignTo="{!project.Project_Stage__c}" value="{!project.Project_Stage__c}" />
@@ -318,7 +318,7 @@
     <!-- Agency Hub popUp Start-->
     <div id="agencyHub" title="Agency Hub Split " style="display:none" class="agencyHub">
 
-        <div style="margin-left: 15%">
+        <div style="margin-left: 10%">
         <br/>
         <h1>{!$Label.Oblix_lbl_UIUX_List_lead_agency_market} </h1>
         <br/><br/>

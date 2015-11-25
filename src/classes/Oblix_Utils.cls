@@ -562,7 +562,7 @@ public with sharing class Oblix_Utils {
         public Date actualDeliveryDate;
         public String assetName;
         public String location;
-        
+
         public AssetDetailWrapper(Oblix_Project_Assets__c asset) {
             this.assetId = asset.Id;
             this.quantity = asset.Quantity__c;
