@@ -48,6 +48,11 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <description>MDO Junction object for Brand and product category objects</description>
     <enableActivities>true</enableActivities>
+<<<<<<< HEAD
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+=======
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
@@ -55,6 +60,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
+>>>>>>> FETCH_HEAD
     <fields>
         <fullName>brand_id__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -72,7 +78,11 @@
         <fullName>brand_mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>Brand MDM Id</label>
+<<<<<<< HEAD
+        <length>6</length>
+=======
         <length>32</length>
+>>>>>>> FETCH_HEAD
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -83,7 +93,11 @@
         <fullName>mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>MDM ID</label>
+<<<<<<< HEAD
+        <length>12</length>
+=======
         <length>32</length>
+>>>>>>> FETCH_HEAD
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -108,7 +122,11 @@
         <fullName>product_category_mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>Product Category MDM Id</label>
+<<<<<<< HEAD
+        <length>6</length>
+=======
         <length>32</length>
+>>>>>>> FETCH_HEAD
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -119,6 +137,16 @@
         <fullName>status__c</fullName>
         <externalId>false</externalId>
         <label>Status</label>
+<<<<<<< HEAD
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>CategoryBrands</label>
+=======
         <picklist>
             <picklistValues>
                 <fullName>Active</fullName>
@@ -140,6 +168,7 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+>>>>>>> FETCH_HEAD
     <nameField>
         <displayFormat>PCB-{00000}</displayFormat>
         <label>Name</label>

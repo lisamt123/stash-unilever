@@ -44,11 +44,19 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+<<<<<<< HEAD
+=======
     <allowInChatterGroups>true</allowInChatterGroups>
+>>>>>>> FETCH_HEAD
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>store mdo geography subscriptions master data</description>
     <enableActivities>true</enableActivities>
+<<<<<<< HEAD
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+=======
     <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
@@ -56,6 +64,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
+>>>>>>> FETCH_HEAD
     <fields>
         <fullName>geo_id__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>

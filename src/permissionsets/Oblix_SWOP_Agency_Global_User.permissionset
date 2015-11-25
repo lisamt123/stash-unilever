@@ -5502,26 +5502,6 @@
         <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
-        <tab>MDO_Brand__c</tab>
-        <visibility>Available</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>MDO_Category__c</tab>
-        <visibility>Available</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>MDO_Geography__c</tab>
-        <visibility>Available</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Marketing_Basics__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Marketing_SOW__c</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
         <tab>Oblix_Calculator__c</tab>
         <visibility>Available</visibility>
     </tabSettings>

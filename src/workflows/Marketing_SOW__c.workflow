@@ -27,24 +27,6 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>OblixReturned_By_GVP</fullName>
-        <field>SOW_Status__c</field>
-        <literalValue>Returned</literalValue>
-        <name>Returned By GVP</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Returned_By_GVP</fullName>
-        <field>SOW_Status__c</field>
-        <literalValue>Returned</literalValue>
-        <name>Returned By GVP</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
         <fullName>Oblix_WF02_UpdateNameUnique</fullName>
         <actions>
