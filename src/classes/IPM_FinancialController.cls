@@ -63,6 +63,16 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
     public List<SelectOption> documentSections {get; set;} //Used to manage the list of the document sections for navigation
     public String selectedDocumentSection {get; set;} //Seleted DOcument Section for the current project for navigation
+    public Boolean isConsolidatedOrNonkey {
+        get {
+            Boolean flag = false;
+            if(currentFinancial!=null && (currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) || currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY))) {
+                flag = true;
+            }
+            return flag;
+        } 
+        set;
+    } 
     
     private Map<String, IPM_Financial_Year__c> mapFinancialYearRecords; //Used to store the map of the financial years, based on External Id for the currentFinancial
     

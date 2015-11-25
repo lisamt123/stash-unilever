@@ -2796,13 +2796,6 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>BOSSCARD Shared Via Chatter</value>
     </labels>
     <labels>
-        <fullName>IPM_image</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM image</shortDescription>
-        <value>&quot;https://unilever.my.salesforce.com</value>
-    </labels>
-    <labels>
         <fullName>LAUNCH_PINNOVATE_CMD</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -4700,13 +4693,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>IPM_BETFunctionalTeams</shortDescription>
         <value>BD;CD;CMI</value>
     </labels>
-    <labels>
-        <fullName>IPM_BETIdNullMsg</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_BETIdNullMsg</shortDescription>
-        <value>BET Id cannot be null.</value>
-    </labels>
+   
     <labels>
         <fullName>IPM_BETLabel</fullName>
         <language>en_US</language>
@@ -5291,13 +5278,6 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM Bosscard Save Before Share</shortDescription>
         <value>Please Save BOSSCARD Before Sharing</value>
-    </labels>
-    <labels>
-        <fullName>IPM_Bosscard_Shared_Chatter</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM Bosscard Shared Chatter</shortDescription>
-        <value>BOSSCARD Shared Via Chatter</value>
     </labels>
     <labels>
         <fullName>IPM_Brand</fullName>
@@ -12349,11 +12329,5 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>ipmFinTableVolume</shortDescription>
         <value>Volume</value>
     </labels>
-	<labels>
-        <fullName>IPM_Search_MCO_Country_Name</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM_Search_MCO_Country_Name</shortDescription>
-        <value>Search MCO / Country Name</value>
-    </labels>
+	
 </CustomLabels>

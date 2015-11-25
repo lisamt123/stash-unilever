@@ -46,18 +46,19 @@ public with sharing class IPM_CustomPermission {
                 customPermissionNamesById.put(customPermission.Id, customPermission.DeveloperName);
             }
 
-        // Query to determine which of these custome settings are assigned to this user
-        List<SetupEntityAccess> setupEntities = 
-            [SELECT SetupEntityId
-                FROM SetupEntityAccess
-                WHERE SetupEntityId in :customPermissionNamesById.keySet() AND
-                      ParentId
-                        IN (SELECT PermissionSetId 
-                            FROM PermissionSetAssignment
-                            WHERE AssigneeId = :UserInfo.getUserId()) LIMIT 10];  
-        for(SetupEntityAccess setupEntity : setupEntities) {
-            customPermissionsForCurrentUser.add(customPermissionNamesById.get(setupEntity.SetupEntityId));
-        } 
+            // Query to determine which of these custome settings are assigned to this user
+            List<SetupEntityAccess> setupEntities = 
+                [SELECT SetupEntityId
+                    FROM SetupEntityAccess
+                    WHERE SetupEntityId in :customPermissionNamesById.keySet() AND
+                          ParentId
+                            IN (SELECT PermissionSetId 
+                                FROM PermissionSetAssignment
+                                WHERE AssigneeId = :UserInfo.getUserId()) LIMIT 10];  
+            for(SetupEntityAccess setupEntity : setupEntities) {
+                customPermissionsForCurrentUser.add(customPermissionNamesById.get(setupEntity.SetupEntityId));
+            } 
+        }
     }
 
 }
