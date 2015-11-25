@@ -11,22 +11,7 @@
 <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.OblixUIUXVF08ProjectCss)}" />
 
 <script>
-        
-    function setMendatory(x){
-            if(x.parent().parent().parent().parent().find("span").find("select").val()==''){
-            alert('Asset name can\'t be null');
-         return false;
-     }
-    if( x.parent().parent().parent().parent().find("span").find("select").val() =='Other' && x.parent().parent().parent().parent().find(".descMend").val() =='' ){
-        x.parent().parent().parent().parent().find(".error").css("display", "block");
-        alert('Please give description ');
-        
-        return false;
-            }else
-        return true;
-        
-        }
-    
+
     // Variable to select the picklist fields related to the campaign using css class attribute
     var setIdCss = {!setIdCss};
     // console.dir('{!lstIdCSSSelected}');
@@ -65,123 +50,123 @@
             width: 100%;
         }
     }
-<!-- green buttons -->
-input.btn,.Oblix_large_btn, .Oblix_btn  {
-background: #6BA539;
-background-image: none;
-color: #fff;
-padding: 4px 10px 3px 10px  !important;
-height: 30px;
-}
-input.btn:hover, button:hover, .Oblix_large_btn:hover, .Oblix_btn:hover {
-background: #44883E;
-color: #fff;
-}
-
-.disabled, .Oblix_projects_btn:disabled, input.btn:disabled, input.btn:disabled, button:disabled, .Oblix_large_btn:disabled, .Oblix_btn:disabled {
-background: #6BA539;
-opacity: 0.5;
-color: #fff;
-}
-.Oblix_header a{
-text-decoration:none;
-cursor:pointer;
-color:white;
-}
-.Oblix_header a:hover{
-text-decoration:none;
-cursor:pointer;
-color:white;
-}
-.Oblix_projects_btn{
-border: 1px solid #b5b5b5 !important;
-display: inline-block;
-padding: 4px 12px !important;
-width: 144px;
-margin-bottom: 0;
-font-weight: normal;
-line-height: 1.42857143;
-text-align: center;
-white-space: nowrap;
-vertical-align: middle;
--ms-touch-action: manipulation;
-touch-action: manipulation;
-cursor: pointer;
--webkit-user-select: none;
-}
-
-.Oblix_header{
-background-image : url("{!URLFOR($Resource.assetUI,'header_panel.png')}");
-background-size: 100% 100%;
-background-position: center bottom;
-background-repeat: no-repeat;
-height: 90px;
-position: relative;
-/* line-height: 65%; */
-width:95%;
-letter-spacing: 1px;
-}
-
-.Oblix_header_previousArrow:active, .Oblix_header_previousArrow:hover {
-background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
-background-repeat: no-repeat;
-}
-
-.Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
-background-color: transparent;
-background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
-background-repeat: no-repeat;
-}
-.Oblix_header_previousArrow{
-background-color: transparent;
-background-image : url("{!URLFOR($Resource.assetUI,'previouslevel_arrow.png')}");
-background-repeat: no-repeat;
-font-family: DIN, Arial;
-color:white;
-padding-left: 10px;
-width:160px;
-height: 90px;
-text-align: center;
-position: relative;
-}
-
-.Oblix_header_Arrow{
-background-color: transparent;
-background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow.png')}");
-background-repeat: no-repeat;
-font-family: DIN, Arial;
-color:white;
-padding-left: 10px;
-width:160px;
-height: 90px;
-text-align: center;
-position: relative;
-}
-
-.Oblix_header_activeArrow{
-background-color: transparent;
-background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
-background-repeat: no-repeat;
-font-family: DIN, Arial;
-color:white;
-padding-left: 10px;
-width:160px;
-height: 90px;
-text-align: center;
-position: relative;
-}
-.Oblix_Container{
-background-image : url("{!URLFOR($Resource.assetUI,'bg_pattern_2.png')}");
-background-repeat: no-repeat;
-position:relative;
-top: -11px;
-}
-.Oblix_recordTypeth th, .Oblix_recordTypeth_title th{
-cursor:pointer;
-}
-.disabledCSS{
-disabled:true;
-}
+    <!-- green buttons -->
+    input.btn,.Oblix_large_btn, .Oblix_btn  {
+    background: #6BA539;
+    background-image: none;
+    color: #fff;
+    padding: 4px 10px 3px 10px  !important;
+    height: 30px;
+    }
+    input.btn:hover, button:hover, .Oblix_large_btn:hover, .Oblix_btn:hover {
+    background: #44883E;
+    color: #fff;
+    }
+    
+    .disabled, .Oblix_projects_btn:disabled, input.btn:disabled, input.btn:disabled, button:disabled, .Oblix_large_btn:disabled, .Oblix_btn:disabled {
+    background: #6BA539;
+    opacity: 0.5;
+    color: #fff;
+    }
+    .Oblix_header a{
+    text-decoration:none;
+    cursor:pointer;
+    color:white;
+    }
+    .Oblix_header a:hover{
+    text-decoration:none;
+    cursor:pointer;
+    color:white;
+    }
+    .Oblix_projects_btn{
+    border: 1px solid #b5b5b5 !important;
+    display: inline-block;
+    padding: 4px 12px !important;
+    width: 144px;
+    margin-bottom: 0;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    }
+    
+    .Oblix_header{
+    background-image : url("{!URLFOR($Resource.assetUI,'header_panel.png')}");
+    background-size: 100% 100%;
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    height: 90px;
+    position: relative;
+    /* line-height: 65%; */
+    width:95%;
+    letter-spacing: 1px;
+    }
+    
+    .Oblix_header_previousArrow:active, .Oblix_header_previousArrow:hover {
+    background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
+    background-repeat: no-repeat;
+    }
+    
+    .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
+    background-color: transparent;
+    background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
+    background-repeat: no-repeat;
+    }
+    .Oblix_header_previousArrow{
+    background-color: transparent;
+    background-image : url("{!URLFOR($Resource.assetUI,'previouslevel_arrow.png')}");
+    background-repeat: no-repeat;
+    font-family: DIN, Arial;
+    color:white;
+    padding-left: 10px;
+    width:160px;
+    height: 90px;
+    text-align: center;
+    position: relative;
+    }
+    
+    .Oblix_header_Arrow{
+    background-color: transparent;
+    background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow.png')}");
+    background-repeat: no-repeat;
+    font-family: DIN, Arial;
+    color:white;
+    padding-left: 10px;
+    width:160px;
+    height: 90px;
+    text-align: center;
+    position: relative;
+    }
+    
+    .Oblix_header_activeArrow{
+    background-color: transparent;
+    background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
+    background-repeat: no-repeat;
+    font-family: DIN, Arial;
+    color:white;
+    padding-left: 10px;
+    width:160px;
+    height: 90px;
+    text-align: center;
+    position: relative;
+    }
+    .Oblix_Container{
+    background-image : url("{!URLFOR($Resource.assetUI,'bg_pattern_2.png')}");
+    background-repeat: no-repeat;
+    position:relative;
+    top: -11px;
+    }
+    .Oblix_recordTypeth th, .Oblix_recordTypeth_title th{
+    cursor:pointer;
+    }
+    .disabledCSS{
+    disabled:true;
+    }
 
 </style>
 <script>
@@ -264,7 +249,7 @@ disabled:true;
     <!-- Countries popUp Start-->
 
     <div id="dialogCountries" title="{!$Label.Oblix_lbl_UIUX_Choose_Countries}" style="display:none">
-        <center>
+        <div style="margin-left: 5%;">
          <!--<img class="worldIcon" src="/s.gif" title="Set as Global Campaign"/> -->
         <div class="globalButton">
             <apex:commandButton id="setAsGlobal" title="Set Campaign as Global" value="Set as Global" onclick="confirmSetAsGlobal()" />
@@ -282,14 +267,14 @@ disabled:true;
                 </apex:repeat>
             </tr>
         </table>
-        </center>
+        </div>
     </div>
     <!-- Countries PopUp End -->
     <!-- ValueDrivers popUp Start-->
     <div id="dialogDrivers" class="dialogDrivers" title="Value Drivers" style="display:none">
         <br/>
         {!$Label.Oblix_lbl_UIUX_Visible_to_Unilever}<br/>
-        <center>
+        <div style="margin-left: 5%;margin-right:5%">
         <br/>
         <h1>{!$Label.Oblix_lbl_UIUX_Please_Choose}</h1>
         <br/><br/>
@@ -327,19 +312,19 @@ disabled:true;
             </tr>
 
         </table>
-        </center>
+        </div>
     </div>
     <!-- ValueDrivers PopUp End -->
     <!-- Agency Hub popUp Start-->
     <div id="agencyHub" title="Agency Hub Split " style="display:none" class="agencyHub">
 
-        <center>
+        <div style="margin-left: 15%">
         <br/>
         <h1>{!$Label.Oblix_lbl_UIUX_List_lead_agency_market} </h1>
         <br/><br/>
         <table width="70%" class="agencyHubList">
 
-            <center>
+            <div style="margin-left: 5%;margin-right:5%">
             <apex:variable value="{!1}" var="display"/>
             <apex:repeat value="{!lstProjectSplitHubs}" var="split">
             <tr>
@@ -360,15 +345,15 @@ disabled:true;
             </tr>
             <apex:variable var="display" value="{!display + 1}"/>
             </apex:repeat>
-            </center>
+            </div>
         </table>
-        </center>
+        </div>
     </div>
     <!-- Agency hub PopUp End -->
 
     <!-- Stage popUp Start-->
     <div id="dialogStages" title="{!$Label.Oblix_lbl_UIUX_Choose_stages}  " style="display:none">
-        <center>
+        <div style="margin-left: 10%;margin-right:10%">
         <table width="80%">
             <tr>
                 <td colspan="3"><strong>{!$Label.Oblix_lbl_UIUX_Stages} : </strong></td>
@@ -392,17 +377,17 @@ disabled:true;
             </tr>
             </apex:repeat>
         </table>
-        </center>
+        </div>
     </div>
     <!-- Stage End -->
     <!-- TimeLines popUp Start-->
     <div id="dialogTimeLine" title="{!$Label.Oblix_lbl_UIUX_TimeLines}" style="display:none">
-        <center>
+        <div style="margin-left: 5%;margin-right:5%">
         <br/>
-        <center><h1>{!$Label.Oblix_lbl_UIUX_Fill_date}</h1></center>
+        <div style="text-align:center"><h1>{!$Label.Oblix_lbl_UIUX_Fill_date}</h1></div>
         <br/>
         <table width="90%">
-            <center>
+            <div style="margin-left:5%">
             <tr>
                 <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Start_Date__c.label} </strong></td><td><apex:inputField value="{!project.Project_Start_Date__c}" styleclass="dateProjSD"/></td>
                 <td><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.BET_first_release__c.label} </strong></td><td><apex:inputField value="{!project.BET_first_release__c}" styleclass="dateProjBFR" /></td>
@@ -427,22 +412,22 @@ disabled:true;
                 <td colspan="6"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Timescale_Notes__c.label}  </strong><br/><br/><apex:inputField style="width:100%;min-height:100px"  value="{!project.Timescale_Notes__c}" styleclass="ProjTimescale"/></td>
             </tr>
             <tr><td colspan="2">&nbsp;</td></tr>
-            <tr><td colspan="6"><center><h1>Other info</h1></center></td></tr>
+            <tr><td colspan="6"><div style="text-align:center"><h1>Other info</h1></div></td></tr>
             <tr><td colspan="2">&nbsp;</td></tr>
-            <tr><td colspan="6"><center><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Priority__c.label}</strong> &nbsp; <apex:inputField value="{!project.Project_Priority__c}" style="width:20%" styleclass="ProjPriority picklist_init"/></center></td></tr>
-            </center>
+            <tr><td colspan="6"><div style="text-align:center"><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Priority__c.label}</strong> &nbsp; <apex:inputField value="{!project.Project_Priority__c}" style="width:20%" styleclass="ProjPriority picklist_init"/></div></td></tr>
+            </div>
         </table>
-        </center>
+        </div>
     </div>
     <!-- TimeLines popUp End -->
 
     <!-- More Details Popup Start-->
     <div id="dialogMoreDetails" title="{!$Label.Oblix_lbl_UIUX_Add_details_optional} " style="display:none">
-        <center>
+        <div style="margin-left: 5%;margin-right:5%">
         <br/>
         <br/>
         <table width="90%">
-            <center>
+            <div style="margin-left: 5%;">
 
             <tr><td colspan="4">&nbsp;</td></tr>
             <tr>
@@ -454,13 +439,13 @@ disabled:true;
             <tr>
                 <td colspan="3"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Additional_Description__c.label} </strong><br/><br/><apex:inputField style="width:100%;min-height:100px"  value="{!assetInstance.Additional_Description__c}" styleclass="itemAdditionalNote"/></td>
             </tr>
-            </center>
+            </div>
         </table>
-        </center>
+        </div>
     </div>
     <!-- More Details popUp End -->
 
-    <center>
+    <div style="margin-left: 5%;">
 
     <div class="Oblix_header"><!-- 3 levels -->
     <div style="postion: relative; top:-200px; background: transparent;">
@@ -490,7 +475,7 @@ disabled:true;
             </tr>
         </table></div>
     </div>
-    </center>
+    </div>
     <br/><br/>
 
     <div class="Oblix_table padding_remove">
@@ -622,16 +607,16 @@ disabled:true;
                                                     </td>
                                                 </tr>
                                                 <tr><td><strong>&nbsp;</strong></td></tr>
-                                                <tr><td colspan="2"><h3><center>{!$Label.Oblix_lbl_UIUX_Unsaved}</center></h3></td></tr>
+                                                <tr><td colspan="2"><h3><div style="text-align:center">{!$Label.Oblix_lbl_UIUX_Unsaved}</div></h3></td></tr>
                                             </table>
                                         </section>
 
                                         <section class="PrColumn5">
-                                            <center>
+                                            <div style="text-align:center">
                                             <br/><br/>
                                             <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back} " action="{!BackAction}" immediate="true" rerender="EditPanel" styleClass="Oblix_projects_btn"/><br/><br/>
                                             <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save_Campaign}" action="{!SaveProjectAction}" styleClass="Oblix_projects_btn" reRender="myerror"/><br/>
-                                            </center>
+                                            </div>
                                         </section>
                                     </td>
                                 </tr>
@@ -707,7 +692,7 @@ disabled:true;
 
                                                         <apex:repeat value="{!mapSubCategOption[subCat]}" var="opt">
                                                         <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}">
-                                                            <center>
+                                                            <div style="text-align:center">
                                                             <apex:outputPanel id="assetPart">
                                                             <apex:actionRegion >
                                                             <table width="100%" class="AssetName">
@@ -738,7 +723,7 @@ disabled:true;
                                                             </table>
                                                             </apex:actionRegion>
                                                             </apex:outputPanel>
-                                                            </center>
+                                                            </div>
                                                         </div>
                                                         </apex:repeat>
                                                     </div>

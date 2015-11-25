@@ -3,7 +3,7 @@
   <apex:form id="jqueryId">
    <!-- Stage popUp Start-->
     <div id="dialogCancel" title="{!$Label.Oblix_lbl_UIUX_Cancel_Campaign}" style="display:none">   
-        <center>
+       <div style="margin-left:5%;">
        <table width="80%">  
            <tr>    
               <td colspan="4"><strong>{!$Label.Oblix_lbl_UIUX_Stages} : </strong></td>                                       
@@ -51,7 +51,7 @@
               <td>&nbsp;</td>         
            </tr>              
       </table>
-      </center>
+      </div>
    </div>
   <!-- Stage End -->
  
@@ -713,36 +713,32 @@
              word-break: normal;
          }
     </style>
-   <script>
+ <script>
    $(document).ready(function(){
         $('.cancelValue').text('€ '+parseInt((parseInt($('.perOfFee').val())/100)*parseInt({!SelectedProject.Campaign_Fees_Total__c})));
         $('span.dateFormat').remove();
-        // Select default checkbox values
-        //alert('{!lstIdCSSSelected}'); 
+      
         if('{!lstIdCSSSelected}' != ''){
          var selectedId = ('{!lstIdCSSSelected}').split(',');
-         //alert(selectedId);
+         
          for (var i = 0; i < selectedId.length; i++) {
                     $( "."+selectedId[i]).prop( "checked", true);
          } 
         }       
    });
-
-  function ModifyFee(val){
-       console.dir('here');
-       console.dir(val);
+</script>
+<script>
+  function ModifyFee(val){    
        var values = [];
         $("input:checkbox[name='checkbxDelivered']:checked").each(function(){
                                 values.push($(this).val());                   
-       });
-       console.dir(values);      
+       });            
        var max = values[values.length - 1];       
        $('.perOfFee').attr('value', max); 
        $('.cancelValue').text('€ '+parseInt((parseInt(max)/100)*parseInt({!SelectedProject.Campaign_Fees_Total__c})));
        values = [];
-   }
-    
-   </script>
+   }   
+</script>
 
    
 </apex:form>
