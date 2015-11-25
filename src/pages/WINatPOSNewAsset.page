@@ -58,7 +58,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 			    rightLabel="Selected Agencies"
 			    rightOption="{!selectedAgenciesEdit}"
 			    size="14"
-			    width="150px"/>
+			    width="200px"/>
           </apex:pageBlockSectionItem>
           <apex:outputField styleClass="inputWidth" value="{!Asset__c.Agency_Edit_Access_Text__c}" rendered="{!isCommunityUser}" />
           
@@ -70,7 +70,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 			    rightLabel="Selected Agencies"
 			    rightOption="{!selectedAgenciesView}"
 			    size="14"
-			    width="150px"/>
+			    width="200px"/>
           </apex:pageBlockSectionItem>   
           <apex:outputField styleClass="inputWidth" value="{!Asset__c.Agency_Read_Access_Text__c}" rendered="{!isCommunityUser}" />
           
