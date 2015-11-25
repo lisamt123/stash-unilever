@@ -18,22 +18,19 @@
                         </div>
                         <div class="col-right">                            
                             <div id="announcementPost" ui-view="annoucement"></div>
-                            <div id="chatter-container" class="chatter-container">
+                            <div id="chatter-container" class="chatter-container" style="display: none">
                                 <apex:outputText value="<div ps-chatter-display></div>" escape="false"></apex:outputText>
                                 <div class="chatter-box">
                                     
                                     <div class="chatter-body">
                                         <apex:form >
-    <apex:actionFunction name="UpdateChatterFeed" action="{!updateChatterFeed}" rerender="IF(isCommunityUser,chatterForCommunityPanel,chatterFeed)" oncomplete="Ps.Chatter.onActionCallComplete();">
+    <apex:actionFunction name="UpdateChatterFeed" action="{!updateChatterFeed}" rerender="chatterFeed" oncomplete="Ps.Chatter.onActionCallComplete();">
         <apex:param name="entityId" assignTo="{!entityId}" value="" />
-    </apex:actionFunction>
+    </apex:actionFunction>                                   
 </apex:form>
 <div id="chatter"></div>
                                      
-<chatter:feed rendered="{!NOT(isCommunityUser)}" id="chatterFeed" entityid="{!winAtPosGroupId}" onComplete="Ps.Chatter.onChatterComplete();"/>
-<apex:outputPanel id="chatterForCommunityPanel">                                        
-<chatter:feed rendered="{!AND(isCommunityUser,NOT(ISBLANK(entityId)))}" id="chatterFeedCommunity" entityid="{!winAtPosGroupId}" onComplete="Ps.Chatter.onChatterComplete();"/>
-</apex:outputPanel>    
+<chatter:feed id="chatterFeed" entityid="{!winAtPosGroupId}" onComplete="Ps.Chatter.onChatterComplete();"/> 
 
                                     </div>
                                 </div>
@@ -61,10 +58,11 @@
                                                    .constant('userGroupName', '{!winAtPosGroupName}')
                                                    .constant('userGroupId', '{!winAtPosGroupId}')
                                                    .constant('customUrls', winAtPOSUrlMap)
-                                                   .constant('newTabs', '{!$Setup.WinAtPOS_New_Tabs__c.Tab_String__c}');
+                                                   .constant('newTabs', '{!$Setup.WinAtPOS_New_Tabs__c.Tab_String__c}')
+    											   .constant('isCommunityUser', '{!isCommunityUser}');
     //hide global search
     $(document).ready(function() { 
-        $(".searchCell").hide(); 
+        $(".searchCell").hide();
     });                                                    
 </script>
      
@@ -87,6 +85,6 @@
                 console.log(rule2);
                 rule2.style.marginTop = -this.scrollTop+'px';
             });
-        });                                                   
+        });
     </script>
 </apex:page>

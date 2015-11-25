@@ -234,7 +234,9 @@ private class WINatPOSMovePostsToInternalBatchableTest {
     static testMethod void testBatchProcessing(){
         prepareTestDataEnv();
         test.startTest();
-        	Database.executeBatch(new WINatPOSMovePostsToInternalBatchable());
+       	Database.executeBatch(new WINatPOSMovePostsToInternalBatchable());
+        List<CollaborationGroup> colGroupLst = [Select Id,Name From CollaborationGroup Where Name =: WinAtPOSUtil.winAtPostChatterGroupForTest];
+        system.assertEquals(false, colGroupLst.isEmpty(), 'There should be created collaboration group for community');
         test.stopTest();
     }
 
