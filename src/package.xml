@@ -124,5 +124,5 @@
         <members>Marketing_SOW__c</members>
         <name>Workflow</name>
     </types>
-    <version>15.0</version>
+    <version>28</version>
 </Package>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
-        <fullName>Approved by GVP</fullName>
+        <fullName>Approved_by_GVP</fullName>
         <field>SOW_Status__c</field>
         <literalValue>Approved</literalValue>
+        <name>Approved by GVP</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>
@@ -12,22 +13,16 @@
         <fullName>OblixFU_UniqueName</fullName>
         <field>Oblix_tec_Unique_Name__c</field>
         <formula>Name</formula>
+        <name>OblixFU_UniqueName</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Returned By GVP</fullName>
-        <field>SOW_Status__c</field>
-        <literalValue>Returned</literalValue>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Returned By GVP</fullName>
+        <fullName>OblixReturned_By_GVP</fullName>
         <field>SOW_Status__c</field>
         <literalValue>Draft - with Unilever</literalValue>
+        <name>Returned By GVP</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>

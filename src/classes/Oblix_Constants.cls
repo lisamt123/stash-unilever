@@ -15,7 +15,7 @@
     Update History    
     --------------    
 */
-global class Oblix_Constants {
+global class Oblix_Constants { 
     
     		public static string SWOPReportFolder 							= Label.Oblix_Lbl_SWOPReportFolder;
     
