@@ -629,32 +629,24 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         
         System.debug('numberOfCategoryBrands: ' + categoryBrandList.size());
         
-        if(categoryBrandList.size() == 1){
+        if(categoryBrandList.size() == 0){
             
-            selSow.BigOblixProductCategory__r = categoryBrandList[0].product_Category_Id__r.parent_L2__r;
-            selSow.BigOblixProductCategory__c = categoryBrandList[0].product_Category_Id__r.parent_L2__c;
-            selSow.SmallProductCategory__r = categoryBrandList[0].product_Category_Id__r;
-            selSow.SmallProductCategory__c = categoryBrandList[0].product_Category_Id__c;
-            
-        } else {
-            
+            // no categories for this brand.
             selSow.BigOblixProductCategory__r = null;
             selSow.BigOblixProductCategory__c = null;
             selSow.SmallProductCategory__r = null;
             selSow.SmallProductCategory__c = null;
             
+        } else {
+			
+            // one or more categories exist for this brand. If more than one, select first from the list
+            selSow.BigOblixProductCategory__r = categoryBrandList[0].product_Category_Id__r.parent_L2__r;
+            selSow.BigOblixProductCategory__c = categoryBrandList[0].product_Category_Id__r.parent_L2__c;
+            selSow.SmallProductCategory__r = categoryBrandList[0].product_Category_Id__r;
+            selSow.SmallProductCategory__c = categoryBrandList[0].product_Category_Id__c;
+            
         }
         
     }
-    /*public static MDO_CategoryBrands__c getCategoryBrand(){
-        String brandName = ApexPages.currentPage().getParameters().get('brandId');
-        List<MDO_CategoryBrands__c> categoryBrandList = [SELECT Id, product_Category_Id__r.Id, product_Category_Id__r.Name, product_Category_Id__r.parent_L2__r.Id, product_Category_Id__r.parent_L2__r.Name FROM MDO_CategoryBrands__c LIMIT 1];
-        if(categoryBrandList.size() == 0){
-            // no categories for this brand.
-        } else if(categoryBrandList.size() > 1){
-            // multiple category brands exist.
-        }
-        
-        return categoryBrandList.iterator().next();
-    }*/
+    
 }

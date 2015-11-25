@@ -370,6 +370,7 @@
         background-color: #f5f5f5;
         border: 1px solid #ccc;
         border-radius: 4px;
+		border-radius: 15px;
     }
    
     .Oblix_heading th{
@@ -393,10 +394,12 @@
         letter-spacing: 1px;
     }
 
-    .Oblix_projects_header{
-        padding: 20px;
-        background-color: rgb(0, 87, 63);
-    }
+    .Oblix_projects_header {
+		padding: 15px;
+		background-color: rgb(0, 87, 63);
+		border-top-left-radius: 15px;
+		border-top-right-radius: 15px;
+	}
     
     .padding_remove{
         padding:0px!important;

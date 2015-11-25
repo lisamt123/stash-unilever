@@ -341,10 +341,10 @@
         
         }
 		function showhideDetail(x){ 
-		    console.dir('show');
-			if( x.parent().parent().parent().parent().parent().find("span").find("select").val() == 'Other'){
-			    console.dir('show 2');
-				x.parent().parent().parent().parent().parent().find(".descMend").css("display", "block");				
+			if( x.parent().parent().parent().parent().parent().parent().find("span").find("select").val() == 'Other'){
+				x.parent().parent().parent().parent().parent().parent().find(".trDescribe").removeAttr("style");				
+			}else{
+				x.parent().parent().parent().parent().parent().parent().find(".trDescribe").css("display","none");			
 			}
 			return false;
         }

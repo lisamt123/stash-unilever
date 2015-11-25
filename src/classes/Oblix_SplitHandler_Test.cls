@@ -19,7 +19,7 @@ public with sharing class Oblix_SplitHandler_Test {
             handler.beforeInsert(splits);
             handler.beforeUpdate(splits, splits);
             handler.beforeDelete(splits);
-            
+             
             splits.Percentage__c = 50;
             update splits;
             handler.triggerShouldExecute = false;

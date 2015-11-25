@@ -132,6 +132,7 @@
              /*width: 45%; */
             float: right;
             vertical-align:center;
+    		max-width: 214px;
         }
 		.columnMiddle{vertical-align:middle}
         .column4{

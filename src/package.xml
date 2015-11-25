@@ -72,6 +72,10 @@
         <name>CustomApplication</name>
     </types>
     <types>
+        <members>CustomLabels</members>
+        <name>CustomLabels</name>
+    </types>
+    <types>
         <members>MDO_BrandUser__c</members>
         <members>Marketing_Basics__c</members>
         <members>Marketing_SOW__c</members>
@@ -124,5 +128,5 @@
         <members>Marketing_SOW__c</members>
         <name>Workflow</name>
     </types>
-    <version>28</version>
+    <version>28.0</version>
 </Package>

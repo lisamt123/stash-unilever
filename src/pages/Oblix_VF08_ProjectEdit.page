@@ -429,15 +429,15 @@
         <table width="90%">
             <div style="margin-left: 5%;">
 
-            <tr><td colspan="4">&nbsp;</td></tr>
+            <tr><td colspan="2">&nbsp;</td></tr>
             <tr>
-                <td>&nbsp;</td>
+                
                 <td><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Actual_Delivery_Date__c.label}  </strong></td><td><apex:inputField value="{!assetInstance.Actual_Delivery_Date__c}" styleclass="itemDueDate"/></td>
                 <td>&nbsp;</td>
             </tr>
-            <tr><td colspan="3">&nbsp;</td></tr>
+            <tr><td colspan="2">&nbsp;</td></tr>
             <tr>
-                <td colspan="3"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Additional_Description__c.label} </strong><br/><br/><apex:inputField style="width:100%;min-height:100px"  value="{!assetInstance.Additional_Description__c}" styleclass="itemAdditionalNote"/></td>
+                <td colspan="2"><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Additional_Description__c.label} </strong><br/><br/><apex:inputField style="width:100%;min-height:100px"  value="{!assetInstance.Additional_Description__c}" styleclass="itemAdditionalNote"/></td>
             </tr>
             </div>
         </table>
@@ -448,8 +448,8 @@
     <div style="margin-left: 5%;">
 
     <div class="Oblix_header"><!-- 3 levels -->
-    <div style="postion: relative; top:-200px; background: transparent;">
-        <table width="90%" height="100%">
+    <div style="postion: relative; top:-200px; background: transparent;width: 95%;margin-left: auto;margin-right: auto;">
+        <table width="95%" height="100%">
             <tr>
                 <td width="50px" class="Oblix_header_logo">
                     <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
@@ -692,15 +692,15 @@
 
                                                         <apex:repeat value="{!mapSubCategOption[subCat]}" var="opt">
                                                         <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}">
-                                                            <div style="text-align:center">
+                                                            <div style="margin-left:2%">
                                                             <apex:outputPanel id="assetPart">
                                                             <apex:actionRegion >
                                                             <table width="100%" class="AssetName">
                                                                 <tr>
                                                                     <td valign = "bottom" class="removeBreak"><apex:inputField value="{!mapAssetsPerSubCat[subCat].Sub_Category__c}" style="display:none" styleClass="{!subCat}" /><strong>{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label} * </strong> </td><td><apex:inputField onchange="showhideDetail($(this))" value="{!mapAssetsPerSubCat[subCat].Asset_Picklist__c}" style="padding: 5px 9px;width: 94%;" /></td>
                                                                 </tr>
-                                                                <tr>
-                                                                    <td valign = "bottom" class="removeBreak"><strong>{!$Label.Oblix_lbl_UIUX_Please_describe} </strong></td><td><apex:inputField styleClass="input_init descMend" style="display:none" value="{!mapAssetsPerSubCat[subCat].Location__c}" /></td>
+                                                                <tr style="display:none" class="trDescribe">
+                                                                    <td valign = "bottom" class="removeBreak" ><strong>{!$Label.Oblix_lbl_UIUX_Please_describe} </strong></td><td><apex:inputField styleClass="input_init descMend" value="{!mapAssetsPerSubCat[subCat].Location__c}" /></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td valign = "bottom" >

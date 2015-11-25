@@ -561,13 +561,15 @@ public with sharing class Oblix_Utils {
         public String additionalDescription;
         public Date actualDeliveryDate;
         public String assetName;
-
+        public String location;
+        
         public AssetDetailWrapper(Oblix_Project_Assets__c asset) {
             this.assetId = asset.Id;
             this.quantity = asset.Quantity__c;
             this.additionalDescription = asset.Additional_Description__c;
             this.actualDeliveryDate = asset.Actual_Delivery_Date__c;
             this.assetName = asset.Asset_Picklist__c;
+            this.location =  asset.Location__c;
         }
     }
 }

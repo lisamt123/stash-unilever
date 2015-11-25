@@ -483,6 +483,11 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
                     ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'These fields are required : Name'));
                     return null;
                 } else {
+                    if (project.Innovation_Projects__c == 'Innovation') {
+                        project.Brand_Led_Growth__c = selectedBrandInnov;
+                    } else {
+                        project.Brand_Led_Growth__c = selectedBrandBrand;
+                    }
 
                     insert project;
                     if (!splitToInsert.isEmpty()) {
@@ -669,41 +674,4 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
         }
 
     }
-
-    @RemoteAction
-    public static void removeAsset(String assetId) {
-        try {
-            delete [SELECT Id FROM Oblix_Project_Assets__c WHERE Id = : assetId];
-        } catch (DMLException e) {
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Could not remove asset: ' + e.getMessage()));
-        }
-    }
-
-    public void refresh() {
-        lstAssetsForCard = new List<Oblix_Project_Assets__c>();
-        list<Oblix_Project_Assets__c> lstAsset = [select Id, Agency_Projects__r.id, Channels__c, RecordType.Name, Quantity__c , Asset_Picklist__c, Asset_Title__c , Name, RecordTypeId, Sub_Category__c, FULL_Description__c, FULL_Description__r.name from Oblix_Project_Assets__c where Agency_Projects__r.id = :project.id  limit 1000];
-        for (Oblix_Project_Assets__c asse : lstAsset) {
-            if (asse.FULL_Description__c != null) {
-                asse.Asset_Title__c = asse.Quantity__c + ' X ' + mapAbreviation.get('' + asse.RecordType.Name) + '-' + mapAbreviation.get('' + asse.Sub_Category__c) + '-' + '0' + asse.FULL_Description__r.name.remove('Score ');
-            }
-            if (asse.Asset_Title__c != null) {
-                asse.Asset_Title__c = asse.Asset_Title__c.replaceAll('null', '');
-            }
-        }
-        lstAssetsForCard.addAll(lstAsset);
-    }
-
-    @RemoteAction
-    public static Map<String, String> getAbreviationForCardAssets() {
-        return Oblix_Utils.getAbreViationForCardAssets();
-    }
-
-    @RemoteAction
-    public static Oblix_Utils.AssetDetailWrapper getAssetDetails(String assetId) {
-        return new Oblix_Utils.AssetDetailWrapper([SELECT Id, Quantity__c, Additional_Description__c,
-                Actual_Delivery_Date__c, Asset_Picklist__c
-                FROM Oblix_Project_Assets__c WHERE Id = : assetId LIMIT 1]);
-    }
-
-
 }

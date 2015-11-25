@@ -44,11 +44,11 @@ public with sharing class Oblix_TR06SowMarketBrandPopulate {
 		for(Marketing_SOW__c market : lstMarketingSOW){
 			if(market.Id == sowTrigg.Id){
 				System.debug('###market : '+market);			
-				if(MapBrandIdToCategory.get(market.OblixBrand__c)!= null){
+				if(MapBrandIdToCategory.get(market.OblixBrand__c) != null && market.BigOblixProductCategory__c == null && market.SmallProductCategory__c == null){
 					System.debug('###MapBrandIdToCategory.get(market.OblixBrand__c) : '+MapBrandIdToCategory.get(market.OblixBrand__c));		
 					market.BigOblixProductCategory__c = MapBrandIdToCategory.get(market.OblixBrand__c).parent_L2__c;
 					market.SmallProductCategory__c = MapBrandIdToCategory.get(market.OblixBrand__c).Id;
-				}else{
+                }else if (MapBrandIdToCategory.get(market.OblixBrand__c) == null){
 					market.BigOblixProductCategory__c = null;
 					market.SmallProductCategory__c  = null;
 				}	

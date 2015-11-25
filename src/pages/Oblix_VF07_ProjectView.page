@@ -6,7 +6,7 @@
        <div style="margin-left:5%;">
        <table width="80%">  
            <tr>    
-              <td colspan="4"><strong>{!$Label.Oblix_lbl_UIUX_Stages} : </strong></td>                                       
+              <td colspan="4"><strong>{!$Label.Oblix_lbl_UIUX_Stages} </strong></td>                                       
            </tr>
            <tr>    
               <td colspan="5">{!$Label.Oblix_lbl_UIUX_Cancel_description} </td>                                       
@@ -296,17 +296,18 @@
                            </table>
                            
                            <div class="Oblix_recordType">
+                           <!--
                            <apex:outputPanel rendered="{!lstAssets.size != 0}"> 
                                <table width="100%" class="Oblix_accordiHeader">
                                    <tr>
                                        <td width="30%">{!$Label.Oblix_lbl_UIUX_items_big} </td>
                                        <td width="60%"><span style="Color:grey">{!$Label.Oblix_lbl_UIUX_Cost_estimate}</span></td>
                                        <td width="5%">{!$Label.Oblix_lbl_UIUX_Cost}</td>
-                                       <td width="5%">{!SelectedProject.ProjectTotalAssetscore__c} </td><!-- {!SelectedProject.Financial_Year__r.currency__c} -->
+                                       <td width="5%">{!SelectedProject.ProjectTotalAssetscore__c} </td>
                                    </tr>
                                </table>
                            </apex:outputPanel>  
-                          
+                           -->
                              
                              <table width="100%">
                              
@@ -345,10 +346,13 @@
                                                        <td width="15%">{!asset.Location__c}</td>
                                                        <td width="15%">{!asset.Additional_Description__c}</td>
                                                        <td width="10%"><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
-                                                       <td width="10%">
-                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnAV">
+                                                       <td width="10%">                                                          
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnAV" style="width: 100px !important;">
                                                                <apex:param name="itemToUpdate" assignTo="{!itemToUpdate}" value="{!asset.Id}"/>
-                                                           </apex:commandButton>
+                                                           </apex:commandButton><br/>
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();" id="deleteBtnAV" style="width: 100px !important;">
+                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
+                                                          </apex:commandButton>
                                                        </td>
                                                        <td width="10%"></td>
                                                  </tr>
@@ -398,9 +402,13 @@
                                                        <td width="15%">{!asset.Additional_Description__c}</td>
                                                        <td width="10%"><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
                                                        <td width="10%">
-                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnE">
+                                                           
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnE" style="width: 100px !important;">
                                                                <apex:param name="itemToUpdate" assignTo="{!itemToUpdate}" value="{!asset.Id}"/>
-                                                           </apex:commandButton>
+                                                           </apex:commandButton><br/>
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();" id="deleteBtnE" style="width: 100px !important;">
+                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
+                                                          </apex:commandButton>
                                                        </td>
                                                        <td width="10%"></td>
                                                  </tr>
@@ -450,8 +458,11 @@
                                                        <td width="15%">{!asset.Additional_Description__c}</td>
                                                        <td width="10%"><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
                                                        <td width="10%">
-                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnD">
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnD" style="width: 100px !important;">
                                                                <apex:param name="itemToUpdate" assignTo="{!itemToUpdate}" value="{!asset.Id}"/>
+                                                           </apex:commandButton><br/>
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();" id="deleteBtnD" style="width: 100px !important;">
+                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                            </apex:commandButton>
                                                        </td>
                                                        <td width="10%"></td>
@@ -503,8 +514,11 @@
                                                        <td width="15%">{!asset.Additional_Description__c}</td>
                                                        <td width="10%"><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
                                                        <td width="10%">
-                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnSI">
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnSI" style="width: 100px !important;">
                                                                <apex:param name="itemToUpdate" assignTo="{!itemToUpdate}" value="{!asset.Id}"/>
+                                                           </apex:commandButton><br/>
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();" id="deleteBtnSI" style="width: 100px !important;">
+                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                            </apex:commandButton>
                                                        </td>
                                                        <td width="10%"></td>
@@ -556,8 +570,11 @@
                                                        <td width="15%">{!asset.Additional_Description__c}</td>
                                                        <td width="10%"><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
                                                        <td width="10%">
-                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnSM">
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnSM" style="width: 100px !important;">
                                                                <apex:param name="itemToUpdate" assignTo="{!itemToUpdate}" value="{!asset.Id}"/>
+                                                           </apex:commandButton><br/>
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();" id="deleteBtnSM" style="width: 100px !important;">
+                                                              <apex:param assignTo="{!itemToDelete}" name="ItemsDelete" value="{!asset.id}"/>
                                                            </apex:commandButton>
                                                        </td>
                                                        <td width="10%"></td>
@@ -589,7 +606,7 @@
 <apex:form id="jsId">
      
   <!-- Action function to update the current fee -->
-   <apex:actionFunction name="CancelCampaign" action="{!CancelCampaign}" oncomplete="!$.unblockUI()"  reRender="totalCampaign,CampaignStatus,buttonList,editBtnAV,editBtnSM,editBtnD,editBtnE,editBtnSI">  
+   <apex:actionFunction name="CancelCampaign" action="{!CancelCampaign}" oncomplete="!$.unblockUI()"  reRender="totalCampaign,CampaignStatus,buttonList,editBtnAV,editBtnSM,editBtnD,editBtnE,editBtnSI,deleteBtnAV,deleteBtnSM,deleteBtnD,deleteBtnE,deleteBtnSI">  
       <apex:param name="percentage" assignTo="{!SelectedProject.Percentage_of_Fee_for_this_FY__c}" value="" /> 
       <apex:param name="feeCancellation" assignTo="{!SelectedProject.Value_to_be_paid_in_Current_FY__c}" value="" />  
    </apex:actionFunction> 

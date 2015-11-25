@@ -11,7 +11,7 @@ public with sharing class Oblix_AssetHandler_Test {
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
-            
+             
             Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
             System.assertEquals(asset.Agency_Projects__c, project.Id, 'Asset has the same project');
             Oblix_AssetHandler handler = new Oblix_AssetHandler();
