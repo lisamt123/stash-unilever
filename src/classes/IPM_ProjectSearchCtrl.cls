@@ -5,7 +5,7 @@
 **/
 public with sharing class IPM_ProjectSearchCtrl{
     
-    public String searchTxt{get;set;} //Search text
+    public String searchTxt{get;set;} //Search text 
     public List<IPM_Project__c> projects; //List of projects which gets displayed as a search results
     public Integer allProjects{get;set;} // number of all projects in the page
     public Integer myProjects{get;set;} // number of projects that current user has
