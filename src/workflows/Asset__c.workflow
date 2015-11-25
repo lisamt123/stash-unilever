@@ -7,6 +7,14 @@
         <recipients>
             <type>owner</type>
         </recipients>
+        <recipients>
+            <field>Additional_Owner_1__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Additional_Owner_2__c</field>
+            <type>userLookup</type>
+        </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/WINatPOS_Scheduled_Asset_Delete_Notification_Template</template>
     </alerts>
