@@ -202,6 +202,11 @@ public class WINatPOSDropDownController_Test {
         ApexPages.currentPage().getParameters().put('retURL',retUrl);
         WINatPOSDropDownController contFromAssetGroup=new WINatPOSDropDownController(new ApexPages.StandardController(initialAsset));
         
+        cont.selectedAgenciesEdit = new List<SelectOption>{new SelectOption('EditValue1', 'EditLabel1'), new SelectOption('EditValue2', 'EditLabel2')};
+        cont.selectedAgenciesView = new List<SelectOption>{new SelectOption('ViewValue1', 'ViewLabel1'), new SelectOption('ViewValue2', 'ViewLabel2')};
+        
+        PageReference resultPageReference = cont.saveAsset();
+        
         List<selectOption> catList=cont.getCategories();
         List<selectOption> brandList=cont.getBrands();
         List<selectOption> assetGroupList= cont.getAssetGroups();
@@ -209,6 +214,7 @@ public class WINatPOSDropDownController_Test {
         List<selectOption> brandListNarrowDowned=cont.getBrands();
         //cont.currentAsset.
         Test.stopTest();
+
         //check if picklist for lookup fields are populated
         system.assertEquals(true, catList.size()>0);
         system.assertEquals(true, brandList.size()>0);
@@ -218,7 +224,11 @@ public class WINatPOSDropDownController_Test {
         system.debug(brandList.size());
         //system.assertEquals(true, brandListNarrowDowned.size()<brandList.size(), 'Brand picklist should be narrowed down when catogory is selected');
         system.assertEquals(true, cont.currentAsset != null, 'Asset record should be initialized inside controller');
+        System.assert(resultPageReference != null);
         
+        Asset__c resultAsset = [SELECT Agency_Read_Access_Text__c, Agency_Edit_Access_Text__c FROM Asset__c WHERE Id = :cont.currentAsset.Id];
+        System.assert(!String.isBlank(resultAsset.Agency_Read_Access_Text__c));
+        System.assert(!String.isBlank(resultAsset.Agency_Edit_Access_Text__c));
         //check if fields were populared from Asset Group when Asset Created under asset group
         Asset_Group__c parentAssetGroup=ts.finalTestAssetGroup.get(0);
         system.assertEquals(true, contFromAssetGroup.currentAsset.Asset_Group__c == parentAssetGroup.id);

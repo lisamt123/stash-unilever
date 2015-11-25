@@ -102,4 +102,96 @@ private class WINatPOSUtil_Test {
         
         Test.stopTest();
     }
+    
+    /*******************************************************************
+    Purpose: Method testing retrieve of data
+    Parameters: Void
+    Returns: Void
+    Throws [Exceptions]: [optional]
+    ********************************************************************/
+    static testmethod void testGetBrandForCaruselByList(){
+    
+    	Category__c cat1 = new Category__c();
+        cat1.Name = 'Hair Test';     
+        cat1.Type__c = 'Category';
+        cat1.Category_Logo__c='<img alt="User-added image" data-cke-saved-src="/resource/1413243108000/WinAtPosBrandsLogo/brands/axe.png" src="/resource/1413243108000/WinAtPosBrandsLogo/brands/axe.png">';
+        insert cat1;
+
+        //crete brands
+        Brand_Master__c brandAxe=new Brand_Master__c();
+        brandAxe.Primary_Category__c=cat1.id;
+        brandAxe.Name='Axe Test';
+        brandAxe.Brand_Logo__c='<img alt="User-added image" data-cke-saved-src="/resource/1413243108000/WinAtPosBrandsLogo/brands/axe.png" src="/resource/1413243108000/WinAtPosBrandsLogo/brands/axe.png">';
+        insert brandAxe;
+        
+        Test.startTest();
+        
+        	List<Brand_Master__c> result = WINatPOSUtil.getBrandForCaruselByList(new List<Brand_Master__c>{brandAxe});
+        	
+        	System.assert(result != null);
+        	System.assert(result.size() > 0);
+        
+        Test.stopTest();
+    }
+    
+    /*******************************************************************
+    Purpose: Method testing retrieve of data
+    Parameters: Void
+    Returns: Void
+    Throws [Exceptions]: [optional]
+    ********************************************************************/
+    static testmethod void testGetCatForCaruselByList(){
+    
+    	Category__c cat1 = new Category__c();
+        cat1.Name = 'Hair Test';     
+        cat1.Type__c = 'Category';
+        cat1.Category_Logo__c='<img alt="User-added image" data-cke-saved-src="/resource/1413243108000/WinAtPosBrandsLogo/brands/axe.png" src="/resource/1413243108000/WinAtPosBrandsLogo/brands/axe.png">';
+        insert cat1;
+
+        //crete brands
+        Brand_Master__c brandAxe=new Brand_Master__c();
+        brandAxe.Primary_Category__c=cat1.id;
+        brandAxe.Name='Axe Test';
+        brandAxe.Brand_Logo__c='<img alt="User-added image" data-cke-saved-src="/resource/1413243108000/WinAtPosBrandsLogo/brands/axe.png" src="/resource/1413243108000/WinAtPosBrandsLogo/brands/axe.png">';
+        insert brandAxe;
+        
+        Test.startTest();
+        
+        	List<Category__c> result = WINatPOSUtil.getCatForCaruselByList(new List<Category__c>{cat1});
+        	
+        	System.assert(result != null);
+        	System.assert(result.size() > 0);
+        
+        Test.stopTest();
+    }
+    
+    /*******************************************************************
+    Purpose: Method testing retrieve of data
+    Parameters: Void
+    Returns: Void
+    Throws [Exceptions]: [optional]
+    ********************************************************************/
+    static testmethod void testGetAssetsForHomePage(){
+    
+    	Asset__c asset = new Asset__c();
+        asset.Name = 'Uniq Test Asset';
+        asset.Placement__c = 'Primary';
+        asset.POS_Asset_Type__c = 'Masterbrand';
+        asset.Market_Cluster__c = 'Global';
+        asset.Channels__c = 'Cash & Carry;Convenience';
+        asset.Status__c = 'Approved';
+        asset.Country__c = 'UK';
+        asset.Description__c = 'test';
+        asset.Carousel_Published__c = true;
+        insert asset;
+        
+        Test.startTest();
+        
+			List<Asset__c> result = WINatPOSUtil.getAssetsForHomePage();
+        	
+        	System.assert(result != null);
+        	System.assert(result.size() > 0);
+        
+        Test.stopTest();
+    }
 }
