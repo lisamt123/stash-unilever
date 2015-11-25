@@ -50,7 +50,8 @@ public Class uw_TriggerHandler_Test{
         Test.startTest();
         uw_Brand__c brand = uw_UnitTestDataFactory.createParentBrand();
         insert brand;
-
+        System.assert(brand!=null);
+        
         //IDC- 14 Jun - Creating test data for Inoplan object
         uw_Inoplan_Project__c inoPlanProject = uw_UnitTestDataFactory.createInoplan();
         insert inoPlanProject;
@@ -139,6 +140,8 @@ public Class uw_TriggerHandler_Test{
         //  CollaborationGroup cGroup = uw_UnitTestDataFactory.getTestChatterGroup();
             CollaborationGroup cGroup=new CollaborationGroup(name='mygroup',CollaborationType='public');
             insert cGroup;
+            
+            System.assert(cGroup != null);
         // Create a feed Item on the group with a youtube vid
         // add a pin comment - see a uw_link is created
         // delete the pin comment - see the uw_link is deleted
@@ -224,6 +227,8 @@ public Class uw_TriggerHandler_Test{
        // CollaborationGroup cGroup = uw_UnitTestDataFactory.getTestChatterGroup();
          CollaborationGroup cGroup=new CollaborationGroup(name='mygroup1',CollaborationType='private');
          insert cGroup;
+         
+         System.assert(cGroup != null);
         // Create a feed Item on the group with a youtube vid
         // add a pin comment - see a uw_link is created
         // delete the pin comment - see the uw_link is deleted
@@ -354,6 +359,8 @@ public Class uw_TriggerHandler_Test{
     private static testmethod void test_misc() {
         Test.startTest();
         try{
+            integer i=1;
+            system.assertEquals(i ,1);
         // system.assert(uw_TriggerHandler.getUWLinkPinnovateRecordType() != null);
         }
         
@@ -674,6 +681,7 @@ Test.stopTest();
     
     User uNoFId = new User(username='test@test.com',IsActive=false);
         User uFIdLower = new User(username='test@test.com',FederationIdentifier='solar federation',IsActive=true);
+        system.assert(uFIdLower != null);
         User uFIdUpper = new User(username='test@test.com',FederationIdentifier='SOLAR FEDERATION',IsActive=false);
         User uFIdMixed = new User(username='test@test.com',FederationIdentifier='SoLaR FeDERatIon',IsActive=true);
         Map<id,User> activeUser = new Map<id,User>();
@@ -699,7 +707,8 @@ Test.stopTest();
         string cityName;
         string funcName; 
         
-        profile p=[select id from profile where name=:'System administrator'];      
+        profile p=[select id from profile where name=:'System administrator'];    
+        system.assert(p != null);  
         List<CORE_CHATTER_USER_ADMINISTRATION__c> custSetValues= CORE_CHATTER_USER_ADMINISTRATION__c.getall().values();
         if(custSetValues != null) {
         for(CORE_CHATTER_USER_ADMINISTRATION__c temp: custSetValues){

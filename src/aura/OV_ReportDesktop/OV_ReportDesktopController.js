@@ -14,27 +14,7 @@
                 if (reportData.reportIsStatic === true) {
                     component.set('v.documentIcon', helper.getDocumentIconByType(reportData.reportDocument.reportDocumentFileType));
 
-                    // format dates - we might want to move to to the helper ...
-                    if (reportData.reportContentVersions && reportData.reportContentVersions.length > 0) {
-                        for (var i = 0, len = reportData.reportContentVersions.length; i < len; i++) {
-                            if (!!reportData.reportContentVersions[i].LastModifiedDate) {
-                                var dateVal   = new Date(reportData.reportContentVersions[i].LastModifiedDate);
-                                var dateParts = [
-                                    dateVal.getDate() < 9 ? '0' + dateVal.getDate() : dateVal.getDate(),
-                                    '/',
-                                    dateVal.getMonth() < 9 ? '0' + (dateVal.getMonth() + 1) : dateVal.getMonth() + 1,
-                                    '/',
-                                    dateVal.getFullYear(),
-                                    ' ',
-                                    dateVal.getHours(),
-                                    ':',
-                                    dateVal.getMinutes()
-                                ];
-                                reportData.reportContentVersions[i].LastModifiedDateFormatted = dateParts.join('');
-                            }
-                        }
-                    }
-
+                    reportData = helper.formatContentVersionDates(reportData);
                 } else {
                     component.set('v.documentIcon', '/resource/reportDocumentTypeIcons/link_60.png');
 

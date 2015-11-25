@@ -438,6 +438,32 @@ public with sharing class OV_SearchService2 {
         }
         return structure2;
     }
+    
+    /*******************************************************************
+    Purpose: Method for sorting contentversions by version number
+    Parameterd Description: created due to fact that versionumber is STRING field
+    Parameters: [List<ContentVersion> contentVersions]
+    Returns: [List<ContentVersion>]
+    Throws [Exceptions]: [optional]
+    ********************************************************************/
+    private static List<ContentVersion> getSortedContentVersions(List<ContentVersion> contentVersions){
+        List<Integer> order = new List<Integer>();
+        Map<Integer, ContentVersion> cVMap = new Map<Integer, ContentVersion>();
+        for(ContentVersion cV : contentVersions){
+            cVMap.put(Integer.valueOf(cV.VersionNumber), cV);
+            order.add(Integer.valueOf(cV.VersionNumber));
+        }
+        //ASC ORDER
+        order.sort();
+
+        //Because of DESC order
+        List<ContentVersion> sortedContentVersions = new List<ContentVersion>();
+        for(Integer i = order.size()-1; i>=0;i--){
+            sortedContentVersions.add(cVMap.get(order.get(i)));
+        }
+
+        return sortedContentVersions;
+    }
 
     /*******************************************************************
     Purpose: Method for returning report data.
@@ -484,8 +510,8 @@ public with sharing class OV_SearchService2 {
                 }else{
                     reportDocument = new OV_Wrapper.ReportDocumentWrapper(reportTile.Report__r.Mobile_Content_Proxy__r.Title__c, reportTile.Report__r.Mobile_Content_Proxy__r.Url__c);
                 }
-                reportDocument.setReportShelfTileReportId(shelfTileId, reportTile.Report__c);
-                reportContentVersions = [select Id, Title, ContentDocumentId, IsLatest, VersionNumber, LastModifiedDate from ContentVersion where ContentDocumentId = :reportTile.Report__r.Mobile_Content_Proxy__r.ContentDocumentId__c order by VersionNumber desc];
+                List<ContentVersion> reportContentVersionsTmp = [select Id, Title, ContentDocumentId, IsLatest, VersionNumber, LastModifiedDate from ContentVersion where ContentDocumentId = :reportTile.Report__r.Mobile_Content_Proxy__r.ContentDocumentId__c order by VersionNumber desc];                 
+                reportContentVersions = getSortedContentVersions(reportContentVersionsTmp);            
             }
 
             if(deviceType == OV_RemoteController.DEVICE_DESKTOP && reportTile.Report__r.Desktop_Content_Proxy__c != null && reportTile.Report__r.Desktop_Content_Proxy__r.LatestContentVersionId__c != null){
@@ -496,8 +522,9 @@ public with sharing class OV_SearchService2 {
                 }else{
                     reportDocument = new OV_Wrapper.ReportDocumentWrapper(reportTile.Report__r.Desktop_Content_Proxy__r.Title__c, reportTile.Report__r.Desktop_Content_Proxy__r.Url__c);
                 }   
-                reportDocument.setReportShelfTileReportId(shelfTileId, reportTile.Report__c);
-                reportContentVersions = [select Id, Title, ContentDocumentId, IsLatest, VersionNumber, LastModifiedDate from ContentVersion where ContentDocumentId = :reportTile.Report__r.Desktop_Content_Proxy__r.ContentDocumentId__c order by VersionNumber desc];                 
+
+                List<ContentVersion> reportContentVersionsTmp = [select Id, Title, ContentDocumentId, IsLatest, VersionNumber, LastModifiedDate from ContentVersion where ContentDocumentId = :reportTile.Report__r.Desktop_Content_Proxy__r.ContentDocumentId__c order by VersionNumber desc];
+                reportContentVersions = getSortedContentVersions(reportContentVersionsTmp);
             }
 
             if(deviceType == OV_RemoteController.DEVICE_TABLET && reportTile.Report__r.Tablet_Content_Proxy__c != null && reportTile.Report__r.Tablet_Content_Proxy__r.LatestContentVersionId__c != null){

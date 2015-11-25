@@ -53,6 +53,18 @@
 
         $A.enqueueAction(action);
     },
+    formatContentVersionDates: function(reportData) {
+        // format dates
+        if (reportData.reportContentVersions && reportData.reportContentVersions.length > 0) {
+            for (var i = 0, len = reportData.reportContentVersions.length; i < len; i++) {
+                if (!!reportData.reportContentVersions[i].LastModifiedDate) {
+                    var dateVal = new Date(reportData.reportContentVersions[i].LastModifiedDate);
+                    reportData.reportContentVersions[i].LastModifiedDateFormatted = Sfdc.Date.getDateTimeStringFromUserLocale(dateVal);
+                }
+            }
+        }
+        return reportData;
+    },
     getReport : function(component, reportId, shelfTileId, inCallback) {
         var action   = component.get("c.getReport");
         var callback = function(response) {
