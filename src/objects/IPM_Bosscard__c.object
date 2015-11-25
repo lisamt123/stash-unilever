@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This object is created to hold the Bosscard Details</description>
@@ -56,6 +55,29 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>External_Id__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>External Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>IPMBosscard_Span__c</fullName>
+        <externalId>false</externalId>
+        <label>IPMBosscard_Span</label>
+        <length>15</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>IPM_Assumptions__c</fullName>
         <externalId>false</externalId>
@@ -138,6 +160,19 @@
         <visibleLines>25</visibleLines>
     </fields>
     <fields>
+        <fullName>IPM_Bosscard_Span_Logo__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( IPMBosscard_Span__c  = &apos;Global&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/globe.png&apos;,&apos;Global&apos;,21,21),IF(IPMBosscard_Span__c  = &apos;Regional&apos; || IPMBosscard_Span__c  = &apos;Local&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/icoLocal.png&apos;,&apos;Regional/Local&apos;,21,21),&apos;&apos;))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Bosscard Span Logo</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Bosscard_Status__c</fullName>
         <description>Contains the status of Bosscard</description>
         <externalId>false</externalId>
@@ -197,6 +232,43 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Category_Icon__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(IPM_Category__c  = &apos;Beverages&apos; || IPM_Category__c  = &apos;BEVERAGES&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/category_beverages.png&apos;,&apos;BEVERAGES&apos;,21,21), 
+IF(IPM_Category__c  = &apos;DEODARANTS&apos; || IPM_Category__c  = &apos;Deodarants&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/category_deo.png&apos;,&apos;DEO&apos;,21,21), 
+IF(IPM_Category__c  = &apos;Dressings&apos; || IPM_Category__c  = &apos;DRESSINGS&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/category_dressings.png&apos;,&apos;DRESSINGS&apos;,21,21), 
+IF(IPM_Category__c  = &apos;Hair&apos; || IPM_Category__c  = &apos;HAIR&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/category_hair.png&apos;,&apos;HAIR&apos;,21,21), 
+IF(IPM_Category__c  = &apos;Home Care&apos; || IPM_Category__c  = &apos;HOME CARE&apos; , 
+IMAGE(&apos;/resource/IPM_Resource/images/category_homecare.png&apos;,&apos;HOMECARE&apos;,21,21), 
+IF(IPM_Category__c  = &apos;Ice Cream&apos; || IPM_Category__c  = &apos;ICE CREAM&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/category_icecream.png&apos;,&apos;ICECREAM&apos;,21,21), 
+IF(IPM_Category__c  = &apos;Laundry&apos; || IPM_Category__c  = &apos;LAUNDRY&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/category_laundry.png&apos;,&apos;LAUNDRY&apos;,21,21), 
+IF(IPM_Category__c  = &apos;ORAL CARE&apos; || IPM_Category__c  = &apos;Oral Care&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/category_oral.png&apos;,&apos;ORAL&apos;,21,21), 
+IF( IPM_Category__c  = &apos;SAVORY&apos; || IPM_Category__c  = &apos;Savory&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/category_savoury.png&apos;,&apos;SAVOURY&apos;,21,21), 
+IF(IPM_Category__c  = &apos;Skin Care&apos; || IPM_Category__c  = &apos;SKIN CARE&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/category_skincare.png&apos;,&apos;SKINCARE&apos;,21,21), 
+IF(IPM_Category__c  = &apos;Skin Cleansing&apos; || IPM_Category__c  = &apos;SKIN CLEANSING&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/category_skincleansing.png&apos;,&apos;SKINCLEANSING&apos;,21,21), 
+IF(IPM_Category__c  = &apos;Spreads&apos; || IPM_Category__c  = &apos;SPREADS&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/category_spreads.png&apos;,&apos;SPREADS&apos;,21,21), 
+IF(IPM_Category__c  = &apos;Household Care&apos; || IPM_Category__c  = &apos;HOUSEHOLD CARE&apos; || IPM_Category__c  = &apos;HHC&apos;, 
+IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD CARE&apos;,21,21), 
+&apos;&apos;)))))))))))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Category Icon</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Category__c</fullName>
         <externalId>false</externalId>
         <label>Category</label>
@@ -219,29 +291,6 @@
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Company__c</fullName>
-        <externalId>false</externalId>
-        <label>Company</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Beiersdorf</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Coty</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Church &amp; Dwight</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_Constraints__c</fullName>
@@ -276,14 +325,16 @@
     <fields>
         <fullName>IPM_Filled_In_Percent__c</fullName>
         <defaultValue>0</defaultValue>
+        <description>To capture the % completion of the Bosscard Details</description>
         <externalId>false</externalId>
-        <label>IPM FilledIn Percentage</label>
+        <label>IPM Filled In Percent</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
-        <type>Percent</type>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Gate_Keeper__c</fullName>
@@ -296,24 +347,6 @@
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>IPM_IsAutoSave__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>IsAutoSave</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>IPM_IsCraeted__c</fullName>
-        <defaultValue>false</defaultValue>
-        <externalId>false</externalId>
-        <label>IsCraeted</label>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_IsSaved__c</fullName>
@@ -373,6 +406,41 @@
         <visibleLines>25</visibleLines>
     </fields>
     <fields>
+        <fullName>IPM_Project_Leader__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>to store project leader while approving the bosscard</description>
+        <externalId>false</externalId>
+        <label>Project Leader</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>IPM_ProjectLeader</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Region_Shr__c</fullName>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Region__c</fullName>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Resources__c</fullName>
         <externalId>false</externalId>
         <label>Resources</label>
@@ -391,6 +459,17 @@
         <trackTrending>false</trackTrending>
         <type>Html</type>
         <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Small_C_shr__c</fullName>
+        <externalId>false</externalId>
+        <label>Small C</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Sustainibility__c</fullName>
@@ -414,13 +493,132 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>IPM_isBosscardSkipped__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isBosscardSkipped</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Delete__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Those bosscards which will have no activity within 6 months will be marked as deleted.</description>
+        <externalId>false</externalId>
+        <label>Is Delete?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>ProjectTypeValue__c</fullName>
+        <description>Its an actual value of project type store internally</description>
+        <externalId>false</externalId>
+        <label>ProjectTypeValue</label>
+        <length>40</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>To_be_Deleted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To be deleted</description>
+        <externalId>false</externalId>
+        <label>To be Deleted?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Type_of_Project__c</fullName>
+        <description>Type of Project values to select from: Innnovation/Renovation [Project Type = Original], BLG [Project Type = Original], and Operational [Project Type = Operational]</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Value selected here will be default for Project creation</inlineHelpText>
+        <label>Type of Project</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Innovation/Renovation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand Led Growth(BLG)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Operational</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Used_By_Workflow_175_days__c</fullName>
+        <externalId>false</externalId>
+        <label>Used By Workflow 175 days</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Used_By_Workflow_30_days__c</fullName>
+        <externalId>false</externalId>
+        <label>Used By Workflow 30 days</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
     <label>IPM Bosscard</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>IPM_BosscardName__c</columns>
+        <columns>IPM_Background__c</columns>
+        <columns>IPM_Potential_Business_Opportunity__c</columns>
+        <columns>IPM_Consumer_Need__c</columns>
+        <columns>IPM_Scope__c</columns>
+        <columns>IPM_Sustainibility__c</columns>
+        <columns>IPM_Constraints__c</columns>
+        <columns>IPM_Assumptions__c</columns>
+        <columns>IPM_Resources__c</columns>
+        <columns>IPM_Deliverables__c</columns>
+        <columns>IPM_Brand__c</columns>
+        <columns>IPM_Brand_Positioning__c</columns>
+        <columns>IPM_Target_Launch_Date__c</columns>
+        <columns>IPM_Gate_Keeper__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>IPM_BosscardName__c</field>
+            <operation>notEqual</operation>
+        </filters>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>IPM Bosscard Name</label>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>IPM Bosscard</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>IPM_Brand__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Target_Launch_Date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Background__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Gate_Keeper__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>OWNER.ALIAS</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>Private</sharingModel>
 </CustomObject>

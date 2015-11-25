@@ -1,0 +1,6 @@
+<aura:event type="APPLICATION" description="Event fired when filers are applied to data query">
+    <aura:attribute name="functionId" type="String" />
+    <aura:attribute name="categoryId" type="String" />
+    <aura:attribute name="geographyId" type="String" />
+    <aura:attribute name="reportVisibleToMe" type="Boolean" />
+</aura:event>

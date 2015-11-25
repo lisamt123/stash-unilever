@@ -1,0 +1,11 @@
+CreatedById=CreatedById
+CreatedDate=CreatedDate
+Id=Id
+IsDeleted=IsDeleted
+LastModifiedById=LastModifiedById
+LastModifiedDate=LastModifiedDate
+Name=Name
+PL_Id__c=PL_Id__c
+Rollout_Id__c=Rollout_Id__c
+SetupOwnerId=SetupOwnerId
+SystemModstamp==SetupOwnerId

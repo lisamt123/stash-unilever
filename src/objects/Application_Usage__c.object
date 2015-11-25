@@ -64,6 +64,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Application_Login_Month__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
+        <description>Store Login history by month  for reporting purpose</description>
+        <externalId>false</externalId>
+        <label>Application Login Month</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Application__c</fullName>
         <externalId>false</externalId>
         <label>Application</label>
@@ -105,6 +115,16 @@
         <scale>0</scale>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Job_Function__c</fullName>
+        <externalId>false</externalId>
+        <label>Job Function</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
