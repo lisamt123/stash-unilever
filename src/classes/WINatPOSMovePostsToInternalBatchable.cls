@@ -50,6 +50,21 @@ global with sharing class WINatPOSMovePostsToInternalBatchable implements Databa
         Map<Id,User> ogrinalPostUsers = new Map<Id,User>();
         Set<String> fieldsToClone = new Set<String>{'Title', 'Type','ContentData', 'ContentDescription', 'ContentFileName','CreatedById','CreatedDate','LinkUrl'};
         for(FeedItem item : (List<FeedItem>)scope){
+        	//feedsToInsert.add(item.clone(false,true));
+        	/*
+        	FeedItem newFeedItem = new FeedItem();
+            for(String field : fieldsToClone){
+                newFeedItem.put(field,item.get(field));
+            }
+            newFeedItem.ParentId=internalGlobalWinAtPostID;
+            newFeedItem.Body = removeHtml(item.Body);
+            if(!newFeedItem.Body.containsIgnoreCase('@'+winAtPosGroup)){
+                //add only feeds mentioned to group
+            	continue;    
+            }
+            
+            feedsToInsert.add(newFeedItem);
+			*/
             
             String elementBody = removeHtml(item.Body);
             //replace html markups
