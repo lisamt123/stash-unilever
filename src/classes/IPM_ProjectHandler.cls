@@ -116,9 +116,16 @@ public with sharing class IPM_ProjectHandler implements ITrigger
        /* Actual Project specific process starts */
        if( Trigger.isInsert || Trigger.isUpdate)
        {
+          Set<Id> lstDeleteProjectId = new Set<Id>(); 
+          for(IPM_Project__c project : (List<IPM_Project__c>)Trigger.New)
+          {
+             if(project.Created_in_error__c) 
+             { 
+                lstDeleteProjectId.add(project.Id);
+             }         
+          }
           
-          IPM_ProjectHelper.deleteProj((List<IPM_Project__c>)Trigger.New);
-       
+          IPM_ProjectHelper.deleteProject(lstDeleteProjectId); 
            
            // Contains Master Project Map
            Map<Id,IPM_Project__c> masterProjectMap = new Map<Id,IPM_Project__c>();

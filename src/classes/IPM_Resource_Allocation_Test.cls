@@ -183,31 +183,31 @@ public class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.changeRoleType='gfgf';
             ipmResAlloccation.SearchTeambyCat= IPM_ConstantUtils.TEAM_MYCATEGORY;
             ipmResAlloccation.getSameCategory(); 
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.IPM_ROLE_RD,FUNCTION_NOT_CALL_PROPERLY);
             
             ipmResAlloccation.RoleType = IPM_ConstantUtils.IPM_ROLE_GUEST;
             ipmResAlloccation.getSameCategory(); 
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.IPM_ROLE_RD,FUNCTION_NOT_CALL_PROPERLY);
             
             system.assertEquals(ipmResAlloccation.RoleType,IPM_ConstantUtils.IPM_ROLE_GUEST); //positive test
             ipmResAlloccation.RoleType='Project Leader';
             ipmResAlloccation.getSameCategory(); 
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.IPM_ROLE_RD,FUNCTION_NOT_CALL_PROPERLY);
             
             ipmResAlloccation.SearchTeambyCat= IPM_ConstantUtils.TEAM_ALLCATEGORY; 
             ipmResAlloccation.RoleType =IPM_ConstantUtils.IPM_ROLE_GUEST;
             ipmResAlloccation.getSameCategory();
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.IPM_ROLE_RD,FUNCTION_NOT_CALL_PROPERLY);
             
             ipmResAlloccation.SearchTeambyCat= IPM_ConstantUtils.TEAM_ALLCATEGORY; 
             ipmResAlloccation.RoleType = '';   
             ipmResAlloccation.getSameCategory();  
             system.assertEquals(ipmResAlloccation.SearchTeambyCat,IPM_ConstantUtils.TEAM_ALLCATEGORY);//Positive test 
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.IPM_ROLE_RD,FUNCTION_NOT_CALL_PROPERLY);
             userProf.IPM_User_Role__c=IPM_ConstantUtils.PROJECT_LEADER;
             update userProf;
@@ -226,13 +226,13 @@ public class  IPM_Resource_Allocation_Test {
         globalUser = [Select Id,LastName,Name from User where LastName='PLATFORM_USER' limit 1];
         system.RunAs(globalUser){
             test.startTest();
-            
-            ipmResAlloccation.getSameCategory();
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
-            System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             IPM_Resource_Allocation.wrapperclass wrp=new IPM_Resource_Allocation.wrapperclass(userProList[0]);
             wrp.checkboxuser=true;
-            
+            ipmResAlloccation.getSameCategory();
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
+            ipmResAlloccation.teamMembers.add(wrp);
             ipmResAlloccation.addMemberToWrapper();
             ipmResAlloccation.HoldCoreMember(); 
             ipmResAlloccation.holdLeader(); 
@@ -258,15 +258,15 @@ public class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.RoleType =IPM_ConstantUtils.IPM_ROLE_GUEST;
           
             ipmResAlloccation.filterTeamMember();
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);          
             ipmResAlloccation.RoleType =IPM_ConstantUtils.IPM_ROLE_BD;
             ipmResAlloccation.filterTeamMember(); 
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
             ipmResAlloccation.SearchTeambyCat='';
             ipmResAlloccation.filterTeamMember();             
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
         }
         Test.stopTest(); 
@@ -301,19 +301,19 @@ public class  IPM_Resource_Allocation_Test {
             test.startTest();
             ipmResAlloccation.coreMembers=IPM_ConstantUtils.TEAM_COREPL;
             ipmResAlloccation.getCoreMemberds();
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);          
             ipmResAlloccation.coreMembers = IPM_ConstantUtils.TEAM_COREDPL;
             ipmResAlloccation.getCoreMemberds();
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);          
             ipmResAlloccation.coreMembers=IPM_ConstantUtils.TEAM_COREGATEK;
             ipmResAlloccation.getCoreMemberds();
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
             ipmResAlloccation.coreMembers=IPM_ConstantUtils.TEAM_CORETPL;
             ipmResAlloccation.getCoreMemberds();
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
         }
         Test.stopTest(); 
@@ -338,7 +338,7 @@ public class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.filterCoreMember(); 
             ipmResAlloccation.CoreMembers = IPM_ConstantUtils.TEAM_COREPL;
             ipmResAlloccation.filterCoreMember(); 
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
         }
         Test.stopTest(); 
@@ -371,11 +371,11 @@ public class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.UpdateCoreMember();
             ipmResAlloccation.searchLeaderbyCat=IPM_ConstantUtils.TEAM_MYCATEGORY;
             ipmResAlloccation.getSameCategoryRolloutProfiles();
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
             ipmResAlloccation.searchLeaderbyCat=IPM_ConstantUtils.TEAM_ALLCATEGORY;
             ipmResAlloccation.getSameCategoryRolloutProfiles();
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
         }
         Test.stopTest(); 
@@ -392,7 +392,7 @@ public class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.SearchLeader =string.valueOf(globalUser.Id);
             ipmResAlloccation.Category='fhhg';
             ipmResAlloccation.filterLeaderMember();
-            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.IPM_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
+            userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,FUNCTION_NOT_CALL_PROPERLY);
         }
         Test.stopTest(); 

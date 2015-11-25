@@ -197,13 +197,13 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                IsUpdateStatus=true; 
                isProjLeader = true;
             }
-			if(lstofuser[0].IPM_Project_Leader__c != null){
-            	suggestedManagerList.add(lstofuser[0].IPM_Project_Leader__c);
-        	}
-        	if(lstofuser[0].Deputy_Project_Leader__c != null && lstofuser[0].Deputy_Project_Leader__c != lstofuser[0].IPM_Project_Leader__c){
-            	suggestedManagerList.add(lstofuser[0].Deputy_Project_Leader__c);
-        	}
-		}
+            if(lstofuser[0].IPM_Project_Leader__c != null){
+                suggestedManagerList.add(lstofuser[0].IPM_Project_Leader__c);
+            }
+            if(lstofuser[0].Deputy_Project_Leader__c != null && lstofuser[0].Deputy_Project_Leader__c != lstofuser[0].IPM_Project_Leader__c){
+                suggestedManagerList.add(lstofuser[0].Deputy_Project_Leader__c);
+            }
+        }
         
         //security for central team and BP users
         IPM_CustomPermission cpr = new IPM_CustomPermission();
@@ -284,7 +284,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                             ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
 
                             ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
-                            (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_Role__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
+                            (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
 
                              limit 10000)
                              FROM IPM_Project__c 
@@ -359,7 +359,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         // Get project it and iTO value map
         projIdiTOMap = IPM_Utils.createProjectITOValueMap();
         if(projIdiTOMap != null && !projIdiTOMap.isEmpty() && projIdiTOMap.containsKey(project.id)){
-        	globalyearDec = projIdiTOMap.get(project.id);
+            globalyearDec = projIdiTOMap.get(project.id);
         }
 
         if((((IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c))) || (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c))) || (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equalsIgnoreCase(project.IPM_Project_Type__c)))) && (project.Exempt_from_Threshold__c))){
@@ -756,12 +756,12 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         }
        for(IPM_Project_Document__c eachDoc:[SELECT IPM_GateDocuments__c,IPM_Document_Status__c,IPM_Project__r.IPM_Project_Name__c FROM IPM_Project_Document__c where IPM_Project__c=: projectId])
        {
-	        if(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS.equalsIgnoreCase(eachDoc.IPM_Document_Status__c) && (System.Label.IPM_CHARTER.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c) || IPM_ConstantUtils.CONTRACT_GATE.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c)))
-	        {
-	            documentAlertMessage = eachDoc.IPM_Project__r.IPM_Project_Name__c +IPM_ConstantUtils.Colon+eachDoc.IPM_GateDocuments__c+SPACE+system.label.IPM_Gate_Approved_With_Edits;
-	            alertscount++;
-	        }
-    	}
+            if(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS.equalsIgnoreCase(eachDoc.IPM_Document_Status__c) && (System.Label.IPM_CHARTER.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c) || IPM_ConstantUtils.CONTRACT_GATE.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c)))
+            {
+                documentAlertMessage = eachDoc.IPM_Project__r.IPM_Project_Name__c +IPM_ConstantUtils.Colon+eachDoc.IPM_GateDocuments__c+SPACE+system.label.IPM_Gate_Approved_With_Edits;
+                alertscount++;
+            }
+        }
             
         return mapToReturn;
     }

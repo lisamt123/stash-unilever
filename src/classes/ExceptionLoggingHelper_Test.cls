@@ -6,7 +6,7 @@
 
 
 @isTest
-public class ExceptionLoggingHelper_Test { 
+public class ExceptionLoggingHelper_Test {
      public static User platformUser;
      public static List<IPM_Project__c> projectList;
      public static List<IPM_Project__c> ipmProjectList = new List<IPM_Project__c>();

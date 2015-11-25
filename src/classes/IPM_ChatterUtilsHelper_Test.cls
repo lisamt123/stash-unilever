@@ -83,10 +83,42 @@ public with sharing class IPM_ChatterUtilsHelper_Test {
            for(integer i=0; i<20; i++){
                 ipmProjectResourceList[i].IPM_Project__c = projectList[i].Id;
                 ipmProjectResourceList[i].IPM_Role_Type__c= 'R&D';
-                //ipmProjectResourceList[i].IPM_Role__c= 'R&D';
+                
            }
            insert ipmProjectResourceList;
         system.runAs(globalUser){
+           projectList = [Select Id, name,Synced_From_EcoDesign_TimeStamp__c,First_Sync_To_EcoDesign__c ,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Project_Type__c,IPM_CompanyCardText__c,IPM_Phase__c,IPM_Project_Leader__c,IPM_Project_Name__c from IPM_Project__c Limit 1000];
+           ipmCountryList = IPM_TestFactory_Helper.createIPMCountryList(false, 20);
+           for(integer i=0; i<20; i++){
+                ipmCountryList[i].IPM_Project__c=projectList[i].Id;
+           }
+           test.startTest();
+           insert ipmCountryList;
+           
+           List<IPM_Country__c> countriesToDeleteLst = [Select id,IPM_project__c from IPM_Country__c limit 2];
+           delete countriesToDeleteLst;
+           
+           System.assertEquals('Ready',[Select Id,EcoDesign_Sync_Status__c from IPM_Project__c where ID =:countriesToDeleteLst[0].IPM_project__c limit 1 ][0].EcoDesign_Sync_Status__c);
+           
+           test.stopTest();
+        }
+        
+    }
+    
+    /***********************************
+      Description of the purpose of the method. 
+      @name: testChatterUtilsHelper
+      @Description: To test fetchProjIdLeadRnDMemberIdSetMap method and getprojIdchatterMessageMap method for both insert and delete operation 
+      when R&D leader is not assigned 
+      @param: none
+      @return: none
+      @throws: none
+    ***********************************/     
+    static testMethod void testChatterUtilsHelperWithOutRnDLeader(){        
+        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
+        
+           projectList = [Select Id, name,Synced_From_EcoDesign_TimeStamp__c,First_Sync_To_EcoDesign__c ,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Project_Type__c,IPM_CompanyCardText__c,IPM_Phase__c,IPM_Project_Leader__c,IPM_Project_Name__c from IPM_Project__c Limit 1000];
+           system.runAs(globalUser){
            projectList = [Select Id, name,Synced_From_EcoDesign_TimeStamp__c,First_Sync_To_EcoDesign__c ,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Project_Type__c,IPM_CompanyCardText__c,IPM_Phase__c,IPM_Project_Leader__c,IPM_Project_Name__c from IPM_Project__c Limit 1000];
            ipmCountryList = IPM_TestFactory_Helper.createIPMCountryList(false, 20);
            for(integer i=0; i<20; i++){

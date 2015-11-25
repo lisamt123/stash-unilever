@@ -371,9 +371,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                     if(!retainedBrandPos.isEmpty())
                     {
                         for(String retainedbrand : retainedBrandPos)
-	                    {
-	                        finalBrandPosString = finalBrandPosString + retainedbrand +  IPM_ConstantUtils.COMMA;      
-	                    }
+                        {
+                            finalBrandPosString = finalBrandPosString + retainedbrand +  IPM_ConstantUtils.COMMA;      
+                        }
                         finalBrandPosString = finalBrandPosString.removeEndIgnoreCase(IPM_ConstantUtils.COMMA);
                     }
                     project.IPM_Brand_Positioning__c = finalBrandPosString;
@@ -908,7 +908,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                     isMilestoneEditable=true;
                     
                 }
-               if(loggedInUser == project.IPM_Technical_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c 
+               if(loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c 
                         || loggedInUser == project.IPM_Technical_Project_Leader__c)
                     {
                         updateApproach =true;

@@ -85,7 +85,6 @@ public class IPM_PjtDocSectionHstryController_Test {
             pRef.getParameters().put('projDocSecId',docSec.Id);
             Test.setCurrentPage(pRef);
             projDocHistoryCont=new IPM_ProjDocumentSectionHstryController();
-            interCon=new IPM_ProjectIntermediateController();
         }
     }
      

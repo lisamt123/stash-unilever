@@ -5,7 +5,7 @@
 **/
 public with sharing class IPM_ProjectSearchCtrl{
     
-    public String searchTxt{get;set;} //Search text 
+    public String searchTxt{get;set;} //Search text
     public List<IPM_Project__c> projects; //List of projects which gets displayed as a search results
     public Integer allProjects{get;set;} // number of all projects in the page
     public Integer myProjects{get;set;} // number of projects that current user has
@@ -142,12 +142,12 @@ public with sharing class IPM_ProjectSearchCtrl{
         }
         
         for(IPM_Project__c project : [Select Id from IPM_Project__c where
-        												IPM_Project_Leader__c  =:userinfo.getuserid() OR
+                                                        IPM_Project_Leader__c  =:userinfo.getuserid() OR
                                                         Deputy_Project_Leader__c=:userinfo.getuserid() OR
                                                         IPM_Technical_Project_Leader__c =:userinfo.getuserid() OR
                                                         IPM_Project_Gatekeeper__c =:userinfo.getuserid() OR
                                                         IPM_Finance_Member__c = : UserInfo.getUserId() LIMIT 9999 ]){
-        	 shareProjIdSet.add(project.Id);                                                	
+             shareProjIdSet.add(project.Id);                                                    
         }
         //Initialise everything to the projectList variable from the query
         for(IPM_Project__c eachProject : Database.query(query())) {
@@ -179,23 +179,23 @@ public with sharing class IPM_ProjectSearchCtrl{
                 if(countryCountMap != NULL && !mapCountryAdded.containsKey(countryKey) && countryCountMap.containsKey(countryKey)){
                     countryCountMap.put(countryKey, countryCountMap.get(countryKey)+1);
                     mapCountryAdded.put(countryKey , true);
-                    }
+                }
                    
                 String mcoKey = eachCountry.Market_Cluster_Name__c + str_hyphen + eachCountry.MCO_Name__c ;
                 if(mcoCountMap!= NULL && !mapMCOAdded.containsKey(mcoKey) && mcoCountMap.containsKey(mcoKey)){
                     mcoCountMap.put(mcoKey, mcoCountMap.get(mcoKey)+1);
                     mapMCOAdded.put(mcoKey, true);
-                   }
+                }
                     
                 String clusterKey = eachCountry.Market_Cluster_Name__c;
                 if(clusterCountMap != NULL && !mapClusterAdded.containsKey(clusterKey) && clusterCountMap.containsKey(clusterKey)){
                     clusterCountMap.put(clusterKey, clusterCountMap.get(clusterKey)+1);
                     mapClusterAdded.put(clusterKey, true);
-                    }
+                }
             }
             
             if( lstCountires.isEmpty()){
-            	unAssignedCount++;
+                unAssignedCount++;
             }
             allCountries.addAll(eachProject.IPM_Countries__r);//we need collection of all countries with all projects for future use and to display
         }
@@ -294,7 +294,7 @@ public with sharing class IPM_ProjectSearchCtrl{
        if( aProjects != TRUE_STR && mProjects == TRUE_STR) {
            soql += ' AND ( OwnerId = \'' + UserInfo.getUserId() + '\'';
            if (String.IsBlank(shareProj)){
-           		soql += ')';
+                soql += ')';
            }
            else{
                 soql += ' OR Id IN ' + shareProj + ')';
@@ -385,7 +385,7 @@ public with sharing class IPM_ProjectSearchCtrl{
             noRecords = false;
             soql += ' AND ( Id IN ' + countryWiseProjects() ;
             if(unassigned == FALSE_STR){
-            	soql += ') ';
+                soql += ') ';
             }
        }
                 
@@ -441,7 +441,7 @@ public with sharing class IPM_ProjectSearchCtrl{
            soql += ' ORDER BY ' + currentSort.get(THISFLD_STR) + ' ASC NULLS LAST';
         }
        soql += ' LIMIT 9999';
-       
+       system.debug(bPositionings + ' ** soql : ' + soql);
        return soql;
     }
     
@@ -472,13 +472,13 @@ public with sharing class IPM_ProjectSearchCtrl{
         
         for(IPM_Country__c eachCountry : countryLst) {
             if(eachCountry.IPM_Project__c != null){
-            	projectIds.add(eachCountry.IPM_Project__c);
+                projectIds.add(eachCountry.IPM_Project__c);
             } 
             if(eachCountry.IPM_Regional_Project__c != null){
-            	projectIds.add(eachCountry.IPM_Regional_Project__c);
+                projectIds.add(eachCountry.IPM_Regional_Project__c);
             } 
             if(eachCountry.IPM_Local_Project__c != null){
-            	projectIds.add(eachCountry.IPM_Local_Project__c);
+                projectIds.add(eachCountry.IPM_Local_Project__c);
             } 
         }
         strToReturn = IPM_Utils.convertSetToString(projectIds); 
@@ -682,7 +682,7 @@ public with sharing class IPM_ProjectSearchCtrl{
          if(lstuserprofile != null && !lstuserprofile.isEmpty()){
             for(IPM_User_Profile__c up:lstuserprofile){
                 if(up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_BD || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI|| 
-                	up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_CD || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE|| 
+                    up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_CD || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE|| 
                     up.IPM_User_Role__c == IPM_ConstantUtils.IPM_ROLE_SUPPLY_CHAIN || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_RD || 
                     up.IPM_User_Function__c == IPM_ConstantUtils.GATEKEEPER_CONSTANT || up.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_BB){
                     IsProjectEditable=false;

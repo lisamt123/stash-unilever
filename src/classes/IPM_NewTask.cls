@@ -41,7 +41,7 @@ public with sharing class IPM_NewTask {
             IPM_IECompatible.ieFix();
             ProjectWizard=ApexPages.currentPage().getParameters().get(IPM_Utils.projectWizard);
             tasks = (IPM_Task__c)controller.getRecord();
-           
+            
             if(String.IsNotBlank(ApexPages.currentPage().getParameters().get(IPM_Utils.projDocSecId)))
             {
                 redirectToGateDocument = true;  
@@ -61,7 +61,7 @@ public with sharing class IPM_NewTask {
                     Set<String> childList = new Set<String> {'IPM_Project_Resource__c','IPM_Milestone__c'};
                     string query = IPM_Utils.prepareSOQLQuery(sObjName ,true,childList)+' where id =\''+ projectId + '\'';
                     projectObject  = Database.query(query);
-                    User loggedInUser ;
+                   
                     
                     if(projectObject != null )
                     {   
@@ -77,17 +77,12 @@ public with sharing class IPM_NewTask {
                                 userId.add(assigneeIdName.get(role));
                             }
                         }
-                        userId.add(UserInfo.getUserId());
                         
                         //query the user in and create map of user id as key and user name as value
                         userIdName = new Map<Id,String>();
-                        for(User usr : [Select Id,Name,IPM_Role__c from User Where Id IN: userId ] )
+                        for(User usr : [Select Id,Name from User Where Id IN: userId ] )
                         {
                             userIdName.put(usr.id,usr.Name);
-                            if(loggedInUser == null && usr.Id == UserInfo.getUserId())
-                            {
-                                loggedInUser = usr;
-                             }
                          }
                      }
                    
@@ -105,12 +100,8 @@ public with sharing class IPM_NewTask {
                 }
                 else
                 {
-                    //assign default functional role as logged in user role if prsent, else PL.
-                    if(loggedInUser != null && !string.isBlank(loggedInUser.IPM_Role__c) && !(loggedInUser.IPM_Role__c == IPM_Utils.ProjectLeader || loggedInUser.IPM_Role__c == IPM_Utils.TechnicalLeader || loggedInUser.IPM_Role__c==IPM_Utils.DeputyProjectLeader))
-                    {
-                        tasks.IPM_Function__c = loggedInUser.IPM_Role__c;    
-                    }
-                    else if(string.isBlank(tasks.IPM_Function__c))
+                    //assign default functional role 
+                    if(string.isBlank(tasks.IPM_Function__c))
                     {
                         tasks.IPM_Function__c = IPM_ConstantUtils.IPM_ROLE_RD;
                     }
@@ -179,18 +170,15 @@ public with sharing class IPM_NewTask {
     
     public void upsertTask(List<IPM_Task__c> task)
     {
-        
         List<Database.UpsertResult> taskResult = Database.upsert(task, false);
-        String sErrorMessage = '';
+        String sErrorMessage='';
         for(Database.UpsertResult upsertResult : taskResult){
-            
             if(!upsertResult.isSuccess()){
                 for(Database.error errorResult : upsertResult.getErrors()){
                         sErrorMessage += errorResult.getMessage();
                 }
             }
         }
-        
         if(sErrorMessage != NULL){
             ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,IPM_Utils.Invalidproject);
             ApexPages.addMessage(myMsg); 
@@ -207,17 +195,17 @@ public with sharing class IPM_NewTask {
     
     public pageReference doSaveTasks(){
         try{
-            
             displayError = false;
             validate = true;
             if(String.isBlank(tasks.IPM_Task_Name__c))
             {
+                displayError = true;
                 return null;
             }   
             if(tasks.IPM_Project__c == null)
             {
                 tasks.IPM_Project__c=apexpages.currentpage().getparameters().get(IPM_Utils.IPM_NewTaskprojectId);
-                IPM_Task__c tsk = new IPM_Task__c();
+                IPM_Task__c tsk =  new IPM_Task__c();
                 
                 if(tsk != null)
                 {
@@ -262,8 +250,7 @@ public with sharing class IPM_NewTask {
                 if(displayError)
                 {
                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, system.label.IPM_TaskDueDateErrorMsg));
-                }
-                if(!displayError && !String.isBlank(tasks.IPM_Task_Name__c) && !String.isBlank(tasks.IPM_Function__c))
+                }else
                 {
                     upsertTask(new List<IPM_Task__c>{tasks});
                 }

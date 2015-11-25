@@ -118,6 +118,7 @@ public with sharing class IPM_ProjectHelper
     public static Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap = new Map<Id,Map<String,IPM_Project_Document__c>>();
     public static  Map<Id,List<IPM_Project_Document_Section__c>> projectDocumentToSecMap = new Map<Id,List<IPM_Project_Document_Section__c>>();
     
+    public static Boolean DELETE_PROJECT_INVOKED = false;
      /**************************************************************
     * @description: Used for Resetting Cache in case Project Handler is invoked again. 
     */
@@ -1439,18 +1440,11 @@ public with sharing class IPM_ProjectHelper
         
     }
     
-    public static void deleteProj(List<IPM_Project__c>projLst){
-        
-        Set<id> projectIdSetToBeDeleted = new Set<Id>(); // Project Id set to be deleted 
-        for(IPM_Project__c project : projLst)
+    public static void deleteProject(Set<Id> projectIdSetToBeDeleted)
+    {    
+        if(!projectIdSetToBeDeleted.isEmpty() && !DELETE_PROJECT_INVOKED)
         {
-            if(project.Created_in_error__c)
-            {
-                projectIdSetToBeDeleted.add(project.Id); 
-            }
-        }
-        if(!projectIdSetToBeDeleted.isEmpty())
-        {
+            DELETE_PROJECT_INVOKED = true;    
             List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectIdSetToBeDeleted Limit 5000];
             if(projFinList != null && !projFinList.isEmpty())
                 delete projFinList;

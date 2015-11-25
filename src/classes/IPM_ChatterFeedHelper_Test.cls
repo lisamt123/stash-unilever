@@ -403,13 +403,13 @@ private class IPM_ChatterFeedHelper_Test {
             List<IPM_Task__c> listTask = new List<IPM_Task__c>();
             System.runAs(platformUser) 
             {
-              ID  projectTaskRecordType = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
-              //Need system admin to insert System Generated tasks for testing
-              IPM_Task__c newTask = IPM_TestFactory_Helper.createIPMTask(lstProjects[0].id,false);
-              newTask.IsSystemGenerated__c = true;
-              newTask.RecordTypeId = projectTaskRecordType;
-              insert newTask;
-              listTask.add(newTask);
+            	ID  projectTaskRecordType = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
+	            //Need system admin to insert System Generated tasks for testing
+	            IPM_Task__c newTask = IPM_TestFactory_Helper.createIPMTask(lstProjects[0].id,false);
+	            newTask.IsSystemGenerated__c = true;
+	            newTask.RecordTypeId = projectTaskRecordType;
+	            insert newTask;
+            	listTask.add(newTask);
             }
             
             IPM_ChatterFeedHelper.notifyAssigneeTaskAssigned(listTask);

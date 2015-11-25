@@ -64,7 +64,7 @@ public class IPM_RolloutPlansAddController_Test{
            
         System.RunAs(globalUser)
         {
-            projectList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
+            projectList = [Select Id,IPM_Phase__c,Name,IPMProject_Span__c,IPM_Complexity__c,IPM_Project_Name__c,(Select Id from Project_Documents__r),
                                                     (Select Id from IPM_Financials_Consolidated__r ),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),
                                                     (Select Id,Name from IPM_Milestones__r) from IPM_Project__c where Name in:projectNameSet];
             for(IPM_Project__c proj : projectList)
@@ -96,35 +96,35 @@ public class IPM_RolloutPlansAddController_Test{
              
             insert localRolloutList; 
             
-	        goegraphiesCluster = new MDO_Geography__c();
-	        goegraphiesCluster.Name = 'AsiaParent';
-	        goegraphiesCluster.parent_L2__c =goegraphiesCluster.id;
-	        goegraphiesCluster.geography_type__c = 'Unilever Cluster';
-	        goegraphiesCluster.Status__c = 'Active';
-	        insert goegraphiesCluster;
-	        system.assertNotEquals(null, goegraphiesCluster.id);
-	        
-	        goegraphiesMCO = new MDO_Geography__c();
-	        goegraphiesMCO.Name = 'Asia';
-	        goegraphiesMCO.parent_L2__c =goegraphiesCluster.id;
-	        goegraphiesMCO.geography_type__c = 'Country Group';
-	        goegraphiesMCO.Status__c = 'Active';
-	        insert goegraphiesMCO;
-	        system.assertNotEquals(null, goegraphiesMCO.id);
-	        
-	        goegraphiesCountry = new MDO_Geography__c();
-	        goegraphiesCountry.Name = 'India';
-	        goegraphiesCountry.parent_L2__c =goegraphiesMCO.id;
-	        goegraphiesCountry.geography_type__c = 'Country';
-	        goegraphiesCountry.Status__c = 'Active';
-	        insert goegraphiesCountry;
-	        system.assertNotEquals(null, goegraphiesCountry.id);
-	        
-			
-			
-		
-			
-			
+            goegraphiesCluster = new MDO_Geography__c();
+            goegraphiesCluster.Name = 'AsiaParent';
+            goegraphiesCluster.parent_L2__c =goegraphiesCluster.id;
+            goegraphiesCluster.geography_type__c = 'Unilever Cluster';
+            goegraphiesCluster.Status__c = 'Active';
+            insert goegraphiesCluster;
+            system.assertNotEquals(null, goegraphiesCluster.id);
+            
+            goegraphiesMCO = new MDO_Geography__c();
+            goegraphiesMCO.Name = 'Asia';
+            goegraphiesMCO.parent_L2__c =goegraphiesCluster.id;
+            goegraphiesMCO.geography_type__c = 'Country Group';
+            goegraphiesMCO.Status__c = 'Active';
+            insert goegraphiesMCO;
+            system.assertNotEquals(null, goegraphiesMCO.id);
+            
+            goegraphiesCountry = new MDO_Geography__c();
+            goegraphiesCountry.Name = 'India';
+            goegraphiesCountry.parent_L2__c =goegraphiesMCO.id;
+            goegraphiesCountry.geography_type__c = 'Country';
+            goegraphiesCountry.Status__c = 'Active';
+            insert goegraphiesCountry;
+            system.assertNotEquals(null, goegraphiesCountry.id);
+            
+            
+            
+        
+            
+            
             
             // Create Country specific information.
             List<IPM_Country__c> countryList= new List<IPM_Country__c>();
@@ -156,29 +156,29 @@ public class IPM_RolloutPlansAddController_Test{
         IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
         irp.project=projectList[0];
         irp.globalCountries='abc,abc';
-     	irp.regionalMco='abc1,abc1';
-   		irp.regionalCountry='abc2,abc2';
-	    irp.regionalNoRoll='abc3,abc3';
-	    irp.project=project;
-     	IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper('sdfs','fsd','fsdf');
-	    geoWrp.code='fds1';
-	    geoWrp.name='fds2';
-	    geoWrp.parentCode='dfd1';
-	    geoWrp.rolloutStatus='fdsf2';
-	    geoWrp.key=true;
-	    geoWrp.selected=true;
-	    geoWrp.clusterDisabled=true;
-	    geoWrp.mcoDisabled=true;
-	    geoWrp.countryDisabled =true;
-	    geoWrp.noRolloutDisabled=true;
-	    
-	    
-	    irp.lstClusterWrappers.add(geoWrp);
+        irp.regionalMco='abc1,abc1';
+        irp.regionalCountry='abc2,abc2';
+        irp.regionalNoRoll='abc3,abc3';
+        irp.project=project;
+        IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper('sdfs','fsd','fsdf');
+        geoWrp.code='fds1';
+        geoWrp.name='fds2';
+        geoWrp.parentCode='dfd1';
+        geoWrp.rolloutStatus='fdsf2';
+        geoWrp.key=true;
+        geoWrp.selected=true;
+        geoWrp.clusterDisabled=true;
+        geoWrp.mcoDisabled=true;
+        geoWrp.countryDisabled =true;
+        geoWrp.noRolloutDisabled=true;
+        
+        
+        irp.lstClusterWrappers.add(geoWrp);
         PageReference pRef = new PageReference('apex/ipmrolloutplansadd?id='+regionalRolloutList[0].Id);
         Test.setCurrentPageReference(pRef);
         //irp.changeCluster();
         //irp.changeMCO();
-       	irp.generateRollouts();
+        irp.generateRollouts();
         PageReference rolloutPlansExpected = Page.IPM_RolloutPlans; 
         //PageReference rolloutPlansActual = irp.redirectPage();
         irp.cancel();

@@ -30,10 +30,11 @@ public with sharing class IPM_UserTriggerHandler {
                 newUsrs.add(eachUser);
             }
             
-            if(eachUser.IPM_Role__c != null && oldUsers.IPM_Role__c != eachUser.IPM_Role__c) 
+           //@rajesh:commented below codes.we are removing user custom field references,so please verify.
+           /* if(eachUser.IPM_Role__c != null && oldUsers.IPM_Role__c != eachUser.IPM_Role__c) 
             {
                 changeRoleIds.add(eachUser.Id);
-            }
+            }*/
         }
         IPM_TaskHelper.reAssignTasksForInActiveUsrs(newUsrs);//reassign their current tasks
         IPM_ProjectResourceTriggerHandler.notifyRoleChangeToPLs(changeRoleIds);

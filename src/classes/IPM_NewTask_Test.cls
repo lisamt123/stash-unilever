@@ -65,7 +65,7 @@ public class IPM_NewTask_Test{
     public static void initializedData(){
         Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8','TestComments9','TestComments10'};
         
-		set<string> projIdSet = new set<string>();
+        set<string> projIdSet = new set<string>();
 
         projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,
                             (Select Id from Project_Documents__r),
@@ -124,8 +124,8 @@ public class IPM_NewTask_Test{
         system.assertEquals(projResList[0].IPM_Project__c,projectId);
             
         //project record was not shared with the project resource user, 
-		//so adding the project resource explicitly in the group,
-		//for which the project record is shared.    
+        //so adding the project resource explicitly in the group,
+        //for which the project record is shared.    
         list<IPM_Project__Share> projectShare = [SELECT Id,ParentID,UserOrGroupId FROM IPM_Project__Share WHERE  ParentID=:projectId];
             
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
@@ -315,7 +315,7 @@ public class IPM_NewTask_Test{
              taskview.doSaveTasks();
         
              list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c 
-											WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
+                                            WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
              system.assertEquals(taskResult.size(),0 , 'Record Size Not Matched');
         }
         Test.stopTest();
@@ -445,13 +445,13 @@ public class IPM_NewTask_Test{
         Test.stopTest();
         }
     } 
-	
+    
     /***********************************
       @name: createTaskWithFunctionalOwner
       @Description: Functional owner should be able to insert task in system at milestone and todos tab
     ***********************************/
     /*
-	public static TestMethod void createTaskWithFunctionalOwner(){
+    public static TestMethod void createTaskWithFunctionalOwner(){
         Test.startTest();
         //Assert 475 Failing in Production commented to relook at the code
             User userBD = [Select Id,LastName from User where LastName=:USER_NAME limit 1]; 
@@ -488,7 +488,7 @@ public class IPM_NewTask_Test{
             }
         Test.stopTest();
     } 
-	*/
+    */
     /***********************************
       @name: createTaskFromAssociatedToDosTabByFO
       @Description: Functional owner should be able to insert task in system at associated todos tab. should have default values

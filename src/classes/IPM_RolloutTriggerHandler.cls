@@ -137,7 +137,7 @@ public with sharing class IPM_RolloutTriggerHandler
                     }
                     
                     //ALL Local Rollouts being deleted 
-                    if(setCurrentRolloutIds.containsAll(setLocalRolloutIds))
+                    if(setCurrentRolloutIds.containsAll(setLocalRolloutIds)  && !setCurrentRolloutIds.contains(regionalRollout.Id))
                     {
                         lstDeleteRollouts.add(regionalRollout);                 
                     }
@@ -247,7 +247,7 @@ public with sharing class IPM_RolloutTriggerHandler
         {
             Schema.DescribeFieldResult fieldDescribe = fieldTypeMap.get(fieldAPIName).getDescribe();
             
-            if(fieldDescribe.isCustom() && fieldAPIName != 'Id')
+            if(fieldDescribe.isCustom()  && fieldAPIName != 'Id')
             {
                 rolloutQuery += ' '+fieldAPIName+',';
             }

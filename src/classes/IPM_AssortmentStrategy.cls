@@ -426,6 +426,5 @@ public with sharing class IPM_AssortmentStrategy {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
             UPDATEASSORTS,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }   
-    }
-    
+    }    
 }

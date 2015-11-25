@@ -3790,7 +3790,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>User doesn&apos;t enter any value for &apos;Inoplan Project Name&apos;</shortDescription>
         <value>Please enter your Inoplan project name. If you do not have an Inoplan project please select No Inoplan Project</value>
     </labels>
-	 <labels>
+    <labels>
         <fullName>IPM_000</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -4691,7 +4691,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BETFirstReleaseOn</shortDescription>
-        <value>First Release on:</value>
+        <value>First Release On:</value>
     </labels>
     <labels>
         <fullName>IPM_BETFunctionalTeams</fullName>
@@ -4699,6 +4699,13 @@ Which Communications team do you represent? You must be associated to one Planne
         <protected>false</protected>
         <shortDescription>IPM_BETFunctionalTeams</shortDescription>
         <value>BD;CD;CMI</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BETIdNullMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BETIdNullMsg</shortDescription>
+        <value>BET Id cannot be null.</value>
     </labels>
     <labels>
         <fullName>IPM_BETLabel</fullName>
@@ -5284,6 +5291,13 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM Bosscard Save Before Share</shortDescription>
         <value>Please Save BOSSCARD Before Sharing</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Bosscard_Shared_Chatter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Bosscard Shared Chatter</shortDescription>
+        <value>BOSSCARD Shared Via Chatter</value>
     </labels>
     <labels>
         <fullName>IPM_Brand</fullName>
@@ -6854,30 +6868,9 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <shortDescription>IPM_EcoDesign_Comparison_SKU</shortDescription>
         <value>Comparison SKU</value>
     </labels>
-    <labels>
-        <fullName>IPM_EcoDesign_Countries_Added</fullName>
-        <categories>change in rollout,EcoDesign</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM EcoDesign Countries Added</shortDescription>
-        <value>The following countries were added to the project:</value>
-    </labels>
-    <labels>
-        <fullName>IPM_EcoDesign_Countries_Deleted</fullName>
-        <categories>change in rollout,EcoDesign</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM EcoDesign Countries Deleted</shortDescription>
-        <value>The following countries were deleted from the project:</value>
-    </labels>
-    <labels>
-        <fullName>IPM_EcoDesign_Country_Added</fullName>
-        <categories>change in rollout,EcoDesign</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM EcoDesign Country Added</shortDescription>
-        <value>The following country was added to the project:</value>
-    </labels>
+    
+
+    
     <labels>
         <fullName>IPM_EcoDesign_Country_Category_Average</fullName>
         <language>en_US</language>
@@ -6885,14 +6878,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <shortDescription>IPM_EcoDesign_Country_Category_Average</shortDescription>
         <value>Country Category Average</value>
     </labels>
-    <labels>
-        <fullName>IPM_EcoDesign_Country_Deleted</fullName>
-        <categories>change in rollout,EcoDesign</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>IPM EcoDesign Country Deleted</shortDescription>
-        <value>The following country was deleted from the project:</value>
-    </labels>
+    
     <labels>
         <fullName>IPM_EcoDesign_Directional_View</fullName>
         <language>en_US</language>
@@ -8254,7 +8240,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Inactive Users Text</shortDescription>
-        <value>&amp;nbsp; is no longer an active user in IPM Navigator. You may need to find another person to fill this role on your project.</value>
+        <value>is no longer an active user in IPM Navigator. You may need to find another person to fill this role on your project.</value>
     </labels>
     <labels>
         <fullName>IPM_Included_In</fullName>
@@ -11111,6 +11097,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Saved Successfully</value>
     </labels>
     <labels>
+        <fullName>IPM_Search_MCO_Country_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Search_MCO_Country_Name</shortDescription>
+        <value>Search MCO / Country Name</value>
+    </labels>
+    <labels>
         <fullName>IPM_Search_Project_Leader</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11689,7 +11682,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Task Completion Text</shortDescription>
-        <value>&amp;nbsp; Task is completed!</value>
+        <value>Task is completed!</value>
     </labels>
     <labels>
         <fullName>IPM_Task_Error</fullName>
@@ -11948,7 +11941,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM User Changed Roles</shortDescription>
-        <value>&amp;nbsp; is no longing performing the same role, according to the Unilever Active Directory. You may need to find another person to fill this role on your project &amp;nbsp;</value>
+        <value>is no longing performing the same role, according to the Unilever Active Directory. You may need to find another person to fill this role on your project</value>
     </labels>
     <labels>
         <fullName>IPM_User_License</fullName>
@@ -12166,6 +12159,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM iTORange</shortDescription>
         <value>iTO Range</value>
+    </labels>
+    <labels>
+        <fullName>IPM_image</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM image</shortDescription>
+        <value>&quot;https://unilever.my.salesforce.com</value>
     </labels>
     <labels>
         <fullName>IPM_ipmBosscard_revampPageURL</fullName>

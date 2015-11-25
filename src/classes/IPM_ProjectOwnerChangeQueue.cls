@@ -82,7 +82,7 @@ public without sharing class IPM_ProjectOwnerChangeQueue implements Queueable
                     
                     
                 }
-                //@Rajesh
+                //update queue name
                 if(projideset != null && projideset.size()>0){
                     IPM_GroupManagement.groupNameUpdate(projideset);
                 

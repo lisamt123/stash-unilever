@@ -82,8 +82,8 @@ public without sharing class IPM_WithoutSharingHelper {
         Set<Id> projIds= new Set<Id>();
         projIds.addAll(projectUserMap.keyset());
         
-        List<IPM_Project__c> projectDetails = [select IPM_Project_Name__c,IPM_Project_Gatekeeper__c,IPM_Finance_Member__c,IPM_Finance_Member__r.IPM_Role__c,
-        IPM_Technical_Project_Leader__r.IPM_Role__c,IPM_Project_Leader__r.IPM_Role__c,Deputy_Project_Leader__r.IPM_Role__c from IPM_Project__c where id IN :projIds LIMIT:IPM_ConstantUtils.MaxLimit];
+        List<IPM_Project__c> projectDetails = [select IPM_Project_Name__c,IPM_Project_Gatekeeper__c,IPM_Finance_Member__c,
+        IPM_Technical_Project_Leader__c,IPM_Project_Leader__c,Deputy_Project_Leader__c from IPM_Project__c where id IN :projIds LIMIT:IPM_ConstantUtils.MaxLimit];
 
          for(Id eachRecord : projIds) 
          {

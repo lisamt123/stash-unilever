@@ -871,6 +871,9 @@ public class IPM_ConstantUtils {
    public static final String rowValue8 = '11';
    public static final String rowValue9 = '12';
    public static final String rowValue10 = '13';
+   public static final Integer rowValue19 = 19;
+   public static final Integer rowValue20 = 20;
+   public static final Integer rowValue21 = 21;
    public static final String rowValue28 = '28';
     public static final String rowValue29 = '29';
     public static final String rowValue30 = '30';
@@ -1072,6 +1075,7 @@ public class IPM_ConstantUtils {
    public static final String IPM_CUTOMER_OPPORTUNITY='Customer Opportunities and Challenges';
    public static final String IPM_GATEKEEPE_CHECKLIST='Gate_Keeper_Checklist'; 
    public static final String IPM_PACK_GRAPHICS='Pack_Graphics';
+   public static final String KEY_ISSUES_NEEDING_FOCUS_IN_GATE_MEETING='Key_Issues_needing_focus_in_Gate_Meeting';
    
    //Ecodesign
    public static final String ECODESIGN_MARKET_PLACE_ACTIVITY_BLG = 'BLG';

@@ -25,7 +25,7 @@ global without sharing class IPM_DueDateNotification_Batch implements Database.B
                    query+='IPM_Project__r.Deputy_Project_Leader__c,IPM_Project__r.IPM_Company_Card__r.IPM_Business_Partner__c,IPM_Project__r.IPM_Phase__c, IPM_Project__r.IPM_Temporary_Phase__c ';
                    query+='FROM IPM_Milestone__c';
                    query +=' where (IPM_Due_Date__c <= :todayDate or IPM_Due_Date__c = :dueIntwentyOneDays) AND IPM_Completed__c = false'; 
-    	return Database.getQueryLocator(query);
+        return Database.getQueryLocator(query);
     } 
     
     global void execute(Database.BatchableContext bC, List<IPM_Milestone__c> milestoneList) {
@@ -40,12 +40,12 @@ global without sharing class IPM_DueDateNotification_Batch implements Database.B
         Set<Id> milestoneProjSet = new Set<Id>();
         for(IPM_Milestone__c milestoneProj:milestoneList)
         {
-        	milestoneProjSet.add(milestoneProj.IPM_Project__c);
+            milestoneProjSet.add(milestoneProj.IPM_Project__c);
         }
         
         List<IPM_Project_Resource__c> resourceList = [Select IPM_User__c,IPM_Project__c from IPM_Project_Resource__c 
         where IPM_Role_Type__c =: IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE and IPM_Project__c IN: milestoneProjSet LIMIT 50000];
-       	
+        
         for(IPM_Milestone__c eachMilestone:milestoneList)
         {
           //Check if milestone is current active milestone of the project 

@@ -371,11 +371,12 @@ public with sharing class IPM_Resource_Allocation {
                 iPMresource.IPM_User__c=MAdd.listofuser.IPM_User__r.id;
                 iPMresource.IPM_Role_Type__c=roleType;
                 
-                if(CountProjectMembers(roleType)>0)
-                iPMresource.IPM_Project_Role_Owner__c=false;
-                else
-                iPMresource.IPM_Project_Role_Owner__c=true;
-                
+                if(CountProjectMembers(roleType)>0){
+                    iPMresource.IPM_Project_Role_Owner__c=false;
+                }
+                else if(CountProjectMembers(roleType)==0 && lstnewResource.isEmpty()){
+                    iPMresource.IPM_Project_Role_Owner__c=true;
+                }
                 iPMresource.IPM_Unique_Resource__c=projectID+MAdd.listofuser.IPM_User__r.id;//added to support data migration
                 lstnewResource.add(iPMresource);
             }

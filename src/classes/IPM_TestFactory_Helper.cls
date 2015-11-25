@@ -391,6 +391,41 @@ public with sharing class IPM_TestFactory_Helper {
         return null;
     }
     
+    
+     public static List<IPM_Project__c> projectPhaseChangeRegionalLocal(List<Id> listprojectId,User userObj)
+     {
+        IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = false;
+        IPM_ProjectOwnerChangeQueue.PROJECT_QUEUE_CONTEXT_STARTED = false;
+        
+        System.runAs(userObj)
+        {
+            List<IPM_Project__c>  projectListLocal = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Id in:listprojectId for update];
+        
+            List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+            for(IPM_Project__c project : projectListLocal)
+            {
+                project.IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
+                
+                for(IPM_Project_Rollout__c rollout : project.IPM_Project_Rollout__r)
+                {
+                   if(rollout.recordTypeId == IPM_TestFactory_Helper.LOCAL_ROLLOUT_RECTYPE)
+                   {
+                       rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
+                       rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;
+                       projectRolloutList.add(rollout);
+                   }
+                }
+            }
+            
+            update projectRolloutList;
+            
+            return projectListLocal;
+        }
+        
+        return null;
+    }
+    
+    
     // Method to initiate Phase change of Regional Original Project to generate the local roolouts
     public static List<IPM_Project__c> initiateRegionalProjectPhaseChange(List<Id> listprojectId,User userObj)
      {

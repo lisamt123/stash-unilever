@@ -550,7 +550,7 @@ public with sharing class IPM_ProjectCountryDetails{
     
             //fetch map of the Project Id and the chatter message for the project to be posted
             if(projIdAffectedCountriesMap != null && !projIdAffectedCountriesMap.isEmpty()){
-                projIdchatterMessageMap = IPM_ChatterUtilsHelper.getprojIdchatterMessageMap(projIdAffectedCountriesMap,projIdAffectedProjMap, operation);
+                projIdchatterMessageMap = IPM_ChatterUtilsHelper.getprojIdchatterMessageMap(probableSubjectIdMentionIdSetMap,projIdAffectedCountriesMap,projIdAffectedProjMap, operation);
             }
             
             //call method to post the chatter Message
@@ -566,12 +566,12 @@ public with sharing class IPM_ProjectCountryDetails{
     @Params projIdSet:   the set of IDs of the projects which need to be updated with sync flag.
     *****************************************************************************/
     public static void checkIsEICountry(List<IPM_Country__c> incomingCountries ){
-        //Flag the country as EI Country if the incoming country name is present in EI Countries Master data (Custom setting :IPM_USLP_Countries__c )
+        
         Set<String> EICountriesSet = new Set<String>();
         
         //fetch all country names in lowercase
-        List<IPM_USLP_Countries__c> uslpCountries = [Select Name From IPM_USLP_Countries__c LIMIT 50000];
-        for(IPM_USLP_Countries__c country :uslpCountries){
+        List<IPM_USLP_Country__c> uslpCountries = [Select Name From IPM_USLP_Country__c LIMIT 50000];
+        for(IPM_USLP_Country__c country :uslpCountries){
             EICountriesSet.add(country.Name.toLowerCase());
         }
 
@@ -670,10 +670,10 @@ public with sharing class IPM_ProjectCountryDetails{
                     
                     
                     if(!projCountryValueMap.containsKey(projId)){
-                        projCountryValueMap.put(projId,country.get(countryField) + ';');
+                        projCountryValueMap.put(projId,country.get(countryField) + IPM_ConstantUtils.SEMICOLON);
                     }
                     else{
-                        projCountryValueMap.put(projId,projCountryValueMap.get(projId)+country.get(countryField) + ';');
+                        projCountryValueMap.put(projId,projCountryValueMap.get(projId)+country.get(countryField) + IPM_ConstantUtils.SEMICOLON);
                     }
                 }
                 
@@ -683,7 +683,7 @@ public with sharing class IPM_ProjectCountryDetails{
                 
         if(projCountryValueMap != null && !projCountryValueMap.isEmpty()){
             for(Id projId: projCountryValueMap.keySet()){
-                projCountryValueMap.put(projId,projCountryValueMap.get(projId).removeEnd(';'));
+                projCountryValueMap.put(projId,projCountryValueMap.get(projId).removeEnd(IPM_ConstantUtils.SEMICOLON));
             }
             
             return projCountryValueMap;
@@ -752,11 +752,11 @@ public with sharing class IPM_ProjectCountryDetails{
     public static Map<Id,List<IPM_Project_Resource__c>> getProjectIdMembersListMap(Set<Id> projIdSet, String filter){
         List<IPM_Project__c> projList = new List<IPM_Project__c>();
         if(filter.equalsIgnoreCase(PROJECT_MEMBER_FILTER_ALL_USERS)){
-            projList = [Select Id, (Select Id,IPM_User__r.Name,IPM_Role__c,IPM_Project_Role_Owner__c,IPM_Role_Type__c from IPM_Project_Resources__r Limit 50000) from IPM_Project__c Where Id IN :projIdSet LIMIT 50000];
+            projList = [Select Id, (Select Id,IPM_User__r.Name,IPM_Project_Role_Owner__c,IPM_Role_Type__c from IPM_Project_Resources__r Limit 50000) from IPM_Project__c Where Id IN :projIdSet LIMIT 50000];
         }
         
         else if(filter.equalsIgnoreCase(PROJECT_MEMBER_FILTER_RD_USERS)){
-            projList = [Select Id, (Select Id,IPM_User__r.Name,IPM_Role__c,IPM_Project_Role_Owner__c,IPM_Role_Type__c from IPM_Project_Resources__r WHERE (IPM_Role_Type__c = 'R&D' OR IPM_Role__c = 'R&D') limit 50000) from IPM_Project__c Where Id IN :projIdSet LIMIT 50000];
+            projList = [Select Id, (Select Id,IPM_User__r.Name,IPM_Project_Role_Owner__c,IPM_Role_Type__c from IPM_Project_Resources__r WHERE (IPM_Role_Type__c = 'R&D') limit 50000) from IPM_Project__c Where Id IN :projIdSet LIMIT 50000];
         }
         
         //String memberList = '';
@@ -792,21 +792,21 @@ public with sharing class IPM_ProjectCountryDetails{
     @Params projIdSet:   the set of IDs of the projects which need to be updated with sync flag.
     *****************************************************************************/
     public static String getProjectMembersNames(List<IPM_Project_Resource__c> projResources){
-        String memberList = '';
+        String memberList = IPM_ConstantUtils.BLANK;
         if(projResources!= null){
             for(IPM_Project_Resource__c member : projResources){
                 if(!PROJECT_RESOURCE_GUEST.equalsIgnoreCase(member.IPM_Role_Type__c) ){
-                    memberList = memberList + member.IPM_User__r.Name + ';';
+                    memberList = memberList + member.IPM_User__r.Name + IPM_ConstantUtils.SEMICOLON;
                 }
                 
             }
             if(memberList!=null && memberList!=''){
-                memberList = memberList.removeEnd(';');
+                memberList = memberList.removeEnd(IPM_ConstantUtils.SEMICOLON);
             }
             return memberList;
         }
         else
-            return '';
+            return IPM_ConstantUtils.BLANK;
         
         
     }
@@ -857,21 +857,21 @@ public with sharing class IPM_ProjectCountryDetails{
         Map<String,String> projIdAffectedCountriesMap = new Map<String,String>();
         
         for(String projId : projIdAffectedProjMap.keySet()){
-            String countriesAffected = '';
+            String countriesAffected = IPM_ConstantUtils.BLANK;
             if(projIdAffectedProjMap != null && !projIdAffectedProjMap.isEmpty() ){
                 for(IPM_country__c country:affectedCountries){
                     if(country.IPM_Project__c != null && projIdAffectedProjMap.get(country.IPM_Project__c) != null && projIdAffectedProjMap.get(country.IPM_Project__c).IPMProject_Span__c != null && projIdAffectedProjMap.get(country.IPM_Project__c).IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && country.IPM_Project__c == projId ){
-                        countriesAffected = countriesAffected + country.Country_Name__c+';';
+                        countriesAffected = countriesAffected + country.Country_Name__c+IPM_ConstantUtils.SEMICOLON;
                     }
                     if(country.IPM_Regional_Project__c != null && projIdAffectedProjMap.get(country.IPM_Regional_Project__c) != null && projIdAffectedProjMap.get(country.IPM_Regional_Project__c).IPMProject_Span__c != null && projIdAffectedProjMap.get(country.IPM_Regional_Project__c).IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && country.IPM_Regional_Project__c == projId){
-                        countriesAffected = countriesAffected + country.Country_Name__c+';';
+                        countriesAffected = countriesAffected + country.Country_Name__c+IPM_ConstantUtils.SEMICOLON;
                     }
                     if(country.IPM_Local_Project__c != null && projIdAffectedProjMap.get(country.IPM_Local_Project__c) != null && projIdAffectedProjMap.get(country.IPM_Local_Project__c).IPMProject_Span__c != null && projIdAffectedProjMap.get(country.IPM_Local_Project__c).IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && country.IPM_Local_Project__c == projId){
-                        countriesAffected = countriesAffected + country.Country_Name__c+';';
+                        countriesAffected = countriesAffected + country.Country_Name__c+IPM_ConstantUtils.SEMICOLON;
                     }
                 }
                 if(countriesAffected != null && countriesAffected != ''){
-                    projIdAffectedCountriesMap.put(projId,countriesAffected.removeEnd(';'));
+                    projIdAffectedCountriesMap.put(projId,countriesAffected.removeEnd(IPM_ConstantUtils.SEMICOLON));
                 }
                 
             }
