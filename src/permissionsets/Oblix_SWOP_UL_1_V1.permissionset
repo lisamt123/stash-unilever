@@ -186,6 +186,21 @@
     </classAccesses>
     <description>Allow CRUD on shared SOW records and childs/ GVP Approver</description>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>MDO_BrandUser__c.Brand__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>MDO_BrandUser__c.Level_of_Visibility__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>MDO_BrandUser__c.User__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Marketing_Basics__c.Activities__c</field>
         <readable>true</readable>
