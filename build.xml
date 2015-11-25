@@ -101,7 +101,7 @@
   <!-- ***************************************************************************** -->
   <!-- Validate the  set of IPM NG meta-data before deployment without Test Classes  -->
   <!-- ***************************************************************************** -->
-  <target name="validateIPM">
+  <target name="validateNoTests">
     <echo level="info">Validate the deployment of IPM NG with out test classes</echo>
     <sf:deploy username="${sf.username}"
       password="${sf.password}"
@@ -116,6 +116,7 @@
       maxPoll="${sfdc.maxPoll}">
     </sf:deploy>
   </target>
+  <target name="validateIPM" depends="validateNoTests"/>
   <!-- ***************************************************************************** -->
   <!-- Validate the  set of IPM NG meta-data before deployment with few Test Classes      -->
   <!-- ***************************************************************************** -->

@@ -10,15 +10,6 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>Locked_for_Approval_By_GVP</fullName>
-        <field>SOW_Status__c</field>
-        <literalValue>Locked</literalValue>
-        <name>Locked for Approval By GVP</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>OblixFU_UniqueName</fullName>
         <field>Oblix_tec_Unique_Name__c</field>
         <formula>Name</formula>
