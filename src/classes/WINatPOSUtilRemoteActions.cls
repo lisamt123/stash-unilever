@@ -31,7 +31,7 @@ public without sharing class WINatPOSUtilRemoteActions {
         Pattern logoPattern = Pattern.compile(regexPattern);
         //create list of all categories in system
         List<WINatPOSRemoteActionWrapper.MenuLineItemWrapper> categoryLineItems=new List<WINatPOSRemoteActionWrapper.MenuLineItemWrapper>(); 
-        for(Category__c category: [select Id, Name, Parent_Category_Name__c,Category_Logo__c, Category_URL_Link__c from Category__c where Parent_Category__c != null order by Name LIMIT 1000]){
+        for(Category__c category: [select Id, Name, Parent_Category_Name__c,Category_Logo__c, Category_URL_Link__c, Category_URL_Link_2__c from Category__c where Parent_Category__c != null order by Name LIMIT 1000]){
             String urlToCategoryLogo=null;
             if(category.Category_Logo__c != null){
                 Matcher logoMatcher=logoPattern.matcher(category.Category_Logo__c);
@@ -39,7 +39,7 @@ public without sharing class WINatPOSUtilRemoteActions {
                     urlToCategoryLogo=logoMatcher.group(1);
                 }
             }
-            categoryLineItems.add(new WINatPOSRemoteActionWrapper.MenuLineItemWrapper(category.Name, String.valueOf(category.Id), urlToCategoryLogo, category.Parent_Category_Name__c, category.Category_URL_Link__c));
+            categoryLineItems.add(new WINatPOSRemoteActionWrapper.MenuLineItemWrapper(category.Name, String.valueOf(category.Id), urlToCategoryLogo, category.Parent_Category_Name__c, category.Category_URL_Link__c, category.Category_URL_Link_2__c));
         }
         
         //create list of all brands in system

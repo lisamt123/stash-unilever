@@ -106,6 +106,7 @@ public class WINatPOSRemoteActionWrapper {
         public String image=null;
         public String parentCategory;
         public String categoryUrl = null;
+        public String categoryUrl2 = null;
         
         public MenuLineItemWrapper(String cName,String cItemId, String cImage,String cParentCategory){
             this.name=cName;
@@ -114,13 +115,16 @@ public class WINatPOSRemoteActionWrapper {
             this.parentCategory=cParentCategory;
         }
         
-        public MenuLineItemWrapper(String cName, String cItemId, String cImage, String cParentCategory, String cCategoryUrl){
+        public MenuLineItemWrapper(String cName, String cItemId, String cImage, String cParentCategory, String cCategoryUrl, String cCategoryUrl2){
             this.name = cName;
             this.itemId = cItemId;
             this.image = cImage;
             this.parentCategory = cParentCategory;
             this.categoryUrl = cCategoryUrl;
+            this.categoryUrl2 = cCategoryUrl2;
         }
+        
+        
     }
     
     /* moved to phase 2 
