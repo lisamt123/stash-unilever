@@ -35,7 +35,7 @@
                 <div class="clearfix"></div>
                 <div class="asset-download-btns">
                     <div ng-if="asset.downloadImageURL != undefined && asset.downloadImageURL !=''" class="asset-download-btn">
-                        <span class="asset-download-btn-image photo"></span><a href="javascript:void(0)" ng-click="downloadAsset(asset.feedId, asset.assetPrimaryFileId, asset.downloadImageURL)">Download image source file only</a>
+                        <span class="asset-download-btn-image photo" ng-if="!asset.presentationURL"></span><span class="asset-download-btn-image presentation" ng-if="asset.presentationURL"></span><a href="javascript:void(0)" ng-click="downloadAsset(asset.feedId, asset.assetPrimaryFileId, asset.presentationURL ? asset.presentationURL : asset.downloadImageURL)">Download {{ asset.presentationURL ? 'presentation file here' : 'image source file only'}}</a>
                     </div>  
                     <div ng-if="asset.assetDownloadPdfUrl != undefined && asset.assetDownloadPdfUrl !=''" class="asset-download-btn"><span class="asset-download-btn-image photo"></span><a href="javascript:void(0)" ng-click="downloadPdf(asset.assetDownloadPdfUrl)">Download image and description as a PDF</a></div>
                 </div>
@@ -92,12 +92,12 @@
                     <div class="asset-text" ps-html="asset.assetDescription">
                     </div>
                     <div class="clearfix"></div>
-                    <div ng-if="asset.videoUrl">
-                        <br />
-                        <div><a class="btn btn-default" ng-href="{{asset.videoUrl}}" target="_blank">Click to play video</a></div>
-                    </div>
-                    <div class="asset-additionalfiles" ng-if="!asset.videoUrl">
+                    <div class="asset-additionalfiles">
                         <div class="asset-download-btns">
+                            <div ng-if="asset.videoUrl" class="asset-download-btn">
+                                <span class="asset-download-btn-image" style="background: url({{resourceBasePath}}images/play-icon.png) no-repeat; background-size: 25px; width: 25px;"></span>
+                                <a ng-href="{{asset.videoUrl}}" target="_blank">Click to play video</a>
+                            </div>
                             <div ng-repeat="item in asset.assetFiles" ng-if="item.Feed_URL__c != undefined && item.Feed_URL__c !='' && item.Is_Primary_Image__c != true && item.Type__c != 'Generated'" class="asset-download-btn">
                                 <span ng-if="item.Show_Presentation__c == 'visible'" class="asset-download-btn-image presentation"></span>
                                 <span ng-if="item.Show_Production_Engineering__c == 'visible'" class="asset-download-btn-image settings"></span>

@@ -1,12 +1,31 @@
+<style>
+    .new-indicator {
+        position: absolute;
+        right: -6px;
+        bottom: -15px;
+        width: 35px;
+        height: 35px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .search-input-actions .search-input-action.link-btn {
+        background-position: right !important;
+        padding-right: 22px !important;
+        margin-right: 8px !important;
+        background-size: 18px !important;
+        line-height: 20px !important;
+    }
+</style>
 <div id="searchResults" infinite-scroll='search()' infinite-scroll-disabled='scrollDisabled == true' style="position: relative;">
 
-<div style="position: absolute; right: 0;" ng-if="searchType === 'ctaSearch'">
-    <div style="float: left; width: 100px; background: #eee; padding: 2px; margin-right: 5px;"><a ng-href="{{urls['CTA Reporting'].URL_Text__c}}" target="_blank" style="color: #004976;">Click to access reporting</a></div>
-    <div style="float: right; width: 100px; background: #eee; padding: 2px;"><a ng-href="{{urls['CTA Bible'].URL_Text__c}}" target="_blank" style="color: #004976;">CTA Bible</a></div>
+<div class="search-input-actions" style="position: absolute; right: 0; text-align: right;" ng-if="searchType === 'ctaSearch'">
+    <a ng-href="{{urls['CTA Reporting'].URL_Text__c}}" target="_blank"><img class="link-image" src="{{resourceBasePath}}images/links/CTA-Reporting.png" style="float: left" /></a>
+    <a ng-href="{{urls['CTA Bible'].URL_Text__c}}" target="_blank"><img class="link-image" src="{{resourceBasePath}}images/links/CTA-Bible.png" style="float: left" /></a>
 </div>
-<div style="position: absolute; right: 0;" ng-if="searchType === 'categorySearch'">
-    <div style="float: left; width: 100px; background: #eee; padding: 2px; margin-right: 5px;"><a ng-href="{{urls['Category Main Screen'].URL_Text__c}}" target="_blank" style="color: #004976;">Click to access CFCS portal</a></div>
-    <div ng-if="categoryUrlMap[userGroupId]" style="float: right; width: 100px; background: #eee; padding: 2px; margin-right: 5px;"><a ng-href="{{categoryUrlMap[userGroupId]}}" target="_blank" style="color: #004976;">Category Link</a></div>
+<div class="search-input-actions" style="position: absolute; right: 0; text-align: right;" ng-if="searchType === 'categorySearch'">
+    <a ng-if="categoryUrlMap[userGroupId][0]" ng-href="{{categoryUrlMap[userGroupId][0]}}" target="_blank"><img class="link-image" src="{{getLinkImageSrc('1')}}" style="float: left" /></a>
+    <a ng-if="categoryUrlMap[userGroupId][1]" ng-href="{{categoryUrlMap[userGroupId][1]}}" target="_blank"><img class="link-image" src="{{getLinkImageSrc('2')}}" style="float: left" /></a>
 </div>
 
 <h2 class="page-title">{{searchTitle}}</h2>
@@ -58,7 +77,7 @@
 <div ps-chatter-manager ps-entity-id="userGroupId" ps-key-word="keyWord" ps-run-search="refreshChatter"></div>
 <div class="elements">
     <div ng-repeat="assetItem in assetSearchResults" class="element">        
-        <div class="element-images" ng-if="assetItem.assetGroupItem != undefined && assetItem.assetGroupItem != null">
+        <div class="element-images" style="position: relative;" ng-if="assetItem.assetGroupItem != undefined && assetItem.assetGroupItem != null">
             <a href="#/detail/{{assetItem.assetGroupItem.Id}}">
 
                 <div ng-repeat="relatedFile in assetItem.relatedFiles" ng-if="(assetItem.relatedFiles != undefined && assetItem.relatedFiles != null) && $index < 4" class="image-box image-{{($index+1)}}">
@@ -79,6 +98,8 @@
                     </div>            
                 </div>
             </a>
+
+            <div ng-if="assetItem.assetGroupItem.New_Indicator__c" style="background-image: url({{resourceBasePath + 'images/new.png'}});" class="new-indicator"></div>
         </div>         
 
         <div class="element-images" ng-if="assetItem.assetItem != undefined && assetItem.assetItem != null">

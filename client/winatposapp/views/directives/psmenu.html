@@ -1,3 +1,14 @@
+<style>
+    .tab-new {
+        position: absolute;
+        right: 40px;
+        top: -5px;
+        width: 25px;
+        height: 25px;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+</style>
 <nav>
     <div class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -62,12 +73,15 @@
                         </li>
                         <li class="unilever-col-xs-2">
                            <a ui-sref="repetableSearch({ 'keyWord': ''})" ng-click="expandMenu(menuItem.name)" class="ng-binding">Repeatable Models</a>
+                           <div ng-if="checkIsNew('Repeatable Models')" style="background-image: url({{resourceBasePath + 'images/new.png'}}); right: 45px;" class="tab-new"></div>
                         </li>
                         <li class="unilever-col-xs-2">
                             <a ui-sref="ctaSearch({ 'keyWord': ''})" ng-click="expandMenu(menuItem.name)" class="ng-binding">Call To Action</a>
+                            <div ng-if="checkIsNew('Call To Action')" style="background-image: url({{resourceBasePath + 'images/new.png'}}); right: 55px;" class="tab-new"></div>
                         </li>
                         <li class="unilever-col-xs-2">
                             <a ui-sref="bestPracticesSearch({ 'keyWord': ''})" ng-click="expandMenu(menuItem.name)" class="ng-binding">Best Practices</a>
+                            <div ng-if="checkIsNew('Best Practices')" style="background-image: url({{resourceBasePath + 'images/new.png'}}); right: 50px;" class="tab-new"></div>
                         </li>                              
                     </ul>
                 </div>

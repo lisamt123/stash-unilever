@@ -434,8 +434,16 @@ angular.module('unileverApp')
           items[i].href = $state.href(searchType, params);
           items[i][paramName] = items[i].itemId;
 
-          if (type === 'categories' && items[i].categoryUrl) {
-            $scope.categoryUrlMap[items[i].itemId] = items[i].categoryUrl;
+          if (type === 'categories') {
+            $scope.categoryUrlMap[items[i].itemId] = [];
+            if (items[i].categoryUrl) {
+              $scope.categoryUrlMap[items[i].itemId][0] = items[i].categoryUrl;
+            }
+            if (items[i].categoryUrl2) {
+              $scope.categoryUrlMap[items[i].itemId][1] = items[i].categoryUrl2;
+            }
+          } else if (type === 'categories' && items[i].categoryUrl) {
+
           }
         }
 
@@ -713,6 +721,14 @@ angular.module('unileverApp')
                     );
                 };
 
+                $scope.getLinkImageSrc = function(suffix) {
+                    if ($scope.carousel) {
+                        return resourceBasePath + 'images/links/' + $scope.carousel.name.replace(' ', '-') + '-' + suffix + '.png';
+                    } else {
+                        return '';
+                    }
+                };
+
                 $scope.urls = customUrls;
                 
                 angular.element($window).bind('resize', function() {
@@ -891,7 +907,7 @@ angular.module('unileverApp')
  * # psMenu
  */
 angular.module('unileverApp')
-  .directive('psMenu',['resourceBasePath','$window',  function (resourceBasePath, $window) {
+  .directive('psMenu',['resourceBasePath','$window', 'newTabs',  function (resourceBasePath, $window, newTabs) {
 
     var $ = $window.jQuery;
 
@@ -903,7 +919,15 @@ angular.module('unileverApp')
       },
       link : function($scope, element) {
 
+        var newTabsArr = newTabs ? newTabs.toLowerCase().split('|') : [];
+
         $scope.delay = 900;
+
+        $scope.resourceBasePath = resourceBasePath;
+
+        $scope.checkIsNew = function(str) {
+          return (newTabsArr.indexOf(str.toLowerCase()) !== -1);
+        };
 
         $scope.calculateContainerHeight = function(){
           $scope.containerHeight = element.find('.menu-items-container').height();
@@ -1687,6 +1711,8 @@ angular.module('unileverApp')
                 params.assetChannel, params.assetCluster, params.assetPlacement, params.country,
                 params.pageSize, params.pageNumber, params.withFilters,
                 function(data, event) {
+                    console.log(source, data);
+                    
                     if (200 !== parseInt(event.statusCode)) {
                         deferred.reject('Code different than 200');
                         return;
@@ -2166,6 +2192,8 @@ angular.module('unileverApp')
             VisualforceRemotingManager.invokeAction(
                 source, assetId, 
                 function(data, event) {
+                    console.log(source, data);
+                    
                     if (200 !== event.statusCode) {
                         deferred.reject('Code different than 200');
                         return;
@@ -2235,7 +2263,7 @@ angular.module('unileverApp')
  * # psChatterManager
  */
 angular.module('unileverApp')
-        .directive('psChatterManager', ['psChatter', function(psChatter) {
+        .directive('psChatterManager', ['$rootScope', 'psChatter', 'isCommunityUser', function($rootScope, psChatter, isCommunityUser) {
 
                 function chatterSearchQuery(query) {
                     if (query !== undefined) {
@@ -2252,7 +2280,25 @@ angular.module('unileverApp')
                             chatterSearchQuery(scope.keyWord);
                         }
                     });
-                    UpdateChatterFeed(scope.entityId);
+
+                    if (isCommunityUser === 'true' && $rootScope.$state.current.name === 'home') {
+                        $('#chatter-container').hide();
+                    } else if (scope.entityId) {
+                        $('#chatter-container').show();
+
+                        // if (isCommunityUser) {
+                        //     console.log('UpdateChatterFeedCommunity: ' + scope.entityId);
+                        //     UpdateChatterFeedCommunity(scope.entityId);
+                        // } else {
+                        //     console.log('UpdateChatterFeed: ' + scope.entityId);
+                        //     UpdateChatterFeed(scope.entityId);
+                        // }
+
+                        console.log('UpdateChatterFeed: ' + scope.entityId);
+                        UpdateChatterFeed(scope.entityId);
+                    } else {
+                        $('#chatter-container').hide();
+                    }
                 }
 
                 return {
