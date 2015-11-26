@@ -8,7 +8,7 @@
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <link rel="stylesheet" href="/resources/demos/style.css"/>
     <script language="JavaScript1.2" src="/js/functions.js"></script>
-      <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
+      <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}" ></script>
      <script src="{!URLFOR($Resource.Oblix_SowDeepCloneVF01JS)}" ></script>
     <script>
         $(window).load(function() {

@@ -6,7 +6,7 @@
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
-    <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
+    <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}" ></script>
     <script>
     var showTab = false; 
     function showTab1(){

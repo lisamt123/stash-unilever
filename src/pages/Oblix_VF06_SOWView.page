@@ -4,12 +4,12 @@
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script src="//cdn.datatables.net/1.10.0/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="{!URLFOR($Resource.jquerydataTablescolumnFilter)}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.Oblix_jquerydataTablescolumnFilter)}"></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.0/css/jquery.dataTables.css" />
     
     <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css" />
     <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
-    <script src="{!URLFOR($Resource.JQueryBlockUI)}" ></script>
+    <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}" ></script>
     
     <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highstock/2.1.9/themes/sand-signika.js"></script>
