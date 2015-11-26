@@ -220,10 +220,13 @@
                                if(lstCompleted != ''){
 								   console.dir('here');
                                    setInfoStages(lstProjected,lstCompleted,lstCompleted.replace('Completed ',''));								   
-                               }else{
+                               }else if(lstProjected != ''){
 								   console.dir('here 2');
+                                   setInfoStages(lstProjected,lstCompleted,lstProjected.replace('Projected ',''));
+                               } else {
+								   console.dir('here 3');
                                    setInfoStages(lstProjected,lstCompleted);
-                               }    
+							   }
                                
                             
                             $( this ).dialog( "close");   

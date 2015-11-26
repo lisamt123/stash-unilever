@@ -232,7 +232,7 @@
 
 <apex:actionFunction action="{!NULL}" name="changeType" reRender="jqueryId" />
 
-<apex:actionFunction name="setAsGlobal" action="{!setAsGlobal}" oncomplete="{!if(projectId != null && isError == false ,'location.reload()','$.unblockUI()')}"  reRender="myerror"/>
+<apex:actionFunction name="setAsGlobal" action="{!setAsGlobal}" oncomplete="{!if(projectId != null && isError == false ,'location.reload()','$.unblockUI()')}"  reRender="myerror,countriesDialogPanel"/>
 <!-- End action functions -->
 
 
@@ -247,7 +247,7 @@
     </div>
     
     <!-- Countries popUp Start-->
-
+	<apex:outputPanel id="countriesDialogPanel">
     <div id="dialogCountries" title="{!$Label.Oblix_lbl_UIUX_Choose_Countries}" style="display:none">
         <div style="margin-left: 5%;">
          <!--<img class="worldIcon" src="/s.gif" title="Set as Global Campaign"/> -->
@@ -269,6 +269,7 @@
         </table>
         </div>
     </div>
+	</apex:outputPanel>
     <!-- Countries PopUp End -->
     <!-- ValueDrivers popUp Start-->
     <div id="dialogDrivers" class="dialogDrivers" title="Value Drivers" style="display:none">

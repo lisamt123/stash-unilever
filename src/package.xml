@@ -95,19 +95,6 @@
         <name>Layout</name>
     </types>
     <types>
-        <members>Oblix_SWOP_Agency_Global_User</members>
-        <members>Oblix_SWOP_Agency_Super_User</members>
-        <members>Oblix_SWOP_Global_User_V1</members>
-        <members>Oblix_SWOP_Super_User_V1</members>
-        <members>Oblix_SWOP_UL3_4_Agency</members>
-        <members>Oblix_SWOP_UL3_4_V1</members>
-        <members>Oblix_SWOP_UL_1_Agency</members>
-        <members>Oblix_SWOP_UL_1_V1</members>
-        <members>Oblix_SWOP_UL_2_Agency</members>
-        <members>Oblix_SWOP_UL_2_V1</members>
-        <name>PermissionSet</name>
-    </types>
-    <types>
         <members>OblixUIUXVF07ProjViewCss</members>
         <members>OblixUIUXVF08ProjectCss</members>
         <members>Oblix_HightChartJS</members>
@@ -117,6 +104,9 @@
         <members>Oblix_SOWViewJS</members>
         <members>Oblix_SowDeepCloneVF01JS</members>
         <members>Oblix_SowDetailHomeCss</members>
+        <members>Oblix_bootstrapMinCss</members>
+        <members>Oblix_bootstrapMultiselectcss</members>
+        <members>Oblix_bootstrapMultiselectjs</members>
         <members>Oblix_editProjectCSS</members>
         <members>Oblix_editProjectJS</members>
         <members>Oblix_uiTabsArrow</members>
