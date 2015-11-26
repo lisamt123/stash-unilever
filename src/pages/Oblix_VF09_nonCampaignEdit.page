@@ -87,7 +87,7 @@
         h3{font-size: 14px;}
 
         .Oblix_Container{
-            background-image : url("{!URLFOR($Resource.assetUI,'bg_pattern_2.png')}");
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'bg_pattern_2.png')}");
             background-repeat: no-repeat;
             position:relative;
             top: -11px;
@@ -116,7 +116,7 @@
         
         .Oblix_header_activeArrow{ 
              background-color: transparent;      
-            background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow_down.png')}");
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'currentlevel_arrow_down.png')}");
             background-repeat: no-repeat;
              font-family: DIN, Arial;
             color:white;
@@ -140,7 +140,7 @@
         }
        .Oblix_header_Arrow{ 
            background-color: transparent;      
-            background-image : url("{!URLFOR($Resource.assetUI,'currentlevel_arrow.png')}");
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'currentlevel_arrow.png')}");
             background-repeat: no-repeat;
             font-family: DIN, Arial;
             color:white;
@@ -153,12 +153,12 @@
         }
           .Oblix_header_Arrow:active, .Oblix_header_Arrow:hover {
             background-color: transparent;
-            background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'arrow_hover.png')}");
             background-repeat: no-repeat;
           }
          .Oblix_header_previousArrow{ 
             background-color: transparent;      
-            background-image : url("{!URLFOR($Resource.assetUI,'previouslevel_arrow.png')}");
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'previouslevel_arrow.png')}");
             background-repeat: no-repeat;
             font-family: DIN, Arial;
             color:white;
@@ -171,7 +171,7 @@
 
         }
        .Oblix_header_previousArrow:active, .Oblix_header_previousArrow:hover {
-            background-image : url("{!URLFOR($Resource.assetUI,'arrow_hover.png')}");
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'arrow_hover.png')}");
             background-repeat: no-repeat;
 
           }
@@ -199,7 +199,7 @@
         }
                        
         .Oblix_header{
-            background-image : url("{!URLFOR($Resource.assetUI,'header_panel.png')}");
+            background-image : url("{!URLFOR($Resource.Oblix_assetUI,'header_panel.png')}");
             background-size: 100% 100%;
             background-position: center bottom;
             background-repeat: no-repeat;
@@ -727,7 +727,7 @@
          <table width="95%" height="100%">
             <tr>
                 <td width="50px" class="Oblix_header_logo">
-                <apex:image value="{!$Resource.Unilever_logo}" width="60px" height="60px" />
+                <apex:image value="{!$Resource.Oblix_Unilever_logo}" width="60px" height="60px" />
                 </td>
                 <td class="Oblix_header_Arrow header_pos_1">
                  <a href="/apex/Oblix_VF05_SOWDetails"> <div class="Oblix_header_title">{!$Label.Oblix_lbl_UIUX_SWOP}</div></a><br/><span class="Oblix_header_desc">{!$Label.Oblix_lbl_UIUX_Scope_of_Work}<br/>{!$Label.Oblix_lbl_UIUX_Online_Planner}</span>

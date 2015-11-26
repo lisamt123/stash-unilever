@@ -12357,7 +12357,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Search MCO / Country Name</value>
     </labels>
 
-<labels>
+	<labels>
         <fullName>Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40</fullName>
         <categories>Oblix Calculator</categories>
         <language>en_US</language>
@@ -12602,6 +12602,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>SOW Marketing Clone Procedure</value>
     </labels>
     <labels>
+        <fullName>Oblix_Lbl_SWOPReportFolder</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_SWOPReportFolder</shortDescription>
+        <value>SWOP Reporting</value>
+    </labels>
+    <labels>
         <fullName>Oblix_Lbl_Select_Other</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -12822,7 +12829,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Audio</shortDescription>
-        <value>Creation of audio assets that require script writing. Ranges from simple production of a radio spot through to long form &gt;60 seconds such as webcast or podcast. </value>
+        <value>Creation of audio assets that require script writing. Ranges from simple production of a radio spot through to long form &gt;60 seconds such as webcast or podcast.</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Audio_Score1</fullName>
@@ -12893,7 +12900,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <categories>Oblix_VF08_ProjectEdit</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Audio / Visual ADAPTATIONS &amp; RE-EDITS </shortDescription>
+        <shortDescription>Audio / Visual ADAPTATIONS &amp; RE-EDITS</shortDescription>
         <value>Simple editing of script (for radio) using existing footage (for TV/Online/Mobile)</value>
     </labels>
     <labels>
@@ -12901,7 +12908,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <categories>Oblix_VF08_ProjectEdit</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Audio / Visual ADAPTATIONS &amp; RE-EDITS </shortDescription>
+        <shortDescription>Audio / Visual ADAPTATIONS &amp; RE-EDITS</shortDescription>
         <value>Simple editing of script and changing of 2D pack shots and supers (for TV/Online/Mobile).</value>
     </labels>
     <labels>
@@ -13248,7 +13255,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Creative conceptualization and develop key mock up/ visuals to guide digital production agency in the building of digital assets for the campaign. Digital requirements are add ons to the core ATL campaign, requires a short development time, and testing effort. </value>
+        <value>Creative conceptualization and develop key mock up/ visuals to guide digital production agency in the building of digital assets for the campaign. Digital requirements are add ons to the core ATL campaign, requires a short development time, and testing effort.</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory</fullName>
@@ -13329,7 +13336,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Experiential / Promotional ideas ADAPTATION</shortDescription>
-        <value>Changes made to existing experiential idea eg/ adapting an activation event in US for Australia market. </value>
+        <value>Changes made to existing experiential idea eg/ adapting an activation event in US for Australia market.</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score3</fullName>
@@ -13579,7 +13586,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <categories>Oblix_VF08_ProjectEdit</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Static imagery ADAPTATION </shortDescription>
+        <shortDescription>Static imagery ADAPTATION</shortDescription>
         <value>Changes required to existing copy writing and art direction.</value>
     </labels>
     <labels>
@@ -13620,7 +13627,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Static Imagery</shortDescription>
-        <value>Creation of creative assets that require copy and art direction. Ranges from simple tactical executions through to strategic print work. </value>
+        <value>Creation of creative assets that require copy and art direction. Ranges from simple tactical executions through to strategic print work.</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Stat_img_ORIG_Score1</fullName>
@@ -13707,8 +13714,8 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <categories>Oblix_VF08_ProjectEdit</categories>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Stimulus requirements </shortDescription>
-        <value>Development of creative material for use in the creative testing process, Qualitative research and preview </value>
+        <shortDescription>Stimulus requirements</shortDescription>
+        <value>Development of creative material for use in the creative testing process, Qualitative research and preview</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Stim_require_Score2</fullName>
@@ -14080,6 +14087,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Agency Hub Split</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_All_SOW_Items</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_All_SOW_Items</shortDescription>
+        <value>All SOW Items</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Approval</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -14141,6 +14155,14 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Cancel_Campaign</shortDescription>
         <value>Cancel Campaign</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Cancel_description</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel description</shortDescription>
+        <value>In order to cancel a campaign you will have to mark its completion stage at the point of cancellation :</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Chatter_Feed_for</fullName>
@@ -14262,6 +14284,20 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Create SOW</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Created_By</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Created_By</shortDescription>
+        <value>Created By</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Created_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_Created_Date</shortDescription>
+        <value>Created Date</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Current</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -14302,6 +14338,14 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Delete_item</shortDescription>
         <value>Delete item</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_Delivered</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delivered</shortDescription>
+        <value>Delivered</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Description</fullName>
@@ -14386,6 +14430,14 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Fixed_resource</shortDescription>
         <value>Dedicated resource</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_GBVP</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GBVP</shortDescription>
+        <value>GBVP adjustment</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Go</fullName>
@@ -14535,11 +14587,27 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Other Items</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_Paid_Cancellation</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Paid cancellation</shortDescription>
+        <value>Value to be paid on Cancellation</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Parent_Name</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Parent_Name</shortDescription>
         <value>Parent Name</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_PerToBePaid</fullName>
+        <categories>Oblix_VF07_ProjectView</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Percentage to be paid</shortDescription>
+        <value>Percentage to be paid this financial year</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Platform</fullName>
@@ -14696,6 +14764,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Time Scales</value>
     </labels>
     <labels>
+        <fullName>Oblix_lbl_UIUX_To_Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_To_Delete</shortDescription>
+        <value>To Delete</value>
+    </labels>
+    <labels>
         <fullName>Oblix_lbl_UIUX_Unsaved</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -14715,6 +14790,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Value_drivers</shortDescription>
         <value>Value drivers</value>
+    </labels>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_View_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_lbl_UIUX_View_2</shortDescription>
+        <value>View</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_View_Campaign</fullName>
@@ -14800,18 +14882,11 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Oblix_lbl_UIUX_items_big</shortDescription>
         <value>Items</value>
     </labels>
-	<labels>
-        <fullName>Oblix_Lbl_SWOPReportFolder</fullName>
+    <labels>
+        <fullName>Oblix_lbl_UIUX_update_to_project</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Oblix_Lbl_SWOPReportFolder</shortDescription>
-        <value>SWOP Reporting</value>
-    </labels>    
-	<labels>
-        <fullName>Oblix_lbl_UIUX_Cancel_description</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Cancel description</shortDescription>
-        <value>In order to cancel a campaign you will have to mark its completion stage at the point of cancellation :</value>
-    </labels> 
+        <shortDescription>Oblix_lbl_UIUX_update_to_project</shortDescription>
+        <value>Update</value>
+    </labels>
 </CustomLabels>
