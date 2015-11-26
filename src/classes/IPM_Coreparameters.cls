@@ -8,9 +8,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     
     Public Map<String, IPM_BET_Search_Fields__c> betCustomSettings = IPM_BET_Search_Fields__c.getAll();
     Public List<String> dataSetNames= new List<String>();
-    Public  List<String> columnLabels{get{if(columnLabels==null){ checkLabel();} return columnLabels; } private set;}
-    Public  List<String> classProperties {get{if(classProperties==null) {checkLabel();} return classProperties ; } private set;}
-    Public  Map<String,boolean> classPropertiesMap {get{if(classPropertiesMap==null) {checkLabel();} return classPropertiesMap ; } private set;}
+    Public  List<String> columnLabels{get{if(columnLabels==null) checkLabel();return columnLabels; } private set;}
+    Public  List<String> classProperties {get{if(classProperties==null) checkLabel();return classProperties ; } private set;}
+    Public  Map<String,boolean> classPropertiesMap {get{if(classPropertiesMap==null) checkLabel();return classPropertiesMap ; } private set;}
     Public void checkLabel(){
         dataSetNames.addAll(betCustomSettings.keySet());
         dataSetNames.sort();

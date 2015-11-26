@@ -6,9 +6,7 @@
 @Version 1.0
 @reference Project Job Queue
 */
-/* This class would initially run in System mode to make sure that it can view all project associations.However internal 
-    invocations for Helpers are 'With sharing'.
-*/
+// This class would initially run in System mode to make sure that it can view all project associations.However internal invocations for Helpers are 'With sharing'.
 public without sharing class IPM_ProjectJobHelper 
 {
     public static String REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId(); 
@@ -421,6 +419,7 @@ public without sharing class IPM_ProjectJobHelper
             }
         }             
         
+        System.debug(LoggingLevel.ERROR,'projectSpecificLocalRolloutMap--->>'+projectSpecificLocalRolloutMap);
                           
         for(Id projectId : incomingProjectIds)
         {
@@ -435,6 +434,8 @@ public without sharing class IPM_ProjectJobHelper
                 }
                 
                 IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(incomingProjectDetail);
+                
+                System.debug(LoggingLevel.ERROR,'currentProjectType--->>'+currentProjectType);
                 
                 if(currentProjectType!=null)
                 {   
@@ -459,6 +460,8 @@ public without sharing class IPM_ProjectJobHelper
                         }          
                     }
                     
+                    System.debug(LoggingLevel.ERROR,'currentProjectType--->>'+currentProjectType.IPM_CreateLocalProjects__c);
+                            
                     if(currentProjectType.IPM_CreateLocalProjects__c)
                     {
                         Map<Id,IPM_Project_Rollout__c> localRollouts = new Map<Id,IPM_Project_Rollout__c>();
@@ -468,6 +471,7 @@ public without sharing class IPM_ProjectJobHelper
                             if(!associatedLocalRolloutsMap.isEmpty())
                             {
                                 rolloutProjects.addAll(IPM_CreateRolloutProjects.processRollouts(incomingProjectDetail, associatedLocalRolloutsMap.values() ) );
+                                System.debug(LoggingLevel.ERROR,'rolloutProjects--->>'+rolloutProjects);
                                 for(IPM_Project_Rollout__c projectRollout : associatedLocalRolloutsMap.values())
                                 {
                                     projectRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_PROCESSING;
@@ -483,6 +487,8 @@ public without sharing class IPM_ProjectJobHelper
                 }
             }
         }
+        
+        System.debug(LoggingLevel.ERROR,'rolloutProjects--->>'+rolloutProjects);
         
         if(!processingRolloutMap.isEmpty())
         {

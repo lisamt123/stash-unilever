@@ -49,9 +49,8 @@ public with sharing class IPM_CustomPermission {
                         IN (SELECT PermissionSetId 
                             FROM PermissionSetAssignment
                             WHERE AssigneeId = :UserInfo.getUserId()) LIMIT 10];  
-        for(SetupEntityAccess setupEntity : setupEntities) {
-            customPermissionsForCurrentUser.add(customPermissionNamesById.get(setupEntity.SetupEntityId));
-        } 
+        for(SetupEntityAccess setupEntity : setupEntities)
+            customPermissionsForCurrentUser.add(customPermissionNamesById.get(setupEntity.SetupEntityId));  
     }
 
 }

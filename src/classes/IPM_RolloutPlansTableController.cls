@@ -366,8 +366,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             
             queryString+= ' (SELECT ';
             
-            for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet())
-            {
+            for (String field : Schema.SObjectType.IPM_Project_Rollout__c.fields.getMap().KeySet()){
                 if (field != ID_PARAMETER)
                 {
                     queryString+= field + ', ';
@@ -377,8 +376,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             queryString+= ' ORDER BY IPM_Rollout_Project__c), ';
             
             queryString+= ' (SELECT ';
-            for (String field : Schema.SObjectType.IPM_Project__c.fields.getMap().KeySet())
-            {
+            for (String field : Schema.SObjectType.IPM_Project__c.fields.getMap().KeySet()){
                 if (field != ID_PARAMETER)
                 {
                     queryString+= field + ', ';
@@ -720,7 +718,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             { 
                 for(id rolloutId :rolloutTolocalRolloutToCountryMap.keySet())
                 {
-                	//  This contains Local Rollout Object for Regional Project rollout assignment and Regional Rollout, 
+                    
+                    //  This contains Local Rollout Object for Regional Project rollout assignment and Regional Rollout, 
                     //  in case of Global Project Rollout assignment.
                     IPM_Project_Rollout__c rollout = lstcompleteRollout.get(rolloutId);
                 
@@ -820,8 +819,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     * @param        NONE
     * @return       PageReference of the page
     */
-    private PageReference refreshPage()
-    {
+    private PageReference refreshPage(){
         PageReference rolloutPlans;
         rolloutPlans = Page.IPM_RolloutPlans;
         rolloutPlans.getParameters().put(ID_PARAMETER, projectId);                
@@ -835,8 +833,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     * @param        NONE
     * @return       NONE
     */
-    public PageReference cancelRollout()
-    {
+    public PageReference cancelRollout(){
         //Method invoked in IPM_LocalRolloutPlansTable component
         return refreshPage();
     }
@@ -854,13 +851,16 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             IPM_Project_Rollout__c deleteProjectRollout = new IPM_Project_Rollout__c(Id = selectedMCORollout);
             //For CRUD
             delete deleteProjectRollout;              
-			getProjectRollouts();
+
+            getProjectRollouts();
+           
             return null;
                         
         } 
         catch (Exception ex) 
         { 
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,SAVE_ROLLOUT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+             
             isError = TRUE; 
             errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             return null;

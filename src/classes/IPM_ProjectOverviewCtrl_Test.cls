@@ -672,7 +672,7 @@ public class IPM_ProjectOverviewCtrl_Test
             system.assertEquals(String.format(System.label.IPM_BETLinkFunctionalMsg,new string[]{bet.name}),overCtrl1.betInformationMessage,BET_ERROR_MSG);
         }
      }*/
-     //Commenting  to run the test class
+    
     //Test method to test BET functionality for other phases
    static testMethod void testCreateBETMessagesOtherPhases(){
         test.loadData(IPM_Project_Type__c.sobjectType, 'IPM_ProjectType');//
