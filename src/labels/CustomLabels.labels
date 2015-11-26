@@ -14807,5 +14807,11 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Oblix_Lbl_SWOPReportFolder</shortDescription>
         <value>SWOP Reporting</value>
     </labels>    
-
+	<labels>
+        <fullName>Oblix_lbl_UIUX_Cancel_description</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel description</shortDescription>
+        <value>In order to cancel a campaign you will have to mark its completion stage at the point of cancellation :</value>
+    </labels> 
 </CustomLabels>
