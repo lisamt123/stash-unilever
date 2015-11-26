@@ -56,13 +56,9 @@
 
 Changed to Campaign on 26/10/2015</description>
     <enableActivities>false</enableActivities>
-    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSharing>true</enableSharing>
-    <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Actual_Delivery_Date__c</fullName>
         <externalId>false</externalId>
@@ -635,22 +631,6 @@ Changed to Campaign on 26/10/2015</description>
         <externalId>false</externalId>
         <inlineHelpText>Filter on the word &quot;Score&quot; to capture full descriptions of the asset</inlineHelpText>
         <label>Full Description</label>
-        <lookupFilter>
-            <active>false</active>
-            <booleanFilter>(1 AND 2)</booleanFilter>
-            <filterItems>
-                <field>$Source.Asset_Type__c</field>
-                <operation>equals</operation>
-                <valueField>Asset_Scoring__c.Type__c</valueField>
-            </filterItems>
-            <filterItems>
-                <field>$Source.Sub_Category__c</field>
-                <operation>equals</operation>
-                <valueField>Asset_Scoring__c.Sub_Category__c</valueField>
-            </filterItems>
-            <infoMessage>Search for score ...</infoMessage>
-            <isOptional>true</isOptional>
-        </lookupFilter>
         <referenceTo>Asset_Scoring__c</referenceTo>
         <relationshipLabel>SWOP Campaign Assets</relationshipLabel>
         <relationshipName>Agency_Project_Assets</relationshipName>
