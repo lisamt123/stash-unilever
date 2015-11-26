@@ -14,7 +14,7 @@ private class Oblix_Ctrl001DeepCloneSOW_CC_Test {
             marketingSow.SOW_Status__c = 'Open';
             marketingSow.Financial_Year__c = 'FY2015';
             marketingSow.Oblix_AgencyEstimate__c = myAccount.Id;
-        	marketingSow.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_SOW__c').get('ParentSowMarketing');
+            marketingSow.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_SOW__c').get('ParentSowMarketing');
             insert marketingSow;
             return marketingSow;
        }
@@ -37,8 +37,8 @@ private class Oblix_Ctrl001DeepCloneSOW_CC_Test {
                        Test.setCurrentPage(pageref) ;
                  
                   Oblix_Ctrl001DeepCloneSOW_CC controller = new Oblix_Ctrl001DeepCloneSOW_CC();
-             	  Id sowId = createMaketingSow().id;
-             	  ApexPages.currentPage().getParameters().put('sowId',sowId);
+                  Id sowId = createMaketingSow().id;
+                  ApexPages.currentPage().getParameters().put('sowId',sowId);
                   controller.sowRecordID=  sowId;
                   controller.isEnaughCopies= false;
                   controller.nextStageTypeSow ='0';
