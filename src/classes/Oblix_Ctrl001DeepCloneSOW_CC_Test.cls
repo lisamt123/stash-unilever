@@ -11,7 +11,7 @@ private class Oblix_Ctrl001DeepCloneSOW_CC_Test{
                 marketingSow.Name = 'Marketinf Sow Approval Test';
                 marketingSow.SOW_Status__c = 'Open';
                 marketingSow.Financial_Year__c = 'FY2015';
-               
+                marketingSow.RecordTypeId = Oblix_Utils.MapRecordType('Marketing_SOW__c').get('ParentSowMarketing');
                 try{
                   insert marketingSow;
                }catch(DMLException le){
