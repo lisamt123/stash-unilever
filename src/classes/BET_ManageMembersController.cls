@@ -59,7 +59,6 @@ global with sharing class BET_ManageMembersController {
         isBETOperationAdmin = BET_CommonService.isBETOperationAdmin() && !isBetOwnerOrManager && !isHubAdmin;
 
         requestsShouldBeAutoapproved = isBetOwnerOrManager || isHubAdmin;
-    
 
         chatterExternalProfile = [SELECT Id FROM Profile WHERE Name='Chatter External User' LIMIT 1];
 
@@ -97,6 +96,7 @@ global with sharing class BET_ManageMembersController {
                 betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
                 betMemberRequest.Do_Not_Notify_Bet__c = requestsShouldBeAutoapproved;
                 betMemberRequest.External_User_Request__c = false;
+                betMemberRequest.Do_Not_Notify_User__c = true;
                 insert betMemberRequest;
                 betMemberRequest.UserId__c = null;
                 betMemberRequest = new BET_Member_Request__c(Brand_Experience_Toolkit__c = betId);
@@ -145,6 +145,7 @@ global with sharing class BET_ManageMembersController {
                 betMemberRequest.Status__c = requestsShouldBeAutoapproved ? BET_LinkingService.FOLLOW_STATUS_APPROVED : BET_LinkingService.FOLLOW_STATUS_NEW;
                 betMemberRequest.Do_Not_Notify_Bet__c = true;
                 betMemberRequest.External_User_Request__c = true;
+                betMemberRequest.Do_Not_Notify_User__c = true;
                 betMemberRequest.UserId__c = externalUserSalesforceId; 
                 insert betMemberRequest;
 

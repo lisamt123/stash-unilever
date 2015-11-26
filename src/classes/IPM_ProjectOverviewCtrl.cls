@@ -223,10 +223,12 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
        
        
        IPM_Project__c projObj = IPM_Utils.getCurrentPhase(projectId);
-       if(!Test.isRunningTest())
+       if(!Test.isRunningTest()){
            currPhase = projObj.IPM_Phase__c;
-       else
+       }
+       else{
            currPhase = projObj.IPM_Temporary_Phase__c;
+       }
        init();
        
        // Adding Alert for Local Project leader is blank for rollout Projects
@@ -357,7 +359,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         // Get project it and iTO value map
         projIdiTOMap = IPM_Utils.createProjectITOValueMap();
         if(projIdiTOMap != null && !projIdiTOMap.isEmpty() && projIdiTOMap.containsKey(project.id)){
-        globalyearDec = projIdiTOMap.get(project.id);
+        	globalyearDec = projIdiTOMap.get(project.id);
         }
 
         if((((IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c))) || (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c))) || (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equalsIgnoreCase(project.IPM_Project_Type__c)))) && (project.Exempt_from_Threshold__c))){
@@ -726,28 +728,19 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         for(IPM_Milestone__c eachRec : lst) {
             mapToReturn.put(eachRec.Id, eachRec);
             if(eachRec.IPM_Project__r.IPM_Phase__c == eachRec.IPM_Phase__c){
-                if(String.IsNotBlank(String.valueOf(eachRec.IPM_Due_Date__c)) && eachRec.IPM_Completed__c != true){
+                if(String.IsNotBlank(String.valueOf(eachRec.IPM_Due_Date__c)) && !eachRec.IPM_Completed__c){
                     DateValue=Date.valueOf(System.today()).daysBetween(Date.valueOf(eachRec.IPM_Due_Date__c));
                     if(DateValue<0){
-
-
                             alertMessagePast.put(System.Label.IPM_DUE_DATE_FOR , eachRec.IPM_Type_of_gate__c +SPACE+IPM_Utils.off+SPACE+eachRec.IPM_Project__r.IPM_Project_Name__c);
                             alertscount++;
-
                     }
                     if(DateValue==0){
-
-
                            alertMessageToday.put(eachRec.IPM_Name__c,PLANNED_STR+eachRec.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+IPM_ConstantUtils.GATE);
                            alertscount++;
-
-
                      }
                     if(DateValue<=IPM_ConstantUtils.CONST_21 && DateValue!=0 && DateValue >0){
-
                            alertMessage.put(eachRec.IPM_Project__r.IPM_Project_Name__c+SPACE+eachRec.IPM_Name__c+SPACE+System.Label.IPM_DUE_IN,DateValue+SPACE+System.Label.IPM_DAY);
                            alertscount++;
-
                     }
                 } 
             }
@@ -758,21 +751,17 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                 if( ( countryLst != null && countryLst.size()  ==1 && DateValue< 180) || (project.IPM_Countries__r!= null && project.IPM_Countries__r.size() > 0 && DateValue<120 ) || ((project.IPM_Countries__r).isEmpty() && dateValue < 180 )){
                     additionalAlertMessages.add(system.label.IPM_AlertMsgOutsideOTIF);
                     alertscount++;      
-
                 }
            }
-           
         }
-
-
-           for(IPM_Project_Document__c eachDoc:[SELECT IPM_GateDocuments__c,IPM_Document_Status__c,IPM_Project__r.IPM_Project_Name__c FROM IPM_Project_Document__c where IPM_Project__c=: projectId])
-           {
-            if(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS.equalsIgnoreCase(eachDoc.IPM_Document_Status__c) && (System.Label.IPM_CHARTER.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c) || IPM_ConstantUtils.CONTRACT_GATE.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c)))
-            {
-                documentAlertMessage = eachDoc.IPM_Project__r.IPM_Project_Name__c +IPM_ConstantUtils.Colon+eachDoc.IPM_GateDocuments__c+SPACE+system.label.IPM_Gate_Approved_With_Edits;
-                alertscount++;
-            }
-        }
+       for(IPM_Project_Document__c eachDoc:[SELECT IPM_GateDocuments__c,IPM_Document_Status__c,IPM_Project__r.IPM_Project_Name__c FROM IPM_Project_Document__c where IPM_Project__c=: projectId])
+       {
+	        if(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS.equalsIgnoreCase(eachDoc.IPM_Document_Status__c) && (System.Label.IPM_CHARTER.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c) || IPM_ConstantUtils.CONTRACT_GATE.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c)))
+	        {
+	            documentAlertMessage = eachDoc.IPM_Project__r.IPM_Project_Name__c +IPM_ConstantUtils.Colon+eachDoc.IPM_GateDocuments__c+SPACE+system.label.IPM_Gate_Approved_With_Edits;
+	            alertscount++;
+	        }
+    	}
             
         return mapToReturn;
     }
@@ -841,8 +830,9 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                'markComplete',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));   
         }       
-        if(!Test.isRunningTest())
+        if(!Test.isRunningTest()){
            init();
+        }
            bPaginated  = false;
     }
     
@@ -885,8 +875,9 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
    
     public List<IPM_Task__c> getTasks() {
        size = 5;
-       if(!bPaginated)
+       if(!bPaginated){
            con = new ApexPages.StandardSetController(tasksList);
+       }
        noOfRecords = con.getResultSize();
        con.setPageSize(size);
        return (List<IPM_Task__c>)con.getRecords();

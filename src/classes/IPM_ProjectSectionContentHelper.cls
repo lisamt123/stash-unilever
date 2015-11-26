@@ -42,11 +42,11 @@ public with sharing class IPM_ProjectSectionContentHelper
                             List<IPM_Project_Document_Section__c> associatedSectionsList = projectDocToSectionMap.get(associatedProjectDocument.Id);
                             // To get the related sections for an otif question
                             Map<String,IPM_Project_Document_Section__c> sectionInformation=new Map<String,IPM_Project_Document_Section__c>();
-                            System.debug('********associatedSectionsList***'+associatedSectionsList);
+                            
                             for(IPM_Project_Document_Section__c ips:associatedSectionsList){ 
                                 sectionInformation.put(ips.IPM_Master_Section_External_Id__c,ips);
                             }
-                            System.debug('********sectionInformation***'+sectionInformation);
+                            
                            for(IPM_Project_Document_Section__c projectSection : associatedSectionsList)
                            {
                                if(projectSection.IPM_Section_Name__c==IPM_ConstantUtils.OTIF_STATUS || projectSection.IPM_Section_Name__c==IPM_ConstantUtils.OTIF)
@@ -70,8 +70,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                                            projectDocSecContent.IPM_OTIF_HelpText_NA__c = os.OTIF_Help_Text__c;
                                            projectDocSecContent.IPM_OTIF_Sequence__c = os.OTIF_Sequence_Number__c; //sequence number for OTIF
                                            projectDocSecContent.Section_Content_Ext_Id__c=os.IPM_External_Id__c;
-                                           System.debug('****os********'+os);
-                                           System.debug('****sectionInformation********'+sectionInformation);
+                                           
                                            if(sectionInformation.get(os.IPM_External_Id__c)!=null){
                                                projectDocSecContent.IPM_Section_Id__c = sectionInformation.get(os.IPM_External_Id__c).Id;
                                                projectDocSecContent.IPM_Section_Name__c = sectionInformation.get(os.IPM_External_Id__c).IPM_Section_Name__c;
@@ -1210,7 +1209,6 @@ public with sharing class IPM_ProjectSectionContentHelper
                 String sourceProjectGate = null;
                 IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
-                    
                 
                 if(associatedProjectType!=null)
                 {
@@ -1377,7 +1375,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                 IPM_Project_Document__c targetProjectDocument = null;
                 IPM_Project_Document_Section__c targetProjectDocumentSection = null;
                 
-               String sourceProjectGate = null;
+                String sourceProjectGate = null;
                 IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
                     

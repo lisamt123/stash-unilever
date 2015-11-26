@@ -39,9 +39,9 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     */
     public void onBeforeDelete(IPM_Project_Resource__c[] oldProjectResources) {
         lstPrjResourceHisWrapper = new List<ProjectResourceHistoryWrapper>();
-        for(IPM_Project_Resource__c eachPResource : oldProjectResources) 
-          lstPrjResourceHisWrapper.add(new ProjectResourceHistoryWrapper(eachPResource.IPM_Project__c, eachPResource.IPM_User__c, null, eachPResource.IPM_Role_Type__c));
-        
+        for(IPM_Project_Resource__c eachPResource : oldProjectResources){
+			lstPrjResourceHisWrapper.add(new ProjectResourceHistoryWrapper(eachPResource.IPM_Project__c, eachPResource.IPM_User__c, null, eachPResource.IPM_Role_Type__c));        
+        } 
         trackProjectResourceAuditHistory(lstPrjResourceHisWrapper, IPM_ConstantUtils.HISTORY_DELETED);
     }
     
