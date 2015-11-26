@@ -308,6 +308,10 @@
                 <field>SuppliedEmail</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Brand__c</field>
+            </layoutItems>
+            <layoutItems>
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
@@ -358,6 +362,9 @@
         <fields>SuppliedEmail</fields>
     </miniLayout>
     <quickActionList>
+        <quickActionListItems>
+            <quickActionName>Case.Email</quickActionName>
+        </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>

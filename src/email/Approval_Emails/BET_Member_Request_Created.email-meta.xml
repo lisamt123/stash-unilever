@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>BET_Member_Request_Created</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <name>BET_Member_Request_Created</name>
+    <style>none</style>
+    <subject>{!BET_Member_Request__c.CreatedBy} has suggested  {!BET_Member_Request__c.UserId__c} is given access to the BET {!BET_Member_Request__c.Brand_Experience_Toolkit__c}</subject>
+    <type>custom</type>
+</EmailTemplate>

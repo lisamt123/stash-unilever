@@ -7228,6 +7228,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Application_Usage__c.Application_Login_Month__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Application_Usage__c.Application__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7244,6 +7249,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Application_Usage__c.Days_Since_Last_Access__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Application_Usage__c.Job_Function__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -21106,8 +21116,7 @@
         <layout>Search_Statistics__c-WINatPOS Search Statistics Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Send_Email__c-Send_Email Layout</layout>
-    </layoutAssignments>
+        <layout>Send_Email__c-Send_Email Layout</layout>    </layoutAssignments>
     <layoutAssignments>
         <layout>Solution-Solution Layout</layout>
     </layoutAssignments>
