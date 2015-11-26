@@ -136,7 +136,7 @@ public with sharing class TriggerFactory
         }
         if (soType == FAU_Webinar__c.sObjectType){
             return new FAU_WebinarHandler();
-        } 
+        } */
         
        if (soType == IPM_User_Profile__c.sObjectType){
             return new IPM_UserProfileHandler();
@@ -180,7 +180,6 @@ public with sharing class TriggerFactory
         if (soType == IPM_Assessment__c.sObjectType){
             return new IPM_AssesmentHandler();
         }
-	*/
         return null;
     }
 }
