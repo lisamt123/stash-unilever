@@ -225,7 +225,7 @@
                                    setInfoStages(lstProjected,lstCompleted,lstProjected.replace('Projected ',''));
                                } else {
 								   console.dir('here 3');
-                                   setInfoStages(lstProjected,lstCompleted);
+                                   setInfoStages(lstProjected,lstCompleted, '');
 							   }
                                
                             
@@ -322,6 +322,7 @@
                         blockme();
                         setAsGlobal();
                         $( this ).dialog( "close" );
+						$( "#dialogCountries" ).dialog( "close" );
                     },
                     Cancel: function() {
                         $( this ).dialog( "close" );
