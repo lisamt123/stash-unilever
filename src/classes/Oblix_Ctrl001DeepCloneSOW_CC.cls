@@ -130,7 +130,20 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
         sowChild.Type_of_SOW__c = (nextStageTypeSow.substring(nextStageTypeSow.length()-2, nextStageTypeSow.length()-1)== 'Q' ? nextStageTypeSow.substring(nextStageTypeSow.length()-2, nextStageTypeSow.length()) : baseline);
         sowChild.Active__c = false;
         
-        if(sowChild!= null){ insert sowChild;}
+        if(sowChild!= null){ 
+            
+            try{
+               insert sowChild;
+               
+           }catch(DMLException le){
+             String duplicateValue ='';
+              if(le.getMessage().contains('DUPLICATE_VALUE')){
+                      sowChild.Name = sowChild.Name + Math.round(Math.random() * (10 - 1)) + 1;  
+                       insert sowChild;
+               }
+            }    
+                
+        }
         //List of Parent Basics Marketing
         lstMarketingBasicsParent = [Select Id, Name, Oblix_SOWMarketing__c from Marketing_Basics__c where Oblix_SOWMarketing__c =: sowRecordID];
         //list of cloned marketing basics from parent
@@ -181,7 +194,21 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
                     lstMarketingProjectChild.add(projectChild);
             }
             if(!lstMarketingProjectChild.isEmpty()){
-                  insert lstMarketingProjectChild;
+                  
+                  try{
+                       insert lstMarketingProjectChild;
+                       
+                   }catch(DMLException le){
+                     String duplicateValue ='';
+                      if(le.getMessage().contains('DUPLICATE_VALUE')){
+                              for(Oblix_SOW_Projects__c projChild : lstMarketingProjectChild){
+                                  projChild.Name = projChild.Name + Math.round(Math.random() * (10 - 1)) + 1;  
+                              }    
+                              
+                               insert lstMarketingProjectChild;
+                       }
+                    }    
+                  
                   for(Oblix_SOW_Projects__c projChild : lstMarketingProjectChild){
                     //Construct Map for each parent it's related Child
                     if(!MapProjectParentToChild.containsKey(projChild.OblixClonedFromParentProject__c)){
