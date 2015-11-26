@@ -57,10 +57,6 @@
         <name>Pitch</name>
     </customApplications>
     <customApplications>
-        <label><!-- Stakeholder Database --></label>
-        <name>Stakeholder_Database</name>
-    </customApplications>
-    <customApplications>
         <label><!-- Sustainable Living Lab --></label>
         <name>Sustainable_Living_Lab</name>
     </customApplications>
@@ -2412,10 +2408,6 @@
         <label><!-- Issues --></label>
         <name>im_Issues</name>
     </customTabs>
-    <customTabs>
-        <label><!-- Stakeholders --></label>
-        <name>kof_Stakeholders</name>
-    </customTabs>
     <quickActions>
         <label><!-- Approve --></label>
         <name>Approve</name>
@@ -3605,10 +3597,6 @@
         <description><!-- Stakeholders with Issues --></description>
         <label><!-- Stakeholders with Issues --></label>
         <name>Stakeholders_with_Issues</name>
-        <sections>
-            <label><!-- Issues --></label>
-            <name>Issues</name>
-        </sections>
         <sections>
             <label><!-- Stakeholders --></label>
             <name>Stakeholders</name>
