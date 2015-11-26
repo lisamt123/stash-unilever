@@ -1445,7 +1445,18 @@ public with sharing class IPM_ProjectHelper
         if(!projectIdSetToBeDeleted.isEmpty() && !DELETE_PROJECT_INVOKED)
         {
             DELETE_PROJECT_INVOKED = true;    
-            List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectIdSetToBeDeleted Limit 5000];
+            
+            // If it is a global Project, get corresponding regional Projects.
+            for(IPM_Project__c project : [Select Id,(Select Id from IPM_Projects__r) from IPM_Project__c where IPM_Parent_Project__c in :projectIdSetToBeDeleted LIMIT 50000])
+            {
+                projectIdSetToBeDeleted.add(project.Id);
+                for(IPM_project__c childproject : project.IPM_Projects__r)
+                {
+                    projectIdSetToBeDeleted.add(childproject.Id);
+                }
+            }
+                         
+            List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectIdSetToBeDeleted OR Local_Project__c in:projectIdSetToBeDeleted OR Regional_Project__c in:projectIdSetToBeDeleted Limit 5000];
             if(projFinList != null && !projFinList.isEmpty())
                 delete projFinList;
             

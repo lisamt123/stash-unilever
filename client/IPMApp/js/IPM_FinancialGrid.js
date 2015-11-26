@@ -8,6 +8,12 @@ var cleanCalled = false;
 var globalchanges = [];
 var errorflag = "false";
 var Validationflag = "false";
+var Validationflag1 = "false";
+var Validationflag2 = "false";
+var Validationflag3 = "false";
+var Validationflag4 = "false";
+var Validationflag5 = "false";
+var Validationflag6 = "false";
 var myWindow;
 function openWin() {
     myWindow = window.open(IPMAppFin.UploadBusinessCase + "?parentId=" + IPMAppFin.projectId, "myWindow", "width=400, height=200, top = 300, left= 500");
@@ -271,6 +277,12 @@ $(document).ready(function() {
                 Y4CITO = 0,
                 Y5CITO = 0;
             Validationflag = 'false';
+			Validationflag1 = 'false';
+			Validationflag2 = 'false';
+			Validationflag3 = 'false';
+			Validationflag4 = 'false';
+			Validationflag5 = 'false';
+			Validationflag6 = 'false';
             if (cleanCalled) {
                 cleanCalled = false;
                 return;
@@ -286,33 +298,33 @@ $(document).ready(function() {
                         globalchanges.push([changes[i][0], changes[i][1], changes[i][2], changes[i][3]]);
                     }
                     for (var j = 0; j < globalchanges.length; j++) {
-                        if ((globalchanges[j][0].toString() == '9' || globalchanges[j][0].toString() == '33') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0')) {
+                        if ((globalchanges[j][0].toString() == '9' || globalchanges[j][0].toString() == '33') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag == 'false') {
                             alert(IPMAppFin.IPM_TurnOverCP);
                             Validationflag = 'true';
                         }
-                        if ((globalchanges[j][0].toString() == '11' || globalchanges[j][0].toString() == '35') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0')) {
+                        if ((globalchanges[j][0].toString() == '11' || globalchanges[j][0].toString() == '35') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag1 == 'false') {
                             alert(IPMAppFin.IPM_GrossProfitCP);
-                            Validationflag = 'true';
+                            Validationflag1 = 'true';
                         }
-                        if ((globalchanges[j][0].toString() == '12' || globalchanges[j][0].toString() == '36') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0')) {
+                        if ((globalchanges[j][0].toString() == '12' || globalchanges[j][0].toString() == '36') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag2 == 'false') {
                             alert(IPMAppFin.IPM_AdvertisingCP);
-                            Validationflag = 'true';
+                            Validationflag2 = 'true';
                         }
-                        if ((globalchanges[j][0].toString() == '13' || globalchanges[j][0].toString() == '37') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0')) {
+                        if ((globalchanges[j][0].toString() == '13' || globalchanges[j][0].toString() == '37') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag3 == 'false') {
                             alert(IPMAppFin.IPM_PBOCP);
-                            Validationflag = 'true';
+                            Validationflag3 = 'true';
                         }
-                        if ((globalchanges[j][0].toString() == '15' || globalchanges[j][0].toString() == '39') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0')) {
+                        if ((globalchanges[j][0].toString() == '15' || globalchanges[j][0].toString() == '39') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag4 == 'false') {
                             alert(IPMAppFin.IPM_GMCP);
-                            Validationflag = 'true';
+                            Validationflag4 = 'true';
                         }
-                        if ((globalchanges[j][0].toString() == '16' || globalchanges[j][0].toString() == '40') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0')) {
+                        if ((globalchanges[j][0].toString() == '16' || globalchanges[j][0].toString() == '40') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag5 == 'false') {
                             alert(IPMAppFin.IPM_AandP);
-                            Validationflag = 'true';
+                            Validationflag5 = 'true';
                         }
-                        if ((globalchanges[j][0].toString() == '17' || globalchanges[j][0].toString() == '41') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0')) {
+                        if ((globalchanges[j][0].toString() == '17' || globalchanges[j][0].toString() == '41') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag6 == 'false') {
                             alert(IPMAppFin.IPM_PBOPCP);
-                            Validationflag = 'true';
+                            Validationflag6 = 'true';
                         }
                         if (globalchanges[j][0].toString() == '9' && globalchanges[j][1] == 5) {
                             Y1GTO = globalchanges[j][3];
@@ -388,7 +400,7 @@ $(document).ready(function() {
                         Validationflag = 'true';
                     }
 
-                    if (Validationflag == 'false') {
+                    if (Validationflag == 'false' && Validationflag1 == 'false' && Validationflag2 == 'false' && Validationflag3 == 'false' && Validationflag4 == 'false' && Validationflag5 == 'false' && Validationflag6 == 'false') {
                         document.getElementById('DivButton').style.display = 'inline';
                     } else {
                         document.getElementById('DivButton').style.display = 'none';

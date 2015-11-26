@@ -131,6 +131,7 @@
              color: #636363;
              margin: 0px 0;
          }
+		 .alertAccordian{cursor:pointer;}
         /* .secUsersHistory {
              background: url(../images/tlHistory.jpg) repeat-y 32px 0;
          } */

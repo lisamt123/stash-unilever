@@ -150,9 +150,9 @@ function initSlider1() {
                     'color': '#e98824',
                     'font-weight': 'bold'
                 });
-            } else if (quest == "4") {
+            } else if (quest == "5") {
                 $this.next(".sliderStat1").find(".ui-slider-handle").css("left", "100%");
-                $this.next(".sliderStat1").find("label[for=s8]").css({
+                $this.next(".sliderStat1").find("label[for=s9]").css({
                     'color': '#e98824',
                     'font-weight': 'bold'
                 });

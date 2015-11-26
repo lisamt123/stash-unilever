@@ -270,10 +270,10 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                 IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,
                                 IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, 
                               (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
-                                    IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,
+                                    IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,IPM_Active__c,
                                     IPM_Project__c
                                     FROM Tasks__r 
-                                    WHERE IPM_Assignee__c = :UserInfo.getUserId() AND IPM_Phase__c = :currPhase
+                                    WHERE IPM_Assignee__c = :UserInfo.getUserId() AND IPM_Phase__c = :currPhase AND IPM_Active__c=TRUE
                                     ORDER BY IPM_Due_Date1__c limit 10000),
                             (SELECT id,name,IPM_Project__c from IPM_Countries__r limit 10000),
                             (SELECT IPM_Project_Template__r.IPM_Template_Complexity__c,LastModifiedBy.Name,IPM_GateDocuments__c,

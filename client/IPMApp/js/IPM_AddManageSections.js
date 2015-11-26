@@ -56,5 +56,5 @@ jq(document).ready(function() {
 });
 /* Below script is to redirect to the Gate Document page */
 function goToParentPage() {
-    window.top.location.href = IPMApp.GateDocumentPageRef + '?id=' + IPMApp.projectId;
+    window.top.location.href = IPMApp.GateDocumentPageRef + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.printDoc;
 }

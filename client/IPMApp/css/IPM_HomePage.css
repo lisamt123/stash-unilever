@@ -36,6 +36,7 @@
 	    float: left;
 
 	}
+	.alertAccordian{cursor:pointer;}
 	.alertsContainer {
 	    background: #FFF372;
 	    padding: 10px;

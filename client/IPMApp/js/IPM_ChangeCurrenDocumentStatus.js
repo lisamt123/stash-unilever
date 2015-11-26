@@ -91,16 +91,13 @@ function goToParentPage() {
         if (status == IPMApp.Stopped && makeStop == true) {
             window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
         } else if (status == IPMApp.Proposed && makeValid == true) {
-            sendemailtoGK();
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
         } else if (status == IPMApp.Postponed && makePostpone == true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
         } else if (status == IPMApp.Approved && makeApprove == true) {
             window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId + '&showMembers=true&createBET=true';
-            sendemailtoGK();
         } else if (status == IPMApp.ApprovedEdit && makeValid == true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
-            sendemailtoGK();
         }
     }
 }
