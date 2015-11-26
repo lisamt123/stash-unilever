@@ -5,8 +5,8 @@
 **/
 
 /*
-     This class has been defined as Without Sharing as the methods are invoked via BET Integration service methods which needs 
-     to access all related IPM and MDO data irrespective of sharing.
+    This class is defined as Without as the methods are invoked via BET Integartion service methods which needs to access
+    all related IPM and MDO data irrespective of sharing.
 */
 public without sharing class IPM_BETHelper {
 

@@ -5,17 +5,23 @@
  * *****************************************************/
 
 @istest
-public class IPM_HomePageController_Test
-{    
+public class IPM_HomePageController_Test{
+    
     private static User platformUser;
     private static IPM_Project__c project;
     private static List<IPM_Project__c> globalProjectList;
     private static final String LOCAL_PROJECTNAME = 'Test Local';
     private static final String REGIONAL_PROJECTNAME = 'Test Regional';
+    private static List<IPM_Project__c> lstRegionalProjects;
     private static List<IPM_Project__c> lstLocalProjects;
+    private static List<IPM_Milestone__c> ipmMileStoneList;
+    private static List<IPM_Project_Document__c> currDocuments;
+    private static List<IPM_Project_Document__c> updatedDocument;
     private static final String PROJ_CREATED='Projects are created';
+    private static final String PLANNED_STR='The planned';
+    private static final String PRJ_NAME='TestComments1';
     private static Set<Id> iDs ;
-    private static final string FINANCIALS_MISALIGNED = 'Financials misaligned';
+    private static string FINANCIALS_MISALIGNED = 'Financials misaligned';
     /***********************************
     * @Description: Test Data Creation
     * *********************************/

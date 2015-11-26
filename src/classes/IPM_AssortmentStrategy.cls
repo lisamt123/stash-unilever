@@ -198,19 +198,19 @@ public with sharing class IPM_AssortmentStrategy {
         String[] CName=new List<String>();
         CName=(channelName).split(',');
         for(Integer i=0;i<CName.size();i++){
-            if(CName[i]!=null && String.isNotBlank(CName[i])) {
-				setchannelName.add(CName[i]);
-			}
+            if(CName[i]!=null && String.isNotBlank(CName[i]))
+            setchannelName.add(CName[i]);
         }  
         
         String[] CusName=new List<String>();
         CusName=(selectedCUsNames).split(';');
         for(Integer i=0;i<CusName.size();i++){
-            if(CusName[i]!=null && String.isNotBlank(CusName[i])) {
-				setselectedCUsNames.add(CusName[i]);
-			}
+            if(CusName[i]!=null && String.isNotBlank(CusName[i]))
+            setselectedCUsNames.add(CusName[i]);
         }  
-
+        System.debug(setselectedCUsNames+'setselectedCUsNames**********');  
+        System.debug(setchannelName+'setchannelName**********');  
+        
         if(setselectedCUsNames!=null && setselectedCUsNames.size()>0&& setchannelName!=null && setchannelName.size()>0){
             for(string cu:setselectedCUsNames){
               ++countAssort;
@@ -238,9 +238,8 @@ public with sharing class IPM_AssortmentStrategy {
             }
             try{
                 
-                if(lstProDocContent!=null && lstProDocContent.size()>0) {
-					insert lstProDocContent;
-				}
+                if(lstProDocContent!=null && lstProDocContent.size()>0)
+                insert lstProDocContent;
                 
             }
             catch(DmlException ex){
@@ -310,6 +309,7 @@ public with sharing class IPM_AssortmentStrategy {
     * @return:
     */
     public void DltAllAssort(){
+        System.debug(selecteAssortName+'*****selecteAssortName*******');
         list<IPM_Project_Document_Section_Content__c> dltAllAssortS=[Select id,IPM_Assortment_CU_Priority__c From IPM_Project_Document_Section_Content__c Where
         IPM_Incumbent_CUs__c=:selecteAssortName and IPM_Project_Document_Section__c=:ProdocSecId limit 50000];
         try{
@@ -346,9 +346,8 @@ public with sharing class IPM_AssortmentStrategy {
             updateAssort.IPM_Assortment_strategy_Target__c=AssortTarget;
         }
         try{
-            if(updateAssort!=null) {
-				update updateAssort;   
-			}
+            if(updateAssort!=null)
+            update updateAssort;   
         }
         catch(DmlException ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
@@ -380,12 +379,15 @@ public with sharing class IPM_AssortmentStrategy {
           else if(arrow=='down'){
             pNumeber=pNumeber+1;
           }
+          System.debug(priorityCU+'*********priorityCU**********');
             List<IPM_Project_Document_Section_Content__c> newPriorityList=new List<IPM_Project_Document_Section_Content__c>();
             List<IPM_Project_Document_Section_Content__c> oldPriorityList=new List<IPM_Project_Document_Section_Content__c>();
             newPriorityList=[SELECT Id,IPM_Incumbent_CUs__c,IPM_Assortment_CU_Priority__c FROM IPM_Project_Document_Section_Content__c 
                      WHERE IPM_Incumbent_CUs__c=:priorityCU AND IPM_Project_Document_Section__c=:ProdocSecId];
+           System.debug(newPriorityList+'**********newPriorityList**********');
            oldPriorityList=[SELECT Id,IPM_Incumbent_CUs__c,IPM_Assortment_CU_Priority__c FROM IPM_Project_Document_Section_Content__c 
                      WHERE IPM_Project_Document_Section__c=:ProdocSecId AND IPM_Assortment_CU_Priority__c=:pNumeber];
+           System.debug(oldPriorityList+'**********oldPriorityList**********'); 
            for(IPM_Project_Document_Section_Content__c newPriority:newPriorityList){
                newPriority.IPM_Assortment_CU_Priority__c=pNumeber;
            }  
@@ -413,11 +415,14 @@ public with sharing class IPM_AssortmentStrategy {
     
     public void updatePriority(Integer delPriority){
         try{
+            System.debug(delPriority+'*******delPriority******');
             List<IPM_Project_Document_Section_Content__c> newPriorityList=new List<IPM_Project_Document_Section_Content__c>();
             newPriorityList=[SELECT Id,IPM_Incumbent_CUs__c,IPM_Assortment_CU_Priority__c FROM IPM_Project_Document_Section_Content__c 
                              WHERE IPM_Project_Document_Section__c=:ProdocSecId AND IPM_Assortment_CU_Priority__c>:delPriority];
             for(IPM_Project_Document_Section_Content__c newPriority:newPriorityList){
+                System.debug(newPriority.IPM_Assortment_CU_Priority__c+'*******newPriority.IPM_Assortment_CU_Priority__c******');
                newPriority.IPM_Assortment_CU_Priority__c=(Integer)newPriority.IPM_Assortment_CU_Priority__c-1;
+               System.debug(newPriority.IPM_Assortment_CU_Priority__c+'*******newPriority.IPM_Assortment_CU_Priority__c******');
             }  
             update newPriorityList;     
         }

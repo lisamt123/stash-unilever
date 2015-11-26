@@ -1,6 +1,18 @@
 @istest
 class IPM_BETHelper_Test {
-    public static list<IPM_Project__c> projectList=IPM_TestFactory_Helper.createIPMProjectList(false,11);
+
+    /**static IPM_Project__c projectList[0]  = IPM_TestFactory_Helper.createIPMProject(false);
+    static IPM_Project__c projectList[1]  = IPM_TestFactory_Helper.createIPMProject(false);
+    static IPM_Project__c projectList[2]  = IPM_TestFactory_Helper.createIPMProject(false);
+    static IPM_Project__c projectList[3]  = IPM_TestFactory_Helper.createIPMProject(false);
+    static IPM_Project__c projectList[4]  = IPM_TestFactory_Helper.createIPMProject(false);
+    static IPM_Project__c projectList[5]  = IPM_TestFactory_Helper.createIPMProject(false);
+    static IPM_Project__c projectList[6]  = IPM_TestFactory_Helper.createIPMProject(false);
+    static IPM_Project__c projectList[7]  = IPM_TestFactory_Helper.createIPMProject(false);
+    static IPM_Project__c projectList[8]  = IPM_TestFactory_Helper.createIPMProject(false);
+    static IPM_Project__c projectList[9] = IPM_TestFactory_Helper.createIPMProject(false);
+    static IPM_Project__c projectList[10] = IPM_TestFactory_Helper.createIPMProject(false); **/
+   /* public static list<IPM_Project__c> projectList=IPM_TestFactory_Helper.createIPMProjectList(false,11);
     static User runningUser = IPM_TestFactory_Helper.createUser(false);
     
     static uw_BET__c betRecord  = BET_TestUtils.getTestBet();
@@ -22,11 +34,13 @@ class IPM_BETHelper_Test {
     Static String IPM_BET_Search_Test =  'IPM_BET_Search_Test';
     Static String FinalRelease =  'Final Release';
     
+    private static User stdUserForBET;// Variable has been used in setupdata method
+    
     @testSetup static void setUpData(){
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
             // user has to be created as system admin 
-            IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
+            stdUserForBET = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
         } 
         // Create Company Card information 
         IPM_Company_Card__c globalCompanyCards = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
@@ -35,18 +49,26 @@ class IPM_BETHelper_Test {
         
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCards,regionalCompanyCards,localCompanyCards};
         insert companyCardList;
-        System.assert(companyCardList.size() >0);
-        IPM_TestFactory_Helper.getProjectMasterData();
-    }
+        
+         IPM_TestFactory_Helper.getProjectMasterData();
+         
+         //projectList = IPM_TestFactory_Helper.projectSetUp(11,stdUserForBET );
+         
+         System.runAs(platformUser)
+         { 
+            insert projectList;
+         }  
+         system.assertEquals(projectList.size(),11,'Projects are not created'); 
+        
+    }*/
     
     
-    
+    /*
     // Test method for method to Update BET Milestones DueDate after BET is associated/updated to IPM Project  
     private static testmethod void testupdateBETmilestones() {
         
         User testRunningUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];
         
-        betRecord1.OwnerId = testRunningUser.Id;
         betRecord1.Status__c = FinalRelease;
         betRecord1.Final_Release_Due_Date__c = Date.Today();
         betRecord1.First_Release_Due_Date__c = Date.Today();
@@ -97,12 +119,11 @@ class IPM_BETHelper_Test {
         List < IPM_Milestone__c > IPMsam1 = IPM_TestFactory_Helper.createIPMMilestoneList(false, 2);
         List < IPM_Milestone__c > IPMsam2 = IPM_TestFactory_Helper.createIPMMilestoneList(false, 2);
 
-        betRecord1.OwnerId = testRunningUser.Id;
         betRecord1.Status__c = 'Unreleased';
         betRecord1.FinalReleaseDate__c = Date.Today() + 365;
         betRecord1.Name = 'TestBet1';
 
-        betRecord2.OwnerId = testRunningUser.Id;
+
         betRecord2.Status__c = FirstRelease;
         betRecord2.FinalReleaseDate__c = Date.Today() + 365;
         betRecord2.Name = 'TestBet2';
@@ -176,13 +197,13 @@ class IPM_BETHelper_Test {
         test.loadData(IPM_Project_Type__c.sobjectType, IPM_ProjectType);
         test.loadData(IPM_BET_Search_Fields__c.sobjectType, IPM_BET_Search_Test);
 
-        betRecord1.OwnerId = testRunningUser.Id;
+
         betRecord1.Status__c = FinalRelease;
         betRecord1.FinalReleaseDate__c = Date.Today() + 365;
         betRecord1.Name = 'TestBet3';
 
 
-        betRecord2.OwnerId = testRunningUser.Id;
+
         betRecord2.Status__c = FirstRelease;
         betRecord2.FinalReleaseDate__c = Date.Today() + 365;
         betRecord2.Name = 'TestBet4';
@@ -232,7 +253,6 @@ class IPM_BETHelper_Test {
         
         User testRunningUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];
         
-        betRecord1.OwnerId = testRunningUser.Id;
         betRecord1.Status__c = FinalRelease;
         betRecord1.FinalReleaseDate__c = Date.Today() + 365;
         betRecord1.Name = 'TestBet3';
@@ -272,12 +292,11 @@ class IPM_BETHelper_Test {
         User testRunningUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];
         test.loadData(IPM_Project_Type__c.sobjectType, IPM_ProjectType);
         test.loadData(IPM_BET_Search_Fields__c.sobjectType, IPM_BET_Search_Test);
-        
-        betRecord1.OwnerId = testRunningUser.Id;
+
         betRecord1.Status__c = FinalRelease;
         betRecord1.FinalReleaseDate__c = Date.Today() + 365;
 
-        betRecord2.OwnerId = testRunningUser.Id;
+
         betRecord2.Status__c = FirstRelease;
         betRecord2.FinalReleaseDate__c = Date.Today() + 365;
         betRecord2.Name = 'TestBet5';
@@ -354,17 +373,15 @@ class IPM_BETHelper_Test {
         User testRunningUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];
         test.loadData(IPM_Project_Type__c.sobjectType, IPM_ProjectType);
         test.loadData(IPM_BET_Search_Fields__c.sobjectType, IPM_BET_Search_Test);
-        
+
+
         betRecord1 = BET_TestUtils.getTestBet();
-        betRecord1.OwnerId = testRunningUser.Id;
         betRecord1.Status__c = FinalRelease;
         betRecord1.FinalReleaseDate__c = Date.Today() + 365;
         insert betRecord1;
         
-        id betId = betRecord1.id;
-        system.runAs(testRunningUser)
-        {
-            projectList[0].BET__c = betId;
+        system.runAs(testRunningUser){
+            projectList[0].BET__c = betRecord1.Id;
             projectList[0].IPM_Phase__c = Feasibility;
             projectList[0].IPM_Project_Type__c = Rollout;
             projectList[0].IPM_GateKeeping_Model__c = RCLT;
@@ -378,7 +395,7 @@ class IPM_BETHelper_Test {
             Test.StartTest();
             IPM_BETHelper.sendBETAccessRequest(new list < id > {
                 UserInfo.getUserId()
-            }, betId, projectList[0].id);
+            }, betRecord1.id, projectList[0].id);
             Test.StopTest();
         }
         BET_Member_Request__c betMember = [Select Project_Id__c, Bet_owner__c from BET_Member_Request__c limit 1];
@@ -391,34 +408,29 @@ class IPM_BETHelper_Test {
 
     //test method for sendRolloutMemberBETAccessRequest method  
     private static testmethod void testsendRolloutMemberBETAccessRequest() {
-        
+
         User testRunningUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];
         test.loadData(IPM_Project_Type__c.sobjectType, IPM_ProjectType);
         test.loadData(IPM_BET_Search_Fields__c.sobjectType, IPM_BET_Search_Test);
 
         Map < id, set < IPM_Project_Resource__c >> mapProjResources = new Map < id, set < IPM_Project_Resource__c >> ();
-        
-        betRecord.OwnerId = testRunningUser.Id;
+
         betRecord.Status__c = FinalRelease;
         betRecord.FinalReleaseDate__c = Date.Today() + 365;
         betRecord.Name = 'TestBet0';
 
-        betRecord1.OwnerId = testRunningUser.Id;
         betRecord1.Status__c = FinalRelease;
         betRecord1.FinalReleaseDate__c = Date.Today() + 365;
         betRecord1.Name = 'TesttBet5';
-        
-        betRecord2.OwnerId = testRunningUser.Id;
+
         betRecord2.Status__c = FinalRelease;
         betRecord2.FinalReleaseDate__c = Date.Today() + 365;
         betRecord2.Name = 'TestttBet5';
 
-        betRecord3.OwnerId = testRunningUser.Id;
         betRecord3.Status__c = FirstRelease;
         betRecord3.FinalReleaseDate__c = Date.Today() + 365;
         betRecord3.Name = 'TestBet5B';
 
-        betRecord4.OwnerId = testRunningUser.Id;
         betRecord4.Status__c = FirstRelease;
         betRecord4.FinalReleaseDate__c = Date.Today() + 365;
         betRecord4.Name = 'TestBet5a';
@@ -594,7 +606,7 @@ class IPM_BETHelper_Test {
 
         List < IPM_Milestone__c > IPMsam1 = IPM_TestFactory_Helper.createIPMMilestoneList(false, 2);
 
-        betRecord1.OwnerId = testRunningUser.Id;
+
         betRecord1.Status__c = 'Unreleased';
         betRecord1.FinalReleaseDate__c = Date.Today() + 365;
         betRecord1.Name = 'TestBet1';
@@ -636,7 +648,6 @@ class IPM_BETHelper_Test {
     private static testmethod void testsendIPMupdatetoBET() {
         User testRunningUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];
         
-        betRecord1.OwnerId = testRunningUser.Id;
         betRecord1.Status__c = FinalRelease;
         betRecord1.FinalReleaseDate__c = Date.Today() + 365;
         betRecord1.Launch_Date__c = Date.Today() + 30;
@@ -686,4 +697,5 @@ class IPM_BETHelper_Test {
             System.assertEquals([Select Launch_Date__c from uw_BET__c where id = : projectList[0].BET__c].Launch_Date__c, projectList[0].IPM_Target_Launch_Dates__c, 'Failed to send updates to BET on Project update in IPM');
         } 
     }
+*/
 }
