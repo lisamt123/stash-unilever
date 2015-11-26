@@ -364,10 +364,11 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
     }
 
     public void setInfoDrivers() {
+        
+        system.debug('###selectedBrandBrand : ' + selectedBrandBrand);
+        system.debug('###selectedBrandInnov : ' + selectedBrandInnov);
+        
         if (projectId != null) {
-            system.debug('###selectedBrandBrand : ' + selectedBrandBrand);
-            system.debug('###selectedBrandInnov : ' + selectedBrandInnov);
-
             if (project.Innovation_Projects__c == 'Innovation') {
                 project.Brand_Led_Growth__c = selectedBrandInnov;
             } else {
@@ -473,6 +474,15 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
     }
     public pageReference SaveProjectAction() {
         try {
+            
+            system.debug('###selectedBrandBrand : ' + selectedBrandBrand);
+            system.debug('###selectedBrandInnov : ' + selectedBrandInnov);
+            if (project.Innovation_Projects__c == 'Innovation') {
+                project.Brand_Led_Growth__c = selectedBrandInnov;
+            } else {
+                project.Brand_Led_Growth__c = selectedBrandBrand;
+            }
+            
             if (projectId != null) {
                 if (project.Name == null) {
                     ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'These fields are required : Name'));
@@ -487,14 +497,6 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
                     ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'These fields are required : Name'));
                     return null;
                 } else {
-                    system.debug('###selectedBrandBrand : ' + selectedBrandBrand);
-            		system.debug('###selectedBrandInnov : ' + selectedBrandInnov);
-                    if (project.Innovation_Projects__c == 'Innovation') {
-                        project.Brand_Led_Growth__c = selectedBrandInnov;
-                    } else {
-                        project.Brand_Led_Growth__c = selectedBrandBrand;
-                    }
-
                     insert project;
                     if (!splitToInsert.isEmpty()) {
                         for (Oblix_Marketing_SOW_Project_Splits__c split : splitToInsert) {

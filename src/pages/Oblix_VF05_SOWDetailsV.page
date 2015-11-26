@@ -168,7 +168,14 @@
         -moz-border-left-colors: none;
         border-image: none;
         margin: 1px;
+    	display:block;
+    	width: 83px !important;
+    	height: 20px;
+    	text-align: center;
     }
+    .column1,.column2,.column3,.column4,.column5{
+            width: 100%;
+        }
 </style>
    
      </apex:form>
@@ -379,9 +386,11 @@
               <section class="column5">
                 <div class="cntr">
                      <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_View}" title="{!$Label.Oblix_Lbl_UIUX_View_project_details}" reRender="Oblix_sowDetail" action="{!ViewAction}" styleClass="Oblix_large_btn" style="width:100%;"/><br/><br/>
+                    <div>
                     <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Export}" disabled="true" title="{!$Label.Oblix_Lbl_UIUX_Export}"  styleClass="Oblix_btn"/>
-                    <!--<apex:outputLink value="{!reportFolderURL}" title="Reporting" styleClass="Oblix_btn" target="_blank" disabled="{!reportFolderURL == ''}">Reporting</apex:outputLink><br/><br/>-->
-                    <apex:commandButton value="Reporting" disabled="true" title="Reporting"  styleClass="Oblix_btn"/>
+                    <apex:outputLink value="{!reportFolderURL}" title="Reporting" styleClass="Oblix_btn" target="_blank" disabled="{!reportFolderURL == ''}">Reporting</apex:outputLink><br/>
+                    </div>
+                    <!--<apex:commandButton value="Reporting" disabled="true" title="Reporting"  styleClass="Oblix_btn"/>-->
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Approval}" title="{!$Label.Oblix_lbl_UIUX_Approval}"  disabled="true" styleClass="Oblix_large_btn" style="width:100%;"/>
                  </div>  
               </section>

@@ -67,7 +67,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
 
     public String attachmentToRemove {get; set;}
     
-    public PageReference reportFolderURL {
+    public static PageReference reportFolderURL {
         get{
             
             if(reportFolderURL == null){

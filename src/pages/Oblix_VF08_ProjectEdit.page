@@ -29,6 +29,10 @@
             }
                     
     });
+    
+    function setWorldRegion(){
+        $('#dialogCountries input[value=\'World\'').attr('checked',true);
+    }
 </script>
 
 <style>
@@ -212,7 +216,7 @@
 <apex:param name="stage" assignTo="{!project.Project_Stage__c}" value="{!project.Project_Stage__c}" />
 </apex:actionFunction>
 
-<apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}" oncomplete="$.unblockUI()" RERender="nothing">
+<apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}" oncomplete="$.unblockUI()" RERender="buttonsPanel">
 <apex:param name="innovation" assignTo="{!project.Innovation_Projects__c}" value="" />
 <apex:param name="innov" assignTo="{!selectedBrandInnov}" value="{!selectedBrandInnov}"/>
 <apex:param name="brand" assignTo="{!selectedBrandBrand}" value="{!selectedBrandBrand}"/>
@@ -232,7 +236,7 @@
 
 <apex:actionFunction action="{!NULL}" name="changeType" reRender="jqueryId" />
 
-<apex:actionFunction name="setAsGlobal" action="{!setAsGlobal}" oncomplete="{!if(projectId != null && isError == false ,'location.reload()','$.unblockUI()')}"  reRender="myerror,countriesDialogPanel"/>
+    <apex:actionFunction name="setAsGlobal" action="{!setAsGlobal}" oncomplete="{!if(isError == false ,'$.unblockUI();setWorldRegion()','$.unblockUI()')}" rerender="countriesDialogPanel,valueDriversPanel"/>
 <!-- End action functions -->
 
 
@@ -247,8 +251,8 @@
     </div>
     
     <!-- Countries popUp Start-->
-	<apex:outputPanel id="countriesDialogPanel">
     <div id="dialogCountries" title="{!$Label.Oblix_lbl_UIUX_Choose_Countries}" style="display:none">
+        <apex:outputPanel id="countriesDialogPanel">
         <div style="margin-left: 5%;">
          <!--<img class="worldIcon" src="/s.gif" title="Set as Global Campaign"/> -->
         <div class="globalButton">
@@ -268,11 +272,12 @@
             </tr>
         </table>
         </div>
+    	</apex:outputPanel>
     </div>
-	</apex:outputPanel>
     <!-- Countries PopUp End -->
     <!-- ValueDrivers popUp Start-->
     <div id="dialogDrivers" class="dialogDrivers" title="Value Drivers" style="display:none">
+        <apex:outputPanel id="valueDriversPanel">
         <br/>
         {!$Label.Oblix_lbl_UIUX_Visible_to_Unilever}<br/>
         <div style="margin-left: 5%;margin-right:5%">
@@ -282,14 +287,14 @@
         <table width="90%">
             <tr>
                 <td colspan="2" width="50%">
-                    <input class="Innovation" type="radio" name="innovation" value="Innovation" onchange="$('.projBrandBrand').attr('disabled','disabled');$('.projBrandInnov').removeAttr('disabled');"/>
+                    <input class="Innovation" type="radio" name="innovation" value="Innovation" onchange="$('.projBrandBrand').attr('disabled','disabled');$('.projBrandBrand')[0].selectedIndex=0;$('.projBrandInnov').removeAttr('disabled');"/>
                     <apex:selectList value="{!selectedBrandInnov}" multiselect="false" size="1" styleClass="input_init projBrandInnov">
                     <apex:selectOptions value="{!innovationOptions}"/>
                     </apex:selectList><br/>
                     <div style="width:60%;PADDING-TOP:8px;PADDING-left:19px">{!$Label.Oblix_lbl_UIUX_Identifying_priorities}</div>
                 </td>
                 <td colspan="2" width="50%">
-                    <input class="Brand_Led_Growth" type="radio"  name="innovation" value="Brand Led Growth" onchange="$('.projBrandBrand').removeAttr('disabled');$('.projBrandInnov').attr('disabled','disabled');"/>
+                    <input class="Brand_Led_Growth" type="radio"  name="innovation" value="Brand Led Growth" onchange="$('.projBrandBrand').removeAttr('disabled');$('.projBrandInnov').attr('disabled','disabled');$('.projBrandInnov')[0].selectedIndex=0;"/>
                     <apex:selectList value="{!selectedBrandBrand}" multiselect="false" size="1" styleClass="input_init projBrandBrand">
                     <apex:selectOptions value="{!brandOptions}"/>
                     </apex:selectList><br/>
@@ -314,6 +319,7 @@
 
         </table>
         </div>
+        </apex:outputPanel>
     </div>
     <!-- ValueDrivers PopUp End -->
     <!-- Agency Hub popUp Start-->
@@ -613,11 +619,17 @@
                                         </section>
 
                                         <section class="PrColumn5">
+                                            <apex:outputPanel id="buttonsPanel">
                                             <div style="text-align:center">
                                             <br/><br/>
                                             <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back} " action="{!BackAction}" immediate="true" rerender="EditPanel" styleClass="Oblix_projects_btn"/><br/><br/>
-                                            <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save_Campaign}" action="{!SaveProjectAction}" styleClass="Oblix_projects_btn" reRender="myerror"/><br/>
+                                            <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Save_Campaign}" action="{!SaveProjectAction}" styleClass="Oblix_projects_btn" reRender="myerror">
+                                                <apex:param assignTo="{!selectedBrandBrand}" value="{!selectedBrandBrand}" name="selectedBrandBrand"/>
+                                                <apex:param assignTo="{!selectedBrandInnov}" value="{!selectedBrandInnov}" name="selectedBrandInnov"/>
+                                                <apex:param assignTo="{!project.Innovation_Projects__c}" value="{!project.Innovation_Projects__c}" name="Innovation_Projects__c"/>
+                                                </apex:commandButton><br/>
                                             </div>
+                                            </apex:outputPanel>
                                         </section>
                                     </td>
                                 </tr>

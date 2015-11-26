@@ -610,6 +610,33 @@
     }
     h2{ font-size: 120%;}
     h3{font-size: 12px;}
+    a.Oblix_btn:hover{
+    	text-decoration: none;
+	}
+    a.Oblix_btn{
+        text-decoration: none;
+        background: #6BA539 none repeat scroll 0% 0%;
+        color: #FFF;
+        padding: 4px 10px 3px !important;
+        height: 30px;
+        font-weight: bold;
+        font-size: 0.9em;
+        border-radius: 3px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #B5B5B5 #B5B5B5 #7F7F7F;
+        -moz-border-top-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        border-image: none;
+        margin: 1px;
+    	display:block;
+    	width: 68px !important;
+    	height: 20px;
+    	text-align: center;
+        float: right;
+    }
     </style>
     <script>
     function Popup(){
@@ -913,7 +940,9 @@
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}"  title="{!$Label.Oblix_lbl_UIUX_View_Campaign_details}"  action="{!EditAction}" onclick="blockme()" oncomplete="$('[id$=mlktp]').hide();$.unblockUI(); turnOnValidation(true)" styleClass="Oblix_large_btn" reRender="showForm"/><br/>
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Clone}"  title="{!$Label.Oblix_lbl_UIUX_Clone_SOW_Title}"  action="{!CloneAction}" onclick="blockme()" oncomplete="$('[id$=mlktp]').hide();$.unblockUI()" styleClass="Oblix_large_btn" reRender="showForm,projectForm"/><br/>
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete}"  title="{!$Label.Oblix_lbl_UIUX_Delete_SOW_Title}"  onclick="confirmDelete(); return false" styleClass="Oblix_large_btn"/><br/><br/>
-                     <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Export}" onclick="" title="{!$Label.Oblix_lbl_UIUX_View_PDF_format}"  styleClass="Oblix_btn" disabled="true"/><apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Reporting}" onclick="" disabled="true" title="{!$Label.Oblix_lbl_UIUX_View_PDF_format}"  styleClass="Oblix_btn"/><br/><br/>
+                     <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Export}" onclick="" title="{!$Label.Oblix_lbl_UIUX_View_PDF_format}"  styleClass="Oblix_btn" disabled="true"/>
+                 	 <apex:outputLink value="{!reportFolderURL}" title="Reporting" styleClass="Oblix_btn" target="_blank" disabled="{!reportFolderURL == ''}">Reporting</apex:outputLink><br/>
+                 	 <!--<apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Reporting}" onclick="" disabled="true" title="{!$Label.Oblix_lbl_UIUX_View_PDF_format}"  styleClass="Oblix_btn"/>--><br/><br/>
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Approval}" title="{!$Label.Oblix_lbl_UIUX_Approval}"  onclick="" styleClass="Oblix_large_btn" disabled="true"/>
              </div>  
           </section>   
