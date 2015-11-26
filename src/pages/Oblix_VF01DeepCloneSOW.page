@@ -2,7 +2,7 @@
      <title>{!$Label.Oblix_Lbl_SOW_Marketing_Clone_Procedure}</title>
    <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>  -->
    <!--  <apex:stylesheet value="{!URLFOR($Resource.jqueryUiCss, 'jquery-ui.css')}"/>  -->
-     <apex:stylesheet value="{!URLFOR($Resource.jqueryUiCss)}"/>
+     <apex:stylesheet value="{!URLFOR($Resource.Oblix_jqueryUiCss)}"/>
     
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
