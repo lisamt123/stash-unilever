@@ -26,10 +26,9 @@
     <enableReputation>false</enableReputation>
     <forgotPasswordTemplate>unfiled$public/CommunityForgotPasswordEmailTemplate</forgotPasswordTemplate>
     <networkMemberGroups>
-        <profile>Unilever Way - Marketing - System Administrator Lite</profile>
         <profile>AR - Agency Portal User</profile>
-        <profile>Community Profile</profile>
         <profile>Admin</profile>
+        <profile>Community Profile</profile>
     </networkMemberGroups>
     <picassoSite>Agencies1</picassoSite>
     <selfRegistration>false</selfRegistration>
