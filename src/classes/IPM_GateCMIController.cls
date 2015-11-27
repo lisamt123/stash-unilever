@@ -785,7 +785,7 @@ public with sharing class IPM_GateCMIController{
                 updateOverallScore=[SELECT id,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Overall_Colour_Achieved__c,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Color_Score_Achieved__c,IPM_CMI_Overall_Score_Label__c,IPM_CMI_Result_Timing__c,IPM_Gate_CMI__c,IPM_CMI_Overall_Comments__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c FROM IPM_Project_Document_Section_Content__c 
                                         WHERE IPM_Gate_CMI__c=:gateCMIId and IPM_CMI_Country__c=:countryNameStr];
                 for(IPM_Project_Document_Section_Content__c pdsc:updateOverallScore){
-                        if(!isEditActionStandard){
+                        if(gateType==IPM_ConstantUtils.CHARTER_GATE || !isEditActionStandard){
                             pdsc.IPM_CMI_Overall_Score__c=overallScore;
                             if(colorMapping.get(overallScore).IPM_CMI_Color__c!=null){
                                 pdsc.IPM_CMI_Overall_Colour__c=colorMapping.get(overallScore).IPM_CMI_Color__c;

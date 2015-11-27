@@ -287,7 +287,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         getcoreparameterHelps();                   
         getAllQuestions();
         getCoreStrategicIntent();
-        getIpmuserType();
+        if(project!=null && !project.Is_Archieved__c){
+            getIpmuserType();   
+        }
         getCategoryValue();
         getsubsector();
         getMarket();

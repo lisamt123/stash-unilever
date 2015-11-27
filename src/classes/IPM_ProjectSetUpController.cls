@@ -131,8 +131,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             project.IPM_Project_Name__c=project.IPM_Project_Name__c.substringBefore(IPM_ConstantUtils.UNDERSCORE);
         }
         getProjectResource();
-        getIpmuserType();
-        getMilesTaskIpmuserType();
+        if(project!=null && !project.Is_Archieved__c){
+            getIpmuserType();   
+            getMilesTaskIpmuserType();
+        }
         getAllcompanycard();
         // Block User from Performing any operation if project is under processing.
         if(!String.isBlank(project.IPM_Project_Job_Status__c) && 
