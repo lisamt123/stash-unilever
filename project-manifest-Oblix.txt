@@ -91,6 +91,7 @@ src/classes/Oblix_Utils.cls-meta.xml
 src/classes/Oblix_wrapper_NonCamp.cls
 src/classes/Oblix_wrapper_NonCamp.cls-meta.xml
 src/classes/TriggerFactory.cls
+src/classes/TriggerFactory.cls-meta.xml
 src/labels/CustomLabels.labels
 src/objects/Asset_Scoring__c.object
 src/objects/MDO_BrandUser__c.object
