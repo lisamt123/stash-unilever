@@ -579,7 +579,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                 proSubSectionParentsSequences += ' ' + tempStr;
             }
             secFilterList=Database.query(secFilterQuery+filterValue);
-            //DEF1474 - logic to show subheaders on applying filter
+            //Start - DEF2056 - logic to show subheaders on applying filter
             proSubSectionParentsSequenceList1 = new Set<String>();
             for(IPM_Project_Document_Section__c tempProDocSection : projSubSectionList){
                 if(tempProDocSection.IPM_Section__r.IPM_Parent_Section__c != null){
@@ -587,32 +587,44 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                         proSubSectionParentsSequenceList1.add(tempProDocSection.IPM_Section__r.IPM_Parent_Section__c);
                     }
                 }
+            }
+            
+            List<IPM_Project_Document_Section__c> requiredSubHeadersProDocSectionList;
+            if(proSubSectionParentsSequenceList1 != null && !proSubSectionParentsSequenceList1.isEmpty()){
+                requiredSubHeadersProDocSectionList = [Select Id,IPM_Count_of_Comments__c,IPM_Default_Section__c,IPM_FunctionalRole__c,IPM_GateHistory_Date__c,IPM_GateHistory__c,IPM_Gate_Document_Summary__c,IPM_Is_Excluded__c,IPM_Negotiable__c,IPM_PDPHistoty_Date__c,IPM_PDPHistoty__c,IPM_PDP_Document_Summary__c,IPM_Project_Document__c,IPM_Project_ID__c,IPM_Project_Section__c,IPM_Section_Help_Text_Long__c,IPM_Section_Help_Text__c,IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Sequence_Number__c,IPM_Section_Sequence__c,IPM_Section_Status__c,IPM_Section_Type__c,IPM_Section__c,Name,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Section__r.IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_type__c FROM IPM_Project_Document_Section__c where IPM_Project_Document__c =: projectDoc.Id and IPM_Section__c in : proSubSectionParentsSequenceList1];
+            }
+            
+            if(requiredSubHeadersProDocSectionList != null && !requiredSubHeadersProDocSectionList.isEmpty()){
+                projSubSectionList.addAll(requiredSubHeadersProDocSectionList);
+            }
+            
+            List<ProjectSubSectionsWrapper> ProjectSubSectionsWrapperList = new List<ProjectSubSectionsWrapper>();
+            Set<Id> sectionsIds = new Set<Id>();
+            if(projSubSectionList != null && !projSubSectionList.isEmpty()){
+                for(IPM_Project_Document_Section__c tempSection : projSubSectionList){
+                    ProjectSubSectionsWrapperList.add(new ProjectSubSectionsWrapper(tempSection));
+                    sectionsIds.add(tempSection.IPM_Section__c);
                 }
-                
-                List<IPM_Project_Document_Section__c> requiredSubHeadersProDocSectionList;
-                if(proSubSectionParentsSequenceList1 != null && !proSubSectionParentsSequenceList1.isEmpty()){
-                                requiredSubHeadersProDocSectionList = [Select Id,IPM_Count_of_Comments__c,IPM_Default_Section__c,IPM_FunctionalRole__c,IPM_GateHistory_Date__c,IPM_GateHistory__c,IPM_Gate_Document_Summary__c,IPM_Is_Excluded__c,IPM_Negotiable__c,IPM_PDPHistoty_Date__c,IPM_PDPHistoty__c,IPM_PDP_Document_Summary__c,IPM_Project_Document__c,IPM_Project_ID__c,IPM_Project_Section__c,IPM_Section_Help_Text_Long__c,IPM_Section_Help_Text__c,IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Sequence_Number__c,IPM_Section_Sequence__c,IPM_Section_Status__c,IPM_Section_Type__c,IPM_Section__c,Name,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Section__r.IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_type__c FROM IPM_Project_Document_Section__c where IPM_Project_Document__c =: projectDoc.Id and IPM_Section__c in : proSubSectionParentsSequenceList];
+            }
+            
+            if(sectionsIds != null && !sectionsIds.isEmpty()){
+                projSubLevelSectionList=[SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c, IPM_Section_Sequence__c, 
+                                    IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
+                                    IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
+                                    IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
+                                    IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
+                                    FROM IPM_Project_Document_Section__c 
+                                    WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID in:sectionsIds AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
+            }
+            
+            if(ProjectSubSectionsWrapperList != null && !ProjectSubSectionsWrapperList.isEmpty()){
+                ProjectSubSectionsWrapperList.sort();
+                projSubSectionList.clear();
+                for(ProjectSubSectionsWrapper tempWrapper : ProjectSubSectionsWrapperList){
+                    projSubSectionList.add(tempWrapper.projDocSection);
                 }
-                
-                if(requiredSubHeadersProDocSectionList != null && !requiredSubHeadersProDocSectionList.isEmpty()){
-                                projSubSectionList.addAll(requiredSubHeadersProDocSectionList);
-                }
-                
-                List<ProjectSubSectionsWrapper> ProjectSubSectionsWrapperList = new List<ProjectSubSectionsWrapper>();
-                if(projSubSectionList != null && !projSubSectionList.isEmpty()){
-                                for(IPM_Project_Document_Section__c tempSection : projSubSectionList){
-                                                ProjectSubSectionsWrapperList.add(new ProjectSubSectionsWrapper(tempSection));
-                                }
-                }
-                
-                if(ProjectSubSectionsWrapperList != null && !ProjectSubSectionsWrapperList.isEmpty()){
-                                ProjectSubSectionsWrapperList.sort();
-                                projSubSectionList.clear();
-                                for(ProjectSubSectionsWrapper tempWrapper : ProjectSubSectionsWrapperList){
-                                                projSubSectionList.add(tempWrapper.projDocSection);
-                                }
-                }
-                
+            }
+            //End - DEF2056
         }
         catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
