@@ -1346,8 +1346,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Is_Finance_Member_Null__c</fullName>
         <externalId>false</externalId>
-        <formula>ISNULL(IPM_Finance_Member__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>ISBLANK(IPM_Finance_Member__c)</formula>
         <label>IPM Is Finance Member Null</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2181,16 +2180,6 @@ OwnerId))</formula>
         <externalId>false</externalId>
         <label>IPM White Space Project</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>IsFinanceMemberNull__c</fullName>
-        <externalId>false</externalId>
-        <formula>ISNULL(IPM_Finance_Member__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>IsFinanceMemberNull</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>

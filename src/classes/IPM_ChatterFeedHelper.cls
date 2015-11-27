@@ -532,7 +532,7 @@ public with sharing class IPM_ChatterFeedHelper {
                    }
                    projectIds.add(eachTask.IPM_Project__c);
                    subjectIdMentionIdMap.put(eachTask.IPM_Project__c,mentionId);
-                   subjectIdMessageMap.put(eachTask.IPM_Project__c,Label.IPM_Task_Assign_Text1+eachTask.IPM_Project__r.IPM_Project_Name__c
+                   subjectIdMessageMap.put(eachTask.IPM_Project__c,Label.IPM_Task_Assign_Text1+IPM_ConstantUtils.IPM_SPACE+eachTask.IPM_Project__r.IPM_Project_Name__c
                    +Label.IPM_Task_Assign_Text2);
               } 
             }
@@ -674,7 +674,6 @@ public with sharing class IPM_ChatterFeedHelper {
                                 WHERE (IPM_Project__c IN:newProjIds) OR (Regional_Project__c IN:newProjIds) OR (Local_Project__c IN:newProjIds)
                                 LIMIT:IPM_ConstantUtils.MaxLimit];
                                 
-     Id regionalRollout = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId();
      Id localRollout = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
      
      for(IPM_Project_Rollout__c projRollout : projectRolloutList)
