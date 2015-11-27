@@ -179,3 +179,24 @@ src/triggers/SOWProjectBusinessValueDriverScore.trigger-meta.xml
 src/triggers/SOWSplitProjectAvoid.trigger
 src/triggers/SOWSplitProjectAvoid.trigger-meta.xml
 src/workflows/Marketing_SOW__c.workflow
+src/layouts/Asset_Scoring__c-Asset Scoring Layout.layout
+src/layouts/Asset_Scoring__c-Resource.layout
+src/layouts/MDO_BrandUser__c-Brand User Layout.layout
+src/layouts/Marketing_Agency__c-Marketing Agencies Layout.layout
+src/layouts/Marketing_Basics__c-Activity.layout
+src/layouts/Marketing_Basics__c-Resource.layout
+src/layouts/Marketing_SOW__c-Copy Marketing SOW Layout.layout
+src/layouts/Marketing_SOW__c-Marketing SOW Layout.layout
+src/layouts/Oblix_Calculator__c-BoxRange.layout
+src/layouts/Oblix_Calculator__c-Oblix Calculator Layout.layout
+src/layouts/Oblix_Calculator__c-Role Rate Card.layout
+src/layouts/Oblix_Marketing_Agency_Hubs__c-Marketing Agency Hubs Layout.layout
+src/layouts/Oblix_Marketing_SOW_Project_Splits__c-Marketing SOW Project Splits Layout.layout
+src/layouts/Oblix_Project_Assets__c-Agency Project Assets Layout.layout
+src/layouts/Oblix_Project_Assets__c-Audio Visual.layout
+src/layouts/Oblix_Project_Assets__c-Digital.layout
+src/layouts/Oblix_Project_Assets__c-Experiential.layout
+src/layouts/Oblix_Project_Assets__c-Static Imagery.layout
+src/layouts/Oblix_Project_Assets__c-Stimulus Materials %2F Research Requirements.layout
+src/layouts/Oblix_SOW_Projects__c-Agency Projects Layout.layout
+src/workflows/Oblix_SOW_Projects__c.workflow
