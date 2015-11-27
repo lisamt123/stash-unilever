@@ -20,7 +20,7 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
     public String sowRecordID {get;set;}
     private String financialYear {get;set;}
     public Boolean isEnaughCopies {get;set;}
-    private Marketing_SOW__c sowParent {get;set;}
+    public Marketing_SOW__c sowParent {get;set;}
     public String nextStageTypeSow {get;set;}
     private String baseline = 'Baseline';
     public Boolean canClone {get;set;}
@@ -136,7 +136,6 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
                insert sowChild;
                
            }catch(DMLException le){
-             String duplicateValue ='';
               if(le.getMessage().contains('DUPLICATE_VALUE')){
                       sowChild.Name = sowChild.Name + Math.round(Math.random() * (10 - 1)) + 1;  
                        insert sowChild;
@@ -199,7 +198,6 @@ public with sharing class Oblix_Ctrl001DeepCloneSOW_CC {
                        insert lstMarketingProjectChild;
                        
                    }catch(DMLException le){
-                     String duplicateValue ='';
                       if(le.getMessage().contains('DUPLICATE_VALUE')){
                               for(Oblix_SOW_Projects__c projChild : lstMarketingProjectChild){
                                   projChild.Name = projChild.Name + Math.round(Math.random() * (10 - 1)) + 1;  
