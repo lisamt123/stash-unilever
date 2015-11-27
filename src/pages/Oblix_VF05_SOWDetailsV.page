@@ -344,7 +344,7 @@
                      </tr>
                      <tr>
                        <td colspan="2"><h2 class="mainGreen">Current: &nbsp; &nbsp; &nbsp; </h2><strong>
-                        € {!ROUND(selSow.OblixSOWOverallTotal__c, 0)} </strong></td>
+                        € {!ROUND(selSow.Oblix_Current_FY_Total__c, 0)} </strong></td>
                      </tr>
                  </table>
              </section> 
@@ -426,7 +426,7 @@
                         <td width="15%">{!sow.Oblix_AgencyEstimate__r.name}</td>
                         <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!sow.LastModifiedDate}" /></apex:outputText></td>
                         <td>{!sow.SOW_Status__c}</td>
-                        <td>€ {!ROUND(sow.OblixSOWOverallTotal__c,0)} </td>
+                        <td>€ {!ROUND(sow.Oblix_Current_FY_Total__c,0)} </td>
                      </tr>
                 </apex:repeat>
               </apex:repeat>

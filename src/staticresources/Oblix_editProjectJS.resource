@@ -205,10 +205,15 @@
                      Save : function() {                            
                             var lstCompleted = '';
                             var lstProjected = '';
+							
+							var listProjected = '';
+							var listCompleted = '';
+							
+							listProjected = $("input:checkbox[name='checkbxProjected']:checked").map(function(){return $(this).attr('value').replace('Projected ','');}).get().join(',');
+							listCompleted = $("input:checkbox[name='checkboxCompleted']:checked").map(function(){return $(this).attr('value').replace('Completed ','');}).get().join(',');
                             
                             $("input:checkbox[name='checkbxProjected']:checked").each(function(){
                                 lstProjected = $(this).attr('value');
-                                                              
                             }); 
                             $("input:checkbox[name='checkboxCompleted']:checked").each(function(){
                                 lstCompleted = $(this).attr('value');                                           
@@ -216,8 +221,9 @@
                             console.dir('array lstCompleted:'+lstCompleted);
                             console.dir('array lstProjected :'+lstProjected);                           
                                  
-                               blockme();                        
-                               if(lstCompleted != ''){
+                               blockme();
+								// SS 26/11/2015 based on today's client feedback, the user story is wrong. only projected should be taken into account, and every stage calculated individually
+                               /*if(lstCompleted != ''){
 								   console.dir('here');
                                    setInfoStages(lstProjected,lstCompleted,lstCompleted.replace('Completed ',''));								   
                                }else if(lstProjected != ''){
@@ -226,8 +232,14 @@
                                } else {
 								   console.dir('here 3');
                                    setInfoStages(lstProjected,lstCompleted, '');
+							   }*/
+							   
+							   
+                               if(lstCompleted != ''){
+									setInfoStages(listProjected,listCompleted,lstCompleted.replace('Completed ',''));
+							   } else {
+									setInfoStages(listProjected,listCompleted,lstProjected.replace('Projected ',''));
 							   }
-                               
                             
                             $( this ).dialog( "close");   
                         },                                       
