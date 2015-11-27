@@ -4,10 +4,11 @@
              
 @Created Date: 12/03/2015
 @Author: Cognizant
+@Justification: Without Shairing required as this is a Feed Object Class used for Posting Deleting Viewing Feed Items
 @Referenced: IPMCommentsPage page
 ******************************************************************/
 
-global with sharing class IPM_CommentsListController {
+global without sharing class IPM_CommentsListController {
         
     public String parentID {get;set;}//used to store current page id
     public FeedItem commentRecord {get;set;}//used to store feedItem's comment record
