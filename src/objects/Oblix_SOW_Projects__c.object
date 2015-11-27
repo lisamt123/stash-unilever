@@ -1,0 +1,1039 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <content>Oblix_VF04OverrideProjectNew</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <content>Oblix_VF04OverrideProjectNew</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <content>Oblix_VF04OverrideProjectNew</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Oblix Project - SOW Projects for a Financial Year. Also copies of the projects at certain points in time through the FY are stored in this object (and Related objects) to form a comparison</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Agency_Percentage_of_Fees_to_this_FY__c</fullName>
+        <defaultValue>(0)</defaultValue>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the percentage of Fee targeted for this FY</inlineHelpText>
+        <label>Agency Percentage of Fees to this FY</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>BET_first_release__c</fullName>
+        <description>BET first release date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>BET first release date</inlineHelpText>
+        <label>BET first release</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Brand_Led_Growth__c</fullName>
+        <description>Business Value Creation:</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Identifying priorities for the brand based on the total turnover the campaign is protecting (Select this option, only if incremental turnover value is unavailable)</inlineHelpText>
+        <label>Business Value</label>
+        <picklist>
+            <controllingField>Innovation_Projects__c</controllingField>
+            <picklistValues>
+                <fullName>&lt;€100m</fullName>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>€100-€200m</fullName>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>€200-€300m</fullName>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>€300-€400m</fullName>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>&gt;€400m</fullName>
+                <controllingFieldValues>Brand Led Growth</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Total Turnover &lt;10M</fullName>
+                <controllingFieldValues>Innovation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Total Turnover 10M - 20M</fullName>
+                <controllingFieldValues>Innovation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Total Turnover 20M - 30M</fullName>
+                <controllingFieldValues>Innovation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Total Turnover 30M - 40M</fullName>
+                <controllingFieldValues>Innovation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Total Turnover &gt;40M</fullName>
+                <controllingFieldValues>Innovation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Budget_Burnt_to_date__c</fullName>
+        <description>How much of the budget has been burnt to date</description>
+        <externalId>false</externalId>
+        <label>Budget Burnt to date</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Campaign_Fees_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_Fees_for_Project__c  +  Campaign_Total_Adjustment__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Campaign Fees Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Campaign_Idea__c</fullName>
+        <description>Strategy &amp; Creative  - Campaign Idea</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Strategic and creative requirement to develop a new CAMPAIGN IDEA (based on existing brand campaign idea BCI)</inlineHelpText>
+        <label>Campaign Idea</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Existing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New – One channel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New – Multi channel</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Campaign_Status__c</fullName>
+        <description>The status of the campaign ie. if it is being worked on or not</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Please select if this project has been started or is on hold</inlineHelpText>
+        <label>Campaign Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Campaign_Total_Adjustment__c</fullName>
+        <description>This field is used by the SWOP application to adjust the final campaign calculator fee total to give a little flexibility to the final value displayed. This can be a Positive or Negative value</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a (+/-) value to adjust the Campaign Total Fee value</inlineHelpText>
+        <label>Campaign Total Adjustment</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Campaign_Total_Fees__c</fullName>
+        <description>Camapgin Total fee, to be calculated based on the adjusted fee entered by the Super User + the Total calculated fee through Oblix Calculator</description>
+        <externalId>false</externalId>
+        <formula>Total_Fees_for_Project__c  +  Campaign_Total_Adjustment__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Campaign Total Fees</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Completed_Stage__c</fullName>
+        <externalId>false</externalId>
+        <label>Completed Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Completed Briefing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Completed Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Date_for_Assets_to_be_in_BET__c</fullName>
+        <description>Date for Assets to be in BET</description>
+        <externalId>false</externalId>
+        <label>Date for Assets to be in BET</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Description__c</fullName>
+        <description>Description of the project</description>
+        <externalId>false</externalId>
+        <label>Description</label>
+        <length>256</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Final_release__c</fullName>
+        <description>Final release date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the the date for final release</inlineHelpText>
+        <label>Final release</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Financial_Year__c</fullName>
+        <externalId>false</externalId>
+        <label>Marketing SOW</label>
+        <referenceTo>Marketing_SOW__c</referenceTo>
+        <relationshipName>Marketing_Projects</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>First_Air_Date__c</fullName>
+        <description>Date when deliverable first aired</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When is the first airing?</inlineHelpText>
+        <label>First Air Date</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Innovation_Projects__c</fullName>
+        <description>Business Value Creation:INNOVATION PROJECTS</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Identifying priorities for the brand based on the incremental turnover the project drives</inlineHelpText>
+        <label>Business Value Creation</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Brand Led Growth</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Innovation</fullName>
+                <default>true</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Is_this_High_Risk__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>High risk item/production true/false</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Is this item/production/activity high risk?</inlineHelpText>
+        <label>Is this High Risk?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_type_of_item_usually_poduced_by_this__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Check if item is usual/unusual for agency to produce. Eg. packaging brief to digital agency</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Item usual for this agency to produce?</inlineHelpText>
+        <label>Item usual for this agency to produce?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Jobs_to_be_Done__c</fullName>
+        <description>Low level detail of items that need to be completed by the agencies -- Outcomes</description>
+        <externalId>false</externalId>
+        <label>Jobs to be Done</label>
+        <length>256</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>List_Preview_Markets__c</fullName>
+        <description>Multipicker of region and country for preview</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose region and countrys for previews</inlineHelpText>
+        <label>List Preview Markets</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Asia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Live_Date__c</fullName>
+        <description>Live date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the Live date</inlineHelpText>
+        <label>Live Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Live_date_Asset_delivery__c</fullName>
+        <description>Live date / Asset delivery</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the Live date / Asset delivery date</inlineHelpText>
+        <label>Live date / Asset delivery</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Number_of_Markets_for_Preview__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Number of preview markets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the number of markets the previews will appear in</inlineHelpText>
+        <label>Number of Preview Markets</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Number_of_Previews__c</fullName>
+        <defaultValue>0</defaultValue>
+        <description>Number of Previews</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter number of previews required</inlineHelpText>
+        <label>Number of Previews</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OblixClonedFromParentProject__c</fullName>
+        <externalId>false</externalId>
+        <label>Oblix Cloned From Parent Project</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OblixCountries__c</fullName>
+        <externalId>false</externalId>
+        <label>Countries</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>OblixProjectSplitPercentage_Comment__c</fullName>
+        <externalId>false</externalId>
+        <label>Oblix Project Split Percentage Comment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>OblixRegion__c</fullName>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Oblix_ProjectBoxNumber__c</fullName>
+        <externalId>false</externalId>
+        <label>Campaign Box Number</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Oblix_tec_Unique_Name_c__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Unique Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>Other_Kinds_of_Research__c</fullName>
+        <description>Text field for capturing other types for research or notes</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Type in any other types of research to be used</inlineHelpText>
+        <label>Other Kinds of Research</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>Overall_Project_Complete__c</fullName>
+        <description>Estimate of how complete the project is</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Estimate how complete the project is?</inlineHelpText>
+        <label>Overall Project Complete</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_of_Fee_for_Next_FY__c</fullName>
+        <externalId>false</externalId>
+        <formula>100 - Percentage_of_Fee_for_this_FY__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Percentage of Fee for Next FY</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_of_Fee_for_this_FY__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the percentage of the Total Project Fees that is targeted to be paid this FY?</inlineHelpText>
+        <label>Percentage of Fee for this FY</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Platform__c</fullName>
+        <externalId>false</externalId>
+        <label>Platform</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Preview_Date__c</fullName>
+        <description>Preview Date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the preview date</inlineHelpText>
+        <label>Preview Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Production_Completion_Date__c</fullName>
+        <description>Date of production completion</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When will the production be completed by?</inlineHelpText>
+        <label>Production Completion Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>ProjectTotalAssetscore__c</fullName>
+        <externalId>false</externalId>
+        <label>Campaign Total Asset score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Project_Completion_Date__c</fullName>
+        <description>date of project completion</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When will the project be completed?</inlineHelpText>
+        <label>Campaign Completion Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Project_Finish_Date__c</fullName>
+        <description>Date of project completion</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When will the project be completed by?</inlineHelpText>
+        <label>Campaign Finish Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Project_Priority__c</fullName>
+        <description>Current project priority score -</description>
+        <externalId>false</externalId>
+        <label>Campaign Priority</label>
+        <picklist>
+            <picklistValues>
+                <fullName>High Gold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Med Gold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Med Silver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low Silver</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low Bronze</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Scale_1__c</fullName>
+        <description>Geographic scale
+ - Number of Markets</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Geographic coverage (number of locations that will execute the campaign)</inlineHelpText>
+        <label>Campaign Scale 1: Geographic coverage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Local campaign, single language only</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local / regional campaign, mutiple languages (5)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Multiple countries (5-10), multiple language (5-10)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Multiple countries (11-15), mutiple language (c.15)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global campaign/s suitable for  &gt;15 number of markets</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Scale_2__c</fullName>
+        <description>Agency Hubs or partners</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Agency involvement required to manage the scale of the project effectively. (eg/ number of lead markets to be consulted or Lead agency coordinating among many other suppliers/ partners.)</inlineHelpText>
+        <label>Campaign Scale 2: Agency Hubs</label>
+        <picklist>
+            <picklistValues>
+                <fullName>1 location</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Up to 2 locations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Up to 3 locations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Up to 4 locations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Up to 5 locations</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Stage__c</fullName>
+        <description>The high level stages for the project. (Used to Project stage)</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the stage that the project is currently within</inlineHelpText>
+        <label>Campaign Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Briefing</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Project_Start_Date__c</fullName>
+        <description>Date project starts</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When will the project commence?</inlineHelpText>
+        <label>Campaign Start Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Projected_Stage__c</fullName>
+        <description>Projected Stage to reflext what the Marketers are aiming for</description>
+        <externalId>false</externalId>
+        <label>Projected Stage</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Projected Briefing</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Projected Strategy &amp; Planning</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Projected Creative Ideation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Projected Creative Execution</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Projected Production</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <description>The project regional selection</description>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Africa</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Latin America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NAMET &amp; RUB</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>North Asia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>SEAA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Asia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Should_legal_review_this_project__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>should legal check true/false</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Should legal review this project?</inlineHelpText>
+        <label>Should legal review this project?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Start_of_TV_production__c</fullName>
+        <description>Start of TV production date</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the date your TV production will start</inlineHelpText>
+        <label>Start of TV production</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Stimulus_Requirements__c</fullName>
+        <description>Picklist of research types</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose the types of research you will use</inlineHelpText>
+        <label>Stimulus Requirements</label>
+        <picklist>
+            <picklistValues>
+                <fullName>qual (eg stil-o-matics)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>preview (eg animatics)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Timescale_Notes__c</fullName>
+        <description>Notes relating to timescale</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter any notes relevant to the timescale</inlineHelpText>
+        <label>Timescale Notes</label>
+        <length>256</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Total_Adapt_Fees__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Adapt Fees</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Digital_Fee__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Digital Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Fees_for_Project__c</fullName>
+        <description>The Total Fees for the Campaign as calculated by the Oblix Calculator.</description>
+        <externalId>false</externalId>
+        <label>Campaign Calculated Total Fees</label>
+        <precision>16</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Project_Score__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Project Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Value_Driver__c</fullName>
+        <description>Score for the Business Value Drivers used in Reporting and in the calculator</description>
+        <externalId>false</externalId>
+        <label>Total Value Driver Score</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Value_to_be_paid_in_Current_FY__c</fullName>
+        <description>Value to be paid in Current FY</description>
+        <externalId>false</externalId>
+        <formula>Percentage_of_Fee_for_this_FY__c * Campaign_Total_Fees__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Fees To Be Paid In Current FY</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <label>SWOP Campaigns</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>Project_Stage__c</columns>
+        <columns>Percentage_of_Fee_for_this_FY__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <nameField>
+        <label>Campaign Name</label>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>SWOP Campaigns</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ControlledByParent</sharingModel>
+</CustomObject>
