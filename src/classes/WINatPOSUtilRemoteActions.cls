@@ -105,7 +105,17 @@ public without sharing class WINatPOSUtilRemoteActions {
                     filesWithoutThumbnailUrl.add(asetItem.Files__r.get(0));
                 }
                 //add files to list
-                relatedFiles.add(asetItem.Files__r.get(0).Feed_Thumbnail_URL__c);
+                String communityName = WINatPOSUtil.getCommunityName();
+                String fileUrl = asetItem.Files__r.get(0).Feed_Thumbnail_URL__c;
+                if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId()) && fileUrl != null){
+            		//fileUrl = fileUrl.replace('/resource/', '/' + communityName + '/resource/');
+                    if(!fileUrl.startsWith('/'+communityName)){
+                        fileUrl = '/'+communityName+fileUrl;
+                    }
+                }else if(fileUrl != null){
+                    fileUrl = fileUrl.replace('/' + communityName, '');
+                }
+                relatedFiles.add(fileUrl);
             }
             asetItem.Description__c = WINatPOSUtil.convertHtmlToPlainText(asetItem.Description__c);                             
             Integer likeCount=0;

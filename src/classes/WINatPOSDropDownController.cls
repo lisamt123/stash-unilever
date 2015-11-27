@@ -18,7 +18,6 @@ public with sharing class WINatPOSDropDownController {
     @TestVisible private Category__c currentCategory;
     @TestVisible private Asset_Group__c currentAssetGroup;
     @TestVisible private Category_Brands__c currentCategoryBrand;
-	@TestVisible private Id entityId;
 	@TestVisible private String objectAPIName;
 	public SelectOption[] selectedAgenciesEdit { get; set; }
 	public SelectOption[] selectedAgenciesView { get; set; }

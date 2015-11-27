@@ -13,6 +13,10 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 ***********************************************************************/
 @isTest
 public class WINatPOSDropDownController_Test {
+	
+	public static final String GLOBALSTR = 'Global';
+	public static final String APPROVEDSTR = 'Approved';
+	public static final String TESTSTR = 'test';
 	/*******************************************************************
     Purpose: Helper class to create test data
     Parameters: Void
@@ -122,9 +126,9 @@ public class WINatPOSDropDownController_Test {
             asset.Brand__c = brandAxe.id;
             asset.Placement__c = 'Primary';
             asset.POS_Asset_Type__c = 'Masterbrand';
-            asset.Market_Cluster__c = 'Global';
+            asset.Market_Cluster__c = GLOBALSTR;
             asset.Channels__c='Cash & Carry;Convenience';
-            asset.Status__c = 'Approved';
+            asset.Status__c = APPROVEDSTR;
             asset.Country__c='UK';
             asset.Carousel_Published__c=true;
             asset.Description__c='test';
@@ -136,9 +140,9 @@ public class WINatPOSDropDownController_Test {
             asset1.Brand__c=brandDove.id;
             asset1.Placement__c = 'Secondary';
             asset1.POS_Asset_Type__c = 'Innovation';
-            asset1.Market_Cluster__c = 'Global';
+            asset1.Market_Cluster__c = GLOBALSTR;
             asset1.Channels__c='Hypermarkets';
-            asset1.Status__c = 'Approved';
+            asset1.Status__c = APPROVEDSTR;
             asset1.Description__c='test';
             finalTestAsset.add(asset1);
             
@@ -149,9 +153,9 @@ public class WINatPOSDropDownController_Test {
             asset2.Brand__c=brandDove.id;
             asset2.Placement__c = 'Secondary';
             asset2.POS_Asset_Type__c = 'Innovation';
-            asset2.Market_Cluster__c = 'Global';
+            asset2.Market_Cluster__c = GLOBALSTR;
             asset2.Channels__c='Hypermarkets';
-            asset2.Status__c = 'Approved';
+            asset2.Status__c = APPROVEDSTR;
             asset2.Description__c='test';
             finalTestAsset.add(asset2);
             
@@ -161,9 +165,9 @@ public class WINatPOSDropDownController_Test {
             asset3.Brand__c=brandDove.id;
             asset3.Placement__c = 'Secondary';
             asset3.POS_Asset_Type__c = 'Best Practices';
-            asset3.Market_Cluster__c = 'Global';
+            asset3.Market_Cluster__c = GLOBALSTR;
             asset3.Channels__c='Hypermarkets';
-            asset3.Status__c = 'Approved';
+            asset3.Status__c = APPROVEDSTR;
             asset3.Description__c='test';
             finalTestAsset.add(asset3);
             
@@ -173,9 +177,9 @@ public class WINatPOSDropDownController_Test {
             asset4.Brand__c=brandDove.id;
             asset4.Placement__c = 'Secondary';
             asset4.POS_Asset_Type__c = 'Repeatable Model';
-            asset4.Market_Cluster__c = 'Global';
+            asset4.Market_Cluster__c = GLOBALSTR;
             asset4.Channels__c='Hypermarkets';
-            asset4.Status__c = 'Approved';
+            asset4.Status__c = APPROVEDSTR;
             asset4.Description__c='test';
             finalTestAsset.add(asset4);
         }
