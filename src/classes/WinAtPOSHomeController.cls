@@ -17,13 +17,14 @@ VERSION AUTHOR                     DATE            DETAIL  FEATURES/CSR/TTP
 public with sharing  class WinAtPOSHomeController {
     public String entityId{get;set;}  
     public String winAtPosGroupId{get;set;} 
-  
+    public Boolean isCommunityUser{get;set;}
     public String keyWord{get;set;}
     
     //Controller cunstructor
     public WinAtPOSHomeController(){
-    
         winAtPosGroupId=getWinAtPOSGroupId();
+        isCommunityUser= Network.getNetworkId() != null;
+        system.debug('check if community user'+isCommunityUser);
     }
     
     public PageReference updateChatterFeed(){
@@ -53,13 +54,19 @@ public with sharing  class WinAtPOSHomeController {
     ********************************************************************/
     public String getWinAtPOSGroupId(){
         system.debug('*** WINatPOS getWinAtPOSGroupId method initialized');
+        /*
+        if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            return null;
+        }
+		*/
         
         WinAtPOSRemoteActions__c  remotActionConf=WinAtPOSRemoteActions__c.getValues('WinAtPOSRemoteActionConf');
         String winAtPosGroup=remotActionConf != null ? remotActionConf.WinAtPosGroup__c :'';
         if(System.Test.isRunningTest()){
             winAtPosGroup=WinAtPOSUtil.winAtPostChatterGroupForTest;
         }
-        List<CollaborationGroup> colGroup=[SELECT Id,Name From CollaborationGroup where name =: winAtPosGroup limit 1];
+        String networkId = Network.getNetworkId();
+        List<CollaborationGroup> colGroup=[SELECT Id,Name,NetworkId From CollaborationGroup where name =: winAtPosGroup and NetworkId =: networkId limit 1];
         if(!colGroup.isEmpty()){
             system.debug('*** WINatPOS getWinAtPOSGroupId method returned: '+colGroup.get(0).Id);
             return colGroup.get(0).Id;
@@ -67,6 +74,15 @@ public with sharing  class WinAtPOSHomeController {
         system.debug('*** WINatPOS getWinAtPOSGroupId method retuned: null');
         return null;
         
+    }
+    
+    /*******************************************************************
+    Purpose: Method returns WinAtPOS_URLS__c custom setting list in JSON format
+    Parameters: [none]
+    Returns: String
+    ********************************************************************/
+    public String getWinAtPOSUrlJson(){
+        return JSON.serializePretty(WinAtPOS_URLS__c.getAll().values());
     }
     
     /*******************************************************************
