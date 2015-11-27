@@ -7681,7 +7681,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_GENERATE_MITIGATION_PLAN</shortDescription>
-        <value>generate Mitigation plan.</value>
+        <value>generate Management plan.</value>
     </labels>
     <labels>
         <fullName>IPM_GENERATE_ROLLOUTS</fullName>
@@ -9625,7 +9625,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PROJECT</shortDescription>
-        <value>project</value>
+        <value>Project</value>
     </labels>
     <labels>
         <fullName>IPM_PROJECTCREATION_INPROGRESS</fullName>
@@ -10304,7 +10304,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_RISK_MITIGATION_PLAN</shortDescription>
-        <value>Risk Mitigation Plan</value>
+        <value>Risk Management Plan</value>
     </labels>
     <labels>
         <fullName>IPM_RISK_MODAL_TITLE</fullName>
