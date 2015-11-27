@@ -47,13 +47,9 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
-    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSharing>true</enableSharing>
-    <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Active__c</fullName>
         <defaultValue>true</defaultValue>
@@ -371,6 +367,19 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Oblix_Current_FY_Total__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_Campaigns_This_FY__c +  OblixTotalOtherItemsFees__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Current FY Total</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
         <fullName>Oblix_TotalCampaignAdjustment__c</fullName>
         <externalId>false</externalId>
         <label>Total Campaign Adjustment</label>
@@ -468,6 +477,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Total_Campaigns_This_FY__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Campaigns This FY</label>
+        <summarizedField>Oblix_SOW_Projects__c.Value_to_be_paid_in_Current_FY__c</summarizedField>
+        <summaryForeignKey>Oblix_SOW_Projects__c.Financial_Year__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Type_of_SOW__c</fullName>

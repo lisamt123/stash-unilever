@@ -110,10 +110,10 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         if (sowId == null) {
             selSow = new Marketing_SOW__c ();
         } else {
-            selSow = [Select Id, Agency_Contact__r.name, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.name, OblixSOWOverallTotal__c, Unilever_Lead__r.name, CreatedById, CreatedBy.Name, Currency__c,
-                      BigOblixProductCategory__r.Name, OblixBrand__r.Name, SmallProductCategory__r.Name,
+            selSow = [Select Id, Agency_Contact__r.name, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.name, OblixTotalOtherItemsFees__c, OblixSOWOverallTotal__c, Unilever_Lead__r.name, CreatedById, CreatedBy.Name, Currency__c,
+                      BigOblixProductCategory__r.Name, OblixBrand__r.Name, SmallProductCategory__r.Name, Oblix_Current_FY_Total__c,
                       LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c,
-                      Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate,
+                      Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate,Total_Campaigns_This_FY__c,
                       SOW_Status__c, BB_or_BD__c   from Marketing_SOW__c where Id = : sowId
                      ];
         }
@@ -126,7 +126,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         if (selSow != null && selSow.Id != null) {
             list<Marketing_SOW__c> childSow = new list<Marketing_SOW__c>();
             System.debug('###selSow.id : ' + selSow.id);
-            childSow = [select id, OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'  ];
+            childSow = [select id, OblixSOWOverallTotal__c, Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,OblixTotalOtherItemsFees__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'  ];
             System.debug('###childSow : ' + childSow );
             if (!childSow.isEmpty()) {
                 mapApproved.put(selSow.id, (integer)childSow[0].OblixSOWOverallTotal__c);
@@ -135,7 +135,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
             }
             countOfUpdatesFeed = NumberOfSowChatterFeedItem(selSow.Id);
             lstAttachements = [Select Id, Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate from Attachment where ParentId = : selSow.Id];
-            lstProjects = [Select Id, Name, Project_Finish_Date__c, Campaign_Status__c, Platform__c, Project_Stage__c, CreatedById, Total_Fees_for_Project__c, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, OblixCountries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where Financial_Year__c = : selSow.Id];
+            lstProjects = [Select Id, Name, Project_Finish_Date__c, Campaign_Status__c, Platform__c, Project_Stage__c, CreatedById, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, OblixCountries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where Financial_Year__c = : selSow.Id];
             lstOtherItems = [Select  m.Role_Title__c, m.RecordTypeId, m.Other_Activities__c, m.Oblix_SOWMarketing__c, m.OblixOtherItemFee__c, m.OblixCountry__c, m.No_of_Hours_Required__c, m.Name, m.LastModifiedById, m.Id, m.Financial_Year_old__c,
                              m.Financial_Year__c, m.FTE__c, m.Description__c, m.CreatedDate, m.CreatedById, m.Agency__c, m.Agency_Department__c, m.Activities__c From Marketing_Basics__c m
                              where Oblix_SOWMarketing__c = : selSow.Id]; // m.Discipline__c,
@@ -364,8 +364,8 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
             } else {
                 if (selSow != null && selSow.Id == null) {
                     insert selSow;
-                    selSow = [Select Id, Agency_Contact__r.name, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.name, OblixSOWOverallTotal__c, Unilever_Lead__r.name, CreatedById, CreatedBy.Name, Currency__c,
-                              BigOblixProductCategory__r.Name, OblixBrand__r.Name, SmallProductCategory__r.Name,
+                    selSow = [Select Id, Agency_Contact__r.name, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.name, OblixTotalOtherItemsFees__c, OblixSOWOverallTotal__c, Unilever_Lead__r.name, CreatedById, CreatedBy.Name, Currency__c,
+                              BigOblixProductCategory__r.Name, OblixBrand__r.Name, SmallProductCategory__r.Name, Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,
                               LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c,
                               Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate,
                               SOW_Status__c, BB_or_BD__c   from Marketing_SOW__c where Id = : selSow.Id
@@ -374,8 +374,8 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
                 } else {
                     update selSow;
                     sowId = selSow.Id;
-                    selSow = [Select Id, Agency_Contact__r.name, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.name, OblixSOWOverallTotal__c, Unilever_Lead__r.name, CreatedById, CreatedBy.Name, Currency__c,
-                              BigOblixProductCategory__r.Name, OblixBrand__r.Name, SmallProductCategory__r.Name,
+                    selSow = [Select Id, Agency_Contact__r.name, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.name, OblixTotalOtherItemsFees__c, OblixSOWOverallTotal__c, Unilever_Lead__r.name, CreatedById, CreatedBy.Name, Currency__c,
+                              BigOblixProductCategory__r.Name, OblixBrand__r.Name, SmallProductCategory__r.Name, Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,
                               LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c,
                               Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate,
                               SOW_Status__c, BB_or_BD__c   from Marketing_SOW__c where Id = : selSow.Id
@@ -384,7 +384,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
                 sowId = selSow.Id;
                 list<Marketing_SOW__c> childSow = new list<Marketing_SOW__c>();
                 System.debug('###selSow.id : ' + selSow.id);
-                childSow = [select id, OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'];
+                childSow = [select id, OblixSOWOverallTotal__c, Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,OblixTotalOtherItemsFees__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'];
                 System.debug('###childSow : ' + childSow );
                 if (!childSow.isEmpty()) {
                     mapApproved.put(selSow.id, (integer)childSow[0].OblixSOWOverallTotal__c);
@@ -664,6 +664,19 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
             return reportFolderURL;
             
         } set;
+    }
+    
+    public List<SelectOption> getFYSelectOptions() {
+        List<SelectOption> options = new List<SelectOption>();
+        
+        options.add(new SelectOption('', 'Financial Year'));
+        
+		for( Schema.PicklistEntry f : Marketing_SOW__c.fields.Financial_Year__c.getDescribe().getPicklistValues()){
+			options.add(new SelectOption(f.getLabel(), f.getValue()));
+		}
+        
+        return options;
+        
     }
     
 }

@@ -114,7 +114,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
     */
 
     public void init() {
-        WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name,Oblix_AgencyEstimate__c ,OblixSOWOverallTotal__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordTypeId=\'' + parentSOWRTID + '\'';
+        WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name,Oblix_AgencyEstimate__c ,OblixSOWOverallTotal__c,Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordTypeId=\'' + parentSOWRTID + '\'';
         runQuery();
     }
 
@@ -265,7 +265,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
     */
     public void applyFilters() {
 
-        WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name , Oblix_AgencyEstimate__c,OblixSOWOverallTotal__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordType.name = \'Parent Sow Marketing\'';
+        WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name , Oblix_AgencyEstimate__c,OblixSOWOverallTotal__c,Total_Campaigns_This_FY__c, Oblix_Current_FY_Total__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordType.name = \'Parent Sow Marketing\'';
         List<String> lstQueryWhere = buildQueryWhere();
         system.debug('###Sfdc lstQueryWhere :' + lstQueryWhere );
         if (lstQueryWhere.isEmpty()) {
@@ -364,7 +364,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
             selSow = [Select Id, Agency_Contact__r.name, OblixSOWOverallTotal__c, Oblix_AgencyEstimate__c , Oblix_AgencyEstimate__r.name, Unilever_Lead__r.name, CreatedById, CreatedBy.Name, Currency__c,
                       BigOblixProductCategory__r.Name, OblixBrand__r.Name, SmallProductCategory__r.Name,
                       LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c,
-                      Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate,
+                      Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate, Total_Campaigns_This_FY__c,Oblix_Current_FY_Total__c,
                       SOW_Status__c, BB_or_BD__c   from Marketing_SOW__c where Id = : selectedSewId
                      ];
             System.debug('###selSow : ' + selSow);
@@ -372,7 +372,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
             if (selSow != null && selSow.Id != null) {
                 list<Marketing_SOW__c> childSow = new list<Marketing_SOW__c>();
                 System.debug('###selSow.id : ' + selSow.id);
-                childSow = [select id, OblixSOWOverallTotal__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'  ];
+                childSow = [select id, OblixSOWOverallTotal__c, Total_Campaigns_This_FY__c, Oblix_Current_FY_Total__c from Marketing_SOW__c where MarketingSOWParent__c = :selSow.id  and Type_of_SOW__c = 'Baseline'  ];
                 System.debug('###childSow : ' + childSow );
                 if (!childSow.isEmpty()) {
                     mapApproved.put(selSow.id, (integer)childSow[0].OblixSOWOverallTotal__c);

@@ -626,7 +626,7 @@
         border-style: solid;
         border-color: #B5B5B5 #B5B5B5 #7F7F7F;
         -moz-border-top-colors: none;
-        -moz-border-right-colors: none;
+
         -moz-border-bottom-colors: none;
         -moz-border-left-colors: none;
         border-image: none;
@@ -896,7 +896,7 @@
                    </tr>
                    <tr>
                      <td colspan="2"><h2 class="mainGreen">{!$Label.Oblix_lbl_UIUX_Current} &nbsp; &nbsp; &nbsp; </h2><strong>
-                      € {!ROUND(selSow.OblixSOWOverallTotal__c, 0)} </strong></td>
+                      € {!ROUND(selSow.Oblix_Current_FY_Total__c, 0)} </strong></td>
                    </tr>
                </table>
            </section> 
@@ -1007,7 +1007,9 @@
                    </tr>
                    <tr>
                   <!--   <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label} * </strong></td>  -->
-                     <td><apex:inputField value="{!selSow.Financial_Year__c}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}"   styleClass="Oblix_picklist"/></td>
+                     <td><apex:selectList size="1" value="{!selSow.Financial_Year__c}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}"   styleClass="Oblix_picklist">
+                         	<apex:selectOptions value="{!FYSelectOptions}"></apex:selectOptions>
+                         </apex:selectList></td>
                    </tr>                 
                    <tr>
                      <td colspan="2"><strong class="darkGreen">{!$Label.Oblix_lbl_UIUX_Approved} &nbsp;</strong> <strong>
@@ -1015,7 +1017,7 @@
                    </tr>
                     <tr>
                      <td colspan="2"><strong class="mainGreen">{!$Label.Oblix_lbl_UIUX_Current} &nbsp; &nbsp; &nbsp; </strong><strong>
-                      € {!ROUND(selSow.OblixSOWOverallTotal__c, 0)}  </strong></td>
+                      € {!ROUND(selSow.Oblix_Current_FY_Total__c, 0)}  </strong></td>
                    </tr>
                    <tr>
                    </tr>
@@ -1152,6 +1154,10 @@
                 <table width="100%" class="Oblix_TableTitle">
                     <tr>
                         <td width="50%">
+                            <table style="margin-left:20px;">
+                                <tr><td>Campaign Total: </td><td>€ {!ROUND(selSow.Total_Campaigns_This_FY__c, 0)}</td></tr>
+                                <tr><td>Non Campaign Total:</td><td>€ {!ROUND(selSow.OblixTotalOtherItemsFees__c, 0)}</td></tr>
+                            </table>
                             
                         </td>
                         <td  width="15%">
@@ -1208,7 +1214,7 @@
                                 <td>{!projOtherItem.objectDyn['Platform__c']}</td>
                                 <td>{!projOtherItem.objectDyn['Campaign_Status__c']}</td>
                                 <td>{!projOtherItem.objectDyn['Project_Stage__c']}</td>
-                                <td>€ {!projOtherItem.objectDyn['Total_Fees_for_Project__c']} </td>
+                                <td>€ {!projOtherItem.objectDyn['Value_to_be_paid_in_Current_FY__c']} </td>
                             </tr>
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!projOtherItem.objName == 'Non Campaign'}">
@@ -1220,7 +1226,7 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>{!projOtherItem.objectDyn['OblixOtherItemFee__c']}</td>                              
+                                <td>€ {!projOtherItem.objectDyn['OblixOtherItemFee__c']}</td>                              
                             </tr>
                         </apex:outputPanel>
                     </apex:repeat>

@@ -349,6 +349,48 @@ public with sharing class Oblix_Utils {
 
     }
 
+    private static String getProjectedItems2(String projected){
+        
+        List<String> projectedSetRetVal = new List<String>();
+        if(String.isEmpty(projected) == false){
+            
+            Set<String> projectedSet = new Set<String>(projected.split(','));
+            
+            List<String> stages = getStageList();
+             
+            if(projectedSet.contains(stages[0])) projectedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Projected_Briefing);
+            if(projectedSet.contains(stages[1])) projectedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning);
+            if(projectedSet.contains(stages[2])) projectedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Ideation);
+            if(projectedSet.contains(stages[3])) projectedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Execution);
+            if(projectedSet.contains(stages[4])) projectedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Projected_Production); 
+                
+        }
+        
+        return String.join(projectedSetRetVal,',');
+        
+    }
+    
+    private static String getCompletedItems2(String completed){
+        
+        List<String> completedSetRetVal = new List<String>();
+        if(String.isEmpty(completed) == false){
+            
+            Set<String> completedSet = new Set<String>(completed.split(','));
+            
+            List<String> stages = getStageList();
+            
+            if(completedSet.contains(stages[0])) completedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Completed_Briefing);
+            if(completedSet.contains(stages[1])) completedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning);
+            if(completedSet.contains(stages[2])) completedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Ideation);
+            if(completedSet.contains(stages[3])) completedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Execution);
+            if(completedSet.contains(stages[4])) completedSetRetVal.add(Label.Oblix_Lbl_UIUX_Utils_Completed_Production);
+                
+        }
+        
+        return String.join(completedSetRetVal,',');
+        
+    }
+    
     private static string getProjectedITems(String projected) {
         string projcItems = '';
         if (projected == Label.Oblix_Lbl_UIUX_Projected_Briefing) {
@@ -389,8 +431,8 @@ public with sharing class Oblix_Utils {
         string lstProjectedItems = '';
         string lstCompletedItems = '';
 
-        lstProjectedItems = getProjectedITems(projected);
-        lstCompletedItems = getCompletedItems(Completed);
+        lstProjectedItems = getProjectedITems2(projected);
+        lstCompletedItems = getCompletedItems2(Completed);
 
         system.debug('###lst Stage :' + lstCompletedItems + ',' + lstProjectedItems);
         if (lstProjectedItems != '' && lstCompletedItems != '') {
@@ -562,6 +604,7 @@ public with sharing class Oblix_Utils {
         public Date actualDeliveryDate;
         public String assetName;
         public String location;
+        public String assetTitle;
 
         public AssetDetailWrapper(Oblix_Project_Assets__c asset) {
             this.assetId = asset.Id;
@@ -570,6 +613,7 @@ public with sharing class Oblix_Utils {
             this.actualDeliveryDate = asset.Actual_Delivery_Date__c;
             this.assetName = asset.Asset_Picklist__c;
             this.location =  asset.Location__c;
+            this.assetTitle = asset.Asset_Title__c;
         }
     }
 }

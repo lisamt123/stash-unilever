@@ -347,7 +347,7 @@
                                                        <td width="15%">{!asset.Additional_Description__c}</td>
                                                        <td width="10%"><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
                                                        <td width="10%">                                                          
-                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnAV" style="width: 100px !important;">
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnAV" style="width: 100px !important;" onclick="moveToEditPage('{!asset.Id}')"> 
                                                                <apex:param name="itemToUpdate" assignTo="{!itemToUpdate}" value="{!asset.Id}"/>
                                                            </apex:commandButton><br/>
                                                            <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();" id="deleteBtnAV" style="width: 100px !important;">
@@ -361,7 +361,12 @@
                                              <hr/>                   
                                             </apex:outputPanel>                                 
                                        </apex:repeat>
-                                       
+                                       <script>
+                                       var moveToEditPage = function (assetId){
+                                        var projectId = window.location.search.split('&')[0].split('=')[1];
+                                        window.location = '/apex/Oblix_VF08_ProjectEdit?projectId=' + projectId;
+                                       }
+                                       </script>
                                     </td>  
                                 </tr>  
                                </apex:outputPanel>                             

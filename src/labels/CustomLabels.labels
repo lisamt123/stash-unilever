@@ -12356,7 +12356,6 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_Search_MCO_Country_Name</shortDescription>
         <value>Search MCO / Country Name</value>
     </labels>
-
 	<labels>
         <fullName>Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40</fullName>
         <categories>Oblix Calculator</categories>
@@ -14621,7 +14620,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_Please_Choose</shortDescription>
-        <value>Please Choose Innovation Projects or Brand Leg Growth</value>
+        <value>Please Choose Innovation Projects or Brand Led Growth</value>
     </labels>
     <labels>
         <fullName>Oblix_lbl_UIUX_Please_describe</fullName>
