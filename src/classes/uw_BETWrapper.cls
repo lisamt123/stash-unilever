@@ -155,7 +155,7 @@ public with sharing class uw_BETWrapper {
             } else if(this.assetDownloadLink != null){
                 this.assetPreviewLink = this.assetDownloadLink;
             }
-            
+
         }
     }
 

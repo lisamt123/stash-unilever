@@ -1,5 +1,5 @@
 .betBtnPink {
-    background: #BE236D none repeat scroll 0 0;
+    background: #BE236D none repeat scroll 0 0 !important;
     border: medium none;
     color: white;
     font-family: Rockwell;
@@ -12,7 +12,7 @@
 }
 
 .betBtnGray {
-    background: #666a6b none repeat scroll 0 0;
+    background: #666a6b none repeat scroll 0 0 !important;
     border: medium none;
     color: white;
     font-family: Rockwell;

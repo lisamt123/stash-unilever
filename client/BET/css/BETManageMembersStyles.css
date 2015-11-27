@@ -97,6 +97,17 @@ body .btn.buttong2y[value="Delete"] {
   height: 25px;
 }
 
+body .btn.buttong2y[value="Approve"] {
+  text-indent: -9999px;
+  background-color: transparent !important;
+  background-image: url(../images/approve_big.png) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  width: 25px;
+  border: none;
+  height: 25px;
+}
+
 body .lookupIcon,
 body .lookupIconOn {
   width: 35px;
