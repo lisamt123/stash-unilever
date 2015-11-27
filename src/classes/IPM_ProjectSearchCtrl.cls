@@ -149,6 +149,8 @@ public with sharing class IPM_ProjectSearchCtrl{
                                                         IPM_Finance_Member__c = : UserInfo.getUserId() LIMIT 9999 ]){
              shareProjIdSet.add(project.Id);                                                    
         }
+        shareProjIdSet.remove(null);
+        shareProjIdSet.remove('');
         //Initialise everything to the projectList variable from the query
         for(IPM_Project__c eachProject : Database.query(query())) {
             
@@ -251,6 +253,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     * @return: query string
     */
     private string query() {
+        noRecords = false;
         //map conataining project id and  iTO value
         projIdString = iTOWiseSearch();
         
@@ -281,7 +284,7 @@ public with sharing class IPM_ProjectSearchCtrl{
        Prepare the search query for input from search box
        *******************************************************/   
        if(String.IsNotBlank(searchTxt)) {
-           noRecords = false;
+           noRecords = !noRecords ? false : noRecords;
            soql += ' AND (IPM_Project_Name__c LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\' OR IPM_Project_Leader__r.Name LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\'';
            soql += ' OR IPM_Bosscard__r.Name LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\'';
            soql += ' OR IPM_Project_Description__c LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\' OR IPM_Phase__c LIKE \'%' + String.escapeSingleQuotes(searchTxt) + '%\')';
@@ -299,7 +302,7 @@ public with sharing class IPM_ProjectSearchCtrl{
            else{
                 soql += ' OR Id IN ' + shareProj + ')';
            }
-           noRecords = false;
+           noRecords = !noRecords ? false : noRecords;
        } 
        
        //Prepare the search query when All Projects = False & My Projects = False, then give no projects
@@ -321,7 +324,7 @@ public with sharing class IPM_ProjectSearchCtrl{
             if(!projTypeSet.contains('All')){
                 soql += ' AND IPM_Project_Type__c IN ' + IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(selectedProjType));
             }
-            noRecords = false;
+            noRecords = !noRecords ? false : noRecords;
        }else{
             noRecords = true;
             soql += ' AND IPM_Project_Type__c = NULL ';
@@ -332,17 +335,17 @@ public with sharing class IPM_ProjectSearchCtrl{
       *******************************************************/ 
        //Active = True , Stopped=True means All=true so ingore filter in SOQL
        //Active = False , Stopped=False
-       if(selectedActiveProject != TRUE_STR && !selectedStoppedProject){
+       if(selectedActiveProject == FALSE_STR && !selectedStoppedProject){  	
             noRecords = true;
        }
         //Active = True , Stopped=False
        if(selectedActiveProject == TRUE_STR && !selectedStoppedProject){
-            noRecords = false;
+            noRecords = !noRecords ? false : noRecords;
             soql += ' AND  Is_Archieved__c = false AND IPM_Phase__c != \''+ IPM_ConstantUtils.PHASE_PLE + '\'';
        }
        //Active = False , Stopped=True
        if(selectedActiveProject == FALSE_STR && selectedStoppedProject){
-           noRecords = false;
+           noRecords = !noRecords ? false : noRecords;
            soql += ' AND Is_Archieved__c = true';
        }
        
@@ -358,7 +361,7 @@ public with sharing class IPM_ProjectSearchCtrl{
             set <string> projPhaseSet = new set <string> ();
             projPhaseSet.addAll(projPhaseList);
             if(!projPhaseSet.contains('all')){
-                noRecords = false;
+                noRecords = !noRecords ? false : noRecords;
                 soql += ' AND IPM_Phase__c IN ' + IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(selectedPhase));
             }
        }else {
@@ -378,11 +381,11 @@ public with sharing class IPM_ProjectSearchCtrl{
        clusterSet.addAll(IPM_Utils.convertJSArrayToLsArray(clusters));
        
        if(geoAll == TRUE_STR){
-           noRecords = false;
+           noRecords = !noRecords ? false : noRecords;
        }
             
        if(geoAll != TRUE_STR && String.IsNotBlank(countries) ) {
-            noRecords = false;
+            noRecords = !noRecords ? false : noRecords;
             soql += ' AND ( Id IN ' + countryWiseProjects() ;
             if(unassigned == FALSE_STR){
                 soql += ') ';
@@ -397,7 +400,7 @@ public with sharing class IPM_ProjectSearchCtrl{
                     clusters = mcos = countries = IPM_ConstantUtils.BLANK;
                     soql  += ' OR  Id NOT IN ' + countryWiseProjects() + ') ';
             }
-            noRecords = false;
+            noRecords = !noRecords ? false : noRecords;
        }
        
        if(geoAll != TRUE_STR && String.IsBlanK(countries) && unassigned == FALSE_STR){
@@ -408,7 +411,7 @@ public with sharing class IPM_ProjectSearchCtrl{
        =>Prepare the search query when Target Launch Dates are specified to filter out
        *******************************************************/ 
        if(String.IsNotBlank(tldFrom) && String.IsNotBlank(tldTo)) {
-           noRecords = false;
+           noRecords = !noRecords ? false : noRecords;
            String fDt = DateTime.newInstance(tFrm, Time.newInstance(0, 0, 0, 0)).format(IPM_ConstantUtils.DATE_FORMAT);//yyyy-MM-dd
            String tDt = DateTime.newInstance(tTo, Time.newInstance(0, 0, 0, 0)).format(IPM_ConstantUtils.DATE_FORMAT);
            soql += 'AND IPM_Target_Launch_Dates__c >=' + fDt;
@@ -419,7 +422,7 @@ public with sharing class IPM_ProjectSearchCtrl{
        =>Prepare the search query when Brands are specified to filter out
        *******************************************************/ 
        if(bPositionings != IPM_ConstantUtils.BLANK) {
-            noRecords = false;
+            noRecords = !noRecords ? false : noRecords;
             soql += ' AND IPM_Brand_Positioning__c IN ' + IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(bPositionings));
        }
        
@@ -427,7 +430,7 @@ public with sharing class IPM_ProjectSearchCtrl{
        =>Prepare the search query when iTO Ranges are specified to filter out
        *******************************************************/ 
        if(iTO1 >= 0 && iTO2 >= 0 && projIdString != IPM_ConstantUtils.BLANK  && projIdString != null) {
-            noRecords = false;
+            noRecords = !noRecords ? false : noRecords;
             soql += ' AND Id IN ' + projIdString;
        }
        
@@ -442,6 +445,7 @@ public with sharing class IPM_ProjectSearchCtrl{
         }
        soql += ' LIMIT 9999';
        system.debug(bPositionings + ' ** soql : ' + soql);
+       noRecords = false;
        return soql;
     }
     

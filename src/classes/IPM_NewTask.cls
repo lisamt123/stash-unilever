@@ -197,21 +197,10 @@ public with sharing class IPM_NewTask {
         try{
             displayError = false;
             validate = true;
-            if(String.isBlank(tasks.IPM_Task_Name__c))
-            {
-                displayError = true;
-                return null;
-            }   
+           
             if(tasks.IPM_Project__c == null)
             {
                 tasks.IPM_Project__c=apexpages.currentpage().getparameters().get(IPM_Utils.IPM_NewTaskprojectId);
-                IPM_Task__c tsk =  new IPM_Task__c();
-                
-                if(tsk != null)
-                {
-                    tasks.IPM_Task_Name__c=tsk.Id;
-                    
-                }
             }
             
             Id recordTypeIdValue = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
@@ -250,7 +239,9 @@ public with sharing class IPM_NewTask {
                 if(displayError)
                 {
                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, system.label.IPM_TaskDueDateErrorMsg));
-                }else
+                }
+	    	
+		if(String.isNotBlank(tasks.IPM_Task_Name__c) && !displayError)
                 {
                     upsertTask(new List<IPM_Task__c>{tasks});
                 }
