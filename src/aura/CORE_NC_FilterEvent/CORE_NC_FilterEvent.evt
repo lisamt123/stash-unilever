@@ -1,4 +1,0 @@
-<aura:event type="APPLICATION" description="Event template" >
-    <aura:attribute name="selectedFilter" type="String"/>
-    <aura:attribute name="displayFilterPage" type="Boolean"/>
-</aura:event>
