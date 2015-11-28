@@ -1,0 +1,128 @@
+/*Sub title of news article*/
+.THIS .SubText{
+    font-weight:regular;
+    font-size:12px;
+    color:#8C8C90;
+}
+/*News article Information pannel styel*/
+.THIS .textSectionPadding{
+    padding-bottom:8px;
+    width: 100%;
+}
+/*News article information pannel paddings*/
+.THIS .textSectionSmallPadding{
+    padding-bottom:5px;
+    width: 100%;    
+}
+/*News article topics style*/
+.THIS .topicStyle{
+    margin-top: 10px;
+    background: #008FCB;
+    height: 20px;
+    width: 60px;
+    padding: 5px;
+    font-size: xx-small;
+    text-align:center;
+    color:#FFFFFF;
+}
+/*News article title*/
+.THIS .Title{
+    font-size:18px;
+    font-weight:bold;
+    color:#344A5F;
+}
+/*News article icon style*/
+.THIS .LinkImageStyle{
+    height:18px;
+    width:18px;
+    padding-bottom: 3px;
+}
+/*News article background*/
+.THIS.pageBackgroundColor{
+    background-color: #f0f1f2;
+}
+/*News atricle container background*/
+.THIS .container{
+    background-color: #FFFFFF;
+}
+/*Carousel Indicator Pannel*/
+.THIS .carouselPannel{
+    /*text-align:center;*/
+    width:100%;
+    padding:10px;
+    border-bottom: #f0f1f2 solid 15px;
+}
+/*Carousel banner image style*/
+.THIS .CarouselImageStyle{
+    height:25px;
+    width:25px;
+}
+/*Carousel Indicator style*/
+.THIS .CarouselIndicator{
+    height:12px;
+    width:25px;
+}
+/*Carousel Indicator left arrow*/
+.THIS .ideasOfTheWeekHomePageCarosalLeftImage {
+    position: absolute;
+    top: 90px;
+    left: 0%;
+}
+/*Carousel Indicator right arrow*/
+.THIS .ideasOfTheWeekHomePageCarosalRightImage {
+    position: absolute;
+    top: 90px;
+    right: 0%;
+}
+/*Carousel section banner image*/
+.THIS .homePageCarosalImageDiv {
+    position: relative;
+    z-index: 100;
+    height: 1px;
+    width: 100%;
+}
+/*News article image*/
+.THIS .Image{
+    height:100px;
+    width:100%;
+}
+/*News article banner image*/
+.THIS .BigImage{
+    height:200px;
+    width:100%;
+}
+/*News article information padding*/
+.THIS .leftRightSpaceing{
+    padding-left:10px;
+    padding-right:10px;
+}
+/*News article Information Pannel*/
+.THIS .textSectionPannel{
+    padding: 10px;
+    border-bottom: #f0f1f2 solid 15px;
+}
+/*Align the contents to right*/
+.THIS .RightFloat{
+    float:right;
+}
+
+/*allign the contents to center*/
+.THIS td.centerAlign,.THIS .centerAlign{
+    text-align:center;
+}
+/*vartical align the content inside the table*/
+.THIS table td{
+    vertical-align: top;
+    padding-left: 10px;
+}
+/*responsive richtext pannel*/
+.THIS .responsiverichtext{
+    width: 100%;
+    float: none;    
+    font-size: 15px;
+}
+
+.THIS a a:hover{   
+    text-decoration:none;
+    color:black;
+}
