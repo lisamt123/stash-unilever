@@ -526,6 +526,10 @@
                 <fullName>Sample 1</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>--None--</fullName>
+                <default>true</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
