@@ -1064,6 +1064,7 @@ public class IPM_ConstantUtils {
    public static final String IPM_FINANCEOBJECT='IPM_Financial__c';
    public static final String IPM_COUNTRYOBJECT='IPM_Country__c';
    public static final String IPM_ROLLOUTOBJECT='IPM_Project_Rollout__c';
+   public static final String IPM_DOCUMENTSECTIONCONTENT='IPM_Project_Document_Section_Content__c';
    
    //BET Search related Constants
    public final static string CATEGORY_TYPE ='Category';
