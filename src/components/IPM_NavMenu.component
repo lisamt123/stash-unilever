@@ -32,13 +32,13 @@
                     <apex:outputPanel layout="block" rendered="{!AND(projType!='Rollout',bosscardStatus)}">
                     <li class="{!IF(activeItem=='bosscard', 'active', '')}"><a href="{!$Page.IPM_Bosscard}?id={!bosscardId}"><span>{!$Label.IPM_BOSSCARD}</span></a></li>
                     </apex:outputPanel>
-                    <apex:outputPanel layout="block" rendered="{!AND(OR(projSpan='Global',projType='Operational',AND(projSpan='Regional',projType!='Rollout')),OR(projPhase='Ideas',projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready'))}">
+                    <apex:outputPanel layout="block" rendered="{!AND(OR(projSpan='Global',projType='Operational',AND(projSpan='Regional',projType!='Rollout')),OR(projPhase='Ideas',projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
                     <li class="{!IF(activeItem=='charter', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Charter"><span>{!$Label.IPM_CHARTER}</span></a></li>
                     </apex:outputPanel>
-                    <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global',gkm='GCLT & RCLT'),projSpan='Regional',projType='Operational'),OR(projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready'))}">
+                    <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global',gkm='GCLT & RCLT'),projSpan='Regional',projType='Operational'),OR(projPhase='Feasibility',projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
                     <li class="{!IF(activeItem=='contract', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Contract"><span>{!$Label.IPM_Contract}</span></a></li>
                     </apex:outputPanel>
-                    <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global',gkm='GCLT & RCLT'),projSpan='Regional',projType='Operational'),OR(projPhase='Capability',projPhase='Market Ready'))}">
+                    <apex:outputPanel layout="block" rendered="{!AND(OR(AND(projSpan='Global',gkm='GCLT & RCLT'),projSpan='Regional',projType='Operational'),OR(projPhase='Capability',projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
                     <li class="{!IF(activeItem=='market ready', 'active', '')}"><a href="{!$Page.IPM_GateDocument}?id={!projID}&printDoc=Market Ready"><span>{!$Label.IPM_MARKET_READY}</span></a></li>
                     </apex:outputPanel>
                     <apex:outputPanel layout="block" rendered="{!AND(projSpan='Local',projType!='Operational',OR(projPhase='Market Ready',projPhase='Market Deployment',projPhase='PLE'))}">
