@@ -77,7 +77,7 @@
                                                 {!$Label.IPM_COUNTRY}
                                                 <span class="btext pull-right">
                                                     {!$Label.IPM_MARK_THIS_MCO_AS_KEY}
-                                                    <div class="col-sm-2 btm2 ipmCheckbox pull-right" >
+                                                    <div class="btm2 ipmCheckbox">
                                                         <input class="notselected {!IF(mapMCOWrappers[selectedMCO].key == true, 'selected', '')} {!IF(mapMCOWrappers[selectedMCO].mcoDisabled == true, 'disabled', '')}" id="keyMCO" type="checkbox"/> 
                                                         <label class="notselected left13" for="keyMCO"></label>
                                                     </div>
