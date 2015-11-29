@@ -3593,15 +3593,7 @@
             <name>Reports</name>
         </sections>
     </reportTypes>
-    <reportTypes>
-        <description><!-- Stakeholders with Issues --></description>
-        <label><!-- Stakeholders with Issues --></label>
-        <name>Stakeholders_with_Issues</name>
-        <sections>
-            <label><!-- Stakeholders --></label>
-            <name>Stakeholders</name>
-        </sections>
-    </reportTypes>
+
     <reportTypes>
         <description><!-- Thanks given by users --></description>
         <label><!-- Thanks given by users --></label>
