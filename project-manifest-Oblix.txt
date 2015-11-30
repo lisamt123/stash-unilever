@@ -1,26 +1,37 @@
 src/applications/Oblix_swop_project.app
+src/approvalProcesses/Marketing_SOW__c.Oblix_GVP_Approval.approvalProcess
 src/classes/Oblix_AssetHandler.cls
 src/classes/Oblix_AssetHandler.cls-meta.xml
 src/classes/Oblix_AssetHandler_Test.cls
 src/classes/Oblix_AssetHandler_Test.cls-meta.xml
 src/classes/Oblix_Constants.cls
+src/classes/Oblix_Constants.cls-meta.xml
 src/classes/Oblix_Ctrl001DeepCloneSOW_CC.cls
+src/classes/Oblix_Ctrl001DeepCloneSOW_CC.cls-meta.xml
 src/classes/Oblix_Ctrl001DeepCloneSOW_CC_Test.cls
 src/classes/Oblix_Ctrl001DeepCloneSOW_CC_Test.cls-meta.xml
-src/classes/Oblix_Ctrl001DeepCloneSOW_Test_CC.cls
 src/classes/Oblix_Ctrl02OverrideAssetNew.cls
+src/classes/Oblix_Ctrl02OverrideAssetNew.cls-meta.xml
 src/classes/Oblix_Ctrl02OverrideAssetNew_Test.cls
+src/classes/Oblix_Ctrl02OverrideAssetNew_Test.cls-meta.xml
 src/classes/Oblix_Ctrl03AssetLookupNew.cls
+src/classes/Oblix_Ctrl03AssetLookupNew.cls-meta.xml
 src/classes/Oblix_Ctrl03AssetLookupNew_Test.cls
+src/classes/Oblix_Ctrl03AssetLookupNew_Test.cls-meta.xml
 src/classes/Oblix_Ctrl04Bis_OverOtherItemsNews_Test.cls
+src/classes/Oblix_Ctrl04Bis_OverOtherItemsNews_Test.cls-meta.xml
 src/classes/Oblix_Ctrl04Bis_OverrideOtherItemsNews.cls
+src/classes/Oblix_Ctrl04Bis_OverrideOtherItemsNews.cls-meta.xml
 src/classes/Oblix_Ctrl04OverrideProjectNew.cls
 src/classes/Oblix_Ctrl04OverrideProjectNew.cls-meta.xml
 src/classes/Oblix_Ctrl04OverrideProjectNew_Test.cls
+src/classes/Oblix_Ctrl04OverrideProjectNew_Test.cls-meta.xml
 src/classes/Oblix_Ctrl05SOWDetails_CC.cls
+src/classes/Oblix_Ctrl05SOWDetails_CC.cls-meta.xml
 src/classes/Oblix_Ctrl05SOWDetails_CC_Test.cls
 src/classes/Oblix_Ctrl05SOWDetails_CC_Test.cls-meta.xml
 src/classes/Oblix_Ctrl06SOWView_CC.cls
+src/classes/Oblix_Ctrl06SOWView_CC.cls-meta.xml
 src/classes/Oblix_Ctrl06SOWView_CC_Test.cls
 src/classes/Oblix_Ctrl06SOWView_CC_Test.cls-meta.xml
 src/classes/Oblix_Ctrl07ProjectEdit_CC.cls
@@ -31,8 +42,6 @@ src/classes/Oblix_Ctrl07ProjectView_CC.cls
 src/classes/Oblix_Ctrl07ProjectView_CC.cls-meta.xml
 src/classes/Oblix_Ctrl07ProjectView_CC_Test.cls
 src/classes/Oblix_Ctrl07ProjectView_CC_Test.cls-meta.xml
-src/classes/Oblix_Ctrl08CloneProject.cls
-src/classes/Oblix_Ctrl08CloneProject.cls-meta.xml
 src/classes/Oblix_Ctrl09_nonCampaignEdit.cls
 src/classes/Oblix_Ctrl09_nonCampaignEdit.cls-meta.xml
 src/classes/Oblix_Ctrl09_nonCampaignEdit_Test.cls
@@ -41,8 +50,6 @@ src/classes/Oblix_Ctrl10_nonCampaignView.cls
 src/classes/Oblix_Ctrl10_nonCampaignView.cls-meta.xml
 src/classes/Oblix_Ctrl10_nonCampaignView_Test.cls
 src/classes/Oblix_Ctrl10_nonCampaignView_Test.cls-meta.xml
-src/classes/Oblix_DragAndDropRESTAPI.cls
-src/classes/Oblix_DragAndDropRESTAPI.cls-meta.xml
 src/classes/Oblix_ProjectHandler.cls
 src/classes/Oblix_ProjectHandler.cls-meta.xml
 src/classes/Oblix_ProjectHandler_Test.cls
@@ -54,97 +61,82 @@ src/classes/Oblix_SplitHandler.cls-meta.xml
 src/classes/Oblix_SplitHandler_Test.cls
 src/classes/Oblix_SplitHandler_Test.cls-meta.xml
 src/classes/Oblix_TR01SOWMarkingSharing.cls
+src/classes/Oblix_TR01SOWMarkingSharing.cls-meta.xml
 src/classes/Oblix_TR01SOWMarkingSharing_Test.cls
+src/classes/Oblix_TR01SOWMarkingSharing_Test.cls-meta.xml
 src/classes/Oblix_TR02SubmitSOWForApproval.cls
+src/classes/Oblix_TR02SubmitSOWForApproval.cls-meta.xml
 src/classes/Oblix_TR02SubmitSOWForApproval_Test.cls
+src/classes/Oblix_TR02SubmitSOWForApproval_Test.cls-meta.xml
 src/classes/Oblix_TR03AssetPrScoreCalculator_Test.cls
+src/classes/Oblix_TR03AssetPrScoreCalculator_Test.cls-meta.xml
 src/classes/Oblix_TR03AssetProjectScoreCalculator.cls
+src/classes/Oblix_TR03AssetProjectScoreCalculator.cls-meta.xml
 src/classes/Oblix_TR04ProjectBusDriverScore_Test.cls
+src/classes/Oblix_TR04ProjectBusDriverScore_Test.cls-meta.xml
 src/classes/Oblix_TR04ProjectBusinessDriverScore.cls
+src/classes/Oblix_TR04ProjectBusinessDriverScore.cls-meta.xml
 src/classes/Oblix_TR05SOWSplitProjectAvoid.cls
+src/classes/Oblix_TR05SOWSplitProjectAvoid.cls-meta.xml
 src/classes/Oblix_TR05SOWSplitProjectAvoid_Test.cls
+src/classes/Oblix_TR05SOWSplitProjectAvoid_Test.cls-meta.xml
 src/classes/Oblix_TR06SowMarketBrandPopulate.cls
+src/classes/Oblix_TR06SowMarketBrandPopulate.cls-meta.xml
 src/classes/Oblix_TR06SowMarketBrandPopulate_Test.cls
+src/classes/Oblix_TR06SowMarketBrandPopulate_Test.cls-meta.xml
 src/classes/Oblix_TestUtils.cls
 src/classes/Oblix_TestUtils.cls-meta.xml
 src/classes/Oblix_Utils.cls
+src/classes/Oblix_Utils.cls-meta.xml
 src/classes/Oblix_wrapper_NonCamp.cls
 src/classes/Oblix_wrapper_NonCamp.cls-meta.xml
 src/classes/TriggerFactory.cls
+src/classes/TriggerFactory.cls-meta.xml
 src/labels/CustomLabels.labels
-src/layouts/Asset_Scoring__c-Asset Scoring Layout.layout
-src/layouts/Asset_Scoring__c-Resource.layout
-src/layouts/MDO_BrandUser__c-Brand User Layout.layout
-src/layouts/Marketing_Basics__c-Activity.layout
-src/layouts/Marketing_Basics__c-Resource.layout
-src/layouts/Marketing_SOW__c-Copy Marketing SOW Layout.layout
-src/layouts/Marketing_SOW__c-Marketing SOW Layout.layout
-src/layouts/Oblix_Calculator__c-BoxRange.layout
-src/layouts/Oblix_Calculator__c-Role Rate Card.layout
-src/layouts/Oblix_Marketing_SOW_Project_Splits__c-Marketing SOW Project Splits Layout.layout
-src/layouts/Oblix_Project_Assets__c-Agency Project Assets Layout.layout
-src/layouts/Oblix_Project_Assets__c-Audio Visual.layout
-src/layouts/Oblix_Project_Assets__c-Digital.layout
-src/layouts/Oblix_Project_Assets__c-Experiential.layout
-src/layouts/Oblix_Project_Assets__c-Static Imagery.layout
-src/layouts/Oblix_SOW_Projects__c-Agency Projects Layout.layout
-src/objectTranslations/Asset_Scoring__c-en_US.objectTranslation
-src/objectTranslations/Marketing_Basics__c-en_US.objectTranslation
-src/objectTranslations/Marketing_SOW__c-en_US.objectTranslation
-src/objectTranslations/Oblix_Calculator__c-en_US.objectTranslation
-src/objectTranslations/Oblix_Marketing_SOW_Project_Splits__c-en_US.objectTranslation
-src/objectTranslations/Oblix_Project_Assets__c-en_US.objectTranslation
-src/objectTranslations/Oblix_SOW_Projects__c-en_US.objectTranslation
 src/objects/Asset_Scoring__c.object
 src/objects/MDO_BrandUser__c.object
+src/objects/Marketing_Agency__c.object
 src/objects/Marketing_Basics__c.object
 src/objects/Marketing_SOW__c.object
 src/objects/Oblix_Calculator__c.object
+src/objects/Oblix_Marketing_Agency_Hubs__c.object
 src/objects/Oblix_Marketing_SOW_Project_Splits__c.object
 src/objects/Oblix_Project_Assets__c.object
 src/objects/Oblix_SOW_Projects__c.object
-src/pages/Oblix_Ctrl03AssetLookupNew.page
-src/pages/Oblix_Ctrl03AssetLookupNew.page-meta.xml
 src/pages/Oblix_VF01DeepCloneSOW.page
+src/pages/Oblix_VF01DeepCloneSOW.page-meta.xml
 src/pages/Oblix_VF02OverrideAsetNewLookup.page
+src/pages/Oblix_VF02OverrideAsetNewLookup.page-meta.xml
 src/pages/Oblix_VF03CustomAssetLookup.page
+src/pages/Oblix_VF03CustomAssetLookup.page-meta.xml
 src/pages/Oblix_VF04OverrideProjectNew.page
-src/pages/Oblix_VF05_SOWDetails.page
-src/pages/Oblix_VF05_SOWDetails.page-meta.xml
+src/pages/Oblix_VF04OverrideProjectNew.page-meta.xml
 src/pages/Oblix_VF05_SOWDetailsV.page
 src/pages/Oblix_VF05_SOWDetailsV.page-meta.xml
-src/pages/Oblix_VF05_SOWDetails_AES.page
-src/pages/Oblix_VF05_SOWDetails_AES.page-meta.xml
 src/pages/Oblix_VF06_SOWView.page
-src/pages/Oblix_VF07_ProjectNew.page
-src/pages/Oblix_VF07_ProjectNew.page-meta.xml
+src/pages/Oblix_VF06_SOWView.page-meta.xml
 src/pages/Oblix_VF07_ProjectView.page
 src/pages/Oblix_VF07_ProjectView.page-meta.xml
 src/pages/Oblix_VF08_ProjectEdit.page
+src/pages/Oblix_VF08_ProjectEdit.page-meta.xml
 src/pages/Oblix_VF09_nonCampaignEdit.page
 src/pages/Oblix_VF09_nonCampaignEdit.page-meta.xml
 src/pages/Oblix_VF10_nonCampaignView.page
 src/pages/Oblix_VF10_nonCampaignView.page-meta.xml
 src/pages/Oblix_VF4Bis_OverrideOtherItemsNews.page
-src/permissionsets/Oblix_SWOP_Agency_Global_User.permissionset
-src/permissionsets/Oblix_SWOP_Agency_Super_User.permissionset
-src/permissionsets/Oblix_SWOP_Global_User_V1.permissionset
-src/permissionsets/Oblix_SWOP_Super_User_V1.permissionset
-src/permissionsets/Oblix_SWOP_UL3_4_Agency.permissionset
-src/permissionsets/Oblix_SWOP_UL3_4_V1.permissionset
-src/permissionsets/Oblix_SWOP_UL_1_Agency.permissionset
-src/permissionsets/Oblix_SWOP_UL_1_V1.permissionset
-src/permissionsets/Oblix_SWOP_UL_2_Agency.permissionset
-src/permissionsets/Oblix_SWOP_UL_2_V1.permissionset
-src/staticresources/AjaxLoaderGif.resource
-src/staticresources/Header_back.resource
-src/staticresources/Header_back.resource-meta.xml
+src/pages/Oblix_VF4Bis_OverrideOtherItemsNews.page-meta.xml
 src/staticresources/OblixUIUXVF07ProjViewCss.resource
 src/staticresources/OblixUIUXVF07ProjViewCss.resource-meta.xml
 src/staticresources/OblixUIUXVF08ProjectCss.resource
 src/staticresources/OblixUIUXVF08ProjectCss.resource-meta.xml
+src/staticresources/Oblix_AjaxLoaderGif.resource
+src/staticresources/Oblix_AjaxLoaderGif.resource-meta.xml
 src/staticresources/Oblix_HightChartJS.resource
 src/staticresources/Oblix_HightChartJS.resource-meta.xml
+src/staticresources/Oblix_Icon_Globe.resource
+src/staticresources/Oblix_Icon_Globe.resource-meta.xml
+src/staticresources/Oblix_JQueryBlockUI.resource
+src/staticresources/Oblix_JQueryBlockUI.resource-meta.xml
 src/staticresources/Oblix_SOWDetailsCSS.resource
 src/staticresources/Oblix_SOWDetailsCSS.resource-meta.xml
 src/staticresources/Oblix_SOWDetailsJS.resource
@@ -155,34 +147,56 @@ src/staticresources/Oblix_SowDeepCloneVF01JS.resource
 src/staticresources/Oblix_SowDeepCloneVF01JS.resource-meta.xml
 src/staticresources/Oblix_SowDetailHomeCss.resource
 src/staticresources/Oblix_SowDetailHomeCss.resource-meta.xml
+src/staticresources/Oblix_Unilever_logo.resource
+src/staticresources/Oblix_Unilever_logo.resource-meta.xml
+src/staticresources/Oblix_assetUI.resource
+src/staticresources/Oblix_assetUI.resource-meta.xml
+src/staticresources/Oblix_bootstrapMinCss.resource
+src/staticresources/Oblix_bootstrapMinCss.resource-meta.xml
+src/staticresources/Oblix_bootstrapMultiselectcss.resource
+src/staticresources/Oblix_bootstrapMultiselectcss.resource-meta.xml
+src/staticresources/Oblix_bootstrapMultiselectjs.resource
+src/staticresources/Oblix_bootstrapMultiselectjs.resource-meta.xml
 src/staticresources/Oblix_editProjectCSS.resource
 src/staticresources/Oblix_editProjectCSS.resource-meta.xml
 src/staticresources/Oblix_editProjectJS.resource
 src/staticresources/Oblix_editProjectJS.resource-meta.xml
+src/staticresources/Oblix_jqueryUiCss.resource
+src/staticresources/Oblix_jqueryUiCss.resource-meta.xml
+src/staticresources/Oblix_jquerydataTablescolumnFilter.resource
+src/staticresources/Oblix_jquerydataTablescolumnFilter.resource-meta.xml
 src/staticresources/Oblix_uiTabsArrow.resource
 src/staticresources/Oblix_uiTabsArrow.resource-meta.xml
 src/staticresources/Oblix_viewProjectJS.resource
 src/staticresources/Oblix_viewProjectJS.resource-meta.xml
-src/staticresources/assetUI.resource
-src/staticresources/assetUI.resource-meta.xml
-src/staticresources/bgPattern.resource
-src/staticresources/bgPattern.resource-meta.xml
-src/staticresources/ganttChart.resource
-src/staticresources/ganttChart.resource-meta.xml
-src/staticresources/jqueryUiCss.resource
-src/staticresources/jqueryUiCss.resource-meta.xml
-src/staticresources/jquerydataTablescolumnFilter.resource
-src/staticresources/jquerydataTablescolumnFilter.resource-meta.xml
-src/staticresources/multiselect.resource
-src/staticresources/multiselect.resource-meta.xml
-src/staticresources/select2.resource
-src/staticresources/select2.resource-meta.xml
+src/tabs/SWOP.tab
 src/triggers/SOWAssetToProjectCalculatorV.trigger
 src/triggers/SOWAssetToProjectCalculatorV.trigger-meta.xml
 src/triggers/SOWMarketingSharing.trigger
+src/triggers/SOWMarketingSharing.trigger-meta.xml
 src/triggers/SOWProjectBusinessValueDriverScore.trigger
+src/triggers/SOWProjectBusinessValueDriverScore.trigger-meta.xml
 src/triggers/SOWSplitProjectAvoid.trigger
-src/triggers/SowAssetToProjectCalculator.trigger
-src/triggers/SowAssetToProjectCalculator.trigger-meta.xml
+src/triggers/SOWSplitProjectAvoid.trigger-meta.xml
 src/workflows/Marketing_SOW__c.workflow
+src/layouts/Asset_Scoring__c-Asset Scoring Layout.layout
+src/layouts/Asset_Scoring__c-Resource.layout
+src/layouts/MDO_BrandUser__c-Brand User Layout.layout
+src/layouts/Marketing_Agency__c-Marketing Agencies Layout.layout
+src/layouts/Marketing_Basics__c-Activity.layout
+src/layouts/Marketing_Basics__c-Resource.layout
+src/layouts/Marketing_SOW__c-Copy Marketing SOW Layout.layout
+src/layouts/Marketing_SOW__c-Marketing SOW Layout.layout
+src/layouts/Oblix_Calculator__c-BoxRange.layout
+src/layouts/Oblix_Calculator__c-Oblix Calculator Layout.layout
+src/layouts/Oblix_Calculator__c-Role Rate Card.layout
+src/layouts/Oblix_Marketing_Agency_Hubs__c-Marketing Agency Hubs Layout.layout
+src/layouts/Oblix_Marketing_SOW_Project_Splits__c-Marketing SOW Project Splits Layout.layout
+src/layouts/Oblix_Project_Assets__c-Agency Project Assets Layout.layout
+src/layouts/Oblix_Project_Assets__c-Audio Visual.layout
+src/layouts/Oblix_Project_Assets__c-Digital.layout
+src/layouts/Oblix_Project_Assets__c-Experiential.layout
+src/layouts/Oblix_Project_Assets__c-Static Imagery.layout
+src/layouts/Oblix_Project_Assets__c-Stimulus Materials %2F Research Requirements.layout
+src/layouts/Oblix_SOW_Projects__c-Agency Projects Layout.layout
 src/workflows/Oblix_SOW_Projects__c.workflow
