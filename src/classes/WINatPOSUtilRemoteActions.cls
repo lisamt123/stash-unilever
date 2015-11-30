@@ -38,6 +38,12 @@ public without sharing class WINatPOSUtilRemoteActions {
                 if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
                     urlToCategoryLogo=logoMatcher.group(1);
                 }
+                
+                // for community users we have to add Commmunity prefix to URL
+                //for internal users it have to be like it was oryginally 
+                if(urlToCategoryLogo != null && WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                    urlToCategoryLogo = urlToCategoryLogo.replace('/resource/', '/' + communityName + '/resource/');
+                }
             }
             categoryLineItems.add(new WINatPOSRemoteActionWrapper.MenuLineItemWrapper(category.Name, String.valueOf(category.Id), urlToCategoryLogo, category.Parent_Category_Name__c, category.Category_URL_Link__c, category.Category_URL_Link_2__c));
         }
@@ -50,14 +56,17 @@ public without sharing class WINatPOSUtilRemoteActions {
                 Matcher logoMatcher=logoPattern.matcher(brand.Brand_Logo__c);
                 if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
                     urlToBrandLogo=logoMatcher.group(1);
+                    
+                    // for community users we have to add Commmunity prefix to URL
+		            //for internal users it have to be like it was oryginally 
+		            if(urlToBrandLogo != null && WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+		            	urlToBrandLogo = urlToBrandLogo.replace('/resource/', '/' + communityName + '/resource/');
+		            }
                 }
+
             }
             
-            // for community users we have to add Commmunity prefix to URL
-            //for internal users it have to be like it was oryginally 
-            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
-            	urlToBrandLogo = urlToBrandLogo.replace('/resource/', '/' + communityName + '/resource/');
-            }
+            
             brandLineItems.add(new WINatPOSRemoteActionWrapper.MenuLineItemWrapper(brand.Name,String.valueOf(brand.Id),urlToBrandLogo,null));
         }
         
@@ -108,11 +117,10 @@ public without sharing class WINatPOSUtilRemoteActions {
                 String communityName = WINatPOSUtil.getCommunityName();
                 String fileUrl = asetItem.Files__r.get(0).Feed_Thumbnail_URL__c;
                 if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId()) && fileUrl != null){
-            		//fileUrl = fileUrl.replace('/resource/', '/' + communityName + '/resource/');
-                    if(!fileUrl.startsWith('/'+communityName)){
+                    if(!fileUrl.startsWith('/'+communityName) && !fileUrl.containsIgnoreCase('https')){
                         fileUrl = '/'+communityName+fileUrl;
                     }
-                }else if(fileUrl != null){
+                }else if(fileUrl != null && !fileUrl.containsIgnoreCase('https')){
                     fileUrl = fileUrl.replace('/' + communityName, '');
                 }
                 relatedFiles.add(fileUrl);
@@ -1567,7 +1575,7 @@ public without sharing class WINatPOSUtilRemoteActions {
                         if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
                             //retrive logo for category
                             urlToLogo=logoMatcher.group(1);
-                            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                            if( urlToLogo != null && WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
                             	urlToLogo = urlToLogo.replace('/resource/', '/' + communityName + '/resource/');
                             }
                         }
@@ -1601,7 +1609,7 @@ public without sharing class WINatPOSUtilRemoteActions {
                         if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
                             //retrive logo for brand
                             urlToLogo = logoMatcher.group(1);
-                            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                            if(urlToLogo != null && WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
                             	urlToLogo = urlToLogo.replace('/resource/', '/' + communityName + '/resource/');
                             }
                             
