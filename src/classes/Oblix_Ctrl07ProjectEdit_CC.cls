@@ -379,7 +379,7 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
     }
     public void setInfoStages() {
         Decimal totalPercentageThisYear = 0;
-        if(String.isEmpty(project.Projected_Stage__c) == false){
+        if(!String.isEmpty(project.Projected_Stage__c)){// == false
             Set<String> projectedStages = new Set<String>(project.Projected_Stage__c.split(','));
             System.debug('feePercentages: ' + JSON.serialize(feePercentages));
             System.debug('projectedStages: ' + JSON.serialize(projectedStages));

@@ -352,7 +352,7 @@ public with sharing class Oblix_Utils {
     private static String getProjectedItems2(String projected){
         
         List<String> projectedSetRetVal = new List<String>();
-        if(String.isEmpty(projected) == false){
+        if(!String.isEmpty(projected)){// == false
             
             Set<String> projectedSet = new Set<String>(projected.split(','));
             
@@ -373,7 +373,7 @@ public with sharing class Oblix_Utils {
     private static String getCompletedItems2(String completed){
         
         List<String> completedSetRetVal = new List<String>();
-        if(String.isEmpty(completed) == false){
+        if(!String.isEmpty(completed)){// == false
             
             Set<String> completedSet = new Set<String>(completed.split(','));
             
@@ -390,42 +390,7 @@ public with sharing class Oblix_Utils {
         return String.join(completedSetRetVal,',');
         
     }
-    
-    private static string getProjectedITems(String projected) {
-        string projcItems = '';
-        if (projected == Label.Oblix_Lbl_UIUX_Projected_Briefing) {
-            projcItems = PROJECT_BRIEFFING;
-        } else if (projected == Label.Oblix_Lbl_UIUX_Projected_Strategy_Planning) {
-            projcItems = PROJECT_BRIEFFING + ',' + Label.Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning;
-        } else if (projected == Label.Oblix_Lbl_UIUX_Projected_Creative_Ideation) {
-            projcItems = PROJECT_BRIEFFING + ',' + Label.Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning + ',' + Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Ideation;
-        } else if (projected == Label.Oblix_Lbl_UIUX_Projected_Creative_Execution) {
-            projcItems = PROJECT_BRIEFFING + ',' + Label.Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning + ',' + Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Ideation
-                         + ',' + Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Execution;
-        } else if (projected == Label.Oblix_Lbl_UIUX_Projected_Production) {
-            projcItems = PROJECT_BRIEFFING + ',' + Label.Oblix_Lbl_UIUX_Utils_Projected_Strategy_Planning + ',' + Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Ideation
-                         + ',' + Label.Oblix_Lbl_UIUX_Utils_Projected_Creative_Execution + ',' + Label.Oblix_Lbl_UIUX_Utils_Projected_Production;
-        }
-        return projcItems;
-    }
-
-    private static String getCompletedItems(String completed) {
-        string completItems = '';
-        if (Completed == Label.Oblix_Lbl_UIUX_Completed_Briefing) {
-            completItems = COMPLETED_BRIEFFING ;
-        } else if (Completed == Label.Oblix_Lbl_UIUX_Completed_Strategy_Planning) {
-            completItems = COMPLETED_BRIEFFING + ',' + Label.Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning;
-        } else if (Completed == Label.Oblix_Lbl_UIUX_Completed_Creative_Ideation) {
-            completItems = COMPLETED_BRIEFFING + ',' + Label.Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning + ',' + Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Ideation;
-        } else if (Completed == Label.Oblix_Lbl_UIUX_Completed_Creative_Execution) {
-            completItems = COMPLETED_BRIEFFING + ',' + Label.Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning + ',' + Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Ideation
-                           + ',' + Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Execution;
-        } else if (Completed == Label.Oblix_Lbl_UIUX_Completed_Production) {
-            completItems = COMPLETED_BRIEFFING + ',' + Label.Oblix_Lbl_UIUX_Utils_Completed_Strategy_Planning + ',' + Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Ideation
-                           + ',' + Label.Oblix_Lbl_UIUX_Utils_Completed_Creative_Execution + ',' + Label.Oblix_Lbl_UIUX_Utils_Completed_Production;
-        }
-        return completItems;
-    }
+   
 
     public static string getSelectedStageCheckbox(string projected, string Completed) {
         string lstProjectedItems = '';
