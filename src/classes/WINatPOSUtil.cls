@@ -46,7 +46,7 @@ public with sharing class WINatPOSUtil {
         keywordSearch    => new List<String>{'Categories','Asset Types','Channels','Clusters','Placement'},
         categorySearch   => new List<String>{'Brands','Asset Types','Channels','Clusters','Placement'},
         brandSearch      => new List<String>{'Categories','Asset Types','Channels','Clusters','Placement'},
-        bestPracticesSearch     => new List<String>{'Categories','Brands','Clusters','Countries'},
+        bestPracticesSearch		=> new List<String>{'Categories','Brands','Clusters','Countries'},
         innovationSearch => new List<String>{'Categories','Brands'},
         repetableSearch  => new List<String>{},
         ctaSearch => new List<String>{'Categories','Brands','Channels','Clusters','Placement'}    
@@ -54,7 +54,7 @@ public with sharing class WINatPOSUtil {
         
     //asset type translations from data model values to UI designe names      
     public static final Map<String,String> assetTypeTranslationFromDbToUI = new Map<String,String>{
-        'Masterbrand' => 'Brand Guideline',
+		'Masterbrand' => 'Brand Guideline',
         'Innovation'  => 'Innovation Guidelines',
         'Best Practices' => 'Best Practices',
         'Repeatable Model' =>'Repeatable Models',
@@ -63,19 +63,19 @@ public with sharing class WINatPOSUtil {
         
     //asset type translations from UI designe names to dat model values   
     public static final Map<String,String> assetTypeTranslationFromUIToDb = new Map<String,String>{
-        'Brand Guideline' => 'Masterbrand',
+		'Brand Guideline' => 'Masterbrand',
         'Innovation Guidelines' => 'Innovation',
         'Best Practices' => 'Best Practices',
         'Repeatable Models' => 'Repeatable Model',
         'Call To Action' => 'Call To Action'    
     };
     
-     /*******************************************************************
-    Purpose: Method return filters for asset used in search page 
-    Parameters: [String,String]
-    Returns: [String]
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
+	 /*******************************************************************
+	Purpose: Method return filters for asset used in search page 
+	Parameters: [String,String]
+	Returns: [String]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
     public static List<WINatPOSRemoteActionWrapper.FilterLineItemWrapper> getFiltersForAsset(String searchType,String brandId,String categoryId,String assetType,String assetChannel,String assetCluster,String assetPlacment,String country,String categoryName){
         //System.Debug('*** WINatPOS getFiltersForAsset input parameter: ' + brandId);
         
@@ -94,7 +94,7 @@ public with sharing class WINatPOSUtil {
                 Map<String,String> mapOfUniqCat=new Map<String,String>();
                 for(Category_Brands__c cat: [select Category__r.Name,Category__c,Category__r.Parent_Category_Name__c from Category_Brands__c order by Category__r.Name asc LIMIT 5000]){
                     if(!mapOfUniqCat.containsKey(cat.Category__c)){
-                        categoryFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions(cat.Category__c,cat.Category__r.Name,cat.Category__r.Parent_Category_Name__c));
+                    	categoryFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions(cat.Category__c,cat.Category__r.Name,cat.Category__r.Parent_Category_Name__c));
                         mapOfUniqCat.put(cat.Category__c,cat.Category__r.Name);
                     }    
                 }
@@ -126,7 +126,7 @@ public with sharing class WINatPOSUtil {
                 Map<String,String> mapOfUniqBrand=new Map<String,String>();
                 for(Category_Brands__c brand: [select Brand__r.Name,Brand__c from Category_Brands__c order by Brand__r.Name asc LIMIT 5000]){
                     if(!mapOfUniqBrand.containsKey(brand.Brand__c)){
-                        brandFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions(brand.Brand__c,brand.Brand__r.Name,null));
+                    	brandFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions(brand.Brand__c,brand.Brand__r.Name,null));
                         mapOfUniqBrand.put(brand.Brand__c,brand.Brand__r.Name);
                     }    
                 }
@@ -142,7 +142,7 @@ public with sharing class WINatPOSUtil {
             Schema.DescribeFieldResult fieldResultType = Asset__c.POS_Asset_Type__c.getDescribe();
             for(Schema.PicklistEntry f : fieldResultType.getPicklistValues()) {
                 if(!assetTypeTranslationFromDbToUI.containsKey(f.getValue())){
-                    assetTypesFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions(f.getValue(),f.getLabel(),null));
+                	assetTypesFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions(f.getValue(),f.getLabel(),null));
                 }else{
                     String translatedAssetType=assetTypeTranslationFromDbToUI.get(f.getValue());
                     assetTypesFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions(translatedAssetType,translatedAssetType,null));
@@ -162,8 +162,8 @@ public with sharing class WINatPOSUtil {
             String channelSelectedValue=assetChannel==null ? '': assetChannel;
             filterInfoList.add(new WINatPOSRemoteActionWrapper.FilterLineItemWrapper('Channels', true,channelsFilterOptions,channelSelectedValue));
         }
-        
-        if(WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.brandSearch == searchType || WINatPOSUtil.bestPracticesSearch == searchType || WINatPOSUtil.ctaSearch == searchType){        
+		
+		if(WINatPOSUtil.keywordSearch == searchType || WINatPOSUtil.categorySearch == searchType || WINatPOSUtil.brandSearch == searchType || WINatPOSUtil.bestPracticesSearch == searchType || WINatPOSUtil.ctaSearch == searchType){        
             List<WINatPOSRemoteActionWrapper.FilterOptions> clustersFilterOptions=new List<WINatPOSRemoteActionWrapper.FilterOptions>();
             clustersFilterOptions.add(new WINatPOSRemoteActionWrapper.FilterOptions('','All Clusters',null));
             Schema.DescribeFieldResult fieldResultMarket = Asset__c.Market_Cluster__c.getDescribe();
@@ -201,11 +201,11 @@ public with sharing class WINatPOSUtil {
         
     }
     /*******************************************************************
-    Purpose: Store the download URL on the file record to avoid querying the API for every file access event 
-    Parameters: [File__c]
-    Returns: []
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
+	Purpose: Store the download URL on the file record to avoid querying the API for every file access event 
+	Parameters: [File__c]
+	Returns: []
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
     public static void cacheFeedURL(File__c f) {
         try {
             ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, f.Feed_ID__c);
@@ -220,12 +220,12 @@ public with sharing class WINatPOSUtil {
     }
     
     /*******************************************************************
-    Purpose: Method resposible for inserting records to search statistics object 
+	Purpose: Method resposible for inserting records to search statistics object 
     used for reports porpouse
-    Parameters: [String brand,String category,String channels,String clusters,String keyword,String placement]
-    Returns: []
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
+	Parameters: [String brand,String category,String channels,String clusters,String keyword,String placement]
+	Returns: []
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
     public static void insertRecordToSearchStatistic(String brand,String category,String channels,String clusters,String keyword,String placement,String assetType,String country){
         
         String defineSearchType='';
@@ -233,7 +233,7 @@ public with sharing class WINatPOSUtil {
             if((brand != null && brand != '') || (category != null && category != '') || (channels != null && channels != '')  
                || (clusters != null && clusters != '')|| (placement != null && placement != '')
                || (assetType != null && assetType != '') || (country != null && country != '')){
-                defineSearchType  ='Combined';
+            	defineSearchType  ='Combined';
             }else{
                 defineSearchType = 'Keyword';
             }
@@ -250,12 +250,12 @@ public with sharing class WINatPOSUtil {
     
     
     /*******************************************************************
-    Purpose: Method resposible for paging search results 
+	Purpose: Method resposible for paging search results 
     used for reports porpouse
-    Parameters: [List<WINatPOSRemoteActionWrapper.AssetResultWrapper> searchResults, Integer pageSize,Integer pageNumber]
-    Returns: []
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
+	Parameters: [List<WINatPOSRemoteActionWrapper.AssetResultWrapper> searchResults, Integer pageSize,Integer pageNumber]
+	Returns: []
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
     public static List<WINatPOSRemoteActionWrapper.AssetResultWrapper> getResultsForPage(List<WINatPOSRemoteActionWrapper.AssetResultWrapper> searchResults, Integer pageSize,Integer pageNumber){
         System.Debug('*** WINatPOS getResultsForPage input parameter pageSize: ' + pageSize +' pageNumber: ' +pageNumber);
         if(!searchResults.isEmpty()){
@@ -279,14 +279,14 @@ public with sharing class WINatPOSUtil {
             return searchResults;
         }
     }
-    
-    /*******************************************************************
-    Purpose: Method resposible for returning applicable results to pdf search page  
+	
+	/*******************************************************************
+	Purpose: Method resposible for returning applicable results to pdf search page  
     used for reports porpouse
-    Parameters: [List<WINatPOSRemoteActionWrapper.AssetResultWrapper> searchResults, Integer pageSize,Integer pageNumber]
-    Returns: []
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
+	Parameters: [List<WINatPOSRemoteActionWrapper.AssetResultWrapper> searchResults, Integer pageSize,Integer pageNumber]
+	Returns: []
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
     public static List<WINatPOSRemoteActionWrapper.AssetResultWrapper> getResultsForPDFPage(List<WINatPOSRemoteActionWrapper.AssetResultWrapper> searchResults, Integer pageSize,Integer pageNumber){
         System.Debug('*** WINatPOS getResultsForPDFPage input parameter pageSize: ' + pageSize +' pageNumber: ' +pageNumber);
         if(!searchResults.isEmpty()){
@@ -312,12 +312,12 @@ public with sharing class WINatPOSUtil {
     }
     
     /*******************************************************************
-    Purpose: Helper method for sorting results in correct order under search resutl page 
+	Purpose: Helper method for sorting results in correct order under search resutl page 
     used for reports porpouse
-    Parameters: [List<WINatPOSRemoteActionWrapper.AssetResultWrapper> searchResults, Integer pageSize,Integer pageNumber]
-    Returns: []
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
+	Parameters: [List<WINatPOSRemoteActionWrapper.AssetResultWrapper> searchResults, Integer pageSize,Integer pageNumber]
+	Returns: []
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
     public static Integer getWeightForSorting(String type){
         if(type == null || type== ''){
             //if type is not specified always will be at the end of results
@@ -337,11 +337,11 @@ public with sharing class WINatPOSUtil {
     }
     
     /*******************************************************************
-    Purpose: Method is helper method to combine two list into one uniq list of assets.
-    Parameters: [List<Asset__c firstList,List<Asset__c> secondList]
-    Returns: [WINatPOSRemoteActionWrapper]
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
+	Purpose: Method is helper method to combine two list into one uniq list of assets.
+	Parameters: [List<Asset__c firstList,List<Asset__c> secondList]
+	Returns: [WINatPOSRemoteActionWrapper]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
     public static List<Asset__c> combineAssetsLists(List<Asset__c> firstList,List<Asset__c> secondList){
         System.Debug('*** WINatPOS combineAssetsLists input parameter first list: ' + firstList +' second list: ' +secondList);
         Map<id,Asset__c> finalListOfAssets=new Map<id,Asset__c>();
@@ -361,12 +361,12 @@ public with sharing class WINatPOSUtil {
     }
     
     /*******************************************************************
-    Purpose: Method is helper method to convert html text to plain text without
+	Purpose: Method is helper method to convert html text to plain text without
     any html tags 
-    Parameters: [String html]
-    Returns: [String]
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
+	Parameters: [String html]
+	Returns: [String]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
     public static string convertHtmlToPlainText(String html){
         //System.Debug('*** WINatPOS convertHtmlToPlainText input parameter html: ' + html);
          //first replace all <BR> tags with \n to support new lines
@@ -394,187 +394,209 @@ public with sharing class WINatPOSUtil {
     }
     
     /*******************************************************************
-    Purpose: Method is querying for Assets of Community user ( with sharing )
-    Parameters: [String query]
-    Returns: [List<Asset__c>]
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
+	Purpose: Method is querying for Assets of Community user ( with sharing )
+	Parameters: [String query]
+	Returns: [List<Asset__c>]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
     public static List<sObject> retrieveForCommunityUsers(String query){
-        System.Debug('*** WINatPOS retrieveForCommunityUsers input parameter query: ' + query );
-        return Database.query(query);
+    	System.Debug('*** WINatPOS retrieveForCommunityUsers input parameter query: ' + query );
+    	return Database.query(query);
     }
     
     /*******************************************************************
-    Purpose: Method is searching for Community user ( with sharing )
-    Parameters: [String query]
-    Returns: [List<List<SObject>>]
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
+	Purpose: Method is searching for Community user ( with sharing )
+	Parameters: [String query]
+	Returns: [List<List<SObject>>]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
     public static List<List<SObject>> searchForCommunityUsers(String query){
-        System.Debug('*** WINatPOS searchForCommunityUsers input parameter query: ' + query );
-        return Search.query(query);
+    	System.Debug('*** WINatPOS searchForCommunityUsers input parameter query: ' + query );
+    	return Search.query(query);
     }
     
      /*******************************************************************
-    Purpose: Method is querying for Brands for Community user ( with sharing )
-    Parameters: [List<Brand_Master__c> brands]
-    Returns: [List<Brand_Master__c>]
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
+	Purpose: Method is querying for Brands for Community user ( with sharing )
+	Parameters: [List<Brand_Master__c> brands]
+	Returns: [List<Brand_Master__c>]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
     public static List<Brand_Master__c> getBrandForCaruselByList(List<Brand_Master__c> brands){
-        System.Debug('*** WINatPOS searchForCommunityUsers input parameter brands: ' + brands );
-            
-        return [select name,Brand_Logo__c,id,
+    	System.Debug('*** WINatPOS searchForCommunityUsers input parameter brands: ' + brands );
+    		
+		return [select name,Brand_Logo__c,id,
                     (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
                     (Select Feed_URL__c, Name,Feed_ID__c,id From Files__r order by Name asc)
                      from Brand_Master__c where id in : brands order by name];
-    }
-    
-    
-    /*******************************************************************
-    Purpose: Method is querying for Categories for Community user ( with sharing )
-    Parameters: [List<Category__c> categories]
-    Returns: [List<Category__c>]
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/   
-    public static List<Category__c> getCatForCaruselByList(List<Category__c> categories){
-        System.Debug('*** WINatPOS searchForCommunityUsers input parameter categories: ' + categories );
-        
-        return [SELECT name,Category_Logo__c,id,
+	}
+	
+	
+	/*******************************************************************
+	Purpose: Method is querying for Categories for Community user ( with sharing )
+	Parameters: [List<Category__c> categories]
+	Returns: [List<Category__c>]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/	
+	public static List<Category__c> getCatForCaruselByList(List<Category__c> categories){
+		System.Debug('*** WINatPOS searchForCommunityUsers input parameter categories: ' + categories );
+		
+		return [SELECT name,Category_Logo__c,id,
                     (SELECT ParentId, SubscriberId FROM FeedSubscriptionsForEntity WHERE SubscriberId =: UserInfo.getUserId()),
                     (SELECT Feed_URL__c, Name,Feed_ID__c,id FROM CategoryUploads__r ORDER BY Name ASC)
                      FROM Category__c WHERE Id IN : categories ORDER BY name];
-    }
-    
-    /*******************************************************************
-    Purpose: Method is querying for Assets for Home page for Community user ( with sharing )
-    Parameters: [optional]
-    Returns: [List<Category__c>]
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/   
-    public static List<Asset__c> getAssetsForHomePage(){
-        System.Debug('*** WINatPOS getAssetsForHomePage ' );
-        return [select id,Name,POS_Asset_Type__c,Description__c,LastModifiedDate, Video_URL_Link__c,
+	}
+	
+	/*******************************************************************
+	Purpose: Method is querying for Assets for Home page for Community user ( with sharing )
+	Parameters: [optional]
+	Returns: [List<Category__c>]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/	
+	public static List<Asset__c> getAssetsForHomePage(){
+		System.Debug('*** WINatPOS getAssetsForHomePage ' );
+		return [select id,Name,POS_Asset_Type__c,Description__c,LastModifiedDate, Video_URL_Link__c,
                                      (Select Feed_Thumbnail_URL__c,Feed_Id__c from Files__r where Is_Primary_Image__c=true),
                                      (select CommentCount, LikeCount,id from Feeds)
                                      From Asset__c where Carousel_Published__c=true
                                      ];
-    }
-    
-    /*******************************************************************
-    Purpose: Method returns Community name specified in Custom Setting
-    Returns: [String]
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/   
-    public static String getCommunityName(){
-        System.Debug('*** WINatPOS getCommunityName ' );
-        
-        WinAtPos_General_Settings__c myCustomSetting = WinAtPos_General_Settings__c.getOrgDefaults();
-        
-        String communityName = '';
-        
-        if(myCustomSetting != null && myCustomSetting.Community_Name__c != null){
-            communityName = myCustomSetting.Community_Name__c;
-        }
-        
-        return communityName;
-    }
+	}
+	
+	/*******************************************************************
+	Purpose: Method returns Community name specified in Custom Setting
+	Returns: [String]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/	
+	public static String getCommunityName(){
+		System.Debug('*** WINatPOS getCommunityName ' );
+		
+		WinAtPos_General_Settings__c myCustomSetting = WinAtPos_General_Settings__c.getOrgDefaults();
+		
+		String communityName = '';
+		
+		if(myCustomSetting != null && myCustomSetting.Community_Name__c != null){
+			communityName = myCustomSetting.Community_Name__c;
+		}
+		
+		return communityName;
+	}
    
    /*******************************************************************
-    Purpose: Method is checking wheather given user is a Community User or not
-    Parameters: [String myUser]
-    Returns: [Boolean]
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
+	Purpose: Method is checking wheather given user is a Community User or not
+	Parameters: [String myUser]
+	Returns: [Boolean]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
    public static Boolean checkIsCommunityUser(Id userId, Id userProfileId){
-        System.Debug('*** WINatPOS checkIsCommunityUser input parameter userId: ' + userId + ' userProfileId: ' + userProfileId );
-        /*
-        List<User> tmpUser = [SELECT User_License__c, ProfileId FROM User WHERE Id=:userId AND ProfileId =:userProfileId  LIMIT 1];
-        //List<Profile> tmpProfile = [SELECT Name FROM Profile WHERE Id = :userProfileId LIMIT 1];
-        
-        //if(!tmpUser.isEmpty() && !tmpProfile.isEmpty()){
-        if(!tmpUser.isEmpty()){
-            //if(tmpUser[0].User_License__c == WINatPOSUtil.USER_LICENSE_PARTNER_COMMUNITY && tmpProfile[0].Name == WINatPOSUtil.USER_PROFILE_AGENCY_PORTAL_USER){
-            if(tmpUser[0].User_License__c == WINatPOSUtil.USER_LICENSE_PARTNER_COMMUNITY ){
-                return true;
-            }
-        }*/
-        
-        return Network.getNetworkId() != null;
+   		System.Debug('*** WINatPOS checkIsCommunityUser input parameter userId: ' + userId + ' userProfileId: ' + userProfileId );
+   		/*
+		List<User> tmpUser = [SELECT User_License__c, ProfileId FROM User WHERE Id=:userId AND ProfileId =:userProfileId  LIMIT 1];
+		//List<Profile> tmpProfile = [SELECT Name FROM Profile WHERE Id = :userProfileId LIMIT 1];
+		
+		//if(!tmpUser.isEmpty() && !tmpProfile.isEmpty()){
+		if(!tmpUser.isEmpty()){
+			//if(tmpUser[0].User_License__c == WINatPOSUtil.USER_LICENSE_PARTNER_COMMUNITY && tmpProfile[0].Name == WINatPOSUtil.USER_PROFILE_AGENCY_PORTAL_USER){
+			if(tmpUser[0].User_License__c == WINatPOSUtil.USER_LICENSE_PARTNER_COMMUNITY ){
+				return true;
+			}
+		}*/
+		
+		return Network.getNetworkId() != null;
    }
    
    /*******************************************************************
-    Purpose: Method is handlig granting sharings for Assets
-    Parameters: [Asset__c myAsset]
-    Returns: [void]
-    Throws [Exceptions]: [optional] 
-    ********************************************************************/
-    public static void handleAssetAgenciesShares(List<Asset__c> myAssetList){
-        
-        System.Debug('*** WINatPOS handleAssetAgenciesShares input parameter myAssetList: ' + myAssetList);
-        
-        List<Asset__Share> editSharesToInsert = new List<Asset__Share>();
-        List<Asset__Share> viewSharesToInsert = new List<Asset__Share>();
-        //List<Asset__Share> sharesToDelete = new List<Asset__Share>();
+	Purpose: Method is handlig granting sharings for Assets
+	Parameters: [Asset__c myAsset]
+	Returns: [void]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
+	public static void handleAssetAgenciesShares(List<Asset__c> myAssetList){
+		
+		System.Debug('*** WINatPOS handleAssetAgenciesShares input parameter myAssetList: ' + myAssetList);
+		
+		List<Asset__Share> editSharesToInsert = new List<Asset__Share>();
+		List<Asset__Share> viewSharesToInsert = new List<Asset__Share>();
+		//List<Asset__Share> sharesToDelete = new List<Asset__Share>();
 
-        Set<String> publicGroupsToAdd = new Set<String>();
-        Map<Id, List<String>> assetIdToEditPublicGroupsList = new Map<Id, List<String>>();
-        Map<Id, List<String>> assetIdToViewPublicGroupsList = new Map<Id, List<String>>();
-        Map<String, Group> groupNameToObject = new Map<String, Group>();
-        
-        for(Asset__c myAsset : myAssetList){
-            if(!String.isBlank(myAsset.Agency_Edit_Access_Text__c)){
-                assetIdToEditPublicGroupsList.put(myAsset.Id, myAsset.Agency_Edit_Access_Text__c.split(';'));
-                publicGroupsToAdd.addAll(myAsset.Agency_Edit_Access_Text__c.split(';'));
-            }
-            if(!String.isBlank(myAsset.Agency_Read_Access_Text__c)){
-                assetIdToViewPublicGroupsList.put(myAsset.Id, myAsset.Agency_Read_Access_Text__c.split(';'));
-                publicGroupsToAdd.addAll(myAsset.Agency_Read_Access_Text__c.split(';'));
-            }
-        }
-        
-        for(Group myTmpGroup : [SELECT Name, ID FROM Group WHERE Name IN :publicGroupsToAdd]){
-            groupNameToObject.put(myTmpGroup.Name, myTmpGroup);
-        }
+		Set<String> publicGroupsToAdd = new Set<String>();
+		Map<Id, List<String>> assetIdToEditPublicGroupsList = new Map<Id, List<String>>();
+		Map<Id, List<String>> assetIdToViewPublicGroupsList = new Map<Id, List<String>>();
+		Map<String, Group> groupNameToObject = new Map<String, Group>();
+		
+		for(Asset__c myAsset : myAssetList){
+			if(!String.isBlank(myAsset.Agency_Edit_Access_Text__c)){
+				assetIdToEditPublicGroupsList.put(myAsset.Id, myAsset.Agency_Edit_Access_Text__c.split(';'));
+				publicGroupsToAdd.addAll(myAsset.Agency_Edit_Access_Text__c.split(';'));
+			}
+			if(!String.isBlank(myAsset.Agency_Read_Access_Text__c)){
+				assetIdToViewPublicGroupsList.put(myAsset.Id, myAsset.Agency_Read_Access_Text__c.split(';'));
+				publicGroupsToAdd.addAll(myAsset.Agency_Read_Access_Text__c.split(';'));
+			}
+		}
+		
+		for(Group myTmpGroup : [SELECT Name, ID FROM Group WHERE Name IN :publicGroupsToAdd]){
+			groupNameToObject.put(myTmpGroup.Name, myTmpGroup);
+		}
 
-        for(Asset__c myAsset : myAssetList){
-            
-            //get Groups that should be updated - edit
-            if(assetIdToEditPublicGroupsList.containsKey(myAsset.Id)){
-                for(String groupName : assetIdToEditPublicGroupsList.get(myAsset.Id)){
-                    if(groupNameToObject.containsKey(groupName)){
-                        editSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Edit'));
-                    }
-                }
-            }
-            
-            //get Groups that should be updated - view
-            if(assetIdToViewPublicGroupsList.containsKey(myAsset.Id)){
-                for(String groupName : assetIdToViewPublicGroupsList.get(myAsset.Id)){
-                    if(groupNameToObject.containsKey(groupName)){
-                        viewSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Read'));
-                    }
-                }
-            }
-        }
-        
-        List<Group> winAtPosPublicGroups = [SELECT Name, Id FROM Group WHERE Name like 'Win@POS%' ORDER BY Name];
-        
-        Savepoint sp = Database.setSavepoint();
-        
-        try{
-            //crean up old sharings for WinatPOS Public Groups
-            delete [SELECT Id FROM Asset__Share WHERE ParentId IN :myAssetList AND UserOrGroupId IN :winAtPosPublicGroups];
-            
-            
-            //insert new sharings
-            insert viewSharesToInsert;
-            insert editSharesToInsert;
-        }catch(Exception ex){
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, ex.getMessage()));
-            // Rollback any changes
+		for(Asset__c myAsset : myAssetList){
+			
+			//get Groups that should be updated - edit
+			if(assetIdToEditPublicGroupsList.containsKey(myAsset.Id)){
+				for(String groupName : assetIdToEditPublicGroupsList.get(myAsset.Id)){
+					if(groupNameToObject.containsKey(groupName)){
+						editSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Edit'));
+					}
+				}
+			}
+			
+			//get Groups that should be updated - view
+			if(assetIdToViewPublicGroupsList.containsKey(myAsset.Id)){
+				for(String groupName : assetIdToViewPublicGroupsList.get(myAsset.Id)){
+					if(groupNameToObject.containsKey(groupName)){
+						viewSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Read'));
+					}
+				}
+			}
+		}
+		
+		List<Group> winAtPosPublicGroups = [SELECT Name, Id FROM Group WHERE Name like 'Win@POS%' ORDER BY Name];
+		
+		Savepoint sp = Database.setSavepoint();
+		
+		try{
+			//crean up old sharings for WinatPOS Public Groups
+			delete [SELECT Id FROM Asset__Share WHERE ParentId IN :myAssetList AND UserOrGroupId IN :winAtPosPublicGroups];
+			
+			
+			//insert new sharings
+			insert viewSharesToInsert;
+			insert editSharesToInsert;
+		}catch(Exception ex){
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, ex.getMessage()));
+        	// Rollback any changes
             Database.rollback(sp);
+		}
+		
+	}
+    
+    /*******************************************************************
+	Purpose: Method is handlig url rewriting basing on who uploaded the file
+	Parameters: [Asset__c myAsset]
+	Returns: [void]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
+    
+    public static String urlRewrite(String originUrl){
+        System.Debug('*** WINatPOS urlRewrite input parameter originUrl: ' + originUrl);
+        String communityName = WINatPOSUtil.getCommunityName();
+        String fileUrl = originUrl;
+        if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId()) && fileUrl != null){
+            if(!fileUrl.startsWith('/'+communityName) && !fileUrl.containsIgnoreCase('https')){
+                fileUrl = '/'+communityName+fileUrl;
+            }
+        }else if(fileUrl != null && !fileUrl.containsIgnoreCase('https')){
+            fileUrl = fileUrl.replace('/' + communityName, '');
         }
-        
+        System.debug('*** WINatPOS urlRewrite input parameter originUrl: ' + fileUrl);
+        return fileUrl;
     }
 }

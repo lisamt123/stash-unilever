@@ -82,6 +82,7 @@ src/permissionsets/WIN_POS_Agency_User.permissionset
 src/permissionsets/WIN_POS_Publisher.permissionset
 src/permissionsets/WIN_POS_System_Admin.permissionset
 src/permissionsets/WIN_POS_Viewer.permissionset
+src/profiles/CD Portal User.profile
 src/siteDotComSites/Customer_Development_C.site
 src/siteDotComSites/Customer_Development_C.site-meta.xml
 src/sites/Customer_Development.site

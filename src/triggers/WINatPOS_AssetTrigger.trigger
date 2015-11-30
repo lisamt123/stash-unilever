@@ -15,11 +15,11 @@ trigger WINatPOS_AssetTrigger on Asset__c (after insert, after update) {
 
     if(Trigger.isAfter){
         if(Trigger.isInsert){
-            WINatPOSUtil.handleAssetAgenciesShares(Trigger.new);
+            WINatPOSUtilRemoteActions.handleAssetAgenciesShares(Trigger.new);
         }
         
         if(Trigger.isUpdate){
-            WINatPOSUtil.handleAssetAgenciesShares(Trigger.new);
+            WINatPOSUtilRemoteActions.handleAssetAgenciesShares(Trigger.new);
         }
     }
 }
