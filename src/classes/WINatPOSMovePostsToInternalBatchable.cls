@@ -27,7 +27,7 @@ global with sharing class WINatPOSMovePostsToInternalBatchable implements Databa
       Id extentalGlobalWinAtPostID = colGroup.isEmpty() ? null:	colGroup .get(0).Id;
       String visibility ='AllUsers';
       String networkScope = 'AllNetworks';  
-      return Database.getQueryLocator('select Body, ContentData, ContentDescription, ContentFileName,CreatedById, CreatedDate, LinkUrl, Title,ParentID, Type from FeedItem Where Visibility =:visibility and NetworkScope =:networkScope and CreatedDate>=Yesterday order by CreatedDate ASC');
+      return Database.getQueryLocator('select Body, ContentData, ContentDescription, ContentFileName,CreatedById, CreatedDate, LinkUrl, Title,ParentID, Type,CreatedBy.Name,Id from FeedItem Where Visibility =:visibility and NetworkScope =:networkScope and CreatedDate>=Yesterday order by CreatedDate ASC');
    }
     
     /*******************************************************************
@@ -47,7 +47,7 @@ global with sharing class WINatPOSMovePostsToInternalBatchable implements Databa
       	Id internalGlobalWinAtPostID = colGroup.isEmpty() ? null:colGroup .get(0).Id;
         
         List<FeedItem> feedsToInsert = new List<FeedItem>();
-        Map<Id,User> ogrinalPostUsers = new Map<Id,User>();
+        Map<Id,String> ogrinalPostUsersAccount = new Map<Id,String>();
         Set<String> fieldsToClone = new Set<String>{'Title', 'Type','ContentData', 'ContentDescription', 'ContentFileName','CreatedById','CreatedDate','LinkUrl'};
         for(FeedItem item : (List<FeedItem>)scope){
         	//feedsToInsert.add(item.clone(false,true));
@@ -69,11 +69,45 @@ global with sharing class WINatPOSMovePostsToInternalBatchable implements Databa
             String elementBody = removeHtml(item.Body);
             //replace html markups
             elementBody = elementBody.unescapeHtml4();
+            String orginallyPosted = ' originally posted by '+item.CreatedBy.Name;
             if(elementBody.containsIgnoreCase('@'+winAtPosGroup)){
-            	makeMention(elementBody,item.ParentId,internalGlobalWinAtPostID);
+                feedsToInsert.add(item);
+                ogrinalPostUsersAccount.put(item.CreatedById,null);
+            	//makeMention(elementBody,item.ParentId,internalGlobalWinAtPostID);
             }    
         }
+        if(!ogrinalPostUsersAccount.isEmpty()){
+            Map<Id,User> userVsContactMap = new Map<Id,User>([SELECT id,ContactId FROM User Where id in : ogrinalPostUsersAccount.keySet()]);
+            //retrive contactId's
+            Map<Id,Id> userVsContactId =  new Map<Id,Id>();
+            for(User u : userVsContactMap.values()){
+				userVsContactId.put(u.id,u.ContactId);    
+            }
+            
+            Map<Id,String> contactVsAccountName = new Map<Id,String>();
+            for(Contact c :[select AccountId,Account.Name,Id from Contact Where id in : userVsContactId.values()]){
+                if(c.Account.Name != null){
+                    contactVsAccountName.put(c.id,c.Account.Name);
+                }else{
+                    contactVsAccountName.put(c.id,'');
+                }
+            }
+            for(FeedItem item : feedsToInsert){
+            	String elementBody = removeHtml(item.Body);
+                //replace html markups
+                elementBody = elementBody.unescapeHtml4();
+                String orginallyPosted = ' originally posted by '+item.CreatedBy.Name;
+                Id relatedContact = userVsContactId.get(item.CreatedById);
+                if(relatedContact != null){
+                    orginallyPosted += ', '+contactVsAccountName.get(relatedContact);
+                }
+                if(elementBody.containsIgnoreCase('@'+winAtPosGroup)){
+                    makeMention(elementBody+orginallyPosted,item.ParentId,internalGlobalWinAtPostID);
+                }           
+            }
+            
         
+        }
         
        // insert feedsToInsert;
         system.debug('following records where added:'+feedsToInsert);
