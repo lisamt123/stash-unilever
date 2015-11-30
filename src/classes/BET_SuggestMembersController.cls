@@ -258,13 +258,20 @@ public with sharing class BET_SuggestMembersController {
     *************************************************************/
     public void addNewMembers(){
         System.debug('Entering method addNewMembers following users will be added:'+newlyAddedUsers);
+        Set<Id> membersSet = new Set<Id>();
+        membersSet.addAll(suggested_MembersCtrl);
         if(newlyAddedUsers != null){
             for(String userToAdd : newlyAddedUsers.split(',')){
                 if(userToAdd != null && userToAdd.trim() != ''){
-                    suggested_MembersCtrl.add(Id.valueOf(userToAdd)); 
+                    if(!membersSet.contains(Id.valueOf(userToAdd))) {
+                        suggested_MembersCtrl.add(Id.valueOf(userToAdd));
+                    } 
                 }
             }
         }
+
+        System.debug('add new members ' + suggested_MembersCtrl);
+
         newlyAddedUsers = '';
         freeAddMembers = new List<User>();
         searchUserName = '';

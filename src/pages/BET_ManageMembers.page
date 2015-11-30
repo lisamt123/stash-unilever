@@ -218,13 +218,26 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               <apex:outputText value="{!memberRequest.projectName }"/>
             </td>
             <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
-              <apex:commandLink action="{!doApprove}" value="{!$Label.BET_Approve}">
+
+              <apex:commandButton action="{!doApprove}" value="{!$Label.BET_Approve}" styleClass="buttong2y" 
+                                  style="background: #e6007e; color:white;position: relative; left: -20px;" rerender="memberpage">
+                  <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
+              </apex:commandButton>
+
+
+              <apex:commandButton action="{!doDeny}" value="{!$Label.BET_Delete}" styleClass="buttong2y" 
+                                 style="background: #e6007e; color:white;position: relative;top: -27px;left: 25px;" rerender="memberpage">
+                <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
+              </apex:commandButton>
+
+              <!--<apex:commandLink action="{!doApprove}" value="{!$Label.BET_Approve}">
                 <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
               </apex:commandLink>
               &nbsp;|&nbsp; 
               <apex:commandLink action="{!doDeny}" value="{!$Label.BET_Deny}">
                 <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
-              </apex:commandLink>
+              </apex:commandLink>-->
+
             </td>
           </tr>
         </apex:repeat>
