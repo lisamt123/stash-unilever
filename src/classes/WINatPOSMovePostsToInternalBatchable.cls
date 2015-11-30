@@ -96,11 +96,12 @@ global with sharing class WINatPOSMovePostsToInternalBatchable implements Databa
             	String elementBody = removeHtml(item.Body);
                 //replace html markups
                 elementBody = elementBody.unescapeHtml4();
-                String orginallyPosted = ' originally posted by '+item.CreatedBy.Name;
+                String orginallyPosted = ' (originally posted by '+item.CreatedBy.Name;
                 Id relatedContact = userVsContactId.get(item.CreatedById);
                 if(relatedContact != null){
                     orginallyPosted += ', '+contactVsAccountName.get(relatedContact);
                 }
+                orginallyPosted +=')';
                 if(elementBody.containsIgnoreCase('@'+winAtPosGroup)){
                     makeMention(elementBody+orginallyPosted,item.ParentId,internalGlobalWinAtPostID);
                 }           
