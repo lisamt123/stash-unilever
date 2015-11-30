@@ -186,96 +186,96 @@ public class IPM_HomePageController_Test{
             update updatedDocument;
             System.assertEquals(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS , [Select Id, IPM_Document_Status__c from IPM_Project_Document__c limit 1000][0].IPM_Document_Status__c, 'Project Document Status changed' );
             
-	        List<IPM_Project__c> dBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c from IPM_Project__c where IPMProject_Span__c = 'Regional'];  
-	        
-	            
-	        Map<Id,IPM_Milestone__c>  mileStoneMap = new Map<Id,IPM_Milestone__c>([Select IPM_Project__r.BET_MS_First_Release_Date__c,RecordTypeId,Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c] );
-	        
-	        Id recordtypeid;
-	        if(Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId() != null){
-	            recordtypeid=Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId();
-	        }
-	         
-	        List<IPM_Milestone__c> updateMilestoneList = new List<IPM_Milestone__c>();
-	        List<IPM_Milestone__c> ipmMileStoneList = new List<IPM_Milestone__c>();
-	        
-	        for(IPM_Milestone__c eachMilestone: mileStoneMap.values())
-	        {
-	            if(eachMilestone.IPM_Type_of_Milestone__c == IPM_Utils.Standard && eachMilestone.RecordTypeId == recordtypeid)
-	        	{
-	        		eachMilestone.IPM_Planned_Date__c=System.today()+5;
-	        		eachMilestone.IPM_Due_Date__c =  System.today()+5;
-	        		updateMilestoneList.add(eachMilestone);
-	        	}
-	         }  
-	            
-	        update updateMilestoneList;
-	        
-	        IPM_Milestone__c dueDateTodayMilestone = IPM_TestFactory_Helper.createIPMMilestone(dBRegionalProjects[0].Id, false);
-	        dueDateTodayMilestone.RecordTypeId = recordtypeid;    
-	        dueDateTodayMilestone.IPM_Due_Date__c =  System.today();
-	        dueDateTodayMilestone.IPM_Planned_Date__c=System.today() ;
-	        dueDateTodayMilestone.IPM_Type_of_Milestone__c = IPM_Utils.Standard;
-	        dueDateTodayMilestone.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
-	        ipmMileStoneList.add(dueDateTodayMilestone);
-	        
-	        IPM_Milestone__c pastMilestone = IPM_TestFactory_Helper.createIPMMilestone(dBRegionalProjects[0].Id, false);
-	        pastMilestone.RecordTypeId = recordtypeid;
-	        pastMilestone.IPM_Type_of_Milestone__c = IPM_Utils.Standard;
-	        pastMilestone.IPM_Planned_Date__c=System.today() - 4 ;
-	        pastMilestone.IPM_Due_Date__c = System.today() - 4 ;
-	        pastMilestone.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
-	        ipmMileStoneList.add(pastMilestone);
-	        
-	        IPM_Milestone__c betMilestoneFirstRelease = IPM_TestFactory_Helper.createIPMMilestone(dBRegionalProjects[0].Id, false);
-	        betMilestoneFirstRelease.IPM_Name__c = 'BETFirstRelease';    
-	        betMilestoneFirstRelease.IPM_Due_Date__c =  System.today()+5;
-	        betMilestoneFirstRelease.IPM_Planned_Date__c=System.today()+5 ;
-	        betMilestoneFirstRelease.IPM_Type_of_Milestone__c = IPM_ConstantUtils.BET;
-	        ipmMileStoneList.add(betMilestoneFirstRelease);
-	        
-	        IPM_Milestone__c betMilestoneFinalRelease = IPM_TestFactory_Helper.createIPMMilestone(dBRegionalProjects[0].Id, false);
-	        betMilestoneFinalRelease.IPM_Name__c = 'BETFinalRelease';    
-	        betMilestoneFinalRelease.IPM_Due_Date__c =  System.today()+5;
-	        betMilestoneFinalRelease.IPM_Planned_Date__c=System.today()+5 ;
-	        betMilestoneFinalRelease.IPM_Type_of_Milestone__c = IPM_ConstantUtils.BET;
-	        ipmMileStoneList.add(betMilestoneFinalRelease);
-	        
-	        insert ipmMileStoneList;
-	        iDs.clear();
-        	for(IPM_Milestone__c eachMilestone : ipmMileStoneList) {
-            	iDs.add(eachMilestone.id);
-        	}
-	        System.assertEquals(4, [Select count() from IPM_Milestone__c where id IN: iDs],MILESTONE_CREATED);
-	        
-	        IPM_HomePageController iHp = new IPM_HomePageController();
-	      
-	      	for(String values:iHp.betMsgFirstReleaseDueDate)
-	        {
-	            system.assert(values.contains(IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1),'Alert is shown as BET First release date is due in 15 days. ');
-	        }
-	            
-	        for(String values:iHp.betMsgFinalReleaseDueDate)
-	        {
-	           system.assert(values.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),'Alert is shown as BET Final release date is due in 15 days. ');
-	        }
-	        
-	        for(String values:iHp.alertMessageDueDatePast.values())
-	        {
-	           system.assert(values.contains(System.Label.IPM_DUE_DATE_FOR),'Alert is shown for milestone due date in the past.');
-	        }   
-	            
-	        for(String values:iHp.alertMessageDueDateApproaching.values())
-	        {
-	           system.assert(values.contains(IPM_Utils.dueIN),'Alert is shown for milestone due date is approaching in 21 days.');
-	        }   
-	             
-	        for(String values:iHp.alertMessageDueDateToday.values())
-	        {
-	            system.assert(values.contains(PLANNED_STR),'Alert is shown for milestone due date is today.');
-	        }
-	        
-	        System.assert(Integer.valueOf(iHp.getTaskcountValue()) > 0);
+            List<IPM_Project__c> dBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c from IPM_Project__c where IPMProject_Span__c = 'Regional'];  
+            
+                
+            Map<Id,IPM_Milestone__c>  mileStoneMap = new Map<Id,IPM_Milestone__c>([Select IPM_Project__r.BET_MS_First_Release_Date__c,RecordTypeId,Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c limit 1000] );
+            
+            Id recordtypeid;
+            if(Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId() != null){
+                recordtypeid=Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId();
+            }
+             
+            List<IPM_Milestone__c> updateMilestoneList = new List<IPM_Milestone__c>();
+            List<IPM_Milestone__c> ipmMileStoneList = new List<IPM_Milestone__c>();
+            
+            for(IPM_Milestone__c eachMilestone: mileStoneMap.values())
+            {
+                if(eachMilestone.IPM_Type_of_Milestone__c == IPM_Utils.Standard && eachMilestone.RecordTypeId == recordtypeid)
+                {
+                    eachMilestone.IPM_Planned_Date__c=System.today()+5;
+                    eachMilestone.IPM_Due_Date__c =  System.today()+5;
+                    updateMilestoneList.add(eachMilestone);
+                }
+             }  
+                
+            update updateMilestoneList;
+            
+            IPM_Milestone__c dueDateTodayMilestone = IPM_TestFactory_Helper.createIPMMilestone(dBRegionalProjects[0].Id, false);
+            dueDateTodayMilestone.RecordTypeId = recordtypeid;    
+            dueDateTodayMilestone.IPM_Due_Date__c =  System.today();
+            dueDateTodayMilestone.IPM_Planned_Date__c=System.today() ;
+            dueDateTodayMilestone.IPM_Type_of_Milestone__c = IPM_Utils.Standard;
+            dueDateTodayMilestone.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+            ipmMileStoneList.add(dueDateTodayMilestone);
+            
+            IPM_Milestone__c pastMilestone = IPM_TestFactory_Helper.createIPMMilestone(dBRegionalProjects[0].Id, false);
+            pastMilestone.RecordTypeId = recordtypeid;
+            pastMilestone.IPM_Type_of_Milestone__c = IPM_Utils.Standard;
+            pastMilestone.IPM_Planned_Date__c=System.today() - 4 ;
+            pastMilestone.IPM_Due_Date__c = System.today() - 4 ;
+            pastMilestone.IPM_Phase__c = IPM_ConstantUtils.FEASIBILITY_PHASE;
+            ipmMileStoneList.add(pastMilestone);
+            
+            IPM_Milestone__c betMilestoneFirstRelease = IPM_TestFactory_Helper.createIPMMilestone(dBRegionalProjects[0].Id, false);
+            betMilestoneFirstRelease.IPM_Name__c = 'BETFirstRelease';    
+            betMilestoneFirstRelease.IPM_Due_Date__c =  System.today()+5;
+            betMilestoneFirstRelease.IPM_Planned_Date__c=System.today()+5 ;
+            betMilestoneFirstRelease.IPM_Type_of_Milestone__c = IPM_ConstantUtils.BET;
+            ipmMileStoneList.add(betMilestoneFirstRelease);
+            
+            IPM_Milestone__c betMilestoneFinalRelease = IPM_TestFactory_Helper.createIPMMilestone(dBRegionalProjects[0].Id, false);
+            betMilestoneFinalRelease.IPM_Name__c = 'BETFinalRelease';    
+            betMilestoneFinalRelease.IPM_Due_Date__c =  System.today()+5;
+            betMilestoneFinalRelease.IPM_Planned_Date__c=System.today()+5 ;
+            betMilestoneFinalRelease.IPM_Type_of_Milestone__c = IPM_ConstantUtils.BET;
+            ipmMileStoneList.add(betMilestoneFinalRelease);
+            
+            insert ipmMileStoneList;
+            iDs.clear();
+            for(IPM_Milestone__c eachMilestone : ipmMileStoneList) {
+                iDs.add(eachMilestone.id);
+            }
+            System.assertEquals(4, [Select count() from IPM_Milestone__c where id IN: iDs],MILESTONE_CREATED);
+            
+            IPM_HomePageController iHp = new IPM_HomePageController();
+          
+            for(String values:iHp.betMsgFirstReleaseDueDate)
+            {
+                system.assert(values.contains(IPM_ConstantUtils.BET_FIRST_RELEASE_MESSAGE_STR1),'Alert is shown as BET First release date is due in 15 days. ');
+            }
+                
+            for(String values:iHp.betMsgFinalReleaseDueDate)
+            {
+               system.assert(values.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),'Alert is shown as BET Final release date is due in 15 days. ');
+            }
+            
+            for(String values:iHp.alertMessageDueDatePast.values())
+            {
+               system.assert(values.contains(System.Label.IPM_DUE_DATE_FOR),'Alert is shown for milestone due date in the past.');
+            }   
+                
+            for(String values:iHp.alertMessageDueDateApproaching.values())
+            {
+               system.assert(values.contains(IPM_Utils.dueIN),'Alert is shown for milestone due date is approaching in 21 days.');
+            }   
+                 
+            for(String values:iHp.alertMessageDueDateToday.values())
+            {
+                system.assert(values.contains(PLANNED_STR),'Alert is shown for milestone due date is today.');
+            }
+            
+            System.assert(Integer.valueOf(iHp.getTaskcountValue()) > 0);
        }
      }      
     /**

@@ -66,7 +66,7 @@ public with sharing class IPM_MyProjects{
                                             or IPM_Project_Gatekeeper__c = : UserInfo.getUserId() or IPM_Finance_Member__c = : UserInfo.getUserId() 
                                             or IPM_Bosscard__r.OwnerId = :UserInfo.getUserId() or Id IN : projectIds)  and Is_Archieved__c = false 
                                             and IPM_Project_Name__c != NULL and IPM_Phase__c != :IPM_ConstantUtils.PHASE_PLE 
-                                            Order By Upcoming_Milestone_Due_Date__c,IPM_Project_Name__c Limit 10000];
+                                            Order By Upcoming_Milestone_Due_Date__c,IPM_Project_Name__c Limit 1000];
                                                                             
                                             
           Id recordtypeid=Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.PROJECT_MILESTONES).getRecordTypeId();
@@ -103,7 +103,8 @@ public with sharing class IPM_MyProjects{
                       WHERE IPM_BosscardName__c!=null 
                       AND IPM_Bosscard_Status__c = :IPM_ConstantUtils.STATUS_IN_PROGRESS
                       AND OwnerId = :UserInfo.getUserId() AND IPM_isBosscardSkipped__c=False 
-                      order by IPM_BosscardName__c limit 10000];
+                      order by IPM_BosscardName__c limit 1000];
+             
         List<ProjectWrapper> projects=new List<ProjectWrapper>();
         
         for(IPM_Bosscard__c bCard:bosscardList){
