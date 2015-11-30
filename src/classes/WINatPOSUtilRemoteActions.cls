@@ -114,6 +114,7 @@ public without sharing class WINatPOSUtilRemoteActions {
                     filesWithoutThumbnailUrl.add(asetItem.Files__r.get(0));
                 }
                 //add files to list
+                /*
                 String communityName = WINatPOSUtil.getCommunityName();
                 String fileUrl = asetItem.Files__r.get(0).Feed_Thumbnail_URL__c;
                 if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId()) && fileUrl != null){
@@ -123,7 +124,8 @@ public without sharing class WINatPOSUtilRemoteActions {
                 }else if(fileUrl != null && !fileUrl.containsIgnoreCase('https')){
                     fileUrl = fileUrl.replace('/' + communityName, '');
                 }
-                relatedFiles.add(fileUrl);
+				*/
+                relatedFiles.add(WINatPOSUtil.urlRewrite(asetItem.Files__r.get(0).Feed_Thumbnail_URL__c));
             }
             asetItem.Description__c = WINatPOSUtil.convertHtmlToPlainText(asetItem.Description__c);                             
             Integer likeCount=0;
@@ -511,14 +513,16 @@ public without sharing class WINatPOSUtilRemoteActions {
                 // Try to set the primary image for the asset
                 //if ((f.Type__c != null) && (f.Type__c.equals(Label.WP_File_Type_Image))) {
                 if (f.Is_Primary_Image__c) {
+                    /*
                 	if( f.Feed_Thumbnail_URL__c != null && !WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
                     	primaryImageURL = f.Feed_Thumbnail_URL__c.replace('/' + communityName, '');
                     }else{
                     	primaryImageURL = f.Feed_Thumbnail_URL__c;
-                	}
+                	}*/
+                    primaryImageURL = WINatPOSUtil.urlRewrite(f.Feed_Thumbnail_URL__c);
                     primaryImageFeedId = f.Feed_ID__c;
                     primaryFileId=f.id;
-                    downloadURL=f.Feed_URL__c;
+                    downloadURL=WINatPOSUtil.urlRewrite(f.Feed_URL__c);
                 }
                 //}
                 
@@ -532,22 +536,22 @@ public without sharing class WINatPOSUtilRemoteActions {
                         // File is sub type artwork
                         f.Show_Artwork__c = WINatPOSUtil.VISIBLE; 
                         // Asset should enable artwork download from results page
-                        aURL = f.Feed_URL__c;
+                        aURL = WINatPOSUtil.urlRewrite(f.Feed_URL__c);
                     } else if (f.Sub_Type__c.contains(WINatPOSUtil.PRESENTATION)) {
                         // File is sub type presentation
                         f.Show_Presentation__c = WINatPOSUtil.VISIBLE;
                         // Asset should enable presentation download from results page
-                        pURL = f.Feed_URL__c;
+                        pURL = WINatPOSUtil.urlRewrite(f.Feed_URL__c);
                     } else if (f.Sub_Type__c.contains(WINatPOSUtil.PROD_ENGINEERING)) {
                         // File is sub type production engineering
                         f.Show_Production_Engineering__c = WINatPOSUtil.VISIBLE;
                         // Asset should enable production engineering download from results page
-                        peURL = f.Feed_URL__c;
+                        peURL = WINatPOSUtil.urlRewrite(f.Feed_URL__c);
                     } else if (f.Sub_Type__c.contains(WINatPOSUtil.DOWNLOAD_IMG)) {
                         // File is sub type download image
                         f.Show_Download_Image__c = WINatPOSUtil.VISIBLE;
                         // Asset should enable display image download from results page
-                        diURL = f.Feed_URL__c;
+                        diURL = WINatPOSUtil.urlRewrite(f.Feed_URL__c);
                     }                   
                 }                
             }

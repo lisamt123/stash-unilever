@@ -577,4 +577,26 @@ public with sharing class WINatPOSUtil {
 		}
 		
 	}
+    
+    /*******************************************************************
+	Purpose: Method is handlig url rewriting basing on who uploaded the file
+	Parameters: [Asset__c myAsset]
+	Returns: [void]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
+    
+    public static String urlRewrite(String originUrl){
+        System.Debug('*** WINatPOS urlRewrite input parameter originUrl: ' + originUrl);
+        String communityName = WINatPOSUtil.getCommunityName();
+        String fileUrl = originUrl;
+        if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId()) && fileUrl != null){
+            if(!fileUrl.startsWith('/'+communityName) && !fileUrl.containsIgnoreCase('https')){
+                fileUrl = '/'+communityName+fileUrl;
+            }
+        }else if(fileUrl != null && !fileUrl.containsIgnoreCase('https')){
+            fileUrl = fileUrl.replace('/' + communityName, '');
+        }
+        System.debug('*** WINatPOS urlRewrite input parameter originUrl: ' + fileUrl);
+        return fileUrl;
+    }
 }
