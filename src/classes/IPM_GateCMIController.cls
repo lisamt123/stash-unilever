@@ -96,7 +96,7 @@ public with sharing class IPM_GateCMIController{
     public List<selectOption> getCountries() { 
         countryList=new List<IPM_Country__c>();
         String soql  =  'SELECT Id,Country_Name__c,IPM_Project__c,IPM_Regional_Project__c FROM IPM_Country__c';
-        if(gateType==IPM_ConstantUtils.CHARTER_GATE || projDocSec.IPM_Project_Document__r.IPM_Project_Span__c=='Global'){
+        if((gateType==IPM_ConstantUtils.CHARTER_GATE && projDocSec.IPM_Project_Document__r.IPM_Project_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) || projDocSec.IPM_Project_Document__r.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
             soql += ' WHERE IPM_Project__c = \'' + projectId + '\'';
         }
         else{
