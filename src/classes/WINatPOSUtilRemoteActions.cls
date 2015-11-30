@@ -1422,7 +1422,8 @@ public without sharing class WINatPOSUtilRemoteActions {
                 winAtPosGroup=WinAtPOSUtil.winAtPostChatterGroupForTest;
             }
             if(patentId == null || patentId == ''){
-              List<CollaborationGroup> colGroup=[SELECT Id,Name From CollaborationGroup where name =: winAtPosGroup limit 1];  
+              String networkId = Network.getNetworkId(); 
+              List<CollaborationGroup> colGroup=[SELECT Id,Name From CollaborationGroup where name =: winAtPosGroup and NetworkId =: networkId limit 1];  
               patentId=colGroup.get(0).Id;
             }
             List<FeedItem> annoucments=[select id,ParentId, Body,Title,LinkUrl,CreatedById,CreatedDate FROM FeedItem WHERE Type = 'AdvancedTextPost' and ParentId =:patentId order by CreatedDate desc limit 1];
