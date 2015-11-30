@@ -588,7 +588,9 @@ public without sharing class WINatPOSUtilRemoteActions {
                 tmpAssetItem.userFollowAsset = a.FeedSubscriptionsForEntity.size()>0 ? true : false;
                 tmpAssetItem.feedId=primaryImageFeedId;
                 tmpAssetItem.assetPrimaryFileId=primaryFileId;
-                tmpAssetItem.assetDownloadPdfUrl=URL.getSalesforceBaseUrl().toExternalForm() + '/apex/WinAtPOSPrintablePDFView?id=' + a.Id;
+            	String commName = WINatPOSUtil.getCommunityName();
+                String communityUrl = Network.getNetworkId() != null ? '/'+commName : '';
+                tmpAssetItem.assetDownloadPdfUrl=URL.getSalesforceBaseUrl().toExternalForm() +communityUrl+ '/apex/WinAtPOSPrintablePDFView?id=' + a.Id;
                 tmpAssetItem.videoUrl = a.Video_URL_Link__c;
                 if(firstAsset){
                     
