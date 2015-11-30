@@ -1654,4 +1654,79 @@ public without sharing class WINatPOSUtilRemoteActions {
         system.debug([SELECT Id FROM ContentVersion].size());
     }
     
+    /*******************************************************************
+	Purpose: Method is handlig granting sharings for Assets
+	Parameters: [Asset__c myAsset]
+	Returns: [void]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
+	public static void handleAssetAgenciesShares(List<Asset__c> myAssetList){
+		
+		System.Debug('*** WINatPOS handleAssetAgenciesShares input parameter myAssetList: ' + myAssetList);
+		
+		List<Asset__Share> editSharesToInsert = new List<Asset__Share>();
+		List<Asset__Share> viewSharesToInsert = new List<Asset__Share>();
+		//List<Asset__Share> sharesToDelete = new List<Asset__Share>();
+
+		Set<String> publicGroupsToAdd = new Set<String>();
+		Map<Id, List<String>> assetIdToEditPublicGroupsList = new Map<Id, List<String>>();
+		Map<Id, List<String>> assetIdToViewPublicGroupsList = new Map<Id, List<String>>();
+		Map<String, Group> groupNameToObject = new Map<String, Group>();
+		
+		for(Asset__c myAsset : myAssetList){
+			if(!String.isBlank(myAsset.Agency_Edit_Access_Text__c)){
+				assetIdToEditPublicGroupsList.put(myAsset.Id, myAsset.Agency_Edit_Access_Text__c.split(';'));
+				publicGroupsToAdd.addAll(myAsset.Agency_Edit_Access_Text__c.split(';'));
+			}
+			if(!String.isBlank(myAsset.Agency_Read_Access_Text__c)){
+				assetIdToViewPublicGroupsList.put(myAsset.Id, myAsset.Agency_Read_Access_Text__c.split(';'));
+				publicGroupsToAdd.addAll(myAsset.Agency_Read_Access_Text__c.split(';'));
+			}
+		}
+		
+		for(Group myTmpGroup : [SELECT Name, ID FROM Group WHERE Name IN :publicGroupsToAdd]){
+			groupNameToObject.put(myTmpGroup.Name, myTmpGroup);
+		}
+
+		for(Asset__c myAsset : myAssetList){
+			
+			//get Groups that should be updated - edit
+			if(assetIdToEditPublicGroupsList.containsKey(myAsset.Id)){
+				for(String groupName : assetIdToEditPublicGroupsList.get(myAsset.Id)){
+					if(groupNameToObject.containsKey(groupName)){
+						editSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Edit'));
+					}
+				}
+			}
+			
+			//get Groups that should be updated - view
+			if(assetIdToViewPublicGroupsList.containsKey(myAsset.Id)){
+				for(String groupName : assetIdToViewPublicGroupsList.get(myAsset.Id)){
+					if(groupNameToObject.containsKey(groupName)){
+						viewSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Read'));
+					}
+				}
+			}
+		}
+		
+		List<Group> winAtPosPublicGroups = [SELECT Name, Id FROM Group WHERE Name like 'Win@POS%' ORDER BY Name];
+		
+		Savepoint sp = Database.setSavepoint();
+		
+		try{
+			//crean up old sharings for WinatPOS Public Groups
+			delete [SELECT Id FROM Asset__Share WHERE ParentId IN :myAssetList AND UserOrGroupId IN :winAtPosPublicGroups];
+			
+			
+			//insert new sharings
+			insert viewSharesToInsert;
+			insert editSharesToInsert;
+		}catch(Exception ex){
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, ex.getMessage()));
+        	// Rollback any changes
+            Database.rollback(sp);
+		}
+		
+	}
+    
 }
