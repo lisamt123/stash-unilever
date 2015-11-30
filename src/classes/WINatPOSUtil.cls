@@ -429,6 +429,42 @@ public with sharing class WINatPOSUtil {
                     (Select Feed_URL__c, Name,Feed_ID__c,id From Files__r order by Name asc)
                      from Brand_Master__c where id in : brands order by name];
 	}
+    
+    /*******************************************************************
+	Purpose: Method is querying for files for assets belongs to asset group
+	Parameters: [Set<Id> brands]
+	Returns: [List<Asset__c>]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
+    public static List<Asset__c> getAssetsForAssetGroupForSearch(Set<Id> assetIds){
+    	System.Debug('*** WINatPOS getAssetsForAssetGroupForSearch with sharing input parameter brands: ' + assetIds );
+    		
+		return [SELECT Asset_Group__c,id,
+               (select Feed_ID__c, Feed_Thumbnail_URL__c, Feed_URL__c, Is_Primary_Image__c FROM Files__r where Is_Primary_Image__c = true) 
+               FROM Asset__c 
+               WHERE Asset_Group__c in : assetIds and Status__c =: WINatPOSUtil.assetTypeApproved ];
+	}
+    
+    
+    /*******************************************************************
+	Purpose: Method is querying for asset group detail page
+	Parameters: [Set<Id> brands]
+	Returns: [List<Asset__c>]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
+    public static List<Asset__c> getAssetsForAssetGroupDetailPage(Id assetGroupId){
+    	System.Debug('*** WINatPOS getAssetsForAssetGroupDetailPage with sharing input parameter brands: ' + assetGroupId );
+    		
+		return [SELECT Owner.Name, Id, Asset_Group__c, Video_URL_Link__c, Asset_Group__r.Name, Name, Category__c,Touchpoint__c,Country__c,Category__r.Name, Brand__c, Brand__r.Name, Channels__c, Description__c, Placement__c, Market_Cluster__c,POS_Asset_Type__c, BET__c, BET__r.Name,Buy_Online_in_Europe__c, 
+               (SELECT Id, Name, Category__c, Category__r.Name, Type__c, Sub_Type__c, File_Button_Text__c, Is_Primary_Image__c, Feed_ID__c, Feed_URL__c,Feed_Thumbnail_URL__c 
+               FROM Files__r 
+               Order BY Sort_Order__c ASC),
+               (SELECT ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId())                
+               FROM Asset__c 
+               WHERE  Status__c = :WINatPOSUtil.APPROVED
+               AND Asset_Group__c = :assetGroupId 
+               Order By Name ASC];
+	}
 	
 	
 	/*******************************************************************
