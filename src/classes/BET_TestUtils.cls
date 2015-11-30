@@ -20,6 +20,7 @@ public class BET_TestUtils {
 
 	public static final String MDO_STATUS_ACTIVE = 'Active';
 	public static final String TEST_USER_EMAIL = 'm.bluj@polsource.com';
+	public static final String USER_LOCAL = 'en_US';
 	
 
 	/************************************************************
@@ -243,7 +244,8 @@ public class BET_TestUtils {
         BET_MemberBucketWrapper itemWrap = new BET_MemberBucketWrapper();
         
         
-        for(User u : [Select id From User where isActive = true and profile.name = 'System Administrator' Limit 12]){
+        //for(User u : [Select id From User where isActive = true and profile.name = 'System Administrator' Limit 12]){
+        for(User u : createUserSystemAdmin(12)){
             
             if(Math.mod(i, 4) == 0){
                 itemWrap = new BET_MemberBucketWrapper();
@@ -343,8 +345,8 @@ public class BET_TestUtils {
 								emailencodingkey = 'UTF-8',
 								firstname = 'Test',
 								lastname = 'ChatterAnswersCreateAccountTest',
-								languagelocalekey = 'en_US',
-								localesidkey = 'en_US', 
+								languagelocalekey = USER_LOCAL,
+								localesidkey = USER_LOCAL, 
 								profileid = [SELECT Name FROM Profile WHERE Name = 'System Administrator'].id,
 								timezonesidkey = 'Europe/London',
 								username = 'TestAdmin@unittest.com' + randNo);
@@ -369,8 +371,8 @@ public class BET_TestUtils {
 							emailencodingkey = 'UTF-8',
 							firstname = 'Test',
 							lastname = 'BETUnitTest-' + randNo,
-							languagelocalekey = 'en_US',
-							localesidkey = 'en_US', 
+							languagelocalekey = USER_LOCAL,
+							localesidkey = USER_LOCAL, 
 							profileid = sysAdminId,
 							timezonesidkey = 'Europe/London',
 							username = 'TestAdmin@unittest.com' + randNo)
