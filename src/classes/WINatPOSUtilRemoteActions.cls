@@ -708,6 +708,7 @@ public without sharing class WINatPOSUtilRemoteActions {
                 WINatPOSUtil.cacheFeedURL(fileItem);
                 filesWithoutThumbnailUrl.add(fileItem);
             }
+                                           
             fileList.add(fileItem);                                                
                                     
         }
@@ -1548,6 +1549,7 @@ public without sharing class WINatPOSUtilRemoteActions {
                 
             }
         }
+        
         system.debug('*** WINatPOS getCaruselForBrandOrCategory returned following result:\n '+JSON.serialize(new WINatPOSRemoteActionWrapper('getCaruselForBrandOrCategory return  results','0',caruselList,'')));
         return new WINatPOSRemoteActionWrapper('getCaruselForBrandOrCategory return  results','0',caruselList,'');
     }
@@ -1588,18 +1590,20 @@ public without sharing class WINatPOSUtilRemoteActions {
                 }
                 WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper caruselWrap=new WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper(cat.Name,urlToLogo,null,cat.id,isUserFollowCategory);
                 //retrive files for category
-                if(cat.CategoryUploads__r != null){
-                    for(File__c f : cat.CategoryUploads__r){
-                        if (f.Feed_URL__c == null) {
-                            WINatPOSUtil.cacheFeedURL(f);  // Try to cache the download Url to optimize performance
-                        }
-                        if(caruselWrap.filesRelated == null){
-                            caruselWrap.filesRelated= new List<WINatPOSRemoteActionWrapper.RelatedFiles>{new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c)};
-                        }else{
-                            caruselWrap.filesRelated.add(new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c));
+                if(Network.getNetworkId() == null){
+                    if(cat.CategoryUploads__r != null){
+                        for(File__c f : cat.CategoryUploads__r){
+                            if (f.Feed_URL__c == null) {
+                                WINatPOSUtil.cacheFeedURL(f);  // Try to cache the download Url to optimize performance
+                            }
+                            if(caruselWrap.filesRelated == null){
+                                caruselWrap.filesRelated= new List<WINatPOSRemoteActionWrapper.RelatedFiles>{new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c)};
+                            }else{
+                                caruselWrap.filesRelated.add(new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c));
+                            }
                         }
                     }
-                }
+                }    
                 caruselWrapLst.add(caruselWrap);
             }
         }else if(searchType == WINatPOSUtil.brandSearch){
@@ -1623,18 +1627,20 @@ public without sharing class WINatPOSUtilRemoteActions {
                 }
                 WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper caruselWrap=new WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper(brand.Name,urlToLogo,null,brand.id,isUserFollowBrand);
                 //retrive files for brand
-                if(brand.Files__r != null){
-                    for(File__c f : brand.Files__r){
-                        if (f.Feed_URL__c == null) {
-                            WINatPOSUtil.cacheFeedURL(f);  // Try to cache the download Url to optimize performance
-                        }
-                        if(caruselWrap.filesRelated == null){
-                            caruselWrap.filesRelated= new List<WINatPOSRemoteActionWrapper.RelatedFiles>{new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c)};
-                        }else{
-                            caruselWrap.filesRelated.add(new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c));
+                if(Network.getNetworkId() == null){
+                    if(brand.Files__r != null){
+                        for(File__c f : brand.Files__r){
+                            if (f.Feed_URL__c == null) {
+                                WINatPOSUtil.cacheFeedURL(f);  // Try to cache the download Url to optimize performance
+                            }
+                            if(caruselWrap.filesRelated == null){
+                                caruselWrap.filesRelated= new List<WINatPOSRemoteActionWrapper.RelatedFiles>{new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c)};
+                            }else{
+                                caruselWrap.filesRelated.add(new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c));
+                            }
                         }
                     }
-                }
+                }    
                 caruselWrapLst.add(caruselWrap);
             }
             
