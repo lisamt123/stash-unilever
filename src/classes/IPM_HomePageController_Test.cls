@@ -191,7 +191,7 @@ public class IPM_HomePageController_Test{
                 
             Map<Id,IPM_Milestone__c>  mileStoneMap = new Map<Id,IPM_Milestone__c>([Select IPM_Project__r.BET_MS_First_Release_Date__c,RecordTypeId,Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c limit 1000] );
             
-            Id recordtypeid;
+            Id recordtypeid = null;
             if(Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId() != null){
                 recordtypeid=Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId();
             }
@@ -333,7 +333,7 @@ public class IPM_HomePageController_Test{
         }
         System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs],'Local projects are created');
         
-        Id recordtypeid;
+        Id recordtypeid = null;
 	    if(Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId() != null){
 	           recordtypeid=Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId();
 	    }
