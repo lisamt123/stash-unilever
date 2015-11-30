@@ -18,8 +18,12 @@ public with sharing class WINatPOSDropDownController {
     @TestVisible private Category__c currentCategory;
     @TestVisible private Asset_Group__c currentAssetGroup;
     @TestVisible private Category_Brands__c currentCategoryBrand;
-	@TestVisible private Id entityId;
 	@TestVisible private String objectAPIName;
+	public SelectOption[] selectedAgenciesEdit { get; set; }
+	public SelectOption[] selectedAgenciesView { get; set; }
+    public SelectOption[] allAgenciesEdit { get; set; }
+    public SelectOption[] allAgenciesView { get; set; }
+    public Boolean isCommunityUser { get; set; }
     /*****************************************************************************************
     Purpose: Constructor - Retrieves Asset field in case of a new File record is being created
              If the File record exists, it retrives the fields populated on the record
@@ -28,13 +32,19 @@ public with sharing class WINatPOSDropDownController {
     Throws [Exceptions]: [optional]
     ******************************************************************************************/   
     public WINatPOSDropDownController(ApexPages.StandardController sc) {
-        try{
+        try{	
+        	isCommunityUser = Network.getNetworkId() != null;
                 this.currentObject=(SObject)sc.getRecord();
                 objectAPIName=this.currentObject.getSObjectType().getDescribe().getName();
                 if(objectAPIName == 'Asset__c'){
+                	//sc.addFields(new List<String>{'Agency_Edit_Access_Text__c'});
                     this.currentAsset=(Asset__c)sc.getRecord();
                     if(this.currentAsset.id == null){
                        this.currentAsset.OwnerId=UserInfo.getUserId();
+                    }else{
+                    	Asset__c tmpCurrentAsset = [SELECT Agency_Edit_Access_Text__c, Agency_Read_Access_Text__c FROM Asset__c WHERE Id = :this.currentAsset.Id LIMIT 1];
+                    	this.currentAsset.Agency_Edit_Access_Text__c = tmpCurrentAsset.Agency_Edit_Access_Text__c;
+                    	this.currentAsset.Agency_Read_Access_Text__c = tmpCurrentAsset.Agency_Read_Access_Text__c;
                     }
                 }else if(objectAPIName == 'Brand_Master__c'){
                     this.currentBrand=(Brand_Master__c)sc.getRecord();
@@ -113,6 +123,39 @@ public with sharing class WINatPOSDropDownController {
             }
             
         }
+        
+        
+        selectedAgenciesEdit = new List<SelectOption>();
+        selectedAgenciesView = new List<SelectOption>();
+        allAgenciesEdit = new List<SelectOption>();
+        allAgenciesView = new List<SelectOption>();
+        
+        List<Group> winAtPosPublicGroups = [SELECT Name, Id FROM Group WHERE Name like 'Win@POS%' ORDER BY Name];    
+        
+        
+        for ( Group publicGroup : winAtPosPublicGroups ) {
+        	if(this.currentAsset!= null && !String.isBlank(this.currentAsset.Agency_Edit_Access_Text__c) && this.currentAsset.Agency_Edit_Access_Text__c.contains(publicGroup.Name)){
+        		selectedAgenciesEdit.add(new SelectOption(publicGroup.Id, publicGroup.Name));
+        	}else{
+            	allAgenciesEdit.add(new SelectOption(publicGroup.Id, publicGroup.Name));
+        	}
+        	
+        	if(this.currentAsset!= null && !String.isBlank(this.currentAsset.Agency_Read_Access_Text__c) && this.currentAsset.Agency_Read_Access_Text__c.contains(publicGroup.Name)){
+        		selectedAgenciesView.add(new SelectOption(publicGroup.Id, publicGroup.Name));
+        	}else{
+            	allAgenciesView.add(new SelectOption(publicGroup.Id, publicGroup.Name));
+        	}
+        }
+    }
+    
+    /*******************************************************************
+    Purpose: Method returns current object API Name
+    Parameters: [optional]
+    Returns: String
+    Throws [Exceptions]: [optional] 
+    ********************************************************************/
+    public String getObjectAPIName(){
+    	return objectAPIName;
     }
     
     /*******************************************************************
@@ -214,6 +257,40 @@ public with sharing class WINatPOSDropDownController {
          return options;
     }
     
-    
+    /*****************************************************************************************
+    Purpose: Sves Asset__c
+    Parameters: [Exceptions]
+    Returns: PageReference
+    Throws [Exceptions]: [optional]
+    ******************************************************************************************/
+    public PageReference saveAsset() { 
+    	
+    	this.currentAsset.Agency_Edit_Access_Text__c = '';
+    	this.currentAsset.Agency_Read_Access_Text__c = '';
+    	
+    	for(SelectOption option : selectedAgenciesEdit){
+    		if(String.isBlank(this.currentAsset.Agency_Edit_Access_Text__c)){
+    			this.currentAsset.Agency_Edit_Access_Text__c = option.getLabel();
+    		}else if(!this.currentAsset.Agency_Edit_Access_Text__c.contains(option.getLabel())){
+    			this.currentAsset.Agency_Edit_Access_Text__c += ';' + option.getLabel();
+    		}
+    	}
+    	
+    	for(SelectOption option : selectedAgenciesView){
+    		if(String.isBlank(this.currentAsset.Agency_Read_Access_Text__c)){
+    			this.currentAsset.Agency_Read_Access_Text__c = option.getLabel();
+    		}else if(!this.currentAsset.Agency_Read_Access_Text__c.contains(option.getLabel())){
+    			this.currentAsset.Agency_Read_Access_Text__c += ';' + option.getLabel();
+    		}
+    	}
+    	
+    	try{
+    		upsert this.currentAsset;
+    	}catch(Exception ex){
+    		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, ex.getMessage()));
+    	}
+    	
+    	return new ApexPages.StandardController(this.currentAsset).view(); 
+    }
 
 }

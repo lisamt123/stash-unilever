@@ -38,10 +38,6 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>StakeholderOrganisation__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>Project_Description__c</field>
             </layoutItems>
         </layoutColumns>
@@ -89,13 +85,6 @@
         <fields>CREATED_DATE</fields>
         <fields>Title__c</fields>
         <relatedList>kof_Unilever_Project_Team__c.Unilever_Project__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>kof_Contact__c.FullName__c</fields>
-        <fields>kof_Contact__c.Organisation__c</fields>
-        <fields>kof_Contact__c.SuperStakeholder__c</fields>
-        <fields>CREATED_DATE</fields>
-        <relatedList>kof_Stakeholder_Project_Team__c.Unilever_Project__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

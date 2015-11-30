@@ -188,7 +188,7 @@ private class WINatPOSUtilRemoteActions_Test {
             asset3.Category__c = cat1.Id;
             asset3.Brand__c=brandDove.id;
             asset3.Placement__c = 'Secondary';
-            asset3.POS_Asset_Type__c = 'In Store Execution';
+            asset3.POS_Asset_Type__c = 'Best Practices';
             asset3.Market_Cluster__c = 'Global';
             asset3.Channels__c='Hypermarkets';
             asset3.Status__c = 'Approved';
@@ -844,8 +844,8 @@ private class WINatPOSUtilRemoteActions_Test {
         ts.prepareTestDataEnv();
         Test.startTest();
         //test keyword search where keyword = asset name
-        WINatPOSRemoteActionWrapper response=WINatPOSUtilRemoteActions.search(WinAtPOSUtil.instoreSearch, '','','','','','','','',15,1,true);
-        WINatPOSRemoteActionWrapper responseInvPar=WINatPOSUtilRemoteActions.search(WinAtPOSUtil.instoreSearch, '','','',ts.finalTestAsset.get(0).POS_Asset_Type__c,'','','','',15,1,true);
+        WINatPOSRemoteActionWrapper response=WINatPOSUtilRemoteActions.search(WinAtPOSUtil.bestPracticesSearch, '','','','','','','','',15,1,true);
+        WINatPOSRemoteActionWrapper responseInvPar=WINatPOSUtilRemoteActions.search(WinAtPOSUtil.bestPracticesSearch, '','','',ts.finalTestAsset.get(0).POS_Asset_Type__c,'','','','',15,1,true);
         system.assertEquals('0', response.status, 'method should response with success');
         List<WINatPOSRemoteActionWrapper.SearchWrapper> searchResult=(List<WINatPOSRemoteActionWrapper.SearchWrapper>)response.data;
         List<WINatPOSRemoteActionWrapper.AssetResultWrapper> assetResults=searchResult.get(0).assetSearchResult;

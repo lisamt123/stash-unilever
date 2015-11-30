@@ -1,0 +1,46 @@
+<div class="unilever-searchsettings">
+    <div class="unilever-searchsettings-container">
+        <div class="categories-area">
+            <div class="toolbar">Categories</div>
+            <div class="column-list">
+                <div ng-repeat="menuItem in menu" ng-if="menuItem.items">
+                    <div ng-repeat="item in menuItem.items" class="{{ menuItem.name == 'Categories' ? '' : 'hidden'}}">
+                        <div class="menu-item-content">
+                            <input type="checkbox" name="checkbox-{{item.name}}">{{item.name}}                
+                        </div>
+                    </div>         
+                </div>
+            </div>
+        </div>
+        <div class="brands-area">
+            <div class="toolbar">Brands</div>
+            <div class="column-list">
+                <div ng-repeat="menuItem in menu" ng-if="menuItem.items">
+                    <div ng-repeat="item in menuItem.items" class="{{ ( ($index+1) >= 1 && ($index+1) <= 15) && menuItem.name == 'Brands' ? '' : 'hidden'}}">
+                        <div class="menu-item-content">
+                            <input type="checkbox" name="checkbox-{{item.name}}">{{item.name}}                
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="column-list">
+                <div ng-repeat="menuItem in menu" ng-if="menuItem.items">
+                    <div ng-repeat="item in menuItem.items" class="{{ ( ($index+1) > 15 && ($index+1) <= 30) && menuItem.name == 'Brands' ? '' : 'hidden'}}">
+                        <div class="menu-item-content">
+                            <input type="checkbox" name="checkbox-{{item.name}}">{{item.name}}                
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="column-list">
+                <div ng-repeat="menuItem in menu" ng-if="menuItem.items">
+                    <div ng-repeat="item in menuItem.items" class="{{ ( ($index+1) > 30 ) && menuItem.name == 'Brands' ? '' : 'hidden'}}">
+                        <div class="menu-item-content">
+                            <input type="checkbox" name="checkbox-{{item.name}}">{{item.name}}                
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

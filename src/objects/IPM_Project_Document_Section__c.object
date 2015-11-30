@@ -49,7 +49,6 @@
     <description>To be used in IPM project to store Gate Document Sections. It refers to the IPM Section object to pick what section/subsection it needs.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableEnhancedLookup>true</enableEnhancedLookup>
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>

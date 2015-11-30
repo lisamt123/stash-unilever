@@ -72,6 +72,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
                            
                        </apex:selectList>
                   </apex:pageBlockSectionItem>
+                  <apex:inputField id="newIndicator" value="{!Asset_Group__c.New_Indicator__c}" />
                   <apex:pageBlockSectionItem helpText="{!$ObjectType.Asset_Group__c.fields.Type__c.inlineHelpText}">  
                       <apex:outputLabel value="Asset Type" for="assetType"></apex:outputLabel>
                   	  <apex:inputField id="assetType" styleClass="inputWidth"  value="{!Asset_Group__c.Type__c}"  />
