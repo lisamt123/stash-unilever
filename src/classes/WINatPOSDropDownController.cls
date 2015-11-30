@@ -19,6 +19,7 @@ public with sharing class WINatPOSDropDownController {
     @TestVisible private Asset_Group__c currentAssetGroup;
     @TestVisible private Category_Brands__c currentCategoryBrand;
 	@TestVisible private String objectAPIName;
+    public Boolean isRecordEditable{get;set;}
 	public SelectOption[] selectedAgenciesEdit { get; set; }
 	public SelectOption[] selectedAgenciesView { get; set; }
     public SelectOption[] allAgenciesEdit { get; set; }
@@ -42,6 +43,12 @@ public with sharing class WINatPOSDropDownController {
                     if(this.currentAsset.id == null){
                        this.currentAsset.OwnerId=UserInfo.getUserId();
                     }else{
+                        List<UserRecordAccess> recordAccessLst = [Select HasEditAccess,RecordId FROM UserRecordAccess where RecordId =:this.currentAsset.id AND UserId =: UserInfo.getUserId()];
+                        if(!recordAccessLst.isEmpty()){
+                            isRecordEditable = recordAccessLst.get(0).HasEditAccess;
+                        }else{
+                            isRecordEditable = false;
+                        }
                     	Asset__c tmpCurrentAsset = [SELECT Agency_Edit_Access_Text__c, Agency_Read_Access_Text__c FROM Asset__c WHERE Id = :this.currentAsset.Id LIMIT 1];
                     	this.currentAsset.Agency_Edit_Access_Text__c = tmpCurrentAsset.Agency_Edit_Access_Text__c;
                     	this.currentAsset.Agency_Read_Access_Text__c = tmpCurrentAsset.Agency_Read_Access_Text__c;
