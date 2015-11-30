@@ -188,7 +188,7 @@ public class AA_ExecuteApprovalProcess_tst {
         processapp9.OwnerAssginment();
         processapp9.reportValues();
         processapp9.cancel();
-        
+        system.assert(processapp9!=null);
       //  ApexPages.StandardController stdController = new ApexPages.StandardController(competitorReport);
      
         //AA_ExecuteApprovalProcess controller = new AA_ExecuteApprovalProcess(stdController);
@@ -449,6 +449,7 @@ public class AA_ExecuteApprovalProcess_tst {
      //   ApexPages.StandardController stdController = new ApexPages.StandardController(competitorReport);
         AA_ExecuteApprovalProcess controller1 = new AA_ExecuteApprovalProcess();
         controller1.reportApproved(); 
+        system.assert(controller1!=null);
      }
      
      static testMethod void reportReject() {
@@ -507,71 +508,8 @@ public class AA_ExecuteApprovalProcess_tst {
         AA_ExecuteApprovalProcess controller3 = new AA_ExecuteApprovalProcess();
        // controller.AgentReportObjNew.Comments__c='test';
         controller3.reportRejected();
+         system.assert(controller3!=null);
      }
     
-     static testMethod void rejectionEmailTest() {
-       Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
-        Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
-        Id recTypeId = (RT.get('ETS Members Record Type')).getRecordTypeId();
-        
-      
-        aa_Agent_App_Competitor_Brand__c compBrand = new aa_Agent_App_Competitor_Brand__c(Name = 'BBOthers');
-        insert compBrand;
-        
-        aa_Agent_Competitor__c compName = new aa_Agent_Competitor__c(Name = 'Amul');
-        insert compName;
-        
-        aa_Agent_App_Category__c compCategory = new aa_Agent_App_Category__c(Name = 'Skin Care');
-        insert compCategory;
-        
-        aa_Topic__c topic = new aa_Topic__c(Name = 'Campaign');
-        insert topic;
-       
-        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
-        insert retailerData;
-        
-        aa_Cluster__c clusterData = new aa_Cluster__c(Name = 'South Asia');
-        insert clusterData;
-        
-        aa_Country__c countryData = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
-        insert countryData;
-       
-        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 3',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id ,Comments__c='test');
-        insert competitorReport;                             //status__c='Rejected'
-       // competitorReport.recordtypeId=recTypeId; 
-       // competitorReport.Approve_Reject__c = 'Reject';                           
-        //competitorReport.status__c='Rejected';
-        //  update competitorReport;
-       try {
-    delete competitorReport; 
-} catch (Exception e) {
-    system.assertEquals('You can\'t delete this record!', e.getMessage());
-}
-                
-        
-        /*ApexPages.currentPage().getParameters().put('id',competitorReport.id);
-        AA_ExecuteApprovalProcess controller = new AA_ExecuteApprovalProcess();
-        controller.AgentReportObjNew.Comments__c='test';
-        controller.reportRejected();
-        
-         aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(status__c='CI Manager Approval Pending',Report_Title__c = 'Competitor Report 3',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id,Comments__c='test');
-         insert competitorReport1;
-        
-         ApexPages.currentPage().getParameters().put('id',competitorReport1.id);
-         AA_ExecuteApprovalProcess controller1 = new AA_ExecuteApprovalProcess();
-         controller1.AgentReportObjNew.Comments__c='test';
-         controller1.reportRejected();
-         
-         aa_Agent_Report__c competitorReport2 = new aa_Agent_Report__c(status__c='Reject',Report_Title__c = 'Competitor Report 3',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id,Comments__c='test');
-         insert competitorReport2;
-         ApexPages.currentPage().getParameters().put('id',competitorReport2.id);
-         AA_ExecuteApprovalProcess controller2 = new AA_ExecuteApprovalProcess();
-         controller2.AgentReportObjNew.Comments__c='test';
-         controller2.reportRejected();
-        
-        ApexPages.currentPage().getParameters().put('id',competitorReport.id);
-        AA_ExecuteApprovalProcess controller3 = new AA_ExecuteApprovalProcess();
-       // controller.AgentReportObjNew.Comments__c='test';
-        controller3.reportRejected();*/
-    }
+     
 }

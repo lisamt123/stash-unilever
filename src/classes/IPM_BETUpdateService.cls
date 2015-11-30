@@ -1,9 +1,18 @@
 /**
-    @Description: Service to update all following IPMs with Bet changes
+    @Description: Service to update all following IPMs with BET changes
     @Author: Cognizant Technology
     @Date: 7/7/2015
 **/
-public class IPM_BETUpdateService{ 
+
+/*
+    This class has been defined as Without Sharing as its methods would be invoked via BET service methods which needs 
+    access to all related IPM and MDO data irrespective of sharing.
+*/
+    
+public without sharing class IPM_BETUpdateService{ 
+    
+    private static string BET_FIELD_STATUS = 'status';
+    private static string BET_ARCHIVED = 'archived';
     
     //Return List of IPM following BET
     public static List<IPM_BETWrapper> returnIPM(Id betId){
@@ -22,7 +31,7 @@ public class IPM_BETUpdateService{
     }
     
     //Return true if given category is supported by IPM
-    public static Boolean categoryCheck(String categoryName){        
+    public static Boolean categoryCheck(String categoryName){
         if(categoryName==null){
             throw new IPM_CustomException(Label.IPM_CategoryNameNotNull);    
         }
@@ -77,13 +86,16 @@ public class IPM_BETUpdateService{
      }
      
     //Service to notify about BET linking request being approved or rejected
-     public static void ipm_BETLinkingService(Id projectId ,Id betId,String approvalAction ){
-      if(projectId==null || betId==null || approvalAction==null || approvalAction==''){
-        throw new   IPM_CustomException(Label.IPM_IdsApprovalNotNullMSg);  
-      }
-      IPM_Project__c proj = [select id,BET__c,BET_Link_Requested__c,Update_BET__c  from IPM_Project__c where id =: projectId];
-      if(ApprovalAction == 'Approved'){
-           proj.BET__c=proj.BET_Link_Requested__c;
+    public static void ipm_BETLinkingService(Id projectId ,Id betId,String approvalAction ){
+        if(projectId==null || betId==null || approvalAction==null || approvalAction==''){
+            throw new   IPM_CustomException(Label.IPM_IdsApprovalNotNullMSg);  
+        }
+        IPM_Project__c proj = [select id,BET__c,BET_Link_Requested__c,Update_BET__c  from IPM_Project__c where id =: projectId];
+        if(ApprovalAction == label.IPM_BET_Link_Approved){
+            proj.BET__c=proj.BET_Link_Requested__c;
+        }
+        else if (ApprovalAction == label.IPM_BET_Link_Rejected){
+            proj.BET_Denied_BET_Link__c = ((BET_BETwrapper)BET_BETService.getBet(proj.BET_Link_Requested__c)).betName;
         }
         proj.BET_Link_Requested__c='';
         proj.BET_Link_Requested_on_Date__c = null;
@@ -103,14 +115,60 @@ public class IPM_BETUpdateService{
     }
     //Get BET Updates from BET
     public static void updateIPM(Id BETId, BET_BETWrapper BET, list<string> updatedFields, id userId){
-    
+        // Call IPM BET helper class method to update BET Milestones Due date for First Release & Final Release Milestones
+        for(string betField :updatedFields){
+            // Call helper method for BET Status change
+            if(betField.tolowercase().indexOf(BET_FIELD_STATUS)!=-1){
+                IPM_BETHelper.resetMilestoneMissedFlag(BETId,BET);    
+                //Call method to update Phase on Final Release BET Milestone
+                if(BET.status == IPM_ConstantUtils.BET_FINAL_RELEASE){
+                    IPM_BETHelper.updatePhaseBETMSFinalRelease(BETId);
+                }
+                //Call method to send Regional/Local Rollout Leaders' Access Request to BET after BET First Release
+                else if(BET.status == IPM_ConstantUtils.BET_FIRST_RELEASE){
+                    IPM_BETHelper.sendBETAccessRequestonFirstRelease(BETId);    
+                }
+            }
+            //Call method to update Archive BET details on IPM Projects
+            else if(betField.tolowercase().indexOf(BET_ARCHIVED)!=-1 && BET.isArchived){
+                IPM_BETHelper.setArchiveBET_IPM(BET);       
+            }
+            
+        }
     }
-
-    public static void updateBETMemberRequest(Set<Id> projects){
-
+    
+    public static void updateBETLink(id projectId,id betId){
+        if(betId==null || projectId==null){
+            throw new IPM_CustomException(Label.IPM_IdsNotNullMsg);    
+        }
+        try{
+            IPM_Project__c project= [select id,bet__c from IPM_Project__c where id= : projectId];
+            project.bet__c = betId;
+            update project;
+        }catch(Exception ex){
+            throw new IPM_CustomException(ex.getMessage());     
+        }
+    }
+    
+    //Bulk BET Memeber request update service
+    public static void updateBETMemberRequest(set<id> lstProjectId){
+        if(lstProjectId==null){
+            throw new IPM_CustomException(system.label.IPM_BET_List_Project_Not_Empty);    
+        }
+        try{
+            list<IPM_Project__c> lstProj = [select id from IPM_Project__c where id =:lstProjectId];
+            if(lstProj!=null && !lstProj.isEmpty()){
+                for(IPM_Project__c ipm:lstProj){
+                    ipm.Bulk_BET_Member_Request__c = true ;
+                }
+                update lstProj;
+            }
+        }catch(Exception ex){
+            throw new IPM_CustomException(ex.getMessage());     
+        }
     }
     
     public class IPM_CustomException extends Exception{
-          
+        // Custom Exception class
     }
 }

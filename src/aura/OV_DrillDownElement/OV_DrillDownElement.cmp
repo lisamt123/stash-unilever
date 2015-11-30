@@ -1,0 +1,21 @@
+<aura:component >
+<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+<aura:handler event="aura:doneRendering" action="{!c.afterRender}" />
+<aura:attribute name="domId" type="String" default=""/>
+<aura:attribute name="isTreeCreated" type="Boolean" default="false"/> 
+<aura:attribute name="fieldName" type="String"/>
+<aura:attribute name="filtersDefinition" type="Object"/>
+<aura:attribute name="filtersNextLevel" type="Object[]"/>
+<aura:attribute name="selectedFilters" type="Object"/>
+<aura:attribute name="selectedFilter" type="String"/>
+<ul id="{!v.domId}" >
+<!--     <aura:iteration items="{!v.filtersDefinition}" var="level1">
+    <li>
+        <a href="" data-type="{!v.fieldName}" data-value="{!level1.Id}" data-name="{!level1.Name}" >{!level1.Name}</a>
+        <aura:renderIf isTrue="{!empty(level1.Children) == false}">
+        <c:OV_DrillDownElement filtersDefinition="{#level1.Children}" fieldName="{#v.fieldName}" selectedFilters="{!v.selectedFilters}"/>
+        </aura:renderIf>
+    </li>
+    </aura:iteration> -->
+</ul>
+</aura:component>

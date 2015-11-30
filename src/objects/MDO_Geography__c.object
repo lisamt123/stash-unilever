@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>MDO geography master data</description>
@@ -56,6 +55,26 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
+    <fields>
+        <fullName>IPM_Effective_from__c</fullName>
+        <description>Date upon which a particular Geography is considered to take effect</description>
+        <externalId>false</externalId>
+        <label>Effective_from</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Effective_to__c</fullName>
+        <description>date until which a specific Geography was considered</description>
+        <externalId>false</externalId>
+        <label>Effective_to</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
     <fields>
         <fullName>ISO_3166_1_alpha__c</fullName>
         <externalId>false</externalId>
@@ -88,6 +107,26 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Status__c</fullName>
+        <description>This field to get active records only.</description>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>geo_type__c</fullName>
@@ -468,7 +507,7 @@
         <fullName>parent_mdm_Id__c</fullName>
         <externalId>false</externalId>
         <label>Parent MDM Id</label>
-        <length>6</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -487,6 +526,33 @@
         <unique>false</unique>
     </fields>
     <label>Geography</label>
+    <listViews>
+        <fullName>All1</fullName>
+        <columns>geography_type__c</columns>
+        <columns>NAME</columns>
+        <columns>parent_id__c</columns>
+        <columns>parent_L2__c</columns>
+        <columns>parent_mdm_Id__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Countries</fullName>
+        <columns>NAME</columns>
+        <columns>geography_type__c</columns>
+        <columns>parent_L2__c</columns>
+        <columns>Status__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>geography_type__c</field>
+            <operation>equals</operation>
+            <value>Country/Dependency</value>
+        </filters>
+        <label>Countries</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <label>Name</label>
         <trackHistory>false</trackHistory>

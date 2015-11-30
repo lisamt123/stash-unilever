@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Store mdo product category master data</description>
@@ -113,7 +112,7 @@
         <description>store mdm id</description>
         <externalId>true</externalId>
         <label>MDM ID</label>
-        <length>10</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -371,7 +370,7 @@
         <fullName>parent_mdm_Id__c</fullName>
         <externalId>false</externalId>
         <label>Parent MDM Id</label>
-        <length>10</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -402,6 +401,19 @@
         <unique>false</unique>
     </fields>
     <label>ProductCategory</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>category_type__c</columns>
+        <columns>mdm_id__c</columns>
+        <columns>parent_mdm_Id__c</columns>
+        <columns>parent_L1__c</columns>
+        <columns>NAME</columns>
+        <columns>status__c</columns>
+        <columns>parent_mdm_id_tree__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <label>Name</label>
         <trackHistory>false</trackHistory>

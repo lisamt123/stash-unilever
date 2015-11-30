@@ -1,0 +1,62 @@
+<!--  
+*************************************************************************
+*@Description: Component to display the milestone details
+*@Author: Cognizant
+*@Created Date: 24/03/2015
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+<apex:component controller="IPM_Gate_Milestones">
+         <apex:attribute name="pId" type="String" AssignTo="{!projectId}" description="this is the project id"/>
+        <apex:outputPanel id="ren" >
+        <table class="ipmTable table table-bordered" cellspacing="0"> 
+         <thead>
+         <tr>
+          <th width="30%" scope="col" colspan="1">
+             <div class="colHeight">
+              <span>{!$Label.IPM_MILESTONE1}</span>
+             </div>
+         </th>
+         <th width="10%" scope="col" colspan="1">
+           <div class="colHeight">
+              <span>{!$Label.IPM_PhaseLabel}</span>
+           </div>
+         </th>
+         <th width="5%" scope="col" colspan="1">
+           <div class="colHeight">
+              <span>{!$Label.IPM_DUE_DATE}</span>
+          </div>
+         </th>
+         <th width="5%" scope="col" colspan="1">
+           <div class="colHeight">
+              <span>{!$Label.IPM_Completed_On}</span>
+          </div>
+         </th>
+         </tr>
+        </thead>
+        <tbody>
+                 <apex:repeat value="{!projectMilestones}" var="p">
+                  <tr>
+                      <td>
+                        <div class="col-sm-12 noteimg noPadleft">
+                          <div class="col-sm-10 noPadleft">
+                             <apex:outputfield value="{!p.IPM_Name__c}" />
+                            </div>
+                        </div>
+                       </td>
+                    <td>
+                        <apex:outputfield value="{!p.IPM_Phase__c}" />
+                    </td>
+                    <td>
+                     <apex:outputfield value="{!p.IPM_Due_Date__c}"/>
+                    </td>
+                    <td>
+                        <apex:outputfield value="{!p.IPM_Completed_On__c}"/>
+                    </td>      
+                  </tr>
+                  </apex:repeat>
+ </tbody>
+</table>  
+
+</apex:outputPanel>
+</apex:component>

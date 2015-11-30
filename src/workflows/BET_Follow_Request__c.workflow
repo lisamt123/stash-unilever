@@ -8,7 +8,7 @@
             <field>Bet_owner__c</field>
             <type>userLookup</type>
         </recipients>
-        <senderAddress>cb4l@unilever.com</senderAddress>
+        <senderAddress>marketing@unilever.com</senderAddress>
         <senderType>OrgWideEmailAddress</senderType>
         <template>Approval_Emails/BET_FollowRequestCreated</template>
     </alerts>

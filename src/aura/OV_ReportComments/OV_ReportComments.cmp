@@ -1,0 +1,32 @@
+<aura:component >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+	<aura:attribute name="reportId" type="String" default="dummyId" />
+    <aura:attribute name="reportData" type="String" default="object" />
+
+    <div class="row">
+        <div class="col-xs-12">
+    	    <div class="forceChatterFeedInner">
+    	    	<div class="forceSearchFilterHeader">
+
+                    <!-- different button for desktop -->
+                    <aura:renderIf isTrue="{!(!$Browser.isPhone &amp;&amp; !$Browser.isIOS &amp;&amp; !$Browser.isAndroid )}">
+                         <button onclick="{!c.postToChatter}" class="desktop-post-button">
+                            <span class="itmIcon SF1-custom-icon-custom101"></span>Add a new comment
+                         </button>
+                    </aura:renderIf>
+
+                    <!-- different button for mobile -->
+                    <aura:renderIf isTrue="{! (!$Browser.isPhone &amp;&amp; !$Browser.isIOS &amp;&amp; !$Browser.isAndroid ) == false}">
+                         <ui:button press="{!c.postToChatter}" class="post-button pull-right" />
+                    </aura:renderIf>
+    	    	</div>
+    	    </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+    	    <div aura:id="feedContainer" class="feed-container"></div>
+        </div>
+    </div>
+</aura:component>

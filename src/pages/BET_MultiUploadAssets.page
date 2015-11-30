@@ -21,7 +21,7 @@
 
   <br />  
   <input id="resultFileId" type="hidden" name="resultFileId" />
-  <button onclick="loadFiles(); return false;" class="betBtnPink">
+  <button id="btnUploadFiles" onclick="loadFiles(); return false;" class="betBtnPink">
           {!$Label.BET_Upload_Files}
   </button> 
   
@@ -40,6 +40,8 @@
     var defStatus = '{!status}';
     var uploadOkInfo = '{!$Label.BET_Asset_Uploaded}';
     var uploadFailedInfo = '{!$Label.BET_Asset_Not_Uploaded}';
+    var lblUploadFiles = '{!$Label.BET_Upload_Files}';
+    var lblUploadFilesLoading = '{!$Label.BET_Uploading}';
     function labelFile(idx,assetName,mediaType,country,status,betId,index,cb){
       Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.BET_MultiUploadAssetsController.saveFileAndConnect}',
         idx,assetName,mediaType,country,status,betId,
