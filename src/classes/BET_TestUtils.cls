@@ -244,7 +244,8 @@ public class BET_TestUtils {
         BET_MemberBucketWrapper itemWrap = new BET_MemberBucketWrapper();
         
         
-        for(User u : [Select id From User where isActive = true and profile.name = 'System Administrator' Limit 12]){
+        //for(User u : [Select id From User where isActive = true and profile.name = 'System Administrator' Limit 12]){
+        for(User u : createUserSystemAdmin(12)){
             
             if(Math.mod(i, 4) == 0){
                 itemWrap = new BET_MemberBucketWrapper();
