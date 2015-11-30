@@ -2356,24 +2356,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <queue>CEC_Benelux_Queue</queue>
     </listViews>
     <listViews>
-        <fullName>CEC_Czech_Republic_Queue_Case</fullName>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <label>CEC Czech Republic Queue</label>
-        <language>en_US</language>
-        <queue>CEC_Czech_Republic_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Czech_Republic</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_User_Czech_Republic</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_DACH_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.PRIORITY</columns>
