@@ -175,7 +175,9 @@ public without sharing class WINatPOSUtilRemoteActions {
         e.subscriberId = UserInfo.getUserId();
         try{
             e.parentId = Id.valueOf(objectToFollowId);
-            Database.insert(e,false);
+            e.NetworkId = Network.getNetworkId();
+            //Database.insert(e,false);
+            insert e;
         }catch(Exception ex){
             System.Debug('*** WINatPOS addFollower returned error: ' + ex.getMessage());
         }
@@ -463,6 +465,7 @@ public without sharing class WINatPOSUtilRemoteActions {
         }
         
         if (objectAPIName == 'Asset_Group__c') {
+            /*
             assets = [Select Owner.Name, Id, Asset_Group__c, Video_URL_Link__c, Asset_Group__r.Name, Name, Category__c,Touchpoint__c,Country__c,Category__r.Name, Brand__c, Brand__r.Name, Channels__c, Description__c, Placement__c, Market_Cluster__c,POS_Asset_Type__c, BET__c, BET__r.Name,Buy_Online_in_Europe__c, 
                              (Select Id, Name, Category__c, Category__r.Name, Type__c, Sub_Type__c, File_Button_Text__c, Is_Primary_Image__c, Feed_ID__c, Feed_URL__c,Feed_Thumbnail_URL__c 
                               From Files__r 
@@ -471,7 +474,9 @@ public without sharing class WINatPOSUtilRemoteActions {
                       From Asset__c 
                       Where  Status__c = :WINatPOSUtil.APPROVED
                       And Asset_Group__c = :assetOrAssetGroupId 
-                      Order By Name ASC];
+                      Order By Name ASC];*/
+            //added modification for asset group detail
+            assets = WINatPOSUtil.getAssetsForAssetGroupDetailPage(assetOrAssetGroupId);
             if(!assets.isEmpty()){
                assetGroupId=assets.get(0).Asset_Group__c;
                assetGroupName=assets.get(0).Asset_Group__r.Name;
@@ -1232,7 +1237,8 @@ public without sharing class WINatPOSUtilRemoteActions {
             if(mapAssetGroupSearchList.keySet().size()>0){
                 //assetGroupSearchList rebuilded added assetGroups wher asset belongs to asset group
                 mapAssetGroupSearchList=new Map<Id,Asset_Group__c>([select Name,Brand__c,Category__c, New_Indicator__c, Type__c,Id from Asset_Group__c where id in :mapAssetGroupSearchList.keySet()]);
-                for(Asset__c a: [select Asset_Group__c,id,(select Feed_ID__c, Feed_Thumbnail_URL__c, Feed_URL__c, Is_Primary_Image__c from Files__r where Is_Primary_Image__c = true) from Asset__c where Asset_Group__c in : mapAssetGroupSearchList.keySet() and Status__c =: WINatPOSUtil.assetTypeApproved ]){
+                //[select Asset_Group__c,id,(select Feed_ID__c, Feed_Thumbnail_URL__c, Feed_URL__c, Is_Primary_Image__c from Files__r where Is_Primary_Image__c = true) from Asset__c where Asset_Group__c in : mapAssetGroupSearchList.keySet() and Status__c =: WINatPOSUtil.assetTypeApproved ]
+                for(Asset__c a: WINatPOSUtil.getAssetsForAssetGroupForSearch(mapAssetGroupSearchList.keySet())){
                     for(File__c f: a.Files__r){
                         if(f.Feed_Thumbnail_URL__c == null){
                             WINatPOSUtil.cacheFeedURL(f);
@@ -1668,12 +1674,13 @@ public without sharing class WINatPOSUtilRemoteActions {
 		List<Asset__Share> editSharesToInsert = new List<Asset__Share>();
 		List<Asset__Share> viewSharesToInsert = new List<Asset__Share>();
 		//List<Asset__Share> sharesToDelete = new List<Asset__Share>();
-
+        Map<id,Asset_Group__Share> assetGroupSharesToInsert = new Map<Id,Asset_Group__Share>();
 		Set<String> publicGroupsToAdd = new Set<String>();
 		Map<Id, List<String>> assetIdToEditPublicGroupsList = new Map<Id, List<String>>();
 		Map<Id, List<String>> assetIdToViewPublicGroupsList = new Map<Id, List<String>>();
 		Map<String, Group> groupNameToObject = new Map<String, Group>();
-		
+		//Set<id> asseGroupIds = new Set<Id>();
+        
 		for(Asset__c myAsset : myAssetList){
 			if(!String.isBlank(myAsset.Agency_Edit_Access_Text__c)){
 				assetIdToEditPublicGroupsList.put(myAsset.Id, myAsset.Agency_Edit_Access_Text__c.split(';'));
@@ -1696,6 +1703,10 @@ public without sharing class WINatPOSUtilRemoteActions {
 				for(String groupName : assetIdToEditPublicGroupsList.get(myAsset.Id)){
 					if(groupNameToObject.containsKey(groupName)){
 						editSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Edit'));
+                        //add read share for asset groups
+                        if(myAsset.Asset_Group__c != null){
+                            assetGroupSharesToInsert.put(myAsset.Asset_Group__c,new Asset_Group__Share(ParentId = myAsset.Asset_Group__c, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Read'));
+                        }
 					}
 				}
 			}
@@ -1705,6 +1716,9 @@ public without sharing class WINatPOSUtilRemoteActions {
 				for(String groupName : assetIdToViewPublicGroupsList.get(myAsset.Id)){
 					if(groupNameToObject.containsKey(groupName)){
 						viewSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Read'));
+                        if(myAsset.Asset_Group__c != null){
+                            assetGroupSharesToInsert.put(myAsset.Asset_Group__c,new Asset_Group__Share(ParentId = myAsset.Asset_Group__c, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Read'));
+                        }
 					}
 				}
 			}
@@ -1717,11 +1731,15 @@ public without sharing class WINatPOSUtilRemoteActions {
 		try{
 			//crean up old sharings for WinatPOS Public Groups
 			delete [SELECT Id FROM Asset__Share WHERE ParentId IN :myAssetList AND UserOrGroupId IN :winAtPosPublicGroups];
-			
+			//clean up old sharing for asset groups
+			delete [SELECT Id FROM Asset__Share WHERE ParentId IN :assetGroupSharesToInsert.keySet() AND UserOrGroupId IN :winAtPosPublicGroups];
 			
 			//insert new sharings
 			insert viewSharesToInsert;
+            system.debug('Assets share to insert '+viewSharesToInsert.size());
 			insert editSharesToInsert;
+            system.debug('Assets Group share to insert '+assetGroupSharesToInsert.size());
+            insert assetGroupSharesToInsert.values();
 		}catch(Exception ex){
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, ex.getMessage()));
         	// Rollback any changes
