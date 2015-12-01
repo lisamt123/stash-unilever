@@ -1674,12 +1674,13 @@ public without sharing class WINatPOSUtilRemoteActions {
 		List<Asset__Share> editSharesToInsert = new List<Asset__Share>();
 		List<Asset__Share> viewSharesToInsert = new List<Asset__Share>();
 		//List<Asset__Share> sharesToDelete = new List<Asset__Share>();
-
+        Map<id,Asset_Group__Share> assetGroupSharesToInsert = new Map<Id,Asset_Group__Share>();
 		Set<String> publicGroupsToAdd = new Set<String>();
 		Map<Id, List<String>> assetIdToEditPublicGroupsList = new Map<Id, List<String>>();
 		Map<Id, List<String>> assetIdToViewPublicGroupsList = new Map<Id, List<String>>();
 		Map<String, Group> groupNameToObject = new Map<String, Group>();
-		
+		//Set<id> asseGroupIds = new Set<Id>();
+        
 		for(Asset__c myAsset : myAssetList){
 			if(!String.isBlank(myAsset.Agency_Edit_Access_Text__c)){
 				assetIdToEditPublicGroupsList.put(myAsset.Id, myAsset.Agency_Edit_Access_Text__c.split(';'));
@@ -1702,6 +1703,10 @@ public without sharing class WINatPOSUtilRemoteActions {
 				for(String groupName : assetIdToEditPublicGroupsList.get(myAsset.Id)){
 					if(groupNameToObject.containsKey(groupName)){
 						editSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Edit'));
+                        //add read share for asset groups
+                        if(myAsset.Asset_Group__c != null){
+                            assetGroupSharesToInsert.put(myAsset.Asset_Group__c,new Asset_Group__Share(ParentId = myAsset.Asset_Group__c, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Read'));
+                        }
 					}
 				}
 			}
@@ -1711,6 +1716,9 @@ public without sharing class WINatPOSUtilRemoteActions {
 				for(String groupName : assetIdToViewPublicGroupsList.get(myAsset.Id)){
 					if(groupNameToObject.containsKey(groupName)){
 						viewSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Read'));
+                        if(myAsset.Asset_Group__c != null){
+                            assetGroupSharesToInsert.put(myAsset.Asset_Group__c,new Asset_Group__Share(ParentId = myAsset.Asset_Group__c, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Read'));
+                        }
 					}
 				}
 			}
@@ -1723,11 +1731,15 @@ public without sharing class WINatPOSUtilRemoteActions {
 		try{
 			//crean up old sharings for WinatPOS Public Groups
 			delete [SELECT Id FROM Asset__Share WHERE ParentId IN :myAssetList AND UserOrGroupId IN :winAtPosPublicGroups];
-			
+			//clean up old sharing for asset groups
+			delete [SELECT Id FROM Asset__Share WHERE ParentId IN :assetGroupSharesToInsert.keySet() AND UserOrGroupId IN :winAtPosPublicGroups];
 			
 			//insert new sharings
 			insert viewSharesToInsert;
+            system.debug('Assets share to insert '+viewSharesToInsert.size());
 			insert editSharesToInsert;
+            system.debug('Assets Group share to insert '+assetGroupSharesToInsert.size());
+            insert assetGroupSharesToInsert.values();
 		}catch(Exception ex){
 			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, ex.getMessage()));
         	// Rollback any changes
