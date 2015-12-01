@@ -2290,7 +2290,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
             <operation>lessThan</operation>
-            <value>LAST_N_DAYS:2</value>
+            <value>LAST_N_DAYS:5</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
@@ -3015,7 +3015,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Email,Web,White Mail,Email India</value>
+            <value>Email,Web,White Mail,Email India,Email Sri Lanka</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -3058,7 +3058,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Email,Web,White Mail,Email India</value>
+            <value>Email,Web,White Mail,Email India,Email Sri Lanka</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -3081,6 +3081,49 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Shree,Karmaka,Akram,KN.J,rvaz,srawa,ishai,shah,gmont,grajp,solanki,nawaz</value>
         </filters>
         <label>India tier 1 within SLA</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_India</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>India_tier_2</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND (4 OR 5)</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Email,Phone,Web,White Mail,Email India,Email Sri Lanka</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>contains</operation>
+            <value>Shree,Karmaka,Akram,KN.J,rvaz,srawa,ishai,shah,gmont,grajp,solanki,nawaz</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>contains</operation>
+            <value>India Tier 2</value>
+        </filters>
+        <label>India tier 2</label>
         <language>en_US</language>
         <sharedTo>
             <role>CEC_Manager_India</role>
@@ -3409,7 +3452,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>GuKunkel</value>
+            <value>CaBusch</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>
@@ -3440,7 +3483,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
             <operation>greaterOrEqual</operation>
-            <value>LAST_N_DAYS:2</value>
+            <value>LAST_N_DAYS:5</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
