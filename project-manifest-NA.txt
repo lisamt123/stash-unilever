@@ -80,6 +80,8 @@ src/aura/Core_NC_TrendingNewsComponent/Core_NC_TrendingNewsComponent.css
 src/aura/Core_NC_TrendingNewsComponent/Core_NC_TrendingNewsComponentController.js
 src/aura/Core_NC_TrendingNewsComponent/Core_NC_TrendingNewsComponentHelper.js
 src/aura/Core_NC_TrendingNewsComponent/Core_NC_TrendingNewsComponentRenderer.js
+src/aura/Core_ShareCancelButton/Core_ShareCancelButton.evt
+src/aura/Core_ShareCancelButton/Core_ShareCancelButton.evt-meta.xml
 src/classes/Core_NC_NewsCenterController.cls
 src/classes/Core_NC_NewsCenterController.cls-meta.xml
 src/classes/Core_NC_NewsCenterControllerHelper.cls
