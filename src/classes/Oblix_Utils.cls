@@ -16,33 +16,31 @@
 */
 public with sharing class Oblix_Utils {
 
-    private static final String PROJECT_BRIEFFING = Label.Oblix_Lbl_UIUX_Utils_Projected_Briefing;
-    private static final String COMPLETED_BRIEFFING = Label.Oblix_Lbl_UIUX_Utils_Completed_Briefing;
+    //private static final String PROJECT_BRIEFFING = Label.Oblix_Lbl_UIUX_Utils_Projected_Briefing;
+    //private static final String COMPLETED_BRIEFFING = Label.Oblix_Lbl_UIUX_Utils_Completed_Briefing;
     private static final String PROJECT_ASSET_NAME = 'Oblix_Project_Assets__c';
     private static final String DIGITAL = 'digital';
     private static final String AUDIO_VISUAL = 'Audio_Visual';
     private static final String EXPERIENTIAL = 'Experiential';
     private static final String STATIC_IMAGERY = 'Static_Imagery';
-//Used to Wrap RecordType By Object
+    
+    //Used to Wrap RecordType By Object
     public static Map<string, ID> MapRecordType(String ObjectName) {
 
         List<RecordType> lstRecordType = new List<RecordType>();
-
         lstRecordType = [Select ID, SobjectType, Name, DeveloperName from RecordType where SobjectType = :ObjectName and DeveloperName != 'Admin'];
-
         Map<String, ID> MapRTCaseToDeveloperName = new Map<String, ID>();
-
         for (RecordType rec : lstRecordType) {
             MapRTCaseToDeveloperName.put(rec.DeveloperName, rec.ID);
         }
 
         return MapRTCaseToDeveloperName;
-
     }
+    
+    // Added by AES to get the list of subcategories 
     public static list<string> getlstSubCat() {
 
         list<string> lst = new list<string>();
-
         lst.add(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory);
         lst.add(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory);
         lst.add(Label.Oblix_Lbl_UIUX_Audio_Subcategory);
@@ -62,6 +60,8 @@ public with sharing class Oblix_Utils {
         return lst;
 
     }
+    
+    // Added by AES to get the list of subcategories related to recType 
     public static list<string> lstSubCatPerRecT(string recType) {
 
         list<string> lst = new list<string>();
@@ -71,7 +71,6 @@ public with sharing class Oblix_Utils {
             lst.add(Label.Oblix_Lbl_UIUX_Audio_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory);
-
         }
         if (recType == Label.Oblix_Lbl_UIUX_Digital) {
             lst.add(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory);
@@ -79,27 +78,24 @@ public with sharing class Oblix_Utils {
             lst.add(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory);
-
         }
         if (recType == Label.Oblix_Lbl_UIUX_Experiential) {
             lst.add(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory);
-
         }
         if (recType == Label.Oblix_Lbl_UIUX_Static_Img) {
             lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory);
-
         }
         if (recType == Label.Oblix_Lbl_UIUX_Stimulus_Materials) {
             lst.add(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory);
         }
-
+        
         return lst;
     }
-
+    
+    // Added by AES to get the list of stages 
     public static list<string> getStageList() {
-
         list<string> lstStage = new list<string>();
         Schema.DescribeFieldResult lstProjectStage = Oblix_SOW_Projects__c.Project_Stage__c.getDescribe();
         List<Schema.PicklistEntry> lstStageValues = lstProjectStage.getPicklistValues();
@@ -108,6 +104,8 @@ public with sharing class Oblix_Utils {
         }
         return lstStage;
     }
+    
+    // Added by AES to get the map of options by Sub category  
     public static map<string, list<string>> getMapSubCategOption() {
         map<string, list<string>> mapSubCategOption = new map<string, list<string>>();
         mapSubCategOption.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory, new list<string>());
@@ -210,8 +208,8 @@ public with sharing class Oblix_Utils {
         return mapSubCategOption;
     }
 
+    // Added by AES to get the map of options description by Sub category  
     public static map<string, string> getmapSubCategOptionDescription() {
-
         map<string, string> mapSubCategOptionDescription = new map<string, string>();
 
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 2, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score2);
@@ -219,13 +217,11 @@ public with sharing class Oblix_Utils {
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 4, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 5, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score5);
 
-
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 1, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score1);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 2, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score2);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 3, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score3);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 4, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 5, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score5);
-
 
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 1, Label.Oblix_Lbl_UIUX_Audio_Score1);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 2, Label.Oblix_Lbl_UIUX_Audio_Score2);
@@ -305,10 +301,10 @@ public with sharing class Oblix_Utils {
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory + 3, Label.Oblix_Lbl_UIUX_Stim_require_Score3);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory + 4, Label.Oblix_Lbl_UIUX_Stim_require_Score4);
 
-
         return mapSubCategOptionDescription;
     }
-
+    
+    // Added by AES to get the map of Sub categories definition
     public static map<string, string> getmapSubCategOptionDefinition() {
 
         map<string, string> mapSubCategOptionDefinition = new map<string, string>();
@@ -391,7 +387,7 @@ public with sharing class Oblix_Utils {
         
     }
    
-
+    // Added by AES 
     public static string getSelectedStageCheckbox(string projected, string Completed) {
         string lstProjectedItems = '';
         string lstCompletedItems = '';
@@ -413,7 +409,7 @@ public with sharing class Oblix_Utils {
 
     }
 
-
+    // Added by AES to get the abreviation for each sub category
     public static map<string, string> getAbreViationForCardAssets() {
 
         map<string, string> mapAbreviation = new map<string, string>();
@@ -453,11 +449,11 @@ public with sharing class Oblix_Utils {
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Network_Competitive_Reviews, 'CR');
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Brand_Led_Training, 'BLT');
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Brand_Book, 'BBK');
-
-
+        
         return mapAbreviation;
     }
-
+    
+    // Added by AES to get the description for each record type
     public static map<string, string> getMapRecordTypeDescription() {
         map<string, string> mapRecordTypeDescription = new map<string, string>();
         mapRecordTypeDescription.put(Label.Oblix_Lbl_UIUX_AudioVisuel, ' - ' + Label.Oblix_Lbl_UIUX_AudioVisuel_Description);
@@ -467,7 +463,8 @@ public with sharing class Oblix_Utils {
         mapRecordTypeDescription.put(Label.Oblix_Lbl_UIUX_Stimulus_Materials, '');
         return mapRecordTypeDescription;
     }
-
+    
+    // Added by AES to return the list of %Fee 
     public static map<string, integer> getFeePercentages(list<string> lstStage) {
         map<string, integer> feePercentages = new map<string, integer>();
         feePercentages.put(lstStage[0], 10);
@@ -477,16 +474,14 @@ public with sharing class Oblix_Utils {
         feePercentages.put(lstStage[4], 15);
         return feePercentages;
     }
+    
     //VF09 Non Campaign Items
     public static id CountrryGetId(String Cname) {
         List <MDO_Geography__c> temp = null;
         id x = null;
-
         temp = [select id from MDO_Geography__c where name = :Cname limit 1];
-        system.debug('===========Cname' + Cname);
-        system.debug('===========temp' + temp);
-
-
+        // system.debug('===========Cname' + Cname);
+        //system.debug('===========temp' + temp);
         if (temp == null) { return temp[0].id; }
         else { return null; }
     }
@@ -501,6 +496,8 @@ public with sharing class Oblix_Utils {
         }
         return setCountries;
     }
+    
+    // Added by AES to get the record type for each sub category 
     public static map<string, string> getMapRTforSubCat() {
 
         map<string, string> mapRTforSubCat = new map<string, string>();
@@ -580,5 +577,22 @@ public with sharing class Oblix_Utils {
             this.location =  asset.Location__c;
             this.assetTitle = asset.Asset_Title__c;
         }
+    }
+    
+    // Added by AES to get the Asset Name value 
+    public static string getAssetName(Oblix_Project_Assets__c asset){
+        if(asset.Asset_Picklist__c == null ) asset.Asset_Picklist__c = '';
+        if(asset.Asset_Picklist__c == Label.Oblix_lbl_UIUX_Mobile_APP_Conceptualisation){
+            asset.Asset_name__c = asset.Quantity__c+'X'+Label.Oblix_lbl_UIUX_Mob_APP_Conceptualisation;
+        }else if(asset.Asset_Picklist__c == Label.Oblix_lbl_UIUX_Web_Optimisation_for_Mobile){
+            asset.Asset_name__c = asset.Quantity__c+'X'+Label.Oblix_lbl_UIUX_Web_Optimisation_for_Mob;
+        }else if(asset.Asset_Picklist__c.contains(Label.Oblix_lbl_UIUX_Interactive_Game_Adapt)){
+            asset.Asset_name__c = asset.Quantity__c+'X'+Label.Oblix_lbl_UIUX_Interactive_Game_Adapt;
+        }else if(asset.Asset_Picklist__c.contains(Label.Oblix_lbl_UIUX_Digital_Strategy_Adapt)){
+            asset.Asset_name__c = asset.Quantity__c+'X'+Label.Oblix_lbl_UIUX_Digital_Strategy_Adapt;
+        }else{
+            asset.Asset_name__c = asset.Quantity__c+'X'+asset.Asset_Picklist__c;
+        }
+        return asset.Asset_name__c;
     }
 }
