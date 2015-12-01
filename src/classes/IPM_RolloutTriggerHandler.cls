@@ -439,7 +439,7 @@ public with sharing class IPM_RolloutTriggerHandler
             }
             else
             {
-                if(!nonKeyFinancialExistingSet.contains(financialExternalId))
+                if(!nonKeyFinancialExistingSet.contains(financialExternalId) && newNonKeyRollout!=null)
                 {
                     IPM_Financial__c newFinancial = new IPM_Financial__c(
                             IPM_Project_Rollout__c = regionalRollout.Id,
@@ -497,7 +497,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 }
                 else
                 {
-                    if(!nonKeyFinancialExistingSet.contains(financialExternalId))
+                    if(!nonKeyFinancialExistingSet.contains(financialExternalId) && newNonKeyRollout!=null)
                     {
                         IPM_Financial__c newFinancial = new IPM_Financial__c(
                                 Regional_Project__c = regionalProject.Id,
@@ -604,24 +604,19 @@ public with sharing class IPM_RolloutTriggerHandler
             }
             
             // EPIC172 implementation start 
-            IPM_CustomPermission cpr = new IPM_CustomPermission();
-            Boolean syncTLD = cpr.hasPermission(IPM_ConstantUtils.IPM_SYNC_TLD);
-            
-            if(syncTLD) {
-                Map<ID,IPM_Project_Rollout__c> updatedRollouts = new Map<ID,IPM_Project_Rollout__c>();
-                for(IPM_Project_Rollout__c rollout: mapNewProjectRollouts.values()) 
+            Map<ID,IPM_Project_Rollout__c> updatedRollouts = new Map<ID,IPM_Project_Rollout__c>();
+            for(IPM_Project_Rollout__c rollout: mapNewProjectRollouts.values()) 
+            {
+                if ( rollout.Target_Launch_Date__c != mapOldProjectRollouts.get(rollout.Id).Target_Launch_Date__c ) 
                 {
-                    if ( rollout.Target_Launch_Date__c != mapOldProjectRollouts.get(rollout.Id).Target_Launch_Date__c ) 
-                    {
-                        updatedRollouts.put(rollout.Id,rollout);
-                    }
+                    updatedRollouts.put(rollout.Id,rollout);
                 }
-               
-               /* if(updatedRollouts.size()>0) 
-                {
-                    IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
-                    syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
-                }*/
+            }
+           
+            if(updatedRollouts.size()>0) 
+            {
+                IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
+                syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
             }
           //  EPIC172 implementation end 
        

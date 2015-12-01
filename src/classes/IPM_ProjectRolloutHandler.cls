@@ -17,6 +17,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     public static String REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId(); 
     public static String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(); 
     public Set<Id> phaseChangeProjects = new Set<Id>();
+    public Set<Id> phaseChangeRolloutSet = new Set<Id>();
     
     private Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> {};
     
@@ -118,11 +119,13 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
             if(REGIONAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.IPM_Project__c !=null)
             {   
                 phaseChangeProjects.add(newRollout.IPM_Project__c);
+                phaseChangeRolloutSet.add(newRollout.Id);
             }
             
             if(LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.Regional_Project__c !=null)
             {   
                 phaseChangeProjects.add(newRollout.Regional_Project__c);
+                phaseChangeRolloutSet.add(newRollout.Id);
             }
         } 
     }
@@ -146,11 +149,13 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
             if( REGIONAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.IPM_Project__c !=null )
             {   
                 phaseChangeProjects.add(newRollout.IPM_Project__c);
+                phaseChangeRolloutSet.add(newRollout.Id);
             }
         
             if( LOCAL_ROLLOUT_RECORDTYPE == newRollout.RecordTypeId && newRollout.Regional_Project__c !=null )
             {   
                 phaseChangeProjects.add(newRollout.Regional_Project__c);
+                phaseChangeRolloutSet.add(newRollout.Id);
             }
         }
         if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c ){
@@ -180,7 +185,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
             if(!phaseChangeProjects.isEmpty())
             {
                 IPM_ProjectJob_Queue phaseChangeAsyncHandler = new IPM_ProjectJob_Queue(); 
-                phaseChangeAsyncHandler.initializeProjectData(phaseChangeProjects); 
+                phaseChangeAsyncHandler.initializeRolloutProjectData(phaseChangeProjects,phaseChangeRolloutSet); 
                 System.enqueueJob(phaseChangeAsyncHandler);      
             }
         }

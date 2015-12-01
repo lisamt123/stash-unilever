@@ -4288,6 +4288,13 @@ Which Communications team do you represent? You must be associated to one Planne
         <value>Advertising &amp; Promotions Cannot Be Zero or Null, Please Paste(ctrl + V) correct Data!!</value>
     </labels>
     <labels>
+        <fullName>IPM_AgreeCountryRemoval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agree and Remove</shortDescription>
+        <value>Agree and Remove</value>
+    </labels>
+    <labels>
         <fullName>IPM_AlertMsgOutsideOTIF</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -5880,6 +5887,13 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM_Calendar</shortDescription>
         <value>Calendar</value>
+    </labels>
+    <labels>
+        <fullName>IPM_CancelCountryRemoval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel and Revert</shortDescription>
+        <value>Cancel and Revert</value>
     </labels>
     <labels>
         <fullName>IPM_CategoryNameNotNull</fullName>
@@ -8721,6 +8735,13 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <value>Due Date of this milestone should not exceed its Gate&apos;s Due Date.</value>
     </labels>
     <labels>
+        <fullName>IPM_Milestone_FutureDueDate_Validation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Milestone_FutureDueDate_Validation</shortDescription>
+        <value>The due date for this milestone must be before the due date for the next gate&apos;s milestone.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Milestone_Standard</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9852,6 +9873,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Clicking on save would submit your request for creation of regional project as soon as the regional project leader is assigned.A Regional Rollout project, once projected, cannot be deleted by the project leader and will have to be done via regional project leader through stop project. Once Processing is complete,you would be notified via Email.</value>
     </labels>
     <labels>
+        <fullName>IPM_PhaseChangeInProgressMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_PhaseChangeInProgressMsg</shortDescription>
+        <value>The gate approval is being processed. You will be notified, by email, once it has completed.</value>
+    </labels>
+    <labels>
         <fullName>IPM_PhaseLabel</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10304,7 +10332,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_RISK_MITIGATION_PLAN</shortDescription>
-        <value>Risk Management Plan</value>
+        <value>Risk Mitigation Plan</value>
     </labels>
     <labels>
         <fullName>IPM_RISK_MODAL_TITLE</fullName>
@@ -10494,6 +10522,20 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Remove</shortDescription>
         <value>Remove</value>
+    </labels>
+    <labels>
+        <fullName>IPM_RemoveCountryFromMCO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Country From MCO</shortDescription>
+        <value>Remove Country From MCO</value>
+    </labels>
+    <labels>
+        <fullName>IPM_RemoveCountryMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Country Warning Message</shortDescription>
+        <value>You have chosen to remove one or more countries from this MCO rollout. This will have no automatic impact on the financial data for this MCO at Regional or Local level. Please consider whether the business case will need updating.</value>
     </labels>
     <labels>
         <fullName>IPM_RemoveTask</fullName>

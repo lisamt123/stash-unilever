@@ -594,30 +594,52 @@ public with sharing class IPM_ProjectCountryDetails{
     
     public static void checkAtLeastOneAssmntPerEICountry(Set<Id> projIdSet ){       
         List<IPM_Project__c> projList  = [Select Id,IPM_Phase__c, IPM_Exists_AtLeast_OneAssmntPerEICountry__c, (Select Id, Name,IPM_Country__c,IPM_Country__r.IS_EI_Country__c,IPM_Country__r.Country_Name__c,Project_Phase__c from IPM_Assessments__r Where IPM_Country__c != null ) from IPM_Project__c Where Id IN:projIdSet LIMIT 50000];
-        System.debug('*******projList*******'+projList);
         Set<String> EICountriesForTheProject = new Set<String>();
         Set<String> EICountriesForAssessmentsOfProject = new Set<String>();
         List<IPM_Project__c> toUpdateProjList;
         map<id, set<string>> mapProjCountries = new map<id,set<string>>();
+
+        //Map of projectId and set of it's EI Countries
         for (IPM_Country__c country : [select id,Name, IPM_Project__c,IPM_Regional_Project__c, IPM_Local_Project__c,Country_Name__c,Country_Code__c,IS_EI_Country__c from IPM_Country__c 
                                         where (IPM_Project__c in:projIdSet or IPM_Regional_Project__c in:projIdSet OR IPM_Local_Project__c in:projIdSet) And IS_EI_Country__c = true LIMIT 50000 ]){
-            set<string> temp = new set<string>();
-            if(!mapProjCountries.isEmpty() && mapProjCountries.containsKey(country.IPM_Project__c)){
-                temp.addAll(mapProjCountries.get(country.IPM_Project__c));
+            if(country.IPM_Project__c != null){
+                if(!mapProjCountries.isEmpty() && mapProjCountries.containsKey(country.IPM_Project__c)){
+                    mapProjCountries.get(country.IPM_Project__c).add(country.Country_Name__c);
+                }
+                else{
+                    mapProjCountries.put(country.IPM_Project__c,new Set<String>{country.Country_Name__c});
+                }
             }
-            temp.add(country.Country_Name__c);
-            mapProjCountries.put(country.IPM_Project__c,temp);
+            
+            if(country.IPM_Regional_Project__c != null){
+                if(!mapProjCountries.isEmpty() && mapProjCountries.containsKey(country.IPM_Regional_Project__c)){
+                    mapProjCountries.get(country.IPM_Regional_Project__c).add(country.Country_Name__c);
+                }
+                else{
+                    mapProjCountries.put(country.IPM_Regional_Project__c,new Set<String>{country.Country_Name__c});
+                }
+            }
+            
+            if(country.IPM_Local_Project__c != null){
+                if(!mapProjCountries.isEmpty() && mapProjCountries.containsKey(country.IPM_Local_Project__c)){
+                    mapProjCountries.get(country.IPM_Local_Project__c).add(country.Country_Name__c);
+                }
+                else{
+                    mapProjCountries.put(country.IPM_Local_Project__c,new Set<String>{country.Country_Name__c});
+                }
+            }
+            
         }
+        
         
         if(projList != null && !projList.isEmpty()){
             toUpdateProjList = new List<IPM_Project__c>();
             for(IPM_Project__c proj : projList){
-                                
+            
+                
                 //find all the EI countries for the project
-                if(!mapProjCountries.isEmpty()){
-                    for(id projId :mapProjCountries.keySet()){
-                        EICountriesForTheProject.addAll(mapProjCountries.get(projId));
-                    }
+                if(!mapProjCountries.isEmpty() && mapProjCountries.get(proj.Id) != null && !mapProjCountries.get(proj.Id).isEmpty()){
+                        EICountriesForTheProject = mapProjCountries.get(proj.Id);
                 }
                 
                 //find all the EI countries which have an assessment for the current project phase
@@ -628,7 +650,7 @@ public with sharing class IPM_ProjectCountryDetails{
                         }
                     }
                 }
-                
+
                 
                 if(!EICountriesForTheProject.isEmpty() && !EICountriesForAssessmentsOfProject.isEmpty()){
                     
@@ -652,6 +674,7 @@ public with sharing class IPM_ProjectCountryDetails{
         
         //update the project with appropriate value of IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag
         if(toUpdateProjList != null && !toUpdateProjList.isEmpty()){
+
             Update toUpdateProjList;
         }
     }
