@@ -25,20 +25,27 @@ public without sharing class WINatPOSUtilRemoteActions {
     ********************************************************************/
     public static WINatPOSRemoteActionWrapper getMenu(){
          
+         String communityName = WINatPOSUtil.getCommunityName();
         //create pattern to retrive url to brand logo
         String regexPattern='<img.+?src=[\"\'](.+?)[\"\'].+?>';
         Pattern logoPattern = Pattern.compile(regexPattern);
         //create list of all categories in system
         List<WINatPOSRemoteActionWrapper.MenuLineItemWrapper> categoryLineItems=new List<WINatPOSRemoteActionWrapper.MenuLineItemWrapper>(); 
-        for(Category__c category: [select Id, Name,Parent_Category_Name__c,Category_Logo__c from Category__c where Parent_Category__c != null order by Name LIMIT 1000]){
+        for(Category__c category: [select Id, Name, Parent_Category_Name__c,Category_Logo__c, Category_URL_Link__c, Category_URL_Link_2__c from Category__c where Parent_Category__c != null order by Name LIMIT 1000]){
             String urlToCategoryLogo=null;
             if(category.Category_Logo__c != null){
                 Matcher logoMatcher=logoPattern.matcher(category.Category_Logo__c);
                 if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
                     urlToCategoryLogo=logoMatcher.group(1);
                 }
+                
+                // for community users we have to add Commmunity prefix to URL
+                //for internal users it have to be like it was oryginally 
+                if(urlToCategoryLogo != null && WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                    urlToCategoryLogo = urlToCategoryLogo.replace('/resource/', '/' + communityName + '/resource/');
+                }
             }
-            categoryLineItems.add(new WINatPOSRemoteActionWrapper.MenuLineItemWrapper(category.Name,String.valueOf(category.Id),urlToCategoryLogo,category.Parent_Category_Name__c));
+            categoryLineItems.add(new WINatPOSRemoteActionWrapper.MenuLineItemWrapper(category.Name, String.valueOf(category.Id), urlToCategoryLogo, category.Parent_Category_Name__c, category.Category_URL_Link__c, category.Category_URL_Link_2__c));
         }
         
         //create list of all brands in system
@@ -49,8 +56,17 @@ public without sharing class WINatPOSUtilRemoteActions {
                 Matcher logoMatcher=logoPattern.matcher(brand.Brand_Logo__c);
                 if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
                     urlToBrandLogo=logoMatcher.group(1);
+                    
+                    // for community users we have to add Commmunity prefix to URL
+		            //for internal users it have to be like it was oryginally 
+		            if(urlToBrandLogo != null && WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+		            	urlToBrandLogo = urlToBrandLogo.replace('/resource/', '/' + communityName + '/resource/');
+		            }
                 }
+
             }
+            
+            
             brandLineItems.add(new WINatPOSRemoteActionWrapper.MenuLineItemWrapper(brand.Name,String.valueOf(brand.Id),urlToBrandLogo,null));
         }
         
@@ -77,11 +93,19 @@ public without sharing class WINatPOSUtilRemoteActions {
         List<File__c> filesWithoutThumbnailUrl=new List<File__c>();
         Set<String> uniqueTopics=new Set<String>();
         List<WINatPOSRemoteActionWrapper.AssetCaruselWrapper> caruselResults= new List<WINatPOSRemoteActionWrapper.AssetCaruselWrapper>();
-        for(Asset__c asetItem :      [select id,Name,POS_Asset_Type__c,Description__c,LastModifiedDate,
+        List<Asset__c> assetsList;
+        if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+        	assetsList = WINatPOSUtil.getAssetsForHomePage();
+        }else{
+        	assetsList = [select id,Name,POS_Asset_Type__c,Description__c,LastModifiedDate, Video_URL_Link__c,
                                      (Select Feed_Thumbnail_URL__c,Feed_Id__c from Files__r where Is_Primary_Image__c=true),
                                      (select CommentCount, LikeCount,id from Feeds)
                                      From Asset__c where Carousel_Published__c=true
-                                     ]){
+                                     ];
+        }
+        
+        for(Asset__c asetItem : assetsList){
+                                     	
             
             List<String> relatedFiles=new List<String>();                             
             if(asetItem.Files__r != null && !asetItem.Files__r.isEmpty()){
@@ -90,28 +114,45 @@ public without sharing class WINatPOSUtilRemoteActions {
                     filesWithoutThumbnailUrl.add(asetItem.Files__r.get(0));
                 }
                 //add files to list
-                relatedFiles.add(asetItem.Files__r.get(0).Feed_Thumbnail_URL__c);
+                /*
+                String communityName = WINatPOSUtil.getCommunityName();
+                String fileUrl = asetItem.Files__r.get(0).Feed_Thumbnail_URL__c;
+                if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId()) && fileUrl != null){
+                    if(!fileUrl.startsWith('/'+communityName) && !fileUrl.containsIgnoreCase('https')){
+                        fileUrl = '/'+communityName+fileUrl;
+                    }
+                }else if(fileUrl != null && !fileUrl.containsIgnoreCase('https')){
+                    fileUrl = fileUrl.replace('/' + communityName, '');
+                }
+				*/
+                relatedFiles.add(WINatPOSUtil.urlRewrite(asetItem.Files__r.get(0).Feed_Thumbnail_URL__c));
             }
             asetItem.Description__c = WINatPOSUtil.convertHtmlToPlainText(asetItem.Description__c);                             
             Integer likeCount=0;
             Integer commentCount=0;
             uniqueTopics=new Set<String>();
-            //Agregate likes and comments for each asset                             
+            //Agregate likes and comments for each asset  
+                                      
             for(Asset__Feed item: asetItem.Feeds){
                 if(item != null){
                     likeCount += item.LikeCount;
                     commentCount += item.CommentCount;
                     
-                    ConnectApi.TopicPage topicPage=ConnectApi.Topics.getTopics(null, item.id);
-                    for(ConnectApi.Topic topic: topicPage.topics){
-                        uniqueTopics.add(topic.name);
+                    try{
+                    	ConnectApi.TopicPage topicPage = ConnectApi.Topics.getTopics(null, item.id);
+                    	for(ConnectApi.Topic topic: topicPage.topics){
+	                        uniqueTopics.add(topic.name);
+	                    }
+                    }catch(Exception ex){
+                    	System.debug('Probelm with Chatter files: ' + ex.getMessage());
                     }
+                    
                     
                 }
             }
             //convert dateTime to string to dislay in following format eg. September 16, 2014                             
             String convertedModifedDate = asetItem.LastModifiedDate.format('MMMMM d, yyyy');                                       
-            WINatPOSRemoteActionWrapper.AssetCaruselWrapper assetCarusel=new  WINatPOSRemoteActionWrapper.AssetCaruselWrapper(asetItem.id,asetItem.name,asetItem.Description__c,asetItem.POS_Asset_Type__c, relatedFiles,likeCount,commentCount,uniqueTopics,convertedModifedDate);
+            WINatPOSRemoteActionWrapper.AssetCaruselWrapper assetCarusel=new  WINatPOSRemoteActionWrapper.AssetCaruselWrapper(asetItem.id, asetItem.name, asetItem.Description__c, asetItem.POS_Asset_Type__c, relatedFiles, likeCount, commentCount, uniqueTopics, convertedModifedDate, asetItem.Video_URL_Link__c);
             caruselResults.add(assetCarusel);                         
                                                                                                                                                            
         }
@@ -402,6 +443,7 @@ public without sharing class WINatPOSUtilRemoteActions {
     
     public static WINatPOSRemoteActionWrapper getAssetDetailData(String assetOrAssetGroupId){
         System.Debug('*** WINatPOS getAssetDetailData input parameter: ' + assetOrAssetGroupId);
+        String communityName = WINatPOSUtil.getCommunityName();
         Id entityId = null;
         try{
             entityId=Id.valueOf(assetOrAssetGroupId);
@@ -421,7 +463,7 @@ public without sharing class WINatPOSUtilRemoteActions {
         }
         
         if (objectAPIName == 'Asset_Group__c') {
-            assets = [Select Owner.Name,Id,Asset_Group__c,Asset_Group__r.Name, Name, Category__c,Touchpoint__c,Country__c,Category__r.Name, Brand__c, Brand__r.Name, Channels__c, Description__c, Placement__c, Market_Cluster__c,POS_Asset_Type__c, BET__c, BET__r.Name,Buy_Online_in_Europe__c, 
+            assets = [Select Owner.Name, Id, Asset_Group__c, Video_URL_Link__c, Asset_Group__r.Name, Name, Category__c,Touchpoint__c,Country__c,Category__r.Name, Brand__c, Brand__r.Name, Channels__c, Description__c, Placement__c, Market_Cluster__c,POS_Asset_Type__c, BET__c, BET__r.Name,Buy_Online_in_Europe__c, 
                              (Select Id, Name, Category__c, Category__r.Name, Type__c, Sub_Type__c, File_Button_Text__c, Is_Primary_Image__c, Feed_ID__c, Feed_URL__c,Feed_Thumbnail_URL__c 
                               From Files__r 
                               Order By Sort_Order__c ASC),
@@ -444,7 +486,7 @@ public without sharing class WINatPOSUtilRemoteActions {
                 isUserFollowCollection=false;
             }
         } else {
-            assets = [Select Owner.Name,Id, Name,Touchpoint__c,Country__c, Category__c, Category__r.Name, Brand__c, Brand__r.Name, Channels__c, Description__c, Placement__c, Market_Cluster__c,POS_Asset_Type__c, BET__c, BET__r.Name,Buy_Online_in_Europe__c, 
+            assets = [Select Owner.Name, Id, Name, Touchpoint__c, Video_URL_Link__c, Country__c, Category__c, Category__r.Name, Brand__c, Brand__r.Name, Channels__c, Description__c, Placement__c, Market_Cluster__c,POS_Asset_Type__c, BET__c, BET__r.Name,Buy_Online_in_Europe__c, 
                              (Select Id, Name, Category__c, Category__r.Name, Type__c, Sub_Type__c, File_Button_Text__c, Is_Primary_Image__c, Feed_ID__c, Feed_URL__c,Feed_Thumbnail_URL__c 
                               From Files__r 
                               Order By Sort_Order__c ASC),
@@ -471,10 +513,16 @@ public without sharing class WINatPOSUtilRemoteActions {
                 // Try to set the primary image for the asset
                 //if ((f.Type__c != null) && (f.Type__c.equals(Label.WP_File_Type_Image))) {
                 if (f.Is_Primary_Image__c) {
-                    primaryImageURL = f.Feed_Thumbnail_URL__c;
+                    /*
+                	if( f.Feed_Thumbnail_URL__c != null && !WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                    	primaryImageURL = f.Feed_Thumbnail_URL__c.replace('/' + communityName, '');
+                    }else{
+                    	primaryImageURL = f.Feed_Thumbnail_URL__c;
+                	}*/
+                    primaryImageURL = WINatPOSUtil.urlRewrite(f.Feed_Thumbnail_URL__c);
                     primaryImageFeedId = f.Feed_ID__c;
                     primaryFileId=f.id;
-                    downloadURL=f.Feed_URL__c;
+                    downloadURL=WINatPOSUtil.urlRewrite(f.Feed_URL__c);
                 }
                 //}
                 
@@ -488,22 +536,22 @@ public without sharing class WINatPOSUtilRemoteActions {
                         // File is sub type artwork
                         f.Show_Artwork__c = WINatPOSUtil.VISIBLE; 
                         // Asset should enable artwork download from results page
-                        aURL = f.Feed_URL__c;
+                        aURL = WINatPOSUtil.urlRewrite(f.Feed_URL__c);
                     } else if (f.Sub_Type__c.contains(WINatPOSUtil.PRESENTATION)) {
                         // File is sub type presentation
                         f.Show_Presentation__c = WINatPOSUtil.VISIBLE;
                         // Asset should enable presentation download from results page
-                        pURL = f.Feed_URL__c;
+                        pURL = WINatPOSUtil.urlRewrite(f.Feed_URL__c);
                     } else if (f.Sub_Type__c.contains(WINatPOSUtil.PROD_ENGINEERING)) {
                         // File is sub type production engineering
                         f.Show_Production_Engineering__c = WINatPOSUtil.VISIBLE;
                         // Asset should enable production engineering download from results page
-                        peURL = f.Feed_URL__c;
+                        peURL = WINatPOSUtil.urlRewrite(f.Feed_URL__c);
                     } else if (f.Sub_Type__c.contains(WINatPOSUtil.DOWNLOAD_IMG)) {
                         // File is sub type download image
                         f.Show_Download_Image__c = WINatPOSUtil.VISIBLE;
                         // Asset should enable display image download from results page
-                        diURL = f.Feed_URL__c;
+                        diURL = WINatPOSUtil.urlRewrite(f.Feed_URL__c);
                     }                   
                 }                
             }
@@ -540,7 +588,10 @@ public without sharing class WINatPOSUtilRemoteActions {
                 tmpAssetItem.userFollowAsset = a.FeedSubscriptionsForEntity.size()>0 ? true : false;
                 tmpAssetItem.feedId=primaryImageFeedId;
                 tmpAssetItem.assetPrimaryFileId=primaryFileId;
-                tmpAssetItem.assetDownloadPdfUrl=URL.getSalesforceBaseUrl().toExternalForm() + '/apex/WinAtPOSPrintablePDFView?id=' + a.Id;
+            	String commName = WINatPOSUtil.getCommunityName();
+                String communityUrl = Network.getNetworkId() != null ? '/'+commName : '';
+                tmpAssetItem.assetDownloadPdfUrl=URL.getSalesforceBaseUrl().toExternalForm() +communityUrl+ '/apex/WinAtPOSPrintablePDFView?id=' + a.Id;
+                tmpAssetItem.videoUrl = a.Video_URL_Link__c;
                 if(firstAsset){
                     
                     Map<String,List<WINatPOSRemoteActionWrapper.AssetDetailStats>> statistics = retriveStatistics(primaryFileId, a.id);
@@ -657,6 +708,7 @@ public without sharing class WINatPOSUtilRemoteActions {
                 WINatPOSUtil.cacheFeedURL(fileItem);
                 filesWithoutThumbnailUrl.add(fileItem);
             }
+                                           
             fileList.add(fileItem);                                                
                                     
         }
@@ -768,7 +820,7 @@ public without sharing class WINatPOSUtilRemoteActions {
         
         List<Asset__c> assetSearchList=new List<Asset__c>();
         List<Asset_Group__c> assetGroupSearchList=new List<Asset_Group__c>();
-        WINatPOSRemoteActionWrapper gatheredResults=gatherResultsForSearch(searchType, brandId,categoryId,keyWord, assetType,assetChannel, assetCluster, assetPlacment,country);
+        WINatPOSRemoteActionWrapper gatheredResults = gatherResultsForSearch(searchType, brandId,categoryId,keyWord, assetType,assetChannel, assetCluster, assetPlacment,country);
         if(gatheredResults.status == '1'){
             return gatheredResults;
             
@@ -825,7 +877,7 @@ public without sharing class WINatPOSUtilRemoteActions {
             Map<id,List<Asset__c>> assetsRelatedWithAssetGroup = new Map<id,List<Asset__c>>();
             if(mapAssetGroupSearchList.keySet().size()>0){
                 //assetGroupSearchList rebuilded added assetGroups wher asset belongs to asset group
-                mapAssetGroupSearchList=new Map<Id,Asset_Group__c>([select Name,Id,Type__c from Asset_Group__c where id in :mapAssetGroupSearchList.keySet()]);
+                mapAssetGroupSearchList=new Map<Id,Asset_Group__c>([select Name, Id, Type__c, New_Indicator__c from Asset_Group__c where id in :mapAssetGroupSearchList.keySet()]);
                 
                 for(Asset__c a: [select Asset_Group__c,Name, Description__c,Channels__c,Brand__r.Name,id,POS_Asset_Type__c,(select Feed_ID__c, Feed_Thumbnail_URL__c, Feed_URL__c, Is_Primary_Image__c,File_Size_Bytes__c,id from Files__r where Is_Primary_Image__c = true) from Asset__c where Asset_Group__c in : mapAssetGroupSearchList.keySet() and Status__c =: WINatPOSUtil.assetTypeApproved order by name]){
                     for(File__c f: a.Files__r){
@@ -993,9 +1045,9 @@ public without sharing class WINatPOSUtilRemoteActions {
         //Start building final query
         Boolean isSoslQuery=false;
         String finalSoslQuery='';
-        String finalSoqlQuery='select id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c from Asset__c '+whereClauseForAsset;
-        String finalSoqlQueryWithTouchPoint='select id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c from Asset__c '+whereClauseForTouchpoint;
-        String finalSoqlQueryAssetGroup='select id,Name,Brand__c,Category__c,Market_Cluster__c,Type__c from Asset_Group__c '+whereClauseForAssetGroup;
+        String finalSoqlQuery='select id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c, Video_URL_Link__c from Asset__c '+whereClauseForAsset;
+        String finalSoqlQueryWithTouchPoint='select id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c, Video_URL_Link__c from Asset__c '+whereClauseForTouchpoint;
+        String finalSoqlQueryAssetGroup='select id,Name,Brand__c,Category__c, New_Indicator__c, Market_Cluster__c,Type__c from Asset_Group__c '+whereClauseForAssetGroup;
         if(keyWord != null && keyWord !='' && keyWord.trim() !=''){ 
             // Added by ISzegedi
             //keyWord = processSearchTerms(keyword);
@@ -1009,11 +1061,11 @@ public without sharing class WINatPOSUtilRemoteActions {
         if(isSoslQuery){
             if((assetChannel != null  && assetChannel != '') || (assetPlacment != null  && assetPlacment != '') || (country != null  && country != '')){
                 system.debug('*** WINatPOS gatherResultsForSearch method final sosl query call without quering Asset_Group__c');
-                finalSoslQuery +='IN ALL FIELDS RETURNING Asset__c (id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c '+whereClauseForAsset+' order by Name)';
+                finalSoslQuery +='IN ALL FIELDS RETURNING Asset__c (id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c, Video_URL_Link__c '+whereClauseForAsset+' order by Name)';
             }else{
                 system.debug('*** WINatPOS gatherResultsForSearch method final sosl query call with quering Asset_Group__c');
-                finalSoslQuery +='IN ALL FIELDS RETURNING Asset__c (id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c '+whereClauseForAsset+' order by Name), '
-                                                    + 'Asset_Group__c (id,Name,Brand__c,Category__c,Market_Cluster__c,Type__c '+ whereClauseForAssetGroup+' order by Name)';
+                finalSoslQuery +='IN ALL FIELDS RETURNING Asset__c (id,Name,Asset_Group__c,Brand__c,Category__c,Channels__c,Country__c,Description__c,Market_Cluster__c,Modern_Channels__c,Placement__c,POS_Asset_Type__c,Touchpoint__c, Video_URL_Link__c '+whereClauseForAsset+' order by Name), '
+                                                    + 'Asset_Group__c (id,Name,Brand__c,Category__c,Market_Cluster__c,Type__c, New_Indicator__c '+ whereClauseForAssetGroup+' order by Name)';
             }
              
             
@@ -1021,7 +1073,13 @@ public without sharing class WINatPOSUtilRemoteActions {
             system.debug('*** WINatPOS gatherResultsForSearch method final soql query call: '+finalSoslQuery);
             //end of creating dynamic query call
             
-            List<List<SObject>>searchList=search.query(finalSoslQuery);
+            List<List<SObject>>searchList;
+            
+            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            	searchList = WINatPOSUtil.searchForCommunityUsers(finalSoslQuery);
+            }else{
+            	searchList = search.query(finalSoslQuery);
+            }
             
             if(!searchList.isEmpty()){
                 system.debug('*** WINatPOS gatherResultsForSearch method check searchList '+searchList);
@@ -1033,18 +1091,31 @@ public without sharing class WINatPOSUtilRemoteActions {
                     system.debug('*** WINatPOS gatherResultsForSearch method check searchList for asset group '+searchList.get(1));
                 }
             }
-            assetSeatchByTouchpoint=Database.query(finalSoqlQueryWithTouchPoint);
+            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            	assetSeatchByTouchpoint = (List<Asset__c>)WINatPOSUtil.retrieveForCommunityUsers(finalSoqlQueryWithTouchPoint);
+            }else{
+            	assetSeatchByTouchpoint = Database.query(finalSoqlQueryWithTouchPoint);
+            }
             //combine keyword search from sosl and soql for TouchPoint
             assetSearchList=WinAtPosUtil.combineAssetsLists(assetSearchList,assetSeatchByTouchpoint);
             
             
         }else{
-            assetSearchList=Database.query(finalSoqlQuery);
+        	if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+        		assetSearchList = (List<Asset__c>)WINatPOSUtil.retrieveForCommunityUsers(finalSoqlQuery);
+        	}else{
+            	assetSearchList = Database.query(finalSoqlQuery);
+        	}
             system.debug('*** WINatPOS gatherResultsForSearch method final soql query call for Assets: '+finalSoqlQuery);
             if((assetChannel != null  && assetChannel != '') || (assetPlacment != null  && assetPlacment != '' || (country != null  && country != ''))){
                 system.debug('*** WINatPOS search method channel or placment or country filter is selected do not search in asset group');
             }else{
-                assetGroupSearchList=Database.query(finalSoqlQueryAssetGroup);
+            	if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+        			assetGroupSearchList = (List<Asset_Group__c>)WINatPOSUtil.retrieveForCommunityUsers(finalSoqlQueryAssetGroup);
+	        	}else{
+	            	assetGroupSearchList = Database.query(finalSoqlQueryAssetGroup);
+	        	}
+
                 system.debug('*** WINatPOS gatherResultsForSearch method final soql query call for AssetGroups: '+finalSoqlQueryAssetGroup);
             }
         }
@@ -1071,9 +1142,10 @@ public without sharing class WINatPOSUtilRemoteActions {
                      ',brandId' +brandId+',categoryId: '+categoryId+',keyWord:'+keyWord+
                      ',assetType:'+assetType+',assetChannel:'+assetChannel+',assetCluster'+assetCluster+',assetPlacment:'+assetPlacment);
         //put debug info here
+        String communityName = WINatPOSUtil.getCommunityName();
         List<Asset__c> assetSearchList=new List<Asset__c>();
         List<Asset_Group__c> assetGroupSearchList=new List<Asset_Group__c>();
-        WINatPOSRemoteActionWrapper gatheredResults=gatherResultsForSearch(searchType, brandId,categoryId,keyWord, assetType,assetChannel, assetCluster, assetPlacment,country);
+        WINatPOSRemoteActionWrapper gatheredResults = gatherResultsForSearch(searchType, brandId,categoryId,keyWord, assetType,assetChannel, assetCluster, assetPlacment,country);
         if(gatheredResults.status == '1'){
             return gatheredResults;
             
@@ -1146,8 +1218,12 @@ public without sharing class WINatPOSUtilRemoteActions {
                         WINatPOSUtil.cacheFeedURL(f);
                         filesWithoutThumbnailUrl.add(f);
                     }
-                    String convertedThumbnail=f.Feed_Thumbnail_URL__c;
+                    String convertedThumbnail = f.Feed_Thumbnail_URL__c;
+                    
                     convertedThumbnail=convertedThumbnail != null ? convertedThumbnail.replace('THUMB720BY480','THUMB120BY90') : null;
+                    if( convertedThumbnail != null && !WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                    	convertedThumbnail = convertedThumbnail.replace('/' + communityName, '');
+                    }
                     //fileMapsForAsset.put(f.Asset__c,new List<String>{f.Feed_Thumbnail_URL__c});
                     fileMapsForAsset.put(f.Asset__c,new List<String>{convertedThumbnail});     
                 }    
@@ -1155,7 +1231,7 @@ public without sharing class WINatPOSUtilRemoteActions {
             
             if(mapAssetGroupSearchList.keySet().size()>0){
                 //assetGroupSearchList rebuilded added assetGroups wher asset belongs to asset group
-                mapAssetGroupSearchList=new Map<Id,Asset_Group__c>([select Name,Brand__c,Category__c,Type__c,Id from Asset_Group__c where id in :mapAssetGroupSearchList.keySet()]);
+                mapAssetGroupSearchList=new Map<Id,Asset_Group__c>([select Name,Brand__c,Category__c, New_Indicator__c, Type__c,Id from Asset_Group__c where id in :mapAssetGroupSearchList.keySet()]);
                 for(Asset__c a: [select Asset_Group__c,id,(select Feed_ID__c, Feed_Thumbnail_URL__c, Feed_URL__c, Is_Primary_Image__c from Files__r where Is_Primary_Image__c = true) from Asset__c where Asset_Group__c in : mapAssetGroupSearchList.keySet() and Status__c =: WINatPOSUtil.assetTypeApproved ]){
                     for(File__c f: a.Files__r){
                         if(f.Feed_Thumbnail_URL__c == null){
@@ -1164,6 +1240,9 @@ public without sharing class WINatPOSUtilRemoteActions {
                         }
                         String convertedThumbnail=f.Feed_Thumbnail_URL__c;
                     	convertedThumbnail=convertedThumbnail != null ? convertedThumbnail.replace('THUMB720BY480','THUMB120BY90') : null;
+                    	if( convertedThumbnail != null && !WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+	                    	convertedThumbnail = convertedThumbnail.replace('/' + communityName, '');
+	                    }
                         if(fileMapsForAssetGroup.containsKey(a.Asset_Group__c)){
                             List<String> tmpList=fileMapsForAssetGroup.get(a.Asset_Group__c);
                             //tmpList.add(f.Feed_Thumbnail_URL__c);
@@ -1215,7 +1294,7 @@ public without sharing class WINatPOSUtilRemoteActions {
         
         if(searchType == null || searchType ==''){
              return new WINatPOSRemoteActionWrapper('search method return no results','1',null,'serch type prarameter needs to be specified available values: '
-                                                    +'\n categorySearch \n brandSearch \n innovationSearch \n instoreSearch \n repetableSerach \n keywordSearch'
+                                                    +'\n categorySearch \n brandSearch \n innovationSearch \n bestPracticesSearch \n repetableSerach \n keywordSearch'
              );
         }
         //whereClauseForAsset
@@ -1260,14 +1339,15 @@ public without sharing class WINatPOSUtilRemoteActions {
             whereClauseForAssetGroup += whereClauseForAssetGroup == ''? 'where Type__c = \''+translatedValueFromUI+'\'' : ' and Type__c = \''+translatedValueFromUI+'\'';
         }
         
-        if(searchType == WINatPOSUtil.instoreSearch){
+        if(searchType == WINatPOSUtil.bestPracticesSearch){
             //if where clasue is empty and where phase else and
             if(whereClauseForAsset.contains('POS_Asset_Type__c =')){
-               return new WINatPOSRemoteActionWrapper('search method failed','1',null,'Method search was called with wrong parametes assetTypes can not be used in instoreSearch');
+               return new WINatPOSRemoteActionWrapper('search method failed','1',null,'Method search was called with wrong parametes assetTypes can not be used in bestPracticesSearch');
             }
-            whereClauseForAsset += ' and POS_Asset_Type__c = \''+WINatPOSUtil.assetTypeForInstoreSearch+'\'';
-            whereClauseForAssetGroup += whereClauseForAssetGroup == ''? 'where Type__c = \''+WINatPOSUtil.assetTypeForInstoreSearch+'\'' : ' and Type__c = \''+WINatPOSUtil.assetTypeForInstoreSearch+'\'';
+            whereClauseForAsset += ' and POS_Asset_Type__c = \''+WINatPOSUtil.assetTypeForBestPractisesSearch+'\'';
+            whereClauseForAssetGroup += whereClauseForAssetGroup == ''? 'where Type__c = \''+WINatPOSUtil.assetTypeForBestPractisesSearch+'\'' : ' and Type__c = \''+WINatPOSUtil.assetTypeForBestPractisesSearch+'\'';
         }
+        
         if(searchType == WINatPOSUtil.innovationSearch){
             //if where clasue is empty and where phase else and
             if(whereClauseForAsset.contains('POS_Asset_Type__c =')){
@@ -1283,6 +1363,15 @@ public without sharing class WINatPOSUtilRemoteActions {
             }
             whereClauseForAsset += ' and POS_Asset_Type__c = \''+WINatPOSUtil.assetTypeForRepetableSearch+'\'';
             whereClauseForAssetGroup += whereClauseForAssetGroup == ''? 'where Type__c = \''+WINatPOSUtil.assetTypeForRepetableSearch+'\'' : ' and Type__c = \''+WINatPOSUtil.assetTypeForRepetableSearch+'\'';
+        }
+        
+        if(searchType == WINatPOSUtil.ctaSearch){
+            //if where clasue is empty and where phase else and
+            if(whereClauseForAsset.contains('POS_Asset_Type__c =')){
+               return new WINatPOSRemoteActionWrapper('search method failed','1',null,'Method search was called with wrong parametes assetTypes can not be used in Call To Action Search');
+            }
+            whereClauseForAsset += ' and POS_Asset_Type__c = \''+WINatPOSUtil.assetTypeForCTISearch+'\'';
+            whereClauseForAssetGroup += whereClauseForAssetGroup == ''? 'where Type__c = \''+WINatPOSUtil.assetTypeForCTISearch+'\'' : ' and Type__c = \''+WINatPOSUtil.assetTypeForCTISearch+'\'';
         }
         
         if(assetChannel != null  && assetChannel != ''){
@@ -1333,7 +1422,8 @@ public without sharing class WINatPOSUtilRemoteActions {
                 winAtPosGroup=WinAtPOSUtil.winAtPostChatterGroupForTest;
             }
             if(patentId == null || patentId == ''){
-              List<CollaborationGroup> colGroup=[SELECT Id,Name From CollaborationGroup where name =: winAtPosGroup limit 1];  
+              String networkId = Network.getNetworkId(); 
+              List<CollaborationGroup> colGroup=[SELECT Id,Name From CollaborationGroup where name =: winAtPosGroup and NetworkId =: networkId limit 1];  
               patentId=colGroup.get(0).Id;
             }
             List<FeedItem> annoucments=[select id,ParentId, Body,Title,LinkUrl,CreatedById,CreatedDate FROM FeedItem WHERE Type = 'AdvancedTextPost' and ParentId =:patentId order by CreatedDate desc limit 1];
@@ -1385,46 +1475,82 @@ public without sharing class WINatPOSUtilRemoteActions {
         
         if(searchType == WINatPOSUtil.brandSearch && brandId != null && brandId != ''){
             system.debug('*** WINatPOS getCaruselForBrandOrCategory inside brandSearch');
-            List<Brand_Master__c> brandForCarusel=[select name,Brand_Logo__c,id,
+            List<Brand_Master__c> brandForCarusel;
+            
+            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            	brandForCarusel = WINatPOSUtil.getBrandForCaruselByList(new List<Brand_Master__c>{new Brand_Master__c(Id = brandId)});
+            }else{
+            	brandForCarusel=[select name,Brand_Logo__c,id,
                                                 (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
                                                 (Select Feed_URL__c, Name,Feed_ID__c,id From Files__r order by Name asc)
                                                  from Brand_Master__c where id =: brandId];
+            }
+            
+                                                 
             caruselList = getCaruselsForCategoryOrBrand(null,brandForCarusel,caruselList,WINatPOSUtil.brandSearch);
         }else if(searchType == WINatPOSUtil.categorySearch && categoryId != null && categoryId != ''){
             system.debug('*** WINatPOS getCaruselForBrandOrCategory inside categorySearch');
             
-            List<Category__c> catForCarusel=    [select name,Category_Logo__c,id,
+            List<Category__c> catForCarusel;
+            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            	catForCarusel = WINatPOSUtil.getCatForCaruselByList(new List<Category__c>{new Category__c(Id = categoryId)});
+            }else{
+            	catForCarusel = [select name,Category_Logo__c,id,
                                                 (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
                                                 (select Feed_URL__c, Name,Feed_ID__c,id From CategoryUploads__r order by Name asc) 
                                                  from Category__c where id =: categoryId];
+            }
+                                                 
             caruselList = getCaruselsForCategoryOrBrand(catForCarusel,null,caruselList,WINatPOSUtil.categorySearch);
             
         }else if(searchType == WINatPOSUtil.keywordSearch && keyWord != null && keyWord != ''){
             //keyWord = keyWord.replace('?','\\?').replace('&','\\&').replace('!','\\!').replace('{','\\{').replace('}','\\}').replace('[','\\[').replace('(','\\(').replace(')','\\)').replace('^','\\^').replace('~','\\~').replace(':','\\:').replace('\\','\\\\').replace('"','\\"').replace('\'','\\\'').replace('+','\\+').replace('-','\\\\-');
             String soslQuery='Find \''+keyWord+'\' IN Name FIELDS RETURNING Brand_Master__c(Name,id order by Name asc),Category__c(Name,id order by name asc)';
             
-            List<List<SObject>>searchList=search.query(soslQuery);
+            List<List<SObject>> searchList;//=search.query(soslQuery);
+            
+            if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            	searchList = WINatPOSUtil.searchForCommunityUsers(soslQuery);
+            }else{
+            	searchList = search.query(soslQuery);
+            }
             List<Brand_Master__c> brands = (List<Brand_Master__c>)searchList.get(0);
             List<Category__c> categories = (List<Category__c>)searchList.get(1);
             WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper caruselWrap=null;
             if(brands.size() > 0){
-                List<Brand_Master__c> brandForCarusel=[select name,Brand_Logo__c,id,
+            	
+            	List<Brand_Master__c> brandForCarusel;
+            	if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+            		brandForCarusel = WINatPOSUtil.getBrandForCaruselByList(brands);
+            	}else{
+            		brandForCarusel = [select name,Brand_Logo__c,id,
                                                 (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
                                                 (Select Feed_URL__c, Name,Feed_ID__c,id From Files__r order by Name asc)
                                                  from Brand_Master__c where id in : brands order by name];
+            	}
+                
+                                                 
                caruselList=getCaruselsForCategoryOrBrand(null,brandForCarusel,caruselList,WINatPOSUtil.brandSearch);    
             }
             WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper caruselWrap1=null;
             if(categories.size()>0){
+            	List<Category__c> catForCarusel;
                 
-                List<Category__c> catForCarusel=[select name,Category_Logo__c,id,
+                if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                	catForCarusel = WINatPOSUtil.getCatForCaruselByList(categories);
+                }else{
+                	catForCarusel = [select name,Category_Logo__c,id,
                                                 (select ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId()),
                                                 (Select Feed_URL__c, Name,Feed_ID__c,id From CategoryUploads__r order by Name asc)
                                                  from Category__c where id in : categories order by name];
+                }
+                
+                                                 
                caruselList=getCaruselsForCategoryOrBrand(catForCarusel,null,caruselList,WINatPOSUtil.categorySearch);
                 
             }
         }
+        
         system.debug('*** WINatPOS getCaruselForBrandOrCategory returned following result:\n '+JSON.serialize(new WINatPOSRemoteActionWrapper('getCaruselForBrandOrCategory return  results','0',caruselList,'')));
         return new WINatPOSRemoteActionWrapper('getCaruselForBrandOrCategory return  results','0',caruselList,'');
     }
@@ -1438,6 +1564,8 @@ public without sharing class WINatPOSUtilRemoteActions {
     ********************************************************************/
     public static List<WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper> getCaruselsForCategoryOrBrand(List<Category__c> listOfCategoryCarusel,List<Brand_Master__c> listOfBrandCarusel,List<WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper> caruselWrapLst,String searchType){
         system.debug('*** WINatPOS getCaruselForBrandOrCategory input parameter listOfCategoryCarusel: '+listOfCategoryCarusel+'listOfBrandCarusel:'+listOfBrandCarusel+ ',caruselWrapLst: '+caruselWrapLst+',searchType:'+searchType);
+        
+        String communityName = WINatPOSUtil.getCommunityName();
         String regexPattern='<img.+?src=[\"\'](.+?)[\"\'].+?>';
         Pattern logoPattern = Pattern.compile(regexPattern);
         Boolean isFirst=true;
@@ -1456,22 +1584,27 @@ public without sharing class WINatPOSUtilRemoteActions {
                         if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
                             //retrive logo for category
                             urlToLogo=logoMatcher.group(1);
+                            if( urlToLogo != null && WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                            	urlToLogo = urlToLogo.replace('/resource/', '/' + communityName + '/resource/');
+                            }
                         }
                 }
                 WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper caruselWrap=new WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper(cat.Name,urlToLogo,null,cat.id,isUserFollowCategory);
                 //retrive files for category
-                if(cat.CategoryUploads__r != null){
-                    for(File__c f : cat.CategoryUploads__r){
-                        if (f.Feed_URL__c == null) {
-                            WINatPOSUtil.cacheFeedURL(f);  // Try to cache the download Url to optimize performance
-                        }
-                        if(caruselWrap.filesRelated == null){
-                            caruselWrap.filesRelated= new List<WINatPOSRemoteActionWrapper.RelatedFiles>{new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c)};
-                        }else{
-                            caruselWrap.filesRelated.add(new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c));
+                if(Network.getNetworkId() == null){
+                    if(cat.CategoryUploads__r != null){
+                        for(File__c f : cat.CategoryUploads__r){
+                            if (f.Feed_URL__c == null) {
+                                WINatPOSUtil.cacheFeedURL(f);  // Try to cache the download Url to optimize performance
+                            }
+                            if(caruselWrap.filesRelated == null){
+                                caruselWrap.filesRelated= new List<WINatPOSRemoteActionWrapper.RelatedFiles>{new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c)};
+                            }else{
+                                caruselWrap.filesRelated.add(new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c));
+                            }
                         }
                     }
-                }
+                }    
                 caruselWrapLst.add(caruselWrap);
             }
         }else if(searchType == WINatPOSUtil.brandSearch){
@@ -1486,23 +1619,29 @@ public without sharing class WINatPOSUtilRemoteActions {
                         Matcher logoMatcher=logoPattern.matcher(brand.Brand_Logo__c);
                         if(logoMatcher.matches() && logoMatcher.groupCount() == 1){
                             //retrive logo for brand
-                            urlToLogo=logoMatcher.group(1);
+                            urlToLogo = logoMatcher.group(1);
+                            if(urlToLogo != null && WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
+                            	urlToLogo = urlToLogo.replace('/resource/', '/' + communityName + '/resource/');
+                            }
+                            
                         }
                 }
                 WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper caruselWrap=new WINatPOSRemoteActionWrapper.BrandCategoryCaruselWrapper(brand.Name,urlToLogo,null,brand.id,isUserFollowBrand);
                 //retrive files for brand
-                if(brand.Files__r != null){
-                    for(File__c f : brand.Files__r){
-                        if (f.Feed_URL__c == null) {
-                            WINatPOSUtil.cacheFeedURL(f);  // Try to cache the download Url to optimize performance
-                        }
-                        if(caruselWrap.filesRelated == null){
-                            caruselWrap.filesRelated= new List<WINatPOSRemoteActionWrapper.RelatedFiles>{new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c)};
-                        }else{
-                            caruselWrap.filesRelated.add(new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c));
+                if(Network.getNetworkId() == null){
+                    if(brand.Files__r != null){
+                        for(File__c f : brand.Files__r){
+                            if (f.Feed_URL__c == null) {
+                                WINatPOSUtil.cacheFeedURL(f);  // Try to cache the download Url to optimize performance
+                            }
+                            if(caruselWrap.filesRelated == null){
+                                caruselWrap.filesRelated= new List<WINatPOSRemoteActionWrapper.RelatedFiles>{new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c)};
+                            }else{
+                                caruselWrap.filesRelated.add(new WINatPOSRemoteActionWrapper.RelatedFiles(f.Name,f.Feed_URL__c,f.id,f.Feed_ID__c));
+                            }
                         }
                     }
-                }
+                }    
                 caruselWrapLst.add(caruselWrap);
             }
             
@@ -1515,4 +1654,80 @@ public without sharing class WINatPOSUtilRemoteActions {
     public static void getNumberOfContentDocument(){
         system.debug([SELECT Id FROM ContentVersion].size());
     }
+    
+    /*******************************************************************
+	Purpose: Method is handlig granting sharings for Assets
+	Parameters: [Asset__c myAsset]
+	Returns: [void]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
+	public static void handleAssetAgenciesShares(List<Asset__c> myAssetList){
+		
+		System.Debug('*** WINatPOS handleAssetAgenciesShares input parameter myAssetList: ' + myAssetList);
+		
+		List<Asset__Share> editSharesToInsert = new List<Asset__Share>();
+		List<Asset__Share> viewSharesToInsert = new List<Asset__Share>();
+		//List<Asset__Share> sharesToDelete = new List<Asset__Share>();
+
+		Set<String> publicGroupsToAdd = new Set<String>();
+		Map<Id, List<String>> assetIdToEditPublicGroupsList = new Map<Id, List<String>>();
+		Map<Id, List<String>> assetIdToViewPublicGroupsList = new Map<Id, List<String>>();
+		Map<String, Group> groupNameToObject = new Map<String, Group>();
+		
+		for(Asset__c myAsset : myAssetList){
+			if(!String.isBlank(myAsset.Agency_Edit_Access_Text__c)){
+				assetIdToEditPublicGroupsList.put(myAsset.Id, myAsset.Agency_Edit_Access_Text__c.split(';'));
+				publicGroupsToAdd.addAll(myAsset.Agency_Edit_Access_Text__c.split(';'));
+			}
+			if(!String.isBlank(myAsset.Agency_Read_Access_Text__c)){
+				assetIdToViewPublicGroupsList.put(myAsset.Id, myAsset.Agency_Read_Access_Text__c.split(';'));
+				publicGroupsToAdd.addAll(myAsset.Agency_Read_Access_Text__c.split(';'));
+			}
+		}
+		
+		for(Group myTmpGroup : [SELECT Name, ID FROM Group WHERE Name IN :publicGroupsToAdd]){
+			groupNameToObject.put(myTmpGroup.Name, myTmpGroup);
+		}
+
+		for(Asset__c myAsset : myAssetList){
+			
+			//get Groups that should be updated - edit
+			if(assetIdToEditPublicGroupsList.containsKey(myAsset.Id)){
+				for(String groupName : assetIdToEditPublicGroupsList.get(myAsset.Id)){
+					if(groupNameToObject.containsKey(groupName)){
+						editSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Edit'));
+					}
+				}
+			}
+			
+			//get Groups that should be updated - view
+			if(assetIdToViewPublicGroupsList.containsKey(myAsset.Id)){
+				for(String groupName : assetIdToViewPublicGroupsList.get(myAsset.Id)){
+					if(groupNameToObject.containsKey(groupName)){
+						viewSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Read'));
+					}
+				}
+			}
+		}
+		
+		List<Group> winAtPosPublicGroups = [SELECT Name, Id FROM Group WHERE Name like 'Win@POS%' ORDER BY Name];
+		
+		Savepoint sp = Database.setSavepoint();
+		
+		try{
+			//crean up old sharings for WinatPOS Public Groups
+			delete [SELECT Id FROM Asset__Share WHERE ParentId IN :myAssetList AND UserOrGroupId IN :winAtPosPublicGroups];
+			
+			
+			//insert new sharings
+			insert viewSharesToInsert;
+			insert editSharesToInsert;
+		}catch(Exception ex){
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, ex.getMessage()));
+        	// Rollback any changes
+            Database.rollback(sp);
+		}
+		
+	}
+    
 }

@@ -878,7 +878,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>JE_Job_Evaluation__c.Reporting_Layer_Validation__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>

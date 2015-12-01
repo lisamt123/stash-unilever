@@ -28,18 +28,20 @@ public class IPM_BETDueDateNotificationBatch_Test{
     /*Desciption:- Method to initialise test data
     @param mileStoneDuteDate:- Due date of milestone which will be different for different test scenarios
     */
-	
-	private static void initializeData(Date mileStoneDuteDate, String milestoneName){
-    	
-    	Set<Id> iDs = new Set<Id>();
-    	
-        ipmCompanyCard = IPM_TestFactory_Helper.createIPMCompanyCard(false);
-        ipmCompanyCard.IPM_Business_Partner__c = UserInfo.getUserId();
-        insert ipmCompanyCard;
+    
+    private static void initializeData(Date mileStoneDuteDate, String milestoneName){
         
+        Set<Id> iDs = new Set<Id>();
+        
+        user systAdmin=IPM_TestFactory_Helper.createUserAdmin(false);
+        system.runAS(systAdmin){
+            ipmCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+            ipmCompanyCard.IPM_Business_Partner__c = UserInfo.getUserId();
+            insert ipmCompanyCard;
+        }
         platformUser =IPM_TestFactory_Helper.returnPlatformUser();
         System.runAs(platformUser) 
-		{
+        {
         lstProjects = new List<IPM_Project__c>();
         for(Integer i=1; i<=5; i++){
             project = IPM_TestFactory_Helper.createIPMProject(false);
@@ -63,8 +65,8 @@ public class IPM_BETDueDateNotificationBatch_Test{
         for(IPM_Project__c eachProj : lstProjects) {
             iDs.add(eachProj.Id);
         }
-     	System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs],PROJECT_INSERTED_ASSERTION);
-        
+        System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs],PROJECT_INSERTED_ASSERTION);
+        Id  PROJECT_MILESTONE_RECTYPE = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(); 
         lstIpmMilestones = new List<IPM_Milestone__c>();
         for(Integer i=1; i<=5; i++){
             ipmMilestone = IPM_TestFactory_Helper.createIPMMilestone(lstProjects[i-1].id, false);
@@ -76,6 +78,7 @@ public class IPM_BETDueDateNotificationBatch_Test{
             ipmMilestone.IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
             ipmMilestone.IPM_Type_of_Milestone__c = IPM_ConstantUtils.BET;
             ipmMilestone.IPM_Completed_On__c = null;
+			ipmMilestone.RecordTypeId = PROJECT_MILESTONE_RECTYPE; 
             lstIpmMilestones.add(ipmMilestone);
             
         }
@@ -84,8 +87,8 @@ public class IPM_BETDueDateNotificationBatch_Test{
         for(IPM_Milestone__c eachMilestone : lstIpmMilestones) {
             iDs.add(eachMilestone.Id);
         }
-     	System.assertEquals(5, [Select count() from IPM_Milestone__c where id in:iDs]);
-		}
+        System.assertEquals(5, [Select count() from IPM_Milestone__c where id in:iDs]);
+        }
     }
     
     /**
@@ -94,15 +97,15 @@ public class IPM_BETDueDateNotificationBatch_Test{
    */
     public static testmethod void chatterFeedPostForFirstReleasePositive(){
         
-			initializeData(System.today() + 15, BET_FIRSTMILESTONE_NAME);
-			
-			Test.startTest();    
-			executeBatch();
-			mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 200]);
-			for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-				System.assert(projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
-			}
-			Test.stopTest();
+            initializeData(System.today() + 15, BET_FIRSTMILESTONE_NAME);
+            
+            Test.startTest();    
+            executeBatch();
+            mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 200]);
+            for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
+                System.assert(projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
+            }
+            Test.stopTest();
     }
     
     /**
@@ -112,14 +115,14 @@ public class IPM_BETDueDateNotificationBatch_Test{
     public static testmethod void chatterFeedPostForFinalReleasePositive(){
        
           initializeData(System.today() + 15, BET_FINALMILESTONE_NAME);
-			
-			Test.startTest();    
-			executeBatch();
-			mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 200]);
-			for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-				System.assert(projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
-			}
-			Test.stopTest();
+            
+            Test.startTest();    
+            executeBatch();
+            mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 200]);
+            for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
+                System.assert(projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
+            }
+            Test.stopTest();
     }
     
     /**
@@ -127,16 +130,16 @@ public class IPM_BETDueDateNotificationBatch_Test{
     *  @name chatterFeedPostForFirstReleasePositive
    */
     public static testmethod void chatterFeedPostForFirstReleaseNegative(){
-		
-			initializeData(System.today() + 10, BET_FIRSTMILESTONE_NAME);
-			
-			Test.startTest();    
-			executeBatch();
-			mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 200]);
-			for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-				System.assert(!projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
-			}
-		    Test.stopTest();
+        
+            initializeData(System.today() + 10, BET_FIRSTMILESTONE_NAME);
+            
+            Test.startTest();    
+            executeBatch();
+            mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 200]);
+            for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
+                System.assert(!projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
+            }
+            Test.stopTest();
     }
     
     /**
@@ -145,15 +148,15 @@ public class IPM_BETDueDateNotificationBatch_Test{
    */
     public static testmethod void chatterFeedPostForFinalReleaseNegative(){
         
-			initializeData(System.today() + 10, BET_FINALMILESTONE_NAME);
-			
-			Test.startTest();    
-			executeBatch();
-			mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 200]);
-			for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-				System.assert(!projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
-			}
-			Test.stopTest();
+            initializeData(System.today() + 10, BET_FINALMILESTONE_NAME);
+            
+            Test.startTest();    
+            executeBatch();
+            mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 200]);
+            for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
+                System.assert(!projectFeed.Body.contains(IPM_ConstantUtils.BET_FINAL_RELEASE_MESSAGE_STR1),FEED_UPDATED_ASSERT);
+            }
+            Test.stopTest();
         
     }
     

@@ -66,21 +66,19 @@ private class IPM_ChatterFeedHelper_Test {
          User managerOfDeputyPL = IPM_TestFactory_Helper.createUser(true);
          
          PL = IPM_TestFactory_Helper.createUser(False);
-         PL.IPM_Role__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_PL;
          PL.managerid  = managerOfPL.Id;
         
          deputyPL = IPM_TestFactory_Helper.createUser(False);
-         deputyPL.IPM_Role__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_PL;
          deputyPL.managerid  = managerOfDeputyPL.Id;
          
          User technicalPL = IPM_TestFactory_Helper.createUser(False);
-         technicalPL.IPM_Role__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_PL;
+         
            
          User gateKeeper = IPM_TestFactory_Helper.createUser(False);
-         gateKeeper.IPM_Role__c=IPM_ConstantUtils.GATEKEEPER_CONSTANT;
+         
          
          financeMember = IPM_TestFactory_Helper.createUser(False);
-         financeMember.IPM_Role__c=IPM_ConstantUtils.USER_FUNCTON_FINANCE;
+         
          
          User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
          globalUser.email = 'globalUser@unilever.test.com';
@@ -253,7 +251,7 @@ private class IPM_ChatterFeedHelper_Test {
             for(IPM_Project__Feed projectFeed : [SELECT Body,ParentId,CreatedDate,CreatedById FROM IPM_Project__Feed limit 50000])
              {
                 if(projectFeed.Body.contains(CREATED)){
-                	System.assert(projectFeed.Body.contains( CREATED),FEED_UPDATED_ASSERT);
+                    System.assert(projectFeed.Body.contains( CREATED),FEED_UPDATED_ASSERT);
                 }
              } 
              test.stopTest(); 
@@ -313,7 +311,7 @@ private class IPM_ChatterFeedHelper_Test {
             for(IPM_Project__Feed projectFeed : [SELECT Body,ParentId,CreatedDate,CreatedById FROM IPM_Project__Feed limit 50000])
             {
                 if(projectFeed.Body.contains(TO_FAST_TRACK_STR)){
-                	system.assertEquals(projectFeed.Body, TO_FAST_TRACK_STR, FEED_UPDATED_ASSERT);
+                    system.assertEquals(projectFeed.Body, TO_FAST_TRACK_STR, FEED_UPDATED_ASSERT);
                 }
             }
             test.stopTest();
@@ -344,7 +342,7 @@ private class IPM_ChatterFeedHelper_Test {
             for(IPM_Project__Feed projectFeed : [SELECT Body,ParentId,CreatedDate,CreatedById FROM IPM_Project__Feed limit 50000])
             {
                 if(projectFeed.Body.contains(System.Label.IPM_Project_Name_Change)){
-                	System.assert(projectFeed.Body.contains(System.Label.IPM_Project_Name_Change),FEED_UPDATED_ASSERT);
+                    System.assert(projectFeed.Body.contains(System.Label.IPM_Project_Name_Change),FEED_UPDATED_ASSERT);
                 }
             }
             
@@ -386,7 +384,7 @@ private class IPM_ChatterFeedHelper_Test {
              Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
              for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
                 if(projectFeed.Body.contains(System.Label.IPM_Finance_Member_Add)){
-                	System.assert(projectFeed.Body.contains(System.Label.IPM_Finance_Member_Add),FEED_UPDATED_ASSERT);
+                    System.assert(projectFeed.Body.contains(System.Label.IPM_Finance_Member_Add),FEED_UPDATED_ASSERT);
                 }
              }
              Test.stopTest();
@@ -402,21 +400,26 @@ private class IPM_ChatterFeedHelper_Test {
     */
    private static testMethod void testNotifyAssigneeTaskAssigned() {
             initializeData();
-            //Need system admin to insert System Generated tasks for testing
-            IPM_Task__c newTask = IPM_TestFactory_Helper.createIPMTask(lstProjects[0].id,false);
-            newTask.IsSystemGenerated__c = true;
-            insert newTask;
-            
             List<IPM_Task__c> listTask = new List<IPM_Task__c>();
-            listTask.add(newTask);
+            System.runAs(platformUser) 
+            {
+              ID  projectTaskRecordType = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
+              //Need system admin to insert System Generated tasks for testing
+              IPM_Task__c newTask = IPM_TestFactory_Helper.createIPMTask(lstProjects[0].id,false);
+              newTask.IsSystemGenerated__c = true;
+              newTask.RecordTypeId = projectTaskRecordType;
+              insert newTask;
+              listTask.add(newTask);
+            }
             
             IPM_ChatterFeedHelper.notifyAssigneeTaskAssigned(listTask);
+            
             Test.startTest();
             System.runAs(platformUser) {
              Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
              for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
                 if(projectFeed.Body.contains(Label.IPM_Task_Assign_Text1)){
-                	System.assert(projectFeed.Body.contains(Label.IPM_Task_Assign_Text1),FEED_UPDATED_ASSERT);
+                    System.assert(projectFeed.Body.contains(Label.IPM_Task_Assign_Text1),FEED_UPDATED_ASSERT);
                 }
              }
             Test.stopTest();
@@ -443,7 +446,7 @@ private class IPM_ChatterFeedHelper_Test {
             Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
                 if(projectFeed.Body.contains(Label.IPM_Inactive_Users_Text)){
-                	System.assert(projectFeed.Body.contains(Label.IPM_Inactive_Users_Text),FEED_UPDATED_ASSERT);
+                    System.assert(projectFeed.Body.contains(Label.IPM_Inactive_Users_Text),FEED_UPDATED_ASSERT);
                 }
             }
            Test.stopTest();
@@ -473,9 +476,9 @@ private class IPM_ChatterFeedHelper_Test {
             IPM_Project_Rollout__c rollout = IPM_TestFactory_Helper.createIPMProjectRollout(false);
             rollout.Local_Project__c= lstLocalProjects[0].id;
             rollout.RecordTypeId = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
-           	rollout.Regional_Project__c =  lstRegionalProjects[0].id;
-           	insert rollout;
-           	
+            rollout.Regional_Project__c =  lstRegionalProjects[0].id;
+            insert rollout;
+            
             IPM_ChatterFeedHelper.postChatterIfLocalRegionalTLDMisaligned(lstLocalProjects);
             
             Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
@@ -547,7 +550,7 @@ private class IPM_ChatterFeedHelper_Test {
             Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
                 if(projectFeed.Body.contains(System.Label.IPM_Included_In)){
-                	System.assert(projectFeed.Body.contains(System.Label.IPM_Included_In),FEED_UPDATED_ASSERT);
+                    System.assert(projectFeed.Body.contains(System.Label.IPM_Included_In),FEED_UPDATED_ASSERT);
                 }
             }
             Test.stopTest();

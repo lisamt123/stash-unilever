@@ -513,7 +513,7 @@ public class IPM_ProjectSearchCtrl_Test {
     }
     
     
-    static testMethod void testGetusertypeAsBDUser() {
+   /* static testMethod void testGetusertypeAsBDUser() {
         createTestUsers();
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
             platformUserFirst = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
@@ -532,12 +532,12 @@ public class IPM_ProjectSearchCtrl_Test {
         System.runAs(platformUserFirst){
             psCtrl=new IPM_ProjectSearchCtrl();
             psCtrl.getusertype();
-            System.assertEquals(true,psCtrl.isProjectEditable, 'ProjectEditable is Not Checked');
-            System.assertEquals(true,psCtrl.isBossCardEditable, 'BossCardEditable is Not Checked');
+            System.assertEquals(false,psCtrl.isProjectEditable, 'ProjectEditable is Not Checked');
+            System.assertEquals(false,psCtrl.isBossCardEditable, 'BossCardEditable is Not Checked');
         }
         
         Test.stopTest();
-    }
+    }*/
     
     static testMethod void testGetusertype() {
         createTestUsers();

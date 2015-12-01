@@ -3,7 +3,7 @@
     Author: Cognizant Technology
     @Date: Dec 2014
 **/
-public with sharing class IPM_ChatterFeedHelper {
+public without sharing class IPM_ChatterFeedHelper {
     
     /* The constant variables which helps in contextual messagings of the chatter message.
      * The names are pretty much self-explanatory, needs no further elucidations.

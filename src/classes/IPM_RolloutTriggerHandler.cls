@@ -247,7 +247,7 @@ public with sharing class IPM_RolloutTriggerHandler
         {
             Schema.DescribeFieldResult fieldDescribe = fieldTypeMap.get(fieldAPIName).getDescribe();
             
-            if(fieldDescribe.isCustom() && fieldDescribe.isAccessible() &&  fieldAPIName != 'Id')
+            if(fieldDescribe.isCustom() && fieldAPIName != 'Id')
             {
                 rolloutQuery += ' '+fieldAPIName+',';
             }

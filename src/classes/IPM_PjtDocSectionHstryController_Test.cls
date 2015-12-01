@@ -7,6 +7,7 @@
 public class IPM_PjtDocSectionHstryController_Test {    
     public static IPM_Project__c project;// Project object initialization
     public static IPM_Project_Document__c projDoc;
+    public static User stdUserSecHistory;
     public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static List<user>userList=new List<user>();
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
@@ -27,13 +28,27 @@ public class IPM_PjtDocSectionHstryController_Test {
     * @description Test Data
     */
     @testSetup static void initializeData(){
+    
+        System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
+        {
+            // user has to be created as system admin 
+            stdUserSecHistory= IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+        } 
         
-        userList = IPM_TestFactory_Helper.createUserList();
-        List<User>userLists=[SELECT id FROM user WHERE id=:userList[0].id LIMIT 1];
-        System.AssertEquals(userLists[0].id, userList[0].id,'user id is:'+userLists[0].id);//positive test
+        // Create Company Card information 
+        IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+        IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+        
+        List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+        insert companyCardList;
+        List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
+        
         IPM_TestFactory_Helper.getProjectMasterData();
-        projectList = IPM_TestFactory_Helper.projectSetUp(1,userList[0]);
-        System.runAs(userList[0]) {
+        projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserSecHistory);
+       
+        System.runAs(stdUserSecHistory) {
             insert projectList;
         }
         project=projectList[0];
@@ -45,10 +60,10 @@ public class IPM_PjtDocSectionHstryController_Test {
     /*************************************************************************************************************************
     * @description Test Data
     */
-    @testSetup static void initializeTestMethodData(){
+     public static void initializeTestMethodData(){
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        globalUser = [Select Id from User where Email ='globalUser@unilever.test.com' limit 1]; 
+        globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         system.runAs(globalUser){
             projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
             (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID,IPM_Project__c from IPM_Questionnaires__r)

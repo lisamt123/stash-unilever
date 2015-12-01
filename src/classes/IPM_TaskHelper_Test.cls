@@ -125,8 +125,8 @@ public class IPM_TaskHelper_Test{
       @Description: PL should be able to insert task on milestone and todos tab
     ***********************************/
     public static TestMethod void reAssignFunctionalWiseTasksTest(){
-        User globalUser = [Select Id,LastName from User where LastName=:USER_NAME AND IPM_Role__c=:IPM_ConstantUtils.PROJECT_LEADER limit 1];
-        User bdUser = [Select Id,LastName,IsActive from User where LastName=:USER_NAME AND IPM_Role__c=:IPM_ConstantUtils.FUNCTIONAL_ROLE_BD limit 1];
+        User globalUser = [Select Id,LastName from User where LastName=:USER_NAME limit 1];
+        User bdUser = [Select Id,LastName,IsActive from User where LastName=:USER_NAME  limit 1];
         system.runAs(globalUser)
         {
             initializedData();
@@ -162,11 +162,14 @@ public class IPM_TaskHelper_Test{
                 bdUser.IsActive= false;
                 update bdUser;
                 
-                User bdUserUpdated = [Select Id,IsActive,LastName from User where LastName=:USER_NAME AND IPM_Role__c=:IPM_ConstantUtils.FUNCTIONAL_ROLE_BD limit 1];
+                User bdUserUpdated = [Select Id,IsActive,LastName from User where LastName=:USER_NAME limit 1];
                 System.assertEquals(bdUserUpdated.IsActive,false, 'IsActive Is Checked');
+                
+                platformUserPL1 = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+                
             }
         Test.stopTest();
-        system.runAs(globalUser)
+        system.runAs(platformUserPL1)
         {
             list<IPM_Task__c> taskList = [SELECT Id,Name,IPM_Task_Complexity__c,IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Function__c,IPM_Section__c,IPM_Type_of_Gate__c,IPM_Assignee__c 
                                           FROM IPM_Task__c WHERE IPM_Function__c =:IPM_ConstantUtils.FUNCTIONAL_ROLE_BD];
@@ -182,8 +185,8 @@ public class IPM_TaskHelper_Test{
       @Description: When PL changes, task assigned to old PL should be ressigned to new PL.
     ***********************************/
     public static TestMethod void reassignProjectLeaderTest(){
-        User projectLeader1 = [Select Id,LastName from User where LastName=:USER_NAME AND IPM_Role__c=:IPM_ConstantUtils.PROJECT_LEADER limit 1];
-        User projectLeader2 = [Select Id,LastName,IsActive from User where LastName=:USER_NAME AND IPM_Role__c=:IPM_ConstantUtils.TEAM_DEPUTY_PROJECT_LEADER limit 1];
+        User projectLeader1 = [Select Id,LastName from User where LastName=:USER_NAME limit 1];
+        User projectLeader2 = [Select Id,LastName,IsActive from User where LastName=:USER_NAME limit 1];
         
       Test.startTest();  
         system.runAs(projectLeader1)
@@ -229,8 +232,8 @@ public class IPM_TaskHelper_Test{
       @Description: When project complexity changes, task will generate for new complexity type.
     ***********************************/
     public static TestMethod void projectComplexityWiseTaskTest(){
-        User projectLeader1 = [Select Id,LastName from User where LastName=:USER_NAME AND IPM_Role__c=:IPM_ConstantUtils.PROJECT_LEADER limit 1];
-        User projectLeader2 = [Select Id,LastName,IsActive from User where LastName=:USER_NAME AND IPM_Role__c=:IPM_ConstantUtils.TEAM_DEPUTY_PROJECT_LEADER limit 1];
+        User projectLeader1 = [Select Id,LastName from User where LastName=:USER_NAME  limit 1];
+        User projectLeader2 = [Select Id,LastName,IsActive from User where LastName=:USER_NAME  limit 1];
        Test.startTest(); 
         system.runAs(projectLeader1)
         {

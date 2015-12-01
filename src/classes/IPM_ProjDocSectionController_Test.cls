@@ -36,6 +36,7 @@ public class IPM_ProjDocSectionController_Test{
     {
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
             platformUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            
         }
         
         // Create Company Card information 
@@ -167,7 +168,7 @@ public class IPM_ProjDocSectionController_Test{
             insert customSettingDataList;
             Set<Id> customSettingIdList = new Set<Id>();
             for(IPM_Gate_Document_Section_Access__c testCustomSetting : customSettingDataList){
-            	customSettingIdList.add(testCustomSetting.Id);
+                customSettingIdList.add(testCustomSetting.Id);
             }
             List<IPM_Gate_Document_Section_Access__c> testCustomSettingList = [Select id from IPM_Gate_Document_Section_Access__c limit 1000];
             system.assertEquals(testCustomSettingList.size(), 8, 'Custom setting data not inserted properly.');
@@ -188,11 +189,8 @@ public class IPM_ProjDocSectionController_Test{
             update questionaire; 
             IPM_Questionnaire__c testQuestionaire = [Select id, IPM_Active_RQS__c from IPM_Questionnaire__c where id=: questionaire[0].Id];
             system.assertEquals(testQuestionaire.IPM_Active_RQS__c, true, 'Questionare not updated properly.');
-            
-            otherUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
-            User testOtherUser = [Select Id, IPM_Role__c from User where id =: otherUser.Id];  
-            system.assertEquals(testOtherUser.IPM_Role__c, IPM_ConstantUtils.PROJECT_LEADER, 'user nor cretated properly.'); 
-        }
+            otherUser= IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+           }
     }
     
     /**************************************************************************************************************************

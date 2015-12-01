@@ -34,8 +34,7 @@ public with sharing class IPM_CreateRolloutProjects
             
             for(IPM_Project_Rollout__c rollout : lstRollouts)
             {
-                if(IPM_Project__c.sObjectType.getDescribe().isCreateable() && IPM_Project_Rollout__c.sObjectType.getDescribe().isAccessible() && 
-                   rollout.IPM_Regional_PL__c != null)
+                if( rollout.IPM_Regional_PL__c != null)
                 {
                     IPM_Project__c newIpmProject = new IPM_Project__c(
                         IPM_Project_Name__c = rollout.IPM_Rollout_Project__c,

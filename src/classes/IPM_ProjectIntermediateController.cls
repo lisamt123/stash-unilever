@@ -58,7 +58,7 @@ public virtual with sharing class IPM_ProjectIntermediateController {
         {
             Schema.DescribeFieldResult fieldDescribe = fieldTypeMap.get(fieldAPIName).getDescribe();
             
-            if(fieldDescribe.isAccessible() && !fieldDescribe.isNamePointing() &&  fieldAPIName != 'Id' && !systemFields.contains(fieldAPIName))
+            if(!fieldDescribe.isNamePointing() &&  fieldAPIName != 'Id' && !systemFields.contains(fieldAPIName))
             {
                 queryStr += ' '+fieldAPIName+',';
             }
@@ -76,7 +76,7 @@ public virtual with sharing class IPM_ProjectIntermediateController {
                         for(String relatedfieldAPIName : relatedfieldTypeMap.keySet())
                         {
                             Schema.DescribeFieldResult relatedFieldDescibe = relatedfieldTypeMap.get(relatedfieldAPIName).getDescribe();
-                            if(relatedFieldDescibe.isAccessible() && !relatedFieldDescibe.isNamePointing()  && !systemFields.contains(relatedfieldAPIName) )
+                            if(!relatedFieldDescibe.isNamePointing()  && !systemFields.contains(relatedfieldAPIName) )
                             {
                                 if(relatedObjectAPI == 'User' && (userCustomfieldSet.contains(relatedfieldAPIName) || userFields.contains(relatedfieldAPIName) ))
                                 {
