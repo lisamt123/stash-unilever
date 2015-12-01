@@ -42,7 +42,9 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <content>NewsArticle_OverrideView</content>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Visualforce</type>
     </actionOverrides>
     <compactLayoutAssignment>Chatter_Only</compactLayoutAssignment>
     <compactLayouts>
@@ -61,7 +63,7 @@
     <enableReports>true</enableReports>
     <fields>
         <fullName>Admin_Chatter_Group__c</fullName>
-        <defaultValue>&quot;news.centre@unilever.com1&quot;</defaultValue>
+        <defaultValue>&quot;news.centre@unilever.com&quot;</defaultValue>
         <description>Id&apos;s of the Admin Chatter Groups (delimited by comma)</description>
         <externalId>false</externalId>
         <label>Admin Chatter Group</label>
@@ -85,20 +87,8 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Category__c</fullName>
-        <externalId>false</externalId>
-        <label>Category</label>
-        <length>25</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Chatter_Groups__c</fullName>
-        <defaultValue>&quot;0F9c0000000DDVC&quot;</defaultValue>
+        <defaultValue>&quot;0F9E0000000JHbo&quot;</defaultValue>
         <description>Local setting for which Chatter Groups this Article should be posted to. Enter Group Ids, separated by commas.</description>
         <externalId>false</externalId>
         <inlineHelpText>Local override to configure which Chatter Groups this Article should be socialised to. Enter Group Ids, separated by commas.</inlineHelpText>
@@ -127,7 +117,7 @@
     </fields>
     <fields>
         <fullName>Comment_GA_URL__c</fullName>
-        <defaultValue>&quot;?utm_source=Chatter&amp;utm_medium=ChatterComment&amp;utm_campaign=NewsCentre1&quot;</defaultValue>
+        <defaultValue>&quot;?utm_source=Chatter&amp;utm_medium=ChatterComment&amp;utm_campaign=NewsCentre&quot;</defaultValue>
         <description>Google Analytic URL for Chatter Comment</description>
         <externalId>false</externalId>
         <label>Comment GA URL</label>
@@ -173,7 +163,7 @@
     </fields>
     <fields>
         <fullName>Like_GA_URL__c</fullName>
-        <defaultValue>&quot;?utm_source=Chatter&amp;utm_medium=ChatterLike&amp;utm_campaign=NewsCentre1&quot;</defaultValue>
+        <defaultValue>&quot;?utm_source=Chatter&amp;utm_medium=ChatterLike&amp;utm_campaign=NewsCentre&quot;</defaultValue>
         <description>Google Analytic URL for Chatter Like</description>
         <externalId>false</externalId>
         <label>Like GA URL</label>
@@ -183,20 +173,6 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Like_count__c</fullName>
-        <defaultValue>0</defaultValue>
-        <externalId>false</externalId>
-        <label>Likes</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -222,17 +198,6 @@
         <visibleLines>25</visibleLines>
     </fields>
     <fields>
-        <fullName>News_Main_Image__c</fullName>
-        <externalId>false</externalId>
-        <label>News Main Image</label>
-        <length>131072</length>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Html</type>
-        <visibleLines>25</visibleLines>
-    </fields>
-    <fields>
         <fullName>News_Publish_Date__c</fullName>
         <externalId>false</externalId>
         <label>News Publish Date</label>
@@ -244,7 +209,7 @@
     </fields>
     <fields>
         <fullName>Post_GA_URL__c</fullName>
-        <defaultValue>&quot;?utm_source=Chatter&amp;utm_medium=ChatterArticle&amp;utm_campaign=NewsCentre1&quot;</defaultValue>
+        <defaultValue>&quot;?utm_source=Chatter&amp;utm_medium=ChatterArticle&amp;utm_campaign=NewsCentre&quot;</defaultValue>
         <description>Google Analytic URL to be appended for Chatter Post.</description>
         <externalId>false</externalId>
         <label>Post GA URL</label>
