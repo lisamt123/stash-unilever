@@ -133,6 +133,8 @@ public with sharing class uw_BETWrapper {
         public Boolean assetOwner;
         public Integer displayOrder;
         public String assetPreviewLink;
+
+        public String validLinkPrefix = 'sfc/servlet.shepherd/version/download/';
        
         public AssetItem(uw_Asset__c asset, Boolean aOwner){            
             this.assetId = asset.Id;
@@ -144,13 +146,16 @@ public with sharing class uw_BETWrapper {
             this.assetDownloadLink = asset.Url_of_asset__c;  
             this.assetOwner = aOwner;    
             this.displayOrder = (Integer)asset.Order_Of_Display__c;
-            if(this.assetDownloadLink != null){ 
-                Integer startIdx = this.assetDownloadLink.indexOf('/download/');
-                Integer endIdx = this.assetDownloadLink.indexOf('?');    
-                if(startIdx > -1 && endIdx > -1){
-                    this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, endIdx);
+
+            if(this.assetDownloadLink != null && this.assetDownloadLink.contains(validLinkPrefix)){ 
+                Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/'); 
+                if(startIdx > -1){
+                    this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, startIdx+25);
                 }
+            } else if(this.assetDownloadLink != null){
+                this.assetPreviewLink = this.assetDownloadLink;
             }
+
         }
     }
 

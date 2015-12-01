@@ -101,8 +101,8 @@
   <!-- ***************************************************************************** -->
   <!-- Validate the  set of IPM NG meta-data before deployment without Test Classes  -->
   <!-- ***************************************************************************** -->
-  <target name="validateIPM">
-    <echo level="info">Validate the deployment of IPM NG with out test classes</echo>
+  <target name="validateNoTests">
+    <echo level="info">Validate the deployment without running unit tests</echo>
     <sf:deploy username="${sf.username}"
       password="${sf.password}"
       serverurl="${sf.serverurl}"
@@ -116,6 +116,7 @@
       maxPoll="${sfdc.maxPoll}">
     </sf:deploy>
   </target>
+  <target name="validateIPM" depends="validateNoTests"/>
   <!-- ***************************************************************************** -->
   <!-- Validate the  set of IPM NG meta-data before deployment with few Test Classes      -->
   <!-- ***************************************************************************** -->
@@ -557,6 +558,7 @@
     <sf:deploy username="${sf.username}"
       password="${sf.password}"
       serverurl="${sf.serverurl}"
+      checkOnly="true"
       ignoreWarnings="true"
       deployRoot="${basedir}/undeploy"
       pollWaitMillis="${sfdc.pollWaitMillis}"
@@ -651,7 +653,7 @@
       </fileset>
     </replaceregexp>
     <replaceregexp byline="false" flags="gm">
-      <regexp pattern="[\s].*userPermissions.*[\s].*[\s].*(ViewAllData|EditBillingInfo|ManageSandboxes|ManageTranslation|CustomizeApplication|LightningExperienceUser).*[\s].*"/>
+      <regexp pattern="[\s].*userPermissions.*[\s].*[\s].*(ViewAllData|EditBillingInfo|ManageSandboxes|ManageTranslation|CustomizeApplication|LightningExperienceUser|ManageContentProperties|ManageContentTypes|ContentAdministrator).*[\s].*"/>
       <substitution expression=""/>
       <fileset dir="${basedir}">
         <include name="**/*.profile"/>
