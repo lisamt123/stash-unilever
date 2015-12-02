@@ -64,6 +64,7 @@ public with sharing class WinAtPOSPrintablePDFViewController {
         List<WINatPOSRemoteActionWrapper.AssetsDetaislWrapper> detWrapper=(List<WINatPOSRemoteActionWrapper.AssetsDetaislWrapper>)remWrap.data;
         assetDetailList=detWrapper.get(0).assetItems;
         for(WINatPOSRemoteActionWrapper.AssetDetailItem assetItem : assetDetailList){
+            
             assetItem.primaryImageUrl = WINatPOSUtil.urlRewrite(assetItem.primaryImageUrl);
             if(assetItem.primaryImageUrl == null || assetItem.primaryImageUrl == ''){
                 assetItem.primaryImageUrl='/resource/1415894165000/winatposapp/images/emptydetail.png';
