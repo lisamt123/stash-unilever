@@ -1871,6 +1871,58 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>HRO_BoardingAction_CX</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_BoardingAction_CXTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_HeadStart_CX</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_HeadStart_CXTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_NavMenu_CC</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_NavMenu_CCTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_OnboardingTaskList_CC</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_OnboardingTaskList_CCTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_ProgressPage_CX</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_ProgressPage_CXTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_TaskLinkForwarder_CX</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_TaskLinkForwarder_CXTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>HRO_UnitTestFactory</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>ITrigger</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -12158,6 +12210,91 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Plan__c.Link__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Plan__c.New_Leader__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Plan__c.Phase__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Plan__c.Start_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Plan__c.Task_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Plan__c.Task_type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Task_Set__c.New_Leader_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Task_Set__c.Overdue_Notification_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Task_Set__c.Start_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Task__c.Action_Taken__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Task__c.Action_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Task__c.Completed__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Task__c.Due_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Task__c.ExternalPortalLink__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Task__c.New_Leader_Name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Task__c.Phase__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>HRO_Onboarding_Task__c.Task_Detail__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Home_Page_Feed__c.Active__c</field>
         <readable>true</readable>
@@ -14025,6 +14162,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>User.User_License__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>User.User_Unique__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -20603,6 +20745,15 @@
         <layout>Global-Global Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>HRO_Onboarding_Plan__c-Onboarding Plan Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>HRO_Onboarding_Task_Set__c-Onboarding Task Set Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>HRO_Onboarding_Task__c-Onboarding Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>Home_Page_Feed__c-HomePage Feed Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -21909,6 +22060,33 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>FilesConnect_SFDev__x</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>HRO_Onboarding_Plan__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>HRO_Onboarding_Task_Set__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>HRO_Onboarding_Task__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
@@ -23690,6 +23868,22 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>Getting_Started</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>HRO_HeadStart</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>HRO_PreBoardingActionPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>HRO_ProgressPage</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>HRO_TaskLinkForwarder</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
