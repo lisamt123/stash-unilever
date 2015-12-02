@@ -12,6 +12,7 @@
 		jQuery.noConflict(); 
 		jQuery(document).ready( function(){
 			jQuery( "#liAssets" ).sortable();
+			jQuery( "#liAssets" ).disableSelection();
 		});
 		
 		function saveOrder(){

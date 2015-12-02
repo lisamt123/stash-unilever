@@ -311,6 +311,7 @@ var numberOfFilesInUploadQueue = 0;
         var parentId = groupId;
         options = {
             errorHandler: function(msg) {
+				jQuery(".uploadStatusCell:eq("+idx +")").html(msg);
                 saveInProgress = false;
             },
             successHandler: function(result) {
