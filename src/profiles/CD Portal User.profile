@@ -943,4 +943,16 @@
         <enabled>true</enabled>
         <name>EnableNotifications</name>
     </userPermissions>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>ExportReport</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>RunReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>false</enabled>
+        <name>SelectFilesFromSalesforce</name>
+    </userPermissions>
 </Profile>

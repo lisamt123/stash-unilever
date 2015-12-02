@@ -555,6 +555,12 @@ public with sharing class WINatPOSUtil {
         if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId()) && fileUrl != null){
             if(!fileUrl.startsWith('/'+communityName) && !fileUrl.containsIgnoreCase('https')){
                 fileUrl = '/'+communityName+fileUrl;
+            }else if(fileUrl.containsIgnoreCase('https')){
+                Integer startIndex = fileUrl.indexOf('/sfc/servlet');
+                if(startIndex != -1){
+                    fileUrl = '/' + communityName+fileUrl.substring(fileUrl.indexOf('/sfc/servlet'),fileUrl.length());
+                }
+			
             }
         }else if(fileUrl != null && !fileUrl.containsIgnoreCase('https')){
             fileUrl = fileUrl.replace('/' + communityName, '');
