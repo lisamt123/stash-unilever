@@ -1,0 +1,35 @@
+<aura:component >	
+    <aura:attribute name="selectedFilter" type="String"/>
+    <aura:attribute name="newSelectedFilter" type="String"/>    
+    <aura:handler name="init" value="{!this}" action="{!c.updateFilterSelection}" />
+    <aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/> 
+    <div class="container">
+        <div class="row">
+                
+            <table class="filterHeader">
+                <tr>
+                    <td class="leftAlign">
+                        <span onclick="{!c.cancelFilter}" class="cancelButton">Cancel</span>
+                    </td>
+                    <td class="centerAlign">
+                        Topics
+                    </td>
+                    <td class="rightAlign">
+                        <span onclick="{!c.applyFilter}" class="applyButton">Apply</span>
+                    </td>
+                </tr>
+            </table> 
+            <div class="filtePannel">        
+                <div onclick="{!c.showAllActive}" aura:id="showAll">       					Show all topics    </div>     
+                <div onclick="{!c.showCategoriesActive}" aura:id="showCategories">          Categories and brands    </div>
+                <div onclick="{!c.showInnovationActive}" aura:id="showInnovation">          Innovation    </div>
+                <div onclick="{!c.showLeadershipActive}" aura:id="showLeadership">          Leadership    </div>
+                <div onclick="{!c.showMarketplaceActive}" aura:id="showMarketplace">        Marketplace    </div>
+                <div onclick="{!c.showPeopleActive}" aura:id="showPeople">        			Our People    </div>
+                <div onclick="{!c.showPerformanceActive}" aura:id="showPerformance">        Performance and Strategy    </div>
+                <div onclick="{!c.showSustainableActive}" aura:id="showSustainable">        Sustainable Living    </div>
+            </div>
+        </div>
+    </div>
+    <!--<input type="text" name="fname" autofocus="true" />-->
+</aura:component>
