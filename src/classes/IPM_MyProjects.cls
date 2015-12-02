@@ -106,16 +106,26 @@ public with sharing class IPM_MyProjects{
                       order by IPM_BosscardName__c limit 1000];
              
         List<ProjectWrapper> projects=new List<ProjectWrapper>();
+        List<ProjectWrapper> projectsWithoutCurrentMilestoneDueDate=new List<ProjectWrapper>();
         
         for(IPM_Bosscard__c bCard:bosscardList){
             projects.add(new ProjectWrapper(new IPM_Project__c(), null,bCard));
             projectcount ++;
         }
         for(IPM_Project__c proj:lstProjects){
-            projects.add(new ProjectWrapper(proj, mapdocsDate.get(proj.Id),new IPM_Bosscard__c()));
+        	String d = mapdocsDate.get(proj.Id);
+        	if(d != null){
+                String[] datephase=d.split(IPM_ConstantUtils.COMMA);
+        	if( datephase[0] == 'null' ){
+        		projectsWithoutCurrentMilestoneDueDate.add(new ProjectWrapper(proj, mapdocsDate.get(proj.Id),new IPM_Bosscard__c()));
+        	}else{
+            	projects.add(new ProjectWrapper(proj, mapdocsDate.get(proj.Id),new IPM_Bosscard__c()));
+            } 
+        	}
             projectcount ++;
         }
-
+        projects.addAll(projectsWithoutCurrentMilestoneDueDate);
+        
         return projects;
     }
      

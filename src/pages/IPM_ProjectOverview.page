@@ -21,10 +21,10 @@
 
                         <apex:actionFunction name="movePLE" action="{!moveToPLE}" reRender="" oncomplete="location.reload();"/>
                         <!-- <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> -->
-                        <c:IPM_ProjectDetails project="{!project}" activeItem="overview"/>
+                        <c:IPM_ProjectDetails project="{!project}" activeItem="overview" phasechangeInProgress="{!bPhaseChangeInProgress}" />
 
             </div>
-            <apex:outputPanel rendered="{!(noOfNotifications != null && noOfNotifications >= 1) || (alertscount != null && alertscount >=1)}">            
+            <apex:outputPanel rendered="{!bShowAlertsBar}">            
 
             <div class="col-sm-12 negMargin" >
                 <i class="minus fa fa-plus alertAccordian"></i>
@@ -127,7 +127,7 @@
                             <span class="keyTitle pull-left">{!project.IPM_Project_Name__c} | </span><span class="headerglb"></span><span class="grentxt">{!project.IPMProject_Span__c}</span>
                         </div>
                          <div class="SecButtonSet" >
-                                <apex:outputPanel rendered="{!isProjLeader}">
+                                <apex:outputPanel rendered="{! AND (NOT(bPhaseChangeInProgress) , isProjLeader)}">
                                 <a class="icoButton edit1 editTaskBtn"  href="apex/IPM_CoreParameters?id={!projectId}" ></a>
                                 </apex:outputPanel>
                          </div>
@@ -190,28 +190,37 @@
                                         {!$Label.IPM_CURRENT_DOCUMENT_STATUS} 
                                     </div>
                                 </div>
-                                <div class="documentStatus pl0">
-                                    <div class="{!projectDocStatusStyleClass}">{!projectDoc.IPM_Document_Status__c}</div>
-                                </div>
                                 
-                                <apex:outputPanel rendered="{!IF(OR(AND(projectDoc.IPM_Document_Status__c='Approved'&& project.IPM_Phase__c='Market Deployment'), AND (project.IPM_Phase__c='Market Ready' && project.IPM_Project_Type__c = 'Operational')),True,False)}">
-                                    <div class="SecStatusUpdate dstatusButton shipTrade" data-toggle="modal" data-target="#shipToPLE"  data-backdrop="static" data-keyboard="false">
-                                        <input type="button" class="ipmButton" value="{!$Label.IPM_Ship_To_Trade_Button}" />
+                                <apex:outputPanel rendered="{!bPhaseChangeInProgress}">
+                                    <div class="documentStatus pl0">
+                                        <div class="{!projectDocStatusStyleClass}"> {!$Label.IPM_PHASECHAGE_INPROGRESS} </div>
                                     </div>
                                 </apex:outputPanel>
-
-                                <apex:outputPanel rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved' && projectDoc.IPM_Document_Status__c!='Approved with Edits' && projectDoc.IPM_Document_Status__c!='Not Started' && projectDoc.IPM_Document_Status__c!='Stopped' && project.IPM_Phase__c!='PLE',IsUpdateStatus=true),True,False)}">
-                                    <div class="openModal SecStatusUpdate dstatusButton" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="Update Status">
-                                        <input type="button" class="ipmButton" value="Change status"/>
+                                
+                                <apex:outputPanel rendered="{!NOT(bPhaseChangeInProgress)}">                    
+                                    <div class="documentStatus pl0">
+                                        <div class="{!projectDocStatusStyleClass}">{!projectDoc.IPM_Document_Status__c}</div>
                                     </div>
-                                </apex:outputPanel>
-
-                                <apex:outputPanel layout="block" styleClass="col-sm-12 SecButtonSet" rendered="{!projectDoc.IPM_Document_Status__c='Approved with Edits'}">
-                                        <apex:actionFunction name="movePLE" action="{!moveToPLE}" reRender=""/>
-                                        <!-- <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> -->
-                                        <div class="SecStatusUpdate removebutton statusButton" data-toggle="modal" data-target="#ipmMoveFeasibility"  data-backdrop="static" data-keyboard="false">
-                                            <span class="ipmButton Primary">{!$Label.IPM_Move_To} {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}</span>
-                                        </div>     
+                                    
+                                    <apex:outputPanel rendered="{!bShowShipToTradeButton}">
+                                        <div class="SecStatusUpdate dstatusButton shipTrade" data-toggle="modal" data-target="#shipToPLE"  data-backdrop="static" data-keyboard="false">
+                                            <input type="button" class="ipmButton" value="{!$Label.IPM_Ship_To_Trade_Button}" />
+                                        </div>
+                                    </apex:outputPanel>
+    
+                                    <apex:outputPanel rendered="{!bShowChangeStatusButton}">
+                                        <div class="openModal SecStatusUpdate dstatusButton" modalTitle="Change current document status" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_ChangeCurrenDocumentStatus}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="Update Status">
+                                            <input type="button" class="ipmButton" value="Change status"/>
+                                        </div>
+                                    </apex:outputPanel>
+    
+                                    <apex:outputPanel layout="block" styleClass="col-sm-12 SecButtonSet" rendered="{!projectDoc.IPM_Document_Status__c='Approved with Edits'}">
+                                            <apex:actionFunction name="movePLE" action="{!moveToPLE}" reRender=""/>
+                                            <!-- <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> -->
+                                            <div class="SecStatusUpdate removebutton statusButton" data-toggle="modal" data-target="#ipmMoveFeasibility"  data-backdrop="static" data-keyboard="false">
+                                                <span class="ipmButton Primary">{!$Label.IPM_Move_To} {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}</span>
+                                            </div>     
+                                    </apex:outputPanel>
                                 </apex:outputPanel>
                             </div>
                             
@@ -369,7 +378,7 @@
                             <!-- ------Ship To trade Modal ends here  -->
                             
                     <!-- IPM_ProjectOverviewComp Ends-->                  
-                    <apex:outputPanel rendered="{!project.IPM_Phase__c!='PLE'}">                    
+                    <apex:outputPanel rendered="{! AND( !bPhaseChangeInProgress, project.IPM_Phase__c!='PLE')}">                    
                         <apex:outputPanel rendered="{!if(project.Is_Archieved__c==true,false,true)}" >
                             <div class="col-sm-3">
                                 <div class="topheader">{!$Label.IPM_MY_SECTIONS_IN} {!currGateToDisplay}</div>
@@ -477,14 +486,16 @@
                             </apex:actionFunction>
                     </apex:outputPanel>                   
                 </apex:outputPanel>
-                <apex:outputPanel rendered="{!project.IPM_Phase__c='PLE'}">                          
+                
+                <apex:outputPanel rendered="{! AND(!bPhaseChangeInProgress , project.IPM_Phase__c='PLE')}">                          
                     <div class="col-sm-6 text-center" id="stopsection">
                         <div><img src="{!URLFOR($Resource.IPM_Resource, 'images/img_ple.png')}" alt="PLE" /></div>                                   
                         <div class="successStyle">{!$Label.IPM_ProjectLaunchMeassage}</div>
                         <div class="launchDate">on&nbsp;<apex:outputField value="{!projectDoc.IPM_Approval_Date__c }"/></div>                                   
                     </div>
-                </apex:outputPanel>                       
-                <apex:outputPanel rendered="{!if(project.Is_Archieved__c==true,true,false)}">            
+                </apex:outputPanel>  
+                                     
+                <apex:outputPanel rendered="{! AND(!bPhaseChangeInProgress , if(project.Is_Archieved__c==true,true,false))}">            
                     <div class="col-sm-6 text-center" id="stopsection">
                         <div><img src="{!URLFOR($Resource.IPM_Resource, 'images/img_g.png')}" alt="Stop" /></div>        
                         <div>{!$Label.IPM_PROJECT_STOPPED}</div>
@@ -495,6 +506,13 @@
                         </div>
                     </div>
                 </apex:outputPanel>
+                
+                <apex:outputPanel rendered="{!bPhaseChangeInProgress}">                        
+                    <div class="col-sm-6 text-center" id="stopsection">
+                       <div class="successStyle">{!$Label.IPM_PhaseChangeInProgressMsg}</div>
+                    </div>
+                </apex:outputPanel> 
+                
                 <!-- BET component Section Begins -->
                 <apex:outputPanel >
                     <div class="col-sm-3">
