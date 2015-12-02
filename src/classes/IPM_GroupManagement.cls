@@ -108,6 +108,8 @@ global without sharing class  IPM_GroupManagement {
                     queueList.add(mappingObject_Country);
                     QueueSobject mappingObject_Rollout = new QueueSobject(QueueId = grp.Id, SobjectType = IPM_ConstantUtils.IPM_ROLLOUTOBJECT);
                     queueList.add(mappingObject_Rollout);
+                    QueueSobject mappingObject_SectionContent = new QueueSobject(QueueId = grp.Id, SobjectType = IPM_ConstantUtils.IPM_DOCUMENTSECTIONCONTENT);
+                    queueList.add(mappingObject_SectionContent);                      
                     
                     if(QueueMemberIdMap.containskey(grp.Name)){
                         for(string memid:QueueMemberIdMap.get(grp.Name)){
