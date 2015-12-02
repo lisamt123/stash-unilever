@@ -1765,6 +1765,50 @@
         <name>GoogleAPIKey</name>
     </customLabels>
     <customLabels>
+        <label><!-- HROCapabilityLink --></label>
+        <name>HROCapabilityLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HROCultureLink --></label>
+        <name>HROCultureLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HRONetworkLink --></label>
+        <name>HRONetworkLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HROOwnershipLink --></label>
+        <name>HROOwnershipLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HROPhaseIntroInfoBeforeArrival --></label>
+        <name>HROPhaseIntroInfoBeforeArrival</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HROPhaseIntroInfoBeonBoard --></label>
+        <name>HROPhaseIntroInfoBeonBoard</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HROPhaseIntroInfoDay1 --></label>
+        <name>HROPhaseIntroInfoDay1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HROPhaseIntroInfoMonth1 --></label>
+        <name>HROPhaseIntroInfoMonth1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HROPhaseIntroInfoMonth2 --></label>
+        <name>HROPhaseIntroInfoMonth2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HROPhaseIntroInfoMonth3 --></label>
+        <name>HROPhaseIntroInfoMonth3</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HROPhaseIntroInfoWeek1 --></label>
+        <name>HROPhaseIntroInfoWeek1</name>
+    </customLabels>
+    <customLabels>
         <label><!-- HideTermsOfUseLabel --></label>
         <name>HideTermsOfUseLabel</name>
     </customLabels>
@@ -2331,6 +2375,10 @@
     <customTabs>
         <label><!-- GroupMaster --></label>
         <name>GroupMaster</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Headstart --></label>
+        <name>HRO_HeadStart</name>
     </customTabs>
     <customTabs>
         <label><!-- Ideas --></label>
@@ -3060,6 +3108,31 @@
             <name>Groups (Last Modified By)</name>
         </sections>
         <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Connected Application Custom Report Types --></description>
+        <label><!-- Connected Application Custom Report Types --></label>
+        <name>Connected_Application_Custom_Report_Types</name>
+        <sections>
+            <label><!-- Custom Fields --></label>
+            <name>Custom Fields</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Application --></label>
+                <name>Application</name>
+            </columns>
+            <label><!-- Identity Event Logs (User) --></label>
+            <name>Identity Event Logs (User)</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Profile Name --></label>
+                <name>Profile Name</name>
+            </columns>
             <label><!-- Users --></label>
             <name>Users</name>
         </sections>

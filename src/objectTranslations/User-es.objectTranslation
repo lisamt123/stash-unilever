@@ -1179,6 +1179,10 @@
         <name>User_License__c</name>
     </fields>
     <fields>
+        <label><!-- User Unique --></label>
+        <name>User_Unique__c</name>
+    </fields>
+    <fields>
         <label><!-- External ID --></label>
         <name>agf__External_ID__c</name>
     </fields>
