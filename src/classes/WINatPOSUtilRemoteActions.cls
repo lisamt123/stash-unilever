@@ -1226,9 +1226,13 @@ public without sharing class WINatPOSUtilRemoteActions {
                     String convertedThumbnail = f.Feed_Thumbnail_URL__c;
                     
                     convertedThumbnail=convertedThumbnail != null ? convertedThumbnail.replace('THUMB720BY480','THUMB120BY90') : null;
+                    convertedThumbnail = WINatPOSUtil.urlRewrite(convertedThumbnail);
+                    /*
                     if( convertedThumbnail != null && !WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
                     	convertedThumbnail = convertedThumbnail.replace('/' + communityName, '');
                     }
+					*/
+                    
                     //fileMapsForAsset.put(f.Asset__c,new List<String>{f.Feed_Thumbnail_URL__c});
                     fileMapsForAsset.put(f.Asset__c,new List<String>{convertedThumbnail});     
                 }    
@@ -1246,9 +1250,12 @@ public without sharing class WINatPOSUtilRemoteActions {
                         }
                         String convertedThumbnail=f.Feed_Thumbnail_URL__c;
                     	convertedThumbnail=convertedThumbnail != null ? convertedThumbnail.replace('THUMB720BY480','THUMB120BY90') : null;
+                        convertedThumbnail = WINatPOSUtil.urlRewrite(convertedThumbnail);
+                        /*
                     	if( convertedThumbnail != null && !WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId())){
 	                    	convertedThumbnail = convertedThumbnail.replace('/' + communityName, '');
 	                    }
+						*/
                         if(fileMapsForAssetGroup.containsKey(a.Asset_Group__c)){
                             List<String> tmpList=fileMapsForAssetGroup.get(a.Asset_Group__c);
                             //tmpList.add(f.Feed_Thumbnail_URL__c);
