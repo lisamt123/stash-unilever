@@ -1,0 +1,71 @@
+<aura:component controller="Core_WP_WorkPlaceController">
+    <aura:handler name="init" value="{!this}" action="{!c.getSustainability}"/>
+    <aura:attribute name="workplaceLocationId" type="String"/>
+    <aura:attribute name="noDataErrorMessage" type="Boolean" default="false"/>
+    <aura:attribute name="divWidth" type="Integer" default="0"/>
+    
+    <!--  <canvas aura:id="chart" id="myChart" width="800" height="800"/>  -->
+    
+    
+    <div class="topBarStyle">
+        <div onclick="{!c.gotoPreviousPage}" class="topBackBar">
+            <img src="/resource/NewsCenterIcons/back.svg" class="topBackBarIcon"></img>
+        </div>
+    </div>
+    <div class="allPadding">    
+        <img src="/resource/CORE_WP_WorkplaceStyles/Icons/Sustainability.svg" class="smallIcons"/>
+        <div class="allPadding pageTitle">Sustainability</div><br/>
+        <div class="responsiveRichText">
+            <div class="addressText">
+                {!v.sustainabilityDetail.workplaceName}
+                <div class="pageInfo">{!v.sustainabilityDetail.sustainabilityPageInfo}</div>
+            </div>
+            
+            <table class="addressText pageInfo">
+                <tr>
+                	<td class="firstColumn">{!v.sustainabilityDetail.targetYearLabel}</td>
+                    <td class="secondColumn"><div id="targetYearPannel" class="chartBar"></div>{!v.sustainabilityDetail.targetYearValue}</td>
+                </tr>
+                <tr>
+                	<td class="firstColumn">{!v.sustainabilityDetail.firstMonthLabel}</td>
+                    <td class="secondColumn"><div id="firstMonthPannel" class="chartBar"></div>{!v.sustainabilityDetail.firstMonthValue}</td>
+                </tr>
+                <tr>
+                	<td class="firstColumn">{!v.sustainabilityDetail.secondMonthLabel}</td>
+                    <td class="secondColumn"><div id="secondMonthPannel" class="chartBar"></div>{!v.sustainabilityDetail.secondMonthValue}</td>
+                </tr>
+                <tr>
+                	<td class="firstColumn">{!v.sustainabilityDetail.thirdMonthLabel}</td>
+                    <td class="secondColumn"><div id="thirdMonthPannel" class="chartBar"></div>{!v.sustainabilityDetail.thirdMonthValue}</td>
+                </tr>
+            	<!--<tr>
+                	<td class="firstColumn">{!v.sustainabilityDetail.targetYearLabel}</td>
+                    <td style="width:50%"><<div id="targetYearPannel" class="chartBar"></div></td>
+                    <td>{!v.sustainabilityDetail.targetYearValue}</td>
+                </tr>
+                <tr>
+                	<td class="firstColumn">{!v.sustainabilityDetail.firstMonthLabel}</td>
+                    <td><div id="firstMonthPannel" class="chartBar"></div></td>
+                    <td>{!v.sustainabilityDetail.firstMonthValue}</td>
+                </tr>
+                <tr>
+                	<td class="firstColumn">{!v.sustainabilityDetail.secondMonthLabel}</td>
+                    <td style="width:50%"><div id="secondMonthPannel" class="chartBar"></div></td>
+                    <td>{!v.sustainabilityDetail.secondMonthValue}</td>
+                </tr>
+                <tr>
+                	<td class="firstColumn">{!v.sustainabilityDetail.thirdMonthLabel}</td>
+                    <td style="width:50%"><div id="thirdMonthPannel" class="chartBar"></div></td>
+                    <td>{!v.sustainabilityDetail.thirdMonthValue}</td>
+                </tr>-->
+            </table>
+            <!--<div style="width: 100%">                
+                <canvas id="canvas" height="700" width="600"></canvas>
+                <canvas id="targetCanvas" height="100" width="600"></canvas>
+                <canvas id="month1Canvas" height="100" width="600"></canvas>
+                <canvas id="month2Canvas" height="100" width="600"></canvas>
+                <canvas id="month3Canvas" height="100" width="600"></canvas>
+            </div>-->
+        </div>
+    </div>
+</aura:component>
