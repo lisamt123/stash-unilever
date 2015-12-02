@@ -15,17 +15,23 @@
      <ltng:require styles="/resource/EA_StaticResource/assets/styles/salesforce-lightning-design-system-vf.css" />
     <!-- style -->
     <style>
+        .spacer-pull-to-load-more{
+          height:100% !important;
+        }
+    
         .slds .slds-tabs--scoped__nav a {
     color: white;
+       
     
 }
  .slds .slds-tabs--scoped__nav {
     background-color: #005FB2;
  
 }
-.progress_bar img {
-    width: 260px;
-}        
+.progress_bar img  {
+  width: 280px;
+  margin-left: -5px;
+}
 .slds .slds-tabs--scoped {
     border: solid;
     border-color: #005FB2;
@@ -49,184 +55,38 @@
          margin-top: 50px;
         }
     .slds .slds-box {
-    padding: 16px;
-    border-radius: 4px;
-    background-clip: padding-box;
-    border: 1px solid #d8dde6;
-    margin-left: 20px;
-    width: 88%;
-    height: 200px;
-    margin-top: 30px;
-
+  padding: 16px;
+  border-radius: 4px;
+  background-clip: padding-box;
+  border: 1px solid #d8dde6;
+  margin-left: 5%;
+  width: 90%;
+  height: 200px;
+  margin-top:20px;
 }
     .slds-box .line{
     height:20px;
     }
-.dashboard{
-    background:#EEF1F6;
-    }
-    .right_arrow{
-    width:10px;
-    height:10px;
-    margin-left:180px;
-    }
-    .cirlce {
-   border-radius: 60%;
-    background: white;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    margin-top: 40px;
-    margin-left: 18px;
-}
-    .badges_name :nth-child(1) {
-    margin: -7px;
-}
-    .badges_name :nth-child(2) {
-    padding: 6px;
-}
-    .badges_name :nth-child(4) {
-    padding: 15px;
-}
-    .cirlce1 {
-    border-radius: 60%;
-    background: white;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    margin-top: 40px;
-    margin-left: 85px;
-}
-    .cirlce2 {
-    border-radius: 60%;
-    background: white;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    margin-top: 40px;
-    margin-left: 150px;
-}
-    
-     .cirlce3 {
-    border-radius: 60%;
-    background: white;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    margin-top: 40px;
-    margin-left: 220px;
-}
-    .cirlce.active{
-    border-radius: 60%;
-    background:#4BC076;
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    margin-top: 35px;
-    margin-left: 5px;
-}
-   .cirlce1.active {
-    border-radius: 60%;
-    background:#A03030;
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    margin-top: 35px;
-    margin-left:80px;
-}
-   .cirlce2.active {
-    border-radius: 60%;
-    background: #D3CEC8;
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    margin-top: 35px;
-}
-    .cirlce3.active {
-    border-radius: 60%;
-    background: #E0BA22;
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    margin-top: 35px;
-
+.solid1.active,.solid2.active,.solid.active{
+border-color:green;
 } 
-   .solid {
-    border: solid;
-    border-color:white;
-    width: 4%;
-    margin-left: 35px;
-    position: absolute;
-    margin-top: 47px;
+  .progress_bar p.brVal,p.brval {
+    font-size: 10px;
+    padding: 5px 4px;
 }
-    .solid1 {
-    border: solid;
-    border-color:white;
-    width:4%;
-    margin-left: 105px;
-    position: absolute;
-    margin-top: 47px;
-    z-index:0;
-}
-   
   .active p.brval ,.progress_bar .active p.brVal{
     padding: 4px 5px;
     font-size: 15px;
     color: #fff;
 }
- .progress_bar p.brVal,p.brval {
-    font-size: 10px;
-    padding: 5px 4px;
-}
-    .badges_name{
-    position: absolute;
-    margin-top: 65px;
-    margin-left: 5px;
-    
-}
-.solid1.active,.solid2.active,.solid.active{
-border-color:green;
-}  
-.bigcirlce3.active {
-    border-radius: 60%;
-    background: green;
-    width: 70px;
-    height: 70px;
-    position: absolute;
-    margin-top: 35px;
-
-}
-        
-img.user_badge {
- display: block;
- padding-left:20%;
-}
 .cEverydayActivity_Detailcard_component .section.cEverydayAction_Activity_Detail {
   padding: 0 24px 24px;
 }
-.main_badge {
-        height: auto;
-    width: 269px;
+.profile_Image {
+  width: 60px;
+  height: 60px;
+  margin-left: 10px;
 }
-.main_badge_image{
-    width: 75px;
-    margin: 0 auto;
-    text-align: center;
-        
- }
-   
-  img.user_badge-New {
-    border-radius: 34px;
-}    
- .slds .slds-text-heading--medium {
-   font-size: 14px;
-  line-height: 1.25;
-  margin-left: 15px;
-  font-weight: bold;
-}
-       
-   
-   ul li{list-style:none;}
         
         </style>
     <!-- style -->
@@ -238,7 +98,7 @@ img.user_badge {
   <div class="slds">    
  <div class="dashboard">
    
-  <div class="slds-text-heading--medium space_below">My DashBoard</div>
+  <div class="dashTitle">My Dashboard</div>
       
   
     <div class="slds-box">
@@ -246,14 +106,14 @@ img.user_badge {
              <aura:iteration items="{!v.userDetail}" var="user">
              <div class="main_badge">
           <div class="main_badge_image">       
-                   <span class="slds-avatar slds-avatar--circle slds-avatar--medium" >
+                   <span class="profile_Image" >
 
                        <img aura:id="NewBeebadge" class="user_badge-New" src="{!user.userPhotoUrl}" ></img> 
                  </span>
-<aura:if isTrue="{!v.NewBee_badge}"><img src="/resource/EA_Badges/images/NewBee.svg" /></aura:if>
-<aura:if isTrue="{!v.Bronze_badge}"><img src="/resource/EA_Badges/images/Bronze.svg" /></aura:if>
-<aura:if isTrue="{!v.Silver_badge}"><img src="/resource/EA_Badges/images/Silver.svg" /></aura:if>
-<aura:if isTrue="{!v.Gold_badge}"><img src="/resource/EA_Badges/images/Gold.svg" /></aura:if>              
+<aura:if isTrue="{!v.NewBee_badge}"><img style="margin-left: 5px;width: 100px;" src="/resource/EA_Badges/NewBee.svg" /></aura:if>
+<aura:if isTrue="{!v.Bronze_badge}"><img style="margin-left: 5px;width: 100px;" src="/resource/EA_Badges/Bronze.svg" /></aura:if>
+<aura:if isTrue="{!v.Silver_badge}"><img style="margin-left: 5px;width: 100px;" src="/resource/EA_Badges/Silver.svg" /></aura:if>
+<aura:if isTrue="{!v.Gold_badge}"><img 	style="margin-left: 5px;width: 100px;" src="/resource/EA_Badges/Gold.svg" /></aura:if>              
                    
                  </div></div>
         </aura:iteration>     
@@ -262,25 +122,25 @@ img.user_badge {
       
         <div class="progress_bar">
             <aura:if isTrue="{!v.shownewbee1}">
-                <img src="/resource/EA_BadgeImages/EA_BadgeImages/newbee1.svg"></img>     
+                <img src="/resource/EA_Badges/newbee1.svg"></img>     
             </aura:if>
                <aura:if isTrue="{!v.shownewbee2}">
-             <img src="/resource/EA_BadgeImages/EA_BadgeImages/newbee2.svg"></img>      
+             <img src="/resource/EA_Badges/newbee2.svg"></img>      
             </aura:if>
                <aura:if isTrue="{!v.showbronz1}">
-              <img src="/resource/EA_BadgeImages/EA_BadgeImages/bronz1.svg"></img>     
+              <img src="/resource/EA_Badges/bronz1.svg"></img>     
             </aura:if>
                <aura:if isTrue="{!v.showbronz2}">
-              <img src="/resource/EA_BadgeImages/EA_BadgeImages/bronz2.svg"></img>     
+              <img src="/resource/EA_Badges/bronz2.svg"></img>     
             </aura:if>
                <aura:if isTrue="{!v.showsilver1}">
-             <img src="/resource/EA_BadgeImages/EA_BadgeImages/silver1.svg"></img>
+             <img src="/resource/EA_Badges/silver1.svg"></img>
             </aura:if>
                <aura:if isTrue="{!v.showsilver2}">
-            <img src="/resource/EA_BadgeImages/EA_BadgeImages/silver2.svg"></img>
+            <img src="/resource/EA_Badges/silver2.svg"></img>
             </aura:if>
                <aura:if isTrue="{!v.showgold}">
-            <img src="/resource/EA_BadgeImages/EA_BadgeImages/gold.svg"></img>
+            <img src="/resource/EA_Badges/gold1.svg"></img>
             </aura:if>
             
         </div>
@@ -290,6 +150,7 @@ img.user_badge {
       
      </div>
      </div>  
-      <div class="slds-text-heading--medium space_below">My Action</div><div style="margin-top:10px;"></div>
+      <div class="actionTitle">My Actions</div>
+      <div class="act_space"></div>
     </div>
 </aura:component>

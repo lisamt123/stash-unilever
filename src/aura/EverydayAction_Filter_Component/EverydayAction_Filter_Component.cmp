@@ -20,7 +20,7 @@
 
       <aura:if isTrue="{!v.temp != 'All Themes' ? true:false}">
         
-            <c:EverydayAction_InActive_Filter_component themeName="All Theme"/>
+            <c:EverydayAction_InActive_Filter_component themeName="All Themes"/>
           
         </aura:if> 
          

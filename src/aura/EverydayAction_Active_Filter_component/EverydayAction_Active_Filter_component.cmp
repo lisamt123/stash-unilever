@@ -5,6 +5,13 @@
   list-style: none;
   margin-left: 0px;
 }
+       .spacer-pull-to-load-more{
+          height:100% !important;
+        }
+     .slds .slds-list--vertical.slds-has-dividers > .slds-list__item {
+  padding: 20px;
+  border-bottom: 1px solid #d8dde6;
+}
          </style>
 	<aura:attribute name="themeName" type="string" ></aura:attribute>
  

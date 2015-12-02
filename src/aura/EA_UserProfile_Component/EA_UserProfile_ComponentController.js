@@ -9,7 +9,7 @@
                 if (state === "SUCCESS") {
                     if(response.getReturnValue()!=''){
                         var items=response.getReturnValue();
-                     
+                       alert(items[0].activity_points); 
                      
                      component.set("v.userDetail", response.getReturnValue());
                       
@@ -54,7 +54,7 @@
                            component.set("v.Silver_badge",true); 
                         }
                            else  if(items[0].badgeprogress_color == 'gold'){
-                               alert("gold");
+                               
                                component.set("v.showgold",true);
                                component.set("v.Gold_badge",true); 
                                                 
@@ -72,6 +72,8 @@
 
 		
 	},
+    
+    
+
 		
-	}
-})
+	})

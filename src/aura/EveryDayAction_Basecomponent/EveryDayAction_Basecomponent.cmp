@@ -1,4 +1,5 @@
-<aura:component implements="force:appHostable">
+<aura:component implements="flexipage:availableForAllPageTypes,force:appHostable">
+      
    <!-- <ltng:require styles="/resource/EA_StaticResource/css/bootstrap-namespaced.min.css" />-->
-	<c:EverydayActivity_Detailcard_component />
+	<c:EA_Activity_Detailcard_Component />
 </aura:component>

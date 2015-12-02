@@ -1,23 +1,48 @@
 ({
 	gotoDetail : function(component, event, helper) {
-  
        var actvity=component.get("v.activity");
-       
-        var id=actvity.acivityId; 
-       
+         var rating;
+        var id=actvity.acivityId; ;
+        var num=actvity.participant_rating;
+      
         var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
-        detailpageEvent.setParams({"actvityid":id});
-        detailpageEvent.fire();
-   
+        var acceptdecline=$A.get("e.c:EA_AcceptDec_comp");
+        
+        detailpageEvent.setParams({"actvityid":id,"member_Id":actvity.member_Id,"participant_rating":num,"showcontent":true});
+      detailpageEvent.fire();
+     
+          
 		
 	},
     
     doInit :function(component, event, helper) {
-       
-      var actvityobj=component.get("v.activity")  ;
-        if(actvityobj == 'NULL' || actvityobj == 'undefined')
-        {
-            component.set("v.showmessage",true);
+        
+          var actvity=component.get("v.activity");
+          console.log(actvity.participant_rating);
+        if(actvity.invitation_status ==='Self' && (actvity.participant_rating < 0 || actvity.participant_rating ===undefined)){
+            component.set("v.showfeedback",true);
         }
+       if(actvity.invitation_status ==='Invited'){
+            component.set("v.showInvitation",true);
+        }        
+        
+      
+    },
+    
+    gotoInvitation :function(cmp, event, helper) {
+        
+        var member=cmp.get("v.activity");       
+        var feedbackevent=$A.get("e.c:EA_Accept_Event");
+        feedbackevent.setParams({"activityId":member.acivityId,"teamId":member.member_Id});
+        feedbackevent.fire();
+        
+    },
+    gotofeedback : function(component, event, helper) {
+       
+        var member=component.get("v.activity");
+        var feedbackevent=$A.get("e.c:EA_Feedback_Event");
+        feedbackevent.setParams({"activityId":member.acivityId,"team_memberid":member.member_Id,"participant_rating":member.participant_rating});
+        feedbackevent.fire();
     }
+   
 })
