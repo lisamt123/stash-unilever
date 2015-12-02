@@ -3324,6 +3324,20 @@ angular.module('unileverApp')
                                 jQuery('#betMessage').modal('show');
                             }
                             break;
+						case 'editAsset':
+							jQuery('#editasset').modal('hide');
+                            refreshChatter();
+                            if (evt.data.presentation || evt.data.msg) {
+                                _refreshBet(true);
+                            } else {
+								_refreshBet(true);
+                            }
+                            if (evt.data.msg) {
+                                $scope.betMessage = evt.data.msg;
+                                $scope.$apply();
+                                jQuery('#betMessage').modal('show');
+                            }
+                            break;
                         case 'saveAssets':
                             //hide modal window
                             jQuery('.modal-bet').modal('hide');
