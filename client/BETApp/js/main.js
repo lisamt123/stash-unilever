@@ -3308,7 +3308,8 @@ angular.module('unileverApp')
                             break;
                         case 'saveAsset':
                             //hide modal window
-                            jQuery('.modal-bet').modal('hide');
+                            //jQuery('.modal-bet').modal('hide');
+							jQuery('#uploadAsset').modal('hide');
                             //refresh chatter
                             refreshChatter();
                             if (evt.data.presentation || evt.data.msg) {
