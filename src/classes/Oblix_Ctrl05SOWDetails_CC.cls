@@ -59,7 +59,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
     public Attachment attachment {
         get {
             if (attachment == null){
-				attachment = new Attachment();            	
+                attachment = new Attachment();              
             }
             return attachment;
         } set;
@@ -128,7 +128,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
             for (Marketing_SOW__c mark : lstMarkCategoriesFilter) {
                 if (mark.SmallProductCategory__c != null) {
                     if (!MapSmallCatIdToName.containsKey(mark.SmallProductCategory__c)){
-                    	MapSmallCatIdToName.put(mark.SmallProductCategory__c, mark.SmallProductCategory__r.Name);	
+                        MapSmallCatIdToName.put(mark.SmallProductCategory__c, mark.SmallProductCategory__r.Name);   
                     }
                 }
             }
@@ -156,7 +156,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
             for (Marketing_SOW__c mark : lstMarkCategoriesFilter) {
                 if (mark.BigOblixProductCategory__c != null) {
                     if (!MapBigCatIdToName.containsKey(mark.BigOblixProductCategory__c)){
-                    	MapBigCatIdToName.put(mark.BigOblixProductCategory__c, mark.BigOblixProductCategory__r.Name);
+                        MapBigCatIdToName.put(mark.BigOblixProductCategory__c, mark.BigOblixProductCategory__r.Name);
                     }
                 }
             }
@@ -352,12 +352,17 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         return s != null ? String.escapeSingleQuotes(s) : null;
     }
 
-
+    /*
+    @discription : redirect to Sow
+    */
     public PageReference ViewSow() {
 
         return new PageReference('/' + selectedSowId);
     }
 
+    /*
+    @discription : ==============
+    */
     public void RerenderSelectedSow() {
         System.debug('###selectedSewId : ' + selectedSewId );
         if (selectedSewId != null && selectedSewId != '') {
@@ -392,20 +397,20 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
     public void ViewAttachements() {
         System.debug('###selSow : ' + selSow);
         if (selSow != null && selSow.Id != null) {
-            lstAttachements = [Select Id, Name, Body, ParentId, Parent.Name from Attachment where ParentId = : selSow.Id];
+            lstAttachements = [Select Id, Name, Body, ParentId, Parent.Name, CreatedById, CreatedBy.Name, CreatedDate from Attachment where ParentId = : selSow.Id];
         }
     }
     public pageReference ViewAction() {
-    	Pagereference meNewPage = Page.Oblix_VF06_SOWView;
-		meNewPage.getParameters().put('sowId', selSow.Id);
+        Pagereference meNewPage = Page.Oblix_VF06_SOWView;
+        meNewPage.getParameters().put('sowId', selSow.Id);
         return meNewPage;
     }
     public pageReference CreateSOWAction() {
-    	PageReference mypageViewSow = Page.Oblix_VF06_SOWView;
+        PageReference mypageViewSow = Page.Oblix_VF06_SOWView;
         return mypageViewSow;
     }
     /*
-    *   Wrapper Class : Used to bypass the Limit of 1000 Record on a repeat
+    @Description   Wrapper Class : Used to bypass the Limit of 1000 Record on a repeat
     */
     public class limitWrapper {
         public  List<Marketing_SOW__c>  lstMarketingSows {get; set;}
@@ -420,7 +425,9 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
     //Achraf attachement
 
 
-
+   /*
+   @Description: Used to upload Attachement
+   */
     public void uploadeAttachment() {
         system.debug('==============saving name = ' + attachment.name);
         system.debug('==============saving desc = ' + attachment.description);
@@ -431,6 +438,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
         attachment.IsPrivate = true;
         try {
             insert attachment;
+            attachment= [Select Id, Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate from Attachment where Id = : attachment.Id];
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO, 'Attachment uploaded successfully'));
         } catch (Exception e) {
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'Error uploading attachment'));
@@ -443,6 +451,11 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
             }
         }
     }
+    
+    
+     /*
+   @Description: Cancel Method
+   */
     public void Cancel () {
         return;
     }

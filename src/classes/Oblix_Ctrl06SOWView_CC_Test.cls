@@ -277,4 +277,34 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 		}
 	}
+
+	/*@isTest
+	static void populateBigSmallC_Test(){
+
+		System.runAs(Oblix_TestUtils.createTestUser()) {
+
+			Marketing_SOW__c marketingSow = Oblix_TestUtils.createTestMarketingSow(TEST_NAME, null,
+			                                Oblix_TestUtils.createBrand(TEST_NAME, TEST_NAME).Id);
+			marketingSow.BB_or_BD__c = 'BD';
+			
+			MDO_Category__c bigCategory = Oblix_TestUtils.createBigProductCategory();
+			MDO_Category__c smallCategory = Oblix_TestUtils.createSmallProductCategory();
+
+			Oblix_Ctrl06SOWView_CC controller = new Oblix_Ctrl06SOWView_CC();
+			controller.selSow = marketingSow;
+
+			Test.startTest();
+
+			controller.getCategoryBrand();
+
+			System.assertEquals(controller.selSow.SmallProductCategory__c, smallCategory.Id);
+			System.assertEquals(controller.selSow.BigOblixProductCategory__c, bigCategory.Id);
+
+			Test.stopTest();
+			
+
+		}
+
+	}*/
+	
 }

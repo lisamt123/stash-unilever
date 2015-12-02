@@ -1,4 +1,4 @@
-/**** Header and container CSS ****/        
+    /**** Header and container CSS ****/        
         
         .darkGreen{color: #44883E  ;}
         .mainGreen{color: #6BA539;}
@@ -233,40 +233,40 @@
              color: #fff;
         }
          .Oblix_large_btn{
-  border-style:none;
-  width: 160px;
-  height: 30px;
-  background-position: 0 0;
-  border : 1px solid rgb(158, 145, 145);
-   }       
- .Oblix_large_btn:hover{
-    border-style:none;
-  border : 1px solid rgb(223, 213, 213);
-  background-position: 0 0;
- }
- .Oblix_large_btn:active{
-  border-style:none;
-  border : 1px solid rgb(223, 213, 213);
-  background-position: 0 0;
- }
-  .Oblix_btn{
-  border-style:none;
-  width: 87px;
-  height: 30px;
-  background-position: 0 0;
-  border : 1px solid rgb(158, 145, 145);
- }
- 
- .Oblix_btn:hover{
-  border-style:none;
-  border : 1px solid rgb(223, 213, 213);
-  background-position: 0 0;
- }
- .Oblix_btn:active{
-  border-style:none;
-  border : 1px solid rgb(223, 213, 213);
-  background-position: 0 0;
- }
+		  border-style:none;
+		  width: 200px !important;
+		  height: 30px;
+		  background-position: 0 0;
+		  border : 1px solid rgb(158, 145, 145);
+		   }       
+		 .Oblix_large_btn:hover{
+			border-style:none;
+		  border : 1px solid rgb(223, 213, 213);
+		  background-position: 0 0;
+		 }
+		 .Oblix_large_btn:active{
+		  border-style:none;
+		  border : 1px solid rgb(223, 213, 213);
+		  background-position: 0 0;
+		 }
+		  .Oblix_btn{
+			  border-style:none;
+			  width: 95px !important;
+			  height: 30px;
+			  background-position: 0 0;
+			  border : 1px solid rgb(158, 145, 145);
+		 }
+		 
+		 .Oblix_btn:hover{
+		  border-style:none;
+		  border : 1px solid rgb(223, 213, 213);
+		  background-position: 0 0;
+		 }
+		 .Oblix_btn:active{
+		  border-style:none;
+		  border : 1px solid rgb(223, 213, 213);
+		  background-position: 0 0;
+		 }
         .Oblix_notes{
             PADDING-right: 5px;
     		max-height: 15em;
@@ -349,4 +349,52 @@
     text-align: center;
     }
 	
-	
+	           
+	.bg_selected{
+		background-color:#44883E !important;
+	}
+	 .cnter > div, .center > table /* insert any other block-level elements here */ {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* for 900px or less */
+    @media screen and (max-width: 1200px) {
+     
+        .column1,.column2,.column3,.column4,.column5{
+            width: 100%;
+        }
+    }
+   
+    a.Oblix_btn:hover{
+        text-decoration: none;
+    }
+    a.Oblix_btn{
+        text-decoration: none;
+        background: #6BA539 none repeat scroll 0% 0%;
+        color: #FFF;
+        padding: 4px 10px 3px !important;
+        height: 30px;
+        font-weight: bold;
+        font-size: 0.9em;
+        border-radius: 3px;
+        border-width: 1px;
+        border-style: solid;
+        border-color: #B5B5B5 #B5B5B5 #7F7F7F;
+        -moz-border-top-colors: none;
+        -moz-border-right-colors: none;
+        -moz-border-bottom-colors: none;
+        -moz-border-left-colors: none;
+        border-image: none;
+        margin: 1px;
+        display:block;
+        width: 78px !important;
+        height: 20px;
+        text-align: center;
+    }
+    .column1,.column2,.column3,.column4,.column5{
+            width: 100%;
+    }
+	.SOWName{
+        cursor:pointer;
+    }   

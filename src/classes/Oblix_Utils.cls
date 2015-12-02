@@ -408,7 +408,33 @@ public with sharing class Oblix_Utils {
         return '';
 
     }
+    // Added by AES to get the abreviation for each sub category
+    public static map<string, string> getAbreViationByRTBySubCatgForCardAssets() {
 
+        map<string, string> mapAbreviation = new map<string, string>();
+
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_AudioVisuel+'_'+Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory, 'AV-OF');
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_AudioVisuel+'_'+Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory, 'AV-OL');
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_AudioVisuel+'_'+Label.Oblix_Lbl_UIUX_Audio_Subcategory, 'AV-AU');
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_AudioVisuel+'_'+Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory, 'AV-A');
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_AudioVisuel+'_'+Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory, 'AV-CD');
+        
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_Digital+'_'+Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory, 'D-CA');
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_Digital+'_'+Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory, 'D-AR');
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_Digital+'_'+Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory, 'D-AO');
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_Digital+'_'+Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory, 'D-DA');
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_Digital+'_'+Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory, 'D-S');
+        
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_Experiential+'_'+Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory, 'E-A');
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_Experiential+'_'+Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory, 'E-O');
+        
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_Static_Img+'_'+Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory, 'SI-A');
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_Static_Img+'_'+Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory, 'SI-O');
+        
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_Stimulus_Materials+'_'+Label.Oblix_Lbl_UIUX_Stim_require_Subcategory, 'SM-R');
+        
+        return mapAbreviation;
+    }
     // Added by AES to get the abreviation for each sub category
     public static map<string, string> getAbreViationForCardAssets() {
 
@@ -423,6 +449,7 @@ public with sharing class Oblix_Utils {
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory, 'AR');
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory, 'AO');
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory, 'DA');
+        mapAbreviation.put(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory, 'S');
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory, 'A');
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory, 'O');
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory, 'A');
