@@ -14,7 +14,7 @@ public class Core_WP_WorkPlaceController {
     Returns: String
     ********************************************************************/ 
     @AuraEnabled
-    public static String getCurrentUserLocation() {
+    public static Core_WP_WorkplaceGAWrapperClass getCurrentUserLocation() {
         return Core_WP_WorkPlaceControllerHelper.getCurrentUserLocation();
     } 
     

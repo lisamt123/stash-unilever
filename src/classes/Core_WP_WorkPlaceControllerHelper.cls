@@ -22,13 +22,17 @@ public class Core_WP_WorkPlaceControllerHelper{
     Parameters: 
     Returns: String
     ********************************************************************/ 
-    public static String getCurrentUserLocation() {
+    public static Core_WP_WorkplaceGAWrapperClass getCurrentUserLocation() {
         User user=[SELECT City FROM User where Id=:Userinfo.getUserId()];
         String strLocation='Kingston';
         if(user.City=='100VE')
             strLocation=user.City;
         List<Workplace__c> workPlace=[SELECT Id,Name FROM Workplace__c Where Name=:strLocation ORDER BY CreatedDate DESC];
-        return String.Valueof(workPlace[0].Id);
+        Core_WP_WorkplaceGAWrapperClass workplaceGAWrapperClass = new Core_WP_WorkplaceGAWrapperClass ();
+        workplaceGAWrapperClass.workplaceId = String.Valueof(workPlace[0].Id);
+        workplaceGAWrapperClass.workplaceGaId = CORE_WorkPlace__c.getInstance('GAId').Text_Value__c;
+        workplaceGAWrapperClass.userId = String.Valueof(Userinfo.getUserId());
+        return workplaceGAWrapperClass ;
     }
     
     /*******************************************************************
