@@ -95,16 +95,17 @@
     </fields>
     <fields>
         <fullName>Everyday_Activity__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Everyday Activity</label>
         <referenceTo>Everyday_Activity__c</referenceTo>
         <relationshipLabel>Team Members</relationshipLabel>
         <relationshipName>Team_Members</relationshipName>
-        <required>false</required>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>Feedback_Comments__c</fullName>
@@ -223,5 +224,5 @@
     </nameField>
     <pluralLabel>Team Members</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

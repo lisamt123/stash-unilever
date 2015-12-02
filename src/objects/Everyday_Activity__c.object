@@ -145,6 +145,7 @@
         <fullName>All</fullName>
         <columns>RECORDTYPE</columns>
         <columns>NAME</columns>
+        <columns>Activity_Points__c</columns>
         <columns>Description__c</columns>
         <columns>Minutes_to_Complete_Action__c</columns>
         <columns>Participants_Required__c</columns>

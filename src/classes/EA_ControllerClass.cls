@@ -32,10 +32,11 @@ public class EA_ControllerClass {
     @AuraEnabled
     Public static List<Everyday_Activity__c> getActivities(){
         List<Everyday_Activity__c> activityList = new List<Everyday_Activity__c>();
-        activityList = [SELECT Id,Name, RecordType.Name, Rating__c, Description__c,Minutes_to_Complete_Action__c,Top_Tip__c,Participants_Required__c,Activity_Points__c FROM Everyday_Activity__c Where  Active__c =true ORDER BY Rating__c desc];
+        activityList = [SELECT Id,Name, RecordType.Name, Rating__c, Description__c,Minutes_to_Complete_Action__c,Top_Tip__c,Participants_Required__c,Activity_Points__c FROM Everyday_Activity__c Where  Active__c =true ORDER BY Rating__c desc Nulls last];
         boolean result=EA_Utils.isEmpty(activityList );
         if(result !=true){
             return activityList ;
+            system.debug('@@@'+activityList .size());
         }
         return null;
     } 
@@ -51,7 +52,7 @@ public class EA_ControllerClass {
         boolean result=EA_Utils.isEmpty(themeName);
         if(result !=true)
         {
-            lstAcivity = [SELECT Name, Rating__c, Participants_Required__c,Minutes_to_Complete_Action__c,Top_Tip__c, RecordType.Name,Description__c,Activity_Points__c  FROM Everyday_Activity__c where RecordType.Name=:themeName AND  Active__c=true order by Rating__c desc];
+            lstAcivity = [SELECT Name, Rating__c, Participants_Required__c,Minutes_to_Complete_Action__c,Top_Tip__c, RecordType.Name,Description__c,Activity_Points__c  FROM Everyday_Activity__c where RecordType.Name=:themeName AND  Active__c=true order by Rating__c desc Nulls last];
         }
         boolean listresult=EA_Utils.isEmpty(lstAcivity );
         if(listresult !=true)
@@ -71,12 +72,13 @@ public class EA_ControllerClass {
     @AuraEnabled
     public static void insertteamrecord(string ActivityID){
     system.debug('========='+ ActivityID);
+        Decimal points = [select Activity_Points__c from Everyday_Activity__c where id =:ActivityID].Activity_Points__c ;
         EA_Team_Member__c newrecord = new EA_Team_Member__c ();
         newrecord.Participant__c = UserInfo.getUserId();
         newrecord.Invited_By__c = UserInfo.getUserId();      
         newrecord.Invitation_Status__c = EA_Constants.INVITATION_STATUS_SELF;
         newrecord.Everyday_Activity__c = ActivityID;
-        newrecord.Activity_Points__c=5;
+        newrecord.Activity_Points__c=points;
         insert newrecord;
     }
     
@@ -85,31 +87,38 @@ public class EA_ControllerClass {
 * @param  recordID
 * @return List of EA_Wrapper_Class.EA_FeaturedContent_Wrapper
 */
-    /* @AuraEnabled
+    @AuraEnabled
     public static List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> getcontentdetail(String ActivityID){
         Map<string,aa_agent_app_custom_setting__c> objURL = aa_agent_app_custom_setting__c.getAll(); 
-        String urlHost =  objURL.get('Salesforce Instance URL Content').Value__c; 
-        String sfcURLContent =  objURL.get('SFC Content').Value__c; 
-         string docurl;
+        String urlHost = URL.getSalesforceBaseUrl().toExternalForm();
+        String sfcURLContent = '/sfc/servlet.shepherd/version/download/';
+        string docurl='?asPdf=false.mp4';
         string description;
+         
+         Everyday_Activity__c objact=[select Top_Tip__c from Everyday_Activity__c where id=:ActivityID];
+        
         List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>  wrapperList=new  List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>();
-        List<Everyday_Activity__c> activityList=[Select Id, CreatedDate, CreatedBy.SmallPhotoUrl, CreatedBy.Name, CreatedById, (Select Id, ParentId, Body, RelatedRecordId From Feeds limit 1) From Everyday_Activity__c Where Active__c =true AND id =: ActivityID ];
-        /* Feedcomment objFeed=new Feedcomment();
-objFeed=[Select InsertedBy.SmallPhotoUrl, InsertedBy.Name, InsertedById, Id, FeedItemId, CreatedDate, CommentBody From FeedComment ];*/
-     /*   for(Everyday_Activity__c activity : activityList){
+       // List<Everyday_Activity__c> activityList=[Select Id, CreatedDate, CreatedBy.SmallPhotoUrl, CreatedBy.Name, CreatedById, (Select Id, ParentId, Body, RelatedRecordId From Feeds limit 1) From Everyday_Activity__c Where Active__c =true AND id =: ActivityID ];
+          List<ContentDocumentLink> docList=[SELECT ContentDocumentId,Id,LinkedEntityId FROM ContentDocumentLink WHERE LinkedEntityId =:ActivityID limit 1];
+            system.debug('!!!'+docList[0].ContentDocumentId);
+        for(ContentDocumentLink document: docList){
             EA_Wrapper_Class.EA_FeaturedContent_Wrapper  newObj=new EA_Wrapper_Class.EA_FeaturedContent_Wrapper();
-            newObj.userName=activity.CreatedBy.Name;
-            newObj.uerPhotoUrl=activity.CreatedBy.SmallPhotoUrl;
-            decimal Hours = decimal.valueOf((System.now().getTime()-datetime.valueof(activity.CreatedDate).getTime())/(1000*60*60));
-            decimal decMinutes = ((System.now().getTime())/1000/60) - ((datetime.valueof(activity.CreatedDate).getTime())/1000/60);
+            
+            List<ContentDocument> documentList =[Select id,CreatedById , CreatedDate,LatestPublishedVersionId,OwnerId,PublishStatus,SystemModstamp,Title FROM  ContentDocument WHERE Id =:document.ContentDocumentId];
+            
+            List<User> userList=[select name,smallphotoUrl from User where id=:documentList[0].CreatedById];
+            newObj.userName=userList[0].name;
+            newObj.uerPhotoUrl=userList[0].SmallPhotoUrl;
+            decimal Hours = decimal.valueOf((System.now().getTime()-datetime.valueof(documentList[0].CreatedDate).getTime())/(1000*60*60));
+            decimal decMinutes = ((System.now().getTime())/1000/60) - ((datetime.valueof(documentList[0].CreatedDate).getTime())/1000/60);
             String strTimeFormat='';
-            if(Hours>=48) strTimeFormat='on '+datetime.valueof(activity.CreatedDate).format('dd-MMM-yyyy');//+' at '+i.CreatedDate.format('h:mm a');
+            if(Hours>=48) strTimeFormat='on '+datetime.valueof(documentList[0].CreatedDate).format('dd-MMM-yyyy');//+' at '+i.CreatedDate.format('h:mm a');
             else if(Hours>=24 && Hours<48) strTimeFormat='yesterday';
-            else if(((Hours>1 ||decMinutes>59)&& Hours!=1) && Hours<24 && System.now() == activity.CreatedDate ) strTimeFormat=Hours+' hours ago';
-            else if(((Hours>1 ||decMinutes>59)&& Hours!=1) && Hours<24 && System.now() != activity.CreatedDate ) {
-                string  day=String.valueOf(activity.CreatedDate.day());
-                string  month=activity.CreatedDate.format('MMMM');
-                string  year=String.valueOf(activity.CreatedDate.year());
+            else if(((Hours>1 ||decMinutes>59)&& Hours!=1) && Hours<24 && System.now() == documentList[0].CreatedDate ) strTimeFormat=Hours+' hours ago';
+            else if(((Hours>1 ||decMinutes>59)&& Hours!=1) && Hours<24 && System.now() != documentList[0].CreatedDate ) {
+                string  day=String.valueOf(documentList[0].CreatedDate.day());
+                string  month=documentList[0].CreatedDate.format('MMMM');
+                string  year=String.valueOf(documentList[0].CreatedDate.year());
                 strTimeFormat=day+' '+month.substring(0,3)+' '+year;
             }
             else if((Hours==1 ||decMinutes>59) && Hours<24) strTimeFormat=Hours+' hour ago';
@@ -117,15 +126,15 @@ objFeed=[Select InsertedBy.SmallPhotoUrl, InsertedBy.Name, InsertedById, Id, Fee
             else if(Hours<1 && decMinutes==1) strTimeFormat=decMinutes+' min ago';
             else if(decMinutes<1) strTimeFormat='just now';
             newObj.createdDate=strTimeFormat;
-            for(Everyday_Activity__Feed feed:activity.Feeds){
-                newObj.description=feed.Body;
-                string str=urlHost+sfcURLContent+feed.RelatedRecordId;
-                newObj.documentUrl=str;         
-            }   
+            newObj.top_tip=objact.Top_Tip__c;
+                //newObj.description=feed.Body;
+                //string str=urlHost+sfcURLContent+document.ContentDocumentId;
+                newObj.documentUrl=urlHost+sfcURLContent+documentList[0].LatestPublishedVersionId+docurl;         
+         
             wrapperList.add(newObj);
         }
         return wrapperList;
-    }*/
+    }
     @AuraEnabled
     public static void insertfeeditem(string ActivityId, string comment){
         FeedItem post = new FeedItem();
@@ -134,12 +143,37 @@ objFeed=[Select InsertedBy.SmallPhotoUrl, InsertedBy.Name, InsertedById, Id, Fee
         insert post;
     }
     @AuraEnabled
-    public static void chatterfeeditem(){
+    public static void chatterfeeditem(string postbody){
+   /* system.debug('================='+activityid);
+    
+       List<Everyday_Activity__c> acts = getactivitydetail(activityid);
+            String actvityName;
+            String activityDesc;
+            for(Everyday_Activity__c act : acts){
+                actvityName = act.Name;
+                activityDesc = act.Description__c;
+            }
+            
+           String msgLabel= System.Label.EA_Chatter1 +' ' + actvityName +' ' + System.Label.EA_Chatter2 + activityDesc  + System.Label.EA_Chatter3 + System.Label.EA_Chatter4;*/
+    
         FeedItem post = new FeedItem();
         post.ParentId =  UserInfo.getUserId(); //Activity ID..
-        post.Body = 'commented';
+        post.Body = postbody;
         insert post;
     }
+     @AuraEnabled
+     Public static List<EA_Team_Member__c > getinvitelist(string Activityid){
+           List<EA_Team_Member__c > invitelist= new List<EA_Team_Member__c >();
+               if(Activityid!= null){        
+            
+            invitelist= [SELECT id, Everyday_Activity__c, invitation_Status__c, Invited_By__c, Invited_By__r.smallphotourl,Participant__c,Participant__r.smallphotourl
+                        FROM EA_Team_Member__c 
+                        WHERE ((Everyday_Activity__c=: Activityid ) AND 
+                               (invitation_Status__c =: EA_Constants.INVITATION_STATUS_INVITED) AND (Participant__c=:userinfo.getuserId()))];
+                             }
+                             
+                              return invitelist;
+                 }   
    /*******************************************************************************************************
 * @description This method returns  current user information profile picture,No of points earned,badge he got
 * @param  
@@ -163,6 +197,8 @@ objFeed=[Select InsertedBy.SmallPhotoUrl, InsertedBy.Name, InsertedById, Id, Fee
         for(AggregateResult ar:totalpoints_count){
             points +=integer.valueof(ar.get('total'));
         }
+        
+        system.debug('***'+points );
         objUser.activity_points=points;
         integer newbee=integer.valueof(EA_BadgeDetails__c.getInstance('Newbee').BadgeValue__c);
         integer bronz=integer.valueof(EA_BadgeDetails__c.getInstance('Bronze').BadgeValue__c);
@@ -252,13 +288,13 @@ activities for current user.
     @AuraEnabled
     public static List<EA_Wrapper_Class.EA_UserProfile_Wrapper>  getUserActivities(){
         List<EA_Wrapper_Class.EA_UserProfile_Wrapper> userprofileList=new List<EA_Wrapper_Class.EA_UserProfile_Wrapper>();     
-        List<EA_Team_Member__c> memberList=[Select id, Everyday_Activity__r.RecordTypeId, Everyday_Activity__r.Name, Everyday_Activity__c,CreatedDate From EA_Team_Member__c  Where ( Invited_By__c=:userinfo.getuserId() OR Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:EA_Constants.INVITATION_STATUS_ACCEPTED OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_SELF) order by CreatedDate Desc ];
+        List<EA_Team_Member__c> memberList=[Select id, Everyday_Activity__r.RecordTypeId, Everyday_Activity__r.Name, Everyday_Activity__c,CreatedDate,Rating_By_Participant__c,invitation_Status__c  From EA_Team_Member__c  Where ( Invited_By__c=:userinfo.getuserId() OR Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:EA_Constants.INVITATION_STATUS_ACCEPTED OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_SELF OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_INVITED ) order by CreatedDate Desc ];
         if(memberList != null && memberList.size()>0){
             Map<string,EA_Team_Member__c> memberMap=new Map<string,EA_Team_Member__c>();
             List<EA_Team_Member__c> activityList=new List<EA_Team_Member__c>();
             for(EA_Team_Member__c item:memberList){
                 if(item.Everyday_Activity__c != NULL){
-                    if(!memberMap.containsKey(item.Everyday_Activity__r.Name)){
+                    if(!memberMap.containsKey(item.Everyday_Activity__r.Name) ){
                         memberMap.put(item.Everyday_Activity__r.Name,item);
                     }
                 }
@@ -273,7 +309,10 @@ activities for current user.
                     objWrapper.activity_name=recordtypeList[0].Name;
                     objWrapper.theme_name=recordtypeList[0].RecordType.Name;
                     objWrapper.acivityId=recordtypeList[0].id;
-                }
+                    objWrapper.member_Id=item.id;
+                    objWrapper.participant_rating=item.Rating_By_Participant__c ;
+                     objWrapper.invitation_status=item.invitation_Status__c ;
+                    }
                 userprofileList.add(objWrapper);
             }
         }        
@@ -283,12 +322,221 @@ activities for current user.
    
     @AuraEnabled
     Public static Map<string,string> getThemeColors(){
-        Map<string, EA_ThemesDetails__c> allRecords = EA_ThemesDetails__c.getAll();
+       Map<string, EA_ThemesDetails__c> allRecords = EA_ThemesDetails__c.getAll();
         Map<String, String> allThemeRecords = new Map<String, String>();
         for(EA_ThemesDetails__c tcs:allRecords.values()){
             allThemeRecords.put(tcs.Name,tcs.ThemeColorCode__c); 
         }
         return allThemeRecords;   
-    }   
+    } 
+     @AuraEnabled
+    public static void updateParticipantResponse(string teamid, string participantId, string responseText){
+    system.debug('=============='+teamid);
+    system.debug('==============='+participantId);
+      //Get EA_Team_Member__c record
+            
+     // EA_Team_Member__c partcipantTeamMeberRec = EA_Utils.getParticipantTeamMemberRec(teamid, participantId);
+      EA_Team_Member__c tmList=new EA_Team_Member__c();
+      tmList= [SELECT id, Activity_Due_Day__c, Everyday_Activity__c, Participant__c, 
+                                                    Rating_By_Participant__c, Invitation_Status__c, Type__c
+                                             FROM   EA_Team_Member__c
+                                             WHERE  Participant__c=: participantId AND Everyday_Activity__c =: teamid AND Invitation_Status__c=: EA_Constants.INVITATION_STATUS_INVITED];
+      // Update EA_Team_Member__c record
+      
+      if(tmList.id == teamid){
+      system.debug('==============='+tmList.id);
+        
+        if(responseText == EA_Constants.INVITATION_STATUS_ACCEPTED) tmList.Invitation_Status__c = EA_Constants.INVITATION_STATUS_ACCEPTED;      
+           // if(responseText == EA_Constants.INVITATION_STATUS_DECLINED) partcipantTeamMeberRec.Invitation_Status__c = EA_Constants.INVITATION_STATUS_DECLINED;
+            
+          }
+          system.debug('=============='+tmList.Invitation_Status__c);
+            update tmList;
+           
+      
+    }  
     
+   
+    /* @description This method returns   no of activities for current user.
+
+* @param  
+* @return list of wrapper class. 
+*/  
+    @AuraEnabled
+       public static List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> getcommentDetail(String ActivityID){
+       
+         List<FeedItem> feedList=[SELECT Body,CreatedById,CreatedDate,Id,ParentId FROM FeedItem WHERE ParentId =:ActivityID Limit 5];
+        
+         List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> wrapperList=new List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>();
+         
+         for(FeedItem feed:feedList){
+           
+           EA_Wrapper_Class.EA_FeaturedContent_Wrapper objwrapper=new EA_Wrapper_Class.EA_FeaturedContent_Wrapper();
+           
+           objwrapper.description=feed.Body;
+           User objUser=[Select Name,smallphotourl from User where Id=:feed.CreatedById];
+           objwrapper.userName=objUser.Name;
+           objwrapper.uerPhotoUrl=objUser.smallphotourl;
+           
+           decimal Hours = decimal.valueOf((System.now().getTime()-datetime.valueof(feed.CreatedDate).getTime())/(1000*60*60));
+            decimal decMinutes = ((System.now().getTime())/1000/60) - ((datetime.valueof(feed.CreatedDate).getTime())/1000/60);
+            String strTimeFormat='';
+            if(Hours>=48) strTimeFormat='on '+datetime.valueof(feed.CreatedDate).format('dd-MMM-yyyy');//+' at '+i.CreatedDate.format('h:mm a');
+            else if(Hours>=24 && Hours<48) strTimeFormat='yesterday';
+            else if(((Hours>1 ||decMinutes>59)&& Hours!=1) && Hours<24 && System.now() == feed.CreatedDate ) strTimeFormat=Hours+' hours ago';
+            else if(((Hours>1 ||decMinutes>59)&& Hours!=1) && Hours<24 && System.now() != feed.CreatedDate ) {
+                string  day=String.valueOf(feed.CreatedDate.day());
+                string  month=feed.CreatedDate.format('MMMM');
+                string  year=String.valueOf(feed.CreatedDate.year());
+                strTimeFormat=day+' '+month.substring(0,3)+' '+year;
+            }
+            else if((Hours==1 ||decMinutes>59) && Hours<24) strTimeFormat=Hours+' hour ago';
+            else if(Hours<1 && decMinutes<=59 && decMinutes>1) strTimeFormat=decMinutes+' mins ago';
+            else if(Hours<1 && decMinutes==1) strTimeFormat=decMinutes+' min ago';
+            else if(decMinutes<1) strTimeFormat='just now';
+            objwrapper.createdDate=strTimeFormat;
+            
+            wrapperList.add(objwrapper);
+           
+         }
+         
+         
+         return wrapperList;
+       
+    }
+    
+    @AuraEnabled
+    public static List<SelectOption> getToDoTimeline()
+    {
+      List<SelectOption> options = new List<SelectOption>();
+            
+       Schema.DescribeFieldResult fieldResult =  EA_Team_Member__c.Activity_Due_Day__c.getDescribe();
+       List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
+            
+       for( Schema.PicklistEntry f : ple)
+       {
+          options.add(new SelectOption(f.getLabel(), f.getValue()));
+       }       
+       return options;
+    }
+    
+    public class SelectOption{
+        @AuraEnabled public String Label {get; set;}
+        @AuraEnabled public String Value {get; set;}
+         
+        public SelectOption(String optionLabel, String optionValue)
+        {
+            this.Label = optionLabel;
+            this.Value = optionValue;
+        }
+    
+    } 
+    
+    
+    @AuraEnabled
+    public static string callSubmitToDoAction(String activityId, String json, String activityTime) {
+        try {
+           
+           List<String> lstUser= new List<String>();
+            Object[] values = (Object[])System.JSON.deserializeUntyped(json);
+            if(values.size()>0){         
+                 for (Object id : values) {
+                     lstUser.add(string.valueof(id) );
+                 }
+             }
+            User objUser=[SELECT Id FROM User WHERE Name = 'Everyday Actions'];
+            String creaparentId = objUser.Id;
+            
+            List<Everyday_Activity__c> acts = getactivitydetail(activityId);
+            String actvityName;
+            String activityDesc;
+            Decimal points;
+            
+            for(Everyday_Activity__c act : acts){
+                actvityName = act.Name;
+                activityDesc = act.Description__c;
+                points = act.Activity_Points__c;
+            }
+            
+            // Create team member record for current user
+            EA_Team_Member__c newrecord = new EA_Team_Member__c();
+            newrecord.Participant__c = UserInfo.getUserId();
+            newrecord.Invited_By__c = UserInfo.getUserId();   
+            newrecord.Invitation_Status__c = EA_Constants.INVITATION_STATUS_SELF;
+            newrecord.Everyday_Activity__c = activityId;
+            newrecord.Activity_Due_Day__c = activityTime;
+            newrecord.Activity_Points__c= points;
+            insert newrecord;
+            
+            
+            // To prepare msg 
+           String msgLabel= System.Label.EA_ShareEmail3 + ' ' + actvityName + ' '+ System.Label.EA_ShareEmail4 + ' ' + activityDesc + System.Label.EA_ShareEmail5;
+           
+           List<User> userList = [SELECT id, Name FROM User Where id =: userinfo.getUserID()];
+           String participantName= '@'+userList[0].name;
+           
+            // Post on chatter wall
+            //EA_Utils.postOnChatter(UserInfo.getUserId(),participantName+ ' '+msgLabel);
+            FeedItem newFeed = new FeedItem();
+            newFeed.CreatedById = objUser.Id;
+            newFeed.Body = participantName + ' '+ msgLabel;
+            newFeed.ParentId = UserInfo.getUserId();
+            newFeed.Type = 'TextPost';
+            insert newFeed;
+            
+            
+           List<EA_Team_Member__c> memberList = new List<EA_Team_Member__c>();
+           List<FeedItem> memberFeedList = new List<FeedItem>();
+            
+           List<User> userBulkList = [SELECT id, Name FROM User Where id in: lstUser];
+           
+
+            for (String uId : lstUser) {
+              EA_Team_Member__c m   = new EA_Team_Member__c();
+              m.Participant__c   = uId;
+              m.Invited_By__c  = UserInfo.getUserId();
+              m.Invitation_Status__c = EA_Constants.INVITATION_STATUS_INVITED;
+              m.Everyday_Activity__c = activityId;
+              m.Activity_Due_Day__c = activityTime;
+              m.Activity_Points__c= points;
+              memberList.add(m);
+              participantName ='';              
+              
+              FeedItem bulkPost= new FeedItem();
+              bulkPost.ParentId =  uId; //user id
+              bulkPost.CreatedById = objUser.Id;
+              participantName = getParticipantName(userBulkList,uId);
+             
+              msgLabel= System.Label.EA_ShareEmail3 + ' ' + actvityName + ' '+ System.Label.EA_ShareEmail4 + ' ' + activityDesc + System.Label.EA_ShareEmail5;
+              String msgBulkLabel= '@'+ participantName +' '+ msgLabel;
+              bulkPost.Body = msgBulkLabel;
+                  
+              memberFeedList.add(bulkPost);
+              
+              EA_Utils.postOnChatter(uId, msgBulkLabel);
+              
+            }
+            insert memberList;
+           
+            return activityId;
+           
+            // This doesn't execute since insert causes an exception
+            System.debug('Statement after insert.');
+        } catch(Exception e) {
+            System.debug('The following exception has occurred: ' + e.getMessage());
+        }
+        return activityId;
+    }
+    
+    public static string getParticipantName(List<User> uList, String uId){
+        String uName;
+        for (User u : uList) {
+            if(u.Id == uId){
+                return u.Name;
+            }
+        }       
+        return uName; 
+    }
+    
+     
 }

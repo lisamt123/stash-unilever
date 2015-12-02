@@ -8,6 +8,8 @@
 
 public with sharing class EA_Feedback_Controller {
 
+   
+
    @AuraEnabled
     public static List<Everyday_Activity__c> getactivitydetail(String ActivityID){
         List<Everyday_Activity__c> actvList = new List<Everyday_Activity__c>();
@@ -21,7 +23,7 @@ public with sharing class EA_Feedback_Controller {
     /* This method is used to submit the feedback */
     
     @AuraEnabled
-    public static boolean submitFeedback(string activityId,  string feedbackText, integer rating){
+    public static boolean submitFeedback(string activityId,  string feedbackText, integer rating,string teamId){
     
     //share feedback on Activity Chatter Feed
     //system.debug('@@@'+participantId);
@@ -30,28 +32,34 @@ public with sharing class EA_Feedback_Controller {
       system.debug('@@@'+rating);
       system.debug('@@@'+activityId);
       
-        //FeedItem post = new FeedItem();
-       // post.ParentId =  'a6kc0000000068E'; //Activity ID..
-        //post.Body = 'commented';
-        //insert post;
-    
-        //if(String.isNotBlank(activityId) && feedbackText != null){
-           // Id activity = Id.valueOf(activityId);
-           // EA_Utils.postCommentAtUserFeed(activityId,participantId,feedbackText);
-     
-          // FeedItem chatterPost = new FeedItem(ParentId = activity , Body = feedbackText);
+        
+         boolean strId=EA_Utils.isEmpty(activityId);
+         boolean strText=EA_Utils.isEmpty(feedbackText);
+         boolean strteamId=EA_Utils.isEmpty(teamId);
        
-            //insert chatterPost;
-    
-        //}   
+       
+            
+     
     
     // Update Team Member Record with Rating
-    
-    // if((activityId  !=' ') && (participantId!=' ') && (rating !=null && rating>0)){
-           system.debug('$$'+participantId);
+      integer activity_rating=integer.valueOf(rating );
+       if( activity_rating>0)
+          {
+             EA_Team_Member__c objMember=[Select Id,Rating_By_Participant__c from EA_Team_Member__c where id=:teamId];
+             system.debug('++'+objMember.Id);
+             objMember.Rating_By_Participant__c=integer.ValueOf(rating);
+             update objMember;
+             updateActivityRating(activityId);
+             system.debug('&&&'+objMember.Rating_By_Participant__c);
+     }
         
-            submitRating(activityId, participantId, rating);
-  // } 
+         
+            EA_Utils.postOnChatter(activityId,feedbackText);
+            
+            updateActivityRating(activityId);
+            
+        
+
        return true;
     
     }
@@ -61,7 +69,7 @@ public with sharing class EA_Feedback_Controller {
    // @AuraEnabled
     public static void submitRating(string activityId, string participantId, integer rating){
         
-        
+        system.debug('@@'+activityId+' '+participantId+' '+rating);
        //if((activityId !=NUll) && (participantId !=NULL) && (rating !=null && rating>0)){
             
             EA_Team_Member__c partcipantTeamMeberRec = new EA_Team_Member__c();     
@@ -70,20 +78,20 @@ public with sharing class EA_Feedback_Controller {
             
             system.debug('!!!!'+partcipantTeamMeberRec.Id);
             
-            if(partcipantTeamMeberRec != null){
+           // if(partcipantTeamMeberRec != null){
             
-                if(partcipantTeamMeberRec.Rating_By_Participant__c == 0 ){
-                
-                    partcipantTeamMeberRec.Rating_By_Participant__c = rating;
+               // if(partcipantTeamMeberRec.Rating_By_Participant__c == 0 ){
+                  
+                    partcipantTeamMeberRec.Rating_By_Participant__c = integer.valueof(rating);
                     
                     update partcipantTeamMeberRec;
-                    
+                      system.debug('+++'+partcipantTeamMeberRec.Rating_By_Participant__c);
                     updateActivityRating(activityId); // Update parent Activity overall rating
                //}           
                 
-            }       
+           // }       
             
-         }  
+         //}  
     }
     
     /* This method is used to update Activity rating based on it's associate Team Member records ratings*/
@@ -137,5 +145,66 @@ public with sharing class EA_Feedback_Controller {
         
     }
     
+    
+    
+    @AuraEnabled
+    public static List<Everyday_Activity__c> provideRating(String ActivityID,integer rating){
+        system.debug('##'+ rating);
+        Everyday_Activity__c objActivity= new  Everyday_Activity__c();
+        List<Everyday_Activity__c> activtyList=new List<Everyday_Activity__c>();
+            objActivity.Rating__c=integer.valueof(rating);
+            system.debug('**'+ objActivity.Rating__c);
+           activtyList.add(objActivity);
+           //List<Everyday_Activity__c> actvList = [SELECT Id,Name, RecordType.Name, Rating__c,Top_Tip__c, Description__c,Activity_Points__c,(SELECT Activity_Points__c,Everyday_Activity__c,Participant__c FROM Team_Members__r), Minutes_to_Complete_Action__c,Participants_Required__c FROM Everyday_Activity__c Where  Active__c =true AND id =: objActivity.Id ];
+        
+        return activtyList;
+    }  
+    
+     public static void sendFeedbackReminder(List<EA_Team_Member__c> tmList){
+    
+        if(tmList != null && tmList.size()>0){
+            
+            ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();
+            
+            Map<ID,String> actIdTOName = new Map<ID,String>();
+            List<Everyday_Activity__c> acts = new List<Everyday_Activity__c>();
+            Set<ID> actIDs = new Set<ID>();
+            
+                      
+            for(EA_Team_Member__c tmObj : tmList){
+                
+                actIDs.add(tmObj.Everyday_Activity__c);
+            }
+            
+            acts = [SELECT id, Name FROM Everyday_Activity__c WHERE ID IN: actIDs];
+            
+            for(Everyday_Activity__c  eaObj : acts){
+            
+                actIdTOName.put(eaObj.id,eaObj.Name);
+            }
+            
+            
+            for(EA_Team_Member__c tmObj : tmList){
+            
+                if(tmObj.Invitation_Status__c == EA_Constants.INVITATION_STATUS_SELF){
+                    
+                    string appUrl=URL.getSalesforceBaseUrl().toExternalForm() + '/' +'c/EverydayAction_App.app';
+                    string actName = actIdTOName.get(tmObj.Everyday_Activity__c);
+                    string userid=userinfo.getuserId();
+                    User objUser=[SELECT Id FROM User WHERE Name = 'Everyday Actions'];
+                   // ConnectApi.FeedType feedType = ConnectApi.FeedType.UserProfile;
+                    FeedItem newFeed=new FeedItem();
+                    newFeed.CreatedById = objUser.Id;
+                    newFeed.Body = System.Label.EA_Feedback_Message+'-'+ actName + ' - '+appUrl;
+                    newFeed.ParentId =userid ;
+                    newFeed.Type = 'TextPost';
+                    insert newFeed;
+                    
+                }
+           
+          }
+    }
+    
+   }
        
 }
