@@ -119,6 +119,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public Boolean showAttach{get;set;}
     
     public Set<String> proSubSectionParentsSequenceList1;//DEF1474 - contains all headers sequence
+    
+    public Static final String ENVIRONMENTAL_IMPACT = 'Environmental_Impact';
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -167,7 +169,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         filtersCountList=[SELECT IPM_Section__r.IPM_Section_Sequence__c, IPM_Section_Sequence__c, IPM_Section__r.IPM_Negotiable__c,IPM_Section_Status__c,IPM_FunctionalRole__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c 
                           FROM IPM_Project_Document_Section__c 
                           WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER and 
-                          IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER and IPM_Default_Section__c=true];
+                          IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER and IPM_Default_Section__c=true
+                          AND ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c !=:IPM_ConstantUtils.BLG ))]; //to exlude section 5.3 for BLG projects
         
         for(IPM_Project_Document_Section__c filterCount:filtersCountList){
             if(filterCount.IPM_Section__c!=null && filterCount.IPM_Section__r.IPM_Negotiable__c!=null && !filterCount.IPM_Section__r.IPM_Negotiable__c){
@@ -186,12 +189,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                     DeploNegotiable++;
                 }
                 if(filterCount.IPM_Section__r.IPM_Section_Sequence__c.startsWith(IPM_ConstantUtils.TECHNICAL_HEADER_SEQUENCE)){
-                    //Not to count section 5.3 if  IPM_Project__r.IPM_Answer_of_Q1__c == 'BLG'
-                    if(!(filterCount.IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c == 'BLG' && filterCount.IPM_Section__r.IPM_Section_Sequence__c == '5.3') ){
-                        TechNegotiable++;
-                    }
-                    //TechNegotiable++;
-                    
+                    TechNegotiable++;
                 }
                 if(filterCount.IPM_Section__r.IPM_Section_Sequence__c.startsWith(IPM_ConstantUtils.FINANCE_HEADER_SEQUENCE)){
                     FinNegotiable++;
@@ -311,15 +309,15 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                 }
                 else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_GCLT)           
                 {
-                	    gateDocument=IPM_ConstantUtils.CONTRACT_GATE;
+                        gateDocument=IPM_ConstantUtils.CONTRACT_GATE;
                 }    
                 else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
                 {    
-                	gateDocument=IPM_ConstantUtils.CONTRACT_GATE;
+                    gateDocument=IPM_ConstantUtils.CONTRACT_GATE;
                 }
                 else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT)      
                 {    
-                	gateDocument=IPM_ConstantUtils.CHARTER_GATE;
+                    gateDocument=IPM_ConstantUtils.CHARTER_GATE;
                 }
                 else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH)      
                 {
@@ -327,7 +325,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                 }
                 else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY)            
                 {
-                	gateDocument=IPM_ConstantUtils.MARKET_READY_GATE;
+                    gateDocument=IPM_ConstantUtils.MARKET_READY_GATE;
                 }
                 else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_READY && (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL))
                 {
@@ -744,7 +742,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                 IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Gate_Document_Summary__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,
                                 IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c,IPM_Master_Section_External_Id__c,IPM_Has_Appendix__c  
                                 FROM IPM_Project_Document_Section__c 
-                                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__c !=null AND IPM_Default_Section__c=true AND (IPM_Section_Sequence__c like '1%' or IPM_Section_Sequence__c like '8%') order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000]; 
+                                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__c !=null AND IPM_Default_Section__c=true AND (IPM_Section_Sequence__c like '1%' or IPM_Section_Sequence__c like '8%') 
+                                order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
         }
         catch(Exception ex){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
@@ -831,7 +830,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                     Name,LastModifiedBy.Name,LastModifiedDate,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.External_ID__c,IPM_Project_Document__c,IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Gate_Document_Summary__c,IPM_FunctionalRole__c,
                                     IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c,IPM_Has_Appendix__c,IPM_Master_Section_External_Id__c
                                     FROM IPM_Project_Document_Section__c 
-                                    WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Section_Sequence__c!='8' and IPM_Default_Section__c=true order by IPM_Section__r.IPM_Section_Sequence__c asc];
+                                    WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Section_Sequence__c!='8' and IPM_Default_Section__c=true 
+                                    AND ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c !=:IPM_ConstantUtils.BLG ))//to exlude section 5.3 for BLG projects
+                                    order by IPM_Section__r.IPM_Section_Sequence__c asc];
            
             getAppendixSections();
         }
@@ -1066,9 +1067,11 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                 IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
                                 IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
                                 IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
-                                IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
+                                IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c
                                 FROM IPM_Project_Document_Section__c 
-                                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__c =:parentSectionId AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];                  
+                                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__c =:parentSectionId AND IPM_Default_Section__c=true  
+                                AND ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c !=:IPM_ConstantUtils.BLG ))//to exlude section 5.3 for BLG projects
+                                order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];                  
         }
         catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
@@ -1091,9 +1094,10 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                     IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
                                     IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
                                     IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
-                                    IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
+                                    IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c 
                                     FROM IPM_Project_Document_Section__c 
-                                    WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID=:parentSectionId AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
+                                    WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID=:parentSectionId AND IPM_Default_Section__c=true  
+                                    order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
             }
             catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
@@ -1110,10 +1114,11 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public void getAppendixSections()
     {
         try{
-            projDocAppdxSectionList=[SELECT ID,IPM_FunctionalRole__c,IPM_Master_Section_External_Id__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section_Sequence__c,IPM_Section_Name__c 
+            projDocAppdxSectionList=[SELECT ID,IPM_FunctionalRole__c,IPM_Master_Section_External_Id__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section_Sequence__c,IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c
                                                          FROM IPM_Project_Document_Section__c 
                                                          WHERE IPM_Project_Document__c=:projectDoc.Id 
                                                          AND IPM_Has_Appendix__c=true AND IPM_Default_Section__c=true 
+                                                         AND ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c !=:IPM_ConstantUtils.BLG  ))//to exlude section 5.3 for BLG projects
                                                          ORDER BY IPM_Section_Sequence_Number__c asc limit 50000];
         }
         catch(Exception ex){

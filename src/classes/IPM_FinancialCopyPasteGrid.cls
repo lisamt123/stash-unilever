@@ -41,7 +41,9 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
         projectId = ApexPages.currentPage().getParameters().get('Id');// stores the project ID from the URL
         flag = false;//initializing the boolean value
         showdata = false;// initializing the boolean value
-        
+        if(String.isNotBlank(projectId) && projectId.length() > IPM_ConstantUtils.fifteen){// handling the 18 digits ID for the Picklist.
+          projectId = projectId.subString(IPM_ConstantUtils.intialVal, projectId.length()-3);
+        }
         if(String.isNotBlank(projectId)){
             isEditable=IPM_Utils.getIpmuserType(projectId, IPM_ConstantUtils.IPM_ROLE_FINANCE);
         }
@@ -164,11 +166,11 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                         String valY4CalI = IPM_ConstantUtils.NullString; 
                         String valY5CalI = IPM_ConstantUtils.NullString;
                         //Financial fields
-                        String NPV = IPM_ConstantUtils.NullString;
-                        String IRR = IPM_ConstantUtils.NullString;
-                        String payback = IPM_ConstantUtils.NullString;
-                        String capex = IPM_ConstantUtils.NullString;
-                        String BIC = IPM_ConstantUtils.NullString;
+                        String NPV = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+                        String IRR = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+                        String payback = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+                        String capex = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+                        String BIC = IPM_ConstantUtils.EMPTY_STRING_INITIAL;
                         IPM_Financial__c finUpdate = new IPM_Financial__c(Id = selectedMCO);                        
                         for(integer i=IPM_ConstantUtils.intialVal; i< RowColValue.size();i++){      
                                 list<object> cell = (list<object>) RowColValue[i];
@@ -285,26 +287,26 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                         }
                         UpdateFinancialYear(mapfields, selectedMCO, pspan, projectType);
                         if(pspan == IPM_ConstantUtils.SpanGlobal || projectType == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                           finUpdate.NPV_Global__c = decimal.valueOf(NPV);
-                           finUpdate.IRR_Global__c = decimal.valueOf(IRR);
-                           finUpdate.Payback_Global__c = decimal.valueOf(payback);
-                           finUpdate.CAPEX_Global__c = decimal.valueOf(capex);
-                           finUpdate.BIC_Global__c = decimal.valueOf(BIC);
+                           finUpdate.NPV_Global__c = SetFieldValues(NPV);
+                           finUpdate.IRR_Global__c = SetFieldValues(IRR);
+                           finUpdate.Payback_Global__c = SetFieldValues(payback);
+                           finUpdate.CAPEX_Global__c = SetFieldValues(capex);
+                           finUpdate.BIC_Global__c = SetFieldValues(BIC);
                         }
                         if(pspan == IPM_ConstantUtils.Regional && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
-                           finUpdate.NPV_Regional__c = decimal.valueOf(NPV);
-                           finUpdate.IRR_Regional__c = decimal.valueOf(IRR);
-                           finUpdate.Payback_Regional__c = decimal.valueOf(payback);
-                           finUpdate.CAPEX_Regional__c = decimal.valueOf(capex);
-                           finUpdate.BIC_Regional__c = decimal.valueOf(BIC);
+                           finUpdate.NPV_Regional__c = SetFieldValues(NPV);
+                           finUpdate.IRR_Regional__c = SetFieldValues(IRR);
+                           finUpdate.Payback_Regional__c = SetFieldValues(payback);
+                           finUpdate.CAPEX_Regional__c = SetFieldValues(capex);
+                           finUpdate.BIC_Regional__c = SetFieldValues(BIC);
                            
                         } 
                          if(pspan == IPM_ConstantUtils.Local && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
-                        	finUpdate.NPV_Local__c = decimal.valueOf(NPV);
-                        	finUpdate.IRR_Local__c = decimal.valueOf(IRR);
-                        	finUpdate.Payback_Local__c = decimal.valueOf(payback);
-                        	finUpdate.CAPEX_Local__c = decimal.valueOf(capex);
-                        	finUpdate.BIC_Local__c = decimal.valueOf(BIC);
+                        	finUpdate.NPV_Local__c = SetFieldValues(NPV);
+                        	finUpdate.IRR_Local__c = SetFieldValues(IRR);
+                        	finUpdate.Payback_Local__c = SetFieldValues(payback);
+                        	finUpdate.CAPEX_Local__c = SetFieldValues(capex);
+                        	finUpdate.BIC_Local__c = SetFieldValues(BIC);
                         }
                         finUpdate.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;                        
                         update finUpdate;
@@ -401,6 +403,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                                                 fy.Profit_Before_Overheads_Regional__c = setFieldValues(profitBeforeOverheads);
                                                 fy = assignVolumevaluesRegional(mapfields,fy,vol);
                                                 
+                                                
                                         }
                                         if(pspan == IPM_ConstantUtils.Local && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
                                                 fy.Value_Market_Share_Local__c = setFieldValues(valueMarketShare);
@@ -472,15 +475,9 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                         if(mapfields.containskey(IPM_ConstantUtils.Volume)){
                                 fy.Volume_Unit_Global__c   = mapfields.get(IPM_ConstantUtils.Volume);
                         }    
-                        if(fy.Volume_Unit_Global__c == IPM_ConstantUtils.TotalTons){
                                 fy.Volume_Global__c = setFieldValues(vol);
                                 fy.Volume_tons_Global__c = setFieldValues(vol);
-                        }
-                         if(fy.Volume_Unit_Global__c == IPM_ConstantUtils.TotalTons0){
-                                fy.Volume_tons_Global__c = setFieldValues(vol);
-                                fy.Volume_Global__c = setFieldValues(vol);
-                        }
-               
+                      
                 return fy;
         }
     /***************************************************************************************************************
@@ -494,13 +491,9 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                         if(mapfields.containskey(IPM_ConstantUtils.Volume)){
                                 fy.Volume_Unit_Regional__c   = mapfields.get(IPM_ConstantUtils.Volume);
                         }
-                        if(fy.Volume_Unit_Regional__c == IPM_ConstantUtils.TotalTons){
-                        	    fy.Volume_Regional__c = setFieldValues(vol);                                
-                        }
-                         if(fy.Volume_Unit_Regional__c == IPM_ConstantUtils.TotalTons0){
-                               // fy.Volume_Tons_Regional__c = setFieldValues(vol);
-                                fy.Volume_Regional__c = setFieldValues(vol);
-                        }
+                       	    fy.Volume_Regional__c = setFieldValues(vol); 
+                        	fy.Volume_Tons_Regional__c = setFieldValues(vol);                               
+                       
                         
                 return fy;
         }
@@ -515,14 +508,9 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                          if(mapfields.containskey(IPM_ConstantUtils.Volume)){
                                 fy.Volume_Unit_Local__c = mapfields.get(IPM_ConstantUtils.Volume);
                         }
-                        if(fy.Volume_Unit_Local__c == IPM_ConstantUtils.TotalTons){
                                fy.Volume_Local__c = setFieldValues(vol);
                                 fy.Volume_Tons_Local__c = setFieldValues(vol);
-                        }
-                        if(fy.Volume_Unit_Local__c == IPM_ConstantUtils.TotalTons0){
-                                fy.Volume_Tons_Local__c = setFieldValues(vol); 
-                                fy.Volume_Local__c = setFieldValues(vol);
-                        }
+                      
                 
                 return fy;
         }
@@ -544,6 +532,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                                     }
                      }
        }
+       
        if(options.isEmpty()){
               flag = true;
            }

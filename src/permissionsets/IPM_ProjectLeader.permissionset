@@ -5172,6 +5172,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>IPM_Project__c.BET_last_BET__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>IPM_Project__c.IPMRegion__c</field>
         <readable>true</readable>
     </fieldPermissions>

@@ -4502,7 +4502,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BACKGROUNDPROCESS_INPROGRESS</shortDescription>
-        <value>Your project is currently under processing.You would be notified once processing is complete via Email.</value>
+        <value>Your project creation is currently being processed.You can continue working on Project,Once project creation is complete.</value>
     </labels>
     <labels>
         <fullName>IPM_BB</fullName>
@@ -4713,7 +4713,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BETLinkFunctionalMsg</shortDescription>
-        <value>Your Project Leader has requested the BET {0} to link with your project.
+        <value>Your Project Leader has selected the BET {0} to link with your project.
 &lt;br/&gt;&lt;br/&gt;
 If approved your project will be linked after your Charter gate has been approved.</value>
     </labels>
@@ -4940,6 +4940,13 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM BET No BET Message</shortDescription>
         <value>All projects require a Brand Experience Toolkit (BET) unless agreed otherwise with the Leadership Team.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BET_No_Result_Found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No result found</shortDescription>
+        <value>No result found.</value>
     </labels>
     <labels>
         <fullName>IPM_BET_SEARCH_RESULT</fullName>
@@ -7695,7 +7702,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_GENERATE_MITIGATION_PLAN</shortDescription>
-        <value>generate Management plan.</value>
+        <value>generate Mitigation plan.</value>
     </labels>
     <labels>
         <fullName>IPM_GENERATE_ROLLOUTS</fullName>
@@ -9667,7 +9674,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PROJECT_BACKGROUND_PROCESS</shortDescription>
-        <value>Your project request has successfully been sent for Processing. You would be notified once processing is complete via Email.</value>
+        <value>Your project creation request has been successfully submitted.You can continue working on Project,Once project creation is complete.</value>
     </labels>
     <labels>
         <fullName>IPM_PROJECT_DESCRIPTION</fullName>

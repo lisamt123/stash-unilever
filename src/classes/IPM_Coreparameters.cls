@@ -130,6 +130,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public String searchstring{get;set;}
     public string betId{get;set;}
     public string betName{get;set;}
+    public boolean isEmptySearchResult {get { if(isEmptySearchResult==null) { isEmptySearchResult  =false;} return isEmptySearchResult ;} set;}
     Public List<IPM_BET_BETWrapper> searchresultBet{
         get{
             if(searchresultBet==null)
@@ -152,6 +153,10 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         }
         update updateProj ;             
         projbetlink = '';
+        betId = '';
+        IPM_Coreparameter.BET_Link_Requested__c='';
+        IPM_Coreparameter.BET_Link_Requested_on_Date__c=null;
+        IPM_Coreparameter.BET__c = null;
         return null;
     } 
     /****************************************************************************
@@ -170,7 +175,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
                 categoryId = lstCat[0].id;  
             }
         }
-        List<BET_BETWrapper> searchBet =BET_BETService.searchBet(searchstring,categoryId,null);
+        List<BET_BETWrapper> searchBet = new List<BET_BETWrapper>();
+        searchBet = BET_BETService.searchBet(searchstring,categoryId,null);
         for (BET_BETWrapper bw : searchBet ){
             if(!bw.isArchived){
                 betWapMap.put(bw.betId ,bw);
@@ -178,12 +184,18 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
                 setBrandPosIds.add(bw.brandPosition);
             }
         }
+        if(searchBet.isEmpty()){
+            isEmptySearchResult = true;
+        }
+        else{
+            isEmptySearchResult = false;
+        }
         
         
         if(!setOwnerIds.isEmpty()){
             mapIdOwner= new map<id, string>();
             for(user usr : [select id, firstname, lastName from user where id in :setOwnerIds LIMIT 1000]){
-                mapIdOwner.put(usr.id,usr.firstname+' '+usr.LastName);      
+                mapIdOwner.put(usr.id,(usr.firstname!=null?usr.firstname+' ':'')+usr.LastName);      
             }
         }
         if(!setBrandPosIds.isEmpty()){
@@ -202,8 +214,6 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
             }
             searchresultBet.add(temp);
         }
-        
-   
     } 
     /**BET Search related Changes: End**/
     /****************************************************************************
@@ -772,7 +782,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         }
         if(isEditable && !ple_STR.Equals(IPM_Coreparameter.IPM_Phase__c) && 
         !((IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c))
-            ||(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equals(IPM_Coreparameter.IPMProject_Span__c)
+            ||(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(IPM_Coreparameter.IPM_Project_Type__c)&& IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equals(IPM_Coreparameter.IPMProject_Span__c)
             ))){
             isEditCoreparam=true;
             isAdditionalPara=true;

@@ -396,26 +396,24 @@
                                         </div>           
                                         <apex:repeat value="{!projectSections}" var="pS">
                                             <div class="pb3 pt10 clearfix">                       
-
-                                                <apex:outputPanel rendered="{! if( $User.Id == project.IPM_Project_Leader__c , true, false)}" >       
-                                                    <div class="{!IF(pS.IPM_Section_Status__c='Filled-in', 'secblock', 'secnofill')}">
-                                                        <span><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}" >
-                                                            {!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
+                                                    <apex:outputPanel rendered="{! if( $User.Id == project.IPM_Project_Leader__c , true, false)}" >       
+                                                        <div class="{!IF(pS.IPM_Section_Status__c='Filled-in', 'secblock', 'secnofill')}">
+                                                            <span><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}" >
+                                                                {!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
                                                             </a></span>
-                                                    </div>
-                                                </apex:outputPanel>  
+                                                        </div>
+                                                    </apex:outputPanel>  
                                                  
-                                                 <apex:outputPanel rendered="{! if($User.Id != project.IPM_Project_Leader__c , true, false)}"  >       
-                                                    <div class="{!IF(pS.IPM_Functional_Input_Status__c='Filled-in', 'secblock', 'secnofill')}">
-                                                        <span><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}" >
-                                                            {!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
+                                                    <apex:outputPanel rendered="{! if($User.Id != project.IPM_Project_Leader__c , true, false)}"  >       
+                                                        <div class="{!IF(pS.IPM_Functional_Input_Status__c='Filled-in', 'secblock', 'secnofill')}">
+                                                            <span><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}" >
+                                                                {!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
                                                             </a></span>
-                                                    </div>
-                                                </apex:outputPanel>         
-                                                
-                                            </div>                
+                                                        </div>
+                                                    </apex:outputPanel>         
+                                             </div>                
                                         </apex:repeat>
-                                </div>
+                                    </div>
                                 </apex:outputPanel>
                             </div>
                         </apex:outputPanel>                     
@@ -522,7 +520,7 @@
                         <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
                     </apex:outputPanel>
                 
-    <apex:outputPanel rendered="{!showBET}">
+                    <apex:outputPanel rendered="{!showBET}">
                     <div class="topheader">{!$Label.IPM_BETLabel}</div>                    
                     <div class="greyborder"></div> 
                     <apex:outputPanel layout="block" styleClass="changeBetLnk" rendered="{!isProjLeader && isOriginal}">
@@ -580,7 +578,7 @@
                             </div>
                          </div>
                          <div class="greyborder"></div>
-                         <apex:commandLink value="{!$Label.IPM_AccessBET}" status="teamDelete" action="/{!BETId}"  rendered="{!(BETId!=null && isIdeasPhase && hasBETAccess != $Label.IPM_BETRequestPending && hasBETAccess != $Label.IPM_BETRequestNo && hasBETAccess !='')}" styleclass="ipmButton primary" target="_blank"/>
+                         <apex:commandLink value="{!$Label.IPM_AccessBET}" status="teamDelete" action="/{!BETId}"  rendered="{!(BETId!=null && isIdeasPhase && hasBETAccess != $Label.IPM_BETRequestPending && hasBETAccess != $Label.IPM_BETRequestNo && hasBETAccess !='' )}" styleclass="ipmButton primary" target="_blank"/>
                     </apex:outputpanel>
                     <apex:outputPanel rendered="{!!isIdeasPhase}" id="betButtonSection">
                         <apex:outputpanel rendered="{!hasBETAccess == $Label.IPM_BETRequestPending}">
@@ -599,7 +597,7 @@
                             </div>
                         </apex:outputpanel>  
                           <apex:commandLink value="{!$Label.IPM_AccessBET}" status="teamDelete" action="/{!BETId}"  rendered="{!(BETId!=null && hasBETAccess != $Label.IPM_BETRequestPending && hasBETAccess != $Label.IPM_BETRequestNo && hasBETAccess !='')}" styleclass="ipmButton primary" target="_blank"/>
-                        <apex:outputPanel rendered="{!(BETId!=null && hasBETAccess ==$Label.IPM_BETRequestNo && !(!isOriginal  && betWrapper.status == $Label.IPM_BETStatus_Unreleased))}">
+                        <apex:outputPanel rendered="{!(BETId!=null && hasBETAccess ==$Label.IPM_BETRequestNo && !(!isOriginal  && betWrapper.status == $Label.IPM_BETStatus_Unreleased)&& isAcessDuetoTeam)}">
                             <input type="button" class="ipmButton primary" value="{!$Label.IPM_RequestAccess}" onClick="requestBETAccess();"/>
                          </apex:outputPanel>
                         <apex:outputPanel rendered="{!(isOriginal && isProjLeader && !isIdeasPhase && toolkitOption != $Label.IPM_BET_NoBET)}">

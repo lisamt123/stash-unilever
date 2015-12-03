@@ -58,6 +58,14 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     project.BET_TLD_First_Release_Date__c = null;
                     project.BET_TLD_Final_Release_Date__c = null;
                 }
+                //Save Last BET detail
+                if(Trigger.isUpdate && ((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c!=null && project.BET__c != ((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c){
+                    BET_BETWrapper bwrap = new BET_BETWrapper();
+                    bwrap = (BET_BETWrapper)BET_BETService.getBet(((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c);
+                    if(bwrap!=null){
+                        project.BET_Last_BET__c = bwrap.betName;
+                    }
+                }
             }
         } 
         

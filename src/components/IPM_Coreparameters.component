@@ -477,9 +477,8 @@
                                                 <apex:outputPanel rendered="{! if(IPM_Coreparameter.IPM_BET_Toolkit__c!=$Label.IPM_BET_NoBET,true,false)}">
 
                                                     <apex:outputPanel rendered="{!IPM_Coreparameter.IPM_BET_Toolkit__c==$Label.IPM_BET_Link_Existing}">
-                                                    <span class="coreParam noBetMsg">
-                                                        {!$Label.IPM_BET_DifferentReleaseDate_HelpText} 
-                                                    </span>
+                                                        <span class="coreParam noBetMsg">
+                                                            {!$Label.IPM_BET_DifferentReleaseDate_HelpText} </span>
                                                     </apex:outputPanel>
                                                     <div class="col-sm-12 toolkitContainer noPadleft">
                                                         <apex:outputPanel id="xyz">
@@ -503,6 +502,8 @@
                                                                 </apex:outputPanel>
 
                                                                 <apex:outputPanel layout="block" id="idToRerender">
+                                                                    <span class="coreParam noBetMsg"> <apex:outputText rendered="{!AND(searchresultBet.size==0,isEmptySearchResult =true)}">{!$Label.IPM_BET_No_Result_Found}</apex:outputText>
+                                                                    </span>
                                                                     <apex:outputPanel layout="block"
                                                                         styleClass="panel-label bsFieldLabel"
                                                                         rendered="{!searchresultBet.size>0}">
