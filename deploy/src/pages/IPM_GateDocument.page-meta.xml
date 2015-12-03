@@ -3,6 +3,6 @@
     <apiVersion>31.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <description>The project overview page</description>
-    <label>IPM_ProjectOverview</label>
+    <description>The gate document landing page</description>
+    <label>IPM_GateDocument</label>
 </ApexPage>
