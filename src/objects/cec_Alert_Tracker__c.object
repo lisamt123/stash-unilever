@@ -133,8 +133,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Trigger_Email__c</fullName>
         <defaultValue>false</defaultValue>
         <description>CEC: This field will be used in scheduler job to trigger the email alert</description>
@@ -144,7 +142,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Unique_Id__c</fullName>
         <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>

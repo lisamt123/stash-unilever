@@ -29,12 +29,8 @@ global with sharing class CEC_NewAccountController{
     
     public Account newConsumer {get; set;}  // Reference to Account object     
     public String selectedAccountId {get; set;}  
-<<<<<<< HEAD
-    public String resultsOutputLabel {get;set;}  
-=======
     public String resultsOutputLabel {get;set;} 
     public String resultsOutputTitle {get;set;} 
->>>>>>> FETCH_HEAD
     public List<ConsumerWrapper> duplicateConsumerList {get; set;}    
     public Boolean searchPerformed {get;set;}
     public Boolean showDuplicates {get;set;}
@@ -51,11 +47,8 @@ global with sharing class CEC_NewAccountController{
         public ConsumerWrapper(Account con) {
              consumer = con;  
         }
-<<<<<<< HEAD
-=======
         // Boolean flag to check whether the consumer record is sorted/filtered to display in the results page.
         public Boolean resultOrderFlag = false;
->>>>>>> FETCH_HEAD
     }
        
     public CEC_NewAccountController() {
@@ -75,10 +68,7 @@ global with sharing class CEC_NewAccountController{
         searchPerformed = false;
         showDuplicates = false;
         isTransactionSuccess = true;
-<<<<<<< HEAD
-=======
         resultsOutputTitle = Label.CEC_ConsumerResultsTitleDisplay;
->>>>>>> FETCH_HEAD
         
         RecordType recType = [select id from recordType where Name = 'Person Account' and sobjectType='account' limit 1];
         
@@ -107,16 +97,6 @@ global with sharing class CEC_NewAccountController{
     
         try{                
             duplicateConsumers = new Map<Id, ConsumerWrapper>();  
-<<<<<<< HEAD
-            duplicateConsumerList = new List<ConsumerWrapper>();          
-            if(newConsumer.LastName != null && newConsumer.LastName != '' ) {     
-                newConsumer.RecordTypeId = [Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
-                String accountString = JSON.serialize(newConsumer);                
-                accountString = accountString.subString( 0, accountString.length() - 1 ) + ',"IsPersonAccount":true}';
-                newConsumer = (Account)JSON.deserialize( accountString, Account.class );
-                List<CRMfusionDBR101.DB_Api.Matches> matchSets = CRMfusionDBR101.DB_Api.findMatches(newConsumer);
-                if(!matchSets.isEmpty()){
-=======
             duplicateConsumerList = new List<ConsumerWrapper>();
             Boolean  hasResultToDisplayFlag = false; 
             if(String.isNotBlank(newConsumer.LastName) || String.isNotBlank(newConsumer.PersonMailingPostalCode) || String.isNotBlank(newConsumer.PersonMailingStreet) || String.isNotBlank(newConsumer.PersonEmail) || String.isNotBlank(newConsumer.Phone)) {  
@@ -132,7 +112,6 @@ global with sharing class CEC_NewAccountController{
                 List<CRMfusionDBR101.DB_Api.Matches> matchSets = CRMfusionDBR101.DB_Api.findMatches(newConsumer);
                 if(!matchSets.isEmpty()){
                     System.debug('The Matchset from DupeBlocker :: ' + matchSets);
->>>>>>> FETCH_HEAD
                     showDuplicates = true;
                     Set<Id> accountIds = new Set<Id>();
                     for (CRMfusionDBR101.DB_Api.Matches matchSet : matchSets ) {
@@ -140,16 +119,6 @@ global with sharing class CEC_NewAccountController{
                             accountIds.add(accId);
                         }
                     }        
-<<<<<<< HEAD
-                    for (Account consumer : [Select Salutation, Name, Phone, FirstName, LastName, IsPersonAccount,PersonEmail, PersonMailingStreet, PersonMailingCity, PersonMailingPostalCode, PersonMailingState, PersonMailingCountry,Latest_Case_Reason_Code__c,Latest_Case_Product_Code__c From Account Where Id In : accountIds]) {
-                        duplicateConsumers.put(consumer.Id, new ConsumerWrapper(consumer)); 
-                    }
-                    duplicateConsumerList = duplicateConsumers.values(); 
-                }
-                searchPerformed = true;    
-                isTransactionSuccess = true;
-            }         
-=======
                     for (Account consumer : [Select Salutation, Name, Phone, FirstName, LastName, IsPersonAccount,PersonEmail, PersonMailingStreet, PersonMailingCity, PersonMailingPostalCode, PersonMailingState, PersonMailingCountry, Latest_Case_Number__c, Latest_Case_Reason_Code__c,Latest_Case_Product_Code__c,Phone_No_Special_Char__c From Account Where Id In : accountIds]) {
                         duplicateConsumers.put(consumer.Id, new ConsumerWrapper(consumer)); 
                     }
@@ -176,7 +145,6 @@ global with sharing class CEC_NewAccountController{
                 resultsOutputTitle = Label.CEC_ConsumerResultsNoMatchTitle;
             } 
      
->>>>>>> FETCH_HEAD
         }catch(Exception e){
             isTransactionSuccess = false;
             System.debug('Exception in SearchConsumer method ' + e.getMessage());
@@ -232,11 +200,7 @@ global with sharing class CEC_NewAccountController{
                 isTransactionSuccess = false;
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.Error, Label.CEC_Consumer_Record_Update));
             
-<<<<<<< HEAD
-            } else if(newConsumer.LastName != null && newConsumer.LastName != '') {
-=======
             } else {
->>>>>>> FETCH_HEAD
                                
                 newConsumer.RecordTypeId = [Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
                       
@@ -246,15 +210,9 @@ global with sharing class CEC_NewAccountController{
                 
                 Database.SaveResult res = Database.insert(newConsumer, false);
                 if (!res.isSuccess()) {
-<<<<<<< HEAD
-                    System.debug(res.getErrors()[0].getMessage());
-                    // Commenting the custom error message because the dupeblocker already added the error message in case of insert failure
-                    //ApexPages.addMessage(new ApexPages.Message( ApexPages.severity.Error, Label.CEC_Consumer_Duplicate_Error));
-=======
                     isTransactionSuccess = false;
                     System.debug('EXCEPTION IN THE DUPEBLOCKER :: ' + res.getErrors()[0].getMessage());
                     ApexPages.addMessage(new ApexPages.Message( ApexPages.severity.Error, res.getErrors()[0].getMessage()));
->>>>>>> FETCH_HEAD
                 } else if(caseId != null) {
                     currentCase = [SELECT Id from Case WHERE Id = :caseId];
                     currentCase.AccountId = newConsumer.Id;
@@ -266,10 +224,7 @@ global with sharing class CEC_NewAccountController{
             }            
         }catch(Exception e) {
             isTransactionSuccess = false;
-<<<<<<< HEAD
-=======
             System.debug('Exception in saveAccount method ' + e.getMessage());
->>>>>>> FETCH_HEAD
             ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.Error, Label.CEC_Consumer_Duplicate_Error) );
         }        
         return null;      
@@ -295,8 +250,6 @@ global with sharing class CEC_NewAccountController{
         }
         return false;
     }
-<<<<<<< HEAD
-=======
 
     /*
         The Consumer search results returned by DupeBlocker should be Ordered based on the following criterias
@@ -360,6 +313,5 @@ global with sharing class CEC_NewAccountController{
         }
         return finalOrderedConsumerList;
     }
->>>>>>> FETCH_HEAD
     
  }

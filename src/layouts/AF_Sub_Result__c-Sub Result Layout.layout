@@ -123,8 +123,6 @@
                 <behavior>Edit</behavior>
                 <field>AF_Status__c</field>
             </layoutItems>
-<<<<<<< HEAD
-=======
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>AF_Class_code__c</field>
@@ -141,7 +139,6 @@
                 <behavior>Readonly</behavior>
                 <field>AF_deletion_key__c</field>
             </layoutItems>
->>>>>>> FETCH_HEAD
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -180,11 +177,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-<<<<<<< HEAD
-        <masterLabel>00hL0000000HqNg</masterLabel>
-=======
         <masterLabel>00hE000000D38dy</masterLabel>
->>>>>>> FETCH_HEAD
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

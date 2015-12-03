@@ -30,19 +30,14 @@
         <name>Legacy_Text__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Meta Tags --></label>
         <name>Meta_Tags__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Question --></label>
         <name>Question__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Related PDF 2 --></label>
         <name>Related_PDF_2__c</name>
     </fields>
@@ -51,7 +46,6 @@
         <name>Related_PDF_3__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Related PDF --></label>
         <name>Related_PDF__c</name>
     </fields>

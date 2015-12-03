@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
-<<<<<<< HEAD
-=======
         <fullName>CEC_First_Response_Email_Field_Update</fullName>
         <field>First_Response_Date__c</field>
         <formula>NOW()</formula>
@@ -13,7 +11,6 @@
         <targetObject>ParentId</targetObject>
     </fieldUpdates>
     <fieldUpdates>
->>>>>>> FETCH_HEAD
         <fullName>CEC_Set_Case_Status_New</fullName>
         <description>CEC Set the Case Status to New in order for case to be highlighted to an advisor</description>
         <field>Status</field>
@@ -39,8 +36,6 @@
         <description>CEC : Capture email responses so Case can be highlighted to an advisor</description>
         <triggerType>onCreateOnly</triggerType>
     </rules>
-<<<<<<< HEAD
-=======
     <rules>
         <fullName>CEC First Response Email</fullName>
         <actions>
@@ -60,7 +55,6 @@
         <description>CEC: Stamping A &quot;First Response&quot; Field When An Email Goes Out On A Case</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
->>>>>>> FETCH_HEAD
     <send>
         <fullName>EmailAsDraft</fullName>
         <action>Send</action>

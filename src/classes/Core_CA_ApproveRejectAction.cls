@@ -50,20 +50,14 @@ global with sharing class Core_CA_ApproveRejectAction {
             if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Approve'){
                 approver.Status__c='Approved';
                 approver.Comments__c=appWrapperObj.myApprovalPostRequest.CommentDesc;
-<<<<<<< HEAD
-=======
                 approver.Send_to_Source_System__c = 'Yes';
->>>>>>> FETCH_HEAD
                 if(approver.Source_System__c=='Ariba') approver.Visible_to_Supplier__c = Boolean.valueof(appWrapperObj.myApprovalPostRequest.CommentVisibleToUser);
                     update approver;
             }
             else if(appWrapperObj.myApprovalPostRequest.UpdateFunctionType=='Reject'){ 
                 approver.Status__c='Rejected';
                 approver.Comments__c=appWrapperObj.myApprovalPostRequest.CommentDesc;
-<<<<<<< HEAD
-=======
                 approver.Send_to_Source_System__c = 'Yes';
->>>>>>> FETCH_HEAD
                 update approver;
             }
             Success=True;

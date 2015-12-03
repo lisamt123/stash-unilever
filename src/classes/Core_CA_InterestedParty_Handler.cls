@@ -383,10 +383,7 @@ public class Core_CA_InterestedParty_Handler{
         //Set<Core_Approval_Header__c> setHeaderStatus=new Set<Core_Approval_Header__c>();
         Map<Id,Core_Approval_Header__c> mapHeader =new Map<Id,Core_Approval_Header__c> ([SELECT id,Requested_By__c,Name,Requested_For__c,Status__c,Fully_Approved__c,Manager__c,Requested_For_Details__c,Requested_by_details__c  FROM Core_Approval_Header__c WHERE Id IN (select Approval_Header__c from Core_Approver_Details__c WHERE Id IN : approverNew.keyset())]);
         List<Core_Approver_Details__c> setIpStatus = new List<Core_Approver_Details__c>();
-<<<<<<< HEAD
-=======
         Set<Core_Approval_Header__Share> setShareHeader = new Set<Core_Approval_Header__Share>();
->>>>>>> FETCH_HEAD
         
         Set<Id> approverIPids = new Set<Id>();
         Set<Id> approverHeaderids = new Set<Id>();
@@ -401,10 +398,7 @@ public class Core_CA_InterestedParty_Handler{
         } 
         
         List<EntitySubscription> headerEntitySubObj= [SELECT ParentId,SubscriberId FROM EntitySubscription WHERE ParentId IN : approverHeaderids];
-<<<<<<< HEAD
-=======
         List<Core_Approval_Header__Share> headerShareObj= [SELECT UserOrGroupId, ParentId  FROM Core_Approval_Header__Share WHERE ParentId IN :approverHeaderids];
->>>>>>> FETCH_HEAD
         
         //****EntitySubscription Follow Start
         for(Core_Approver_Details__c approverRec : approverNew.values()){
@@ -510,9 +504,6 @@ public class Core_CA_InterestedParty_Handler{
              //}
             
             //****EntitySubscription Unfollow End
-<<<<<<< HEAD
-              
-=======
              
            /* Start of Apex Header record sharing code */
             Set<Id> userId = new Set<Id>();
@@ -538,7 +529,6 @@ public class Core_CA_InterestedParty_Handler{
                 setShareHeader.add(shareObj);
             }
            /* end of Apex header sharing */  
->>>>>>> FETCH_HEAD
                   
             /* Start of GTES notification  after update code */
             if(CORE_Chatter_Approval__c.getinstance('GTES_Notification').Text_Value__c=='Yes'){
@@ -755,15 +745,12 @@ public class Core_CA_InterestedParty_Handler{
             Database.update(lstHeaderStatus);
         }*/
         
-<<<<<<< HEAD
-=======
         //insert the header share record.
         if(!setShareHeader.isEmpty()){
             List<Core_Approval_Header__Share> lstShareHeader= new List<Core_Approval_Header__Share>(setShareHeader);
             Database.insert(lstShareHeader);
         }
         
->>>>>>> FETCH_HEAD
         //delete entity subscription record
         if(!lstEntitySubDelete.isempty()) Database.delete(lstEntitySubDelete);
         

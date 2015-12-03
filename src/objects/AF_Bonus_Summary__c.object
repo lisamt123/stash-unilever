@@ -237,8 +237,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>No_of_Matrix_Cells__c</fullName>
         <externalId>false</externalId>
         <label>No of Matrix Cells</label>
@@ -249,7 +247,6 @@
         <type>Summary</type>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>VisbleToAgency__c</fullName>
         <externalId>false</externalId>
         <formula>if( year($Setup.BonusReportVisibletoAgency__c.AccessDate__c)-value(AF_Fiscal_Year__c) &gt;0 &amp;&amp;  TODAY() &gt;=$Setup.BonusReportVisibletoAgency__c.AccessDate__c,true,false)</formula>

@@ -399,13 +399,10 @@
         <columns>FileName__c</columns>
         <columns>MailItemName__c</columns>
         <columns>Active__c</columns>
+        <columns>CREATEDBY_USER</columns>
         <columns>UPDATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
-<<<<<<< HEAD
-        <label>General Queue</label>
-=======
         <label>CEC UKI Queue</label>
->>>>>>> FETCH_HEAD
         <language>en_US</language>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
@@ -570,8 +567,6 @@
         </sharedTo>
     </listViews>
     <listViews>
-<<<<<<< HEAD
-=======
         <fullName>CEC_Sri_Lanka_Queue_cec_Enclosure</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Sri Lanka Queue</label>
@@ -589,15 +584,15 @@
         <language>de</language>
     </listViews>
     <listViews>
->>>>>>> FETCH_HEAD
         <fullName>test</fullName>
         <columns>NAME</columns>
-        <filterScope>Mine</filterScope>
-        <filters>
-            <field>NAME</field>
-            <operation>startsWith</operation>
-            <value>D</value>
-        </filters>
+        <columns>Active__c</columns>
+        <columns>Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>ItemValue__c</columns>
+        <columns>MailItemName__c</columns>
+        <columns>MaximumQty__c</columns>
+        <filterScope>Everything</filterScope>
         <label>test D</label>
         <language>de</language>
     </listViews>

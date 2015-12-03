@@ -202,8 +202,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Categories__c</fullName>
         <externalId>false</externalId>
         <label>Categories</label>
@@ -221,7 +219,6 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Function__c</fullName>
         <description>Unilever Function</description>
         <externalId>false</externalId>
@@ -401,8 +398,6 @@
                 <fullName>Not Planned at this time</fullName>
                 <default>false</default>
             </picklistValues>
-<<<<<<< HEAD
-=======
             <picklistValues>
                 <fullName>Idea accepted</fullName>
                 <default>false</default>
@@ -415,7 +410,6 @@
                 <fullName>Completed</fullName>
                 <default>false</default>
             </picklistValues>
->>>>>>> FETCH_HEAD
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
@@ -497,8 +491,6 @@
         <label>Pending Review</label>
         <language>en_US</language>
     </listViews>
-<<<<<<< HEAD
-=======
     <recordTypes>
         <fullName>InternalIdeasIdeaRecordType</fullName>
         <active>true</active>
@@ -1447,7 +1439,6 @@
             </values>
         </picklistValues>
     </recordTypes>
->>>>>>> FETCH_HEAD
     <searchLayouts>
         <customTabListAdditionalFields>IDEA.TITLE</customTabListAdditionalFields>
         <customTabListAdditionalFields>IDEA.BODY</customTabListAdditionalFields>

@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /*
   Class Name: Core_CA_BaseServiceException
   Author : Mindtree
@@ -7,7 +5,6 @@
   Requirement/Project Name: Unilever Salesforce Engagement
   Requirement/Description: Custom exception class used for both Chatter Approval and Ideation App
 */
->>>>>>> FETCH_HEAD
 global class Core_CA_BaseServiceException extends Exception{
     /* 
     Custom Settings that has the details of The admin queue id and how many days once we can delete the bug tracking records

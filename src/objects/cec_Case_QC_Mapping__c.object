@@ -220,11 +220,7 @@
     <listViews>
         <fullName>CEC_General_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
-<<<<<<< HEAD
-        <label>General Queue</label>
-=======
         <label>CEC UKI Queue</label>
->>>>>>> FETCH_HEAD
         <queue>CEC_General_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -285,28 +281,15 @@
         </sharedTo>
     </listViews>
     <listViews>
-<<<<<<< HEAD
-        <fullName>CEC_Portugal_Queue_cec_Case_QC_Mapping</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Portugal Queue</label>
-        <queue>CEC_Portugal_Queue</queue>
-=======
         <fullName>CEC_Spain_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Spain Queue</label>
         <queue>CEC_Spain_Queue</queue>
->>>>>>> FETCH_HEAD
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
-<<<<<<< HEAD
-        <fullName>CEC_Spain_Queue_cec_Case_QC_Mapping</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC Spain Queue</label>
-        <queue>CEC_Spain_Queue</queue>
-=======
         <fullName>CEC_Sri_Lanka_Queue_cec_Case_QC_Mapping</fullName>
         <columns>NAME</columns>
         <columns>Product__c</columns>
@@ -315,7 +298,6 @@
         <label>CEC Sri Lanka Queue</label>
         <language>en_US</language>
         <queue>CEC_Sri_Lanka_Queue</queue>
->>>>>>> FETCH_HEAD
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

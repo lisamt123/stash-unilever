@@ -1,13 +1,3 @@
-<<<<<<< HEAD
-global with sharing class RemoteServiceCallController {
-    
-    @remoteAction
-    public static String invokeService(String serviceJSONObject,String serviceName,String requestType) {        
-        Core_CA_BaseApplicationWrapper responseObj = null;  
-       // system.debug('@@@@@1');
-        try{
-            //system.debug('@@@@@1entered');
-=======
 /*
   Class Name: RemoteServiceCallController
   Author : Mindtree
@@ -21,7 +11,6 @@ global with sharing class RemoteServiceCallController {
     global static String invokeService(String serviceJSONObject,String serviceName,String requestType) {        
         Core_CA_BaseApplicationWrapper responseObj = null;
         try{
->>>>>>> FETCH_HEAD
             responseObj = Core_CA_BaseApplicationServices.invokeService(constructRequestBody(serviceJSONObject, serviceName, requestType,''));
         }
         catch(Core_CA_BaseServiceException baseAppEx){if(Utility.isEmpty(responseObj)) responseObj = new Core_CA_ApplicationWrapper();
@@ -31,14 +20,8 @@ global with sharing class RemoteServiceCallController {
     }
    
     @remoteAction
-<<<<<<< HEAD
-    public static String invokeServiceWithURLParameter(String serviceJSONObject,String serviceName,String requestType,String urlParameter) {
-        Core_CA_BaseApplicationWrapper responseObj = null; 
-        //system.debug('2');
-=======
     global static String invokeServiceWithURLParameter(String serviceJSONObject,String serviceName,String requestType,String urlParameter) {
         Core_CA_BaseApplicationWrapper responseObj = null; 
->>>>>>> FETCH_HEAD
         try{
             responseObj =   Core_CA_BaseApplicationServices.invokeService(constructRequestBody(serviceJSONObject, serviceName, requestType,urlParameter));
         }
@@ -65,24 +48,14 @@ global with sharing class RemoteServiceCallController {
     }
     */
     @TestVisible
-<<<<<<< HEAD
-    private static Core_CA_ApplicationWrapper constructRequestBody(String serviceJSONObject,String serviceName,String requestType,String urlParameter){
-        Core_CA_ApplicationWrapper appWrapperObj = new Core_CA_ApplicationWrapper();
-       // system.debug('@@@@@3');
-=======
     global static Core_CA_ApplicationWrapper constructRequestBody(String serviceJSONObject,String serviceName,String requestType,String urlParameter){
         Core_CA_ApplicationWrapper appWrapperObj = new Core_CA_ApplicationWrapper();
->>>>>>> FETCH_HEAD
         try{
             appWrapperObj.serviceJSONObjectasString = serviceJSONObject;
             appWrapperObj.serviceName = serviceName;
             appWrapperObj.requestType = requestType;
             appWrapperObj.urlParameters = urlParameter;
         }catch(Core_CA_BaseServiceException baseAppEx){ throw new Core_CA_BaseServiceException('Exception occured: RemoteServiceCallController : constructRequestBody method ',baseAppEx);}
-<<<<<<< HEAD
-       // system.debug('@@@@@3'+appWrapperObj);
-=======
->>>>>>> FETCH_HEAD
         return appWrapperObj;
     }
 

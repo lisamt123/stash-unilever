@@ -68,10 +68,7 @@ global with sharing class Core_CA_LineItemDetail {
     global static Core_CA_WrapperUtility.LineItemDetailResponseGTES getLineItemDetailGTES(Core_CA_ApplicationWrapper appWrapperObj) {
         Core_CA_WrapperUtility.LineItemDetailResponseGTES objLineItemDetailResponseGTES = new Core_CA_WrapperUtility.LineItemDetailResponseGTES();
         try{ 
-<<<<<<< HEAD
-=======
             
->>>>>>> FETCH_HEAD
             //system.debug('@@@@@hdsjfhdkjsahfkjdsa'+appWrapperObj); 
             string LineItemId = appWrapperObj.lineItemDetailRequest.LineItemID;
             //system.debug('@@@@@hdsjfhdkjsahfkjdsa'+LineItemId);
@@ -109,11 +106,7 @@ global with sharing class Core_CA_LineItemDetail {
             objTravelDetails.FlightDetails = objApprovalDetails.Air_Fare_Details__c; 
             objTravelDetails.RoomDetails = objApprovalDetails.Room_Details__c; 
              
-<<<<<<< HEAD
-            //processing LineItemDetailResponseAriba wrapper  
-=======
             //processing LineItemDetailResponseGTES wrapper  
->>>>>>> FETCH_HEAD
             objLineItemDetailResponseGTES.StatusCode = Core_CA_AppConstants.RESPONSE_SUCCESS_CODE;
             objLineItemDetailResponseGTES.Message = Core_CA_AppConstants.RESPONSE_SUCCESS_MSG;
             objLineItemDetailResponseGTES.Purpose = objApprovalDetails.Purpose__c;
@@ -128,8 +121,6 @@ global with sharing class Core_CA_LineItemDetail {
             objLineItemDetailResponseGTES.Comments = objApprovalDetails.Expense_Comments__c;
             objLineItemDetailResponseGTES.Attendees= objApprovalDetails.Attendees_Details__c; 
             
-<<<<<<< HEAD
-=======
             objLineItemDetailResponseGTES.IsPerDiem = false;
             if(objApprovalDetails.Expense_Code__c == 'PDX' || objApprovalDetails.Expense_Code__c == 'PDX2' || objApprovalDetails.Expense_Code__c == 'PDAZ' || 
                objApprovalDetails.Expense_Code__c == 'PDXNO5' || objApprovalDetails.Expense_Code__c == 'PDXNO4' || objApprovalDetails.Expense_Code__c == 'PDXNO3' ||
@@ -138,7 +129,6 @@ global with sharing class Core_CA_LineItemDetail {
                    objLineItemDetailResponseGTES.IsPerDiem = true; 
             }
             
->>>>>>> FETCH_HEAD
         }
         catch(Core_CA_BaseServiceException baseServEx){ 
             throw new Core_CA_BaseServiceException(baseServEx);
@@ -163,11 +153,7 @@ global with sharing class Core_CA_LineItemDetail {
         objApprovalDetails = [SELECT Name,Approval_Header__c,Amount__c,Commodity_Code__c,Currency__c,Charge_To__c,CA_Payment_Type__c,City__c,Description__c,Price__c, Quantity__c,SAPMaterialMaster__c,
                              Expense_Country__c,Split_Accounting_Details__c,Supplier_ERP_ID__c,Supplier_Name__c,Tax_Code__c,Unit_of_Measure__c,
                              Air_Fare_Details__c,Attendees_Details__c,Car_Details__c,End_Date__c,Expense_Date__c,Expense_Comments__c,Per_Diem_Amount__c,
-<<<<<<< HEAD
-                             Per_Diem_Details__c,Policy_Exceptions__c,Purpose__c,Reason__c,Receipt__c,Reimbursable__c,Room_Details__c 
-=======
                              Per_Diem_Details__c,Policy_Exceptions__c,Purpose__c,Reason__c,Receipt__c,Reimbursable__c,Room_Details__c,Expense_Code__c  
->>>>>>> FETCH_HEAD
                              FROM Core_Approval_Details__c WHERE Id =: LineItemId ];
         //System.debug('@@@@@@@'+objApprovalDetails);   
         }

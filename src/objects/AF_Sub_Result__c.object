@@ -80,8 +80,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>AF_Class_code__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -90,7 +88,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>AF_Comment__c</fullName>
         <externalId>false</externalId>
         <label>Comment</label>
@@ -293,15 +290,9 @@
         <fullName>AF_Total_Bonus__c</fullName>
         <externalId>false</externalId>
         <label>Total Bonus %</label>
-<<<<<<< HEAD
-        <precision>10</precision>
-        <required>false</required>
-        <scale>0</scale>
-=======
         <precision>12</precision>
         <required>false</required>
         <scale>2</scale>
->>>>>>> FETCH_HEAD
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
@@ -326,8 +317,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>AF_Unique_Key__c</fullName>
         <externalId>false</externalId>
         <formula>CASESAFEID(AF_country__c) &amp;&quot;|&quot;&amp; CASESAFEID(AF_Bonus_Threshold__r.Agency_Name__c) &amp;&quot;|&quot;&amp; 
@@ -340,7 +329,6 @@ AF_Bonus_Threshold__r.Year__c &amp;&quot;|&quot;&amp;  TEXT(AF_Period__c)</formu
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>AF_Unique_Thresholds__c</fullName>
         <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
@@ -373,8 +361,6 @@ AF_Bonus_Threshold__r.Year__c &amp;&quot;|&quot;&amp;  TEXT(AF_Period__c)</formu
         <type>Lookup</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>AF_deletion_key__c</fullName>
         <externalId>false</externalId>
         <formula>CASESAFEID(AF_Bonus_Threshold__c) &amp;&quot;|&quot; &amp; text(Bonus_Measure__c) &amp;&quot;|&quot; &amp; text(AF_Minimum__c) &amp;&quot;|&quot; &amp; text(AF_Stretching__c) &amp;&quot;|&quot;&amp; text(AF_Outstanding__c)&amp;&quot;|&quot; &amp; CASESAFEID(AF_country__c)&amp;&quot;|&quot; &amp; AF_Bonus_Threshold__r.Year__c</formula>
@@ -386,7 +372,6 @@ AF_Bonus_Threshold__r.Year__c &amp;&quot;|&quot;&amp;  TEXT(AF_Period__c)</formu
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Bonus_Measure__c</fullName>
         <externalId>false</externalId>
         <label>Bonus Measure</label>
@@ -419,6 +404,10 @@ AF_Bonus_Threshold__r.Year__c &amp;&quot;|&quot;&amp;  TEXT(AF_Period__c)</formu
                 <fullName>Weighted Average</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>% GREEN CELLS</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
@@ -447,8 +436,6 @@ AF_Bonus_Threshold__r.Year__c &amp;&quot;|&quot;&amp;  TEXT(AF_Period__c)</formu
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Sub_Result_AnnualID__c</fullName>
         <externalId>false</externalId>
         <label>Sub Result AnnualID</label>
@@ -459,7 +446,6 @@ AF_Bonus_Threshold__r.Year__c &amp;&quot;|&quot;&amp;  TEXT(AF_Period__c)</formu
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>key__c</fullName>
         <externalId>false</externalId>
         <formula>CASESAFEID(AF_Bonus_Threshold__c) &amp;&quot;|&quot; &amp;  text(Bonus_Measure__c) &amp;&quot;|&quot; &amp;  text(AF_Minimum__c) &amp;&quot;|&quot; &amp;  text(AF_Stretching__c) &amp;&quot;|&quot;&amp; text(AF_Outstanding__c)&amp;&quot;|&quot; &amp; CASESAFEID(AF_country__c)&amp;&quot;|&quot; &amp;  text(AF_Period__c)&amp;&quot;|&quot; &amp; AF_Bonus_Threshold__r.Year__c</formula>

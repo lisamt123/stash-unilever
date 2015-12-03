@@ -381,8 +381,22 @@
     </fields>
     <label>Alert Rule</label>
     <listViews>
-<<<<<<< HEAD
-=======
+        <fullName>Alert_Ansicht_Test</fullName>
+        <columns>NAME</columns>
+        <columns>L5_Reason_Code__c</columns>
+        <columns>L5_Product_Category__c</columns>
+        <columns>Threshold__c</columns>
+        <columns>Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>Market__c</field>
+            <operation>equals</operation>
+            <value>DACH</value>
+        </filters>
+        <label>Alert Ansicht Test</label>
+        <language>de</language>
+    </listViews>
+    <listViews>
         <fullName>All_Alert_Rules1</fullName>
         <columns>NAME</columns>
         <columns>Active__c</columns>
@@ -397,7 +411,6 @@
         <language>en_US</language>
     </listViews>
     <listViews>
->>>>>>> FETCH_HEAD
         <fullName>CEC_Baltics_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Baltics Queue</label>
@@ -444,15 +457,9 @@
     </listViews>
     <listViews>
         <fullName>CEC_France_Queue_cec_Alert_Rule</fullName>
-<<<<<<< HEAD
-        <filterScope>Queue</filterScope>
-        <label>CEC France Queue</label>
-        <queue>CEC_France_Queue</queue>
-=======
         <filterScope>Mine</filterScope>
         <label>CEC France Queue</label>
         <language>fr</language>
->>>>>>> FETCH_HEAD
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -460,11 +467,7 @@
     <listViews>
         <fullName>CEC_General_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
-<<<<<<< HEAD
-        <label>General Queue</label>
-=======
         <label>CEC UKI Queue</label>
->>>>>>> FETCH_HEAD
         <queue>CEC_General_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -526,11 +529,6 @@
     </listViews>
     <listViews>
         <fullName>CEC_Portugal_Queue_cec_Alert_Rule</fullName>
-<<<<<<< HEAD
-        <filterScope>Queue</filterScope>
-        <label>CEC Portugal Queue</label>
-        <queue>CEC_Portugal_Queue</queue>
-=======
         <columns>NAME</columns>
         <columns>Active__c</columns>
         <columns>L0_Product_Category__c</columns>
@@ -545,7 +543,6 @@
         </filters>
         <label>CEC Portugal Queue</label>
         <language>pt_PT</language>
->>>>>>> FETCH_HEAD
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -560,8 +557,6 @@
         </sharedTo>
     </listViews>
     <listViews>
-<<<<<<< HEAD
-=======
         <fullName>CEC_Sri_Lanka_Queue_cec_Alert_Rule</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Sri Lanka Queue</label>
@@ -571,7 +566,6 @@
         </sharedTo>
     </listViews>
     <listViews>
->>>>>>> FETCH_HEAD
         <fullName>India_Alerts</fullName>
         <columns>NAME</columns>
         <columns>OBJECT_ID</columns>
@@ -599,17 +593,6 @@
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>phindia</fullName>
-        <columns>NAME</columns>
-        <columns>Active__c</columns>
-        <columns>L0_Product_Category__c</columns>
-        <columns>Market__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <filterScope>Everything</filterScope>
-        <label>phindia</label>
-        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Alert Rule Name</label>

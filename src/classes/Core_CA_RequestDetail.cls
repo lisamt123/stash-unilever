@@ -17,11 +17,6 @@ global with sharing class Core_CA_RequestDetail{
     global static Core_CA_WrapperUtility.RequestDetailResponseAribaGTES getRequestDetail(Core_CA_ApplicationWrapper appWrapperObj) {
        Core_CA_WrapperUtility.RequestDetailResponseAribaGTES objRequestDetailResponseAribaGTES = new Core_CA_WrapperUtility.RequestDetailResponseAribaGTES(); 
        try{
-<<<<<<< HEAD
-            //system.debug('@@@@@@@@@@'+ appWrapperObj);
-           // system.debug('@@@@@@@@@@'+ appWrapperObj.expenseDetailRequest.RequestId);
-=======
->>>>>>> FETCH_HEAD
             List<Core_Approval_Header__Share> lstHeaderShare = [SELECT Id FROM Core_Approval_Header__Share WHERE ParentId = : appWrapperObj.expenseDetailRequest.RequestId];
             
             if(!lstHeaderShare.isEmpty()){
@@ -29,18 +24,6 @@ global with sharing class Core_CA_RequestDetail{
                 
                 if(mapApprover.containsKey(appWrapperObj.expenseDetailRequest.ApproverId)){
                     List<Core_Approver_Details__c> approver = [select Interested_Party__c from Core_Approver_Details__c where Id =: appWrapperObj.expenseDetailRequest.ApproverId ];    
-<<<<<<< HEAD
-                    objRequestDetailResponseAribaGTES = processReqDetailResponseAribaGTES(appWrapperObj.expenseDetailRequest.RequestId,appWrapperObj.expenseDetailRequest.ApproverId);
-                    if(approver[0].Interested_Party__c  !=  UserInfo.getUserId()){                                 
-                        List<Core_Approver_Details__c> lstApprover = [SELECT Id FROM Core_Approver_Details__c WHERE Approval_Header__c =: appWrapperObj.expenseDetailRequest.RequestId and Interested_Party__c  =: UserInfo.getUserId() and ((Source_System__c = 'Ariba' and Is_Active__c= true) or Source_System__c = 'GTES') ORDER BY CreatedDate ASC];                    
-                        objRequestDetailResponseAribaGTES = processReqDetailResponseAribaGTES(appWrapperObj.expenseDetailRequest.RequestId,lstApprover[0].Id);
-                    }                        
-                }
-                
-                else{                  
-                    List<Core_Approver_Details__c> lstApprover = [SELECT Id FROM Core_Approver_Details__c WHERE Approval_Header__c =: appWrapperObj.expenseDetailRequest.RequestId and Interested_Party__c  =: UserInfo.getUserId() and ((Source_System__c = 'Ariba' and Is_Active__c= true) or Source_System__c = 'GTES') ORDER BY CreatedDate ASC];                    
-                    objRequestDetailResponseAribaGTES = processReqDetailResponseAribaGTES(appWrapperObj.expenseDetailRequest.RequestId,lstApprover[0].Id);                  
-=======
                     
                     if(approver[0].Interested_Party__c  ==  UserInfo.getUserId()){
                         objRequestDetailResponseAribaGTES = processReqDetailResponseAribaGTES(appWrapperObj.expenseDetailRequest.RequestId,appWrapperObj.expenseDetailRequest.ApproverId);
@@ -72,7 +55,6 @@ global with sharing class Core_CA_RequestDetail{
                         objRequestDetailResponseAribaGTES = processReqDetailResponseAribaGTES(appWrapperObj.expenseDetailRequest.RequestId,appWrapperObj.expenseDetailRequest.RequestId);
                         objRequestDetailResponseAribaGTES.hasPermSet = true;
                     }  
->>>>>>> FETCH_HEAD
                 }
                 
             }
@@ -126,13 +108,8 @@ global with sharing class Core_CA_RequestDetail{
            objRequestDetailResponseAribaGTES.PreparedBy= objApprovalHeader.Requested_For_Details__c;
            objRequestDetailResponseAribaGTES.CompanyName= objApprovalHeader.Ariba_Company_Code__c;
            if(objApprovalHeader.External_Created_Date__c != null){
-<<<<<<< HEAD
-               objRequestDetailResponseAribaGTES.CreatedOn = objApprovalHeader.External_Created_Date__c.format('dd-MM-yyyy');
-           }
-=======
                 objRequestDetailResponseAribaGTES.CreatedOn = objApprovalHeader.External_Created_Date__c.format('dd-MM-yyyy');
            } 
->>>>>>> FETCH_HEAD
            objRequestDetailResponseAribaGTES.ReportName= objApprovalHeader.Title_Summary__c;           
            objRequestDetailResponseAribaGTES.AdvanceAmount=objApprovalHeader.Advance_Amount__c;
            objRequestDetailResponseAribaGTES.NetAmount=objApprovalHeader.Net_Amount__c;
@@ -142,15 +119,6 @@ global with sharing class Core_CA_RequestDetail{
            objRequestDetailResponseAribaGTES.Purpose=objApprovalHeader.Purpose__c;
            objRequestDetailResponseAribaGTES.Reason=objApprovalHeader.Reason__c;
            objRequestDetailResponseAribaGTES.ClaimExceptions= objApprovalHeader.Policy_Exception__c;
-<<<<<<< HEAD
-           objRequestDetailResponseAribaGTES.IsActive=string.valueof(getCurrentApproverDetails(ApproverId)[0].Is_Active__c);
-           objRequestDetailResponseAribaGTES.ApproverStatus=getCurrentApproverDetails(ApproverId)[0].Status__c;
-           objRequestDetailResponseAribaGTES.ApproverAction=getCurrentApproverDetails(ApproverId)[0].Action__c;
-           objRequestDetailResponseAribaGTES.pretripdetails= objPreTripDetails;
-           objRequestDetailResponseAribaGTES.lineitems= processLineItemDetails(HeaderId);
-           objRequestDetailResponseAribaGTES.comments= objApprovalHeader.Comment__c;
-           objRequestDetailResponseAribaGTES.approvalhistory= processApprovalHistory(HeaderId);
-=======
            if(!getCurrentApproverDetails(ApproverId).isEmpty()){
                objRequestDetailResponseAribaGTES.IsActive=string.valueof(getCurrentApproverDetails(ApproverId)[0].Is_Active__c);
                objRequestDetailResponseAribaGTES.ApproverStatus=getCurrentApproverDetails(ApproverId)[0].Status__c;
@@ -161,7 +129,6 @@ global with sharing class Core_CA_RequestDetail{
            objRequestDetailResponseAribaGTES.comments= objApprovalHeader.Comment__c;
            objRequestDetailResponseAribaGTES.approvalhistory= processApprovalHistory(HeaderId,objApprovalHeader.Source_System__c);
            //objRequestDetailResponseAribaGTES.isinvalid = objApprovalHeader.Invalid_PR__c;
->>>>>>> FETCH_HEAD
            
            List<Core_Approver_Details__c> lstApprover = [SELECT Id FROM Core_Approver_Details__c WHERE Approval_Header__c =: HeaderId and Source_System__c = 'GTES' and Role__c ='EMP' and Action__c='CANC'];
            if(!lstApprover.isEmpty())
@@ -211,38 +178,23 @@ global with sharing class Core_CA_RequestDetail{
     * @param Core_Approval_Header__c Id  
     * @return Core_CA_WrapperUtility.ApprovalHistory wrapper
     */
-<<<<<<< HEAD
-    private static List<Core_CA_WrapperUtility.ApprovalHistory> processApprovalHistory(string HeaderId){
-       List<Core_CA_WrapperUtility.ApprovalHistory> lstApprovalHistory = new List<Core_CA_WrapperUtility.ApprovalHistory>();
-       try{
-           List<Core_Approver_Details__c> lstApproverDetails = getApproverDetails(HeaderId);
-=======
     private static List<Core_CA_WrapperUtility.ApprovalHistory> processApprovalHistory(string HeaderId,string sourceSystem){
        List<Core_CA_WrapperUtility.ApprovalHistory> lstApprovalHistory = new List<Core_CA_WrapperUtility.ApprovalHistory>();
        try{
            List<Core_Approver_Details__c> lstApproverDetails = getApproverDetails(HeaderId,sourceSystem);
->>>>>>> FETCH_HEAD
            Core_CA_WrapperUtility.ApprovalHistory objApprovalHistory;      
            for(Core_Approver_Details__c Approver:lstApproverDetails){
                objApprovalHistory =new Core_CA_WrapperUtility.ApprovalHistory();
                objApprovalHistory.ApproverName = Approver.Interested_Party_Details__c;
-<<<<<<< HEAD
-=======
                objApprovalHistory.AribaRole = Approver.Ariba_Role__c;
->>>>>>> FETCH_HEAD
                
                if(Approver.CA_Action__c == 'Approved')
                    objApprovalHistory.ApproverAction = Approver.CA_Action__c;
                else if(Approver.CA_Action__c == 'Returned') 
                    objApprovalHistory.ApproverAction = 'Rejected';
                else    
-<<<<<<< HEAD
-                   objApprovalHistory.ApproverAction = Approver.Status__c;
-                   
-=======
                    objApprovalHistory.ApproverAction = Approver.Status__c; 
               
->>>>>>> FETCH_HEAD
                lstApprovalHistory.add(objApprovalHistory);
            }
        } 
@@ -261,11 +213,7 @@ global with sharing class Core_CA_RequestDetail{
        Core_Approval_Header__c objApprovalHeader = null;
        try{
            objApprovalHeader = [SELECT Advance_Amount__c,Description__c,Comment__c,Charge_To__c,External_System_Id__c,CreatedDate,Currency__c,Days__c,Id,Net_Amount__c,Non_Reimbursable_Amount__c,PreTrip_Id__c,PreTrip_Location_Details__c,PreTrip_Passenger_Info__c,Purpose__c,
-<<<<<<< HEAD
-                                Policy_Exception__c,Ariba_Company_Code__c,Title_Summary__c,External_Created_Date__c,Reason__c,Requested_By_Details__c,Requested_For_Details__c,Status__c,Total_amount__c,Source_System__c FROM Core_Approval_Header__c WHERE Id =: HeaderId ];
-=======
                                 Invalid_PR__c,Policy_Exception__c,Ariba_Company_Code__c,Title_Summary__c,External_Created_Date__c,Reason__c,Requested_By_Details__c,Requested_For_Details__c,Status__c,Total_amount__c,Source_System__c FROM Core_Approval_Header__c WHERE Id =: HeaderId ];
->>>>>>> FETCH_HEAD
        }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_CA_MyApprovalData : getPreTripDetails method ', ex);
@@ -296,12 +244,6 @@ global with sharing class Core_CA_RequestDetail{
     * @param Core_Approval_Header__c Id  
     * @return list of Core_Approver_Details__c
     */
-<<<<<<< HEAD
-   private static List<Core_Approver_Details__c> getApproverDetails(string HeaderId){
-       List<Core_Approver_Details__c> lstApproverDetails = null;
-       try{
-           lstApproverDetails =[SELECT CA_Action__c,Interested_Party_Details__c,Status__c,Action__c FROM Core_Approver_Details__c WHERE Approval_Header__c =: HeaderId AND Role__c = 'APP' AND (Action__c = 'APPR' OR Action__c = 'REJC' OR  Status__c ='Approved' OR Status__c='Rejected')];
-=======
    private static List<Core_Approver_Details__c> getApproverDetails(string HeaderId,string sourceSystem){
        List<Core_Approver_Details__c> lstApproverDetails = null;
        try{
@@ -309,7 +251,6 @@ global with sharing class Core_CA_RequestDetail{
                lstApproverDetails =[SELECT CA_Action__c,Interested_Party_Details__c,Status__c,Ariba_Role__c,Action__c  FROM Core_Approver_Details__c WHERE Approval_Header__c =: HeaderId AND Role__c = 'APP' AND (Action__c = 'APPR' OR Action__c = 'REJC' OR  Status__c ='Approved' OR Status__c='Rejected') ORDER BY Sort_Order__c ASC];
            if(sourceSystem == 'GTES')
                lstApproverDetails =[SELECT CA_Action__c,Interested_Party_Details__c,Status__c,Ariba_Role__c,Action__c  FROM Core_Approver_Details__c WHERE Approval_Header__c =: HeaderId AND Role__c = 'APP' AND (Action__c = 'APPR' OR Action__c = 'REJC' OR  Status__c ='Approved' OR Status__c='Rejected')];
->>>>>>> FETCH_HEAD
        }
        catch(Exception ex){
             throw new Core_CA_BaseServiceException('Exception occured: Core_CA_MyApprovalData : getPreTripDetails method ', ex);

@@ -48,9 +48,6 @@ if(Trigger.isBefore){
         
         
         Decimal BonusableFeesQuarterly=0;
-<<<<<<< HEAD
-        
-=======
         List<AF_Sub_Result__c> queryListofSubResult= new List<AF_Sub_Result__c>();
         try{
         queryListofSubResult = [select AF_Bonusable_Fees__c,AF_Bonus_Threshold__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c,AF_Period__c from AF_Sub_Result__c where AF_Bonus_Threshold__c IN :BonusThresholdId];
@@ -58,7 +55,6 @@ if(Trigger.isBefore){
         catch(Exception e){
             system.debug(e);
         }
->>>>>>> FETCH_HEAD
         
         
         Decimal QuantBonusQuarterly=0;
@@ -68,11 +64,7 @@ if(Trigger.isBefore){
         Map<Id,Decimal> quantBonusAnnualMap = new Map<Id,Decimal>();
         Map<Id,Decimal> totalBonusAnnualMap = new Map<Id,Decimal>();
         Map<Id,Decimal> QualBonusAnnualMap = new Map<Id,Decimal>();
-<<<<<<< HEAD
-          for(AF_Sub_Result__c subResult:triggerList){
-=======
           for(AF_Sub_Result__c subResult:queryListofSubResult){
->>>>>>> FETCH_HEAD
             if(subResult.AF_Period__c == null){
                 Decimal BonusableFeesAnnual=0;
                 if(subResult.AF_Bonusable_Fees__c!=null){
@@ -130,37 +122,6 @@ if(Trigger.isBefore){
             
             
         
-<<<<<<< HEAD
-        Map<Id,Decimal> bonusfees = new Map<Id,Decimal>();
-        Map<Id,Decimal> quantBonus = new Map<Id,Decimal>();
-        
-        
-        for(AF_Sub_Result__c c:triggerList){
-            Decimal countBonusfees =0;
-            if(c.AF_Period__c != null){
-                if(c.AF_Bonusable_Fees__c!=null){
-                if(!bonusfees.containsKey(c.AF_Bonus_Threshold__c)){
-                    countBonusfees = countBonusfees+c.AF_Bonusable_Fees__c;
-                    bonusfees.put(c.AF_Bonus_Threshold__c,countBonusfees);
-                }
-                else{
-                   countBonusfees = bonusfees.get(c.AF_Bonus_Threshold__c);
-                   countBonusfees = countBonusfees + c.AF_Bonusable_Fees__c;
-                   bonusfees.put(c.AF_Bonus_Threshold__c,countBonusfees);
-                }
-                }
-                Decimal countquantBonus =0;
-                 if(c.AF_Quant_Bonus_Value__c!=null){
-                if(!quantBonus.containsKey(c.AF_Bonus_Threshold__c)){
-                    countquantBonus = countquantBonus+c.AF_Quant_Bonus_Value__c;
-                    quantBonus.put(c.AF_Bonus_Threshold__c,countquantBonus);
-                }
-                else{
-                   countquantBonus = quantBonus.get(c.AF_Bonus_Threshold__c);
-                   countquantBonus = countquantBonus + c.AF_Quant_Bonus_Value__c;
-                   quantBonus.put(c.AF_Bonus_Threshold__c,countquantBonus);
-                }
-=======
         Map<Id,Decimal> bonusfeesQ1 = new Map<Id,Decimal>();
         Map<Id,Decimal> bonusfeesQ2 = new Map<Id,Decimal>();
         Map<Id,Decimal> bonusfeesQ3 = new Map<Id,Decimal>();
@@ -241,7 +202,6 @@ if(Trigger.isBefore){
                             quantBonusQ3.put(c.AF_Bonus_Threshold__c,countquantBonus);
                         }
                     }
->>>>>>> FETCH_HEAD
                 }
             }
         }
@@ -249,11 +209,7 @@ if(Trigger.isBefore){
             if(b.AF_Period__c == null){
                 BonusAnnualSubResult.add(b.AF_Bonus_Threshold__c);
             }
-<<<<<<< HEAD
-            else{
-=======
             if(b.AF_Period__c != null){
->>>>>>> FETCH_HEAD
                 BonusQuarterlySubResultMap.put(b.AF_Bonus_Threshold__c,b.AF_Period__c);
                 BonusQuarterlySubResult.add(b.AF_Bonus_Threshold__c);
                 QuaterSet.add(b.AF_Period__c);
@@ -271,35 +227,6 @@ if(Trigger.isBefore){
         }
         }
         Integer counter =0;
-<<<<<<< HEAD
-        for(AF_Bonus_Results__c bonusResult : [select AF_Bonus_Thresholds__c,AF_Bonusable_Fees__c,AF_Status__c,AF_Locked__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN :BonusQuarterlySubResult and AF_Period__c IN:QuaterSet]){
-            if(bonusResult.AF_Bonusable_Fees__c != null){
-                    BonusableFeesQuarterly = BonusableFeesQuarterly + bonusResult.AF_Bonusable_Fees__c;
-                }
-                if(bonusResult.AF_Quant_Bonus_Value__c != null){
-                    QuantBonusQuarterly = QuantBonusQuarterly + bonusResult.AF_Quant_Bonus_Value__c;
-                }
-        }
-        if(BonusQuarterlySubResult.size()>0){
-            for(AF_Bonus_Results__c bonusResult : [select AF_Bonus_Thresholds__c,AF_Bonusable_Fees__c,AF_Status__c,AF_Locked__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c IN :BonusQuarterlySubResult and RecordTypeId = : Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Quarterly').getRecordTypeId() and AF_Period__c IN:QuaterSet]){
-                bonusResult.AF_Bonusable_Fees__c = bonusfees.get(bonusResult.AF_Bonus_Thresholds__c);
-                bonusResult.AF_Quant_Bonus_Value__c = quantBonus.get(bonusResult.AF_Bonus_Thresholds__c);
-                bonusResult.AF_Status__c = status.get(bonusResult.AF_Bonus_Thresholds__c);
-                bonusResult.AF_Locked__c = Lock.get(bonusResult.AF_Bonus_Thresholds__c);
-                
-                bonusResultQuartList.add(bonusResult);
-                counter=1;
-            }
-        }
-        if(counter ==0){
-        system.debug('quantBonus...****'+quantBonus);
-        system.debug('bonusfees...****'+bonusfees);
-        List<AF_Bonus_Results__c> bonusquart = new List<AF_Bonus_Results__c>();
-         for(Id bt:BonusQuarterlySubResultMap.keySet()){
-            AF_Bonus_Results__c b = new AF_Bonus_Results__c();
-            b.AF_Bonusable_Fees__c = bonusfees.get(bt);
-            b.AF_Quant_Bonus_Value__c = quantBonus.get(bt);
-=======
         Set<Id> bonusResultCreated = new Set<Id>();
         if(BonusQuarterlySubResult.size()>0){
             system.debug('inside the loop of bonus quarterly..');
@@ -360,15 +287,12 @@ if(Trigger.isBefore){
             else if(BonusQuarterlySubResultMap.get(bt)=='Q2'){
             b.AF_Bonusable_Fees__c = bonusfeesQ2.get(bt);
             b.AF_Quant_Bonus_Value__c = quantBonusQ2.get(bt);
->>>>>>> FETCH_HEAD
             b.AF_Bonus_Thresholds__c = bt;
             b.AF_Status__c = 'Draft';
             b.AF_Period__c = BonusQuarterlySubResultMap.get(bt);
             b.RecordTypeId=Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get('Bonus Quarterly').getRecordTypeId();
             bonusquart.add(b);
             }
-<<<<<<< HEAD
-=======
             else if(BonusQuarterlySubResultMap.get(bt)=='Q3'){
             b.AF_Bonusable_Fees__c = bonusfeesQ3.get(bt);
             b.AF_Quant_Bonus_Value__c = quantBonusQ3.get(bt);
@@ -380,7 +304,6 @@ if(Trigger.isBefore){
             }
             }
             }
->>>>>>> FETCH_HEAD
             if(bonusquart.size()>0){
                 upsert bonusquart;
             }

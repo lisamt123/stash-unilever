@@ -5,8 +5,5 @@
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>TO Global Head</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
-<<<<<<< HEAD
-=======
     <parentRole>CEC_Global_Head</parentRole>
->>>>>>> FETCH_HEAD
 </Role>

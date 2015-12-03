@@ -18,13 +18,10 @@
         <name>AF_Bonusable_Fees__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Class code --></label>
         <name>AF_Class_code__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Comment --></label>
         <name>AF_Comment__c</name>
     </fields>
@@ -129,13 +126,10 @@
         <name>AF_Traditional__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Unique Key --></label>
         <name>AF_Unique_Key__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Unique Thresholds --></label>
         <name>AF_Unique_Thresholds__c</name>
     </fields>
@@ -145,15 +139,16 @@
         <relationshipLabel><!-- Sub Result --></relationshipLabel>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- deletion_key --></label>
         <name>AF_deletion_key__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Bonus Measure --></label>
         <name>Bonus_Measure__c</name>
+        <picklistValues>
+            <masterLabel>% GREEN CELLS</masterLabel>
+            <translation><!-- % GREEN CELLS --></translation>
+        </picklistValues>
         <picklistValues>
             <masterLabel>% of Turnover Gaining</masterLabel>
             <translation><!-- % of Turnover Gaining --></translation>
@@ -192,13 +187,10 @@
         <name>Quant_Result__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Sub Result AnnualID --></label>
         <name>Sub_Result_AnnualID__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- key --></label>
         <name>key__c</name>
     </fields>

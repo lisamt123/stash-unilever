@@ -1,0 +1,42 @@
+<apex:page standardcontroller="OV_ShelfTileReport__c" extensions="OV_NewShelfTileReportController">
+<apex:messages />
+	<apex:sectionheader title="{!$ObjectType.OV_ShelfTileReport__c.label} Edit" subtitle="{!IF(ISNULL(OV_ShelfTileReport__c.Name), 'New Shelf Tile Report',OV_ShelfTileReport__c.Name)}"/>
+	<apex:form >
+		<apex:pageblock mode="edit" title="{!$ObjectType.OV_ShelfTileReport__c.label} Edit">
+			<apex:pageblockbuttons >
+				<apex:commandbutton value="Save" action="{!Save}"/>
+				<apex:commandbutton value="Cancel" action="{!Cancel}"/>
+			</apex:pageblockbuttons>
+
+			
+
+			<!-- **********   [Record Type : Master ]   **********  -->
+			<apex:outputpanel >
+				
+				<apex:pageblocksection title="Information" showheader="true" columns="2">
+					<apex:outputText value="{!sortOrderMsg}" id="sortMsg"/>
+					<apex:pageBlockSectionItem />
+					<apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Shelf Tile" />
+                        <apex:actionRegion >
+                            <apex:inputfield value="{!record.Shelf_Tile__c}" required="true">
+                                <apex:actionSupport event="onchange" action="{!calculateSortOrder}" rerender="sortorder, sortMsg"/> 
+                            </apex:inputField>
+                        </apex:actionRegion>
+                    </apex:pageBlockSectionItem>
+
+                    <apex:pageBlockSectionItem >
+                        <apex:outputLabel value="Report" />
+                        <apex:actionRegion >
+                            <apex:inputfield value="{!record.Report__c}" required="true">
+                                <apex:actionSupport event="onchange" action="{!calculateSortOrder}" rerender="sortorder, sortMsg"/> 
+                            </apex:inputField>	
+                        </apex:actionRegion>
+                    </apex:pageBlockSectionItem>					
+					
+					<apex:inputfield value="{!record.Sort_Order__c}" required="false" id="sortorder"/>
+				</apex:pageblocksection>
+			</apex:outputpanel>
+		</apex:pageblock>
+	</apex:form>
+</apex:page>

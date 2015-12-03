@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /*
   Class Name: Utility
   Author : Mindtree
@@ -7,7 +5,6 @@
   Requirement/Project Name: Unilever Salesforce Engagement
   Requirement/Description: Utility class used for both Chatter Approval and Ideation App
 */
->>>>>>> FETCH_HEAD
 public with sharing class Utility {
 	
     

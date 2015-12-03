@@ -9,13 +9,10 @@
         <name>Alert_Action_Id__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Brand Reporting --></label>
         <name>Brand_Reporting__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label>Marca</label>
         <name>Brand__c</name>
     </fields>
@@ -28,8 +25,6 @@
         <name>CEC_Product_Hierarchy__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- CEC Product Reporting Name --></label>
         <name>CEC_Product_Reporting_Name__c</name>
     </fields>
@@ -38,7 +33,6 @@
         <name>CEC_Product_Reporting_Name_no_size__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- CEC_Product --></label>
         <name>CEC_Product__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
@@ -60,25 +54,19 @@
         <name>CMM_Account_Owner_Active_Flag__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- CPG Code Reporting --></label>
         <name>CPG_Code_Reporting__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Case Brand Mapping --></label>
         <name>Case_Brand_Mapping__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Case Brand --></label>
         <name>Case_Brand__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Case Market Mapping Country Id --></label>
         <name>Case_Market_Mapping_Country_Id__c</name>
     </fields>
@@ -95,13 +83,10 @@
         <name>Case_Market__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Case Record Count --></label>
         <name>Case_Record_Count__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Case product category --></label>
         <name>Case_product_category__c</name>
     </fields>
@@ -235,8 +220,6 @@
         <name>DefaultCMMAccountOwner_Id__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Escalated Date --></label>
         <name>Escalated_Date__c</name>
     </fields>
@@ -253,7 +236,6 @@
         <name>Escalated_to_Closed_Minutes__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Expiry Date --></label>
         <name>Expiry_Date__c</name>
     </fields>
@@ -266,8 +248,6 @@
         <name>Factory_Investigation_Survey_Link__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- First Response Date --></label>
         <name>First_Response_Date__c</name>
     </fields>
@@ -276,7 +256,6 @@
         <name>First_Response_Email_Time__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Global Reason L5 desc --></label>
         <name>Global_Reason_L5_desc__c</name>
     </fields>
@@ -314,24 +293,18 @@
         <name>L3_Product_Category__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- L3 Product Reporting --></label>
         <name>L3_Product_Reporting__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- L4 Product Category --></label>
         <name>L4_Product_Category__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- L4 Product Reporting --></label>
         <name>L4_Product_Reporting__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- L5 Code --></label>
         <name>L5_Code__c</name>
     </fields>
@@ -340,35 +313,26 @@
         <name>L5_Product_Category__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- L5 Product Reporting --></label>
         <name>L5_Product_Reporting__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- L6 Product Category --></label>
         <name>L6_Product_Category__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- L6 Product Reporting --></label>
         <name>L6_Product_Reporting__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- L7 Product Category --></label>
         <name>L7_Product_Category__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- L7 Product Reporting --></label>
         <name>L7_Product_Reporting__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label>Idioma</label>
         <name>Language__c</name>
     </fields>
@@ -479,13 +443,10 @@
             <translation><!-- Email Spain --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
-=======
             <masterLabel>Email Sri Lanka</masterLabel>
             <translation><!-- Email Sri Lanka --></translation>
         </picklistValues>
         <picklistValues>
->>>>>>> FETCH_HEAD
             <masterLabel>Email TO France</masterLabel>
             <translation><!-- Email TO France --></translation>
         </picklistValues>
@@ -515,13 +476,10 @@
         </picklistValues>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Original Description --></label>
         <name>Original_Description__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Out of Hours --></label>
         <name>Out_of_Hours__c</name>
     </fields>
@@ -956,13 +914,10 @@
             <section>Additional Issue Information</section>
         </sections>
         <sections>
-<<<<<<< HEAD
-=======
             <label><!-- Attachments --></label>
             <section>Attachments</section>
         </sections>
         <sections>
->>>>>>> FETCH_HEAD
             <label><!-- Issue Information --></label>
             <section>Issue Information</section>
         </sections>
@@ -1029,8 +984,6 @@
         <name>Cosmetovigilence</name>
     </webLinks>
     <webLinks>
-<<<<<<< HEAD
-=======
         <label><!-- Homecare_Cosmetovigilence --></label>
         <name>Homecare_Cosmetovigilence</name>
     </webLinks>
@@ -1039,7 +992,6 @@
         <name>Ingestion_Cosmetovigilence</name>
     </webLinks>
     <webLinks>
->>>>>>> FETCH_HEAD
         <label>Nuevo caso</label>
         <name>New_Case</name>
     </webLinks>

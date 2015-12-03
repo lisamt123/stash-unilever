@@ -83,23 +83,13 @@
                 <value>False</value>
             </criteriaItems>
             <criteriaItems>
-<<<<<<< HEAD
-                <field>Case.Case_Market_Tag__c</field>
-=======
                 <field>Case.Tag__c</field>
->>>>>>> FETCH_HEAD
                 <operation>equals</operation>
                 <value>CEC</value>
             </criteriaItems>
             <criteriaItems>
-<<<<<<< HEAD
-                <field>Case.Case_Market_Tag__c</field>
-                <operation>equals</operation>
-                <value>null</value>
-=======
                 <field>Case.Tag__c</field>
                 <operation>equals</operation>
->>>>>>> FETCH_HEAD
             </criteriaItems>
         </ruleEntry>
         <ruleEntry>
@@ -541,8 +531,6 @@
                 <value>False</value>
             </criteriaItems>
         </ruleEntry>
-<<<<<<< HEAD
-=======
         <ruleEntry>
             <assignedTo>CEC_Sri_Lanka_Queue</assignedTo>
             <assignedToType>Queue</assignedToType>
@@ -571,6 +559,5 @@
                 <value>False</value>
             </criteriaItems>
         </ruleEntry>
->>>>>>> FETCH_HEAD
     </assignmentRule>
 </AssignmentRules>

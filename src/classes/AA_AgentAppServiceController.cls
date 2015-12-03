@@ -263,39 +263,39 @@ public with sharing class AA_AgentAppServiceController {
         wrapperUtilityObj.clusterList = clusterValuesList;
         system.debug('List of cluster aslesha ====>'+wrapperUtilityObj.clusterList);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
-   		
-   		/*Map<string,aa_agent_app_custom_setting__c> objURL = aa_agent_app_custom_setting__c.getAll(); 
-   		wrapperUtilityObj.googleApiVaue = objURL.get('Google Api Key').Value__c;*/
-   		appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
-   		                                      
+        
+        Map<string,aa_agent_app_custom_setting__c> objURL = aa_agent_app_custom_setting__c.getAll(); 
+       // wrapperUtilityObj.googleApiVaue = objURL.get('Google Api Key').Value__c;
+        appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
+                                              
         return appWrapperObj;
     }
     //By anjali
    /* public AA_ApplicationWrapperObj getCountryClusterMap(AA_ApplicationWrapperObj appWrapperObj){
-    	Map<aa_Cluster__c,List<aa_Country__c>> countryClusterMapValues = getCountryClusterValues();
-    	AA_WrapperUtility.AgentAppDataResponse wrapperUtilityObj = new AA_WrapperUtility.AgentAppDataResponse();
-    	wrapperUtilityObj.countryClusterMap = new Map<aa_Cluster__c,List<aa_Country__c>>();
-    	wrapperUtilityObj.countryClusterMap = countryClusterMapValues;
-    	appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
-    	return appWrapperObj;
+        Map<aa_Cluster__c,List<aa_Country__c>> countryClusterMapValues = getCountryClusterValues();
+        AA_WrapperUtility.AgentAppDataResponse wrapperUtilityObj = new AA_WrapperUtility.AgentAppDataResponse();
+        wrapperUtilityObj.countryClusterMap = new Map<aa_Cluster__c,List<aa_Country__c>>();
+        wrapperUtilityObj.countryClusterMap = countryClusterMapValues;
+        appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
+        return appWrapperObj;
     }
     
     
     public  Map<aa_Cluster__c,List<aa_Country__c>> getCountryClusterValues(){
-    	List<aa_Country__c> countrylst = getCountryValues();
+        List<aa_Country__c> countrylst = getCountryValues();
         List<aa_Cluster__c> clusterList = getClusterValues();
         List<aa_Country__c> countryFinalList =  new List<aa_Country__c>();
         Map<aa_Cluster__c,List<aa_Country__c>> mapValue = new Map<aa_Cluster__c,List<aa_Country__c>>();
        
         for(aa_Cluster__c clusterObj:clusterList){
-       		for(aa_Country__c countryObj:countrylst){
-        		if(clusterObj.id == countryObj.Cluster_Id__c){
-        	    	countryFinalList.add(countryObj);
-        	    }
-        	
-        	}
-        	mapValue.put(clusterObj,countryFinalList);
-        	countryFinalList.clear();
+            for(aa_Country__c countryObj:countrylst){
+                if(clusterObj.id == countryObj.Cluster_Id__c){
+                    countryFinalList.add(countryObj);
+                }
+            
+            }
+            mapValue.put(clusterObj,countryFinalList);
+            countryFinalList.clear();
         }
      return mapValue;
     }*/
@@ -514,11 +514,11 @@ public with sharing class AA_AgentAppServiceController {
         system.debug('List of cluster aslesha ====>'+wrapperUtilityObj.clusterList);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
         
-       /* Map<string,aa_agent_app_custom_setting__c> objURL = aa_agent_app_custom_setting__c.getAll(); 
-   		wrapperUtilityObj.googleApiVaue = objURL.get('Google Api Key').Value__c;*/
-   		//system.debug('======>google'+wrapperUtilityObj.googleApiVaue);
-   		appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
-   		
+        Map<string,aa_agent_app_custom_setting__c> objURL = aa_agent_app_custom_setting__c.getAll(); 
+       // wrapperUtilityObj.googleApiVaue = objURL.get('Google Api Key').Value__c;
+        system.debug('======>google'+wrapperUtilityObj.googleApiVaue);
+        appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
+        
         return appWrapperObj;
     }
     
@@ -732,11 +732,11 @@ public with sharing class AA_AgentAppServiceController {
                 }
                 if(appWrapperObj.objAgentAppDataRequest.TopicId!=NULL)
                 {
-                	soqlquery +='AND Topic__c = \''+appWrapperObj.objAgentAppDataRequest.TopicId+'\' ';
+                    soqlquery +='AND Topic__c = \''+appWrapperObj.objAgentAppDataRequest.TopicId+'\' ';
                 }
                 if(appWrapperObj.objAgentAppDataRequest.ReportingOn!=NULL)
                 {
-                	soqlquery +='AND Reporting_on__c = \''+appWrapperObj.objAgentAppDataRequest.ReportingOn+'\' ';
+                    soqlquery +='AND Reporting_on__c = \''+appWrapperObj.objAgentAppDataRequest.ReportingOn+'\' ';
                 }
                 String recTypeId='';
                 if(appWrapperObj.objAgentAppDataRequest.RecordType=='Unilever')
@@ -796,11 +796,11 @@ public with sharing class AA_AgentAppServiceController {
            
             for(aa_Agent_Report__Feed item:feedlist)
             {
-            	 // if(i>Integer.valueOf(appWrapperObj.objAgentAppDataRequest.OffSet) && i<=totallimit)
-            	  //{
+                 // if(i>Integer.valueOf(appWrapperObj.objAgentAppDataRequest.OffSet) && i<=totallimit)
+                  //{
                    idlist.add(String.valueOf(item.id));
                    reportidInString+='\''+item.id+'\',';
-            	  //}
+                  //}
                    //i++; 
             }
                    reportidInString+='\'\' )';
@@ -808,7 +808,7 @@ public with sharing class AA_AgentAppServiceController {
             
                        
                    
-             soqlquery +=' AND chatter_post_id__c IN   '+ reportidInString;	
+             soqlquery +=' AND chatter_post_id__c IN   '+ reportidInString; 
              system.debug('%%%%%%%%%%%1234'+' AND chatter_post_id__c IN  '+ reportidInString);
          }
          
@@ -829,9 +829,9 @@ public with sharing class AA_AgentAppServiceController {
                    Set<ID> feedIds=new Set<ID>();
                    for(aa_Agent_Report__c itemfeedlike :tmpList){
                        for(aa_Agent_Report__Feed objfeedlike :itemfeedlike.Feeds){
-                       	  if(itemfeedlike.Chatter_Post_ID__c==objfeedlike.Id){
+                          if(itemfeedlike.Chatter_Post_ID__c==objfeedlike.Id){
                                feedIds.add(objfeedlike.Id);  
-                       	  } 
+                          } 
                        }
                    }
                    system.debug('feedids set==>'+feedIds);
@@ -900,7 +900,7 @@ public with sharing class AA_AgentAppServiceController {
                      system.debug('item.Chatter_Post_ID__c -- >'+item.Chatter_Post_ID__c+'== objfeed.Id : '+objfeed.Id );
                     // objGetAllReports.LikeCount=0;
                      if(item.Chatter_Post_ID__c == objfeed.Id){
-                     	system.debug('in like counr@@@@@@@@@@@@@@@@');
+                        system.debug('in like counr@@@@@@@@@@@@@@@@');
                         objGetAllReports.LikeCount=objfeed.LikeCount;
                        // objGetAllReports.TotalCommentCount=objfeed.CommentCount;
                         system.debug('Like count for this record================================>'+objfeed.LikeCount);
@@ -939,8 +939,11 @@ public with sharing class AA_AgentAppServiceController {
                     }
                     system.debug('item.Feeds.size()'+item.Feeds.size()+'++'+objGetAllReports.TotalCommentCount);
                     objGetAllReports.TotalCommentCount+=item.Feeds.size();
-                    if(objGetAllReports.TotalCommentCount>=2)
-                    objGetAllReports.TotalCommentCount=objGetAllReports.TotalCommentCount-2;
+                    aa_agent_app_custom_setting__c cs = aa_agent_app_custom_setting__c.getInstance('CommentCount');
+                    system.debug('CommentCount=>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'+cs.Value__c);
+                    Integer decresecomment=Integer.valueOf(cs.Value__c);
+                    if(objGetAllReports.TotalCommentCount>=decresecomment)
+                    objGetAllReports.TotalCommentCount=objGetAllReports.TotalCommentCount-decresecomment;
                     /*Set UL or CI logo if no Chatter post Id associated with Agent Report */
                     if(objGetAllReports.DocumentUrl==null){
                         system.debug('*No File or Image Attached to Report*1232'+objGetAllReports.LikeCount);
@@ -957,16 +960,16 @@ public with sharing class AA_AgentAppServiceController {
                 system.debug('fileter type for sort'+appWrapperObj.objAgentAppDataRequest.FilterType);
         
         if(objAgentApp.SortOnMostLike=='true'){
-        	system.debug('sorting the report%%%%%%%%%%%%');
-        	objFinalReport.sort();
-        	
-        	for(AA_WrapperUtility.agentReportDetail test:objFinalReport){
+            system.debug('sorting the report%%%%%%%%%%%%');
+            objFinalReport.sort();
+            
+            for(AA_WrapperUtility.agentReportDetail test:objFinalReport){
             system.debug('sorted report Like count here=====>'+test.LikeCount);       
             
             }
-        	       	
-        	
-        	 Integer i=0; 
+                    
+            
+             Integer i=0; 
              Integer totallimit=Integer.valueOf(appWrapperObj.objAgentAppDataRequest.OffSet)+Integer.valueOf(appWrapperObj.objAgentAppDataRequest.LimitRecords);
              system.debug('offset'+Integer.valueOf(appWrapperObj.objAgentAppDataRequest.OffSet)+'totallimit%%'+totallimit);
              
@@ -984,11 +987,11 @@ public with sharing class AA_AgentAppServiceController {
                system.debug('List for sorted response ===>'+objFinalReportForSort); 
              objFinalReport=objFinalReportForSort;
              
-        	for(AA_WrapperUtility.agentReportDetail test:objFinalReportForSort){
+            for(AA_WrapperUtility.agentReportDetail test:objFinalReportForSort){
             system.debug('sorted report Like count here with offset & limit=====>'+test.LikeCount);       
             
             }
-        	
+            
         }    
         
            
@@ -1059,9 +1062,9 @@ public with sharing class AA_AgentAppServiceController {
                    Set<ID> feedIds=new Set<ID>();
                    for(aa_Agent_Report__c itemfeedlike :reportList){
                        for(aa_Agent_Report__Feed objfeedlike :itemfeedlike.Feeds){
-                       	if(itemfeedlike.Chatter_Post_ID__c==objfeedlike.Id){
+                        if(itemfeedlike.Chatter_Post_ID__c==objfeedlike.Id){
                                feedIds.add(objfeedlike.Id);  
-                       	}
+                        }
                        }
                    }
                    system.debug('feedids set==>'+feedIds);
@@ -1131,9 +1134,9 @@ public with sharing class AA_AgentAppServiceController {
                         system.debug('item.Chatter_Post_ID__c -- >'+item.Chatter_Post_ID__c+'== objfeed.Id : '+objfeed.Id );
                         if(item.Chatter_Post_ID__c == objfeed.Id)
                         {
-                        	objGetAllReports.LikeCount=objfeed.LikeCount;
-                        	objGetAllReports.TotalCommentCount=objfeed.CommentCount;
-                        	system.debug('Like count ==============================================>'+objfeed.LikeCount);
+                            objGetAllReports.LikeCount=objfeed.LikeCount;
+                            objGetAllReports.TotalCommentCount=objfeed.CommentCount;
+                            system.debug('Like count ==============================================>'+objfeed.LikeCount);
                         }
                         if(item.Chatter_Post_ID__c == objfeed.Id && objfeed.ContentFileName!=null ){
                             
@@ -1301,12 +1304,12 @@ public with sharing class AA_AgentAppServiceController {
    
     aa_Agent_Report__Feed reportfeed=[Select a.LikeCount, a.Id, ParentId,(Select Id, InsertedById From FeedLikes where InsertedById=:UserInfo.getUserId()) From aa_Agent_Report__Feed a where a.Id=:report.chatter_post_id__c];
 
-	List<Feedlike> feedlikelist=reportfeed.Feedlikes;
-	system.debug('dsadsfadsf=========>'+feedlikelist);
-	
-	delete feedlikelist[0];
-	// appWrapperObj.UpdateUnlikeCount = true;
-	return appWrapperObj;
+    List<Feedlike> feedlikelist=reportfeed.Feedlikes;
+    system.debug('dsadsfadsf=========>'+feedlikelist);
+    
+    delete feedlikelist[0];
+    // appWrapperObj.UpdateUnlikeCount = true;
+    return appWrapperObj;
    }
     
     

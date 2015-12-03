@@ -6,12 +6,7 @@
     <masterLabel>Terms of Use</masterLabel>
     <openType>onClickJavaScript</openType>
     <protected>false</protected>
-<<<<<<< HEAD
     <url>{!REQUIRESCRIPT(&quot;/soap/ajax/25.0/connection.js&quot;)}
 {!REQUIRESCRIPT(&quot;/soap/ajax/25.0/apex.js&quot;)}
-=======
-    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/25.0/connection.js&quot;)}
-{!REQUIRESCRIPT(&quot;/soap/ajax/25.0/apex.js&quot;)}
->>>>>>> FETCH_HEAD
 window.location.href = &quot;/apex/TermsOfUse&quot; ;</url>
 </CustomPageWebLink>

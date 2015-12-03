@@ -83,13 +83,10 @@
         <relationshipLabel>Εκπλήρωση</relationshipLabel>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Country &amp; BrandLogo --></label>
         <name>Country_BrandLogo__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label>χώρα</label>
         <name>Country__c</name>
         <picklistValues>

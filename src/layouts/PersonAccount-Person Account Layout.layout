@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <excludeButtons>DataDotComClean</excludeButtons>
+    <excludeButtons>DataDotComCompanyHierarchy</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
     <layoutSections>
@@ -23,14 +24,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-<<<<<<< HEAD
-=======
                 <field>PersonOtherPhone</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
->>>>>>> FETCH_HEAD
                 <field>PersonMobilePhone</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>PersonHomePhone</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
@@ -39,13 +41,6 @@
                 <behavior>Edit</behavior>
                 <field>PersonMailingAddress</field>
             </layoutItems>
-<<<<<<< HEAD
-=======
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Phone_No_Special_Char__c</field>
-            </layoutItems>
->>>>>>> FETCH_HEAD
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -68,13 +63,10 @@
                 <behavior>Edit</behavior>
                 <field>CEC_Marketing_Opt_In__c</field>
             </layoutItems>
-<<<<<<< HEAD
-=======
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>PersonBirthdate</field>
             </layoutItems>
->>>>>>> FETCH_HEAD
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>

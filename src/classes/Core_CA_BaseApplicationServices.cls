@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /*
   Class Name: Core_CA_BaseApplicationServices
   Author : Mindtree
@@ -7,7 +5,6 @@
   Requirement/Project Name: Unilever Salesforce Engagement
   Requirement/Description: This class is used to call respective service classes based on Key from request data
 */
->>>>>>> FETCH_HEAD
 @RestResource (urlMapping='/AppService/*')
 global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationServices{
 
@@ -31,10 +28,7 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
             
             if(!Utility.isEmpty(svcName)){
                
-<<<<<<< HEAD
-=======
                 //Chatter Approval Services
->>>>>>> FETCH_HEAD
                 /**** Get myapproval data****/
                 if(svcName.equals(Core_CA_AppConstants.SVC_GET_MY_APPROVALS_DATA)){                  
                     requestBodySerializedMap = createSerializedMapString(appWrapperObj.serviceJSONObjectasString);
@@ -61,9 +55,6 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
                     if(appWrapperObj.lineItemDetailRequest.RequestType.equals(Core_CA_AppConstants.DATA_REQUEST_TYPE_ARIBA))
                       responseObj = (Core_CA_BaseApplicationWrapper)Core_CA_LineItemDetail.getLineItemDetailAriba(appWrapperObj);        
                 }
-<<<<<<< HEAD
-                 
-=======
                 
                 //Ideation Services
                 /**** Get Ideation Landing Page data****/
@@ -129,7 +120,6 @@ global class Core_CA_BaseApplicationServices implements Core_CA_IBaseAppicationS
                     responseObj = (Core_CA_BaseApplicationWrapper)Core_IC_FAQData.GetFAQValues();
                 }
                 
->>>>>>> FETCH_HEAD
                 /*if(svcName.equals(Core_CA_AppConstants.SVC_VALIDATE_APPROVEREJECTACTION)){
                     //system.debug('Enter');
                     responseObj = (Core_CA_BaseApplicationWrapper)Core_CA_ApproveRejectAction.validateApproveRejectAction(appWrapperObj.urlParameters);

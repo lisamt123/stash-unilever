@@ -581,10 +581,7 @@
         <columns>CREATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-<<<<<<< HEAD
-=======
         <language>en_US</language>
->>>>>>> FETCH_HEAD
     </listViews>
     <listViews>
         <fullName>FAU_Template</fullName>

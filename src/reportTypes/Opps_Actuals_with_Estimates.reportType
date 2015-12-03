@@ -388,14 +388,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-<<<<<<< HEAD
-=======
             <field>AF_Category_View__c</field>
             <table>AF_OOPS_Actual__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
->>>>>>> FETCH_HEAD
             <field>AF_Status_Q4__c</field>
             <table>AF_OOPS_Actual__c</table>
         </columns>
@@ -431,15 +428,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-<<<<<<< HEAD
-=======
             <displayNameOverride>Big Category</displayNameOverride>
             <field>AF_Brand__c.AF_Super_category__c</field>
             <table>AF_OOPS_Actual__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
->>>>>>> FETCH_HEAD
             <field>AF_Category_Name__c</field>
             <table>AF_OOPS_Actual__c</table>
         </columns>
@@ -453,8 +447,6 @@
             <field>AF_CategoryView__c</field>
             <table>AF_OOPS_Actual__c</table>
         </columns>
-<<<<<<< HEAD
-=======
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>AF_Brand__c.AF_Category_Brands__c</field>
@@ -466,7 +458,6 @@
             <field>AF_Brand__c.AF_Category_Brands__c.AF_Super_category__c</field>
             <table>AF_OOPS_Actual__c</table>
         </columns>
->>>>>>> FETCH_HEAD
         <masterLabel>OOPS Actuals</masterLabel>
     </sections>
     <sections>
@@ -631,15 +622,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-<<<<<<< HEAD
-=======
             <displayNameOverride>Exchange Rate</displayNameOverride>
             <field>AF_Agency_ExchangeRateTemp__c</field>
             <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
->>>>>>> FETCH_HEAD
             <field>LastActivityDate</field>
             <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
         </columns>
@@ -746,10 +734,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-<<<<<<< HEAD
-=======
             <displayNameOverride>Currency</displayNameOverride>
->>>>>>> FETCH_HEAD
             <field>AF_Rate_Currency__c</field>
             <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
         </columns>
@@ -785,10 +770,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-<<<<<<< HEAD
-=======
             <displayNameOverride>PO Value - Euro</displayNameOverride>
->>>>>>> FETCH_HEAD
             <field>AF_PO_value_euro2014__c</field>
             <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
         </columns>
@@ -817,11 +799,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-<<<<<<< HEAD
-            <field>AF_PO_Value_LC_2014__c</field>
-            <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
-        </columns>
-=======
             <displayNameOverride>PO Value - LC</displayNameOverride>
             <field>AF_PO_Value_LC_2014__c</field>
             <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
@@ -838,7 +815,6 @@
             <field>AF_ReadyforPOExchangeRateTemp__c</field>
             <table>AF_OOPS_Actual__c.OOPS_Estimates__r</table>
         </columns>
->>>>>>> FETCH_HEAD
         <masterLabel>OOPS Estimates</masterLabel>
     </sections>
 </ReportType>

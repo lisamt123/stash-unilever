@@ -34,13 +34,10 @@
         <relationshipLabel><!-- OOPS Estimates --></relationshipLabel>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Agency ExchangeRateTemp --></label>
         <name>AF_Agency_ExchangeRateTemp__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Agency Exchange Rate --></label>
         <name>AF_Agency_Exchange_Rate__c</name>
     </fields>
@@ -131,24 +128,18 @@
         <name>AF_Locked__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- MatrixCodeTemp --></label>
         <name>AF_MatrixCodeTemp__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Max Quarter --></label>
         <name>AF_Max_Quarter__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Mean Quarter --></label>
         <name>AF_Mean_Quarter__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- No of Quaters --></label>
         <name>AF_No_of_Quaters__c</name>
     </fields>
@@ -174,8 +165,6 @@
         <name>AF_Overall_OOPS__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Override PO Adaptation – LC --></label>
         <name>AF_OverridePO_Adaptation_LC__c</name>
     </fields>
@@ -188,7 +177,6 @@
         <name>AF_Override_Estimate_Local__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- PO Number --></label>
         <name>AF_PO_Number__c</name>
     </fields>
@@ -249,8 +237,6 @@
         <name>AF_Ready_For_PO_Exchange_Rate__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- ReadyforPOExchangeRateTemp --></label>
         <name>AF_ReadyforPOExchangeRateTemp__c</name>
     </fields>
@@ -259,7 +245,6 @@
         <name>AF_ReadyforPoCodeTemp__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Status --></label>
         <name>AF_Status__c</name>
         <picklistValues>

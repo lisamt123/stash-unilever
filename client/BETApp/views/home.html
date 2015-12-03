@@ -1,0 +1,145 @@
+<!-- BEGIN header -->
+<header>
+  <div class="container">
+      <div class="row">
+          <div class="col-xs-6">
+            <div class="first-box">
+                <h1>Brand Experience Toolkits</h1>
+                <p>This is the place where marketers collaborate together to&nbsp;deliver exceptional brand experiences in market.</p>
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <input ng-model="keyword" class="form-control" type="text" name="search" placeholder="Search a BET, brand, project or person"/>
+                        <button ng-click="search(keyword)" type="submit" class="btn btn-search"><span class="glyphicon glyphicon-search"></span></button>
+                        <div class="clearfix"></div>
+                    </div>
+                </form>
+                <a href="#/search/">Browse all Brand Experience Toolkits<span class="right-arrow"></span></a>
+            </div>
+          </div>
+          <div class="col-xs-6">
+              <a class="box-link" href="/apex/BET_NewBet?retURL=/apex/BET">
+                  <span class="box-inside">
+                      <span class="glyphicon glyphicon-plus"></span>    
+                      <span>Create a new Brand Experience Toolkit</span>
+                  </span>
+              </a>
+              <a class="box-link" href="{{sfConfig.helpLink}}" target="_blank">
+                  <span class="box-inside">
+                      <img src="{{sfConfig.resourceBasePath}}images/info.png" alt="Help &amp; Guidance" class="info-img" />
+                      <span>Help &amp; Guidance</span>
+                  </span>
+              </a>
+          </div>
+      </div>
+    <div id="logo">
+        <img src="{{sfConfig.resourceBasePath}}images/logo.png" alt="Crafting Brands For Life" />
+    </div>
+   
+  </div>         
+</header>
+<!-- END header -->
+
+<div class="container-fluid main-content">
+	<img src="{{sfConfig.resourceBasePath}}images/emark.png" style="padding-top:10px;"/>
+	<div class="row" style="position: absolute;top: 10px;left: 65px;" ng-bind-html="sfConfig.homeInfoText"/>
+<!-- BEGIN my bets -->
+  <div class="row">
+      <div class="col-xs-12">
+          <h2 class="section-title">Brand Experience Toolkits I own</h2>
+          <div class="switchers">
+              <div class="switchers-right">
+                <a href ng-click="setActive(true)" class="btn btn-primary" ng-class="{'selected':state.activeSelected}">Active</a>
+                <a href ng-click="setActive(false)" class="btn btn-primary" ng-class="{'selected':!state.activeSelected}">Archived</a>                          
+              </div>
+              <div class="clearfix"></div>
+          </div>
+          <div class="table-bet">
+              <div class="row head">
+                <div class="col-xs-3" ng-click="changeSort('betsIamOwnerOf', 'betName')" ng-class="{'sort':state.betsIamOwnerOf.field=='betName','sort-desc':state.betsIamOwnerOf.reverse,'sort-asc':!state.betsIamOwnerOf.reverse}"><span>Name</span></div>
+                <div class="col-xs-1-25" ng-click="changeSort('betsIamOwnerOf', 'betBrandName')" ng-class="{'sort':state.betsIamOwnerOf.field=='betBrandName','sort-desc':state.betsIamOwnerOf.reverse,'sort-asc':!state.betsIamOwnerOf.reverse}"><span>Brand</span></div>
+                <div class="col-xs-2" ng-click="changeSort('betsIamOwnerOf', 'betOwnerName')" ng-class="{'sort':state.betsIamOwnerOf.field=='betOwnerName','sort-desc':state.betsIamOwnerOf.reverse,'sort-asc':!state.betsIamOwnerOf.reverse}"><span>Owner</span></div>
+                <div class="col-xs-2" ng-click="changeSort('betsIamOwnerOf', 'betProjectName')" ng-class="{'sort':state.betsIamOwnerOf.field=='betProjectName','sort-desc':state.betsIamOwnerOf.reverse,'sort-asc':!state.betsIamOwnerOf.reverse}"><span>Project</span></div>
+                <div class="col-xs-1" ng-click="changeSort('betsIamOwnerOf', 'betStatus')" ng-class="{'sort':state.betsIamOwnerOf.field=='betStatus','sort-desc':state.betsIamOwnerOf.reverse,'sort-asc':!state.betsIamOwnerOf.reverse}"><span>Status</span></div>
+                <div class="col-xs-1 dl" ng-click="changeSort('betsIamOwnerOf', 'betLastUpdated')" ng-class="{'sort':state.betsIamOwnerOf.field=='betLastUpdated','sort-desc':state.betsIamOwnerOf.reverse,'sort-asc':!state.betsIamOwnerOf.reverse}"><span>Last <br />Updated</span></div>
+                <div class="col-xs-1-75">&nbsp;</div>
+              </div>
+              <div class="row" ng-if="myBETs.betsIamOwnerOf.length == 0 && state.activeSelected">
+                <div class="col-xs-12">You don't have any active BET's yet.</div>
+              </div>                      
+              <div class="row" ng-if="myBETs.betsIamOwnerOfArchived.length == 0 && !state.activeSelected">
+                <div class="col-xs-12">You don't have any archived BET's yet.</div>
+              </div>                      
+              <div class="row" ng-repeat="bet in BETsIOwn | orderBy:state.betsIamOwnerOf.field:state.betsIamOwnerOf.reverse" ng-if="BETsIOwn.length > 0">
+                <div class="col-xs-3">
+                    <span class="image-holder" uw-brand-icon="{{bet.betIconLocation}}"></span>
+                    <span uw-tooltip class="bet-name">{{bet.betName}}</span>
+                    <span class="question-icon" ng-if="bet.betDescription" data-tooltip="{{bet.betDescription}}"></span>
+                </div>
+                <div uw-tooltip class="col-xs-1-25">{{bet.betBrandName}}</div>
+                <div uw-tooltip class="col-xs-2">{{bet.betOwnerName | uwUserName}}</div>
+                <div uw-tooltip class="col-xs-2">{{bet.betProjectName}}</div>
+                <div uw-tooltip class="col-xs-1">{{bet.betStatus}}</div>
+                <div uw-tooltip class="col-xs-1">{{bet.betLastUpdated | date: sfConfig.date.list}}</div>
+                <div class="col-xs-1-75 text-right">
+                    <a href="#/detail/{{bet.betId}}" class="btn btn-primary">
+                        <span>Access toolkit</span>
+                        <span class="right-arrow"></span>
+                    </a>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div> 
+<!-- END my bets -->
+
+<!-- BEGIN bets i follow -->
+   <div class="row">
+      <div class="col-xs-12">
+          <h2 class="section-title">Brand Experience Toolkits I am member of</h2>
+		  <div class="switchers">
+              <div class="switchers-right">
+                <a href ng-click="setActiveBetsIamMemberOf(true)" class="btn btn-primary" ng-class="{'selected':state.activeMemberSelected}">Active</a>
+                <a href ng-click="setActiveBetsIamMemberOf(false)" class="btn btn-primary" ng-class="{'selected':!state.activeMemberSelected}">Archived</a>                          
+              </div>
+              <div class="clearfix"></div>
+          </div>
+          <div class="table-bet">
+              <div class="row head">
+                <div class="col-xs-3" ng-click="changeSort('betsIamMemberOf', 'betName')" ng-class="{'sort':state.betsIamMemberOf.field=='betName','sort-desc':state.betsIamMemberOf.reverse,'sort-asc':!state.betsIamMemberOf.reverse}"><span>Name</span></div>
+                <div class="col-xs-1-25" ng-click="changeSort('betsIamMemberOf', 'betBrandName')" ng-class="{'sort':state.betsIamMemberOf.field=='betBrandName','sort-desc':state.betsIamMemberOf.reverse,'sort-asc':!state.betsIamMemberOf.reverse}"><span>Brand</span></div>
+                <div class="col-xs-2" ng-click="changeSort('betsIamMemberOf', 'betOwnerName')" ng-class="{'sort':state.betsIamMemberOf.field=='betOwnerName','sort-desc':state.betsIamMemberOf.reverse,'sort-asc':!state.betsIamMemberOf.reverse}"><span>Owner</span></div>
+                <div class="col-xs-2" ng-click="changeSort('betsIamMemberOf', 'betProjectName')" ng-class="{'sort':state.betsIamMemberOf.field=='betProjectName','sort-desc':state.betsIamMemberOf.reverse,'sort-asc':!state.betsIamMemberOf.reverse}"><span>Project</span></div>
+                <div class="col-xs-1" ng-click="changeSort('betsIamMemberOf', 'betStatus')" ng-class="{'sort':state.betsIamMemberOf.field=='betStatus','sort-desc':state.betsIamMemberOf.reverse,'sort-asc':!state.betsIamMemberOf.reverse}"><span>Status</span></div>
+                <div class="col-xs-1 dl" ng-click="changeSort('betsIamMemberOf', 'betLastUpdated')" ng-class="{'sort':state.betsIamMemberOf.field=='betLastUpdated','sort-desc':state.betsIamMemberOf.reverse,'sort-asc':!state.betsIamMemberOf.reverse}"><span>Last <br />Updated</span></div>
+                <div class="col-xs-1-75">&nbsp;</div>
+              </div>
+              <div class="row" ng-if="myBETs.betsIamMemberOfActive.length == 0">
+                <div class="col-xs-12">You're not a member of any BET yet. Use the search or browse to find and start following BETs.</div>
+              </div>
+			  <div class="row" ng-if="myBETs.betsIamMemberOfArchived.length == 0 && !state.activeSelected">
+                <div class="col-xs-12">You're not a member of any archived BET yet. Use the search or browse to find and start following BETs.</div>
+              </div>
+              <div class="row" ng-repeat="bet in BETsIamMemberOf | orderBy:state.betsIamMemberOf.field:state.betsIamMemberOf.reverse" ng-if="BETsIamMemberOf.length > 0">
+                <div class="col-xs-3">
+					<!-- TODO: Display icon if there is any set for BET-->
+                    <span class="image-holder" uw-brand-icon="{{bet.betIconLocation}}"></span>
+                    <span uw-tooltip class="bet-name">{{bet.betName}}</span>
+                    <span class="question-icon" ng-if="bet.betDescription" data-tooltip="{{bet.betDescription}}"></span>
+                </div>
+                <div uw-tooltip class="col-xs-1-25">{{bet.betBrandName}}</div>
+                <div uw-tooltip class="col-xs-2">{{bet.betOwnerName | uwUserName}}</div>
+                <div uw-tooltip class="col-xs-2">{{bet.betProjectName}}</div>
+                <div uw-tooltip class="col-xs-1">{{bet.betStatus}}</div>
+                <div uw-tooltip class="col-xs-1">{{bet.betLastUpdated | date: sfConfig.date.list}}</div>
+                <div class="col-xs-1-75 text-right">
+                    <a href="#/detail/{{bet.betId}}" class="btn btn-primary">
+                        <span>Access toolkit</span>
+                        <span class="right-arrow"></span>
+                    </a>
+                </div>
+              </div>
+          </div>
+      </div>
+  </div> 
+<!-- END bets i follow -->
+</div>

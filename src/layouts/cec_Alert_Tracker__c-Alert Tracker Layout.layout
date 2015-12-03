@@ -30,13 +30,10 @@
             <layoutItems>
                 <emptySpace>true</emptySpace>
             </layoutItems>
-<<<<<<< HEAD
-=======
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Trigger_Email__c</field>
             </layoutItems>
->>>>>>> FETCH_HEAD
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

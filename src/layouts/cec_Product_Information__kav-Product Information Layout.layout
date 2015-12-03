@@ -27,8 +27,6 @@
             <layoutItems>
                 <field>Sensitive_Text__c</field>
             </layoutItems>
-<<<<<<< HEAD
-=======
             <layoutItems>
                 <field>Product_De_listed__c</field>
             </layoutItems>
@@ -86,7 +84,6 @@
             <layoutItems>
                 <field>Nutrition_Information__c</field>
             </layoutItems>
->>>>>>> FETCH_HEAD
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>
@@ -148,12 +145,6 @@
                 <field>Suitability__c</field>
             </layoutItems>
             <layoutItems>
-<<<<<<< HEAD
-                <field>Additional_Information__c</field>
-            </layoutItems>
-            <layoutItems>
-                <field>PDF_Version__c</field>
-=======
                 <field>PDF_Version__c</field>
             </layoutItems>
             <layoutItems>
@@ -161,7 +152,6 @@
             </layoutItems>
             <layoutItems>
                 <field>PDF_Version_3__c</field>
->>>>>>> FETCH_HEAD
             </layoutItems>
             <layoutItems>
                 <field>Recycling_Info__c</field>

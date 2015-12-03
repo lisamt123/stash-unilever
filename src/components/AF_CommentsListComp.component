@@ -2,58 +2,6 @@
     <apex:attribute name="ParentRecordValue" type="String" AssignTo="{!ParentRecordId}" Description="The parent record that the component is to work with."  />        
     <apex:attribute name="IsViewAllValue" type="String" AssignTo="{!IsViewAll}" Description="The Is View All FLAG"  />
     <apex:attribute name="ParentObjectTypeDesc" type="String" AssignTo="{!ParentObjectType}" Description="The Is View All FLAG"  />
-<<<<<<< HEAD
-    <apex:attribute name="ReturnPageURLValue" type="String" AssignTo="{!ReturnPageURL}" Description="The Is View All FLAG"  />                        
-     <style>
-      .submit_btn_addcomment{
- background: none repeat scroll 0 0 #004976 !important;
-border-radius: 5px !important;
-color: #FFFFFF!important;
-font-size: 14px!important;
-height: 30px;
-margin-top: 0px!important;
-padding-bottom: 0px;
-padding-top: 0px;
-width: 124px;
-/* margin-left: 102px!important; */
-/* margin-bottom: 10px!important; */
- }
- 
- .comment_box1{
-    margin-top: 5px;
-//width: 90%;
-height: 80px;
-margin-bottom: 5px;
-border: 2px solid #74AE00;
-border-radius: 7px;
-resize: none;
-    }
-    .comment_box2{
-    margin-top: 5px;
-width: 90%;
-height: 30px;
-margin-bottom: 5px;
-border: 2px solid #74AE00;
-border-radius: 7px;
-resize: none;
-    }
-    
-    .odd { 
-         background-color: #FCF7F7;
-}
-.even {
-         background-color: #DFF0D8;
-}
-
-body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th {
- background:#61A631;
- color: #FFFFFF;
- font-size:16px;
- }
-     </style>
-
-<script type="text/javascript">
-=======
     <apex:attribute name="ReturnPageURLValue" type="String" AssignTo="{!ReturnPageURL}" Description="The Is View All FLAG"  /> 
     
     
@@ -64,7 +12,6 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
 
 <script type="text/javascript">
     
->>>>>>> FETCH_HEAD
             $('a.addfancy').fancybox({
               autoSize: false,
                     width: 900,
@@ -92,14 +39,6 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
     //alert('Hi1');
     myActionFunction(cId,createdbyId);
   }
-<<<<<<< HEAD
-</script>
-    
-    <table id="commentAddTable" style="width:92%;">
-       <tr>
-            <td> 
-            <span style="font-size: 16px; display: block;text-align: left;font-weight:bold;">Add Comment:</span>
-=======
   
   function custFunc(){
       parent.document.body.setAttribute("data-shouldRefreshPage", "1");
@@ -110,18 +49,13 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
        <tr>
             <td> 
             <span class="addCommentLabel">Add Comment:</span>
->>>>>>> FETCH_HEAD
             <apex:inputTextarea value="{!CommentRecord.AF_Comments__c}" styleClass="comment_box comment_box1" />
             </td>
        </tr>
         <tr>
             <td> 
             <apex:outputpanel rendered="{!!isAgencyFlag}">
-<<<<<<< HEAD
-            <span style="font-size: 16px;text-align: left;font-weight:bold;">Public:</span>
-=======
             <span class="publicLabel">Public:</span>
->>>>>>> FETCH_HEAD
             <apex:inputField value="{!CommentRecord.AF_Public__c}"  />
             This comment will be visible to Agencies
             </apex:outputpanel>
@@ -136,18 +70,6 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
         </apex:ActionStatus>
                        <apex:commandButton value="Save Comment" styleClass="submit_btn_addcomment" rerender="commentsPageBlock" action="{!SaveComment}" oncomplete="commentsToggleClose('commentAddTable');" status="status"/> </td>
        </tr> 
-<<<<<<< HEAD
-    </table>    
-    <apex:pageBlock title="Comments" Id="commentsPageBlock" >
-    
-    <apex:outputPanel rendered="{!IsViewAllLink}" style="font-size:16px;font-weight:bold;margin-bottom: -8px!important;display: block;">    
-    <apex:outputLink rendered="{!isAgencyFlag}" value="apex/AF_ViewAll?CParentId={!ParentRecordId}" styleClass="addfancy" id="theLink2">View all</apex:outputLink>
-    <apex:outputLink rendered="{!!isAgencyFlag}" value="apex/AF_ViewAll?CParentId={!ParentRecordId}" styleClass="addfancy" id="theLink3">View all</apex:outputLink>
-    </apex:outputPanel>     
-    <br />
-         <apex:PageMessages id="pm3" />
-        <apex:pageBlockTable id="pg1" title="Comments" value="{!CommentsList}" var="tcl" rowClasses="even,odd"  style="font-size:16px;">
-=======
     </table>
      
     <apex:pageBlock title="Comments" Id="commentsPageBlock" >
@@ -163,23 +85,15 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
     <br />
          <apex:PageMessages id="pm3" />
         <apex:pageBlockTable id="pg1" title="Comments" value="{!CommentsList}" var="tcl" rowClasses="even,odd" styleClass="fontSize16P">
->>>>>>> FETCH_HEAD
          
             
            <apex:column headerValue="Created Date" width="10%"> 
                 <apex:outputField value="{!tcl.CreatedDate}" title="Created Date"/>
             </apex:column>
-<<<<<<< HEAD
-            <apex:column headerValue="Created By" width="10%" >
-                <apex:outputField value="{!tcl.OwnerName__c}"/>
-            </apex:column>
-            <apex:column headerValue="Double Click to Edit Comment" width="70%" >
-=======
             <apex:column headerValue="Created By" width="24%" >
                 <apex:outputField value="{!tcl.OwnerName__c}"/>
             </apex:column>
             <apex:column headerValue="Double Click to Edit Comment" width="55%" >
->>>>>>> FETCH_HEAD
             
             
             <apex:outputPanel onclick="commentEdit('{!tcl.Id}','{!tcl.CreatedById}');" rendered="{!IF(tcl.Id!=myCommentId,'true','false')}">
@@ -192,11 +106,7 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
             </apex:inputField>
             </apex:outputPanel>
             </apex:column>
-<<<<<<< HEAD
-            <apex:column headerValue="Public" width="10%" >
-=======
             <apex:column headerValue="Public" width="6%" >
->>>>>>> FETCH_HEAD
             <apex:outputPanel rendered="{!IF(tcl.Id!=myCommentId,'true','false')}">
             <apex:outputField value="{!tcl.AF_Public__c}" >
             </apex:outputField>
@@ -206,13 +116,8 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
             </apex:inputField>
             </apex:outputPanel>
             </apex:column>
-<<<<<<< HEAD
-            <apex:column >
-            <apex:commandButton image="{!URLFOR($Resource.AF_CommentEditImage)}" reRender="commentsPageBlock,pg1" action="{!SaveCommentEdit}" id="saveButton" value="Edit Comment"  rendered="{!!isAgencyFlag}" status="status1"/>
-=======
             <apex:column width="5%">
             <apex:commandButton image="{!URLFOR($Resource.AF_CommentEditImage)}" reRender="commentsPageBlock,pg1" action="{!SaveCommentEdit}"  id="saveButton" value="Edit Comment"  rendered="{!!isAgencyFlag}" status="status1" onClick="custFunc()" styleClass="EditSave"/>
->>>>>>> FETCH_HEAD
             </apex:column>
                
         </apex:pageBlockTable>                 
@@ -226,8 +131,5 @@ body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th
             <apex:param name="recordId" assignto="{!myCommentId}" value=""/>
             <apex:param name="createId" assignto="{!myCreateId}" value=""/>
         </apex:actionfunction>
-<<<<<<< HEAD
-=======
  </div>
->>>>>>> FETCH_HEAD
 </apex:component>

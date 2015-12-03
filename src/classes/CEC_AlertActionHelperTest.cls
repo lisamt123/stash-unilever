@@ -24,11 +24,7 @@ public with sharing class CEC_AlertActionHelperTest {
         mdm_Product_Category__c pCategory = new mdm_Product_Category__c(name='ProductCategory', L0_Product_Category__c='Foods Category');
         insert pCategory;
 
-<<<<<<< HEAD
-        mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', brand__c= 'Dove1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
-=======
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', brand__c= 'Dove1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
->>>>>>> FETCH_HEAD
         insert productObj;          
 
         mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L5_Desc__c = 'L4 Desc');
@@ -40,9 +36,6 @@ public with sharing class CEC_AlertActionHelperTest {
         CEC_Case_Market_Mapping__c cmm = new CEC_Case_Market_Mapping__c();
         cmm.Market__c = 'India';
         insert cmm;
-<<<<<<< HEAD
-
-=======
         
         cec_Org_Settings__c custsett = new cec_Org_Settings__c();
         custsett.Safety_Alert_Email_Id__c = 'test@gmail.com';
@@ -50,7 +43,6 @@ public with sharing class CEC_AlertActionHelperTest {
         
         OrgWideEmailAddress[] owea = [select Id from OrgWideEmailAddress where Address = :custsett.Safety_Alert_Email_Id__c];
        
->>>>>>> FETCH_HEAD
         Case caseObj= new Case();
         caseObj.Status='New';
         caseObj.Origin='Email'; 
@@ -94,11 +86,7 @@ public with sharing class CEC_AlertActionHelperTest {
         mdm_Product_Category__c pCategory = new mdm_Product_Category__c(name='ProductCategory', L0_Product_Category__c='Foods Category');
         insert pCategory;
 
-<<<<<<< HEAD
-        mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', brand__c= 'Dove1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
-=======
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', brand__c= 'Dove1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
->>>>>>> FETCH_HEAD
         insert productObj;          
 
         mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L5_Desc__c = 'L4 Desc');
@@ -106,8 +94,6 @@ public with sharing class CEC_AlertActionHelperTest {
 
         mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Test Reason1', L5_Code__c='T5261',Global_Listening_Tree__c = gListingTree.Id);
         insert reasonObj;
-<<<<<<< HEAD
-=======
         
         
         cec_Org_Settings__c custsett = new cec_Org_Settings__c();
@@ -115,7 +101,6 @@ public with sharing class CEC_AlertActionHelperTest {
         insert custsett;
         
         OrgWideEmailAddress[] owea = [select Id from OrgWideEmailAddress where Address = :custsett.Safety_Alert_Email_Id__c];
->>>>>>> FETCH_HEAD
 
         Case caseObj= new Case();
         caseObj.Status='New';

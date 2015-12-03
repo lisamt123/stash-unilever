@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /*
   Class Name: Core_CA_ApplicationWrapper
   Author : Mindtree
@@ -7,25 +5,19 @@
   Requirement/Project Name: Unilever Salesforce Engagement
   Requirement/Description: group wrapper request data used for both Chatter Approval & Ideation
 */
->>>>>>> FETCH_HEAD
 global class Core_CA_ApplicationWrapper extends Core_CA_BaseApplicationWrapper{
     
     public String serviceName {get;set;}
     public String urlParameters {get;set;}
     public String serviceJSONObjectasString{get;set;}
     public String requestType{get;set;}
-<<<<<<< HEAD
-=======
     
     //Chatter Approval Wrapper instances
->>>>>>> FETCH_HEAD
     public Core_CA_WrapperUtility.MyApprovalsDataRequest myApprovalsDataRequest {get;set;}    
     public Core_CA_WrapperUtility.LineItemDetailRequest lineItemDetailRequest {get;set;}    
     public Core_CA_WrapperUtility.ExpenseDetailsDataRequest expenseDetailRequest {get;set;}
     public Core_CA_WrapperUtility.MyApprovalPostRequest myApprovalPostRequest {get;set;}
     
-<<<<<<< HEAD
-=======
     //Ideation Wrapper instances
     public Core_IC_WrapperUtility.IdeaLandingPageRequest ideaLandingPageRequest {get;set;}
     public Core_IC_WrapperUtility.VoteForIdeasOfTheWeekRequest voteForIdeasOfTheWeekRequest {get;set;}
@@ -34,6 +26,5 @@ global class Core_CA_ApplicationWrapper extends Core_CA_BaseApplicationWrapper{
     public Core_IC_WrapperUtility.IdeaCommentRequest ideaCommentRequest {get;set;}
     public Core_IC_WrapperUtility.SubmitIdeaRequest submitIdeaRequest {get;set;}
     
->>>>>>> FETCH_HEAD
     
 }

@@ -253,13 +253,10 @@
                 <behavior>Edit</behavior>
                 <field>AF_Category_Finance_Flag__c</field>
             </layoutItems>
-<<<<<<< HEAD
-=======
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>AF_Mean_Quarter__c</field>
             </layoutItems>
->>>>>>> FETCH_HEAD
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
@@ -394,11 +391,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-<<<<<<< HEAD
-        <masterLabel>00hL0000000G09F</masterLabel>
-=======
         <masterLabel>00hE00000097KoC</masterLabel>
->>>>>>> FETCH_HEAD
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

@@ -83,22 +83,19 @@
         <type>Lookup</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>AF_Agency_ExchangeRateTemp__c</fullName>
         <description>This field is used for Reporting backup</description>
         <externalId>false</externalId>
         <label>Agency ExchangeRateTemp</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>AF_Agency_Exchange_Rate__c</fullName>
         <defaultValue>0</defaultValue>
         <description>AgencyFee#GLOBAL#To Store agency exchange rate.</description>
@@ -117,9 +114,9 @@
         <description>AgencyFee#GLOBAL#To Store agency spot rate.</description>
         <externalId>false</externalId>
         <label>Agency Spot Rate</label>
-        <precision>12</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -311,8 +308,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>AF_IsCrossBorderReport__c</fullName>
         <externalId>false</externalId>
         <formula>IF(TEXT(AF_Agency_Entity__r.AF_Country__c) != TEXT(AF_Unilever_Entity__r.AF_Country__c),true,false)</formula>
@@ -323,7 +318,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>AF_IsCrossBorder__c</fullName>
         <description>This field will be useful for cross border calculations in Agencyfee Application</description>
         <externalId>false</externalId>
@@ -335,8 +329,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>AF_MatrixCodeTemp__c</fullName>
         <description>This field created,for reporting backup</description>
         <externalId>false</externalId>
@@ -349,7 +341,6 @@
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>AF_Overidden__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Set when user overides a cell value. Subsequent save or submits of Bonus results will not overide this value</description>
@@ -452,17 +443,15 @@
         <description>Exchange Rate used by agency unilever combination where values are at Ready for po</description>
         <externalId>false</externalId>
         <label>Ready For PO Exchange Rate</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>AF_ReadyforPoCodeTemp__c</fullName>
         <description>This field is used for reporting backup</description>
         <externalId>false</externalId>
@@ -475,7 +464,6 @@
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>AF_Status__c</fullName>
         <description>AgencyFee#GLOBAL#To Store status.</description>
         <externalId>false</externalId>
@@ -694,21 +682,18 @@ if( AF_Bonus_Results__r.AF_IsPilotModel__c , AF_Bonus_Results__r.AF_Total_Remune
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>ReadyforPOExchangeRateTemp__c</fullName>
         <externalId>false</externalId>
         <label>ReadyforPOExchangeRateTemp</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Unilever_Entity_Name__c</fullName>
         <description>Stores the Unilever Entity Name</description>
         <externalId>false</externalId>

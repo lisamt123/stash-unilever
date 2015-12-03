@@ -401,6 +401,10 @@
             <translation><!-- Portugal --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Puerto Rico</masterLabel>
+            <translation><!-- Puerto Rico --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Qatar</masterLabel>
             <translation><!-- Qatar --></translation>
         </picklistValues>

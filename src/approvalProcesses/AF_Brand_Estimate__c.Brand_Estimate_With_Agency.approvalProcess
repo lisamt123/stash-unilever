@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
-<<<<<<< HEAD
-    <active>false</active>
-=======
     <active>true</active>
->>>>>>> FETCH_HEAD
     <allowRecall>false</allowRecall>
     <allowedSubmitters>
         <submitter>AF_Agency_User_Public_Group</submitter>
@@ -18,17 +14,6 @@
         <allowDelegate>true</allowDelegate>
         <assignedApprover>
             <approver>
-<<<<<<< HEAD
-                <name>AF_Cat_Finance_Approver_10__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <approver>
-                <name>AF_Cat_Finance_Approver_4__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <approver>
-                <name>AF_Cat_Finance_Approver_1__c</name>
-=======
                 <name>AF_Cat_Finance_Approver_9__c</name>
                 <type>relatedUserField</type>
             </approver>
@@ -38,7 +23,6 @@
             </approver>
             <approver>
                 <name>AF_Cat_Finance_Approver_8__c</name>
->>>>>>> FETCH_HEAD
                 <type>relatedUserField</type>
             </approver>
             <approver>
@@ -46,11 +30,7 @@
                 <type>relatedUserField</type>
             </approver>
             <approver>
-<<<<<<< HEAD
-                <name>AF_Cat_Finance_Approver_2__c</name>
-=======
                 <name>AF_Cat_Finance_Approver_6__c</name>
->>>>>>> FETCH_HEAD
                 <type>relatedUserField</type>
             </approver>
             <approver>
@@ -58,21 +38,6 @@
                 <type>relatedUserField</type>
             </approver>
             <approver>
-<<<<<<< HEAD
-                <name>AF_Cat_Finance_Approver_8__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <approver>
-                <name>AF_Cat_Finance_Approver_9__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <approver>
-                <name>AF_Cat_Finance_Approver_6__c</name>
-                <type>relatedUserField</type>
-            </approver>
-            <approver>
-                <name>AF_Cat_Finance_Approver_7__c</name>
-=======
                 <name>AF_Cat_Finance_Approver_4__c</name>
                 <type>relatedUserField</type>
             </approver>
@@ -86,7 +51,6 @@
             </approver>
             <approver>
                 <name>AF_Cat_Finance_Approver_10__c</name>
->>>>>>> FETCH_HEAD
                 <type>relatedUserField</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

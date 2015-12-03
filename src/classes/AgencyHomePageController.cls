@@ -37,14 +37,9 @@ public with sharing class AgencyHomePageController {
     public List<SelectOption> selectedbrandList{get;set;}
     public String selectedBrandOption{get;set;}
     public String selectedBrandValue{get;set;}
-<<<<<<< HEAD
-    public List<AF_AgencyEmailAlerts__c> bonusQuarterlyDateList{get;set;}
-    public Boolean IsCMCOFinance{get;set;}
-=======
     public List<AF_BonusQuarterly_Quarterdates__c> bonusQuarterlyDateList{get;set;}
     public Boolean IsCMCOFinance{get;set;}
     
->>>>>>> FETCH_HEAD
     /** construtor **/
     public AgencyHomePageController()
     {
@@ -82,11 +77,7 @@ public with sharing class AgencyHomePageController {
             else if(permissionSetName.contains('Controllers')){
                 isController=true;
             }
-<<<<<<< HEAD
-            else if(permissionSetName.contains('Procurement')){
-=======
             else if(permissionSetName.contains('AF_Procurement')){
->>>>>>> FETCH_HEAD
                 isProcurement=true;
             }
             else if(permissionSetName=='AF_Category_Finance_Regional'){
@@ -112,14 +103,10 @@ public with sharing class AgencyHomePageController {
             }
         }
         system.debug('brandList..1..'+brandList);
-<<<<<<< HEAD
-       
-=======
         
            //to display review for Agency
         
              
->>>>>>> FETCH_HEAD
        //Add Brands to DropDown
         selectedbrandList=getBrandsOption();
         system.debug('selectedbrandList....'+selectedbrandList);
@@ -258,10 +245,7 @@ public with sharing class AgencyHomePageController {
         list<selectOption> financialYearOptionList = new list<selectOption>();
         Date myDate= Date.Today();
         Date previousYear = myDate.addYears(-1);
-<<<<<<< HEAD
-=======
         financialYearOptionList.add(new selectOption(String.valueOf(previousYear.addYears(-1).Year()), 'FY '+previousYear.addYears(-1).Year()));
->>>>>>> FETCH_HEAD
         financialYearOptionList.add(new selectOption(String.valueOf(previousYear.Year()), 'FY '+previousYear.Year()));
         financialYearOptionList.add(new selectOption(String.valueOf(myDate.year()), 'FY '+myDate.year()));
         financialYearOptionList.add(new selectOption(String.valueOf(myDate.addYears(1).year()), 'FY '+myDate.addYears(1).year()));
@@ -276,48 +260,28 @@ public with sharing class AgencyHomePageController {
     /** get and display brand estimates data related to selected category **/
     public list<AF_Brand_Estimate__c> getbrandEstimateDetailList() {
         list<AF_Brand_Estimate__c> brandEstimateObjList = new list<AF_Brand_Estimate__c>();
-<<<<<<< HEAD
-        bonusQuarterlyDateList = new List<AF_AgencyEmailAlerts__c>();
-=======
         bonusQuarterlyDateList = new List<AF_BonusQuarterly_Quarterdates__c>();
->>>>>>> FETCH_HEAD
         system.debug('brandList..2..'+brandList);
         system.debug('financialYear...'+financialYear);
         system.debug('selectedBrandValue...2..'+selectedBrandValue);
         if(categoryStr!=null && selectedBrandValue=='All Brands' && isAgencyFlag==true){
             Id selectedCatId = categoryStr.split('::').get(1);
-<<<<<<< HEAD
-            brandEstimateObjList=[select id,Brand__c,AF_Bonus_Quaterly_Status__c,AF_No_Bonus__c,AF_Pilot_Model__c,AF_Bonus_Yearly_Status__c,AF_No_Of_Bonus_Matrix_Crossborders__c,AF_No_of_OOPS_Crossborder__c, Brand__r.Name, Brand__r.AF_Brand_Logo__c,AF_Agency__r.Name,AF_Crossborder__c,Agency_Base_Fee__c,Base_Fee_Total__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Agency__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,AF_No_CrossBorders__c from AF_Brand_Estimate__c where Brand__r.AF_Category_Brands__c=:selectedCatId AND AF_Fiscal_Year__c=:financialYear AND AF_Active__c=true AND AF_Agency__r.Name=:AgencyAccountName AND Brand__c !=null order by Brand__r.Name asc];
-=======
             brandEstimateObjList=[select id,Brand__c,AF_Bonus_Quaterly_Status__c,AF_No_Bonus__c,AF_Pilot_Model__c,AF_Bonus_Yearly_Status__c,AF_No_Of_Bonus_Matrix_Crossborders__c,AF_No_of_OOPS_Crossborder__c, Brand__r.Name, Brand__r.AF_Brand_Logo__c,AF_Agency__r.Name,AF_Crossborder__c,Agency_Base_Fee__c,Base_Fee_Total__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Agency__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,AF_No_CrossBorders__c,AF_Category_Finance_Flag__c from AF_Brand_Estimate__c where Brand__r.AF_Category_Brands__c=:selectedCatId AND AF_Fiscal_Year__c=:financialYear AND AF_Active__c=true AND AF_Agency__r.Name=:AgencyAccountName AND Brand__c !=null order by Brand__r.Name asc];
->>>>>>> FETCH_HEAD
         }
         else if(categoryStr!=null && selectedBrandValue=='My Brands' && isAgencyFlag==true){
             Id selectedCatId = categoryStr.split('::').get(1);
             system.debug('selectedCatId ...'+selectedCatId);
-<<<<<<< HEAD
-            brandEstimateObjList=[select id,Brand__c,AF_Bonus_Quaterly_Status__c,AF_No_Bonus__c,AF_Pilot_Model__c,AF_Bonus_Yearly_Status__c,AF_No_Of_Bonus_Matrix_Crossborders__c,AF_No_of_OOPS_Crossborder__c, Brand__r.Name, Brand__r.AF_Brand_Logo__c,AF_Agency__r.Name,AF_Crossborder__c,Agency_Base_Fee__c,Base_Fee_Total__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Agency__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,AF_No_CrossBorders__c from AF_Brand_Estimate__c where Brand__r.AF_Category_Brands__c=:selectedCatId AND Brand__r.Name=:brandList AND AF_Fiscal_Year__c=:financialYear AND AF_Active__c=true AND AF_Agency__r.Name=:AgencyAccountName AND Brand__c !=null order by Brand__r.Name asc];
-=======
             brandEstimateObjList=[select id,Brand__c,AF_Bonus_Quaterly_Status__c,AF_No_Bonus__c,AF_Pilot_Model__c,AF_Bonus_Yearly_Status__c,AF_No_Of_Bonus_Matrix_Crossborders__c,AF_No_of_OOPS_Crossborder__c, Brand__r.Name, Brand__r.AF_Brand_Logo__c,AF_Agency__r.Name,AF_Crossborder__c,Agency_Base_Fee__c,Base_Fee_Total__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Agency__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,AF_No_CrossBorders__c,AF_Category_Finance_Flag__c from AF_Brand_Estimate__c where Brand__r.AF_Category_Brands__c=:selectedCatId AND Brand__r.Name=:brandList AND AF_Fiscal_Year__c=:financialYear AND AF_Active__c=true AND AF_Agency__r.Name=:AgencyAccountName AND Brand__c !=null order by Brand__r.Name asc];
->>>>>>> FETCH_HEAD
         }
         else if(categoryStr!=null && selectedBrandValue=='All Brands' && isAgencyFlag==false){
             Id selectedCatId = categoryStr.split('::').get(1);
             system.debug('selectedCatId ...'+selectedCatId);
-<<<<<<< HEAD
-            brandEstimateObjList=[select id,Brand__c,AF_Bonus_Quaterly_Status__c,AF_No_Bonus__c,AF_Pilot_Model__c,AF_Bonus_Yearly_Status__c,AF_No_Of_Bonus_Matrix_Crossborders__c,AF_No_of_OOPS_Crossborder__c, Brand__r.Name, Brand__r.AF_Brand_Logo__c,AF_Agency__r.Name,AF_Crossborder__c,Agency_Base_Fee__c,Base_Fee_Total__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Agency__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,AF_No_CrossBorders__c from AF_Brand_Estimate__c where Brand__r.AF_Category_Brands__c=:selectedCatId  AND AF_Fiscal_Year__c=:financialYear AND AF_Active__c=true AND AF_Agency__c!=null AND Brand__c !=null order by Brand__r.Name asc];
-=======
             brandEstimateObjList=[select id,Brand__c,AF_Bonus_Quaterly_Status__c,AF_No_Bonus__c,AF_Pilot_Model__c,AF_Bonus_Yearly_Status__c,AF_No_Of_Bonus_Matrix_Crossborders__c,AF_No_of_OOPS_Crossborder__c, Brand__r.Name, Brand__r.AF_Brand_Logo__c,AF_Agency__r.Name,AF_Crossborder__c,Agency_Base_Fee__c,Base_Fee_Total__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Agency__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,AF_No_CrossBorders__c,AF_Category_Finance_Flag__c from AF_Brand_Estimate__c where Brand__r.AF_Category_Brands__c=:selectedCatId  AND AF_Fiscal_Year__c=:financialYear AND AF_Active__c=true AND AF_Agency__c!=null AND Brand__c !=null order by Brand__r.Name asc];
->>>>>>> FETCH_HEAD
         }
         else if(categoryStr!=null && selectedBrandValue=='My Brands' && isAgencyFlag==false){
             Id selectedCatId = categoryStr.split('::').get(1);
             system.debug('selectedCatId ...'+selectedCatId);
-<<<<<<< HEAD
-            brandEstimateObjList=[select id,Brand__c,AF_Bonus_Quaterly_Status__c,AF_No_Bonus__c,AF_Pilot_Model__c,AF_Bonus_Yearly_Status__c,AF_No_Of_Bonus_Matrix_Crossborders__c,AF_No_of_OOPS_Crossborder__c, Brand__r.Name, Brand__r.AF_Brand_Logo__c,AF_Agency__r.Name,AF_Crossborder__c,Agency_Base_Fee__c,Base_Fee_Total__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Agency__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,AF_No_CrossBorders__c from AF_Brand_Estimate__c where Brand__r.AF_Category_Brands__c=:selectedCatId AND Brand__r.Name=:brandList AND AF_Fiscal_Year__c=:financialYear AND AF_Active__c=true AND AF_Agency__c!=null AND Brand__c !=null order by Brand__r.Name asc];
-=======
             brandEstimateObjList=[select id,Brand__c,AF_Bonus_Quaterly_Status__c,AF_No_Bonus__c,AF_Pilot_Model__c,AF_Bonus_Yearly_Status__c,AF_No_Of_Bonus_Matrix_Crossborders__c,AF_No_of_OOPS_Crossborder__c, Brand__r.Name, Brand__r.AF_Brand_Logo__c,AF_Agency__r.Name,AF_Crossborder__c,Agency_Base_Fee__c,Base_Fee_Total__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Agency__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,AF_No_CrossBorders__c,AF_Category_Finance_Flag__c from AF_Brand_Estimate__c where Brand__r.AF_Category_Brands__c=:selectedCatId AND Brand__r.Name=:brandList AND AF_Fiscal_Year__c=:financialYear AND AF_Active__c=true AND AF_Agency__c!=null AND Brand__c !=null order by Brand__r.Name asc];
->>>>>>> FETCH_HEAD
         }
         system.debug('brandEstimateObjList....'+brandEstimateObjList);
         //variable to store base fees details related to brand
@@ -373,13 +337,6 @@ public with sharing class AgencyHomePageController {
        system.debug('uniqueBrandEstMap.keyset()..'+uniqueBrandEstMap.keyset());
         
         Boolean bonusDate = false;
-<<<<<<< HEAD
-        //Added by Satya: to get Bonus status and action icon on AgencyHomePage
-        bonusQuarterlyDateList = [select Q1__c,Q2__c,Q3__c,Q4__c from AF_AgencyEmailAlerts__c];
-        if(bonusQuarterlyDateList.size()>0){
-            if(bonusQuarterlyDateList[0].Q1__c <= system.today()){
-                bonusDate = true;
-=======
         Boolean bonusDateQ2 = false;
         Boolean bonusDateQ3 = false;
         
@@ -400,7 +357,6 @@ public with sharing class AgencyHomePageController {
                 bonusDateQ3 = true;
                 bonusDateQ2 = false;
                 bonusDate = false;
->>>>>>> FETCH_HEAD
             }
         }
         system.debug('bonusDate...'+bonusDate);
@@ -419,22 +375,15 @@ public with sharing class AgencyHomePageController {
         system.debug('bonusThresholdObj...'+bonusThresholdObj);
         if(bonusThresholdObj.size()>0)
         {
-<<<<<<< HEAD
-        for(AF_Bonus_Results__c bonusResObj:[select id, AF_Status__c,AF_Bonus_Thresholds__c from AF_Bonus_Results__c where RecordType.Name='Bonus Quarterly' and AF_Bonus_Thresholds__c IN:bonusThresholdObj])
-=======
         for(AF_Bonus_Results__c bonusResObj:[select id, AF_Status__c,AF_Period__c,AF_Bonus_Thresholds__c from AF_Bonus_Results__c where RecordType.Name='Bonus Quarterly' and AF_Bonus_Thresholds__c IN:bonusThresholdObj])
->>>>>>> FETCH_HEAD
             {
             bonusResultObj.add(bonusResObj);
             }
         }
         system.debug('bonusResultObj..'+bonusResultObj.size());
         system.debug('uniqueBrandEstMap..&&&&&&&&.'+uniqueBrandEstMap);
-<<<<<<< HEAD
-=======
         Boolean Quarter=false;
         
->>>>>>> FETCH_HEAD
         for(AF_Bonus_Threshold__c bt:bonusThresObj){
             List<AF_Bonus_Results__c> bonusResultSelectedObj = new List<AF_Bonus_Results__c>();
             for(AF_Bonus_Results__c br:bonusResultObj) {
@@ -445,31 +394,13 @@ public with sharing class AgencyHomePageController {
                 system.debug('bt.Brand_Agency_Combination__c....'+bt.Brand_Agency_Combination__c);
                 if(uniqueBrandEstMap.containsKey(bt.Brand_Agency_Combination__c) && !uniqueBonusThrSet.contains(bt.Brand_Agency_Combination__c))
                 {
-<<<<<<< HEAD
-                    system.debug('inside 1 ******');
-                    if((bonusResultSelectedObj.size()==0 || bonusResultSelectedObj.size()<3) && bonusDate){
-                    system.debug('inside 2 ******');
-                    uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='W/Cat Finance'; 
-                    uniqueBonusThrSet.add(bt.Brand_Agency_Combination__c);
-                    }
-                    else if(bonusResultSelectedObj.size()==3){
-                    system.debug('inside 3 ******');
-                    String status='';
-                    status=bonusResultSelectedObj[0].AF_Status__c;
-                    if(status=='Draft'||status=='None'){
-                        system.debug('inside draft');
-                        uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='W/Cat Finance';
-                    }
-                    else if(status=='Submitted'){
-                        system.debug('inside submitted');
-                        uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='with CMCO';
-=======
                    if(bonusResultSelectedObj.size()==0 && (bonusDate || bonusDateQ2 || bonusDateQ3)){
                     uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='W/Cat Finance';
                     uniqueBonusThrSet.add(bt.Brand_Agency_Combination__c);
                    }
                    else if(bonusResultSelectedObj.size()>0){
                     for(AF_Bonus_Results__c bonusResult:bonusResultSelectedObj){
+                    Quarter = false;
                     if(bonusResult.AF_Period__c == 'Q1' && bonusDate==true && (bonusResult.AF_Status__c == 'Draft' || bonusResult.AF_Status__c =='None')){
                         Quarter= true;
                         uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='W/Cat Finance';
@@ -498,7 +429,6 @@ public with sharing class AgencyHomePageController {
                     }
                     if(Quarter==false){
                      uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='W/Cat Finance';
->>>>>>> FETCH_HEAD
                     }
                     uniqueBonusThrSet.add(bt.Brand_Agency_Combination__c);
                     }

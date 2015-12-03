@@ -152,14 +152,11 @@
             <field>AF_Adaptation_Local__c</field>
             <table>AF_PO_Report__c</table>
         </columns>
-<<<<<<< HEAD
-=======
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>AF_Big_Category_New__c</field>
             <table>AF_PO_Report__c</table>
         </columns>
->>>>>>> FETCH_HEAD
         <masterLabel>PO Report</masterLabel>
     </sections>
 </ReportType>

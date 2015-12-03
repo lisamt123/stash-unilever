@@ -165,8 +165,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Account_Record_Count__c</fullName>
         <description>CEC this formula field puts the number 1 on the record for counting advantages on reports</description>
         <externalId>false</externalId>
@@ -180,7 +178,6 @@
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Additional_Information__c</fullName>
         <description>Additional information for &quot;Insurance, Trade Regs &amp; Policy&quot;.</description>
         <externalId>false</externalId>
@@ -1265,8 +1262,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Latest_Case_Number__c</fullName>
         <description>CEC : To store the latest case Number of the Account</description>
         <externalId>false</externalId>
@@ -1278,7 +1273,6 @@
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Latest_Case_Product_Code__c</fullName>
         <description>cec_Latest Primary Case&apos;s product code</description>
         <externalId>false</externalId>
@@ -1575,8 +1569,6 @@
         <trackFeedHistory>false</trackFeedHistory>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Phone_No_Special_Char__c</fullName>
         <description>CEC : Field which removes all the special characters(including whitespace) for the &apos;Phone&apos; field.</description>
         <externalId>false</externalId>
@@ -1588,7 +1580,6 @@
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Preferred_Channel__c</fullName>
         <description>To identify a consumers preferred channel of contact</description>
         <externalId>false</externalId>
@@ -1949,53 +1940,33 @@
     <listViews>
         <fullName>AllAccounts</fullName>
         <columns>ACCOUNT.NAME</columns>
-<<<<<<< HEAD
-        <columns>ACCOUNT.SITE</columns>
-=======
->>>>>>> FETCH_HEAD
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
         <columns>ACCOUNT.PHONE1</columns>
         <columns>ACCOUNT.TYPE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-<<<<<<< HEAD
-        <filterScope>Everything</filterScope>
-        <label>All Accounts</label>
-=======
         <columns>Demandware_ID__c</columns>
         <filterScope>Everything</filterScope>
         <label>Tous les comptes</label>
         <language>fr</language>
->>>>>>> FETCH_HEAD
     </listViews>
     <listViews>
         <fullName>NewThisWeek</fullName>
         <columns>ACCOUNT.NAME</columns>
-<<<<<<< HEAD
-        <columns>ACCOUNT.SITE</columns>
-=======
->>>>>>> FETCH_HEAD
         <columns>ACCOUNT.ADDRESS1_STATE</columns>
         <columns>ACCOUNT.PHONE1</columns>
         <columns>ACCOUNT.TYPE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-<<<<<<< HEAD
-=======
         <columns>Demandware_ID__c</columns>
         <columns>ACCOUNT.CREATED_DATE</columns>
         <columns>CREATEDBY_USER.ALIAS</columns>
->>>>>>> FETCH_HEAD
         <filterScope>Everything</filterScope>
         <filters>
             <field>ACCOUNT.CREATED_DATE</field>
             <operation>equals</operation>
             <value>THIS_WEEK</value>
         </filters>
-<<<<<<< HEAD
-        <label>New This Week</label>
-=======
         <label>Nouvelles cette semaine</label>
         <language>fr</language>
->>>>>>> FETCH_HEAD
     </listViews>
     <listViews>
         <fullName>PM_My_view</fullName>

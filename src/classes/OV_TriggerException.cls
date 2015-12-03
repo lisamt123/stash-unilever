@@ -1,0 +1,1 @@
+public class OV_TriggerException  extends Exception {}

@@ -141,6 +141,7 @@ public class CORE_NewsArticle_Test{
         
         PermissionSetAssignment permSetAssignment = new PermissionSetAssignment(AssigneeId = userId, PermissionSetId = permSet.Id);
         insert permSetAssignment;
+        System.assert(permSetAssignment != null);
         Test.stopTest();
     }
 

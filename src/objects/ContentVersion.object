@@ -26,7 +26,6 @@
     </fields>
     <fields>
         <fullName>FileType</fullName>
-        <trackHistory>false</trackHistory>
     </fields>
     <fields>
         <fullName>Language</fullName>
@@ -38,10 +37,19 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>SharingOption</fullName>
+        <trackHistory>true</trackHistory>
+    </fields>
+    <fields>
         <fullName>TagCsv</fullName>
     </fields>
     <fields>
         <fullName>Title</fullName>
         <trackHistory>false</trackHistory>
     </fields>
+    <recordTypes>
+        <fullName>One_View</fullName>
+        <active>true</active>
+        <label>One View</label>
+    </recordTypes>
 </CustomObject>

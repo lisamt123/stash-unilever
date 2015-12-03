@@ -71,10 +71,7 @@ public class Test_AFCustomSetting
      AF_BonusQuarterly__c bq = new AF_BonusQuarterly__c();
      bq.AF_BonusQuarterlyDate__c = system.today();
      
-<<<<<<< HEAD
-=======
      
->>>>>>> FETCH_HEAD
      insert bq;
      
      
@@ -88,8 +85,6 @@ public class Test_AFCustomSetting
      abq.X5__c = 15;
      insert abq;
      
-<<<<<<< HEAD
-=======
      AF_AnnualBonus_Qual__c abq1 = new AF_AnnualBonus_Qual__c();
      abq1.Name = '5';
      abq1.X1__c = 0;
@@ -99,7 +94,6 @@ public class Test_AFCustomSetting
      abq1.X5__c = 15;
      insert abq1;
      
->>>>>>> FETCH_HEAD
      AF_OOPS_Settings__c oops = new AF_OOPS_Settings__c();
      oops.Overall_Percentage__c = 4;
      insert oops;
@@ -108,19 +102,6 @@ public class Test_AFCustomSetting
      link.AF_Community_Link__c = 'https://agfeecog2-unilever.cs8.force.com/AgencyFees';
      insert link;
      
-<<<<<<< HEAD
-     AF_CustomSetting cs = new AF_CustomSetting();
-     cs.submitCustomSetting();
-     cs.submitTriggerDate();
-     cs.submitAgencyEmailAlerts();
-     cs.submitAgencyBonusMap();
-     cs.submitBonusLink();
-     cs.submitDummyUserId();
-     cs.submitAFCMCO();
-     cs.submitCatFinThreshold();
-     cs.submitbrandTriggerDate();
-     cs.submitBonusQuarterly();
-=======
      
      
      
@@ -136,7 +117,6 @@ public class Test_AFCustomSetting
      //cs.submitCatFinThreshold();
      //cs.submitbrandTriggerDate();
      //cs.submitBonusQuarterly();
->>>>>>> FETCH_HEAD
      
      cs.submitAnnualBonusQual();
      cs.submitoopsPercentage();

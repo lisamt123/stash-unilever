@@ -39,13 +39,10 @@
                 <behavior>Readonly</behavior>
                 <field>Account_Owner_Active_Flag__c</field>
             </layoutItems>
-<<<<<<< HEAD
-=======
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>CaseOrigin__c</field>
             </layoutItems>
->>>>>>> FETCH_HEAD
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

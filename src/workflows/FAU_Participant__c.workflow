@@ -553,13 +553,8 @@
         <fullName>FAU_Create_Personal_Assistant</fullName>
         <assignedTo>rangappa.a.gunda@unilever.com.prod</assignedTo>
         <assignedToType>user</assignedToType>
-<<<<<<< HEAD
         <description>Can you create/upgrade the Personal Assistant User for this Participant using the email &apos;Request PA User Email Address&apos;. &amp;  Unilever - Force Multi Profile 
 
-=======
-        <description>Can you create/upgrade the Personal Assistant User for this Participant using the email &apos;Request PA User Email Address&apos;. &amp;  Unilever - Force Multi Profile 
-
->>>>>>> FETCH_HEAD
 After you create the user, add the user to &apos;Personal Assistant&apos; field.</description>
         <dueDateOffset>0</dueDateOffset>
         <notifyAssignee>false</notifyAssignee>

@@ -22,11 +22,7 @@ global class cec_SmartTemplateLoaderHelper implements Support.EmailTemplateSelec
 		system.debug('----------getDefaultEmailTemplateId caseId----'+caseId);
 
 		//Case c = [SELECT id,Status,Reason,Market__c,Brand__c,Case_Brand_Mapping__c FROM Case where id =: caseId];
-<<<<<<< HEAD
-		Case c = [SELECT id, Status, Reason, Market__c, Case_Market__c, Brand__c, Case_Brand_Mapping__c FROM Case where id =: caseId];
-=======
 		Case c = [SELECT id, Status, Reason, Market__c, Case_Market__c, Case_Brand__c, Case_Brand_Mapping__c FROM Case where id =: caseId];
->>>>>>> FETCH_HEAD
 		system.debug('------------------------------------------c '+c);
 		cec_Case_Brand_Mapping__c conf = null;
 		List<cec_Case_Brand_Mapping__c> confs = null;
@@ -53,19 +49,11 @@ global class cec_SmartTemplateLoaderHelper implements Support.EmailTemplateSelec
 
 			if(c.Case_Market__c!=null || c.Case_Market__c !=''){       
 				confs = [SELECT id, Default_Template_Name__c, Brand__c, Brand_Market__c FROM cec_Case_Brand_Mapping__c 
-<<<<<<< HEAD
-				         WHERE Brand_Market__c =: c.Case_Market__c AND Brand__c =: c.Brand__c AND Default_Outbound_Email__c = True  
-				         ORDER BY Default_Outbound_Email__c,LastModifiedDate DESC ];
-			}else{
-				confs = [SELECT id, Default_Template_Name__c, Brand__c, Brand_Market__c FROM cec_Case_Brand_Mapping__c 
-				         WHERE Brand_Market__c =: c.Market__c AND Brand__c =: c.Brand__c AND Default_Outbound_Email__c = True  
-=======
 				         WHERE Brand_Market__c =: c.Case_Market__c AND Brand__c =: c.Case_Brand__c AND Default_Outbound_Email__c = True  
 				         ORDER BY Default_Outbound_Email__c,LastModifiedDate DESC ];
 			}else{
 				confs = [SELECT id, Default_Template_Name__c, Brand__c, Brand_Market__c FROM cec_Case_Brand_Mapping__c 
 				         WHERE Brand_Market__c =: c.Market__c AND Brand__c =: c.Case_Brand__c AND Default_Outbound_Email__c = True  
->>>>>>> FETCH_HEAD
 				         ORDER BY Default_Outbound_Email__c, LastModifiedDate DESC ];
 			}
 			system.debug('Inside Else ------------------------------------------confs '+confs );            

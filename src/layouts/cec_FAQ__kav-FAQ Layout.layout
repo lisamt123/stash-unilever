@@ -27,8 +27,6 @@
             <layoutItems>
                 <field>Related_PDF__c</field>
             </layoutItems>
-<<<<<<< HEAD
-=======
             <layoutItems>
                 <field>Related_PDF_2__c</field>
             </layoutItems>
@@ -38,7 +36,6 @@
             <layoutItems>
                 <field>Meta_Tags__c</field>
             </layoutItems>
->>>>>>> FETCH_HEAD
         </layoutColumns>
         <style>OneColumn</style>
     </layoutSections>

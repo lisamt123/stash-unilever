@@ -3,11 +3,7 @@
     <apiVersion>32.0</apiVersion>
     <packageVersions>
         <majorNumber>3</majorNumber>
-<<<<<<< HEAD
-        <minorNumber>7</minorNumber>
-=======
         <minorNumber>8</minorNumber>
->>>>>>> FETCH_HEAD
         <namespace>CRMfusionDBR101</namespace>
     </packageVersions>
     <status>Active</status>

@@ -92,13 +92,10 @@
                 <fullName>Email TO France</fullName>
                 <default>false</default>
             </picklistValues>
-<<<<<<< HEAD
-=======
             <picklistValues>
                 <fullName>Email Sri Lanka</fullName>
                 <default>false</default>
             </picklistValues>
->>>>>>> FETCH_HEAD
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>

@@ -166,8 +166,6 @@
                 <behavior>Edit</behavior>
                 <field>AF_Overidden__c</field>
             </layoutItems>
-<<<<<<< HEAD
-=======
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>AF_MatrixCodeTemp__c</field>
@@ -184,7 +182,6 @@
                 <behavior>Edit</behavior>
                 <field>ReadyforPOExchangeRateTemp__c</field>
             </layoutItems>
->>>>>>> FETCH_HEAD
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
@@ -228,11 +225,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-<<<<<<< HEAD
-        <masterLabel>00hL0000000SfoH</masterLabel>
-=======
         <masterLabel>00hE00000097KoD</masterLabel>
->>>>>>> FETCH_HEAD
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

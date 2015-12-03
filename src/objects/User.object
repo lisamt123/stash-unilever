@@ -29,6 +29,10 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>LinkToSetupUserDetailAction</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>ManagePermSetsAction</actionName>
         <type>Default</type>
     </actionOverrides>
@@ -381,99 +385,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>IPM_Brand_Name__c</fullName>
-        <description>to store brand name from AD</description>
-        <externalId>false</externalId>
-        <label>Brand Name</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_Brand_Positioning__c</fullName>
-        <externalId>false</externalId>
-        <label>Brand Positioning</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>TextArea</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Category__c</fullName>
-        <description>to store category of user(information will be fetch from AD)</description>
-        <externalId>false</externalId>
-        <label>Category</label>
-        <length>50</length>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_Role__c</fullName>
-        <description>to stroe role from AD</description>
-        <externalId>false</externalId>
-        <label>Role</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Finance</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>R&amp;D</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Supply Chain</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Project Leader</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Deputy Project Leader</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CMI</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Gate Keeper</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Technical Leader</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>CD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>BB</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
-        <fullName>IPM_Sub_Category__c</fullName>
-        <externalId>false</externalId>
-        <label>Sub Category</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <type>TextArea</type>
-    </fields>
-    <fields>
         <fullName>Language_Skills_List__c</fullName>
         <description>CEC: This field holds the list of all language skills from the multi-select picklist</description>
         <externalId>false</externalId>
@@ -533,6 +444,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -882,6 +794,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Sri Lanka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>United Kingdom</fullName>
                 <default>false</default>
             </picklistValues>
@@ -966,6 +882,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -984,6 +901,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1002,6 +920,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1020,6 +939,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1038,6 +958,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1056,6 +977,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1074,6 +996,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1092,6 +1015,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1110,6 +1034,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1128,6 +1053,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1146,6 +1072,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1164,6 +1091,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1182,6 +1110,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1200,6 +1129,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1218,6 +1148,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1236,6 +1167,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1254,6 +1186,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1272,6 +1205,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1290,6 +1224,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1308,6 +1243,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1326,6 +1262,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1344,6 +1281,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1362,6 +1300,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1380,6 +1319,7 @@
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
                 <controllingFieldValues>United Kingdom</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1891,6 +1831,19 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>User_Unique__c</fullName>
+        <description>Field is used to generate unique user counts on various reports</description>
+        <externalId>false</externalId>
+        <formula>1</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>User Unique</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>agf__External_ID__c</fullName>
         <caseSensitive>true</caseSensitive>
         <deprecated>false</deprecated>
@@ -2091,13 +2044,12 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <fullName>AdminUsers</fullName>
         <booleanFilter>3 AND (1 OR 2)</booleanFilter>
         <columns>FULL_NAME</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>CORE.USERS.USERNAME</columns>
         <columns>CORE.USERS.LAST_LOGIN</columns>
         <columns>CORE.USER_ROLE.NAME</columns>
         <columns>CORE.USERS.ACTIVE</columns>
         <columns>CORE.PROFILE.NAME</columns>
-        <columns>CORE.USERS.SAML_SUBJECT</columns>
+        <columns>CORE.USERS.EMAIL</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CORE.PROFILE.NAME</field>
@@ -2115,6 +2067,7 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
             <value>1</value>
         </filters>
         <label>Active Admin Users</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>AllUsers</fullName>
@@ -2504,6 +2457,42 @@ The Whole Enchilada: All notifications (Default)</inlineHelpText>
         <sharedTo>
             <group>Admins</group>
         </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>One_View_Users</fullName>
+        <booleanFilter>1 AND (2 and 3) or (4)</booleanFilter>
+        <columns>FULL_NAME</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <columns>CORE.USERS.USERNAME</columns>
+        <columns>CORE.USERS.EMAIL</columns>
+        <columns>CORE.USERS.LAST_LOGIN</columns>
+        <columns>CORE.USER_ROLE.NAME</columns>
+        <columns>CORE.PROFILE.NAME</columns>
+        <columns>User_License__c</columns>
+        <columns>CORE.USERS.DEPARTMENT</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CORE.USERS.ACTIVE</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>,Spitzer,Buruncuk,Luthra,Jhingran,Vries,Janssen,Svoronou,Arora</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.FIRST_NAME</field>
+            <operation>equals</operation>
+            <value>,Gulcin,Wendy,Sanjay,Rakhi,Rakhi(GA),Patrick,Wouter-de,Ewa,Deepak</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.LAST_NAME</field>
+            <operation>startsWith</operation>
+            <value>OV_</value>
+        </filters>
+        <label>One View Users</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Ratings_and_Review_users</fullName>

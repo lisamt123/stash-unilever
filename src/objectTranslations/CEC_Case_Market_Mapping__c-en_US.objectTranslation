@@ -13,13 +13,10 @@
         <name>Account_Owner_Active_Flag__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- CaseOrigin --></label>
         <name>CaseOrigin__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- Country --></label>
         <name>Country__c</name>
         <relationshipLabel><!-- Case Market Mappings --></relationshipLabel>

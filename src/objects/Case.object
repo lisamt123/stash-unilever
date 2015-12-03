@@ -146,8 +146,6 @@
         <type>Lookup</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Brand_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports for the Brands.</description>
         <externalId>false</externalId>
@@ -160,10 +158,9 @@
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Brand__c</fullName>
         <externalId>false</externalId>
-        <label>Brand</label>
+        <label>Contact us Brand</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -206,8 +203,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>CEC_Product_Reporting_Name__c</fullName>
         <description>CEC : This field is used to create Reports for the Products with size.</description>
         <externalId>false</externalId>
@@ -232,7 +227,6 @@
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>CEC_Product__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>CEC : Look up field to populate the Case Product.</description>
@@ -294,8 +288,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>CPG_Code_Reporting__c</fullName>
         <description>CEC : This field is used to create reports with Corp Product Grouping Name</description>
         <externalId>false</externalId>
@@ -308,7 +300,6 @@
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Case_Brand_Mapping__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>CEC: Lookup to the brand mapping table to identify template and case parameters</description>
@@ -324,11 +315,18 @@
         <type>Lookup</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Case_Brand__c</fullName>
+        <description>CEC: The case brand field will pull the brand from the product field if it is populated if not it will check the cec product brand field and the case market mapping brand field, it also checks the brand field on the case.</description>
         <externalId>false</externalId>
-        <formula>IF(CEC_Product__c != null,  CEC_Product__r.Brand__c,  Case_Brand_Mapping__r.Brand__c)</formula>
+        <formula>IF(CEC_Product__c != null, 
+CEC_Product__r.Brand__c 
+, 
+IF(Case_Brand_Mapping__r.Brand__c!= null, 
+Case_Brand_Mapping__r.Brand__c 
+, 
+Brand__c 
+) 
+)</formula>
         <label>Case Brand</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -337,7 +335,6 @@
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Case_Market_Mapping_Country_Id__c</fullName>
         <description>Case Market Mapping Country (Unilever Geography Record Id)</description>
         <externalId>false</externalId>
@@ -391,8 +388,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Case_Record_Count__c</fullName>
         <description>CEC this formula field puts the number 1 on the record for counting advantages on reports</description>
         <externalId>false</externalId>
@@ -408,7 +403,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Case_product_category__c</fullName>
         <externalId>false</externalId>
         <label>Case product category</label>
@@ -656,8 +650,6 @@ ISO Country Dependency Medium Name</description>
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Escalated_Date__c</fullName>
         <description>CEC : To capture the date / time when a case gets escalated for the first time.</description>
         <externalId>false</externalId>
@@ -712,7 +704,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Expiry_Date__c</fullName>
         <description>CEC: Used for Sapient integration</description>
         <externalId>false</externalId>
@@ -749,8 +740,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>First_Response_Date__c</fullName>
         <description>CEC this field is the first date we responded to an email</description>
         <externalId>false</externalId>
@@ -779,7 +768,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Global_Reason_L5_desc__c</fullName>
         <description>CEC: Global description of the L5 Reason Code, in English</description>
         <externalId>false</externalId>
@@ -910,8 +898,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>L3_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L3 Products.</description>
         <externalId>false</externalId>
@@ -924,7 +910,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>L4_Product_Category__c</fullName>
         <description>Retrieves the L1 Product description from product category table</description>
         <externalId>false</externalId>
@@ -938,8 +923,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>L4_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L4 Products</description>
         <externalId>false</externalId>
@@ -952,7 +935,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>L5_Code__c</fullName>
         <externalId>false</externalId>
         <formula>Reason_Code__r.Global_Listening_Tree__r.L5_Desc__c</formula>
@@ -978,8 +960,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>L5_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L5 Products.</description>
         <externalId>false</externalId>
@@ -992,7 +972,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>L6_Product_Category__c</fullName>
         <description>Retrieves the L6 Product description from product category table</description>
         <externalId>false</externalId>
@@ -1006,8 +985,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>L6_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L6 products</description>
         <externalId>false</externalId>
@@ -1020,7 +997,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>L7_Product_Category__c</fullName>
         <description>Retrieves the L7 Product description from product category table</description>
         <externalId>false</externalId>
@@ -1034,8 +1010,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>L7_Product_Reporting__c</fullName>
         <description>CEC : This field is used to create Reports with L7 products</description>
         <externalId>false</externalId>
@@ -1048,7 +1022,6 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Language__c</fullName>
         <description>CEC: contains the Language Name from Case Market Mapping object</description>
         <externalId>false</externalId>
@@ -1236,13 +1209,10 @@ ISO Country Dependency Medium Name</description>
                 <fullName>Email TO France</fullName>
                 <default>false</default>
             </picklistValues>
-<<<<<<< HEAD
-=======
             <picklistValues>
                 <fullName>Email Sri Lanka</fullName>
                 <default>false</default>
             </picklistValues>
->>>>>>> FETCH_HEAD
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1251,8 +1221,6 @@ ISO Country Dependency Medium Name</description>
         <type>Picklist</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Original_Description__c</fullName>
         <externalId>false</externalId>
         <label>Original Description</label>
@@ -1264,7 +1232,6 @@ ISO Country Dependency Medium Name</description>
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Out_of_Hours__c</fullName>
         <defaultValue>false</defaultValue>
         <description>Identifying if an emergency action was taken during out-of-hours</description>
@@ -2313,29 +2280,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.CREATED_DATE</columns>
         <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
-<<<<<<< HEAD
-=======
         <columns>Case_Market__c</columns>
->>>>>>> FETCH_HEAD
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-<<<<<<< HEAD
-            <value>Email,Web,White Mail</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <filters>
-            <field>Market__c</field>
-            <operation>notContain</operation>
-            <value>India,Nordic,Benelux,France,DACH</value>
-=======
             <value>Email,Web,White Mail,Email UK</value>
->>>>>>> FETCH_HEAD
         </filters>
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
@@ -2343,22 +2293,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>LAST_N_DAYS:2</value>
         </filters>
         <filters>
-<<<<<<< HEAD
-            <field>CORE.USERS.ALIAS</field>
-            <operation>notContain</operation>
-            <value>Nordic,France,DACH,BENELUX,ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY,POLAND</value>
-=======
             <field>Case_Market__c</field>
             <operation>notContain</operation>
             <value>India,DACH,Benelux,France,Spain,Nordic,Portugal,Czech,Italy,Greece,Poland</value>
->>>>>>> FETCH_HEAD
         </filters>
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-<<<<<<< HEAD
-            <value>Nordic,France,DACH,BENELUX,ITALY,PORTUGAL,SPAIN,GREECE,HUNGARY,SWEDEN,INDIA,POLA</value>
-=======
             <value>Bosnia,Hungary,Slovakia,Baltics,Romania,Bulgaria,Serbia,Slovenia,Lanka,Croatia</value>
         </filters>
         <filters>
@@ -2369,7 +2310,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CASES.STATUS</field>
             <operation>equals</operation>
             <value>New</value>
->>>>>>> FETCH_HEAD
         </filters>
         <label>Out of SLA</label>
         <language>en_US</language>
@@ -2381,9 +2321,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>CEC_Baltics_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
-<<<<<<< HEAD
-        <label>CEC Baltics Queue</label>
-=======
         <filters>
             <field>CASES.STATUS</field>
             <operation>notEqual</operation>
@@ -2391,27 +2328,13 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </filters>
         <label>CEC Baltics Queue</label>
         <language>en_US</language>
->>>>>>> FETCH_HEAD
         <queue>CEC_Baltics_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
-<<<<<<< HEAD
-        <fullName>CEC_Benelux_Queue_Case</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CONTACT.ACCOUNT</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>Brand__c</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>Language__c</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-=======
-        <fullName>CEC_Benelux_queue</fullName>
+        <fullName>CEC_Benelux_Backlog</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -2419,48 +2342,18 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
+        <columns>Country_Name__c</columns>
         <columns>Language__c</columns>
         <columns>Brand__c</columns>
->>>>>>> FETCH_HEAD
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
         </filters>
-<<<<<<< HEAD
-        <label>CEC Benelux Queue</label>
-        <language>en_US</language>
-        <queue>CEC_Benelux_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Benelux</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_User_Benelux</role>
-        </sharedTo>
-=======
         <label>CEC Benelux queue</label>
-        <language>nl_NL</language>
-        <queue>CEC_Benelux_Queue</queue>
->>>>>>> FETCH_HEAD
-    </listViews>
-    <listViews>
-        <fullName>CEC_Czech_Republic_Queue_Case</fullName>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <label>CEC Czech Republic Queue</label>
         <language>en_US</language>
-        <queue>CEC_Czech_Republic_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Czech_Republic</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_User_Czech_Republic</role>
-        </sharedTo>
+        <queue>CEC_Benelux_Queue</queue>
     </listViews>
     <listViews>
         <fullName>CEC_DACH_Queue_Case</fullName>
@@ -2492,16 +2385,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>CEC_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
-<<<<<<< HEAD
-        <label>Escalation Queue</label>
-=======
         <filters>
             <field>CASES.STATUS</field>
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
         </filters>
         <label>CEC UKI Escalation Queue</label>
->>>>>>> FETCH_HEAD
         <language>en_US</language>
         <queue>CEC_Escalation_Queue</queue>
         <sharedTo>
@@ -2544,11 +2433,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
         </filters>
-<<<<<<< HEAD
-        <label>General Queue</label>
-=======
         <label>CEC UKI Queue</label>
->>>>>>> FETCH_HEAD
         <language>en_US</language>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
@@ -2588,11 +2473,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_Hungary_Queue_Case</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
-<<<<<<< HEAD
-        <columns>CONTACT.ACCOUNT</columns>
-=======
         <columns>CASES.SUBJECT</columns>
->>>>>>> FETCH_HEAD
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
@@ -2633,8 +2514,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_India_Tier_2_Case</fullName>
-<<<<<<< HEAD
-=======
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.ORIGIN</columns>
         <columns>CASES.STATUS</columns>
@@ -2642,7 +2521,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.LAST_UPDATE</columns>
         <columns>CASES.SUBJECT</columns>
         <columns>CORE.USERS.ALIAS</columns>
->>>>>>> FETCH_HEAD
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -2806,8 +2684,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-<<<<<<< HEAD
-=======
         <fullName>CEC_Nordic_Queue_Norway_V2</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -2834,7 +2710,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
->>>>>>> FETCH_HEAD
         <fullName>CEC_Nordic_Queue_Sweden</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -2881,11 +2756,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.STATUS</field>
             <operation>equals</operation>
-<<<<<<< HEAD
-            <value>New</value>
-=======
             <value>New,In Progress,Review Needed</value>
->>>>>>> FETCH_HEAD
         </filters>
         <filters>
             <field>Case_Market_Mapping_Country__c</field>
@@ -2929,8 +2800,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_Poland_Queue_Case</fullName>
-<<<<<<< HEAD
-=======
         <columns>CASES.CASE_NUMBER</columns>
         <columns>Brand__c</columns>
         <columns>NAME</columns>
@@ -2938,7 +2807,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
->>>>>>> FETCH_HEAD
         <filterScope>Queue</filterScope>
         <filters>
             <field>CASES.STATUS</field>
@@ -3024,17 +2892,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-<<<<<<< HEAD
-        <fullName>Dot_com</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Everything</filterScope>
-=======
         <fullName>CEC_Sri_Lanka_Escalation_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Sri Lanka Escalation Queue</label>
@@ -3050,15 +2907,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     <listViews>
         <fullName>CEC_Sri_Lanka_Queue_Case</fullName>
         <filterScope>Queue</filterScope>
->>>>>>> FETCH_HEAD
         <filters>
             <field>CASES.STATUS</field>
             <operation>notEqual</operation>
             <value>Closed,Closed as Duplicate</value>
         </filters>
-<<<<<<< HEAD
-        <filters>
-=======
         <label>CEC Sri Lanka Queue</label>
         <language>en_US</language>
         <queue>CEC_Sri_Lanka_Queue</queue>
@@ -3111,7 +2964,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>Closed,Closed as Duplicate</value>
         </filters>
         <filters>
->>>>>>> FETCH_HEAD
             <field>CONTACT.FIRST_NAME</field>
             <operation>contains</operation>
             <value>Unilever Consumerlink</value>
@@ -3124,10 +2976,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-<<<<<<< HEAD
-=======
+        <fullName>Escalations_Queue</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>contains</operation>
+            <value>CEC UKI Escalation Queue,Thornhi,SDouglas,Latter</value>
+        </filters>
+        <label>Escalations Queue</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_UK</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>India_tier_1_out_of_SLA</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.ORIGIN</columns>
@@ -3141,7 +3015,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Email,Web,White Mail,Email India</value>
+            <value>Email,Web,White Mail,Email India,Email Sri Lanka</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -3158,6 +3032,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>lessThan</operation>
             <value>LAST_N_DAYS:2</value>
         </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>notContain</operation>
+            <value>Shree,Karmaka,Akram,KN.J,rvaz,srawa,ishai,shah,gmont,grajp,solanki,nawaz</value>
+        </filters>
         <label>India tier 1 out of SLA</label>
         <language>en_US</language>
         <sharedTo>
@@ -3166,7 +3045,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>India_tier_1_within_SLA</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -3179,7 +3058,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-            <value>Email,Web,White Mail,Email India</value>
+            <value>Email,Web,White Mail,Email India,Email Sri Lanka</value>
         </filters>
         <filters>
             <field>CASES.STATUS</field>
@@ -3196,6 +3075,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <operation>greaterOrEqual</operation>
             <value>LAST_N_DAYS:2</value>
         </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>notContain</operation>
+            <value>Shree,Karmaka,Akram,KN.J,rvaz,srawa,ishai,shah,gmont,grajp,solanki,nawaz</value>
+        </filters>
         <label>India tier 1 within SLA</label>
         <language>en_US</language>
         <sharedTo>
@@ -3203,7 +3087,49 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
->>>>>>> FETCH_HEAD
+        <fullName>India_tier_2</fullName>
+        <booleanFilter>1 AND 2 AND 3 AND (4 OR 5)</booleanFilter>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CASES.ORIGIN</field>
+            <operation>equals</operation>
+            <value>Email,Phone,Web,White Mail,Email India,Email Sri Lanka</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>India</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>contains</operation>
+            <value>Shree,Karmaka,Akram,KN.J,rvaz,srawa,ishai,shah,gmont,grajp,solanki,nawaz</value>
+        </filters>
+        <filters>
+            <field>CORE.USERS.ALIAS</field>
+            <operation>contains</operation>
+            <value>India Tier 2</value>
+        </filters>
+        <label>India tier 2</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Manager_India</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>Kittys_Queue</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -3230,8 +3156,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-<<<<<<< HEAD
-=======
         <fullName>Leavers_cases</fullName>
         <booleanFilter>1 AND (2 or 3)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
@@ -3294,7 +3218,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <queue>CEC_Spain_Queue</queue>
     </listViews>
     <listViews>
->>>>>>> FETCH_HEAD
         <fullName>Mulesoft_Owned_Cases</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
@@ -3360,8 +3283,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>en_US</language>
     </listViews>
     <listViews>
-<<<<<<< HEAD
-=======
         <fullName>My_teams_open_cases</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>CASES.SUBJECT</columns>
@@ -3449,7 +3370,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
             <operation>lessOrEqual</operation>
-            <value>9/29/2015 12:00 AM</value>
+            <value>11/6/2015 12:00 AM</value>
         </filters>
         <label>Open cases older than 2 weeks</label>
         <language>en_US</language>
@@ -3458,7 +3379,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
->>>>>>> FETCH_HEAD
         <fullName>Out_of_Hours_case_Case</fullName>
         <filterScope>Queue</filterScope>
         <label>Out of Hours case</label>
@@ -3504,10 +3424,8 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-<<<<<<< HEAD
-=======
         <fullName>Vacation_Queue_DACH</fullName>
-        <booleanFilter>(2 OR 3 OR 4 OR 5 OR 6) AND 1</booleanFilter>
+        <booleanFilter>(2 OR 3 OR 4) AND 1</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>CASES.SUBJECT</columns>
@@ -3534,17 +3452,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>CORE.USERS.ALIAS</field>
             <operation>equals</operation>
-            <value>Lareuman</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>Anlasser</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>equals</operation>
-            <value>anclasen</value>
+            <value>CaBusch</value>
         </filters>
         <label>DACH Vacation Queue</label>
         <language>de</language>
@@ -3554,7 +3462,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
->>>>>>> FETCH_HEAD
         <fullName>Within_SLA</fullName>
         <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
@@ -3564,21 +3471,14 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <columns>CASES.STATUS</columns>
         <columns>CASES.PRIORITY</columns>
         <columns>CASES.CREATED_DATE</columns>
-<<<<<<< HEAD
-=======
         <columns>Case_Market__c</columns>
->>>>>>> FETCH_HEAD
         <columns>CASES.LAST_UPDATE</columns>
         <columns>CORE.USERS.ALIAS</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>CASES.ORIGIN</field>
             <operation>equals</operation>
-<<<<<<< HEAD
-            <value>Web,Email,White Mail</value>
-=======
             <value>Email,Web,White Mail,Email UK</value>
->>>>>>> FETCH_HEAD
         </filters>
         <filters>
             <field>CASES.LAST_UPDATE_DATE_ONLY</field>
@@ -3586,26 +3486,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <value>LAST_N_DAYS:2</value>
         </filters>
         <filters>
-<<<<<<< HEAD
-            <field>Market__c</field>
-            <operation>notContain</operation>
-            <value>India,Nordic,Benelux,France,DACH</value>
-        </filters>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>equals</operation>
-            <value>New</value>
-        </filters>
-        <filters>
-            <field>CORE.USERS.ALIAS</field>
-            <operation>notContain</operation>
-            <value>CEC Nordic,CEC France,CEC DACH,CEC BENELUX,CEC ITALY,SPAIN,POLAND,PORTUGAL</value>
-        </filters>
-        <filters>
-            <field>Case_Market__c</field>
-            <operation>notContain</operation>
-            <value>Nordic,France,DACH,BENELUX,ITALY,SPAIN,POLAND,PORTUGAL</value>
-=======
             <field>Case_Market__c</field>
             <operation>notContain</operation>
             <value>India,DACH,Benelux,France,Spain,Nordic,Portugal,Czech,Italy,Greece,Poland</value>
@@ -3613,7 +3493,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filters>
             <field>Case_Market__c</field>
             <operation>notContain</operation>
-            <value>Hungary,Slovakia,Baltics,Romania,Bulgaria,Serbia,Slovenia,Lanka,Croatia</value>
+            <value>Hungary,Slovakia,Baltics,Romania,Bulgaria,Serbia,Slovenia,Lanka,Croatia,Bosnia</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
@@ -3623,7 +3503,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>CASES.STATUS</field>
             <operation>equals</operation>
             <value>New</value>
->>>>>>> FETCH_HEAD
         </filters>
         <label>Within SLA</label>
         <language>en_US</language>
@@ -3632,8 +3511,29 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <role>CEC_User_UK</role>
         </sharedTo>
     </listViews>
-<<<<<<< HEAD
-=======
+    <listViews>
+        <fullName>cec_czech</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CORE.USERS.ALIAS</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <label>cec czech</label>
+        <language>cs</language>
+        <queue>CEC_Czech_Republic_Queue</queue>
+        <sharedTo>
+            <role>CEC_Manager_Czech_Republic</role>
+            <role>CEC_User_Czech_Republic</role>
+        </sharedTo>
+    </listViews>
     <listViews>
         <fullName>spam_pp</fullName>
         <columns>CASES.CASE_NUMBER</columns>
@@ -3653,7 +3553,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <language>es</language>
         <queue>CEC_Spain_Queue</queue>
     </listViews>
->>>>>>> FETCH_HEAD
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
@@ -4122,18 +4021,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <listViewButtons>Next_Case</listViewButtons>
         <lookupDialogsAdditionalFields>CASES.CASE_NUMBER</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>CASES.SUBJECT</lookupDialogsAdditionalFields>
-<<<<<<< HEAD
-=======
         <lookupDialogsAdditionalFields>NAME</lookupDialogsAdditionalFields>
->>>>>>> FETCH_HEAD
         <lookupDialogsAdditionalFields>ACCOUNT.NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>CASES.STATUS</lookupDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CASES.CASE_NUMBER</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CASES.SUBJECT</lookupPhoneDialogsAdditionalFields>
-<<<<<<< HEAD
-=======
         <lookupPhoneDialogsAdditionalFields>NAME</lookupPhoneDialogsAdditionalFields>
->>>>>>> FETCH_HEAD
         <lookupPhoneDialogsAdditionalFields>ACCOUNT.NAME</lookupPhoneDialogsAdditionalFields>
         <lookupPhoneDialogsAdditionalFields>CASES.STATUS</lookupPhoneDialogsAdditionalFields>
         <searchResultsAdditionalFields>CASES.CASE_NUMBER</searchResultsAdditionalFields>
@@ -4206,10 +4099,7 @@ clonedCaseRecord.ContactId=caseRecord.ContactId;
 clonedCaseRecord.Description=caseRecord.Description;
 clonedCaseRecord.Priority=caseRecord.Priority;
 clonedCaseRecord.Subject=caseRecord.Subject;
-<<<<<<< HEAD
-=======
 clonedCaseRecord.Status=&apos;In Progress&apos;;
->>>>>>> FETCH_HEAD
 clonedCaseRecord.SuppliedCompany=caseRecord.SuppliedCompany;
 clonedCaseRecord.SuppliedEmail=caseRecord.SuppliedEmail;
 clonedCaseRecord.SuppliedName=caseRecord.SuppliedName;
@@ -4299,16 +4189,13 @@ sforce.console.openPrimaryTab(null, &apos;/&apos;+caseId, true);
         <height>600</height>
         <isResizable>true</isResizable>
         <linkType>url</linkType>
-<<<<<<< HEAD
-        <masterLabel>Cosmetovigilence</masterLabel>
-=======
         <masterLabel>Personal Care Cosmetovigilence</masterLabel>
         <openType>newWindow</openType>
         <position>none</position>
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>http://survey.clicktools.com/go?iv= {!$Setup.cec_Org_Settings__c.Cosmetovigilence_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
+        <url>http://survey.clicktools.com/go?iv= {!$Setup.cec_Org_Settings__c.Cosmetovigilence_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}&amp;q2={!Case.CaseNumber}&amp;q3={!Case.CreatedDate}&amp;q4={!Case.Country_Name__c}&amp;q7={!Case.Case_product_category__c}&amp;q9={!Case.Case_Brand__c}&amp;q10={!Case.L5_Product_Category__c}&amp;q11={!Case.Product_UPC__c}&amp;q12={!Case.Date_of_Manufacture__c}&amp;q13={!Case.Origin}</url>
     </webLinks>
     <webLinks>
         <fullName>Homecare_Cosmetovigilence</fullName>
@@ -4328,7 +4215,7 @@ sforce.console.openPrimaryTab(null, &apos;/&apos;+caseId, true);
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Homecare_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
+        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Homecare_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}&amp;q2={!Case.CreatedDate}&amp;q3={!Case.Country_Name__c}&amp;q6={!Case.Case_product_category__c}&amp;q8={!Case.Case_Brand__c}&amp;q9={!Case.L5_Product_Category__c}&amp;q10={!Case.Product_UPC__c}&amp;q11={!Case.Date_of_Manufacture__c}&amp;q12={!Case.Origin}</url>
     </webLinks>
     <webLinks>
         <fullName>Ingestion_Cosmetovigilence</fullName>
@@ -4343,35 +4230,12 @@ sforce.console.openPrimaryTab(null, &apos;/&apos;+caseId, true);
         <isResizable>true</isResizable>
         <linkType>url</linkType>
         <masterLabel>Ingestion Cosmetovigilence</masterLabel>
->>>>>>> FETCH_HEAD
         <openType>newWindow</openType>
         <position>none</position>
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-<<<<<<< HEAD
-        <url>http://survey.clicktools.com/go?iv={!IF(Case.Case_Market_Mapping_Country__c=&apos;United Kingdom&apos;,$Setup.cec_Org_Settings__c.Cosmetovigilence_Questionnaire_Id__c, 
-IF(Case.Case_Market_Mapping_Country__c=&apos;Austria&apos;,$Setup.cec_Org_Settings__c.Austria_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Belgium&apos;,$Setup.cec_Org_Settings__c.Belgium_Questionnaire_Id__c, 
-IF(Case.Case_Market_Mapping_Country__c=&apos;Cyprus&apos;,$Setup.cec_Org_Settings__c.Cyprus_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Czech Republic&apos;,$Setup.cec_Org_Settings__c.Czech_Republic_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Denmark&apos;,$Setup.cec_Org_Settings__c.Denmark_Questionnaire_Id__c, 
-IF(Case.Case_Market_Mapping_Country__c=&apos;Finland&apos;,$Setup.cec_Org_Settings__c.Finland_Questionnaire_Id__c, 
-IF(Case.Case_Market_Mapping_Country__c=&apos;France&apos;,$Setup.cec_Org_Settings__c.France_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Germany&apos;,$Setup.cec_Org_Settings__c.Germany_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Greece&apos;,$Setup.cec_Org_Settings__c.Greece_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Hungary&apos;,$Setup.cec_Org_Settings__c.Hungary_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;India&apos;,$Setup.cec_Org_Settings__c.India_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Italy&apos;,$Setup.cec_Org_Settings__c.Italy_Questionnaire_Id__c, 
-IF(Case.Case_Market_Mapping_Country__c=&apos;Netherlands&apos;,$Setup.cec_Org_Settings__c.Netherland_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Norway&apos;,$Setup.cec_Org_Settings__c.Norway_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Poland&apos;,$Setup.cec_Org_Settings__c.Poland_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Portugal&apos;,$Setup.cec_Org_Settings__c.Portugal_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Spain&apos;,$Setup.cec_Org_Settings__c.Spain_Questionnaire_Id__c,
-IF(Case.Case_Market_Mapping_Country__c=&apos;Sweden&apos;,$Setup.cec_Org_Settings__c.Sweden_Questionnaire_Id__c,    IF(Case.Case_Market_Mapping_Country__c=&apos;Switzerland&apos;,$Setup.cec_Org_Settings__c.Switzerland_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Estonia&apos;,$Setup.cec_Org_Settings__c.Estonia_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Lithuania&apos;,$Setup.cec_Org_Settings__c.Lithuania_Questionnaire_Id__c, IF(Case.Case_Market_Mapping_Country__c=&apos;Latvia&apos;,$Setup.cec_Org_Settings__c.Latvia_Questionnaire_Id__c, null)))))))))))))))))))))))}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
-=======
-        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Ingestion_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}</url>
->>>>>>> FETCH_HEAD
+        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Ingestion_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}&amp;q2={!Case.CreatedDate}&amp;q3={!Case.Country_Name__c}&amp;q6={!Case.Case_product_category__c}&amp;q8={!Case.Case_Brand__c}&amp;q9={!Case.L5_Product_Category__c}&amp;q10={!Case.Product_UPC__c}&amp;q11={!Case.Date_of_Manufacture__c}&amp;q12={!Case.Origin}</url>
     </webLinks>
     <webLinks>
         <fullName>New_Case</fullName>
@@ -4388,12 +4252,8 @@ IF(Case.Case_Market_Mapping_Country__c=&apos;Sweden&apos;,$Setup.cec_Org_Setting
 
 try{ 
 var caseObj = new sforce.SObject(&apos;Case&apos;); 
-<<<<<<< HEAD
-caseObj.Origin= &apos;Phone&apos;; 
-=======
 caseObj.Origin= &apos;Phone&apos;;
 caseObj.Status = &apos;In Progress&apos;; 
->>>>>>> FETCH_HEAD
 
 var userResult=sforce.connection.query(&quot;SELECT id FROM User WHERE Id = &apos;&quot; + window.UserContext.userId + &quot;&apos;&quot;); 
 var userRecord=userResult.getArray(&quot;records&quot;); 

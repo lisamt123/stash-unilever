@@ -13,14 +13,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-<<<<<<< HEAD
-=======
             <field>Agency_Entity_Name__c</field>
             <table>AF_OOPS_Estimate__c</table>
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
->>>>>>> FETCH_HEAD
             <field>AF_Agency_Entity__c</field>
             <table>AF_OOPS_Estimate__c</table>
         </columns>
@@ -201,10 +198,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-<<<<<<< HEAD
-=======
             <displayNameOverride>Brand</displayNameOverride>
->>>>>>> FETCH_HEAD
             <field>AF_OOPS_Actual__c.AF_Brand__c</field>
             <table>AF_OOPS_Estimate__c</table>
         </columns>
@@ -353,8 +347,6 @@
             <field>AF_PO_Report_Type__c</field>
             <table>AF_OOPS_Estimate__c</table>
         </columns>
-<<<<<<< HEAD
-=======
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>Big Category</displayNameOverride>
@@ -379,7 +371,6 @@
             <field>AF_OOPS_Actual__c.AF_Brand__c.AF_Category_Brands__c.AF_Super_category__c</field>
             <table>AF_OOPS_Estimate__c</table>
         </columns>
->>>>>>> FETCH_HEAD
         <masterLabel>OOPS Estimates</masterLabel>
     </sections>
 </ReportType>

@@ -75,13 +75,10 @@
         <name>Brand_Name__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- No of Matrix Cells --></label>
         <name>No_of_Matrix_Cells__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- VisbleToAgency --></label>
         <name>VisbleToAgency__c</name>
     </fields>

@@ -29,6 +29,10 @@
         <name>AF_Adjusted_estimate_2__c</name>
     </fields>
     <fields>
+        <label><!-- AgencyEntityId --></label>
+        <name>AF_AgencyEntityId__c</name>
+    </fields>
+    <fields>
         <label><!-- Agency Category Id --></label>
         <name>AF_Agency_Category_Id__c</name>
     </fields>
@@ -64,6 +68,14 @@
     <fields>
         <label><!-- Bonus Agency Formula --></label>
         <name>AF_Bonus_Agency_Formula__c</name>
+    </fields>
+    <fields>
+        <label><!-- BrandEstimate Active --></label>
+        <name>AF_BrandEstimate_Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- BrandIdunique --></label>
+        <name>AF_BrandIdunique__c</name>
     </fields>
     <fields>
         <label><!-- Brand Estimate Status --></label>
@@ -219,13 +231,10 @@
         <name>AF_Max_Quarter__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Mean Quarter --></label>
         <name>AF_Mean_Quarter__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <label><!-- No Previous POs --></label>
         <name>AF_No_Previous_POs__c</name>
     </fields>
@@ -246,8 +255,6 @@
         <name>AF_OOPs_Agency_Formula__c</name>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <label><!-- Override PO Adaptation – LC --></label>
         <name>AF_OverridePO_Adaptation_LC__c</name>
     </fields>
@@ -260,7 +267,6 @@
         <name>AF_OverridePO_Traditional_LC__c</name>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <help><!-- PO number from Ariba --></help>
         <label><!-- PO Number --></label>
         <name>AF_PO_Number__c</name>
@@ -384,6 +390,10 @@
     <fields>
         <label><!-- Traditional --></label>
         <name>AF_Traditional__c</name>
+    </fields>
+    <fields>
+        <label><!-- UnileverCountryName --></label>
+        <name>AF_UnileverCountryName__c</name>
     </fields>
     <fields>
         <label><!-- Unilever Entity Column Name --></label>

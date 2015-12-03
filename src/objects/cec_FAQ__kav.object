@@ -67,8 +67,6 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Meta_Tags__c</fullName>
         <description>CEC : To add the Meta Tags to the Article</description>
         <externalId>false</externalId>
@@ -79,7 +77,6 @@
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Question__c</fullName>
         <description>CEC</description>
         <externalId>false</externalId>
@@ -89,8 +86,6 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Related_PDF_2__c</fullName>
         <description>CEC : To load pdf file</description>
         <externalId>false</externalId>
@@ -107,7 +102,6 @@
         <type>File</type>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Related_PDF__c</fullName>
         <description>CEC</description>
         <externalId>false</externalId>

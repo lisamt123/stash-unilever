@@ -59,8 +59,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>BatchInvoked__c</fullName>
         <description>Field updated from CORE_IC_ICampaignStatusUpdate batch job. Hidden field</description>
         <externalId>false</externalId>
@@ -71,7 +69,6 @@
         <unique>false</unique>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>Categories</fullName>
         <picklist>
             <picklistValues>
@@ -255,8 +252,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Categories__c</fullName>
         <description>Please enter Categories for Idea Campaign separated by comma</description>
         <externalId>false</externalId>
@@ -277,7 +272,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>CommunityId</fullName>
         <type>Lookup</type>
     </fields>
@@ -296,8 +290,6 @@
         <fullName>Description</fullName>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
         <label>Description</label>
@@ -306,7 +298,6 @@
         <visibleLines>10</visibleLines>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>EndDate</fullName>
     </fields>
     <fields>
@@ -365,8 +356,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-<<<<<<< HEAD
-=======
         <fullName>Promoted__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -374,7 +363,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
->>>>>>> FETCH_HEAD
         <fullName>StartDate</fullName>
     </fields>
     <fields>

@@ -11,15 +11,12 @@ public with sharing class AF_OOPSEstimateController {
     public Boolean IsShowPOTab{get;set;}
     public boolean isOopsEditable{get;set;}
     public AF_OOPS_Estimate__c polist{get;set;}
-<<<<<<< HEAD
-=======
     public Boolean bConfirmBox{get;set;}
     public decimal overrideEstimate{get;set;}
     public String overridePONumber{get;set;}
     public Boolean isCMCOSuperUser{get;set;}
     Public String oopsQuarter;
     public Boolean POOverrideDisplay1{get;set;}
->>>>>>> FETCH_HEAD
      public String OppsEstimatesValue{     
         get{String result = '';if(oopsEstimate.AF_Estimate__c!= null){if(oopsEstimate.AF_Estimate__c > 0) {result = oopsEstimate.AF_Estimate__c.format();}else{result ='';}}return result;}
         set{/*System.debug('TraditionalDisplay: ' + value);*/value = CommaFilter(value);System.debug('oopsEstimate.AF_Estimate__c: ' + value);if(value != ''){oopsEstimate.AF_Estimate__c = Decimal.valueOf(value);}else{oopsEstimate.AF_Estimate__c = 0.00;}}
@@ -31,15 +28,6 @@ public with sharing class AF_OOPSEstimateController {
         IsShowPOTab=false;
         IsReadonlyPO=false;
         Buttondisplay=false;
-<<<<<<< HEAD
-        oopsEstimateId = System.currentPageReference().getParameters().get('id');
-        system.debug('oopsEstimateId...'+oopsEstimateId);
-        oopsEstimate = [Select a.AF_PO_Number__c,a.AF_OOPS_Matrix_Currency_Code__c, a.Name, a.AF_isComment__c,AF_EstimateLocal__c,AF_OOPS_Actual__r.AF_Status__c, a.Unilever_Entity_Name__c,a.AF_Unilever_Entity__c, a.AF_Unilever_Entity_Column_Name__c, a.AF_Status__c, a.AF_Rate_Type__c, a.AF_Rate_Currency__c, a.AF_Quarter__c, a.AF_Overall_OOPS__c, a.AF_OOPS_Actual__c, a.AF_Locked__c, a.AF_Is_Crossborder_Wk__c, a.AF_IsCrossBorder__c, a.AF_Fiscal_Year__c, a.AF_Estimate__c, a.AF_Estimate_Local__c, a.AF_Brand_Estimate__c, a.AF_Archived__c, a.AF_Agreed_Base_Fees__c, a.AF_Agency_Spot_Rate__c, a.AF_Agency_Exchange_Rate__c, a.AF_Agency_Entity__c, a.AF_Agency_Entity_Column_Name__c, a.AF_Agency_Account__c,a.Agency_Entity_Name__c From AF_OOPS_Estimate__c a  where Id=: oopsEstimateId];        
-        //oopsAgencyEntity = oopsEstimate.AF_Agency_Entity__c; 
-       
-        polist=[Select o.id,o.name,o.AF_PO_Number__c from AF_OOPS_Estimate__c o where Id=: oopsEstimateId];
-        
-=======
         bConfirmBox = false;
         isCMCOSuperUser = false;
         POOverrideDisplay1 = false;
@@ -54,7 +42,6 @@ public with sharing class AF_OOPSEstimateController {
         overrideEstimate = polist.AF_Override_Estimate_Local__c;
         overridePONumber= polist.AF_PO_Number__c;
         }
->>>>>>> FETCH_HEAD
         LoggedinUser=[select id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c,profile.name  from  User  where id=:Userinfo.getuserid()   and IsActive=true  Order by CreatedDate Limit 50000];             
         if(LoggedinUser.AF_Agency_Fees_User_Type__c!=null){
             if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Regional Category Finance'){
@@ -68,14 +55,10 @@ public with sharing class AF_OOPSEstimateController {
                }
             if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance'|| LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Procurement' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Regional Category Finance' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency' ){
             IsShowPOTab=true;
-<<<<<<< HEAD
-               }   
-=======
                }  
             if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User'){
                 isCMCOSuperUser = true;
             }
->>>>>>> FETCH_HEAD
         }
         if(oopsEstimate.AF_Estimate__c != null){oopsEstimate.AF_Estimate__c = oopsEstimate.AF_Estimate__c;oopsEstimate.AF_Estimate__c = oopsEstimate.AF_Estimate__c.setscale(2);}      
         EsLocal= oopsEstimate.AF_EstimateLocal__c;
@@ -94,8 +77,6 @@ public with sharing class AF_OOPSEstimateController {
         if(oopsEstimate.AF_Status__c=='Ready for PO'){
           IsReadyforPO=true;
         }
-<<<<<<< HEAD
-=======
         system.debug('oopsEstimate.AF_OOPS_Actual__r.Quarter__c...'+oopsEstimate.AF_OOPS_Actual__r.Quarter__c);
         if(oopsEstimate.AF_OOPS_Actual__r.Quarter__c!=null){
                     oopsQuarter = oopsEstimate.AF_OOPS_Actual__r.Quarter__c;
@@ -106,7 +87,6 @@ public with sharing class AF_OOPSEstimateController {
                     }
                 }
         
->>>>>>> FETCH_HEAD
     }
   
     public PageReference Save()
@@ -167,11 +147,6 @@ public with sharing class AF_OOPSEstimateController {
     } 
     
    Public void SavePO(){
-<<<<<<< HEAD
-       update polist;
-       apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved'));  
-   } 
-=======
        if(polist.AF_PO_Number__c != null){
        system.debug('overrideEstimate...'+overrideEstimate);
        system.debug('polist.AF_Override_Estimate_Local__c...'+polist.AF_Override_Estimate_Local__c);
@@ -202,5 +177,4 @@ public with sharing class AF_OOPSEstimateController {
     apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved'));
     }   
    }
->>>>>>> FETCH_HEAD
 }
