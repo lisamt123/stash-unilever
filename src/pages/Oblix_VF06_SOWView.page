@@ -16,38 +16,31 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
     <script src="{!URLFOR($Resource.Oblix_SOWViewJS)}" ></script>
      <script>
-   //$( document ).ready(function(){
+  
         var redirectToAttachment = function (attachmentId){
-        'use strict';
-        window.open('/servlet/servlet.FileDownload?file=' + attachmentId);
-        
-    }
-   //});
+            'use strict';
+            window.open('/servlet/servlet.FileDownload?file=' + attachmentId);      
+        }
+        $(document).ready(function() {
+                preparePH();
+                $.unblockUI();
+        });
     </script>
    
     <script type="text/javascript">
-	    var table = $('#example').DataTable();
-	    table.settings()[0] = {
-			"aoColumnDefs": [
-	      		{ "bSearchable": false, "aTargets": [ 0 ] }
-	    	]
-		};
-		$(document).ready(function() {
-	            preparePH();
-	            $.unblockUI();
-	    });
-	    $j = jQuery.noConflict();
+        var table = $('#example').DataTable();
+        table.settings()[0] = { "aoColumnDefs": [{ "bSearchable": false, "aTargets": [ 0 ] }]};
    </script>  
-	
+    
     <script>
           $ = jQuery.noConflict(); 
            $(document).ready(function(){            
                     var table = $('#example').DataTable();
                     table.settings()[0] = {
-						"aoColumnDefs": [
-      						{ "bSearchable": false, "aTargets": [ 0 ] }
-    					]
-           			};
+                        "aoColumnDefs": [
+                            { "bSearchable": false, "aTargets": [ 0 ] }
+                        ]
+                    };
                     $('#example tbody').on( 'click', 'tr', function () {
                     if ( $( this ).hasClass( "camp" ) ) { blockme();
                     $(this).toggleClass('selected');
@@ -84,7 +77,9 @@
         display: none !important;
     }
     
-    
+    .Oblix_table tr{
+       cursor:pointer;
+    }
       .cnter {
     text-align: center;
     }
@@ -92,7 +87,7 @@
         margin-left: auto;
         margin-right: auto;
     }
-        .darkGreen{color: #44883E  ;}
+        .darkGreen{color: #44883E;}
         .mainGreen{color: #6BA539;}
         h2{ font-size: 120%;}
         h3{font-size: 12px;}
@@ -351,7 +346,7 @@
         }
         
      <!-- green buttons -->
-      input.btn, button, .Oblix_large_btn, .Oblix_btn  {
+      input.btn, .Oblix_large_btn, .Oblix_btn  {
             background: #6BA539;
             background-image: none;
             color: #fff;
@@ -439,8 +434,8 @@
         }
         .Oblix_notes{
             PADDING-right: 5px;
-    		max-height: 15em;
-    		overflow: auto;
+            max-height: 15em;
+            overflow: auto;
         }
         .Oblix_attachment{
             width:85%;
@@ -611,8 +606,8 @@
     h2{ font-size: 120%;}
     h3{font-size: 12px;}
     a.Oblix_btn:hover{
-    	text-decoration: none;
-	}
+        text-decoration: none;
+    }
     a.Oblix_btn{
         text-decoration: none;
         background: #6BA539 none repeat scroll 0% 0%;
@@ -631,53 +626,29 @@
         -moz-border-left-colors: none;
         border-image: none;
         margin: 1px;
-    	display:block;
-    	width: 68px !important;
-    	height: 20px;
-    	text-align: center;
+        display:block;
+        width: 68px !important;
+        height: 20px;
+        text-align: center;
         float: right;
     }
+    .SOWName{
+        cursor:pointer;
+    }  
+    .required{
+        cursor: auto;
+        border-width: 2px;
+        border-style: solid;
+        border-top-color: rgb(153, 153, 153);
+        border-right-color: rgb(153, 153, 153);
+        border-bottom-color: rgb(153, 153, 153);
+        border-left-color: red !important;
+    } 
+    a{
+        border:none !important;
+    } 
     </style>
-    <script>
-    function Popup(){
-             $("#dialog").dialog({
-             width: 1000,
-             modal:true,
-             close: function(event,ui){
-                 $("pop").dialog('destroy');          
-                    }
-             }); 
-            
-     }
-     
-     $(function() {
-        $( "#tabs-centre" ).tabs();
-     });
-
-       blockme();
-   </script>
-   <!--ashraf-->
-    <script>
-    
-        function openAtt(){
-            $('#xdialogAddAtt').slideDown( "slow", function() {
-                                // Animation complete.
-                               });
-        
-        }
-         function closeAtt(){
-            $('#xdialogAddAtt').slideUp( "slow", function() {
-                                // Animation complete.
-                               });
-        
-        }
-      
-		function getCategoryBrand(val){
-          	console.log('onchange triggered');
-		}
-    </script>
-    
-         <!--end ashraf-->
+  
      </apex:form>
      
           <apex:form id="att">
@@ -699,7 +670,7 @@
                 <td>
                
                 <!--   <input type="submit" value="Cancel" onclick="closeAtt();"/>  -->
-                     <apex:commandButton action="{!cancel}"  value="{!$Label.Oblix_lbl_UIUX_Cancel}" onclick="closeAtt();"/>
+                     <apex:commandButton action="{!cancel}"  value="{!$Label.Oblix_lbl_UIUX_Cancel}" onclick="closeAtt();return false"/>
                 </td>
            </tr>
          </table></div>
@@ -708,44 +679,6 @@
    
    </apex:form>
    
-  
-   <!--<script>
-   //$( document ).ready(function(){
-        var redirectToAttachment = function (attachmentId){
-        'use strict';
-        window.open('/servlet/servlet.FileDownload?file=' + attachmentId);
-    }
-
-    var removeAttachments = function (attachmentsId){
-        'use strict';
-        var attachmentsId = [];
-        $('#dialog').find('table > tbody').children().children().find('input:checkbox:checked').each(function (){
-            attachmentsId.push($(this).attr('data-attachment-id'));
-        })
-        if(attachmentsId.length !== 0){
-            $('#dialog').dialog('close');
-            removeService(attachmentsId).then(function (){
-                acceptRemoveAttachment();
-            }, function (err){
-                console.log(err);
-            });
-        }
-    }
-    var removeService = function (attachmentsIds){
-        'use strict';
-        var deferred = $.Deferred();
-        Oblix_Ctrl06SOWView_CC.removeAttachments(attachmentsIds, function (data, status){
-            deferred.resolve({data: data, status: status});
-        });
-        return deferred.promise();
-    }
-    var acceptRemoveAttachment = function (){
-        $('#dialog').dialog('close');
-        removeAttachmentsBack();
-    }
-   //});
-    </script>-->
-
     <div class="Oblix_Container">
     <!-- Popup attachment -->
     <div id="PopupAddAttachmnt" title="{!$Label.Oblix_lbl_UIUX_Choose_Countries}" style="display:none">  
@@ -812,7 +745,6 @@
                 <div class="Oblix_header_arrowTitle">
                     <apex:outputPanel rendered="{!sowId == null}" > {!$Label.Oblix_lbl_UIUX_Create_SOW} <br/></apex:outputPanel>
                     <apex:outputPanel rendered="{!sowId != null}" > {!$Label.Oblix_lbl_UIUX_View_SOW}<br/></apex:outputPanel>
-
                 </div>
                 </div>
                 
@@ -837,10 +769,10 @@
             <table width="100%" class="topAlign">
              <tr>
                       <td colspan="6" style="border-bottom: 1px solid #6BA539; text-align:top; padding-bottom:20px;">
-                      <h2 class="darkGreen">{!selSow.Name}</h2>
+                      <h2 class="darkGreen SOWName">{!selSow.Name}</h2>
                     </td>
                  </tr>
-            <tr>
+            <tr class="SOWDetail">
             <td width="25%">
             <section class="column1">
                <table width="100%" class="Oblix_tableDetails topAlign">
@@ -892,22 +824,32 @@
                     <tr><td colspan="2">&nbsp;</td></tr>                      
                     <tr>
                      <td colspan="2"><h2 class="darkGreen">{!$Label.Oblix_lbl_UIUX_Approved} &nbsp;</h2> <strong>
-                     € <apex:outputLabel id="mapApprovedId" value="{!ROUND(mapApproved[selSow.id], 0)}"/></strong></td>
+                     €&nbsp; 
+                      <apex:outputText id="mapApprovedId" value="{0, number,###,###,##0}">
+                         <apex:param value="{!ROUND(mapApproved[selSow.id], 0)}"/>
+                     </apex:outputText>
+                     <!--<apex:outputLabel id="mapApprovedId" value="{!ROUND(mapApproved[selSow.id], 0)}"/>-->
+                     </strong></td>
                    </tr>
                    <tr>
                      <td colspan="2"><h2 class="mainGreen">{!$Label.Oblix_lbl_UIUX_Current} &nbsp; &nbsp; &nbsp; </h2><strong>
-                      € {!ROUND(selSow.Oblix_Current_FY_Total__c, 0)} </strong></td>
+                      €&nbsp;
+                      <apex:outputText value="{0, number,###,###,##0}">
+                         <apex:param value="{!ROUND(selSow.Oblix_Current_FY_Total__c, 0)}"/>
+                     </apex:outputText>
+                      </strong></td>
                    </tr>
                </table>
            </section> 
            </td>
-           <td>
+           <td width="20%">
            <section class="column3">   
               <strong>Notes</strong><br/>
               <p class="Oblix_notes">
-                  <apex:repeat value="{!notes}" var="note"> 
+                  {!noteAsset.body}
+                  <!--<apex:repeat value="{!notes}" var="note"> 
                       {!note.body}<br/>
-                  </apex:repeat>
+                  </apex:repeat>-->
               </p> 
               <br/>          
            
@@ -918,7 +860,7 @@
                 
            </section>
            </td>
-           <td width="15%">
+           <td width="10%">
            <section class="column4">
                <table width="100%" class="topAlign">  
                    <tr> 
@@ -933,16 +875,16 @@
               </table>
           </section>
          </td>
-         <td class="columnMiddle">
+         <td class="columnMiddle cnter">
           <section class="column5">
              <div class="cnter">
-                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back_To_Dashboard}"  title="{!$Label.Oblix_lbl_UIUX_Go_back_to_the_edit_mode}"  action="{!backAction}" styleClass="Oblix_large_btn Oblix_view_btn"/><br/><br/>
-                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}"  title="{!$Label.Oblix_lbl_UIUX_View_Campaign_details}"  action="{!EditAction}" onclick="blockme()" oncomplete="$('[id$=mlktp]').hide();$.unblockUI(); turnOnValidation(true)" styleClass="Oblix_large_btn" reRender="showForm"/><br/>
+                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Back_To_Dashboard}"  title="{!$Label.Oblix_lbl_UIUX_Back_To_Dashboard}"  action="{!backAction}" styleClass="Oblix_large_btn Oblix_view_btn"/><br/>
+                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}"  title="{!$Label.Oblix_lbl_UIUX_Go_back_to_the_edit_mode}"  action="{!EditAction}" onclick="blockme()" oncomplete="$('[id$=mlktp]').hide();$.unblockUI(); turnOnValidation(true)" styleClass="Oblix_large_btn" reRender="showForm"/><br/>
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Clone}"  title="{!$Label.Oblix_lbl_UIUX_Clone_SOW_Title}"  action="{!CloneAction}" onclick="blockme()" oncomplete="$('[id$=mlktp]').hide();$.unblockUI()" styleClass="Oblix_large_btn" reRender="showForm,projectForm"/><br/>
-                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete}"  title="{!$Label.Oblix_lbl_UIUX_Delete_SOW_Title}"  onclick="confirmDelete(); return false" styleClass="Oblix_large_btn"/><br/><br/>
+                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete}"  title="{!$Label.Oblix_lbl_UIUX_Delete_SOW_Title}"  onclick="confirmDelete(); return false" styleClass="Oblix_large_btn"/><br/>
                      <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Export}" onclick="" title="{!$Label.Oblix_lbl_UIUX_View_PDF_format}"  styleClass="Oblix_btn" disabled="true"/>
-                 	 <apex:outputLink value="{!reportFolderURL}" title="Reporting" styleClass="Oblix_btn" target="_blank" disabled="{!reportFolderURL == ''}">Reporting</apex:outputLink><br/>
-                 	 <!--<apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Reporting}" onclick="" disabled="true" title="{!$Label.Oblix_lbl_UIUX_View_PDF_format}"  styleClass="Oblix_btn"/>--><br/><br/>
+                     <apex:outputLink value="{!reportFolderURL}" title="Reporting" styleClass="Oblix_btn" target="_blank" disabled="{!reportFolderURL == ''}">Reporting</apex:outputLink><br/>
+                     <!--<apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Reporting}" onclick="" disabled="true" title="{!$Label.Oblix_lbl_UIUX_View_PDF_format}"  styleClass="Oblix_btn"/>-->
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Approval}" title="{!$Label.Oblix_lbl_UIUX_Approval}"  onclick="" styleClass="Oblix_large_btn" disabled="true"/>
              </div>  
           </section>   
@@ -953,7 +895,7 @@
        <apex:outputPanel id="sowNewIdWrapper">
        <apex:outputPanel rendered="{!sowId == null || isEdit == true}" id="sowNewId">
        
-            <table cellspacing="10px" width="100%">
+            <table cellspacing="10px" width="95%;margin-left:2%">
             <tr>
             <td width="25%">
             <section class="column1">
@@ -961,7 +903,7 @@
                <table width="100%" class="Oblix_tableDetails">
                  <tr>
                   <!--    <td width="40%"><strong>{!$ObjectType.Marketing_SOW__c.fields.Name.label}  * </strong></td>  -->
-                      <td><apex:inputField value="{!selSow.Name}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Name.label}" /></td>
+                      <td><apex:inputField value="{!selSow.Name}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Name.label}" styleClass="required input_init "/></td>
                  </tr>
                  <tr>
                  <!--    <td><strong>{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label}  * </strong></td> -->
@@ -969,29 +911,29 @@
                  </tr>
                  <tr>
                     <!-- <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label} *</strong></td>  -->
-                     <td><apex:inputField value="{!selSow.Oblix_AgencyEstimate__c}"  required="true" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label} *"  /></td>
+                     <td><apex:inputField value="{!selSow.Oblix_AgencyEstimate__c}"  required="true" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label} " styleClass="required input_init " /></td>
                  </tr>   
                  <tr>
                   <!--   <td><strong>{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}  *</strong></td>  -->
-                     <td><apex:inputField value="{!selSow.OblixBrand__c}"  required="true" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label} *"  >
-                         	<apex:actionSupport event="onchange" action="{!getCategoryBrand}" rerender="sowNewIdWrapper"/>
+                     <td><apex:inputField value="{!selSow.OblixBrand__c}"  required="true" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label} " styleClass="required input_init ">
+                            <apex:actionSupport event="onchange" action="{!getCategoryBrand}" rerender="sowNewIdWrapper"/>
                          </apex:inputField>
                      </td>
                  </tr>
                  <tr>
                   <!--   <td><strong>{!$ObjectType.Marketing_SOW__c.fields.BigOblixProductCategory__c.label}</strong></td>  -->
-                     <td><apex:inputField value="{!selSow.SmallProductCategory__c}"  html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.SmallProductCategory__c.label}"  /></td>
+                     <td><apex:inputField value="{!selSow.SmallProductCategory__c}"  html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.SmallProductCategory__c.label} " styleClass="input_init " /></td>
                  </tr>
                  <tr>
                    <!--  <td><strong>{!$ObjectType.Marketing_SOW__c.fields.SmallProductCategory__c.label}</strong></td> -->
-                     <td><apex:inputField value="{!selSow.BigOblixProductCategory__c}"  html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.BigOblixProductCategory__c.label}"  /></td>
+                     <td><apex:inputField value="{!selSow.BigOblixProductCategory__c}"  html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.BigOblixProductCategory__c.label}"  styleClass="input_init " /></td>
                  </tr>
                </table>
              
-			</section>
-		</td>
-		<td width="25%">
-			<section class="column2">
+            </section>
+        </td>
+        <td width="25%">
+            <section class="column2">
                <table width="100%"> 
                    <tr>    
                       <td width="40%" colspan="2">
@@ -1002,22 +944,32 @@
                    <tr>
                       <td colspan="2">
                      <!-- <strong>{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}</strong> -->
-                      <apex:inputField value="{!selSow.Unilever_Lead__c}"  styleClass="complex" />
+                      <apex:inputField value="{!selSow.Unilever_Lead__c}"  styleClass="complex "  />
                       </td>
                    </tr>
                    <tr>
                   <!--   <td><strong>{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label} * </strong></td>  -->
-                     <td><apex:selectList size="1" value="{!selSow.Financial_Year__c}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}"   styleClass="Oblix_picklist">
-                         	<apex:selectOptions value="{!FYSelectOptions}"></apex:selectOptions>
+                     <td><apex:selectList size="1" value="{!selSow.Financial_Year__c}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}"   styleClass="Oblix_picklist required">
+                            <apex:selectOptions value="{!FYSelectOptions}"></apex:selectOptions>
                          </apex:selectList></td>
                    </tr>                 
                    <tr>
                      <td colspan="2"><strong class="darkGreen">{!$Label.Oblix_lbl_UIUX_Approved} &nbsp;</strong> <strong>
-                     € <apex:outputPanel rendered="{!selSow.id != null}"> {!ROUND(mapApproved[selSow.id], 0)} </apex:outputPanel>  </strong></td>
+                     €&nbsp;
+                      <apex:outputPanel rendered="{!selSow.id != null}"> 
+                         <apex:outputText value="{0, number,###,###,##0}">
+                                             <apex:param value="{!ROUND(mapApproved[selSow.id], 0)}"/>
+                         </apex:outputText>
+                     </apex:outputPanel>  
+                      </strong></td>
                    </tr>
                     <tr>
                      <td colspan="2"><strong class="mainGreen">{!$Label.Oblix_lbl_UIUX_Current} &nbsp; &nbsp; &nbsp; </strong><strong>
-                      € {!ROUND(selSow.Oblix_Current_FY_Total__c, 0)}  </strong></td>
+                      €&nbsp; 
+                       <apex:outputText value="{0, number,###,###,##0}">
+                                 <apex:param value="{!ROUND(selSow.Oblix_Current_FY_Total__c, 0)}"/>
+                         </apex:outputText>
+                        </strong></td>
                    </tr>
                    <tr>
                    </tr>
@@ -1073,31 +1025,7 @@
      </apex:outputPanel>
      </apex:form>
      <script>
-     var turnOnValidation = function (isTurned){
-        'use strict';
-        var el = $('.column3').find('textarea');
-        if(isTurned){
-            el.on('change', function (event) {
-                var saveButton = null;
-                var errorMsg = $('.column3').find('.warning');
-                $('.column5').find('input').each(function() {
-                    if($(this).val() === 'Save'){
-                        saveButton = $(this);
-                    }
-                });
-                if($(this).val().length > 255){
-                    saveButton.attr('disabled', 'disabled');
-                    errorMsg.addClass('show').text('Note is too long.');
-                } else {
-                    saveButton.removeAttr('disabled');
-                    errorMsg.removeClass('show').text('');
-                }
-            });    
-        } else {
-            el.off('change');
-        }
-        
-     }
+    // notes
      </script>
      <style type="text/css">
      .warning {
@@ -1154,9 +1082,22 @@
                 <table width="100%" class="Oblix_TableTitle">
                     <tr>
                         <td width="50%">
-                            <table style="margin-left:20px;">
-                                <tr><td>Campaign Total: </td><td>€ {!ROUND(selSow.Total_Campaigns_This_FY__c, 0)}</td></tr>
-                                <tr><td>Non Campaign Total:</td><td>€ {!ROUND(selSow.OblixTotalOtherItemsFees__c, 0)}</td></tr>
+                            <table style="margin-left:20px;display:{!IF(sowId == null, 'none', 'block')}">
+                                <tr><td><strong>Campaign Total : </strong></td>
+                                
+                                <td> <strong>€ </strong>
+                                    <apex:outputText value="{0, number,###,###,##0}">
+                                         <apex:param value="{!ROUND(selSow.Total_Campaigns_This_FY__c, 0)}"/>
+                                     </apex:outputText>
+                                </td>
+                                
+                                </tr>
+                                <tr><td><strong>Non Campaign Total :</strong></td><td><strong> € </strong>
+                                     <apex:outputText value="{0, number,###,###,##0}">
+                                         <apex:param value="{!ROUND(selSow.OblixTotalOtherItemsFees__c, 0)}"/>
+                                     </apex:outputText>
+                                </td>
+                                </tr>
                             </table>
                             
                         </td>
@@ -1214,7 +1155,11 @@
                                 <td>{!projOtherItem.objectDyn['Platform__c']}</td>
                                 <td>{!projOtherItem.objectDyn['Campaign_Status__c']}</td>
                                 <td>{!projOtherItem.objectDyn['Project_Stage__c']}</td>
-                                <td>€ {!projOtherItem.objectDyn['Value_to_be_paid_in_Current_FY__c']} </td>
+                                <td>€&nbsp;
+                                <apex:outputText value="{0, number,###,###,##0}">
+                                     <apex:param value="{!projOtherItem.objectDyn['Value_to_be_paid_in_Current_FY__c']}"/>
+                                </apex:outputText>
+                                </td>
                             </tr>
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!projOtherItem.objName == 'Non Campaign'}">
@@ -1226,7 +1171,11 @@
                                 <td></td>
                                 <td></td>
                                 <td></td>
-                                <td>€ {!projOtherItem.objectDyn['OblixOtherItemFee__c']}</td>                              
+                                <td>€&nbsp;
+                                  <apex:outputText value="{0, number,###,###,##0}">
+                                     <apex:param value="{!projOtherItem.objectDyn['OblixOtherItemFee__c']}"/>
+                                </apex:outputText>
+                                </td>                              
                             </tr>
                         </apex:outputPanel>
                     </apex:repeat>
@@ -1249,11 +1198,12 @@
     </div>
 
  <script>   
-     Highcharts.setOptions({
-        colors:['green']
-     });
+    
+  
+      $('.SOWName').click(function(){
+            $('.SOWDetail').slideToggle("slow");
+     });  
      var leaseData = {!seriesProject};
-     
  </script>  
 <script src="{!URLFOR($Resource.Oblix_HightChartJS)}" ></script>
 </apex:page>

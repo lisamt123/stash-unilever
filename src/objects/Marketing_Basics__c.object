@@ -53,13 +53,9 @@
     <description>Project Oblix - SECTION 2: BASICS (WORK WITHOUT CREATIVE DELIVERABLES)
 Renamed to Other SOW items in reviews</description>
     <enableActivities>false</enableActivities>
-    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSharing>true</enableSharing>
-    <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Activities__c</fullName>
         <description>A common list of activities third parties are required for.</description>
@@ -313,6 +309,36 @@ Renamed to Other SOW items in reviews</description>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Oblix_FTE_Real_Price__c</fullName>
+        <externalId>false</externalId>
+        <formula>FTE__c *  OblixOtherItemFee__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FTE Real Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Oblix_Hourly_Rate__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+    No_of_Hours_Required__c = 0, 
+    0, 
+    OblixOtherItemFee__c /  No_of_Hours_Required__c
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Hourly Rate</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>

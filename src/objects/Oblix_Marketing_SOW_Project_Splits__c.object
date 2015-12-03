@@ -48,13 +48,9 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Project Oblix - Project splits</description>
     <enableActivities>false</enableActivities>
-    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
-    <enableSharing>true</enableSharing>
-    <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>OblixCountry__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>

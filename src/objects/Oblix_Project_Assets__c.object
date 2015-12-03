@@ -571,6 +571,17 @@ Changed to Campaign on 26/10/2015</description>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Asset_name__c</fullName>
+        <externalId>false</externalId>
+        <label>Asset name</label>
+        <length>30</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Channels__c</fullName>
         <externalId>false</externalId>
         <label>Channels</label>

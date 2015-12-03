@@ -27,6 +27,33 @@
 		//$('tr.data, tr.btt').find('').hide();
     });
 	<!-- The JQuery tab() for all sub categories -->
+	$('.Oblix_recordTypeth').click(function () {
+    if(setIdCss != '[]'){
+        for (var i=0; i<setIdCss.length;i++) {
+            $('#'+setIdCss[i]+'_tabs').tabs();
+            $('#'+setIdCss[i]+'_tabs1').tabs({
+                    collapsible: true,
+                    active: false
+                });
+            $('#'+setIdCss[i]+'_tabs2').tabs({
+                    collapsible: true,
+                    active: false
+                });
+            $('#'+setIdCss[i]+'_tabs3').tabs({
+                    collapsible: true,
+                    active: false
+                });
+            $('#'+setIdCss[i]+'_tabs4').tabs({
+                    collapsible: true,
+                    active: false
+                });
+            $('#'+setIdCss[i]+'_tabs5').tabs({
+                    collapsible: true,
+                    active: false
+                });          
+        }  
+    }  
+    }); 	
 	if(setIdCss != '[]'){
 		for (var i=0; i<setIdCss.length;i++) {
 			$('#'+setIdCss[i]+'_tabs').tabs();
@@ -77,6 +104,32 @@
 		    $( "."+x).prop( "checked", true);
 		} 
 	}
+    function setWorldRegion(){
+        $('#dialogCountries input[value=\'World\']').attr('checked',true);
+    }
+    function clearAllCountries(){
+        $('#dialogCountries input[type=\'checkbox\']').prop('checked',false);
+    }
+    function preparePH(){
+        // alert('preparePH');
+        // $(".complex").find("select").addClass( "isMend" );
+        $(".complex").find("span").find("select").addClass( "isMend" );
+        //alert(  $(".complex").find("span").html() );
+    }
+    
+    function setMendatory(x){
+        if(x.parent().parent().parent().parent().find("span").find("select").val()==''){
+            alert('Asset name can\'t be null');
+            return false;
+        }
+        if( x.parent().parent().parent().parent().find("span").find("select").val() =='Other' && x.parent().parent().parent().parent().find(".descMend").val() =='' ){
+            x.parent().parent().parent().parent().find(".error").css("display", "block");
+            alert('Please give description ');
+            return false;
+        }else{
+            return true;
+        }
+    }
 	<!-- Added by Achref for the Value drivers Popup  -->
 	function  addStyletoDependent(){
 	   $('select[id*="Growthhhhh"]').addClass( "input_init xxl" );
@@ -106,7 +159,7 @@
 			  });           
     }
 	
-	function PopupValueDrivers(){           
+	function PopupValueDrivers(btn){           
         $(function() {
                 $( "#dialogDrivers" ).dialog({
                   modal: true,
@@ -121,6 +174,7 @@
                           // Scale1= $(".projScale1").val();
                            //Scale2=  $(".projScale2").val();                                  
                            //CampaignIdea =  $(".projCampaignIdea").val();
+						    
 						    var innovation = $('input[name="innovation"]:checked').val();								
 						    console.dir(innovation);							
 							console.dir($(".projBrandInnov").val());
@@ -128,7 +182,9 @@
 							blockme(); 									
 							setInfoDrivers(innovation,$(".projBrandInnov").val(),$(".projBrandBrand").val(),$(".projCampaignIdea").val(),$(".projScale1").val(),$(".projScale2").val());     
 											                          
-                            $(this).dialog("close");  
+                            $(this).dialog("close"); 
+							//btn.addClass( "chekedBtn" );
+							V3=1;
                    },                                      
                     Close: function() {
                       $( this ).dialog( "close" );
@@ -139,7 +195,7 @@
          });           
      } 
   
-     function PopupdialogCountries(){
+     function PopupdialogCountries(btn){
         
         $(function() {                   
                 $( "#dialogCountries" ).dialog({
@@ -160,7 +216,8 @@
                             blockme();                         
                             setInfoCountries(lstRegion.substring(0, lstRegion.length-1),lstCountry.substring(0, lstCountry.length-1));
                             //console.dir('here');                          
-                            $( this ).dialog( "close");   
+                            $( this ).dialog( "close");  
+							//btn.addClass( "chekedBtn" );							
                         },                                       
                     Close : function() {
                       $( this ).dialog( "close" );
@@ -171,7 +228,7 @@
         });           
     }
      
-    function PopupTimeLine(){
+    function PopupTimeLine(btn){
        
          $(function() {
                 $( "#dialogTimeLine" ).dialog({
@@ -184,7 +241,8 @@
                              //alert($(".dateProjCD").val());    
                              blockme();      
                              setInfoTimeLine($(".dateProjSD").val(),$(".dateProjBFR").val(),$(".dateProjFR").val(),$(".dateProjCD").val(),$(".dateProjABET").val(),$(".dateProjLD").val(),$(".dateFAD").val(),$(".dateProjPREV").val(),$(".dateProjAD").val(),$(".dateProdCD").val(),$(".dateProdSP").val(),$(".ProjTimescale").val(),$(".ProjPriority").val());              
-                             $(this).dialog("close");  
+                             $(this).dialog("close"); 
+							 //btn.addClass( "chekedBtn" );
                           },                                       
                     Close : function() {
                       $( this ).dialog( "close" );
@@ -194,7 +252,7 @@
                 });
          });           
      }
-      function PopupStages(){
+      function PopupStages(btn){
        
          $(function() {
                 $( "#dialogStages" ).dialog({
@@ -202,7 +260,8 @@
                   modal: true, 
                   zIndex: 9,
                   buttons: {
-                     Save : function() {                            
+                     Save : function() {
+							
                             var lstCompleted = '';
                             var lstProjected = '';
 							
@@ -218,8 +277,8 @@
                             $("input:checkbox[name='checkboxCompleted']:checked").each(function(){
                                 lstCompleted = $(this).attr('value');                                           
                             }); 
-                            console.dir('array lstCompleted:'+lstCompleted);
-                            console.dir('array lstProjected :'+lstProjected);                           
+                            //console.dir('array lstCompleted:'+lstCompleted);
+                            //console.dir('array lstProjected :'+lstProjected);                           
                                  
                                blockme();
 								// SS 26/11/2015 based on today's client feedback, the user story is wrong. only projected should be taken into account, and every stage calculated individually
@@ -240,8 +299,9 @@
 							   } else {
 									setInfoStages(listProjected,listCompleted,lstProjected.replace('Projected ',''));
 							   }
-                            
-                            $( this ).dialog( "close");   
+						    $( this ).dialog( "close");
+                            //btn.addClass( "chekedBtn" );
+                              
                         },                                       
                     Close : function() {
                       $( this ).dialog( "close" );
@@ -250,7 +310,7 @@
              });
          });           
     }
-	function PopupAgencyHub(){
+	function PopupAgencyHub(btn){
 
 		//var countryOptions = '<select>';
 		//var countries = '{!countryOptions}';
@@ -308,11 +368,12 @@
 							if(block){
 								//alert(listItems);  
 								blockme();  
-							    console.dir(listItems);
+							    //console.dir(listItems);
 								setAgencyHub(listItems);
 								listItems = '';
 								//setAgencyHubOnComplete();
-								$( this ).dialog( "close");   
+								$( this ).dialog( "close");
+							    // btn.addClass( "chekedBtn" );
 								
 							}
 						}
@@ -324,6 +385,7 @@
 			});
 		  });           
     }
+	// The set as global confirmation popup 
 	function confirmSetAsGlobal(){
         $(function() {
             $( "#dialog-confirm" ).dialog({
@@ -343,6 +405,7 @@
             });
         });
     }
+	// the Add/Update mendatory field verification 
      function setMendatory(x){
             if(x.parent().parent().parent().parent().find("span").find("select").val()== ''){
 				alert('Asset name can\'t be null');
@@ -364,3 +427,210 @@
 			}
 			return false;
         }
+		
+		// The Edit/delete  mode 
+		 $(function (){
+				if(window.location.search.indexOf('&') > -1){
+					if(window.location.search.split('&')[1].split('=')[0] === 'assetId'){
+						openAsset()
+					}                      
+				}
+			});
+			  var removeAsset = function(assetId){
+				blockme();
+				Oblix_Ctrl07ProjectEdit_CC.removeAsset(assetId, function (data, event){
+				  if(event.status){
+					refreshAsset();
+				  }
+				});
+			  };
+
+			  var getAssetDetails = function (assetId){
+				var deferred = $.Deferred();
+				Oblix_Ctrl07ProjectEdit_CC.getAssetDetails(assetId, function (assetDetails, event) {
+				  deferred.resolve({data: assetDetails, status: event});
+				});
+				return deferred.promise();
+			  }
+
+			  var updateAsset = function (btn){
+				blockme();
+				var button = $(btn);
+				var assetId = button.attr('data-asset-id');
+				var inputDate = $('#dialogMoreDetails table tr:first()').next().find('input').val();
+				var date = inputDate.split('-').reverse().toString().replace(new RegExp(',','g'), '-');
+				var details = {
+				  quantity: button.siblings('input[type="text"]').val(),
+				  location: button.closest('tbody').children().first().next().find('input').val(),
+				  asset_Picklist: button.closest('tbody').children().first().find('input').val()//,
+				  //actual_Delivery_Date: date,
+				  //additional_Description: $('#dialogMoreDetails table tr:last()').find('textarea').val()
+				}
+
+				Oblix_Ctrl07ProjectEdit_CC.UpdateProjectAction(assetId, details, function (data, event){
+				  button.addClass('hide_button');
+				  button.siblings('input[type="submit"]').removeClass('hide_button');
+				  refreshAsset();
+				  //$('#dialogMoreDetails table tr:first()').next().find('input').val('');
+				  //$('#dialogMoreDetails table tr:last()').find('textarea').val('');
+				});
+			  }
+
+			  var openAsset = function (){
+				var assetId = window.location.search.split('&')[1].split('=')[1];
+				var assetDetails = getAssetDetails(assetId);
+				assetDetails.then(function (data){
+					if(data.status.status){
+						var assetName = data.data.assetTitle;
+				  var properties = assetName.split(' X ');
+				  var numberOfQuantity = properties[0];
+				  var selectedAbreviation = properties[1].split('-');
+				  var allAbreviation = JSON.parse(sessionStorage.getItem('assestAbreviations'));
+
+				  var firstOption = null;
+				  var secondOption = null;
+				  var thirdOption = selectedAbreviation[2];
+				  var firstElement = null;
+				  var secondElement = null;
+				  var thirdElement = null;
+				  var selectorDetailPanel = null;
+				  var options = null;
+				  Object.keys(allAbreviation).forEach(function (key){
+					var currentAbraviation = allAbreviation[key];
+					if(currentAbraviation === selectedAbreviation[0] + '-' + selectedAbreviation[1]){
+					  options = key.split('_');
+					}
+				  })
+					firstOption = options[0];
+				  secondOption = options[1];				  
+				  $('.Oblix_recordType').find('.Oblix_recordTypeth').each(function (index, el) {
+					if($(el).text().search(firstOption) !== -1 ){
+					  firstElement = $(el);
+					  var secondSearchArray = firstElement.first().next().find('span > div[id*="_tabs"]').children('ul');
+					  secondSearchArray.find('a').each(function (index, el) {
+						  if($(el).text().search(secondOption) !== -1){
+							secondElement = $(el);
+							var curentIndex = index + 1;
+							var selector1 = 'div[id*="_tabs-' + curentIndex + '"]';
+							var selector2 = 'a[href*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
+							thirdElement = secondSearchArray.siblings(selector1).find('ul').find(selector2);
+							selectorDetailPanel = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
+						  }
+					  });
+					}
+				  });
+				  var detailPanel = thirdElement.closest('ul').siblings(selectorDetailPanel).find('tbody');
+				  
+					  detailPanel.find('tr').first().find('span select').val(data.data.assetName);
+					  detailPanel.find('tr').first().next().find('input').val(data.data.location);
+					  detailPanel.find('tr').first().next().next().find('input[type="text"]').val(data.data.quantity);
+					  /*$('#dialogMoreDetails table tr:first()').next().find('input').val(new Date(data.data.actualDeliveryDate).toLocaleString().split(',')[0].replace('.', '-').replace('.', '-'));
+					  $('#dialogMoreDetails table tr:last()').find('textarea').val(data.data.additionalDescription);*/
+					
+				  
+				  
+				  if(firstElement && !firstElement.hasClass('show')) firstElement.trigger('click');
+				  if(secondElement && secondElement.find('a').attr('tabindex') !== '0') secondElement.trigger('click');
+				  if(thirdElement && !thirdElement.parent().hasClass('ui-state-active')) {
+					detailPanel.find('tr').first().next().next().find('input[type="submit"]').each(function(index, el) {
+					  var button = $(el);
+					  if(button.val() === 'Update'){
+						button.removeClass('hide_button')
+						.attr('data-asset-id', assetId)
+					  } else {
+						button.addClass('hide_button');
+					  }
+					});
+					thirdElement.trigger('click');
+
+				  }
+					}
+				}, function (err){
+				console.log(err);
+			  });
+				  
+			  }
+
+			  var editAsset = function (el, assetId){
+				//debugger;
+				  var assetDetails = getAssetDetails(assetId);
+				  var assetName = $(el).closest('.Oblix_card_elmt').find('span').text();
+				  var properties = assetName.split(' X ');
+				  var numberOfQuantity = properties[0];
+				  var selectedAbreviation = properties[1].split('-');
+				  var allAbreviation = JSON.parse(sessionStorage.getItem('assestAbreviations'));
+
+				  var firstOption = null;
+				  var secondOption = null;
+				  var thirdOption = selectedAbreviation[2];
+				  var firstElement = null;
+				  var secondElement = null;
+				  var thirdElement = null;
+				  var selectorDetailPanel = null;
+				  var options = null;
+				  Object.keys(allAbreviation).forEach(function (key){
+					var currentAbraviation = allAbreviation[key];
+					//debugger;
+					if(currentAbraviation === selectedAbreviation[0] + '-' + selectedAbreviation[1]){
+						//debugger;
+					  options = key.split('_');
+					} /*else if(currentAbraviation === selectedAbreviation[1]){
+					  secondOption = key;
+					}*/
+				  })
+
+				  firstOption = options[0];
+				  secondOption = options[1];
+				  
+				  $('.Oblix_recordType').find('.Oblix_recordTypeth').each(function (index, el) {
+					if($(el).text().search(firstOption) !== -1 ){
+					  firstElement = $(el);
+					  var secondSearchArray = firstElement.first().next().find('span > div[id*="_tabs"]').children('ul');
+					  secondSearchArray.find('a').each(function (index, el) {
+						  if($(el).text().search(secondOption) !== -1){
+							secondElement = $(el);
+							var curentIndex = index + 1;
+							var selector1 = 'div[id*="_tabs-' + curentIndex + '"]';
+							var selector2 = 'a[href*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
+							thirdElement = secondSearchArray.siblings(selector1).find('ul').find(selector2);
+							selectorDetailPanel = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
+						  }
+					  });
+					}
+				  });
+				  var detailPanel = thirdElement.closest('ul').siblings(selectorDetailPanel).find('tbody');
+				  assetDetails.then(function (data){
+					if(data.status.status){
+					  detailPanel.find('tr').first().find('span select').val(data.data.assetName);
+					  detailPanel.find('tr').first().next().find('input').val(data.data.location);
+					  detailPanel.find('tr').first().next().next().find('input[type="text"]').val(data.data.quantity);
+					  /*$('#dialogMoreDetails table tr:first()').next().find('input').val(new Date(data.data.actualDeliveryDate).toLocaleString().split(',')[0].replace('.', '-').replace('.', '-'));
+					  $('#dialogMoreDetails table tr:last()').find('textarea').val(data.data.additionalDescription);*/
+					}
+				  }, function (err){
+					console.log(err);
+				  });
+				  
+				  if(firstElement && !firstElement.hasClass('show')) firstElement.trigger('click');
+				  if(secondElement && secondElement.find('a').attr('tabindex') !== '0') secondElement.trigger('click');
+				  if(thirdElement && !thirdElement.parent().hasClass('ui-state-active')) {
+					thirdElement.trigger('click');
+				  }
+				  detailPanel.find('tr').first().next().next().find('input[type="submit"]').each(function(index, el) {
+					  var button = $(el);
+					  if(button.val() === 'Update'){
+						button.removeClass('hide_button')
+						.attr('data-asset-id', assetId)
+					  } else {
+						button.addClass('hide_button');
+					  }
+					});
+			  }
+			  var getAbreviationForCardAssets = function (){
+				Oblix_Ctrl07ProjectEdit_CC.getAbreViationByRTBySubCatgForCardAssets(function (data, event){
+				  if(event.status){
+					sessionStorage.setItem('assestAbreviations', JSON.stringify(data));
+				  }
+				});
+			  }
+			  getAbreviationForCardAssets();

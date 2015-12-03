@@ -55,7 +55,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
 
     private static final Integer notesSize = 255;
     //achraf
-    public Attachment attachment {
+   public Attachment attachment {
         get {
             if (attachment == null)
                 {attachment = new Attachment();}
@@ -72,7 +72,10 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
 
         init();
     }
-
+    
+     /*
+    @Description :  Used to initialize atributes
+    */
     public void initializeAttributes() {
 
         notes = new list<note>();
@@ -101,6 +104,9 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
 
     }
 
+     /*
+    @Description :  =============
+    */
     public void init() {
 
         Id idUser = UserInfo.getUserId();
@@ -197,30 +203,41 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         }
 
     }
-
+    
+      /*
+    @Description :  Back to VF5 
+    @return : page reference
+    */
     public pageReference backAction() {
         Pagereference meNewPage = Page.Oblix_VF05_SOWDetailsV;
-            	meNewPage.setRedirect(True);
+                meNewPage.setRedirect(True);
         return meNewPage;
     }
     /*
     public pageReference CreateProjectAction() {
         Pagereference meNewPage = Page.Oblix_VF07_ProjectNew;
-				meNewPage.getParameters().put('projectId', projectId);
-            	meNewPage.setRedirect(True);
+                meNewPage.getParameters().put('projectId', projectId);
+                meNewPage.setRedirect(True);
         return meNewPage;
     }
     public pageReference SaveProjectAction() {
          Pagereference meNewPage = Page.Oblix_VF06_SOWView;
-				meNewPage.getParameters().put('id', sowId);
-            	meNewPage.setRedirect(True);
+                meNewPage.getParameters().put('id', sowId);
+                meNewPage.setRedirect(True);
         return meNewPage;
     }
+    */
+    
+      /*
+    @Description :  set isEdit variable to true 
     */
     public void EditAction() {
         isEdit = true;
     }
-
+    
+      /*
+    @Description :  do do cloning 
+    */
     public void CloneAction() {
 
         // create a 'clone' record and initialize it's values
@@ -397,15 +414,15 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
                     }
                     insert lstAttachementsToAdd;
                 }
-                System.debug('###NoteBody size: ' + String.valueOf(noteAsset.body.length()));
-                if (noteAsset.body != null && noteAsset.id == null && noteAsset.body.length() <= notesSize) {
+                System.debug('###NoteBody size: ' + String.valueOf(noteAsset.body.length())); //&& noteAsset.id == null
+                if (noteAsset.body != null  && noteAsset.body.length() <= notesSize) {
                     noteAsset.parentId =  selSow.id;
                     noteAsset.title = 'NoteII';
                     noteAsset.isPrivate = false;
                     insert noteAsset;
                     noteAsset = [select body from note where id = :noteAsset.id];
-                    notes.add(noteAsset);
-                    noteAsset = new note();
+                    //notes.add(noteAsset);
+                    //noteAsset = new note();
                 } else if (noteAsset.body != null && noteAsset.id == null) {
                     throw new Oblix_Utils.CustomException('TOO_LONG_NOTE');
                 }
@@ -428,7 +445,10 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
     }
 
 
-
+    /*
+    @Description : Get number of feeds 
+    @return : Integer
+    */
     private Integer NumberOfSowChatterFeedItem(Id sowFeedId) {
         Integer rows = [select count() from Marketing_SOW__Feed where ParentId = : sowFeedId ];
         return rows ;
@@ -442,8 +462,8 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
      */
     public PageReference msDetail() {
         Pagereference meNewPage = Page.Oblix_VF10_nonCampaignView;
-				meNewPage.getParameters().put('MSid', selSow.id);
-            	meNewPage.setRedirect(True);
+                meNewPage.getParameters().put('MSid', selSow.id);
+                meNewPage.setRedirect(True);
         meNewPage.setRedirect(True);
         return meNewPage;
     }
@@ -462,6 +482,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         attachment.IsPrivate = true;
         try {
             insert attachment;
+             attachment= [Select Id, Name, ParentId, Parent.Name, CreatedBy.Name, CreatedDate from Attachment where Id = : attachment.Id];
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.INFO, 'Attachment uploaded successfully'));
 
         } catch (DMLException e) {
@@ -477,6 +498,9 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         }
 
     }
+    /*
+    @Description :  Cancel Action
+    */
     public void Cancel () {
         return;
     }
@@ -491,7 +515,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         List<Marketing_Basics__c > x = [select id from Marketing_Basics__c where id = :selectedProjectId limit 1]  ;
         if ( x.isempty() )  {
                 meNewPage = Page.Oblix_VF07_ProjectView;
-				meNewPage.getParameters().put('projectId', selectedProjectId);
+                meNewPage.getParameters().put('projectId', selectedProjectId);
         } else return null;
         meNewPage.setRedirect(True);
         return meNewPage;
@@ -499,8 +523,8 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
     /* Non campaign Added by Achraf */
     public PageReference createNonCamp() {
         Pagereference meNewPage = Page.Oblix_VF09_nonCampaignEdit;
-				meNewPage.getParameters().put('MSid', sowId);
-            	meNewPage.setRedirect(True);
+                meNewPage.getParameters().put('MSid', sowId);
+                meNewPage.setRedirect(True);
         return meNewPage;
     }
 
@@ -509,7 +533,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
     */
     public PageReference AddProject() {
         Pagereference meNewPage = Page.Oblix_VF08_ProjectEdit;
-				meNewPage.getParameters().put('sowId', selSow.Id);
+                meNewPage.getParameters().put('sowId', selSow.Id);
         return meNewPage;
     }
 
@@ -558,7 +582,9 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
 
         return thousandBlocks;
     }
-
+    /*
+    @Description :  Add Attachement to list Attachement
+    */
     public PageReference uploadAttachment() {
         lstAttachementsToAdd.add(myDoc);
         return null;
@@ -577,7 +603,8 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
 
     }
 
-    /* Add Attachment popup
+    /* 
+    @description: Add Attachment popup
     */
     public Pagereference SaveAttachments() {
 
@@ -589,7 +616,9 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
 
         return null;
     }
-
+    /*
+    @Description :  calculate Number of attachement 
+    */
     public PageReference ChangeCount() {
         allFileList.clear() ;
         //Adding multiple attachments instance
@@ -597,9 +626,9 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
          {   allFileList.add(new Attachment()) ;  }
         return null ;
     }
-    /* Inner Class Used to have list of Campaign and non Campaign in the same list
+    /* 
+    @Description: Inner Class Used to have list of Campaign and non Campaign in the same list
      */
-
     public Class CampaignNonCampaignItems {
         public SObject objectDyn {get; set;}
         public String objName {get; set;}
@@ -610,7 +639,9 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         }
     }
 
-    //remove attachment
+    /*
+    @Description : remove attachment
+    */
     @RemoteAction
     public static void removeAttachments(List<String> attachmentsToRemove) {
         if (!attachmentsToRemove.isEmpty()) {
@@ -622,7 +653,10 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
             }
         }
     }
-    
+    /*
+    @Description : Sets the Big and Small categories when a CategoryBrand is found for a selected SOW brand.
+                If no categories are found, sets lookups to null; If more than one is found, sets from first in the list
+    */
     public void getCategoryBrand(){
         
         List<MDO_CategoryBrands__c> categoryBrandList = [SELECT Id, product_Category_Id__r.Id, product_Category_Id__r.Name, product_Category_Id__r.parent_L2__r.Id, product_Category_Id__r.parent_L2__r.Name FROM MDO_CategoryBrands__c WHERE brand_id__c =:selSow.OblixBrand__c];
@@ -638,7 +672,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
             selSow.SmallProductCategory__c = null;
             
         } else {
-			
+            
             // one or more categories exist for this brand. If more than one, select first from the list
             selSow.BigOblixProductCategory__r = categoryBrandList[0].product_Category_Id__r.parent_L2__r;
             selSow.BigOblixProductCategory__c = categoryBrandList[0].product_Category_Id__r.parent_L2__c;
@@ -648,7 +682,10 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         }
         
     }
-    
+      /*
+    @Description :  =========
+    @return : page reference standar page
+    */
     public static PageReference reportFolderURL {
         get{
             
@@ -665,15 +702,18 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
             
         } set;
     }
-    
+      /*
+    @Description :  get Financial Year Options
+    @return : FY Options 
+    */
     public List<SelectOption> getFYSelectOptions() {
         List<SelectOption> options = new List<SelectOption>();
         
         options.add(new SelectOption('', 'Financial Year'));
         
-		for( Schema.PicklistEntry f : Marketing_SOW__c.fields.Financial_Year__c.getDescribe().getPicklistValues()){
-			options.add(new SelectOption(f.getLabel(), f.getValue()));
-		}
+        for( Schema.PicklistEntry f : Marketing_SOW__c.fields.Financial_Year__c.getDescribe().getPicklistValues()){
+            options.add(new SelectOption(f.getLabel(), f.getValue()));
+        }
         
         return options;
         

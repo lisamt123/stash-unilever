@@ -1,5 +1,17 @@
 <!-- Created by Asmae ESSBAI For the ViewProject page -->
-
+ 
+  function blockme() { 
+           $.blockUI({ css: {  
+                border: 'none', 
+                padding: '15px', 
+                backgroundColor: '#000', 
+                '-webkit-border-radius': '10px', 
+                '-moz-border-radius': '10px', 
+                opacity: .5, 
+                color: '#fff' 
+            } }); 
+        } 
+		
 function openAtt(){
 		$('#xdialogAddAtt').slideDown( "slow", function() {
 							// Animation complete.
@@ -20,7 +32,9 @@ function openAtt(){
 			 $("pop").dialog('destroy');          
 				}
 		 });           
-}
+	}
+		 
+		 
 <!-- Attachment part -->
 
  var redirectToAttachment = function (attachmentId){
@@ -55,3 +69,4 @@ function openAtt(){
         $('#dialog').dialog('close');
         removeAttachmentsBack();
     }
+	    

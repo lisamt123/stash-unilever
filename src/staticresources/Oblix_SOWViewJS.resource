@@ -12,7 +12,7 @@
         } }); 
     }
    
-  function PopupAddAttachmnt(){
+   function PopupAddAttachmnt(){
        
          $(function() {
                 $( "#PopupAddAttachmnt" ).dialog({
@@ -53,6 +53,7 @@
         Oblix_Ctrl06SOWView_CC.removeAttachments(attachmentsIds, function (data, status){
             deferred.resolve({data: data, status: status});
         });
+		
         return deferred.promise();
     }
     var acceptRemoveAttachment = function (){
@@ -96,11 +97,72 @@
             });
         });
     }
-	
+	function getCategoryBrand(val){
+            console.log('onchange triggered');
+    }
 	function preparePH(){
-            $(".cmplex").find("input").attr("placeholder", "{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label}");
-            $(".complex").find("input").attr("placeholder", "{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}");
+            $(".cmplex").find("input").attr("placeholder", "Agency Contact");
+            $(".complex").find("input").attr("placeholder", "Unilever Contact");
+			$(".complex").find("input").attr("styleClass", "cmplex input_init");
             $(".complex").find("select").hide();
             $(".cmplex").find("select").hide();
     }
-  
+     var turnOnValidation = function (isTurned){
+        'use strict';
+        var el = $('.column3').find('textarea');
+        if(isTurned){
+            el.on('change', function (event) {
+                var saveButton = null;
+                var errorMsg = $('.column3').find('.warning');
+                $('.column5').find('input').each(function() {
+                    if($(this).val() === 'Save'){
+                        saveButton = $(this);
+                    }
+                });
+                if($(this).val().length > 255){
+                    saveButton.attr('disabled', 'disabled');
+                    errorMsg.addClass('show').text('Note is too long.');
+                } else {
+                    saveButton.removeAttr('disabled');
+                    errorMsg.removeClass('show').text('');
+                }
+            });    
+        } else {
+            el.off('change');
+        }
+        
+     }
+	  function Popup(){
+             $("#dialog").dialog({
+             width: 1000,
+             modal:true,
+             close: function(event,ui){
+                 $("pop").dialog('destroy');          
+                    }
+             }); 
+            
+     }
+	 $(function() {
+        $( "#tabs-centre" ).tabs();
+     });
+   	blockme();
+    Highcharts.setOptions({
+        colors:['green']
+     });
+	  function openAtt(){
+            $('#xdialogAddAtt').slideDown( "slow", function() {
+                                // Animation complete.
+                               });
+        
+        }
+         function closeAtt(){
+            $('#xdialogAddAtt').slideUp( "slow", function() {
+                                return false;
+                               });
+        
+        }
+      
+		function getCategoryBrand(val){
+          	console.log('onchange triggered');
+		}
+	 
