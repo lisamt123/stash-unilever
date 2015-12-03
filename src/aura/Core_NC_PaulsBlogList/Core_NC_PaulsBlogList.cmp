@@ -2,9 +2,6 @@
 	<aura:handler name="init" value="{!this}" action="{!c.getGlobalNewsMostRecent}" />
     <aura:attribute name="NewsType" type="String"/>
     
-    <!-- Wire up the bootstrap static resource -->
-    <ltng:require styles="/resource/lightningBootStrap"/>
-    
     <aura:attribute name="wrapper" type="Core_NC_NewsWrapperClass"/>
     <aura:attribute name="loadMoreDisplay" type="Boolean" default="false"/>
     <aura:attribute name="NewsList" type="Core_NC_NewsWrapperClass"/>
@@ -12,8 +9,6 @@
     <aura:attribute name="UserId" type="String"/>
     <aura:attribute name="GAId" type="String"/>
     
-    <!-- Display expense records 
-    <div class="bootstrap-sf1">-->
         <div class="container">
             <div id="list" class="row">                
                 <div class="topPadding">
@@ -32,43 +27,9 @@
                 </div>    
                 <aura:iteration items="{!v.NewsList}" var="newsArticle" indexVar="index">
                     <div>
-                        <aura:if isTrue="{!index == 0 ? true : false}">
-                          <!--<table width="95%">
-                                <tr >
-                                    <td width="100%">
-                                        <img src="{!newsArticle.BannerURL}" class="BigImage"></img>
-                                    </td>
-                                </tr>
-                              	<tr>
-                                    <td width="100%"><br/>
-                                        <ui:outputText value="{!newsArticle.PublishedDate}" class="SubText"/>
-                                        <div class="RightFloat">
-                                            <img src="/resource/LikeNewsArticle" height="25" width="25"/>
-                                            &nbsp;<ui:outputText value="{!newsArticle.LikeCount}" class="SubText"/>
-                                            &nbsp;&nbsp;&nbsp;<img src="/resource/CommentNewsArticle" height="25" width="25"/>
-                                            &nbsp;<ui:outputText value="{!newsArticle.CommentCount}" class="SubText"/>
-                                        </div>
-                                        <br/><br/><ui:outputText value="{!newsArticle.Name}" class="Title"/>
-                                    </td>
-                                </tr>
-                            </table>-->
+                        <aura:if isTrue="{!index == 0 ? true : false}">                         
                             <c:CORE_NC_NewsBanner newsArticle="{!newsArticle}" newsType="{!v.NewsType}"/>
-                          <aura:set attribute="else">
-                              <!--<table width="95%">
-                                <tr >
-                                    <td width="40%">
-                                        <img src="{!newsArticle.BannerURL}" class="Image"></img>
-                                    </td>
-                                    <td width="60%">
-                                        <ui:outputText value="{!newsArticle.PublishedDate}" class="SubText"/>
-                                        &nbsp;&nbsp;&nbsp;<img src="/resource/LikeNewsArticle" height="25" width="25"/>
-                                        &nbsp;<ui:outputText value="{!newsArticle.LikeCount}" class="SubText"/>
-                                        &nbsp;&nbsp;&nbsp;<img src="/resource/CommentNewsArticle" height="25" width="25"/>
-                                        &nbsp;<ui:outputText value="{!newsArticle.CommentCount}" class="SubText"/>
-                                        <br/><br/><ui:outputText value="{!newsArticle.Name}" class="Title"/>
-                                    </td>
-                                </tr>
-                            </table>-->
+                          <aura:set attribute="else">                              
                               <c:CORE_NC_NewsItem newsArticle="{!newsArticle}" newsType="{!v.NewsType}"/>
                           </aura:set>
                         </aura:if>

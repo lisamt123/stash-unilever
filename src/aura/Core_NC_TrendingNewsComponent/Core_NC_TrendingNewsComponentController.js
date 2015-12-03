@@ -18,11 +18,13 @@
                     	component.set("v.loadMoreDisplay",true);
                     	component.set("v.NewsList", responseData);
                     	component.set("v.wrapper", updatedData);
-                    } else
+                    } else {
                         component.set("v.NewsList",updatedData);
+                    }
                 }
-                else 
+                else {
                     component.set("v.ErrorMessage", true);
+                }
         	}
         });
         $A.enqueueAction(action);
@@ -34,10 +36,12 @@
         for(var count=0; count<currentData.length+updatedData[0].LoadMoreLimit && count<updatedData.length; count++){
             responseData.push(updatedData[count]);
         }
-        if(updatedData.length==responseData.length)
+        if(updatedData.length==responseData.length) {
             component.set("v.loadMoreDisplay",false);
-        else            
+        }
+        else {
             component.set("v.loadMoreDisplay",true);
+        }
         component.set("v.NewsList", responseData);
     },
 })
