@@ -165,14 +165,13 @@ System.debug('MAP--------'+mapOfEmailToActiveUsers);
         system.assert(cs.Id != null);
 
         List<uw_Terms_Conditions__c> TaCList = new List<uw_Terms_Conditions__c>();
-        uw_Brand__c brand = uw_UnitTestDataFactory.initBrand('brandName', true);
         
         //IDC- 14 Jun - Creating test data for Inoplan object
         uw_Inoplan_Project__c inoPlanProject = uw_UnitTestDataFactory.createInoplan();
         insert inoPlanProject;
         
         
-        uw_BET__c bet = uw_UnitTestDataFactory.initBET('betName', brand, true,inoPlanProject);
+        uw_BET__c bet = uw_UnitTestDataFactory.initBET('betName',true,inoPlanProject);
         uw_Terms_Conditions__c tac = uw_UnitTestDataFactory.initTac(bet, 'xyz@xyz.xyz.ajh', 'Enable User', true, true);
         TaCList.add(tac);
         

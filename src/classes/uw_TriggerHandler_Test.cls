@@ -50,8 +50,7 @@ public Class uw_TriggerHandler_Test{
         Test.startTest();
         uw_Brand__c brand = uw_UnitTestDataFactory.createParentBrand();
         insert brand;
-        System.assert(brand!=null);
-        
+
         //IDC- 14 Jun - Creating test data for Inoplan object
         uw_Inoplan_Project__c inoPlanProject = uw_UnitTestDataFactory.createInoplan();
         insert inoPlanProject;
@@ -140,8 +139,6 @@ public Class uw_TriggerHandler_Test{
         //  CollaborationGroup cGroup = uw_UnitTestDataFactory.getTestChatterGroup();
             CollaborationGroup cGroup=new CollaborationGroup(name='mygroup',CollaborationType='public');
             insert cGroup;
-            
-            System.assert(cGroup != null);
         // Create a feed Item on the group with a youtube vid
         // add a pin comment - see a uw_link is created
         // delete the pin comment - see the uw_link is deleted
@@ -227,8 +224,6 @@ public Class uw_TriggerHandler_Test{
        // CollaborationGroup cGroup = uw_UnitTestDataFactory.getTestChatterGroup();
          CollaborationGroup cGroup=new CollaborationGroup(name='mygroup1',CollaborationType='private');
          insert cGroup;
-         
-         System.assert(cGroup != null);
         // Create a feed Item on the group with a youtube vid
         // add a pin comment - see a uw_link is created
         // delete the pin comment - see the uw_link is deleted
@@ -359,8 +354,6 @@ public Class uw_TriggerHandler_Test{
     private static testmethod void test_misc() {
         Test.startTest();
         try{
-            integer i=1;
-            system.assertEquals(i ,1);
         // system.assert(uw_TriggerHandler.getUWLinkPinnovateRecordType() != null);
         }
         
@@ -405,12 +398,11 @@ Test.stopTest();
     
     private static testmethod void testMisc() {
         Test.startTest();
-        uw_Brand__c brand = uw_UnitTestDataFactory.initBrand('brandName', true);
         //IDC- 14 Jun - Creating test data for Inoplan object
         uw_Inoplan_Project__c inoPlanProject = uw_UnitTestDataFactory.createInoplan();
         insert inoPlanProject;
         //IDC- 14 Jun - new Inoplan parameter added    
-        uw_BET__c bet = uw_UnitTestDataFactory.initBET('betName', brand, true,inoPlanProject);
+        uw_BET__c bet = uw_UnitTestDataFactory.initBET('betName',true,inoPlanProject);
         ContentVersion cv = uw_UnitTestDataFactory.initContentVersion();
         uw_Asset__c asset = uw_UnitTestDataFactory.initAsset('n', cv, bet);
         uw_TriggerHandler th = new uw_TriggerHandler();
@@ -423,12 +415,11 @@ Test.stopTest();
     private static testmethod void testHandleAssets(){
      Test.startTest();
      List<uw_Asset__c> assetList = new List<uw_Asset__c>();    
-     uw_Brand__c brand1 = uw_UnitTestDataFactory.initBrand('brandName', true);
    //IDC- 14 Jun - Creating test data for Inoplan object
      uw_Inoplan_Project__c inoPlanProject1 = uw_UnitTestDataFactory.createInoplan();
      insert inoPlanProject1;
     //IDC- 14 Jun - new Inoplan parameter added    
-     uw_BET__c bet1 = uw_UnitTestDataFactory.initBET('betName1', brand1, true,inoPlanProject1);
+     uw_BET__c bet1 = uw_UnitTestDataFactory.initBET('betName1',true,inoPlanProject1);
      bet1.Sharing__c = 'Public';
      FeedItem fi1 = new FeedItem();
      fi1.parentId = bet1.Id;
@@ -439,11 +430,10 @@ Test.stopTest();
      asset1.betFeedID__c = bet1.Id;
      assetList.add(asset1);
      
-     uw_Brand__c brand2 = uw_UnitTestDataFactory.initBrand('brandName', true);
      uw_Inoplan_Project__c projectNameUnique = uw_UnitTestDataFactory.createInoplan();
      insert projectNameUnique;
     //IDC- 14 Jun - new Inoplan parameter added  
-     uw_BET__c bet2 = uw_UnitTestDataFactory.initBET('betName2', brand2, true,projectNameUnique);
+     uw_BET__c bet2 = uw_UnitTestDataFactory.initBET('betName2', true,projectNameUnique);
      bet2.Sharing__c = 'Private';
      ContentVersion cv2 = uw_UnitTestDataFactory.initContentVersion();
      uw_Asset__c asset2 =uw_UnitTestDataFactory.initAsset('test2',cv2,bet2);
@@ -460,12 +450,11 @@ Test.stopTest();
      }
   private static testmethod void testDelAsset(){
     Test.startTest();
-     uw_Brand__c brand1 = uw_UnitTestDataFactory.initBrand('brandName', true);
    //IDC- 14 Jun - Creating test data for Inoplan object
      uw_Inoplan_Project__c inoPlanProject = uw_UnitTestDataFactory.createInoplan();
      insert inoPlanProject;
     //IDC- 14 Jun - new Inoplan parameter added    
-     uw_BET__c bet1 = uw_UnitTestDataFactory.initBET('betName1', brand1, true,inoPlanProject);
+     uw_BET__c bet1 = uw_UnitTestDataFactory.initBET('betName1',true,inoPlanProject);
      ContentVersion cv1 = uw_UnitTestDataFactory.initContentVersion();
      uw_BET_Team_Member__c teamMem = new uw_BET_Team_Member__c(Access_Level__c='Full Brand Experience (Toolkit & Studio)',Role__c='Manager',BET__c = bet1.id);
      uw_Asset__c asset1 =uw_UnitTestDataFactory.initAsset('test1',cv1,bet1);
@@ -476,12 +465,11 @@ Test.stopTest();
      }
      private static testmethod void testDeleteAssets(){
      Test.startTest();
-      uw_Brand__c brand2 = uw_UnitTestDataFactory.initBrand('brandName', true);
    //IDC- 14 Jun - Creating test data for Inoplan object
      uw_Inoplan_Project__c inoPlanProject = uw_UnitTestDataFactory.createInoplan();
      insert inoPlanProject;
     //IDC- 14 Jun - new Inoplan parameter added    
-     uw_BET__c bet2 = uw_UnitTestDataFactory.initBET('betName2', brand2, true,inoPlanProject);
+     uw_BET__c bet2 = uw_UnitTestDataFactory.initBET('betName2',true,inoPlanProject);
      bet2.Sharing__c = 'Public';
      ContentVersion cv2 = uw_UnitTestDataFactory.initContentVersion();
      uw_Asset__c asset2 =uw_UnitTestDataFactory.initAsset('test2',cv2,bet2);
@@ -499,12 +487,11 @@ Test.stopTest();
     Map<Id,FeedItem> feedMap = new Map<Id,FeedItem>();
      Id cGroupId = uw_UnitTestDataFactory.getTestChatterGroupId();
      List<FeedItem> feedList = new List<FeedItem>();
-     uw_Brand__c brand2 = uw_UnitTestDataFactory.initBrand('brandName', true);
      //IDC- 14 Jun - Creating test data for Inoplan object
      uw_Inoplan_Project__c inoPlanProject = uw_UnitTestDataFactory.createInoplan();
      insert inoPlanProject;
     //IDC- 14 Jun - new Inoplan parameter added 
-     uw_BET__c bet2 = uw_UnitTestDataFactory.initBET('betName2', brand2, true,inoPlanProject);
+     uw_BET__c bet2 = uw_UnitTestDataFactory.initBET('betName2',true,inoPlanProject);
      bet2.Sharing__c = 'Public';
      ContentVersion cv2 = uw_UnitTestDataFactory.initContentVersion();
      uw_Asset__c asset2 =uw_UnitTestDataFactory.initAsset('test2',cv2,bet2);
@@ -548,12 +535,11 @@ Test.stopTest();
    }
    private static testmethod void testHandleFeedBeforeDel(){
     Test.startTest();
-     uw_Brand__c brand1 = uw_UnitTestDataFactory.initBrand('brandName', true);
    //IDC- 14 Jun - Creating test data for Inoplan object
      uw_Inoplan_Project__c inoPlanProject = uw_UnitTestDataFactory.createInoplan();
      insert inoPlanProject;
     //IDC- 14 Jun - new Inoplan parameter added    
-     uw_BET__c bet1 = uw_UnitTestDataFactory.initBET('betName1', brand1, true,inoPlanProject);
+     uw_BET__c bet1 = uw_UnitTestDataFactory.initBET('betName1', true,inoPlanProject);
      ContentVersion cv1 = uw_UnitTestDataFactory.initContentVersion();
      uw_Asset__c asset1 =uw_UnitTestDataFactory.initAsset('test1',cv1,bet1);
      
@@ -582,22 +568,20 @@ Test.stopTest();
         Test.startTest();
         uw_BET__c bet1;
         uw_BET__c bet2;
-        uw_Brand__c brand1 = uw_UnitTestDataFactory.initBrand('brandName', true);
        //IDC- 14 Jun - Creating test data for Inoplan object
          uw_Inoplan_Project__c inoPlanProject1 = uw_UnitTestDataFactory.createInoplan();
          insert inoPlanProject1;
         //IDC- 14 Jun - new Inoplan parameter added 
-         bet1 = uw_UnitTestDataFactory.initBET('betName1', brand1, true,inoPlanProject1);
+         bet1 = uw_UnitTestDataFactory.initBET('betName1', true,inoPlanProject1);
          bet1.Sharing__c = 'Public';
        ContentVersion cv1 = uw_UnitTestDataFactory.initContentVersion();
        uw_Asset__c asset1 =uw_UnitTestDataFactory.initAsset('test1',cv1,bet1);
        
-       uw_Brand__c brand2 = uw_UnitTestDataFactory.initBrand('brandName', true);
        //IDC- 14 Jun - Creating test data for Inoplan object
          uw_Inoplan_Project__c inoPlanProject2 = uw_UnitTestDataFactory.createInoplan();
          insert inoPlanProject2;
         //IDC- 14 Jun - new Inoplan parameter added        
-        bet2 = uw_UnitTestDataFactory.initBET('betName2', brand2, true,inoPlanProject2);
+        bet2 = uw_UnitTestDataFactory.initBET('betName2', true,inoPlanProject2);
        bet2.Sharing__c = 'Private';
        ContentVersion cv2 = uw_UnitTestDataFactory.initContentVersion();
        uw_Asset__c asset2 =uw_UnitTestDataFactory.initAsset('test2',cv2,bet2);
@@ -628,11 +612,10 @@ Test.stopTest();
      
    private static testmethod void testHandleFeedCommentBeforeDel(){
     Test.startTest();
-     uw_Brand__c brand1 = uw_UnitTestDataFactory.initBrand('brandName', true);
      uw_Inoplan_Project__c projectName_3 = uw_UnitTestDataFactory.createInoplan();
      insert projectName_3;
      //IDC- 14 Jun - new Inoplan parameter added  
-     uw_BET__c bet1 = uw_UnitTestDataFactory.initBET('betName1', brand1, true,projectName_3);
+     uw_BET__c bet1 = uw_UnitTestDataFactory.initBET('betName1', true,projectName_3);
      ContentVersion cv1 = uw_UnitTestDataFactory.initContentVersion();
      uw_Asset__c asset1 =uw_UnitTestDataFactory.initAsset('test1',cv1,bet1);
      
@@ -657,11 +640,10 @@ Test.stopTest();
     public static testmethod void testhandleFeedItemBeforeDelete()
     {
         Test.startTest();
-      uw_Brand__c brand2 = uw_UnitTestDataFactory.initBrand('brandName', true);
       uw_Inoplan_Project__c projectName_Five = uw_UnitTestDataFactory.createInoplan();
          insert projectName_Five ;
         //IDC- 14 Jun - new Inoplan parameter added  
-      uw_BET__c bet2 = uw_UnitTestDataFactory.initBET('betName1', brand2, true,projectName_Five);
+      uw_BET__c bet2 = uw_UnitTestDataFactory.initBET('betName1',true,projectName_Five);
       List<FeedItem> fList= new List<FeedItem>();
       Map<Id,FeedItem> fListMap= new Map<Id,FeedItem>();
       FeedItem fi4 = new FeedItem();
@@ -681,7 +663,6 @@ Test.stopTest();
     
     User uNoFId = new User(username='test@test.com',IsActive=false);
         User uFIdLower = new User(username='test@test.com',FederationIdentifier='solar federation',IsActive=true);
-        system.assert(uFIdLower != null);
         User uFIdUpper = new User(username='test@test.com',FederationIdentifier='SOLAR FEDERATION',IsActive=false);
         User uFIdMixed = new User(username='test@test.com',FederationIdentifier='SoLaR FeDERatIon',IsActive=true);
         Map<id,User> activeUser = new Map<id,User>();
@@ -707,8 +688,7 @@ Test.stopTest();
         string cityName;
         string funcName; 
         
-        profile p=[select id from profile where name=:'System administrator'];    
-        system.assert(p != null);  
+        profile p=[select id from profile where name=:'System administrator'];      
         List<CORE_CHATTER_USER_ADMINISTRATION__c> custSetValues= CORE_CHATTER_USER_ADMINISTRATION__c.getall().values();
         if(custSetValues != null) {
         for(CORE_CHATTER_USER_ADMINISTRATION__c temp: custSetValues){

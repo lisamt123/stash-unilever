@@ -524,6 +524,7 @@ global class FA_Test_Trigger_CouFacilitator{
          for(CollaborationGroupMember s:[select memberId,CollaborationGroupId 
                                                              from CollaborationGroupMember
                                                             where CollaborationGroupId in:setCoChGrpId
+                                                            and memberId !=: UserInfo.getUserId()
                                                             ])
               {
                   if(s.memberId != CoFac.FA_Facilitator__c)
@@ -636,7 +637,8 @@ global class FA_Test_Trigger_CouFacilitator{
      for(CollaborationGroupMember s:[select memberId,
                                      CollaborationGroupId 
                                      from CollaborationGroupMember
-                                     where CollaborationGroupId in:setCoChGrpId]){
+                                     where CollaborationGroupId in:setCoChGrpId
+                                     and memberId !=: UserInfo.getUserId()]){
           if(s.memberId==CoFac.FA_Facilitator__c){
            flag=true;       
           }

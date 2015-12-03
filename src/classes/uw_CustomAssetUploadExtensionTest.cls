@@ -382,7 +382,7 @@ private class uw_CustomAssetUploadExtensionTest {
         System.assertEquals(1, result.size());
         System.assertEquals('Sub Function cannot be empty.', result[0]);
     }
-
+    
     static testMethod void validateDataBDEmptyStatusAndStudioAssetType(){
         BET_TestingHelper.BET_TestingData betWrapper = prepareData();
 
@@ -396,9 +396,8 @@ private class uw_CustomAssetUploadExtensionTest {
             result = controller.validateData();            
         }         
         System.assertNotEquals(null, result);
-        System.assertEquals(2, result.size());
+        System.assertEquals(1, result.size());
         System.assertEquals('Status cannot be empty.', result[0]);
-        System.assertEquals('Type cannot be empty.', result[1]);
     }
 
     static testMethod void validateDataBDInvalidSubFunctionForUser(){
@@ -415,10 +414,9 @@ private class uw_CustomAssetUploadExtensionTest {
             result = controller.validateData();            
         }         
         System.assertNotEquals(null, result);
-        System.assertEquals(3, result.size());
+        System.assertEquals(2, result.size());
         System.assertEquals('Not allowed to add Brand Development.', result[0]);
         System.assertEquals('Status cannot be empty.', result[1]);
-        System.assertEquals('Type cannot be empty.', result[2]);
     }
 
     static testMethod void validateDataBDEmptyMediaType(){

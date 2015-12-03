@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>IPM OTIF Status</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>IPM OTIF Status</value>
+    </caseValues>
+    <fields>
+        <label><!-- IPM_Carry GK Section Answer --></label>
+        <name>IPM_Carry_GK_Section_Answer__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM External Id --></label>
+        <name>IPM_External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Gate Document Type --></label>
+        <name>IPM_Gate_Document_Type__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Section Number --></label>
+        <name>IPM_Section_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- OTIF HelpText Amber --></label>
+        <name>OTIF_HelpText_Amber__c</name>
+    </fields>
+    <fields>
+        <label><!-- OTIF HelpText Green --></label>
+        <name>OTIF_HelpText_Green__c</name>
+    </fields>
+    <fields>
+        <label><!-- OTIF HelpText Red --></label>
+        <name>OTIF_HelpText_Red__c</name>
+    </fields>
+    <fields>
+        <label><!-- OTIF Help Text --></label>
+        <name>OTIF_Help_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- OTIF Measure --></label>
+        <name>OTIF_Measure__c</name>
+    </fields>
+    <fields>
+        <label><!-- OTIF No of Status --></label>
+        <name>OTIF_No_of_Status__c</name>
+    </fields>
+    <fields>
+        <label><!-- OTIF Responsibility --></label>
+        <name>OTIF_Responsibility__c</name>
+    </fields>
+    <fields>
+        <label><!-- OTIF Sequence Number --></label>
+        <name>OTIF_Sequence_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- OTIF Status --></label>
+        <name>OTIF_Status__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>
