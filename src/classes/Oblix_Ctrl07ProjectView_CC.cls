@@ -37,6 +37,9 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
         // Cancel project popup 
         public integer percentageToBePaid {get;set;}
         public boolean isLocked {get;set;}
+        
+        
+        
         public Oblix_Ctrl07ProjectView_CC (){
               IdsProject = '';
               isEditItem = false;
@@ -71,7 +74,11 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
                 }
             }
         }
-              
+        
+         /* 
+        @Description : initialize form values 
+       
+        */    
         public void init(){
             isAllowedToDeleteAsset();
             
@@ -110,7 +117,7 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
                               
              lstProjectSplitHubs = [Select Id, Name, OblixCountry__r.name,OblixCountry__c, Project_Splits__c, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c =: SelectedProject.Id ];
              
-             lstAssets = [select Id,Agency_Projects__r.id,Location__c ,Asset_Picklist__c ,LastModifiedDate,Quantity__c,Additional_Description__c,Target_Delivery_Date__c ,Actual_Delivery_Date__c, FULL_Description__r.Name, Channels__c,RecordType.Name,Name,RecordTypeId,Sub_Category__c,FULL_Description__c from Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
+             lstAssets = [select Id,Agency_Projects__r.id,Location__c ,Asset_name__c,Asset_Picklist__c ,LastModifiedDate,Quantity__c,Additional_Description__c,Target_Delivery_Date__c ,Actual_Delivery_Date__c, FULL_Description__r.Name, Channels__c,RecordType.Name,Name,RecordTypeId,Sub_Category__c,FULL_Description__c from Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
              System.debug('###lstAssets : '+lstAssets );
              
              if(!lstAssets.isEmpty()){
@@ -120,6 +127,7 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
                       }else{                    
                           mapNumberItem.put(asset.RecordType.Name,mapNumberItem.get(asset.RecordType.Name)+1);
                       }
+                      asset.Asset_name__c = Oblix_Utils.getAssetName(asset);
                   }
              } 
              if(mapNumberItem.get(Label.Oblix_Lbl_UIUX_AudioVisuel) == null) { mapNumberItem.put(Label.Oblix_Lbl_UIUX_AudioVisuel,0);}
@@ -154,6 +162,11 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
         public PageReference BackToSow(){
             return new PageReference('/apex/Oblix_VF06_SOWView?sowId='+SelectedProject.Financial_Year__c);
         }
+        
+        /* 
+        @Description : Action used to clone project
+        @return : VF8  with project to clone in params
+        */
         public pageReference CloneCampaign(){
 
            Oblix_SOW_Projects__c project = new Oblix_SOW_Projects__c(); //SelectedProject.clone();
@@ -178,9 +191,12 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
             return new PageReference('/apex/Oblix_VF08_ProjectEdit?isClone=1&projectId='+project.Id);
         }
         
+        /* 
+        @Description : Method inserting Related List records of the project to clone with new parent
+        */
         private static void insertRelatedCloneRecords(Oblix_SOW_Projects__c project, Oblix_SOW_Projects__c SelectedProject){
             //get assets of the parent
-         List<Oblix_Project_Assets__c> lstAssetFromParent = [Select Target_Delivery_Date__c, Sub_Category__c,
+         List<Oblix_Project_Assets__c> lstAssetFromParent = [Select Target_Delivery_Date__c,Asset_name__c, Sub_Category__c,
                                              RecordTypeId, Quantity__c, OblixClonedFromParentAsset__c, Name, 
                                              Location__c, Id, FULL_Description__c, CreatedDate, Channels__c, 
                                              Asset_Type__c, Asset_Total_Score__c, Asset_Scoring_Number__c, Asset_Description__c, 
@@ -210,11 +226,15 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
          */           
         }
         /* 
-        Function related to the asset record 
+        @Description : Function related to the asset record 
         */
          public void EditItemsAction(){
              isEditItem = true;
          }
+         
+         /* 
+         @Description : ======
+         */
           public void DeleteItemsAction(){
              Oblix_Project_Assets__c assetToDelete = new Oblix_Project_Assets__c();
              integer position = 0;
@@ -231,8 +251,11 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
             mapNumberItem.put(assetToDelete.RecordType.Name, mapNumberItem.get(assetToDelete.RecordType.Name)-1);
             delete assetToDelete;
             if(position > 0) { lstAssets.remove(position); } 
-             lstAssets = [select Id,Agency_Projects__r.id,LastModifiedDate,Additional_Description__c,Target_Delivery_Date__c ,Actual_Delivery_Date__c, FULL_Description__r.Name, Channels__c,RecordType.Name,Name,RecordTypeId,Sub_Category__c,FULL_Description__c from Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
+             lstAssets = [select Id,Agency_Projects__r.id,Asset_name__c,LastModifiedDate,Additional_Description__c,Target_Delivery_Date__c ,Actual_Delivery_Date__c, FULL_Description__r.Name, Channels__c,RecordType.Name,Name,RecordTypeId,Sub_Category__c,FULL_Description__c from Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
          }
+         /* 
+         @Description : ======
+         */ 
          public void SaveItemsAction(){  
              Oblix_Project_Assets__c assetToUpdate = new Oblix_Project_Assets__c();
              for(Oblix_Project_Assets__c  asset : lstAssets){
@@ -242,11 +265,13 @@ public with sharing class Oblix_Ctrl07ProjectView_CC {
                  }
              }
              update assetToUpdate;
-             lstAssets = [select Id,Agency_Projects__r.id,LastModifiedDate,Additional_Description__c,Target_Delivery_Date__c ,Actual_Delivery_Date__c, FULL_Description__r.Name, Channels__c,RecordType.Name,Name,RecordTypeId,Sub_Category__c,FULL_Description__c from Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
+             lstAssets = [select Id,Agency_Projects__r.id,Asset_name__c,LastModifiedDate,Additional_Description__c,Target_Delivery_Date__c ,Actual_Delivery_Date__c, FULL_Description__r.Name, Channels__c,RecordType.Name,Name,RecordTypeId,Sub_Category__c,FULL_Description__c from Oblix_Project_Assets__c where Agency_Projects__c =:SelectedProject.Id];
              isEditItem = false;
          }
          
-         
+         /* 
+         @Description : Method used to update the curent Project
+         */ 
          public void SaveProject(){
              try{
                  update SelectedProject;

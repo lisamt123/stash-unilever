@@ -581,7 +581,7 @@
                 <apex:image value="{!$Resource.Oblix_Unilever_logo}" width="60px" height="60px" />
                 </td>
                 <td class="Oblix_header_Arrow header_pos_1">
-                 <a href="/apex/Oblix_VF05_SOWDetails"> <div class="Oblix_header_title">{!$Label.Oblix_lbl_UIUX_SWOP}</div></a><br/><span class="Oblix_header_desc">{!$Label.Oblix_lbl_UIUX_Scope_of_Work}<br/>{!$Label.Oblix_lbl_UIUX_Online_Planner}</span>
+                 <a href="/apex/Oblix_VF05_SOWDetailsV"> <div class="Oblix_header_title">{!$Label.Oblix_lbl_UIUX_SWOP}</div></a><br/><span class="Oblix_header_desc">{!$Label.Oblix_lbl_UIUX_Scope_of_Work}<br/>{!$Label.Oblix_lbl_UIUX_Online_Planner}</span>
                 </td>
                 <td>
                 <div class="Oblix_header_previousArrow header_pos_2">
@@ -682,13 +682,15 @@
                            <apex:outputPanel > 
                                <table width="100%" class="Oblix_accordiHeader">
                                    <tr>
-                                       <td width="30%">  {!nResources+ nActivities } {!$Label.Oblix_lbl_UIUX_items_big} </td>
+                                       <td width="20%"></td>
+                                       <td width="10%">  {!nResources+ nActivities } {!$Label.Oblix_lbl_UIUX_items_big} </td>
                                        <td width="40%"><span style="Color:grey"></span></td>
-                                       <td width="10%"></td>
-                                       <td></td>
-                                       <td>{!$Label.Oblix_lbl_UIUX_Cost}</td>
-                                       <td></td>
-                                       <td width="5%"> € {!total}  </td>
+                                       <td width="25%">{!$Label.Oblix_lbl_UIUX_Cost}</td>
+                                       <td > € 
+                                           <apex:outputText value="{0, number,###,###,##0}">
+                                             <apex:param value="{!total}"/>
+                                           </apex:outputText>
+                                      </td>
                                    </tr>
                                </table>
                            </apex:outputPanel>  
@@ -701,10 +703,16 @@
                                     <th>
                                     <table width="100%">
                                        <tr>
-                                           <td width="70%"><strong>{!$Label.Oblix_lbl_UIUX_Activity}</strong> </td>
-                                           <td width="27%">{!nActivities }  {!$Label.Oblix_lbl_UIUX_items}</td>
+                                           <td width="20%"><strong>{!$Label.Oblix_lbl_UIUX_Activity} </strong> </td>
+                                           <td width="50%">{!nActivities }  {!$Label.Oblix_lbl_UIUX_items}</td>
+                                           <td width="27%"><strong>€ 
+                                           
+                                           <apex:outputText value="{0, number,###,###,##0}">
+                                             <apex:param value="{!TTActivities}"/>
+                                           </apex:outputText>
+                                           </strong> </td>
                                            <td>
-                                           <div class=" Oblix_icon">
+                                            <div class=" Oblix_icon">
                                                 <i class="fa fa-2x fa-sort-desc"></i>
                                                 <i class="fa fa-2x fa-sort-up"></i>      
                                             </div>
@@ -725,7 +733,12 @@
                                                        <td width="15%">{!asset.Agency_Department__c}</td>
                                                        <td width="15%">{!asset.Role_Title__c}</td>
                                                        <td width="10%">{!asset.OblixCountry__r.name }</td>
-                                                       <td width="10%">{!asset.No_of_Hours_Required__c}Hrs &nbsp; &nbsp;  &euro; {!asset.OblixOtherItemFee__c } </td>
+                                                       <td width="10%">{!asset.No_of_Hours_Required__c}Hrs &nbsp; &nbsp;  &euro; 
+                                                       <apex:outputText id="mapApprovedId" value="{0, number,###,###,##0}">
+                                                         <apex:param value="{!asset.OblixOtherItemFee__c}"/>
+                                                       </apex:outputText>
+                                                       
+                                                        </td>
                                                        <td width="20%">{!asset.Other_Activities__c}</td>
                                                        <td>
                                                        <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!goToEditItem}" reRender="true" styleClass="Oblix_btn">
@@ -747,8 +760,13 @@
                                     <th>
                                     <table width="100%">
                                        <tr>
-                                           <td width="70%"><strong>{!$Label.Oblix_lbl_UIUX_Fixed_resource}</strong> </td>
-                                           <td width="27%"> {!nResources} {!$Label.Oblix_lbl_UIUX_items}</td>
+                                           <td width="20%"><strong>{!$Label.Oblix_lbl_UIUX_Fixed_resource}</strong> </td>
+                                           <td width="50%"> {!nResources} {!$Label.Oblix_lbl_UIUX_items}</td>
+                                           <td width="27%">€ 
+                                            <apex:outputText value="{0, number,###,###,##0}">
+                                             <apex:param value="{!TTResources}"/>
+                                           </apex:outputText>
+                                           </td>
                                            <td>
                                            <div class=" Oblix_icon">
                                                 <i class="fa fa-2x fa-sort-desc"></i>
@@ -771,7 +789,11 @@
                                                        <td width="15%">{!asset.Agency_Department__c}</td>
                                                        <td width="15%">{!asset.Role_Title__c}</td>
                                                        <td width="10%">{!asset.OblixCountry__r.name }</td>
-                                                       <td width="10%">{!asset.FTE__c}% &nbsp; &nbsp;  &euro; {!asset.OblixOtherItemFee__c } </td>
+                                                       <td width="10%">{!asset.FTE__c}% &nbsp; &nbsp;  &euro;  
+                                                        <apex:outputText id="mapApprovedId" value="{0, number,###,###,##0}">
+                                                         <apex:param value="{!asset.OblixOtherItemFee__c}"/>
+                                                       </apex:outputText>
+                                                       </td>
                                                        <td width="20%"> </td>
                                                        <td>
                                                            <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!goToEditItem}" reRender="true" styleClass="Oblix_btn">

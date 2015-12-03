@@ -19,28 +19,12 @@
         $(document).ready(function() {
             $.unblockUI();
         });
-        $j = jQuery.noConflict();           
-        function blockme() { 
-           $.blockUI({ css: {  
-                border: 'none', 
-                padding: '15px', 
-                backgroundColor: '#000', 
-                '-webkit-border-radius': '10px', 
-                '-moz-border-radius': '10px', 
-                opacity: .5, 
-                color: '#fff' 
-            } }); 
-        } 
+       
     </script>  
     <script>
      $ = jQuery.noConflict(); 
            $(document).ready(function(){
-           $('#example').dataTable({
-				"aoColumnDefs": [
-      				{ "bSearchable": false, "aTargets": [ 0 ] }
-    			]
-           });
-           //.columnFilter({aoColumns: [null,null,null,null,null,null,null,null] });
+           $('#example').dataTable({"aoColumnDefs": [{ "bSearchable": false, "aTargets": [ 0 ] }] });
                  var table = $('#example').DataTable();
                  $('#example tbody').on( 'click', 'tr', function () {
                     blockme();
@@ -60,12 +44,16 @@
                             .appendTo( this );
                         }
               }});
-         });   
+         }); 
+         $('.SOWName').click(function(){
+            $('.SOWDetail').slideToggle("slow");
+         });    
  </script>     
 
 <style>
-    h2{ font-size: 120%;}
-    h3{font-size: 12px;}
+   .Oblix_table tr{
+       cursor:pointer;
+    }
     .Oblix_header{
         background-image : url("{!URLFOR($Resource.Oblix_assetUI,'header_panel.png')}");
         background-size: 100% 100%;
@@ -132,50 +120,7 @@
             top: -11px;
         }
              
-    .cnter > div, .center > table /* insert any other block-level elements here */ {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    /* for 900px or less */
-    @media screen and (max-width: 1200px) {
-     
-        .column1,.column2,.column3,.column4,.column5{
-            width: 100%;
-        }
-    }
-    .Oblix_btn{
-        width: 105px ! important;
-     }
-    a.Oblix_btn:hover{
-    	text-decoration: none;
-	}
-    a.Oblix_btn{
-        text-decoration: none;
-        background: #6BA539 none repeat scroll 0% 0%;
-        color: #FFF;
-        padding: 4px 10px 3px !important;
-        height: 30px;
-        font-weight: bold;
-        font-size: 0.9em;
-        border-radius: 3px;
-        border-width: 1px;
-        border-style: solid;
-        border-color: #B5B5B5 #B5B5B5 #7F7F7F;
-        -moz-border-top-colors: none;
-        -moz-border-right-colors: none;
-        -moz-border-bottom-colors: none;
-        -moz-border-left-colors: none;
-        border-image: none;
-        margin: 1px;
-    	display:block;
-    	width: 83px !important;
-    	height: 20px;
-    	text-align: center;
-    }
-    .column1,.column2,.column3,.column4,.column5{
-            width: 100%;
-        }
+   
 </style>
    
      </apex:form>
@@ -197,7 +142,7 @@
                 </td>
                 <td>
                 <!--   <input type="submit" value="Cancel" onclick="closeAtt();"/>  -->
-                     <apex:commandButton action="{!cancel}"  value="{!$Label.Oblix_lbl_UIUX_Cancel}" onclick="closeAtt();"/>
+                     <apex:commandButton action="{!cancel}"  value="{!$Label.Oblix_lbl_UIUX_Cancel}" onclick="closeAtt();return false"/>
                 </td>
            </tr>
          </table></div>      
@@ -283,12 +228,12 @@
        <!-- <apex:form > -->
       
             <table width="100%" class="topAlign">
-             <tr>
+                 <tr>
                       <td colspan="6" style="border-bottom: 1px solid #6BA539; text-align:top; padding-bottom:20px;">
-                      <h2 class="darkGreen">{!selSow.Name}</h2>
+                      <h2 class="darkGreen SOWName">{!selSow.Name}</h2>
                     </td>
                  </tr>
-            <tr>
+            <tr class="SOWDetail">
             <td width="25%">
             <section class="column1">
                <table width="100%" class="Oblix_tableDetails topAlign">
@@ -340,16 +285,25 @@
                      <tr><td colspan="2">&nbsp;</td></tr>                      
                      <tr>
                        <td colspan="2"><h2 class="darkGreen">Approved: &nbsp;</h2> <strong>
-                       € {!ROUND(mapApproved[selSow.id], 0)} </strong></td>
+                       €&nbsp;
+                       <apex:outputText id="mapApprovedId" value="{0, number,###,###,##0}">
+                         <apex:param value="{!ROUND(mapApproved[selSow.id], 0)}"/>
+                       </apex:outputText>
+                       
+                        </strong></td>
                      </tr>
                      <tr>
                        <td colspan="2"><h2 class="mainGreen">Current: &nbsp; &nbsp; &nbsp; </h2><strong>
-                        € {!ROUND(selSow.Oblix_Current_FY_Total__c, 0)} </strong></td>
+                        €&nbsp;
+                        <apex:outputText value="{0, number,###,###,##0}">
+                         <apex:param value="{!ROUND(selSow.Oblix_Current_FY_Total__c, 0)}"/>
+                        </apex:outputText>
+                        </strong></td>
                      </tr>
                  </table>
              </section> 
            </td>
-           <td>
+           <td width="20%">
            <section class="column3">   
               <strong>Notes</strong><br/>
               <p class="Oblix_notes">
@@ -385,11 +339,11 @@
           <td class="columnMiddle">
               <section class="column5">
                 <div class="cntr">
-                     <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_View}" title="{!$Label.Oblix_Lbl_UIUX_View_project_details}" reRender="Oblix_sowDetail" action="{!ViewAction}" styleClass="Oblix_large_btn" style="width:100%;"/><br/><br/>
-                    <div>
-                    <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Export}" disabled="true" title="{!$Label.Oblix_Lbl_UIUX_Export}"  styleClass="Oblix_btn"/>
-                    <apex:outputLink value="{!reportFolderURL}" title="Reporting" styleClass="Oblix_btn" target="_blank" disabled="{!reportFolderURL == ''}">Reporting</apex:outputLink><br/>
-                    </div>
+                     <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_View}" title="{!$Label.Oblix_lbl_UIUX_View_SOW}" reRender="Oblix_sowDetail" action="{!ViewAction}" styleClass="Oblix_large_btn" style="width:100%;"/><br/>
+                    <div style="width:200px">
+                    <div style="float:left;width:50%"><apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Export}" disabled="true" title="{!$Label.Oblix_Lbl_UIUX_Export}"  styleClass="Oblix_btn"/></div>
+                    <div style="float:right;width:50%"><apex:outputLink value="{!reportFolderURL}" title="Reporting" styleClass="Oblix_btn" target="_blank" disabled="{!reportFolderURL == ''}">Reporting</apex:outputLink></div><br/>
+                     </div>
                     <!--<apex:commandButton value="Reporting" disabled="true" title="Reporting"  styleClass="Oblix_btn"/>-->
                      <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Approval}" title="{!$Label.Oblix_lbl_UIUX_Approval}"  disabled="true" styleClass="Oblix_large_btn" style="width:100%;"/>
                  </div>  
@@ -426,7 +380,11 @@
                         <td width="15%">{!sow.Oblix_AgencyEstimate__r.name}</td>
                         <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}"><apex:param value="{!sow.LastModifiedDate}" /></apex:outputText></td>
                         <td>{!sow.SOW_Status__c}</td>
-                        <td>€ {!ROUND(sow.Oblix_Current_FY_Total__c,0)} </td>
+                        <td>€&nbsp; 
+                            <apex:outputText value="{0, number,###,###,##0}">
+                             <apex:param value="{!ROUND(sow.Oblix_Current_FY_Total__c,0)}"/>
+                            </apex:outputText>
+                        </td>
                      </tr>
                 </apex:repeat>
               </apex:repeat>

@@ -341,7 +341,7 @@
                                             <table width="100%" cellpadding="10px">
                                                  <tr>
                                                        <td width="25%"></td>                                                      
-                                                       <td width="15%">{!asset.Quantity__c} X {!asset.Asset_Picklist__c}</td>
+                                                       <td width="15%">{!asset.Asset_name__c}</td>
                                                        <td width="15%">{!asset.Sub_Category__c}</td>
                                                        <td width="15%">{!asset.Location__c}</td>
                                                        <td width="15%">{!asset.Additional_Description__c}</td>
@@ -361,12 +361,7 @@
                                              <hr/>                   
                                             </apex:outputPanel>                                 
                                        </apex:repeat>
-                                       <script>
-                                       var moveToEditPage = function (assetId){
-                                        var projectId = window.location.search.split('&')[0].split('=')[1];
-                                        window.location = '/apex/Oblix_VF08_ProjectEdit?projectId=' + projectId;
-                                       }
-                                       </script>
+                                      <!-- Add Script for Go to Edit -->
                                     </td>  
                                 </tr>  
                                </apex:outputPanel>                             
@@ -401,14 +396,14 @@
                                             <table width="100%" cellpadding="10px">
                                                  <tr>
                                                        <td width="25%"></td>
-                                                       <td width="15%">{!asset.Quantity__c} X {!asset.Asset_Picklist__c}</td>
+                                                       <td width="15%">{!asset.Asset_name__c}</td>
                                                        <td width="15%">{!asset.Sub_Category__c}</td>
                                                        <td width="15%">{!asset.Location__c}</td>
                                                        <td width="15%">{!asset.Additional_Description__c}</td>
                                                        <td width="10%"><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
                                                        <td width="10%">
                                                            
-                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnE" style="width: 100px !important;">
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnE" style="width: 100px !important;" onclick="moveToEditPage('{!asset.Id}')">
                                                                <apex:param name="itemToUpdate" assignTo="{!itemToUpdate}" value="{!asset.Id}"/>
                                                            </apex:commandButton><br/>
                                                            <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();" id="deleteBtnE" style="width: 100px !important;">
@@ -457,13 +452,13 @@
                                             <table width="100%" cellpadding="10px">
                                                  <tr>
                                                        <td width="25%"></td>                                                     
-                                                       <td width="15%">{!asset.Quantity__c} X {!asset.Asset_Picklist__c}</td>
+                                                       <td width="15%">{!asset.Asset_name__c}</td>
                                                        <td width="15%">{!asset.Sub_Category__c}</td>
                                                        <td width="15%">{!asset.Location__c}</td>
                                                        <td width="15%">{!asset.Additional_Description__c}</td>
                                                        <td width="10%"><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
                                                        <td width="10%">
-                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnD" style="width: 100px !important;">
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnD" style="width: 100px !important;" onclick="moveToEditPage('{!asset.Id}')">
                                                                <apex:param name="itemToUpdate" assignTo="{!itemToUpdate}" value="{!asset.Id}"/>
                                                            </apex:commandButton><br/>
                                                            <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();" id="deleteBtnD" style="width: 100px !important;">
@@ -513,13 +508,13 @@
                                             <table width="100%" cellpadding="10px">
                                                  <tr>
                                                        <td width="25%"></td>
-                                                       <td width="15%">{!asset.Quantity__c} X {!asset.Asset_Picklist__c}</td>
+                                                       <td width="15%">{!asset.Asset_name__c}</td>
                                                        <td width="15%">{!asset.Sub_Category__c}</td>                                                      
                                                        <td width="15%">{!asset.Location__c}</td>
                                                        <td width="15%">{!asset.Additional_Description__c}</td>
                                                        <td width="10%"><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
                                                        <td width="10%">
-                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnSI" style="width: 100px !important;">
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnSI" style="width: 100px !important;" onclick="moveToEditPage('{!asset.Id}')">
                                                                <apex:param name="itemToUpdate" assignTo="{!itemToUpdate}" value="{!asset.Id}"/>
                                                            </apex:commandButton><br/>
                                                            <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();" id="deleteBtnSI" style="width: 100px !important;">
@@ -570,12 +565,12 @@
                                                  <tr>
                                                         <td width="25%"></td>
                                                        <td width="15%"></td>
-                                                       <td width="15%">{!asset.Quantity__c} X {!asset.Asset_Picklist__c}</td>
+                                                       <td width="15%">{!asset.Asset_name__c}</td>
                                                        <td width="15%">{!asset.Location__c}</td>
                                                        <td width="15%">{!asset.Additional_Description__c}</td>
                                                        <td width="10%"><apex:outputField value="{!asset.Actual_Delivery_Date__c}"/></td>
                                                        <td width="10%">
-                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnSM" style="width: 100px !important;">
+                                                           <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Edit}" reRender="true" styleClass="Oblix_btn" id="editBtnSM" style="width: 100px !important;" onclick="moveToEditPage('{!asset.Id}')">
                                                                <apex:param name="itemToUpdate" assignTo="{!itemToUpdate}" value="{!asset.Id}"/>
                                                            </apex:commandButton><br/>
                                                            <apex:commandButton disabled="{!isLocked}" value="{!$Label.Oblix_lbl_UIUX_Delete_item}" rendered="{!canDelete}" action="{!DeleteItemsAction}" styleClass="Oblix_projects_btn" reRender="false" onComplete="location.reload();" id="deleteBtnSM" style="width: 100px !important;">
@@ -625,6 +620,12 @@
     <apex:stylesheet value="{!URLFOR($Resource.Oblix_jqueryUiCss)}"/>
     <script src="{!URLFOR($Resource.Oblix_viewProjectJS)}" ></script>
     <apex:stylesheet value="{!URLFOR($Resource.OblixUIUXVF07ProjViewCss)}"/>
+      <script>
+                                       var moveToEditPage = function (assetId){
+                                        var projectId = window.location.search.split('&')[0].split('=')[1];
+                                        window.location = '/apex/Oblix_VF08_ProjectEdit?projectId=' + projectId + '&assetId=' + assetId;
+                                       }
+                                       </script>
      <style>
          .center{
              margin: auto; text-align: center;

@@ -255,4 +255,110 @@ private class Oblix_Ctrl07ProjectEdit_CC_Test {
             Test.stopTest();
         }
     }
+    
+    @isTest static void setAsGlobal_Test(){
+    
+        System.runAs(Oblix_TestUtils.createTestUser()) {
+            Oblix_SOW_Projects__c project = initSaveProjectActionData();
+            Oblix_Ctrl07ProjectEdit_CC ctrl = new Oblix_Ctrl07ProjectEdit_CC();
+            ctrl.project = project;
+            ctrl.projectId = project.Id;
+            
+            Test.startTest();
+            ctrl.setAsGlobal();
+            Test.stopTest();
+            
+            Oblix_SOW_Projects__c result = [select OblixRegion__c from Oblix_SOW_Projects__c where id = :project.Id];
+            System.assertEquals('World',result.OblixRegion__c);
+        }
+    }
+    
+    @isTest static void removeAsset_Test(){
+    
+        System.runAs(Oblix_TestUtils.createTestUser()) {
+            
+            Oblix_SOW_Projects__c project = initSaveProjectActionData();
+            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
+            
+            Test.startTest();
+            Oblix_Ctrl07ProjectEdit_CC.removeAsset(asset.Id);
+            Test.stopTest();
+            
+            List<Oblix_Project_Assets__c> result = [select Id from Oblix_Project_Assets__c where id = :asset.Id];
+            System.assert(result.isEmpty());
+        }
+    }
+    
+    
+    @isTest static void refresh_Test(){
+    
+        System.runAs(Oblix_TestUtils.createTestUser()) {
+            
+            Oblix_SOW_Projects__c project = initSaveProjectActionData();
+            project.Total_Fees_for_Project__c  = 1000;
+            update project;
+            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
+            Oblix_Ctrl07ProjectEdit_CC ctrl = new Oblix_Ctrl07ProjectEdit_CC();
+            
+            Test.startTest();
+            ctrl.refresh();
+            Test.stopTest();
+            
+            System.assertEquals(1000, ctrl.estimateCost);
+        }
+    }
+    
+    @isTest static void getAbreviationForCardAssets_Test(){
+    
+        System.runAs(Oblix_TestUtils.createTestUser()) {
+            
+            Oblix_SOW_Projects__c project = initSaveProjectActionData();
+            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
+            
+            Test.startTest();
+            Map<String, String> result = Oblix_Ctrl07ProjectEdit_CC.getAbreViationByRTBySubCatgForCardAssets();
+            Test.stopTest();
+            
+            System.assert(!result.isEmpty());
+        }
+    }    
+    
+    
+     @isTest static void getAssetDetails_Test(){
+    
+        System.runAs(Oblix_TestUtils.createTestUser()) {
+            
+            Oblix_SOW_Projects__c project = initSaveProjectActionData();
+            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
+            
+            Test.startTest();
+            Oblix_Utils.AssetDetailWrapper result = Oblix_Ctrl07ProjectEdit_CC.getAssetDetails(asset.Id);
+            Test.stopTest();
+            
+            System.assert(result != null);
+        }
+    }       
+    
+    @isTest static void UpdateProjectAction_Test(){
+    
+        System.runAs(Oblix_TestUtils.createTestUser()) {
+            
+            Oblix_SOW_Projects__c project = initSaveProjectActionData();
+            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
+            asset.Asset_Title__c = 'test X title';
+            update asset;
+            Oblix_Ctrl07ProjectEdit_CC ctrl = new Oblix_Ctrl07ProjectEdit_CC();
+            Map<String, Object> details = new Map<String, Object>();
+            details.put('actual_Delivery_Date', '2015-01-01');
+            details.put('quantity', '50');
+            
+            Test.startTest();
+            Oblix_Ctrl07ProjectEdit_CC.UpdateProjectAction(asset.Id, details) ;
+            Test.stopTest();
+            
+            Oblix_Project_Assets__c result = [select quantity__c from Oblix_Project_Assets__c where id =: asset.Id];
+            System.assertEquals(50,result.quantity__c);
+        }
+    }      
+    
 }
