@@ -477,7 +477,7 @@
                                                         <apex:outputPanel styleClass="ipmAcrdnExpand" layout="block">
                                                         <apex:outputPanel id="sectionContent" layout="block">
                                                             <apex:repeat value="{!projSubSectionList}" var="sub">   
-                                                                <apex:outputPanel layout="block" styleClass="aHead" rendered="{!IF (AND(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,sub.IPM_Default_Section__c=true,IF(AND(psl.IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c = 'BLG',sub.IPM_Section__r.IPM_Section_Sequence__c='5.3'), FALSE, TRUE)),True,False)}">    
+                                                                <apex:outputPanel layout="block" styleClass="aHead" rendered="{!IF (AND(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,sub.IPM_Default_Section__c=true),True,False)}">    
                                                                 
                                                                  <span class='expico fa fa-minus' id="{!sub.IPM_Section__c}" onclick="fetchSubSection('{!sub.IPM_Section__c}','{!sub.Id}');"> </span>
                                                                     

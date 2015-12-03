@@ -48,6 +48,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     public string gateDueDateMessage{get;set;}
     public boolean isProjLeader{get;set;}
     public List<IPM_Project_Rollout__c> lstprojectRollout{get;set;}
+    public boolean isAcessDuetoTeam{get;set;}
     private static final String DATEFORMAT='dd MMMM yyyy';
 
     /****************************************************************************************************************************
@@ -196,6 +197,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             }
         }
         
+        isAcessDuetoTeam=false;
         lstofuser=new list<IPM_Project__c>();
         lstofuser=[SELECT Name,IPM_Phase__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Technical_Project_Leader__c,IPM_Finance_Member__c FROM IPM_Project__c 
                                        WHERE Id=:projectId  limit 1];
@@ -210,6 +212,11 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             }
             if(lstofuser[0].Deputy_Project_Leader__c != null && lstofuser[0].Deputy_Project_Leader__c != lstofuser[0].IPM_Project_Leader__c){
                 suggestedManagerList.add(lstofuser[0].Deputy_Project_Leader__c);
+            }
+            if((lstofuser[0].IPM_Project_Leader__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Leader__c !=null)||
+             (lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid() && lstofuser[0].Deputy_Project_Leader__c !=null) || (lstofuser[0].IPM_Project_Gatekeeper__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Gatekeeper__c !=null)||
+             (lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid() && lstofuser[0].IPM_Technical_Project_Leader__c !=null) || (lstofuser[0].IPM_Finance_Member__c==userinfo.getuserid() && lstofuser[0].IPM_Finance_Member__c !=null) ){
+             isAcessDuetoTeam=true;
             }
         }
         
@@ -342,6 +349,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
          for(IPM_Project_Resource__c res : projResCompleteList){
             if(res.IPM_User__c == UserInfo.getUserId()){
                 projResList.add(res);
+                isAcessDuetoTeam=true;
             }   
          }
          //projResList =  project.IPM_Project_Resources__r;      
@@ -565,7 +573,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         // we have different project sections for different personas
         if(project.IPM_Project_Leader__c == UserInfo.getUserId()) {
             projectSectionsList = [SELECT IPM_Section_Name__c, IPM_Section_Sequence__c, IPM_Section_Status__c, IPM_Functional_Input_Status__c,
-                                                                                IPM_Project_Document__r.IPM_Project__c,IPM_Master_Section_External_Id__c
+                                                                                IPM_Project_Document__r.IPM_Project__c,IPM_Master_Section_External_Id__c,IPM_FunctionalRole__c
                                                                         FROM IPM_Project_Document_Section__c
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
@@ -575,13 +583,14 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000] ;
         } else if(project.IPM_Project_Leader__c != UserInfo.getUserId() && userRole != null ) {
             projectSectionsList = [SELECT IPM_Section_Name__c, IPM_Section_Sequence__c, IPM_Section_Status__c, IPM_Functional_Input_Status__c,
-                                                                                IPM_Project_Document__r.IPM_Project__c,IPM_Master_Section_External_Id__c
+                                                                                IPM_Project_Document__r.IPM_Project__c,IPM_Master_Section_External_Id__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c,IPM_FunctionalRole__c
                                                                         FROM IPM_Project_Document_Section__c
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
                                                                                 IPM_FunctionalRole__c =: userRole AND
-                                                                                IPM_Default_Section__c = true
+                                                                                IPM_Default_Section__c = true AND 
+                                                                                ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c !=:IPM_ConstantUtils.BLG )) 
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000];
         }
         
@@ -622,7 +631,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         isOriginal = (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ) ;
        if(isOriginal && projMetadata!= null && projMetadata.BET__c && !isRollout){
             projectWithBET = projectId;
-            setBETDetails(project.IPM_BET_Toolkit__c,project.BET_Link_Requested__c,project.BET__c);
+            setBETDetails(project.IPM_BET_Toolkit__c,project.BET_Link_Requested__c,project.BET__c!=null?project.BET__c:project.BET_Link_Requested__c);
              isLinkDenied = String.isNotBlank(project.BET_Denied_BET_Link__c);
         }else if(isRollout && String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__c)){
             projectWithBET = project.IPM_Parent_Project__r.IPM_Parent_Project__c;
