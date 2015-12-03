@@ -2,6 +2,7 @@
     @Description: General utility class to store frequently used variables and values.
     @Author: Cognizant Technology
     @Date: Sep 2014
+    Generic class used to access IPM specific custom setting data, hence kept as Without Sharing.
 */
 public without sharing class IPM_Utils {
 
@@ -1044,12 +1045,12 @@ public without sharing class IPM_Utils {
                 }
                 //Regional Original
                 else if(finYr.IPM_Financial__r.Regional_Project__c != null && finYr.IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                	iTOValue = (finYr.Turnover_Global__c)/1000;
+                    iTOValue = (finYr.Turnover_Global__c)/1000;
                     projIdiTOMap.put(finYr.IPM_Financial__r.Regional_Project__c,iTOValue);
                 }
                  //Local Original
                 else if(finYr.IPM_Financial__r.Local_Project__c != null && finYr.IPM_Financial__r.Local_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                	iTOValue = (finYr.Turnover_Global__c)/1000;
+                    iTOValue = (finYr.Turnover_Global__c)/1000;
                     projIdiTOMap.put(finYr.IPM_Financial__r.Local_Project__c,iTOValue);
                 }
             }
@@ -1269,12 +1270,12 @@ public without sharing class IPM_Utils {
     * @param1 proj : project record
     */
     public static Boolean isProjectToBeSyncedToEcoDesign(IPM_Project__c proj){
-		if( retrieveProjectType(proj).IPM_Dont_Sync_Proj_To_EcoDesign__c || proj.IPM_Answer_of_Q1__c == IPM_ConstantUtils.ECODESIGN_MARKET_PLACE_ACTIVITY_BLG
-		){
-			return false;
-		}
-		else{
-			return true;
-		}
-	}
+        if( retrieveProjectType(proj).IPM_Dont_Sync_Proj_To_EcoDesign__c || proj.IPM_Answer_of_Q1__c == IPM_ConstantUtils.ECODESIGN_MARKET_PLACE_ACTIVITY_BLG
+        ){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 }

@@ -17,8 +17,9 @@ public with sharing class IPM_ConsumerImageUploadController {
     public string imgurl{get;set;} //Used to store image url 
     public Document document { //Getter Setter for the document
         get {
-            if (document == null)
+            if (document == null){
                 document = new Document();
+            }
             return document;
         }
         set;

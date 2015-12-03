@@ -98,7 +98,7 @@
                                     <apex:repeat value="{!projSectionList}" var="section">   
                                         <apex:outputPanel layout="block" rendered="{!AND(!section.IPM_Negotiable__c,section.IPM_Default_Section__c)}">    
                                             <a target="_blank" href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!section.Id}">{!section.IPM_Section_Sequence__c} {!section.IPM_Section_Name__c}</a>
-                                             <apex:inputTextArea value="{!section.IPM_Gate_Document_Summary__c}"/> 
+                                           <!--   <apex:inputTextArea value="{!section.IPM_Gate_Document_Summary__c}"/> -->
                                         </apex:outputPanel>
                                     </apex:repeat>
                                     <!--For Default Sections-->
@@ -106,7 +106,7 @@
                                     <apex:repeat value="{!projSectionList}" var="section">    
                                         <apex:outputPanel layout="block" rendered="{!AND(section.IPM_Negotiable__c,section.IPM_Default_Section__c)}">
                                             <a target="_blank" href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!project.Id}&&projDocSecId={!section.Id}">{!section.IPM_Section_Sequence__c} {!section.IPM_Section_Name__c}</a>
-                                            <apex:inputTextArea value="{!section.IPM_Gate_Document_Summary__c}"/> 
+                                           <!--  <apex:inputTextArea value="{!section.IPM_Gate_Document_Summary__c}"/>  -->
                                         </apex:outputPanel>
                                     </apex:repeat> 
                                </apex:outputPanel>
@@ -119,7 +119,7 @@
                                     
                                     <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!discriptionError}">
                                         <span class="errTitle">{!$Label.IPM_PROJECT_DESCRIPTION}:</span> 
-                                        <span class="errList">Please fill <a href="{!$Page.IPM_CoreParameters}" target="_top">{!$Label.IPM_PROJECT_DESCRIPTION}</a></span> 
+                                        <span class="errList">Please fill <a href="{!$Page.IPM_CoreParameters}?id={!projectId}" target="_top">{!$Label.IPM_PROJECT_DESCRIPTION}</a></span> 
                                     </apex:outputPanel>
                                     
                                     <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!milestoneError}">

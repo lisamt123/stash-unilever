@@ -61,7 +61,7 @@ public class IPM_GateDocumentController_Test{
     /*************************************************************************************************************************
     * @description Test Data to set up the project related data
     */
-    @testSetup static void initializeTestMethodData(){
+    static void initializeTestMethodData(){
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  

@@ -3,7 +3,7 @@
     Author: Cognizant Technology
     @Date: Dec 2014
 **/
-public without sharing class IPM_ChatterFeedHelper {
+public with sharing class IPM_ChatterFeedHelper {
     
     /* The constant variables which helps in contextual messagings of the chatter message.
      * The names are pretty much self-explanatory, needs no further elucidations.
@@ -64,6 +64,7 @@ public without sharing class IPM_ChatterFeedHelper {
            subjectIdMessageMap.put(eachRecord,postText);
            subjectIdMentionIdMap.put(eachRecord,recordUserMap.get(eachRecord));
         }
+        
         IPM_ChatterUtils.postChatterFeedWithMention(recordUserMap.keySet(),subjectIdMessageMap,subjectIdMentionIdMap);
     }
     
@@ -92,7 +93,7 @@ public without sharing class IPM_ChatterFeedHelper {
     public static String getPostMessage(String projectName, String projectMessage) {
         
         String msgToReturn = projectName;
-        msgToReturn +=  Label.IPM_User_Changed_Roles; //ext constant variable
+        msgToReturn +=  IPM_ConstantUtils.IPM_SPACE+Label.IPM_User_Changed_Roles+IPM_ConstantUtils.IPM_SPACE; //ext constant variable
         msgToReturn += projectMessage;
         
         return msgToReturn;
@@ -404,8 +405,9 @@ public without sharing class IPM_ChatterFeedHelper {
                 tmpSet.remove(null);
               
             if(usersId.contains(eachProject.IPM_Project_Leader__c)){
-              if(eachProject.IPM_Project_Leader__r.Manager.id !=  null)
+              if(eachProject.IPM_Project_Leader__r.Manager.id !=  null){
                 tmpSet.add(eachProject.IPM_Project_Leader__r.Manager.id);
+              }
                 subjectIdMessageMap.put(eachProject.id,IPM_ConstantUtils.IPM_SPACE+ eachProject.IPM_Project_Leader__r.Name +
                 IPM_ConstantUtils.EMPTY_STRING_DELIMITER+System.label.IPM_No_Longer_Active_User);
             }
@@ -530,7 +532,7 @@ public without sharing class IPM_ChatterFeedHelper {
                    }
                    projectIds.add(eachTask.IPM_Project__c);
                    subjectIdMentionIdMap.put(eachTask.IPM_Project__c,mentionId);
-                   subjectIdMessageMap.put(eachTask.IPM_Project__c,Label.IPM_Task_Assign_Text1+eachTask.IPM_Project__r.IPM_Project_Name__c
+                   subjectIdMessageMap.put(eachTask.IPM_Project__c,Label.IPM_Task_Assign_Text1+IPM_ConstantUtils.IPM_SPACE+eachTask.IPM_Project__r.IPM_Project_Name__c
                    +Label.IPM_Task_Assign_Text2);
               } 
             }
@@ -570,7 +572,7 @@ public without sharing class IPM_ChatterFeedHelper {
                   subjectIdMentionIdMap.put(eachPResource.IPM_Project__c, tmpSet);
             }
              
-          subjectIdMessageMap.put(eachPResource.IPM_Project__c, IPM_ConstantUtils.IPM_SPACE+eachPResource.IPM_User__r.Name + Label.IPM_Inactive_Users_Text);
+          subjectIdMessageMap.put(eachPResource.IPM_Project__c, IPM_ConstantUtils.IPM_SPACE+eachPResource.IPM_User__r.Name +IPM_ConstantUtils.IPM_SPACE+ Label.IPM_Inactive_Users_Text);
           projectIds.add(eachPResource.IPM_Project__c);
          } 
       }
@@ -605,15 +607,21 @@ public without sharing class IPM_ChatterFeedHelper {
                  Map<Id, Set<Id>> ProjectUsersMap = getProjectUsersMap(projects, null, true); 
                 
                  	 projectIds.add(fin.Regional_Project__c); 
-	                 mentionId.addAll(ProjectUsersMap.get(fin.Regional_Project__c));                 
-	                 subjectIdMentionIdMap.put(fin.Regional_Project__c,mentionId);
-	                 subjectIdMessageMap.put(fin.Regional_Project__c,FINANCIALS_STR1+fin.Regional_Project__r.Name+FINANCIALS_STR2+fin.Local_Project__r.Name+FINANCIALS_STR3 );
+                 	 if(ProjectUsersMap.get(fin.Regional_Project__c) != null) 
+                 	 {
+                        mentionId.addAll(ProjectUsersMap.get(fin.Regional_Project__c));                 
+	                    subjectIdMentionIdMap.put(fin.Regional_Project__c,mentionId);
+                        subjectIdMessageMap.put(fin.Regional_Project__c,FINANCIALS_STR1+fin.Regional_Project__r.Name+FINANCIALS_STR2+fin.Local_Project__r.Name+FINANCIALS_STR3 );
+                 	 }
                  
                  
                  	projectIds.add(fin.Local_Project__c);
-	                mentionId.addAll(ProjectUsersMap.get(fin.Local_Project__c));
-	                subjectIdMentionIdMap.put(fin.Local_Project__c,mentionId);
-	                subjectIdMessageMap.put(fin.Local_Project__c,FINANCIALS_STR1+fin.Regional_Project__r.Name+FINANCIALS_STR2+fin.Local_Project__r.Name+FINANCIALS_STR3 );
+                 	if(ProjectUsersMap.get(fin.Local_Project__c) != null)
+                 	{                 		                
+	                   mentionId.addAll(ProjectUsersMap.get(fin.Local_Project__c));
+	                   subjectIdMentionIdMap.put(fin.Local_Project__c,mentionId);
+	                   subjectIdMessageMap.put(fin.Local_Project__c,FINANCIALS_STR1+fin.Regional_Project__r.Name+FINANCIALS_STR2+fin.Local_Project__r.Name+FINANCIALS_STR3 );
+                 	}
                    
                  
             }
@@ -666,7 +674,6 @@ public without sharing class IPM_ChatterFeedHelper {
                                 WHERE (IPM_Project__c IN:newProjIds) OR (Regional_Project__c IN:newProjIds) OR (Local_Project__c IN:newProjIds)
                                 LIMIT:IPM_ConstantUtils.MaxLimit];
                                 
-     Id regionalRollout = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId();
      Id localRollout = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
      
      for(IPM_Project_Rollout__c projRollout : projectRolloutList)
@@ -722,12 +729,12 @@ public without sharing class IPM_ChatterFeedHelper {
     			subjectIdMessageMap.put(eachFin.Regional_Project__c,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
     			subjectIdMessageMap.put(eachFin.Parent_Project__c,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
     		}
-    		for(Id key:subjectIdMessageMap.keySet())
-    		if(key == null)
-    		{
-    			subjectIdMessageMap.remove(key);
+    		for(Id key:subjectIdMessageMap.keySet()){
+	    		if(key == null)
+	    		{
+	    			subjectIdMessageMap.remove(key);
+	    		}
     		}
-    		
      }
      if(IPM_CheckRecursive.runOnce()) {
      IPM_ChatterUtils.postChatterFeedWithMention(projectIds, subjectIdMessageMap, null);

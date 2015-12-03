@@ -66,6 +66,7 @@ public class IPM_EcoDesignSection_Test{
                 project.IPM_Project_Leader__c = userList[0].Id;
                 project.IPM_SourceProjectType__c = ORIGINAL;
                 project.Success_Timestamp_EcoDesign__c = System.now().addHours(2);
+                project.First_Sync_To_EcoDesign__c = true;
                 projectNames.add(project.IPM_Project_Name__c);                       
             }
             insert projectList;

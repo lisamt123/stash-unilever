@@ -7,12 +7,16 @@
 *************************************************************************
 -->
 
-<apex:component controller="IPM_Team_Assignment_Controller" allowDML="true" id="IPM_TeamAssignmentPage">
+<apex:component controller="IPM_Team_Assignment_Controller" extensions="IPM_GetHelpDoc" allowDML="true" id="IPM_TeamAssignmentPage">
             <apex:form id="frm">
                 <apex:actionStatus id="teamDelete" startStyleClass="proInit" >
                 </apex:actionStatus>
                 <div class="container-fluid">
-                    <div class="row">   
+                    <div class="row">
+                        <!-- To place the help symbol in the top right hand corner of page -->
+                        <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+                            <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+                        </apex:outputPanel> 
                         <div class="col-sm-12 noPadleft noPadright teamHeading">
                                 <div class="col-sm-6 noPadleft pageTitlefont">
                                     {!$Label.IPM_Team}

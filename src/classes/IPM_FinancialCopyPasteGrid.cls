@@ -71,14 +71,18 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                         soql = soql +' and Global_Project_Id__c = \''+String.escapeSingleQuotes(projectId)+'\'';
                 }
                 if(span == IPM_ConstantUtils.Regional && projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){ 
-                        qdisplayname = '\'%key)\'';          
-                        soql = soql +' and Regional_Project__c = \''+String.escapeSingleQuotes(projectId)+'\' and (NOT Display_Name__c like'  +qdisplayname+ ')';
+                        if(projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
+                           qdisplayname = '\'%key)\'';          
+                           soql = soql +' and Regional_Project__c = \''+String.escapeSingleQuotes(projectId)+'\' and (NOT Display_Name__c like'  +qdisplayname+ ')';
+                        }else{
+                           soql = soql +' and Regional_Project__c = \''+String.escapeSingleQuotes(projectId)+'\'';
+                        }
                 }
                 if(span == IPM_ConstantUtils.Local && projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
                         soql = soql +' and Local_Project__c = \''+String.escapeSingleQuotes(projectId)+'\'';
                 }
                 
-                IPMF = Database.query(soql + 'Limit ' +IPM_ConstantUtils.MaxLimit);
+                IPMF = Database.query(soql + ' ORDER BY Sorting_Order__c, Financial_External_Id__c Limit ' +IPM_ConstantUtils.MaxLimit);
                 if(IPMF.isEmpty()){
                         flag = true;
                 }
@@ -129,7 +133,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
             try{
                 String rowcol1;
                 rowcol1=rowcol.replace('%',IPM_ConstantUtils.EMPTY_STRING_INITIAL);
-                map<String,String> mapfields = new map<String,String>();                    
+                map<String,String> mapfields = new map<String,String>(); 
                 list<object> RowColValue = (list<object>)JSON.deserializeUntyped(rowcol1);
                 if(!RowColValue.isEmpty()){
                         final Date targetdate = [select Target_Launch_Date__c from IPM_Financial__c where Id=: selectedMCO Limit 1].Target_Launch_Date__c ;
@@ -159,6 +163,13 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                         String valY3CalI = IPM_ConstantUtils.NullString; 
                         String valY4CalI = IPM_ConstantUtils.NullString; 
                         String valY5CalI = IPM_ConstantUtils.NullString;
+                        //Financial fields
+                        String NPV = IPM_ConstantUtils.NullString;
+                        String IRR = IPM_ConstantUtils.NullString;
+                        String payback = IPM_ConstantUtils.NullString;
+                        String capex = IPM_ConstantUtils.NullString;
+                        String BIC = IPM_ConstantUtils.NullString;
+                        IPM_Financial__c finUpdate = new IPM_Financial__c(Id = selectedMCO);                        
                         for(integer i=IPM_ConstantUtils.intialVal; i< RowColValue.size();i++){      
                                 list<object> cell = (list<object>) RowColValue[i];
                                 integer row = integer.valueOf(cell[0]);//row
@@ -254,10 +265,49 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                                 if(col == IPM_ConstantUtils.col_fourteen && row > IPM_ConstantUtils.row_twentyseven){
                                         valY5CalI = setMapValues(valY5CalI,value, row);
                                         mapfields.put(targetdate.addYears(4).year()+IPM_ConstantUtils.CalendarIncremental,valY5CalI); 
-                                }   
+                                } 
+                                if(col == IPM_ConstantUtils.col_five && row == IPM_ConstantUtils.rowValue19){
+                                	   NPV = value;
+                                } 
+                                if(col == IPM_ConstantUtils.col_five && row == IPM_ConstantUtils.rowValue20){
+                                	   IRR = value;
+                                } 
+                                if(col == IPM_ConstantUtils.col_five && row == IPM_ConstantUtils.rowValue21){
+                                	   payback = value;
+                                }
+                                if(col == IPM_ConstantUtils.col_eight && row == IPM_ConstantUtils.rowValue19){
+                                	   capex = value;
+                                }
+                                if(col == IPM_ConstantUtils.col_eight && row == IPM_ConstantUtils.rowValue20){
+                                	   BIC = value;
+                                }
         
                         }
-                        UpdateFinancialYear(mapfields, selectedMCO, pspan, projectType); 
+                        UpdateFinancialYear(mapfields, selectedMCO, pspan, projectType);
+                        if(pspan == IPM_ConstantUtils.SpanGlobal || projectType == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
+                           finUpdate.NPV_Global__c = decimal.valueOf(NPV);
+                           finUpdate.IRR_Global__c = decimal.valueOf(IRR);
+                           finUpdate.Payback_Global__c = decimal.valueOf(payback);
+                           finUpdate.CAPEX_Global__c = decimal.valueOf(capex);
+                           finUpdate.BIC_Global__c = decimal.valueOf(BIC);
+                        }
+                        if(pspan == IPM_ConstantUtils.Regional && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
+                           finUpdate.NPV_Regional__c = decimal.valueOf(NPV);
+                           finUpdate.IRR_Regional__c = decimal.valueOf(IRR);
+                           finUpdate.Payback_Regional__c = decimal.valueOf(payback);
+                           finUpdate.CAPEX_Regional__c = decimal.valueOf(capex);
+                           finUpdate.BIC_Regional__c = decimal.valueOf(BIC);
+                           
+                        } 
+                         if(pspan == IPM_ConstantUtils.Local && (projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)){
+                        	finUpdate.NPV_Local__c = decimal.valueOf(NPV);
+                        	finUpdate.IRR_Local__c = decimal.valueOf(IRR);
+                        	finUpdate.Payback_Local__c = decimal.valueOf(payback);
+                        	finUpdate.CAPEX_Local__c = decimal.valueOf(capex);
+                        	finUpdate.BIC_Local__c = decimal.valueOf(BIC);
+                        }
+                        finUpdate.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;                        
+                        update finUpdate;
                         return null;
                 }
             }catch(JSONException ex){
@@ -296,7 +346,6 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                         String grossProfit ;
                         String advertisingPromotions;
                         String profitBeforeOverheads;
-                        IPM_Financial__c finStatus = new IPM_Financial__c(); 
                         list<IPM_Financial_Year__c> updateFinancialyears = new list<IPM_Financial_Year__c>();
                         list<String> fieldList = new list<String>();                 
                         for(IPM_Financial_Year__c fy : [Select NameYearPLtype__c, Year__c, Year_Type__c, Volume_Unit_Regional__c, Volume_Unit_Local__c, Volume_Unit_Global__c, Volume_Tons_Regional__c, 
@@ -367,9 +416,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                         }
                          if(!UpdateFinancialyears.isEmpty()){
                                 Database.update(UpdateFinancialyears, true);
-                                finStatus = new IPM_Financial__c(Id=finId);
-                                finStatus.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
-                                update finStatus;
+                                
                          }
                          if(Test.isRunningTest()) {
                           // Cause DMLException
@@ -408,8 +455,9 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
         String fieldValue = '';
         for(String val : rowValue){
                 GetValue++;
-                if(GetValue == IPM_ConstantUtils.CntField)
+                if(GetValue == IPM_ConstantUtils.CntField) {
                   fieldValue = val;
+				 }
         } 
         return fieldValue;
     }
@@ -422,7 +470,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
     
         public static IPM_Financial_Year__c AssignVolumeValuesGlobal(map<String,String> mapfields, IPM_Financial_Year__c fy, String vol){
                         if(mapfields.containskey(IPM_ConstantUtils.Volume)){
-                                fy.Volume_Unit_Global__c   = String.escapeSingleQuotes(mapfields.get(IPM_ConstantUtils.Volume));
+                                fy.Volume_Unit_Global__c   = mapfields.get(IPM_ConstantUtils.Volume);
                         }    
                         if(fy.Volume_Unit_Global__c == IPM_ConstantUtils.TotalTons){
                                 fy.Volume_Global__c = setFieldValues(vol);
@@ -444,17 +492,16 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
     
         public static IPM_Financial_Year__c AssignVolumeValuesRegional(map<String,String> mapfields, IPM_Financial_Year__c fy, String vol){
                         if(mapfields.containskey(IPM_ConstantUtils.Volume)){
-                                fy.Volume_Unit_Regional__c   = String.escapeSingleQuotes(mapfields.get(IPM_ConstantUtils.Volume));
+                                fy.Volume_Unit_Regional__c   = mapfields.get(IPM_ConstantUtils.Volume);
                         }
                         if(fy.Volume_Unit_Regional__c == IPM_ConstantUtils.TotalTons){
-                                fy.Volume_Regional__c = setFieldValues(vol);
-                                fy.Volume_Tons_Regional__c = setFieldValues(vol);
+                        	    fy.Volume_Regional__c = setFieldValues(vol);                                
                         }
                          if(fy.Volume_Unit_Regional__c == IPM_ConstantUtils.TotalTons0){
-                                fy.Volume_Tons_Regional__c = setFieldValues(vol);
+                               // fy.Volume_Tons_Regional__c = setFieldValues(vol);
                                 fy.Volume_Regional__c = setFieldValues(vol);
                         }
-                        system.debug(fy);
+                        
                 return fy;
         }
          /***************************************************************************************************************
@@ -466,7 +513,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
     
         public static IPM_Financial_Year__c AssignVolumeValuesLocal(map<String,String> mapfields, IPM_Financial_Year__c fy, String vol){
                          if(mapfields.containskey(IPM_ConstantUtils.Volume)){
-                                fy.Volume_Unit_Local__c = String.escapeSingleQuotes(mapfields.get(IPM_ConstantUtils.Volume));
+                                fy.Volume_Unit_Local__c = mapfields.get(IPM_ConstantUtils.Volume);
                         }
                         if(fy.Volume_Unit_Local__c == IPM_ConstantUtils.TotalTons){
                                fy.Volume_Local__c = setFieldValues(vol);

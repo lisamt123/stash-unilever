@@ -526,6 +526,10 @@
                 <fullName>Sample 1</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>--None--</fullName>
+                <default>true</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1164,7 +1168,7 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
     </fields>
     <fields>
         <fullName>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</fullName>
-        <defaultValue>false</defaultValue>
+        <defaultValue>true</defaultValue>
         <externalId>false</externalId>
         <label>Exists At Least One Assmnt Per EICountry</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1346,8 +1350,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Is_Finance_Member_Null__c</fullName>
         <externalId>false</externalId>
-        <formula>ISNULL(IPM_Finance_Member__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>ISBLANK(IPM_Finance_Member__c)</formula>
         <label>IPM Is Finance Member Null</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -2186,16 +2189,6 @@ OwnerId))</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>IsFinanceMemberNull__c</fullName>
-        <externalId>false</externalId>
-        <formula>ISNULL(IPM_Finance_Member__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>IsFinanceMemberNull</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Is_Archieved__c</fullName>
         <defaultValue>false</defaultValue>
         <description>TO indicate if the IPM NG Project Is Archieved</description>
@@ -2440,6 +2433,11 @@ OwnerId))</formula>
             <field>IPM_Milestone__c.IPM_Completed__c</field>
             <operation>equals</operation>
             <value>False</value>
+        </summaryFilterItems>
+	<summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Type_of_Milestone__c</field>
+            <operation>equals</operation>
+            <value>Standard</value>
         </summaryFilterItems>
         <summaryForeignKey>IPM_Milestone__c.IPM_Project__c</summaryForeignKey>
         <summaryOperation>min</summaryOperation>

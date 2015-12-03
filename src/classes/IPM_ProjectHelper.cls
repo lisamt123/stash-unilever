@@ -25,8 +25,10 @@ public with sharing class IPM_ProjectHelper
     public static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId(); 
     
     // Query Additional Parameters
-    public static final String LIMIT_CLAUSE_STR = ' limit 50000 ';
-    public static final String FOR_UPDATE_STR = ' FOR UPDATE ';
+    public static final String LIMIT_CLAUSE_STR = ' limit 50000 '; 
+    public static final String WHERE_CLAUSE_STR = ' where ipm_project__c in :resultantprojectids ';
+    
+    public static final String IPM_PROJECT_ROLLOUT = 'IPM_Project_Rollout__c';
     
     public static Set<Id> incomingProjectIds = new Set<Id>();
     public static Set<Id> resultantProjectIds = new Set<Id>();
@@ -115,6 +117,7 @@ public with sharing class IPM_ProjectHelper
     public static Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap = new Map<Id,Map<String,IPM_Project_Document__c>>();
     public static  Map<Id,List<IPM_Project_Document_Section__c>> projectDocumentToSecMap = new Map<Id,List<IPM_Project_Document_Section__c>>();
     
+    public static Boolean DELETE_PROJECT_INVOKED = false;
      /**************************************************************
     * @description: Used for Resetting Cache in case Project Handler is invoked again. 
     */
@@ -223,7 +226,7 @@ public with sharing class IPM_ProjectHelper
         }
         // Get First level project specific information
         String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null);
-        String projectWhereClause = ' WHERE Id in :resultantProjectIds '+ LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+        String projectWhereClause = ' WHERE Id in :resultantProjectIds '+ LIMIT_CLAUSE_STR;
         projectQuery = projectQuery + projectWhereClause;
         Map<Id,IPM_Project__c> projectDetailMap = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>) database.query(projectQuery));
         
@@ -247,7 +250,7 @@ public with sharing class IPM_ProjectHelper
             {            
                 // Get project Level information along with project Documents 
                 String globalProjectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null);
-                String globalProjectWhereClause = ' WHERE Id in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+                String globalProjectWhereClause = ' WHERE Id in :resultantProjectIds '+LIMIT_CLAUSE_STR;
                 globalProjectQuery = globalProjectQuery + globalProjectWhereClause;
                 projectMasterMap = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>) database.query(globalProjectQuery) );   
             }
@@ -334,7 +337,7 @@ public with sharing class IPM_ProjectHelper
                 templateWhereClause = ' WHERE ' + whereCondition;
             }
             
-            templateQuery = templateQuery + templateWhereClause + LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            templateQuery = templateQuery + templateWhereClause + LIMIT_CLAUSE_STR;
  
             complexityTemplateMap = new Map<Id,IPM_Project_Template__c>( (List<IPM_Project_Template__c>) database.query(templateQuery) ); 
             
@@ -351,7 +354,7 @@ public with sharing class IPM_ProjectHelper
             String templateTaskQuery = IPM_Utils.prepareSOQLQuery('IPM_Task__c',false,null);
             String templateTaskWhereClause = ' WHERE IPM_Is_Master__c = true AND IPM_Project_Template__c in :projectTemplateList ';
             
-            templateTaskQuery = templateTaskQuery + templateTaskWhereClause + LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            templateTaskQuery = templateTaskQuery + templateTaskWhereClause + LIMIT_CLAUSE_STR;
             
             Map<Id,IPM_Task__c> templateTaskMap = new Map<Id,IPM_Task__c>( (List<IPM_Task__c>) database.query(templateTaskQuery) );
             
@@ -409,7 +412,7 @@ public with sharing class IPM_ProjectHelper
             // Get project document specific Information
             
             String projectDocumentQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Document__c',false,null);
-            String projectDocumentWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR; // NO SONAR QUBE string literal used in dynamic SOQL 
+            String projectDocumentWhereClause = WHERE_CLAUSE_STR+LIMIT_CLAUSE_STR; // NO SONAR QUBE string literal used in dynamic SOQL 
             projectDocumentQuery = projectDocumentQuery + projectDocumentWhereClause;
             projectDocumentMap = new Map<Id,IPM_Project_Document__c>( (List<IPM_Project_Document__c>) database.query(projectDocumentQuery) );
              
@@ -434,7 +437,7 @@ public with sharing class IPM_ProjectHelper
                 List<IPM_Project_Document__c> projectDocumentList = new List<IPM_Project_Document__c>(projectDocumentMap.values());
 
                 String projectSectionQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Document_Section__c',false,null);
-                String projectSectionWhereClause = ' WHERE IPM_Project_Document__c in :projectDocumentList '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR; 
+                String projectSectionWhereClause = ' WHERE IPM_Project_Document__c in :projectDocumentList '+LIMIT_CLAUSE_STR; 
                 projectSectionQuery = projectSectionQuery + projectSectionWhereClause;
                 projectSectionMap = new Map<Id,IPM_Project_Document_Section__c>( (List<IPM_Project_Document_Section__c>) database.query(projectSectionQuery) );
                 
@@ -456,7 +459,7 @@ public with sharing class IPM_ProjectHelper
                 
                 List<IPM_Project_Document_Section__c> projectSectionList = new List<IPM_Project_Document_Section__c>(projectSectionMap.values());
                 String projectSectionContentQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Document_Section_Content__c',false,null);
-                String projectSectionContentWhereClause = ' WHERE IPM_Project_Document_Section__c in :projectSectionList '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+                String projectSectionContentWhereClause = ' WHERE IPM_Project_Document_Section__c in :projectSectionList '+LIMIT_CLAUSE_STR;
                 projectSectionContentQuery = projectSectionContentQuery + projectSectionContentWhereClause;
                 projectSectionContentMap = new Map<Id,IPM_Project_Document_Section_Content__c>( (List<IPM_Project_Document_Section_Content__c>) database.query(projectSectionContentQuery) );
                 
@@ -475,7 +478,7 @@ public with sharing class IPM_ProjectHelper
             // Get Questionnaire Specific information
              
             String projectQuestionnaireQuery = IPM_Utils.prepareSOQLQuery('IPM_Questionnaire__c',false,null);
-            String projectQuestionnaireWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String projectQuestionnaireWhereClause = WHERE_CLAUSE_STR+LIMIT_CLAUSE_STR;
             projectQuestionnaireQuery = projectQuestionnaireQuery + projectQuestionnaireWhereClause;
             projectQuestionnaireMap = new Map<Id,IPM_Questionnaire__c>( (List<IPM_Questionnaire__c>) database.query(projectQuestionnaireQuery) );
             
@@ -492,7 +495,7 @@ public with sharing class IPM_ProjectHelper
             // Get Resource Specific Information
             
             String projectResourceQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Resource__c',false,null);
-            String projectResourceWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String projectResourceWhereClause = WHERE_CLAUSE_STR+LIMIT_CLAUSE_STR;
             projectResourceQuery = projectResourceQuery + projectResourceWhereClause;
             projectResourceMap = new Map<Id,IPM_Project_Resource__c>( (List<IPM_Project_Resource__c>) database.query(projectResourceQuery) );
             
@@ -509,7 +512,7 @@ public with sharing class IPM_ProjectHelper
             
             // Get CMI Gate Specific information
             String projectCMIGateQuery = IPM_Utils.prepareSOQLQuery('IPM_Gate_CMI__c',false,null);
-            String projectCMIGateWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String projectCMIGateWhereClause = WHERE_CLAUSE_STR+LIMIT_CLAUSE_STR;
             projectCMIGateQuery = projectCMIGateQuery + projectCMIGateWhereClause;
             projectCMIGateMap = new Map<Id,IPM_Gate_CMI__c>( (List<IPM_Gate_CMI__c>) database.query(projectCMIGateQuery) );
             
@@ -528,7 +531,7 @@ public with sharing class IPM_ProjectHelper
         if(associatedBosscards!=null && !associatedBosscards.isEmpty())
         {
             String bosscardQuery = IPM_Utils.prepareSOQLQuery('IPM_Bosscard__c',false,null);
-            String bosscardWhereClause = ' WHERE Id in :associatedBosscards '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String bosscardWhereClause = ' WHERE Id in :associatedBosscards '+LIMIT_CLAUSE_STR;
             bosscardQuery = bosscardQuery + bosscardWhereClause;
             bossCardMap = new Map<Id,IPM_Bosscard__c>( (List<IPM_Bosscard__c>) database.query(bosscardQuery) );
         }
@@ -555,8 +558,8 @@ public with sharing class IPM_ProjectHelper
             
             // Get References for Child rollouts for parent Rollouts. we have 2 types of Rollouts. Regional and Local. 
             // Local dont have any childs, so only Regional Rollout in Where Clause
-            String projectRolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null); // NO SONAR QUBE 'ipm_project_rollout__c' used in dyanmic SOQL
-            String projectRolloutWhereClause = ' WHERE Id in:projectSourceRolloutSet OR (Regional_Rollout__c in :projectSourceRolloutSet AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE ) '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String projectRolloutQuery = IPM_Utils.prepareSOQLQuery(IPM_PROJECT_ROLLOUT,false,null); // NO SONAR QUBE IPM_PROJECT_ROLLOUT used in dyanmic SOQL
+            String projectRolloutWhereClause = ' WHERE Id in:projectSourceRolloutSet OR (Regional_Rollout__c in :projectSourceRolloutSet AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE ) '+LIMIT_CLAUSE_STR;
             projectRolloutQuery = projectRolloutQuery + projectRolloutWhereClause;
             Map<Id,IPM_Project_Rollout__c> projectsSourceRolloutsMap = new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>) database.query(projectRolloutQuery) );
             // projectsSourceRolloutsMap contains Rollouts which recently got converted to projects and its associated Child Rollouts.
@@ -582,7 +585,7 @@ public with sharing class IPM_ProjectHelper
             Set<Id> resultantRolloutIds = projectsSourceRolloutsMap.keySet();
             
             String projectCountryQuery = IPM_Utils.prepareSOQLQuery('IPM_Country__c',false,null);
-            String projectCountryWhereClause = ' WHERE Local_Rollout__c in :resultantRolloutIds  AND local_Rollout__r.recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE  '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String projectCountryWhereClause = ' WHERE Local_Rollout__c in :resultantRolloutIds  AND local_Rollout__r.recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE  '+LIMIT_CLAUSE_STR;
             projectCountryQuery = projectCountryQuery + projectCountryWhereClause;
             
             Map<Id,IPM_Country__c> countryMasterMap = new Map<Id,IPM_Country__c>( (List<IPM_Country__c>) database.query(projectCountryQuery) );
@@ -608,7 +611,7 @@ public with sharing class IPM_ProjectHelper
         // Get Project Specific information
         String projectMilestonesQuery = IPM_Utils.prepareSOQLQuery('IPM_Milestone__c',false,null);
         String mileStoneStandard = IPM_ConstantUtils.STANDARD;
-        String projectMilestonesWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds AND IPM_Type_of_Milestone__c = :mileStoneStandard '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+        String projectMilestonesWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds AND IPM_Type_of_Milestone__c = :mileStoneStandard '+LIMIT_CLAUSE_STR;
         projectMilestonesQuery = projectMilestonesQuery + projectMilestonesWhereClause;
         projectMilestonesMap = new Map<Id,IPM_Milestone__c>( (List<IPM_Milestone__c>) database.query(projectMilestonesQuery) );
         
@@ -639,7 +642,7 @@ public with sharing class IPM_ProjectHelper
     {
         // Get Task Specific information
         String projectTaskQuery = IPM_Utils.prepareSOQLQuery('IPM_Task__c',false,null);
-        String projectTaskWhereClause = ' WHERE IPM_Project__c in :resultantProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+        String projectTaskWhereClause = WHERE_CLAUSE_STR+LIMIT_CLAUSE_STR;
         projectTaskQuery = projectTaskQuery + projectTaskWhereClause;
         projectTaskMap = new Map<Id,IPM_Task__c>( (List<IPM_Task__c>) database.query(projectTaskQuery) );
         
@@ -667,7 +670,6 @@ public with sharing class IPM_ProjectHelper
         // upsert based on Salesforce Id as mapping for Existing Project Documents is already done .
         if(preparedprojectDocumentList!=null && !preparedprojectDocumentList.isEmpty())
         {   
-            System.debug('---preparedprojectDocumentList------------>>'+preparedprojectDocumentList);
             upsert preparedprojectDocumentList Id;
             
                
@@ -892,9 +894,6 @@ public with sharing class IPM_ProjectHelper
                         postFixToUniqueFinancialKeySet.put(KEY_POSTFIX,uniqueFinancialKeySet);
                     }
                     
-                    System.debug(LoggingLevel.Error,'completeFinancialUniqueKeySet-->>'+completeFinancialUniqueKeySet);
-                    System.debug(LoggingLevel.Error,'postFixToUniqueFinancialKeySet-->>'+postFixToUniqueFinancialKeySet);
-                    
                     // Store the list of Unique Keys against projects.
                     if(!postFixToUniqueFinancialKeySet.isEmpty())
                     {
@@ -909,7 +908,7 @@ public with sharing class IPM_ProjectHelper
         {   
             // Get financial information based on Provided values.  
             String financialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial__c',false,null);
-            String financialWhereClause = ' WHERE Financial_External_ID__c in :completeFinancialUniqueKeySet '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String financialWhereClause = ' WHERE Financial_External_ID__c in :completeFinancialUniqueKeySet '+LIMIT_CLAUSE_STR;
             financialQuery = financialQuery + financialWhereClause;
             
             Map<Id,IPM_Financial__c> financialRecords = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>) database.query(financialQuery) );
@@ -1038,7 +1037,7 @@ public with sharing class IPM_ProjectHelper
                                             isChanged = true;
                                         }
                                     
-                                        if(regionalRollout!=null && financialObj.get('IPM_Project_Rollout__c') != regionalRollout && updateFieldAPIs.contains('IPM_Project_Rollout__c'))
+                                        if(regionalRollout!=null && financialObj.get(IPM_PROJECT_ROLLOUT) != regionalRollout && updateFieldAPIs.contains(IPM_PROJECT_ROLLOUT))
                                         {
                                             financialObj.IPM_Project_Rollout__c= regionalRollout;
                                             isChanged = true;
@@ -1057,7 +1056,6 @@ public with sharing class IPM_ProjectHelper
                                             if(gateIndicator!=null)
                                             {
                                                 Boolean gateApprovalValue = (Boolean)financialObj.get(gateIndicator);
-                                                System.debug(LoggingLevel.Error,'gateIndicator-->>'+gateIndicator);
                                                 if(!gateApprovalValue)
                                                 {
                                                     financialObj.put(gateIndicator,true);
@@ -1212,7 +1210,7 @@ public with sharing class IPM_ProjectHelper
                                                     isChanged = true;
                                                 }
                                         
-                                                if(regionalRollout!=null && financialObj.get('IPM_Project_Rollout__c') != regionalRollout && insertFieldAPIs.contains('IPM_Project_Rollout__c'))
+                                                if(regionalRollout!=null && financialObj.get(IPM_PROJECT_ROLLOUT) != regionalRollout && insertFieldAPIs.contains(IPM_PROJECT_ROLLOUT))
                                                 {   
                                                     financialObj.IPM_Project_Rollout__c= regionalRollout;
                                                     isChanged = true;
@@ -1264,7 +1262,6 @@ public with sharing class IPM_ProjectHelper
             }
         }
         
-        System.debug(LoggingLevel.Error,'financialsToUpsert-->>'+financialsToUpsert);
         
         if(!financialsToUpsert.isEmpty())
         {
@@ -1327,8 +1324,8 @@ public with sharing class IPM_ProjectHelper
         if(incomingProjectIds!=null && !incomingProjectIds.isEmpty())
         {
             
-            String projectRolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
-            String projectRolloutWhereClause = ' WHERE IPM_Project__c in:incomingProjectIds OR Local_Project__c in :incomingProjectIds OR Regional_Project__c in :incomingProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String projectRolloutQuery = IPM_Utils.prepareSOQLQuery(IPM_PROJECT_ROLLOUT,false,null);
+            String projectRolloutWhereClause = ' WHERE IPM_Project__c in:incomingProjectIds OR Local_Project__c in :incomingProjectIds OR Regional_Project__c in :incomingProjectIds '+LIMIT_CLAUSE_STR;
             projectRolloutQuery = projectRolloutQuery + projectRolloutWhereClause;
             Map<Id,IPM_Project_Rollout__c> rolloutDetailMap = new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>) database.query(projectRolloutQuery) );
                 // projectsSourceRolloutsMap contains Rollouts which recently got converted to projects and its associated Child Rollouts.
@@ -1351,7 +1348,7 @@ public with sharing class IPM_ProjectHelper
             }
         
             String countryQuery = IPM_Utils.prepareSOQLQuery('IPM_Country__c',false,null);
-            String countryWhereClause = ' WHERE IPM_Regional_Project__c in :incomingProjectIds OR IPM_Local_Project__c in:incomingProjectIds '+LIMIT_CLAUSE_STR + FOR_UPDATE_STR;
+            String countryWhereClause = ' WHERE IPM_Regional_Project__c in :incomingProjectIds OR IPM_Local_Project__c in:incomingProjectIds '+LIMIT_CLAUSE_STR;
             countryQuery = countryQuery + countryWhereClause;
         
             List<IPM_Country__c> countryList = database.query(countryQuery);
@@ -1442,23 +1439,38 @@ public with sharing class IPM_ProjectHelper
         
     }
     
-    public static void deleteProj(List<IPM_Project__c>projLst){
-        
-        Set<id> projectIdSetToBeDeleted = new Set<Id>(); // Project Id set to be deleted 
-        for(IPM_Project__c project : projLst)
+    public static void deleteProject(Set<Id> projectIdSetToBeDeleted)
+    {    
+        if(!projectIdSetToBeDeleted.isEmpty() && !DELETE_PROJECT_INVOKED)
         {
-            if(project.Created_in_error__c)
+            DELETE_PROJECT_INVOKED = true;    
+            
+            Set<Id> associatedRolloutIds = new Set<Id>(); 
+            // If it is a global Project, get corresponding regional Projects.
+            for(IPM_Project__c project : [Select Id,(Select Id from IPM_Projects__r),(Select Id from IPM_Project_Rollout__r),(Select Id from Regional_Project_Rollout__r) from IPM_Project__c where IPM_Parent_Project__c in :projectIdSetToBeDeleted LIMIT 50000])
             {
-                projectIdSetToBeDeleted.add(project.Id); 
+                projectIdSetToBeDeleted.add(project.Id);
+                for(IPM_project__c childproject : project.IPM_Projects__r)
+                {
+                    projectIdSetToBeDeleted.add(childproject.Id);
+                }
+                
+                for(IPM_Project_Rollout__c rollout : project.IPM_Project_Rollout__r)
+                {
+                    associatedRolloutIds.add(rollout.Id);
+                }
+                
+                for(IPM_Project_Rollout__c rollout : project.Regional_Project_Rollout__r)
+                {
+                    associatedRolloutIds.add(rollout.Id);
+                }
             }
-        }
-        if(!projectIdSetToBeDeleted.isEmpty())
-        {
-            List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectIdSetToBeDeleted Limit 5000];
+                         
+            List<IPM_Financial__c> projFinList=[Select Id From IPM_Financial__c where Parent_Project__c in:projectIdSetToBeDeleted OR Local_Project__c in:projectIdSetToBeDeleted OR Regional_Project__c in:projectIdSetToBeDeleted OR IPM_Project_Rollout__c in:associatedRolloutIds  Limit 5000];
             if(projFinList != null && !projFinList.isEmpty())
                 delete projFinList;
             
-            List<IPM_Project_Rollout__c> projRolloutList=[Select Id From IPM_Project_Rollout__c where IPM_Project__c in:projectIdSetToBeDeleted Limit 5000];
+            List<IPM_Project_Rollout__c> projRolloutList=[Select Id From IPM_Project_Rollout__c where IPM_Project__c in:projectIdSetToBeDeleted OR Local_Project__c in :projectIdSetToBeDeleted OR Regional_Project__c in :projectIdSetToBeDeleted limit 5000];
             if(projRolloutList != null && !projRolloutList.isEmpty())
                 delete projRolloutList;
             

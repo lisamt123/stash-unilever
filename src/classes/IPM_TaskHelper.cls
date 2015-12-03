@@ -47,6 +47,7 @@ public with sharing class IPM_TaskHelper {
 	          {
 	                newTaskObj.Name = taskName;
 	          }
+	         
           }
         }   
     }

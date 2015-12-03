@@ -6,7 +6,7 @@
 *@Data from Excel sheet.
 ************************************************************************************    
 -->
-<apex:page sidebar="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" controller="IPM_FinancialCopyPasteGrid" extensions="IPM_GetHelpDoc">
+<apex:page sidebar="false" showHeader="true" applyBodyTag="false" docType="html-5.0" controller="IPM_FinancialCopyPasteGrid" extensions="IPM_GetHelpDoc">
 <html>    
   <head>      
      <link href="{!URLFOR($Resource.IPM_FinancialGrid, 'NewGridDemo/main.css')}" rel="stylesheet"/>
@@ -14,6 +14,7 @@
      <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Modal1.css')}"/>
      <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Header-new.css')}"/>
      <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Financial.css')}"/>  
+     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_FinancialCopyPasteGrid.css')}"/> 
      </head>   
     <body>
     <apex:composition template="IPM_TemplateRevamp">
@@ -26,7 +27,7 @@
                 </div>
                 <!-- Page Head & Toolbar -->
                 <div class="row finwrapper">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 noPadleft noPadright">
                         <div class="panel-group pageHeadToolbar clearfix">
                             <div class="row">
                             
@@ -35,7 +36,7 @@
                                     <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
                                 </apex:outputPanel> 
                             
-                                <div class="finTitle pull-left">
+                                <div class="noPadleft finTitle pull-left">
                                     <h2 class="pageTitle">{!$Label.IPM_FINANCIALS}</h2>                                        
                                 </div>                                                           
                             </div>
@@ -50,22 +51,23 @@
             <table style="IPM_Table" class="ipmTable table">
               <tr>
                 <td class="TDwidth1">
-                   <div class="divStyle" Id = "div1">
-                     <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MCO} " style="MCOStyle" id="outlabel">
-                           <apex:outputpanel id="C">
-                               <apex:selectList id="selist" value="{!ListCountries}" size="1" title="IPM Country"  styleclass="drpfield">
-                                    <apex:selectOptions value="{!CountryValue}"  id="CValue"></apex:selectOptions>                  
-                               </apex:selectList>
-                               <div Id = "DivButton" Style="display: none;">
-                                  <apex:commandButton value="{!$Label.IPM_FinancialGrid_Submit}" action="{!submit}" id="SubBtn" styleclass="ipmButton green" disabled="{!flag}" reRender="C,outdata,CValue,message" oncomplete="chdropdown('{!ListCountries}');"/> 
-                               </div>    
-                                <apex:commandButton value="{!$Label.IPM_FinancialGrid_goBack}" action="{!goBack}"  id="bckbtn"  styleclass="ipmButton green"  /> 
-                                <button onclick="clearAll();"  id="Clrbtn" class="ipmButton green" >{!$Label.IPM_FinancialGrid_Clear}</button> 
-                                 <button onclick="openWin();"  id="Upbtn" class="ipmButton green" >{!$Label.IPM_FinancialGrid_Upload}</button>
+                   <div class="divStyle gridBtnContainer" Id = "div1">
+                     <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MCO} " styleClass="gridMcoLabel pull-left" style="MCOStyle" id="outlabel" />
+                       <apex:outputpanel layout="block" styleClass="" id="C">
+                           <apex:selectList id="selist" value="{!ListCountries}" size="1" title="IPM Country"  styleclass="drpfield">
+                                <apex:selectOptions value="{!CountryValue}"  id="CValue"></apex:selectOptions>                  
+                           </apex:selectList>
+                           <div Id = "DivButton" Style="display: none;">
+                              <apex:commandButton value="{!$Label.IPM_FinancialGrid_Submit}" action="{!submit}" id="SubBtn" styleclass="ipmButton green" disabled="{!flag}" reRender="C,outdata,CValue,message" oncomplete="chdropdown('{!ListCountries}');"/> 
+                           </div>    
+                            <apex:commandButton value="{!$Label.IPM_FinancialGrid_goBack}" action="{!goBack}"  id="bckbtn"  styleclass="ipmButton green"  /> 
+                            <button onclick="clearAll();"  id="Clrbtn" class="ipmButton green" >{!$Label.IPM_FinancialGrid_Clear}</button> 
+                             <button onclick="openWin();"  id="Upbtn" class="ipmButton green" >{!$Label.IPM_FinancialGrid_Upload}</button>
+                            <div class="gridInfo">
                                 <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG2}" rendered="{!flag}" />
-                            </apex:outputpanel>                                 
-                        </apex:outputLabel>  
-                       <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG1}" />
+                                <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG1}" />
+                            </div>
+                        </apex:outputpanel> 
                       </div> 
     <apex:outputpanel id="grid">
     <div id="FinancialGrid">

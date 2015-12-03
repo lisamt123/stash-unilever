@@ -66,7 +66,9 @@ public with sharing class IPM_ImageUploadController {
     public Document document {
         get {
             if (document == null)
+            {
                 document = new Document();
+            }    
             
             return document;
         }

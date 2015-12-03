@@ -138,6 +138,10 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     public String ecoDesignSecId {get;set;}
     public Static final String ENVIRONMENTAL_IMPACT = 'Environmental_Impact';
     public boolean rolloutsGenerated {get;set;} //Eco Design
+    public boolean bShowAlertsBar{get;set;}//variable to show/hide Alerts
+    public boolean bShowShipToTradeButton{get;set;}//variable to show Ship to trade button
+    public boolean bShowChangeStatusButton{get;set;}//variable to show Change Status button
+    public boolean bPhaseChangeInProgress{get;set;}//variable to check if phase change is in progress or not
     //SD constructor
     public IPM_ProjectOverviewCtrl(IPM_ProjDocumentSectionHstryController controller) {
        
@@ -156,6 +160,10 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         memberCallFromURL = false;
         showBET= false;
         isIdeasPhase = false;
+        bShowAlertsBar = false;
+        bShowShipToTradeButton = false;
+        bShowChangeStatusButton = false;
+        bPhaseChangeInProgress = false;
         projectDocsSet = new Set<String>();
         projectTasksSet = new Set<String>();
         projectMSSet = new Set<String>();
@@ -189,7 +197,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         }
         
         lstofuser=new list<IPM_Project__c>();
-        lstofuser=[SELECT Name,IPM_Phase__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c FROM IPM_Project__c 
+        lstofuser=[SELECT Name,IPM_Phase__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Technical_Project_Leader__c,IPM_Finance_Member__c FROM IPM_Project__c 
                                        WHERE Id=:projectId  limit 1];
          if(lstofuser!=null && !lstofuser.isEmpty()) {
             if((lstofuser[0].IPM_Project_Leader__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Leader__c !=null)||
@@ -197,13 +205,13 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                IsUpdateStatus=true; 
                isProjLeader = true;
             }
-			if(lstofuser[0].IPM_Project_Leader__c != null){
-            	suggestedManagerList.add(lstofuser[0].IPM_Project_Leader__c);
-        	}
-        	if(lstofuser[0].Deputy_Project_Leader__c != null && lstofuser[0].Deputy_Project_Leader__c != lstofuser[0].IPM_Project_Leader__c){
-            	suggestedManagerList.add(lstofuser[0].Deputy_Project_Leader__c);
-        	}
-		}
+            if(lstofuser[0].IPM_Project_Leader__c != null){
+                suggestedManagerList.add(lstofuser[0].IPM_Project_Leader__c);
+            }
+            if(lstofuser[0].Deputy_Project_Leader__c != null && lstofuser[0].Deputy_Project_Leader__c != lstofuser[0].IPM_Project_Leader__c){
+                suggestedManagerList.add(lstofuser[0].Deputy_Project_Leader__c);
+            }
+        }
         
         //security for central team and BP users
         IPM_CustomPermission cpr = new IPM_CustomPermission();
@@ -223,10 +231,12 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
        
        
        IPM_Project__c projObj = IPM_Utils.getCurrentPhase(projectId);
-       if(!Test.isRunningTest())
+       if(!Test.isRunningTest()){
            currPhase = projObj.IPM_Phase__c;
-       else
+       }
+       else{
            currPhase = projObj.IPM_Temporary_Phase__c;
+       }
        init();
        
        // Adding Alert for Local Project leader is blank for rollout Projects
@@ -249,6 +259,47 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
        if(currentProjecttype != null && currentProjecttype.IPM_Gate_Document__c != null){
            currGateToDisplay = Label.IPM_IN + IPM_ConstantUtils.IPM_SPACE +   currentProjecttype.IPM_Gate_Document__c;
        }
+       
+       /**********************************************************
+       Logic to set boolean variable bShowAlertsBar in order to show/hide Alerts
+       if alert/notifications are not present or phase change is in progress, then don't show alerts
+       ***********************************************************/
+       
+       if(project.IPM_Project_Job_Status__c != IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && project.IPM_Project_Job_Status__c != IPM_ConstantUtils.JOB_STATUS_PROCESSING ) 
+       {    
+            bPhaseChangeInProgress = false;
+            
+            if( (noOfNotifications != null && noOfNotifications >= 1) || (alertscount != null && alertscount >=1) )
+                bShowAlertsBar = true;
+           else 
+                bShowAlertsBar = false;
+       }
+       else
+       {
+                bPhaseChangeInProgress = true;
+                bShowAlertsBar = false;
+       }
+                
+        /**********************************************************
+       Logic to set boolean variable bShowShipToTradeButton in order to show Ship to Trade button 
+       when original project is in Market deployment phase / operational project in Market Ready phase
+       ***********************************************************/     
+        if( ( projectDoc != null && projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_APPROVED && project.IPM_Phase__c == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE) || 
+             (project.IPM_Phase__c == IPM_ConstantUtils.MARKET_READY_GATE && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) )
+                bShowShipToTradeButton = true;
+       else
+                bShowShipToTradeButton = false;
+                
+       /**********************************************************
+       Logic to set boolean variable bShowChangeStatusButton in order to show Change Status button 
+       ***********************************************************/     
+       if( ( projectDoc != null && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS && 
+            projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.STATUS_NOT_STARTED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_PLE ) && IsUpdateStatus == true)
+                bShowChangeStatusButton = true;
+       else
+                bShowChangeStatusButton = false;
+                
+       
     }
     
     /*******************************************************************************************************
@@ -266,12 +317,12 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                 IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
                                 Deputy_Project_Leader__c, IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
                                 IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,
-                                IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, 
+                                IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,
                               (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
-                                    IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,
+                                    IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,IPM_Active__c,
                                     IPM_Project__c
                                     FROM Tasks__r 
-                                    WHERE IPM_Assignee__c = :UserInfo.getUserId() AND IPM_Phase__c = :currPhase
+                                    WHERE IPM_Assignee__c = :UserInfo.getUserId() AND IPM_Phase__c = :currPhase AND IPM_Active__c=TRUE
                                     ORDER BY IPM_Due_Date1__c limit 10000),
                             (SELECT id,name,IPM_Project__c from IPM_Countries__r limit 10000),
                             (SELECT IPM_Project_Template__r.IPM_Template_Complexity__c,LastModifiedBy.Name,IPM_GateDocuments__c,
@@ -282,7 +333,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                             ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
 
                             ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
-                            (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_Role__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
+                            (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
 
                              limit 10000)
                              FROM IPM_Project__c 
@@ -357,7 +408,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         // Get project it and iTO value map
         projIdiTOMap = IPM_Utils.createProjectITOValueMap();
         if(projIdiTOMap != null && !projIdiTOMap.isEmpty() && projIdiTOMap.containsKey(project.id)){
-        globalyearDec = projIdiTOMap.get(project.id);
+            globalyearDec = projIdiTOMap.get(project.id);
         }
 
         if((((IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c))) || (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c))) || (IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)&&(IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equalsIgnoreCase(project.IPM_Project_Type__c)))) && (project.Exempt_from_Threshold__c))){
@@ -519,8 +570,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
-                                                                                (IPM_FunctionalRole__c =: IPM_Utils.roleForProjectLeader OR 
-                                                                                IPM_Master_Section_External_Id__c =: ENVIRONMENTAL_IMPACT) AND  
+                                                                                IPM_FunctionalRole__c =: IPM_Utils.roleForProjectLeader AND  
                                                                                 IPM_Default_Section__c = true
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000] ;
         } else if(project.IPM_Project_Leader__c != UserInfo.getUserId() && userRole != null ) {
@@ -530,8 +580,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                                                         WHERE IPM_Project_Document__r.IPM_Project__c = :projectId AND 
                                                                                 IPM_Section_Status__c != :IPM_ConstantUtils.STATUS_EXCLUDED AND
                                                                                 IPM_Project_Document__r.IPM_GateDocuments__c = :currGate AND
-                                                                                (IPM_FunctionalRole__c =: userRole OR 
-                                                                                IPM_Master_Section_External_Id__c =: ENVIRONMENTAL_IMPACT) AND
+                                                                                IPM_FunctionalRole__c =: userRole AND
                                                                                 IPM_Default_Section__c = true
                                                                         ORDER BY IPM_Section_Sequence__c limit 50000];
         }
@@ -726,28 +775,19 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         for(IPM_Milestone__c eachRec : lst) {
             mapToReturn.put(eachRec.Id, eachRec);
             if(eachRec.IPM_Project__r.IPM_Phase__c == eachRec.IPM_Phase__c){
-                if(String.IsNotBlank(String.valueOf(eachRec.IPM_Due_Date__c)) && eachRec.IPM_Completed__c != true){
+                if(String.IsNotBlank(String.valueOf(eachRec.IPM_Due_Date__c)) && !eachRec.IPM_Completed__c){
                     DateValue=Date.valueOf(System.today()).daysBetween(Date.valueOf(eachRec.IPM_Due_Date__c));
                     if(DateValue<0){
-
-
                             alertMessagePast.put(System.Label.IPM_DUE_DATE_FOR , eachRec.IPM_Type_of_gate__c +SPACE+IPM_Utils.off+SPACE+eachRec.IPM_Project__r.IPM_Project_Name__c);
                             alertscount++;
-
                     }
                     if(DateValue==0){
-
-
                            alertMessageToday.put(eachRec.IPM_Name__c,PLANNED_STR+eachRec.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+IPM_ConstantUtils.GATE);
                            alertscount++;
-
-
                      }
                     if(DateValue<=IPM_ConstantUtils.CONST_21 && DateValue!=0 && DateValue >0){
-
                            alertMessage.put(eachRec.IPM_Project__r.IPM_Project_Name__c+SPACE+eachRec.IPM_Name__c+SPACE+System.Label.IPM_DUE_IN,DateValue+SPACE+System.Label.IPM_DAY);
                            alertscount++;
-
                     }
                 } 
             }
@@ -758,15 +798,11 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                 if( ( countryLst != null && countryLst.size()  ==1 && DateValue< 180) || (project.IPM_Countries__r!= null && project.IPM_Countries__r.size() > 0 && DateValue<120 ) || ((project.IPM_Countries__r).isEmpty() && dateValue < 180 )){
                     additionalAlertMessages.add(system.label.IPM_AlertMsgOutsideOTIF);
                     alertscount++;      
-
                 }
            }
-           
         }
-
-
-           for(IPM_Project_Document__c eachDoc:[SELECT IPM_GateDocuments__c,IPM_Document_Status__c,IPM_Project__r.IPM_Project_Name__c FROM IPM_Project_Document__c where IPM_Project__c=: projectId])
-           {
+       for(IPM_Project_Document__c eachDoc:[SELECT IPM_GateDocuments__c,IPM_Document_Status__c,IPM_Project__r.IPM_Project_Name__c FROM IPM_Project_Document__c where IPM_Project__c=: projectId])
+       {
             if(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS.equalsIgnoreCase(eachDoc.IPM_Document_Status__c) && (System.Label.IPM_CHARTER.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c) || IPM_ConstantUtils.CONTRACT_GATE.equalsIgnoreCase(eachDoc.IPM_GateDocuments__c)))
             {
                 documentAlertMessage = eachDoc.IPM_Project__r.IPM_Project_Name__c +IPM_ConstantUtils.Colon+eachDoc.IPM_GateDocuments__c+SPACE+system.label.IPM_Gate_Approved_With_Edits;
@@ -841,8 +877,9 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                'markComplete',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));   
         }       
-        if(!Test.isRunningTest())
+        if(!Test.isRunningTest()){
            init();
+        }
            bPaginated  = false;
     }
     
@@ -885,8 +922,9 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
    
     public List<IPM_Task__c> getTasks() {
        size = 5;
-       if(!bPaginated)
+       if(!bPaginated){
            con = new ApexPages.StandardSetController(tasksList);
+       }
        noOfRecords = con.getResultSize();
        con.setPageSize(size);
        return (List<IPM_Task__c>)con.getRecords();

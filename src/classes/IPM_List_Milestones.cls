@@ -91,7 +91,7 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         initializeMilestones();
         phaseMsList.sort();//customised sort
         //Code to add BET related messages
-        if((projectObj.BET_TLD_First_Release_Date__c > projectObj.BET_MS_First_Release_Date__c) || (projectObj.BET_TLD_Final_Release_Date__c > projectObj.BET_MS_Final_Release_Date__c)){
+        if((projectObj.BET_TLD_First_Release_Date__c < projectObj.BET_MS_First_Release_Date__c) || (projectObj.BET_TLD_Final_Release_Date__c < projectObj.BET_MS_Final_Release_Date__c)){
             isWarningRequired = true;   
             warningMessages.add(system.label.IPM_BETMilestoneDateMismatch);
         }
@@ -138,6 +138,10 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
             
             // BET Milestone will be read only 
             if(eachMilestone.IPM_Type_of_Milestone__c == IPM_ConstantUtils.BET){
+                isEditable = false;
+            }
+            // Target Launch Date will be read only
+            if(eachMilestone.IPM_Name__c.equalsignorecase(IPM_Utils.TargetLaunchDateShiptoTrade)){
                 isEditable = false;
             }
             
@@ -208,8 +212,7 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         currentSort.put(IPM_ConstantUtils.THIS_FIELD, 'IPM_Completed_On__c');
         getProjectMilestones();
     }
-    
-    
+        
     public void initializeMilestones()
     {
         loadMilestones();
@@ -290,7 +293,11 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         loadMilestones();
         loadTimelines((List<IPM_Milestone__c>)sourcesObjectList);
         getWrapperRecords();
-        paginationUIDisplay = string.format(System.Label.IPM_PaginationUIDisplay, new string[] {string.valueof(getBeginIndexNumber()),String.valueof(getEndIndexNumber()),String.valueof(milestoneCnt)});
+        if(getEndIndexNumber() == 0){
+            paginationUIDisplay = string.format(System.Label.IPM_PaginationUIDisplay, new string[] {string.valueof(getBeginIndexNumber() - 1),String.valueof(getEndIndexNumber()),String.valueof(milestoneCnt)});
+        }else{
+            paginationUIDisplay = string.format(System.Label.IPM_PaginationUIDisplay, new string[] {string.valueof(getBeginIndexNumber()),String.valueof(getEndIndexNumber()),String.valueof(milestoneCnt)});
+        }
         
         return  wrapperRecordList;
     }

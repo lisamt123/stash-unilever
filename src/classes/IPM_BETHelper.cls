@@ -5,8 +5,8 @@
 **/
 
 /*
-    This class is defined as Without as the methods are invoked via BET Integartion service methods which needs to access
-    all related IPM and MDO data irrespective of sharing.
+     This class has been defined as Without Sharing as the methods are invoked via BET Integration service methods which needs 
+     to access all related IPM and MDO data irrespective of sharing.
 */
 public without sharing class IPM_BETHelper {
 
@@ -84,7 +84,7 @@ public without sharing class IPM_BETHelper {
     //Method to reset BET Milestone date missed alert 
     public static void resetMilestoneMissedFlag(Id BETId, BET_BETWrapper BET) {
         list < IPM_Project__c > lstPRoject = new list < IPM_Project__c > ();
-        lstPRoject = [select id, BET_First_Release_Missed__c, BET_Final_Release_Missed__c from IPM_Project__c where bet__c = : BET.betid limit 50000]; //LAKHAN ADDED 2 FIL
+        lstPRoject = [select id, BET_First_Release_Missed__c, BET_Final_Release_Missed__c from IPM_Project__c where bet__c = : BET.betid limit 50000]; 
         for (IPM_Project__c proj: lstPRoject) {
             if (BET.status == IPM_ConstantUtils.BET_FINAL_RELEASE) {
                 proj.BET_First_Release_Missed__c = false;

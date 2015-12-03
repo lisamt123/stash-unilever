@@ -322,9 +322,13 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                     IsCRRTEditable=true;
                     isEditGateCMI=true;
                 }
+                if((bdSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c) && IPM_ConstantUtils.KEY_ISSUES_NEEDING_FOCUS_IN_GATE_MEETING.equals(projDocSec.IPM_Section__r.External_ID__c) && !project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))){
+                IsEditableSumm=false;
+                IsEditableOutC=false;
+                }
                 if(IPM_ConstantUtils.IPM_PACK_GRAPHICS.equals(projDocSec.IPM_Section__r.External_ID__c)){
-                    IsEditableSumm=false;
-                }  
+                IsEditableSumm=false;
+                }
             }
             else if(userRole_STR.Equals(IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI) && !project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY)){
                 if(cmiSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c))

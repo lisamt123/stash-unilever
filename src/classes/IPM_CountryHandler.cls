@@ -166,9 +166,9 @@ public with sharing class IPM_CountryHandler implements ITrigger{
                 }
             }
             
-            countryForProjList=[SELECT Id,Name,MDO_Geography__c,Country_Code__c,Country_Name__c,Geography__c,Local_Rollout__c,Market_Cluster_Code__c,
+            countryForProjList=[SELECT Id,Name,MDO_Geography__c,Country_Code__c,Country_Name__c,Local_Rollout__c,Market_Cluster_Code__c,
                 Market_Cluster_Name__c,MCO_Code__c,MCO_Name__c,Project_Country__c,IPM_Project__c, IPM_Project__r.IPM_Market_Type__c, IPM_Regional_Project__c,
-                IPM_Regional_Project__r.IPM_Market_Type__c, IPM_Local_Project__c, IPM_Local_Project__r.IPM_Market_Type__c, Geography__r.Market_Type__c 
+                IPM_Regional_Project__r.IPM_Market_Type__c, IPM_Local_Project__c, IPM_Local_Project__r.IPM_Market_Type__c 
                 FROM IPM_Country__c 
                 WHERE Id in:countryListIds LIMIT 50000];
                 
@@ -238,7 +238,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         
         if(!deleteRolloutMap.isEmpty())
         {
-            delete deleteRolloutMap.values();
+            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id from IPM_Project_Rollout__c where Id in :deleteRolloutMap.keySet()];
+            delete deleteRolloutList;
         }
     }
     
