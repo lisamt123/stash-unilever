@@ -3,8 +3,12 @@
 	init : function(component, event, helper) {        
         var newsArticle = component.get("v.NewsDetail");
         var newsType = component.get("v.NewsType");
-        if(newsType=="GlobalNews") component.set("v.MailSubject","News Centre article that may interest you");
-        else component.set("v.MailSubject","News article that may interest you");
+        if(newsType=="GlobalNews") {
+            component.set("v.MailSubject","News Centre article that may interest you");
+        }
+        else {
+            component.set("v.MailSubject","News article that may interest you");
+        }
 	},    
     //redirect into chatter share page
     getChatterComponent:function(component, event, helper) {
