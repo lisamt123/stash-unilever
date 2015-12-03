@@ -7,7 +7,8 @@
 }
 /*applying style for the top back aroow bar of the page*/ 
 .THIS .topBackBar{ 
-    height: 40px;      
+    height: 40px;    
+    padding-left: 10px;   
     width: 50px;
 }
 /*applying full width*/

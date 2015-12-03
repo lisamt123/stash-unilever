@@ -96,16 +96,12 @@
                     ga('set', 'dimension2', dimensionValue2);
                     ga('send', 'pageview');
                 }
-                else 
+                else {
                     component.set("v.ErrorMessageFlag", true);
+                }
         	}                    
         });
         $A.enqueueAction(action);
         
     },
-    /*gotoFilter: function(component, event, helper) {
-        var FilterType=component.get("v.filterType");
-        var selectEvent = $A.get("e.c:CORE_NC_FilterEvent");
-        selectEvent.setParams({"selectedFilter": FilterType,"displayFilterPage":true }).fire();
-    }*/
 })

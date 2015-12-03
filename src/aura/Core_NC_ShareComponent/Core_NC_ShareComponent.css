@@ -1,80 +1,8 @@
-.THIS .pageSection{
-    padding-top: 20px;
+/*add spaceing in the top for the first button*/
+.THIS .smallSpaceing{
+    padding-top:50px;
 }
-
-.THIS.fixed-nav-bar {
-	/*position: fixed;*/
-	top: 0;
-	left: 0;
-	right: 0;
-	width: 100%;
-	height: 40px;
-    background-color: #FFFFFF;
-}
-.THIS table.homePageMenuWidth, .THIS .homePageMenuWidth{
-     border-radius: 10px;
-    width:90%;
-}
-.THIS td.alignCenter1 {
-    text-align:center; 
-    font-weight: bold;    
-    font-size: 12px;
-    text-align: center;
-    height: 30px;
-    padding-top: 5px;
-    
-    color: #98AFC7 !important;
-    background: #FFFFFF;
-    width:100%;
-     border-top-left-radius:6px;
- border-top-right-radius:6px;
- border-bottom:1px #E3E3E5 solid;
-   
-}
-
-.THIS alignCenter {
-    text-align:center;  
-}
-
-.THIS td.alignCenter2{   
-    font-weight: bold;    
-    font-size: 12px;
-    text-align: center;
-    height: 30px;
-    padding-top: 5px;
-    
-    color: #98AFC7 !important;
-    background: #FFFFFF;
-    width:100%;
-    
- border-bottom-left-radius:6px;
- border-bottom-right-radius:6px;
-    margin-bottom:100px;
-   
-}
-.THIS td.alignCenter3{   
-    font-weight: bold;    
-    font-size: 12px;
-    text-align: center;
-    height: 30px;
-    padding-top: 5px;
-    
-    color: #98AFC7 !important;
-    background: #FFFFFF;
-    width:100%;
-     border-top-left-radius:6px;
- border-top-right-radius:6px;
- border-bottom-left-radius:6px;
- border-bottom-right-radius:6px;
-}
-.THIS .inactiveMenu{  
-    font-weight: bold;   
-    font-size: 12px;
-    text-align: center;
-    height: 30px;
-    padding-top: 5px;
-    border-bottom: 2px solid #344A5F;
-    color: #FFFFFF !important; 
-    background: #344A5F;
-    
+/*add spaceing in the last button top*/
+.THIS .largeSpaceing{
+    padding-top:100px;
 }

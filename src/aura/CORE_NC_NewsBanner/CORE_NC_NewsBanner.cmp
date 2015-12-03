@@ -18,7 +18,7 @@
                  </div>
                  <div class="textSectionPadding Title">
                      <aura:if isTrue="{!v.newsType == 'MyNews' ? true : false}">
-                         <span  style="{!'color:'+v.newsArticle.MyNewsSiteNameColorCode}">{!v.newsArticle.SiteName}</span>&nbsp;
+                         <span  style="{!'color:'+v.newsArticle.MyNewsSiteNameColorCode}">{!v.newsArticle.SiteName}</span>&nbsp;<!--color:#FB87A4;-->
                      </aura:if>
                      <ui:outputText value="{!v.newsArticle.Name}"/>
                  </div>

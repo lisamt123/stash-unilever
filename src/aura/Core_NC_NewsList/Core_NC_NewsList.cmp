@@ -63,13 +63,5 @@
                 </div>
             </div>
         </div>
-    <!--</div>-->
-    <!--<aura:if isTrue="{!v.sortTypeforGlobalNews == 'Recent'? true : false}" >
-        <aura:if isTrue="{!v.NewsType=='GlobalNews'? true : false}">
-            <div class="fixedBottomBar">
-                <img src="/resource/NewsCenterIcons/ActionBar_Filter.svg" onclick="{!c.gotoFilter}" class="fixedBottomBarIcon" />                        
-            </div>
-   	    </aura:if>
-    </aura:if>-->
-    
+    <!--</div>-->    
 </aura:component>

@@ -1,17 +1,6 @@
 ({ 
-    /*testclick: function(component, event, helper){
-    //alert(1);        
-		document.getElementById ("pageTopSection").scrollIntoView (true);
-        $(function () {
-             $(window).scrollTop(0);
-            $(document).scrollTop();
-            //$("#pageTopSection").scrollintoview();
-            $("#pageTopSection").scrollTop();
-        });
-    },*/
     //On page load get the news article all the details using news article Id
-	doInit : function(component, event, helper) {  
-        // component.find("mytopdiv").getElement().scrollIntoView();  
+	doInit : function(component, event, helper) {   
         //component.find("mybottomdiv").getElement().scrollIntoView();
         //component.find("mytopdiv").getElement().scrollIntoView();
         var NewsId=component.get("v.newsId");
@@ -41,8 +30,9 @@
                         component.set("v.carouselSize",response.getReturnValue().RelatedNewsDetail.length);
                     }
                 }
-                else 
+                else {
                     component.set("v.ErrorMessage", true);
+                }
         	}
             var str="hi";                      
         });
@@ -53,6 +43,7 @@
         var NewsType=component.get("v.NewsType");
         var selectEvent = $A.get("e.c:Core_NC_BackButtonEvent");
         selectEvent.setParams({"NewsType": NewsType}).fire();
+		//selectEvent.fire();
     },
     //Increase the like count on click of the news article like
     LikeNews:function(component, event, helper) {
@@ -68,8 +59,9 @@
                     component.set("v.LikeValue",true);
                     component.set("v.newsArticle.LikeCount",response.getReturnValue());
                 }
-                else
+                else {
                     component.set("v.ErrorMessage", true);
+                }
         	}
         });
         $A.enqueueAction(action);
@@ -89,7 +81,6 @@
     },
     //move to previous carousel information
     previousCarousel:function(component, event, helper) {
-        //alert(1);
         var carouselIndex=component.get("v.carouselIndex")-1;
         if(carouselIndex >= 0){            
         	component.set("v.carouselIndex",carouselIndex);
@@ -111,19 +102,56 @@
         var selectEvent = $A.get("e.c:CORE_NC_SelectNewsId");
         selectEvent.setParams({"selectedNewsDetail":newArticleList.RelatedNewsDetail[carouselIndex].NewsId,"NewsType":component.get("v.NewsType") }).fire();
 	},
-    Comment : function(component, event, helper) {
-        alert('Please scroll down to comment section');
-    },
     navigateToBottomElement : function(cmp,evt) {
-       // cmp.find("mydivbottom").getElement().scrollIntoView();
+        cmp.find("mydivbottom").getElement().scrollIntoView();
     },
-    /*doneRendering: function(cmp, event, helper) {
+    doneRendering: function(cmp, event, helper) {
         //if(!cmp.get("v.isDoneRendering")){
           //cmp.set("v.isDoneRendering", true);
-            //alert(1);
-            cmp.find("mytopdiv").getElement().scrollIntoView();
-            //alert(2);
+            //cmp.find("mytopdiv").getElement().scrollIntoView();
           //do something after component is first rendered
         //}
-  	}*/
+  	},
+    postChatterInfo: function(cmp, event, helper){
+        var action = {  
+           "executionComponent":{  
+              "descriptor":"markup://force:quickActionRunnable",
+              "isEvent":false,
+              "isClientSideCreatable":true,
+              "attributes":{  
+                 "subjectId":component.get("v.newsId"),
+                 "quickActionDefinition":{  
+                    "actionId":"FeedItem.TextPost",
+                    "componentName":"forceChatter:textPost",
+                    "publisherType":"TEXT_POST",
+                    "attributes":{  
+                       "contextualMessages":[          
+                       ],
+                       "quickActionLabel":"Post",
+                       "publisherId":"publisher"+new Date().getTime(),
+                       "publisherFeedType":"Record",
+                       "quickActionApiName":"FeedItem.TextPost",
+                       "visibilityOptions":{  
+                          "defaultMessage":"this TODO:INSERT_OBJECT_LABEL",
+                          "visibilityOptions":[          
+                          ],
+                          "showOptionsInsteadOfDefaultMessage":false,
+                          "toLabel":"To"
+                       }
+                    }
+                 }
+              }
+           },
+           "devNameOrId":"FeedItem.TextPost",
+        }        
+        action = $A.newCmp({
+        componentDef : "markup://force:action",
+          attributes : {
+              values : {
+                action: action
+              }
+          }
+        });        
+        action.get("e.trigger").fire();
+    }
 })
