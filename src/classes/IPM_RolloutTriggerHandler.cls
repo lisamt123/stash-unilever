@@ -604,6 +604,7 @@ public with sharing class IPM_RolloutTriggerHandler
             }
             
             // EPIC172 implementation start 
+	    /*
             Map<ID,IPM_Project_Rollout__c> updatedRollouts = new Map<ID,IPM_Project_Rollout__c>();
             for(IPM_Project_Rollout__c rollout: mapNewProjectRollouts.values()) 
             {
@@ -618,6 +619,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
                 syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
             }
+	   */
           //  EPIC172 implementation end 
        
     }

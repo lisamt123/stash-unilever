@@ -12,7 +12,7 @@
         <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>            
             <apex:form >
                 <apex:pageMessages />
-                    <div class="gradientbg"> 
+                    <div class="gradientbg">  
                             <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument" />  
                     </div>
                 
@@ -477,7 +477,7 @@
                                                         <apex:outputPanel styleClass="ipmAcrdnExpand" layout="block">
                                                         <apex:outputPanel id="sectionContent" layout="block">
                                                             <apex:repeat value="{!projSubSectionList}" var="sub">   
-                                                                <apex:outputPanel layout="block" styleClass="aHead" rendered="{!IF (AND(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,sub.IPM_Default_Section__c=true,IF(AND(psl.IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c = 'BLG',sub.IPM_Section__r.IPM_Section_Sequence__c='5.3'), FALSE, TRUE)),True,False)}">    
+                                                                <apex:outputPanel layout="block" styleClass="aHead" rendered="{!IF (AND(psl.IPM_Section__r.Id=sub.IPM_Section__r.IPM_Parent_Section__c,sub.IPM_Default_Section__c=true),True,False)}">    
                                                                 
                                                                  <span class='expico fa fa-minus' id="{!sub.IPM_Section__c}" onclick="fetchSubSection('{!sub.IPM_Section__c}','{!sub.Id}');"> </span>
                                                                     
@@ -543,8 +543,8 @@
                                                                     </apex:repeat> 
                                                                     
                                                                     <!-- Special 1st Level Sections-->
-                                                                    <c:IPM_Financial_ActionStandards isEditable="false" projId="{!projectId}" secId="{!sub.Id}" rendered="{!AND(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',AND(sub.IPM_Project_Type__c!='Rollout',sub.IPM_ProjectSpan__c!='Local'))}" > </c:IPM_Financial_ActionStandards>
-                                                                    <c:IPM_FinGate projId="{!projectId}" rendered="{!OR(sub.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',AND(sub.IPM_Project_Type__c=='Rollout',sub.IPM_ProjectSpan__c=='Local',sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'))}" ></c:IPM_FinGate>
+                                                                    <c:IPM_Financial_ActionStandards isEditable="false" projId="{!projectId}" secId="{!sub.Id}" rendered="{!AND(sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',AND(project.IPM_Project_Type__c!='Rollout',project.IPMProject_Span__c!='Local'))}" > </c:IPM_Financial_ActionStandards>
+                                                                    <c:IPM_FinGate projId="{!projectId}" rendered="{!OR(sub.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',AND(project.IPM_Project_Type__c=='Rollout',project.IPMProject_Span__c=='Local',sub.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'))}" ></c:IPM_FinGate>
                                                                     <c:IPM_GateKeeperListView setEdit="false" getDocType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!sub.IPM_Master_Section_External_Id__c='Gate_Keeper_Checklist'}"></c:IPM_GateKeeperListView>
                                                                     <c:IPM_OTIFStatusTableView otfType="Table" getSectionId="{!sub.Id}" rendered="{!sub.IPM_Master_Section_External_Id__c='OTIF_Status'}"></c:IPM_OTIFStatusTableView>
                                                                     <c:IPM_RND_QuestionsView rendered="{!if(OR(sub.IPM_Master_Section_External_Id__c=='R&D_Initial_Outline_Product_Pack',sub.IPM_Master_Section_External_Id__c=='R&D_Technical_Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" RNDEdit="False"></c:IPM_RND_QuestionsView>

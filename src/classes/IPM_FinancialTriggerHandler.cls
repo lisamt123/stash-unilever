@@ -681,6 +681,7 @@ public with sharing class IPM_FinancialTriggerHandler
             }
             
             /*Update BI on IPM Project from IPM Financial record*/
+			/*
             newFinList=new List<IPM_Financial__c>();
             projectIds=new Set<Id>();
             for(IPM_Financial__c newFin:mapNewFinancials.values()){
@@ -711,6 +712,7 @@ public with sharing class IPM_FinancialTriggerHandler
                
                 update projList;
             }
+			*/
             /*Update BI code ends*/
             
         }
