@@ -1,129 +1,154 @@
-public with sharing class IPM_MyProjects
-{
+/****************************************************************************
+@Description : To Display the list of Active Projects
+@Created Date: March 2015
+@Author: Cognizant
+@Referenced: ipmMyActiveProjects,ipmMyActiveProjects1 components
+*****************************************************************************/
+public with sharing class IPM_MyProjects{
     
- public String projectId{get;set;}
- public integer projectcount {get;set;}
- public Map<String,integer> alertMessage {get;set;}
- 
+    //*@Description: Used to store current project Id
+    public String projectId{get;set;}
+    
+    //*@Description: Used to store project count
+    public integer projectcount {get;set;}
+    
+    //*@Description: Used for alert message
+    public Map<String,integer> alertMessage {get;set;}
+    private static final string CLASS_NAME = IPM_MyProjects.class.getName();
+    private Integer DAY_VALUE = 14;
+    //*@Description: Used to refer "Filled-In string
+     public string getFilledString(){
+         return IPM_ConstantUtils.STATUS_NOT_FILLED;
+     }
+    /****************************************************************************
+    @Description : Initialization of the parameterized constructor 
+    @Param: Controller
+    *****************************************************************************/
+    
     public IPM_MyProjects(IPM_HomePageController controller) {
         alertMessage=new Map<String,integer>();
         getProjects();
     }
     
+    /****************************************************************************
+    @Description : Initialization of the constructor and reading the page Parameters
+    *****************************************************************************/
     
     public IPM_MyProjects() {
-        alertMessage=new Map<String,integer>();
-        
+        alertMessage = new Map<String,integer>();
     }
     
-    public ApexPages.StandardSetController con {
-        get {
-            if(con == null) {
-                projectId = ApexPages.currentPage().getParameters().get('id');
-                con = new ApexPages.StandardSetController(Database.getQueryLocator(
-                                        [SELECT IPM_Approval_Date__c,IPM_Project__r.IPMRegion__c,IPM_Project__r.IPM_Project_Logo__c,IPM_Project__r.IPM_Brand__c,IPM_Project__r.IPM_Category_Text__c,IPM_Project__r.IPM_FilledIn_Percentage__c,IPM_Project__r.IPM_Phase__c,IPM_Project__r.IPM_Project_Name__c,IPM_Project__c FROM IPM_Project_Document__c WHERE IPM_Project__r.IPM_Project_Leader__c = : UserInfo.getUserId() and IPM_Project__r.Is_Archieved__c = false ]));
-                // sets the number of records in each page set
-                //con.setPageSize(10);
-            }
-            return con;
-        }
-        set;
-    }
     
-    // returns a list of wrapper objects for the sObjects in the current page set
-    /*public List<IPM_Project_Document__c> getProjects() {
-    
-        List<IPM_Project_Document__c> lstProjects= new List<IPM_Project_Document__c>();
-        if(con != null){
-        for(IPM_Project_Document__c a : (List<IPM_Project_Document__c>)con.getRecords())
-            lstProjects.add(a);
-            
-        return lstProjects;
-        }else{
-            return null;
-        }
-     }*/
-     
-     public List<ProjectWrapper> getProjects() {
-         projectcount =0; 
-        set<string>setofProid=new set<string>(); 
-        list<IPM_Project__share>Proid=[select ParentID from IPM_Project__share where userOrGroupid=:userinfo.getuserid()];
-        for(IPM_Project__share res:Proid){
-            setofProid.add(res.ParentID);
-        }
-        List<IPM_Project__c> lstProjects =[Select Name,IPM_Bosscard_Status__c,IPM_Bosscard__r.IPM_Brand__c,IPM_Bosscard__r.IPM_Filled_In_Percent__c,IPMRegion__c,IPM_Bosscard__r.Name,IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Logo__c,IPM_Brand__c,IPM_Category_Text__c,IPM_FilledIn_Percentage__c,IPM_Phase__c,IPM_Project_Name__c FROM IPM_Project__c WHERE  (IPM_Project_Leader__c = : UserInfo.getUserId() or ID IN:setofProid or IPM_Bosscard__r.OwnerId = :UserInfo.getUserId()) and Is_Archieved__c = false Order By Name];
-        //List<IPM_Project__c> lstProjects =[Select Name,IPM_Bosscard_Status__c,IPM_Bosscard__r.IPM_Brand__c,IPMRegion__c,IPM_Bosscard__r.Name,IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Logo__c,IPM_Brand__c,IPM_Category_Text__c,IPM_FilledIn_Percentage__c,IPM_Phase__c,IPM_Project_Name__c FROM IPM_Project__c WHERE createddate=: System.today() and Is_Archieved__c = false];
-        
-        //List<IPM_Project_Document__c> lstProjectDocs=[select IPM_Approval_Date__c,IPM_Project__c,IPM_Project__r.IPM_Gate__c,IPM_GateDocuments__c from IPM_Project_Document__c where IPM_Project__c IN : lstProjects];
-        Id recordtypeid=Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get('IPM Project Milestones').getRecordTypeId();
-        User usr=[Select Id,IPM_Role__c from User where Id=: UserInfo.getUserId()];
-        List<IPM_Project_Resource__c> presource=[select IPM_Project__c from IPM_Project_Resource__c where IPM_Role__c = :usr.IPM_Role__c  and IPM_User__c = : UserInfo.getUserId()];
-        
-        if(!presource.isEmpty()){
-            List<Id> projectIds=new List<Id>();
-            for(IPM_Project_Resource__c res:presource){
+    /****************************************************************************
+    @Description : Used to get projects
+    @Return: List
+    *****************************************************************************/
+    public List<ProjectWrapper> getProjects() {
+        projectcount =0; 
+        List<IPM_Project__c> lstProjects;
+        List<IPM_Milestone__c> lstipmmilestones;
+        List<Id> projectIds=new List<Id>();
+        for(IPM_Project_Resource__c res : [SELECT IPM_Project__c FROM IPM_Project_Resource__c 
+                                       WHERE IPM_User__c = : UserInfo.getUserId() 
+                                       and IPM_Role_Type__c != : IPM_ConstantUtils.IPM_ROLE_GUEST 
+                                       Limit 10000]){
                 projectIds.add(res.IPM_Project__c);
-            }
-            List<IPM_Project__c> updProjects=[Select Name,IPM_Bosscard_Status__c,IPM_Bosscard__r.IPM_Brand__c,IPM_Bosscard__r.IPM_Filled_In_Percent__c,IPMRegion__c,IPM_Bosscard__r.Name,IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Project_Logo__c,IPM_Brand__c,IPM_Category_Text__c,IPM_FilledIn_Percentage__c,IPM_Phase__c,IPM_Project_Name__c FROM IPM_Project__c WHERE Id IN : projectIds Order By Name];
-            if(!updProjects.isEmpty()){
-                lstProjects.addAll(updProjects);
-            }
         }
-        
-          List<IPM_Milestone__c> lstipmmilestones=[SELECT Id,IPM_Name__c,IPM_Project__c,IPM_Project__r.Name,IPM_Project__r.IPM_Phase__c,IPM_Due_Date__c,IPM_Planned_Date__c,IPM_Completed_On__c,IPM_Phase__c FROM IPM_Milestone__c WHERE IPM_Project__c IN : lstProjects and IPM_Type_of_Milestone__c = 'Standard' And RecordtypeId = : recordtypeid];
+      
+        try {
+           // @@ Design Review - Change to get the list of all project user has acess to                                  
+          lstProjects =[SELECT Name,IPM_Bosscard_Status__c,IPM_Bosscard__r.IPM_Brand__c,IPM_Brand_Positioning__c, IPM_Project_Type__c, 
+                                            IPM_Bosscard__r.IPM_Filled_In_Percent__c,IPMRegion__c,IPM_Bosscard__r.Name,
+                                            IPM_Bosscard__r.IPM_Bosscard_Logo__c,IPM_Bosscard__r.IPM_Bosscard_Status__c,IPM_Project_Logo__c,IPM_Brand__c,
+                                            IPM_Category_Text__c,IPM_FilledIn_Percentage__c,IPM_Phase__c,IPM_Project_Job_Status__c,IPM_IsSaved__c,IPM_Project_Name__c,IPM_Target_Launch_Dates__c 
+                                            FROM IPM_Project__c WHERE (IPM_Project_Leader__c = : UserInfo.getUserId() 
+                                            or Deputy_Project_Leader__c  = : UserInfo.getUserId()  or IPM_Technical_Project_Leader__c = : UserInfo.getUserId() 
+                                            or IPM_Project_Gatekeeper__c = : UserInfo.getUserId() or IPM_Finance_Member__c = : UserInfo.getUserId() 
+                                            or IPM_Bosscard__r.OwnerId = :UserInfo.getUserId() or Id IN : projectIds)  and Is_Archieved__c = false 
+                                            and IPM_Project_Name__c != NULL and IPM_Phase__c != :IPM_ConstantUtils.PHASE_PLE 
+                                            Order By Upcoming_Milestone_Due_Date__c,IPM_Project_Name__c Limit 10000];
+                                                                            
+                                            
+          Id recordtypeid=Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.PROJECT_MILESTONES).getRecordTypeId();
+          
+          lstipmmilestones=[SELECT Id,IPM_Name__c,IPM_Project__c,IPM_Project__r.Name,
+                                                  IPM_Project__r.IPM_Phase__c,IPM_Due_Date__c,IPM_Planned_Date__c,
+                                                  IPM_Completed_On__c,IPM_Phase__c FROM IPM_Milestone__c 
+                                                  WHERE IPM_Project__c IN : lstProjects and 
+                                                  IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD  And RecordtypeId = : recordtypeid Limit 10000];
+                                                
+        }
+        catch(Exception ex) {
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                            'getProjects',ex.getMessage(),ex, 'Error', null, null, null,null);
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));         
+        }       
         Map<Id,String> mapdocsDate=new Map<Id,String>();
         
         for(IPM_Milestone__c ipmmiles:lstipmmilestones){
-            /*if(mapdocsDate.get(projDocs.IPM_Project__c) != null){
-                if(projDocs.IPM_GateDocuments__c == 'Charter'){
-                    mapdocsDate.put(projDocs.IPM_Project__c,projDocs.IPM_Approval_Date__c);
-                }
-            }*/
-            //if(projDocs.IPM_Project__r.IPM_Gate__c == projDocs.IPM_GateDocuments__c){
-                if(ipmmiles.IPM_Project__r.IPM_Phase__c == ipmmiles.IPM_Phase__c){
-                    if(ipmmiles.IPM_Due_Date__c != null && Date.valueOf((System.now()).format('YYYY-MM-dd')).daysBetween(ipmmiles.IPM_Due_Date__c) <= 14){
-                        if(IPM_Utils.phaseGateDocumentMap.containsKey(ipmmiles.IPM_Phase__c)) {
-                       alertMessage.put(ipmmiles.IPM_Project__r.Name+IPM_Utils.phaseGateDocumentMap.get(ipmmiles.IPM_Phase__c),Date.valueOf((System.now()).format('YYYY-MM-dd')).daysBetween(ipmmiles.IPM_Due_Date__c));
-                       }
-                    } 
-                    mapdocsDate.put(ipmmiles.IPM_Project__c,ipmmiles.IPM_Due_Date__c+','+ipmmiles.IPM_Name__c);
-                }
-            //}
+            if(ipmmiles.IPM_Project__r.IPM_Phase__c == ipmmiles.IPM_Phase__c){
+                if(ipmmiles.IPM_Due_Date__c != null && Date.valueOf(System.now().format(IPM_ConstantUtils.DATE_FORMAT)).daysBetween(ipmmiles.IPM_Due_Date__c) <= DAY_VALUE && IPM_Utils.phaseGateDocumentMap.containsKey(ipmmiles.IPM_Phase__c)){
+                   
+                        alertMessage.put(ipmmiles.IPM_Project__r.Name+IPM_Utils.phaseGateDocumentMap.get(ipmmiles.IPM_Phase__c),Date.valueOf(System.now().format('YYYY-MM-dd')).daysBetween(ipmmiles.IPM_Due_Date__c));
+                  
+                } 
+                mapdocsDate.put(ipmmiles.IPM_Project__c,ipmmiles.IPM_Due_Date__c+IPM_ConstantUtils.COMMA+ipmmiles.IPM_Name__c);
+            }
         }
+        //get bosscard list
+        list<IPM_Bosscard__c>bosscardList=new list<IPM_Bosscard__c>();
+        //Changed the query to show only In Progress bosscards where logged-in user is the owner & not displaying skipped bosscard 
+        bosscardList=[SELECT name,IPM_Category__c,IPM_Bosscard_Logo__c,IPM_isBosscardSkipped__c,IPM_Brand__c,IPM_BosscardName__c,IPM_Brand_Positioning__c,
+                      IPM_Bosscard_Status__c,IPM_Filled_In_Percent__c FROM IPM_Bosscard__c 
+                      WHERE IPM_BosscardName__c!=null 
+                      AND IPM_Bosscard_Status__c = :IPM_ConstantUtils.STATUS_IN_PROGRESS
+                      AND OwnerId = :UserInfo.getUserId() AND IPM_isBosscardSkipped__c=False 
+                      order by IPM_BosscardName__c limit 10000];
         List<ProjectWrapper> projects=new List<ProjectWrapper>();
-        for(IPM_Project__c proj:lstProjects){
-            projects.add(new ProjectWrapper(proj, mapdocsDate.get(proj.Id)));
+        
+        for(IPM_Bosscard__c bCard:bosscardList){
+            projects.add(new ProjectWrapper(new IPM_Project__c(), null,bCard));
             projectcount ++;
         }
-        
+        for(IPM_Project__c proj:lstProjects){
+            projects.add(new ProjectWrapper(proj, mapdocsDate.get(proj.Id),new IPM_Bosscard__c()));
+            projectcount ++;
+        }
+
         return projects;
+    }
+     
+    /****************************************************************************
+    @Description : Wrapper Class
+    *****************************************************************************/
+
+    public class ProjectWrapper {
+        //*@Description: Used to refer instance of IPM_Project__c
+        public IPM_Project__c projectObj{get;set;}
+        //*@Description: Used to store due date of project
+        public String projectDocumentDate{get;set;}
+        //*@Description: Used to project phase
+        public String phaseValue{get;set;}
+        //*@Description:Used to refer instance of IPM_Bosscard__c
+        public IPM_Bosscard__c bosscardObj{get;set;}
         
-        //return null;
-     }
-     
-     public class ProjectWrapper {
-     
-         public IPM_Project__c projectObj{get;set;}
-         public String projectDocumentDate{get;set;}
-         public String phaseValue{get;set;}
-         
-         public ProjectWrapper(IPM_Project__c p, String d) {
+        
+        /****************************************************************************
+        @Description : Initialization of the constructor and reading the page Parameters
+        @Param: IPM_Project__c,String
+        *****************************************************************************/
+        public ProjectWrapper(IPM_Project__c p, String d,IPM_Bosscard__c b) {
+            
             projectObj = p;
+            bosscardObj= b;
             if(d != null){
-                String[] datephase=d.split(',');
-                System.debug('\n datephase'+datephase);
+                String[] datephase=d.split(IPM_ConstantUtils.COMMA);
                 if(datephase[0] != 'null'){
-                    System.debug('\n g'+datephase[0]);
                     projectDocumentDate = date.valueOf(datephase[0]).format();
                 }
                 phaseValue=datephase[1];
-                
             }
         }
-     }
-     
-     
-    
-    
-     
+             
+    }
 }

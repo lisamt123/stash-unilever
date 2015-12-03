@@ -53,9 +53,10 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Read</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>IMP_Core_Parameter_example_three__c</fullName>
         <externalId>false</externalId>
@@ -92,7 +93,7 @@
         <length>32768</length>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
-        <visibleLines>25</visibleLines>
+        <visibleLines>50</visibleLines>
     </fields>
     <fields>
         <fullName>IPM_Core_Parameter_example__c</fullName>
@@ -132,6 +133,23 @@
         <visibleLines>25</visibleLines>
     </fields>
     <label>IPM CoreParameter helps</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>IPM_Core_Parameter_example__c</columns>
+        <columns>IPM_Core_Parameter_example_two__c</columns>
+        <columns>IMP_Core_Parameter_example_three__c</columns>
+        <columns>IPM_Core_Parameter_example_four__c</columns>
+        <columns>IPM_Core_Parameter_example_five__c</columns>
+        <columns>IPM_Answer__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>CPH-{000000}</displayFormat>
         <label>IPM CoreParameter helps Name</label>
@@ -139,5 +157,5 @@
     </nameField>
     <pluralLabel>IPM CoreParameter helps</pluralLabel>
     <searchLayouts/>
-    <sharingModel>Read</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>

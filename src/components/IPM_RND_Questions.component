@@ -1,48 +1,61 @@
+<!--  
+*************************************************************************************************************************************************************
+*@Description:This page is used for displaying R&D Questions in Project Document Section Editor page and user can change the answer through the slider bar
+*@Author: Cognizant
+*@Created Date: 08/01/2015 
+*@Copyright © 2015  Unilever  
+*************************************************************************************************************************************************************
+-->
 <apex:component controller="IPM_GatekeeperChecklist" allowDML="true">
   <apex:attribute name="RNDEdit" description="This is used for security" type="Boolean" assignTo="{!isEditable}"/>
   <apex:attribute name="gateDocType" description="This is to provide the type of gate" type="String" assignTo="{!gateTypeRND}"/>
   <apex:outputPanel id="ren" styleClass="gkTable">
-  <table class="ipmTable table table-bordered otifTable"> 
+  <div class="altBGcolor">
+  <table class="ipmTable table table-bordered otifTable">   
   <tbody>
- <apex:repeat value="{!rndQuesList}" var="rnd">
- 
+  <tr>
+      <td>
+          <div class="panel panelMessage">
+           <apex:outputText value="{!$Label.IPM_DOES_APPEAR_IN_GATE_DOC}" styleClass="asterisk"/>
+         </div>
+     </td>
+  </tr>
+      <tr>
+          <th>
+             {!$Label.IPM_R_D_QUESTIONS}
+          </th>
+      </tr>
+  <apex:repeat value="{!quesList}" var="rnd"> 
   <tr>   
-    <th>RandD Questions:</th>
- </tr>
-  <tr>   
-    <td>
-     <apex:outputText value="{!rnd.IPM_Question__c}"/>
-    </td>
-</tr>
-<tr>    
-
-    <td>           
-           <apex:outputPanel rendered="{!isEditable}"> 
-           <input type="hidden" id="rnd" name="RnD" value="{!rnd.IPM_GK_Answers__c}" style="display:none"/>          
-            <apex:outputPanel id="rndSlide" styleClass="sliderRND" >               
+      <td>
+          <apex:outputText value="{!rnd.IPM_Question__c}"/>
+      </td>
+  </tr>
+  <tr>
+      <td>           
+           <apex:outputPanel rendered="{!isEditable}">                      
+            <apex:outputPanel id="rndSlide" styleClass="sliderRND">    
+            <input type="hidden" name="RnD" value="{!rnd.IPM_GK_Answers__c}"/>           
                <div class="sld4 legendSld">
-                   <label for="s0" onclick="updateRndList('{!rnd.Id}','0',false);">Select</label>
+                   <label for="s0" onclick="updateRndList('{!rnd.Id}','0',false);">{!$Label.IPM_SELECT}</label>
                    <input type="radio" name="score" id="s0" value="0" />
-                   <label for="s1" onclick="updateRndList('{!rnd.Id}','Yes',false);" data-toggle="tooltip" data-placement="bottom" data-original-title="{!rnd.IPM_HelpText_Yes__c}">Yes</label>
-                   <input type="radio" name="score" id="s1" value="Yes"/>
-                   <label for="s2" onclick="updateRndList('{!rnd.Id}','No',false);" data-toggle="tooltip" data-placement="bottom" data-original-title="{!rnd.IPM_HelpText_No__c}">No</label>
-                   <input type="radio" name="score" id="s2" value="No"  />
-                   <label for="s3" onclick="updateRndList('{!rnd.Id}','Not Applicable',false);" data-toggle="tooltip" data-placement="bottom" data-original-title="{!rnd.IPM_Question_Help_Text__c}">N/A</label>
-                   <input type="radio" name="score" id="s3" value="Not Applicable"  />
+                   <label for="s1" onclick="updateRndList('{!rnd.Id}','{!$Label.IPM_YES}',false);" class="info" title="{!rnd.IPM_HelpText_Yes__c}">{!$Label.IPM_YES}</label>
+                   <input type="radio" name="score" id="s1" value="{!$Label.IPM_YES}"/>
+                   <label for="s2" onclick="updateRndList('{!rnd.Id}','{!$Label.IPM_NO}',false);" class="info" title="{!rnd.IPM_HelpText_No__c}">{!$Label.IPM_NO}</label>
+                   <input type="radio" name="score" id="s2" value="{!$Label.IPM_NO}"  />
+                   <label for="s3" onclick="updateRndList('{!rnd.Id}','{!$Label.IPM_NO_APPLICABLE}',false);" class="info" title="{!rnd.IPM_Question_Help_Text__c}">{!$Label.IPM_NA}</label>
+                   <input type="radio" name="score" id="s3" value="{!$Label.IPM_NO_APPLICABLE}"  />
                   
              </div> 
              </apex:outputPanel>
              </apex:outputPanel>
-             <apex:outputText value="{!rnd.IPM_GK_Answers__c}" rendered="{!!isEditable}"/>
-             
-             
-         
+             <apex:outputText value="{!rnd.IPM_GK_Answers__c}" rendered="{!!isEditable}"/>             
     </td>
-    </tr>
-   
+  </tr>  
   </apex:repeat>
  </tbody>
-</table>  
+</table>   
+</div>
 </apex:outputPanel>
 <apex:actionFunction name="callupdateRnDList" action="{!updateGKchecklist}" reRender="" rendered="{!isEditable}" >
 <apex:param name="firstParam" assignTo="{!quesId}" value=""/>
@@ -50,68 +63,7 @@
 <apex:param name="thirdParam" assignTo="{!cmts}" value=""/>
 </apex:actionFunction>
 <script>
-
-           var jq = jQuery.noConflict();
-                jq(document).ready(function(){
-                    initSliderRnd();                    
-                  });
-            function updateRndList(id,ans,cmnts)
-               {
-                  
-                    callupdateRnDList(id,ans,cmnts);
-               }
-               
-               function initSliderRnd(){
-                          
-                var itemsRnd = [ 'Select','Yes','No','Not Applicable'];
-                var s = jq(".sliderRND");                
-                var score;
-                var PointerT = 100 / (itemsRnd.length-1);                
-                    
-                  s.slider({
-                  min:1,
-                  max:itemsRnd.length,
-                  animate:'slow',
-                  stop: function(event, ui){   
-                            
-                            var pointer = ui.value-1;
-                            jq('#s'+ ui.value).prop('checked', true); 
-                            score=itemsRnd[pointer];
-                      }
-                });
-                                
-                    jq(".legendSld label").on("click", function(){
-                    var lpos = jq(".legendSld label").offset().left;
-                    //alert(jq(this).parent().find('label').attr('for') + ':' +jq(this).parent().find('label').html());
-                    jq(this).parent().find('label').css({'color':'#222222'});
-                    jq(this).css({'color':'#e98824'});
-                    jq("toolTipMsg:before").css("left",lpos+"px"); 
-                        
-                });
-                jq("input[type=radio][id^='s']").hide();                
-               
-                 jq("input[name=RnD]").each(function(){  
-                  var RnD=jq(this).val();                                   
-                   if(RnD == "Yes"){                                         
-                     jq(this).next(".sliderRND").find(".sld4").next(".ui-slider-handle").css("left", "33%");
-                     jq(this).next(".sliderRND").find(".sld4 label[for=s1]").css({'color':'#e98824', 'font-weight':'bold'});
-                    }
-                    else if(RnD == "No"){
-                     
-                     jq(this).next(".sliderRND").find(".sld4").next(".ui-slider-handle").css("left", "66%");
-                     jq(this).next(".sliderRND").find(".sld4 label[for=s2]").css({'color':'#e98824', 'font-weight':'bold'});
-                    }
-                     else if(RnD == "Not Applicable"){                
-                     jq(this).next(".sliderRND").find(".sld4").next(".ui-slider-handle").css("left", "100%");
-                     jq(this).next(".sliderRND").find(".sld4 label[for=s3]").css({'color':'#e98824', 'font-weight':'bold'});
-                    }else{
-                    jq(this).next(".sliderRND").find(".sld4").next(".ui-slider-handle").css("left", "0%");
-                     jq(this).next(".sliderRND").find(".sld4 label[for=s0]").css({'color':'#e98824', 'font-weight':'bold'});
-                    }
-                    
-                    });
-                   
-                }
+var IPMAppRNDfq = {select:'{!$Label.IPM_SELECT}', yes:'{!$Label.IPM_YES}', no:'{!$Label.IPM_NO}', na:'{!$Label.IPM_NO_APPLICABLE}'};          
 </script>
-
+<script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RND_Feasibility_Questions.js')}" type="text/javascript"></script>
 </apex:component>

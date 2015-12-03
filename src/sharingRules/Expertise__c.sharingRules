@@ -2,11 +2,7 @@
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingOwnerRules>
         <fullName>Expertise_Sharing</fullName>
-<<<<<<< HEAD
-        <accessLevel>Read</accessLevel>
-=======
         <accessLevel>Edit</accessLevel>
->>>>>>> FETCH_HEAD
         <label>Expertise Sharing</label>
         <sharedTo>
             <group>Pitch</group>

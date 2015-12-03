@@ -43,6 +43,10 @@
         <name>IPM_GateKeeper__c</name>
     </fields>
     <fields>
+        <label><!-- HoldCategory --></label>
+        <name>IPM_HoldCategory__c</name>
+    </fields>
+    <fields>
         <label><!-- IT Contacts --></label>
         <name>IPM_IT_Contacts__c</name>
     </fields>
@@ -55,6 +59,10 @@
         <name>IPM_Project_Leader__c</name>
     </fields>
     <fields>
+        <label><!-- Region --></label>
+        <name>IPM_Region__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Reporting --></label>
         <name>IPM_Reporting__c</name>
     </fields>
@@ -64,6 +72,10 @@
         <picklistValues>
             <masterLabel>Household Care</masterLabel>
             <translation><!-- Household Care --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ice Cream</masterLabel>
+            <translation><!-- Ice Cream --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Laundry</masterLabel>
@@ -151,18 +163,43 @@
         <label><!-- Justification --></label>
         <name>Justification__c</name>
     </fields>
-    <layouts>
-        <layout>IPM User Profile Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
+    <fields>
+        <label><!-- Unique User Company Card --></label>
+        <name>Unique_User_Company_Card__c</name>
+    </fields>
+    <fields>
+        <label><!-- WL --></label>
+        <name>WL__c</name>
+        <picklistValues>
+            <masterLabel>WL1</masterLabel>
+            <translation><!-- WL1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WL2</masterLabel>
+            <translation><!-- WL2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>WL3</masterLabel>
+            <translation><!-- WL3 --></translation>
+        </picklistValues>
+    </fields>
     <layouts>
         <layout>User Profile Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- IPM Information --></label>
+            <section>IPM Information</section>
+        </sections>
+        <sections>
+            <label><!-- Reporting --></label>
+            <section>Reporting</section>
+        </sections>
+        <sections>
+            <label><!-- User Role --></label>
+            <section>User Role</section>
         </sections>
     </layouts>
     <startsWith>Consonant</startsWith>

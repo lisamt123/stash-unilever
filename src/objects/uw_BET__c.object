@@ -56,6 +56,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -134,6 +135,32 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Brand_Position_Keyword_Search__c</fullName>
+        <externalId>false</externalId>
+        <label>Brand Position Keyword Search</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Brand_Position__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand Positioning</label>
+        <referenceTo>MDO_BrandPosition__c</referenceTo>
+        <relationshipLabel>Brand Experience List</relationshipLabel>
+        <relationshipName>Brand_Experience_List</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Brand__c</fullName>
         <externalId>false</externalId>
         <formula>HYPERLINK(&quot;/&quot; +  uw_Brand__r.Id , uw_Brand__r.Name  , &quot;_self&quot;)</formula>
@@ -144,6 +171,32 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category_Group_Keyword_Search__c</fullName>
+        <externalId>false</externalId>
+        <label>Category Group Keyword Search</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category_Group__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Category Group</label>
+        <referenceTo>MDO_Category__c</referenceTo>
+        <relationshipLabel>Brand Experience List</relationshipLabel>
+        <relationshipName>Brand_Experience_List</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Category_Keyword_Search__c</fullName>
@@ -596,6 +649,16 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Deletion_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Deletion Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Description__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Add text that will help others search for your Brand Experience</inlineHelpText>
@@ -608,6 +671,26 @@
         <visibleLines>10</visibleLines>
     </fields>
     <fields>
+        <fullName>FinalReleaseDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Final Release Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Final_Release_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Final Release Due Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Final_release_date__c</fullName>
         <externalId>false</externalId>
         <formula>IF( 
@@ -618,6 +701,26 @@ DATE(YEAR(Launch_Date__c), MONTH(Launch_Date__c)-6, 1)
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Final release date</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>FirstReleaseDate__c</fullName>
+        <externalId>false</externalId>
+        <label>First Release Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>First_Release_Due_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>First Release Due Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
@@ -661,6 +764,20 @@ DATE(YEAR(Launch_Date__c)-1, 6, 30)
         <type>Url</type>
     </fields>
     <fields>
+        <fullName>IPM_Project__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Project</label>
+        <referenceTo>IPM_Project__c</referenceTo>
+        <relationshipLabel>Brand Experience List</relationshipLabel>
+        <relationshipName>Brand_Experience_List</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Icon_Location__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>The Icon appears on the Search pages. 
@@ -687,8 +804,9 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
     </fields>
     <fields>
         <fullName>Inoplan_Project_Keyword_Search__c</fullName>
+        <description>Field holds related project name. If toolkit is related to Inoplan project it holds Inoplan project&apos;s name if it is related to IPM Project it holds IPM project&apos;s name</description>
         <externalId>false</externalId>
-        <label>Inoplan Project Keyword Search</label>
+        <label>Project Keyword Search</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -723,6 +841,26 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Is_Deleted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is Deleted</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Is_Fabric_Conditioners__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Is this a Fabric Conditioner BET ?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Launch_Date__c</fullName>
         <description>This should be your IPM Target Launch Date (ie: Ship to Trade date)</description>
         <externalId>false</externalId>
@@ -733,6 +871,17 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Link__c</fullName>
+        <externalId>false</externalId>
+        <formula>Left($Api.Enterprise_Server_URL_190,(find(&apos;/services&apos;,$Api.Enterprise_Server_URL_190))) +  Id</formula>
+        <label>Link</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Market_Cluster__c</fullName>
@@ -872,6 +1021,20 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Product_Brand__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Brand</label>
+        <referenceTo>MDO_Brand__c</referenceTo>
+        <relationshipLabel>Brand Experience List</relationshipLabel>
+        <relationshipName>Brand_Experience_List</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>Product_Category_Sub_Division__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Which category this BET will sit under. For example, &apos;Foods&apos; or &apos;Refreshment&apos;.</inlineHelpText>
@@ -907,6 +1070,20 @@ The default image will be used if no file is uploaded here.</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Product_Category__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Category</label>
+        <referenceTo>MDO_Category__c</referenceTo>
+        <relationshipLabel>Brand Experience List (Product Category)</relationshipLabel>
+        <relationshipName>Brand_Experience_List1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Project_ID__c</fullName>
@@ -1121,6 +1298,28 @@ Expired - when the BET and its associated assets have expired.</inlineHelpText>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Total_Actual_Assets__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Actual Assets</label>
+        <summarizedField>BET_ExpectedAssets__c.Computed_Actual__c</summarizedField>
+        <summaryForeignKey>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Expected_Assets__c</fullName>
+        <externalId>false</externalId>
+        <label>Total Expected Assets</label>
+        <summarizedField>BET_ExpectedAssets__c.Expected__c</summarizedField>
+        <summaryForeignKey>BET_ExpectedAssets__c.Brand_Experience_Toolkit__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Total_Number_of_Members__c</fullName>

@@ -22,6 +22,26 @@
         <relationshipLabel><!-- IPM Company Card --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Category Count --></label>
+        <name>IPM_Category_Count__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Type --></label>
+        <name>IPM_CompanyCard_Type__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional</masterLabel>
+            <translation><!-- Regional --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Company H.Q (Country) --></label>
         <name>IPM_Company_HQ_Country__c</name>
         <picklistValues>
@@ -43,7 +63,7 @@
         <relationshipLabel><!-- IPM Company Card (Company IPM Champion) --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Company Turnover(€) --></label>
+        <label><!-- Company Turnover --></label>
         <name>IPM_Company_Turnover__c</name>
     </fields>
     <fields>
@@ -2607,6 +2627,46 @@
         <name>IPM_IC__c</name>
     </fields>
     <fields>
+        <label><!-- Inoplan Region --></label>
+        <name>IPM_Inoplan_Region__c</name>
+        <picklistValues>
+            <masterLabel>Asia/AMET Foods</masterLabel>
+            <translation><!-- Asia/AMET Foods --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Asia/AMET HPC</masterLabel>
+            <translation><!-- Asia/AMET HPC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe Foods</masterLabel>
+            <translation><!-- Europe Foods --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Europe HPC</masterLabel>
+            <translation><!-- Europe HPC --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HPCLA</masterLabel>
+            <translation><!-- HPCLA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>HPCNA</masterLabel>
+            <translation><!-- HPCNA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UFLA</masterLabel>
+            <translation><!-- UFLA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UFNA</masterLabel>
+            <translation><!-- UFNA --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unilever Foodsolutions</masterLabel>
+            <translation><!-- Unilever Foodsolutions --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- MCO --></label>
         <name>IPM_MCO__c</name>
         <picklistValues>
@@ -2782,8 +2842,8 @@
             <translation><!-- ICE CREAM --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>LAUNDRY</masterLabel>
-            <translation><!-- LAUNDRY --></translation>
+            <masterLabel>Laundry</masterLabel>
+            <translation><!-- Laundry --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>ORAL CARE</masterLabel>
@@ -2843,32 +2903,37 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Total OpCo Turnover(€) --></label>
+        <label><!-- Project Name Suffix --></label>
+        <name>IPM_Project_Name_Suffix__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total OpCo Turnover --></label>
         <name>IPM_Total_OpCo_Turnover__c</name>
     </fields>
     <fields>
         <label><!-- Geographical Scope --></label>
         <name>IPM_TxtGeographical_Scope__c</name>
     </fields>
-    <layouts>
-        <layout>IPM  Local Company Card Layout</layout>
-        <sections>
-            <label><!-- Contacts Data --></label>
-            <section>Contacts Data</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Financials Data --></label>
-            <section>Financials Data</section>
-        </sections>
-        <sections>
-            <label><!-- Geographical Data --></label>
-            <section>Geographical Data</section>
-        </sections>
-    </layouts>
+    <fields>
+        <label><!-- Unique Company Card Name --></label>
+        <name>IPM_Unique_Company_Card_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Company Type --></label>
+        <name>IPP_Company_Type__c</name>
+        <picklistValues>
+            <masterLabel>Global</masterLabel>
+            <translation><!-- Global --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional</masterLabel>
+            <translation><!-- Regional --></translation>
+        </picklistValues>
+    </fields>
     <layouts>
         <layout>IPM Company Card Layout</layout>
         <sections>
@@ -2913,13 +2978,33 @@
     </recordTypes>
     <recordTypes>
         <label><!-- Local Company Card --></label>
-        <name>Local_Company_Card</name>
+        <name>IPM_Local_Company_Card</name>
     </recordTypes>
     <recordTypes>
         <label><!-- Regional Company Card --></label>
-        <name>Regional_Company_Card</name>
+        <name>IPM_Regional_Company_Card</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You have selected more than one category --></errorMessage>
+        <name>IPM_EditCompanyCategory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter valid geographical scope for global or regional company card --></errorMessage>
+        <name>IPM_EditGeographicalScope</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Only system admin can change the record type --></errorMessage>
+        <name>IPM_EditRecordType</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Geographical Scopeis required field --></errorMessage>
+        <name>IPM_GeoScopeValidation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Geographical Scope,Market Cluster and MCO are required field --></errorMessage>
+        <name>IPM_LocalCompanyCard</name>
+    </validationRules>
     <webLinks>
         <label><!-- IPM_Edit_Company_Card --></label>
         <name>IPM_Edit_Company_Card</name>

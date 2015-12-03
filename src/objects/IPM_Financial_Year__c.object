@@ -49,25 +49,16 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableFeeds>false</enableFeeds>
+    <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fieldSets>
         <fullName>IPM_Financial_Year_FS</fullName>
         <description>ipmFinancial VF Page</description>
-        <displayedFields>
-            <field>External_Id__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>Financial_External_Id__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
         <displayedFields>
             <field>Advertising_Promotions_Charter__c</field>
             <isFieldManaged>false</isFieldManaged>
@@ -100,6 +91,16 @@
         </displayedFields>
         <displayedFields>
             <field>Advertising_Promotions_Regional__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Financial_External_Id__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>External_Id__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -139,6 +140,16 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
+            <field>Turnover_Contract__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Turnover_Charter__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>Turnover_Regional__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -164,37 +175,7 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>Turnover_Contract__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>Turnover_Charter__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>Value_Market_Share_Regional__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>Value_Market_Share_MR__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>Value_Market_Share_MD__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>Value_Market_Share_Local__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>Value_Market_Share_Global__c</field>
+            <field>Value_Market_Share_Charter__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -204,32 +185,32 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>Value_Market_Share_Charter__c</field>
+            <field>Value_Market_Share_Global__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>Volume_Regional__c</field>
+            <field>Value_Market_Share_Local__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>Volume_MR__c</field>
+            <field>Value_Market_Share_MD__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>Volume_MD__c</field>
+            <field>Value_Market_Share_MR__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>Volume_Local__c</field>
+            <field>Value_Market_Share_Regional__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>Volume_Global__c</field>
+            <field>Volume_Charter__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -239,7 +220,27 @@
             <isRequired>false</isRequired>
         </displayedFields>
         <displayedFields>
-            <field>Volume_Charter__c</field>
+            <field>Volume_Global__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_Local__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_MD__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_MR__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Volume_Regional__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -253,6 +254,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -265,6 +267,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -272,7 +275,13 @@
     <fields>
         <fullName>AP_of_TO_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(AP_of_TO_Regional__c - AP_of_TO_Local__c)</formula>
+        <formula>IF(AP_of_TO_Regional__c &lt;&gt; 0, 
+	IF((ABS(AP_of_TO_Regional__c - AP_of_TO_Local__c)/AP_of_TO_Regional__c) &gt; 0.05, 
+		ABS(AP_of_TO_Regional__c - AP_of_TO_Local__c), 
+		0
+	), 
+	ABS(AP_of_TO_Regional__c - AP_of_TO_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>A&amp;P (% of T/O) Difference</label>
         <precision>18</precision>
@@ -316,6 +325,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -328,6 +338,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -353,6 +364,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -365,6 +377,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -372,7 +385,13 @@
     <fields>
         <fullName>Advertising_Promotions_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c)</formula>
+        <formula>IF(Advertising_Promotions_Regional__c &lt;&gt; 0, 
+	IF((ABS(Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c)/Advertising_Promotions_Regional__c) &gt; 0.05, 
+		ABS(Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c), 
+		0
+	), 
+	ABS(Advertising_Promotions_Regional__c - Advertising_Promotions_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Advertising &amp; Promotions Difference</label>
         <precision>18</precision>
@@ -390,6 +409,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -402,6 +422,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -414,6 +435,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -426,6 +448,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -438,6 +461,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -447,6 +471,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Charter Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -456,6 +481,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Charter Locked</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -465,6 +491,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Contract Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -474,6 +501,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Contract Locked</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -483,6 +511,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Copy Global to Local</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -492,6 +521,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Copy Global to Regional</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -501,6 +531,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Copy Local to Regional</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -510,6 +541,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>Copy Regional to Local</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -521,6 +553,7 @@
         <label>External Id</label>
         <length>255</length>
         <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -558,6 +591,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -570,6 +604,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -577,7 +612,13 @@
     <fields>
         <fullName>GM_of_TO_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(GM_of_TO_Regional__c - GM_of_TO_Local__c)</formula>
+        <formula>IF(GM_of_TO_Regional__c &lt;&gt; 0, 
+	IF((ABS(GM_of_TO_Regional__c - GM_of_TO_Local__c)/GM_of_TO_Regional__c) &gt; 0.05, 
+		ABS(GM_of_TO_Regional__c - GM_of_TO_Local__c), 
+		0
+	), 
+	ABS(GM_of_TO_Regional__c - GM_of_TO_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>GM (% of T/O) Difference</label>
         <precision>18</precision>
@@ -621,6 +662,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -633,6 +675,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -682,6 +725,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -694,6 +738,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -701,7 +746,13 @@
     <fields>
         <fullName>Gross_Profit_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c)</formula>
+        <formula>IF(Gross_Profit_Regional__c &lt;&gt; 0, 
+	IF((ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c)/Gross_Profit_Regional__c) &gt; 0.05, 
+		ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c), 
+		0
+	), 
+	ABS(Gross_Profit_Regional__c - Gross_Profit_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Gross Profit Difference</label>
         <precision>18</precision>
@@ -719,6 +770,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -731,6 +783,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -743,6 +796,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -755,6 +809,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -767,6 +822,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -780,6 +836,7 @@
         <relationshipName>IPM_Financial_Years</relationshipName>
         <relationshipOrder>0</relationshipOrder>
         <reparentableMasterDetail>true</reparentableMasterDetail>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>MasterDetail</type>
@@ -790,6 +847,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>MD Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -799,6 +857,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>MD Locked</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -808,6 +867,7 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>MR Approved</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
@@ -817,9 +877,22 @@
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>MR Locked</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>NameYearPLtype__c</fullName>
+        <description>This field is created to support the financial copy and paste functionality</description>
+        <externalId>false</externalId>
+        <formula>Name+&apos;-&apos;+Text(Year_Type__c)+&apos;-&apos;+Text(PL_Type__c)</formula>
+        <label>NameYearPLtype</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>PBO_of_TO_Charter__c</fullName>
@@ -829,6 +902,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -841,6 +915,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -848,7 +923,13 @@
     <fields>
         <fullName>PBO_of_TO_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(PBO_of_TO_Regional__c - PBO_of_TO_Local__c)</formula>
+        <formula>IF(PBO_of_TO_Regional__c &lt;&gt; 0, 
+	IF((ABS(PBO_of_TO_Regional__c - PBO_of_TO_Local__c)/PBO_of_TO_Regional__c) &gt; 0.05, 
+		ABS(PBO_of_TO_Regional__c - PBO_of_TO_Local__c), 
+		0
+	), 
+	ABS(PBO_of_TO_Regional__c - PBO_of_TO_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>PBO (% of T/O) Difference</label>
         <precision>18</precision>
@@ -892,6 +973,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -904,6 +986,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -936,6 +1019,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -948,6 +1032,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -960,6 +1045,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -967,7 +1053,13 @@
     <fields>
         <fullName>Profit_Before_Overheads_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c)</formula>
+        <formula>IF(Profit_Before_Overheads_Regional__c &lt;&gt; 0, 
+	IF((ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c)/Profit_Before_Overheads_Regional__c) &gt; 0.05, 
+		ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c), 
+		0
+	), 
+	ABS(Profit_Before_Overheads_Regional__c - Profit_Before_Overheads_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Profit Before Overheads Difference</label>
         <precision>18</precision>
@@ -985,6 +1077,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -997,6 +1090,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1009,6 +1103,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1021,6 +1116,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1033,6 +1129,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1087,6 +1184,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1099,6 +1197,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1106,7 +1205,13 @@
     <fields>
         <fullName>Turnover_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(Turnover_Regional__c - Turnover_Local__c)</formula>
+        <formula>IF(Turnover_Regional__c &lt;&gt; 0, 
+	IF((ABS(Turnover_Regional__c - Turnover_Local__c)/Turnover_Regional__c) &gt; 0.05, 
+		ABS(Turnover_Regional__c - Turnover_Local__c), 
+		0
+	), 
+	ABS(Turnover_Regional__c - Turnover_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Turnover Difference</label>
         <precision>18</precision>
@@ -1124,6 +1229,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1136,6 +1242,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1148,6 +1255,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1160,6 +1268,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1172,6 +1281,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
@@ -1184,6 +1294,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1196,6 +1307,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1203,7 +1315,13 @@
     <fields>
         <fullName>Value_Market_Share_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(Value_Market_Share_Regional__c - Value_Market_Share_Local__c)</formula>
+        <formula>IF(Value_Market_Share_Regional__c &lt;&gt; 0, 
+	IF((ABS(Value_Market_Share_Regional__c - Value_Market_Share_Local__c)/Value_Market_Share_Regional__c) &gt; 0.05, 
+		ABS(Value_Market_Share_Regional__c - Value_Market_Share_Local__c), 
+		0
+	), 
+	ABS(Value_Market_Share_Regional__c - Value_Market_Share_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Value Market Share Difference</label>
         <precision>18</precision>
@@ -1221,6 +1339,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1233,6 +1352,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1245,6 +1365,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1257,6 +1378,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1269,6 +1391,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>1</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Percent</type>
@@ -1281,6 +1404,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1294,6 +1418,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1302,7 +1427,13 @@
     <fields>
         <fullName>Volume_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(Volume_Regional__c - Volume_Local__c)</formula>
+        <formula>IF(Volume_Regional__c &lt;&gt; 0, 
+	IF((ABS(Volume_Regional__c - Volume_Local__c)/Volume_Regional__c) &gt; 0.05, 
+		ABS(Volume_Regional__c - Volume_Local__c), 
+		0
+	), 
+	ABS(Volume_Regional__c - Volume_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Volume Difference</label>
         <precision>18</precision>
@@ -1321,6 +1452,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1334,6 +1466,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1347,6 +1480,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1360,6 +1494,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1373,6 +1508,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1386,6 +1522,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1399,6 +1536,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1407,7 +1545,13 @@
     <fields>
         <fullName>Volume_Tons_Difference__c</fullName>
         <externalId>false</externalId>
-        <formula>ABS(Volume_Tons_Regional__c - Volume_Tons_Local__c)</formula>
+        <formula>IF(Volume_Tons_Regional__c &lt;&gt; 0, 
+	IF((ABS(Volume_Tons_Regional__c - Volume_Tons_Local__c)/Volume_Tons_Regional__c) &gt; 0.05, 
+		ABS(Volume_Tons_Regional__c - Volume_Tons_Local__c), 
+		0
+	), 
+	ABS(Volume_Tons_Regional__c - Volume_Tons_Local__c)
+)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Volume Tons Difference</label>
         <precision>18</precision>
@@ -1426,6 +1570,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1439,6 +1584,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1452,6 +1598,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1465,6 +1612,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1478,6 +1626,7 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -1498,6 +1647,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1517,6 +1667,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1536,6 +1687,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1555,6 +1707,7 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
@@ -1630,13 +1783,29 @@
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <label>IPM Financial Year</label>
+    <listViews>
+        <fullName>All1</fullName>
+        <columns>NAME</columns>
+        <columns>External_Id__c</columns>
+        <columns>IPM_Financial__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>GM_of_TO_Charter__c</field>
+            <operation>greaterThan</operation>
+            <value>0</value>
+        </filters>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <label>Name</label>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>

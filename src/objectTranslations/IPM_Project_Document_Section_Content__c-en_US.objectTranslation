@@ -9,12 +9,108 @@
         <value>IPM Project Document Section Contents</value>
     </caseValues>
     <fields>
+        <label><!-- IPM_Assort_Channel_Name --></label>
+        <name>IPM_Assort_Channel_Name__c</name>
+        <picklistValues>
+            <masterLabel>AS Watson</masterLabel>
+            <translation><!-- AS Watson --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ahold</masterLabel>
+            <translation><!-- Ahold --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>All Channels</masterLabel>
+            <translation><!-- All Channels --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Auchan</masterLabel>
+            <translation><!-- Auchan --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Carrefour</masterLabel>
+            <translation><!-- Carrefour --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Casino</masterLabel>
+            <translation><!-- Casino --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Club Stores</masterLabel>
+            <translation><!-- Club Stores --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Convenience</masterLabel>
+            <translation><!-- Convenience --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Discounters</masterLabel>
+            <translation><!-- Discounters --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Drug Stores</masterLabel>
+            <translation><!-- Drug Stores --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Hypermarkets</masterLabel>
+            <translation><!-- Hypermarkets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Impulse</masterLabel>
+            <translation><!-- Impulse --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Metro</masterLabel>
+            <translation><!-- Metro --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>On Premise</masterLabel>
+            <translation><!-- On Premise --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Schwarz</masterLabel>
+            <translation><!-- Schwarz --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supermarkets</masterLabel>
+            <translation><!-- Supermarkets --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Target</masterLabel>
+            <translation><!-- Target --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tesco</masterLabel>
+            <translation><!-- Tesco --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Traditional Grocery</masterLabel>
+            <translation><!-- Traditional Grocery --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Walmart</masterLabel>
+            <translation><!-- Walmart --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- AssortmentStrategy From --></label>
         <name>IPM_AssortmentStrategy_From__c</name>
     </fields>
     <fields>
         <label><!-- AssortmentStrategy To --></label>
         <name>IPM_AssortmentStrategy_To__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Assortment CU Priority --></label>
+        <name>IPM_Assortment_CU_Priority__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Assortment Cus --></label>
+        <name>IPM_Assortment_Cus__c</name>
     </fields>
     <fields>
         <label><!-- Assortment Strategy Priority --></label>
@@ -45,12 +141,72 @@
         <name>IPM_Assortment_strategy_Target__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Assumption A&amp;P --></label>
+        <name>IPM_Assumption_A_P__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Assumption CAPEX --></label>
+        <name>IPM_Assumption_CAPEX__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Assumption Countries --></label>
+        <name>IPM_Assumption_Countries__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Assumption GM% --></label>
+        <name>IPM_Assumption_GM__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Assumption Market Size --></label>
+        <name>IPM_Assumption_Market_Size__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Assumption Pricing --></label>
+        <name>IPM_Assumption_Pricing__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Assumption Restages --></label>
+        <name>IPM_Assumption_Restages__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Assumption T/O Cannibalization --></label>
+        <name>IPM_Assumption_T_O_Cannibalization__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Assumption Volume Yr 2+ --></label>
+        <name>IPM_Assumption_Volume_Yr_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Assumption Volume --></label>
+        <name>IPM_Assumption_Volume__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Assumption Yr 1 Trade Promotion --></label>
+        <name>IPM_Assumption_Yr_1_Trade_Promotion__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Color Score Value Achieved --></label>
+        <name>IPM_CMI_Color_Score_Value_Achieved__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Color Score Value --></label>
+        <name>IPM_CMI_Color_Score_Value__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM CMI Comments --></label>
         <name>IPM_CMI_Comments__c</name>
     </fields>
     <fields>
         <label><!-- IPM CMI Country --></label>
         <name>IPM_CMI_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Free Text --></label>
+        <name>IPM_CMI_Free_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Gate Test --></label>
+        <name>IPM_CMI_Gate_Test__c</name>
     </fields>
     <fields>
         <label><!-- IPM CMI Input --></label>
@@ -119,6 +275,202 @@
             <masterLabel>shelf visibility</masterLabel>
             <translation><!-- shelf visibility --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Is Free Text --></label>
+        <name>IPM_CMI_Is_Free_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Outcome Color Achieved --></label>
+        <name>IPM_CMI_Outcome_Color_Achieved__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Outcome Color --></label>
+        <name>IPM_CMI_Outcome_Color__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Overall Color Score Achieved --></label>
+        <name>IPM_CMI_Overall_Color_Score_Achieved__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Overall Colour Achieved --></label>
+        <name>IPM_CMI_Overall_Colour_Achieved__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Overall Colour Coding Method --></label>
+        <name>IPM_CMI_Overall_Colour_Coding_Method__c</name>
+        <picklistValues>
+            <masterLabel>Manual</masterLabel>
+            <translation><!-- Manual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Applicable</masterLabel>
+            <translation><!-- Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System</masterLabel>
+            <translation><!-- System --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Overall Colour --></label>
+        <name>IPM_CMI_Overall_Colour__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Overall Comments --></label>
+        <name>IPM_CMI_Overall_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Overall Score Achieved --></label>
+        <name>IPM_CMI_Overall_Score_Achieved__c</name>
+        <picklistValues>
+            <masterLabel>Bottom 30%</masterLabel>
+            <translation><!-- Bottom 30% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Failure (=&lt; 33%)</masterLabel>
+            <translation><!-- Failure (=&lt; 33%) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High Potential</masterLabel>
+            <translation><!-- High Potential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Loss</masterLabel>
+            <translation><!-- Loss --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low Potential</masterLabel>
+            <translation><!-- Low Potential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Potential</masterLabel>
+            <translation><!-- Medium Potential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mid 40%</masterLabel>
+            <translation><!-- Mid 40% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outstanding (&gt;= 85%)</masterLabel>
+            <translation><!-- Outstanding (&gt;= 85%) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parity</masterLabel>
+            <translation><!-- Parity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Possible Failure</masterLabel>
+            <translation><!-- Possible Failure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Potential Failure</masterLabel>
+            <translation><!-- Potential Failure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risky</masterLabel>
+            <translation><!-- Risky --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risky (34% - 69%)</masterLabel>
+            <translation><!-- Risky (34% - 69%) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Satisfactory</masterLabel>
+            <translation><!-- Satisfactory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Satisfactory (70% - 84%)</masterLabel>
+            <translation><!-- Satisfactory (70% - 84%) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Top 30%</masterLabel>
+            <translation><!-- Top 30% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Win</masterLabel>
+            <translation><!-- Win --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Overall Score Label --></label>
+        <name>IPM_CMI_Overall_Score_Label__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Overall Score --></label>
+        <name>IPM_CMI_Overall_Score__c</name>
+        <picklistValues>
+            <masterLabel>Bottom 30%</masterLabel>
+            <translation><!-- Bottom 30% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Failure (=&lt; 33%)</masterLabel>
+            <translation><!-- Failure (=&lt; 33%) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High Potential</masterLabel>
+            <translation><!-- High Potential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Loss</masterLabel>
+            <translation><!-- Loss --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low Potential</masterLabel>
+            <translation><!-- Low Potential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Potential</masterLabel>
+            <translation><!-- Medium Potential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Mid 40%</masterLabel>
+            <translation><!-- Mid 40% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Outstanding (&gt;= 85%)</masterLabel>
+            <translation><!-- Outstanding (&gt;= 85%) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Parity</masterLabel>
+            <translation><!-- Parity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Possible Failure</masterLabel>
+            <translation><!-- Possible Failure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Potential Failure</masterLabel>
+            <translation><!-- Potential Failure --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risky</masterLabel>
+            <translation><!-- Risky --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Risky (34% - 69%)</masterLabel>
+            <translation><!-- Risky (34% - 69%) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Satisfactory</masterLabel>
+            <translation><!-- Satisfactory --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Satisfactory (70% - 84%)</masterLabel>
+            <translation><!-- Satisfactory (70% - 84%) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Top 30%</masterLabel>
+            <translation><!-- Top 30% --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Win</masterLabel>
+            <translation><!-- Win --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Result Timing --></label>
+        <name>IPM_CMI_Result_Timing__c</name>
     </fields>
     <fields>
         <label><!-- IPM CMI Result --></label>
@@ -294,6 +646,10 @@
         <name>IPM_CU_Volume__c</name>
     </fields>
     <fields>
+        <label><!-- Comparison Category --></label>
+        <name>IPM_Comparison_Category__c</name>
+    </fields>
+    <fields>
         <label><!-- Comparison SKU --></label>
         <name>IPM_Comparison_SKU_Greenhouse__c</name>
     </fields>
@@ -314,9 +670,85 @@
         <name>IPM_Comparison_SKU__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Consumer Evidence Comments --></label>
+        <name>IPM_Consumer_Evidence_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Consumer Evidence Concept Name --></label>
+        <name>IPM_Consumer_Evidence_Concept_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Consumer Evidence Country --></label>
+        <name>IPM_Consumer_Evidence_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Consumer Evidence Gate --></label>
+        <name>IPM_Consumer_Evidence_Gate__c</name>
+        <picklistValues>
+            <masterLabel>Charter</masterLabel>
+            <translation><!-- Charter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contract</masterLabel>
+            <translation><!-- Contract --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Deployment</masterLabel>
+            <translation><!-- Market Deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM Consumer Evidence Image --></label>
+        <name>IPM_Consumer_Evidence_Image__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Consumer Evidence Logo Id --></label>
+        <name>IPM_Consumer_Evidence_Logo_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Consumer Unit --></label>
         <name>IPM_Consumer_Unit__c</name>
         <relationshipLabel><!-- IPM Project Document Section Contents --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Content Type --></label>
+        <name>IPM_Content_Type__c</name>
+        <picklistValues>
+            <masterLabel>Assortment Strategy</masterLabel>
+            <translation><!-- Assortment Strategy --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Assumptions</masterLabel>
+            <translation><!-- Assumptions --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CMI Gate</masterLabel>
+            <translation><!-- CMI Gate --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Consumer Evidence Concepts</masterLabel>
+            <translation><!-- Consumer Evidence Concepts --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Cu_Complexity</masterLabel>
+            <translation><!-- Cu_Complexity --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Customer Channels</masterLabel>
+            <translation><!-- Customer Channels --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Financial Action Standards</masterLabel>
+            <translation><!-- Financial Action Standards --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>OTIF</masterLabel>
+            <translation><!-- OTIF --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Country --></label>
@@ -379,6 +811,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- IPM Decreased By --></label>
+        <name>IPM_Decreased_By__c</name>
+    </fields>
+    <fields>
         <label><!-- Directional View --></label>
         <name>IPM_Directional_View_Greenhouse__c</name>
     </fields>
@@ -423,17 +859,77 @@
         <name>IPM_Expected_Change_Water__c</name>
     </fields>
     <fields>
+        <label><!-- IPM GM % Action Standards Charter Cmts --></label>
+        <name>IPM_GM_Action_Standards_Charter_Cmts__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM GM % Action Standards Charter --></label>
+        <name>IPM_GM_Action_Standards_Charter__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Gate CMI --></label>
         <name>IPM_Gate_CMI__c</name>
         <relationshipLabel><!-- IPM Project Document Section Contents --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Gate Type --></label>
+        <name>IPM_Gate_Type__c</name>
+        <picklistValues>
+            <masterLabel>Charter</masterLabel>
+            <translation><!-- Charter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contract</masterLabel>
+            <translation><!-- Contract --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Deployment</masterLabel>
+            <translation><!-- Market Deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM IRR Action Standard Charter Cmts --></label>
+        <name>IPM_IRR_Action_Standard_Charter_Cmts__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM IRR Action Standard Charter --></label>
+        <name>IPM_IRR_Action_Standard_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Inc Val Share Action Charter Cmts --></label>
+        <name>IPM_Inc_Val_Share_Action_Charter_Cmts__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Inc Value Share Action Charter --></label>
+        <name>IPM_Inc_Value_Share_Action_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Increased By --></label>
+        <name>IPM_Increased_By__c</name>
     </fields>
     <fields>
         <label><!-- IPM Incumbent CUs --></label>
         <name>IPM_Incumbent_CUs__c</name>
     </fields>
     <fields>
-        <label><!-- IPM Input Gate CMI --></label>
-        <name>IPM_Input_Gate_CMI__c</name>
+        <label><!-- IPM Innov Value Share Action Charter --></label>
+        <name>IPM_Innov_Value_Share_Action_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Inov Value Share Action Charter Cmts --></label>
+        <name>IPM_Inov_Value_Share_Action_Charter_Cmts__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM NPV Action Standard Charter Cmts --></label>
+        <name>IPM_NPV_Action_Standard_Charter_Cmts__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM NPV Action Standard Charter --></label>
+        <name>IPM_NPV_Action_Standard_Charter__c</name>
     </fields>
     <fields>
         <label><!-- IPM New CRRT --></label>
@@ -524,6 +1020,14 @@
         <name>IPM_Pack__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Payback Action Standard Charter Cmts --></label>
+        <name>IPM_Payback_Action_Standard_Charter_Cmts__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Payback Action Standard Charter --></label>
+        <name>IPM_Payback_Action_Standard_Charter__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Place Image 1 Id --></label>
         <name>IPM_Place_Image_1_Id__c</name>
     </fields>
@@ -544,7 +1048,7 @@
         <name>IPM_Preposition_Image_2_Id__c</name>
     </fields>
     <fields>
-        <label><!-- IPM Preposition --></label>
+        <label><!-- IPM Proposition --></label>
         <name>IPM_Preposition__c</name>
     </fields>
     <fields>
@@ -575,6 +1079,22 @@
         <label><!-- IPM Project Document Section --></label>
         <name>IPM_Project_Document_Section__c</name>
         <relationshipLabel><!-- IPM Project Document Section Contents --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Effect --></label>
+        <name>IPM_Project_Effect__c</name>
+        <picklistValues>
+            <masterLabel>Decrease in complexity by</masterLabel>
+            <translation><!-- Decrease in complexity by --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Increase in complexity by</masterLabel>
+            <translation><!-- Increase in complexity by --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No Effect</masterLabel>
+            <translation><!-- No Effect --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- IPM Promotion Image 1 Id --></label>
@@ -633,18 +1153,94 @@
         <name>IPM_Sustainale_Sourcing__c</name>
     </fields>
     <fields>
+        <label><!-- IPM_Total_Cu_Count_Impact --></label>
+        <name>IPM_Total_Cu_Count_Impact__c</name>
+        <picklistValues>
+            <masterLabel>1-9</masterLabel>
+            <translation><!-- 1-9 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>10-19</masterLabel>
+            <translation><!-- 10-19 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>150+</masterLabel>
+            <translation><!-- 150+ --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>20-39</masterLabel>
+            <translation><!-- 20-39 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>40-74</masterLabel>
+            <translation><!-- 40-74 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>75-149</masterLabel>
+            <translation><!-- 75-149 --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM gTO Action Standard Charter Cmts --></label>
+        <name>IPM_gTO_Action_Standard_Charter_Cmts__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM gTO Action Standard Charter --></label>
+        <name>IPM_gTO_Action_Standard_Charter__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM iTo Action Standard Charter Cmts --></label>
+        <name>IPM_iTo_Action_Standard_Charter_Cmts__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM iTo Action Standard Charter --></label>
+        <name>IPM_iTo_Action_Standard_Charter__c</name>
+    </fields>
+    <fields>
         <label><!-- New SKU --></label>
         <name>New_SKU__c</name>
     </fields>
+    <fields>
+        <label><!-- Section Content Ext Id --></label>
+        <name>Section_Content_Ext_Id__c</name>
+    </fields>
     <layouts>
-        <layout>IPM Project Document Section Content Layout</layout>
+        <layout>IPM Section Content Layout</layout>
+        <sections>
+            <label><!-- Assortment Strategy --></label>
+            <section>Assortment Strategy</section>
+        </sections>
+        <sections>
+            <label><!-- Assumptions --></label>
+            <section>Assumptions</section>
+        </sections>
         <sections>
             <label><!-- CRRT --></label>
             <section>CRRT</section>
         </sections>
         <sections>
+            <label><!-- Consumer Evidence --></label>
+            <section>Consumer Evidence</section>
+        </sections>
+        <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Customer Channel --></label>
+            <section>Customer Channel</section>
+        </sections>
+        <sections>
+            <label><!-- IPM Financial Details --></label>
+            <section>IPM Financial Details</section>
+        </sections>
+        <sections>
+            <label><!-- Mix --></label>
+            <section>Mix</section>
+        </sections>
+        <sections>
+            <label><!-- OTIF Section Details --></label>
+            <section>OTIF Section Details</section>
         </sections>
     </layouts>
     <startsWith>Consonant</startsWith>

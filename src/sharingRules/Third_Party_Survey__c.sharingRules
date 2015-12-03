@@ -155,8 +155,6 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
-<<<<<<< HEAD
-=======
         <fullName>Market_Equals_Sri_Lanka_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals Sri Lanka – Manager</label>
@@ -168,7 +166,6 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
->>>>>>> FETCH_HEAD
         <fullName>Market_Equals_UK_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <label>Market Equals UK – Manager</label>

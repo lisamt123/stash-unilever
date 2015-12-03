@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Success Notification in case Project creation or Phase Change is successful</description>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>Agency_Roster</letterhead>
+    <name>Sucess Phase Change Template</name>
+    <style>freeForm</style>
+    <subject>{!IPM_Project__c.Name} Project Successfully Processed</subject>
+    <textOnly>This is to inform you that your Request has successfully been processed.
+
+Please find the project specific details
+
+Project Name : {!IPM_Project__c.Name}
+
+{!IPM_Project__c.RecordTypeId}</textOnly>
+    <type>html</type>
+</EmailTemplate>

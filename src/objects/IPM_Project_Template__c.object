@@ -53,16 +53,43 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>IPM_Category__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>To hold the Categories</inlineHelpText>
         <label>Category</label>
         <picklist>
             <picklistValues>
-                <fullName>HHC</fullName>
+                <fullName>Household Care</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Laundry</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MultiselectPicklist</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Project_Type__c</fullName>
+        <description>To store the type of the project</description>
+        <externalId>false</externalId>
+        <label>Project Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Original</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Operational</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -116,6 +143,22 @@
         <unique>false</unique>
     </fields>
     <label>IPM Project Template</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>IPM_Project_Type__c</columns>
+        <columns>IPM_Category__c</columns>
+        <columns>IPM_Template_Complexity__c</columns>
+        <columns>IPM_Project__c</columns>
+        <columns>IPM_Template_Name__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>PT-{0000}</displayFormat>
         <label>IPM Project Template Name</label>
@@ -123,7 +166,13 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>IPM Project Templates</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>IPM_Template_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Project__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Template_Complexity__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Category__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>LAST_UPDATE</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>Private</sharingModel>
     <startsWith>Vowel</startsWith>
 </CustomObject>

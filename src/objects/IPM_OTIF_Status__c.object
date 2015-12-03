@@ -4,6 +4,26 @@
     <description>Contents of OTIF Status for Gate Documents</description>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>IPM_Carry_GK_Section_Answer__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM_Carry GK Section Answer</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_External_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM External Id</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Gate_Document_Type__c</fullName>
         <externalId>false</externalId>
         <label>IPM Gate Document Type</label>
@@ -98,6 +118,7 @@
     </fields>
     <fields>
         <fullName>OTIF_Sequence_Number__c</fullName>
+        <description>TO capture the sequence number for the OTIF</description>
         <externalId>false</externalId>
         <label>OTIF Sequence Number</label>
         <precision>3</precision>

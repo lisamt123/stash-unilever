@@ -1,169 +1,192 @@
+/******************************************************************************************************************************
+* @author Cognizant 
+* @date 15/12/2014
+* @description Test Class for Gate Document Controller
+*/
 @isTest
-public class  IPM_ChangProjectDocStatusController_Test 
-{
-    public static IPM_Project__c project;
-    public static IPM_Project_Rollout__c projRoll;
-    public static IPM_Project_Document__c proDoc=new IPM_Project_Document__c();
-    public static User u;
-    //public static User u1;
-    static testMethod void initializeData()
-    {
-       
-        PermissionSet Fps=new PermissionSet();
-        Fps=[SELECT Id FROM PermissionSet WHERE Name = 'IPMNG_Basic' limit 1]; 
-        PermissionSetAssignment psa = new PermissionSetAssignment();
-       
-        User u1 = new User();
-        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
-        u1 = new User(Alias = 'eeekkkb', Email='zstandaarduseryy@testorg145.com', 
-        EmailEncodingKey='UTF-8', LastName='Testing4llghue', LanguageLocaleKey='en_US', 
-        LocaleSidKey='en_US', ProfileId = p.Id, 
-        TimeZoneSidKey='America/Los_Angeles', UserName='raj21adllbn@testorgdnd.com', 
-        IPM_Category__c = 'test4llbnghue'  , IPM_Brand_Positioning__c= 'test4llbnghue',IPM_Brand_Name__c ='test1llbnghue',
-        IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='testllbnghu', isActive =true);
-        insert u1;
-          System.runAs(u1) {
-                psa.AssigneeId = u1.Id;
-                psa.PermissionSetId = Fps.Id;
-                insert psa;
-           }
-        project=new IPM_Project__c();
-        project.Name='TESTAPPROVERCL4';
-        project.IPM_Phase__c='Ideas';
-        project.IPM_Complexity__c='Full';
-        project.IPM_GateKeeping_Model__c='RCLT'; 
-        project.Sustainability_Period__c='3';
-        project.IPM_Target_Launch_Dates__c=system.today();
-        project.IPM_IsCompleted__c=true; 
-        project.IPM_Project_Gatekeeper__c=u1.Id;
-        insert project;
+public class  IPM_ChangProjectDocStatusController_Test {
+    public static PageReference  pRef;
+    public static IPM_Project__c project;// Project object initialization
+    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
+    public static List<SelectOption> secOpt=new List<SelectOption>();
+    public static IPM_Project_Type__c proType;
+    private static final string TEST_COMMENTS_STR='TestComments1';
+    public static List<IPM_Milestone__c>mileListObj;
+    public static List<IPM_Project_Document__c>docStatus;
+    public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
+    public static User stdUserForChangStatus;
+    private static final string STATUS_MATCHED_STR='status matched';
+    private static final string STATUS_CHANGED_STR='status changed';
+    public static User globalUser;
+    /*************************************************************************************************************************
+    * @description Test Data
+    */
+    @testSetup static void initializeData(){
+        System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
+            // user has to be created as system admin 
+            stdUserForChangStatus= IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+        }       
+        List<User>userLists=[SELECT id FROM user WHERE id=:stdUserForChangStatus.id LIMIT 1];
+        System.AssertEquals(userLists[0].id, stdUserForChangStatus.id,'user id is:'+userLists[0].id);//positive test
         
-        projRoll=new IPM_Project_Rollout__c();
-        projRoll.IPM_Project__c=project.ID;
-        projRoll.RecordTypeId=Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get('Regional Rollout').RecordTypeId;
-        projRoll.IPM_Rollout_Project__c='TestComments_SEAA';
-        projRoll.Market_Cluster__c='SEAA';
-        projRoll.Target_Launch_Date__c=date.today();
-        projRoll.IPM_Regional_PL__c=u1.Id;
-        insert projRoll;
+        // Create Company Card information 
+        IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+        IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
         
-        IPM_Project_Rollout__Share roll=new IPM_Project_Rollout__Share();
-        roll.ParentId= projRoll.Id;
-        roll.userOrGroupId = psa.AssigneeId ;
-        roll.accesslevel = 'Edit';
-        insert roll;
+        List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+        insert companyCardList;
+        List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
         
-        System.debug(project.IPM_Project_Gatekeeper__c+'project.IPM_Project_Gatekeeper__c');
-        proDoc.Name='doc';
-        proDoc.IPM_Project__c=project.Id;
-        proDoc.IPM_GateDocuments__c='Charter';
-        proDoc.IPM_Document_Status__c='Stopped';
-        proDoc.IPM_Stopped_Date__c=system.today();
-        proDoc.IPM_Stopped_Comments__c='comment';
-        insert proDoc;
-        
-        IPM_Project_Document_Section__c projDocSec=new IPM_Project_Document_Section__c();
-        projDocSec.IPM_Gate_Document_Summary__c='dsfadfadsfasaadfdsfadfadfsd';
-        projDocSec.IPM_Project_Document__c=proDoc.Id;
-        insert projDocSec;
+        IPM_TestFactory_Helper.getProjectMasterData();
+        projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForChangStatus);
+        System.runAs(stdUserForChangStatus) {
+            insert projectList;
+            project=projectList[0];
+           
+            List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project inserted');//positive test
+            
+        }
     }
-    static testMethod void dotest1()
-    {
-        Test.startTest();
-        initializeData();
-        PageReference pRef = new PageReference('/apex/IPM_ChangProjectDocumentStatusController?id='+project.Id);
-        Test.setCurrentPage(pRef);
-        IPM_ChangProjectDocumentStatusController chngPro=new IPM_ChangProjectDocumentStatusController();
-        //chngPro.sendEmail();
-        //chngPro.submit();
-        //chngPro.updateStatus();
-        Test.stopTest();
-    }
-    static testMethod void dotest2()
-    {
-        Test.startTest();
-        initializeData();
-        IPM_Project_Document__c projd=[Select Id,IPM_Document_Status__c from IPM_Project_Document__c  where Id=:proDoc.Id For Update];
-        projd.IPM_Document_Status__c='Proposed';
-        update projd;
-        PageReference pRef = new PageReference('/apex/IPM_ChangProjectDocumentStatusController?id='+project.Id);
-        Test.setCurrentPage(pRef);
-        IPM_ChangProjectDocumentStatusController chngPro=new IPM_ChangProjectDocumentStatusController();
-        chngPro.sendEmail();
-       // chngPro.submit();
-        chngPro.updateStatus();
-        Test.stopTest();
-    }
-    static testMethod void dotest3()
-    {
-        /*
-        Test.startTest();
-        initializeData();
-        project.IPM_Phase__c='Feasibility';
-        update project;
-        IPM_Project_Document__c projd=[Select Id,IPM_Document_Status__c,IPM_GateDocuments__c from IPM_Project_Document__c  where Id=:proDoc.Id For Update];
-        projd.IPM_GateDocuments__c='Contract';
-        projd.IPM_Document_Status__c='Approved';
-        update projd;
-        PageReference pRef = new PageReference('/apex/IPM_ChangProjectDocumentStatusController?id='+project.Id);
-        Test.setCurrentPage(pRef);
-        IPM_ChangProjectDocumentStatusController chngPro=new IPM_ChangProjectDocumentStatusController();
-        //chngPro.sendEmail();
-        System.debug('project.IPM_Project_Gatekeeper__c'+project.IPM_Project_Gatekeeper__c);
-        //chngPro.submit();
-        //chngPro.updateStatus();
-        Test.stopTest();
-        */
-        
+
+    /*************************************************************************************************************************
+    * @description Test Data
+    */
+    @testSetup static void initializeTestMethodData(){    
+        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
+        globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
+        System.runAs(globalUser){ 
+            projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
+            (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name,IPM_Project__c,IPM_Active__c from IPM_Milestones__r)
+            from IPM_Project__c where Name in:projectNameSet];
+           project=projectListObj[0];
+         
+            for(IPM_Project__c projectObj : projectListObj){
+                projDocList = projectObj.Project_Documents__r;
+                mileListObj = projectObj.IPM_Milestones__r;
+                system.assertEquals(projDocList[0].IPM_GateDocuments__c,'Charter','Project Document created'); 
+            }
+            pRef = Page.IPM_ProjectDocumentSectionEditor;
+            pRef.getParameters().put('id', projectListObj[0].Id);
+            Test.setCurrentPage(pRef);
+        }  
+
     }
     
-    static testMethod void dotest4()
-    {
-        Test.startTest();
-        initializeData();
-        IPM_Project_Document__c projd=[Select Id,IPM_Document_Status__c,IPM_GateDocuments__c,IPM_Postponement_Date__c,IPM_Postponed_Comments__c from IPM_Project_Document__c  where Id=:proDoc.Id For Update];
-        projd.IPM_Document_Status__c='Postponed';
-        projd.IPM_Postponed_Comments__c='Postponed';
-        projd.IPM_Postponement_Date__c=system.today();
-        update projd;
-        PageReference pRef = new PageReference('/apex/IPM_ChangProjectDocumentStatusController?id='+project.Id);
-        Test.setCurrentPage(pRef);
-        IPM_ChangProjectDocumentStatusController chngPro=new IPM_ChangProjectDocumentStatusController();
-        chngPro.sendEmail();
-        chngPro.submit();
-        chngPro.updateStatus();
-        Test.stopTest();
-    }
-    public static User  testRunAs() 
-    {
-        List<User> usrname = [SELECT UserName from User where UserName='standarduser@testorg4.com' ];
-        u = new User();
-        if(usrname== null)
-        {
-            Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator']; 
-            u = new User(Alias = 'standt4', Email='standarduser@testorg4.com', 
-            EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
-            LocaleSidKey='en_US', ProfileId = p.Id, 
-            TimeZoneSidKey='America/Los_Angeles', UserName='standarduser@testorg4.com', 
-            IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-            IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-            insert u;
-            System.runAs(u) 
-            {
-                PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'IPMNG_Basic'];
-                PermissionSetAssignment psa = new PermissionSetAssignment();
-                psa.AssigneeId = u.Id;
-                psa.PermissionSetId = ps.Id;
-                insert psa;
-            }
+    static testMethod void dotestSubmit(){
+        initializeTestMethodData();
+        test.startTest();
+        system.runAs(globalUser){
+            projDocList[0].IPM_Stopped_Comments__c='';
+            projDocList[0].IPM_Postponed_Comments__c='abc';
+            projDocList[0].IPM_Postponement_Date__c=system.today();
+            update projDocList;
+            List<IPM_Project_Document__c>docList=[select IPM_Postponement_Date__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
+            System.assertEquals(docList[0].IPM_Postponement_Date__c,system.today(),'date changed');
+            
+            IPM_ChangProjectDocumentStatusController chngPro=new IPM_ChangProjectDocumentStatusController();
+            chngPro.cmiError=false;
+            chngPro.milestoneError=false;
+            chngPro.riskError=false;
+            chngPro.rolloutNotExistsError=false;
+            chngPro.rolloutRegionalPLFilledError=false;
+            chngPro.rolloutCountryPLFilledError=false;
+            chngPro.ecoDesignNoAssessmentError=false;
+            chngPro.projectDoc=projDocList[0];
+            chngPro.isRiskComplete=false;
+            chngPro.isCmiComplete=false;
+            chngPro.financialError=false;
+            chngPro.showValidation=true;
+            chngPro.associatedProjectType=proType;
+            secOpt=chngPro.getContractApprovers();
+            chngPro.Status=IPM_ConstantUtils.STATUS_NOT_STARTED;
+            projDocList[0].IPM_Document_Status__c=chngPro.Status;
+            chngPro.updateStatus();
+            update projDocList;
+            List<IPM_Project_Document__c>docListObj=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
+            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_NOT_STARTED,STATUS_CHANGED_STR);
+            
+            chngPro.submit();
+            docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
+            where IPM_Project__c=:chngPro.projectId];
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_NOT_STARTED,STATUS_MATCHED_STR);
+            
+            chngPro.Status=IPM_ConstantUtils.STATUS_IN_PROGRESS;
+            projDocList[0].IPM_Document_Status__c=chngPro.Status;
+            update projDocList[0];
+            docListObj=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
+            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS,STATUS_CHANGED_STR);
+            
+            chngPro.submit();
+            docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
+            where IPM_Project__c=:chngPro.projectId];
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS,STATUS_MATCHED_STR);
+            
+            chngPro.Status=IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED;
+            projDocList[0].IPM_Document_Status__c=chngPro.Status;
+            update projDocList;
+            docListObj=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
+            System.assertEquals(docListObj[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_CHANGED_STR);
+            
+            chngPro.submit();
+            docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
+            where Id=:projDocList[0].Id];
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_MATCHED_STR);
+            
+            chngPro.Status=IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED;
+            projDocList[0].IPM_Document_Status__c=chngPro.Status;
+            update projDocList;
+            docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
+            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED,STATUS_CHANGED_STR);
+            
+            projDocList[0].IPM_Stopped_Comments__c='abc';
+            chngPro.submit();
+            docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
+            where Id=:projDocList[0].Id];
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED,STATUS_MATCHED_STR);
+            
+            chngPro.Status=IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS;
+            projDocList[0].IPM_Document_Status__c=chngPro.Status;
+            update projDocList;
+            docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
+            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,STATUS_CHANGED_STR);
+            
+            chngPro.submit();
+            docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
+            where Id=:projDocList[0].Id];
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,STATUS_MATCHED_STR);
+            
+            chngPro.Status=IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED;
+            projDocList[0].IPM_Document_Status__c=chngPro.Status;
+            update projDocList;
+            docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
+            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_CHANGED_STR);
+            
+            projDocList[0].IPM_Postponement_Date__c=system.today().addDays(7); 
+            chngPro.submit();
+            docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
+            where Id=:projDocList[0].Id];
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_MATCHED_STR);
+            
+            chngPro.Status=IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED;
+            projDocList[0].IPM_Document_Status__c=chngPro.Status;
+            secOpt=chngPro.getcomplexities();
+            update projDocList;
+            docList=[select IPM_Document_Status__c from IPM_Project_Document__c where Id=:projDocList[0].Id];
+            System.assertEquals(docList[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED,STATUS_CHANGED_STR);
+            
+            chngPro.submit();
+            docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
+            where Id=:projDocList[0].Id];
+            System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,STATUS_MATCHED_STR);
+            
+            test.stopTest();
+            
         }
-        else 
-        {
-            if(usrname.size()>0)
-            {
-                u = [SELECT Alias,Email,EmailEncodingKey,LastName,LanguageLocaleKey,LocaleSidKey,ProfileId ,TimeZoneSidKey,UserName, IPM_Category__c ,IPM_Brand_Positioning__c, IPM_Brand_Name__c ,IPM_Role__c , IPM_Sub_Category__c    from User where UserName='standarduser@testorg4.com' ];
-            }     
-        }   
-        return u ;
     }
+    
+
 }

@@ -5,15 +5,15 @@
         <description>To send an email to functional role members</description>
         <protected>false</protected>
         <recipients>
-            <field>IPM_Member_Email__c</field>
+            <field>IPM_Res_Email__c</field>
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Send_notification_to_members</template>
+        <template>unfiled$public/IPM_section_notification2</template>
     </alerts>
     <fieldUpdates>
         <fullName>IPM_Insert_user_email</fullName>
-        <field>IPM_Member_Email__c</field>
+        <field>IPM_Res_Email__c</field>
         <formula>IPM_User__r.Email</formula>
         <name>IPM Insert user email</name>
         <notifyAssignee>false</notifyAssignee>
@@ -35,7 +35,7 @@
             <name>IPM_Insert_user_email</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>true</formula>
         <triggerType>onCreateOnly</triggerType>
     </rules>
@@ -50,12 +50,23 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
+        <description>send an email to all members associated with functional role and section</description>
+        <formula>IPM_send_an_email__c=true</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ipm_updatefinancemember</fullName>
+        <active>false</active>
         <criteriaItems>
-            <field>IPM_Project_Resource__c.IPM_send_an_email__c</field>
+            <field>IPM_Project_Resource__c.IPM_Project_Role_Owner__c</field>
             <operation>equals</operation>
             <value>True</value>
         </criteriaItems>
-        <description>send an email to all members associated with functional role and section</description>
+        <criteriaItems>
+            <field>IPM_Project_Resource__c.IPM_Role_Type__c</field>
+            <operation>equals</operation>
+            <value>Finance</value>
+        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

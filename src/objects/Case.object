@@ -4195,7 +4195,7 @@ sforce.console.openPrimaryTab(null, &apos;/&apos;+caseId, true);
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>http://survey.clicktools.com/go?iv= {!$Setup.cec_Org_Settings__c.Cosmetovigilence_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}&amp;q2={!Case.CaseNumber}&amp;q3={!Case.CreatedDate}&amp;q4={!Case.Country_Name__c}&amp;q7={!Case.Case_product_category__c}&amp;q9={!Case.Case_Brand__c}&amp;q10={!Case.L5_Product_Category__c}&amp;q11={!Case.Product_UPC__c}&amp;q12={!Case.Date_of_Manufacture__c}&amp;q13={!Case.Origin}</url>
+        <url>http://survey.clicktools.com/go?iv= {!$Setup.cec_Org_Settings__c.Cosmetovigilence_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}&amp;q2={!Case.CaseNumber}&amp;q3={!Case.CreatedDate}&amp;q4={!Case.Country_Name__c}&amp;q7={!Case.L2_Product_Category__c}&amp;q8={!Case.L7_Product_Category__c}&amp;q9={!Case.Case_Brand__c}&amp;q10={!Case.CEC_Product_Reporting_Name__c}&amp;q11={!Case.Product_UPC__c}&amp;q12={!Case.Production_Code__c}&amp;q13={!Case.Origin}&amp;q14={!Case.Global_Reason_L5_desc__c}</url>
     </webLinks>
     <webLinks>
         <fullName>Homecare_Cosmetovigilence</fullName>
@@ -4215,7 +4215,7 @@ sforce.console.openPrimaryTab(null, &apos;/&apos;+caseId, true);
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Homecare_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}&amp;q2={!Case.CreatedDate}&amp;q3={!Case.Country_Name__c}&amp;q6={!Case.Case_product_category__c}&amp;q8={!Case.Case_Brand__c}&amp;q9={!Case.L5_Product_Category__c}&amp;q10={!Case.Product_UPC__c}&amp;q11={!Case.Date_of_Manufacture__c}&amp;q12={!Case.Origin}</url>
+        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Homecare_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}&amp;q2={!Case.CreatedDate}&amp;q3={!Case.Country_Name__c}&amp;q6={!Case.L2_Product_Category__c}&amp;q7={!Case.L7_Product_Category__c}&amp;q8={!Case.Case_Brand__c}&amp;q9={!Case.CEC_Product_Reporting_Name__c}&amp;q10={!Case.Product_UPC__c}&amp;q11={!Case.Production_Code__c}&amp;q12={!Case.Origin}</url>
     </webLinks>
     <webLinks>
         <fullName>Ingestion_Cosmetovigilence</fullName>
@@ -4235,7 +4235,7 @@ sforce.console.openPrimaryTab(null, &apos;/&apos;+caseId, true);
         <protected>false</protected>
         <showsLocation>false</showsLocation>
         <showsStatus>false</showsStatus>
-        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Ingestion_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}&amp;q2={!Case.CreatedDate}&amp;q3={!Case.Country_Name__c}&amp;q6={!Case.Case_product_category__c}&amp;q8={!Case.Case_Brand__c}&amp;q9={!Case.L5_Product_Category__c}&amp;q10={!Case.Product_UPC__c}&amp;q11={!Case.Date_of_Manufacture__c}&amp;q12={!Case.Origin}</url>
+        <url>http://survey.clicktools.com/go?iv={!$Setup.cec_Org_Settings__c.Ingestion_Questionnaire_Id__c}&amp;{!$Setup.cec_Org_Settings__c.Cosmetovigilence_CaseId_Reference__c}={!Case.Id}&amp;q2={!Case.CreatedDate}&amp;q3={!Case.Country_Name__c}&amp;q6={!Case.L2_Product_Category__c}&amp;q7={!Case.L7_Product_Category__c}&amp;q8={!Case.Case_Brand__c}&amp;q9={!Case.CEC_Product_Reporting_Name__c}&amp;q10={!Case.Product_UPC__c}&amp;q11={!Case.Production_Code__c}&amp;q12={!Case.Origin}</url>
     </webLinks>
     <webLinks>
         <fullName>New_Case</fullName>

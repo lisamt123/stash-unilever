@@ -648,6 +648,24 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>IPM_Set_Misaligned_Date</fullName>
+        <field>Misaligned_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>IPM_Set Misaligned Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>MisalignmentDateTime</fullName>
+        <field>MisalignmentDateTime__c</field>
+        <formula>now()</formula>
+        <name>MisalignmentDateTime</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>Financial Charter Approved</fullName>
         <actions>
@@ -802,6 +820,25 @@
             <field>IPM_Financial__c.Volume_Unit_Global__c</field>
             <operation>equals</operation>
             <value>Total &apos;000 Units</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Financial Copy G2R Volume Unit Tons</fullName>
+        <actions>
+            <name>Financial_Copy_G2R_Volume_Unit_Tons</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Copy_Global_to_Regional__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>IPM_Financial__c.Volume_Unit_Global__c</field>
+            <operation>equals</operation>
+            <value>Total Tons</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -1112,6 +1149,30 @@
         <active>true</active>
         <criteriaItems>
             <field>IPM_Financial__c.MR_Approved__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>IPM_Calculate Misaligned Date</fullName>
+        <actions>
+            <name>IPM_Set_Misaligned_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>MisalignmentDateTime</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>IF(AND( Misaligned__c,  ISCHANGED( Misaligned__c )),  true, false)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Misalignment</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>IPM_Financial__c.Misaligned__c</field>
             <operation>equals</operation>
             <value>True</value>
         </criteriaItems>

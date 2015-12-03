@@ -3,10 +3,17 @@
     <defaultLandingTab>IPM_Home</defaultLandingTab>
     <description>This App is built for Unilever Innovation and Process Management</description>
     <label>IPM-NG</label>
-    <logo>IPMNG/IPMNG_Logo.png</logo>
-    <tab>standard-Chatter</tab>
     <tab>IPM_Home</tab>
     <tab>All_Projects</tab>
-    <tab>My_To_Do_List</tab>
-    <tab>standard-report</tab>
+    <tab>IPM_My_To_Do_List</tab>
+    <tab>IPM_Company_Card__c</tab>
+    <tab>IPM_Exchange_Rate__c</tab>
+    <tab>IPM_Project__c</tab>
+    <tab>IPM_Project_Template__c</tab>
+    <tab>IPM_Document_Template__c</tab>
+    <tab>IPM_Section__c</tab>
+    <tab>IPM_Questionnaire__c</tab>
+    <tab>IPM_Task__c</tab>
+    <tab>IPM_Milestone__c</tab>
+    <tab>IPM_CorePara_helps_example__c</tab>
 </CustomApplication>

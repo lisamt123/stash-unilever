@@ -9,6 +9,14 @@
         <value>IPM Bosscard</value>
     </caseValues>
     <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPMBosscard_Span --></label>
+        <name>IPMBosscard_Span__c</name>
+    </fields>
+    <fields>
         <label><!-- Assumptions --></label>
         <name>IPM_Assumptions__c</name>
     </fields>
@@ -39,6 +47,10 @@
     <fields>
         <label><!-- Bosscard Logo --></label>
         <name>IPM_Bosscard_Logo__c</name>
+    </fields>
+    <fields>
+        <label><!-- Bosscard Span Logo --></label>
+        <name>IPM_Bosscard_Span_Logo__c</name>
     </fields>
     <fields>
         <label><!-- IPM Bosscard Status --></label>
@@ -73,6 +85,10 @@
         <name>IPM_Brand__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Category Icon --></label>
+        <name>IPM_Category_Icon__c</name>
+    </fields>
+    <fields>
         <label><!-- Category --></label>
         <name>IPM_Category__c</name>
     </fields>
@@ -80,22 +96,6 @@
         <label><!-- IPM Company Card --></label>
         <name>IPM_Company_Card__c</name>
         <relationshipLabel><!-- IPM Bosscard --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- Company --></label>
-        <name>IPM_Company__c</name>
-        <picklistValues>
-            <masterLabel>Beiersdorf</masterLabel>
-            <translation><!-- Beiersdorf --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Church &amp; Dwight</masterLabel>
-            <translation><!-- Church &amp; Dwight --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Coty</masterLabel>
-            <translation><!-- Coty --></translation>
-        </picklistValues>
     </fields>
     <fields>
         <label><!-- Constraints --></label>
@@ -110,21 +110,13 @@
         <name>IPM_Deliverables__c</name>
     </fields>
     <fields>
-        <label><!-- IPM FilledIn Percentage --></label>
+        <label><!-- IPM Filled In Percent --></label>
         <name>IPM_Filled_In_Percent__c</name>
     </fields>
     <fields>
         <label><!-- Gate Keeper --></label>
         <name>IPM_Gate_Keeper__c</name>
-        <relationshipLabel><!-- IPM Bosscard --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- IsAutoSave --></label>
-        <name>IPM_IsAutoSave__c</name>
-    </fields>
-    <fields>
-        <label><!-- IsCraeted --></label>
-        <name>IPM_IsCraeted__c</name>
+        <relationshipLabel><!-- IPM Bosscard (Gate Keeper) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- IsSaved --></label>
@@ -152,6 +144,19 @@
         <name>IPM_Potential_Business_Opportunity__c</name>
     </fields>
     <fields>
+        <label><!-- Project Leader --></label>
+        <name>IPM_Project_Leader__c</name>
+        <relationshipLabel><!-- IPM Bosscard (Project Leader) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>IPM_Region_Shr__c</name>
+    </fields>
+    <fields>
+        <label><!-- Region --></label>
+        <name>IPM_Region__c</name>
+    </fields>
+    <fields>
         <label><!-- Resources --></label>
         <name>IPM_Resources__c</name>
     </fields>
@@ -160,12 +165,57 @@
         <name>IPM_Scope__c</name>
     </fields>
     <fields>
+        <label><!-- Small C --></label>
+        <name>IPM_Small_C_shr__c</name>
+    </fields>
+    <fields>
         <label><!-- Sustainability --></label>
         <name>IPM_Sustainibility__c</name>
     </fields>
     <fields>
         <label><!-- Target Launch Date --></label>
         <name>IPM_Target_Launch_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- isBosscardSkipped --></label>
+        <name>IPM_isBosscardSkipped__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is Delete? --></label>
+        <name>Is_Delete__c</name>
+    </fields>
+    <fields>
+        <label><!-- ProjectTypeValue --></label>
+        <name>ProjectTypeValue__c</name>
+    </fields>
+    <fields>
+        <label><!-- To be Deleted? --></label>
+        <name>To_be_Deleted__c</name>
+    </fields>
+    <fields>
+        <help><!-- Value selected here will be default for Project creation --></help>
+        <label><!-- Type of Project --></label>
+        <name>Type_of_Project__c</name>
+        <picklistValues>
+            <masterLabel>Brand Led Growth(BLG)</masterLabel>
+            <translation><!-- Brand Led Growth(BLG) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Innovation/Renovation</masterLabel>
+            <translation><!-- Innovation/Renovation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Operational</masterLabel>
+            <translation><!-- Operational --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Used By Workflow 175 days --></label>
+        <name>Used_By_Workflow_175_days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Used By Workflow 30 days --></label>
+        <name>Used_By_Workflow_30_days__c</name>
     </fields>
     <layouts>
         <layout>Bosscard Layout</layout>
@@ -184,25 +234,6 @@
         <sections>
             <label><!-- Project Details --></label>
             <section>Project Details</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>IPM Bosscard Layout</layout>
-        <sections>
-            <label><!-- BOSSCARD --></label>
-            <section>BOSSCARD</section>
-        </sections>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-        <sections>
-            <label><!-- Detail --></label>
-            <section>Detail</section>
-        </sections>
-        <sections>
-            <label><!-- Status --></label>
-            <section>Status</section>
         </sections>
     </layouts>
     <startsWith>Consonant</startsWith>

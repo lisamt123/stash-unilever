@@ -261,8 +261,6 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
-<<<<<<< HEAD
-=======
         <fullName>Market_Equals_Sri_Lanka_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>
@@ -279,7 +277,6 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
->>>>>>> FETCH_HEAD
         <fullName>Market_Equals_UK_Manager</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>

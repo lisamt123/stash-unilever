@@ -1,50 +1,97 @@
-public class IPM_GatekeeperChecklist
-{
-
-    public static list<IPM_Questionnaire__c> gkChecklist{get;set;}
-    public static  ID recTypeGK {get;set;}
-
-    public static  ID recTypeRnD {get;set;}
-    public static list<IPM_Questionnaire__c> rndQuesList{get;set;}
-    
-    public IPM_Questionnaire__c gkCheck{get; set;}
-    public Id quesId{get; set;}
-    public string comment{get; set;}
-    public string ans{get; set;}
-    public boolean cmts{get;set;}
-    public Boolean isEditable{get;set;}
+/****************************************************************************************************************************
+@Author: Cognizant
+@Name: IPM_GatekeeperChecklist
+@Created Date: 12/01/2015
+@Description: To Display Gatekeeper Checklist Questions for gate Documents
+@Version: 1.0
+@Reference: Gatekeeper Checklist Components
+*/
+public with sharing class IPM_GatekeeperChecklist{  
+    //For exception handler
+    private static final String IPM_GATEKEEPERCHECKLIST_STR = IPM_GatekeeperChecklist.class.getName();
+    private static final String GET_CHECKLIST_QUESTIONS_STR='getChecklistQuestions';
+    private static final String GET_SECTION_WISE_GKCHECKLIST_STR='getSectioWiseGKChecklist'; 
+    private static final String GET_GKCHECKLIST_STR='getGKChecklist';
+    private static final String UPDATE_GKCHECKLIST_STR='updateGKchecklist';
+    private static final String GET_RECORDTYPEID_STR='getRecordTypeId';
+    //Initializing Variables
+    public static  ID recTypeGK; //Contains Gatekeeper Check list Record type Id
+    public static  ID recTypeRnD; //Contains R&D  Record type Id
+    public static  ID recTypeRnDFeasibility; //Contains R&D Feasibility  Record type Id
+    public static  ID recTypeSCFeasibility; //Contains SC Feasibility  Record type Id
+    public static  ID recTypeTrademark;//Contains Trademark Feasibility  Record type Id
+     
+    public static list<IPM_Questionnaire__c> gkChecklist{get;set;} //Contains Gatekeeper Check list Questions
+    public static list<IPM_Questionnaire__c> quesList{get; set;} //Contains feasibility and rnd questions
+    public IPM_Questionnaire__c gkCheck{get; set;} //Contains Gatekeeper Check list Record
+    public Id quesId{get; set;} //Questionnaire Record Id
+    public string comment{get; set;} //Comments for Questionnaire
+    public string ans{get; set;} //Answer for Questionnaire
+    public Boolean isEditable{get;set;} //To Check Read Only Mode or Editable
+    public ID projectID{get;set;} //Project Id
+    public Boolean cmts{get; set;} //Used for updating comments and Check list Value
+    public IPM_Project_Document_Section__c  projDocSec {get;set;} //Contains Project Document Section Record
+    //Contains Gate Document Type and Retrieving Gatekeeper Check list Questionnaires
     public string gateType{ 
         get {
-            return gateType ;
+            return gateType;
         }
         set {
             gateType = value;
-            getGKChecklist();
-            
-        }}
-    //created to reduce number of Queries   
-    public string gateTypeRND{ 
+            getGKChecklist(); 
+        }
+    }
+    //Contains Gate Document Type to Retrieve R&D Questionnaires
+    public string gateTypeRND{  
         get {
-            return gateType ;
+            return gateType;
         }
         set {
             gateTypeRND = value;
-           getrndChecklist();
-        }}
-    
-    
-    
+             getChecklistQuestions(IPM_ConstantUtils.RND,gateTypeRND);
+        }
+    }
+    //Contains Gate Document Type to Retrieve SC Feasibility Questionnaires
+    public string gateTypeSCFeas{  
+        get {
+            return gateType;
+        }
+        set {
+            gateTypeSCFeas = value;
+            getChecklistQuestions(IPM_ConstantUtils.SC_FEASIBILITY,gateTypeSCFeas);
+        }
+    }
+    //Contains Gate Document Type to Retrieve R&D Feasibility Questionnaires
+    public string gateTypeRNDFeas{  
+        get {
+            return gateType;
+        }
+        set {
+            gateTypeRNDFeas = value;
+             getChecklistQuestions(IPM_ConstantUtils.RND_FEASIBILITY,gateTypeRNDFeas);
+        }
+    }
+
+    public string gateTypeTradeMark{  
+        get {
+            return gateType;
+        }
+        set {
+            gateTypeTradeMark= value;
+            getChecklistQuestions(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE,gateTypeTradeMark);
+        }
+    }
+
+    //To Check Record is Editable or Read Mode
     public boolean editTable{ 
         get {
             return editTable;
         }
         set {
             editTable= value;
-            //getGKChecklist();
-        }}
-    
-    public ID projectID{get;set;} //Project Id
-    
+        }
+    }
+    //Contains Project Document Section Id to Retrieve Gatekeeper Checklist Questionnaires Section Wise
     public ID SecId{ 
         get {
             return SecId;
@@ -52,185 +99,161 @@ public class IPM_GatekeeperChecklist
         set {
             SecId= value;
             getSectioWiseGKChecklist();
-        }}// document Section Id
+        }
+    }
     
-    public IPM_Project_Document_Section__c  projDocSec {get;set;}
-    public static list<IPM_Questionnaire__c> gkC= new list<IPM_Questionnaire__c>();
-    public static list<IPM_Questionnaire__c> rndQ= new list<IPM_Questionnaire__c>();
-    
-
-    public static List<IPM_Project_Document_Section__c>  projDocSeclist {get;set;}
-    
-    //constructor
-    
-    public IPM_GatekeeperChecklist()
-    {
+    /************************************************************************************************************************
+    *  Description Constructor Getting Project Id From Page URL Parameter
+    *  @name IPM_GatekeeperChecklist
+    */
+    public IPM_GatekeeperChecklist(){
+        IPM_IECompatible.ieFix();//For IE Compatibility
         projectID=ApexPages.currentPage().getParameters().get('Id'); 
-        // projDocSecId=ApexPages.currentPage().getParameters().get('projDocSecId');
-        
-       // getGKChecklist();
-       // getrndChecklist();
-        System.debug('Number of Queries used in this Apex code so far: ' + Limits.getQueries());
-        // generateRnDQuestion();
-        /*   if(SecId!=null || SecId!='')
-    {
-        getSectioWiseGKChecklist();
-    }*/
-    }
-    //generate GK checklist for Gate Document call from trigger
-    public static void generateGKChecklist(String gateType,List<Id> projectIDs)
-    {
-        recTypeGK =Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get('GateKeeperChecklist').RecordTypeId;
-        Set<Id> projectID=new Set<Id>();
-        for(Id i:projectIDs)
-        {
-            projectID.add(i);
-        }
-        System.debug(projectID+'projectID');
-        gkChecklist=[Select IPM_Question__c,IPM_Project_Document_Section__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_Partly__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,RecordTypeId,IPM_Project__c from IPM_Questionnaire__c where IPM_Project__c='' and IPM_RQS_Gate_Type__c=:gateType and RecordTypeId=:recTypeGK and Is_Master__c=true];
-        System.debug(gkChecklist+'gkChecklist');
-        if(gkChecklist.size()>0)
-        {
-            for(Integer i=0;i<projectIDs.size();i++)
-            {
-                for(IPM_Questionnaire__c gkQ : gkChecklist)
-                {
-                    IPM_Questionnaire__c tempGKQ= new IPM_Questionnaire__c();
-                    tempGKQ.IPM_Project__c=projectIDs[i];
-                    tempGKQ.IPM_Question_Help_Text__c=gkQ.IPM_Question_Help_Text__c;
-                    tempGKQ.IPM_HelpText_Yes__c=gkQ.IPM_HelpText_Yes__c;
-                    tempGKQ.IPM_HelpText_Partly__c=gkQ.IPM_HelpText_Partly__c;
-                    tempGKQ.IPM_HelpText_No__c=gkQ.IPM_HelpText_No__c;              
-                    tempGKQ.IPM_Question__c=gkQ.IPM_Question__c;
-                    tempGKQ.IPM_RQS_Gate_Type__c=gateType;
-                    tempGKQ.IPM_GK_Answers__c=gkQ.IPM_GK_Answers__c;
-                    tempGKQ.RecordTypeId=recTypeGK;
-                    tempGKQ.IPM_Sequence_Number__c=gkQ.IPM_Sequence_Number__c;
-                    tempGKQ.IPM_Section_Sequence_Number__c=gkQ.IPM_Section_Sequence_Number__c;  
-                    gkC.add(tempGKQ);
-                }
-            }
-            if (gkC.isEmpty() == false) 
-            {
-                try 
-                {
-                    insert gkC;
-                    System.debug(gkC+'gkC');
-                    updateSectionGKChecklist(gateType,projectID);
-                    generateRnDQuestion(gateType,projectIDs);
-                } 
-                catch (DmlException e) {
-                    // Process exception here
-                }
-            }
-        }
-        // generateRnDQuestion(projectID);
-    }
-    public static void updateSectionGKChecklist(String gateType,Set<Id> projectID)
-    {
-        List<IPM_Questionnaire__c> gkQuestions=new List<IPM_Questionnaire__c>();
-        recTypeGK =Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get('GateKeeperChecklist').RecordTypeId;
-        gkQuestions=[Select IPM_Question__c,IPM_Project_Document_Section__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_Partly__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,RecordTypeId,IPM_Project__c from IPM_Questionnaire__c where IPM_Project__c In: projectID and IPM_RQS_Gate_Type__c=:gateType and RecordTypeId=:recTypeGK];
-        projDocSeclist=[Select ID,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__r.IPM_Project__c from IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c In:projectID and IPM_Project_Document__r.IPM_GateDocuments__c=:gateType];
-        for(IPM_Project_Document_Section__c pds:projDocSeclist)
-        {
-            for(Integer i=0;i<gkQuestions.size();i++)
-            {
-                if(gkQuestions[i].IPM_Project__c==pds.IPM_Project_Document__r.IPM_Project__c && gkQuestions[i].IPM_Section_Sequence_Number__c==pds.IPM_Section_Sequence__c)
-                {
-                    gkQuestions[i].IPM_Project_Document_Section__c=pds.Id;
-                }
-            }
-        }
-        update gkQuestions;
-        System.debug('Updated gkQuestions'+gkQuestions);
     }
     
-    // List the questions in the gate document edit page
-    public void getGKChecklist()
-    {
-        recTypeGK =Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get('GateKeeperChecklist').RecordTypeId;
-        
-        // projDocSec=[Select Id,IPM_Section_Sequence__c,IPM_Section_Name__c from IPM_Project_Document_Section__c where Id=:projDocSecId];
+    /************************************************************************************************************************
+    *  Description Getting Gatekeeper Checklist,R&D & Feasibility Record Type Ids
+    *  @name getRecordTypeId
+    *  @param none
+    *  @return void
+    *  @throws query exception
+    */
+    public static void getRecordTypeId(){  
+        try{
+            recTypeGK =Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.GATEKEEPER_CHECKLIST_RECORD_TYPE).RecordTypeId;
+            recTypeRnD =Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RNDQUESTION_RECORD_TYPE).RecordTypeId;
+            recTypeRnDFeasibility=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.RNDFEASIBILITYQUESTION_RECORD_TYPE).RecordTypeId;
+            recTypeSCFeasibility=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.SCFEASIBILITY_RECORD_TYPE).RecordTypeId;
+            recTypeTrademark=Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get(IPM_ConstantUtils.TRADEMARK_RECORD_TYPE).RecordTypeId;
+        }
+       
+        catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
+                GET_RECORDTYPEID_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        }
+    }
+    
+    /************************************************************************************************************************
+    *  Description To Show Gatekeeper Checklist Questionnaires for Displaying in Gate Document
+    *  @name getGKChecklist
+    *  @param none
+    *  @return void
+    *  @throws query exception
+    */
+    public void getGKChecklist(){
+        try{
+            //Retrieving Record Type Ids
+            getRecordTypeId();  
+            String query='SELECT ID,IPM_Section_External_Id__c,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_Partly__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Section_Name__c FROM IPM_Questionnaire__c WHERE IPM_RQS_Gate_Type__c=:gateType AND RecordTypeId=:recTypeGK AND IPM_Project__c=:projectID';
+            if(projDocSec!=null){
+                string projDocSecSequence=string.escapeSingleQuotes(projDocSec.IPM_Section_Sequence__c);//exception of unused local varaibale of Sonar. Used in below query
+                gkChecklist=Database.query(query+' AND IPM_Section_Sequence_Number__c=:projDocSecSequence order by IPM_Sequence_Number__c ASC LIMIT 50000');
+            }
+            else{
+                gkChecklist=Database.Query(query+' order by IPM_Sequence_Number__c ASC LIMIT 50000');
+            }  
+        }
+       
+        catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
+                GET_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        }
+    }
 
-        gkChecklist=[Select ID,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_Partly__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId,IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Section_Name__c from IPM_Questionnaire__c where IPM_RQS_Gate_Type__c=:gateType and RecordTypeId=:recTypeGK and IPM_Project__c=:projectID ORDER BY IPM_Sequence_Number__c ASC ];
-        
-    }
-    
-    
-    // to update the Answers and Comments in the gate keeper Checklist
-    public pageReference updateGKchecklist()
-    {
-        System.debug(quesId+'id...........');
-        gkCheck=[Select ID,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_Partly__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId from IPM_Questionnaire__c where Id=:quesId];
-        if(cmts==false)
-        gkCheck.IPM_GK_Answers__c=ans;
-        if(cmts==true)
-        gkCheck.IPM_Comments__c =comment;
-        update gkCheck;
-        //getGKChecklist();
-        //gkChecklist=[Select ID,IPM_Question__c,IPM_Question_Help_Text__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId from IPM_Questionnaire__c where IPM_RQS_Gate_Type__c=:gateType and RecordTypeId=:recTypeGK and IPM_Project__c=:projectID ORDER BY IPM_Sequence_Number__c ASC ];
+    /************************************************************************************************************************
+    *  Description To Update the Answers and Comments in the Gatekeeper Checklist Questionnaires
+    *  @name getSectioWiseGKChecklist
+    *  @param none
+    *  @return void
+    *  @throws dml exception
+    */
+    public pageReference updateGKchecklist(){
+        if(quesId != null)  {
+            gkCheck=new IPM_Questionnaire__c();
+            gkCheck.Id=quesId;
+            try{
+                if(cmts){
+                    gkCheck.IPM_Comments__c =comment;
+                }   
+                else{
+                    gkCheck.IPM_GK_Answers__c=ans;
+                }
+                update gkCheck;
+            }
+            catch (DMLException ex) {
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
+                    UPDATE_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
+            }
+            catch(Exception ex){
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
+                    UPDATE_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+            }
+        }
         return null;
     }
-
-
-    // to fetch section wise gatekeeper question
-
-    public void getSectioWiseGKChecklist()
-    {
-        system.debug('documetn section id'+SecId);
-        projDocSec=[Select Id,IPM_Section_Sequence__c from IPM_Project_Document_Section__c where Id=:SecId];
-        getGKChecklist();
-    }
     
-    
-    // Function to generate question for the RnD section 5.1
-    public static void generateRnDQuestion(String gateType,List<Id> projectIDs)
-    {
-        recTypeRnD =Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get('RNDQuestion').RecordTypeId;
-        Set<Id> projectID=new Set<Id>();
-        for(Id i:projectIDs)
-        {
-            projectID.add(i);
+    /************************************************************************************************************************
+    *  Description To Fetch Section Wise Gatekeeper Checklist Questionnaires
+    *  @name getSectioWiseGKChecklist
+    *  @param none
+    *  @return void
+    *  @throws query exception
+    */
+    public void getSectioWiseGKChecklist(){
+        try{
+            projDocSec=[SELECT Id,IPM_Section_Sequence__c,IPM_Master_Section_External_Id__c FROM IPM_Project_Document_Section__c WHERE Id=:SecId];
+            getGKChecklist();
         }
-        rndQuesList=[Select IPM_Question__c,IPM_RQS_Gate_Type__c,IPM_GK_Answers__c,RecordTypeId,IPM_Project__c from IPM_Questionnaire__c where IPM_Project__c='' and RecordTypeId=:recTypeRnD and Is_Master__c=true];
-        
-        if(rndQuesList.size()>0)
-        {
-            for(Integer i=0;i<projectIDs.size();i++)
-            {
-            for(IPM_Questionnaire__c rndQu : rndQuesList)
-            {
-                IPM_Questionnaire__c temprdQ= new IPM_Questionnaire__c();
-                temprdQ.IPM_Project__c=projectIDs[i];
-                temprdQ.IPM_Question__c=rndQu.IPM_Question__c;
-                temprdQ.IPM_GK_Answers__c=rndQu.IPM_GK_Answers__c;
-                temprdQ.RecordTypeId=recTypeRnD;
-                rndQ.add(temprdQ);
-            }
-            }
-            if (rndQ.isEmpty() == false) {
-                try {
-                    insert rndQ;
-                } 
-                catch (DmlException e) {
-                    // Process exception here
-                }
-                
-            }
+       
+        catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
+                GET_SECTION_WISE_GKCHECKLIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
     
-    //get Rnd Question List
-    public void getrndChecklist()
-    {
-        recTypeRnD =Schema.SObjectType.IPM_Questionnaire__c.RecordTypeInfosByName.get('RNDQuestion').RecordTypeId;
-        system.debug('I am here insid RND'+projectID);
-        // projDocSec=[Select Id,IPM_Section_Sequence__c,IPM_Section_Name__c from IPM_Project_Document_Section__c where Id=:projDocSecId];
-
-        rndQuesList=[Select ID,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_GK_Answers__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId from IPM_Questionnaire__c where RecordTypeId=:recTypeRnD and IPM_Project__c=:projectID];
-        
+    /************************************************************************************************************************
+    *  Description For Showing R&D,Feasibility Gatekeeper Checklist Questions
+    *  @name getChecklistQuestions
+    *  @param checkListType
+    *  @return void
+    *  @throws query exception
+    */
+    public void getChecklistQuestions(String checklistType,String gateType){
+        try{
+            String checklistRecordType=IPM_ConstantUtils.BLANK;
+            //Retrieving Record Type Ids
+            getRecordTypeId();
+            if(checklistType==IPM_ConstantUtils.SC_FEASIBILITY){
+                checklistRecordType=recTypeSCFeasibility;
+            }
+            else if(checklistType==IPM_ConstantUtils.RND_FEASIBILITY){
+                checklistRecordType=recTypeRnDFeasibility;
+            }
+            else if(checklistType==IPM_ConstantUtils.RND){
+                checklistRecordType=recTypeRnD;
+            }
+            else if(checklistType==IPM_ConstantUtils.TRADEMARK_RECORD_TYPE){
+                checklistRecordType=recTypeTrademark;
+            }
+            if(String.isNotBlank(checklistRecordType)){
+                //Getting Supply Chain Questionnaires for Project
+                quesList=[SELECT ID,IPM_Question__c,IPM_Question_Help_Text__c,IPM_HelpText_Yes__c,IPM_HelpText_No__c,IPM_RQS_Gate_Type__c,
+                                 IPM_Section_Sequence_Number__c,IPM_Sequence_Number__c,IPM_Section_External_Id__c,IPM_GK_Answers__c,IPM_Comments__c ,IPM_Project__c,RecordTypeId 
+                          FROM IPM_Questionnaire__c 
+                          WHERE RecordTypeId=:checklistRecordType AND IPM_Project__c=:projectID AND IPM_RQS_Gate_Type__c=:gateType];
+            }
+            
+        }
+       
+        catch(Exception ex){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEKEEPERCHECKLIST_STR,
+                GET_CHECKLIST_QUESTIONS_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        }
     }
-    
-
 }

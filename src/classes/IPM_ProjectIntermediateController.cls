@@ -1,86 +1,102 @@
-/* Type Name: ipmProjectIntermediateController 
-Author: 
-Created Date:
-Reason: Redirecting to Core Parameters, Task Generation, Project Scope, Team Members Pages
-Change History:Added to fields to query. To be used in vf component "ipmProjectDetails" Removed Standard Controller
-Author: Samrat Chakraborty
-Modified Date: 15-10-2014  */
-public with sharing class IPM_ProjectIntermediateController {
-    
+/**
+* @author Cognizant(Kannan and Samrat)
+* @date 23/01/2015
+* @description Handles Redirection to Core Parameters, Task Generation, Project Scope, Team Members Pages,Used in ipmNavMenuRevamp2 Visualforce Component
+*/
+public virtual with sharing class IPM_ProjectIntermediateController {
     //Initializing Variables
-  
-    public IPM_Project__c project {get; set;}
-    public String projectId;
-    public Boolean isImage{get; set;}
-    public Boolean isDescVisible{get; set;}
-    public String projectType;
-    public string isBossID{get;set;}
-    public list<IPM_Project__c>ProjectCoreParemeters=new list<IPM_Project__c>();
-    public boolean isCoreParameter{get;set;}
-    public boolean isPLeader{get;set;}
-    public IPM_ProjectIntermediateController(){
-      Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=9');
-        isBossID='';
-        projectId=ApexPages.currentPage().getParameters().get('Id');
+    public IPM_Project__c project {get; set;} //Used for Getting Project Record
+    public String projectId{get;set;} //For Getting Project Id from Page URL Parameters
+    /**
+    * @description Getting Page Parameters and Retrieving Appropriate Project Record
+    */ 
+    
+    public static final Set<String> systemFields = new set<String>{'lastmodifiedbyid','isdeleted','createdbyid', 'lastmodifieddate', 'createddate','isdeleted'};
+    
+    public static final Set<String> userFields = new Set<String>{'Id','name','email','username'};
+    
+    public IPM_ProjectIntermediateController()
+    {
+        Apexpages.currentPage().getHeaders().put(System.Label.IPM_X_UA_Compatible, System.Label.IPM_IE_9);
+        projectId=ApexPages.currentPage().getParameters().get(System.Label.IPM_Project_ID);
         if(projectId=='' || projectId==null)
         {
-        projectId=ApexPages.currentPage().getParameters().get('Pid');
+            projectId=ApexPages.currentPage().getParameters().get(System.Label.IPM_Project_PID);
         }
-        isBossID=ApexPages.currentPage().getParameters().get('IsBossID');
-        projectType=ApexPages.currentPage().getParameters().get('isProject');
-        isDescVisible=false;
-        isCoreParameter=false;
-       //ProjectCoreParemeters = [Select id, IPM_IsCompleted__c from IPM_Project__c where id =:projectId];
-        if(ProjectCoreParemeters.size()>0){
-         if(ProjectCoreParemeters[0].IPM_IsCompleted__c==true){
-         isCoreParameter=true;
-         }
-       }
-       IPM_Project__c IPM_proj =new IPM_Project__c();
-      // IPM_proj=[select Deputy_Project_Leader__c,IPM_Project_Leader__c from IPM_Project__c where id=:projectId ];
-      /* if(IPM_proj.Deputy_Project_Leader__c==userinfo.getuserid() || IPM_proj.IPM_Project_Leader__c==userinfo.getuserid() ){
-         isPLeader=true; 
-       }*/
-       /**else if(IPM_proj.Deputy_Project_Leader__r.id==userinfo.getuserid()){
-       isDPLeader=true;
-       }
-       if(IPM_proj.IPM_Project_Leader__c==userinfo.getuserid()){
-        isPLeader=true;
-       }**/
-       
-        if(projectType=='true')
-            isDescVisible=true;
+        //Getting Project Record Using Project Id from Page URL Parameters
         if(projectId!=null)
-      //  if(isBossID=='true'){
-       //  project=[Select Id,IPM_Project_Name__c,IPM_Project_Description__c,IPM_Category_Text__c,IPM_Brand__c,IPM_Project_Logo__c,IPM_Brand_Positioning__c,IPM_Category__r.Name,IPM_Target_Launch_Date__c from IPM_Project__c where IPM_Bosscard__r.id=:projectId];
-       // }else{
-        project=[Select Id,IPM_Project_Name__c,IPM_Project_Description__c,IPM_Project_Leader__c,Deputy_Project_Leader__c,IPM_Category_Text__c,IPM_Brand__c,IPM_Project_Logo__c,IPM_Brand_Positioning__c,IPM_Category__r.Name,IPM_Target_Launch_Date__c,IPM_Phase__c from IPM_Project__c where Id=:projectId];
-       // }
-         if(project.Deputy_Project_Leader__c==userinfo.getuserid() || project.IPM_Project_Leader__c==userinfo.getuserid() ){
-         isPLeader=true; 
-       }
-        if(project.IPM_Project_Logo__c !=null)
-            isImage=true;
-      
+        {
+            getProjectInformation(projectId);
+        }
     }
-      
-    //Initializing Constructor
-  /*  public ipmProjectIntermediateController(ApexPages.StandardController controller) {
-        
-        projectId=ApexPages.currentPage().getParameters().get('Id');
-        projectType=ApexPages.currentPage().getParameters().get('isProject');
-        if(projectType=='true')
-            isDescVisible=true;
-        if(projectId!=null)
-        project=[Select Id,IPM_Project_Name__c,IPM_Project_Description__c,IPM_Project_Logo__c,IPM_Brand_Positioning__c,IPM_Category__r.Name from IPM_Project__c where Id=:projectId];
-        if(project.IPM_Project_Logo__c !=null)
-            isImage=true;
-
-    }*/
     
-     public PageReference BackToProjectIntermediate(){
-               pagereference pg=new pagereference('/apex/ipmProject?id='+projectId);
-               return pg;
-     }
-
+    public void getProjectInformation(Id projectId)
+    {
+        
+        String queryStr = ' SELECT ';
+        
+        Map<String,Schema.SObjectField> fieldTypeMap = Schema.SObjectType.IPM_Project__c.fields.getMap();
+        
+        Map<String,Schema.SObjectField> userFieldTypeMap = Schema.SObjectType.User.fields.getMap();
+        
+        Set<String> userCustomfieldSet = new Set<String>();
+        
+        /* Get User Custom Field Information */
+        
+        for(String userfieldAPIName : userFieldTypeMap.keySet())
+        {
+            Schema.DescribeFieldResult userfieldDescribe = userFieldTypeMap.get(userfieldAPIName).getDescribe();
+            if(userfieldDescribe.isCustom())
+            {
+                userCustomfieldSet.add(userfieldAPIName);
+            }
+        } 
+        
+        /* Get Project Specific Field information */
+        
+        for(String fieldAPIName : fieldTypeMap.keySet())
+        {
+            Schema.DescribeFieldResult fieldDescribe = fieldTypeMap.get(fieldAPIName).getDescribe();
+            
+            if(!fieldDescribe.isNamePointing() &&  fieldAPIName != 'Id' && !systemFields.contains(fieldAPIName))
+            {
+                queryStr += ' '+fieldAPIName+',';
+            }
+            /* Check if it is a Reference field, If yes, get asociated Data */
+            if(fieldDescribe.getType() == Schema.DisplayType.Reference && fieldDescribe.isCustom())
+            {
+                List <Schema.sObjectType> relatedObjectList = fieldDescribe.getReferenceTo();
+                String relationshipName = fieldDescribe.getRelationshipName();
+                if(relatedObjectList!=null && !relatedObjectList.isEmpty() && relationshipName!=null)
+                {
+                    Schema.DescribesObjectResult relatedObjDescribe =  relatedObjectList[0].getDescribe();
+                    String relatedObjectAPI = relatedObjDescribe.getName();
+                    
+                        Map<String,Schema.SObjectField> relatedfieldTypeMap = relatedObjDescribe.fields.getMap();     
+                        for(String relatedfieldAPIName : relatedfieldTypeMap.keySet())
+                        {
+                            Schema.DescribeFieldResult relatedFieldDescibe = relatedfieldTypeMap.get(relatedfieldAPIName).getDescribe();
+                            if(!relatedFieldDescibe.isNamePointing()  && !systemFields.contains(relatedfieldAPIName) )
+                            {
+                                if(relatedObjectAPI == 'User' && (userCustomfieldSet.contains(relatedfieldAPIName) || userFields.contains(relatedfieldAPIName) ))
+                                {
+                                    queryStr += ' ' + relationshipName+'.'+relatedfieldAPIName+',';
+                                }
+                                else
+                                {
+                                   queryStr += ' ' + relationshipName+'.'+relatedfieldAPIName+',';
+                                }
+                            }
+                        }
+                }
+            }
+        }
+         
+        queryStr += 'Id from IPM_Project__c where Id= :projectId';
+        List<IPM_Project__c> projectList = Database.query(queryStr);
+        if(projectList != null && !projectList.isEmpty())
+        {
+            project = projectList[0]; 
+        }
+    } 
 }

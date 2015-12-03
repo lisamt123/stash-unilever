@@ -1,775 +1,352 @@
-/*
-Type Name:IPM_GateDocumentController_Test
-Developed By: Kannan and Samrat
-Change History:
-Reason: 
+/******************************************************************************************************************************
+* @author Cognizant 
+* @date 15/12/2014
+* @description Test Class for Gate Document Controller
 */
-@isTest(seeAllData=true)
+@isTest
 public class IPM_GateDocumentController_Test{    
-    public static IPM_Project__c project;
+    public static IPM_Project__c project;// Project object initialization
     public static IPM_Project_Document__c projDoc;
-    public static IPM_Project_Template__c projTemp; 
-    public static IPM_Project_Document_Section__c projDocSec;
-    public static IPM_Document_Template__c ipdt;
-    public static IPM_Project_Template__c projTempl;
-    public static IPM_Section__c secMst;
-    public static IPM_Project_Resource__c projRes;
-    
-
-    public static IPM_Bosscard__c Bosscard;
-    public static IPM_Task__c ipmltask;
-    public static IPM_Milestone__c PLIpmMiles;
-    public static IPM_Questionnaire__c questionaire;
-    
-    static void initializedData()
-    { 
+    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
+    public static List<SelectOption> secOpt=new List<SelectOption>();
+    private static final string PROJECT_DOC_CREATED_STR='Project Document created';
+    public static PageReference  pRef;
+    public static IPM_GateDocumentController ipmGateDocContrl;
+    private static final string TEST_COMMENTS_STR='TestComments1';
+    private static final string TEST_MSG_STR='function executed';
+    public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
+    public static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
+    public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
+    public static User globalUser;
+    public static List<IPM_Questionnaire__c> quesList;
+    public static IPM_ProjectIntermediateController interCon;
+    public static IPM_Project_Document_Section__c docSec;
+    public static IPM_Project_Document__c document;
+    public static User stdUserForGateDocument;
+   /*************************************************************************************************************************
+    * @description Test Data
+    */
+    @testSetup static void initializeData(){
+          System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
+        {
+            // user has to be created as system admin 
+            stdUserForGateDocument= IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+        }       
         
-       IPM_Project__share  proshare = new IPM_Project__share  ();
-       List<IPM_Project__share  > listproshare  = new List<IPM_Project__share>();
-       IPM_Project_Document__share  projectDocumentShare = new IPM_Project_Document__share  ();
-       List<IPM_Project_Document__share  > listIPMProjectDocumentShare  = new List<IPM_Project_Document__share  >();
-       IPM_Project_Document_Section__Share  projectDocumentSecShare = new IPM_Project_Document_Section__Share  ();
-       List<IPM_Project_Document_Section__Share  > listIPMProjectDocumentSecShare  = new List<IPM_Project_Document_Section__Share>();
-       List<IPM_Task__Share>ProTaskShare=new list<IPM_Task__Share>();
-       List<IPM_Project_Document_Section__Share>ProDocSec=new list<IPM_Project_Document_Section__Share>();
-       List<IPM_Project_Document_Section_Content__Share>ProDocContent=new list<IPM_Project_Document_Section_Content__Share>();
-       List<IPM_Milestone__Share>ProMiles=new list<IPM_Milestone__Share>();
-       List<IPM_Questionnaire__Share>IpmQuests=new list<IPM_Questionnaire__Share>();
-       List<IPM_Bosscard__Share>IpmBossShare=new list<IPM_Bosscard__Share>();
-       IPM_Bosscard__Share Bossshare=new IPM_Bosscard__Share();
-       IPM_Questionnaire__Share ipmQuestionaireShare = new IPM_Questionnaire__Share();
-       List<IPM_Questionnaire__Share > listIPMQuestionaireShare  = new List<IPM_Questionnaire__Share >();
-
-       IPM_Project_Document_Section_Content__c  ipmProjDocSectionContent =new IPM_Project_Document_Section_Content__c ();
-       IPM_Project_Document_Section_Content__share  ipmProjDocSectionContentShare = new IPM_Project_Document_Section_Content__share  ();
-       List<IPM_Project_Document_Section_Content__share  > listipmProjDocSectionContentShare  = new List<IPM_Project_Document_Section_Content__share  >();
-
-       IPM_Project_Document__Share ProDocShr=new IPM_Project_Document__Share();
-       IPM_Project__Share ipmProshr=new IPM_Project__Share ();
-       IPM_Project_Resource__Share DPLrsShr=new IPM_Project_Resource__Share ();
-       IPM_Project_Resource__Share GatekrsShr=new IPM_Project_Resource__Share ();
-       IPM_Project_Resource__Share TPLrsShr=new IPM_Project_Resource__Share ();
-       IPM_Project_Document_Section__Share ProSec;
-       IPM_Task__Share ProTskShare=new IPM_Task__Share ();
-       IPM_Project_Document_Section_Content__Share IpmDocContent=new IPM_Project_Document_Section_Content__Share ();
-       IPM_Milestone__Share PLIpmMilesShr=new IPM_Milestone__Share ();
-       IPM_Questionnaire__Share IPMQuestshr=new IPM_Questionnaire__Share ();
+        List<User>userLists=[SELECT id FROM user WHERE id=:stdUserForGateDocument.id LIMIT 1];
+        System.AssertEquals(userLists[0].id, stdUserForGateDocument.id,'user id is:'+userLists[0].id);//positive test
         
-      PermissionSet Fps=new PermissionSet();
-        Fps=[SELECT Id FROM PermissionSet WHERE Name = 'IPMNG_Basic' limit 1]; 
-        PermissionSetAssignment psa = new PermissionSetAssignment();
-       
-        User u2 = new User();
-        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
-        u2 = new User(Alias = 'raj30aa', Email='raj30@testorg4.com', 
-        EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
-        LocaleSidKey='en_US', ProfileId = p.Id, 
-        TimeZoneSidKey='America/Los_Angeles', UserName='raj30@testorg4aa.com', 
-        IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-        IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-        insert u2;
-          System.runAs(u2) {
-                psa.AssigneeId = u2.Id;
-                psa.PermissionSetId = Fps.Id;
-                insert psa;
-           }
-        User u = new User();
-        PermissionSetAssignment psa1 = new PermissionSetAssignment();
-        u = new User(Alias = 'raj31', Email='raj31@testorg4.com', 
-        EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
-        LocaleSidKey='en_US', ProfileId = p.Id, 
-        TimeZoneSidKey='America/Los_Angeles', UserName='raj31@testorg4.com', 
-        IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-        IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-        insert u;
-          System.runAs(u) {
-                psa1.AssigneeId = u.Id;
-                psa1.PermissionSetId = Fps.Id;
-                insert psa1;
-           }
+        // Create Company Card information 
+        IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+        IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+        IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
         
-       projTempl=new IPM_Project_Template__c();
-       projTempl.IPM_Template_Complexity__c='Full';
-       insert projTempl;
+        List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+        insert companyCardList;
+        List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
         
-       ipdt=new IPM_Document_Template__c();
-       ipdt.IPM_Project_Template__c=projTempl.ID;
-       ipdt.IPM_Document_Template_Name__c='Charter Gate Fullon';
-       ipdt.IPM_Document_Type__c='Charter';
-       insert ipdt;
-       
-       secMst=new IPM_Section__c();
-       secMst.IPM_Document_Template__c=ipdt.ID;
-       secMst.IPM_Section_Sequence__c='1.1';
-       secMst.IPM_Section_Name__c='Ideas';
-       insert secMst;
-        
-       Bosscard=new IPM_Bosscard__c();
-       Bosscard.Name='TestGate1';
-       insert Bosscard;
-        
-       project=new IPM_Project__c();
-       project.Name='TestGate';
-       project.IPM_Phase__c='Ideas';
-       project.IPM_Complexity__c='Full';
-       project.IPM_Bosscard__c=Bosscard.id;
-        
-       IPM_TestDataUtils testData = new IPM_TestDataUtils();
+        IPM_TestFactory_Helper.getProjectMasterData();
+        projectList = IPM_TestFactory_Helper.projectSetUp(1,stdUserForGateDocument);
+        System.runAs(stdUserForGateDocument) {
+            insert projectList;
             
-       
-       IPM_Company_Card__c ipmCompanyCard = new IPM_Company_Card__c();
-       
-       //insert ipmCompanyCard;
-       
-       
-       project.IPM_Technical_Project_Leader__c =u.Id;
-       project.IPM_Project_Leader__c = u.Id;
-       project.Deputy_Project_Leader__c = u.Id;
-       project.IPM_Project_Gatekeeper__c = u.Id;
-       //project.IPM_Company_Card__c =ipmCompanyCard.Id;
-       insert project; 
-
-       projTemp=new IPM_Project_Template__c();
-       projTemp.IPM_Template_Complexity__c='Full';
-       insert projTemp;
-        
-       projDoc=new IPM_Project_Document__c();
-       projDoc.IPM_GateDocuments__c='Charter'; 
-       projDoc.IPM_Project__c=project.ID;
-       projDoc.IPM_Project_Template__c=projTemp.Id;
-       insert projDoc;     
-        
-        projDocSec=new IPM_Project_Document_Section__c();
-        projDocSec.IPM_Project_Document__c=projDoc.ID;
-        projDocSec.IPM_Section__c=secMst.Id;
-        projDocSec.IPM_Negotiable__c=true;
-        insert projDocSec; 
-
-       ipmProjDocSectionContent =  new IPM_Project_Document_Section_Content__c ();
-        ipmProjDocSectionContent .IPM_Project_Document_Section__c =projDocSec.ID;
-        
-        insert ipmProjDocSectionContent ;
-        
-        
-        
-        ipmltask=new IPM_Task__c ();
-        ipmltask.name='testtask';
-        ipmltask.IPM_Project__c=project.id;
-        insert ipmltask; 
-        
-        PLIpmMiles=new IPM_Milestone__c();
-        PLIpmMiles.name='testtask';
-        PLIpmMiles.IPM_Project__c=project.id;
-        insert PLIpmMiles; 
-        
-        IPM_Project_Resource__c  ipmProjectResource = new IPM_Project_Resource__c();
-       
-        ipmProjectResource.IPM_Role_Type__c = 'Finance';
-        ipmProjectResource.IPM_Project__c = project.Id ;
-        ipmProjectResource.IPM_User__c = psa.AssigneeId  ;
-        insert ipmProjectResource;
-        
-        /*
-            Share insertion
-        */
-        
-        Bossshare=new IPM_Bosscard__Share();
-        Bossshare.parentid=Project.IPM_Bosscard__c;
-        Bossshare.accesslevel='edit';
-        Bossshare.userorgroupid = psa.AssigneeId ;
-          
-        IpmBossShare.add(Bossshare); 
-        insert IpmBossShare;
-
-        PLIpmMilesShr.ParentId= PLIpmMiles.Id;
-        PLIpmMilesShr.userOrGroupId = psa.AssigneeId ;
-        PLIpmMilesShr.accesslevel = 'Edit';
-        ProMiles.add(PLIpmMilesShr);
-        insert ProMiles;
-       
-        ProTskShare.ParentId= ipmltask.Id;
-        ProTskShare.userOrGroupId = psa.AssigneeId ;
-        ProTskShare.accesslevel = 'Edit';
-        ProTaskShare.add(ProTskShare);
-        insert ProTaskShare;
-       
-        proshare.ParentId= project.Id;
-        proshare.userOrGroupId = psa.AssigneeId ;
-        proshare.accesslevel = 'Edit';
-        listproshare.add(proshare);
-        insert listproshare  ;
-       
-        projectDocumentShare.ParentId= projDoc.Id;
-        projectDocumentShare.userOrGroupId = psa.AssigneeId  ;
-        projectDocumentShare.accesslevel = 'Edit';
-        listIPMProjectDocumentShare.add(projectDocumentShare);
-        insert listIPMProjectDocumentShare  ;
-       
-        projectDocumentSecShare.ParentId= projDocSec.Id;
-        projectDocumentSecShare.userOrGroupId = psa.AssigneeId  ;
-        projectDocumentSecShare.accesslevel = 'Edit';
-        listIPMProjectDocumentSecShare.add(projectDocumentSecShare);
-        insert listIPMProjectDocumentSecShare  ;
-        
-        questionaire = testdata.createIPMQuestionaire(project);
-
-        ipmQuestionaireShare.ParentId= questionaire.Id;
-        ipmQuestionaireShare.userOrGroupId = psa.AssigneeId  ;
-        ipmQuestionaireShare.accesslevel = 'Edit';
-        
-        listIPMQuestionaireShare.add(ipmQuestionaireShare);
-        insert listIPMQuestionaireShare;
-        
-        ipmProjDocSectionContentShare .ParentId= ipmProjDocSectionContent.Id;
-        ipmProjDocSectionContentShare .userOrGroupId = psa.AssigneeId  ;
-        ipmProjDocSectionContentShare .accesslevel = 'Edit';
-        
-        listipmProjDocSectionContentShare .add(ipmProjDocSectionContentShare );
-        insert listipmProjDocSectionContentShare  ;
-
+            project=projectList[0];
+            List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
+        }
     }
-    static void initializedData1()
-    { 
+    
+    /*************************************************************************************************************************
+    * @description Test Data to set up the project related data
+    */
+    @testSetup static void initializeTestMethodData(){
         
-       IPM_Project__share  proshare = new IPM_Project__share  ();
-       List<IPM_Project__share  > listproshare  = new List<IPM_Project__share>();
-       IPM_Project_Document__share  projectDocumentShare = new IPM_Project_Document__share  ();
-       List<IPM_Project_Document__share  > listIPMProjectDocumentShare  = new List<IPM_Project_Document__share  >();
-       IPM_Project_Document_Section__Share  projectDocumentSecShare = new IPM_Project_Document_Section__Share  ();
-       List<IPM_Project_Document_Section__Share  > listIPMProjectDocumentSecShare  = new List<IPM_Project_Document_Section__Share>();
-       List<IPM_Task__Share>ProTaskShare=new list<IPM_Task__Share>();
-       List<IPM_Project_Document_Section__Share>ProDocSec=new list<IPM_Project_Document_Section__Share>();
-       List<IPM_Project_Document_Section_Content__Share>ProDocContent=new list<IPM_Project_Document_Section_Content__Share>();
-       List<IPM_Milestone__Share>ProMiles=new list<IPM_Milestone__Share>();
-       List<IPM_Questionnaire__Share>IpmQuests=new list<IPM_Questionnaire__Share>();
-       List<IPM_Bosscard__Share>IpmBossShare=new list<IPM_Bosscard__Share>();
-       IPM_Bosscard__Share Bossshare=new IPM_Bosscard__Share();
-       IPM_Questionnaire__Share ipmQuestionaireShare = new IPM_Questionnaire__Share();
-       List<IPM_Questionnaire__Share > listIPMQuestionaireShare  = new List<IPM_Questionnaire__Share >();
-
-       IPM_Project_Document_Section_Content__c  ipmProjDocSectionContent =new IPM_Project_Document_Section_Content__c ();
-       IPM_Project_Document_Section_Content__share  ipmProjDocSectionContentShare = new IPM_Project_Document_Section_Content__share  ();
-       List<IPM_Project_Document_Section_Content__share  > listipmProjDocSectionContentShare  = new List<IPM_Project_Document_Section_Content__share  >();
-
-       IPM_Project_Document__Share ProDocShr=new IPM_Project_Document__Share();
-       IPM_Project__Share ipmProshr=new IPM_Project__Share ();
-       IPM_Project_Resource__Share DPLrsShr=new IPM_Project_Resource__Share ();
-       IPM_Project_Resource__Share GatekrsShr=new IPM_Project_Resource__Share ();
-       IPM_Project_Resource__Share TPLrsShr=new IPM_Project_Resource__Share ();
-       IPM_Project_Document_Section__Share ProSec;
-       IPM_Task__Share ProTskShare=new IPM_Task__Share ();
-       IPM_Project_Document_Section_Content__Share IpmDocContent=new IPM_Project_Document_Section_Content__Share ();
-       IPM_Milestone__Share PLIpmMilesShr=new IPM_Milestone__Share ();
-       IPM_Questionnaire__Share IPMQuestshr=new IPM_Questionnaire__Share ();
-        
-        PermissionSet Fps=new PermissionSet();
-        Fps=[SELECT Id FROM PermissionSet WHERE Name = 'IPMNG_Basic' limit 1]; 
-        PermissionSetAssignment psa = new PermissionSetAssignment();
-       
-        User u2 = new User();
-        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
-        u2 = new User(Alias = 'raj32', Email='raj32@testorg4.com', 
-        EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
-        LocaleSidKey='en_US', ProfileId = p.Id, 
-        TimeZoneSidKey='America/Los_Angeles', UserName='raj32@testorg4.com', 
-        IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-        IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-        insert u2;
-          System.runAs(u2) {
-                psa.AssigneeId = u2.Id;
-                psa.PermissionSetId = Fps.Id;
-                insert psa;
-           }
-        User u = new User();
-        PermissionSetAssignment psa1 = new PermissionSetAssignment();
-        u = new User(Alias = 'raj33', Email='raj33@testorg4.com', 
-        EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
-        LocaleSidKey='en_US', ProfileId = p.Id, 
-        TimeZoneSidKey='America/Los_Angeles', UserName='raj33@testorg4.com', 
-        IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-        IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-        insert u;
-          System.runAs(u) {
-                psa1.AssigneeId = u.Id;
-                psa1.PermissionSetId = Fps.Id;
-                insert psa1;
-           }
-        
-       projTempl=new IPM_Project_Template__c();
-       projTempl.IPM_Template_Complexity__c='Full';
-       insert projTempl;
-        
-       ipdt=new IPM_Document_Template__c();
-       ipdt.IPM_Project_Template__c=projTempl.ID;
-       ipdt.IPM_Document_Template_Name__c='Contract Gate Full2';
-       ipdt.IPM_Document_Type__c='Contract';
-       insert ipdt;
-       
-       secMst=new IPM_Section__c();
-       secMst.IPM_Document_Template__c=ipdt.ID;
-       secMst.IPM_Section_Sequence__c='1.1';
-       secMst.IPM_Section_Name__c='Ideas';
-       insert secMst;
-        
-       Bosscard=new IPM_Bosscard__c();
-       Bosscard.Name='TestGate1';
-       insert Bosscard;
-        
-       project=new IPM_Project__c();
-       project.Name='TestGate';
-       project.IPM_Phase__c='Feasibility';
-       project.IPM_Complexity__c='Full';
-       project.IPM_Bosscard__c=Bosscard.id;
-        
-       IPM_TestDataUtils testData = new IPM_TestDataUtils();
-       IPM_Company_Card__c ipmCompanyCard = new IPM_Company_Card__c();
-       
-       //insert ipmCompanyCard;
-       
-       
-       project.IPM_Technical_Project_Leader__c =u.Id;
-       project.IPM_Project_Leader__c = u.Id;
-       project.Deputy_Project_Leader__c = u.Id;
-       project.IPM_Project_Gatekeeper__c = u.Id;
-       //project.IPM_Company_Card__c =ipmCompanyCard.Id;
-       insert project; 
-
-       projTemp=new IPM_Project_Template__c();
-       projTemp.IPM_Template_Complexity__c='Full';
-       insert projTemp;
-        
-       projDoc=new IPM_Project_Document__c();
-       projDoc.IPM_GateDocuments__c='Contract'; 
-       projDoc.IPM_Project__c=project.ID;
-       projDoc.IPM_Project_Template__c=projTemp.Id;
-       insert projDoc;     
-        
-        projDocSec=new IPM_Project_Document_Section__c();
-        projDocSec.IPM_Project_Document__c=projDoc.ID;
-        projDocSec.IPM_Section__c=secMst.Id;
-        projDocSec.IPM_Negotiable__c=true;
-        insert projDocSec; 
-
-       ipmProjDocSectionContent =  new IPM_Project_Document_Section_Content__c ();
-        ipmProjDocSectionContent .IPM_Project_Document_Section__c =projDocSec.ID;
-        
-        insert ipmProjDocSectionContent ;
-        
-        
-        
-        ipmltask=new IPM_Task__c ();
-        ipmltask.name='testtask';
-        ipmltask.IPM_Project__c=project.id;
-        insert ipmltask; 
-        
-        PLIpmMiles=new IPM_Milestone__c();
-        PLIpmMiles.name='testtask';
-        PLIpmMiles.IPM_Project__c=project.id;
-        insert PLIpmMiles; 
-        
-        IPM_Project_Resource__c  ipmProjectResource = new IPM_Project_Resource__c();
-       
-        ipmProjectResource.IPM_Role_Type__c = 'CMI';
-        ipmProjectResource.IPM_Project__c = project.Id ;
-        ipmProjectResource.IPM_User__c =  psa.AssigneeId ;
-        insert ipmProjectResource;
-        
-        /*
-            Share insertion
-        */
-        
-        Bossshare=new IPM_Bosscard__Share();
-        Bossshare.parentid=Project.IPM_Bosscard__c;
-        Bossshare.accesslevel='edit';
-        Bossshare.userorgroupid =  psa.AssigneeId;
-          
-        IpmBossShare.add(Bossshare); 
-        insert IpmBossShare;
-
-        PLIpmMilesShr.ParentId= PLIpmMiles.Id;
-        PLIpmMilesShr.userOrGroupId =  psa.AssigneeId;
-        PLIpmMilesShr.accesslevel = 'Edit';
-        ProMiles.add(PLIpmMilesShr);
-        insert ProMiles;
-       
-        ProTskShare.ParentId= ipmltask.Id;
-        ProTskShare.userOrGroupId =  psa.AssigneeId;
-        ProTskShare.accesslevel = 'Edit';
-        ProTaskShare.add(ProTskShare);
-        insert ProTaskShare;
-       
-        proshare.ParentId= project.Id;
-        proshare.userOrGroupId =  psa.AssigneeId;
-        proshare.accesslevel = 'Edit';
-        listproshare.add(proshare);
-        insert listproshare  ;
-       
-        projectDocumentShare.ParentId= projDoc.Id;
-        projectDocumentShare.userOrGroupId =  psa.AssigneeId;
-        projectDocumentShare.accesslevel = 'Edit';
-        listIPMProjectDocumentShare.add(projectDocumentShare);
-        insert listIPMProjectDocumentShare  ;
-       
-        projectDocumentSecShare.ParentId= projDocSec.Id;
-        projectDocumentSecShare.userOrGroupId =  psa.AssigneeId ;
-        projectDocumentSecShare.accesslevel = 'Edit';
-        listIPMProjectDocumentSecShare.add(projectDocumentSecShare);
-        insert listIPMProjectDocumentSecShare  ;
-        
-        questionaire = testdata.createIPMQuestionaire(project);
-
-        ipmQuestionaireShare.ParentId= questionaire.Id;
-        ipmQuestionaireShare.userOrGroupId =  psa.AssigneeId ;
-        ipmQuestionaireShare.accesslevel = 'Edit';
-        
-        listIPMQuestionaireShare.add(ipmQuestionaireShare);
-        insert listIPMQuestionaireShare;
-        
-        ipmProjDocSectionContentShare .ParentId= ipmProjDocSectionContent.Id;
-        ipmProjDocSectionContentShare .userOrGroupId =  psa.AssigneeId ;
-        ipmProjDocSectionContentShare .accesslevel = 'Edit';
-        
-        listipmProjDocSectionContentShare .add(ipmProjDocSectionContentShare );
-        insert listipmProjDocSectionContentShare  ;
-
-
+        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
+        globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
+        system.runAs(globalUser){
+            projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
+            (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID,IPM_Project__c from IPM_Questionnaires__r)
+            from IPM_Project__c where Name in:projectNameSet];
+            project=projectListObj[0];
+            projlList=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
+            System.assertEquals(projlList[0].id,project.id);//positive test
+            for(IPM_Project__c projectObj : projectListObj) {
+                projDocList = projectObj.Project_Documents__r;
+                quesList=projectObj.IPM_Questionnaires__r;
+                System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
+            }
+            document=projDocList[0];
+            projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
+            where IPM_Project_Document__c=:projDocList[0].Id];
+            system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id);
+            docSec=projectDocSecListObj[0];
+            pRef = Page.IPM_GateDocument;
+            pRef.getParameters().put(IPM_ConstantUtils.SF_ID, projectListObj[0].Id);
+            Test.setCurrentPage(pRef);
+            interCon=new IPM_ProjectIntermediateController ();
+            interCon.project.Id=projectListObj[0].Id;
+            
+        }
     }
-    static void initializedData2()
-    { 
-        
-         IPM_Project__share  proshare = new IPM_Project__share  ();
-       List<IPM_Project__share  > listproshare  = new List<IPM_Project__share>();
-       IPM_Project_Document__share  projectDocumentShare = new IPM_Project_Document__share  ();
-       List<IPM_Project_Document__share  > listIPMProjectDocumentShare  = new List<IPM_Project_Document__share  >();
-       IPM_Project_Document_Section__Share  projectDocumentSecShare = new IPM_Project_Document_Section__Share  ();
-       List<IPM_Project_Document_Section__Share  > listIPMProjectDocumentSecShare  = new List<IPM_Project_Document_Section__Share>();
-       List<IPM_Task__Share>ProTaskShare=new list<IPM_Task__Share>();
-       List<IPM_Project_Document_Section__Share>ProDocSec=new list<IPM_Project_Document_Section__Share>();
-       List<IPM_Project_Document_Section_Content__Share>ProDocContent=new list<IPM_Project_Document_Section_Content__Share>();
-       List<IPM_Milestone__Share>ProMiles=new list<IPM_Milestone__Share>();
-       List<IPM_Questionnaire__Share>IpmQuests=new list<IPM_Questionnaire__Share>();
-       List<IPM_Bosscard__Share>IpmBossShare=new list<IPM_Bosscard__Share>();
-       IPM_Bosscard__Share Bossshare=new IPM_Bosscard__Share();
-       IPM_Questionnaire__Share ipmQuestionaireShare = new IPM_Questionnaire__Share();
-       List<IPM_Questionnaire__Share > listIPMQuestionaireShare  = new List<IPM_Questionnaire__Share >();
 
-       IPM_Project_Document_Section_Content__c  ipmProjDocSectionContent =new IPM_Project_Document_Section_Content__c ();
-       IPM_Project_Document_Section_Content__share  ipmProjDocSectionContentShare = new IPM_Project_Document_Section_Content__share  ();
-       List<IPM_Project_Document_Section_Content__share  > listipmProjDocSectionContentShare  = new List<IPM_Project_Document_Section_Content__share  >();
-
-       IPM_Project_Document__Share ProDocShr=new IPM_Project_Document__Share();
-       IPM_Project__Share ipmProshr=new IPM_Project__Share ();
-       IPM_Project_Resource__Share DPLrsShr=new IPM_Project_Resource__Share ();
-       IPM_Project_Resource__Share GatekrsShr=new IPM_Project_Resource__Share ();
-       IPM_Project_Resource__Share TPLrsShr=new IPM_Project_Resource__Share ();
-       IPM_Project_Document_Section__Share ProSec;
-       IPM_Task__Share ProTskShare=new IPM_Task__Share ();
-       IPM_Project_Document_Section_Content__Share IpmDocContent=new IPM_Project_Document_Section_Content__Share ();
-       IPM_Milestone__Share PLIpmMilesShr=new IPM_Milestone__Share ();
-       IPM_Questionnaire__Share IPMQuestshr=new IPM_Questionnaire__Share ();
-        
-        PermissionSet Fps=new PermissionSet();
-        Fps=[SELECT Id FROM PermissionSet WHERE Name = 'IPMNG_Basic' limit 1]; 
-        PermissionSetAssignment psa = new PermissionSetAssignment();
-       
-        User u2 = new User();
-        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
-        u2 = new User(Alias = 'raj34', Email='raj34@testorg4.com', 
-        EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
-        LocaleSidKey='en_US', ProfileId = p.Id, 
-        TimeZoneSidKey='America/Los_Angeles', UserName='raj34@testorg4.com', 
-        IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-        IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-        insert u2;
-          System.runAs(u2) {
-                psa.AssigneeId = u2.Id;
-                psa.PermissionSetId = Fps.Id;
-                insert psa;
-           }
-        User u = new User();
-        PermissionSetAssignment psa1 = new PermissionSetAssignment();
-        u = new User(Alias = 'raj35', Email='raj35@testorg4.com', 
-        EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
-        LocaleSidKey='en_US', ProfileId = p.Id, 
-        TimeZoneSidKey='America/Los_Angeles', UserName='raj35@testorg4.com', 
-        IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-        IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-        insert u;
-          System.runAs(u) {
-                psa1.AssigneeId = u.Id;
-                psa1.PermissionSetId = Fps.Id;
-                insert psa1;
-           }
-        
-       projTempl=new IPM_Project_Template__c();
-       projTempl.IPM_Template_Complexity__c='Lite';
-       insert projTempl;
-        
-       ipdt=new IPM_Document_Template__c();
-       ipdt.IPM_Project_Template__c=projTempl.ID;
-       ipdt.IPM_Document_Template_Name__c='Market Ready Gate Lite';
-       ipdt.IPM_Document_Type__c='Market Ready';
-       insert ipdt;
-       
-       secMst=new IPM_Section__c();
-       secMst.IPM_Document_Template__c=ipdt.ID;
-       secMst.IPM_Section_Sequence__c='1.1';
-       secMst.IPM_Section_Name__c='Ideas';
-       insert secMst;
-        
-       Bosscard=new IPM_Bosscard__c();
-       Bosscard.Name='TestGate1';
-       insert Bosscard;
-        
-       project=new IPM_Project__c();
-       project.Name='TestGate';
-       project.IPM_Phase__c='Capability';
-       project.IPM_Complexity__c='Full';
-       project.IPM_Bosscard__c=Bosscard.id;
-        
-       IPM_TestDataUtils testData = new IPM_TestDataUtils();
-       
-       
-       
-       IPM_Company_Card__c ipmCompanyCard = new IPM_Company_Card__c();
-       
-       //insert ipmCompanyCard;
-       
-       
-       project.IPM_Technical_Project_Leader__c =u.Id;
-       project.IPM_Project_Leader__c = u.Id;
-       project.Deputy_Project_Leader__c = u.Id;
-       project.IPM_Project_Gatekeeper__c = u.Id;
-       //project.IPM_Company_Card__c =ipmCompanyCard.Id;
-       insert project; 
-
-       projTemp=new IPM_Project_Template__c();
-       projTemp.IPM_Template_Complexity__c='Full';
-       insert projTemp;
-        
-       projDoc=new IPM_Project_Document__c();
-       projDoc.IPM_GateDocuments__c='Market Ready'; 
-       projDoc.IPM_Project__c=project.ID;
-       projDoc.IPM_Project_Template__c=projTemp.Id;
-       insert projDoc;     
-        
-        projDocSec=new IPM_Project_Document_Section__c();
-        projDocSec.IPM_Project_Document__c=projDoc.ID;
-        projDocSec.IPM_Section__c=secMst.Id;
-        projDocSec.IPM_Negotiable__c=true;
-        insert projDocSec; 
-
-       ipmProjDocSectionContent =  new IPM_Project_Document_Section_Content__c ();
-        ipmProjDocSectionContent .IPM_Project_Document_Section__c =projDocSec.ID;
-        
-        insert ipmProjDocSectionContent ;
-        
-        
-        
-        ipmltask=new IPM_Task__c ();
-        ipmltask.name='testtask';
-        ipmltask.IPM_Project__c=project.id;
-        insert ipmltask; 
-        
-        PLIpmMiles=new IPM_Milestone__c();
-        PLIpmMiles.name='testtask';
-        PLIpmMiles.IPM_Project__c=project.id;
-        insert PLIpmMiles; 
-        
-        IPM_Project_Resource__c  ipmProjectResource = new IPM_Project_Resource__c();
-       
-        ipmProjectResource.IPM_Role_Type__c = 'Finance';
-        ipmProjectResource.IPM_Project__c = project.Id ;
-        ipmProjectResource.IPM_User__c =  psa.AssigneeId ;
-        insert ipmProjectResource;
-        
-        /*
-            Share insertion
-        */
-        
-        Bossshare=new IPM_Bosscard__Share();
-        Bossshare.parentid=Project.IPM_Bosscard__c;
-        Bossshare.accesslevel='edit';
-        Bossshare.userorgroupid =  psa.AssigneeId;
-          
-        IpmBossShare.add(Bossshare); 
-        insert IpmBossShare;
-
-        PLIpmMilesShr.ParentId= PLIpmMiles.Id;
-        PLIpmMilesShr.userOrGroupId =  psa.AssigneeId;
-        PLIpmMilesShr.accesslevel = 'Edit';
-        ProMiles.add(PLIpmMilesShr);
-        insert ProMiles;
-       
-        ProTskShare.ParentId= ipmltask.Id;
-        ProTskShare.userOrGroupId =  psa.AssigneeId;
-        ProTskShare.accesslevel = 'Edit';
-        ProTaskShare.add(ProTskShare);
-        insert ProTaskShare;
-       
-        proshare.ParentId= project.Id;
-        proshare.userOrGroupId =  psa.AssigneeId;
-        proshare.accesslevel = 'Edit';
-        listproshare.add(proshare);
-        insert listproshare  ;
-       
-        projectDocumentShare.ParentId= projDoc.Id;
-        projectDocumentShare.userOrGroupId =  psa.AssigneeId ;
-        projectDocumentShare.accesslevel = 'Edit';
-        listIPMProjectDocumentShare.add(projectDocumentShare);
-        insert listIPMProjectDocumentShare  ;
-       
-        projectDocumentSecShare.ParentId= projDocSec.Id;
-        projectDocumentSecShare.userOrGroupId =  psa.AssigneeId;
-        projectDocumentSecShare.accesslevel = 'Edit';
-        listIPMProjectDocumentSecShare.add(projectDocumentSecShare);
-        insert listIPMProjectDocumentSecShare  ;
-        
-        questionaire = testdata.createIPMQuestionaire(project);
-
-        ipmQuestionaireShare.ParentId= questionaire.Id;
-        ipmQuestionaireShare.userOrGroupId =  psa.AssigneeId ;
-        ipmQuestionaireShare.accesslevel = 'Edit';
-        
-        listIPMQuestionaireShare.add(ipmQuestionaireShare);
-        insert listIPMQuestionaireShare;
-        
-        ipmProjDocSectionContentShare .ParentId= ipmProjDocSectionContent.Id;
-        ipmProjDocSectionContentShare .userOrGroupId =  psa.AssigneeId;
-        ipmProjDocSectionContentShare .accesslevel = 'Edit';
-        
-        listipmProjDocSectionContentShare .add(ipmProjDocSectionContentShare );
-        insert listipmProjDocSectionContentShare  ;
-
- 
-        
-    }
-    static testMethod void gateDocumentControl1()
-    {
-        
-        initializedData();
-        Test.startTest();
-        PageReference pRef = new PageReference('apex/ipm_gatedocument?Id='+project.ID);
-        Test.setCurrentPage(pRef );
-        IPM_GateDocumentController gateDocControl=new IPM_GateDocumentController();
-        gateDocControl.SectionName='Ideas';
-        gateDocControl.IsNegotiable=true;
-        gateDocControl.ChangeSubSection();
-        gateDocControl.ChangeSub1Section();
-        gateDocControl.Isoptional=true;
-        gateDocControl.IsNotstarted=true;
-        gateDocControl.IsFilledIn=true;
-        gateDocControl.IsBD=true;
-        gateDocControl.IsCMI=true;
-        gateDocControl.IsCD=true;
-        gateDocControl.IsRnD=true;
-        gateDocControl.IsSC=true;
-        gateDocControl.IsFinance=true;
-        gateDocControl.IsBB=true;
-        gateDocControl.filterSections();
-        gateDocControl.moveToPLE();
-        gateDocControl.exportToPdf();
-        gateDocControl.SaveAddManage();
-        
-        Test.stopTest();   
-        
-    }
-    static testMethod void gateDocumentControl2()
-    {
-        /*
-        initializedData1();
-        Test.startTest();
-        PageReference pRef = new PageReference('apex/ipm_gatedocument?Id='+project.ID);
-        Test.setCurrentPage(pRef );
-        IPM_GateDocumentController gateDocControl1=new IPM_GateDocumentController();
-        gateDocControl1.SectionName='Feasibility';
-        gateDocControl1.IsNegotiable=true;
-        gateDocControl1.ChangeSubSection();
-        gateDocControl1.ChangeSub1Section();
-        gateDocControl1.ChangeSection();
-        //gateDocControl1.IsNegotiable();
-        //gateDocControl1.Notstarted='Not Started';
-        //gateDocControl1.IPMStatus();
-        //gateDocControl1.BD='BD';
-        //gateDocControl1.FunctionRole();
-        //gateDocControl1.gateDocumentData(project.Id);
-        gateDocControl1.SaveAddManage();
-        gateDocControl1.exportToPdf();
-        Test.stopTest();   
-        */
-    }
-    static testMethod void gateDocumentControl3()
-    {
-        /*
-        initializedData1();
-        Test.startTest();
-        PageReference pRef = new PageReference('apex/ipm_gatedocument?Id='+project.ID);
-        Test.setCurrentPage(pRef);
-        IPM_GateDocumentController gateDocControl2=new IPM_GateDocumentController();
-        gateDocControl2.SectionName='Feasibility';
-        gateDocControl2.IsNegotiable=false;
-        gateDocControl2.ChangeSubSection();
-        gateDocControl2.ChangeSub1Section();
-        gateDocControl2.ChangeSection();
-        //gateDocControl2.IsNegotiable();
-        //gateDocControl2.Notstarted='Not Started';
-        //gateDocControl2.IPMStatus();
-        //gateDocControl2.FunctionRole();
-        //gateDocControl2.gateDocumentData(project.Id);
-        gateDocControl2.SaveAddManage();
-        gateDocControl2.exportToPdf();
-        Test.stopTest();   
-        */
+    
+    
+    /*************************************************************************************************************************
+* @description Running Test Script To test the Constructor
+*/ 
+    static testMethod void getProjectDocumentTest(){
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();
+         ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl.DueDateMsg=false;
+            ipmGateDocContrl.getProjectDocument();
+            ipmGateDocContrl.project.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
+            ipmGateDocContrl.project.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_GCLT;
+            ipmGateDocContrl.getProjectDocument();
+            ipmGateDocContrl.project.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
+            ipmGateDocContrl.getProjectDocument();
+            ipmGateDocContrl.project.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+            ipmGateDocContrl.getProjectDocument();
+            ipmGateDocContrl.project.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
+            ipmGateDocContrl.getProjectDocument();
+            ipmGateDocContrl.project.IPM_Phase__c=IPM_ConstantUtils.PHASE_CAPABILITY;
+            ipmGateDocContrl.getProjectDocument();
+            ipmGateDocContrl.project.IPM_Phase__c=IPM_ConstantUtils.MARKET_READY_GATE;
+            ipmGateDocContrl.project.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+            ipmGateDocContrl.getProjectDocument();
+            ipmGateDocContrl.project.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+            ipmGateDocContrl.getProjectDocument();
+            ipmGateDocContrl.project.IPM_Phase__c=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;
+            ipmGateDocContrl.getProjectDocument();
+            ipmGateDocContrl.project.IPM_Phase__c=IPM_ConstantUtils.PHASE_PLE;
+            ipmGateDocContrl.getProjectDocument();
+            ipmGateDocContrl.project.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
+            ipmGateDocContrl.getProjectDocument();
+            List<IPM_Project_Document__c> lstProjectDoc=[SELECT Id,IPM_Contract_GateKeeper_Model__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,
+            IPM_Approval_Date__c,LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c,LastModifiedBy.Name,IPM_GateDocuments__c 
+            FROM IPM_Project_Document__c 
+            WHERE IPM_Project__c=:project.Id and IPM_GateDocuments__c=:ipmGateDocContrl.gateDocument];
+            System.assertEquals(lstProjectDoc[0].IPM_GateDocuments__c,ipmGateDocContrl.gateDocument,'gate doc matched');
+            test.stopTest();
+        }
     }
     
     
-   public static User  testRunAs() {
-   
-      List<User> usrname = [SELECT UserName from User where UserName='standarduser@testorg4.com' ];
-      User u = new User();
-        
-        if(usrname== null){
-              // Setup test data
-              // This code runs as the system user
-              Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
-
-
-              
-              u = new User(Alias = 'standt4', Email='standarduser@testorg4.com', 
-              EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
-              LocaleSidKey='en_US', ProfileId = p.Id, 
-              TimeZoneSidKey='America/Los_Angeles', UserName='standarduser@testorg4.com', 
-              IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-              IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-              insert u;
-              
-              
-              
-              System.runAs(u) {
-              
-                  
-                  PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'IPMNG_Basic'];
-                    PermissionSetAssignment psa = new PermissionSetAssignment();
-                    psa.AssigneeId = u.Id;
-                    psa.PermissionSetId = ps.Id;
-                    insert psa;
-
-                  
-                  
-                 // The following code runs as user 'u' 
-                 System.debug('Current User: ' + UserInfo.getUserName());
-                 System.debug('Current Profile: ' + UserInfo.getProfileId()); 
-              }
-      }
-      else {
-             if(usrname.size()>0){
-                 u = [SELECT Alias,Email,EmailEncodingKey,LastName,LanguageLocaleKey,LocaleSidKey,ProfileId ,TimeZoneSidKey,UserName, IPM_Category__c ,IPM_Brand_Positioning__c, IPM_Brand_Name__c ,IPM_Role__c , IPM_Sub_Category__c    from User where UserName='standarduser@testorg4.com' ];
-                 
-             }     
-         }   
-      return u ;
-   }
-   
+    /*************************************************************************************************************************
+* @description Running Test Script to test the Filter Sections
+*/ 
+    static testMethod void filterSectionsTest(){   
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();
+            ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl.appendixCCId='abc';
+            ipmGateDocContrl.proDocSectionListForAppendix=projectDocSecListObj;
+            ipmGateDocContrl.getIpmuserType();
+            ipmGateDocContrl.IsTypeAll=true;
+            ipmGateDocContrl.filterSections();
+            ipmGateDocContrl.IsTypeAll=false;
+            ipmGateDocContrl.IsNegotiable=true;
+            ipmGateDocContrl.Isoptional=true;
+            ipmGateDocContrl.filterSections();
+            ipmGateDocContrl.IsStatusAll=true;
+            ipmGateDocContrl.filterSections();
+            ipmGateDocContrl.IsStatusAll=false;
+            ipmGateDocContrl.IsNotstarted=true;
+            ipmGateDocContrl.IsFilledIn=true;
+            ipmGateDocContrl.filterSections();
+            ipmGateDocContrl.IsRoleAll=true;
+            ipmGateDocContrl.filterSections();
+            ipmGateDocContrl.IsRoleAll=false;
+            ipmGateDocContrl.IsBD=true;
+            ipmGateDocContrl.IsCMI=true;
+            ipmGateDocContrl.IsCD=true;
+            ipmGateDocContrl.IsRnD=true;
+            ipmGateDocContrl.IsSC=true;
+            ipmGateDocContrl.IsFinance=true;
+            ipmGateDocContrl.IsBB=true;
+            ipmGateDocContrl.IsPL=true;
+            ipmGateDocContrl.filterSections();
+            System.assertEquals(ipmGateDocContrl.IsFilledIn,false,'value reset through func call');
+            ipmGateDocContrl.IsCMI=true;
+            ipmGateDocContrl.filterSections();
+            ipmGateDocContrl.IsCD=true;
+            ipmGateDocContrl.filterSections();
+            ipmGateDocContrl.IsRnD=true;
+            ipmGateDocContrl.filterSections();
+            ipmGateDocContrl.IsSC=true;
+            ipmGateDocContrl.filterSections();
+            ipmGateDocContrl.IsFinance=true;
+            ipmGateDocContrl.filterSections();
+            ipmGateDocContrl.IsBB=true;
+            ipmGateDocContrl.filterSections();
+            ipmGateDocContrl.IsPL=true;
+            ipmGateDocContrl.filterSections();
+            System.assertEquals(ipmGateDocContrl.IsFilledIn,false,'value reset through func call');
+            test.stopTest();
+        }
+    }  
     
+    
+    /*************************************************************************************************************************
+* @description Running to set the filter sections set from the UI
+*/ 
+    static testMethod void setFilterTest(){
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();
+        ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl.typeFilters=IPM_ConstantUtils.TYPE_ALL+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.TYPE_NON_NEGOTIABLE+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.TYPE_OPTIONAL;
+            ipmGateDocContrl.statusFilters=IPM_ConstantUtils.STATUS_ALL+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.STATUS_NOT_STARTED+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.SECTION_STATUS_FILLED;
+            ipmGateDocContrl.roleFilters=IPM_ConstantUtils.FUNCTIONAL_ROLE_ALL+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.FUNCTIONAL_ROLE_BD+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI+IPM_ConstantUtils.COMMA +
+            IPM_ConstantUtils.FUNCTIONAL_ROLE_CD+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.FUNCTIONAL_ROLE_RD+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.FUNCTIONAL_ROLE_Finance+IPM_ConstantUtils.COMMA +
+            IPM_ConstantUtils.FUNCTIONAL_ROLE_BB+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.FUNCTIONAL_ROLE_SC+IPM_ConstantUtils.COMMA +IPM_ConstantUtils.FUNCTIONAL_ROLE_PL;
+            ipmGateDocContrl.setFilter();
+            System.assertEquals(ipmGateDocContrl.IsPL,false,'value reset');
+            test.stopTest();
+        }
+    }  
+    
+    
+    /*************************************************************************************************************************
+* @description Running Test Script to check the Documet Sections are fetched
+*/ 
+    static testMethod void getProjectDocumentSectionTest(){
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();
+        ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl.projectDoc.Id=projDocList[0].Id;
+            ipmGateDocContrl.getDocumentSectionMap();
+            ipmGateDocContrl.getProjectDocumentSection();
+            List<IPM_Project_Document_Section__c>projSubSectionList=[SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c, IPM_Section_Sequence__c, 
+            IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
+            IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
+            IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
+            IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
+            FROM IPM_Project_Document_Section__c 
+            WHERE IPM_Project_Document__c=:ipmGateDocContrl.projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__c =:ipmGateDocContrl.parentSectionId AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];                  
+            System.assert(projSubSectionList[0].IPM_Default_Section__c,'project section is not empty');
+            test.stopTest();
+        }
+    }
+
+
+    /*************************************************************************************************************************
+* @description Running Test Script to Reset the Filters
+*/ 
+    static testMethod void resetFiltersTest(){initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();  
+        ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl.exportToPdf();
+            ipmGateDocContrl.moveToPLE();
+            ipmGateDocContrl.ResetFilters();
+            System.assert(ipmGateDocContrl.IsTypeAll,'value reset');
+            test.stopTest();
+        }
+    }
+    
+    /*************************************************************************************************************************
+* @description Running Test Script to get the Dynamic sections based on Refactor
+*/ 
+    static testMethod void getDynamicSectionTest(){
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();
+           ipmGateDocContrl=new IPM_GateDocumentController ();
+            ipmGateDocContrl.moveToNextDocument();
+            ipmGateDocContrl.projectDoc.Id=projDocList[0].Id;
+            ipmGateDocContrl.getDynamicSection();
+            List<IPM_Project_Document_Section__c>projSubLevelSectionList=[SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c, IPM_Section_Sequence__c, 
+            IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
+            IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
+            IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
+            IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
+            FROM IPM_Project_Document_Section__c 
+            WHERE IPM_Project_Document__c=:ipmGateDocContrl.projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID=:ipmGateDocContrl.parentSectionId AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
+            System.assert(projSubLevelSectionList[0].IPM_Default_Section__c,TEST_MSG_STR);
+            test.stopTest();
+        }
+    }
+    /*************************************************************************************************************************
+* @description Running Test Script to get the 2nd level sections
+*/ 
+    static testMethod void getProjectSubSectionsTest(){
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();
+        ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl.projectDoc.Id=projDocList[0].Id;
+            ipmGateDocContrl.getProjectSubSections();
+            List<IPM_Project_Document_Section__c>projSubLevelSectionList=[SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c, IPM_Section_Sequence__c, 
+            IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
+            IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
+            IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
+            IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
+            FROM IPM_Project_Document_Section__c 
+            WHERE IPM_Project_Document__c=:ipmGateDocContrl.projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID=:ipmGateDocContrl.parentSectionId AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
+            System.assert(projSubLevelSectionList[0].IPM_Default_Section__c,TEST_MSG_STR);
+            test.stopTest();
+        }
+    }
+    /*************************************************************************************************************************
+* @description Running Test Script to get the Appendix sections
+*/ 
+    static testMethod void getAppendixSectionsTest() {  
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();   
+        ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl.projectDoc.Id=projDocList[0].Id;
+      docSec.IPM_Has_Appendix__c=true;
+      docSec.IPM_Default_Section__c=true;
+      update docSec;
+      system.assertEquals(docSec.IPM_Project_Document__c,projDocList[0].Id, 'Record Not Same');
+     
+      ipmGateDocContrl=new IPM_GateDocumentController ();
+      ipmGateDocContrl.projectDoc.Id=document.Id;
+      ipmGateDocContrl.getAppendixSections();
+     List<IPM_Project_Document_Section__c>projDocAppdxSectionList=[SELECT ID,IPM_Has_Appendix__c,IPM_FunctionalRole__c,IPM_Master_Section_External_Id__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section_Sequence__c,IPM_Section_Name__c 
+      FROM IPM_Project_Document_Section__c 
+      WHERE IPM_Project_Document__c=:ipmGateDocContrl.projectDoc.Id 
+      AND IPM_Has_Appendix__c=true AND IPM_Default_Section__c=true 
+      ORDER BY IPM_Section_Sequence_Number__c asc limit 50000];
+      System.assert(projDocAppdxSectionList[0].IPM_Has_Appendix__c,TEST_MSG_STR);           
+            test.stopTest();                                         
+        }
+    }
+    /*************************************************************************************************************************
+* @description Running Test Script to set up vaius rendereing condition from controller
+*/ 
+    static testMethod void isEditLinkAvailableTest(){ 
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();  
+            ipmGateDocContrl=new IPM_GateDocumentController();          
+            ipmGateDocContrl.isEditLinkAvailable();
+            System.assertEquals(ipmGateDocContrl.isEditLinkActive,true,TEST_MSG_STR);
+            test.stopTest();
+        }
+    }
+    
+    /*************************************************************************************************************************
+* @description Running Test Script
+*/ 
+    static testMethod void showAttchSectionTest(){   
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();
+        ipmGateDocContrl=new IPM_GateDocumentController();
+            ipmGateDocContrl.sectionId=projectDocSecListObj[0].Id;
+            ipmGateDocContrl.showAttchSection();
+            List<Attachment>attachmentList=[SELECT Id,Name,ParentId,Description FROM Attachment WHERE ParentId=:ipmGateDocContrl.sectionId limit 1];
+            System.assertEquals(attachmentList.size(),0,'as we are not inserting any attachment');//Negative Assert
+            test.stopTest();
+        }
+    }
     
 }

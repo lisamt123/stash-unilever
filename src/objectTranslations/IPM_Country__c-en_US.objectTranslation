@@ -9,12 +9,26 @@
         <value>IPM Countries</value>
     </caseValues>
     <fields>
+        <label><!-- Added At Stage --></label>
+        <name>Added_At_Stage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Calculation Index --></label>
+        <name>Calculation_Index__c</name>
+    </fields>
+    <fields>
+        <help><!-- Old Formula - - &gt; Geography__r.ISO_3166_1_code__c    New  Formula - - &gt; MDO_Geography__r.ISO_3166_1_code__c --></help>
         <label><!-- Country Code --></label>
         <name>Country_Code__c</name>
     </fields>
     <fields>
+        <help><!-- Old - - &gt; MDO_Geography__r.Name   New Formula - - &gt;  Geography__r.ISO_Country_Dependency_Name__c --></help>
         <label><!-- Country Name --></label>
         <name>Country_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
     </fields>
     <fields>
         <label><!-- Geography --></label>
@@ -30,8 +44,17 @@
         <name>IPM_Country_Name__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Financial --></label>
+        <name>IPM_Financial__c</name>
+        <relationshipLabel><!-- IPM Countries --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- ISO Code --></label>
         <name>IPM_ISO_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local Project Association Timestamp --></label>
+        <name>IPM_Local_Project_Association_Timestamp__c</name>
     </fields>
     <fields>
         <label><!-- Local Project --></label>
@@ -57,6 +80,10 @@
         <name>IPM_Region_MCO__c</name>
     </fields>
     <fields>
+        <label><!-- Regional Project Association Timestamp --></label>
+        <name>IPM_Regional_Proj_Association_Timestamp__c</name>
+    </fields>
+    <fields>
         <label><!-- Regional Project --></label>
         <name>IPM_Regional_Project__c</name>
         <relationshipLabel><!-- IPM Countries (Regional Project) --></relationshipLabel>
@@ -78,8 +105,21 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Small C --></label>
+        <name>IPM_Small_C_shr__c</name>
+    </fields>
+    <fields>
+        <label><!-- IS EI Country --></label>
+        <name>IS_EI_Country__c</name>
+    </fields>
+    <fields>
         <label><!-- Key --></label>
         <name>Key__c</name>
+    </fields>
+    <fields>
+        <label><!-- Local Rollout Charter --></label>
+        <name>Local_Rollout_Charter__c</name>
+        <relationshipLabel><!-- IPM Countries (Local Rollout Charter) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Local Rollout --></label>
@@ -87,24 +127,37 @@
         <relationshipLabel><!-- IPM Countries (Local) --></relationshipLabel>
     </fields>
     <fields>
+        <help><!-- Old Formula - - &gt;Geography__r.Country_Group_Code__c     New Formula - - &gt; MDO_Geography__r.parent_L2__r.mdm_id__c --></help>
         <label><!-- MCO Code --></label>
         <name>MCO_Code__c</name>
     </fields>
     <fields>
+        <help><!-- Old Formula  - - &gt;  Geography__r.Country_Group__c      New Formula - - -&gt; MDO_Geography__r.parent_L2__r.Name --></help>
         <label><!-- MCO Name --></label>
         <name>MCO_Name__c</name>
     </fields>
     <fields>
+        <label><!-- MDO_Geography --></label>
+        <name>MDO_Geography__c</name>
+        <relationshipLabel><!-- IPM Countries --></relationshipLabel>
+    </fields>
+    <fields>
+        <help><!-- Old Formula - - &gt; Geography__r.Country_Cluster_Code__c    New Formula - - &gt;MDO_Geography__r.parent_L4__r.mdm_id__c --></help>
         <label><!-- Market Cluster Code --></label>
         <name>Market_Cluster_Code__c</name>
     </fields>
     <fields>
+        <help><!-- Old Formula - - &gt; Geography__r.Country_Cluster__c         New Formula - - &gt; MDO_Geography__r.parent_L4__r.Name --></help>
         <label><!-- Market Cluster Name --></label>
         <name>Market_Cluster_Name__c</name>
     </fields>
     <fields>
         <label><!-- Project Country --></label>
         <name>Project_Country__c</name>
+    </fields>
+    <fields>
+        <label><!-- Test Financial --></label>
+        <name>Test_Financial__c</name>
     </fields>
     <layouts>
         <layout>IPM Country Layout</layout>

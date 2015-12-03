@@ -1,145 +1,238 @@
-<apex:component controller="IPM_FinancialActionStandards" >
-<apex:attribute name="projId" type="Id" required="true" assignTo="{!projectId}" description="Passing Projrct Id"/>
-    <style>
-    .staticLabel2{padding-left:10px;}
-    tr.innertd td{padding-left:11px;font-weight:Bold;font-size:15px;color:#3b516d;}
-    .ipmFinancetable thead th{height:40px;background-color:#dceefa;}
-    .ipmFinancetable tr{height:35px;}
-    .finproject{font-weight:Bold;font-size:15px;color:#3b516d;}
-    .fintotal{font-weight:Bold;font-size:19px;color:#253b78;}
-    .fintable td{font-size:15px;color:#364354;}
-    .fintlegreenbg{background-color:#f3ffe7;}
-    .fintlegrybg{background-color:#f8f8f8 !important;}
-    .fintleblubg{background-color:#f2f8fc !important;}
-    .fintlewhitebg{background-color:#FFF !important;}
-    .fininnertable td + td{font-weight:Bold;font-size:15px;color:#666666;}
-    .greenplus{font-weight:bold;font-size:15px;color:#81bf42 !important;} 
-    .redminus{font-weight:bold;font-size:15px;color:#d01620 !important;} 
-    .fa-angle-left:before{content: "\f104";font-size: 28px;background-color: #e5f8ff;padding: 10px;color: #007dbb;}
-    .blockPos{position: relative;text-align: right;top: 38px;}
-    .drpfield{padding:6px;border-radius:4px;}
-    .table-bordered>thead>tr>th, .table-bordered>thead>tr>td {border-bottom-width: 0px;}
-    .fa-star-o:before{font-size:18px;}
-    .leftsidemenu{font-weight:bold;font-size:16px;color:#3b516d;}
-    .initAccordian {cursor:pointer;}
-    .progresscode{border-left:3px solid #e98824;}
-    .submitcode{border-left:3px solid #81bf42;}
-    .notstartedcode{border-left:3px solid #666;}
-    .docFilter li:first-child{background-color:#f8f8f8 !important;}
-    .docFilter li:first-child + li{background-color:#eee;}
-    .docFilter li:first-child + li + li{background-color:#d8dce6;}
-    .fa-minus:before{font-size:16px;}
-    .substatus{color:#e98824;}
-    .progresstatus{color:#81bf42;}
-    .notstarted{color:#666;}
-    .ipmfinHeading1{font-weight:bold;font-size:1.2em;color:#253b78;padding:10px 0px;}
-    .ipmfinHeading2{font-weight:bold;font-size:1.2em;color:#364354;padding:10px 0px;}
-    .pull-right{float:right;}
-    .mr78{margin-right:78px;}
-    .fleft{text-align:left !important;}
-    .pl10{padding-left:0px !important;}
-    .fintable td div {font-size: 15px;color: #364354;font-weight:bold;}
-    .pl15{padding-left:15px !important;}
-    .inputField input {width: 100%;height: 30px;border-radius: 3px;border: 1px #a8a8a8 solid;color: #565656;padding-left:5px;}
-    </style>
-    
+<!--  
+*************************************************************************
+*@Description:This component is used to display a financial section in the Gate document
+*@Author: Cognizant
+*@Created Date: 12/03/2015 
+*@Copyright © 2015  Unilever    
+*************************************************************************
+-->
+<apex:component controller="IPM_FinancialActionStandards" allowDML="true" >
+<apex:attribute name="isEditable" type="boolean" assignTo="{!editTable}" description="Passing parameter to check is table editable or not"/>
+<apex:attribute name="secId" type="Id" required="false" assignTo="{!projDocSecId}" description="Passing Project Document Section Id"/>
+<apex:attribute name="projId" type="Id" required="true" assignTo="{!projectId}" description="Passing Project Id"/>
+   <apex:outputPanel styleClass="gatefinancialbg" layout="block" rendered="{!isEditable}">
+       <a href="{!$Page.IPM_Financial}?id={!projectId}">{!$Label.IPM_Navigate_Financial}</a>
+   </apex:outputPanel>
+   <div class="gatefinTabContainer">
     <!-- Action Standards -->
-    <table border="0" cellpadding="0" cellspacing="0" class="ipmFinancetable fintable table table-bordered">
+    <table border="0" cellpadding="0" cellspacing="0" class="ipmFinancetable fintable table table-bordered textareabig">
         <thead>
             <tr>
                 <th scope="col" width="30%">                    
-                    <span class="finproject">&nbsp;</span>
+                    <span class="finproject"></span>
                 </th>
-                 <th scope="col" width="20%">                    
-                    <span class="finproject">Action Standards <br/>set at Charter</span>
+                 <th scope="col">
+                    <span class="finproject">{!$Label.IPM_ActionStandards}</span>
                 </th>
-                 <th scope="col" width="20%">                    
-                    <span class="finproject">Results at Charter</span>
-                </th>
+                <apex:repeat value="{!lstGateNames}" var="gateName">
+                    <th scope="col">
+                        <span class="finproject">   {!$Label.IPM_RESULTS} at {!gateName}</span>
+                    </th>
+                </apex:repeat>
                  <th scope="col" width="30%">                    
-                    <span class="finproject">Comments</span>
+                    <span class="finproject">{!$Label.IPM_COMMENTS}</span>
                 </th>
             </tr>
         </thead>
         <tbody>
             <tr class="fintleblubg">
-                <td colspan="4" class="fleft pl15"><div>FIRST FULL YEAR:</div></td>                
+                <td colspan="{!colSpan}" class="fleft pl15"><div>{!$Label.IPM_FirstFullYear}</div></td>                
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
-                    <div class="col-sm-7">Innovation Value Share</div>
+                    <div class="col-sm-7">{!$Label.ipmFinTableASInnovationValueShare}</div>
                     <div class="col-sm-5">%</div>
                 </td>
-                <td class="fintlewhitebg">{!firstFullYearGross.Value_Market_Share_Charter__c}</td>
-                <td class="fintlewhitebg">{!firstFullYearGross.Value_Market_Share_Charter__c}</td>
-                <td class="fintlewhitebg">&nbsp;</td>
+                <td class="fintlewhitebg">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}" />
+                    </apex:outputText>
+                    <apex:inputField value="{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','Innovation',this.value,'{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <apex:repeat value="{!innovationValueShareWrapper.lstGateValues}" var="value">
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.#}">
+                            <apex:param value="{!value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <td class="fintlewhitebg">
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','Innovation','{!projDocSecCon.IPM_Innov_Value_Share_Action_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_Inov_Value_Share_Action_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                </td>
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
-                    <div class="col-sm-7">Incremental Value Share</div>
+                    <div class="col-sm-7">{!$Label.ipmFinTableASIncrementalValueShare}</div>
                     <div class="col-sm-5">%</div>
                 </td>
-                <td class="fintlewhitebg">{!firstFullYearIncremental.Value_Market_Share_Charter__c}</td>
-                <td class="fintlewhitebg">{!firstFullYearIncremental.Value_Market_Share_Charter__c}</td>
-                <td class="fintlewhitebg">&nbsp;</td>
+                <td class="fintlewhitebg">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}" />
+                    </apex:outputText>
+                    <apex:inputField value="{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','Incremental',this.value,'{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <apex:repeat value="{!incrementalValueShareWrapper.lstGateValues}" var="value">
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.#}">
+                            <apex:param value="{!value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <td class="fintlewhitebg">
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','Incremental','{!projDocSecCon.IPM_Inc_Value_Share_Action_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_Inc_Val_Share_Action_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                </td>
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
-                    <div class="col-sm-7">gTO</div>
+                    <div class="col-sm-7">{!$Label.ipmFinTableGDgTO}</div>
                     <div class="col-sm-5">€ '000</div>
                 </td>
-                <td class="fintlewhitebg">{!firstFullYearGross.Turnover_Charter__c}</td>
-                <td class="fintlewhitebg">{!firstFullYearGross.Turnover_Charter__c}</td>
-                <td class="fintlewhitebg">&nbsp;</td>
+                <td class="fintlewhitebg">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}" />
+                    </apex:outputText>
+                    <apex:inputField value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','gTO',this.value,'{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <apex:repeat value="{!gTOWrapper.lstGateValues}" var="value">
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <td class="fintlewhitebg">
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','gTO','{!projDocSecCon.IPM_gTO_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_gTO_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                </td>
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
-                    <div class="col-sm-7">iTO</div>
+                    <div class="col-sm-7">{!$Label.ipmFinTableGDiTO}</div>
                     <div class="col-sm-5">€ '000</div>
                 </td>
-                <td class="fintlewhitebg">{!firstFullYearIncremental.Turnover_Charter__c}</td>
-                <td class="fintlewhitebg">{!firstFullYearIncremental.Turnover_Charter__c}</td>
-                <td class="fintlewhitebg">&nbsp;</td>
+                <td class="fintlewhitebg">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}" />
+                    </apex:outputText>
+                    <apex:inputField value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','iTO',this.value,'{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <apex:repeat value="{!iTOWrapper.lstGateValues}" var="value">
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <td class="fintlewhitebg">
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','iTO','{!projDocSecCon.IPM_iTo_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_iTo_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                </td>
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
-                    <div class="col-sm-7">GM (% of T/O)</div>
-                    <div class="col-sm-5 greenplus">(+)</div>
+                    <div class="col-sm-7">{!$Label.ipmFinTableGMofTO}</div>
+                    <div class="col-sm-5">%</div>
                 </td>
-                <td class="fintlewhitebg">{!firstFullYearGross.GM_of_TO_Charter__c}</td>
-                <td class="fintlewhitebg">{!firstFullYearGross.GM_of_TO_Charter__c}</td>
-                <td class="fintlewhitebg">&nbsp;</td>
+                <td class="fintlewhitebg">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}" />
+                    </apex:outputText> 
+                    <apex:inputField value="{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','GM',this.value,'{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <apex:repeat value="{!GMWrapper.lstGateValues}" var="value">
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.#}">
+                            <apex:param value="{!value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <td class="fintlewhitebg">
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','GM','{!projDocSecCon.IPM_GM_Action_Standards_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_GM_Action_Standards_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                </td>
             </tr>
             <tr class="fintleblubg">
-                <td colspan="4" class="fleft pl15 fintleblubg"><div>BUSINESS CASE:</div></td>                
+                <td colspan="{!colSpan}" class="fleft pl15 fintleblubg"><div>{!$Label.IPM_Fin_Business}</div></td>                
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
-                    <div class="col-sm-7">NPV</div>
-                    <div class="col-sm-5">€ '000</div>
+                    <div class="col-sm-7">{!$Label.ipmFinSummaryNPV}</div>i
+                    <div class="col-sm-5">€ 000</div>
                 </td>
-                <td class="fintlewhitebg">{!financial.NPV_Charter__c}</td>
-                <td class="fintlewhitebg">{!financial.NPV_Charter__c}</td>
-                <td class="fintlewhitebg">&nbsp;</td>
+                <td class="fintlewhitebg">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}" />
+                    </apex:outputText>
+                    <apex:inputField value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','NPV',this.value,'{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <apex:repeat value="{!NPVWrapper.lstGateValues}" var="value">
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <td class="fintlewhitebg">
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','NPV','{!projDocSecCon.IPM_NPV_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_NPV_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                </td>
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
-                    <div class="col-sm-7">IRR</div>
+                    <div class="col-sm-7">{!$Label.ipmFinSummaryIRR}</div>
                     <div class="col-sm-5">%</div>
                 </td>
-                <td class="fintlewhitebg">{!financial.IRR_Charter__c}</td>
-                <td class="fintlewhitebg">{!financial.IRR_Charter__c}</td>
-                <td class="fintlewhitebg">&nbsp;</td>
+                <td class="fintlewhitebg">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}" />
+                    </apex:outputText>
+                    <apex:inputField value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','IRR',this.value,'{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <apex:repeat value="{!IRRWrapper.lstGateValues}" var="value">
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.#}">
+                            <apex:param value="{!value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <td class="fintlewhitebg">
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','IRR','{!projDocSecCon.IPM_IRR_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_IRR_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                </td>
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
-                    <div class="col-sm-7">Payback</div>
-                    <div class="col-sm-5">years</div>
+                    <div class="col-sm-7">{!$Label.ipmFinSummaryPayback}</div>
+                    <div class="col-sm-5">{!$Label.IPM_Fin_Years}</div>
                 </td>
-                <td class="fintlewhitebg">{!financial.Payback_Charter__c}</td>
-                <td class="fintlewhitebg">{!financial.Payback_Charter__c}</td>
-                <td class="fintlewhitebg">&nbsp;</td>
+                <td class="fintlewhitebg">
+                    <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
+                        <apex:param value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}" />
+                    </apex:outputText> 
+                    <apex:inputField value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}" onchange="updateStandard('{!projDocSecCon.Id}','PayBack',this.value,'{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}',false)" rendered="{!AND(project.IPM_Phase__c='Ideas',isEditable)}"/>
+                </td>
+                <apex:repeat value="{!PaybackWrapper.lstGateValues}" var="value">
+                    <td class="fintlewhitebg">
+                        <apex:outputText value="{0, number, ###,###,###.##}">
+                            <apex:param value="{!value}" />
+                        </apex:outputText>
+                    </td>
+                </apex:repeat>
+                <td class="fintlewhitebg">
+                    <apex:inputTextArea value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}" onchange="updateStandard('{!projDocSecCon.Id}','PayBack','{!projDocSecCon.IPM_Payback_Action_Standard_Charter__c}',this.value,true)" rendered="{!isEditable}"/>
+                    <apex:outputField value="{!projDocSecCon.IPM_Payback_Action_Standard_Charter_Cmts__c}"  rendered="{!!isEditable}"/>
+                </td>
             </tr>
         </tbody>
     </table>
+</div>
+    <apex:actionFunction name="updateStandard" action="{!updateActionStandards}" reRender="">
+        <apex:param name="firstParam" assignTo="{!conId}" value=""/>
+        <apex:param name="secondParam" assignTo="{!commentField}" value=""/>
+        <apex:param name="thirdParam" assignTo="{!numValue}" value=""/>
+        <apex:param name="fourthParam" assignTo="{!comments}" value=""/>
+        <apex:param name="fifthParam" assignTo="{!isComment}" value=""/>
+    </apex:actionFunction>
 </apex:component>

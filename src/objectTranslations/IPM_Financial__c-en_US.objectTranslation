@@ -9,6 +9,34 @@
         <value>IPM Financials</value>
     </caseValues>
     <fields>
+        <label><!-- Added At Stage --></label>
+        <name>Added_At_Stage__c</name>
+        <picklistValues>
+            <masterLabel>Capability</masterLabel>
+            <translation><!-- Capability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feasibility</masterLabel>
+            <translation><!-- Feasibility --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ideas</masterLabel>
+            <translation><!-- Ideas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Deployment</masterLabel>
+            <translation><!-- Market Deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLE</masterLabel>
+            <translation><!-- PLE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- BIC Charter --></label>
         <name>BIC_Charter__c</name>
     </fields>
@@ -121,6 +149,11 @@
         <name>Display_Name__c</name>
     </fields>
     <fields>
+        <help><!-- List of countries to be shown for the particular financial on the page --></help>
+        <label><!-- Financial Countries --></label>
+        <name>Financial_Countries__c</name>
+    </fields>
+    <fields>
         <label><!-- Financial External ID --></label>
         <name>Financial_External_ID__c</name>
     </fields>
@@ -201,109 +234,32 @@
         <name>Gross_Y1_Turnover_Regional__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Auto Aligned Fin TLD --></label>
+        <name>IPM_Auto_Aligned_Fin_TLD__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM BD-BB Feedback --></label>
+        <name>IPM_BD_BB_Feedback__c</name>
+    </fields>
+    <fields>
         <label><!-- Business Case Confirmed --></label>
         <name>IPM_Business_Case_Confirmed__c</name>
     </fields>
     <fields>
-        <label><!-- IPM Business Impact --></label>
-        <name>IPM_Business_Impact__c</name>
+        <label><!-- IPM CPP Local --></label>
+        <name>IPM_CPP_Local__c</name>
     </fields>
     <fields>
-        <label><!-- IPM Company Project Priority --></label>
-        <name>IPM_Company_Project_Priority__c</name>
+        <label><!-- Category --></label>
+        <name>IPM_Category__c</name>
     </fields>
     <fields>
         <label><!-- Country Feedback --></label>
         <name>IPM_Country_Feedback__c</name>
     </fields>
     <fields>
-        <label><!-- Gross Project A&amp;P --></label>
-        <name>IPM_Gross_Project_A_P__c</name>
-    </fields>
-    <fields>
-        <label><!-- Gross Project GP --></label>
-        <name>IPM_Gross_Project_GP__c</name>
-    </fields>
-    <fields>
-        <label><!-- Gross Project Turnover --></label>
-        <name>IPM_Gross_Project_Turnover__c</name>
-    </fields>
-    <fields>
-        <label><!-- Incremental Turnover --></label>
-        <name>IPM_Incremental_Turnover__c</name>
-    </fields>
-    <fields>
-        <label><!-- IsAggregate --></label>
-        <name>IPM_IsAggregate__c</name>
-    </fields>
-    <fields>
-        <label><!-- Market Description --></label>
-        <name>IPM_Market_Description__c</name>
-        <picklistValues>
-            <masterLabel>A&amp;P (-)</masterLabel>
-            <translation><!-- A&amp;P (-) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>A&amp;P%</masterLabel>
-            <translation><!-- A&amp;P% --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Capex (-)</masterLabel>
-            <translation><!-- Capex (-) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>GM%</masterLabel>
-            <translation><!-- GM% --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>GP</masterLabel>
-            <translation><!-- GP --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>PBO</masterLabel>
-            <translation><!-- PBO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>PBO%</masterLabel>
-            <translation><!-- PBO% --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Project BIC (-)</masterLabel>
-            <translation><!-- Project BIC (-) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Turnover</masterLabel>
-            <translation><!-- Turnover --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>i A&amp;P (-)</masterLabel>
-            <translation><!-- i A&amp;P (-) --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>i GP</masterLabel>
-            <translation><!-- i GP --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>i PBO</masterLabel>
-            <translation><!-- i PBO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>i TO</masterLabel>
-            <translation><!-- i TO --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>iGM%</masterLabel>
-            <translation><!-- iGM% --></translation>
-        </picklistValues>
-    </fields>
-    <fields>
         <label><!-- Regional Rollout --></label>
         <name>IPM_Project_Rollout__c</name>
-        <relationshipLabel><!-- IPM Financials --></relationshipLabel>
-    </fields>
-    <fields>
-        <label><!-- IPM Project --></label>
-        <name>IPM_Project__c</name>
         <relationshipLabel><!-- IPM Financials --></relationshipLabel>
     </fields>
     <fields>
@@ -423,8 +379,16 @@
         <name>MR_Locked__c</name>
     </fields>
     <fields>
+        <label><!-- Misaligned Date --></label>
+        <name>Misaligned_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Misaligned --></label>
         <name>Misaligned__c</name>
+    </fields>
+    <fields>
+        <label><!-- MisalignmentDateTime --></label>
+        <name>MisalignmentDateTime__c</name>
     </fields>
     <fields>
         <label><!-- NPV Charter --></label>
@@ -457,6 +421,10 @@
     <fields>
         <label><!-- NPV Regional --></label>
         <name>NPV_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- OpCo --></label>
+        <name>OpCo__c</name>
     </fields>
     <fields>
         <label><!-- PBO Y1 bps vs DNDS Charter --></label>
@@ -536,6 +504,10 @@
         <name>Regional_External_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Regional Market Cluster Name --></label>
+        <name>Regional_Market_Cluster_Name__c</name>
+    </fields>
+    <fields>
         <label><!-- Regional Project --></label>
         <name>Regional_Project__c</name>
         <relationshipLabel><!-- IPM Financials (Regional) --></relationshipLabel>
@@ -558,6 +530,22 @@
         <picklistValues>
             <masterLabel>Submitted</masterLabel>
             <translation><!-- Submitted --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Target Launch Date Updated From --></label>
+        <name>Target_Launch_Date_Updated_From__c</name>
+        <picklistValues>
+            <masterLabel>None</masterLabel>
+            <translation><!-- None --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project</masterLabel>
+            <translation><!-- Project --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Rollout</masterLabel>
+            <translation><!-- Rollout --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -657,6 +645,10 @@
         <name>Year3_ITO__c</name>
     </fields>
     <fields>
+        <label><!-- Year 1 iTO Local --></label>
+        <name>Year_1_iTO_Local__c</name>
+    </fields>
+    <fields>
         <label><!-- Year 3 iTO Charter --></label>
         <name>Year_3_iTO_Charter__c</name>
     </fields>
@@ -683,6 +675,10 @@
     <fields>
         <label><!-- Year 3 iTO Regional --></label>
         <name>Year_3_iTO_Regional__c</name>
+    </fields>
+    <fields>
+        <label><!-- isGateSubmissionDue --></label>
+        <name>isGateSubmissionDue__c</name>
     </fields>
     <layouts>
         <layout>IPM Financial Layout</layout>

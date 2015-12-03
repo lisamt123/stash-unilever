@@ -188,8 +188,6 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
-<<<<<<< HEAD
-=======
         <fullName>Market_Equals_Sri_Lanka_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals Sri Lanka – Manager</label>
@@ -203,7 +201,6 @@
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>
->>>>>>> FETCH_HEAD
         <fullName>Market_Equals_UK_Manager</fullName>
         <accessLevel>Read</accessLevel>
         <label>Market Equals UK – Manager</label>

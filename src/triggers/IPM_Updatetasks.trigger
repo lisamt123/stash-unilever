@@ -1,1 +1,0 @@
-trigger IPM_Updatetasks on IPM_Milestone__c (after update){}
