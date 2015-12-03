@@ -30,33 +30,6 @@
     <script type="text/javascript">
         var table = $('#example').DataTable();
         table.settings()[0] = { "aoColumnDefs": [{ "bSearchable": false, "aTargets": [ 0 ] }]};
-      
-       // $j = jQuery.noConflict();
-        /*var turnOnValidation = function (isTurned){
-        'use strict';
-        var el = $('.column3').find('textarea');
-        if(isTurned){
-            el.on('change', function (event) {
-                var saveButton = null;
-                var errorMsg = $('.column3').find('.warning');
-                $('.column5').find('input').each(function() {
-                    if($(this).val() === 'Save'){
-                        saveButton = $(this);
-                    }
-                });
-                if($(this).val().length > 255){
-                    saveButton.attr('disabled', 'disabled');
-                    errorMsg.addClass('show').text('Note is too long.');
-                } else {
-                    saveButton.removeAttr('disabled');
-                    errorMsg.removeClass('show').text('');
-                }
-            });    
-        } else {
-            el.off('change');
-        }
-        
-     }*/
    </script>  
     
     <script>

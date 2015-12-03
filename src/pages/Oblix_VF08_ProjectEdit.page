@@ -11,23 +11,16 @@
 <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.OblixUIUXVF08ProjectCss)}" />
 
 <script>
-
-
     // Variable to select the picklist fields related to the campaign using css class attribute
-    var setIdCss = {!setIdCss};
-    // console.dir('{!lstIdCSSSelected}');
-    // Variable for the add other button , disabled now
-        var counter = {!counterAsset};
-    // var countries = {!countryOptions};
-    
+    var setIdCss = {!setIdCss};   
+      // Variable for the add other button , disabled now
+        var counter = {!counterAsset}; // var countries = {!countryOptions};
         $(document).ready(function(){
             $("#inputCountryName").clearable();
-            preparePH();
-            
+            preparePH();            
             // Select default checkbox values
             if('{!lstIdCSSSelected}' != ''){
             var selectedId = ('{!lstIdCSSSelected}').split(',');
-            //alert(selectedId);
                 for (var i = 0; i < selectedId.length; i++) {
                             $( "."+selectedId[i]).prop( "checked", true);
                 }
@@ -42,34 +35,7 @@
             }
         });
     });
-    
-    function setWorldRegion(){
-        $('#dialogCountries input[value=\'World\']').attr('checked',true);
-    }
-    function clearAllCountries(){
-        $('#dialogCountries input[type=\'checkbox\']').prop('checked',false);
-    }
-    function preparePH(){
-        // alert('preparePH');
-        // $(".complex").find("select").addClass( "isMend" );
-        $(".complex").find("span").find("select").addClass( "isMend" );
-        //alert(  $(".complex").find("span").html() );
-    }
-    
-    function setMendatory(x){
-        if(x.parent().parent().parent().parent().find("span").find("select").val()==''){
-            alert('Asset name can\'t be null');
-            return false;
-        }
-        if( x.parent().parent().parent().parent().find("span").find("select").val() =='Other' && x.parent().parent().parent().parent().find(".descMend").val() =='' ){
-            x.parent().parent().parent().parent().find(".error").css("display", "block");
-            alert('Please give description ');
-            return false;
-        }else{
-            return true;
-        }
-    }
-    
+
     (function ($, undefined) {
     $.fn.clearable = function () {
         var $this = this;
@@ -84,7 +50,6 @@
     
     
 </script>
-
 <style>
     .clear-holder{
         position:relative;
@@ -625,8 +590,8 @@
                     <td width="30%" style="text-align: right; word-break: normal;">
                         <h2>
                         <apex:outputPanel id="campaignFeeId">
-                        {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label} &nbsp;:&nbsp; €{!project.Campaign_Fees_Total__c}&nbsp; <br/>
-                        {!$ObjectType.Oblix_SOW_Projects__c.fields.Value_to_be_paid_in_Current_FY__c.label} &nbsp;:&nbsp; €{!project.Value_to_be_paid_in_Current_FY__c}&nbsp;
+                        {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label} &nbsp;:&nbsp; €&nbsp;{!project.Campaign_Fees_Total__c}&nbsp; <br/>
+                        {!$ObjectType.Oblix_SOW_Projects__c.fields.Value_to_be_paid_in_Current_FY__c.label} &nbsp;:&nbsp; €&nbsp;{!project.Value_to_be_paid_in_Current_FY__c}&nbsp;
                         </apex:outputPanel>
                         </h2>
 
@@ -828,7 +793,7 @@
 
                                                         <apex:repeat value="{!mapSubCategOption[subCat]}" var="opt">
                                                         <div id="{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}">
-                                                            <center>
+                                                           
                                                             <apex:outputPanel id="assetPart">
                                                             <apex:actionRegion >
                                                             <table width="100%" class="AssetName complex">
@@ -862,7 +827,7 @@
                                                             </table>
                                                             </apex:actionRegion>
                                                             </apex:outputPanel>
-                                                            </center>
+                                                            
                                                         </div>
                                                         </apex:repeat>
                                                     </div>

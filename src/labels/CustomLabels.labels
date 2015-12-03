@@ -13093,7 +13093,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Cut downs &amp; Tag</shortDescription>
-        <value>Cut downs and Tags</value>
+        <value>Cut Downs and Tags</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Data_Ana_Rep_Dash</fullName>
@@ -13746,7 +13746,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Stimulus requirements</shortDescription>
-        <value>Stimulus requirements</value>
+        <value>Stimulus Requirements</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Stimulus</fullName>

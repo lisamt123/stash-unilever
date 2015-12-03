@@ -361,7 +361,7 @@ public with sharing class Oblix_Ctrl05SOWDetails_CC {
     }
 
     /*
-    @discription : ==============
+    @discription : Refresh form with values of selected Sow
     */
     public void RerenderSelectedSow() {
         System.debug('###selectedSewId : ' + selectedSewId );

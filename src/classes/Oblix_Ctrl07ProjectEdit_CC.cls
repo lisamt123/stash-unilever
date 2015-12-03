@@ -87,7 +87,9 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
     public String selectedBrandInnov {get; set;}
     public String selectedBrandBrand {get; set;}
     public boolean isError {get; set;}
-
+    private static string crossX = ' X ';
+    
+    
     public Oblix_Ctrl07ProjectEdit_CC () {
         system.debug('================================================= im the controller here ===');
        
@@ -154,17 +156,29 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
         
     }
     
+    
+    private void verifyTimeLine(){
+        if ((project.Project_Start_Date__c ==null ) && (project.BET_first_release__c  ==null ) && ( project.Final_release__c ==null ) && (project.Project_Completion_Date__c ==null) && (project.Date_for_Assets_to_be_in_BET__c  ==null ) && (project.Live_Date__c ==null ) && (project.First_Air_Date__c ==null ) && (project.Preview_Date__c ==null ) && (project.Live_date_Asset_delivery__c ==null ) && (project.Production_Completion_Date__c ==null ) && (project.Start_of_TV_production__c  ==null ) &&( project.Timescale_Notes__c == null || project.Timescale_Notes__c == '')&& (project.Project_Priority__c==null || project.Project_Priority__c==''))  {v1=false; } else  {v1=true;}
+    }
+    private void verifyCountryRegion(){
+        if(project.OblixRegion__c==null || project.OblixRegion__c=='' ) {v2=false; } else  {v2=true;}
+    }
+    private void verifyValueDriver(){
+        if((project.Brand_Led_Growth__c ==null || project.Brand_Led_Growth__c =='') && (project.Campaign_Idea__c ==null || project.Campaign_Idea__c =='') && (project.Project_Scale_1__c ==null || project.Project_Scale_1__c =='') && (project.Project_Scale_2__c==null || project.Project_Scale_2__c==''  ) && (selectedBrandInnov==null || selectedBrandInnov=='')&& (selectedBrandBrand==null || selectedBrandBrand=='')) {v4=false; } else  {v4=true;}
+    }
+    private void verifyStageChecks(){
+        if((project.Projected_Stage__c  ==null || project.Projected_Stage__c  =='') && (project.Completed_Stage__c==null || project.Completed_Stage__c=='' )) {v5=false; } else  {v5=true;}
+    }
      /*
      *   @Description : this method set v1 v2 v4 v5 true or false , to display the correct check mark valuesButton.
      */
     public void VerifyChecks(){
     
-        if ((project.Project_Start_Date__c ==null ) && (project.BET_first_release__c  ==null ) && ( project.Final_release__c ==null ) && (project.Project_Completion_Date__c ==null) && (project.Date_for_Assets_to_be_in_BET__c  ==null ) && (project.Live_Date__c ==null ) && (project.First_Air_Date__c ==null ) && (project.Preview_Date__c ==null ) && (project.Live_date_Asset_delivery__c ==null ) && (project.Production_Completion_Date__c ==null ) && (project.Start_of_TV_production__c  ==null ) &&( project.Timescale_Notes__c == null || project.Timescale_Notes__c == '')&& (project.Project_Priority__c==null || project.Project_Priority__c==''))  {v1=false; } else  {v1=true;}  
-        if(project.OblixRegion__c==null || project.OblixRegion__c=='' ) {v2=false; } else  {v2=true;}
-        
+         verifyTimeLine();
+         verifyCountryRegion();
       //V3 is  checked from setInfoSplitHub and getAgencyHubFiveInsance
-        if((project.Brand_Led_Growth__c ==null || project.Brand_Led_Growth__c =='') && (project.Campaign_Idea__c ==null || project.Campaign_Idea__c =='') && (project.Project_Scale_1__c ==null || project.Project_Scale_1__c =='') && (project.Project_Scale_2__c==null || project.Project_Scale_2__c==''  ) && (selectedBrandInnov==null || selectedBrandInnov=='')&& (selectedBrandBrand==null || selectedBrandBrand=='')) {v4=false; } else  {v4=true;}
-        if((project.Projected_Stage__c  ==null || project.Projected_Stage__c  =='') && (project.Completed_Stage__c==null || project.Completed_Stage__c=='' )) {v5=false; } else  {v5=true;}
+        verifyValueDriver();
+        verifyStageChecks();
         
     }
     /*
@@ -293,7 +307,7 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
         list<Oblix_Project_Assets__c> lstAsset = [select Id, Agency_Projects__r.id, Channels__c, RecordType.Name, Quantity__c , Asset_Picklist__c, Asset_Title__c , Name, RecordTypeId, Sub_Category__c, FULL_Description__c, FULL_Description__r.name from Oblix_Project_Assets__c where Agency_Projects__r.id = :project.id  limit 1000];
         for (Oblix_Project_Assets__c asse : lstAsset) {
             if (asse.FULL_Description__c != null) {
-                asse.Asset_Title__c = asse.Quantity__c + ' X ' + mapAbreviation.get('' + asse.RecordType.Name) + '-' + mapAbreviation.get('' + asse.Sub_Category__c) + '-' + '0' + asse.FULL_Description__r.name.remove('Score ');
+                asse.Asset_Title__c = asse.Quantity__c + crossX + mapAbreviation.get('' + asse.RecordType.Name) + '-' + mapAbreviation.get('' + asse.Sub_Category__c) + '-' + '0' + asse.FULL_Description__r.name.remove('Score ').remove('Full ').remove('Lite ');
             }
             if (asse.Asset_Title__c != null) {
                 asse.Asset_Title__c = asse.Asset_Title__c.replaceAll('null', '');
@@ -735,11 +749,12 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
 
 
         RecordType  recordT = [SELECT Name, id FROM RecordType WHERE sObjectType = 'Oblix_Project_Assets__c' and name = : recordType];
-        system.debug('### recordT  ' + recordT );
+        system.debug('### assetInstance.Sub_Category__c : ' +  assetInstance.Sub_Category__c );
         list<Asset_Scoring__c> lstscore = [select id from Asset_Scoring__c where Sub_Category__c = :subCat and Type__c = :recordT.Name and Name like :complexity];
         //assetInstance.Sub_Category__c = subCat;
-
-        assetInstance.Asset_Title__c = assetInstance.Quantity__c + ' X ' + mapAbreviation.get('' + recordT.Name) + '-' + mapAbreviation.get('' + assetInstance.Sub_Category__c) + '-' + '0' + complexity.remove('%');
+        system.debug('### mapAbreviation.assetInstance.Sub_Category__c : ' +  mapAbreviation.size());
+        system.debug('###mapAbreviation : '+mapAbreviation);
+        assetInstance.Asset_Title__c = assetInstance.Quantity__c + crossX + mapAbreviation.get('' + recordT.Name) + '-' + mapAbreviation.get('' + assetInstance.Sub_Category__c) + '-' + '0' + complexity.remove('%');
         assetInstance.Asset_Title__c = assetInstance.Asset_Title__c.replaceAll('null', '');
         if (assetInstance.id == null) {
             assetInstance.Agency_Projects__c = project.id;
@@ -835,7 +850,7 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
         list<Oblix_Project_Assets__c> lstAsset = [select Id, Agency_Projects__r.id, Channels__c, RecordType.Name, Quantity__c , Asset_Picklist__c, Asset_Title__c , Name, RecordTypeId, Sub_Category__c, FULL_Description__c, FULL_Description__r.name from Oblix_Project_Assets__c where Agency_Projects__r.id = :project.id  limit 1000];
         for (Oblix_Project_Assets__c asse : lstAsset) {
             if (asse.FULL_Description__c != null) {
-                asse.Asset_Title__c = asse.Quantity__c + ' X ' + mapAbreviation.get('' + asse.RecordType.Name) + '-' + mapAbreviation.get('' + asse.Sub_Category__c) + '-' + '0' + asse.FULL_Description__r.name.remove('Score ');
+                asse.Asset_Title__c = asse.Quantity__c + crossX + mapAbreviation.get('' + asse.RecordType.Name) + '-' + mapAbreviation.get('' + asse.Sub_Category__c) + '-' + '0' + asse.FULL_Description__r.name.remove('Score ').remove('Full ').remove('Lite ');
             }
             if (asse.Asset_Title__c != null) {
                 asse.Asset_Title__c = asse.Asset_Title__c.replaceAll('null', '');
@@ -880,7 +895,7 @@ public with sharing class Oblix_Ctrl07ProjectEdit_CC {
             }
         }
 
-        asset.Asset_Title__c = asset.Quantity__c + ' X ' + asset.Asset_Title__c.split(' X ')[1];
+        asset.Asset_Title__c = asset.Quantity__c + crossX + asset.Asset_Title__c.split(crossX)[1];
         System.debug(asset);
         Savepoint sp = Database.setSavepoint();
         try {
