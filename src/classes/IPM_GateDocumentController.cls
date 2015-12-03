@@ -782,7 +782,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     void gateDocumentData(Final Id pId){
         //For Generating PDF Retrieving Project Rollouts,Finance and Project Document Sections
         try{
-            String nam=project.name;
+            String nam=project.IPM_Project_Name__c;
             country=new IPM_Country__c();
             rollOut=new list<IPM_Project_Rollout__c>();
             rollOut=[SELECT Name,IPM_Status__c,IPM_Rollout_Span__c FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:project.Id];

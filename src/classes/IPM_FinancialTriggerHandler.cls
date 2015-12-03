@@ -20,6 +20,8 @@ public with sharing class IPM_FinancialTriggerHandler
     private Set<String> setFinancialExternalIds; //Set of Financial External Ids
     
     private static final String Y_LABEL = 'Y'; //Innovation Year Label Prefix
+    private static final String UPDATE_FINANCIAL_ACTION_STANDARD_STR='updateFinancialActionStandard';
+    private static final String CLASS_NAME = IPM_FinancialTriggerHandler.Class.getName(); //Class Name for Exception Logging
     
     
     /*******************************************************************************************************
@@ -636,35 +638,89 @@ public with sharing class IPM_FinancialTriggerHandler
     * @return                           NONE
     */
     public void updateFinancialActionStandard(Map<Id, IPM_Financial__c> mapNewFinancials){
-        CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
-        List<IPM_Financial__c> newFinList=new List<IPM_Financial__c>();
-        List<IPM_Project_Document_Section_Content__c> projDocSecConList=new List<IPM_Project_Document_Section_Content__c>();
-        Set<Id> projectIds=new Set<Id>();
-        for(IPM_Financial__c newFin:mapNewFinancials.values()){
-            if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c){
-                newFinList.add(newFin);
-                projectIds.add(newFin.Parent_Project__c);
-            }
-        }
-        if(projectIds!=null && !projectIds.isEmpty()){
-            projDocSecConList=[SELECT Id,IPM_IRR_Action_Standard_Charter__c,IPM_NPV_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c,IPM_Content_Type__c,
-                               IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c,
-                               IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c
-                               FROM IPM_Project_Document_Section_Content__c
-                               WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c In:projectIds AND IPM_Content_Type__c='Financial Action Standards' AND
-                                     IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c='Ideas'];
-        }                  
-        for(IPM_Financial__c fin:newFinList){
-            for(IPM_Project_Document_Section_Content__c secContent:projDocSecConList){
-                if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Parent_Project__c){
-                    secContent.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Global__c;
-                    secContent.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Global__c;
-                    secContent.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Global__c;
+        try{
+            CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
+            DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
+            List<IPM_Financial__c> newFinList=new List<IPM_Financial__c>();
+            List<IPM_Project_Document_Section_Content__c> projDocSecConList=new List<IPM_Project_Document_Section_Content__c>();
+            Set<Id> projectIds=new Set<Id>();
+            System.debug(mapNewFinancials.values()+'*********mapNewFinancials.values()*****');
+            for(IPM_Financial__c newFin:mapNewFinancials.values()){
+                if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c){
+                    newFinList.add(newFin);
+                    projectIds.add(newFin.Parent_Project__c);
+                }
+                else if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && newFin.Parent_Project__c==null && newFin.Regional_Project__c!=null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c){
+                    newFinList.add(newFin);
+                    projectIds.add(newFin.Regional_Project__c);
+                }
+                else if(newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c){
+                    newFinList.add(newFin);
+                    projectIds.add(newFin.Parent_Project__c);
+                }
+            }         
+            if(projectIds!=null && !projectIds.isEmpty()){
+                projDocSecConList=[SELECT Id,IPM_IRR_Action_Standard_Charter__c,IPM_NPV_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c,IPM_Content_Type__c,
+                                   IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c,
+                                   IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c
+                                   FROM IPM_Project_Document_Section_Content__c
+                                   WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c In:projectIds AND IPM_Content_Type__c=:IPM_ConstantUtils.FINANCIAL_ACTION_STANDARDS AND
+                                         IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c=:IPM_ConstantUtils.PHASE_IDEAS];
+            }                  
+            for(IPM_Financial__c fin:newFinList){
+                for(IPM_Project_Document_Section_Content__c secContent:projDocSecConList){
+                    if((secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Parent_Project__c && fin.Regional_Project__c==null) || (secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Regional_Project__c && fin.Parent_Project__c ==null)){
+                        secContent.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Global__c;
+                        secContent.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Global__c;
+                        secContent.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Global__c;
+                    }
                 }
             }
+            if(projDocSecConList!=null && !projDocSecConList.isEmpty()){
+                update projDocSecConList;
+            }
+            
+            /*Update BI on IPM Project from IPM Financial record*/
+            newFinList=new List<IPM_Financial__c>();
+            projectIds=new Set<Id>();
+            for(IPM_Financial__c newFin:mapNewFinancials.values()){
+                if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
+                    newFinList.add(newFin);
+                    projectIds.add(newFin.Parent_Project__c);
+                    system.debug('/// in projids');
+                }
+                if(newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
+                    newFinList.add(newFin);
+                    projectIds.add(newFin.Parent_Project__c);
+                }
+            }
+            List<IPM_Project__c> projList=new List<IPM_Project__c>();
+            if(projectIds!=null && !projectIds.isEmpty()){
+                projList = [select id,BI__c from IPM_Project__c where id in : projectIds];
+               
+            }
+            for(IPM_Financial__c fin:newFinList){
+                for(IPM_Project__c proj: projList){
+                    if(proj.id==fin.Parent_Project__c){
+                        proj.BI__c = fin.Business_Impact_Global__c;
+                        
+                    }
+                }
+            }
+            if(projList!=null && !projList.isEmpty()){
+               
+                update projList;
+            }
+            /*Update BI code ends*/
+            
         }
-        if(projDocSecConList!=null && !projDocSecConList.isEmpty()){
-            update projDocSecConList;
+        catch(QueryException ex){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                UPDATE_FINANCIAL_ACTION_STANDARD_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
         }
+        catch(DMLException ex){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                UPDATE_FINANCIAL_ACTION_STANDARD_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
+        } 
     }
 }
