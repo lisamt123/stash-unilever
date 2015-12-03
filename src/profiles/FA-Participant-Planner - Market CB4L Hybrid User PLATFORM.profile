@@ -31645,6 +31645,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>IPM_Project__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Ideas</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>

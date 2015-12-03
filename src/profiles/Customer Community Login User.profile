@@ -31468,6 +31468,10 @@
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>IPM_Project__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>standard-IdeaTheme</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>

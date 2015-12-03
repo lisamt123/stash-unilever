@@ -450,6 +450,11 @@
         <label>All</label>
     </listViews>
     <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
         <fullName>Master_Tasks</fullName>
         <columns>NAME</columns>
         <columns>ExternalField__c</columns>

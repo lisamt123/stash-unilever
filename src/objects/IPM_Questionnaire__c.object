@@ -501,6 +501,11 @@
         <language>en_US</language>
     </listViews>
     <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
         <fullName>Corporate_Risk</fullName>
         <columns>NAME</columns>
         <columns>Is_Master__c</columns>

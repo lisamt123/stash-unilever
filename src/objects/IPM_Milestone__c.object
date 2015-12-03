@@ -771,6 +771,11 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <language>en_US</language>
     </listViews>
     <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
         <fullName>Mini_Milestones</fullName>
         <columns>NAME</columns>
         <columns>IPM_Name__c</columns>

@@ -31481,6 +31481,10 @@
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>IPM_Project__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>Inside_Unilever</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>

@@ -1165,7 +1165,7 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
     </fields>
     <fields>
         <fullName>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</fullName>
-        <defaultValue>false</defaultValue>
+        <defaultValue>true</defaultValue>
         <externalId>false</externalId>
         <label>Exists At Least One Assmnt Per EICountry</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2505,6 +2505,11 @@ OwnerId))</formula>
         </filters>
         <label>All</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
     </listViews>
     <listViews>
         <fullName>Finder</fullName>
@@ -18061,6 +18066,15 @@ OwnerId))</formula>
         <filterScope>Queue</filterScope>
         <label>IPM_a6l8A0000004CeW</label>
         <queue>IPM_a6l8A0000004CeW</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004KMh_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004KMh</label>
+        <queue>IPM_a7IE00000004KMh</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

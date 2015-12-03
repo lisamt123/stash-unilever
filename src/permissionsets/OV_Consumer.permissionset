@@ -30369,6 +30369,14 @@ One View Report Favourites</description>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>IPM_CorePara_helps_example__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>IPM_Document_Template__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>IPM_Exchange_Rate__c</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -30377,7 +30385,31 @@ One View Report Favourites</description>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>IPM_Milestone__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>IPM_My_To_Do_List</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>IPM_Project_Template__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>IPM_Project__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>IPM_Questionnaire__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>IPM_Section__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>IPM_Task__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>

@@ -31499,6 +31499,10 @@
         <visibility>DefaultOff</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>IPM_Project__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>ar_Agency_Portal_CMS__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
