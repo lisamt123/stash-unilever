@@ -36,18 +36,21 @@
                         responseData = response.getReturnValue();
                         for(var count=0;count<responseData.length;count++){
                             console.log(responseData[count]);    
-                            //if(selectedFilterType == responseData[count].Topics.toLowerCase())
-                            if(selectedFilterType == responseData[count].Topics)
+                            if(selectedFilterType == responseData[count].Topics) {
                                 updatedData.push(responseData[count]);
+                            }
                         }
                         //console.log('------------4----------------'+updatedData.length); 
-                        if(updatedData.length==0)
-                            component.set("v.ErrorMessage", true);  
+                        if(updatedData.length==0) {
+                            component.set("v.ErrorMessage", true); 
+                        } 
                         component.set("v.wrapper", updatedData);
-                    } else
-                        updatedData = response.getReturnValue();                 
-                    if(response.getReturnValue().length>0)
-                        component.set("v.displayFilter", true);  
+                    } else {
+                        updatedData = response.getReturnValue(); 
+                    }
+                    if(response.getReturnValue().length>0) {
+                        component.set("v.displayFilter", true); 
+                    }
                     if(updatedData.length>0 && updatedData.length>updatedData[0].LoadMoreLimit)   {
                     	responseData = [];
                         for(var count=0;count<updatedData[0].LoadMoreLimit;count++){
@@ -57,10 +60,12 @@
                     	component.set("v.loadMoreDisplay",true);
                     	component.set("v.NewsList", responseData);
                     	component.set("v.wrapper", updatedData);
-                    } else
-                        component.set("v.NewsList",updatedData);                    
-                } else 
+                    } else {
+                        component.set("v.NewsList",updatedData); 
+                    }                   
+                } else {
                     component.set("v.ErrorMessage", true);
+                }
         	}
         });
         $A.enqueueAction(action);
@@ -74,32 +79,18 @@
             console.log(updatedData[count]);    
             responseData.push(updatedData[count]);
         }
-        if(updatedData.length==responseData.length)
+        if(updatedData.length==responseData.length) {
             component.set("v.loadMoreDisplay",false);
-        else            
+        }
+        else {
             component.set("v.loadMoreDisplay",true);
+        }           
         component.set("v.NewsList", responseData);
     },
-    GetRecentNewsmethod : function(component, event, helper) {
-		//this.getGlobalNewsMostRecent();
-		//alert('Came');
-	},
-    fixedBottomBar: function(component, event, helper) {
-		//this.getGlobalNewsMostRecent();
-		//alert('Came');
-	},
-    getNewsDetail1:function(component, event, helper) {
-        //alert(11);
-        //alert(event.getParam("selectedNewsDetail"));
-        var selected = event.getParam("selectedNewsDetail");
-        //var cmp=component.get("v.newsArticle");
-       
-        //alert(selected);
-        //component.set("v.selectedNews", selected);
-    },        
     gotoFilter: function(component, event, helper) {
         var FilterType=component.get("v.filterType");
         var selectEvent = $A.get("e.c:CORE_NC_FilterEvent");
         selectEvent.setParams({"selectedFilter": FilterType,"displayFilterPage":true }).fire();
     }
+    
 })

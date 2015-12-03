@@ -2,20 +2,20 @@
     <aura:attribute name="newsArticle" type="Core_NC_NewsWrapperClass"/>
     <aura:attribute name="newsType" type="String"/>
     <div class="itemPanel"> 
-        <table width="100%" value="{!v.newsArticle}" onclick="{!c.GetNewsDetails}"><!--onclick="{!c.GetNewsDetails}"-->
+        <table width="100%" value="{!v.newsArticle}" onclick="{!c.GetNewsDetails}">
             <tr>
                 <td width="40%">
                     <img src="{!v.newsArticle.BannerURL}" class="bannerImage"></img>
                 </td>
                 <td width="60%">
-                    <div>
-                        <ui:outputText value="{!v.newsArticle.PublishedDate}" class="SubText"/>
+                    <div class ="SubText" style="padding-bottom:3px;">
+                        <ui:outputText value="{!v.newsArticle.PublishedDate}"/>
                         <div class="rightFloat">
                             <aura:if isTrue="{!v.newsType == 'PaulsBlog' ? false : true}">
-                                    &nbsp;&nbsp;&nbsp;<img src="/resource/NewsCenterIcons/Like_inactive.svg" height="13" width="13"/>
-                                    &nbsp;<ui:outputText value="{!v.newsArticle.LikeCount}" class="SubText"/>
-                                    &nbsp;&nbsp;&nbsp;<img src="/resource/NewsCenterIcons/Comment_inactive.svg" height="13" width="13"/>
-                                    &nbsp;<ui:outputText value="{!v.newsArticle.CommentCount}" class="SubText"/>
+                                    &nbsp;&nbsp;&nbsp;<img src="/resource/NewsCenterIcons/Like_inactive.svg" class="newsCenterSmallIcons"/>
+                                    &nbsp;<ui:outputText value="{!v.newsArticle.LikeCount}"/>
+                                    &nbsp;&nbsp;&nbsp;<img src="/resource/NewsCenterIcons/Comment_inactive.svg" class="newsCenterSmallIcons"/>
+                                    &nbsp;<ui:outputText value="{!v.newsArticle.CommentCount}"/>
                             </aura:if>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
             <tr>
                 <td colspan="2">                    
                     <aura:if isTrue="{!v.newsType == 'GlobalNews' ? true : false}">
-                        <div style="padding-top:6px"><span class="topicStyle">{!v.newsArticle.Topics}</span></div>
+                        <div style="padding-top:5px"><span class="topicStyle">{!v.newsArticle.Topics}</span></div>
                     </aura:if>
                 </td>
             </tr>
