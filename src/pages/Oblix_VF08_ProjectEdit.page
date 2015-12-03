@@ -11,9 +11,7 @@
 <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.OblixUIUXVF08ProjectCss)}" />
 
 <script>
-    // Variable to select the picklist fields related to the campaign using css class attribute
-    var setIdCss = {!setIdCss};   
-      // Variable for the add other button , disabled now
+       var setIdCss = {!setIdCss};   
         var counter = {!counterAsset}; // var countries = {!countryOptions};
         $(document).ready(function(){
             $("#inputCountryName").clearable();
@@ -21,10 +19,7 @@
             // Select default checkbox values
             if('{!lstIdCSSSelected}' != ''){
             var selectedId = ('{!lstIdCSSSelected}').split(',');
-                for (var i = 0; i < selectedId.length; i++) {
-                            $( "."+selectedId[i]).prop( "checked", true);
-                }
-            }
+                for (var i = 0; i < selectedId.length; i++) {$( "."+selectedId[i]).prop( "checked", true);}  }
         $( "#inputCountryName" ).autocomplete({
             source: "{!lstAjaxCountries}".split(','),
             select: function (event, ui) {
@@ -35,7 +30,8 @@
             }
         });
     });
-
+</script>
+<script>
     (function ($, undefined) {
     $.fn.clearable = function () {
         var $this = this;
@@ -47,8 +43,7 @@
         });
     };
     })(jQuery);
-    
-    
+      
 </script>
 <style>
     .clear-holder{
