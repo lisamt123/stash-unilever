@@ -617,7 +617,7 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         return null;
     }
     /*
-    @Description :  =============
+    @Description :  calculate Number of attachement 
     */
     public PageReference ChangeCount() {
         allFileList.clear() ;
@@ -654,7 +654,8 @@ public with sharing class Oblix_Ctrl06SOWView_CC {
         }
     }
     /*
-    Description : Get categories ========
+    @Description : Sets the Big and Small categories when a CategoryBrand is found for a selected SOW brand.
+                If no categories are found, sets lookups to null; If more than one is found, sets from first in the list
     */
     public void getCategoryBrand(){
         

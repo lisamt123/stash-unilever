@@ -104,6 +104,32 @@
 		    $( "."+x).prop( "checked", true);
 		} 
 	}
+    function setWorldRegion(){
+        $('#dialogCountries input[value=\'World\']').attr('checked',true);
+    }
+    function clearAllCountries(){
+        $('#dialogCountries input[type=\'checkbox\']').prop('checked',false);
+    }
+    function preparePH(){
+        // alert('preparePH');
+        // $(".complex").find("select").addClass( "isMend" );
+        $(".complex").find("span").find("select").addClass( "isMend" );
+        //alert(  $(".complex").find("span").html() );
+    }
+    
+    function setMendatory(x){
+        if(x.parent().parent().parent().parent().find("span").find("select").val()==''){
+            alert('Asset name can\'t be null');
+            return false;
+        }
+        if( x.parent().parent().parent().parent().find("span").find("select").val() =='Other' && x.parent().parent().parent().parent().find(".descMend").val() =='' ){
+            x.parent().parent().parent().parent().find(".error").css("display", "block");
+            alert('Please give description ');
+            return false;
+        }else{
+            return true;
+        }
+    }
 	<!-- Added by Achref for the Value drivers Popup  -->
 	function  addStyletoDependent(){
 	   $('select[id*="Growthhhhh"]').addClass( "input_init xxl" );
@@ -468,16 +494,15 @@
 				  var secondElement = null;
 				  var thirdElement = null;
 				  var selectorDetailPanel = null;
-
+				  var options = null;
 				  Object.keys(allAbreviation).forEach(function (key){
 					var currentAbraviation = allAbreviation[key];
-					if(currentAbraviation === selectedAbreviation[0]){
-					  firstOption = key;
-					} else if(currentAbraviation === selectedAbreviation[1]){
-					  secondOption = key;
+					if(currentAbraviation === selectedAbreviation[0] + '-' + selectedAbreviation[1]){
+					  options = key.split('_');
 					}
 				  })
-				  
+					firstOption = options[0];
+				  secondOption = options[1];				  
 				  $('.Oblix_recordType').find('.Oblix_recordTypeth').each(function (index, el) {
 					if($(el).text().search(firstOption) !== -1 ){
 					  firstElement = $(el);

@@ -460,7 +460,7 @@ public with sharing class Oblix_Utils {
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Experiential, 'E');
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Static_Img, 'SI');
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Stimulus_Materials, 'SM');
-
+        
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Activity, 'ACT');
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_Brand_Communication_Idea, 'BCI');
         mapAbreviation.put(Label.Oblix_Lbl_UIUX_Utils_USLP, 'USLP');
