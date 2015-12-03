@@ -42,6 +42,11 @@
     </classAccesses>
     <description>Everyday Action Admin permission set is used to grant app admins the permission to manage create, delete, and update Everyday Activity and Activity Featured Content</description>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>EA_Team_Member__c.Activity_Due_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>EA_Team_Member__c.Activity_Due_Day__c</field>
         <readable>true</readable>

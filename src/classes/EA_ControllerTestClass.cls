@@ -70,9 +70,13 @@ public class EA_ControllerTestClass{
            System.debug('=================='+activityList);
            
             Test.startTest();
-            string Actid=ApexPages.currentPage().getParameters().put('Id',post.ParentId);
+            string userid=ApexPages.currentPage().getParameters().put('Id',localUser.id);
+            string teamid=ApexPages.currentPage().getParameters().put('Id',team.id);
             string eventid=ApexPages.currentPage().getParameters().put('Id',event.id);
+            string inviteid=ApexPages.currentPage().getParameters().put('Id',team.Invited_By__c);
+            string partid=ApexPages.currentPage().getParameters().put('Id',team.Participant__c);
             EA_ControllerClass Eacontroller=new EA_ControllerClass();
+           
                       EA_ControllerClass.getActivities();
             EA_ControllerClass.getThemes();
             List<Everyday_Activity__c> temp1=EA_ControllerClass.getActivitiesonfilter('test');
@@ -80,21 +84,26 @@ public class EA_ControllerTestClass{
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp4=EA_ControllerClass.getActivityPoints('122');
             EA_ControllerClass.getbooleanvalue('122');
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('eventid');
+            
             try{
-                EA_ControllerClass.getbooleanvalue(Actid);
-              //  List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail('1234');
+             EA_ControllerClass.insertfeeditem(eventid,'test');
+                EA_ControllerClass.getbooleanvalue(eventid);
+                 EA_ControllerClass.insertteamrecord(eventid);
+                List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(eventid);
+                
+                     EA_ControllerClass.updateParticipantResponse(teamid,partid,'test');
             }catch(exception e){}
-            List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp7=EA_ControllerClass.getUserActivities();
-            EA_ControllerClass.insertfeeditem(post.ParentId,'test');
+            List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>temp12=EA_ControllerClass.getcommentDetail(eventid);
+            // List<SelectOption> temp23=
+            EA_ControllerClass.getToDoTimeline();
+            List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp7=EA_ControllerClass.getUserActivities();
+           
             EA_ControllerClass.getUserDetail();
+            List<EA_Team_Member__c > temp211=EA_ControllerClass.getinvitelist(eventid);
             EA_ControllerClass.chatterfeeditem();
-           // EA_Team_Member__c temp8=EA_ControllerClass.getParticipantTeamMemberRec('122', '123');
-           // EA_ControllerClass.inviteResponseNofitification('1234', '123' , '122', 'tst');
-            try{
-               // EA_ControllerClass.inviteUserToDoActivity('12','localUser.id,user.id');
-               // EA_ControllerClass.postCommentAtUserFeed('112', 'localUser.id,user.id' ,'test');
-            }catch(exception e){}
-            EA_ControllerClass.insertteamrecord(eventid);
+         
+            string s1=EA_ControllerClass.callSubmitToDoAction(eventid,'test','test');
+            
             Map<string,string> test2=EA_ControllerClass.getThemeColors();
             Test.stopTest();
            
@@ -163,8 +172,11 @@ public class EA_ControllerTestClass{
             insert badge;
               List<Everyday_Activity__c> activityList=[Select Id, CreatedDate, CreatedBy.SmallPhotoUrl, CreatedBy.Name, CreatedById, (Select Id, ParentId, Body, RelatedRecordId From Feeds limit 1) From Everyday_Activity__c Where Active__c =true AND id =:event.id];
             Test.startTest();
-            string Actid=ApexPages.currentPage().getParameters().put('Id',post.ParentId);
+            string userid=ApexPages.currentPage().getParameters().put('Id',localUser.id);
+            string teamid=ApexPages.currentPage().getParameters().put('Id',team.id);
             string eventid=ApexPages.currentPage().getParameters().put('Id',event.id);
+            string inviteid=ApexPages.currentPage().getParameters().put('Id',team.Invited_By__c);
+           // string partid=ApexPages.currentPage().getParameters().put('Id',team.Participant__c);
             EA_ControllerClass.getActivities();
             EA_ControllerClass.getThemes();
             List<Everyday_Activity__c> temp1=EA_ControllerClass.getActivitiesonfilter('test');
@@ -173,20 +185,22 @@ public class EA_ControllerTestClass{
             EA_ControllerClass.getbooleanvalue('122');
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('eventid');
             try{
-                EA_ControllerClass.getbooleanvalue(Actid);
-               // List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail('1234');
+                EA_ControllerClass.getbooleanvalue(eventid);
+                List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(eventid);
+                //EA_ControllerClass.updateParticipantResponse(teamid,partid,'test' );
             }catch(exception e){}
+            
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp7=EA_ControllerClass.getUserActivities();
-            EA_ControllerClass.insertfeeditem(post.ParentId,'test');
+            
             EA_ControllerClass.getUserDetail();
             EA_ControllerClass.chatterfeeditem();
-           // EA_Team_Member__c temp8=EA_ControllerClass.getParticipantTeamMemberRec('122', '123');
-           // EA_ControllerClass.inviteResponseNofitification('1234', '123' , '122', 'tst');
-            try{
-               // EA_ControllerClass.inviteUserToDoActivity('12','localUser.id,user.id');
-              //  EA_ControllerClass.postCommentAtUserFeed('112', 'localUser.id,user.id' ,'test');
+           
+            List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>temp12=EA_ControllerClass.getcommentDetail(eventid);
+          try{
+            EA_ControllerClass.insertfeeditem(eventid,'test');
+               EA_ControllerClass.insertteamrecord(eventid);
             }catch(exception e){}
-            EA_ControllerClass.insertteamrecord(eventid);
+          
             Map<string,string> test2=EA_ControllerClass.getThemeColors();
             Test.stopTest();
         }

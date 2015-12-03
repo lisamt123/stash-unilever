@@ -43,6 +43,11 @@
     <description>Everyday Action User permission set is used to grant app users the permission to view Everyday Activity, View Contents, and Comments and update Team Member Record.</description>
     <fieldPermissions>
         <editable>false</editable>
+        <field>EA_Team_Member__c.Activity_Due_Date__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>EA_Team_Member__c.Activity_Due_Day__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -92,15 +97,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <label>Everyday Action User</label>
-    <objectPermissions>
-        <allowCreate>true</allowCreate>
-        <allowDelete>false</allowDelete>
-        <allowEdit>true</allowEdit>
-        <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
-        <object>EA_Team_Member__c</object>
-        <viewAllRecords>true</viewAllRecords>
-    </objectPermissions>
     <tabSettings>
         <tab>EA_Demo</tab>
         <visibility>Visible</visibility>
