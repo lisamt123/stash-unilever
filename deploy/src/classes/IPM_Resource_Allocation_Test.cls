@@ -32,7 +32,7 @@ public class  IPM_Resource_Allocation_Test {
     @Description : to Intialize(insert) the data for Project, 
         IPM_Project_Rollout__c, IPM_Financial__c objects
    ***************************************************************************/
-    static testMethod  void initializeData(){
+    @testSetUp static void initializeData(){
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
             // user has to be created as system admin 
@@ -47,16 +47,17 @@ public class  IPM_Resource_Allocation_Test {
         IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
         IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
         
-        List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+       List<IPM_Company_Card__c>  companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
-        List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
+        List<IPM_Company_Card__c>comList=[select Id,IPM_TxtGeographical_Scope__c, IPM_Managed_Category__c,IPM_Market_Cluster__c from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
         System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
         
         IPM_TestFactory_Helper.getProjectMasterData();
         projectListObj = IPM_TestFactory_Helper.projectSetUp(1,stdUserForResourceAllocation);
         System.runAs(stdUserForResourceAllocation) {
             insert projectListObj;
-            List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
+            List<IPM_Project__c> projlList1=[SELECT ID,Deputy_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPMProject_Span__c,
+            IPM_Technical_Project_Leader__c,IPM_Company_Card__c,IPM_Category_Text__c ,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectListObj[0].ID LIMIT 1];
             System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
             project=projectListObj[0];
         }
@@ -65,12 +66,13 @@ public class  IPM_Resource_Allocation_Test {
     /*************************************************************************************************************************
     * @description Test Data
     */
-    static testMethod  void initializeTestMethodData(){
-        initializeData();
+    static void initializeTestMethodData(){
+        
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
         system.runAs(globalUser){
-            projectList = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
+            projectList = [SELECT id,Deputy_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPMProject_Span__c,
+            IPM_Technical_Project_Leader__c,IPM_Company_Card__c,IPM_Category_Text__c ,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
             (Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r),(select ID,IPM_Project__c from IPM_Questionnaires__r)
             from IPM_Project__c where Name =:projectNameSet];
             project=projectList[0];
@@ -79,7 +81,8 @@ public class  IPM_Resource_Allocation_Test {
             project.IPM_Finance_Member__c=globalUser.id;
             project.IPM_Project_Leader__c=globalUser.id;
             update project;
-            List<IPM_Project__c> projlList1=[SELECT ID,Deputy_Project_Leader__c,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
+            List<IPM_Project__c> projlList1=[SELECT id,IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPMProject_Span__c,
+            IPM_Technical_Project_Leader__c,IPM_Company_Card__c,IPM_Category_Text__c ,Deputy_Project_Leader__c,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
             System.assertEquals(projlList1[0].Deputy_Project_Leader__c,globalUser.Id,'project updated');//positive test
             
             projectResRecord = IPM_TestFactory_Helper.createIPMProjectResource(project.Id,false);
@@ -113,17 +116,18 @@ public class  IPM_Resource_Allocation_Test {
             projRollOut.IPM_Finance_Member_Text__c = 'Finance PL';
             insert projRollOut;
             
-            List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:projRollOut.ID LIMIT 1];
+            List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c ,Id,Finance_Member__c,IPM_Regional_PL__c,RecordTypeId,Name,Market_Cluster_Name__c,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(Select Id,Country_Name__c from IPM_Countries_Local__r) from IPM_Project_Rollout__c WHERE ID =:projRollOut.ID LIMIT 1];
             System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
             
             
             userProf=new IPM_User_Profile__c();
             userProf=IPM_TestFactory_Helper.createUserProfile(false);
             userProf.IPM_User__c = globalUser.Id;
+           
             userProf.IPM_User_Role__c=IPM_ConstantUtils.PROJECT_LEADER;
             insert userProf;
             
-            List<IPM_User_Profile__c>userProfList=[select Id,IPM_User_Role__c from IPM_User_Profile__c where Id=:userProf.Id limit 1];
+            List<IPM_User_Profile__c>userProfList=[select Id,IPM_User_Role__c,IPM_Company_Card__c,IPM_Company_Card__r.RecordTypeId from IPM_User_Profile__c where Id=:userProf.Id limit 1];
             system.assertEquals(userProfList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,'user profile created');
             
             pRef = Page.IPM_Resource_Allocation;
@@ -161,13 +165,12 @@ public class  IPM_Resource_Allocation_Test {
     */
     static testMethod  void testGetSameCategory(){
         initializeTestMethodData();
-        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        globalUser = [Select Id,LastName,Name from User where LastName='PLATFORM_USER' limit 1];
+       
         system.RunAs(globalUser){
             test.startTest();
             userProf.IPM_User_Role__c=IPM_ConstantUtils.IPM_ROLE_RD;
             update userProf;
-            List<IPM_User_Profile__c>userProfList=[select Id,IPM_User_Role__c from IPM_User_Profile__c where Id=:userProf.Id limit 1];
+            List<IPM_User_Profile__c>userProfList=[select Id,IPM_User_Role__c,IPM_Company_Card__c,IPM_Company_Card__r.RecordTypeId from IPM_User_Profile__c where Id=:userProf.Id limit 1];
             system.assertEquals(userProfList[0].IPM_User_Role__c,IPM_ConstantUtils.IPM_ROLE_RD,'user profile updated');
             Map<id,id> projUserMap = new Map<id,id>();
             projUserMap.put(project.id,globalUser.Id);
@@ -211,7 +214,7 @@ public class  IPM_Resource_Allocation_Test {
             System.assertEquals(userProList[0].IPM_User_Role__c,IPM_ConstantUtils.IPM_ROLE_RD,FUNCTION_NOT_CALL_PROPERLY);
             userProf.IPM_User_Role__c=IPM_ConstantUtils.PROJECT_LEADER;
             update userProf;
-            userProfList=[select Id,IPM_User_Role__c from IPM_User_Profile__c where Id=:userProf.Id limit 1];
+            userProfList=[select Id,IPM_User_Role__c,IPM_Company_Card__c,IPM_Company_Card__r.RecordTypeId from IPM_User_Profile__c where Id=:userProf.Id limit 1];
             system.assertEquals(userProfList[0].IPM_User_Role__c,IPM_ConstantUtils.PROJECT_LEADER,'user profile updated');  
         }
         Test.stopTest(); 
@@ -222,8 +225,7 @@ public class  IPM_Resource_Allocation_Test {
     */
     static testMethod  void testAddMemberToWrapper(){
         initializeTestMethodData();
-        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        globalUser = [Select Id,LastName,Name from User where LastName='PLATFORM_USER' limit 1];
+        
         system.RunAs(globalUser){
             test.startTest();
             userProList=[SELECT IPM_User__r.id,IPM_User_Role__c FROM IPM_user_profile__c WHERE id =:userProf.Id limit 10];
@@ -246,8 +248,7 @@ public class  IPM_Resource_Allocation_Test {
     */
     static testMethod  void testFilterTeamMember(){
         initializeTestMethodData();
-        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        globalUser = [Select Id,LastName,Name from User where LastName='PLATFORM_USER' limit 1];
+        
         system.RunAs(globalUser){
             test.startTest();
             
@@ -277,8 +278,7 @@ public class  IPM_Resource_Allocation_Test {
     */
     static testMethod  void testGetAssignedTeamMember(){
         initializeTestMethodData();
-        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        globalUser = [Select Id,LastName,Name from User where LastName='PLATFORM_USER' limit 1];
+       
         system.RunAs(globalUser){
             test.startTest();
             ipmResAlloccation.roleType=IPM_ConstantUtils.TEAM_RND;
@@ -295,8 +295,7 @@ public class  IPM_Resource_Allocation_Test {
     */
     static testMethod  void testGetCoreMemberds(){
         initializeTestMethodData();
-        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        globalUser = [Select Id,LastName,Name from User where LastName='PLATFORM_USER' limit 1];
+      
         system.RunAs(globalUser){
             test.startTest();
             ipmResAlloccation.coreMembers=IPM_ConstantUtils.TEAM_COREPL;
@@ -324,8 +323,7 @@ public class  IPM_Resource_Allocation_Test {
     */
     static testMethod  void testFilterCoreMember(){
         initializeTestMethodData();
-        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        globalUser = [Select Id,LastName,Name from User where LastName='PLATFORM_USER' limit 1];
+        
         system.RunAs(globalUser){
             test.startTest();
             ipmResAlloccation.coreMembers=IPM_ConstantUtils.TEAM_COREPL;
@@ -352,8 +350,7 @@ public class  IPM_Resource_Allocation_Test {
     */
     static testMethod  void testGetSameCategoryRolloutProfiles(){
         initializeTestMethodData();
-        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        globalUser = [Select Id,LastName,Name from User where LastName='PLATFORM_USER' limit 1];
+       
         system.RunAs(globalUser){
             test.startTest();
             
@@ -385,8 +382,7 @@ public class  IPM_Resource_Allocation_Test {
     */
     static testMethod  void testFilterLeaderMember(){
         initializeTestMethodData();
-        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        globalUser = [Select Id,LastName,Name from User where LastName='PLATFORM_USER' limit 1];
+        
         system.RunAs(globalUser){
             test.startTest();
             ipmResAlloccation.SearchLeader =string.valueOf(globalUser.Id);
@@ -403,8 +399,7 @@ public class  IPM_Resource_Allocation_Test {
     */
     static testMethod  void testAssignLeaderMember(){
         initializeTestMethodData();
-        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        globalUser = [Select Id,LastName,Name from User where LastName='PLATFORM_USER' limit 1];
+       
         system.RunAs(globalUser){
             test.startTest();
             ipmResAlloccation.rolloutId =projRollout.Id;
@@ -412,11 +407,11 @@ public class  IPM_Resource_Allocation_Test {
             ipmResAlloccation.SelectedLeaderMember =string.valueOf(globalUser.Id);
             ipmResAlloccation.ButtonLabel=IPM_ConstantUtils.USER_FUNCTON_PL;
             ipmResAlloccation.assignLeaderMember();
-            List<IPM_Project_Rollout__c>rolloutList1=[select Id,IPM_Regional_PL__c  from IPM_Project_Rollout__c where Id=:projRollout.Id];
+            List<IPM_Project_Rollout__c>rolloutList1=[select Id,Name,RecordTypeId,Market_Cluster_Name__c,Finance_Member__c,IPM_Regional_PL_Text__c,IPM_Regional_PL__c, IPM_Finance_Member_Text__c,(Select Id,Country_Name__c from IPM_Countries_Local__r)  FROM IPM_Project_Rollout__c where Id=:projRollout.Id];
             System.assertEquals(rolloutList1[0].IPM_Regional_PL__c,globalUser.Id,FUNCTION_NOT_CALL_PROPERLY);
             ipmResAlloccation.ButtonLabel=IPM_ConstantUtils.USER_FUNCTON_FL;
             ipmResAlloccation.assignLeaderMember();
-            rolloutList1=[select Id,Finance_Member__c  from IPM_Project_Rollout__c where Id=:projRollout.Id];
+            rolloutList1=[select Id,Name,Market_Cluster_Name__c,IPM_Regional_PL__c,Finance_Member__c,RecordTypeId,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(Select Id,Country_Name__c from IPM_Countries_Local__r)  FROM IPM_Project_Rollout__c where Id=:projRollout.Id];
             System.assertEquals(rolloutList1[0].Finance_Member__c ,globalUser.Id,FUNCTION_NOT_CALL_PROPERLY);
         }
         Test.stopTest(); 
@@ -427,8 +422,7 @@ public class  IPM_Resource_Allocation_Test {
     */
     static testMethod  void testCreatefinanceMember(){
         initializeTestMethodData();
-        Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
-        globalUser = [Select Id,LastName,Name from User where LastName='PLATFORM_USER' limit 1];
+       
         system.RunAs(globalUser){
             test.startTest();
             Map<id,id> projUserMap = new Map<id,id>();

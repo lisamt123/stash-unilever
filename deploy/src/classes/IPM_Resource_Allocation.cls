@@ -101,6 +101,10 @@ public with sharing class IPM_Resource_Allocation {
     public Map<String,Id> flNameMap {get; set;} //Map of Names and Ids of Finance Members
     public Map<String,IPM_User_Profile__c> plUserNameProfileMap {get; set;} //Map of Names and User Profiles of Project Leaders, used in Resource Allocation
     public Map<String,IPM_User_Profile__c> flUserNameProfileMap {get; set;} //Map of Names and User Profiles of Finance Members, used in Resource Allocation 
+    @TestVisible private static final String REGIONAL_ROLLOUT_RECORDTYPE =Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId(); //Recordtype Id for Regional Rollouts on IPM_Project_Rollout__c object cant delete it using in the query below
+    @TestVisible private static final String LOCAL_ROLLOUT_RECORDTYPE =Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(); //Recordtype Id for Local Rollouts on IPM_Project_Rollout__c object cant delete it using in the query below
+    @TestVisible private static final String LOCAL_COMPANYCARD_RECORDTYPE =Schema.SObjectType.IPM_Company_Card__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_LOCAL).getRecordTypeId(); //Recordtype Id for Local Company card on IPM_Company_Card__c object cant delete it using in the query below
+    @TestVisible private static final String REGIONAL_COMPANYCARD_RECORDTYPE =Schema.SObjectType.IPM_Company_Card__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL).getRecordTypeId(); //Recordtype Id for Regional Company card on IPM_Company_Card__c object cant delete it using in the query below
     
     /*************************************************************************************************************
     * @description:Constructor of the class.get all url parameter values in variables.get project details.
@@ -115,7 +119,7 @@ public with sharing class IPM_Resource_Allocation {
         changeRoleType=IPM_ConstantUtils.BLANK;
         
         projectID=Apexpages.currentpage().getParameters().get(String.escapeSingleQuotes(IPM_ConstantUtils.TEAM_PROJECTID));
-        IPM_Project__c ipmproject=[SELECT id,Deputy_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,
+        IPM_Project__c ipmproject=[SELECT id,Deputy_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPMProject_Span__c,
             IPM_Technical_Project_Leader__c,IPM_Company_Card__c,IPM_Category_Text__c FROM 
             IPM_Project__c WHERE id=:projectID limit 1];
         category=Ipmproject.IPM_Category_Text__c;
@@ -658,39 +662,104 @@ public with sharing class IPM_Resource_Allocation {
     /*************************************************************************************************************
     * @description:Assign Project Leader or Finance leader for current rollout
     */
-    public void assignLeaderMember(){
+    public void assignLeaderMember()
+    {
+        IPM_Project_Rollout__c inContextRollout = null;
+        Id companyCardRecordTypeId = null;
         
-        List<IPM_Project_Rollout__c> lstRegRollout = new List<IPM_Project_Rollout__c>();
-        List<IPM_Project_Rollout__c> lstUpdateRegRollout = new List<IPM_Project_Rollout__c>();
-        List<User> lstUser = new List<User>();
+        List<String> locationFilter = new List<String>();
+        List<Id> filteredCompanyCardList = new List<Id>();
         
-        lstRegRollout = [SELECT Id, Name, IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c FROM IPM_Project_Rollout__c WHERE ID =: rolloutId limit 1];
-        if(!lstRegRollout.isEmpty() && SelectedLeaderMember != Null){
-            lstUser = [SELECT Id, Name FROM User WHERE ID =: SelectedLeaderMember];
+        // Get Project Specific information 
+        IPM_Project__c ipmproject = [SELECT id,Deputy_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPMProject_Span__c,
+            IPM_Technical_Project_Leader__c,IPM_Company_Card__c,IPM_Category_Text__c FROM 
+            IPM_Project__c WHERE id=:projectID limit 1];
+        
+        String projectManagedCategory = ipmproject.IPM_Category_Text__c;
+        // Get In context Rollout Information
+        List<IPM_Project_Rollout__c> lstRegRollout = [SELECT Id, Name,RecordTypeId,Market_Cluster_Name__c,IPM_Regional_PL_Text__c, IPM_Finance_Member_Text__c,(Select Id,Country_Name__c from IPM_Countries_Local__r) FROM IPM_Project_Rollout__c WHERE ID =: rolloutId limit 1];
+        
+        List<User> lstUser = [Select Id,Name from User where Id =:selectedLeaderMember LIMIT 1];
+        
+        if(!lstRegRollout.isEmpty())
+        {
+        	inContextRollout = lstRegRollout[0];
+        	if(inContextRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
+	        {
+	        	companyCardRecordTypeId = REGIONAL_COMPANYCARD_RECORDTYPE;
+	        	locationFilter.add(inContextRollout.Market_Cluster_Name__c);
+	        }
+	        else if(inContextRollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+	        {
+	        	companyCardRecordTypeId = LOCAL_COMPANYCARD_RECORDTYPE;
+	        	for(IPM_Country__c country : inContextRollout.IPM_Countries_Local__r)
+				{ 
+					if(!String.isBlank(country.Country_Name__c))
+				    {
+				     	locationFilter.add(IPM_ConstantUtils.PERCENTAGE + country.Country_Name__c+IPM_ConstantUtils.PERCENTAGE); 
+				    }
+				} 
+	        }
         }
         
-        if(!lstUser.isEmpty()){ 
-            if(IPM_ConstantUtils.USER_FUNCTON_PL.equalsIgnoreCase(ButtonLabel) || IPM_ConstantUtils.USER_FUNCTON_CL.equalsIgnoreCase(ButtonLabel)){                                                                                                
-                lstRegRollout[0].IPM_Regional_PL_Text__c = lstUser[0].Name;
-                lstRegRollout[0].IPM_Regional_PL__c = lstUser[0].Id;
-                lstUpdateRegRollout.add(lstRegRollout[0]); 
-            }else if(IPM_ConstantUtils.USER_FUNCTON_FL.equalsIgnoreCase(ButtonLabel)){                                    
-                lstRegRollout[0].IPM_Finance_Member_Text__c = lstUser[0].Name;     
-                lstRegRollout[0].Finance_Member__c = lstUser[0].Id;       
-                lstUpdateRegRollout.add(lstRegRollout[0]);
-            }           
-        }
-        try{
-            if(!lstUpdateRegRollout.isEmpty()){
-                Update lstUpdateRegRollout;
-            }
-        }catch(DmlException ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+        //Get Associated User profiles for the loggin User.
+        list<IPM_User_Profile__c> lstIPMCurrentUserProfile = [SELECT IPM_User__c, IPM_User__r.Name, IPM_User__r.UserRole.Name, ipm_user__r.smallphotourl, ipm_user__r.Email, IPM_User_Function__c,IPM_User_Role__c, IPM_Region__c, IPM_Company_Card__c,IPM_Company_Card__r.RecordTypeId FROM IPM_User_Profile__c 
+                                                            	WHERE IPM_User__c = :selectedLeaderMember AND IPM_Company_Card__r.RecordTypeId =:companyCardRecordTypeId LIMIT 10000];
+    
+       // Get composite List of Regional Company Cards associated with User Profiles.
+    	for(IPM_User_Profile__c usrProfile : lstIPMCurrentUserProfile)
+    	{
+			filteredCompanyCardList.add(usrProfile.IPM_Company_Card__c);
+    	}
+		
+		
+		String selectCompanyCard = ' SELECT Id, name, IPM_TxtGeographical_Scope__c, IPM_Managed_Category__c,IPM_Market_Cluster__c FROM IPM_Company_Card__c ';
+		String whereClause = ' WHERE Id in:filteredCompanyCardList AND  IPM_Managed_Category__c INCLUDES(:projectManagedCategory) ';
+		
+		if(inContextRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
+		{
+			whereClause += ' AND IPM_TxtGeographical_Scope__c in :locationFilter ';
+		}
+		else
+		{
+			whereClause += ' AND IPM_TxtGeographical_Scope__c like :locationFilter ';
+		}
+		
+		String limitString = ' LIMIT 50000';
+		
+		String finalQueryString = selectCompanyCard + whereClause + limitString;
+		system.debug('@@@ query string -->>'+finalQueryString);
+        List<IPM_Company_Card__c> lstCompanyCards = database.query(finalQueryString);
+
+        if(IPM_ConstantUtils.USER_FUNCTON_PL.equalsIgnoreCase(ButtonLabel) || IPM_ConstantUtils.USER_FUNCTON_CL.equalsIgnoreCase(ButtonLabel))
+        {                                                                                                
+            inContextRollout.IPM_Regional_PL_Text__c = lstUser[0].Name;
+            inContextRollout.IPM_Regional_PL__c = lstUser[0].Id;
             
+            if(!lstCompanyCards.isEmpty())
+            {
+        		inContextRollout.IPM_Company_Card__c = lstCompanyCards[0].Id; // assigning regional company card
+            }
+        }
+        else if(IPM_ConstantUtils.USER_FUNCTON_FL.equalsIgnoreCase(ButtonLabel))
+        {                                    
+            inContextRollout.IPM_Finance_Member_Text__c = lstUser[0].Name;     
+            inContextRollout.Finance_Member__c = lstUser[0].Id;       
+        } 
+                  
+        try
+        {
+        	update inContextRollout;   
+        }
+        catch(DmlException ex)
+        {
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
                 ASSIGN_LEADER_MEMBER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
                
-        }catch(Exception ex){
+        }
+        catch(Exception ex)
+        {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
                 ASSIGN_LEADER_MEMBER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);

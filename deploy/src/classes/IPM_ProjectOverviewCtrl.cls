@@ -138,6 +138,10 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     public String ecoDesignSecId {get;set;}
     public Static final String ENVIRONMENTAL_IMPACT = 'Environmental_Impact';
     public boolean rolloutsGenerated {get;set;} //Eco Design
+    public boolean bShowAlertsBar{get;set;}//variable to show/hide Alerts
+    public boolean bShowShipToTradeButton{get;set;}//variable to show Ship to trade button
+    public boolean bShowChangeStatusButton{get;set;}//variable to show Change Status button
+    public boolean bPhaseChangeInProgress{get;set;}//variable to check if phase change is in progress or not
     //SD constructor
     public IPM_ProjectOverviewCtrl(IPM_ProjDocumentSectionHstryController controller) {
        
@@ -156,6 +160,10 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         memberCallFromURL = false;
         showBET= false;
         isIdeasPhase = false;
+        bShowAlertsBar = false;
+        bShowShipToTradeButton = false;
+        bShowChangeStatusButton = false;
+        bPhaseChangeInProgress = false;
         projectDocsSet = new Set<String>();
         projectTasksSet = new Set<String>();
         projectMSSet = new Set<String>();
@@ -189,7 +197,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         }
         
         lstofuser=new list<IPM_Project__c>();
-        lstofuser=[SELECT Name,IPM_Phase__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c FROM IPM_Project__c 
+        lstofuser=[SELECT Name,IPM_Phase__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Technical_Project_Leader__c,IPM_Finance_Member__c FROM IPM_Project__c 
                                        WHERE Id=:projectId  limit 1];
          if(lstofuser!=null && !lstofuser.isEmpty()) {
             if((lstofuser[0].IPM_Project_Leader__c ==userinfo.getuserid() && lstofuser[0].IPM_Project_Leader__c !=null)||
@@ -251,6 +259,47 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
        if(currentProjecttype != null && currentProjecttype.IPM_Gate_Document__c != null){
            currGateToDisplay = Label.IPM_IN + IPM_ConstantUtils.IPM_SPACE +   currentProjecttype.IPM_Gate_Document__c;
        }
+       
+       /**********************************************************
+       Logic to set boolean variable bShowAlertsBar in order to show/hide Alerts
+       if alert/notifications are not present or phase change is in progress, then don't show alerts
+       ***********************************************************/
+       
+       if(project.IPM_Project_Job_Status__c != IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && project.IPM_Project_Job_Status__c != IPM_ConstantUtils.JOB_STATUS_PROCESSING ) 
+       {    
+            bPhaseChangeInProgress = false;
+            
+            if( (noOfNotifications != null && noOfNotifications >= 1) || (alertscount != null && alertscount >=1) )
+                bShowAlertsBar = true;
+           else 
+                bShowAlertsBar = false;
+       }
+       else
+       {
+                bPhaseChangeInProgress = true;
+                bShowAlertsBar = false;
+       }
+                
+        /**********************************************************
+       Logic to set boolean variable bShowShipToTradeButton in order to show Ship to Trade button 
+       when original project is in Market deployment phase / operational project in Market Ready phase
+       ***********************************************************/     
+        if( ( projectDoc != null && projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_APPROVED && project.IPM_Phase__c == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE) || 
+             (project.IPM_Phase__c == IPM_ConstantUtils.MARKET_READY_GATE && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) )
+                bShowShipToTradeButton = true;
+       else
+                bShowShipToTradeButton = false;
+                
+       /**********************************************************
+       Logic to set boolean variable bShowChangeStatusButton in order to show Change Status button 
+       ***********************************************************/     
+       if( ( projectDoc != null && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS && 
+            projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.STATUS_NOT_STARTED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_PLE ) && IsUpdateStatus == true)
+                bShowChangeStatusButton = true;
+       else
+                bShowChangeStatusButton = false;
+                
+       
     }
     
     /*******************************************************************************************************
@@ -268,7 +317,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                                 IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
                                 Deputy_Project_Leader__c, IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
                                 IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,
-                                IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, 
+                                IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,
                               (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
                                     IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,IPM_Active__c,
                                     IPM_Project__c
