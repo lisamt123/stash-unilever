@@ -810,12 +810,12 @@
                                                                     </td>
                                                                     <td>
                                                                         <apex:inputField value="{!mapAssetsPerSubCat[subCat].Quantity__c}" styleClass="input_init" style="width: 35px;" /><span style="font-size:19px">&nbsp;x&nbsp;</span>
-                                                                        <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Add_to_project}" action="{!AddToProjectAction}" onclick="if(setMendatory($(this))) blockme();" oncomplete="$.unblockUI()" reRender="assetPart,campaignFeeId,estimateId,Oblix_card" styleClass="Oblix_projects_btn" style="width:34%">
+                                                                        <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Add_to_project}" action="{!AddToProjectAction}" onclick="if(setMendatory($(this))) blockme();" oncomplete="$.unblockUI()" reRender="assetPart,campaignFeeId,estimateId,Oblix_card" styleClass="Oblix_projects_btn" style="width:70px">
                                                                         <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
                                                                         <apex:param assignTo="{!subCat}" name="subCat" value="{!subCat}" />
                                                                         <apex:param assignTo="{!complexity}" name="complexity" value="{!opt}" />
                                                                         </apex:commandButton>
-                                                                        <input value="{!$Label.Oblix_lbl_UIUX_update_to_project}" onclick="updateAsset(this); if(setMendatory($(this))) blockme(); return false;" class="btn Oblix_projects_btn hide_button" style="width:34%" type="submit" /><!--return false;reRender="assetPart,campaignFeeId,estimateId,Oblix_card" -->
+                                                                        <input value="{!$Label.Oblix_lbl_UIUX_update_to_project}" onclick="updateAsset(this); if(setMendatory($(this))) blockme(); return false;" class="btn Oblix_projects_btn hide_button" style="width:70px" type="submit" /><!--return false;reRender="assetPart,campaignFeeId,estimateId,Oblix_card" -->
 
                                                                     </td>
                                                                 </tr>
