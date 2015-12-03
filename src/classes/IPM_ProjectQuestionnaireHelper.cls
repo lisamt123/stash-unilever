@@ -209,7 +209,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                                 
                                 if(incomingProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && projectCurrentGate == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE &&
                                         existingQuestionare.RecordTypeId == recTypeIDRQS && (existingQuestionare.IPM_Active_RQS__c || existingQuestionare.IPM_Is_Added_Question__c) &&  
-                                        existingQuestionare.IPM_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE )
+                                        existingQuestionare.IPM_Market_Deployment_Score__c>= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE )
                                 {
                                     addedQuestionareAtParent.add(existingQuestionare);
                                 }
@@ -428,6 +428,14 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                 tempQuestionare.IPM_Comments__c = questionMasterObj.IPM_Comments__c;
                 tempQuestionare.IPM_Is_Added_Question__c = questionMasterObj.IPM_Is_Added_Question__c;
                 tempQuestionare.IPM_Active_RQS__c = questionMasterObj.IPM_Active_RQS__c;
+                tempQuestionare.IPM_Charter_Comments__c= questionMasterObj.IPM_Charter_Comments__c;
+                tempQuestionare.IPM_Charter_Score__c= questionMasterObj.IPM_Charter_Score__c;
+                tempQuestionare.IPM_Contract_Comments__c= questionMasterObj.IPM_Contract_Comments__c;
+                tempQuestionare.IPM_Contract_Score__c= questionMasterObj.IPM_Contract_Score__c;
+                tempQuestionare.IPM_Market_Deployment_Comments__c= questionMasterObj.IPM_Market_Deployment_Comments__c;
+                tempQuestionare.IPM_Market_Deployment_Score__c= questionMasterObj.IPM_Market_Deployment_Score__c;
+                tempQuestionare.IPM_Market_Ready_Comments__c= questionMasterObj.IPM_Market_Ready_Comments__c;
+                tempQuestionare.IPM_Market_Ready_Score__c= questionMasterObj.IPM_Market_Ready_Score__c;
             }
            
             projectQuestionareList.add(tempQuestionare);
