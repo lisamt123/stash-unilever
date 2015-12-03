@@ -15,7 +15,7 @@
     <aura:attribute name="participant_rating" type="integer"/>
     <aura:attribute name="MyActions" type="boolean" default="true"/>
     <aura:attribute name="themeColors" type="Map" />
-    <aura:attribute name="showdownarrow" type="boolean" default="true"/>
+    <aura:attribute name="showdownarrow" type="boolean" default="false"/>
      <aura:attribute name="showtabs" type="boolean" default="true"/>
     <aura:attribute name="showuparrow" type="boolean" default="false"/>
     <aura:attribute name="showfeedback" type="boolean" default="false"/>
@@ -34,7 +34,7 @@
     <aura:handler event="c:EA_Detailpage_Event" action="{!c.gotoDetail}"/> 
     <aura:handler event="c:EA_Accept_Event" action="{!c.gotoInvitation}"/>
  	<aura:handler name="init" value="{!this}" action="{!c.getData}" />
-    <aura:handler event="c:EA_Decline" action="{!c.showmyactions1}"/>
+    <aura:handler event="c:EA_Decline" action="{!c.gotoDetail2}"/>
     <aura:handler event="c:EA_Showshare_Event" action="{!c.showShareComp}"/>
     
     <ltng:require styles="/resource/EA_StaticResource/css/bootstrap.3.3.css" />
@@ -53,6 +53,9 @@
     margin-left: 20px;
     margin-bottom: 10px;
 }
+        .theme_space{
+        padding-top:20px;
+        }
 .nav-pills li {
     display: block;
     float: left;
@@ -107,7 +110,7 @@
     </aura:if>
     <aura:if isTrue="{!v.showAllthemebutton}">
       <div class="filter-container">
-                <div aura:id="themeFilter" onclick="{!c.callFilterComponent}"  >
+                <div aura:id="themeFilter" class="theme_space" onclick="{!c.callFilterComponent}"  >
                      <span class="tilteTheme">{!v.selectedfilter}</span>&nbsp;
                     <aura:if isTrue="{!v.showdownarrow}">
                       <img src="/resource/EA_StaticResource/images/down.svg" height="10" width="10"/></aura:if>
@@ -121,7 +124,8 @@
         <div class="carousel">
             <aura:iteration items="{!v.activities}" var="activity">
                 <div class="container">
-             <c:EA_Activity_Detail_Component activity="{!activity}" showcontent="{!v.showDetailCard}"  themeColors="{!v.themeColors}" /></div>
+                   
+             <c:EA_Activity_Detail_Component activity="{!activity}" showcontent="{!v.showDetailCard}"  themeColors="{!v.themeColors}" themeName="{!v.showAllthemebutton}"  showswipecard="{!v.showswipe}" detailPage="{!v.detailpage}"/></div>
             </aura:iteration>
         </div>
    </aura:if> 
@@ -132,10 +136,11 @@
    </aura:if>
      <aura:if isTrue="{!v.detailpage}">
         <!--c:demo_testEA EAactivityid="{!v.selectedactivityId}"/--> 
-        <div class="carousel" style="margin-top:50px;">
+        <div class="carousel" style="margin-top:20px;">
          <aura:iteration items="{!v.activityDetail}" var="activity">
                 <div class="container">
-             		<c:EA_Activity_Detail_Component activity="{!activity}" themeColors="{!v.themeColors}"  /> 
+                 
+             		<c:EA_Activity_Detail_Component activity="{!activity}" themeColors="{!v.themeColors}" showswipecard="{!v.showswipe}" detailPage="{!v.detailpage}" /> 
                </div>
             </aura:iteration>
          </div>

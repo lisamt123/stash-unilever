@@ -3,8 +3,7 @@
   height: 80px;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  padding-top: 10px;
-  margin-top: 50px;
+  margin-top: 80px;
   width: 90%;
   margin-left: 5%;
 }
@@ -23,13 +22,15 @@
   font-weight: 500;
   font-size: 1.8rem;
   line-height: 1.25;
+  padding-top:10px;  
 }
 .THIS .a-title_f {
   margin-left: 10px;
   color: white;
   font-size: 1.2rem;
   font-weight: 100;
-  margin-top:-10px;
+  margin-top:0;
+      padding-top:10px; 
 }
 .THIS .starfill_f{
     width:20px;
@@ -54,6 +55,7 @@
   font-size: 14px;
   line-height: 1.25;
     margin-top:30px;
+    padding-top:10px;
 }
 .THIS .cTitle{
     margin-left: 10px;
@@ -62,16 +64,18 @@
   font-size: 14px;
   line-height: 1.25; 
     margin-top:50px;
+    padding-top:20px;
 }
 .THIS .submitButton {
   width: 90%;
     margin-left:5%;
   background-color: #2E91CF;
-  margin-top: 50px;
+  margin-top: 20px;
   color: white;
   border: none;
   height: 40px;
   border-radius: 5px;
+    font-size:1.5rem;
 }
 .THIS .box-text
     {
@@ -91,7 +95,20 @@
  margin-left: 5px;
 }
 .THIS .back_btn{
-  width: 20px;
-  margin-top: -25px;
-  margin-left: 6px;
+  width: 2rem;
+  margin-left: 5%;
+  margin-top: 60px;
+}
+.THIS .cancel_btn{
+   width: 90%;
+  margin-left:5%;
+  background:transparent;
+  margin-top: 50px;
+  color: black;
+  border: none;
+  height: 40px;
+  border-radius: 5px;
+  font-size:1.5rem;
+
+    
 }

@@ -172,5 +172,26 @@
     },
     callShowDetailCard:function(cmp,event,helper){
         cmp.set("v.showcontent",true);
-    }
+        cmp.set("v.themeName", false);
+    },
+    showsummaryCard:function(cmp,event,helper){
+        cmp.set("v.showcontent",false);
+          cmp.set("v.themeName", true);
+    },
+    
+	gotoDetail : function(component, event, helper) {
+        component.set("v.showswipecard",false);
+         component.set("v.showswipecard",true);
+         component.set("v.themeName", false);
+       var actvity=component.get("v.activity");
+         var rating;
+        var id=actvity.acivityId; ;
+        var num=actvity.participant_rating;
+        var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
+        detailpageEvent.setParams({"actvityid":id,"member_Id":actvity.member_Id,"participant_rating":num,"showcontent":true});
+      detailpageEvent.fire();
+		
+	}
+    
+    
     })

@@ -19,9 +19,12 @@
     <aura:attribute name="selectedUsers" type="String[]" description="The search string to find." />
     <aura:attribute name="selectedItem" type="String[]" description="To map selected details"/>
     <aura:attribute name="maxLimit" type="Integer" description="To limit selection" />
+    <aura:attribute name="participantCount" type="Integer" description="To count participant" />
     <aura:attribute name="errorMessage" type="String" description="The search string to find." />
     <aura:attribute name="recentItem" type="EA_Team_Member__c[]" description="team member record." />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler event="c:EA_RecentPill_Event" action="{!c.handlePillUpdate}"/>
+    
     <style>
     .slds .slds-lookup__menu {
       width: 95%;

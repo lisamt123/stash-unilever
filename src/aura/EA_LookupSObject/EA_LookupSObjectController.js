@@ -38,5 +38,8 @@
         cmp.set('v.selectedItem',[]);
         helper.getRecentItem(cmp);
     },
+    handlePillUpdate : function(cmp, event, helper) {
+    	helper.getItemResponse(cmp, event, helper);   
+	}
         
 })

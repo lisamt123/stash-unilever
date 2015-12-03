@@ -134,6 +134,7 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   padding-top: 10px;
+    margin-top:20px;
 }
 
 .THIS .default-rating {
@@ -155,4 +156,9 @@
   color: white;
   font-size: 1.2rem;
   font-weight: 100;
+}
+.THIS .back_image{
+    width:2rem;
+    height:2rem;
+    margin-top: 60px;
 }

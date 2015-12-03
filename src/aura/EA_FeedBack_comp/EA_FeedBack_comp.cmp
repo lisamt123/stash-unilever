@@ -21,17 +21,10 @@
         }
     </style>
     <div class="slds">
-        <!--  <ui:button label="back" press="{!c.gotoDetail}"></ui:button>-->
-        
-        <div class="activity-sec_f">
-            <span  style="margin-left=12px;">
-                <img  onclick="{!c.gotoDetail}" class="back_btn" src="/resource/EA_StaticResource/assets/images/back.svg" alt="back" />
-            </span>
-            
+        <div class="activity-sec_f">            
             <aura:iteration items="{!v.activity}" var="act">
                 <div class="a-title_f"><p><ui:outputText value="{!act.RecordType.Name}"/></p></div>
                 <div class="t-title_f"><h4><ui:outputText value="{!act.Name}"/></h4></div>
-                
             </aura:iteration>		
         </div>
         
@@ -42,9 +35,9 @@
                 <div class="default-rating" style="margin-left:5px;">
                     
                     <aura:if isTrue="{!v.participant_rating !=undefined }">
-                        <aura:iteration items="{!v.numbers}" var="rating" indexVar="{!v.rateStars}">
+                        <aura:iteration items="{!v.numbers}" var="rating" indexVar="index">
                             <span>
-                                <img  value="{!rating}" class="starfill_f"  data-index="{!v.rateStars}" onclick="{!c.imageClick}" src="/resource/EA_StaticResource/assets/images/blue_star.svg" alt="person name" />
+                                <img  value="{!rating}" class="starfill_f"  data-index="{!index}" onclick="{!c.imageClick}" src="/resource/EA_StaticResource/assets/images/blue_star.svg" alt="person name" />
                             </span>
                         </aura:iteration>
                         
@@ -69,12 +62,11 @@
                 <textarea  id="commentText" class="box-text" placeholder="upto 240 characters"></textarea>
                 <!-- <ui:inputText aura:id="comments" label="Comments"  placeholder="upto 240 characters" /> -->
             </div>
-            <div  style="margin-top:30px;"></div>
-            
-            
+        
             
         </div>   
-        <button class="submitButton" onclick="{!c.submitFeedback1}">submit</button>
+        <button class="cancel_btn" onclick="{!c.gotoDetail}">Cancel</button>
+        <button class="submitButton" onclick="{!c.submitFeedback1}">Submit</button>
         
         
     </div>

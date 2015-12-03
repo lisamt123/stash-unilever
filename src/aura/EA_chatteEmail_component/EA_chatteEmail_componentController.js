@@ -56,7 +56,7 @@
         
         var subject=label1+ activity.Name + label2;
         component.set("v.MailSubject",subject);
-       var body=label3+activity.Name+label4+ activity.Description__c + label5;
+       var body=label3+activity.Name+label4+' '+activity.Description__c +' '+' '+ label5;
 
        
       
@@ -66,7 +66,7 @@
     
     cancelShare :function(component, event, helper) {
       var actvity=component.get("v.activityDetail");
-         alert(actvity.Id);
+        
         var id=actvity.Id; ;
         var num=actvity.participant_rating;
       

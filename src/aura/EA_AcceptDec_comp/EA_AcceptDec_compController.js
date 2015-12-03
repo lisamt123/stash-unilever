@@ -3,6 +3,8 @@
       
        var aid=component.get("v.activityId");
         var teamid=component.get("v.teamid");
+        //alert(teamid);
+       
         
                 var action=component.get("c.getuserimage");
          
@@ -44,46 +46,35 @@
         });
         $A.enqueueAction(action);
         
-        
-        var detailpageEvent=$A.get("e.c:EA_Decline");
-                    detailpageEvent.setParams({"showmyactions":true});
-                   detailpageEvent.fire();
-         component.set("v.showInvitation", false);
+       
         
     },
-  
-    
-    
-    
-    
+ 
     Acceptmethod1: function(component, event, helper) {
        //  var activityid = component.get("v.EAactivityid")
-       var aid=component.get("v.activityId");
+      
+         var aid=component.get("v.activityId");
         var teamid=component.get("v.teamid");
-       
-
-        var id = component.get("v.teamid")
-        //alert(id);
+        //alert(teamid);
+        
+        
                //var action = component.get("c.updateParticipantResponse");
                 var action=component.get("c.inviteResponseNofitification");
+        
          
-        // alert("100");
+       
          action.setParams({"teamid" :teamid,"activityId":aid,responseText:'Accepted'});
         action.setCallback(this,function(response){
                 if (response.getState() === "SUCCESS"){
+                     var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
+                    detailpageEvent.setParams({"actvityid":aid});
+                   detailpageEvent.fire();
       
                 }
                   }  );
   
         $A.enqueueAction(action);
-        
-         var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
-                    detailpageEvent.setParams({"actvityid":aid});
-                   detailpageEvent.fire();
-        
-        
-         //component.set("v.showInvitation",false);
-        
+
     },
         
     declinemethod1: function(component, event, helper) {
@@ -102,23 +93,22 @@
          action.setParams({"teamid":teamid,"activityId":aid,responseText:'Declined'});
         action.setCallback(this,function(response){
                 if (response.getState() === "SUCCESS"){
-                
+                var detailpageEvent=$A.get("e.c:EA_Decline");
+                    detailpageEvent.setParams({"showmyactions":true});
+                   detailpageEvent.fire();
+         component.set("v.showInvitation", false);
                 }
         });
         $A.enqueueAction(action);
         
-         var detailpageEvent=$A.get("e.c:EA_Decline");
-                    detailpageEvent.setParams({"showmyactions":true});
-                   detailpageEvent.fire();
-         //component.set("v.showInvitation", false);
-   },
-     redirect:function(component, event, helper) {
-   
-               
+         
         
+   },
+     redirect:function(component, event, helper) {       
          var detailpageEvent=$A.get("e.c:EA_Decline");
                     detailpageEvent.setParams({"showmyactions":true});
                    detailpageEvent.fire();
+         
          component.set("v.showInvitation", false);
    },
     

@@ -9,7 +9,7 @@
                 if (state === "SUCCESS") {
                     if(response.getReturnValue()!=''){
                         var items=response.getReturnValue();
-                       alert(items[0].activity_points); 
+                     
                      
                      component.set("v.userDetail", response.getReturnValue());
                       

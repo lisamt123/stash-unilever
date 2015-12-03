@@ -10,6 +10,7 @@
   color: black;
    font-weight: bold;
   border: none;
+    text-decoration:none;
 }
 .THIS .chatter
 {
@@ -48,4 +49,8 @@
   overflow: hidden;
   background-color: beige;
   margin-top: -10px;
+}
+
+.THIS.anchor{
+    text-decoration:none;
 }

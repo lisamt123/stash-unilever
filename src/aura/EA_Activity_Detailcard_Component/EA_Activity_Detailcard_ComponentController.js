@@ -24,6 +24,7 @@
                      component.set("v.activities", response.getReturnValue());
                       tabstyle=component.find("myaction") ;
                       $A.util.addClass(tabstyle, "active");
+                          component.set("v.showdownarrow",true);
 					  helper.getAllThemeColor(component); 
                                              
                       setTimeout(function() {
@@ -41,9 +42,9 @@
     
     showmyactions1 : function(cmp,event){
       cmp.set("v.showswipe",false);
-   
-      cmp.set("v.showfilter",false);
-      cmp.set("v.detailpage",false);
+    cmp.set("v.showInvitation",true);
+      cmp.set("v.showfilter",false);	 
+      cmp.set("v.detailpage",true);
         cmp.set("v.showtabs",true);
          cmp.set("v.showAllthemebutton",false);
           tabstyle=cmp.find("themes");
@@ -54,12 +55,15 @@
        	$A.util.removeClass(tabstyle,"inactive_class");
         tabstyle=cmp.find("myaction");
        	$A.util.addClass(tabstyle,"active_class");
-        cmp.set("v.showInvitation",false);
-        cmp.set("v.MyActions",true);
+      
+        cmp.set("v.MyActions",false);
+       
         
     },
  
 	applyfilter : function(component, event, helper) {
+         component.set("v.showdownarrow",true);
+        component.set("v.showuparrow",false);
          component.set("v.showDetailCard",false);
         var filter=event.getParam("theme");
        //alert(filter);
@@ -142,16 +146,15 @@
         }
         
         if(swipe === false){
-      cmp.set("v.showswipe",true);
+        cmp.set("v.showswipe",true);
         cmp.set("v.showfilter",false);
-            cmp.set("v.showdownarrow",true);
+        cmp.set("v.showdownarrow",true);
         cmp.set("v.showuparrow",false);
       }
         
     },
     callShowSwipe:function(cmp,event){
-           cmp.set("v.showDetailCard",false);
-    
+        cmp.set("v.showDetailCard",false);
         tabstyle=cmp.find("themes");
        	$A.util.removeClass(tabstyle,"inactive_class");
           tabstyle=cmp.find("themes");
@@ -199,6 +202,7 @@
     },
     
     gotoDetail : function(cmp,event,helper){
+         cmp.set("v.showInvitation",false);
     	var actId=event.getParam("actvityid");
         var memberid=event.getParam("member_Id");
         var showcontent=event.getParam("showcontent");
@@ -212,10 +216,28 @@
         cmp.set("v.showchatter",false);
          cmp.set("v.showtodoactpage",false); 
     	helper.getactivities1(cmp);
-        cmp.set("v.showInvitation",false);
-        alert("100");
+       
+        
     },
-    
+     
+    gotoDetail2 : function(cmp,event,helper){
+         cmp.set("v.showInvitation",false);
+    	var actId=event.getParam("actvityid");
+        var memberid=event.getParam("member_Id");
+        var showcontent=event.getParam("showcontent");
+       // cmp.set("v.showDetailCard",showcontent);
+        cmp.set("v.memberid",memberid);
+    	cmp.set("v.selectedactivityId",actId);
+    	cmp.set("v.detailpage",false);
+    	cmp.set("v.MyActions",true);
+        cmp.set("v.showtabs",true); 
+        cmp.set("v.showfeedback",false);
+        cmp.set("v.showchatter",false);
+         cmp.set("v.showtodoactpage",false); 
+    	helper.getactivities1(cmp);
+       
+        
+    },
     showFeedback :function(cmp,event,helper){
     	var actId=event.getParam("activityId");
         var memberid=event.getParam("team_memberid");
@@ -245,7 +267,7 @@
     },
     
     gotoInvitation : function(component, event, helper) {
-        component.set("v.showDetailCard",false);
+        
         var actId=event.getParam("activityId");
         var memberid=event.getParam("teamId");
        // alert(actId);
@@ -256,10 +278,11 @@
         component.set("v.detailpage",false);
         component.set("v.showswipe",false);
         component.set("v.showtabs",false);
-        component.set("v.MyActions",true);
+        component.set("v.MyActions",false);
         component.set("v.showAllthemebutton",false);
         component.set("v.showtodoactpage",false);
         component.set("v.showInvitation",true);
+        component.set("v.showDetailCard",false);
     },
     
     showShareComp : function(component, event, helper) {

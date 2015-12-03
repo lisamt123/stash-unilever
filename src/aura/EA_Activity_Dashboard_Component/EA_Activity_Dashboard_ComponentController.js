@@ -18,7 +18,11 @@
     doInit :function(component, event, helper) {
         
           var actvity=component.get("v.activity");
-          console.log(actvity.participant_rating);
+          console.log(actvity.invitation_status);
+         var today = new Date();
+        var dd = today.getDate(); 
+          console.log(today);
+          //if(actvity.Due_Date < currentDate)
         if(actvity.invitation_status ==='Self' && (actvity.participant_rating < 0 || actvity.participant_rating ===undefined)){
             component.set("v.showfeedback",true);
         }

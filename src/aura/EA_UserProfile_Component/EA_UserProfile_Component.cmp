@@ -29,8 +29,10 @@
  
 }
 .progress_bar img  {
+  
   width: 280px;
-  margin-left: -5px;
+  margin-left:5px;
+
 }
 .slds .slds-tabs--scoped {
     border: solid;

@@ -53,5 +53,23 @@
             }
         });
         $A.enqueueAction(action);
-	}
+	},
+    getPrticipantCount : function(cmp){
+        var act = cmp.get("v.activity");
+  		var action = cmp.get("c.getActivityParticipantCount");
+        action.setParams({"Activityid" : act[0].Id});
+        action.setCallback(this, function(response) {
+            var state = response.getState();
+            if(state === 'SUCCESS'){
+                if(response.getReturnValue() != ''){
+                    console.log("getParticipantCount Success"+response.getReturnValue());
+                    cmp.set("v.participantCount",response.getReturnValue());
+                }
+            }
+        });
+        $A.enqueueAction(action);      
+        
+    }
+    
+    
 })

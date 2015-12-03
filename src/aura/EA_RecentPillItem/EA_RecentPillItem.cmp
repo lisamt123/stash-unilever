@@ -1,6 +1,5 @@
 <aura:component >
     <aura:registerEvent name="updatePillListEvent" type="c:EA_RecentPill_Event" />
-    <aura:handler event="c:EA_RecentPill_Event" action="{!c.handlePillUpdate}"/>
     <aura:attribute name="itemName" type="String"/>
     <aura:attribute name="itemId" type="String"/>
     <aura:attribute name="selectedUsers" type="String[]" />

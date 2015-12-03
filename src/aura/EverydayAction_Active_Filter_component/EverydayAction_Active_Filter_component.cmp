@@ -23,7 +23,9 @@
       			<ui:outputText value="{!v.themeName}" />
    				</span>
               </div>  
-               <div class="tick_img"></div>
+                 <span>
+                    <img  class="tick_img" src="/resource/EA_StaticResource/assets/images/sort_tick.svg" alt="back" />
+                </span>
 		  </li>
 		</ul>
     </div>

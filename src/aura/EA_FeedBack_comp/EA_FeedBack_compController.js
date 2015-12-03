@@ -79,10 +79,7 @@
     imageClick:function(cmp,event,helper,val){
           var numbers = [];
     var index =parseInt(event.target.attributes.getNamedItem("data-index").value);
-      alert(index);
         index =index+1;
-        cmp.set("v.rateStars",index);
-       
         var activityid=cmp.get("v.activityId");
         var action=cmp.get("c.provideRating");
         action.setParams({"ActivityID":activityid,"rating":index});
@@ -97,8 +94,14 @@
                     cmp.set("v.participant_rating",items[0].Rating__c);
                     cmp.set("v.activity",act);
                      cmp.set("v.activityForRating",items[0]);
+                    cmp.set("v.index",0);
+                     var previous=cmp.get("v.participant_rating");
+                    if(previous < 5){
+       				 cmp.set("v.rateStars",previous);
+                    }
+                   
                     
-       
+        
          for (var i = 0; i < items[0].Rating__c; i++) {
           numbers.push({
             value: i

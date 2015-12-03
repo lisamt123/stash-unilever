@@ -10,7 +10,8 @@
                 if(response.getReturnValue()!=''){
                     var items = response.getReturnValue();
                     component.set("v.activity",items[0]);
-                    
+                    component.set("v.maxLimit",items[0].Participants_Required__c);
+                    console.log("MaxLimit"+items[0].Participants_Required__c);
                     var rectype=component.get("v.themerecordtype");
                     var actionColor=component.get("v.themeColors");
                     for (var prop in actionColor) {
@@ -19,6 +20,7 @@
                         }
                     }
                     helper.getToDoTimeline(component);
+                    helper.getPrticipantCount(component);
                 }
             }
         });
