@@ -2434,6 +2434,11 @@ OwnerId))</formula>
             <operation>equals</operation>
             <value>False</value>
         </summaryFilterItems>
+	<summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Type_of_Milestone__c</field>
+            <operation>equals</operation>
+            <value>Standard</value>
+        </summaryFilterItems>
         <summaryForeignKey>IPM_Milestone__c.IPM_Project__c</summaryForeignKey>
         <summaryOperation>min</summaryOperation>
         <trackHistory>false</trackHistory>
