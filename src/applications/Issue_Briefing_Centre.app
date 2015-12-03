@@ -6,6 +6,7 @@
     <tab>standard-Chatter</tab>
     <tab>im_Issues</tab>
     <tab>im_Issue_Tracker__c</tab>
+    <tab>kof_Unilever_Project__c</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
 </CustomApplication>

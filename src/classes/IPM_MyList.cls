@@ -642,14 +642,10 @@ public with sharing class IPM_MyList{
             
             if(setCont !=null && isCompleteTasks != IPM_Utils.Yes){
                 for(IPM_Task__c a : (List<IPM_Task__c>)setCont.getRecords())
-                {
-                   lstTasks.add(a);
-                }   
+                    lstTasks.add(a);
                 return lstTasks;
             }else 
-            {
                 return null;
-            }
         }catch(Exception ex) {
             ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
             ApexPages.addMessage(myMsg); 
@@ -713,9 +709,7 @@ public with sharing class IPM_MyList{
             List<IPM_Task__c> lstTasks= new List<IPM_Task__c>();
             if(setContr != null && isCompleteTasks != IPM_Utils.Yes){
                 for(IPM_Task__c a : (List<IPM_Task__c>)setContr.getRecords())
-                {
                     lstTasks.add(a);
-                }    
                 return lstTasks;
             }else{
                 return null;
@@ -816,9 +810,7 @@ public with sharing class IPM_MyList{
             List<IPM_Task__c> lstTasks= new List<IPM_Task__c>();
             if(setController != null && isCompleteTasks != IPM_Utils.No){
                 for(IPM_Task__c a : (List<IPM_Task__c>)setController.getRecords())
-                {
-                    lstTasks.add(a);
-                }            
+                    lstTasks.add(a);        
                 return lstTasks;
             }else{
                 return null;
@@ -998,12 +990,8 @@ public with sharing class IPM_MyList{
         projectlist =new List<String>();
         if(String.IsNotEmpty(searchedProject)){
             for(String sProjectName : projectsSet)
-            {
                 if(String.IsNotEmpty(sProjectName) && sProjectName.startsWithIgnoreCase(searchedProject))
-                {
                     projectlist.add(sProjectName);
-                }
-            }    
         }else{
             projectlist.addAll(projectsSet);
         }

@@ -23,7 +23,7 @@ public with sharing class IPM_BETSuggestedMembersController{
             }
         }catch(Exception ex){
           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-          ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BETSuggestedMembersController.class.getName(),'updateBETonProject',ex.getMessage(), Ex,IPM_ConstantUtils.ERROR, null, ex.getStackTraceString(), null, null) ;
+          ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BETSuggestedMembersController.class.getName(),'updateBETonProject',ex.getMessage(), Ex,IPM_ConstantUtils.ERROR, null, null, null, null) ;
             throw new IPM_CustomException(System.Label.IPM_BET_BETUpdate_failure_ErrMsg);  
         }
         return pageRef ;

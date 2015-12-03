@@ -280,9 +280,8 @@ global with sharing class IPM_BosscardStatusController{
         String queryString = 'SELECT ';
         //user profile fileds
         For (String field : Schema.SObjectType.IPM_User_Profile__c.fields.getMap().KeySet()){
-            if (field.equals(IPM_ConstantUtils.SF_ID)){
+            if (field.equals(IPM_ConstantUtils.SF_ID))
                 queryString+= field + ', ';
-            }
         }
         queryString+= 'Id,IPM_User__r.name,IPM_User__r.id,IPM_User__r.SmallPhotoUrl,IPM_User__r.email FROM IPM_User_Profile__c WHERE (IPM_User__r.name like \''+ likePerStr + String.escapeSingleQuotes(selectedPL) + likePerStr + '\' OR IPM_User__r.email Like \'' + likePerStr + String.escapeSingleQuotes(selectedPL) + likePerStr + '\')';
         queryString+=' AND IPM_User_Function__c=\''+ String.escapeSingleQuotes(strCoreMem) +'\' AND IPM_User__r.IsActive=True ';
@@ -304,7 +303,7 @@ global with sharing class IPM_BosscardStatusController{
                 }
             }
             projecLeaderlist=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,IPM_User__r.email,
-                              IPM_User__r.SmallPhotoUrl, 
+                              IPM_User__r.IPM_Category__c,IPM_User__r.SmallPhotoUrl, 
                               IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE id IN:uniqueUserList.values() ORDER BY IPM_User__r.name limit 50000];
             
             IsNoMatchfound=false;

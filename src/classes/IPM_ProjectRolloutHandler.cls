@@ -11,6 +11,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     //@description:Constructor
     public IPM_ProjectRolloutHandler (){
         //making boolean to true to identify while insertion of exception logs
+        system.debug(logginglevel.error, 'entry in project rollout trigger handler');
         ExceptionLoggingHelper.initializeExceptionLog(); 
     }
     
@@ -59,6 +60,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         {
             handler.processUpdate((Map<Id,IPM_Project_Rollout__c>) Trigger.newMap, (Map<Id,IPM_Project_Rollout__c>) Trigger.oldMap);
             
+            
              //Chatter to post when finance member added to a rollout
             List<IPM_Project_Rollout__c> financeMemberAddedToRolloutProj = new List<IPM_Project_Rollout__c>();
             for(IPM_Project_Rollout__c incomingRollouts :(List<IPM_Project_Rollout__c>)Trigger.New)
@@ -72,6 +74,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
             }
             IPM_ChatterFeedHelper.notifyFinanceMemberAddedToRollout(financeMemberAddedToRolloutProj);
         }
+
     }
     
     /**

@@ -14,7 +14,7 @@ public class IPM_ProjectResourceHandler_Test {
      *@Description :testmethod to create project and resource
      */
 	 
-	
+	/* 
     static void initializeData() {
         User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
         globalUser.email = 'globalUser@unilever.test.com';
@@ -45,11 +45,11 @@ public class IPM_ProjectResourceHandler_Test {
         insert projectRes2;
         delete projectRes2;
     }
-	
+	*/
     /**************************************************************
      *@Description :testmethod to test dotest method
      */
-	
+	/* 
     static testMethod void dotest() {
         initializeData();
         test.starttest();
@@ -156,4 +156,6 @@ public class IPM_ProjectResourceHandler_Test {
         }
 
     }
+	*/
+
 }

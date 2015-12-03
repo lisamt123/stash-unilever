@@ -1,0 +1,87 @@
+<aura:component controller="Core_NC_NewsCenterController">
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <aura:attribute name="LinkName" type="String"/>
+    <aura:attribute name="LinkURL" type="String"/>
+    <aura:attribute name="LinkPost" type="String" default="News article that may interest you:"/>
+    <!--<aura:attribute name="MyFollowers" type="Boolean" default="true"/>
+    <aura:attribute name="UserOrGroup" type="Boolean" default="false"/>-->
+    <aura:attribute name="SelectedRadioButton" type="String" default="My Followers"/>
+    <aura:attribute name="NewsDetail" type="Core_NC_NewsDetailWrapperClass"/>
+	<aura:attribute name="NewsType" type="String"/>
+    <aura:attribute name="LinkPostErrorMessage" type="String"/>
+    <aura:attribute name="LinkPostFlag" type="Boolean" default="false"/>
+    <aura:attribute name="UserGroupErrorMessage" type="String"/>
+    <aura:attribute name="UserGroupFlag" type="Boolean" default="false"/>
+    <aura:attribute name="UserGroupName" type="String"/>
+    <aura:attribute name="groupNameList" type="String" />
+    <aura:attribute name="selectedGroupName" type="String" default=""/>
+    <aura:attribute name="ErrorMessageFlag" type="Boolean" default="false"/>
+    <aura:attribute name="clearSelectedGroupFlag" type="Boolean" default="false"/> 
+    <aura:attribute name="ErrorMessage" type="String" default="Some problem occured,Try Again"/>
+        <div class="container">
+            <div class="row">
+                <div class="topBarStyle">
+                    <div onclick="{!c.BackButton}" style="height: 40px;width: 50px;padding-left: 10px;padding-top: 1px;">
+                         <img src="/resource/NewsCenterIcons/back.svg" height="22" width="22" ></img>
+                    </div>
+                </div>
+                <!--<table class="filterHeader">
+                    <tr>
+                        <td class="sectionText" >
+                            
+                        </td>
+                        <td class="rightAlign">
+                            <span onclick="{!c.submitShare}" class="applyButton">Share</span>
+                        </td>
+                    </tr>
+                </table> -->
+                
+                <div class="chatterSection">
+                    <div>
+                        <b>Link URL</b><br/>
+                        <ui:inputText value="{!v.LinkURL}" class="sectionText" disabled="true"/>                        
+                    </div>
+                    <div class="sectionStyle">   
+                        <b>Link Name</b><br/>
+                        <ui:inputText value="{!v.LinkName}" class="sectionText" disabled="true"/>
+                    </div>
+                    <div class="sectionStyle">  
+                        <b>Post</b><br/>
+                        <ui:inputTextArea value="{!v.LinkPost}" class="sectionText" required="true"/>
+                    </div>
+                    <div class="sectionStyle">      
+                        <input type="radio" name="others" onclick="{!c.myFollowers}" checked="true"/>My Followers<br/>
+                    </div>
+                    <div class="sectionStyle">    
+                        <input type="radio" name="others" onclick="{!c.group}"/>Group<br/>
+                    </div>
+                    <div class="sectionStyle">     
+                        <div aura:id="autoCompleteDiv">
+                            Group Name<br/>    
+                            <div class="ui-widget">
+                                <input id="groupNames" class="autoCompleteText" onkeyup="{!c.getGroupName}"/> 
+                                <img src="/resource/NewsCenterIcons/add.svg" height="20" width="20" onclick="{!c.addGroupName}"/>
+                            </div>
+                            <aura:iteration items="{!v.selectedGroupName}" var="groupName">
+                                <div style="height:5px;"></div>{!groupName}<br/> 
+                            </aura:iteration>   
+                            <aura:if isTrue="{!v.clearSelectedGroupFlag}">
+                                <div style="height:5px;"></div>
+                                <span onclick="{!c.clearGroupNames}" class="applyButton">Clear Groups</span><br/><br/>
+                            </aura:if> 
+                            <aura:if isTrue="{!v.UserGroupFlag}">
+                                <br/><span style="color:red;">*Enter atleast 1 Group Name</span>
+                            </aura:if>                          
+                        </div>
+                        
+                    </div>
+                    <aura:if isTrue="{!v.ErrorMessageFlag}">
+                        <br/><span style="color:red;">{!v.ErrorMessage}</span>
+                    </aura:if>
+                    <div style="text-align:center">
+                    	<br/><span onclick="{!c.submitShare}" class="applyButton">Share</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+</aura:component>

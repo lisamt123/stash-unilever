@@ -408,9 +408,8 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
         String fieldValue = '';
         for(String val : rowValue){
                 GetValue++;
-                if(GetValue == IPM_ConstantUtils.CntField) {
+                if(GetValue == IPM_ConstantUtils.CntField)
                   fieldValue = val;
-				 }
         } 
         return fieldValue;
     }
@@ -455,6 +454,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                                 fy.Volume_Tons_Regional__c = setFieldValues(vol);
                                 fy.Volume_Regional__c = setFieldValues(vol);
                         }
+                        system.debug(fy);
                 return fy;
         }
          /***************************************************************************************************************
