@@ -125,6 +125,14 @@ src/pages/Oblix_VF10_nonCampaignView.page
 src/pages/Oblix_VF10_nonCampaignView.page-meta.xml
 src/pages/Oblix_VF4Bis_OverrideOtherItemsNews.page
 src/pages/Oblix_VF4Bis_OverrideOtherItemsNews.page-meta.xml
+src/reportTypes/Oblix_SWOP_SOW.reportType
+src/reports/Oblix_SWOP/SWOP_Campaign_Asset_Export_Full_Detail.report
+src/reports/Oblix_SWOP/SWOP_Country_Hub_Splits_for_Export.report
+src/reports/Oblix_SWOP/SWOP_Non_Campaign_Report_for_Extract.report
+src/reports/Oblix_SWOP/SWOP_SOW_Export_Full_Details.report
+src/reports/Oblix_SWOP/SWOP_Timeline_Report_for_Export.report
+src/staticresources/Oblix_Checks.resource
+src/staticresources/Oblix_Checks.resource-meta.xml
 src/staticresources/OblixUIUXVF07ProjViewCss.resource
 src/staticresources/OblixUIUXVF07ProjViewCss.resource-meta.xml
 src/staticresources/OblixUIUXVF08ProjectCss.resource
