@@ -679,40 +679,6 @@ public with sharing class IPM_FinancialTriggerHandler
             if(projDocSecConList!=null && !projDocSecConList.isEmpty()){
                 update projDocSecConList;
             }
-            
-            /*Update BI on IPM Project from IPM Financial record*/
-            newFinList=new List<IPM_Financial__c>();
-            projectIds=new Set<Id>();
-            for(IPM_Financial__c newFin:mapNewFinancials.values()){
-                if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
-                    newFinList.add(newFin);
-                    projectIds.add(newFin.Parent_Project__c);
-                    system.debug('/// in projids');
-                }
-                if(newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
-                    newFinList.add(newFin);
-                    projectIds.add(newFin.Parent_Project__c);
-                }
-            }
-            List<IPM_Project__c> projList=new List<IPM_Project__c>();
-            if(projectIds!=null && !projectIds.isEmpty()){
-                projList = [select id,BI__c from IPM_Project__c where id in : projectIds];
-               
-            }
-            for(IPM_Financial__c fin:newFinList){
-                for(IPM_Project__c proj: projList){
-                    if(proj.id==fin.Parent_Project__c){
-                        proj.BI__c = fin.Business_Impact_Global__c;
-                        
-                    }
-                }
-            }
-            if(projList!=null && !projList.isEmpty()){
-               
-                update projList;
-            }
-            /*Update BI code ends*/
-            
         }
         catch(QueryException ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
