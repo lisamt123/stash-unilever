@@ -108,7 +108,8 @@ private class IPM_ChatterFeedHelper_Test {
         globalprojects[0].IPM_Technical_Project_Leader__c = technicalPL.id;
         globalprojects[0].IPM_Project_Gatekeeper__c = gateKeeper.id;
         globalprojects[0].IPM_Finance_Member__c= financeMember.id;
-        
+        globalprojects[0].IPM_Project_Leader__c= PL.id;
+           
         IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = true;
         IPM_ProjectOwnerChangeQueue.PROJECT_QUEUE_CONTEXT_STARTED = true;
         insert globalprojects;
@@ -269,8 +270,6 @@ private class IPM_ChatterFeedHelper_Test {
            test.startTest(); 
            initializeData();
 
-
-
            IPM_TestFactory_Helper.makeUserInactive(deputyPL);
            IPM_TestFactory_Helper.makeUserInactive(financeMember);  
            IPM_TestFactory_Helper.makeUserInactive(PL); 
@@ -411,13 +410,13 @@ private class IPM_ChatterFeedHelper_Test {
             {
                 IPM_Project__c lstProject = IPM_TestFactory_Helper.createIPMProject(true);
                 
-            	ID  projectTaskRecordType = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
-	            //Need system admin to insert System Generated tasks for testing
-	            IPM_Task__c newTask = IPM_TestFactory_Helper.createIPMTask(lstProject.id,false);
-	            newTask.IsSystemGenerated__c = true;
-	            newTask.RecordTypeId = projectTaskRecordType;
-	            insert newTask;
-            	listTask.add(newTask);
+              ID  projectTaskRecordType = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
+              //Need system admin to insert System Generated tasks for testing
+              IPM_Task__c newTask = IPM_TestFactory_Helper.createIPMTask(lstProject.id,false);
+              newTask.IsSystemGenerated__c = true;
+              newTask.RecordTypeId = projectTaskRecordType;
+              insert newTask;
+              listTask.add(newTask);
             }
             
             IPM_ChatterFeedHelper.notifyAssigneeTaskAssigned(listTask);
@@ -496,7 +495,7 @@ private class IPM_ChatterFeedHelper_Test {
                 System.assert(projectFeed.Body.contains(System.label.IPM_TLD_Misaligned),FEED_UPDATED_ASSERT);
                 }
             }
-            
+             
             }
             
             Test.stopTest(); 
