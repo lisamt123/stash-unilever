@@ -80,7 +80,9 @@
                                                         
                                                         <apex:outputPanel layout="block" styleClass="pull-left delTitlecon"> 
                                                             <span >{!evi.IPM_Consumer_Evidence_Concept_Name__c}</span>
-                                                            <a class="icoButton delete floatR deleteConcept" title="Remove Concept" onclick="deleteconcept('{!evidenceCountry}','{!projDocSecId}','{!evi.Id}');" rendered="{!AND(isEditable,evi.IPM_Consumer_Evidence_Gate__c=gateType)}"></a>
+                                                            <apex:outputPanel rendered="{!AND(isEditable,evi.IPM_Consumer_Evidence_Gate__c=gateType)}">
+                                                                <a class="icoButton delete floatR deleteConcept" title="Remove Concept" onclick="deleteconcept('{!evidenceCountry}','{!projDocSecId}','{!evi.Id}');"></a>
+                                                            </apex:outputPanel>
                                                         </apex:outputPanel>
                                                         <div class="ceImage ceImageBig">
                                                             <apex:outputPanel layout="block" >
