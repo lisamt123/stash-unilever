@@ -32,7 +32,7 @@
         <div class="chat_btn">
         <div><button  class="chatter" onclick="{!c.chatterfeeditem1}"> Chatter</button></div>
           <div class="divider"></div>
-        <div><button  class="email"> <a  href="{!'mailto:?subject='+v.MailSubject+'&amp;body='+v.MailToBody}" style="color: #344A5F" >
+        <div><button  class="email" onclick="{!c.gotoDetail}"> <a  href="{!'mailto:?subject='+v.MailSubject+'&amp;body='+v.MailToBody}" style="color: #344A5F" >
                          <div class="anchor" >Email</div>
                      </a></button></div>
           <div><button  onclick="{!c.cancelShare}" class="cancel">Cancel</button></div>  

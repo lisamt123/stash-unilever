@@ -22,10 +22,6 @@
      <aura:attribute name="detailPage" type="boolean" default="false"></aura:attribute>
     
     
-    
-    
-    
-    
     <style>
         .spacer-pull-to-load-more{
         height:100% !important;

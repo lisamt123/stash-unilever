@@ -1,63 +1,44 @@
 ({
-	
     getThemeColor : function(component, event, helper){
         var action =component.get("c.getThemeColor");
         action.setCallback(this, function(response) {
                 var state = response.getState();
-                if (state === "SUCCESS") {
-                    if(response.getReturnValue()!=''){
+                if (state === "SUCCESS" && response.getReturnValue()!== '') {
                      var items=response.getReturnValue();
                         console.log(items);
                      	component.set("v.themecolor", response.getReturnValue());
-                   }
                 }
             });
             $A.enqueueAction(action);
-    }, 
-  doInit: function(component, event, helper) {
+ 	}, 
+  	doInit: function(component, event, helper) {
         var cont=component.get("v.showcontent");
-    	
-      /* -------- Added By Rajan ----------------*/
         var aid=component.get("v.activity");
-           
         var action=component.get("c.getbooleanvalue");
-      //  var share=component.find("txt").get("v.value");
-        
-        // alert(share); 
-     action.setParams({"actID":aid.Id});
-         
+     	action.setParams({"actID":aid.Id});
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if (state === "SUCCESS") {
-                if(response.getReturnValue()!=''){
+            if (state === "SUCCESS" && response.getReturnValue()!== '') {
                     var items = response.getReturnValue();
-                
                     if(items === true){
                      //alert(items);
                     component.set("v.check_image",true);
                     }else{
                          component.set("v.check_image",false);
-                        //alert(v.check_image);
                     }
-                }
             }
         });
         $A.enqueueAction(action);
-      
       var rectype=component.get("v.themerecordtype");
         var action=component.get("v.themeColors");
          for (var prop in action) {
-             if(prop == rectype){
+             if(prop === rectype){
                 console.log("Key:" + prop);
                 console.log("Value:" + action[prop]);
                  component.set("v.themecolor", action[prop]);
              }
             }
-		/* -------- Added By Rajan ----------------*/
-      	/* -------- Added By Ruma ----------------*/
-      
       	var actvity=component.get("v.activity");
-      
     	var numbers = [];
         for (var i = 0; i < actvity.Rating__c; i++) {
           numbers.push({
@@ -70,87 +51,45 @@
             value: i
           });
       }
-     
     component.set("v.numbers", numbers); 
     component.set("v.remain", remain);
-      /* -------- end ----------------*/
     },
      getbooleanvalue1 :function(component, event, helper) {
-        
-        
-          var aid=component.get("v.EAactivityid");
-        // alert(aid);
-        var action=component.get("c.getbooleanvalue");
-      //  var share=component.find("txt").get("v.value");
-        
-        // alert(share); 
-     action.setParams({"actID":aid});
-         
+          	var aid=component.get("v.EAactivityid");
+        	var action=component.get("c.getbooleanvalue");
+     		action.setParams({"actID":aid});
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if (state === "SUCCESS") {
-                if(response.getReturnValue()!=''){
+            if (state === "SUCCESS" && response.getReturnValue()!== '') {
                     var items = response.getReturnValue();
-                   // alert(items);
                     if(items ===false){
-                     
                     component.set("v.check_image",true);
-                        //alert(v.check_image);
                     }
-                }
             }
         });
         $A.enqueueAction(action);
         
     },
- chatterfeeditem1 :function(component, event, helper) {
-        
-        
-       // var chatter = component.get("v.UserId");
+ 	chatterfeeditem1 :function(component, event, helper) {
         var action=component.get("c.chatterfeeditem");
-      //  var share=component.find("txt").get("v.value");
-        
-        // alert(share); 
-        //action.setParams({"comment":share});
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if (state === "SUCCESS") {
-           //     if(response.getReturnValue()!=''){
-                    //alert("success");
-                    
-                    
-             //   }
-            }
         });
         $A.enqueueAction(action);
-    
-},
- 
-
-
+	},
    insertteamrecord1 : function(component, event, helper) {
         var activityid = component.get("v.activity");
       //alert(activityid.Id);
         var action = component.get("c.insertteamrecord");
         action.setParams({"ActivityID" : activityid.Id});
         action.setCallback(this,function(response){
-                if (response.getState() === "SUCCESS"){
-                  
-                }
-            
-           
         } );
-  
         $A.enqueueAction(action);
    },
         showdetail : function(cmp,event,helper){
         var id=event.getParam("activityId");
-       
         cmp.set("v.EAactivityid",id);
-        
     },
-    
-    
       commentspage2 :function(component, event, helper) {
           var activity = component.get("v.activity");
           var shareEvent=$A.get("e.c:EA_Showshare_Event");
@@ -176,13 +115,10 @@
     },
     showsummaryCard:function(cmp,event,helper){
         cmp.set("v.showcontent",false);
-          cmp.set("v.themeName", true);
+  		   cmp.set("v.themeName", true);
     },
-    
 	gotoDetail : function(component, event, helper) {
-        component.set("v.showswipecard",false);
-         component.set("v.showswipecard",true);
-         component.set("v.themeName", false);
+        cmp.set("v.themeName", false);
        var actvity=component.get("v.activity");
          var rating;
         var id=actvity.acivityId; ;
@@ -190,8 +126,5 @@
         var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
         detailpageEvent.setParams({"actvityid":id,"member_Id":actvity.member_Id,"participant_rating":num,"showcontent":true});
       detailpageEvent.fire();
-		
 	}
-    
-    
     })

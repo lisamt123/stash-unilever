@@ -2,11 +2,6 @@
     background-color: #00CCFF;
    
 }
-.THIS{
-    
-    border:1px solid #F0F5F5;
-    width:100%;
-}
 .THIS .share_img{
   
     border-radius: 200px;
@@ -58,23 +53,18 @@
 }
 .THIS .min-table{
     background-color: transparent;
-    margin-left: 0px;
     margin-top: 30px;
 
-  
 }
 .THIS .min-table td{
     padding-left: 5px;
     padding-top:5px;
 }
 .THIS .tdFont{
-  font-size: 12px;
   color: #A7B8D1;
   font-weight: 300;
   font-size: 1.5rem;
   line-height: 1.25;
- 
-
 }
 .THIS .navbar-fixed-bottom {
     bottom: 0;
@@ -131,10 +121,11 @@
 .THIS .activity-sec {
   background: #00B8E6;
   height: 80px;
+  box-sizing: border-box;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   padding-top: 10px;
-    margin-top:20px;
+  margin-top:20px;
 }
 
 .THIS .default-rating {

@@ -30,15 +30,10 @@
     skipToDoActivity : function(component, event, helper) {
         var act = component.get("v.activity");
         var action = component.get("c.insertteamrecord");
-        action.setParams({"ActivityID" : act[0].Id});
-        action.setCallback(this,function(response){
-            if (response.getState() === "SUCCESS"){
-                component.set("v.detailpage",true);
-                var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
-                detailpageEvent.setParams({"actvityid":act[0].Id});
-                detailpageEvent.fire();
-            }
-        } );
+        component.set("v.detailpage",true);
+        var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
+        detailpageEvent.setParams({"actvityid":act[0].Id});
+        detailpageEvent.fire();
         $A.enqueueAction(action);  
     },
     /**

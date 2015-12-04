@@ -1,6 +1,6 @@
 .THIS button.slick-prev, 
 .THIS button.slick-next {
-    display: none !important;
+    display: none;
 }
 
 .THIS .bootstrap-sf1 .uiButton--default .label {
@@ -44,6 +44,7 @@
   font-family: inherit;
 }
 .THIS li.active_class{
+    box-sizing: border-box;
     border-radius: 0;
     text-align: center;
     width: 50%;
@@ -58,13 +59,13 @@
     
 }
 .THIS li.inactive_class{
+    box-sizing: border-box;
     border-radius: 0;
     text-align: center;
     width: 50%;
     position: relative;
     display: block;
     padding: 10px 15px;
-    text-decoration: none;
     color: white;
     text-decoration: none;
    	background:#337ab7 !important;

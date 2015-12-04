@@ -1,5 +1,5 @@
 ({
-	/**
+    /**
      * Perform the SObject search via an Apex Controller
      */
     doSearch : function(cmp) {
@@ -9,16 +9,13 @@
         var inputElement = cmp.find('lookup');
         var lookupList = cmp.find("lookuplist");
         var lookupListItems = cmp.find("lookuplist-items");
- 
         // Clear any errors and destroy the old lookup items container
         inputElement.set('v.errors', null);
-        lookupListItems.set('v.body', new Array());
-        
+        lookupListItems.set('v.body',[]);
         if(inputElement.get('v.value').length < 2){
-        	$A.util.addClass(lookupList, 'slds-hide');
-            return    
+            $A.util.addClass(lookupList, 'slds-hide');
+            return;
         }
-        
         // We need at least 2 characters for an effective search
         if (typeof searchString === 'undefined' || searchString.length < 2)
         {
@@ -26,64 +23,46 @@
             $A.util.addClass(lookupList, 'slds-hide');
             return;
         }
- 
         // Show the lookuplist
         $A.util.removeClass(lookupList, 'slds-hide');
- 
         // Get the API Name
         var sObjectAPIName = cmp.get('v.sObjectAPIName');
- 
         // Create an Apex action
         var action = cmp.get("c.lookup");
- 
         // Mark the action as abortable, this is to prevent multiple events from the keyup executing
         action.setAbortable();
- 
         // Set the parameters
         action.setParams({ "searchString" : searchString, "sObjectAPIName" : sObjectAPIName});
-                           
         // Define the callback
         action.setCallback(this, function(response) {
             var state = response.getState();
- 
             // Callback succeeded
-            if (cmp.isValid() && state === "SUCCESS")
-            {
+            if (cmp.isValid() && state === "SUCCESS"){
                 // Get the search matches
                 var matches = response.getReturnValue();
- 
                 // If we have no matches, return
-                if (matches.length == 0)
-                {
-                    return;
-                }
-                 
+                if (matches.length == 0){return;}
                 // Render the results
                 this.renderLookupComponents(cmp, lookupListItems, matches);
-            }
-            else if (state === "ERROR") // Handle any error by reporting it
-            {
+            }else if (state === "ERROR"){
                 var errors = response.getError();
                 console.log(errors);
             }
         });
-         
         // Enqueue the action                  
-        $A.enqueueAction(action);                
+        $A.enqueueAction(action);
     },
- 
+    
     /**
      * Render the Lookup List Components
-     */   
+     */ 
     renderLookupComponents : function(cmp, lookupListItems, matches)
     {
         // list Icon SVG Path and Class
         var listIconSVGPath = cmp.get('v.listIconSVGPath');
         var listIconClass = cmp.get('v.listIconClass');
- 
         // Array of components to create
-        var newComponents = new Array();
-          
+        var newComponents = [];
         // Add a set of components for each match found
         for (var i=0; i<matches.length; i++)
         {
@@ -94,7 +73,6 @@
                     "class" : "slds-lookup__item"
                 }
             }]);
- 
             // a element
             newComponents.push(["aura:html", {
                 "tag" : "a",
@@ -104,28 +82,23 @@
                     "onclick" : cmp.getReference("c.select") 
                 }
             }]);
- 
             // svg component
             newComponents.push(["c:svg", {
                 "class" : "slds-icon " + listIconClass + " slds-icon--small",
                 "xlinkHref" : listIconSVGPath
             }]);
- 
             // output text component
             // For some reason adding an aura:id to this component failed to record the id for subsequent cmp.find requests
             newComponents.push(["ui:outputText", {
                 "value" : matches[i].SObjectLabel
             }]);
         }
- 
         // Create the components
         $A.createComponents(newComponents, function(components, status) {
             // Creation succeeded
-            if (status === "SUCCESS")
-            {
+            if (status === "SUCCESS"){
                 // Get the List Component Body
                 var lookupListItemsBody = lookupListItems.get('v.body');
- 
                 // Iterate the created components in groups of 4, correctly parent them and add them to the list body
                 for (var i=0; i<components.length; i+=4)
                 {
@@ -134,44 +107,34 @@
                     var a = components[i+1];
                     var svg = components[i+2];
                     var outputText = components[i+3];
- 
                     // Add the <a> to the <li>
                     var liBody = li.get('v.body');
                     liBody.push(a);
                     li.set('v.body', liBody);
- 
                     // Add the <svg> and <outputText> to the <a>
                     var aBody = a.get('v.body');
                     aBody.push(svg);
                     aBody.push(outputText);
                     a.set('v.body', aBody);
- 
                     // Add the <li> to the container
                     lookupListItemsBody.push(li);
                 }
- 
                 // Update the list body
                 lookupListItems.set('v.body', lookupListItemsBody);
-           }
-           else // Report any error
-           {
+           }else{
                console.log('Error:Failed to create list components.');
            }
         });
- 
     },
- 
     /**
      * Handle the Selection of an Item
      */
     handleSelection : function(cmp, event) {
-        
         // Check the limit to select item
         var selectedUsers = cmp.get("v.selectedUsers");
         var maxLimit = cmp.get("v.maxLimit");
         var participantCount = cmp.get("v.participantCount");
-        
-     /*  if (typeof selectedUsers != 'undefined' ){
+      /*  if (typeof selectedUsers != 'undefined' ){
        		if(((selectedUsers.length + 1) >= participantCount) || participantCount >= maxLimit){
                 var limitMsgBody = cmp.get('v.errorMessage');
                 cmp.set("v.errorMessage","You can do this activity only with "+ (maxLimit-1) +" colleagues(s).");
@@ -180,90 +143,66 @@
                 $A.util.addClass(lookupList, 'slds-hide');
                 return;
         	}     
-        }
-       */
+        }*/
         // Resolve the Object Id from the events Element Id (this will be the <a> tag)
         var objectId = this.resolveId(event.currentTarget.id);
- 
         // The Object label is the 2nd child (index 1)
         var objectLabel = event.currentTarget.children[1].innerText;
- 
         // Created array to store id and its name
         var sMcmp = cmp.get('v.selectedItem');
-        console.log("Existing Value:"+ sMcmp);
-        var sIMap = new Array();
+        var sIMap =[];
         for(k in sMcmp){
-            sIMap.push({'id':sMcmp[k]['id'],'name':sMcmp[k]['name']});
+            if (sMcmp.hasOwnProperty(k)) {
+                sIMap.push({'id':sMcmp[k]['id'],'name':sMcmp[k]['name']});
+            }
         }
-        console.log("ArrayMapBefore:"+ sIMap);
         sIMap.push({'id':objectId,'name':objectLabel});
-        console.log("Added Value"+sIMap);
         cmp.set('v.selectedItem',sIMap);
- 
         // Create the UpdateLookupId event
         var updateEvent = cmp.getEvent("updateLookupIdEvent");
-         
         // Populate the event with the selected Object Id
         updateEvent.setParams({
             "sObjectId" : objectId
         });
-        
- 	    // Fire the event
+        // Fire the event
         updateEvent.fire();
- 		
-    	
         // Hide the Lookup List
         var lookupList = cmp.find("lookuplist");
         $A.util.addClass(lookupList, 'slds-hide');
- 
         // Hide the Input Element
         var inputElement = cmp.find('lookup');
         inputElement.set('v.value','');
-        // $A.util.addClass(inputElement, 'slds-hide');
-        
- 
         // Show the Lookup pill
         var lookupPill = cmp.find("lookup-pill");
         this.renderLookupPill(cmp,lookupPill,selectedUsers);
-        
-        // Removed below code of pill
-        //var lookupPill = cmp.find("lookup-pill");
-        //$A.util.removeClass(lookupPill, 'slds-hide');
-        
- 
         // Lookup Div has selection
         var inputElement = cmp.find('lookup-div');
         $A.util.addClass(inputElement, 'slds-has-selection');
- 
     },
     selectedItemName : function(cmp,sId){
         var sMcmp = cmp.get('v.selectedItem'); 
         for(k in sMcmp){
             if(sMcmp[k]['id']== sId){
                 return sMcmp[k]['name'];
-                break;
             }
         }
-    },    
+    },
     renderLookupPill:function (cmp,lookupPill,selectedUsers){
-       
         lookupPill.set("v.body", []);
-
         $A.util.removeClass(lookupPill, 'slds-hide');
         // Array of components to create
-        var newComponentsPill = new Array();
+        var newComponentsPill = [];
         // Add a set of components for each selected user
         for (var i=0; i<selectedUsers.length; i++)
         {
             // li element
             newComponentsPill.push(["aura:html", { "tag" : "span", "HTMLAttributes" : { "class" : "invt_lst" }}]);
-            //newComponentsPill.push(["aura:html", { "tag" : "span", "HTMLAttributes" : { "class" : "slds-pill_label" }}]);
- 			newComponentsPill.push(["ui:outputText", {"value" : this.selectedItemName(cmp,selectedUsers[i]) }]);
+            newComponentsPill.push(["ui:outputText", {"value" : this.selectedItemName(cmp,selectedUsers[i]) }]);
             newComponentsPill.push(["ui:button", {
-                "HTMLAttributes" : { 
-                    "aura:id" : cmp.getGlobalId() + '_id_' + selectedUsers[i], 
+                "HTMLAttributes" : {
+                    "aura:id" : cmp.getGlobalId() + '_id_' + selectedUsers[i],
                     "class": "slds-button slds-button--icon-bare",
-                    "press" : cmp.getReference("c.clear") 
+                    "press" : cmp.getReference("c.clear")
                 }
             }]);
             // svg component
@@ -272,15 +211,13 @@
                 "xlinkHref" : "/resource/EA_StaticResource/assets/icons/utility-sprite/svg/symbols.svg#close"
             }]);
         }
-      
-         // Create the components
+        // Create the components
         $A.createComponents(newComponentsPill, function(components, status) {
             // Creation succeeded
             if (status === "SUCCESS")
             {
                 // Get the List Component Body
                 var lookupListItemsBody = lookupPill.get('v.body');
- 
                 // Iterate the created components in groups of 4, correctly parent them and add them to the list body
                 for (var i=0; i<components.length; i+=4)
                 {
@@ -288,16 +225,13 @@
                     // Identify the releated components
                     var li = components[i];
                     var outputText = components[i+1];
-        
                     // Add the <a> to the <li>
                     var liBody = li.get('v.body');
                     liBody.push(outputText);
                     li.set('v.body', liBody);
- 
                     // Add the <li> to the container
                     lookupListItemsBody.push(li);
                 }
- 
                 // Update the list body
                 lookupPill.set('v.body', lookupListItemsBody);
            }
@@ -306,30 +240,24 @@
                console.log('Error: Failed to create user pill components.');
            }
         });
-       
     },
     /**
      * Clear the Selection
      */
     clearSelection : function(cmp) {
-        
         // Clear the Searchstring
         cmp.set("v.searchString", '');
- 
         // Hide the Lookup pill
         var lookupPill = cmp.find("lookup-pill");
         lookupPill.set('v.body',[]);
         $A.util.addClass(lookupPill, 'slds-hide');
- 
         // Show the Input Element
         var inputElement = cmp.find('lookup');
         $A.util.removeClass(inputElement, 'slds-hide');
- 
         // Lookup Div has no selection
         var inputElement = cmp.find('lookup-div');
         $A.util.removeClass(inputElement, 'slds-has-selection');
     },
- 
     /**
      * Resolve the Object Id from the Element Id by splitting the id at the _
      */
@@ -338,19 +266,13 @@
         var i = elmId.lastIndexOf('_');
         return elmId.substr(i+1);
     },
- 
     getRecentItem : function(cmp){
        	var action = cmp.get("c.getRecentlyWorkedWithUsers");
-        console.log("Before calling action");
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if(state === 'SUCCESS'){
-                console.log("Success");
-                if(response.getReturnValue()!=''){
-            		var items = response.getReturnValue();
-                    console.log("Items"+items);
+            if(state === 'SUCCESS' && response.getReturnValue()!=''){
+                	var items = response.getReturnValue();
                     cmp.set('v.recentItem',items);
-                }
             }
         });
         $A.enqueueAction(action);

@@ -140,7 +140,7 @@
          <aura:iteration items="{!v.activityDetail}" var="activity">
                 <div class="container">
                  
-             		<c:EA_Activity_Detail_Component activity="{!activity}" themeColors="{!v.themeColors}" showswipecard="{!v.showswipe}" detailPage="{!v.detailpage}" /> 
+             		<c:EA_Activity_Detail_Component activity="{!activity}"  EAactivityid="{!v.selectedactivityId}"  themeColors="{!v.themeColors}" showswipecard="{!v.showswipe}" detailPage="{!v.detailpage}"  themeName="{!v.showAllthemebutton}" /> 
                </div>
             </aura:iteration>
          </div>
@@ -151,7 +151,7 @@
             <c:EA_FeedBack_comp activityId="{!v.activityId}" team_memberId="{!v.memberid}" participant_rating="{!v.participant_rating}"></c:EA_FeedBack_comp>
         </aura:if>
           <aura:if isTrue="{!v.showtodoactpage}">
-            <c:EA_ToDoActivityPage activityId="{!v.activityId}" themeColors="{!v.themeColors}"></c:EA_ToDoActivityPage>
+            <c:EA_ToDoActivityPage activityId="{!v.activityId}"  themeColors="{!v.themeColors}"></c:EA_ToDoActivityPage>
         </aura:if>
             </div>
             

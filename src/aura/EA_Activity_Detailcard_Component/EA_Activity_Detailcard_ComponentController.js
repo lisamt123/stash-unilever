@@ -197,12 +197,11 @@
        	$A.util.removeClass(tabstyle,"inactive_class");
         tabstyle=cmp.find("myaction");
        	$A.util.addClass(tabstyle,"active_class");
-       
         
     },
     
     gotoDetail : function(cmp,event,helper){
-         cmp.set("v.showInvitation",false);
+        cmp.set("v.showInvitation",false);
     	var actId=event.getParam("actvityid");
         var memberid=event.getParam("member_Id");
         var showcontent=event.getParam("showcontent");
@@ -214,10 +213,8 @@
         cmp.set("v.showtabs",true);
         cmp.set("v.showfeedback",false);
         cmp.set("v.showchatter",false);
-         cmp.set("v.showtodoactpage",false); 
+        cmp.set("v.showtodoactpage",false); 
     	helper.getactivities1(cmp);
-       
-        
     },
      
     gotoDetail2 : function(cmp,event,helper){
@@ -288,7 +285,6 @@
     showShareComp : function(component, event, helper) {
         var actvity=event.getParam("activity");
         component.set("v.activityForShare",actvity);
-      
         component.set("v.showfeedback",false);
         component.set("v.detailpage",false);
         component.set("v.showswipe",false);

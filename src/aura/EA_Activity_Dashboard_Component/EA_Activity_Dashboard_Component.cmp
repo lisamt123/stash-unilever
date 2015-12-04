@@ -143,7 +143,7 @@ img.user_badge.active {
               
              <span class="list_name" onclick="{!c.gotoDetail}"><ui:outputText value="{!v.activity.activity_name}"/></span>
               <aura:if isTrue="{!v.showfeedback}">
-                  <span class="feedback" onclick="{!c.gotofeedback}"><img class="feed_img" src="/resource/EA_StaticResource/assets/images/preview.svg" alt="person name" onclick="{!c.gotoDetail}"/>
+                  <span class="feedback" onclick="{!c.gotofeedback}"><img class="feed_img" src="/resource/EA_StaticResource/assets/images/feedback.svg" alt="person name" onclick="{!c.gotoDetail}"/>
 				Provide Feedback</span>              </aura:if>
               <aura:if isTrue="{!v.showInvitation}">
                    <span class="invitation" onclick="{!c.gotoInvitation}"><img class="inv_img" src="/resource/EA_StaticResource/assets/images/preview.svg" alt="person name" onclick="{!c.gotoDetail}"/>
