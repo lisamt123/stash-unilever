@@ -189,7 +189,7 @@
       allowMissingFiles="true"
       autoUpdatePackage="true"
       ignoreWarnings="true"
-      deployRoot="src"
+      deployRoot="${basedir}/deploy/src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}">
       <runTest>ExceptionLoggingHelper_Test</runTest>
