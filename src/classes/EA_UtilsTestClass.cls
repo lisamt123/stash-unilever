@@ -46,26 +46,21 @@ public class EA_UtilsTestClass{
             team.Type__c='Participant';
             insert team;
              EA_Team_Member__c team1=new  EA_Team_Member__c();
-             List<SObject>  lstActivity =[Select id,Everyday_Activity__r.RecordTypeId,Type__c,Activity_Points__c,Invited_By__c,Rating_By_Participant__c,Participant__c,Invitation_Status__c,Feedback_Comments__c,Activity_Due_Day__c  From EA_Team_Member__c where id=:team.id];
-           team1=[Select id,Everyday_Activity__r.RecordTypeId,Type__c,Activity_Points__c,Invited_By__c,Rating_By_Participant__c,Participant__c,Invitation_Status__c,Feedback_Comments__c,Activity_Due_Day__c  From EA_Team_Member__c where id=:team.id];
-           update team1;
-            System.assertEquals('test.comments', team.Feedback_Comments__c);
-              Test.startTest();
-            string userid=ApexPages.currentPage().getParameters().put('Id',localUser.id);
-            string eventid=ApexPages.currentPage().getParameters().put('Id',event.id);
-            string inviteid=ApexPages.currentPage().getParameters().put('Id',team.Invited_By__c);
-            string partid=ApexPages.currentPage().getParameters().put('Id',team.Participant__c);
+             List<SObject>  lstActivity =new List<SObject>();
+             lstActivity.add(team);
+                  Test.startTest();
+            
             EA_Utils EAnote=new EA_Utils();
              boolean temp1=EA_Utils.isEmpty(lstActivity );
              boolean temp2=EA_Utils.isEmpty('true');
-            Everyday_Activity__c ea=EA_Utils.getActivitydetails(eventid);
-            try{
-           EA_Utils.postCommentAtUserFeed(eventid,inviteid,partid,'test');
-           }catch(exception e){}
-            List<EA_Team_Member__c> temp3=EA_Utils.getTeamMebersForActivity(eventid);
+            Everyday_Activity__c ea=EA_Utils.getActivitydetails(event.id);
+           // try{
+           EA_Utils.postCommentAtUserFeed(event.id,team.Invited_By__c,team.Participant__c,'test');
+          // }catch(exception e){ System.debug('Exception caught: ' + e.getMessage());}
+            List<EA_Team_Member__c> temp3=EA_Utils.getTeamMebersForActivity(event.id);
             Integer t1=EA_Utils.getactivityRating(10.2);
-            EA_Team_Member__c temp4=EA_Utils.getParticipantTeamMemberRec(eventid,partid);
-           EA_Utils.postOnChatter(eventid,'test');
+            EA_Team_Member__c temp4=EA_Utils.getParticipantTeamMemberRec(event.id,team.Participant__c);
+           EA_Utils.postOnChatter(event.id,'test');
            
             }
             }

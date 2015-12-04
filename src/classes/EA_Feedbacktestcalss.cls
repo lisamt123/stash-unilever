@@ -13,6 +13,7 @@ Requirement/Description: Test Class EA_FeedbackNotificationScheduler .
          String sch = '0  00 1 3 * ?';
            system.schedule('Test', sch, sh1);
          List<EA_Team_Member__c > objectList = new List<EA_Team_Member__c >(); 
+        System.assertEquals('0  00 1 3 * ?',  sch);
         Test.stopTest();
      }
     

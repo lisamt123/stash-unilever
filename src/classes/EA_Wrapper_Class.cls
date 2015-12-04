@@ -32,6 +32,8 @@ public class EA_Wrapper_Class {
              @AuraEnabled
             public string top_tip;
             
+           
+            
             
          
             
@@ -64,6 +66,8 @@ public class EA_Wrapper_Class {
             public string Eaname;
             @AuraEnabled
             public string EaRecordtype;
+              @AuraEnabled
+            public DateTime Activity_Due_Date;
                    
             
             @AuraEnabled

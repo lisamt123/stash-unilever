@@ -6,6 +6,7 @@
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
      <aura:attribute name="EAactivityid" type="String"/>
     <aura:attribute name="showmessage" type="Boolean" default="false"/>
+    <aura:attribute name="showdownload" type="Boolean" default="false"/>
 	<aura:attribute name="content" type="EA_Wrapper_Class.EA_FeaturedContent_Wrapper"/>
     <aura:attribute name="comments" type="EA_Wrapper_Class.EA_FeaturedContent_Wrapper[]"/>
    	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
@@ -16,10 +17,7 @@
             width: 30px;
             height: 30px;
             border-radius: 100px;
-         }
-                
-       
-                
+         }   
         .slds .slds-text-heading--label {
           font-size: 12px;
           line-height: 1.25;
@@ -29,27 +27,29 @@
           color: #CFD7E6;
           font-weight: 400;
         }
-        
-        
-    </style>
-   
-   		             
+    </style>     
      <div class="slds">  
          <div class="fTitle">Featured Content</div>
           <table class="com_table">
-              		<tr><td><img class="img_profile" src="{!v.content.uerPhotoUrl}" alt="person name" /></td>
+              		<tr><td class="com_table_td_pic"><img class="img_profile" src="{!v.content.uerPhotoUrl}" alt="person name" /></td>
                 
-                     <td>   <ul style="list-style:none; word-wrap:break-word">
+                     <td class="com_table_td_list">   <ul style="list-style:none; word-wrap:break-word">
                              <li>{!v.content.userName}</li>
                              <li class="subTitle">{!v.content.createdDate}</li>
                          </ul></td></tr>
                     
               </table>
-            <div class="Para-content"><p>{!v.content.top_tip}</p></div>
+            <div class="Para-content"></div>
                  <div align="center">
-                     <!-- <iframe width="230" height="150" src="{!v.content.documentUrl}" frameborder="1" ></iframe> -->
-                     <iframe width="230" height="150" src="https://www.youtube.com/embed/QyJ8Gr4dcDA" frameborder="1" ></iframe> 
+                   <p> " Video Description will be displayed here " </p>
+                   <div onclick="{!c.downloadVideo}">Click here to download</div>
+                     <!--<iframe width="230" height="150" src="{!v.content.documentUrl}" frameborder="1" ></iframe> --> 
+                    <!--  <iframe width="230" height="150" src="https://www.youtube.com/embed/QyJ8Gr4dcDA" frameborder="1" ></iframe> --> 
          </div> 
+         
+         <aura:if isTrue="{!v.showdownload}">
+             <iframe width="230" height="150" src="https://unilever--chazwa.cs14.my.salesforce.com/sfc/servlet.shepherd/version/download/068c0000000F8hhAAC?asPdf=false" frameborder="1" ></iframe>
+         </aura:if>
          <div class="divider"></div>
          <div class="fTitle">Comments</div>
          <aura:iteration items="{!v.comments}" var="comment"> 
@@ -62,7 +62,7 @@
                          </ul></td></tr>
                     
               </table>
-              <div class="Para-content"><p>{!comment.description}</p></div>
+              <div class="Para-content"><p style="margin-left: 2.5%; width: 95%;">{!comment.description}</p></div>
          </aura:iteration>  
       </div>
         <aura:if isTrue="{!v.showmessage}">

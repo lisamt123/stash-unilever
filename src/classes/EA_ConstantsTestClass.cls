@@ -5,7 +5,7 @@ Date: 11 Nov 2015
 Requirement/Project Name: Unilever Salesforce Engagement
 Requirement/Description: Test Class For EA_ConstantsClass.
 */
-@IsTest(SeeAllData=true)
+@IsTest
 public class EA_ConstantsTestClass{
   static testMethod void postive() {
   EA_ThemesDetails__c ea=new EA_ThemesDetails__c();

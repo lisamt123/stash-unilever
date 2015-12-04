@@ -5,7 +5,7 @@ Date: 11 Nov 2015
 Requirement/Project Name: Unilever Salesforce Engagement
 Requirement/Description: Test Class For EA_Wrapper_Class
 */
-@IsTest(SeeAllData=true)
+@IsTest
 public class EA_Wrapper_ClassTestClass{
   static testMethod void postive() {
   EA_Wrapper_Class wrapper=new EA_Wrapper_Class();

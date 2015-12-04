@@ -8,23 +8,46 @@ Requirement/Description: Everyday action app Controller class for handling all C
 public with sharing class EA_Notification_Controller {    
     /* Activity Accepted or declined notification post to Invitee*/     
     @AuraEnabled
-    public static void inviteResponseNofitification(string activityId, string teamid , string responseText){      
+    public static void inviteResponseNofitification(string activityId, string teamid , string responseText){    
+        try{
         EA_Team_Member__c teamList = [SELECT Id, Invited_By__c, Participant__c FROM EA_Team_Member__c WHERE Id=:teamid];
-        if(teamList.Invited_By__c <>null){     
-            if(String.isNotBlank(activityId) && String.isNotBlank(teamList.Invited_By__c) && String.isNotBlank( teamList.Participant__c)){
+      //  if(teamList.Invited_By__c <>null){     
+          //  if(String.isNotBlank(activityId) && String.isNotBlank(teamList.Invited_By__c) && String.isNotBlank( teamList.Participant__c)){
                 Everyday_Activity__c actObj = EA_Utils.getActivitydetails(activityId);
                 String actName=actObj.name;
                 List<User> userList = [SELECT id, Name FROM User Where id =: userinfo.getUserID()];                   
                 String participantName=userList[0].name;
-                string msgLabel=responseText ;
-                if(responseText == EA_Constants.INVITATION_STATUS_ACCEPTED) msgLabel = Label.EA_Activity_Accepted;      
-                if(responseText == EA_Constants.INVITATION_STATUS_DECLINED) msgLabel = Label.EA_Activity_Declined ;            
-                if(String.isNotBlank(actName) && String.isNotBlank(participantName)&& String.isNotBlank(msgLabel)){               
-                    EA_Utils.postCommentAtUserFeed(activityId,teamList.Invited_By__c, teamList.Participant__c, participantName + msgLabel + actName);
-                    updateParticipantResponse(activityId, teamList.Participant__c, responseText);
+               // string msgLabel=responseText ;
+                string msgLabel='';
+                
+                if(responseText == EA_Constants.INVITATION_STATUS_ACCEPTED){
+                     msgLabel += ' - your invitation to do ';
+                     msgLabel += actName;
+                     msgLabel += ' activity has been ';
+                     msgLabel +=  System.Label.EA_Activity_Accepted;
+                     msgLabel += ' by ';
+                     msgLabel += participantName;
+                     msgLabel += '.';
+                     
+                }      
+                if(responseText == EA_Constants.INVITATION_STATUS_DECLINED){
+                     msgLabel += ' your invitation to do ';
+                     msgLabel += actName;
+                     msgLabel += ' activity has been ';
+                     msgLabel +=  System.Label.EA_Activity_Declined;
+                     msgLabel += ' by ';
+                     msgLabel += participantName;
+                     msgLabel += '.';
                 }
+                User objUser=[SELECT Id FROM User WHERE Name = 'Everyday Actions'];
+                
+                if(String.isNotBlank(actName) && String.isNotBlank(participantName)&& String.isNotBlank(msgLabel)){               
+                    EA_Utils.postCommentAtUserFeed(activityId,objUser.Id, teamList.Invited_By__c, msgLabel);
+                    updateParticipantResponse(activityId, teamList.Participant__c, responseText);
+               // }
+           // }
             }
-        }
+        }catch(exception e){}
     }
     
     /* Submit Invitation Response */ 

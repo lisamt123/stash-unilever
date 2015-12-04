@@ -42,9 +42,9 @@
         
         var label5=$A.get("$Label.c.EA_ShareEmail5");
         
-        var subject=label1+ activity.Name + label2;
+        var subject=label1 +'  ' + activity.Name +'  ' +label2;
         component.set("v.MailSubject",subject);
-        var body=label3+activity.Name+label4+' '+activity.Description__c +' '+' '+ label5;
+        var body=label3+' '+activity.Name+' '+label4+ ' ' + activity.Description__c +' '+' '+ label5;
         
         
         

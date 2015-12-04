@@ -24,7 +24,7 @@
                      component.set("v.activities", response.getReturnValue());
                       tabstyle=component.find("myaction") ;
                       $A.util.addClass(tabstyle, "active");
-                          component.set("v.showdownarrow",true);
+                          component.set("v.showdownarrow",true); 
 					  helper.getAllThemeColor(component); 
                                              
                       setTimeout(function() {
@@ -74,8 +74,8 @@
         action.setParams({"themeName" : filter});
         action.setCallback(this, function(response) {
                 var state = response.getState();
-                if (state === "SUCCESS") {
-                    if(response.getReturnValue()!=''){
+                if (state === "SUCCESS" && response.getReturnValue()!='' ) {
+                   
                         var items=response.getReturnValue();
                       //alert(items.length); 
                       //alert(filter);
@@ -89,7 +89,7 @@
                         });
                        });  
                        
-                   }
+                   
                 }
                 });
             $A.enqueueAction(action);
@@ -102,8 +102,8 @@
         //action.setParams({"themeName" : filter});
         action.setCallback(this, function(response) {
                 var state = response.getState();
-                if (state === "SUCCESS") {
-                    if(response.getReturnValue()!=''){
+                if (state === "SUCCESS" && response.getReturnValue()!='') {
+                    
                         var items=response.getReturnValue();
                       
                      component.set("v.activities", response.getReturnValue());
@@ -113,7 +113,7 @@
                         });
                        });                           
                        
-                   }
+                   
                 }
                 });
             $A.enqueueAction(action);
@@ -163,8 +163,7 @@
        	$A.util.removeClass(tabstyle,"active_class");
            tabstyle=cmp.find("myaction");
        	$A.util.addClass(tabstyle,"inactive_class");
-       
-          cmp.set("v.showtabs",true);
+        cmp.set("v.showtabs",true);
         cmp.set("v.showswipe",true);
         cmp.set("v.MyActions",false);
         cmp.set("v.showfilter",false);

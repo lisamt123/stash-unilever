@@ -57,7 +57,7 @@ public class EA_ControllerTestClass{
             ea.ThemeDescription__c='Description';
             insert ea;
             EA_BadgeDetails__c badge=new EA_BadgeDetails__c();
-            badge.name='test1';
+            badge.name='Newbee';
             badge.BadgeColor__c='blue';
             badge.BadgeSerial__c=1;
             badge.BadgeValue__c=2;
@@ -75,6 +75,7 @@ public class EA_ControllerTestClass{
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');
             try{
              EA_ControllerClass.getUserDetail();
+             EA_ControllerClass.getActivityParticipantCount(event.id);   
                List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(event.id);
                }catch(exception e){
             System.debug('Exception caught: ' + e.getMessage());}
@@ -84,7 +85,7 @@ public class EA_ControllerTestClass{
              EA_ControllerClass.insertfeeditem(event.id,'comment');
              
              EA_ControllerClass.getbooleanvalue(event.id);               
-             EA_ControllerClass.getActivityParticipantCount(event.id);        
+                  
             List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>temp12=EA_ControllerClass.getcommentDetail(event.id);
             
             EA_ControllerClass.getToDoTimeline();
@@ -148,22 +149,18 @@ public class EA_ControllerTestClass{
           app.Value__c='value';
           insert app;
             EA_ThemesDetails__c ea=new EA_ThemesDetails__c();
-            ea.name='ThemesDetails';
+            ea.name='test11';
             ea.ThemeColorCode__c='test.color';
             ea.ThemeDescription__c='Description';
             insert ea;
             EA_BadgeDetails__c badge=new EA_BadgeDetails__c();
-            badge.name='test1';
+            badge.name='Bronze';
             badge.BadgeColor__c='blue';
             badge.BadgeSerial__c=1;
             badge.BadgeValue__c=2;
             insert badge;
               Test.startTest();
-          /*  string userid=ApexPages.currentPage().getParameters().put('Id',localUser.id);
-            string teamid=ApexPages.currentPage().getParameters().put('Id',team.id);
-            string event.id=ApexPages.currentPage().getParameters().put('Id',event.id);
-            string inviteid=ApexPages.currentPage().getParameters().put('Id',team.Invited_By__c);
-            string partid=ApexPages.currentPage().getParameters().put('Id',team.Participant__c);*/
+        
             EA_ControllerClass Eacontroller=new EA_ControllerClass();
             EA_ControllerClass.getActivities();
             EA_ControllerClass.getThemes();
@@ -175,14 +172,14 @@ public class EA_ControllerTestClass{
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');
            try{
              EA_ControllerClass.getUserDetail();
+             EA_ControllerClass.getActivityParticipantCount(event.id);  
               List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(event.id);
               }catch(exception e){
              System.debug('Exception caught: ' + e.getMessage());}
-              
-            
+                         
              EA_ControllerClass.insertfeeditem(event.id,'comment');
              EA_ControllerClass.getbooleanvalue(event.id);               
-             EA_ControllerClass.getActivityParticipantCount(event.id);        
+                  
             List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>temp12=EA_ControllerClass.getcommentDetail(event.id);
            
             EA_ControllerClass.getToDoTimeline();
@@ -194,4 +191,5 @@ public class EA_ControllerTestClass{
             Test.stopTest();
         }
     } 
+     
    }

@@ -25,5 +25,9 @@
         });
         $A.enqueueAction(action);
       helper.getComments(component);
-  }
+  },
+    
+    downloadVideo :function(component, event, helper) {
+       component.set("v.showdownload",true);
+    },
     })

@@ -21,10 +21,12 @@
           console.log(actvity.invitation_status);
          var today = new Date();
         var dd = today.getDate(); 
-          console.log(today);
+          console.log(actvity.Activity_Due_Date);
+        console.log(today);
           //if(actvity.Due_Date < currentDate)
-        if(actvity.invitation_status ==='Self' && (actvity.participant_rating < 0 || actvity.participant_rating ===undefined)){
+        if(actvity.Activity_Due_Date == today && (actvity.participant_rating < 0 || actvity.participant_rating ===undefined)){
             component.set("v.showfeedback",true);
+            console.log(today);
         }
        if(actvity.invitation_status ==='Invited'){
             component.set("v.showInvitation",true);

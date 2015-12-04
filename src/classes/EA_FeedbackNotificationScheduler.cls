@@ -1,4 +1,4 @@
-global class EA_FeedbackNotificationScheduler Implements Schedulable {
+global with sharing class EA_FeedbackNotificationScheduler Implements Schedulable {
         
     global void execute(SchedulableContext sc){
         

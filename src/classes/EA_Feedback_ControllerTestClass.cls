@@ -5,7 +5,7 @@ Date: 22 Nov 2015
 Requirement/Project Name: Unilever Salesforce Engagement
 Requirement/Description: Test Class For EA_Feedback_ControllerClass.
 */
-@IsTest(SeeAllData=true)
+@IsTest
 public class EA_Feedback_ControllerTestClass{
     static testMethod void Postive() {
        ID adminProfileID = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].ID;
@@ -60,11 +60,11 @@ public class EA_Feedback_ControllerTestClass{
             List<Everyday_Activity__c> temp1=EA_Feedback_Controller.getactivitydetail(event.id); 
             EA_Feedback_Controller.updateActivityRating(event.id);
             List<Everyday_Activity__c> temp=EA_Feedback_Controller.provideRating(event.id,rating);
-            
-           // try{
+             EA_Feedback_Controller.submitFeedback(event.id,'feedbackText',rating,team.id); 
+            try{
             EA_Feedback_Controller.submitRating(event.id,team.Participant__c,123);
-                EA_Feedback_Controller.submitFeedback(event.id,'feedbackText',rating,team.id); 
-           // }catch(exception e){}
+               
+            }catch(exception e){}
       
             Test.stopTest();
             }
@@ -107,7 +107,8 @@ public class EA_Feedback_ControllerTestClass{
            //team.Rating_By_Participant__c=0;
             team.Type__c='Participant';
             insert team;
-                 list<EA_Team_Member__c> teamList = [SELECT Id,Everyday_Activity__c,Invitation_Status__c, Invited_By__c, Participant__c FROM EA_Team_Member__c WHERE Id=:team.id];
+            list<EA_Team_Member__c> teamList = new list<EA_Team_Member__c>();
+            teamList.add(team);
             System.assertEquals('test.comments', team.Feedback_Comments__c);
               Test.startTest();
             EA_Feedback_Controller feed=new EA_Feedback_Controller();
@@ -115,9 +116,9 @@ public class EA_Feedback_ControllerTestClass{
             EA_Feedback_Controller.updateActivityRating(event.id);
             EA_Feedback_Controller.sendFeedbackReminder(teamList );
             List<Everyday_Activity__c>temp=EA_Feedback_Controller.provideRating(event.id,2);
-           //   try{
+              try{
             EA_Feedback_Controller.submitRating(event.id,team.Participant__c,123);
-             // }catch(exception e){}
+              }catch(exception e){}
             
             Test.stopTest();
             }

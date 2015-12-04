@@ -5,7 +5,7 @@ Date: 27th Nov 2015
 Requirement/Project Name: Unilever Salesforce Engagement
 Requirement/Description: Batch apex to send scheduled feedback reminders.
 */
-global class EA_FeedbackNotificationBatch implements Database.Batchable<sObject>{
+global with sharing class EA_FeedbackNotificationBatch implements Database.Batchable<sObject>{
     global Database.QueryLocator start(Database.BatchableContext BC){           
         String status = 'Self';
         dateTime whenDay = system.today()-1;

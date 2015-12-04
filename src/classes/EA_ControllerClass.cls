@@ -276,7 +276,7 @@ activities for current user.
     @AuraEnabled
     public static List<EA_Wrapper_Class.EA_UserProfile_Wrapper>  getUserActivities(){
         List<EA_Wrapper_Class.EA_UserProfile_Wrapper> userprofileList=new List<EA_Wrapper_Class.EA_UserProfile_Wrapper>();     
-        List<EA_Team_Member__c> memberList=[Select id, Everyday_Activity__r.RecordTypeId, Everyday_Activity__r.Name, Everyday_Activity__c,CreatedDate,Rating_By_Participant__c,invitation_Status__c  From EA_Team_Member__c  Where ( Invited_By__c=:userinfo.getuserId() OR Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:EA_Constants.INVITATION_STATUS_ACCEPTED OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_SELF OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_INVITED ) order by CreatedDate Desc ];
+        List<EA_Team_Member__c> memberList=[Select id,Activity_Due_Date__c, Everyday_Activity__r.RecordTypeId, Everyday_Activity__r.Name, Everyday_Activity__c,CreatedDate,Rating_By_Participant__c,invitation_Status__c  From EA_Team_Member__c  Where ( Invited_By__c=:userinfo.getuserId() OR Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:EA_Constants.INVITATION_STATUS_ACCEPTED OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_SELF OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_INVITED ) order by CreatedDate Desc ];
         if(memberList.size() !=0 ){
             Map<string,EA_Team_Member__c> memberMap=new Map<string,EA_Team_Member__c>();
             List<EA_Team_Member__c> activityList=new List<EA_Team_Member__c>();
@@ -298,6 +298,7 @@ activities for current user.
                     objWrapper.member_Id=item.id;
                     objWrapper.participant_rating=item.Rating_By_Participant__c ;
                     objWrapper.invitation_status=item.Invitation_Status__c ;
+                    objWrapper.Activity_Due_Date=item.Activity_Due_Date__c;
                 }
                 userprofileList.add(objWrapper);
             }
@@ -486,7 +487,7 @@ activities for current user.
                 }
                 
                 ConnectApi.TextSegmentInput textSegment1= new ConnectApi.TextSegmentInput();
-                textSegment1.text = ' "'+ actvityName +'"'+ ' activity together on '+activityTime +'. Please respond to the request.';
+                textSegment1.text = ' to do "'+ actvityName +'"'+ ' activity together on '+activityDate+'. Please respond to the request.';
                 messageBodyInput.messageSegments.add(textSegment1);  
     
                 feedItemInput.body = messageBodyInput;
@@ -515,9 +516,11 @@ activities for current user.
     @AuraEnabled
     Public static Integer getActivityParticipantCount(string Activityid){
         if(Activityid!= null){        
-            List<sObject> result = [SELECT count(id) total FROM EA_Team_Member__c WHERE ((Everyday_Activity__c=: Activityid ) AND 
-                                                                                         (invitation_Status__c =: EA_Constants.INVITATION_STATUS_SELF OR invitation_Status__c =: EA_Constants.INVITATION_STATUS_ACCEPTED))];
-            return (Integer) result[0].get('total');
+           // List<sObject> result = [SELECT count(id) total FROM EA_Team_Member__c WHERE ((Invited_By__c =: Activityid ) AND (invitation_Status__c =: EA_Constants.INVITATION_STATUS_SELF OR invitation_Status__c =: EA_Constants.INVITATION_STATUS_ACCEPTED))];
+           AggregateResult results = database.query('SELECT count(id) total FROM EA_Team_Member__c WHERE ((Invited_By__c =:'+ Activityid +' ) AND (invitation_Status__c =: '+ EA_Constants.INVITATION_STATUS_SELF +' OR invitation_Status__c =: '+ EA_Constants.INVITATION_STATUS_ACCEPTED+'))');
+          //  return (Integer) results [0].get('total');
+          return (Integer) results.get('total');
+          
         }
         return 0;
     }   

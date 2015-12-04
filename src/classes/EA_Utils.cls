@@ -57,7 +57,7 @@ public with sharing class EA_Utils{
             ConnectApi.MessageBodyInput messageBodyInput = new ConnectApi.MessageBodyInput();       
             ConnectApi.TextSegmentInput textSegmentInput = new ConnectApi.TextSegmentInput();       
             messageBodyInput.messageSegments = new List<ConnectApi.MessageSegmentInput>();
-            mentionSegmentInput.id = inviteeid;
+            mentionSegmentInput.id = participantId;
             messageBodyInput.messageSegments.add(mentionSegmentInput);   
             textSegmentInput.text = postComment;
             messageBodyInput.messageSegments.add(textSegmentInput);              

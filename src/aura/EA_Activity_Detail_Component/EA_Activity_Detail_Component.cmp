@@ -50,12 +50,12 @@
     </style>
     <div class="slds">
         <div  style="margin-top:20px;">
-            <aura:if isTrue="{!v.showcontent}">
+         <!--   <aura:if isTrue="{!v.showcontent}">
                 <span>
                     <img  onclick="{!c.showsummaryCard}" class="back_image" src="/resource/EA_StaticResource/assets/images/Back_img.svg" alt="back" />
                 </span>
-            </aura:if>
-        <div class="outer_sec"  onclick="{!c.gotoDetail}">
+            </aura:if>-->
+        <div class="outer_sec"  onclick="{!c.callShowDetailCard}">
         
             <aura:if isTrue="{!v.showdetail}">
                 

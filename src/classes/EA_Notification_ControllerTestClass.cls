@@ -23,7 +23,6 @@ public class EA_Notification_ControllerTestClass{
         insert localUser;
         System.runAs(localUser){
         List<user> users=[select id,name from user where profileid =:adminProfileID];
-        
             Everyday_Activity__c  event=new Everyday_Activity__c();
             event.Active__c=true;
             event.Activity_Points__c=4;
@@ -51,14 +50,8 @@ public class EA_Notification_ControllerTestClass{
             EA_Team_Member__c team1=new  EA_Team_Member__c();
             
             System.assertEquals('test.comments', team.Feedback_Comments__c);
-            Test.startTest();
-            string userid=ApexPages.currentPage().getParameters().put('Id',localUser.id);
-            string teamid=ApexPages.currentPage().getParameters().put('teamid',team.id);
-            string eventid=ApexPages.currentPage().getParameters().put('activityId',event.id);
-            string inviteid=ApexPages.currentPage().getParameters().put('Id',team.Invited_By__c);
-            string partid=ApexPages.currentPage().getParameters().put('Id',team.Participant__c);
-            EA_Notification_Controller EAnote=new EA_Notification_Controller(); 
-                 
+            Test.startTest();         
+            EA_Notification_Controller EAnote=new EA_Notification_Controller();                 
             team1=[Select id,Everyday_Activity__r.RecordTypeId,Type__c,Activity_Points__c,Invited_By__c,
                    Rating_By_Participant__c,Participant__c,Invitation_Status__c,Feedback_Comments__c,
                    Activity_Due_Day__c  From EA_Team_Member__c where id=:team.id];
@@ -66,19 +59,18 @@ public class EA_Notification_ControllerTestClass{
             team1.Invitation_Status__c='Accepted';
             team1.Feedback_Comments__c='testTeam';      
             update team1;
-             
-            try{
-            EA_Notification_Controller.inviteResponseNofitification(teamid,eventid,'test');
-             EA_Notification_Controller.sendFeedbackReminder(eventid,inviteid,partid);
-             EA_Notification_Controller.updateParticipantResponse('eventid','partid','test');
-             EA_Notification_Controller.updateParticipantResponse('eventid','partid','Accept');
+            
+            
+             EA_Notification_Controller.sendFeedbackReminder(event.id,team.Invited_By__c, team.Participant__c);
+            
+              EA_Notification_Controller.inviteResponseNofitification(team.id,event.id,'test');
               
-             }catch(exception e){
-             System.debug('Exception caught: ' + e.getMessage());}
-             List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp1=EA_Notification_Controller.getuserimage(eventid, teamid);
-             //
-             
-             //
+              
+            try{
+             List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp1=EA_Notification_Controller.getuserimage(event.id, team.id);
+             EA_Notification_Controller.updateParticipantResponse('event.id',team.Participant__c, team1.Invitation_Status__c);
+            }catch(exception e){
+            System.debug('Exception caught: ' + e.getMessage());}
             }
             }
             static testMethod void Negative() {
@@ -112,12 +104,12 @@ public class EA_Notification_ControllerTestClass{
             EA_Team_Member__c Team =new EA_Team_Member__c();
             team.Activity_Due_Day__c='Today';
             team.Activity_Points__c=5;
-            team.Everyday_Activity__c=event.id;
+           team.Everyday_Activity__c=event.id;
             team.Feedback_Comments__c='test.comments';
             team.Invitation_Status__c='Declined';
             team.Invitation_Text__c='test';
             //team.Invited_By__c=localUser.id;
-            team.Participant__c=localUser.id;
+           // team.Participant__c=localUser.id;
             team.Rating_By_Participant__c=4;
             team.Type__c='Participant';
             insert team;
@@ -126,11 +118,6 @@ public class EA_Notification_ControllerTestClass{
             
             System.assertEquals('test.comments', team.Feedback_Comments__c);
             Test.startTest();
-            string userid=ApexPages.currentPage().getParameters().put('Id',localUser.id);
-            string teamid=ApexPages.currentPage().getParameters().put('teamid',team.id);
-            string eventid=ApexPages.currentPage().getParameters().put('activityId',event.id);
-            string inviteid=ApexPages.currentPage().getParameters().put('Id',team.Invited_By__c);
-            string partid=ApexPages.currentPage().getParameters().put('Id',team.Participant__c);
             EA_Notification_Controller Eanote=new EA_Notification_Controller(); 
                 string actvityName=event.name;
                 string activityDesc=event.Description__c;
@@ -143,14 +130,17 @@ public class EA_Notification_ControllerTestClass{
             team1.Invitation_Status__c='Declined';
             team1.Feedback_Comments__c='testTeam';      
             update team1;
-            try{
-             EA_Notification_Controller.sendFeedbackReminder(eventid,inviteid,partid);
-             EA_Notification_Controller.updateParticipantResponse('eventid','partid','Decline');
             
-             }catch(exception e)
-             { System.debug('Exception caught: ' + e.getMessage());   }
-              List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp1=EA_Notification_Controller.getuserimage(eventid, teamid);
+            // EA_Notification_Controller.sendFeedbackReminder(event.id, team.Invited_By__c, team.Participant__c);
+           //  EA_Notification_Controller.updateParticipantResponse('event.id',' team.Participant__c','Decline');
             
+           // 
+               // 
+           try{
+              List<EA_Wrapper_Class.EA_UserProfile_Wrapper> temp1=EA_Notification_Controller.getuserimage(event.id, team.id);
+          EA_Notification_Controller.updateParticipantResponse('event.id',team.Participant__c, team1.Invitation_Status__c);    
+              }catch(exception e){ 
+              System.debug('Exception caught: ' + e.getMessage());   }
             }
             }
             }
