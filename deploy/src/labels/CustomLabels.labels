@@ -9915,6 +9915,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Planned {Next Gate} :</value>
     </labels>
     <labels>
+        <fullName>IPM_Please_complete_the_Risk_mitigation_plan_before_proposing_gate_document</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Please complete the Risk mitigation plan before proposing gate document</shortDescription>
+        <value>Please complete the Risk management plan before proposing gate document in</value>
+    </labels>
+    <labels>
         <fullName>IPM_Please_Fill</fullName>
         <language>en_US</language>
         <protected>false</protected>

@@ -125,7 +125,7 @@
                                                                 </apex:outputPanel>       
                                                                 <c:IPM_AssortmentStrategy Editable="true" ProSecID="{!projDocSecId}" rendered="{!if(AND(project.IPM_Phase__c='Market Ready',projDocSec.IPM_Master_Section_External_Id__c='Assortment_Strategy'),true,false)}"></c:IPM_AssortmentStrategy>
                                                                 
-                                                                <c:IPM_Financial_ActionStandards isEditable="{!IsEditableOutC}"  secId="{!projDocSec.Id}" projId="{!projectId}" rendered="{!AND(projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',AND(project.IPM_Project_Type__c!='Rollout',project.IPMProject_Span__c!='Local'))}"  ></c:IPM_Financial_ActionStandards>                                                      
+                                                                <c:IPM_Financial_ActionStandards isEditable="{!IsEditableOutC}"  secId="{!projDocSec.Id}" projId="{!projectId}" rendered="{!OR(AND(projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPM_Project_Type__c!='Rollout'),AND(projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPM_Project_Type__c=='Rollout',project.IPMProject_Span__c!='Local'))}"  ></c:IPM_Financial_ActionStandards>                                                      
                                                             </div>
                                                         </div> 
                                                     </div>
