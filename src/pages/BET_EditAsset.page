@@ -171,7 +171,7 @@
           });
           if (jQuery('[id$="runJsSuccess"]').val() == "true" ) {
             window.top.postMessage({
-              action: 'saveAsset', 
+              action: 'editAsset', 
               presentation: jQuery('[id$="isPresentationUploaded"]').val() == 'true',
               msg: jQuery('[id$="message"]').val()
             }, 
