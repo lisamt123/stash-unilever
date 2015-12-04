@@ -8010,7 +8010,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>IPM_IDEA</shortDescription>
-        <value>Idea</value>
+        <value>Ideas</value>
     </labels>
     <labels>
         <fullName>IPM_IE_9</fullName>

@@ -685,7 +685,11 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             
             //To display error when project name is not unique across all company card.
             if(!String.isBlank(project.IPM_Project_Name__c)){
-                isDupProjectname=IPM_WithoutShareController.duplicateProjectList(projectId,project.IPM_Project_Name__c);
+                string bossId=IPM_ConstantUtils.BLANK;
+                if(project.IPM_Bosscard__c!=null){
+                    bossId=project.IPM_Bosscard__c;
+                }
+                isDupProjectname=IPM_WithoutShareController.duplicateProjectList(projectId,project.IPM_Project_Name__c,bossId);
             }
             if(projectMetadata.IPM_TargetLaunchDateDuration__c !=null && project.IPM_Target_Launch_Dates__c < System.today()){
                 isTLDLessThnToday= true;
@@ -1026,5 +1030,13 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             isProjectNameBlank=false;
         }
     }
+    /********************************************************************************
+    *@Description :hide project suggetion names
+    *@Param: NA
+    *@return:Void.
+    *********************************************************************************/
+    public void hideProjectSuggetion(){
+        isProjectNameBlank=true;
+    }  
     
 }
