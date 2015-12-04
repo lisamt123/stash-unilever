@@ -16,7 +16,7 @@
         </apex:outputPanel> 
         
         <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Header-new.css')}"/>
-        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_coreparameterspage.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_CoreParametersPage.css')}"/>
         <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Modal1.css')}"/>             
         <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_CoreParameter.css')}"/>
         <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Header.css')}"/>
