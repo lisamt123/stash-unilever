@@ -11,7 +11,7 @@
 
 */
 
-@isTest (Seealldata=true)
+@isTest //(Seealldata=false)
 public class Core_NC_Test_NewsApp{
     
     public static testMethod void TestNewsAppGlobalNews(){
