@@ -50,7 +50,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
                 	projectCategoryMap.put(c.IPM_Local_Project__c,c.IPM_Local_Project__r.IPM_Category_Text__c);
                 }
             }
-            if(ownerProjectIdMap != null && ownerProjectIdMap.size()>0){
+            if(!ownerProjectIdMap.isEmpty())
+            {
                      for(IPM_Project__c proj: [SELECT id, ownerid, IPM_Category_Text__c FROM IPM_Project__c WHERE id IN:ownerProjectIdMap.Keyset()])
             		 {
 	                    for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New){
@@ -228,7 +229,7 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             {
                 for(IPM_Project_Rollout__c associatedRollout :  associatedRollouts)
                 {
-                    if(associatedRollout.IPM_Countries_Local__r ==null || associatedRollout.IPM_Countries_Local__r.size() == 0)
+                    if(associatedRollout.IPM_Countries_Local__r ==null || associatedRollout.IPM_Countries_Local__r.isEmpty())
                     {
                         deleteRolloutMap.put(associatedRollout.Id,associatedRollout);
                     }

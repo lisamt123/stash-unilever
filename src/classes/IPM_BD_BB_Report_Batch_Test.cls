@@ -16,6 +16,10 @@ private class IPM_BD_BB_Report_Batch_Test {
     public static User testUser;
     public static List<User> userList;
     public static set<id> projidset = new set<id>();
+    public static final String YEAR_1 = 'Y1';
+    public static final String GROSS = 'Gross';
+    public static final String INCREMENTAL = 'Incremental';
+    public static final String CALENDAR = 'Calendar';
     
     /**********************************************************************
     *  @Description: Test Method to initialize data for the other test methods
@@ -40,6 +44,7 @@ private class IPM_BD_BB_Report_Batch_Test {
             system.assert(reportParameterlist[0].Id != null); //positive test
             
             Id projid;
+            // Being used Below in Code. Sonar
             id localid;
             
             system.runAs(testUser)
@@ -208,53 +213,53 @@ private class IPM_BD_BB_Report_Batch_Test {
             //For Regional rollouts     
            	IPM_Financial_Year__c finYear1 = IPM_TestFactory_Helper.createIPMFinancialYear(false);
             finYear1.IPM_Financial__c= finList[0].Id;
-            finYear1.Name = 'Y1';
+            finYear1.Name = YEAR_1;
             finYear1.year__c = INNOVATION;
-            finYear1.PL_type__C = 'Gross';
+            finYear1.PL_type__C = GROSS;
             finYear.add(finYear1);
             IPM_Financial_Year__c finYear2 = IPM_TestFactory_Helper.createIPMFinancialYear(false);
             finYear2.IPM_Financial__c= finList[0].Id;
-            finYear2.Name = 'Y1';
+            finYear2.Name = YEAR_1;
             finYear2.year__c = INNOVATION;
-            finYear2.PL_type__C = 'Incremental';
+            finYear2.PL_type__C = INCREMENTAL;
             finYear.add(finYear2);            
             IPM_Financial_Year__c finYear3 = IPM_TestFactory_Helper.createIPMFinancialYear(false);
             finYear3.IPM_Financial__c= finList[0].Id;
-            finYear3.Name = 'Y1';
-            finYear3.year__c = 'Calendar';
-            finYear3.PL_type__C = 'Gross';
+            finYear3.Name = YEAR_1;
+            finYear3.year__c = CALENDAR;
+            finYear3.PL_type__C = GROSS;
             finYear.add(finYear3);            
             IPM_Financial_Year__c finYear4 = IPM_TestFactory_Helper.createIPMFinancialYear(false);
             finYear4.IPM_Financial__c= finList[0].Id;
-            finYear4.Name = 'Y1';
-            finYear4.year__c = 'Calendar';
-            finYear4.PL_type__C = 'Incremental';
+            finYear4.Name = YEAR_1;
+            finYear4.year__c = CALENDAR;
+            finYear4.PL_type__C = INCREMENTAL;
             finYear.add(finYear4);
 			
 			//For Local Rollouts
 			IPM_Financial_Year__c finYear5 = IPM_TestFactory_Helper.createIPMFinancialYear(false);
             finYear5.IPM_Financial__c= finList[1].Id;
-            finYear5.Name = 'Y1';
+            finYear5.Name = YEAR_1;
             finYear5.year__c = INNOVATION;
-            finYear5.PL_type__C = 'Gross';
+            finYear5.PL_type__C = GROSS;
             finYear.add(finYear5);
             IPM_Financial_Year__c finYear6 = IPM_TestFactory_Helper.createIPMFinancialYear(false);
             finYear6.IPM_Financial__c= finList[1].Id;
-            finYear6.Name = 'Y1';
+            finYear6.Name = YEAR_1;
             finYear6.year__c = INNOVATION;
-            finYear6.PL_type__C = 'Incremental';
+            finYear6.PL_type__C = INCREMENTAL;
             finYear.add(finYear6);            
             IPM_Financial_Year__c finYear7 = IPM_TestFactory_Helper.createIPMFinancialYear(false);
             finYear7.IPM_Financial__c= finList[1].Id;
-            finYear7.Name = 'Y1';
-            finYear7.year__c = 'Calendar';
-            finYear7.PL_type__C = 'Gross';
+            finYear7.Name = YEAR_1;
+            finYear7.year__c = CALENDAR;
+            finYear7.PL_type__C = GROSS;
             finYear.add(finYear7);            
             IPM_Financial_Year__c finYear8 = IPM_TestFactory_Helper.createIPMFinancialYear(false);
             finYear8.IPM_Financial__c= finList[1].Id;
-            finYear8.Name = 'Y1';
-            finYear8.year__c = 'Calendar';
-            finYear8.PL_type__C = 'Incremental';
+            finYear8.Name = YEAR_1;
+            finYear8.year__c = CALENDAR;
+            finYear8.PL_type__C = INCREMENTAL;
             finYear.add(finYear8);
         	insert finYear;        	
         	 

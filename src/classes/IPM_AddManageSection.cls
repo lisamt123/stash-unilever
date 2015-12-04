@@ -21,7 +21,9 @@ public with sharing class IPM_AddManageSection extends IPM_ProjectIntermediateCo
     @Referenced: ipmAddManageSections Page
     ******************************************************************/
     
-    public IPM_AddManageSection (){
+    public IPM_AddManageSection ()
+    {
+    	super();
         GetDocType=ApexPages.currentPage().getParameters().get('DocType');
         projectId=ApexPages.currentPage().getParameters().get('Id');
         NonNogeotibale_STR=IPM_ConstantUtils.TYPE_NON_NEGOTIABLE;

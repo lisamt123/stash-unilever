@@ -5,9 +5,9 @@
 * This class has been declared as Global as it implements Schedulable interface.
 *********************************************/
 global with sharing class IPM_DueDateNotificationScheduler implements Schedulable{
-	private final string APEXJOBTYPE = 'BatchApex';
-	private final string PREPARINGSTATUS  = 'Preparing';
-	private final string APEXJOBNAME  = 'MatrixRetry';
+	private static final string APEXJOBTYPE = 'BatchApex';
+	private static final string PREPARINGSTATUS  = 'Preparing';
+	private static final string APEXJOBNAME  = 'MatrixRetry';
 	
    global void execute(SchedulableContext sc) {
    	

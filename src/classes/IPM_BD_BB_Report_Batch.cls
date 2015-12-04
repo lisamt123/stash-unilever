@@ -526,18 +526,40 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross))
                     {  
 
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)) a.IPM_Y3_gTO_BD__c = fr.Turnover_Local__c;
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)) a.IPM_Y3_gTO_BD__c = fr.Turnover_Regional__c;
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)) a.IPM_Y3_gTO_BD__c = fr.Turnover_Global__c;
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)) 
+                        {
+                            a.IPM_Y3_gTO_BD__c = fr.Turnover_Local__c;
+                        }
+                        
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional))
+                        {
+                            a.IPM_Y3_gTO_BD__c = fr.Turnover_Regional__c;
+                        }
+                        
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal))
+                        {
+                            a.IPM_Y3_gTO_BD__c = fr.Turnover_Global__c;
+                        }
 
                     }                   
                     // Populating Y3 iTO                   
                     if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental))
                     {                       
 
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)) {a.IPM_Y3_iTO_BD__c = fr.Turnover_Local__c;}
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)) {a.IPM_Y3_iTO_BD__c = fr.Turnover_Regional__c;}
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)){ a.IPM_Y3_iTO_BD__c = fr.Turnover_Global__c;  }                     
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)) 
+                        {   
+                            a.IPM_Y3_iTO_BD__c = fr.Turnover_Local__c;
+                        }
+                        
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional))
+                        {
+                            a.IPM_Y3_iTO_BD__c = fr.Turnover_Regional__c;
+                        }
+                        
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal))
+                        { 
+                            a.IPM_Y3_iTO_BD__c = fr.Turnover_Global__c;  
+                        }                     
                     }
 
                 }//end of Financial Year For loop
@@ -590,19 +612,40 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 
         double returnValue=0;
 
-        if( projectSpan.equalsignorecase(IPM_Utils.Local)){
-            if(returnType.equalsignorecase(TURNOVER)){ returnValue = fr.Turnover_Local__c;}
-            if(returnType.equalsignorecase(GROSSPROFIT)){ returnValue = fr.Gross_Profit_Local__c;  }  
+        if( projectSpan.equalsignorecase(IPM_Utils.Local))
+        {
+            if(returnType.equalsignorecase(TURNOVER))
+            { 
+                returnValue = fr.Turnover_Local__c;
+            }
+            
+            if(returnType.equalsignorecase(GROSSPROFIT))
+            { 
+                returnValue = fr.Gross_Profit_Local__c;  
+            }  
         }
 
-        if( projectSpan.equalsignorecase(IPM_Utils.Regional)){
-            if(returnType.equalsignorecase(TURNOVER)){ returnValue = fr.Turnover_Regional__c;}
+        if( projectSpan.equalsignorecase(IPM_Utils.Regional))
+        {
+            if(returnType.equalsignorecase(TURNOVER))
+            {
+                returnValue = fr.Turnover_Regional__c;
+            }
+            
             if(returnType.equalsignorecase(GROSSPROFIT)){ returnValue = fr.Gross_Profit_Regional__c;}
         }
 
-        if( projectSpan.equalsignorecase(IPM_Utils.valueGlobal)){
-            if(returnType.equalsignorecase(TURNOVER)){ returnValue = fr.Turnover_Global__c;}
-            if(returnType.equalsignorecase(GROSSPROFIT)){ returnValue = fr.Gross_Profit_Global__c;}
+        if( projectSpan.equalsignorecase(IPM_Utils.valueGlobal))
+        {
+            if(returnType.equalsignorecase(TURNOVER))
+            {
+                returnValue = fr.Turnover_Global__c;
+            }
+            
+            if(returnType.equalsignorecase(GROSSPROFIT))
+            { 
+                returnValue = fr.Gross_Profit_Global__c;
+            }
         }
 
         return returnValue; 
