@@ -105,15 +105,15 @@
                 </div>
                 <div class="item-input">
                     <div class="styled-select">
-                        <apex:inputField id='visibilityid' 
-                                value="{!bet.Sharing__c}" 
-                                rendered="{!bet.Sharing__c != 'Public'}}"/>
-                        <apex:inputField id='visibilityiddisabled' 
-                                style="color:#AAA;" 
-                                value="{!bet.Sharing__c}" 
+                        <apex:inputField id='visibilityid' value="{!bet.Sharing__c}" 
+                                rendered="{!bet.Sharing__c == 'Private'}"/>
+                        <apex:inputField id='visibilityiddisabled' value="{!bet.Sharing__c}"
+                                style="color:#AAA;"  
                                 rendered="{!bet.Sharing__c == 'Public'}"/>
                         <script>
-                            document.getElementById('{!$Component.visibilityiddisabled}').disabled = {!bet.Sharing__c == 'Public'}
+                            if(document.getElementById('{!$Component.visibilityiddisabled}') != null) {
+                                document.getElementById('{!$Component.visibilityiddisabled}').disabled = {!bet.Sharing__c == 'Public'}
+                            }
                         </script>
                     </div>
                 </div>
