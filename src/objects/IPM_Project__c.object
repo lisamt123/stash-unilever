@@ -401,6 +401,19 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>BI__c</fullName>
+        <description>BI Value from IPM Finance record</description>
+        <externalId>false</externalId>
+        <label>BI</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Bulk_BET_Member_Request__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>

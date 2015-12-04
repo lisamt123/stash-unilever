@@ -684,12 +684,12 @@ public with sharing class IPM_FinancialTriggerHandler
             newFinList=new List<IPM_Financial__c>();
             projectIds=new Set<Id>();
             for(IPM_Financial__c newFin:mapNewFinancials.values()){
-                if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
+                if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE){// && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
                     newFinList.add(newFin);
                     projectIds.add(newFin.Parent_Project__c);
                     system.debug('/// in projids');
                 }
-                if(newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
+                if(newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE){// && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
                     newFinList.add(newFin);
                     projectIds.add(newFin.Parent_Project__c);
                 }
