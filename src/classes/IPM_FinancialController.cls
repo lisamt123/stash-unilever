@@ -2079,6 +2079,7 @@ private Date getProjectMilestoneDate(){
     * @return       NONE
     */
     public void updateMisalignmentByFinanceLeader() {
+       /*
         try{
             if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
                 localRolloutProject.MisAligned_Confirmed_By_Finance_Leader__c = true;
@@ -2097,6 +2098,7 @@ private Date getProjectMilestoneDate(){
             isError = true;
             errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
+	*/
     } 
     
     
