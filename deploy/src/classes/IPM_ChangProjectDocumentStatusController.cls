@@ -55,16 +55,18 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public Boolean ecoDesignNoAssessmentError{get;set;}
     public String ecoDesignSectionId{get;set;}
     public string finExternalID{get;set;}
-    public static String REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId();
-    public static String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
+    public static final String REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId();
+    public static final String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
     public Boolean isRiskComplete{get;set;}//boolean to check if Risk section is complete
     public Boolean isCmiComplete{get;set;}//boolean to check if CMI section is complete
-    public static string ENVIRONMENTAL_IMPACT=IPM_ConstantUtils.IPM_ENVIRONMENTAL_IMPACT;
+    public static final string ENVIRONMENTAL_IMPACT=IPM_ConstantUtils.IPM_ENVIRONMENTAL_IMPACT;
     
     /*****************************************************************
     @Description :Constructor Fetch the Page parameters and retrieve lists
     *****************************************************************/
-    public IPM_ChangProjectDocumentStatusController(){
+    public IPM_ChangProjectDocumentStatusController()
+    {
+        super();           
         isDefaultAvailable=false;
         isOperational=false;
         showSkipSections=false;
@@ -185,6 +187,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             cmiCount=0;
             rolloutFilledCount=0;
             rolloutCount=0;
+            // Used to Set Error Message information.
             String errorMsg=IPM_ConstantUtils.BLANK;           
             
             finExternalID=IPM_ConstantUtils.BLANK;
@@ -470,7 +473,9 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null)];
                     
                     if(rolloutCount>0)
-                    fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
+                    {
+                        fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
+                    }
                 }
                 else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL &&    ((project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)|| project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
                 {

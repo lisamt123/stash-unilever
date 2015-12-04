@@ -34,6 +34,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
     *************************************************************************/
      public IPM_FinancialCopyPasteGrid (){
         //IE-9 Fix
+        super();
         IpmProject = new IPM_Project__c();
         isEditable=false;
         Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.UA_COMPATIBLE, IPM_ConstantUtils.IE_EDGE);// keep it compatible with IE.

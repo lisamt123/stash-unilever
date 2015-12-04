@@ -222,6 +222,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public ipm_Coreparameters (){
         
         // call utility class to save having to do this multiple times in multiple places
+        super();
         IPM_IECompatible.ieFix();    
         initialise();
         bLinkBET = true;
