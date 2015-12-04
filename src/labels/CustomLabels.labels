@@ -2297,6 +2297,148 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>058E00000009Xk5IAE</value>
     </labels>
     <labels>
+        <fullName>EA_Activity_Accepted</fullName>
+        <categories>EA Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Activity_Accepted</shortDescription>
+        <value>Accepted</value>
+    </labels>
+    <labels>
+        <fullName>EA_Activity_Declined</fullName>
+        <categories>EA Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Activity_Declined</shortDescription>
+        <value>Declined</value>
+    </labels>
+   
+    <labels>
+        <fullName>EA_Chatter1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Chatter1</shortDescription>
+        <value>Hey - try out &apos;</value>
+    </labels>
+    <labels>
+        <fullName>EA_Chatter2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Chatter2</shortDescription>
+        <value>&apos; activity on the Everyday Actions app, I think you might find it interesting! 
+Activity Description: &apos;</value>
+    </labels>
+    <labels>
+        <fullName>EA_Chatter3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Chatter3</shortDescription>
+        <value>&apos; You can access the activity on your Salesforce 
+1 mobile app, please go to Everyday Actions on SF1 app to take action.</value>
+    </labels>
+    <labels>
+        <fullName>EA_Chatter4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Chatter4</shortDescription>
+        <value>Note: Everyday Actions app is available on Salesforce1 mobile app. More information can be found here https://apps.unilever.com/global/CollaborationHub/SitePages/DE%20Mobile.aspx</value>
+    </labels>
+    <labels>
+        <fullName>EA_Feedback_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Feedback_Message</shortDescription>
+        <value>Please provide feedback for your completed Activity</value>
+    </labels>
+    <labels>
+        <fullName>EA_Feedback_Reminder</fullName>
+        <categories>EA Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Feedback_Reminder</shortDescription>
+        <value>Your feedback help others. Please provide feedback for this Activity  -</value>
+    </labels>
+    <labels>
+        <fullName>EA_Invite_Message</fullName>
+        <categories>EA Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Invite_Message</shortDescription>
+        <value>Please join me in doing this Activity .</value>
+    </labels>
+    <labels>
+        <fullName>EA_MyActionsTab_Title</fullName>
+        <categories>EA_Appearance</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_MyActionsTab_Title</shortDescription>
+        <value>My Actions</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail1</shortDescription>
+        <value>Try out</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail2</shortDescription>
+        <value>activity on the Everyday Actions app, I think you might find it interesting!</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail3</shortDescription>
+        <value>Hey - try out</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail4</shortDescription>
+        <value>activity on the Everyday Actions app, I think you might find it interesting!</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail5</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail5</shortDescription>
+        <value>You can access the activity on your Salesforce 1 mobile app, Please go to Everyday Actions on SF1 app to take action.</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail6</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail6</shortDescription>
+        <value>Note: Everyday Actions app is available on Salesforce1 mobile app. More information can be found here https://apps.unilever.com/global/CollaborationHub/SitePages/DE%20Mobile.aspx</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail7</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail7</shortDescription>
+        <value>Activity Description:</value>
+    </labels>
+    <labels>
+        <fullName>EA_System_User_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_System_User_ID</shortDescription>
+        <value>005c0000002NPnI</value>
+    </labels>
+    <labels>
+        <fullName>EA_ThemeTab_Title</fullName>
+        <categories>EA_Appearance</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ThemeTab_Title</shortDescription>
+        <value>All Themes</value>
+    </labels>    
+    <labels>
         <fullName>ERROR_generic_request_failure</fullName>
         <language>en_US</language>
         <protected>false</protected>

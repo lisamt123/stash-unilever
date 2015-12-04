@@ -94,6 +94,31 @@
                 </div>
             </div>
         </div>
+
+        <div style="{!If(OR(!ownerOrManager,bet.id == null),'display:none','')}">
+            <div class="form-item">
+                <div class="item-label">
+                    <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Sharing__c.Label}</apex:outputLabel>
+                    <apex:outputPanel layout="inline" styleClass="question-icon"
+                                rendered="{!!isBlank($ObjectType.uw_BET__c.Fields.Sharing__c.inlineHelpText)}"
+                                html-data-tooltip="{!$ObjectType.uw_BET__c.Fields.Sharing__c.inlineHelpText}" />
+                </div>
+                <div class="item-input">
+                    <div class="styled-select">
+                        <apex:inputField id='visibilityid' value="{!bet.Sharing__c}" 
+                                rendered="{!OR(bet.Sharing__c == 'Private',bet.Sharing__c == null)}"/>
+                        <apex:inputField id='visibilityiddisabled' value="{!bet.Sharing__c}"
+                                style="color:#AAA;"  
+                                rendered="{!bet.Sharing__c == 'Public'}"/>
+                        <script>
+                            if(document.getElementById('{!$Component.visibilityiddisabled}') != null) {
+                                document.getElementById('{!$Component.visibilityiddisabled}').disabled = {!bet.Sharing__c == 'Public'}
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         </td></tr>
         </table>
