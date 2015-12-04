@@ -209,7 +209,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                                 
                                 if(incomingProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && projectCurrentGate == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE &&
                                         existingQuestionare.RecordTypeId == recTypeIDRQS && (existingQuestionare.IPM_Active_RQS__c || existingQuestionare.IPM_Is_Added_Question__c) &&  
-                                        existingQuestionare.IPM_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE )
+                                        existingQuestionare.IPM_Market_Deployment_Score__c>= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE )
                                 {
                                     addedQuestionareAtParent.add(existingQuestionare);
                                 }
