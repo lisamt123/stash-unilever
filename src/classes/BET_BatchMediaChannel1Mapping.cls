@@ -63,7 +63,7 @@ global class BET_BatchMediaChannel1Mapping implements Database.Batchable<uw_Asse
                 newAsset.Media_Type__c = null;
            }
            // Media Channel can be found in the mapping table
-           else if ( brandsMapNames.containsKey(asset.Media_Channel_1__c) == true ) {
+           else if ( brandsMapNames.containsKey(asset.Media_Channel_1__c)) {
                 //uw_Asset__c newAsset = new uw_Asset__c();
                 //newAsset.Id = asset.Id;
                 //newAsset.Media_Channel_1__c = brandsMapNames.get(asset.Media_Channel_1__c);

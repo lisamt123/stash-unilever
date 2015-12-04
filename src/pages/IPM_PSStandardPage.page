@@ -1,0 +1,10 @@
+<!--  
+*******************************************************************************
+*@Description:This page is used as the standard page for backend record access
+*@Author: Cognizant
+*@Created Date: 16/02/2015 
+*@Copyright © 2015  Unilever  
+*******************************************************************************
+-->
+<apex:page standardController="IPM_Project_Document_Section__c" extensions="IPM_GenericExtCtrl" action="{!red}">
+</apex:page>
