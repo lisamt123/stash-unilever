@@ -2,14 +2,23 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
         <members>EA_Constants</members>
+        <members>EA_ConstantsTestClass</members>
         <members>EA_ControllerClass</members>
+        <members>EA_ControllerTestClass</members>
         <members>EA_FeedbackNotificationBatch</members>
+        <members>EA_FeedbackNotificationBatchTestclass</members>
         <members>EA_FeedbackNotificationScheduler</members>
         <members>EA_Feedback_Controller</members>
+        <members>EA_Feedback_ControllerTestClass</members>
+        <members>EA_Feedbacktestcalss</members>
         <members>EA_LookupSObjectController</members>
+        <members>EA_LookupSObjectControllerTestclass</members>
         <members>EA_Notification_Controller</members>
+        <members>EA_Notification_ControllerTestClass</members>
         <members>EA_Utils</members>
+        <members>EA_UtilsTestClass</members>
         <members>EA_Wrapper_Class</members>
+        <members>EA_Wrapper_ClassTestClass</members>
         <name>ApexClass</name>
     </types>
     <types>

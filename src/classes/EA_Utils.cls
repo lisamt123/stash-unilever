@@ -5,7 +5,7 @@ Date: 29 oct 2015
 Requirement/Project Name: Unilever Salesforce Engagement
 Requirement/Description:  class for Everyday action app which has null check methods.
 */
-public class EA_Utils{
+public with sharing class EA_Utils{
     /*******************************************************************************************************
     * @description This method returns true if the input string is null or its length is zero.
     * @param String 

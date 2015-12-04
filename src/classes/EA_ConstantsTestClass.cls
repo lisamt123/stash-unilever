@@ -9,11 +9,11 @@ Requirement/Description: Test Class For EA_ConstantsClass.
 public class EA_ConstantsTestClass{
   static testMethod void postive() {
   EA_ThemesDetails__c ea=new EA_ThemesDetails__c();
-            ea.name='test';
-            ea.ThemeColorCode__c='test';
-            ea.ThemeDescription__c='test';
+            ea.name='test.theme';
+            ea.ThemeColorCode__c='test.color';
+            ea.ThemeDescription__c='test.Desc';
             insert ea;
-            System.assertEquals(ea.Name, 'test');
+            System.assertEquals(ea.Name, 'test.theme');
             EA_BadgeDetails__c badge=new EA_BadgeDetails__c();
             badge.name='test1';
             badge.BadgeColor__c='blue';

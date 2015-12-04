@@ -7,7 +7,7 @@ Requirement/Description: Batch apex to send scheduled feedback reminders.
 */
 global class EA_FeedbackNotificationBatch implements Database.Batchable<sObject>{
     global Database.QueryLocator start(Database.BatchableContext BC){           
-        String status = 'Accepted';
+        String status = 'Self';
         dateTime whenDay = system.today()-1;
         String q = 'SELECT Activity_Due_Date__c,Id,Invitation_Status__c,Participant__c,Everyday_Activity__c FROM EA_Team_Member__c WHERE Invitation_Status__c =: status AND Activity_Due_Date__c >:whenDay';      
         return Database.getQueryLocator(q);
