@@ -63,6 +63,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
     public List<SelectOption> documentSections {get; set;} //Used to manage the list of the document sections for navigation
     public String selectedDocumentSection {get; set;} //Seleted DOcument Section for the current project for navigation
+    public String milestoneFinanceDataValidationMessage {get;set;}
     public Boolean isConsolidatedOrNonkey {
         get {
             Boolean flag = false;
@@ -108,6 +109,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         validationErrorMessage = IPM_ConstantUtils.BLANK;
         localrollout = new IPM_Project_Rollout__c(); 
         associatedCountryList = new List<IPM_Country__c>();
+        milestoneFinanceDataValidationMessage = '';
         exRate=1;            
                 
         try
@@ -122,9 +124,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 getMisalignmentVisibility(); 
                 getFinancials();                 
                 isEditMode = FALSE; 
-               
+                Boolean result = validateMilestoneAndFinacialData();
+                if(result) {
+                    milestoneFinanceDataValidationMessage = Label.IPM_Finacial_Data_Missing;
+                }
+              
             }
-        } 
+	}
+     
         catch (Exception ex)
         {
             isError = TRUE;
@@ -164,9 +171,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                if(!financialExtID.contains(IPM_ConstantUtils.FINANCIAL_NONKEY))
                 {
                     ipmProjectList =  [SELECT Id,
-                                           (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c  FROM Regional_Project_Rollout__r 
+                                           (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c  FROM Regional_Project_Rollout__r 
                                                WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND IPM_Rollout_Project__c = :financialExtID ),
-                                           (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c  FROM IPM_Project_Rollout__r 
+                                           (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c  FROM IPM_Project_Rollout__r 
                                                WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND IPM_Rollout_Project__c = :financialExtID )   
                                         FROM IPM_Project__c WHERE Id =:Project.Id];
                 }
@@ -175,9 +182,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     // Update financials External Id if it is a non Key.
                     financialExtID = currentFinancial.Regional_External_Id__c;
                     ipmProjectList =  [SELECT Id,
-                                           (Select Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c FROM Regional_Project_Rollout__r 
+                                           (Select Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c FROM Regional_Project_Rollout__r 
                                                WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND KeyMCO__c = FALSE AND Regional_Rollout_External_Id__c= :financialExtID),
-                                           (Select Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c FROM IPM_Project_Rollout__r 
+                                           (Select Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c FROM IPM_Project_Rollout__r 
                                                WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND KeyMCO__c = FALSE AND Regional_Rollout_External_Id__c= :financialExtID)
                                         FROM IPM_Project__c WHERE Id =:Project.Id];
                 }
@@ -1376,6 +1383,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public void saveFinancials() {
                try {
             lstUpdateFinancials = new List<IPM_Financial_Year__c>();
+            milestoneFinanceDataValidationMessage = '';
             Boolean isCalendarValidationFailed = false;
             Boolean isInnovationValidationFailed = false;
             isValidationError = false;
@@ -1487,7 +1495,60 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         }        
                     return isValidationFailed;
     }
+//DEF2339 & DEF2344 fix start
+    private Boolean validateMilestoneAndFinacialData() {
+        Date milestoneDate = getProjectMilestoneDate();
+        Boolean result = milestoneDate!=null && 
+                         milestoneDate < System.now().addDays(14) && 
+                         (validateFinacialData(financialsCalendar) || validateFinacialData(financialsInnovation));
+        return  result;
+    }
+    private Boolean validateFinacialData( IPM_FinancialWrapper finWrapper ) {
+        Boolean result = 
+                        //Gross PBO
+                         validateFinacialDataValue(finWrapper.lstGrossPLProfit) ||    
+                        //Incremental PBO
+                            validateFinacialDataValue(finWrapper.lstIncrementalPLProfit)  ||     
+                        //Gross Turnover
+                            validateFinacialDataValue(finWrapper.lstIncrementalPLTurnover)   ||    
+                        //Incremental Turnover
+                            validateFinacialDataValue(finWrapper.lstGrossPLTurnover)  ||     
+                        //Gross Gross
+                            validateFinacialDataValue(finWrapper.lstGrossPLTurnover)   ||    
+                        //Incremental Gross
+                            validateFinacialDataValue(finWrapper.lstIncrementalPLGrossProfit) ;
+        return result;
+    }
+    private boolean validateFinacialDataValue(List<IPM_FinancialValueWrapper> lstGrossPLGrossProfit){
+        Boolean isInvalid = false;
+        for(IPM_FinancialValueWrapper valueWrapper: lstGrossPLGrossProfit){
+            if(valueWrapper.value == IPM_ConstantUtils.INVALID_VALUE){
+                isInvalid = true;
+                break;
+            }
+        } 
+        return isInvalid;
+    }
     
+private Date getProjectMilestoneDate(){
+        List<String> milestoneNames = new List<String>{IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE};
+        List<IPM_Milestone__c> milestones = [Select Id,IPM_Name__c,IPM_Active__c, IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: project.Id and IPM_Active__c = true and IPM_Due_Date__c != null and IPM_Name__c in: milestoneNames];
+        Date projectMilestoneDate = null;
+        for(IPM_Milestone__c milestone :milestones){
+            if(milestone.IPM_Name__c==IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS) {
+                projectMilestoneDate = milestone.IPM_Due_Date__c;
+                break;
+            } else if(milestone.IPM_Name__c==IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY) {
+                projectMilestoneDate = milestone.IPM_Due_Date__c;
+                break;
+            } else if(milestone.IPM_Name__c==IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY) {
+                projectMilestoneDate = milestone.IPM_Due_Date__c;
+                break;
+            }
+        }
+        return projectMilestoneDate;
+    }       
+    //DEF2339 & DEF2344 fix end
     /*******************************************************************************************************
     * @description              Used to validate the financial Y0Turnover
     * @param y0Turnover         Used to process the passed y0Turnover
@@ -2012,6 +2073,31 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     
     
     
+/*******************************************************************************************************
+    * @description  Used to update MisAligned_Confirmed_By_Finance_Leader__c flag
+    * @param        NONE
+    * @return       NONE
+    */
+    public void updateMisalignmentByFinanceLeader() {
+        try{
+            if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+                localRolloutProject.MisAligned_Confirmed_By_Finance_Leader__c = true;
+                showMisalignedConfirmbtn = true;  
+                update localRolloutProject;
+                setMisalignedValue();
+            } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL || project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
+                mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c =true;  
+                showMisalignedConfirmbtn = true;          
+                update mcoCountryRolloutPlan;
+                setMisalignedValue();
+            }
+        } catch (Exception eX){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                   IPM_ConstantUtils.EXCEPTION_EDITFINANCIALS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+            isError = true;
+            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+        }
+    } 
     
     
 }

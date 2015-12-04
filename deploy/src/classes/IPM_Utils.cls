@@ -1287,4 +1287,39 @@ public without sharing class IPM_Utils {
             return true;
         }
     }
+    
+    public static Boolean validateTriggerSkip()
+    {
+        if(Trigger.isExecuting)
+        {
+	        string CSkey;
+	        List<sObject> sobjectList = Trigger.New;
+	        if(Trigger.isInsert)
+	        {
+	            if(Trigger.New!=null && !Trigger.New.isEmpty())
+	            {
+	                sobjectList = Trigger.New;
+	                CSkey = sobjectList[0].getSObjectType().getDescribe().name.replace('__c','')+'Trigger';
+	            }   
+	        }
+	        else
+	        {
+	            if(Trigger.old != null && !Trigger.old.isEmpty())
+	            {
+	                sobjectList = Trigger.Old;
+	                CSkey = sobjectList[0].getSObjectType().getDescribe().name.replace('__c','')+'Trigger';
+	            }
+	        }
+	        
+	        if(String.isNotBlank(CSkey))
+	        {
+	            IPM_Trigger_Router__c triggerRouter = IPM_Trigger_Router__c.getInstance(CSkey); 
+	            if(triggerRouter!=null && triggerRouter.is_Disabled__c)
+	            {
+	                return true;
+	            }
+	        }  
+        } 
+        return false;
+    } 
 }

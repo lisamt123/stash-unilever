@@ -281,6 +281,11 @@
                                                                       <apex:param name="country" value="" assignTo="{!Country}"/>  
                                                                       <apex:param name="check" value="" assignTo="{!CheckCountry}"/> 
                                                                 </apex:actionFunction>
+ 																<apex:outputPanel id="milestoneFinanceDataValidationMessagePanel" rendered="{!NOT(milestoneFinanceDataValidationMessage=='')}">
+                                                                    <div class="misAlignedTLD">
+                                                                        <apex:outputText value="{!milestoneFinanceDataValidationMessage}"/>
+                                                                    </div>
+                                                                </apex:outputPanel>
                                                                 
                                                                
                                                                 

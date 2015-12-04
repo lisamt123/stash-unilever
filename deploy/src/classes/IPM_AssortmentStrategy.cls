@@ -90,8 +90,6 @@ public with sharing class IPM_AssortmentStrategy {
     private static  final String CREATEASSORTSTRATEGY='createAssortStrategy';
     private static  final String DLTALLASSORT='DltAllAssort';
     private static  final String UPDATEASSORTS='updateAssortS';
-    private static  final String CHANGE_PRIORITY_STR='changePriority';
-    private static  final String UPDATE_PRIORITY_STR='updatePriority';
     private static  final String ERROR='Error';
     /****************************************************************************************************
     * @description:get project document section details
@@ -148,9 +146,7 @@ public with sharing class IPM_AssortmentStrategy {
         String projectId=Apexpages.currentpage().getparameters().get(IPM_ConstantUtils.SF_ID);
         list<IPM_Country__c> ipmlocalCountry=[Select Country_Name__c From IPM_Country__c Where 
         IPM_Local_Project__c=:projectId and IPM_Local_Project__c!=null limit 1];
-        
-        if(!ipmlocalCountry.isEmpty())
-        {
+        if(ipmlocalCountry!=null && ipmlocalCountry.size()>0){
             ipmCUslst=[Select CU_Description__c,name,Country__c From mdm_CU_Sales_SKU_Count_Mapping__c 
             Where Country__c=:ipmlocalCountry[0].Country_Name__c limit 50000];
         }
@@ -160,12 +156,9 @@ public with sharing class IPM_AssortmentStrategy {
     * @param:
     * @return:
     */
-    public void HoldCustomesChannels()
-    {
-        String[] CName=channelName.split(',');
-        
-        for(Integer i=0;i<CName.size();i++)
-        {
+    public void HoldCustomesChannels(){
+        String[] CName=(channelName).split(',');
+        for(Integer i=0;i<CName.size();i++){
             setchannelName.add(CName[i]);
         }   
     }
@@ -174,11 +167,9 @@ public with sharing class IPM_AssortmentStrategy {
     * @param:
     * @return:
     */
-    public void HoldCUsNames()
-    {
-        String[] CuName= selectedCUsNames.split(',');
-        for(Integer i=0;i<CuName.size();i++)
-        {
+    public void HoldCUsNames(){
+        String[] CuName=(selectedCUsNames).split(',');
+        for(Integer i=0;i<CuName.size();i++){
             setselectedCUsNames.add(CuName[i]);
         }   
     }
@@ -187,85 +178,83 @@ public with sharing class IPM_AssortmentStrategy {
     * @param:
     * @return:
     */
-    public void createAssortStrategy()
-	{
-		try
-		{
-			list<IPM_Project_Document_Section_Content__c>lstProDocContent=new list<IPM_Project_Document_Section_Content__c>();
-			IPM_Project_Document_Section_Content__c ProdocCon=new IPM_Project_Document_Section_Content__c();
-			Integer countAssort=0; 
-			if(String.isBlank(channelName)){
-				for(IPM_Project_Document_Section_Content__c  AssortS:lstAssortStrategy){
-					if(String.isBlank(channelName)){
-						channelName=AssortS.IPM_Assort_Channel_Name__c;
-					}
-					else{
-						if(!channelName.contains(AssortS.IPM_Assort_Channel_Name__c)){
-							channelName=channelName+','+AssortS.IPM_Assort_Channel_Name__c;
-							++countAssort;
-						}   
-					}
-				}    
-			}
-			String[] CName=new List<String>();
-			CName=(channelName).split(',');
-			for(Integer i=0;i<CName.size();i++){
-				if(CName[i]!=null && String.isNotBlank(CName[i])) {
-					setchannelName.add(CName[i]);
-				}
-			}  
-			
-			String[] CusName=new List<String>();
-			CusName=(selectedCUsNames).split(';');
-			for(Integer i=0;i<CusName.size();i++){
-				if(CusName[i]!=null && String.isNotBlank(CusName[i])) {
-					setselectedCUsNames.add(CusName[i]);
-				}
-			}  
+    public void createAssortStrategy(){
+        list<IPM_Project_Document_Section_Content__c>lstProDocContent=new list<IPM_Project_Document_Section_Content__c>();
+        IPM_Project_Document_Section_Content__c ProdocCon=new IPM_Project_Document_Section_Content__c();
+        Integer countAssort=0; 
+        if(String.isBlank(channelName)){
+            for(IPM_Project_Document_Section_Content__c  AssortS:lstAssortStrategy){
+                if(String.isBlank(channelName)){
+                    channelName=AssortS.IPM_Assort_Channel_Name__c;
+                }
+                else{
+                    if(!channelName.contains(AssortS.IPM_Assort_Channel_Name__c)){
+                        channelName=channelName+','+AssortS.IPM_Assort_Channel_Name__c;
+                        ++countAssort;
+                    }   
+                }
+            }    
+        }
+        String[] CName=new List<String>();
+        CName=(channelName).split(',');
+        for(Integer i=0;i<CName.size();i++){
+            if(CName[i]!=null && String.isNotBlank(CName[i])) {
+        setchannelName.add(CName[i]);
+      }
+        }  
+        
+        String[] CusName=new List<String>();
+        CusName=(selectedCUsNames).split(';');
+        for(Integer i=0;i<CusName.size();i++){
+            if(CusName[i]!=null && String.isNotBlank(CusName[i])) {
+        setselectedCUsNames.add(CusName[i]);
+      }
+        }  
 
-			if(setselectedCUsNames!=null && setselectedCUsNames.size()>0&& setchannelName!=null && setchannelName.size()>0){
-				for(string cu:setselectedCUsNames){
-				  ++countAssort;
-					for(string cuname:setchannelName){
-						boolean isdupval=false;
-						for(IPM_Project_Document_Section_Content__c dupcus:lstAssortStrategy){
-							if(dupcus.IPM_Incumbent_CUs__c.equalsIgnoreCase(cu) && dupcus.IPM_Assort_Channel_Name__c.equalsIgnoreCase(cuname)){
-								isdupval=true;
-								break;
-							} 
-						}
-						if(isdupval != null && !isdupval){
-							ProdocCon=new IPM_Project_Document_Section_Content__c();
-							ProdocCon.IPM_Content_Type__c = IPM_ConstantUtils.ASSORTMENT_CONTENT_TYPE;
-							ProdocCon.IPM_Incumbent_CUs__c=cu;
-							ProdocCon.IPM_Assort_Channel_Name__c=cuname;
-							ProdocCon.IPM_AssortmentStrategy_From__c=IPMProdocContent.IPM_AssortmentStrategy_From__c;
-							ProdocCon.IPM_AssortmentStrategy_To__c=IPMProdocContent.IPM_AssortmentStrategy_To__c;
-							ProdocCon.IPM_Distribution_Type__c=DistributionType;
-							ProdocCon.IPM_Project_Document_Section__c=ProdocSecId;
-							ProdocCon.IPM_Assortment_CU_Priority__c=countAssort;
-							lstProDocContent.add(ProdocCon);
-						}
-					}
-				}
-				if(insertAssortList!=null && !insertAssortList.isEmpty()){
-					insert insertAssortList;
-				}                           
-			}
-		}
-        catch(DmlException ex)
-		{
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
+        if(setselectedCUsNames!=null && setselectedCUsNames.size()>0&& setchannelName!=null && setchannelName.size()>0){
+            for(string cu:setselectedCUsNames){
+              ++countAssort;
+                for(string cuname:setchannelName){
+                    boolean isdupval=false;
+                    for(IPM_Project_Document_Section_Content__c dupcus:lstAssortStrategy){
+                        if(dupcus.IPM_Incumbent_CUs__c.equalsIgnoreCase(cu) && dupcus.IPM_Assort_Channel_Name__c.equalsIgnoreCase(cuname)){
+                            isdupval=true;
+                            break;
+                        } 
+                    }
+                    if(isdupval != null && !isdupval){
+                        ProdocCon=new IPM_Project_Document_Section_Content__c();
+                        ProdocCon.IPM_Content_Type__c = IPM_ConstantUtils.ASSORTMENT_CONTENT_TYPE;
+                        ProdocCon.IPM_Incumbent_CUs__c=cu;
+                        ProdocCon.IPM_Assort_Channel_Name__c=cuname;
+                        ProdocCon.IPM_AssortmentStrategy_From__c=IPMProdocContent.IPM_AssortmentStrategy_From__c;
+                        ProdocCon.IPM_AssortmentStrategy_To__c=IPMProdocContent.IPM_AssortmentStrategy_To__c;
+                        ProdocCon.IPM_Distribution_Type__c=DistributionType;
+                        ProdocCon.IPM_Project_Document_Section__c=ProdocSecId;
+                        ProdocCon.IPM_Assortment_CU_Priority__c=countAssort;
+                        lstProDocContent.add(ProdocCon);
+                    }
+                }
+            }
+            try{
+                
+                if(lstProDocContent!=null && lstProDocContent.size()>0) {
+          insert lstProDocContent;
+        }
+                
+            }
+            catch(DmlException ex){
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
                 CREATEASSORTSTRATEGY,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-		}
-		catch(exception eX)
-		{
-			ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
-			CREATEASSORTSTRATEGY,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
-		}
-		getAssortStrategy();
+            }
+            catch(exception eX){
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
+                CREATEASSORTSTRATEGY,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+            }
+            getAssortStrategy();
+        }
     }
     /****************************************************************************************************
     * @description:get already created assortment strategy
@@ -358,8 +347,8 @@ public with sharing class IPM_AssortmentStrategy {
         }
         try{
             if(updateAssort!=null) {
-				update updateAssort;   
-			}
+        update updateAssort;   
+      }
         }
         catch(DmlException ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
@@ -411,17 +400,11 @@ public with sharing class IPM_AssortmentStrategy {
                }
                
            }
-	if(oldPriorityList!=null && !oldPriorityList.isEmpty()){ 
            update oldPriorityList;  
-	 }
            getAssortStrategy();         
         }
-        catch (QueryException ex) {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
-            CHANGE_PRIORITY_STR,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-        }
-        catch (DMLException ex) {
+        
+        catch (Exception ex) {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ASSORTMENTSTRATEGY_STR,
             UPDATEASSORTS,ex.getMessage(),ex, ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
