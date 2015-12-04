@@ -11,7 +11,7 @@
 
 */
 
-@isTest (Seealldata=true)
+@isTest //(Seealldata=false)
 public class Core_NC_Test_NewsApp{
     
     public static testMethod void TestNewsAppGlobalNews(){
@@ -35,6 +35,28 @@ public class Core_NC_Test_NewsApp{
                                                   View_Count__c=10);
         insert news3;
         System.assert(news3!= null);
+        
+        Attachment attachmnt1 =new Attachment();
+        attachmnt1.name='textfileone1.txt';
+        attachmnt1.body =blob.valueOf('my attachment text1');
+        attachmnt1.ParentId =news1.Id;
+        insert attachmnt1;
+        System.assert(attachmnt1!= null);
+        
+        Attachment attachmnt2 =new Attachment();
+        attachmnt2.name='textfileone2.txt';
+        attachmnt2.body =blob.valueOf('my attachment text2');
+        attachmnt2.ParentId =news2.Id;
+        insert attachmnt2;
+        System.assert(attachmnt2!= null);
+        
+        Attachment attachmnt3 =new Attachment();
+        attachmnt3.name='textfileone3.txt';
+        attachmnt3.body =blob.valueOf('my attachment text3');
+        attachmnt3.ParentId =news3.Id;
+        insert attachmnt3;
+        System.assert(attachmnt3!= null);
+        
         Core_NC_NewsCenterController.getGlobalNewsForMostRecent('GlobalNews');
         Core_NC_NewsCenterController.getGlobalNewsForMostRecent('PaulsBlog');
         Core_NC_NewsCenterController.getGlobalNewsForMostRecent('MyNews');
@@ -56,6 +78,21 @@ public class Core_NC_Test_NewsApp{
                                                   Site_Type__c='MCO',Sub_Title__c='Sub Title5',Summary__c='Test Summary5',Title__c='Title5',
                                                   View_Count__c=10);
         insert news3;
+        
+        Attachment attachmnt4 =new Attachment();
+        attachmnt4.name='textfileone4.txt';
+        attachmnt4.body =blob.valueOf('my attachment text4');
+        attachmnt4.ParentId =news1.Id;
+        insert attachmnt4;
+        System.assert(attachmnt4!= null);
+        
+        Attachment attachmnt5 =new Attachment();
+        attachmnt5.name='textfileone5.txt';
+        attachmnt5.body =blob.valueOf('my attachment text5');
+        attachmnt5.ParentId =news3.Id;
+        insert attachmnt5;
+        System.assert(attachmnt5!= null);
+        
         System.assert(news3!= null);
         insert new FeedItem(Type='TextPost',Body='Hi',ParentId=news1.Id);
         insert new FeedItem(Type='TextPost',Body='Hi',ParentId=news3.Id);
@@ -88,6 +125,20 @@ public class Core_NC_Test_NewsApp{
         insert news3;
         System.assert(news3!= null);
         
+        Attachment attachmnt6 =new Attachment();
+        attachmnt6.name='textfileone6.txt';
+        attachmnt6.body =blob.valueOf('my attachment text6');
+        attachmnt6.ParentId =news1.Id;
+        insert attachmnt6;
+        System.assert(attachmnt6!= null);
+        
+        Attachment attachmnt7 =new Attachment();
+        attachmnt7.name='textfileone7.txt';
+        attachmnt7.body =blob.valueOf('my attachment text7');
+        attachmnt7.ParentId =news3.Id;
+        insert attachmnt7;
+        System.assert(attachmnt7!= null);
+        
         CollaborationGroup objgroup= new CollaborationGroup(Name = 'my_group1', CollaborationType = 'public');
         insert objgroup;
         
@@ -107,6 +158,13 @@ public class Core_NC_Test_NewsApp{
                                                   View_Count__c=10);
         insert news1;
         System.assert(news1!= null);
+        
+        Attachment attachmnt8 =new Attachment();
+        attachmnt8.name='textfileone8.txt';
+        attachmnt8.body =blob.valueOf('my attachment text8');
+        attachmnt8.ParentId =news1.Id;
+        insert attachmnt8;
+        System.assert(attachmnt8!= null);
         
         Test.setCurrentPage(Page.NewsArticleFeed_NewsApp);
         ApexPages.currentPage().getParameters().put('articleId', news1.Id);
