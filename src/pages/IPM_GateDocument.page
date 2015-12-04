@@ -12,7 +12,7 @@
         <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>            
             <apex:form >
                 <apex:pageMessages />
-                    <div class="gradientbg">  
+                    <div class="gradientbg"> 
                             <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument" />  
                     </div>
                 

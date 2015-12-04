@@ -108,7 +108,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         validationErrorMessage = IPM_ConstantUtils.BLANK;
         localrollout = new IPM_Project_Rollout__c(); 
         associatedCountryList = new List<IPM_Country__c>();
-                    
+        exRate=1;            
                 
         try
         {

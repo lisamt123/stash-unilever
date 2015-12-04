@@ -361,6 +361,7 @@ Global with sharing class IPM_BosscardController {
         Boolean validBossName_Booln=false;
         Boolean validBossComp=false;
         Boolean validBossCat=false;
+        Boolean isUniqueBosscard=false;
         if(Pattern.matches(IPM_ConstantUtils.IPM_BOSSCARD_PATTERN,bosscard.IPM_BosscardName__c)){
             validBossName_Booln=false;
         }else{
@@ -380,7 +381,15 @@ Global with sharing class IPM_BosscardController {
         else{
             category_Booln=false;
             validBossCat=false;
-        }     
+        }
+        if(!validBossName_Booln && bosscard.IPM_BosscardName__c!=null){
+            isUniqueBosscard=IPM_WithoutShareController.duplicateBosscardList(bosscard.Id,bosscard.IPM_BosscardName__c);
+        }
+        if(isUniqueBosscard){
+            isDuplicateBoss=true;
+        }else{
+            isDuplicateBoss=false;
+        }
         //If project name is null show warning message
         if(String.isBlank(bosscard.IPM_BosscardName__c) || bosscard.IPM_BosscardName__c==null){
             isNameMandatory=true;
@@ -392,11 +401,14 @@ Global with sharing class IPM_BosscardController {
             isDuplicateBoss=false;
             isContainSpecialChars=true;
         }
+        else if(isUniqueBosscard){
+            isDuplicateBoss=true;
+        }
         else if(validBossComp){
-                company_Booln=true;
+            company_Booln=true;
         }
         else if(validBossCat){
-                category_Booln=true;
+            category_Booln=true;
         }
                           
         else {
@@ -405,8 +417,6 @@ Global with sharing class IPM_BosscardController {
                             
             } 
             catch(Exception ex){
-                if(ex.getMessage().contains(IPM_ConstantUtils.DUPLICATE_EXCEPTION))
-                    isDuplicateBoss=true;
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
                                                            IPM_ConstantUtils.IPM_BOSS_SAVE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);    
             }           
@@ -565,7 +575,7 @@ Global with sharing class IPM_BosscardController {
             saveMsg=true;
             isDuplicateBoss=false;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,System.Label.IPM_Record_Insert_Success));
-                   
+                  
         }
         
     }
@@ -692,5 +702,13 @@ Global with sharing class IPM_BosscardController {
         isBosscardNameBlank = false;
         }
         
+    }
+    /********************************************************************************
+    *@Description :hide bosscard suggetion names
+    *@Param: NA
+    *@return:Void.
+    *********************************************************************************/
+    public void hideBosscardSuggetion(){
+        isBosscardNameBlank=true;
     }
 }

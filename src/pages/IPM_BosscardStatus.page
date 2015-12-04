@@ -7,7 +7,7 @@
 *************************************************************************
 -->
 
-<apex:page controller="IPM_BosscardStatusController" title="{!bosscardStatus_STR}" standardStylesheets="true" sidebar="false" showHeader="false" extensions="IPM_GetHelpDoc" id="IPM_BosscardStatus">
+<apex:page controller="IPM_BosscardStatusController" title="{!bosscardStatus_STR}" standardStylesheets="true" sidebar="false" showHeader="false"  id="IPM_BosscardStatus">
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'assets/font-awesome/css/font-awesome.min.css')}"/>
 
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Modal1.css')}"/>    
@@ -53,11 +53,7 @@
                                     <label for="discard"></label>
                                 </div>
                             </li>
-                            
-                            <!-- To place the help symbol in the top right hand corner of page -->
-                            <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
-                                <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
-                            </apex:outputPanel>
+
                         </div>
                     </ul> 
                     <div class="ipmGetStartedContent" id="status_progress">

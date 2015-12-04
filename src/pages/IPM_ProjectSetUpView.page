@@ -23,7 +23,7 @@
             <apex:pageMessages />
             <div class="gradientbg">
                 <div class="row">
-                    <c:IPM_BosscardDetails ProName="{!project.IPM_Project_Name__c}" />
+                    <c:IPM_BosscardDetails ProName="{!project.IPM_Project_Name__c}" isBosscard="{!project.IPM_Bosscard_Status__c}" />
                 </div>
             </div>
             <div class="ipmContent"> 
@@ -159,9 +159,10 @@
                                                                     <span class="SecButtonSet infoMarTop">
                                                                         <a class="icoButton info" title="{!$Label.IPM_ProjectNameHelpText}"></a>
                                                                     </span>
-                                                                    <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;return false};dupProjectName();"  maxlength="14" rendered="{!isEditable}" >
+                                                                    <apex:inputText value="{!project.IPM_Project_Name__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox" onblur="hideSuggetion();"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;return false};dupProjectName();"  maxlength="14" rendered="{!isEditable}" >
                                                                     </apex:inputText>
                                                                     <apex:actionfunction name="dupProjectName" action="{!searchDuplicateProject}" rerender="refreshProjectName"/>
+                                                                    <apex:actionfunction name="hideSuggetion" action="{!hideProjectSuggetion}" rerender="refreshProjectName"/>
                                                                     <apex:outputpanel id="refreshProjectName" >
                                                                         <apex:outputpanel layout="block" styleClass="autoContainer" rendered="{!!isProjectNameBlank}">
                                                                             <apex:repeat value="{!listofprojectname}" var="proList">          
