@@ -20,7 +20,9 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
     @Description : This is the constructor for the class
     ************************************************************************/
     
-    public IPM_BCCController(){
+    public IPM_BCCController()
+    {
+        super();
         projectId= ApexPages.currentPage().getParameters().get('Id');
         isEditable=false;
         if (projectId != NULL){          
@@ -57,9 +59,12 @@ public with sharing class IPM_BCCController extends IPM_ProjectIntermediateContr
     ************************************************************************/
     
     public void save(){
-        try{
+        try
+        {
             if(finance!=null)
+            {
                 update finance;//will alwasys be 1 record.
+            }
             saveMsg=true;
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,System.Label.IPM_BCC_SAVED_SUCCESFULLY));
         }
