@@ -67,6 +67,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     public IPM_RolloutPlansTableController()
     {
+    	IPM_IECompatible.ieFix();//Added for compatibility fix
         isPLAllocated = false; 
         isEditMode = false;
         isFLAllocated=false;
