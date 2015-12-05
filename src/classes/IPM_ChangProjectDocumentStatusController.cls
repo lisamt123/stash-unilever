@@ -237,7 +237,13 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             
             if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
             {
-                if(rolloutFilledCount>0)
+               if(rolloutCount<1 && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)
+                {
+                    showValidation=false;
+                    rolloutNotExistsError=true;
+                }
+               
+                if(rolloutFilledCount>0 && project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS)
                 {
                     showValidation=false;
                     rolloutCountryPLFilledError=true;
@@ -250,13 +256,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 }
             }
             
-            if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+            if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && fin.Year_3_iTO_Global__c==0.00)
             {
-            	if(fin.Year_3_iTO_Global__c==0.00)
-                {
-                    showValidation=false;
-                    financialError=true;
-                }
+                showValidation=false;
+                financialError=true;
             }
             
             if(!isRiskComplete)
