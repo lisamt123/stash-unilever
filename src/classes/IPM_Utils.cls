@@ -1296,7 +1296,7 @@ public without sharing class IPM_Utils {
     {
         if(Trigger.isExecuting)
         {
-	        string CSkey;
+	        string CSkey=IPM_ConstantUtils.BLANK;
 	        List<sObject> sobjectList = Trigger.New;
 	        if(Trigger.isInsert)
 	        {
