@@ -34,37 +34,37 @@
           $A.enqueueAction(action);
     },
     callToDoSubmitAction : function (cmp,event){
+    
         var actTimeField = cmp.find('activityTime').getElement();
         var selUserCmp = $A.util.json.encode(cmp.get("v.selectedUsers"));
         var act = cmp.get("v.activity");
+         
         var action = cmp.get("c.callSubmitToDoAction");
         action.setParams({"activityId" : act[0].Id,"json" : selUserCmp,"activityTime":actTimeField.value});
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if(state === 'SUCCESS'){
-                if(response.getReturnValue() != ''){
-                    console.log("callToDoSubmitAction Success");
+            if (state === "SUCCESS" && response.getReturnValue()!==''){
+                                  console.log("callToDoSubmitAction Success");
+         
                     cmp.set("v.detailpage",true);
                     var act = cmp.get("v.activity");
                     var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
                     detailpageEvent.setParams({"actvityid":act[0].Id});
                     detailpageEvent.fire();
-                }
-            }
+                            }
         });
         $A.enqueueAction(action);
 	},
     getPrticipantCount : function(cmp){
         var act = cmp.get("v.activity");
-  		var action = cmp.get("c.getActivityParticipantCount");
+  		var action = cmp.get("c.getActivityParticipantCount"); 
         action.setParams({"Activityid" : act[0].Id});
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if(state === 'SUCCESS'){
-                if(response.getReturnValue() != ''){
-                    console.log("getParticipantCount Success"+response.getReturnValue());
+            if (state === "SUCCESS" && response.getReturnValue()!==''){
+                                    console.log("getParticipantCount Success"+response.getReturnValue());
                     cmp.set("v.participantCount",response.getReturnValue());
-                }
+                
             }
         });
         $A.enqueueAction(action);      

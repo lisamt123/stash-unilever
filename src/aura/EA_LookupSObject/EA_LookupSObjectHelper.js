@@ -134,18 +134,19 @@
         var selectedUsers = cmp.get("v.selectedUsers");
         var maxLimit = cmp.get("v.maxLimit");
         var participantCount = cmp.get("v.participantCount");
-      	if (typeof selectedUsers != 'undefined' ){
-            console.log("User List Length:"+ selectedUsers.length);
-            console.log("Participant:"+ participantCount);
+       if (typeof selectedUsers != 'undefined' ){
+         console.log("User List Length:"+ selectedUsers.length);
+          console.log("Participant:"+ participantCount);
             console.log("maxLimit:"+ maxLimit);
        		if(((selectedUsers.length + 1) >= participantCount) || participantCount >= maxLimit){
-                var limitMsgBody = cmp.get('v.errorMessage');
-                cmp.set("v.errorMessage","You can do this activity only with "+ (maxLimit-1) +" colleagues(s).");
+            var limitMsgBody = cmp.get('v.errorMessage');
+               cmp.set("v.errorMessage","You can do this activity only with "+ (maxLimit-1) +" colleagues(s).");
                 // Hide the Lookup List
-                var lookupList = cmp.find("lookuplist");
-                $A.util.addClass(lookupList, 'slds-hide');
+              var lookupList = cmp.find("lookuplist");
+              $A.util.addClass(lookupList, 'slds-hide');
                 return;
-        	}     
+        	} 
+          
         }
         // Resolve the Object Id from the events Element Id (this will be the <a> tag)
         var objectId = this.resolveId(event.currentTarget.id);

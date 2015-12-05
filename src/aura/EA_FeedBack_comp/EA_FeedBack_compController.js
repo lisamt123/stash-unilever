@@ -2,6 +2,7 @@
 	
 
   doInit: function(component, event, helper) {
+     
      var activityid=component.get("v.activityId");
       var rating= component.get("v.participant_rating");
       var action=component.get("c.getactivitydetail");
@@ -9,9 +10,8 @@
         
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if (state === "SUCCESS") {
-                if(response.getReturnValue()!=''){
-                    var items = response.getReturnValue();
+            if (state === "SUCCESS" && response.getReturnValue()!=='') {
+                                   var items = response.getReturnValue();
                     component.set("v.activity",items[0]);
                      component.set("v.activityForRating",items[0]);
                     
@@ -26,7 +26,7 @@
                          component.set("v.showrating", true);
                         
                    
-                        }
+                        
                     }
                 }
             }
@@ -56,13 +56,12 @@
            action.setCallback(this, function(response) {
                
             var state = response.getState();
-            if (state === "SUCCESS") {
-                if(response.getReturnValue()!=''){
-                     var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
+            if (state === "SUCCESS" && response.getReturnValue()!=='') {
+                                     var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
                     detailpageEvent.setParams({"actvityid":actid});
                    detailpageEvent.fire();
                    
-                }
+                
             }
                
            });
@@ -77,6 +76,7 @@
     },
     
     imageClick:function(cmp,event,helper,val){
+        document.getElementById("btn").disabled = true;
           var numbers = [];
     var index =parseInt(event.target.attributes.getNamedItem("data-index").value);
         index =index+1;
@@ -85,13 +85,13 @@
         action.setParams({"ActivityID":activityid,"rating":index});
          action.setCallback(this, function(response) {
             var state = response.getState();
-            if (state === "SUCCESS") {
-                if(response.getReturnValue()!=''){
-                    var items = response.getReturnValue();
-                  
-                   var act= cmp.get("v.activity");
-                    
-                    cmp.set("v.participant_rating",items[0].Rating__c);
+            if (state === "SUCCESS" && response.getReturnValue()!=='') {
+                
+                 document.getElementById("btn").disabled = false;
+                                    var items = response.getReturnValue();
+                                     var act= cmp.get("v.activity");
+                                       cmp.set("v.participant_rating",items[0].Rating__c);
+                                     
                     cmp.set("v.activity",act);
                      cmp.set("v.activityForRating",items[0]);
                     cmp.set("v.index",0);
@@ -99,9 +99,7 @@
                     if(previous < 5){
        				 cmp.set("v.rateStars",previous);
                     }
-                   
-                    
-        
+                
          for (var i = 0; i < items[0].Rating__c; i++) {
           numbers.push({
             value: i
@@ -120,7 +118,7 @@
     cmp.set("v.remain", remain);
                
                     
-                }
+                
             }
         });
         $A.enqueueAction(action);
@@ -130,7 +128,7 @@
     
     gotoDetail :function(cmp,event,helper){
         var  actid=cmp.get("v.activityId");
-      var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
+        var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
        detailpageEvent.setParams({"actvityid":actid});
        detailpageEvent.fire();
     }

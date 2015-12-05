@@ -99,11 +99,11 @@ public with sharing class EA_Feedback_Controller {
                 if(tmObj.Invitation_Status__c == EA_Constants.INVITATION_STATUS_SELF){                   
                     string appUrl=URL.getSalesforceBaseUrl().toExternalForm() + '/' +'c/EverydayAction_App.app';
                     string actName = actIdTOName.get(tmObj.Everyday_Activity__c);
-                    string userid=userinfo.getuserId();
+                    string userid= tmObj.Participant__c;
                     User objUser=[SELECT Id FROM User WHERE Name = 'Everyday Actions'];
                     FeedItem newFeed=new FeedItem();
-                    newFeed.CreatedById = objUser.Id;
-                    newFeed.Body = System.Label.EA_Feedback_Message+'-'+ actName + ' - '+appUrl;
+                    newFeed.CreatedById = Label.EA_System_User_ID;
+                    newFeed.Body = System.Label.EA_Feedback_Message+'-'+ actName + ' ' + 'Your feedback help others. Please go to Everyday Actions on SF1 app to take action.';
                     newFeed.ParentId =userid ;
                     newFeed.Type = 'TextPost';
                     insert newFeed;                    

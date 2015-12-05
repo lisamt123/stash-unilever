@@ -28,8 +28,8 @@
         }
         .slick-slide img {
         display: block;
-        width: 30px;
-        height: 30px;
+        width: 10rem;
+        height: 5rem;
         border-radius: 100px;
         }
         
@@ -46,6 +46,11 @@
         .slds .slds-tabs--default__nav {
         height:60px;
         }
+        .slds .slds-tabs--default {
+  			display: block;
+  			width: 70%;
+  			margin-left: 5%;
+		}
         
     </style>
     <div class="slds">
@@ -122,7 +127,7 @@
                             <div>
                                 <p class="topTip"> <ui:outputText value="{!v.activity.Top_Tip__c}"/></p>
                             </div>
-                            <div class="divider"></div>
+                            
                         </aura:if>
                     </div>
                     <aura:if isTrue="{!v.showcontent}">

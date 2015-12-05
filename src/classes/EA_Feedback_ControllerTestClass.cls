@@ -64,7 +64,8 @@ public class EA_Feedback_ControllerTestClass{
             try{
             EA_Feedback_Controller.submitRating(event.id,team.Participant__c,123);
                
-            }catch(exception e){}
+            }catch(exception e){
+              System.debug('Exception caught: ' + e.getMessage());}
       
             Test.stopTest();
             }
@@ -118,7 +119,8 @@ public class EA_Feedback_ControllerTestClass{
             List<Everyday_Activity__c>temp=EA_Feedback_Controller.provideRating(event.id,2);
               try{
             EA_Feedback_Controller.submitRating(event.id,team.Participant__c,123);
-              }catch(exception e){}
+              }catch(exception e){  
+              System.debug('Exception caught: ' + e.getMessage());}
             
             Test.stopTest();
             }

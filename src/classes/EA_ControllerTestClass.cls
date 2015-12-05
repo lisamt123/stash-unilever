@@ -75,7 +75,7 @@ public class EA_ControllerTestClass{
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');
             try{
              EA_ControllerClass.getUserDetail();
-             EA_ControllerClass.getActivityParticipantCount(event.id);   
+          //   EA_ControllerClass.getActivityParticipantCount(event.id);   
                List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(event.id);
                }catch(exception e){
             System.debug('Exception caught: ' + e.getMessage());}
@@ -172,7 +172,7 @@ public class EA_ControllerTestClass{
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');
            try{
              EA_ControllerClass.getUserDetail();
-             EA_ControllerClass.getActivityParticipantCount(event.id);  
+           //  EA_ControllerClass.getActivityParticipantCount(event.id);  
               List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(event.id);
               }catch(exception e){
              System.debug('Exception caught: ' + e.getMessage());}

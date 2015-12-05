@@ -18,7 +18,7 @@ getactivities1 : function(component, event, helper) {
         var state = response.getState();
         if (state === "SUCCESS" && response.getReturnValue()!=='') {
             var items=response.getReturnValue();
-            component.set("v.activityid",items[0].Id);
+            //component.set("v.activityid",items[0].Id);
             component.set("v.activityDetail", response.getReturnValue());
         }
     });

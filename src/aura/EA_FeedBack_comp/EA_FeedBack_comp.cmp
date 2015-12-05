@@ -66,7 +66,7 @@
             
         </div>   
         <button class="cancel_btn" onclick="{!c.gotoDetail}">Cancel</button>
-        <button class="submitButton" onclick="{!c.submitFeedback1}">Submit</button>
+        <button id="btn" class="submitButton" onclick="{!c.submitFeedback1}">Submit</button>
         
         
     </div>

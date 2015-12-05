@@ -84,7 +84,7 @@
        
        //  var activityid = component.get("v.EAactivityid")
          //alert(activityid.id);
-        var id = component.get("v.teamid")
+        //var id = component.get("v.teamid")
         //alert(id);
               //  var action = component.get("c.updateParticipantResponse");
           var action=component.get("c.inviteResponseNofitification");

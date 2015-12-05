@@ -281,25 +281,30 @@ activities for current user.
             Map<string,EA_Team_Member__c> memberMap=new Map<string,EA_Team_Member__c>();
             List<EA_Team_Member__c> activityList=new List<EA_Team_Member__c>();
             for(EA_Team_Member__c item:memberList){
-                if(item.Everyday_Activity__c != NULL && (!memberMap.containsKey(item.Everyday_Activity__r.Name))){
+                if(item.Everyday_Activity__c != NULL && (!memberMap.containsKey(item.Everyday_Activity__r.Name)) ){
                    
                         memberMap.put(item.Everyday_Activity__r.Name,item);
                     
                 }
             }
+            
+           
             activityList.addAll(memberMap.values());
+           
             for(EA_Team_Member__c item:activityList){
                 EA_Wrapper_Class.EA_UserProfile_Wrapper objWrapper=new EA_Wrapper_Class.EA_UserProfile_Wrapper();
                 List<Everyday_Activity__c> recordtypeList=[select id, RecordType.Name,Name from Everyday_Activity__c where Id=:item.Everyday_Activity__c];
-                if(recordtypeList.size()>0){
+               
+                  if(recordtypeList.size()>0){
                     objWrapper.activity_name=recordtypeList[0].Name;
                     objWrapper.theme_name=recordtypeList[0].RecordType.Name;
                     objWrapper.acivityId=recordtypeList[0].id;
                     objWrapper.member_Id=item.id;
                     objWrapper.participant_rating=item.Rating_By_Participant__c ;
                     objWrapper.invitation_status=item.Invitation_Status__c ;
-                    objWrapper.Activity_Due_Date=item.Activity_Due_Date__c;
+                    objWrapper.Activity_Due_Date=item.Activity_Due_Date__c ;
                 }
+               
                 userprofileList.add(objWrapper);
             }
         }        
@@ -408,6 +413,8 @@ activities for current user.
     } 
     @AuraEnabled
     public static string callSubmitToDoAction(String activityId, String json, String activityTime) {
+    
+        system.debug('***'+json);
         try {           
             List<String> lstUser= new List<String>();
             Object[] values = (Object[])System.JSON.deserializeUntyped(json);
@@ -415,10 +422,8 @@ activities for current user.
                 for (Object id : values) {
                     lstUser.add(string.valueof(id) );
                 }
-            }
-            
-            User objUser=[SELECT Id FROM User WHERE Name = 'Everyday Actions'];
-           
+            }            
+                     
             List<Everyday_Activity__c> acts = getactivitydetail(activityId);
              //String actvityName ='';
             //String activityDesc='';
@@ -432,21 +437,27 @@ activities for current user.
             Date activityDate;
             if(activityTime=='Today')
             {
+                 system.debug('$$$'+'coming');
+                
                 activityDate = Date.today();
             }else if(activityTime== 'Tomorrow'){
-                activityDate = Date.today().addDays(1);
+                DateTime dT=Date.today().addDays(1);
+                activityDate = Date.newinstance(dT.year(), dT.month(), dT.day()); 
             }else if(activityTime== 'Next Week' ){
-                activityDate = Date.today().addDays(7);
+                DateTime dT= Date.today().addDays(7);
+                activityDate = Date.newinstance(dT.year(), dT.month(), dT.day());
             }else if(activityTime== 'Two Weeks' ){
-                activityDate = Date.today().addDays(14);
+                DateTime dT=Date.today().addDays(14);
+                activityDate =Date.newinstance(dT.year(), dT.month(), dT.day()); 
             }else if(activityTime == 'One Month'){
-                activityDate = Date.today().addDays(30);
+                 DateTime dT= Date.today().addDays(30);
+                activityDate =Date.newinstance(dT.year(), dT.month(), dT.day());
             }
             // Create team member record for current user
             EA_Team_Member__c newrecord = new EA_Team_Member__c();
             newrecord.Participant__c = UserInfo.getUserId();
             newrecord.Invited_By__c = UserInfo.getUserId();   
-           // newrecord.Invitation_Status__c = EA_Constants.INVITATION_STATUS_SELF;
+            newrecord.Invitation_Status__c = EA_Constants.INVITATION_STATUS_SELF;
             newrecord.Invitation_Status__c = 'Self';
             newrecord.Everyday_Activity__c = activityId;
             newrecord.Activity_Due_Day__c = activityTime;
@@ -479,22 +490,45 @@ activities for current user.
                 ConnectApi.TextSegmentInput textSegment= new ConnectApi.TextSegmentInput();
                 textSegment.text = UserInfo.getName() + '  has invited ';
                 messageBodyInput.messageSegments.add(textSegment);  
-    
-                for(String p : lstUser){
-                    ConnectApi.MentionSegmentInput mentionSegmentInput = new ConnectApi.MentionSegmentInput();      
-                    mentionSegmentInput.id = p;
-                    messageBodyInput.messageSegments.add(mentionSegmentInput);  
-                }
+    			
+    			Integer userCount = lstUser.size();
+    			
+    			if(userCount > 0){
+    				
+    				 for(String p : lstUser){
+    				 	
+    				 	userCount = userCount -1;
+	                    ConnectApi.MentionSegmentInput mentionSegmentInput = new ConnectApi.MentionSegmentInput();      
+	                    mentionSegmentInput.id = p;
+	                    messageBodyInput.messageSegments.add(mentionSegmentInput);  
+	                    
+	                    if(userCount > 0){
+		                    
+		                    ConnectApi.TextSegmentInput textSegmentInput = new ConnectApi.TextSegmentInput();  
+		                    textSegmentInput.text = ', ';
+		                    messageBodyInput.messageSegments.add(textSegmentInput);
+	                    }
+	                  
+	                }
+    			}
+               
+                
+                String dateMsgStr = string.valueOf(activityDate);
+                
+                dateMsgStr = dateMsgStr.substring(0,10);
+                
+                dateMsgStr = getProperDate(dateMsgStr);
                 
                 ConnectApi.TextSegmentInput textSegment1= new ConnectApi.TextSegmentInput();
-                textSegment1.text = ' to do "'+ actvityName +'"'+ ' activity together on '+activityDate+'. Please respond to the request.';
+                textSegment1.text = ' to do "'+ actvityName +'"'+ ' activity together on '+dateMsgStr+'. Please respond to the request. Please go to Everyday Actions on SF1 app to take action.';
                 messageBodyInput.messageSegments.add(textSegment1);  
     
                 feedItemInput.body = messageBodyInput;
                 feedItemInput.feedElementType = ConnectApi.FeedElementType.FeedItem;
-                feedItemInput.subjectId = objUser.Id; // Need to remove in future.
+                feedItemInput.subjectId = Label.EA_System_User_ID;
+               
+                ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput, null);
                 
-               ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput, null);
                 
             }
             
@@ -512,9 +546,51 @@ activities for current user.
             uName += '@'+u.Name+',';
         }       
         return uName; 
-    }    
-    @AuraEnabled
-    Public static Integer getActivityParticipantCount(string Activityid){
+    } 
+    
+    //param : 2015-12-05
+    //Return : 05-Dec-2015
+    public static string getProperDate(String dateForm){
+    
+        String finalStr = '';
+        
+        if(String.isNotEmpty(dateForm)){
+        	
+        	Map<String,String> monthToMonth = new Map<String,String>();
+        
+	        monthToMonth.put('01', 'Jan');
+	        monthToMonth.put('02', 'Feb');
+	        monthToMonth.put('03', 'Mar');
+	        monthToMonth.put('04', 'Apr');
+	        monthToMonth.put('05', 'May');
+	        monthToMonth.put('06', 'Jun');
+	        monthToMonth.put('07', 'Jul');
+	        monthToMonth.put('08', 'Aug');
+	        monthToMonth.put('09', 'Sep');
+	        monthToMonth.put('10', 'Oct');
+	        monthToMonth.put('11', 'Nov');
+	        monthToMonth.put('12', 'Dec');
+	        
+	    	dateForm = dateForm.trim();
+	    	
+	    	String dateStr = dateForm.substring(8,10);		
+
+	    	String monthStr = dateForm.substring(5,7);
+				    	
+	    	monthStr = monthToMonth.get(monthStr);
+	    	
+	    	String yearStr = dateForm.substring(0,4);
+			
+	    	
+	    	finalStr = dateStr+'-'+monthStr+'-'+yearStr;
+        }
+        
+        return finalStr;
+    	
+    }  
+     
+   /* @AuraEnabled
+    //Public static Integer getActivityParticipantCount(string Activityid){
         if(Activityid!= null){        
            // List<sObject> result = [SELECT count(id) total FROM EA_Team_Member__c WHERE ((Invited_By__c =: Activityid ) AND (invitation_Status__c =: EA_Constants.INVITATION_STATUS_SELF OR invitation_Status__c =: EA_Constants.INVITATION_STATUS_ACCEPTED))];
            AggregateResult results = database.query('SELECT count(id) total FROM EA_Team_Member__c WHERE ((Invited_By__c =:'+ Activityid +' ) AND (invitation_Status__c =: '+ EA_Constants.INVITATION_STATUS_SELF +' OR invitation_Status__c =: '+ EA_Constants.INVITATION_STATUS_ACCEPTED+'))');
@@ -523,5 +599,5 @@ activities for current user.
           
         }
         return 0;
-    }   
+    } */  
 }

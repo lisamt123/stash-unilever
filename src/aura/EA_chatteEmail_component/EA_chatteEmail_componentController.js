@@ -18,7 +18,7 @@
  
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if (state === "SUCCESS"  && response.getReturnValue()!='')  {
+            if (state === "SUCCESS" && response.getReturnValue()!=='') {
                 
             }
         });
@@ -72,10 +72,8 @@
     },
     
     gotoDetail : function(component, event, helper) {
-        alert("coming");
-        var actvity=component.get("v.activityDetail");
-        
-        var id=actvity.Id; ;
+              var actvity=component.get("v.activityDetail");
+                var id=actvity.Id; ;
         var num=actvity.participant_rating;
         
         var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");

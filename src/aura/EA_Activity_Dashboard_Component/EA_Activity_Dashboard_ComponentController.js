@@ -1,5 +1,6 @@
 ({
 	gotoDetail : function(component, event, helper) {
+         
        var actvity=component.get("v.activity");
          var rating;
         var id=actvity.acivityId; ;
@@ -16,23 +17,29 @@
 	},
     
     doInit :function(component, event, helper) {
-        
+          
           var actvity=component.get("v.activity");
-          console.log(actvity.invitation_status);
-         var today = new Date();
-        var dd = today.getDate(); 
           console.log(actvity.Activity_Due_Date);
-        console.log(today);
+         var  today= new Date();
+       console.log(actvity.invitation_status);
+        var date = today.toISOString(); 
+          console.log(date);
+        
           //if(actvity.Due_Date < currentDate)
-        if(actvity.Activity_Due_Date == today && (actvity.participant_rating < 0 || actvity.participant_rating ===undefined)){
+        if(actvity.invitation_status ==='Self' && (actvity.Activity_Due_Date == date || actvity.Activity_Due_Date < date) && (actvity.participant_rating < 0 || actvity.participant_rating ===undefined)){
             component.set("v.showfeedback",true);
-            console.log(today);
+          
+           
+            
         }
+         
        if(actvity.invitation_status ==='Invited'){
             component.set("v.showInvitation",true);
-        }        
+        } 
         
-      
+        
+               
+       
     },
     
     gotoInvitation :function(cmp, event, helper) {

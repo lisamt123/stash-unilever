@@ -6,9 +6,8 @@
         action.setParams({"ActivityID":activityid});
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if (state === "SUCCESS") {
-                if(response.getReturnValue()!=''){
-                    var items = response.getReturnValue();
+            if (state === "SUCCESS" && response.getReturnValue()!=='') {
+                                   var items = response.getReturnValue();
                     component.set("v.activity",items[0]);
                     component.set("v.maxLimit",items[0].Participants_Required__c);
                     console.log("MaxLimit"+items[0].Participants_Required__c);
@@ -20,8 +19,8 @@
                         }
                     }
                     helper.getToDoTimeline(component);
-                    helper.getPrticipantCount(component);
-                }
+                   // helper.getPrticipantCount(component);
+                
             }
         });
         $A.enqueueAction(action);  
@@ -48,7 +47,7 @@
         for (var i=0;i<toDoActivityUser.length;i++) {
              if (toDoActivityUser[i] == itemId) {
                  console.log("handleIdUpdate#User:"+ itemId +" already exist");
-        		return;	
+        		return;	 
                 break;
              }
         }

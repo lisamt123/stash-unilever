@@ -10,11 +10,12 @@ public with sharing class EA_Notification_Controller {
     @AuraEnabled
     public static void inviteResponseNofitification(string activityId, string teamid , string responseText){    
         try{
-        EA_Team_Member__c teamList = [SELECT Id, Invited_By__c, Participant__c FROM EA_Team_Member__c WHERE Id=:teamid];
+        EA_Team_Member__c teamList = [SELECT Id, Everyday_Activity__c,Invited_By__c, Participant__c FROM EA_Team_Member__c WHERE Id=:teamid];
       //  if(teamList.Invited_By__c <>null){     
           //  if(String.isNotBlank(activityId) && String.isNotBlank(teamList.Invited_By__c) && String.isNotBlank( teamList.Participant__c)){
-                Everyday_Activity__c actObj = EA_Utils.getActivitydetails(activityId);
-                String actName=actObj.name;
+              Everyday_Activity__c actObj = EA_Utils.getActivitydetails(activityId);
+              String actName=actObj.name;
+               // String actName=teamList.Everyday_Activity__c;
                 List<User> userList = [SELECT id, Name FROM User Where id =: userinfo.getUserID()];                   
                 String participantName=userList[0].name;
                // string msgLabel=responseText ;
@@ -47,7 +48,7 @@ public with sharing class EA_Notification_Controller {
                // }
            // }
             }
-        }catch(exception e){}
+        }catch(exception e){System.debug('Exception caught: ' + e.getMessage());}
     }
     
     /* Submit Invitation Response */ 

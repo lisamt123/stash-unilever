@@ -1,43 +1,30 @@
 ({
 	getData : function(component, event, helper) {
-        
-        
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
   ga('create', 'UA-70927869-1', 'auto');
   ga('send', 'pageview');
-
-
-        
-       var action=component.get("c.getActivities");
-       
-      //  action.setParams({"ActivityID" : 'a6kc0000000060PAAQ'});
-        action.setCallback(this, function(response) {
+         var action=component.get("c.getActivities");
+                    action.setCallback(this, function(response) {
                 var state = response.getState();
-                if (state === "SUCCESS") {
-                    if(response.getReturnValue()!=''){
-                        var items=response.getReturnValue();
-                     
-                     component.set("v.activities", response.getReturnValue());
+                if (state === "SUCCESS" && response.getReturnValue()!==''){
+                                           var items=response.getReturnValue();
+                        component.set("v.activities", response.getReturnValue());
                       tabstyle=component.find("myaction") ;
                       $A.util.addClass(tabstyle, "active");
                           component.set("v.showdownarrow",true); 
 					  helper.getAllThemeColor(component); 
-                                             
-                      setTimeout(function() {
+                       setTimeout(function() {
                       $A.run(function() {
 					  $('.carousel').slick();  
                         });
                        });
-                      }  
+                        
                     }      
                 });
             $A.enqueueAction(action);
-
-		
 	},
     
     showmyactions1 : function(cmp,event){
@@ -55,11 +42,8 @@
        	$A.util.removeClass(tabstyle,"inactive_class");
         tabstyle=cmp.find("myaction");
        	$A.util.addClass(tabstyle,"active_class");
-      
-        cmp.set("v.MyActions",false);
-       
-        
-    },
+              cmp.set("v.MyActions",false);
+           },
  
 	applyfilter : function(component, event, helper) {
          component.set("v.showdownarrow",true);
@@ -70,41 +54,29 @@
         if(filter != 'All Themes'){
             component.set("v.selectedfilter",filter);
         var action=component.get("c.getActivitiesonfilter");
-       
-        action.setParams({"themeName" : filter});
+               action.setParams({"themeName" : filter});
         action.setCallback(this, function(response) {
                 var state = response.getState();
-                if (state === "SUCCESS" && response.getReturnValue()!='' ) {
-                   
+                if (state === "SUCCESS" && response.getReturnValue()!==''){
+                      var items=response.getReturnValue();
+                          component.set("v.activities", response.getReturnValue());
                         var items=response.getReturnValue();
-                      //alert(items.length); 
-                      //alert(filter);
-                     component.set("v.activities", response.getReturnValue());
-                        var items=response.getReturnValue();
-                     
-                    
-                       setTimeout(function() {
+                          setTimeout(function() {
                       $A.run(function() {
 					  $('.carousel').slick();  
                         });
                        });  
-                       
-                   
-                }
+                                     }
                 });
             $A.enqueueAction(action);
         }
-        
-        else{
+             else{
             component.set("v.selectedfilter",filter);
             var action=component.get("c.getActivities");
-     
-        //action.setParams({"themeName" : filter});
         action.setCallback(this, function(response) {
                 var state = response.getState();
-                if (state === "SUCCESS" && response.getReturnValue()!='') {
-                    
-                        var items=response.getReturnValue();
+                if (state === "SUCCESS" && response.getReturnValue()!=='') {
+                                 var items=response.getReturnValue();
                       
                      component.set("v.activities", response.getReturnValue());
                       setTimeout(function() {
@@ -112,16 +84,13 @@
 					  $('.carousel').slick();  
                         });
                        });                           
-                       
-                   
-                }
+                                }
                 });
             $A.enqueueAction(action);
-            
-        }
-	
-         component.set("v.showswipe",true);
+               }
+	         component.set("v.showswipe",true);
         component.set("v.showfilter",false);
+        
 	},
     cancelfilter : function(component, event, helper) {
    
@@ -142,8 +111,7 @@
         cmp.set("v.showfilter",true);
          cmp.set("v.showdownarrow",false);
         cmp.set("v.showuparrow",true);
-           
-        }
+                 }
         
         if(swipe === false){
         cmp.set("v.showswipe",true);
@@ -171,8 +139,7 @@
         cmp.set("v.showAllthemebutton",true);
         cmp.set("v.showdownarrow",true);
         cmp.set("v.showuparrow",false);
-        
-        
+      
         // --------Added By Rajan---------
         setTimeout(function() {
             $A.run(function() {

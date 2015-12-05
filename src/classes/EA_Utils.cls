@@ -51,8 +51,10 @@ public with sharing class EA_Utils{
     */    
     @AuraEnabled
     public static void postCommentAtUserFeed(string activityId, string inviteeid, string participantId, string postComment){
+      
+        
         if(String.isNotBlank(activityId) && String.isNotBlank(participantId) && String.isNotBlank(postComment)){
-            ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();    
+            ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();               
             ConnectApi.MentionSegmentInput mentionSegmentInput = new ConnectApi.MentionSegmentInput();      
             ConnectApi.MessageBodyInput messageBodyInput = new ConnectApi.MessageBodyInput();       
             ConnectApi.TextSegmentInput textSegmentInput = new ConnectApi.TextSegmentInput();       
@@ -63,8 +65,12 @@ public with sharing class EA_Utils{
             messageBodyInput.messageSegments.add(textSegmentInput);              
             feedItemInput.body = messageBodyInput;
             feedItemInput.feedElementType = ConnectApi.FeedElementType.FeedItem;
-            feedItemInput.subjectId = inviteeid; // Need to remove in future.
-            ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput, null);
+            feedItemInput.subjectId = Label.EA_System_User_ID;
+            //feedItemInput.createdBy = Label.EA_System_User_ID;
+            
+    		ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput, null);
+			
+            
         }
     } 
     

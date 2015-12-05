@@ -29,9 +29,10 @@
   margin-top: 50px;
   padding-bottom: 20px;
   padding-top:1rem;
- color: #A7B8D1;
+ color: #4F6A92;
   margin-left: 15px;
   width: 100%;
+  text-transform: uppercase;
 }
 .THIS .right_arrow_img{float: right;
     padding-right: 10%;
@@ -61,6 +62,7 @@
   font-weight: 600;
   margin-left:1rem;
     padding-right:8px;
+     margin-top:20px;
 }
 
 .THIS .inv_img {
@@ -69,7 +71,7 @@
   margin-left: 5px;
 }
 .THIS .invitation{
-  width: 15rem;
+  width: 12rem;
   height: 2rem;
   background:#70dbdb ;
   border-radius: 10px;
@@ -78,4 +80,5 @@
   font-weight: 600;
   margin-left:1rem;
     padding-right:8px;
+    margin-top:20px;
 }

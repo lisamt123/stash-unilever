@@ -63,14 +63,14 @@ private class EA_FeedbackNotificationBatchTestclass{
 
        Test.startTest();
        
-	       EA_FeedbackNotificationBatch  fnb = new EA_FeedbackNotificationBatch ();
-	      
-	       Id batchprocessId = Database.executeBatch(fnb);	
-	       
+           EA_FeedbackNotificationBatch  fnb = new EA_FeedbackNotificationBatch ();
+          
+           Id batchprocessId = Database.executeBatch(fnb);  
+           
        Test.stopTest();
 
        
-  	 } 
+     } 
         
      }
 }
