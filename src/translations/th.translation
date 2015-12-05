@@ -41,12 +41,20 @@
         <name>Issue_Briefing_Centre</name>
     </customApplications>
     <customApplications>
+        <label><!-- JE Job Evaluation --></label>
+        <name>JE_Job_Evaluation</name>
+    </customApplications>
+    <customApplications>
         <label><!-- Network Accelerator --></label>
         <name>Network_Tracking</name>
     </customApplications>
     <customApplications>
         <label><!-- New Win@POS --></label>
         <name>New_Win_POS</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- SWOP --></label>
+        <name>Oblix_swop_project</name>
     </customApplications>
     <customApplications>
         <label><!-- OneView --></label>
@@ -8241,6 +8249,10 @@
         <name>Oblix_lbl_UIUX_Determined_by_Countries_selector</name>
     </customLabels>
     <customLabels>
+        <label><!-- Digital Strategy Adapt --></label>
+        <name>Oblix_lbl_UIUX_Digital_Strategy_Adapt</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Oblix_lbl_UIUX_Edit --></label>
         <name>Oblix_lbl_UIUX_Edit</name>
     </customLabels>
@@ -8313,6 +8325,10 @@
         <name>Oblix_lbl_UIUX_Information</name>
     </customLabels>
     <customLabels>
+        <label><!-- Interactive Game Adapt --></label>
+        <name>Oblix_lbl_UIUX_Interactive_Game_Adapt</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Oblix_lbl_UIUX_Lead_Agency --></label>
         <name>Oblix_lbl_UIUX_Lead_Agency</name>
     </customLabels>
@@ -8323,6 +8339,14 @@
     <customLabels>
         <label><!-- Oblix_lbl_UIUX_Marketing_SOW_Campaign_Edit --></label>
         <name>Oblix_lbl_UIUX_Marketing_SOW_Campaign_Edit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Mob APP Conceptualisation --></label>
+        <name>Oblix_lbl_UIUX_Mob_APP_Conceptualisation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Mobile APP Conceptualisation --></label>
+        <name>Oblix_lbl_UIUX_Mobile_APP_Conceptualisation</name>
     </customLabels>
     <customLabels>
         <label><!-- Oblix_lbl_UIUX_Name --></label>
@@ -8519,6 +8543,14 @@
     <customLabels>
         <label><!-- Oblix_lbl_UIUX_Visible_to_Unilever --></label>
         <name>Oblix_lbl_UIUX_Visible_to_Unilever</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Web Optimisation for Mob --></label>
+        <name>Oblix_lbl_UIUX_Web_Optimisation_for_Mob</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Website Optimisation for Mobile --></label>
+        <name>Oblix_lbl_UIUX_Web_Optimisation_for_Mobile</name>
     </customLabels>
     <customLabels>
         <label><!-- Oblix_lbl_UIUX_hours --></label>
@@ -9255,6 +9287,10 @@
     <customTabs>
         <label><!-- SME Selection --></label>
         <name>SME_Selection</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- SWOP --></label>
+        <name>SWOP</name>
     </customTabs>
     <customTabs>
         <label><!-- Sustainable Living Lab --></label>
@@ -10640,6 +10676,23 @@
             </columns>
             <label><!-- PO Report --></label>
             <name>PO Report</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP - SOW Campaigns and Assets --></description>
+        <label><!-- SWOP - SOW Campaigns and Assets --></label>
+        <name>Oblix_SWOP_SOW</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Project Assets --></label>
+            <name>SWOP Project Assets</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Projects --></label>
+            <name>SWOP Projects</name>
         </sections>
     </reportTypes>
     <reportTypes>

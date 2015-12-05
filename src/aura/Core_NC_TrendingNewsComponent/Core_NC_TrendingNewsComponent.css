@@ -1,0 +1,30 @@
+.THIS .SubText{
+    font-weight:regular;
+    font-size:12px;
+    color:#8C8C90;
+}
+.THIS .Title{
+    font-size:15px;
+    font-weight:bold;
+    color:#344A5F;
+}
+
+.THIS .Image{
+    margin: 0 auto;
+	max-width: 100%;
+	height: auto;
+}
+
+
+.THIS table td{
+    vertical-align: top;
+    padding-left: 10px;
+}
+.THIS b{
+   margin-left:10px;
+      
+}
+.THIS .bootstrap-sf1 .alert-success {
+    background-color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+}
