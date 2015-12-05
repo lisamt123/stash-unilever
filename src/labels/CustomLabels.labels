@@ -9947,7 +9947,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PojectSetupUrl</shortDescription>
-        <value>/apex/IPM_Projectsetup</value>
+        <value>/apex/IPM_ProjectSetUpView</value>
     </labels>
     <labels>
         <fullName>IPM_PostponeDate_Validation</fullName>
@@ -14924,5 +14924,19 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_update_to_project</shortDescription>
         <value>Update</value>
+    </labels>
+     <labels>
+        <fullName>IPM_TaskNameErrorMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TaskNameErrorMsg</shortDescription>
+        <value>Enter Task Name.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_FunctionalRoleErrorMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_FunctionalRoleErrorMsg</shortDescription>
+        <value>Enter Functional Role.</value>
     </labels>
 </CustomLabels>

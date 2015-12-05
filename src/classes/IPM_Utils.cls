@@ -95,6 +95,10 @@ public without sharing class IPM_Utils {
     public static String Finance = 'Finance';
     public static String IPM_Central_Team = 'IPM_Central_Team';
     public static String IPM_Business_Partners = 'IPM_Business_Partners';
+    public static String IPM_MarketReadyGate = 'Market Ready Gate';
+    public static String IPM_MarketDeploymentGate = 'Market Deployment Gate';
+    public static String IPM_Stopped = 'Stopped';
+    public static String IPM_PLE = 'PLE';
 
     //IPM_Milestone
     public static Set<String> mileNames=new Set<String>{'Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval',
@@ -170,7 +174,7 @@ public without sharing class IPM_Utils {
     //All the phases & their respective Gates
     public static Map<String, String> phaseGateDocumentMap = new Map<String, String>{Ideas => Charter, Feasibility => Contract,
                                                                                       Capability => MarketReady, MarketReady => MarketDeployment,
-                                                                                      MarketDeployment => notapplicable,'PLE' => notapplicable,'Stopped' => notapplicable};
+                                                                                      MarketDeployment => notapplicable,IPM_PLE => notapplicable,IPM_Stopped => notapplicable};
     
     public static final String FORUPDATE_STRING = ' FOR UPDATE ';
     public static final String LIMIT_STRING = ' LIMIT 50000 ';

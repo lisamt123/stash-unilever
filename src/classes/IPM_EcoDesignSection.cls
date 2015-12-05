@@ -36,7 +36,7 @@ public with sharing class IPM_EcoDesignSection {
     public Id ProjDocumentSecId;
     public String projDocName;
     public IPM_Project_Document_Section__c projDocSec;
-    public String projPhaseForCurrentDoc;
+    public String projPhaseForCurrentDoc = '';
     /*******************************************************************************************************
     * @description:initialise variables and get eco design data based on project document section id
     * @param:
@@ -65,9 +65,7 @@ public with sharing class IPM_EcoDesignSection {
 	        	projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_MARKET_READY;
 	        }
         }
-        else{
-        	projPhaseForCurrentDoc = project.IPM_Phase__c;
-        }
+
         countryAssessmentMap = new Map<String,List<IPM_Assessment__c>>();
         countryMap = new Map<String, IPM_Country__c>();
 		nonEICountryWithIdeasPhase = new Set<String>();
@@ -86,6 +84,9 @@ public with sharing class IPM_EcoDesignSection {
                                            Country_Name__c asc LIMIT 10000];     
         }
 
+		if(projPhaseForCurrentDoc.equalsIgnorecase(IPM_ConstantUtils.BLANK)){
+			projPhaseForCurrentDoc = project.IPM_Phase__c;
+		}
         projectType = IPM_Utils.retrieveProjectType(project);
         if(countriesList.isEmpty()) {
             noRolloutSubmittedYet = true;
