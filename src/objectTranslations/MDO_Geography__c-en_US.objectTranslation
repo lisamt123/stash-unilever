@@ -210,7 +210,7 @@
     <fields>
         <label><!-- Parent ID --></label>
         <name>parent_id__c</name>
-        <relationshipLabel><!-- Geography --></relationshipLabel>
+        <relationshipLabel><!-- Geography (Parent ID) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- parent Id Tree --></label>

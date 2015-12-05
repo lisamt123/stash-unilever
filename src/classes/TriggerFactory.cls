@@ -119,7 +119,7 @@ public with sharing class TriggerFactory
         {
             return new FAU_ProgramHandler();
         }       
-/*
+
 		if (soType == Oblix_SOW_Projects__c.sObjectType){
 			return new Oblix_ProjectHandler();
 		}
@@ -131,7 +131,7 @@ public with sharing class TriggerFactory
 		}
         if (soType == Oblix_Project_Assets__c.sObjectType){
 			return new Oblix_AssetHandler(); 
-		}*/
+		}
 		
         if (soType == FAU_Webinar_Participant__c.sObjectType)
         {
