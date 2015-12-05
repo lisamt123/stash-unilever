@@ -204,7 +204,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 // Risk Question Validation Check
                    validateRisk();
                 //For CMI Validation Check
-                    validateCMI();
+                	if((project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS) || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+                	{
+                    	validateCMI();
+                	}
             }
            
             //All the validation Messages to be displayed on the UI. The below code base will be updated based on the NEW UI (after refactoring is over)
@@ -480,7 +483,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                         fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
                     }
                 }
-                else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL &&    ((project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)|| project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
+                else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL &&    (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
                 {
                     finExternalID=project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
                     //Check for Regional level

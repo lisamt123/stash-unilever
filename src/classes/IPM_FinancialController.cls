@@ -1404,15 +1404,16 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 saveFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
                 saveFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
     
-                //Update Financial Year Records
-                if (lstUpdateFinancials!=null && !lstUpdateFinancials.isEmpty()) {
-                    update lstUpdateFinancials;
-                }
                 //Update Financial Record
                 currentFinancial.Status__c = IPM_ConstantUtils.STATUS_IN_PROGRESS;
                 currentFinancial.put(IPM_ConstantUtils.FIELD_LITERAL_LAST_SAVED + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, System.now());
                 currentFinancial.put(IPM_ConstantUtils.FIELD_LITERAL_LAST_SAVED_BY + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, UserInfo.getUserId());
                 Database.update(currentFinancial);
+                //Update Financial Year Records
+                if (lstUpdateFinancials!=null && !lstUpdateFinancials.isEmpty()) {
+                    update lstUpdateFinancials;
+                }
+                
                 getRolloutWrappers(currentFinancialId);
                 getFinancials();
                     

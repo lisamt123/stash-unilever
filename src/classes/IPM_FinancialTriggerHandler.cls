@@ -541,6 +541,7 @@ public with sharing class IPM_FinancialTriggerHandler
     */
     
     private void consolidateFinancialRecord(IPM_Financial__c newFinancial, IPM_Financial__c newConsolidatedFinancial, IPM_Financial__c oldFinancial, IPM_Financial__c oldConsolidatedFinancial){
+        processConsolidation(newFinancial, newConsolidatedFinancial, oldFinancial, oldConsolidatedFinancial, IPM_ConstantUtils.FIELD_LITERAL_IRR);
         processConsolidation(newFinancial, newConsolidatedFinancial, oldFinancial, oldConsolidatedFinancial, IPM_ConstantUtils.FIELD_LITERAL_BIC);
         processConsolidation(newFinancial, newConsolidatedFinancial, oldFinancial, oldConsolidatedFinancial, IPM_ConstantUtils.FIELD_LITERAL_CAPEX);
         processConsolidation(newFinancial, newConsolidatedFinancial, oldFinancial, oldConsolidatedFinancial, IPM_ConstantUtils.FIELD_LITERAL_NPV);

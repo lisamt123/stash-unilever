@@ -500,7 +500,10 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         checkGKCFilled();
         checkOTIFFilled(); 
         checkRMPFilled();
-        checkCMICompleted();
+      	if((project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS) || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+        {
+        	 checkCMICompleted();
+        }
         //Getting Gate Summary and Outcome Summary Saved Date and Time
         if(IsGateSave==IPM_ConstantUtils.GATE){
             DateTime dT = System.now();
