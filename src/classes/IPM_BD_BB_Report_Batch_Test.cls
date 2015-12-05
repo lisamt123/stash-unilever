@@ -134,7 +134,7 @@ private class IPM_BD_BB_Report_Batch_Test {
     *  @param : none
     *  @return : none
     *************************************************************************/
-    static void initializeData(){
+    static void initializeData2(){
         test.startTest();
         user systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
             system.runAs(systemAdmin){
@@ -345,7 +345,7 @@ private class IPM_BD_BB_Report_Batch_Test {
         system.assertequals(system.now().day(),reportParameter.Last_Batch_RunDate__c.day(),'Error in Batch Last run date update');            
     }
         static testMethod void testBDBBreport2() { 
-        initializeData1();            
+        initializeData2();            
         system.runAs(testUser){
             string query = 'SELECT Id,IPM_Global_ProjectId__c,Project_External_ID__c,Name,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.Id,IPM_Project_Leader__r.Name,Deputy_Project_Leader__r.Name,IPM_Technical_Project_Leader__r.Name,IPM_Finance_Member__r.Name,IPM_Rollout_Status__c,IPM_Category_Group__c,IPM_Category_Text__c,IPM_Phase__c,IPM_Brand_Positioning__c,IPMProject_Span__c, IPMProject_Type__c,Project_Countries__c,IPM_No_of_Country_Rollouts__c,IPM_Threshold_Value__c,IPM_Company_Card__r.Name,IPM_Cluster__c,Market_Cluster__c,Market_Cluster_Name__c,IPM_Clustering__c,IPM_Clusters__c,IPM_Answer_of_Q1__c, IPM_Answer_of_Q2__c, Exempt_from_Threshold__c, IPM_Answer_of_Q3__c,IPM_Strategic_Intent__c,IPM_Target_Launch_Year__c,IPM_Target_Launch_Month__c,IPM_Actual_Launch_Date__c, IPM_Actual_Launch_Month__c,IPM_Actual_Launch_Year__c,IPMPlatform__c,IPM_Project_Type__c,IPM_Project_Description__c, CreatedDate FROM IPM_Project__c WHERE Is_Archieved__c = false'; 
             IPM_BD_BB_Report_Batch  b = new IPM_BD_BB_Report_Batch(query); 
