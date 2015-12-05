@@ -11248,7 +11248,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40</shortDescription>
-        <value>Total Turnover &gt;40M</value>
+        <value>Incremental Turn Over &gt;40M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_Activity</fullName>
@@ -11271,7 +11271,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_100_200</shortDescription>
-        <value>€100-€200m</value>
+        <value>Total turnover €100-€200m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnover1020</fullName>
@@ -11279,7 +11279,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnover1020</shortDescription>
-        <value>Total Turnover 10M - 20M</value>
+        <value>Incremental Turn Over 10M - 20M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnover200_300</fullName>
@@ -11287,7 +11287,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnover200_300</shortDescription>
-        <value>€200-€300m</value>
+        <value>Total turnover €200-€300m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess10</fullName>
@@ -11295,7 +11295,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess10</shortDescription>
-        <value>Total Turnover &lt;10M</value>
+        <value>Incremental Turn Over &lt;10M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess2030</fullName>
@@ -11303,7 +11303,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess2030</shortDescription>
-        <value>Total Turnover 20M - 30M</value>
+        <value>Incremental Turn Over 20M - 30M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess300_400</fullName>
@@ -11311,7 +11311,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess300_400</shortDescription>
-        <value>€300-€400m</value>
+        <value>Total turnover €300-€400m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess3040</fullName>
@@ -11319,7 +11319,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess3040</shortDescription>
-        <value>Total Turnover 30M - 40M</value>
+        <value>Incremental Turn Over 30M - 40M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLessAbove400</fullName>
@@ -11327,7 +11327,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLessAbove400</shortDescription>
-        <value>&gt;€400m</value>
+        <value>Total turnover &gt;€400m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_Less100</fullName>
@@ -11335,7 +11335,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_Less100</shortDescription>
-        <value>&lt;€100m</value>
+        <value>Total turnover &lt;€100m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_Innovation_Projects_BrandLedGrowth</fullName>
@@ -11979,7 +11979,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Cut downs &amp; Tag</shortDescription>
-        <value>Cut downs and Tags</value>
+        <value>Cut Downs and Tags</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Data_Ana_Rep_Dash</fullName>
@@ -12148,7 +12148,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Digital campaign assets</value>
+        <value>Digital Campaign Assets</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score1</fullName>
@@ -12632,7 +12632,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Stimulus requirements</shortDescription>
-        <value>Stimulus requirements</value>
+        <value>Stimulus Requirements</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Stimulus</fullName>

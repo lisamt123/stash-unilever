@@ -182,6 +182,38 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>News_Article_Topics__c</fullName>
+        <externalId>false</externalId>
+        <label>News Article Topics</label>
+        <length>10000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>News_Body__c</fullName>
+        <externalId>false</externalId>
+        <label>News Body</label>
+        <length>131072</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>News_Publish_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>News Publish Date</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Post_GA_URL__c</fullName>
         <defaultValue>&quot;?utm_source=Chatter&amp;utm_medium=ChatterArticle&amp;utm_campaign=NewsCentre&quot;</defaultValue>
         <description>Google Analytic URL to be appended for Chatter Post.</description>
@@ -206,6 +238,42 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Related_Links__c</fullName>
+        <externalId>false</externalId>
+        <label>Related Links</label>
+        <length>10000</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Related_News_Article__c</fullName>
+        <externalId>false</externalId>
+        <label>Related News Article</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Share_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>Share Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Sharepoint_URL__c</fullName>
@@ -292,6 +360,19 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>View_Count__c</fullName>
+        <externalId>false</externalId>
+        <label>View Count</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <label>News Article</label>
     <listViews>
         <fullName>ANZ</fullName>
@@ -318,20 +399,19 @@
         <columns>OBJECT_ID</columns>
         <columns>NAME</columns>
         <columns>Title__c</columns>
+        <columns>News_Article_Topics__c</columns>
         <columns>Like_Count_RSF__c</columns>
         <columns>Comment_Count__c</columns>
         <columns>Sharepoint_URL__c</columns>
         <columns>Socialise_Activity__c</columns>
         <columns>Comment_GA_URL__c</columns>
         <columns>Like_GA_URL__c</columns>
-        <columns>Post_GA_URL__c</columns>
         <columns>Chatter_Groups__c</columns>
         <columns>Admin_Chatter_Group__c</columns>
         <columns>CREATEDBY_USER</columns>
-        <columns>LAST_UPDATE</columns>
+        <columns>UPDATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
-        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Bangladesh</fullName>
@@ -1171,6 +1251,17 @@
         </filters>
         <label>korea</label>
     </listViews>
+    <listViews>
+        <fullName>test</fullName>
+        <columns>NAME</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OWNER.FIRST_NAME</field>
+            <operation>equals</operation>
+            <value>Ankish</value>
+        </filters>
+        <label>test</label>
+    </listViews>
     <nameField>
         <label>Title</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1182,6 +1273,8 @@
         <lookupDialogsAdditionalFields>Title__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Sharepoint_URL__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Summary__c</lookupDialogsAdditionalFields>
+        <searchFilterFields>OBJECT_ID</searchFilterFields>
+        <searchFilterFields>NAME</searchFilterFields>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

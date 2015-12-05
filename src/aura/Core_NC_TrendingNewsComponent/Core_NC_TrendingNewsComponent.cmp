@@ -1,0 +1,38 @@
+<aura:component controller="Core_NC_NewsCenterController">
+    <!--<b>{!v.NewsType1}</b>
+     <b>{!v.NewsType2}</b>
+    <b>{!v.NewsType3}</b>-->
+    <aura:attribute name="NewsType1"  type="String"/>
+    <aura:attribute name="NewsType2" type="String"/>
+    <aura:attribute name="NewsType3" type="String"/>
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="NewsType" type="String"/>
+    <aura:attribute name="SortType" type="String"/>
+    <aura:attribute name="ErrorMessage" type="Boolean" default="false"/>
+    <!-- Wire up the bootstrap static resource -->
+    <ltng:require styles="/resource/lightningBootStrap"/>
+    <!--<aura:attribute name="newsArticles" type="UL_News__c[]"/>-->
+    <aura:attribute name="wrapper" type="Core_NC_NewsWrapperClass"/>
+    <aura:attribute name="loadMoreDisplay" type="Boolean" default="false"/>
+    <aura:attribute name="NewsList" type="Core_NC_NewsWrapperClass"/>
+    <!-- Display expense records -->
+    <div class="container">
+        <div id="list" class="row">
+            <div style="text-align:center;">
+                <aura:if isTrue="{!v.ErrorMessage}">
+                    <ui:outputText value="No data" class="SubText"/>
+                </aura:if>
+            </div>    
+            <aura:iteration items="{!v.NewsList}" var="newsArticle">
+                <div>
+                    <c:CORE_NC_NewsItem newsArticle="{!newsArticle}" newsType="{!v.NewsType}"/>
+                </div>
+            </aura:iteration>
+            <aura:if isTrue="{!v.loadMoreDisplay}">
+                <div class="loadMoreBar" >    
+                    <div class="loadMoreButton" onclick="{!c.loadMoreNewsList}">  Load More  </div>
+                </div>
+            </aura:if>
+        </div>
+    </div>
+</aura:component>

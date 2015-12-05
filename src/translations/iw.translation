@@ -41,12 +41,20 @@
         <name>Issue_Briefing_Centre</name>
     </customApplications>
     <customApplications>
+        <label><!-- JE Job Evaluation --></label>
+        <name>JE_Job_Evaluation</name>
+    </customApplications>
+    <customApplications>
         <label><!-- Network Accelerator --></label>
         <name>Network_Tracking</name>
     </customApplications>
     <customApplications>
         <label><!-- New Win@POS --></label>
         <name>New_Win_POS</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- SWOP --></label>
+        <name>Oblix_swop_project</name>
     </customApplications>
     <customApplications>
         <label><!-- OneView --></label>
@@ -8415,6 +8423,10 @@
     <customTabs>
         <label><!-- SME Selection --></label>
         <name>SME_Selection</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- SWOP --></label>
+        <name>SWOP</name>
     </customTabs>
     <customTabs>
         <label><!-- Sustainable Living Lab --></label>
