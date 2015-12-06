@@ -18,7 +18,7 @@ public with sharing class IPM_FinancialTriggerHandler
     private Map<String, String> mapRegionalConsolidatedFinancials; //Map of all relevant REGIONAL Consolidated IPM_Financial__c object records
 
     private Set<String> setFinancialExternalIds; //Set of Financial External Ids
-    
+    private List<IPM_Financial__c> financialMisalignQuery;
     private static final String Y_LABEL = 'Y'; //Innovation Year Label Prefix
     private static final String UPDATE_FINANCIAL_ACTION_STANDARD_STR='updateFinancialActionStandard';
     private static final String CLASS_NAME = IPM_FinancialTriggerHandler.Class.getName(); //Class Name for Exception Logging
@@ -213,22 +213,16 @@ public with sharing class IPM_FinancialTriggerHandler
                                                       FROM IPM_Financial_Years__r)
                                                 from IPM_Financial__c 
                                                 where id in: mapNewFinancials.keyset() limit: IPM_ConstantUtils.MaxLimit ];
-       system.debug('//>'+lstFinancials);
-       List<IPM_Financial__c> IPM_FinancialQueryList = new List<IPM_Financial__c>();
+       financialMisalignQuery = new List<IPM_Financial__c>();
         for(IPM_Financial__c ipmFinancials :lstFinancials) {
         	system.debug('//>boolean' + ipmFinancials.Misaligned__c);
             ///if(ipmFinancials.RecordType.Name==IPM_ConstantUtils.DEFAULT_FINANCIAL_RT && ipmFinancials.MisalignmentDateTime__c == System.now(){
             /*DEF2168 Fix: Above condition will never eval to true as there is always a time difference between record update and system.now()*/
             if(ipmFinancials.RecordType.Name==IPM_ConstantUtils.DEFAULT_FINANCIAL_RT && ipmFinancials.Misaligned__c) { 
-                IPM_FinancialQueryList.add(ipmFinancials);
+                financialMisalignQuery.add(ipmFinancials);
             }
         }
-       List<IPM_Financial__c> IPM_FinancialQueryList =[Select Id, Name, Misaligned__c, MisalignmentDateTime__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, 
-                        Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, 
-                        Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c,Volume_Unit_Difference__c,NPV_Difference__c, IRR_Difference__c,
-                         Payback_Difference__c,CAPEX_Difference__c,BIC_Difference__c,Total_FY_Difference__c from IPM_Financial__c 
-                         where id in: mapNewFinancials.keyset() and Recordtype.Name =: 'Default' and  MisalignmentDateTime__c =: System.now() limit: IPM_ConstantUtils.MaxLimit];
-        List<IPM_Project__c> updatedProjects;
+               List<IPM_Project__c> updatedProjects;
        for(IPM_Financial__c financial : IPM_FinancialQueryList){
           updatedProjects = new List<IPM_Project__c>();
             IF(( financial.Volume_Unit_Difference__c + financial.NPV_Difference__c + financial.IRR_Difference__c + financial.Payback_Difference__c + financial.CAPEX_Difference__c + financial.BIC_Difference__c + financial.Total_FY_Difference__c ) > 0){
