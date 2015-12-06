@@ -827,6 +827,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     public string OwnerName{get;set;}
     //Name of Brand POsition
     public string brandPos{get;set;}
+    //Date of launch
+    public Datetime targetLaunchDate{get;set;}
     Public IPM_BET_BETWrapper(BET_BETWrapper bw){
     this.betId=bw.betId;
     this.betName = bw.betName;
@@ -841,6 +843,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     this.category = bw.category;
     this.brandPosition = bw.brandPosition;
     this.brand = bw.brand;
+    this.targetLaunchDate = bw.targetLaunchDate;
     }
     }
 }

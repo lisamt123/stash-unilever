@@ -627,6 +627,7 @@ Global with sharing class IPM_BosscardController {
         bosscard.IPM_Bosscard_Logo_Id__c=IPM_ConstantUtils.BLANK;
         try{
             update bosscard;
+            isClickToUpload=true;
         }
         catch(Exception ex) {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,

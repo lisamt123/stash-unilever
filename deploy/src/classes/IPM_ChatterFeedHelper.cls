@@ -818,7 +818,7 @@ public with sharing class IPM_ChatterFeedHelper {
                     }
                     
                     String currGate = IPM_Utils.phaseGateDocumentMap.get(eachRollout.IPM_Project__r.IPM_Phase__c);
-                    Datetime upcomingMilestoneDueDate;
+                    Datetime upcomingMilestoneDueDate=System.now();
                     for(IPM_Milestone__c eachMilestone:milestoneList)
                     {
                       if(eachMilestone.IPM_Planned_Date__c != null && eachMilestone.IPM_Phase__c == eachRollout.IPM_Project__r.IPM_Phase__c && currGate.equalsIgnoreCase(eachMilestone.IPM_Type_of_gate__c))

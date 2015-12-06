@@ -77,9 +77,7 @@ private class IPM_ChatterFeedHelper_Test {
          
          gateKeeper = IPM_TestFactory_Helper.createUser(False);
          
-         
          financeMember = IPM_TestFactory_Helper.createUser(False);
-         
          
          User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
          globalUser.email = 'globalUser@unilever.test.com';
@@ -179,22 +177,19 @@ private class IPM_ChatterFeedHelper_Test {
         lstProjects.addAll(lstRegionalProjects);
         lstProjects.addAll(lstLocalProjects);
         
-        iDs.clear();
-        for(IPM_Project__c projId : lstProjects) {
-            iDs.add(projId.Id);
-        }    
-      System.assertEquals(15, [Select count() from IPM_Project__c where id in:iDs]);
-      
+        lstProjects =[Select Id,Name,IPM_Project_Name__c,IPM_Phase__c,IPM_Temporary_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c,
+            IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Finance_Member__c,
+            IPM_Technical_Project_Leader__c,IPM_Project_Type__c,IPM_Company_Card__c,IPMProject_Span__c,
+            IPM_Target_Launch_Dates__c,IPM_Parent_Project__c from IPM_Project__c where id in:lstProjects];
+        
         System.assertEquals(15, lstProjects.size(),PROJECT_INSERTED_ASSERTION);
+        
         for(integer i=0;i<5;i++)
         { 
             integer j=i+1;
             System.assertEquals(PROJ_NAME+j,lstProjects[i].name);
         }   
-        
-        IPM_Milestone__c milestoneList =  IPM_TestFactory_Helper.createIPMMilestone(lstRegionalProjects[0].id,true);
-        System.assertEquals(1, [Select count() from IPM_Milestone__c where id =: milestoneList.id]);
-        
+         
          //Bulk insert of project resources
         IPM_Project_Resource__c projectResourceBDUser = IPM_TestFactory_Helper.createIPMProjectResource(globalprojects[0].Id,false); 
         IPM_Project_Resource__c projectResourceCDUser = IPM_TestFactory_Helper.createIPMProjectResource(globalprojects[0].Id,false);
@@ -271,6 +266,7 @@ private class IPM_ChatterFeedHelper_Test {
            IPM_TestFactory_Helper.makeUserInactive(technicalPL);  
            IPM_TestFactory_Helper.makeUserInactive(gateKeeper); 
            System.assertEquals(financeMember.IsActive,false,'financeMember is Checked');
+         
            List<User> inactiveUsers= new List<User>();
            inactiveUsers.add(deputyPL);
            inactiveUsers.add(financeMember);
@@ -306,10 +302,6 @@ private class IPM_ChatterFeedHelper_Test {
             lstProject.IPM_Fast_Track_Project__c = true;
             update lstProject;
 
-            IPM_ChatterFeedHelper.notifyProjectIsFasttrack(lstProjects);
-            
-            lstProject.IPM_Fast_Track_Project__c = false;
-            update lstProject;
             
             IPM_ChatterFeedHelper.notifyProjectIsFasttrack(lstProjects);
             
@@ -450,9 +442,6 @@ private class IPM_ChatterFeedHelper_Test {
             System.runAs(platformUser) {
                 List<IPM_Project__c> testProjList=IPM_TestFactory_Helper.createIPMProjectList(true,3);
                 User inactiveResourceUser= IPM_TestFactory_Helper.makeResourceInactive(testProjList,prjResourceUser);
-                List<User> inactiveUserList = new List<User>();
-                inactiveUserList.add(inactiveResourceUser);
-                IPM_ChatterFeedHelper.postChatterIfResourceInactive(inactiveUserList);
                 system.assertEquals(inactiveResourceUser.isActive,false,'inactiveResourceUser Is Not Checked');
             Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
@@ -611,35 +600,7 @@ private class IPM_ChatterFeedHelper_Test {
         }
     }
     
-      /**
-    *  To test chatter when chatter posted to user
-    *  @name :testpostChatterUpdateToUser
-    *  @param : nil
-    *  @return : nil
-    */
-    private static testmethod void testpostChatterUpdateToUser (){
-      Test.startTest();
-      platformUser =IPM_TestFactory_Helper.returnPlatformUser();
-      System.runAs(platformUser) {
-      List<IPM_Project_Resource__c> projRescourceList = IPM_TestFactory_Helper.createIPMProjectResourceList(false, 3);
-      IPM_Project__c proj= IPM_TestFactory_Helper.createIPMProject(true);
-      Map<Id, IPM_Project__c> projectOwnerMap = new Map<Id, IPM_Project__c>();
-      Map<Id, String> pResourceDetails = new Map<Id, String>();
-      for(IPM_Project_Resource__c eachResource: projRescourceList)
-      {
-        projectOwnerMap.put(eachResource.id,proj);
-        pResourceDetails.put(eachResource.id,'test');
-      }
-      IPM_ChatterFeedHelper.postChatterUpdateToUser(projectOwnerMap,pResourceDetails);
-      for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed]){
-        if(projectFeed.Body.contains(CREATED))
-            {
-                System.assert(projectFeed.Body.contains(CREATED),FEED_UPDATED_ASSERT);
-            }    
-        }
-      }
-        Test.stopTest();
-    }    
+    
     
   
 }

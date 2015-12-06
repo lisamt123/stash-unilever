@@ -13,6 +13,17 @@ class IPM_BETHelper_Test {
     Static String IPM_ProjectType =  'IPM_ProjectType';
     Static String IPM_BET_Search_Test =  'IPM_BET_Search_Test';
     Static String FinalRelease =  'Final Release';
+    private final static string TEST_PROJECT00 = 'TestPrj0';
+    private final static string TEST_PROJECT01 = 'TestPrj01';
+    private final static string TEST_PROJECT02 = 'TestPrj02';
+    private final static string TEST_PROJECT03 = 'TestPrj03';
+    private final static string TEST_PROJECT05 = 'TestPrj05';
+    private final static string TEST_PROJECT06 = 'TestPrj06';
+    private final static string TEST_PROJECT07 = 'TestPrj07';
+    private final static string TEST_PROJECT08 = 'TestPrj08';
+    private final static string TEST_PROJECT09 = 'TestPrj09';
+    private final static string TEST_PROJECT10 = 'TestPrj10';
+    private final static string TEST_PROJECT11 = 'TestPrj11';
     
     private static User stdUserForBET;// Variable has been used in Setup data method 
     
@@ -166,14 +177,14 @@ class IPM_BETHelper_Test {
             projectList[0].IPM_Project_Type__c = Rollout;
             projectList[0].IPMProject_Span__c = Regional;
             projectList[0].IPM_Project_Job_Status__c = Completed;
-            projectList[0].IPM_Project_Name__c = 'TestPrj01';
+            projectList[0].IPM_Project_Name__c = TEST_PROJECT01;
             projectList[0].IPM_Parent_Project__c = parentProj.id;
             
             projectList[9].BET__c = betRecord4.Id;
             projectList[9].IPM_Project_Type__c = Rollout;
             projectList[9].IPMProject_Span__c = Regional;
             projectList[9].IPM_Project_Job_Status__c = Completed;
-            projectList[9].IPM_Project_Name__c = 'TestPrj02';
+            projectList[9].IPM_Project_Name__c = TEST_PROJECT02;
             projectList[9].IPM_Parent_Project__c = parentProj.id;
             
             projectList[10].BET__c = betRecord0.Id;
@@ -188,7 +199,7 @@ class IPM_BETHelper_Test {
             };
             
             projectList[1].BET__c = betRecord1.Id;
-            projectList[1].IPM_Project_Name__c = 'TestPrj05';
+            projectList[1].IPM_Project_Name__c = TEST_PROJECT05;
             projectList[1].IPMProject_Span__c = Regional;
             projectList[1].IPM_Parent_Project__c = projectList[0].id;
             projectList[1].IPM_Project_Leader__c = UserInfo.getuserId();
@@ -200,39 +211,39 @@ class IPM_BETHelper_Test {
             projectList[8].IPM_Parent_Project__c = projectList[9].id;
             projectList[8].IPMProject_Span__c = Regional;
             projectList[8].IPM_Project_Job_Status__c = Completed;
-            projectList[8].IPM_Project_Name__c = 'TestPrj03';
+            projectList[8].IPM_Project_Name__c = TEST_PROJECT03;
             
             insert new List < IPM_Project__c > {
                 projectList[1], projectList[8]
             };
             
             projectList[2].BET__c = betRecord2.Id;
-            projectList[2].IPM_Project_Name__c = 'TestPrj06';
+            projectList[2].IPM_Project_Name__c = TEST_PROJECT06;
             projectList[2].IPM_Parent_Project__c = projectList[1].id;
             projectList[2].IPM_Project_Type__c = Rollout;
             projectList[2].IPMProject_Span__c = Regional;
             
             projectList[3].BET__c = betRecord1.Id;
-            projectList[3].IPM_Project_Name__c = 'TestPrj07';
+            projectList[3].IPM_Project_Name__c = TEST_PROJECT07;
             projectList[3].IPM_Parent_Project__c = projectList[1].id;
             projectList[3].IPM_Project_Type__c = Rollout;
             projectList[3].IPMProject_Span__c = Regional;
             
             projectList[4].BET__c = betRecord1.Id;
-            projectList[4].IPM_Project_Name__c = 'TestPrj08';
+            projectList[4].IPM_Project_Name__c = TEST_PROJECT08;
             projectList[4].IPM_Parent_Project__c = projectList[0].id;
             projectList[4].IPM_Project_Type__c = Rollout;
             projectList[4].IPMProject_Span__c = 'RegionalLocal';
             
             projectList[5].BET__c = betRecord3.Id;
-            projectList[5].IPM_Project_Name__c = 'TestPrj09';
+            projectList[5].IPM_Project_Name__c = TEST_PROJECT09;
             projectList[5].IPM_Parent_Project__c = projectList[10].id;
             projectList[5].IPM_Project_Type__c = Rollout;
             projectList[5].IPMProject_Span__c = Local;
             projectList[5].IPM_Project_Leader__c=Userinfo.getUserId();
             
             projectList[6].BET__c = betRecord3.Id;
-            projectList[6].IPM_Project_Name__c = 'TestPrj10';
+            projectList[6].IPM_Project_Name__c = TEST_PROJECT10;
             projectList[6].IPM_Parent_Project__c = projectList[8].id;
             projectList[6].IPM_Project_Type__c = Rollout;
             projectList[6].IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
@@ -241,7 +252,7 @@ class IPM_BETHelper_Test {
             projectList[7].IPM_Parent_Project__c = projectList[8].id;
             projectList[7].IPM_Project_Type__c = Rollout;
             projectList[7].IPMProject_Span__c = Local;
-            projectList[7].IPM_Project_Name__c = 'TestPrj11';
+            projectList[7].IPM_Project_Name__c = TEST_PROJECT11;
             
             Test.starttest();
             
@@ -260,8 +271,8 @@ class IPM_BETHelper_Test {
         
         User testRunningUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];
         
-        IPM_Project__c proj0=[Select Id,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c = 'TestPrj01' limit 1];
-        IPM_Project__c proj1=[Select Id,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c = 'TestPrj05' limit 1];
+        IPM_Project__c proj0=[Select Id,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c = :TEST_PROJECT01 limit 1];
+        IPM_Project__c proj1=[Select Id,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c = :TEST_PROJECT05 limit 1];
         
         uw_BET__c betRecord =[Select id from uw_BET__c where name='TestBet0' limit 1];
         System.runAs(testRunningUser){
@@ -357,11 +368,11 @@ class IPM_BETHelper_Test {
             
             update betRecord2;
             
-            IPM_Project__c proj0=[Select Id,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c = 'TestPrj01' limit 1];
-            IPM_Project__c proj1=[Select Id,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c = 'TestPrj05' limit 1];
+            IPM_Project__c proj0=[Select Id,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c = :TEST_PROJECT01 limit 1];
+            IPM_Project__c proj1=[Select Id,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c = :TEST_PROJECT05 limit 1];
             
-            BET_BETWrapper betWrap1 = new BET_BETWrapper(betRecord1);
-            BET_BETWrapper betWrap2 = new BET_BETWrapper(betRecord2);
+            BET_BETWrapper betWrap1 = (BET_BETwrapper) BET_BETService.getBet(betRecord1.id);
+            BET_BETWrapper betWrap2 = (BET_BETwrapper) BET_BETService.getBet(betRecord2.id);
             
             IPM_BETHelper.resetMilestoneMissedFlag(betRecord1.id, betWrap1);
             IPM_BETHelper.resetMilestoneMissedFlag(betRecord2.id, betWrap2);
@@ -387,7 +398,7 @@ class IPM_BETHelper_Test {
         
         system.runAs(testRunningUser){
 
-            BET_BETWrapper betWrap1 = new BET_BETWrapper(betRecord1);
+            BET_BETWrapper betWrap1 = (BET_BETwrapper) BET_BETService.getBet(betRecord1.id);
             
             Test.StartTest();
             
@@ -429,7 +440,7 @@ class IPM_BETHelper_Test {
         
         uw_BET__c betRecord1 =[Select id,name,Status__c,FinalReleaseDate__c,Final_Release_Due_Date__c,FirstReleaseDate__c,First_Release_Due_Date__c,Is_Archived__c,OwnerId,Category_Group__c,Product_Category__c,Brand_Position__c,Product_Brand__c from uw_BET__c where name='TestBet0' limit 1];
         
-        IPM_Project__c proj0=[Select Id,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c = 'TestPrj01' limit 1];
+        IPM_Project__c proj0=[Select Id,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c = :TEST_PROJECT01 limit 1];
         
         system.runAs(testRunningUser){
             
@@ -453,7 +464,7 @@ class IPM_BETHelper_Test {
     User testRunningUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];
         Map < id, set < IPM_Project_Resource__c >> mapProjResources = new Map < id, set < IPM_Project_Resource__c >> ();
         map<string, id> mapProjId= new map<string, id>();
-        set<string> setNames = new set<string>{'TestPrj10', 'TestPrj11', 'TestPrj09', 'TestPrj06', 'TestPrj05', 'TestPrj01', 'TestPrj07', 'TestPrj08'};
+        set<string> setNames = new set<string>{TEST_PROJECT10, TEST_PROJECT11, TEST_PROJECT09, TEST_PROJECT06, TEST_PROJECT05, TEST_PROJECT01, TEST_PROJECT07, TEST_PROJECT08};
         for(IPM_Project__c proj :[Select id,IPM_Project_Name__c from IPM_Project__c where  IPM_Project_Name__c in :setNames]){
             mapProjId.put(proj.IPM_Project_Name__c, proj.id);   
         }
@@ -467,33 +478,33 @@ class IPM_BETHelper_Test {
             PrjctResrc1.IPM_User__c = UserInfo.getuserId();
             PrjctResrc1.IPM_Role_Type__c = 'BD';
             
-            PrjctResrc1.IPM_Project__c = mapProjId.get('TestPrj09');
+            PrjctResrc1.IPM_Project__c = mapProjId.get(TEST_PROJECT09);
 
             IPM_Project_Resource__c PrjctResrc2 = new IPM_Project_Resource__c();
             PrjctResrc2.IPM_User__c = UserInfo.getuserId();
             PrjctResrc2.IPM_Role_Type__c = 'BD';
             
-            PrjctResrc2.IPM_Project__c = mapProjId.get('TestPrj06');
+            PrjctResrc2.IPM_Project__c = mapProjId.get(TEST_PROJECT06);
 
 
             IPM_Project_Resource__c PrjctResrc3 = new IPM_Project_Resource__c();
             PrjctResrc3.IPM_User__c = UserInfo.getuserId();
             PrjctResrc3.IPM_Role_Type__c = 'BD';
             
-            PrjctResrc3.IPM_Project__c =  mapProjId.get('TestPrj05');
+            PrjctResrc3.IPM_Project__c =  mapProjId.get(TEST_PROJECT05);
 
 
             IPM_Project_Resource__c PrjctResrc4 = new IPM_Project_Resource__c();
             PrjctResrc4.IPM_User__c = UserInfo.getuserId();
             PrjctResrc4.IPM_Role_Type__c = 'BD';
             
-            PrjctResrc4.IPM_Project__c =  mapProjId.get('TestPrj01');
+            PrjctResrc4.IPM_Project__c =  mapProjId.get(TEST_PROJECT01);
 
             IPM_Project_Resource__c PrjctResrc5 = new IPM_Project_Resource__c();
             PrjctResrc5.IPM_User__c = UserInfo.getuserId();
             PrjctResrc5.IPM_Role_Type__c = 'BD';
             
-            PrjctResrc5.IPM_Project__c =  mapProjId.get('TestPrj07');
+            PrjctResrc5.IPM_Project__c =  mapProjId.get(TEST_PROJECT07);
             
             
             insert new List < IPM_Project_Resource__c > {
@@ -501,28 +512,28 @@ class IPM_BETHelper_Test {
             };
             
             
-            mapProjResources.put(mapProjId.get('TestPrj05'), new Set < IPM_Project_Resource__c > {
+            mapProjResources.put(mapProjId.get(TEST_PROJECT05), new Set < IPM_Project_Resource__c > {
                 PrjctResrc1, PrjctResrc4, PrjctResrc4
             });
             
-            mapProjResources.put(mapProjId.get('TestPrj06'), new Set < IPM_Project_Resource__c > {
+            mapProjResources.put(mapProjId.get(TEST_PROJECT06), new Set < IPM_Project_Resource__c > {
                 PrjctResrc2, PrjctResrc3, PrjctResrc4
             });
-            mapProjResources.put(mapProjId.get('TestPrj07'), new Set < IPM_Project_Resource__c > {
+            mapProjResources.put(mapProjId.get(TEST_PROJECT07), new Set < IPM_Project_Resource__c > {
                 PrjctResrc2, PrjctResrc3, PrjctResrc4, PrjctResrc5
             });
-            mapProjResources.put(mapProjId.get('TestPrj08'), new Set < IPM_Project_Resource__c > {
+            mapProjResources.put(mapProjId.get(TEST_PROJECT08), new Set < IPM_Project_Resource__c > {
                 PrjctResrc2, PrjctResrc3, PrjctResrc4, PrjctResrc5
             });
             
             
-            mapProjResources.put(mapProjId.get('TestPrj09'), new Set < IPM_Project_Resource__c > {
+            mapProjResources.put(mapProjId.get(TEST_PROJECT09), new Set < IPM_Project_Resource__c > {
                 PrjctResrc2, PrjctResrc3, PrjctResrc4, PrjctResrc5
             });
-            mapProjResources.put(mapProjId.get('TestPrj10'), new Set < IPM_Project_Resource__c > {
+            mapProjResources.put(mapProjId.get(TEST_PROJECT10), new Set < IPM_Project_Resource__c > {
                 PrjctResrc2, PrjctResrc3, PrjctResrc4, PrjctResrc5
             });
-            mapProjResources.put(mapProjId.get('TestPrj11'), new Set < IPM_Project_Resource__c > {
+            mapProjResources.put(mapProjId.get(TEST_PROJECT11), new Set < IPM_Project_Resource__c > {
                 PrjctResrc2, PrjctResrc3, PrjctResrc4, PrjctResrc5
             });
             
@@ -531,7 +542,7 @@ class IPM_BETHelper_Test {
             
             Test.StopTest();
             
-            system.assertEquals([select UserId__c from BET_Member_Request__c where UserId__c =:[Select id ,IPM_Project_Leader__c from IPM_Project__c where  IPM_Project_Name__c = 'TestPrj09' limit 1].IPM_Project_Leader__c  limit 1].UserId__c, PrjctResrc1.IPM_User__c, 'BET Access Request  not sent.');
+            system.assertEquals([select UserId__c from BET_Member_Request__c where UserId__c =:[Select id ,IPM_Project_Leader__c from IPM_Project__c where  IPM_Project_Name__c = :TEST_PROJECT09 limit 1].IPM_Project_Leader__c  limit 1].UserId__c, PrjctResrc1.IPM_User__c, 'BET Access Request  not sent.');
             
         }             
         
@@ -551,7 +562,7 @@ class IPM_BETHelper_Test {
             betRecord1.Status__c = 'Unreleased';
             update  betRecord1;
             
-            IPM_Project__c proj0=[Select Id,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c = 'TestPrj01' limit 1];
+            IPM_Project__c proj0=[Select Id,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c = :TEST_PROJECT01 limit 1];
 
             
             for (IPM_Milestone__c ipmMilestone: IPMsam1) {
@@ -584,11 +595,15 @@ class IPM_BETHelper_Test {
         IPM_Project__C proj1;
         System.runAs(testRunningUser){
             
-            for(IPM_Project__C proj :[Select Id,IPM_Project_Name__c,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c in ('TestPrj01','TestPrj05')]){
-                if(proj.IPM_Project_Name__c == 'TestPrj01'){
+            set<string> setProjName = new set<string>();
+            setProjName.add(TEST_PROJECT01);
+            setProjName .add(TEST_PROJECT05);
+            
+            for(IPM_Project__C proj :[Select Id,IPM_Project_Name__c,BET__c ,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,IPM_Phase__c,IPM_CompanyCardText__c,IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c from IPM_Project__c where IPM_Project_Name__c in :setProjName]){
+                if(proj.IPM_Project_Name__c == TEST_PROJECT01){
                     proj0 = proj;
                 }
-                else if(proj.IPM_Project_Name__c == 'TestPrj05'){
+                else if(proj.IPM_Project_Name__c == TEST_PROJECT05){
                     proj1 = proj;
                 }
             }
