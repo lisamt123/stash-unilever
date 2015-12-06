@@ -223,7 +223,7 @@ public with sharing class IPM_FinancialTriggerHandler
             }
         }
                List<IPM_Project__c> updatedProjects;
-       for(IPM_Financial__c financial : IPM_FinancialQueryList){
+       for(IPM_Financial__c financial : financialMisalignQuery){
           updatedProjects = new List<IPM_Project__c>();
             IF(( financial.Volume_Unit_Difference__c + financial.NPV_Difference__c + financial.IRR_Difference__c + financial.Payback_Difference__c + financial.CAPEX_Difference__c + financial.BIC_Difference__c + financial.Total_FY_Difference__c ) > 0){
                 if(financial.Local_Project__c != null &&  financial.Misaligned__c){
