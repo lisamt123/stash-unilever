@@ -5692,6 +5692,13 @@ If approved your project will be linked after your Charter gate has been approve
         <shortDescription>IPM_CONCEPT</shortDescription>
         <value>Concept</value>
     </labels>
+     <labels>
+        <fullName>IPM_CONCEPT_REMOVE_NOTE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_CONCEPT_REMOVE_NOTE</shortDescription>
+        <value>Note: You can always add it back by using the Add Concept test button.</value>
+    </labels>
     <labels>
         <fullName>IPM_CONFIDENTIAL_INFO</fullName>
         <language>en_US</language>
