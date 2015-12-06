@@ -40,10 +40,9 @@ public with sharing class EA_Notification_Controller {
                      msgLabel += participantName;
                      msgLabel += '.';
                 }
-                User objUser=[SELECT Id FROM User WHERE Name = 'Everyday Actions'];
-                
+                               
                 if(String.isNotBlank(actName) && String.isNotBlank(participantName)&& String.isNotBlank(msgLabel)){               
-                    EA_Utils.postCommentAtUserFeed(activityId,objUser.Id, teamList.Invited_By__c, msgLabel);
+                    EA_Utils.postCommentAtUserFeed(activityId,Label.EA_System_User_ID, teamList.Invited_By__c, msgLabel);
                     updateParticipantResponse(activityId, teamList.Participant__c, responseText);
                // }
            // }

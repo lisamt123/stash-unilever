@@ -12,7 +12,7 @@ public with sharing class EA_Utils{
     * @return boolean value 
     */ 
     public static boolean isEmpty( String str ){
-        if( str == null || str.trim().length() == 0 ){
+        if(string.isNotBlank(str)){
             return true;
         }
         return false;

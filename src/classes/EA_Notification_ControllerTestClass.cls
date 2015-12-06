@@ -63,7 +63,9 @@ public class EA_Notification_ControllerTestClass{
             
              EA_Notification_Controller.sendFeedbackReminder(event.id,team.Invited_By__c, team.Participant__c);
             
-              EA_Notification_Controller.inviteResponseNofitification(team.id,event.id,'test');
+             EA_Notification_Controller.inviteResponseNofitification(event.id,team.id,'Accepted');
+              
+             EA_Notification_Controller.inviteResponseNofitification(event.id,team.id,'Declined');
               
               
             try{

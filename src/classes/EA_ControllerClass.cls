@@ -277,8 +277,43 @@ activities for current user.
     public static List<EA_Wrapper_Class.EA_UserProfile_Wrapper>  getUserActivities(){
         List<EA_Wrapper_Class.EA_UserProfile_Wrapper> userprofileList=new List<EA_Wrapper_Class.EA_UserProfile_Wrapper>();     
         List<EA_Team_Member__c> memberList=[Select id,Activity_Due_Date__c, Everyday_Activity__r.RecordTypeId, Everyday_Activity__r.Name, Everyday_Activity__c,CreatedDate,Rating_By_Participant__c,invitation_Status__c  From EA_Team_Member__c  Where ( Invited_By__c=:userinfo.getuserId() OR Participant__c =:userinfo.getuserId()) AND (invitation_Status__c =:EA_Constants.INVITATION_STATUS_ACCEPTED OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_SELF OR invitation_Status__c =:EA_Constants.INVITATION_STATUS_INVITED ) order by CreatedDate Desc ];
+        
+       
+        
         if(memberList.size() !=0 ){
-            Map<string,EA_Team_Member__c> memberMap=new Map<string,EA_Team_Member__c>();
+        	
+        	 //SOQL query inside for loop - Fix
+		        Map<id ,String> tmIdToEANameMap = new Map<id ,String>();
+		        
+		        Map<id ,String> eaIdToThemeNameMap = new Map<id ,String>();
+		        
+		        Set<ID> eaIds = new Set<ID>();
+		        List<Everyday_Activity__c> eaList = new List<Everyday_Activity__c>();
+		        
+		        if(memberList != null && memberList.size()>0){
+		        	
+		        	for(EA_Team_Member__c teamObj : memberList){
+		        		
+		        		tmIdToEANameMap.put(teamObj.id,teamObj.Everyday_Activity__r.Name);
+		        		eaIds.add(teamObj.Everyday_Activity__c);
+		        	}
+		        	
+		        	if(eaIds != null && eaIds.size()>0){
+		        		
+		        		eaList=[select id, RecordType.Name,Name from Everyday_Activity__c where Id IN: eaIds];
+		        		
+		        		if(eaList != null && eaList.size()>0){
+		        			
+		        			for(Everyday_Activity__c ea : eaList){
+		        				
+		        				eaIdToThemeNameMap.put(ea.id,ea.RecordType.Name);
+		        			}
+		        		}
+		        	}
+		        }
+		        
+		        //SOQL query inside for loop - Fix
+          /*  Map<string,EA_Team_Member__c> memberMap=new Map<string,EA_Team_Member__c>();
             List<EA_Team_Member__c> activityList=new List<EA_Team_Member__c>();
             for(EA_Team_Member__c item:memberList){
                 if(item.Everyday_Activity__c != NULL && (!memberMap.containsKey(item.Everyday_Activity__r.Name)) ){
@@ -290,20 +325,20 @@ activities for current user.
             
            
             activityList.addAll(memberMap.values());
-           
-            for(EA_Team_Member__c item:activityList){
+           */
+            for(EA_Team_Member__c item:memberList){
                 EA_Wrapper_Class.EA_UserProfile_Wrapper objWrapper=new EA_Wrapper_Class.EA_UserProfile_Wrapper();
-                List<Everyday_Activity__c> recordtypeList=[select id, RecordType.Name,Name from Everyday_Activity__c where Id=:item.Everyday_Activity__c];
+               /* List<Everyday_Activity__c> recordtypeList=[select id, RecordType.Name,Name from Everyday_Activity__c where Id=:item.Everyday_Activity__c];*/
                
-                  if(recordtypeList.size()>0){
-                    objWrapper.activity_name=recordtypeList[0].Name;
-                    objWrapper.theme_name=recordtypeList[0].RecordType.Name;
-                    objWrapper.acivityId=recordtypeList[0].id;
+                
+                    objWrapper.activity_name= tmIdToEANameMap.get(item.id);
+                    objWrapper.theme_name= eaIdToThemeNameMap.get(item.Everyday_Activity__c);
+                    objWrapper.acivityId=item.Everyday_Activity__c;
                     objWrapper.member_Id=item.id;
                     objWrapper.participant_rating=item.Rating_By_Participant__c ;
                     objWrapper.invitation_status=item.Invitation_Status__c ;
                     objWrapper.Activity_Due_Date=item.Activity_Due_Date__c ;
-                }
+               
                
                 userprofileList.add(objWrapper);
             }
@@ -351,46 +386,80 @@ activities for current user.
     @AuraEnabled
     public static List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> getcommentDetail(String ActivityID){       
         List<FeedItem> feedList=[SELECT Body,CreatedById,CreatedDate,Id,ParentId FROM FeedItem WHERE ParentId =:ActivityID Limit 5];       
-        List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> wrapperList=new List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>();      
-        for(FeedItem feed:feedList){
-            EA_Wrapper_Class.EA_FeaturedContent_Wrapper objwrapper=new EA_Wrapper_Class.EA_FeaturedContent_Wrapper();
-            objwrapper.description=feed.Body;
-            User objUser=[Select Name,smallphotourl from User where Id=:feed.CreatedById];
-            objwrapper.userName=objUser.Name;
-            objwrapper.uerPhotoUrl=objUser.smallphotourl;        
-            decimal Hours = decimal.valueOf((System.now().getTime()-datetime.valueof(feed.CreatedDate).getTime())/(1000*60*60));
-            decimal decMinutes = ((System.now().getTime())/1000/60) - ((datetime.valueof(feed.CreatedDate).getTime())/1000/60);
-            String strTimeFormat='';
-            if(Hours>=48) {
-                strTimeFormat='on '+datetime.valueof(feed.CreatedDate).format('dd-MMM-yyyy');//+' at '+i.CreatedDate.format('h:mm a');
-              }
-            else if (Hours>=24 && Hours<48)  {
-               strTimeFormat='yesterday';
-              }
-            else if(((Hours>1 ||decMinutes>59)&& Hours!=1) && Hours<24 && System.now() == feed.CreatedDate ) {
-               strTimeFormat=Hours+' hours ago';
-             }
-            else if(((Hours>1 ||decMinutes>59)&& Hours!=1) && Hours<24 && System.now() != feed.CreatedDate ) {
-                string  day=String.valueOf(feed.CreatedDate.day());
-                string  month=feed.CreatedDate.format('MMMM');
-                string  year=String.valueOf(feed.CreatedDate.year());
-                strTimeFormat=day+' '+month.substring(0,3)+' '+year;
-            }
-            else if((Hours==1 ||decMinutes>59) && Hours<24) {
-               strTimeFormat=Hours+' hour ago';
-             }
-            else if(Hours<1 && decMinutes<=59 && decMinutes>1) {
-               strTimeFormat=decMinutes+' mins ago';
-               }
-            else if(Hours<1 && decMinutes==1) {
-             strTimeFormat=decMinutes+' min ago';
-            }
-            else if(decMinutes<1) {
-              strTimeFormat='just now';
-              }
-            objwrapper.createdDate=strTimeFormat;           
-            wrapperList.add(objwrapper);      
+        List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> wrapperList=new List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>(); 
+        
+        //Query inside for loop - fix   
+        
+        Set<ID> userIds = new Set<ID>();
+        Map<ID,String> idToUSerNameMap = new Map<ID,String>();
+        Map<ID,String> idToUSerPhotoURLMap = new Map<ID,String>();
+        
+        if(feedList != null && feedList.size()>0){
+        	
+        	for(FeedItem fiObj : feedList){
+        		
+        		userIds.add(fiObj.CreatedById);
+        	}
+        	
+        	if(userIds != null && userIds.size()>0){
+        		
+        		List<User> users = [SELECT id, Name, smallphotourl FROM User WHERE id IN : userIds];
+        		
+        		if(users != null && users.size()>0){
+        			
+        			for(User u: users){
+        				
+        				idToUSerNameMap.put(u.id , u.name);
+        				idToUSerPhotoURLMap.put(u.id , u.smallphotourl);
+        			}
+        		}
+        	}
+        	
+        	 for(FeedItem feedObj :feedList){
+	            EA_Wrapper_Class.EA_FeaturedContent_Wrapper objwrapper=new EA_Wrapper_Class.EA_FeaturedContent_Wrapper();
+	            objwrapper.description=feedObj.Body;
+	           
+	            objwrapper.userName= idToUSerNameMap.get(feedObj.CreatedById);
+	            objwrapper.uerPhotoUrl=idToUSerPhotoURLMap.get(feedObj.CreatedById);     
+	            decimal Hours = decimal.valueOf((System.now().getTime()-datetime.valueof(feedObj.CreatedDate).getTime())/(1000*60*60));
+	            decimal decMinutes = ((System.now().getTime())/1000/60) - ((datetime.valueof(feedObj.CreatedDate).getTime())/1000/60);
+	            String strTimeFormat='';
+	            if(Hours>=48) {
+	                strTimeFormat='on '+datetime.valueof(feedObj.CreatedDate).format('dd-MMM-yyyy');//+' at '+i.CreatedDate.format('h:mm a');
+	              }
+	            else if (Hours>=24 && Hours<48)  {
+	               strTimeFormat='yesterday';
+	              }
+	            else if(((Hours>1 ||decMinutes>59)&& Hours!=1) && Hours<24 && System.now() == feedObj.CreatedDate ) {
+	               strTimeFormat=Hours+' hours ago';
+	             }
+	            else if(((Hours>1 ||decMinutes>59)&& Hours!=1) && Hours<24 && System.now() != feedObj.CreatedDate ) {
+	                string  day=String.valueOf(feedObj.CreatedDate.day());
+	                string  month=feedObj.CreatedDate.format('MMMM');
+	                string  year=String.valueOf(feedObj.CreatedDate.year());
+	                strTimeFormat=day+' '+month.substring(0,3)+' '+year;
+	            }
+	            else if((Hours==1 ||decMinutes>59) && Hours<24) {
+	               strTimeFormat=Hours+' hour ago';
+	             }
+	            else if(Hours<1 && decMinutes<=59 && decMinutes>1) {
+	               strTimeFormat=decMinutes+' mins ago';
+	               }
+	            else if(Hours<1 && decMinutes==1) {
+	             strTimeFormat=decMinutes+' min ago';
+	            }
+	            else if(decMinutes<1) {
+	              strTimeFormat='just now';
+	              }
+	            objwrapper.createdDate=strTimeFormat;           
+	            wrapperList.add(objwrapper);      
+	        }
         }
+        
+        //Query inside for loop - fix   
+        
+          
+       
         return wrapperList; 
     }
     @AuraEnabled
@@ -434,7 +503,7 @@ activities for current user.
               Decimal points = acts[0].Activity_Points__c;
             //}       
             
-            Date activityDate;
+            Date activityDate = Date.today();
             if(activityTime=='Today')
             {
                  system.debug('$$$'+'coming');
@@ -541,7 +610,7 @@ activities for current user.
         return activityId;
     }   
     public static string getParticipantName(List<User> uList){
-        String uName;
+        String uName = '';
         for (User u : uList) {
             uName += '@'+u.Name+',';
         }       
@@ -550,11 +619,11 @@ activities for current user.
     
     //param : 2015-12-05
     //Return : 05-Dec-2015
-    public static string getProperDate(String dateForm){
+    public static string getProperDate(String expectedStr){
     
         String finalStr = '';
         
-        if(String.isNotEmpty(dateForm)){
+        if(String.isNotEmpty(expectedStr)){
         	
         	Map<String,String> monthToMonth = new Map<String,String>();
         
@@ -571,7 +640,7 @@ activities for current user.
 	        monthToMonth.put('11', 'Nov');
 	        monthToMonth.put('12', 'Dec');
 	        
-	    	dateForm = dateForm.trim();
+	    	String dateForm = expectedStr.trim();
 	    	
 	    	String dateStr = dateForm.substring(8,10);		
 

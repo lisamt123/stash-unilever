@@ -8,18 +8,19 @@ Requirement/Description: Test Class For EA_ConstantsClass.
 @IsTest
 public class EA_ConstantsTestClass{
   static testMethod void postive() {
-  EA_ThemesDetails__c ea=new EA_ThemesDetails__c();
-            ea.name='test.theme';
-            ea.ThemeColorCode__c='test.color';
-            ea.ThemeDescription__c='test.Desc';
-            insert ea;
-            System.assertEquals(ea.Name, 'test.theme');
-            EA_BadgeDetails__c badge=new EA_BadgeDetails__c();
-            badge.name='test1';
-            badge.BadgeColor__c='blue';
-            badge.BadgeSerial__c=1;
-            badge.BadgeValue__c=2;
-            insert badge;
-             System.assertEquals(badge.Name, 'test1');
-            }
-            }
+      
+      EA_Constants ec = new EA_Constants();
+      string str1 = EA_Constants.BADGE_BRONZ;
+      string str2 = EA_Constants.BADGE_NEWBEE;
+      string str3 = EA_Constants.SOBJECT_NAME;
+      string str4 = EA_Constants.BADGE_SILVER;
+      string str5 = EA_Constants.BADGE_GOLD;
+      string str6 = EA_Constants.INVITATION_STATUS_ACCEPTED;
+      string str7 = EA_Constants.INVITATION_STATUS_DECLINED;
+      string str8 = EA_Constants.INVITATION_STATUS_INVITED;
+      string str9 = EA_Constants.INVITATION_STATUS_SELF;
+      
+      System.assertEquals('Self', str9);
+  }
+  
+ }

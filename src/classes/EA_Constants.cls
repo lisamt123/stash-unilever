@@ -6,7 +6,7 @@
   Requirement/Description:  class for Everyday action app which has constants.
 */
 
-public class EA_Constants{
+public with sharing class EA_Constants{
  
  public static final String SOBJECT_NAME = 'Everyday_Activity__c';
  public static final String BADGE_NEWBEE= 'Newbee';

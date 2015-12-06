@@ -25,7 +25,7 @@ public class EA_ControllerTestClass{
         System.runAs(localUser){
             Everyday_Activity__c  event=new Everyday_Activity__c();
             event.Active__c=true;
-            event.Activity_Points__c=4;
+            event.Activity_Points__c=44;
             event.Description__c='test.Description';
             event.Minutes_to_Complete_Action__c=4;
             event.Participants_Required__c=5;
@@ -63,6 +63,38 @@ public class EA_ControllerTestClass{
             badge.BadgeValue__c=2;
             insert badge;
             
+            EA_BadgeDetails__c badge1=new EA_BadgeDetails__c();
+            badge1.name='Bronze';
+            badge1.BadgeColor__c='blue';
+            badge1.BadgeSerial__c=1;
+            badge1.BadgeValue__c=2;
+            insert badge1;
+            
+            EA_BadgeDetails__c badge2=new EA_BadgeDetails__c();
+            badge2.name='Silver';
+            badge2.BadgeColor__c='blue';
+            badge2.BadgeSerial__c=1;
+            badge2.BadgeValue__c=2;
+            insert badge2;
+            
+            EA_BadgeDetails__c badge3=new EA_BadgeDetails__c();
+            badge3.name='Gold';
+            badge3.BadgeColor__c='blue';
+            badge3.BadgeSerial__c=1;
+            badge3.BadgeValue__c=2;
+            insert badge3;
+            
+            FeedItem chatterPost1 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment', CreatedById = localUser.id);     
+            insert chatterPost1;
+            
+            FeedItem chatterPost2 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment', CreatedById = localUser.id);     
+            insert chatterPost2;
+            
+            FeedItem chatterPost3 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment', CreatedById = localUser.id);     
+            insert chatterPost3;
+            
+             
+		          
             Test.startTest();
             EA_ControllerClass Eacontroller=new EA_ControllerClass();
             EA_ControllerClass.getActivities();
@@ -94,6 +126,29 @@ public class EA_ControllerTestClass{
             EA_ControllerClass.chatterfeeditem('postbody');
             string s1=EA_ControllerClass.callSubmitToDoAction(event.id,'json','activityTime');
             Map<string,string> test2=EA_ControllerClass.getThemeColors();
+            
+            
+            //Increasing Test Coverage - Start
+            
+            string dateStr = '2015-12-05';
+            string resultStr = EA_ControllerClass.getProperDate(dateStr);
+            System.assertEquals(resultStr, '05-Dec-2015');
+            
+            //["005c00000024XSZAA2","005E0000006cowkIAA"]
+             
+             string jsonStr = '[' + '\"'+ localUser.id +'\"'+','+'\"'+ localUser.id +'\"'+']';
+             
+             system.debug('jsonStr=========>'+jsonStr);
+             string result1 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Today');
+             string result2 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Tomorrow');
+             string result3 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Next Week');
+             string result4 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'Two Weeks');
+             string result5 =EA_ControllerClass.callSubmitToDoAction(event.id, jsonStr,'One Month');
+            
+            
+             List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> lst = EA_ControllerClass.getcommentDetail(event.id);
+            //Increasing Test Coverage - End
+            
             Test.stopTest();
       
         }
@@ -188,6 +243,15 @@ public class EA_ControllerTestClass{
             EA_ControllerClass.chatterfeeditem('postbody');
             string s1=EA_ControllerClass.callSubmitToDoAction(event.id,'json','activityTime');
             Map<string,string> test2=EA_ControllerClass.getThemeColors();
+            
+            //Increasing Test Coverage - Start
+            
+            string dateStr = '2015-12-05';
+            string resultStr = EA_ControllerClass.getProperDate(dateStr);
+            System.assertEquals(resultStr, '05-Dec-2015');
+            
+            
+            //Increasing Test Coverage - End
             Test.stopTest();
         }
     } 
