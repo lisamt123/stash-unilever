@@ -221,8 +221,8 @@
                                     <div class="col-sm-6 rightColumn">
                                         <apex:outputPanel layout="block" id="TargetDatePanel" styleClass="inputField launchPeriod" >
                                             <div class="tldLabel"><apex:outputLabel value="{!$Label.IPM_TARGET_LAUNCH_DATE}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span></div>
-                                            <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar" rendered="{!And(isEditable,isTLDFieldEditable)}" onfocus="DatePicker.pickDate(true, this , false);" onchange="TLDDateCheck()"/>                                                              
-                                            <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" rendered="{!OR(!isEditable,!isTLDFieldEditable)}"/>
+                                            <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar" rendered="{!isEditable}" onfocus="DatePicker.pickDate(true, this , false);"/>                                                              
+                                            <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" rendered="{!!isEditable}"/>
                                             <apex:outputLabel value="{!project.IPM_Target_Launch_Date__c} [In Bosscard]" styleClass="tldQ" rendered="{!IF(project.IPM_Target_Launch_Date__c !='','true','false')}"/>
                                             <apex:outputPanel id="TLDPMsg">
                                                 <apex:outputText value="{!$Label.IPM_SELECT_TLD}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Target_Launch_Dates__c'))}" styleClass="TldErrMsg"/>
