@@ -222,7 +222,7 @@
                     <div class="col-sm-12 greybg">
                         <div class="col-sm-12 noPadleft categorySearch teamSearch3">
                             <apex:inputtext html-placeholder="Search name, email ID" value="{!SearchLeader}">
-                                <apex:actionSupport event="onmousedown" action="{!FilterLeaderMember}" reRender="SearchLeader,leaderNotFound"/>
+                                <apex:actionSupport event="onkeyup" action="{!FilterLeaderMember}" reRender="SearchLeader,leaderNotFound"/>
                             </apex:inputtext>
                             <apex:image styleClass="srchImage" value="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}"  />
                         </div>
