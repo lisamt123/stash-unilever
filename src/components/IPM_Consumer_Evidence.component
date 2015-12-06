@@ -152,7 +152,7 @@
                                                         <div class="row">    
                                                             <div class="col-sm-12">
                                                                 <span class="skipDesc">{!$Label.IPM_Remove_Country}</span>
-                                                                <span>{!$Label.IPM_CMI_NOTE}</span>
+                                                                <span>{!$Label.IPM_CONCEPT_REMOVE_NOTE}</span>
                                                             </div>
                                                             <div class="deleteButtoncontainer txtAlignright pull-right"> 
                                                                 <div class="noPadright buttonMarginRight pull-left">
