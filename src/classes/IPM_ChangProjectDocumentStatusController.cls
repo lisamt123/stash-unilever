@@ -251,8 +251,13 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     showValidation=false;
                     rolloutCountryPLFilledError=true;
                 }
-            
-                if(fin.Year_3_iTO_Regional__c==0.00)
+                if(fin.Year_3_iTO_Regional__c==0.00 && project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS)
+                {
+                    showValidation=false;
+                    financialError=true;
+                }
+                
+                if(fin.Year_3_iTO_Global__c==0.00 && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)
                 {
                     showValidation=false;
                     financialError=true;
