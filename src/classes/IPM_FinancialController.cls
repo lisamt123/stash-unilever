@@ -2074,31 +2074,6 @@ private Date getProjectMilestoneDate(){
     
     
     
-/*******************************************************************************************************
-    * @description  Used to update MisAligned_Confirmed_By_Finance_Leader__c flag
-    * @param        NONE
-    * @return       NONE
-    */
-    public void updateMisalignmentByFinanceLeader() {
-        try{
-            if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
-                localRolloutProject.MisAligned_Confirmed_By_Finance_Leader__c = true;
-                showMisalignedConfirmbtn = true;  
-                update localRolloutProject;
-                setMisalignedValue();
-            } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL || project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
-                mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c =true;  
-                showMisalignedConfirmbtn = true;          
-                update mcoCountryRolloutPlan;
-                setMisalignedValue();
-            }
-        } catch (Exception eX){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-                   IPM_ConstantUtils.EXCEPTION_EDITFINANCIALS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
-            isError = true;
-            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-        }
-    } 
-    
+
     
 }
