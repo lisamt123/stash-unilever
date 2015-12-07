@@ -135,8 +135,8 @@
         var selectedUsers = cmp.get("v.selectedUsers");
         var maxLimit = cmp.get("v.maxLimit");
         var participantCount = cmp.get("v.participantCount");
-        if (typeof selectedUsers !== 'undefined' ){
-            if(((selectedUsers.length + 1) >= participantCount) || participantCount >= maxLimit){
+        
+            if((typeof selectedUsers !== 'undefined' ) && (((selectedUsers.length + 1) >= participantCount) || participantCount >= maxLimit)){
                 var limitMsgBody = cmp.get('v.errorMessage');
                 cmp.set("v.errorMessage","You can do this activity only with "+ (maxLimit-1) +" colleagues(s).");
                 // Hide the Lookup List
@@ -144,7 +144,7 @@
                 $A.util.addClass(lookupList, 'slds-hide');
                 return;
             }
-        }
+       
         // Resolve the Object Id from the events Element Id (this will be the <a> tag)
         var objectId = this.resolveId(event.currentTarget.id);
         // The Object label is the 2nd child (index 1)

@@ -27,7 +27,7 @@
         var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
         detailpageEvent.setParams({"actvityid":aid});
         detailpageEvent.fire();
-        alert("Your activity has been shared on your chatter wall");
+        //alert("Your activity has been shared on your chatter wall");
         
     },
     
