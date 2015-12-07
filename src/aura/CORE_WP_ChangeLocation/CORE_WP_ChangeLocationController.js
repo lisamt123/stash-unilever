@@ -7,30 +7,29 @@
     loadKingstonWorkspace: function(component, event, helper) {     
         var action = component.get("c.getWorkplaceIdByName");
         action.setParams({
-			"workPlaceName": "Kingston"
-		});
+            "workPlaceName": "Kingston"
+        });
         action.setCallback(this, function(response) {
-        	var state = response.getState();
-        	if (state === "SUCCESS") {      
+            var state = response.getState();
+            if (state === "SUCCESS") {      
                 if(response.getReturnValue()!='')   {
                     var workplaceLocationId=response.getReturnValue();
                     var selectEvent = $A.get("e.c:CORE_WP_WorkplaceEvent");
                     selectEvent.setParams({"selectedWrokplaceId": workplaceLocationId,"WorkplacePannelType":"CORE_WP_WorkplaceHome"}).fire();
                 }
             }
-            else 
-                alert("Please Try Again...");        
+           
         });
         $A.enqueueAction(action);        
     },
     load100VEWorkspace: function(component, event, helper) {         
         var action = component.get("c.getWorkplaceIdByName");
         action.setParams({
-			"workPlaceName": "100VE"
-		});
+            "workPlaceName": "100VE"
+        });
         action.setCallback(this, function(response) {
-        	var state = response.getState();
-        	if (state === "SUCCESS") {      
+            var state = response.getState();
+            if (state === "SUCCESS") {      
                 if(response.getReturnValue()!='')   {
                     var workplaceLocationId=response.getReturnValue();
                     var selectEvent = $A.get("e.c:CORE_WP_WorkplaceEvent");

@@ -14,8 +14,9 @@
                     component.set("v.gymScheduleDetail",res);
                     console.log('-----------result----------'+ response.getReturnValue());
                 }
-                else 
+                else {
                     component.set("v.noDataErrorMessage", true);
+                }
         	}                  
         });
         $A.enqueueAction(action);

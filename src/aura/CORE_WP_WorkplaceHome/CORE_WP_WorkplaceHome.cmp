@@ -25,61 +25,61 @@
         <div>            
             <div class="menuSectionBar">
                 <div class="menuSectionIcon" onclick="{!c.gotoWorkplaceChatter}">
-                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/workplaceIcon.png" class="menuIcons"/> 
+                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/workplaceIcon.svg" class="menuIcons"/> 
                     <div class="menuText"> Workplace group </div>
                 </div>
                 <div class="menuSectionSeperator"></div>
                 <div class="menuSectionIcon" onclick="{!c.gotoKeyContacts}">
-                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/KeyContacts.svg" class="menuIcons"/>  
+                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/KeyContactsIcon.svg" class="menuIcons"/>  
                     <div class="menuText"> Key-contacts </div>
                 </div>
             </div>
             <div class="menuSectionBar">
                  <div class="menuSectionIcon" onclick="{!c.gotoLocalGroups}">
-                     <img src="/resource/CORE_WP_WorkplaceStyles/Icons/LocalGroups.svg" class="menuIcons"/> 
+                     <img src="/resource/CORE_WP_WorkplaceStyles/Icons/groups.svg" class="menuIcons"/> 
                      <div class="menuText"> Local groups </div>
                  </div>
                 <div class="menuSectionSeperator"></div>
                 <div class="menuSectionIcon" onclick="{!c.gotoDepartmentsByFloor}">
-                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/DepartmentsByFloor.svg" class="menuIcons"/> 
+                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/DepartmentsByFloorIcon.svg" class="menuIcons"/> 
                     <div class="menuText"> Departments by floor </div>
                 </div>
             </div>
             <div class="menuSectionBar">
                 <div class="menuSectionIcon" onclick="{!c.gotoSustainability}">
-                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/Sustainability.svg" class="menuIcons"/> 
+                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/SustainabilityIcon1.svg" class="menuIcons"/> 
                     <div class="menuText"> Sustainability </div>
                 </div>
                 <div class="menuSectionSeperator"></div>
                 <div class="menuSectionIcon" onclick="{!c.gotoHealthAndSafety}">
-                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/HealthandSafety.svg" class="menuIcons"/> 
+                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/HealthandSafetyIcon.svg" class="menuIcons"/> 
                     <div class="menuText"> Health &amp; Safety </div>
                 </div>
             </div>
             <div class="menuSectionBar">
                 <div class="menuSectionIcon" onclick="{!c.gotoGymSchedule}">
-                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/GymSchedule.svg" class="menuIcons"/> 
+                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/GymScheduleIcon.svg" class="menuIcons"/> 
                     <div class="menuText"> Gym-schedule </div>
                 </div>                
                 <div class="menuSectionSeperator"></div>
                 <div class="menuSectionIcon" onclick="{!c.gotoCafeteriaMenu}">
-                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/CafeteriaMenu.svg" class="menuIcons"/> 
+                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/CafeteriaMenuIcon.svg" class="menuIcons"/> 
                     <div class="menuText"> Cafeteria menu </div>
                 </div>
             </div>
             <div class="menuSectionBar">
                 <div class="menuSectionIcon" onclick="{!c.gotoShopTimings}">
-                     <img src="/resource/CORE_WP_WorkplaceStyles/Icons/ShopTimings.svg" class="menuIcons"/> 
+                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/ShopTimingsIcon.svg" class="menuIcons"/> 
                     <div class="menuText"> Shop-timings </div>
                 </div>
                 <div class="menuSectionSeperator"></div>
                 <div class="menuSectionIcon" onclick="{!c.gotoTransport}">
-                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/Transport.svg" class="menuIcons"/> 
+                    <img src="/resource/CORE_WP_WorkplaceStyles/Icons/TransportIcon.svg" class="menuIcons"/> 
                     <div class="menuText"> Transport </div>
                 </div>
             </div>
         </div>
-        <div class="allPadding addressText">   
+        <div class="allPadding addressText largePadding">   
             ADDRESS<br/>
         	<aura:unescapedHtml value="{!v.workplaceLocationDetails.Address__c}"/>
         </div>

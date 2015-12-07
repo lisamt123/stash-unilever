@@ -17,7 +17,7 @@
     </div>
     <div class="allPadding">    
         <img src="/resource/CORE_WP_WorkplaceStyles/Icons/KeyContacts.svg" class="smallIcons"/>
-        <div class="allPadding pageTitle">Key Contacts</div><br/>
+        <div class="allPadding pageTitle">Key-contacts</div><br/>
         <div class="responsiveRichText">
         	<aura:unescapedHtml value="{!v.keyContacts}" />
             <aura:if isTrue="{!v.noDataErrorMessage}">

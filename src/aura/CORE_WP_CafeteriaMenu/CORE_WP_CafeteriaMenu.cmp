@@ -8,7 +8,7 @@
             height: 100% !important;
             width: 100% !important;
         }
-    </style> 
+    </style>
     <div class="topBarStyle">
         <div onclick="{!c.gotoPreviousPage}" class="topBackBar">
             <img src="/resource/NewsCenterIcons/back.svg" class="topBackBarIcon"></img>
@@ -16,12 +16,21 @@
     </div>
     <div class="allPadding">    
         <img src="/resource/CORE_WP_WorkplaceStyles/Icons/CafeteriaMenu.svg" class="smallIcons"/>
-        <div class="allPadding pageTitle">Cafeteria Menu</div><br/>
-        <div class="responsiveRichText">
-        	<img src="{!v.cafeteriaMenuDetail}"></img> 
+        <div class="allPadding pageTitle">Cafeteria menu</div><br/>
+        <!--<div class="menuDetailPannel"> class="responsiveRichText"
+            <img src="/resource/CORE_WP_WorkplaceStyles/Icons/add.svg" onclick="{!c.increseMenuDetail}" class="smallIcons"/>
+            <img src="/resource/CORE_WP_WorkplaceStyles/Icons/remove.svg" onclick="{!c.decreaseMenuDetail}" class="smallIcons"/>
+            <img src="{!v.cafeteriaMenuDetail}" id="menuDetail"></img>
             <aura:if isTrue="{!v.noDataErrorMessage}">
                 There is no data available currently to display for this section.
             </aura:if> 
+        </div>-->
+
+		<div class="responsiveRichText">
+			<img src="{!v.cafeteriaMenuDetail}" id="menuDetail" onclick="{!c.SaveToDisk}"></img>
+            <aura:if isTrue="{!v.noDataErrorMessage}">
+                There is no data available currently to display for this section.
+            </aura:if>
         </div>
     </div>
     

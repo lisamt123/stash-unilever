@@ -11,8 +11,9 @@
                 if(response.getReturnValue()!=''){                                 
                     component.set("v.workplaceGroups", response.getReturnValue());                  
                 }
-                else 
+                else {
                     component.set("v.noDataErrorMessage", true);
+                }
         	}                  
         });
         $A.enqueueAction(action);

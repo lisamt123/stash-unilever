@@ -13,8 +13,9 @@
                     var res = str.replace(/http:,mailto/g, "tel");
                     component.set("v.transport",res);                    
                 }
-                else 
+                else {
                     component.set("v.noDataErrorMessage", true);
+                }
             }                               
         });
         $A.enqueueAction(action);

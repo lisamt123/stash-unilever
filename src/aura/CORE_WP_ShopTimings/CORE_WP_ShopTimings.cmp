@@ -16,7 +16,7 @@
     <div class="allPadding"> 
         <div class="topicHeader">            
             <img src="/resource/CORE_WP_WorkplaceStyles/Icons/ShopTimings.svg" class="smallIcons"/>
-            <div class="allPadding pageTitle">Shop</div>
+            <div class="allPadding pageTitle">Shop-timings</div>
         </div>
         <div class="responsiveRichText">
         	<aura:unescapedHtml value="{!v.shopTimings}" />             

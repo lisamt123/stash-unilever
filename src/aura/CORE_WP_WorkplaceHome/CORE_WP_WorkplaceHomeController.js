@@ -26,11 +26,13 @@
                             .bindPopup(response.getReturnValue().Name);
                     });
                 }
-                else 
+                else {
                 	component.set("v.displayWorkplaceDetails", false); 
+                }
             }
-            else 
-                component.set("v.displayWorkplaceDetails", false);        
+            else {
+                component.set("v.displayWorkplaceDetails", false);   
+            }     
         });
         $A.enqueueAction(action);
 	},

@@ -13,9 +13,10 @@
                     var res = str.replace(/http:,mailto/g, "tel");
                     component.set("v.departmentsByFloor",res);                    
                 }
-                else 
+                else {
                     component.set("v.noDataErrorMessage", true);
-            }                               
+                }
+            }                                
         });
         $A.enqueueAction(action);
     },

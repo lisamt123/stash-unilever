@@ -15,7 +15,7 @@ VERSION AUTHOR   DATE       DETAIL               Description
 1.0     Mindtree 29/11/2015 INITIAL DEVELOPMENT  Test class for WorkPlace related classes
 ***********************************************************************/
 
-@isTest
+@isTest (seeAllData=false)
 public class Core_WP_Test_WorkplaceApp{
     
     /*******************************************************************
@@ -23,8 +23,7 @@ public class Core_WP_Test_WorkplaceApp{
     Parameters: 
     Returns: 
     ********************************************************************/ 
-    @isTest(SeeAllData=true)
-    static void TestWorkplaceDetails(){
+    public static testMethod void TestWorkplaceDetails(){
         test.starttest();
         
         Profile p = [Select Id from Profile where Name = 'System Administrator' LIMIT 1];     
@@ -34,46 +33,46 @@ public class Core_WP_Test_WorkplaceApp{
         insert usr;
         System.assert(usr!= null);
         
-        CollaborationGroup objGroup= new CollaborationGroup(Name = 'my_group1', CollaborationType = 'public');
-        insert objGroup;
-        System.assert(objGroup!= null);
-        Workplace__c workplace=new Workplace__c(Address__c='Test Address',Floor_Plan__c='Test Floor Plan',Gym__c='Test Gym',
-                                                HealthandSafety__c='Test Health',Key_Contacts__c='Test Key',Location__Latitude__s=51.407836,
-                                                Location__Longitude__s=-0.304411,Name='Kingston',Shop__c='Test Shop',Sustainability_Month1_Value__c=1361,
+        CollaborationGroup objGroup1= new CollaborationGroup(Name = 'my_group1', CollaborationType = 'public');
+        insert objGroup1;
+        System.assert(objGroup1!= null);
+        Workplace__c workplace1=new Workplace__c(Address__c='Test Address1',Floor_Plan__c='Test Floor Plan1',Gym__c='Test Gym1',
+                                                HealthandSafety__c='Test Health1',Key_Contacts__c='Test Key1',Location__Latitude__s=51.407836,
+                                                Location__Longitude__s=-0.304411,Name='Kingston',Shop__c='Test Shop1',Sustainability_Month1_Value__c=1361,
                                                 Sustainability_Month2_Value__c=1321,Sustainability_Month3_Value__c=1244,Sustainability_Target_Value__c=1999,
-                                                Transport__c='Test Transport',Workplace_Group__c=objGroup.Id,Workplace_Image__c='Test Image',
-                                                Workplace_Local_Groups__c=objGroup.Id);
-        insert workplace;
-        System.assert(workplace!= null);
-        
-        Workplace__c workplace1=new Workplace__c(Address__c='Test Address',Floor_Plan__c='Test Floor Plan',Gym__c='Test Gym',
-                                                HealthandSafety__c='Test Health',Key_Contacts__c='Test Key',Location__Latitude__s=51.407836,
-                                                Location__Longitude__s=-0.304411,Name='100VE',Shop__c='Test Shop',Sustainability_Month1_Value__c=1361,
-                                                Sustainability_Month2_Value__c=1321,Sustainability_Month3_Value__c=1244,Sustainability_Target_Value__c=1999,
-                                                Transport__c='Test Transport',Workplace_Group__c=objGroup.Id,Workplace_Image__c='Test Image',
-                                                Workplace_Local_Groups__c=objGroup.Id);
+                                                Transport__c='Test Transport1',Workplace_Group__c=objGroup1.Id,Workplace_Image__c='Test Image1',
+                                                Workplace_Local_Groups__c=objGroup1.Id);
         insert workplace1;
         System.assert(workplace1!= null);
         
-        Attachment attachmnt =new Attachment();
-        attachmnt.name='textfileone.txt';
-        attachmnt.body =blob.valueOf('my attachment text');
-        attachmnt.ParentId =workplace.Id;
-        insert  attachmnt;
-        System.assert(attachmnt!= null);
+        Workplace__c workplace2=new Workplace__c(Address__c='Test Address2',Floor_Plan__c='Test Floor Plan2',Gym__c='Test Gym2',
+                                                HealthandSafety__c='Test Health2',Key_Contacts__c='Test Key2',Location__Latitude__s=51.407836,
+                                                Location__Longitude__s=-0.304411,Name='100VE',Shop__c='Test Shop2',Sustainability_Month1_Value__c=1361,
+                                                Sustainability_Month2_Value__c=1321,Sustainability_Month3_Value__c=1244,Sustainability_Target_Value__c=1999,
+                                                Transport__c='Test Transport2',Workplace_Group__c=objGroup1.Id,Workplace_Image__c='Test Image2',
+                                                Workplace_Local_Groups__c=objGroup1.Id);
+        insert workplace2;
+        System.assert(workplace2!= null);
+        
+        Attachment attachmnt1 =new Attachment();
+        attachmnt1.name='textfileone.txt';
+        attachmnt1.body =blob.valueOf('my attachment text1');
+        attachmnt1.ParentId =workplace1.Id;
+        insert  attachmnt1;
+        System.assert(attachmnt1!= null);
         
         Core_WP_WorkPlaceController.getCurrentUserLocation();
         Core_WP_WorkPlaceController.getworkplaceIdByName('Kingston');
-        Core_WP_WorkPlaceController.getWorkplaceDetails(workplace.Id);
-        Core_WP_WorkPlaceController.getKeyDetails(workplace.Id);
-        Core_WP_WorkPlaceController.getDepartmentByFloorDetails(workplace.Id);
-        Core_WP_WorkPlaceController.getHealthyAndSafetyDetails(workplace.Id);
-        Core_WP_WorkPlaceController.getGymScheduleDetails(workplace.Id);
-        Core_WP_WorkPlaceController.getShopTimingsDetails(workplace.Id);
-        Core_WP_WorkPlaceController.getTransportDetails(workplace.Id);
-        Core_WP_WorkPlaceController.getLocalGroups(workplace.Id);
-        Core_WP_WorkPlaceController.getCafeteriaMenuDetails(workplace.Id);
-        Core_WP_WorkPlaceController.getSustainibilityValues(workplace.Id);
+        Core_WP_WorkPlaceController.getWorkplaceDetails(workplace1.Id);
+        Core_WP_WorkPlaceController.getKeyDetails(workplace1.Id);
+        Core_WP_WorkPlaceController.getDepartmentByFloorDetails(workplace1.Id);
+        Core_WP_WorkPlaceController.getHealthyAndSafetyDetails(workplace1.Id);
+        Core_WP_WorkPlaceController.getGymScheduleDetails(workplace1.Id);
+        Core_WP_WorkPlaceController.getShopTimingsDetails(workplace1.Id);
+        Core_WP_WorkPlaceController.getTransportDetails(workplace1.Id);
+        Core_WP_WorkPlaceController.getLocalGroups(workplace1.Id);
+        Core_WP_WorkPlaceController.getCafeteriaMenuDetails(workplace1.Id);
+        Core_WP_WorkPlaceController.getSustainibilityValues(workplace1.Id);
         
         System.runAs(usr) {
             Core_WP_WorkPlaceController.getCurrentUserLocation();
@@ -90,33 +89,33 @@ public class Core_WP_Test_WorkplaceApp{
     public static testMethod void TestEmailService(){
         test.starttest();
         
-        CollaborationGroup objGroup= new CollaborationGroup(Name = 'my_group1', CollaborationType = 'public');
-        insert objGroup;
-        System.assert(objGroup!= null);
-        Workplace__c workplace=new Workplace__c(Address__c='Test Address',Floor_Plan__c='Test Floor Plan',Gym__c='Test Gym',
-                                                HealthandSafety__c='Test Health',Key_Contacts__c='Test Key',Location__Latitude__s=51.407836,
-                                                Location__Longitude__s=-0.304411,Name='Kingston',Shop__c='Test Shop',Sustainability_Month1_Value__c=1361,
+        CollaborationGroup objGroup2= new CollaborationGroup(Name = 'my_group2', CollaborationType = 'public');
+        insert objGroup2;
+        System.assert(objGroup2!= null);
+        Workplace__c workplace3=new Workplace__c(Address__c='Test Address3',Floor_Plan__c='Test Floor Plan3',Gym__c='Test Gym3',
+                                                HealthandSafety__c='Test Health3',Key_Contacts__c='Test Key3',Location__Latitude__s=51.407836,
+                                                Location__Longitude__s=-0.304411,Name='Kingston',Shop__c='Test Shop3',Sustainability_Month1_Value__c=1361,
                                                 Sustainability_Month2_Value__c=1321,Sustainability_Month3_Value__c=1244,Sustainability_Target_Value__c=1999,
-                                                Transport__c='Test Transport',Workplace_Group__c=objGroup.Id,Workplace_Image__c='Test Image',
-                                                Workplace_Local_Groups__c=objGroup.Id);
-        insert workplace;
-        System.assert(workplace!= null);
+                                                Transport__c='Test Transport3',Workplace_Group__c=objGroup2.Id,Workplace_Image__c='Test Image3',
+                                                Workplace_Local_Groups__c=objGroup2.Id);
+        insert workplace3;
+        System.assert(workplace3!= null);
         
-        Workplace__c workplace1=new Workplace__c(Address__c='Test Address',Floor_Plan__c='Test Floor Plan',Gym__c='Test Gym',
-                                                HealthandSafety__c='Test Health',Key_Contacts__c='Test Key',Location__Latitude__s=51.407836,
-                                                Location__Longitude__s=-0.304411,Name='100VE',Shop__c='Test Shop',Sustainability_Month1_Value__c=1361,
+        Workplace__c workplace4=new Workplace__c(Address__c='Test Address4',Floor_Plan__c='Test Floor Plan4',Gym__c='Test Gym4',
+                                                HealthandSafety__c='Test Health4',Key_Contacts__c='Test Key4',Location__Latitude__s=51.407836,
+                                                Location__Longitude__s=-0.304411,Name='100VE',Shop__c='Test Shop4',Sustainability_Month1_Value__c=1361,
                                                 Sustainability_Month2_Value__c=1321,Sustainability_Month3_Value__c=1244,Sustainability_Target_Value__c=1999,
-                                                Transport__c='Test Transport',Workplace_Group__c=objGroup.Id,Workplace_Image__c='Test Image',
-                                                Workplace_Local_Groups__c=objGroup.Id);
-        insert workplace1;
-        System.assert(workplace1!= null);
+                                                Transport__c='Test Transport4',Workplace_Group__c=objGroup2.Id,Workplace_Image__c='Test Image4',
+                                                Workplace_Local_Groups__c=objGroup2.Id);
+        insert workplace4;
+        System.assert(workplace4!= null);
         
-        Attachment attachmnt =new Attachment();
-        attachmnt.name='textfileone.txt';
-        attachmnt.body =blob.valueOf('my attachment text');
-        attachmnt.ParentId =workplace.Id;
-        insert  attachmnt;
-        System.assert(attachmnt!= null);
+        Attachment attachmnt2 =new Attachment();
+        attachmnt2.name='textfileone.txt';
+        attachmnt2.body =blob.valueOf('my attachment text2');
+        attachmnt2.ParentId =workplace3.Id;
+        insert  attachmnt2;
+        System.assert(attachmnt2!= null);
         
         Core_WP_EmailService emailService=new Core_WP_EmailService();
         

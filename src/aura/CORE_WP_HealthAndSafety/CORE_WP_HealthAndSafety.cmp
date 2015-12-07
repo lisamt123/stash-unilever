@@ -18,7 +18,7 @@
     </div> 
     <div class="allPadding">    
         <img src="/resource/CORE_WP_WorkplaceStyles/Icons/HealthandSafety.svg" class="smallIcons"/>
-        <div class="allPadding pageTitle">Health &amp; safety</div><br/>
+        <div class="allPadding pageTitle">Health &amp; Safety</div><br/>
         <div class="responsiveRichText">
         	<aura:unescapedHtml value="{!v.healthAndSafety}" /> 
             <aura:if isTrue="{!v.noDataErrorMessage}">

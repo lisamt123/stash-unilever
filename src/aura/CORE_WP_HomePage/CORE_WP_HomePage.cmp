@@ -3,7 +3,8 @@
     <!--  ,/resource/CORE_NC_JsFiles/lightningBootstrapMin.css-->
     <ltng:require scripts="/resource/CORE_WP_WorkplaceStyles/mapJs/leaflet.js" 
                   styles="/resource/CORE_NC_JsFiles/lightningBootStrap.css"                  
-                  afterScriptsLoaded="{!c.getWorkplaceLocationId}"/>    
+                  afterScriptsLoaded="{!c.getWorkplaceLocationId}"/> 
+    <aura:attribute name="workplaceGaDetail" type="Core_WP_WorkplaceGAWrapperClass"/>
     <aura:handler event="c:CORE_WP_WorkplaceEvent" action="{!c.navigateWithinComponent}" />
     <!--Applying background color for the base page-->
     <style>

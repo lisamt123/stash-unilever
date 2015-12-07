@@ -17,7 +17,7 @@
     </div>
     <div class="allPadding">    
         <img src="/resource/CORE_WP_WorkplaceStyles/Icons/GymSchedule.svg" class="smallIcons"/>
-        <div class="allPadding pageTitle">Gym Schedule</div><br/>
+        <div class="allPadding pageTitle">Gym-schedule</div><br/>
         <div class="responsiveRichText">
         	<aura:unescapedHtml value="{!v.gymScheduleDetail}" />
             <aura:if isTrue="{!v.noDataErrorMessage}">

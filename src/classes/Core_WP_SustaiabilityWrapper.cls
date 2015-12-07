@@ -42,4 +42,16 @@ public class Core_WP_SustaiabilityWrapper{
     
     @AuraEnabled
     public String monthValueHighColor {get;set;}
+    
+    @AuraEnabled
+    public String knowledgeSectionHeader {get;set;}
+    
+    @AuraEnabled
+    public String knowledgeSectionBody {get;set;}
+    
+    @AuraEnabled
+    public String tooltipSectionHeader {get;set;}
+    
+    @AuraEnabled
+    public String tooltipSectionBody {get;set;}
 }
