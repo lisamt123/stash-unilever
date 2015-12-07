@@ -65,21 +65,21 @@ public class EA_ControllerTestClass{
             
             EA_BadgeDetails__c badge1=new EA_BadgeDetails__c();
             badge1.name='Bronze';
-            badge1.BadgeColor__c='blue';
+            badge1.BadgeColor__c='red';
             badge1.BadgeSerial__c=1;
             badge1.BadgeValue__c=2;
             insert badge1;
             
             EA_BadgeDetails__c badge2=new EA_BadgeDetails__c();
             badge2.name='Silver';
-            badge2.BadgeColor__c='blue';
+            badge2.BadgeColor__c='yellow';
             badge2.BadgeSerial__c=1;
             badge2.BadgeValue__c=2;
             insert badge2;
             
             EA_BadgeDetails__c badge3=new EA_BadgeDetails__c();
             badge3.name='Gold';
-            badge3.BadgeColor__c='blue';
+            badge3.BadgeColor__c='black';
             badge3.BadgeSerial__c=1;
             badge3.BadgeValue__c=2;
             insert badge3;

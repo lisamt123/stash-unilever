@@ -5,7 +5,7 @@ Date: 22 Nov 2015
 Requirement/Project Name: Unilever Salesforce Engagement
 Requirement/Description: Test Class For EA_UtilsClass.
 */
-@IsTest(SeeAllData=true)
+@IsTest
 public class EA_UtilsTestClass{
     static testMethod void postive() {
        ID adminProfileID = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].ID;
@@ -38,13 +38,28 @@ public class EA_UtilsTestClass{
             team.Activity_Points__c=5;
             team.Everyday_Activity__c=event.id;
             team.Feedback_Comments__c='test.comments';
-            team.Invitation_Status__c='Accepted';
+            team.Invitation_Status__c='Invited';
             team.Invitation_Text__c='test';
             team.Invited_By__c=localUser.id;
             team.Participant__c=localUser.id;
             team.Rating_By_Participant__c=4;
             team.Type__c='Participant';
             insert team;
+            
+            EA_Team_Member__c team2 =new EA_Team_Member__c();
+            team2.Activity_Due_Day__c='Today';
+            team2.Activity_Points__c=5;
+            team2.Everyday_Activity__c=event.id;
+            team2.Feedback_Comments__c='test.comments';
+            team2.Invitation_Status__c='Accepted';
+            team2.Invitation_Text__c='test';
+            team2.Invited_By__c=localUser.id;
+            team2.Participant__c=localUser.id;
+            team2.Rating_By_Participant__c=4;
+            team2.Type__c='Participant';
+            insert team2;
+           
+            
              EA_Team_Member__c team1=new  EA_Team_Member__c();
              List<SObject>  lstActivity =new List<SObject>();
              lstActivity.add(team);
@@ -52,14 +67,25 @@ public class EA_UtilsTestClass{
             
             EA_Utils EAnote=new EA_Utils();
              boolean temp1=EA_Utils.isEmpty(lstActivity );
-             boolean temp2=EA_Utils.isEmpty('true');
+             lstActivity.clear();
+             boolean temp2=EA_Utils.isEmpty(lstActivity );
+             
+             boolean temp3=EA_Utils.isEmpty('true');
+             boolean temp4=EA_Utils.isEmpty('');
+             boolean temp32=EA_Utils.isEmpty2('true2');
+             boolean temp42=EA_Utils.isEmpty2('');
+             boolean temp37=EA_Utils.isEmpty3('true3');
+             boolean temp43=EA_Utils.isEmpty3('');
+             
             Everyday_Activity__c ea=EA_Utils.getActivitydetails(event.id);
            // try{
-           EA_Utils.postCommentAtUserFeed(event.id,team.Invited_By__c,team.Participant__c,'test');
+           //EA_Utils.postCommentAtUserFeed('test','test','test','test');
+          // EA_Utils.postCommentAtUserFeed(null,null,null,null);
           // }catch(exception e){ System.debug('Exception caught: ' + e.getMessage());}
-            List<EA_Team_Member__c> temp3=EA_Utils.getTeamMebersForActivity(event.id);
+            List<EA_Team_Member__c> temp33=EA_Utils.getTeamMebersForActivity(event.id);
             Integer t1=EA_Utils.getactivityRating(10.2);
-            EA_Team_Member__c temp4=EA_Utils.getParticipantTeamMemberRec(event.id,team.Participant__c);
+            Integer t11=EA_Utils.getactivityRating(10.7);
+            EA_Team_Member__c temp44=EA_Utils.getParticipantTeamMemberRec(event.id,team.Participant__c);
            EA_Utils.postOnChatter(event.id,'test');
            
             }

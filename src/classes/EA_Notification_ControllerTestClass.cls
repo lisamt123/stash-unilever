@@ -5,7 +5,7 @@ Date: 22 Nov 2015
 Requirement/Project Name: Unilever Salesforce Engagement
 Requirement/Description: Test Class For EA_Notification_ControllerClass.
 */
-@IsTest(SeeAllData=true)
+@IsTest
 public class EA_Notification_ControllerTestClass{
     static testMethod void postive() {
        ID adminProfileID = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].ID;
@@ -61,7 +61,7 @@ public class EA_Notification_ControllerTestClass{
             update team1;
             
             
-             EA_Notification_Controller.sendFeedbackReminder(event.id,team.Invited_By__c, team.Participant__c);
+             //EA_Notification_Controller.sendFeedbackReminder(event.id,team.Invited_By__c, team.Participant__c);
             
              EA_Notification_Controller.inviteResponseNofitification(event.id,team.id,'Accepted');
               

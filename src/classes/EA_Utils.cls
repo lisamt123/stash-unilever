@@ -68,8 +68,8 @@ public with sharing class EA_Utils{
             feedItemInput.subjectId = Label.EA_System_User_ID;
             //feedItemInput.createdBy = Label.EA_System_User_ID;
             
-    		ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput, null);
-			
+            ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput, null);
+            
             
         }
     } 
@@ -131,5 +131,18 @@ public with sharing class EA_Utils{
         return result;
     } 
     
+    
+    public static boolean isEmpty2( String str ){
+        if(string.isNotBlank(str)){
+            return true;
+        }
+        return false;
+    }
+    public static boolean isEmpty3( String str ){
+        if(string.isNotBlank(str)){
+            return true;
+        }
+        return false;
+    }
    
 }
