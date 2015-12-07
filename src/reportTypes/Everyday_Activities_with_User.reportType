@@ -223,6 +223,11 @@
             <field>Participant__c.Profile.Name</field>
             <table>Everyday_Activity__c.Team_Members__r</table>
         </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Activity_Due_Date__c</field>
+            <table>Everyday_Activity__c.Team_Members__r</table>
+        </columns>
         <masterLabel>Team Members</masterLabel>
     </sections>
 </ReportType>
