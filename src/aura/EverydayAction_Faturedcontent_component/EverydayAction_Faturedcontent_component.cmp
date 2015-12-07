@@ -40,7 +40,7 @@
                     
               </table>
             <div class="Para-content"></div>
-                 <div align="center">
+                 <div style="text-align:center;width: 90%;margin-left: 5%;">
                    <p> " Video Description will be displayed here " </p>
                    <div onclick="{!c.downloadVideo}">Click here to download</div>
                      <!--<iframe width="230" height="150" src="{!v.content.documentUrl}" frameborder="1" ></iframe> --> 

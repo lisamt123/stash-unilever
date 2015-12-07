@@ -76,14 +76,14 @@
     
     <div  style="margin-top:30px;"></div>
     <div class="recent_inv">Recently worked with:</div>
-    <div> 
+    <div class="recent_item_list"> 
         <aura:if isTrue="{! v.recentItem.length > 0}">
             <aura:iteration items="{!v.recentItem}" var="item">
                 <c:EA_RecentPillItem itemId="{!item.Participant__c}" itemName="{!item.Participant__r.Name}" selectedUsers="{!v.selectedUsers}" maxLimit="{!v.maxLimit}" selectedItem="{!v.selectedItem}" />
             </aura:iteration>
          </aura:if>
         <aura:if isTrue="{! v.recentItem.length == 0}">
-            Users not available.
+            <div class="message_margin_left">Users not available.</div>
         </aura:if>
       
 	</div>

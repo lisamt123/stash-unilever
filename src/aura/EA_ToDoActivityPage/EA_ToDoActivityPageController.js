@@ -19,7 +19,7 @@
                         }
                     }
                     helper.getToDoTimeline(component);
-                   // helper.getPrticipantCount(component);
+                    //helper.getPrticipantCount(component);
                 
             }
         });
@@ -48,7 +48,7 @@
              if (toDoActivityUser[i] == itemId) {
                  console.log("handleIdUpdate#User:"+ itemId +" already exist");
         		return;	 
-                break;
+                //break;
              }
         }
  		toDoActivityUser.push(itemId);

@@ -28,6 +28,9 @@
         }
         }
         }
+        .slds .slds-pill-container {
+          border-bottom: 0px ;
+        }
         .slds .slds-form-element {
         position: relative;
         width: 95%;
@@ -37,6 +40,7 @@
         .slds .slds-select[size] {
         width: 95%;
         margin-left: 2.5%;
+        margin-top:1rem;
         }
     </style>
     <form aura:id="frm1">
@@ -57,7 +61,7 @@
                                         listIconClass="slds-icon-standard-account" selectedUsers="{!v.selectedUsers}" selectedItem="{!v.selectedItem}" maxLimit="{!v.maxLimit}" participantCount="{!v.participantCount}"/>
                     
                     
-                    <div  style="margin-top:30px;"></div>
+                    <div  style="margin-top:10px;"></div>
                     <div class="cTitle">When would you like to do this?</div>
                     <div  class="slds-form-element__control">
                         <ui:inputSelect aura:id="activityTime" change="{!c.onSelecteChange}" class="slds-select">

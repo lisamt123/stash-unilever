@@ -2,11 +2,7 @@
     background-color: #00CCFF;
    
 }
-.THIS{
-    
-    border:1px solid #F0F5F5;
-    width:100%;
-}
+
 .THIS .share_img{
   
     border-radius: 200px;
@@ -35,45 +31,8 @@
     height:10px;
     display: inline-block;
 }
-.THIS .points{
-     width:20px;
-    height:20px;
-}
-.THIS .minute{
-     width:20px;
-    height:20px;
-}
-.THIS .clock{
-     width:20px;
-    height:20px;
-}
-.THIS .min-sec{
-    width: 95%;
-    background: #eef1f6;
-    margin-top: -30px;
-    margin-left: 10px;
-    height: 50%;
-}
-.THIS .min-table{
-    background-color: transparent;
-    margin-left: 0px;
-    margin-top: 30px;
-
-  
-}
-.THIS .min-table td{
-    padding-left: 5px;
-    padding-top:5px;
-}
-.THIS .tdFont{
-   font-size: 12px;
-  color: #CFD7E6;
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 1.25;
 
 
-}
 .THIS .navbar-fixed-bottom {
     bottom: 0;
     margin-bottom: 50px;
@@ -88,6 +47,8 @@
   line-height: 1.25;
   font-weight: 400;
   margin-top: 10px;
+  width: 95%;
+  margin-left: 2.5%;
        
 }
 .THIS .divider {
@@ -110,12 +71,13 @@
 }
 
 .THIS .topTip {
-  font-weight: 300;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 1.2rem;
   line-height: 1.25;
   color: black;
-  margin-left: 5%;
+  margin-left: 5px;
   width: 90%;
+  margin-left: 5%;
 }
 
 
@@ -125,13 +87,6 @@
   float: right;
   width: 20px;
 }
-.THIS .activity-sec {
-  background: #00B8E6;
-  height: 80px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  padding-top: 10px;
-}
 
 .THIS .default-rating {
   position: absolute;
@@ -139,23 +94,12 @@
   color: #C0C0C0;
   margin-top: 5px;
 }
-.THIS .t-title {
-  margin-left: 5px;
-  color: white;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.25;
-}
-.THIS .a-title {
-  margin-left: 5px;
-  color: white;
-  font-size: 12px;
-  font-weight: 100;
-}
+
+
 .THIS .fTitle{
   font-size: 18px;
   padding: 4px;
-  margin-left: 10px;
+  margin-left: 5%;
   line-height: 1.25;
   font-weight: bold;
   margin-top: 10px;

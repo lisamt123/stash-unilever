@@ -84,6 +84,8 @@ public class EA_ControllerTestClass{
             badge3.BadgeValue__c=2;
             insert badge3;
             
+         
+            
             FeedItem chatterPost1 = new FeedItem(ParentId = event.id , Body = 'chatterPostComment', CreatedById = localUser.id);     
             insert chatterPost1;
             
@@ -94,7 +96,7 @@ public class EA_ControllerTestClass{
             insert chatterPost3;
             
              
-		          
+                  
             Test.startTest();
             EA_ControllerClass Eacontroller=new EA_ControllerClass();
             EA_ControllerClass.getActivities();
@@ -105,10 +107,13 @@ public class EA_ControllerTestClass{
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp4=EA_ControllerClass.getActivityPoints('122');
             EA_ControllerClass.getbooleanvalue('3446677');
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');
-            try{
+           
+           try{
              EA_ControllerClass.getUserDetail();
+           
           //   EA_ControllerClass.getActivityParticipantCount(event.id);   
                List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(event.id);
+                
                }catch(exception e){
             System.debug('Exception caught: ' + e.getMessage());}
               EA_ControllerClass.insertteamrecord(event.id); 
@@ -184,7 +189,7 @@ public class EA_ControllerTestClass{
             team.Activity_Points__c=5;
             team.Everyday_Activity__c=event.id;
             team.Feedback_Comments__c='test.feedback';
-            team.Invitation_Status__c='Accepted';
+            team.Invitation_Status__c='Declined';
             team.Invitation_Text__c='test.inv';
             team.Invited_By__c=localUser.id;
             team.Participant__c=localUser.id;
@@ -214,12 +219,16 @@ public class EA_ControllerTestClass{
             badge.BadgeSerial__c=1;
             badge.BadgeValue__c=2;
             insert badge;
+             EA_ReportingGA__c Re=new EA_ReportingGA__c();
+            re.Name='testreport';
+            re.Text_value__c ='reporting';
+            insert re;
               Test.startTest();
         
             EA_ControllerClass Eacontroller=new EA_ControllerClass();
             EA_ControllerClass.getActivities();
             EA_ControllerClass.getThemes();
-            EA_ControllerClass.updateParticipantResponse(team.id,team.Participant__c,'Accept');
+            EA_ControllerClass.updateParticipantResponse(team.id,team.Participant__c,'Decline');
             List<Everyday_Activity__c> temp1=EA_ControllerClass.getActivitiesonfilter('Working Effectively');
             List<Everyday_Activity__c> temp2=EA_ControllerClass.getactivitydetail('2223333');
             List<EA_Wrapper_Class.EA_UserProfile_Wrapper>temp4=EA_ControllerClass.getActivityPoints('122');
@@ -227,11 +236,12 @@ public class EA_ControllerTestClass{
             List<EA_Wrapper_Class.EA_RecentlyCompletedUsers> temp6=EA_ControllerClass.getuserList('event.id');
            try{
              EA_ControllerClass.getUserDetail();
+              EA_ControllerClass.getGAID();
            //  EA_ControllerClass.getActivityParticipantCount(event.id);  
-              List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(event.id);
+             // List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> temp3=EA_ControllerClass.getcontentdetail(event.id);
               }catch(exception e){
              System.debug('Exception caught: ' + e.getMessage());}
-                         
+                EA_ControllerClass.updateParticipantResponse(team.id,team.Participant__c,'Accept');          
              EA_ControllerClass.insertfeeditem(event.id,'comment');
              EA_ControllerClass.getbooleanvalue(event.id);               
                   

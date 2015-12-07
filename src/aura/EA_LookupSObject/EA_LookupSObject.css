@@ -20,9 +20,17 @@
     font-size:1rem;
 }
 
+.THIS .recent_item_list{
+  padding-left: 0px;
+  margin-top: 0.5em;
+}
+
 .THIS .invt_lst{
   background-color: lightgray;
   padding: 3px;
   margin-left: 10px;
   margin-bottom:5px;
+}
+.THIS .message_margin_left{
+ margin-left: 10px;   
 }

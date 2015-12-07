@@ -23,7 +23,7 @@ public with sharing class EA_Notification_Controller {
                 
                 if(responseText == EA_Constants.INVITATION_STATUS_ACCEPTED){
                      msgLabel += ' - your invitation to do ';
-                     msgLabel += actName;
+                     msgLabel +='"'+actName+'"';
                      msgLabel += ' activity has been ';
                      msgLabel +=  System.Label.EA_Activity_Accepted;
                      msgLabel += ' by ';
@@ -33,7 +33,7 @@ public with sharing class EA_Notification_Controller {
                 }      
                 if(responseText == EA_Constants.INVITATION_STATUS_DECLINED){
                      msgLabel += ' your invitation to do ';
-                     msgLabel += actName;
+                     msgLabel +='"'+actName+'"';
                      msgLabel += ' activity has been ';
                      msgLabel +=  System.Label.EA_Activity_Declined;
                      msgLabel += ' by ';

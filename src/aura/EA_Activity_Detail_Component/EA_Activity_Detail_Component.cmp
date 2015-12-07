@@ -98,9 +98,10 @@
                 </div>
                 <div class="section"><br/>
                     <div style="margin-left:5px;">
-                        <p class="para-content"><ui:outputText value="{!v.activity.Description__c}"/></p>
+                        <p class="desc"><ui:outputText value="{!v.activity.Description__c}"/></p>
                     </div>
                     
+                   
                     <div style="margin-left:5px;">
                         <p class="recent">Recently completed by</p>
                         <div>
@@ -110,14 +111,15 @@
                     </div>
                     <div class="min-sec">
                         <table class="min-table"><tr>
-                            <td> <img class="clock" src="/resource/EA_StaticResource/assets/images/clock.svg" alt="tick" /></td>
+                            <td> <img class="img_icon_size" src="/resource/EA_StaticResource/assets/images/clock.svg" alt="tick" /></td>
                             <td class="tdFont"><ui:outputText value="{!v.activity.Minutes_to_Complete_Action__c}"/>   min  </td>
-                            <td><img class="minute" src="/resource/EA_StaticResource/assets/images/user.svg" alt="tick" /></td>
+                            <td><img class="img_icon_size" src="/resource/EA_StaticResource/assets/images/user.svg" alt="tick" /></td>
                             <td class="tdFont"><ui:outputText value="{!v.activity.Participants_Required__c}"/>  people</td>
-                            <td><img class="points" src="/resource/EA_StaticResource/assets/images/badge.svg" alt="tick" /></td>
+                            <td><img class="img_icon_size" src="/resource/EA_StaticResource/assets/images/badge.svg" alt="tick" /></td>
                             <td class="tdFont"><ui:outputText value="{!v.activity.Activity_Points__c}"/>  points</td>
                             </tr>
                         </table>
+                        
                         
                         <aura:if isTrue="{!v.showcontent}">
                             <div class="divider"></div>
@@ -125,7 +127,7 @@
                                 <p class="topTip"> TOP TIP :</p><br/>
                             </div>
                             <div>
-                                <p class="topTip"> <ui:outputText value="{!v.activity.Top_Tip__c}"/></p>
+                                <p class="topTip_para"> <ui:outputText value="{!v.activity.Top_Tip__c}"/></p>
                             </div>
                             
                         </aura:if>

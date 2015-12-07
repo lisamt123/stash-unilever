@@ -14,6 +14,7 @@
     <aura:attribute name="remain" type="integer[]" />
     <aura:attribute name="showrating" type="boolean" default="false"/>
      <aura:attribute name="rateStars" type="integer[]" />
+    <aura:attribute name="showError" type="boolean" default="false"/>
     
     <style>
         .spacer-pull-to-load-more{
@@ -58,12 +59,13 @@
                 </div>
             </aura:if>
             <div class="cTitle">Comment</div>
-            <div>
-                <textarea  id="commentText" class="box-text" placeholder="upto 240 characters"></textarea>
+            <div class="box_space">
+                <textarea  id="commentText" class="box-text" placeholder="Upto 240 characters"></textarea>
                 <!-- <ui:inputText aura:id="comments" label="Comments"  placeholder="upto 240 characters" /> -->
-            </div>
-        
-            
+            </div> 
+            <aura:if isTrue="{!v.showError}">
+               <div style="align:right;color:red"><span>Please Provide Comments</span></div>
+            </aura:if>
         </div>   
         <button class="cancel_btn" onclick="{!c.gotoDetail}">Cancel</button>
         <button id="btn" class="submitButton" onclick="{!c.submitFeedback1}">Submit</button>

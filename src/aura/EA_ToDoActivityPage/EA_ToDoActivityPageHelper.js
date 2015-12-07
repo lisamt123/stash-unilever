@@ -58,11 +58,13 @@
     getPrticipantCount : function(cmp){
         var act = cmp.get("v.activity");
   		var action = cmp.get("c.getActivityParticipantCount"); 
+        console.log("Activity ID=>"+ act[0].Id);
         action.setParams({"Activityid" : act[0].Id});
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!==''){
                                     console.log("getParticipantCount Success"+response.getReturnValue());
+                console.log("Participant:"+response.getReturnValue());
                     cmp.set("v.participantCount",response.getReturnValue());
                 
             }

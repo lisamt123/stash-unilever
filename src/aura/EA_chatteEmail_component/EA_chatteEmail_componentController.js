@@ -2,8 +2,8 @@
     chatterfeeditem1 :function(component, event, helper) {
         
         var activity=component.get("v.activityDetail");
-        var aid=component.get("v.activityId");
-        
+        var aid=activity.Id;
+        console.log(aid);
         var label1=$A.get("$Label.c.EA_Chatter1");
         
         var label2=$A.get("$Label.c.EA_Chatter2"); 
@@ -11,7 +11,7 @@
         
         var label4=$A.get("$Label.c.EA_Chatter4");
         
-        var body = label1 +  activity.Name + label2 + activity.Description__c + label3 + label4; 
+        var body = label1 +  activity.Name + label2 +'\n'+activity.Description__c + label3 + label4;   
     
         var action=component.get("c.chatterfeeditem");
         action.setParams({"postbody" : body});
@@ -20,6 +20,7 @@
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!=='') {
                 
+                
             }
         });
         $A.enqueueAction(action);
@@ -27,6 +28,7 @@
         var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
         detailpageEvent.setParams({"actvityid":aid});
         detailpageEvent.fire();
+        alert("Your activity has been shared on your chatter wall");
         
     },
     
@@ -44,7 +46,7 @@
         
         var subject=label1 +'  ' + activity.Name +'  ' +label2;
         component.set("v.MailSubject",subject);
-        var body=label3+' '+activity.Name+' '+label4+ ' ' + activity.Description__c +' '+' '+ label5;
+        var body=label3+' '+activity.Name+' '+label4.replace(/\n/g,'<br/>')+ ' ' + activity.Description__c +' '+' '+ label5;
         
         
         
@@ -73,7 +75,7 @@
     
     gotoDetail : function(component, event, helper) {
               var actvity=component.get("v.activityDetail");
-                var id=actvity.Id; ;
+                var id=actvity.Id; 
         var num=actvity.participant_rating;
         
         var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");

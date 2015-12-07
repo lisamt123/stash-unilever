@@ -4,13 +4,13 @@
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   padding-top: 10px;
-  margin-top: 150px;
+  margin-top: 75px;
   width: 90%;
   margin-left: 5%;
 }
 .THIS .section_acc {
   background: white;
-  height: 200px;
+  height: 225px;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   width: 100%;
@@ -29,7 +29,7 @@
   color: white;
   font-size: 1.2rem;
   font-weight: 300;
-  text-transform: uppercase; 
+  text-transform: uppercase;  
 }
 .THIS .starfill_acc{
   width: 10px;
@@ -44,11 +44,11 @@
   font-weight: bold;
   font-size: 14px;
   line-height: 1.25;
-    margin-top:10px;
+    margin-top:0px;
     width: 60%;
   align-content: center;
   text-align: center;
-  margin-left: 6rem;
+  margin-left: 5rem;
   font-weight:bold;
 }
 .THIS .act_Req_user
@@ -86,7 +86,7 @@
   height: 40px;
   border-radius: 10px;
   background-color: white;
-  margin-top: 230px;
+  margin-top: 245px;
   font-weight: bold;
   font-size: 14px;
   line-height: 1.25;
