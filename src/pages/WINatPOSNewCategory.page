@@ -41,6 +41,8 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
               <apex:inputField value="{!Category__c.Type__c}" />
               <apex:inputField value="{!Category__c.Sort_Order__c}" required="true" />
               <apex:inputField value="{!Category__c.Category_Logo__c}"  />
+              <apex:inputField value="{!Category__c.Category_URL_Link__c}"  />
+              <apex:inputField value="{!Category__c.Category_URL_Link_2__c}"  />
           </apex:pageBlockSection>          
        </apex:pageBlock>
   </apex:form>      

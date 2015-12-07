@@ -188,7 +188,7 @@ private class WINatPOSUtilRemoteActions_Test {
             asset3.Category__c = cat1.Id;
             asset3.Brand__c=brandDove.id;
             asset3.Placement__c = 'Secondary';
-            asset3.POS_Asset_Type__c = 'In Store Execution';
+            asset3.POS_Asset_Type__c = 'Best Practices';
             asset3.Market_Cluster__c = 'Global';
             asset3.Channels__c='Hypermarkets';
             asset3.Status__c = 'Approved';
@@ -844,8 +844,8 @@ private class WINatPOSUtilRemoteActions_Test {
         ts.prepareTestDataEnv();
         Test.startTest();
         //test keyword search where keyword = asset name
-        WINatPOSRemoteActionWrapper response=WINatPOSUtilRemoteActions.search(WinAtPOSUtil.instoreSearch, '','','','','','','','',15,1,true);
-        WINatPOSRemoteActionWrapper responseInvPar=WINatPOSUtilRemoteActions.search(WinAtPOSUtil.instoreSearch, '','','',ts.finalTestAsset.get(0).POS_Asset_Type__c,'','','','',15,1,true);
+        WINatPOSRemoteActionWrapper response=WINatPOSUtilRemoteActions.search(WinAtPOSUtil.bestPracticesSearch, '','','','','','','','',15,1,true);
+        WINatPOSRemoteActionWrapper responseInvPar=WINatPOSUtilRemoteActions.search(WinAtPOSUtil.bestPracticesSearch, '','','',ts.finalTestAsset.get(0).POS_Asset_Type__c,'','','','',15,1,true);
         system.assertEquals('0', response.status, 'method should response with success');
         List<WINatPOSRemoteActionWrapper.SearchWrapper> searchResult=(List<WINatPOSRemoteActionWrapper.SearchWrapper>)response.data;
         List<WINatPOSRemoteActionWrapper.AssetResultWrapper> assetResults=searchResult.get(0).assetSearchResult;
@@ -1002,5 +1002,94 @@ private class WINatPOSUtilRemoteActions_Test {
         
         List<feedItem> fItemLst=[select id FROM FeedItem WHERE Type = 'AdvancedTextPost' and ParentId =:colGroup.id ];
         system.assertEquals(true, fItemLst.size() == 1 , 'There should be created only one announcement in test group');
+    }
+    
+    /*******************************************************************
+    Purpose: Method testing adding sharing
+    Parameters: Void
+    Returns: Void
+    Throws [Exceptions]: [optional]
+    ********************************************************************/
+    static testMethod void testHandleAssetAgenciesShares(){
+    	
+    	List<Asset__c> assetsList = new List<Asset__c>();
+    	
+    	
+    	Group test1 = new Group();
+		test1.Name = 'Win@POS_Test1';
+		insert test1;
+		
+		List<Group> winAtPosPublicGroups = [SELECT Name, Id FROM Group WHERE Name like 'Win@POS%' ORDER BY Name];
+
+        Asset__c asset = new Asset__c();
+        asset.Name = 'Uniq Test Asset';
+        asset.Placement__c = 'Primary';
+        asset.POS_Asset_Type__c = 'Masterbrand';
+        asset.Market_Cluster__c = 'Global';
+        asset.Channels__c = 'Cash & Carry;Convenience';
+        asset.Status__c = 'Approved';
+        asset.Country__c = 'UK';
+        asset.Description__c = 'test';
+        assetsList.add(asset);
+        
+        Test.startTest();
+        	System.assert(winAtPosPublicGroups.size() > 0);
+        	insert assetsList;
+        	
+        	System.assert([SELECT Id FROM Asset__Share].size() == 0);
+        	
+        	assetsList[0].Agency_Edit_Access_Text__c = winAtPosPublicGroups[0].Name;
+        	
+        	update assetsList;
+        	
+        	System.assert([SELECT Id FROM Asset__Share].size() == 1);
+        	System.assert([SELECT Id, AccessLevel FROM Asset__Share].get(0).AccessLevel == 'Edit');
+        
+        Test.stopTest();
+    }
+    
+    /*******************************************************************
+    Purpose: Method testing adding sharing
+    Parameters: Void
+    Returns: Void
+    Throws [Exceptions]: [optional]
+    ********************************************************************/
+    static testMethod void testHandleAssetAgenciesShares2(){
+    	
+    	List<Asset__c> assetsList = new List<Asset__c>();
+    	
+    	Group test1 = new Group();
+		test1.Name = 'Win@POS_Test1';
+		insert test1;
+		
+		Group test2 = new Group();
+		test2.Name = 'Win@POS_Test2';
+		insert test2;
+		
+    	List<Group> winAtPosPublicGroups = [SELECT Name, Id FROM Group WHERE Name like 'Win@POS%' ORDER BY Name];
+    	
+        Asset__c asset = new Asset__c();
+        asset.Name = 'Uniq Test Asset';
+        asset.Placement__c = 'Primary';
+        asset.POS_Asset_Type__c = 'Masterbrand';
+        asset.Market_Cluster__c = 'Global';
+        asset.Channels__c = 'Cash & Carry;Convenience';
+        asset.Status__c = 'Approved';
+        asset.Country__c = 'UK';
+        asset.Description__c = 'test';
+        assetsList.add(asset);
+        
+        Test.startTest();
+			System.assert(winAtPosPublicGroups.size() > 1);
+			
+			assetsList[0].Agency_Read_Access_Text__c = winAtPosPublicGroups[0].Name + ';' + winAtPosPublicGroups[1].Name;
+			
+        	insert assetsList;
+        	
+        	System.assert([SELECT Id FROM Asset__Share].size() == 2);
+        	System.assert([SELECT Id, AccessLevel FROM Asset__Share].get(0).AccessLevel == 'Read');
+        	System.assert([SELECT Id, AccessLevel FROM Asset__Share].get(1).AccessLevel == 'Read');
+        
+        Test.stopTest();
     }
 }

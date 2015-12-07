@@ -48,7 +48,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
@@ -59,7 +58,7 @@
     <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Read</externalSharingModel>
     <fields>
         <fullName>Asset_Group__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -413,9 +412,9 @@ Feed_ID__c=&quot;&quot;, &quot;/img/samples/light_red.gif&quot;, &quot;/img/samp
     </nameField>
     <pluralLabel>Files</pluralLabel>
     <searchLayouts>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
         <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
         <excludedStandardButtons>New</excludedStandardButtons>
-        <excludedStandardButtons>Accept</excludedStandardButtons>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
