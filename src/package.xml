@@ -3666,6 +3666,7 @@
         <members>BET_Operation_Admin</members>
         <members>CB4L_HUB_Admin</members>
         <members>CB4L_Standard_User</members>
+		<members>ApplicationLog</members>
         <name>PermissionSet</name>
     </types>
     <types>
