@@ -1086,7 +1086,7 @@
         <type>Checkbox</type>
     </fields>
 <fields>
-        <fullName>First_Purchase_Dates__c</fullName>
+       <fullName>First_Purchase_Dates__c</fullName>
         <externalId>false</externalId>
         <label>First Purchase Dates</label>
         <summarizedField>OOH_SellOutData__c.OOH_SellOutDate__c</summarizedField>
