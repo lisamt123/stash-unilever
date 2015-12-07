@@ -1911,27 +1911,27 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsCenterController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsCenterControllerHelper</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsDetailWrapperClass</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsGAWrapperClass</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsWrapperClass</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_Test_NewsApp</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_SendToChatterController</apexClass>
@@ -3231,7 +3231,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>NewsArticleFeedController_NewsApp</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>NewsArticleHandler</apexClass>
@@ -22046,17 +22046,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.News_Article_Topics__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.News_Body__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.News_Publish_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22071,17 +22071,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.Related_Links__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.Related_News_Article__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.Share_Count__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22121,7 +22121,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.View_Count__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -30482,7 +30482,7 @@
         <layout>Asset_Scoring__c-Asset Scoring Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Asset_Scoring__c-Asset Scoring Layout</layout>
+        <layout>Asset_Scoring__c-Resource</layout>
         <recordType>Asset_Scoring__c.Asset</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -31144,7 +31144,7 @@
         <recordType>Marketing_Basics__c.Activity</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Marketing_Basics__c-Activity</layout>
+        <layout>Marketing_Basics__c-Resource</layout>
         <recordType>Marketing_Basics__c.Resource</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -31155,7 +31155,7 @@
         <recordType>Marketing_SOW__c.ChildSowMarketing</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Marketing_SOW__c-Copy Marketing SOW Layout</layout>
+        <layout>Marketing_SOW__c-Marketing SOW Layout</layout>
         <recordType>Marketing_SOW__c.ParentSowMarketing</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -31241,11 +31241,11 @@
         <recordType>Oblix_Calculator__c.Box_Range</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Calculator__c-BoxRange</layout>
+        <layout>Oblix_Calculator__c-Oblix Calculator Layout</layout>
         <recordType>Oblix_Calculator__c.Country_Box_Number</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Calculator__c-BoxRange</layout>
+        <layout>Oblix_Calculator__c-Role Rate Card</layout>
         <recordType>Oblix_Calculator__c.Role_Rate</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -31262,23 +31262,23 @@
         <recordType>Oblix_Project_Assets__c.Admin</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Audio Visual</layout>
         <recordType>Oblix_Project_Assets__c.Audio_Visual</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Digital</layout>
         <recordType>Oblix_Project_Assets__c.Digital</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Experiential</layout>
         <recordType>Oblix_Project_Assets__c.Experiential</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Static Imagery</layout>
         <recordType>Oblix_Project_Assets__c.Static_Imagery</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Stimulus Materials %2F Research Requirements</layout>
         <recordType>Oblix_Project_Assets__c.Stimulus_Materials_Research_requirements</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -33023,7 +33023,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>NewsArticleFeed_NewsApp</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>NewsArticle_OverrideView</apexPage>
@@ -34310,6 +34310,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>My_Approvals_Custom</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>News_Centre</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

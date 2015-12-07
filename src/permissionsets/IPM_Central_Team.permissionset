@@ -4848,6 +4848,10 @@
         <apexClass>uw_uploadBCImage</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>IPM_CentralTeam</name>
+    </customPermissions>
     <externalDataSourceAccesses>
         <enabled>false</enabled>
         <externalDataSource>Inside_Unilever_com</externalDataSource>
@@ -33026,6 +33030,10 @@
     </tabSettings>
     <tabSettings>
         <tab>News_Article__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>News_Centre</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>

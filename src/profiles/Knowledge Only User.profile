@@ -30482,7 +30482,7 @@
         <layout>Asset_Scoring__c-Asset Scoring Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Asset_Scoring__c-Asset Scoring Layout</layout>
+        <layout>Asset_Scoring__c-Resource</layout>
         <recordType>Asset_Scoring__c.Asset</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -31140,7 +31140,7 @@
         <recordType>Marketing_Basics__c.Activity</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Marketing_Basics__c-Activity</layout>
+        <layout>Marketing_Basics__c-Resource</layout>
         <recordType>Marketing_Basics__c.Resource</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -31151,7 +31151,7 @@
         <recordType>Marketing_SOW__c.ChildSowMarketing</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Marketing_SOW__c-Copy Marketing SOW Layout</layout>
+        <layout>Marketing_SOW__c-Marketing SOW Layout</layout>
         <recordType>Marketing_SOW__c.ParentSowMarketing</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -31237,11 +31237,11 @@
         <recordType>Oblix_Calculator__c.Box_Range</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Calculator__c-BoxRange</layout>
+        <layout>Oblix_Calculator__c-Oblix Calculator Layout</layout>
         <recordType>Oblix_Calculator__c.Country_Box_Number</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Calculator__c-BoxRange</layout>
+        <layout>Oblix_Calculator__c-Role Rate Card</layout>
         <recordType>Oblix_Calculator__c.Role_Rate</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -31258,23 +31258,23 @@
         <recordType>Oblix_Project_Assets__c.Admin</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Audio Visual</layout>
         <recordType>Oblix_Project_Assets__c.Audio_Visual</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Digital</layout>
         <recordType>Oblix_Project_Assets__c.Digital</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Experiential</layout>
         <recordType>Oblix_Project_Assets__c.Experiential</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Static Imagery</layout>
         <recordType>Oblix_Project_Assets__c.Static_Imagery</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Stimulus Materials %2F Research Requirements</layout>
         <recordType>Oblix_Project_Assets__c.Stimulus_Materials_Research_requirements</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -34103,6 +34103,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Inside_Unilever</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>News_Centre</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

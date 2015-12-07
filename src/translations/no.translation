@@ -9273,6 +9273,10 @@
         <name>Network_Tracking</name>
     </customTabs>
     <customTabs>
+        <label><!-- News Centre --></label>
+        <name>News_Centre</name>
+    </customTabs>
+    <customTabs>
         <label><!-- One View --></label>
         <name>One_View</name>
     </customTabs>
