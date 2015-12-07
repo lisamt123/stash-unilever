@@ -13,6 +13,6 @@ Please find the project specific details
 
 Project Name : {!IPM_Project__c.Name}
 
-https://unilever--cogdev--c.cs7.visual.force.com/apex/IPM_ProjectSetup_New?Pid={!IPM_Project__c.Id}</textOnly>
+{!IPM_Project__c.IPMProjectBaseURL__c}</textOnly>
     <type>html</type>
 </EmailTemplate>

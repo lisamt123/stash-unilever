@@ -13,6 +13,6 @@ Please find the project specific details
 
 Project Name : {!IPM_Project__c.Name}
 
-{!IPM_Project__c.RecordTypeId}</textOnly>
+{!IPM_Project__c.IPMProjectBaseURL__c}</textOnly>
     <type>html</type>
 </EmailTemplate>
