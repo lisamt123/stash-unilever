@@ -43,7 +43,7 @@ global class BET_DataFixReleaseDate_Batch implements Database.Batchable<sObject>
                 update BET_AssetService.updateFileId(assets);
             }catch(ConnectApi.ConnectApiException e){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_DataFixReleaseDate_Batch','execute',
-                'execute ' + assets.get(0) + ' ' + e.getStackTraceString(), e,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
+                'Resource not found : execute ' + assets.get(0) + ' ' + e.getStackTraceString(), e,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
             }catch(Exception e){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_DataFixReleaseDate_Batch','execute',
                 'execute ' + assets.get(0) + ' ' + e.getStackTraceString(), e,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
