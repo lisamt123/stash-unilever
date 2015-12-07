@@ -41,9 +41,7 @@
                 // Get the search matches
                 var matches = response.getReturnValue();
                 // If we have no matches, return
-                if (matches.length === 0){
-                    return;
-                }
+                if (matches.length == 0){return;}
                 // Render the results
                 this.renderLookupComponents(cmp, lookupListItems, matches);
             }else if (state === "ERROR"){
@@ -51,12 +49,13 @@
                 console.log(errors);
             }
         });
-        // Enqueue the action
+        // Enqueue the action                  
         $A.enqueueAction(action);
     },
+    
     /**
      * Render the Lookup List Components
-     */
+     */ 
     renderLookupComponents : function(cmp, lookupListItems, matches)
     {
         // list Icon SVG Path and Class
@@ -69,7 +68,7 @@
         {
             // li element
             newComponents.push(["aura:html", {
-	                "tag" : "li",
+                "tag" : "li",
                 "HTMLAttributes" : {
                     "class" : "slds-lookup__item"
                 }
@@ -77,10 +76,10 @@
             // a element
             newComponents.push(["aura:html", {
                 "tag" : "a",
-                "HTMLAttributes" : {
-                    "id" : cmp.getGlobalId() + '_id_' + matches[i].SObjectId,
-                    "role" : "option",
-                    "onclick" : cmp.getReference("c.select")
+                "HTMLAttributes" : { 
+                    "id" : cmp.getGlobalId() + '_id_' + matches[i].SObjectId, 
+                    "role" : "option", 
+                    "onclick" : cmp.getReference("c.select") 
                 }
             }]);
             // svg component
@@ -135,15 +134,19 @@
         var selectedUsers = cmp.get("v.selectedUsers");
         var maxLimit = cmp.get("v.maxLimit");
         var participantCount = cmp.get("v.participantCount");
-        if (typeof selectedUsers !== 'undefined' ){
-            if(((selectedUsers.length + 1) >= participantCount) || participantCount >= maxLimit){
-                var limitMsgBody = cmp.get('v.errorMessage');
-                cmp.set("v.errorMessage","You can do this activity only with "+ (maxLimit-1) +" colleagues(s).");
+       if (typeof selectedUsers != 'undefined' ){
+         console.log("User List Length:"+ selectedUsers.length);
+          console.log("Participant:"+ participantCount);
+            console.log("maxLimit:"+ maxLimit);
+       		if(((selectedUsers.length + 1) >= participantCount) || participantCount >= maxLimit){
+            var limitMsgBody = cmp.get('v.errorMessage');
+               cmp.set("v.errorMessage","You can do this activity only with "+ (maxLimit-1) +" colleagues(s).");
                 // Hide the Lookup List
-                var lookupList = cmp.find("lookuplist");
-                $A.util.addClass(lookupList, 'slds-hide');
+              var lookupList = cmp.find("lookuplist");
+              $A.util.addClass(lookupList, 'slds-hide');
                 return;
-            }
+        	} 
+          
         }
         // Resolve the Object Id from the events Element Id (this will be the <a> tag)
         var objectId = this.resolveId(event.currentTarget.id);
@@ -181,9 +184,9 @@
         $A.util.addClass(inputElement, 'slds-has-selection');
     },
     selectedItemName : function(cmp,sId){
-        var sMcmp = cmp.get('v.selectedItem');
+        var sMcmp = cmp.get('v.selectedItem'); 
         for(k in sMcmp){
-            if(sMcmp[k]['id'] === sId){
+            if(sMcmp[k]['id']== sId){
                 return sMcmp[k]['name'];
             }
         }
@@ -236,7 +239,7 @@
                 // Update the list body
                 lookupPill.set('v.body', lookupListItemsBody);
            }
-           else
+           else // Report any error
            {
                console.log('Error: Failed to create user pill components.');
            }
@@ -271,7 +274,7 @@
        	var action = cmp.get("c.getRecentlyWorkedWithUsers");
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if(state === 'SUCCESS' && response.getReturnValue()!==''){
+            if(state === 'SUCCESS' && response.getReturnValue()!=''){
                 	var items = response.getReturnValue();
                     cmp.set('v.recentItem',items);
             }

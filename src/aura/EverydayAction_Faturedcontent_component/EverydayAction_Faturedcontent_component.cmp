@@ -29,7 +29,28 @@
         }
     </style>     
      <div class="slds">  
+         <div class="fTitle">Featured Content</div>
+          <table class="com_table">
+              		<tr><td class="com_table_td_pic"><img class="img_profile" src="{!v.content.uerPhotoUrl}" alt="person name" /></td>
+                
+                     <td class="com_table_td_list">   <ul style="list-style:none; word-wrap:break-word">
+                             <li>{!v.content.userName}</li>
+                             <li class="subTitle">{!v.content.createdDate}</li>
+                         </ul></td></tr>
+                    
+              </table>
+            <div class="Para-content"></div>
+                 <div style="text-align:center;width: 90%;margin-left: 5%;">
+                   <p> " Video Description will be displayed here " </p>
+                   <div onclick="{!c.downloadVideo}">Click here to download</div>
+                     <!--<iframe width="230" height="150" src="{!v.content.documentUrl}" frameborder="1" ></iframe> --> 
+                    <!--  <iframe width="230" height="150" src="https://www.youtube.com/embed/QyJ8Gr4dcDA" frameborder="1" ></iframe> --> 
+         </div> 
          
+         <aura:if isTrue="{!v.showdownload}">
+             <iframe width="230" height="150" src="https://unilever--chazwa.cs14.my.salesforce.com/sfc/servlet.shepherd/version/download/068c0000000F8hhAAC?asPdf=false" frameborder="1" ></iframe>
+         </aura:if>
+         <div class="divider"></div>
          <div class="fTitle">Comments</div>
          <aura:iteration items="{!v.comments}" var="comment"> 
              <table class="com_table">

@@ -20,6 +20,8 @@
     <aura:attribute name="themeName" type="boolean" default="true"></aura:attribute> 
     <aura:attribute name="showswipecard" type="boolean" default="true"></aura:attribute>
      <aura:attribute name="detailPage" type="boolean" default="false"></aura:attribute>
+    
+    
     <style>
         .spacer-pull-to-load-more{
         height:100% !important;
@@ -40,25 +42,16 @@
         color: #CFD7E6;
         font-weight: 400;
         }
+        
         .slds .slds-tabs--default__nav {
         height:60px;
-        border-bottom:none;
         }
         .slds .slds-tabs--default {
   			display: block;
   			width: 70%;
   			margin-left: 5%;
 		}
-        @media only screen and (min-device-width: 375px) and (max-device-width: 568px) 
- 		{ 
-        .min-sec{
-   		 width: 90%;
-    	 background: #eef1f6;
-   		 margin-top: 30px;
-   		 margin-left: 5%;
-   		 height: 50%;
-			}
-        }
+        
     </style>
     <div class="slds">
         <div  style="margin-top:20px;">
@@ -142,6 +135,14 @@
                     <aura:if isTrue="{!v.showcontent}">
                         <c:EverydayAction_Faturedcontent_component EAactivityid="{!v.activity.Id}"/>
                     </aura:if>
+                    
+                    <!--<table class="bottom_img"><tr><td><div class="share_img"> <img class="right_arrow" src="/resource/EA_StaticResource/assets/images/comment_90px.svg" alt="tick" onclick="{!c.chatterfeeditem1}"/></div><div class="share_img"> <img class="right_arrow" src="/resource/EA_StaticResource/assets/images/share_90px.svg" alt="tick" onclick="{!c.chatterfeeditem1}"/></div></td>
+      <td><div class="approve_img">   <img class="right_arrow" src="/resource/EA_StaticResource/assets/images/next_90px.svg" alt="tick" onclick="{!c.insertteamrecord1}" /></div></td>
+      </tr>
+      <tr>
+          <td><ui:button label="feedback" press="{!c.callfeedback}"/> </td>
+      </tr>
+      </table>-->
                     <div class="slds-tabs--default">
                         <ul class="slds-tabs--default__nav" role="tablist">
                             <li class="slds-tabs--default__item"  role="presentation"><div class="share_img"> <img class="right_arrow" src="/resource/EA_StaticResource/assets/images/comment_90px.svg" alt="tick" onclick="{!c.callfeedback}"/></div></li>
