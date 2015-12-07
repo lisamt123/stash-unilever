@@ -51,7 +51,7 @@
                           <span>{!$Label.IPM_Essentials}<div class="essentialsddown"></div></span>
                         </a>
                     <ul class="dropdown-menu" role="menu" aria-hidden="true">
-                    <li class="{!IF(activeItem=='coreParameters', 'active', '')}"><a href="{!$Page.IPM_CoreParameters}?id={!projID}"><span>{!$Label.IPM_PROJECTS} {!$Label.IPM_Parameters}</span></a></li>
+                    <li class="{!IF(activeItem=='coreParameters', 'active', '')}"><a href="{!$Page.IPM_CoreParameters}?id={!projID}"><span>{!$Label.IPM_PROJECT} {!$Label.IPM_Parameters}</span></a></li>
                     <apex:outputPanel layout="block" rendered="{!AND(projSpan!='Local',projType!='Operational')}">
                     <li class="{!IF(activeItem=='rolloutPlan', 'active', '')}"><a href="{!$Page.IPM_RolloutPlans}?id={!projID}"><span>{!$Label.IPM_RolloutPlan}</span></a></li>
                     </apex:outputPanel>

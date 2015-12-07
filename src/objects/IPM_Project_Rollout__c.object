@@ -429,6 +429,15 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+     <fields>
+        <fullName>MisAligned_Confirmed_By_Finance_Leader__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To store confirmation from RFL/LFL regarding TLD misalignment</description>
+        <externalId>false</externalId>
+        <label>MisAligned Confirmed By Finance Leader</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
     <fields>
         <fullName>Project_Span__c</fullName>
         <externalId>false</externalId>

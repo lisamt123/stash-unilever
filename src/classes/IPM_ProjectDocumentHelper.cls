@@ -326,7 +326,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                         }
                                         else
                                         {
-                                            projDocSect.IPM_Section_Status__c = '';
+                                            projDocSect.IPM_Section_Status__c = IPM_ConstantUtils.BLANK;
                                         }
                                         
                                        if(!String.isBlank(section.ProjectSpan__c) && !String.isBlank(project.IPMProject_Span__c) && section.ProjectSpan__c.contains(project.IPMProject_Span__c)){
@@ -448,7 +448,7 @@ public with sharing class IPM_ProjectDocumentHelper
                         // Get the source Api Name from which to copy
                         String sourceField = sourceFieldAPIList.get(counter);
                         String targetField = targetFieldAPIList.get(counter);
-                        if(sourceField!=null && !String.isBlank(sourceField) && targetField !=null && !String.isBlank(targetField) && incomingSection.get(targetField) == null)
+                        if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && (incomingSection.get(targetField) == null || incomingSection.get(targetField) == false))
                         {
                             if(currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)
                             {

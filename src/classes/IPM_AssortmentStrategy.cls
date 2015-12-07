@@ -199,16 +199,16 @@ public with sharing class IPM_AssortmentStrategy {
         CName=(channelName).split(',');
         for(Integer i=0;i<CName.size();i++){
             if(CName[i]!=null && String.isNotBlank(CName[i])) {
-				setchannelName.add(CName[i]);
-			}
+        setchannelName.add(CName[i]);
+      }
         }  
         
         String[] CusName=new List<String>();
         CusName=(selectedCUsNames).split(';');
         for(Integer i=0;i<CusName.size();i++){
             if(CusName[i]!=null && String.isNotBlank(CusName[i])) {
-				setselectedCUsNames.add(CusName[i]);
-			}
+        setselectedCUsNames.add(CusName[i]);
+      }
         }  
 
         if(setselectedCUsNames!=null && setselectedCUsNames.size()>0&& setchannelName!=null && setchannelName.size()>0){
@@ -239,8 +239,8 @@ public with sharing class IPM_AssortmentStrategy {
             try{
                 
                 if(lstProDocContent!=null && lstProDocContent.size()>0) {
-					insert lstProDocContent;
-				}
+          insert lstProDocContent;
+        }
                 
             }
             catch(DmlException ex){
@@ -347,8 +347,8 @@ public with sharing class IPM_AssortmentStrategy {
         }
         try{
             if(updateAssort!=null) {
-				update updateAssort;   
-			}
+        update updateAssort;   
+      }
         }
         catch(DmlException ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));

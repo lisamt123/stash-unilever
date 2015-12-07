@@ -16,14 +16,15 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
      public String ListCountries {get;set;}// this is the MCO collected 
      public List<SelectOption> options = new List<SelectOption>();// selectlist options where the list of MCO are added 
      global static String SelectedCountry{get;set;}// selected MCO is copied to this variable.
-     public String Sustainability{get;set;} // this variable stores sustainability period.
+     public String BI{get;set;}// Project BI Value.
+     public String sustainability{get;set;} // this variable stores sustainability period.
      public String projectId{get;set;}// this stores IPM_Project__c record Id.
      public IPM_Project__c IpmProject {get;set;}// stores the IPM_Project__c records.
      global String span{get;set;}// Store the span of the project.
      public Boolean flag{get;set;} // used to render the data on Page.
      public Boolean showdata{get;set;} // used to render the List of MCO on Page.
      public Boolean isEditable{get;set;}//for security
-     global String projectType{get;set;}
+     global String projectType{get;set;}// project type 
      
      //Constructor.
     /**********************************************************************
@@ -34,6 +35,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
     *************************************************************************/
      public IPM_FinancialCopyPasteGrid (){
         //IE-9 Fix
+        super();
         IpmProject = new IPM_Project__c();
         isEditable=false;
         Apexpages.currentPage().getHeaders().put(IPM_ConstantUtils.UA_COMPATIBLE, IPM_ConstantUtils.IE_EDGE);// keep it compatible with IE.
@@ -64,10 +66,13 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
      public PageReference Query() { 
         try{
                 String qdisplayname;
-                IpmProject = [Select Sustainability_Period__c, IPM_Parent_Project__c,IPM_Parent_Project__r.Name,Id, IPMProject_Span__c, IPM_Project_Logo__c, IPM_Category_Icon__c, IPM_SourceProjectType__c, IPM_Project_Type__c, IPM_CompanyCardText__c, IPM_Phase__c, IPM_Bosscard_Status__c,IPM_GateKeeping_Model__c ,IPM_Project_Name__c , IPM_Category_Text__c,IPM_Brand_Positioning__c, IPM_Bosscard__c  From IPM_Project__c where Id =:projectId limit 1];
-                Sustainability = IpmProject.Sustainability_Period__c;
+                ipmProject = [Select Sustainability_Period__c, BI__c,IPM_Parent_Project__c,IPM_Parent_Project__r.Name,Id, IPMProject_Span__c, IPM_Project_Logo__c, IPM_Category_Icon__c, IPM_SourceProjectType__c, IPM_Project_Type__c, IPM_CompanyCardText__c, IPM_Phase__c, IPM_Bosscard_Status__c,IPM_GateKeeping_Model__c ,IPM_Project_Name__c , IPM_Category_Text__c,IPM_Brand_Positioning__c, IPM_Bosscard__c  From IPM_Project__c where Id =:projectId limit 1];
+                sustainability = IpmProject.Sustainability_Period__c;
                 span = IpmProject.IPMProject_Span__c;
-                projectType = IpmProject.IPM_Project_Type__c;
+                projectType = ipmProject.IPM_Project_Type__c;
+                BI = ipmProject.BI__c;
+                if(BI == null || BI == '')
+                	BI = IPM_ConstantUtils.smallBI;
                 String soql = 'Select Id, RecordTypeId, Global_Project_Id__c, Financial_External_ID__c, Display_Name__c From IPM_Financial__c  where RecordType.Name = \'Default\' ';
                 if(span == IPM_ConstantUtils.SpanGlobal || projectType == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
                         soql = soql +' and Global_Project_Id__c = \''+String.escapeSingleQuotes(projectId)+'\'';
@@ -436,7 +441,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
         
         }
         
-        /***************************************************************************************************************
+    /***************************************************************************************************************
     *  @Description: sets the field values of the financial year record..
     *  @name : setFieldValues
     *  @param : input String.
@@ -464,7 +469,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
         } 
         return fieldValue;
     }
-         /***************************************************************************************************************
+    /***************************************************************************************************************
     *  @Description: Prepares the records value based on row.. ..
     *  @name : assignVolumevaluesGlobal
     *  @param : mapfields, financial years, volume-- value to be updated.
@@ -497,7 +502,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                         
                 return fy;
         }
-         /***************************************************************************************************************
+    /***************************************************************************************************************
     *  @Description: Prepares the records value based on row.. ..
     *  @name : assignVolumevaluesLocal
     *  @param : mapfields, financial years, volume-- value to be updated.

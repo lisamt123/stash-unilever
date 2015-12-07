@@ -144,8 +144,8 @@
                                     </apex:outputPanel>
                                     <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!riskError}">
                                         <span class="errTitle">{!$Label.IPM_Risks}</span>
-                                        <span class="errList">{!$Label.IPM_Please_Fill_Comments_In} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!riskSectionId}" target="_top">{!$Label.IPM_Risk_Section}</a></span> 
-                                    </apex:outputPanel>
+                                        <span class="errList">{!$Label.IPM_Please_complete_the_Risk_mitigation_plan_before_proposing_gate_document} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!riskSectionId}" target="_top">{!$Label.IPM_Risk_Section}</a></span> 
+                                    </apex:outputPanel> 
                                     <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!cmiError}">
                                         <span class="errTitle">{!$Label.IPM_CMI}</span>
                                         <span class="errList">{!$Label.IPM_CMI_Fill} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!cmiSectionId}" target="_top">{!$Label.IPM_CMI_Section}</a></span> 

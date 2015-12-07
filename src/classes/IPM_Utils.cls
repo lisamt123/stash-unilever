@@ -95,6 +95,10 @@ public without sharing class IPM_Utils {
     public static String Finance = 'Finance';
     public static String IPM_Central_Team = 'IPM_Central_Team';
     public static String IPM_Business_Partners = 'IPM_Business_Partners';
+    public static String IPM_MarketReadyGate = 'Market Ready Gate';
+    public static String IPM_MarketDeploymentGate = 'Market Deployment Gate';
+    public static String IPM_Stopped = 'Stopped';
+    public static String IPM_PLE = 'PLE';
 
     //IPM_Milestone
     public static Set<String> mileNames=new Set<String>{'Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval',
@@ -170,7 +174,7 @@ public without sharing class IPM_Utils {
     //All the phases & their respective Gates
     public static Map<String, String> phaseGateDocumentMap = new Map<String, String>{Ideas => Charter, Feasibility => Contract,
                                                                                       Capability => MarketReady, MarketReady => MarketDeployment,
-                                                                                      MarketDeployment => notapplicable,'PLE' => notapplicable,'Stopped' => notapplicable};
+                                                                                      MarketDeployment => notapplicable,IPM_PLE => notapplicable,IPM_Stopped => notapplicable};
     
     public static final String FORUPDATE_STRING = ' FOR UPDATE ';
     public static final String LIMIT_STRING = ' LIMIT 50000 ';
@@ -1287,4 +1291,39 @@ public without sharing class IPM_Utils {
             return true;
         }
     }
+    
+    public static Boolean validateTriggerSkip()
+    {
+        if(Trigger.isExecuting)
+        {
+	        string CSkey=IPM_ConstantUtils.BLANK;
+	        List<sObject> sobjectList = Trigger.New;
+	        if(Trigger.isInsert)
+	        {
+	            if(Trigger.New!=null && !Trigger.New.isEmpty())
+	            {
+	                sobjectList = Trigger.New;
+	                CSkey = sobjectList[0].getSObjectType().getDescribe().name.replace('__c','')+'Trigger';
+	            }   
+	        }
+	        else
+	        {
+	            if(Trigger.old != null && !Trigger.old.isEmpty())
+	            {
+	                sobjectList = Trigger.Old;
+	                CSkey = sobjectList[0].getSObjectType().getDescribe().name.replace('__c','')+'Trigger';
+	            }
+	        }
+	        
+	        if(String.isNotBlank(CSkey))
+	        {
+	            IPM_Trigger_Router__c triggerRouter = IPM_Trigger_Router__c.getInstance(CSkey); 
+	            if(triggerRouter!=null && triggerRouter.is_Disabled__c)
+	            {
+	                return true;
+	            }
+	        }  
+        } 
+        return false;
+    } 
 }

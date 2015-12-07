@@ -30,6 +30,8 @@ private class IPM_ChatterFeedHelper_Test {
     private static User PL;
     private static User deputyPL;
     private static User financeMember;
+    private static User technicalPL;
+    private static User gateKeeper; 
     private static List<User> userList;
     private static Map<Id,IPM_Project__c> newProjectMap = new Map<Id,IPM_Project__c>();
     private static Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
@@ -71,14 +73,11 @@ private class IPM_ChatterFeedHelper_Test {
          deputyPL = IPM_TestFactory_Helper.createUser(False);
          deputyPL.managerid  = managerOfDeputyPL.Id;
          
-         User technicalPL = IPM_TestFactory_Helper.createUser(False);
+         technicalPL = IPM_TestFactory_Helper.createUser(False);
          
-           
-         User gateKeeper = IPM_TestFactory_Helper.createUser(False);
-         
+         gateKeeper = IPM_TestFactory_Helper.createUser(False);
          
          financeMember = IPM_TestFactory_Helper.createUser(False);
-         
          
          User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
          globalUser.email = 'globalUser@unilever.test.com';
@@ -115,12 +114,6 @@ private class IPM_ChatterFeedHelper_Test {
         insert globalprojects;
         projectMap.put(globalprojects[0].Id,globalprojects[0]);
         
-        iDs.clear();
-        for(IPM_Project__c eachProj : globalprojects) {
-            iDs.add(eachProj.Id);
-        }
-        System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs]);
-        
         lstProjects.addAll(globalprojects);
         
         //Create regional rpojects
@@ -150,12 +143,7 @@ private class IPM_ChatterFeedHelper_Test {
         IPM_ProjectOwnerChangeQueue.PROJECT_QUEUE_CONTEXT_STARTED = true;
         
         insert lstRegionalProjects;
-        iDs.clear();
-        for(IPM_Project__c eachProj : lstRegionalProjects) {
-            iDs.add(eachProj.Id);
-        }
-        System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs]);
-        
+       
         newProjectMap.put(lstRegionalProjects[0].Id,lstRegionalProjects[0]);  
         
         //Create local projects
@@ -185,15 +173,17 @@ private class IPM_ChatterFeedHelper_Test {
         IPM_ProjectOwnerChangeQueue.PROJECT_QUEUE_CONTEXT_STARTED = true;
         
         insert lstLocalProjects; 
-        iDs.clear(); 
-        for(IPM_Project__c eachProj : lstLocalProjects) {
-            iDs.add(eachProj.Id);
-        }
-        System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs]);
-        
+      
         lstProjects.addAll(lstRegionalProjects);
         lstProjects.addAll(lstLocalProjects);
+        
+        lstProjects =[Select Id,Name,IPM_Project_Name__c,IPM_Phase__c,IPM_Temporary_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c,
+            IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Finance_Member__c,
+            IPM_Technical_Project_Leader__c,IPM_Project_Type__c,IPM_Company_Card__c,IPMProject_Span__c,
+            IPM_Target_Launch_Dates__c,IPM_Parent_Project__c from IPM_Project__c where id in:lstProjects];
+        
         System.assertEquals(15, lstProjects.size(),PROJECT_INSERTED_ASSERTION);
+        
         for(integer i=0;i<5;i++)
         { 
             integer j=i+1;
@@ -273,7 +263,10 @@ private class IPM_ChatterFeedHelper_Test {
            IPM_TestFactory_Helper.makeUserInactive(deputyPL);
            IPM_TestFactory_Helper.makeUserInactive(financeMember);  
            IPM_TestFactory_Helper.makeUserInactive(PL); 
+           IPM_TestFactory_Helper.makeUserInactive(technicalPL);  
+           IPM_TestFactory_Helper.makeUserInactive(gateKeeper); 
            System.assertEquals(financeMember.IsActive,false,'financeMember is Checked');
+         
            List<User> inactiveUsers= new List<User>();
            inactiveUsers.add(deputyPL);
            inactiveUsers.add(financeMember);

@@ -274,9 +274,17 @@ public with sharing class IPM_TaskCompCtrl extends AbstractStandardSetExtension{
         
         for(IPM_Task__c eachTask : (List<IPM_Task__c>)recordList ) 
         {
-            if(!phaseTaskComp.isEmpty() && String.IsNotBlank(eachTask.IPM_Phase__c))
+            if(!phaseTaskComp.isEmpty())
             {
-                Boolean isEditable = phaseTaskComp.get(eachTask.IPM_Phase__c) ? true :false ;
+              Boolean isEditable = false;
+              if(String.IsNotBlank(eachTask.IPM_Phase__c))
+              {
+                isEditable = phaseTaskComp.get(eachTask.IPM_Phase__c) ? true :false ;
+              }
+              else{
+                  isEditable = true;
+              }
+              
                 if(eachTask.IPM_Completed__c) {
                     wrapperRecordList.add(new sObjectPaginationWrapper(eachTask, true,isEditable,true));
                 }

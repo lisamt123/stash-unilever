@@ -466,7 +466,7 @@
                                     <div class="container-fluid">
                                         <div class="row">    
                                             <div class="col-sm-12">
-                                                <span class="skipDesc">{!$Label.IPM_Remove_CMI}</span>
+                                                <span class="skipDesc">{!$Label.IPM_Remove_Channel}</span>
                                                 <span>{!$Label.IPM_CMI_NOTE}</span>
                                             </div>
                                             <div class="deleteButtoncontainer txtAlignright pull-right"> 

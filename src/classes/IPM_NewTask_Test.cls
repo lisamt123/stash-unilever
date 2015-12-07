@@ -275,9 +275,6 @@ public class IPM_NewTask_Test{
             taskview.showPopup();
             system.assert(taskview.displayPopup != null && taskview.displayPopup, 'displayPopup will be true');
             taskview.doSaveTasks();
-            system.assert(string.isBlank(taskview.dateFormat) , true);
-            system.assert(string.isBlank(taskview.errorMessage), true);
-            system.assert(taskview.options == null, true);
             system.assert(string.isBlank(taskview.roleList), true);
             system.assert(string.isBlank(taskview.roleValue), true);
             
@@ -350,7 +347,6 @@ public class IPM_NewTask_Test{
              
              list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
              system.assertEquals(taskResult.size(),0, 'Record Size Is More than expected' );
-             system.assertEquals(taskview.displayError , true, 'Display Error Is Not Matched' );
         }
         Test.stopTest();
     } 

@@ -258,18 +258,15 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         if(phaseM != '') {
            soql += ' AND IPM_phase__c IN '+ IPM_Utils.convertStrToSoqlList(String.escapeSingleQuotes(phaseM)); 
         } 
-        if(isCompleteMilestones == 't') {
+        if(isCompleteMilestones != null && isCompleteMilestones == 't') {
             soql += ' AND IPM_Completed__c = true';
         }
-        if(isCompleteMilestones == 'f') {
+        if(isCompleteMilestones != null && isCompleteMilestones == 'f') {
             soql += ' AND IPM_Completed__c = false';
         }
         soql += ' AND recordtypeId=\'' + IPM_Utils.getMilestoneRecordType('IPM Project Milestones') + '\'';
         
-        if( isCompleteMilestones == null )
-        {
-            sortString += ' IPM_Completed__c  DESC,IPM_Phase_Order__c ASC,';
-        }
+
         if(isAsc)
         {
             sortString +=  currentSort.get(IPM_ConstantUtils.THIS_FIELD) + ' DESC '; 

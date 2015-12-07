@@ -17,6 +17,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     @TestVisible private Set<String> setLocalProjectNames {get; set;} //Set of Local Projects which have already been created for this project hierarchy
     @TestVisible private String[] MCOfilters;
     
+    public boolean isRolloutCall{get; set;}
     public Map<Id,Map<Id,List<IPM_Country__c>>> projectTolocalRolloutToCountryMap{get;set;}
     public Map<Id,Map<Id,List<IPM_Country__c>>> rolloutTolocalRolloutToCountryMap{get;set;}
     public List<IPM_Company_Card__c> lstUserLocalCompanyCards{get;set;} // local company card
@@ -67,9 +68,11 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     public IPM_RolloutPlansTableController()
     {
+    	IPM_IECompatible.ieFix();//Added for compatibility fix
         isPLAllocated = false; 
         isEditMode = false;
         isFLAllocated=false;
+	    isRolloutCall=true;
         projectTolocalRolloutToCountryMap = new Map<Id,Map<Id,List<IPM_Country__c>>>();
         rolloutTolocalRolloutToCountryMap = new Map<Id,Map<Id,List<IPM_Country__c>>>();
 

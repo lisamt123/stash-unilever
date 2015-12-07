@@ -887,6 +887,7 @@ public class IPM_ConstantUtils {
    public static final String Colon = ':';
    public static final Integer intialVal = 0;
    public static final Integer MaxLimit = 49999;
+   public static final String smallBI = 'Small';
    //row
    public static final Integer row_seven = 7;
    public static final Integer row_twentyseven = 27;
@@ -1166,5 +1167,11 @@ public class IPM_ConstantUtils {
    public static final String TLD_UPDATED_FROM_ROLLOUT ='Rollout';
    public static final String TLD_UPDATED_FROM_PROJECT ='Project';
    
-   
+   // local project notifications (REQ02445 & REQ02446)
+   public static final String EMAIL_NOTIFICATION_BODY ='Dear {Gate Keeper}, The Target Launch Date and/or Business Case for {Project Name} have been modified post-{Phase} gate.';
+   public static final String EMAIL_NOTIFICATION_SUBJECT ='Target Launch Date and/or Business Case updated';
+   //DEF2339 & DEF2344 fix
+   public static final String CHARTER_GATE_APPROVAL_MILESTONE = 'Charter Gate Approval';
+   public static final String CONTRACT_GATE_APPROVAL_MILESTONE = 'Contract Gate Approval';
+   public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
 }

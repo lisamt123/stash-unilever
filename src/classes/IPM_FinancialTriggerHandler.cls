@@ -18,11 +18,12 @@ public with sharing class IPM_FinancialTriggerHandler
     private Map<String, String> mapRegionalConsolidatedFinancials; //Map of all relevant REGIONAL Consolidated IPM_Financial__c object records
 
     private Set<String> setFinancialExternalIds; //Set of Financial External Ids
-    
+    private List<IPM_Financial__c> financialMisalignQuery;
     private static final String Y_LABEL = 'Y'; //Innovation Year Label Prefix
     private static final String UPDATE_FINANCIAL_ACTION_STANDARD_STR='updateFinancialActionStandard';
     private static final String CLASS_NAME = IPM_FinancialTriggerHandler.Class.getName(); //Class Name for Exception Logging
     
+    private static Boolean IS_RECURSSIVE = false;
     
     /*******************************************************************************************************
     * @description          Method to handle after insert Trigger context for IPM_Financial__c object
@@ -206,14 +207,28 @@ public with sharing class IPM_FinancialTriggerHandler
     */
     public void onAfterUpdate(Map<Id, IPM_Financial__c> mapNewFinancials, Map<Id, IPM_Financial__c> mapOldFinancials)
     {
+        if(IS_RECURSSIVE) {
+            return;
+        }
+        IS_RECURSSIVE = true;
         
-       List<IPM_Financial__c> IPM_FinancialQueryList =[Select Id, Name, Misaligned__c, MisalignmentDateTime__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, 
-                        Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, 
-                        Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c,Volume_Unit_Difference__c,NPV_Difference__c, IRR_Difference__c,
-                         Payback_Difference__c,CAPEX_Difference__c,BIC_Difference__c,Total_FY_Difference__c from IPM_Financial__c 
-                         where id in: mapNewFinancials.keyset() and Recordtype.Name =: 'Default' and  MisalignmentDateTime__c =: System.now() limit: IPM_ConstantUtils.MaxLimit];
-        List<IPM_Project__c> updatedProjects;
-       for(IPM_Financial__c financial : IPM_FinancialQueryList){
+       List<IPM_Financial__c> lstFinancials = [ Select Id, Name, Misaligned__c, MisalignmentDateTime__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name,Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c,Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c,Volume_Unit_Difference__c,NPV_Difference__c, IRR_Difference__c, Payback_Difference__c,CAPEX_Difference__c,BIC_Difference__c,Total_FY_Difference__c, 
+                                                        RecordType.Name, Financial_External_ID__c, Charter_Approved__c, Contract_Approved__c, MR_Approved__c, MD_Approved__c, Copy_Global_to_Regional__c, Copy_Global_to_Local__c, Copy_Local_to_Regional__c, Copy_Regional_to_Local__c,  Global_External_Id__c, Regional_External_Id__c, Volume_Unit_Global__c, Volume_Unit_Regional__c, Volume_Unit_Local__c, Project_Sustainability_Period__c, 
+                                                    ( SELECT Id, External_Id__c, Charter_Approved__c, Contract_Approved__c, MR_Approved__c, MD_Approved__c, Copy_Global_to_Regional__c, Copy_Global_to_Local__c, Copy_Local_to_Regional__c, Copy_Regional_to_Local__c, Volume_Unit_Global__c, Volume_Unit_Regional__c, Volume_Unit_Local__c 
+                                                      FROM IPM_Financial_Years__r)
+                                                from IPM_Financial__c 
+                                                where id in: mapNewFinancials.keyset() limit: IPM_ConstantUtils.MaxLimit ];
+       financialMisalignQuery = new List<IPM_Financial__c>();
+        for(IPM_Financial__c ipmFinancials :lstFinancials) {
+        	system.debug('//>boolean' + ipmFinancials.Misaligned__c);
+            ///if(ipmFinancials.RecordType.Name==IPM_ConstantUtils.DEFAULT_FINANCIAL_RT && ipmFinancials.MisalignmentDateTime__c == System.now(){
+            /*DEF2168 Fix: Above condition will never eval to true as there is always a time difference between record update and system.now()*/
+            if(ipmFinancials.RecordType.Name==IPM_ConstantUtils.DEFAULT_FINANCIAL_RT && ipmFinancials.Misaligned__c) { 
+                financialMisalignQuery.add(ipmFinancials);
+            }
+        }
+               List<IPM_Project__c> updatedProjects;
+       for(IPM_Financial__c financial : financialMisalignQuery){
           updatedProjects = new List<IPM_Project__c>();
             IF(( financial.Volume_Unit_Difference__c + financial.NPV_Difference__c + financial.IRR_Difference__c + financial.Payback_Difference__c + financial.CAPEX_Difference__c + financial.BIC_Difference__c + financial.Total_FY_Difference__c ) > 0){
                 if(financial.Local_Project__c != null &&  financial.Misaligned__c){
@@ -541,6 +556,7 @@ public with sharing class IPM_FinancialTriggerHandler
     */
     
     private void consolidateFinancialRecord(IPM_Financial__c newFinancial, IPM_Financial__c newConsolidatedFinancial, IPM_Financial__c oldFinancial, IPM_Financial__c oldConsolidatedFinancial){
+        processConsolidation(newFinancial, newConsolidatedFinancial, oldFinancial, oldConsolidatedFinancial, IPM_ConstantUtils.FIELD_LITERAL_IRR);
         processConsolidation(newFinancial, newConsolidatedFinancial, oldFinancial, oldConsolidatedFinancial, IPM_ConstantUtils.FIELD_LITERAL_BIC);
         processConsolidation(newFinancial, newConsolidatedFinancial, oldFinancial, oldConsolidatedFinancial, IPM_ConstantUtils.FIELD_LITERAL_CAPEX);
         processConsolidation(newFinancial, newConsolidatedFinancial, oldFinancial, oldConsolidatedFinancial, IPM_ConstantUtils.FIELD_LITERAL_NPV);
@@ -684,12 +700,12 @@ public with sharing class IPM_FinancialTriggerHandler
             newFinList=new List<IPM_Financial__c>();
             projectIds=new Set<Id>();
             for(IPM_Financial__c newFin:mapNewFinancials.values()){
-                if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
+                if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE){// && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
                     newFinList.add(newFin);
                     projectIds.add(newFin.Parent_Project__c);
                     system.debug('/// in projids');
                 }
-                if(newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
+                if(newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE){// && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
                     newFinList.add(newFin);
                     projectIds.add(newFin.Parent_Project__c);
                 }

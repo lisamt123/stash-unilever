@@ -113,10 +113,11 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             if(associatedProjectMap.containsKey(regionalProjectId))
             {
                 IPM_Project__c project = associatedProjectMap.get(regionalProjectId);
+
                 if(newfinancial.Charter_Approved__c)
                 {
                     if( (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && project.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.ROLLOUT_COPYOVER_ELIGIBLE_PHASE) || 
-                        project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL  )
+                        project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )
                     {
                         newfinancial.Copy_Global_to_Regional__c = true;
                     }
