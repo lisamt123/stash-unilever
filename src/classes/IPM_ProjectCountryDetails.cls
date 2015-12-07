@@ -263,7 +263,7 @@ public with sharing class IPM_ProjectCountryDetails{
     }
    
     /****************************************************************************
-    @Description : Set Sync flag on projects. Sync flag distinguishes which projects should be synced to EcoDesign
+    @Description : Set Sync status on projects. Sync status distinguishes which projects should be synced to EcoDesign
     When countries get updated with lookup value of either Global/Regional/Local Projects
     only then the corresponding projects will be synced to EcoDesign
     @Params OldCountryValuesMap:  Map of Trigger.Old passed from trigger  
@@ -371,8 +371,8 @@ public with sharing class IPM_ProjectCountryDetails{
     
     
     /****************************************************************************
-    @Description : Set Sync Project flag on a project
-    Sync flag distinguishes which projects/Countries should be synced to EcoDesign 
+    @Description : Set Sync Project status as ready on a project
+    Sync status distinguishes which projects/Countries should be synced to EcoDesign 
     @Params triggeredCountries:   List of Trigger.new countries passed from the trigger to process
     *****************************************************************************/
     public static void setSyncProjAftInsert(List<IPM_Country__c> triggeredCountries){
@@ -456,7 +456,7 @@ public with sharing class IPM_ProjectCountryDetails{
     }
     
     /****************************************************************************
-    @Description : Set Sync project Flags on Projects after countries are deleted
+    @Description : Set Sync project status as ready on Projects after countries are deleted
     @Params triggeredCountries:   List of Trigger.new countries passed from the trigger to process
     *****************************************************************************/
     public static void setSyncProjectAftDelete(List<IPM_country__c> deletedCountries){
@@ -488,7 +488,6 @@ public with sharing class IPM_ProjectCountryDetails{
         if(projIdSet!=null && !projIdSet.isEmpty()){
             for(String projId : projIdSet){
                 if(projectIdToSyncMap.get(projId)){
-                    //toUpdateProjList.add( new IPM_Project__c(Id = projId, Sync_Countries__c = TRUE, Project_Countries__c =  projCountryCodesMap.get(projId) ));
                     if(projCountryCodesMap != null && !projCountryCodesMap.isEmpty() && projCountryCodesMap.get(projId) != null){
                         toUpdateProjList.add( new IPM_Project__c(Id = projId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(projId) ));
                     }
@@ -577,7 +576,7 @@ public with sharing class IPM_ProjectCountryDetails{
 
         if(EICountriesSet != null && !EICountriesSet.isEmpty()){
             for(IPM_Country__c incomingCountry : incomingCountries){
-                //Check if the incoming country Name is present in the MasterData Custom setting (IPM_USLP_Countries__c)
+                //Check if the incoming country Name is present in the Masterdata custom object (IPM_USLP_Country__c)
                 if(EICountriesSet != null && !EICountriesSet.isEmpty() && String.isNotBlank(String.valueOf(incomingCountry.Country_Name__c)) && EICountriesSet.contains(incomingCountry.Country_Name__c.toLowerCase())){
                     incomingCountry.IS_EI_Country__c = TRUE;
                 }

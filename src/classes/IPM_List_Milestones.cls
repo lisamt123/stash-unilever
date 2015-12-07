@@ -80,7 +80,7 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
         isAsc = false;
         warningMessages = new List<String>();
         //this field will actually define what is the current sorting column applies to, default is Project name
-        currentSort = new Map<String, String>{IPM_ConstantUtils.THIS_FIELD => 'IPM_Due_Date__c'};
+        currentSort = new Map<String, String>{IPM_ConstantUtils.THIS_FIELD => 'IPM_Phase_Order__c'};
         projectId = ApexPages.currentPage().getParameters().get('id');
         if(projectId =='' || projectId ==null){
             projectId = ApexPages.currentPage().getParameters().get('Pid');
