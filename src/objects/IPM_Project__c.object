@@ -3441,7 +3441,7 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>Original</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Rollout</fullName>
