@@ -1,0 +1,79 @@
+.THIS .menuIcons{
+	height: 33px;
+}
+.THIS .menuSectionBar {
+    display: table;
+    height: 120px;
+    width: 100%;
+    margin-bottom: 3px;
+    border-left: solid 3px #F5F6F7;
+    border-right: solid 3px #F5F6F7;
+    font-weight: bold;
+    font-size: 13px;
+    color: #4E6990;
+}
+.THIS.largePadding {
+    padding: 30px;
+}
+.THIS .menuSectionIcon {
+    width: 50%;
+    /*border-radius: 5px;*/
+    text-align:center;
+    display: table-cell;
+    vertical-align: middle;
+    background-color: #FFFFFF;
+}
+.THIS .menuSectionSeperator {
+    width: 3px;
+}
+.THIS .menuText {
+    padding-top: 7px;
+}
+.THIS.map {
+    height: 250px;
+    /*width: 100%;*/
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.THIS.workplaceBannerPannel { 
+    position: relative; 
+    width: 100%; 
+}
+.THIS .workplaceBannerImage {
+    width: 100%;
+    height: 200px;    
+}
+.THIS h3 { 
+    position: absolute; 
+    top: 130px;
+    left: 20px;
+    font-size: 20px;
+    color: #FFFFFF;
+    font-weight: bold;
+}
+ .THIS .changeLocationBar {
+    border-radius: 15px;
+    background: #1CA9DE;
+    font-size: 14px !important;
+    height: 42px;
+    overflow: visible;    
+    font-weight: bold;
+}
+.THIS .changeLocationPlace {
+    background-color: #1CA9DE;
+    float: left;
+    border-radius: 15px;
+    height: 100%;    
+    padding: 10px;
+    padding-top: 11px;
+    color: #FFFFFF;
+}
+.THIS .changeLocationButton {
+    background-color: #1767A7;
+    float: right;
+    border-radius: 15px !important;
+    height: 100%;    
+    padding: 10px;
+    padding-top: 11px;
+    color: #FFFFFF;
+}
