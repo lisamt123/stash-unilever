@@ -130,46 +130,16 @@ private class BET_CommonServiceTest {
 
     
     static testMethod void testMethodNine(){
-        BET_ManageMembersSettings__c betMembersSettings = new BET_ManageMembersSettings__c();
-
-        betMembersSettings.Name = 'BETManageMembersConfig';
-        betMembersSettings.ManagerRole__c = 'Manager'; 
-        betMembersSettings.MemberRole__c = 'Member';
-        betMembersSettings.ExternalRole__c = 'External Agency User';
-        betMembersSettings.ApprovedStatus__c = 'Approved';
-        betMembersSettings.DeniedStatus__c = 'Denied';
-        betMembersSettings.ToolkitAccessLevel__c = 'Toolkit Experience (Toolkit only)';
-        betMembersSettings.ExternalAccessLevel__c = 'External View (Chatter group only)';
-        betMembersSettings.InternalUserRecordType__c = 'InternalUser';
-        betMembersSettings.BET_Member_Object_Name__c = 'uw_BET_Team_Member__c';
-
-        insert betMembersSettings;        
-        BET_TestingHelper.BET_TestingData wrap = BET_TestingHelper.initBET('Test BET3' + system.now(), true);
-        User usr = BET_TestingHelper.getDefaultNotMember();
-
-        System.assertEquals(0, [SELECT count() FROM uw_BET_Team_Member__c WHERE BET__c =: wrap.BET.Id AND Team_Member__c =: usr.Id]);
-        System.assertEquals(0, [SELECT count() FROM CollaborationGroupMember WHERE MemberId =: usr.Id and CollaborationGroupId =: wrap.BET.Studio_Chatter_Group__c]);
-        System.assertEquals(0, [SELECT count() FROM uw_BET__Share WHERE UserOrGroupId =: usr.Id AND ParentId =: wrap.BET.Id]);
-        System.assertEquals(0, [SELECT count() FROM  EntitySubscription WHERE SubscriberId =: usr.Id AND ParentId =: wrap.BET.Id]);
-        System.runAs(usr){
-            BET_CommonService.checkAccessForPublicBET(wrap.BET.Id, usr.Id);
-        }
-        System.assertEquals(0, [SELECT count() FROM uw_BET_Team_Member__c WHERE BET__c =: wrap.BET.Id AND Team_Member__c =: usr.Id]);
-        System.assertEquals(0, [SELECT count() FROM CollaborationGroupMember WHERE MemberId =: usr.Id and CollaborationGroupId =: wrap.BET.Studio_Chatter_Group__c]);
-        System.assertEquals(0, [SELECT count() FROM uw_BET__Share WHERE UserOrGroupId =: usr.Id AND ParentId =: wrap.BET.Id]);
-        System.assertEquals(0, [SELECT count() FROM  EntitySubscription WHERE SubscriberId =: usr.Id AND ParentId =: wrap.BET.Id]);
-
         
-        wrap.BET.sharing__c = 'Public';
-        update wrap.BET;
+        uw_BET__c bet = BET_TestUtils.getTestBet();
+        bet.Sharing__c = 'Public';
+        insert bet;
 
-        System.runAs(usr){
-            BET_CommonService.checkAccessForPublicBET(wrap.BET.Id, usr.Id);
-        }
-        System.assertEquals(1, [SELECT count() FROM uw_BET_Team_Member__c WHERE BET__c =: wrap.BET.Id AND Team_Member__c =: usr.Id]);
-        System.assertEquals(1, [SELECT count() FROM CollaborationGroupMember WHERE MemberId =: usr.Id and CollaborationGroupId =: wrap.BET.Studio_Chatter_Group__c]);
-        System.assertEquals(1, [SELECT count() FROM uw_BET__Share WHERE UserOrGroupId =: usr.Id AND ParentId =: wrap.BET.Id]);
-        //System.assertEquals(1, [SELECT count() FROM  EntitySubscription WHERE SubscriberId =: usr.Id AND ParentId =: wrap.BET.Id]);
+        BET_CommonService.checkAccessForPublicBET(bet.Id, UserInfo.getUserId());
+
+        System.assertEquals(1, [SELECT count() FROM BET_Member_Request__c WHERE Brand_Experience_Toolkit__c =: bet.Id AND UserId__c =: UserInfo.getUserId()]);
+        System.assertEquals(1, [SELECT count() FROM uw_BET_Team_Member__c WHERE BET__c =: bet.Id AND Team_Member__c =: UserInfo.getUserId()]);
+        System.assertEquals(1, [SELECT count() FROM uw_BET__Share WHERE UserOrGroupId =: UserInfo.getUserId() AND ParentId =: bet.id]);
         
     }
 
