@@ -42,13 +42,9 @@ public with sharing class WINatPOSUserAdminController {
         // Platform users. If a user has been assigned to multiple WIN@POS permission sets, this map will enable  
         // the code to determine which is the highest ranking permission set using the integer in the values array
         permissionSetRankings = new Map<String, Integer>();
-        permissionSetRankings.put('WIN_POS_Agency_User', 0);
-        permissionSetRankings.put('WIN_POS_VIEWER', 1);
-        permissionSetRankings.put('WIN_POS_PUBLISHER', 2);
-        permissionSetRankings.put('WIN_POS_ADMIN', 3);
-        //KS added community permision set
-        
-        
+        permissionSetRankings.put('WIN_POS_VIEWER', 0);
+        permissionSetRankings.put('WIN_POS_PUBLISHER', 1);
+        permissionSetRankings.put('WIN_POS_ADMIN', 2);
         
         // Store the WIN@POS permission sets 
         permissionSetMap = new Map<Id, PermissionSet>();

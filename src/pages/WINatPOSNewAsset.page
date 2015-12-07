@@ -21,8 +21,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
     <apex:pageMessages />  
     <apex:pageBlock mode="edit" title="{!if(ISNULL(Asset__c.Id),'Create Asset','Edit Asset')}"> 
       <apex:pageBlockButtons location="bottom">       
-        <apex:commandButton value="Save" action="{!save}" rendered="{!objectAPIName != 'Asset__c'}"/>
-        <apex:commandButton value="Save Asset" action="{!saveAsset}" rendered="{!objectAPIName = 'Asset__c'}"/>
+        <apex:commandButton value="Save" action="{!save}" />
         <apex:commandButton value="Cancel" action="{!cancel}"/>
       </apex:pageBlockButtons>
       <apex:pageBlockButtons location="top" >       
@@ -50,37 +49,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
          <apex:pageBlockSectionItem helpText="{!$ObjectType.Asset__c.fields.POS_Asset_Type__c.inlineHelpText}">  
              <apex:outputLabel value="Asset Type" for="assetType"></apex:outputLabel> 
          	<apex:inputField styleClass="inputWidth" id="assetType" value="{!Asset__c.POS_Asset_Type__c}" required="true"/>
-          </apex:pageBlockSectionItem>  
-          <apex:pageBlockSectionItem helpText="{!$ObjectType.Asset__c.fields.Agency_Edit_Access_Text__c.inlineHelpText}" rendered="{!!isCommunityUser}">  
-             <apex:outputLabel value="{!$ObjectType.Asset__c.fields.Agency_Edit_Access_Text__c.label}" for="assetEditAccess"></apex:outputLabel> 
-         	<c:WINatPOS_MultiselectPicklist id="assetEditAccess" leftLabel="Available Agencies"
-			    leftOption="{!allAgenciesEdit}"
-			    rightLabel="Selected Agencies"
-			    rightOption="{!selectedAgenciesEdit}"
-			    size="14"
-			    width="200px"/>
-          </apex:pageBlockSectionItem>
-          <apex:outputField styleClass="inputWidth" value="{!Asset__c.Agency_Edit_Access_Text__c}" rendered="{!isCommunityUser}" />
-          
-          
-          <apex:pageBlockSectionItem helpText="{!$ObjectType.Asset__c.fields.Agency_Read_Access_Text__c.inlineHelpText}" rendered="{!!isCommunityUser}">  
-             <apex:outputLabel value="{!$ObjectType.Asset__c.fields.Agency_Read_Access_Text__c.label}" for="assetViewAccess"></apex:outputLabel> 
-         	<c:WINatPOS_MultiselectPicklist id="assetViewAccess" leftLabel="Available Agencies"
-			    leftOption="{!allAgenciesView}"
-			    rightLabel="Selected Agencies"
-			    rightOption="{!selectedAgenciesView}"
-			    size="14"
-			    width="200px"/>
-          </apex:pageBlockSectionItem>   
-          <apex:outputField styleClass="inputWidth" value="{!Asset__c.Agency_Read_Access_Text__c}" rendered="{!isCommunityUser}" />
-          
-          <apex:inputField styleClass="inputWidth" value="{!Asset__c.Video_URL_Link__c}" required="false"/>
-          
-          <apex:outputField styleClass="inputWidth" value="{!Asset__c.Additional_Owner_1__c}" rendered="{!isCommunityUser}" />
-          <apex:inputField styleClass="inputWidth" value="{!Asset__c.Additional_Owner_1__c}" required="false" rendered="{!!isCommunityUser}" />
-          
-          <apex:outputField styleClass="inputWidth" value="{!Asset__c.Additional_Owner_2__c}" rendered="{!isCommunityUser}" />
-          <apex:inputField styleClass="inputWidth" value="{!Asset__c.Additional_Owner_2__c}" required="false" rendered="{!!isCommunityUser}" />
+          </apex:pageBlockSectionItem>    
       </apex:pageBlockSection>
       <!--
         <apex:inputField value="{!Asset__c.Asset_Group__c}"/>

@@ -156,7 +156,7 @@ public class WinatPOSBrandViewController_Test {
             asset3.Category__c = cat1.Id;
             asset3.Brand__c=brandDove.id;
             asset3.Placement__c = 'Secondary';
-            asset3.POS_Asset_Type__c = 'Best Practices';
+            asset3.POS_Asset_Type__c = 'In Store Execution';
             asset3.Market_Cluster__c = 'Global';
             asset3.Channels__c='Hypermarkets';
             asset3.Status__c = 'Approved';
