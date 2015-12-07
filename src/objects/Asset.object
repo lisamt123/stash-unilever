@@ -61,6 +61,124 @@
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>OOH_Age__c</fullName>
+        <externalId>false</externalId>
+        <label>Age</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_AssetDistributor__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Asset Distributor</label>
+        <lookupFilter>
+            <active>false</active>
+            <filterItems>
+                <field>Account.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>OOH Distributor</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Assets</relationshipLabel>
+        <relationshipName>AssetDistributor_del</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Asset_Sale_Terminal__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Asset Sale Terminal</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>OOH Sale Terminal</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Assets (Asset Sale Terminal)</relationshipLabel>
+        <relationshipName>AssetSaleTerminal</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OOH_Contract__c</fullName>
+        <externalId>false</externalId>
+        <label>Contract</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_LastControlDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Control Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OOH_LastMoveDate__c</fullName>
+        <externalId>false</externalId>
+        <label>Last Move Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>OOH_LocationStatus__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(OOH_Asset_Sale_Terminal__c = NULL, &quot;In warehouse&quot;, &quot;Positioned&quot;)</formula>
+        <label>Location Status</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>OOH_PointofSaleOutlet__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Point of Sale Outlet</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>Account.RecordTypeId</field>
+                <operation>equals</operation>
+                <value>OOH Point of Sale Outlet</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>Account</referenceTo>
+        <relationshipLabel>Assets (Asset Point of Sale Outlet)</relationshipLabel>
+        <relationshipName>PointofSaleOutlet</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>OOH_UnderPerforming__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Low Performer</label>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Price</fullName>
         <trackHistory>false</trackHistory>
     </fields>
@@ -132,6 +250,12 @@
     </fields>
     <listViews>
         <fullName>AllAssets</fullName>
+        <columns>ASSET.NAME</columns>
+        <columns>ASSET.INSTALL_DATE</columns>
+        <columns>OOH_AssetDistributor__c</columns>
+        <columns>OOH_Asset_Sale_Terminal__c</columns>
+        <columns>OOH_PointofSaleOutlet__c</columns>
+        <columns>OOH_UnderPerforming__c</columns>
         <filterScope>Everything</filterScope>
         <label>All Assets</label>
     </listViews>
@@ -142,6 +266,7 @@
         <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>CONTACT.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>PRODUCT2.NAME</customTabListAdditionalFields>
+        <customTabListAdditionalFields>OOH_PointofSaleOutlet__c</customTabListAdditionalFields>
         <lookupDialogsAdditionalFields>ASSET.NAME</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ASSET.SERIAL_NUMBER</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>ASSET.INSTALL_DATE</lookupDialogsAdditionalFields>
