@@ -245,6 +245,12 @@
         <name>Layout</name>
     </types>
     <types>
+        <members>IPM_Notification_Letterhead</members>
+        <members>Notification_Letterhead</members>
+        <members>Unilever_IPM</members>
+        <name>Letterhead</name>
+    </types>    
+    <types>
         <members>*</members>
         <name>ListView</name>
     </types>
