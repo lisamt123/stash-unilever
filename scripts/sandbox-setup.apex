@@ -23,10 +23,8 @@ for(CollaborationGroup cg : [select Id, Name from CollaborationGroup where name=
 
 List <FA_Config_Settings__c> fcs = [select id, name, FA_Value__c from FA_Config_Settings__c];
 for(FA_Config_Settings__c f : fcs) {
-    if(f.name=='A_AllFourAcres') {
+    if(f.name=='FA_AllFourAcres') {
         f.FA_Value__c=((String)(cgMap.get('All Four Acres'))).left(15);
-    } else if (f.name=='FA_AllFourAcres') {
-        f.FA_Value__c=((String)(cgMap.get('groupName-0'))).left(15);
     } else if (f.name=='FA_HelpGroup') {
         f.FA_Value__c=((String)(cgMap.get('groupName-1'))).left(15);
     } else if (f.name=='FA_EnhanceLivelihoods') {
