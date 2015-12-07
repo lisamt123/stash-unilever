@@ -56,10 +56,8 @@ global class BET_DataFixReleaseDate_Batch implements Database.Batchable<sObject>
                     bet.First_Release_Due_Date__c = BET_BETService.getFirstReleaseDueDate(bet.Launch_Date__c);
                     bets.add(bet);
                 }
-                assets.addAll(bet.Assets__r);
             }
             update bets;
-            update BET_AssetService.updateFileId(assets);
         }
         System.debug('Exit execute : ' + bets);
     }
