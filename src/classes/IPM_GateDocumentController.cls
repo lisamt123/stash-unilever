@@ -829,7 +829,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                list<IPM_Financial__c> liFinParentLoc = [select Business_Impact_Global__c from IPM_Financial__c where global_project_id__c=:project.IPM_Global_Project_Id__c and parent_Project__c=:project.IPM_Global_Project_Id__c limit 1];
                if (!liFinParentLoc.isEmpty())
                {
-                   globalbusinessImpactStr += liFinParentLoc[0].Business_Impact_Global__c;
+                   globalbusinessImpactStr = liFinParentLoc[0].Business_Impact_Global__c;
                }
            }
             
