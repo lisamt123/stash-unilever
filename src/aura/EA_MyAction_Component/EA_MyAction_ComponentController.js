@@ -9,8 +9,7 @@
                 if(items.length>0){
                     component.set("v.acivities", response.getReturnValue());
                 }
-                else
-                {
+                else{
                     component.set("v.showmessage",true);
                 }
             }
