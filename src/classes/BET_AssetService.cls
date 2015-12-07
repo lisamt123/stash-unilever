@@ -117,10 +117,6 @@ global without sharing class BET_AssetService {
 					}
 				}
 			}
-			if(asset.File_Id__c == null){
-				ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_DataFixReleaseDate_Batch','execute',
-                'File id not set : ' + asset, new BET_CustomBETException('File id not set : ' + asset),'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
-			}
 		}
 		return assets;
 	}
