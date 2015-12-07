@@ -1778,7 +1778,7 @@ OwnerId))</formula>
         <picklist>
             <picklistValues>
                 <fullName>Original</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Rollout</fullName>
