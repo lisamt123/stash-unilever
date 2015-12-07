@@ -50,12 +50,13 @@
     width: 50%;
     position: relative;
     display: block;
-    padding: 10px 15px;
+   padding-top: 1.2rem;
    	color: #337ab7;
     text-decoration: none;
     height: 5rem;
  	font-size: 1.5rem;
   	font-weight: bold;
+    border:1px #2E91CF solid;
     
 }
 .THIS li.inactive_class{
@@ -65,10 +66,10 @@
     width: 50%;
     position: relative;
     display: block;
-    padding: 10px 15px;
+   padding-top: 1.2rem;
     color: white;
     text-decoration: none;
-   	background:#337ab7 !important;
+   	background:#337ab7;
     height: 5rem;
  	font-size: 1.5rem;
   	font-weight: bold;

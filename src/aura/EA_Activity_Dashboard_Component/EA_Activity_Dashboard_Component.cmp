@@ -145,11 +145,11 @@ img.user_badge.active {
               
              <span class="list_name" onclick="{!c.gotoDetail}"><ui:outputText value="{!v.activity.activity_name}"/></span>
               <aura:if isTrue="{!v.showfeedback}">
-                  <div class="feedback" onclick="{!c.gotofeedback}"><img class="feed_img" src="/resource/EA_StaticResource/assets/images/feedback.svg" alt="person name" onclick="{!c.gotoDetail}"/>
-				Provide Feedback</div>              </aura:if>
+                  <span class="feedback" onclick="{!c.gotofeedback}"><img class="feed_img" src="/resource/EA_StaticResource/assets/images/feedback.svg" alt="person name" onclick="{!c.gotoDetail}"/>
+				Provide Feedback</span>              </aura:if>
               <aura:if isTrue="{!v.showInvitation}">
-                   <div class="invitation" onclick="{!c.gotoInvitation}"><img class="inv_img" src="/resource/EA_StaticResource/assets/images/preview.svg" alt="person name" onclick="{!c.gotoDetail}"/>
-					View Invitatation</div>
+                   <span class="invitation" onclick="{!c.gotoInvitation}"><img class="inv_img" src="/resource/EA_StaticResource/assets/images/preview.svg" alt="person name" onclick="{!c.gotoDetail}"/>
+					View Invitatation</span>
               </aura:if>
             <span class="right_arrow_img">
               <img class="right_arrow" src="/resource/EA_StaticResource/assets/images/chevronright_60.png" alt="person name" onclick="{!c.gotoDetail}"/>

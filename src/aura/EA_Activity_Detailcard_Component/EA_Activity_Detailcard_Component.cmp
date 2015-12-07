@@ -87,8 +87,8 @@
     <aura:if isTrue="{!v.showtabs}">
      <div class=" navbar-fixed-top " >
               <ul class="nav nav-pills" >
-                  <li  aura:id="myaction" class="active_class" onclick="{!c.callMyAction}" style="border:1px #303030 solid;" >{!$Label.c.EA_MyActionsTab_Title}</li>
-                  <li aura:id="themes" class="inactive_class" onclick="{!c.callShowSwipe}" style="border:1px #303030 solid;" >{!$Label.c.EA_ThemeTab_Title}</li>
+                  <li  aura:id="myaction" class="active_class" onclick="{!c.callMyAction}">{!$Label.c.EA_MyActionsTab_Title}</li>
+                  <li aura:id="themes" class="inactive_class" onclick="{!c.callShowSwipe}">{!$Label.c.EA_ThemeTab_Title}</li>
               </ul>
         </div>
     </aura:if>

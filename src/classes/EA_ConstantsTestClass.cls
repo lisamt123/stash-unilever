@@ -7,6 +7,7 @@ Requirement/Description: Test Class For EA_ConstantsClass.
 */
 @IsTest
 public class EA_ConstantsTestClass{
+
   static testMethod void postive() {
       
       EA_Constants ec = new EA_Constants();

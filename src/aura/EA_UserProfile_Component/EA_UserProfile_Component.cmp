@@ -8,6 +8,7 @@
     <aura:attribute name="showsilver2" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="showgold" type="boolean" default="false"></aura:attribute>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+   <!-- <aura:handler name="init" value="{!this}" action="{!c.removeCSS}"/>-->
     <aura:attribute name="NewBee_badge" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="Bronze_badge" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="Silver_badge" type="boolean" default="false"></aura:attribute>
@@ -92,15 +93,11 @@ border-color:green;
         
         </style>
     <!-- style -->
-    
-    
-	
-
 	  <!-- REQUIRED SLDS WRAPPER -->
   <div class="slds">    
  <div class="dashboard">
    
-  <div class="dashTitle">My Dashboard</div>
+  <div aura:id="dash" class="dashTitle">My Dashboard</div>
       
   
     <div class="slds-box">
@@ -124,25 +121,25 @@ border-color:green;
       
         <div class="progress_bar">
             <aura:if isTrue="{!v.shownewbee1}">
-                <img src="/resource/EA_Badges/newbee1.svg"></img>     
+                <img class="prg_image" src="/resource/EA_Badges/newbee1.svg"></img>     
             </aura:if>
                <aura:if isTrue="{!v.shownewbee2}">
-             <img src="/resource/EA_Badges/newbee2.svg"></img>      
+             <img class="prg_image" src="/resource/EA_Badges/newbee2.svg"></img>      
             </aura:if>
                <aura:if isTrue="{!v.showbronz1}">
-              <img src="/resource/EA_Badges/bronz1.svg"></img>     
+              <img class="prg_image" src="/resource/EA_Badges/bronz1.svg"></img>     
             </aura:if>
                <aura:if isTrue="{!v.showbronz2}">
-              <img src="/resource/EA_Badges/bronz2.svg"></img>     
+              <img class="prg_image" src="/resource/EA_Badges/bronz2.svg"></img>     
             </aura:if>
                <aura:if isTrue="{!v.showsilver1}">
-             <img src="/resource/EA_Badges/silver1.svg"></img>
+             <img class="prg_image" src="/resource/EA_Badges/silver1.svg"></img>
             </aura:if>
                <aura:if isTrue="{!v.showsilver2}">
-            <img src="/resource/EA_Badges/silver2.svg"></img>
+            <img class="prg_image" src="/resource/EA_Badges/silver2.svg"></img>
             </aura:if>
                <aura:if isTrue="{!v.showgold}">
-            <img src="/resource/EA_Badges/gold1.svg"></img>
+            <img class="prg_image" src="/resource/EA_Badges/gold1.svg"></img>
             </aura:if>
             
         </div>

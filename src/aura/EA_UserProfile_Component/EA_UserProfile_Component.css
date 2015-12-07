@@ -85,7 +85,10 @@
 .THIS  img.user_badge-New {
     border-radius: 34px;
 }    
- 
+.THIS .prg_image{
+    width:90%;
+    margin-left:5%;
+} 
        
    
 .THIS ul li{list-style:none;}

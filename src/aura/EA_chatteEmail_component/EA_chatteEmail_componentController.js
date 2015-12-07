@@ -18,10 +18,9 @@
  
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if (state === "SUCCESS" && response.getReturnValue()!=='') {
-                
-                
-            }
+            /*if (state === "SUCCESS" && response.getReturnValue()!=='') {
+
+			}*/
         });
         $A.enqueueAction(action);
         
@@ -43,14 +42,20 @@
         var label4=$A.get("$Label.c.EA_ShareEmail4");
         
         var label5=$A.get("$Label.c.EA_ShareEmail5");
-        
+        var label6=$A.get("$Label.c.EA_ShareEmail6");
+        var label7=$A.get("$Label.c.EA_ShareEmail7");
+        component.set("v.MailToBody1",label3);
+         component.set("v.MailToBody2",label4);
+         component.set("v.MailToBody3",label5);
+         component.set("v.MailToBody4",label6);
+        component.set("v.MailToBody5",label7);
         var subject=label1 +'  ' + activity.Name +'  ' +label2;
         component.set("v.MailSubject",subject);
-        var body=label3+' '+activity.Name+' '+label4.replace(/\n/g,'<br/>')+ ' ' + activity.Description__c +' '+' '+ label5;
+        //var body=label3+' '+activity.Name+' '+label4.replace(/\n/g,'<br/>')+ ' ' + activity.Description__c +' '+' '+ label5;
         
         
         
-        component.set("v.MailToBody",body);
+       // component.set("v.MailToBody",body);
         
     },
     

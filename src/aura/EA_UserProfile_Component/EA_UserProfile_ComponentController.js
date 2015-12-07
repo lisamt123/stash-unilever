@@ -40,4 +40,10 @@
                 });
             $A.enqueueAction(action);
 	   },
+    removeCSS: function(cmp, event) {
+        var cmpTarget = cmp.find("dash");
+        $A.util.removeClass(cmpTarget,'dashTitle');
+
+    },
+
 	})
