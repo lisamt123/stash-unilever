@@ -62,6 +62,10 @@ global with sharing class IPM_BosscardStatusController{
     public boolean isApprovedOtherPLSelected{get;set;}//checking for approved with select other user as PL
     public boolean isApprovedWithPLSelected{get;set;}//checking for approved with  PL
     public boolean isApprovedButNoPLSelected{get;set;}//checking for approved with select non PL
+    public string inProgressComments{get;set;}//hold bosscard comments
+    public string inApprovedComments{get;set;}//hold bosscard comments
+    public string inNotApprovedComments{get;set;}//hold bosscard comments
+    public string inDiscardComments{get;set;}//hold bosscard comments
     /***************************************************************
     *@Description :Constructor to fetch the details of the Bosscard
     ****************************************************************/
@@ -70,6 +74,10 @@ global with sharing class IPM_BosscardStatusController{
     public IPM_BosscardStatusController(){
         // call utility class to save having to do this multiple times in multiple places
         IPM_IECompatible.ieFix();
+        inProgressComments=IPM_ConstantUtils.BLANK;
+        inApprovedComments=IPM_ConstantUtils.BLANK;
+        inNotApprovedComments=IPM_ConstantUtils.BLANK;
+        inDiscardComments=IPM_ConstantUtils.BLANK;
         inProgress_STR=IPM_ConstantUtils.IPM_BOSS_INPROGRESS;
         approved_STR=IPM_ConstantUtils.IPM_BOSS_APPROVED;
         notApproved_STR=IPM_ConstantUtils.IPM_BOSS_NOT_APPROVED;
@@ -96,7 +104,10 @@ global with sharing class IPM_BosscardStatusController{
             if(!lstbosscard.isEmpty()){
                 bosscard=lstbosscard[0];
                 companycard_Str=lstbosscard[0].IPM_Company_Card__c; 
-                Statusvalue=lstbosscard[0].IPM_Bosscard_Status__c;     
+                Statusvalue=lstbosscard[0].IPM_Bosscard_Status__c; 
+                if(Statusvalue.equals(IPM_ConstantUtils.STATUS_IN_PROGRESS)){
+                	inProgressComments=lstbosscard[0].IPM_Bosscard_Approver_Comments__c;
+                }
             }
             string query_str=IPM_ConstantUtils.BLANK;
             string strCoreMem=IPM_ConstantUtils.BLANK;
@@ -205,6 +216,14 @@ global with sharing class IPM_BosscardStatusController{
     *********************************************************************************/
     
     public void updateStatus(){
+        //save bosscard comments
+        if(Statusvalue.equals(IPM_ConstantUtils.STATUS_IN_PROGRESS)){
+        	bosscard.IPM_Bosscard_Approver_Comments__c=inProgressComments;
+        }else if(Statusvalue.equals(IPM_ConstantUtils.STATUS_NOT_APPROVED)){
+        	bosscard.IPM_Bosscard_Approver_Comments__c=inNotApprovedComments;
+        }else if(Statusvalue.equals(IPM_ConstantUtils.STATUS_DISCARD)){
+        	bosscard.IPM_Bosscard_Approver_Comments__c=inDiscardComments;
+        }
         
         if(Statusvalue.equals(IPM_ConstantUtils.STATUS_IN_PROGRESS) || Statusvalue.equals(IPM_ConstantUtils.STATUS_NOT_APPROVED)){
                 bosscard.IPM_Bosscard_Status__c=Statusvalue; 
@@ -244,6 +263,8 @@ global with sharing class IPM_BosscardStatusController{
         
         if(Statusvalue.equals(approved_STR)){
             isNotApproved=false;
+        }else{
+            isNotApproved=true;
         }
         if(!isPLSelected_Booln && Statusvalue.equals(approved_STR) && searchPL_Bool){
             isApprovedOtherPLSelected=true;

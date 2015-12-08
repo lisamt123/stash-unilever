@@ -64,7 +64,7 @@
                         </div>
                         <div class="textareaContainer">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
-                            <textarea />
+                            <apex:inputtextarea value="{!inProgressComments}"  id="Bosscommentsinprogress" />
                         </div>
                     </div> 
                     <div class="ipmGetStartedContent" id="status_approved">
@@ -109,7 +109,7 @@
                         </apex:outputPanel>
                         <div class="textareaContainer">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
-                            <apex:inputField value="{!bosscard.IPM_Bosscard_Approver_Comments__c}"  id="Bosscomments"/>
+                            <apex:inputtextarea value="{!inApprovedComments}"  id="Bosscomments"/>
                             <span class="commentDesc">{!$Label.IPM_Bosscard_Feedback}</span>
                         </div>
                         <apex:actionFunction action="{!filterprojectLeader}" name="callsearch" reRender="SearchCoreMem,peoplecount,refresh"/>
@@ -125,7 +125,7 @@
                         </div>   
                         <div class="textareaContainer">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
-                            <textarea />
+                            <apex:inputtextarea value="{!inNotApprovedComments}"  id="BosscommentsNotApprove"/>
                         </div>  
                     </div> 
                     <div class="ipmGetStartedContent" id="status_discard">
@@ -136,7 +136,7 @@
                         </div>  
                         <div class="textareaContainer">
                             <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
-                            <textarea />
+                            <apex:inputtextarea value="{!inDiscardComments}"  id="BosscommentsDiscard"/>
                         </div> 
                     </div> 
                     <apex:actionStatus id="loading" startStyleClass="proInit"></apex:actionStatus>
