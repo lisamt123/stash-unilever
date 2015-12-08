@@ -6173,7 +6173,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CoreParameter Help Guide</shortDescription>
-        <value>&quot;Core Parameters&quot; define the key attributes for a project and are mandatory. Complete the following five steps
+        <value>&quot;Project Parameters&quot; define the key attributes for a project and are mandatory. Complete the following steps
 as best as you can, using the help text as a guide. (You may come back and make changes later.)</value>
     </labels>
     <labels>
@@ -11410,7 +11410,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Strategic Help</shortDescription>
-        <value>&quot;Below is how your project plots in the Consumer/Technology Matrix (CTM) and its assigned Strategic Intent i.e. Innovation, Renovation, BLG or Operational. The strategic intent is based on your prior selections for Type of Project, Consumer Value Perception and Enabling Technology. This information will roll up to portfolio-level CTM views to illustrate the actual spread of multiple projects and collective implications on risk, growth, resources, investment, and ability to deliver strategic targets. Because portfolio decisions are made based on the CTM, it is essential that your Type of Project, CVP and ET be accurate  please consult CMI and R&amp;D partners for input. Unlike Type of Project which is fixed now, CVP and ET may be edited as the project progresses, until Market Ready Gate is approved.&quot;</value>
+        <value>Below is how your project plots in the Consumer/Technology Matrix (CTM) and its assigned Strategic Intent i.e. Innovation, Renovation, BLG or Operational. The strategic intent is based on your prior selections for Type of Project, Consumer Value Perception and Enabling Technology. This information will roll up to portfolio-level CTM views to illustrate the actual spread of multiple projects and collective implications on risk, growth, resources, investment, and ability to deliver strategic targets. Because portfolio decisions are made based on the CTM, it is essential that your Type of Project, CVP and ET be accurate  please consult CMI and R&amp;D partners for input. Unlike Type of Project which is fixed now, CVP and ET may be edited as the project progresses, until Market Ready Gate is approved.</value>
     </labels>
     <labels>
         <fullName>IPM_Strategic_Intent</fullName>
@@ -12082,7 +12082,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_WELCOME_TO_IDEA_PHASE</shortDescription>
-        <value>Welcome to the Idea phase of your project, where you&apos;ll be working on the draft Charter.</value>
+        <value>Welcome to the Ideas phase of your project, where you&apos;ll be working on the draft Charter.</value>
     </labels>
     <labels>
         <fullName>IPM_WHAT_WE_CANT_CHANGE</fullName>
