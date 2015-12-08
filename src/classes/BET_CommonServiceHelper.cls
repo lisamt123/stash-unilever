@@ -129,6 +129,7 @@ public class BET_CommonServiceHelper {
         betMemberRequest.Do_Not_Notify_Bet__c = true;
         betMemberRequest.External_User_Request__c = false;
         betMemberRequest.Do_Not_Notify_User__c = true;
+        betMemberRequest.Role__c = 'Member';
 
         //  T0-Begin---------------------
         /*done by member trigger
