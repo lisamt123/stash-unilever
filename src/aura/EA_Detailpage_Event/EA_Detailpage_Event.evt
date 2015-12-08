@@ -1,0 +1,7 @@
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="actvityid" type="string"/>
+    <aura:attribute name="member_Id" type="string"/>
+    <aura:attribute name="participant_rating" type="string"/>
+    <aura:attribute name="showcontent" type="boolean"/> 
+    
+</aura:event>
