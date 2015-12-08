@@ -34,6 +34,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     {
         List<IPM_Project__c> projectAssociatedWithProjectTypesList = new List<IPM_Project__c>();
         
+        if(IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
+        
         if(Trigger.isInsert || Trigger.isUpdate)
         {
             for(IPM_Project__c project : (List<IPM_Project__c>)Trigger.New)
@@ -119,6 +124,12 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     public void bulkAfter()
     {
      
+	   if(IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION)
+	   {
+	       return;
+	   }
+        
+        
        /* Actual Project specific process starts */
        if( Trigger.isInsert || Trigger.isUpdate)
        {
@@ -709,6 +720,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         //This method has been included as the class implements the ITrigger interface
         IPM_Project__c insertedProject = (IPM_Project__c)so; 
         
+        if(IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
+        
         // Set Data in Temporary Phase and make original Phase as Blank. Also only do that when Job Status is not processing.
         if(insertedProject.IPM_Phase__c!=null)
         {
@@ -748,6 +764,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         //This method has been included as the class implements the ITrigger interface
         IPM_Project__c incomingProject = (IPM_Project__c)so;
         IPM_Project__c oldProject = (IPM_Project__c)oldSo;
+        
+        if(IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
          
         if(incomingProject.IPM_Project_Name__c !=null && !String.isBlank(incomingProject.IPM_Project_Name__c) && 
         incomingProject.IPM_Project_Name__c != oldProject.IPM_Project_Name__c)
@@ -853,12 +874,21 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     */
     public void beforeDelete(SObject so){      
         //This method has been included as the class implements the ITrigger interface 
-    } 
+        if(IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
+    }
+     
     
     public void afterInsert(SObject so)
     {
         IPM_Project__c incomingProject = (IPM_Project__c)so; 
-         //Track field history of Pl into Project Resource History custom object when PL gets assigned to project. 
+         //Track field history of Pl into Project Resource History custom object when PL gets assigned to project.
+        if(IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        } 
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
@@ -867,6 +897,11 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         IPM_Project__c oldProject = (IPM_Project__c) oldSo;
         IPM_Project__c newProject = (IPM_Project__c) so;
 
+        if(IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
+        
         //To update Rollout TLD date on Rollout Projet Object
         if(oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= newProject.Rollout_Plan_Target_Launch_Date__c)
         {
@@ -891,13 +926,19 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     */    
     public void andFinally()
     {
+        if(IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
+        
         if( (Trigger.isInsert || Trigger.isUpdate) && Trigger.isAfter)
         {
             if(!phaseChangeProjects.isEmpty())
             {
                 IPM_ProjectJob_Queue phaseChangeAsyncHandler = new IPM_ProjectJob_Queue(); 
                 phaseChangeAsyncHandler.initializeProjectData(phaseChangeProjects); 
-                System.enqueueJob(phaseChangeAsyncHandler);
+                Id asyncJobId = System.enqueueJob(phaseChangeAsyncHandler); 
+                IPM_ProjectHelper.udpateAsyncJobId(phaseChangeProjects,asyncJobId);
             }           
         }
         

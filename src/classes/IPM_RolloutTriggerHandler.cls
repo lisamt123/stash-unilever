@@ -21,7 +21,7 @@ public with sharing class IPM_RolloutTriggerHandler
     private List<IPM_Financial__c> lstDeleteFinancials;
     private List<IPM_Project_Rollout__c> lstDeleteRollouts;
     
-    
+    public static Boolean SKIP_TRIGGER_EXECUTION = false;
     
     /*****************************************************************************************************************************
     * @description      Constructor
@@ -671,5 +671,22 @@ public with sharing class IPM_RolloutTriggerHandler
             
         }
         
+    }
+    
+    public static void udpateAsyncJobId(Set<Id>phaseChangeRolloutSet, Id JobId)
+    {
+        Map<Id,IPM_Project_Rollout__c> updateAsyncJobIdRolloutMap = new Map<Id,IPM_Project_Rollout__c>(); 
+        for(Id rolloutId : phaseChangeRolloutSet)
+        {
+            IPM_Project_Rollout__c projectRollout = new IPM_Project_Rollout__c(Id=rolloutId,IPM_PhaseChangeQueueJobId__c = JobId);
+            updateAsyncJobIdRolloutMap.put(rolloutId,projectRollout);
+        }
+        
+        if(updateAsyncJobIdRolloutMap.size() > 0)
+        {
+            SKIP_TRIGGER_EXECUTION = true;
+            update updateAsyncJobIdRolloutMap.values();
+            SKIP_TRIGGER_EXECUTION = false;
+        }
     }
 }

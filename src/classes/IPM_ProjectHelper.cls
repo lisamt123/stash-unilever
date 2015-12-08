@@ -117,7 +117,8 @@ public with sharing class IPM_ProjectHelper
     public static Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap = new Map<Id,Map<String,IPM_Project_Document__c>>();
     public static  Map<Id,List<IPM_Project_Document_Section__c>> projectDocumentToSecMap = new Map<Id,List<IPM_Project_Document_Section__c>>();
     
-    public static Boolean DELETE_PROJECT_INVOKED = false;
+    public static Boolean SKIP_TRIGGER_EXECUTION = false;
+    
      /**************************************************************
     * @description: Used for Resetting Cache in case Project Handler is invoked again. 
     */
@@ -1441,9 +1442,9 @@ public with sharing class IPM_ProjectHelper
     
     public static void deleteProject(Set<Id> projectIdSetToBeDeleted)
     {    
-        if(!projectIdSetToBeDeleted.isEmpty() && !DELETE_PROJECT_INVOKED)
+        if(!projectIdSetToBeDeleted.isEmpty() && !SKIP_TRIGGER_EXECUTION)
         {
-            DELETE_PROJECT_INVOKED = true;    
+            SKIP_TRIGGER_EXECUTION = true;    
             
             Set<Id> associatedRolloutIds = new Set<Id>(); 
             // If it is a global Project, get corresponding regional Projects.
@@ -1477,7 +1478,23 @@ public with sharing class IPM_ProjectHelper
             List<IPM_Project__c> projList=[Select Id From IPM_Project__c where Id in:projectIdSetToBeDeleted Limit 5000];
             if(projList != null && !projList.isEmpty())
                 delete projList;
+        } 
+    }
+    
+    public static void udpateAsyncJobId(Set<Id>phaseChangeProjectSet, Id JobId)
+    {
+        Map<Id,IPM_Project__c> updateAsyncJobIdProjectMap = new Map<Id,IPM_Project__c>(); 
+        for(Id projectId : phaseChangeProjectSet)
+        {
+            IPM_Project__c project = new IPM_Project__c(Id=projectId,IPM_PhaseChangeQueueJobId__c = JobId);
+            updateAsyncJobIdProjectMap.put(projectId,project);
+        }
+        
+        if(updateAsyncJobIdProjectMap.size() > 0)
+        {
+            SKIP_TRIGGER_EXECUTION = true;
+            update updateAsyncJobIdProjectMap.values();
+            SKIP_TRIGGER_EXECUTION = false;
         }
     }
-
 }

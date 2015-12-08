@@ -104,23 +104,25 @@ public without sharing class IPM_ProjectJobHelper
                 }   
                 
                 if(currentProjectType!=null) 
-                {
-                     IPM_Project__c globalProject  = projectToGrandParentMapping.get(projectId);
-                     IPM_Project__c regionalProject = projectToParentMapping.get(projectId);
-                      
-                     if(globalProject !=null && processingProjectMap.containsKey(globalProject.Id))
-                     {
-                         globalProject = processingProjectMap.get(globalProject.Id);
-                     }
+                { 
+                     IPM_Project__c globalProject,regionalProject = null;
                      
-                     if(regionalProject !=null && processingProjectMap.containsKey(regionalProject.Id))
-                     {
-                         regionalProject = processingProjectMap.get(regionalProject.Id);
-                     }   
-                        
                     /* Local Project Calculation Begins.Used for Updating Phase of related Projects based on gatekeeping Model */
                     if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
                     {
+                        globalProject = projectToGrandParentMapping.get(projectId);
+                        regionalProject = projectToParentMapping.get(projectId);
+                          
+                        if(globalProject !=null && processingProjectMap.containsKey(globalProject.Id))
+                        {
+                           globalProject = processingProjectMap.get(globalProject.Id);
+                        }
+                         
+                        if(regionalProject !=null && processingProjectMap.containsKey(regionalProject.Id))
+                        {
+                           regionalProject = processingProjectMap.get(regionalProject.Id);
+                        } 
+                        
                         if(regionalProject!=null)  
                         {
                             Boolean phaseChange = false;
@@ -133,12 +135,12 @@ public without sharing class IPM_ProjectJobHelper
                             }
                             
                             // If local Project is ahead of Regional Project and Fast Forward is true, upgrade Regional Project to same Phase as local
-                            IPM_Project_Type__c regionalProjectType =  IPM_Utils.retrieveProjectType(globalProject);
+                            IPM_Project_Type__c regionalProjectType =  IPM_Utils.retrieveProjectType(regionalProject);
                             
                             if(regionalProjectType.IPM_Fast_Forward_Phase_Change__c && regionalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
                                 IPM_ConstantUtils.phaseSequence.get(regionalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c))
                             {
-                                regionalProject.IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
+                                regionalProject.IPM_Temporary_Phase__c = regionalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
                                 phaseChange = true;
                             } 
                             
@@ -171,7 +173,7 @@ public without sharing class IPM_ProjectJobHelper
                             if(globalProjectType.IPM_Fast_Forward_Phase_Change__c && globalProject.IPM_Phase__c != incomingProjectDetail.IPM_Phase__c && 
                                 IPM_ConstantUtils.phaseSequence.get(globalProject.IPM_Phase__c) < IPM_ConstantUtils.phaseSequence.get(incomingProjectDetail.IPM_Phase__c))
                             {
-                                globalProject.IPM_Temporary_Phase__c = incomingProjectDetail.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
+                                globalProject.IPM_Temporary_Phase__c = globalProject.IPM_Phase__c = incomingProjectDetail.IPM_Phase__c;
                                 phaseChange = true; 
                             }
                             
@@ -192,7 +194,14 @@ public without sharing class IPM_ProjectJobHelper
                     /* Regional Project Calculation Begins */         
                     if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL )
                     {
-                        
+
+                        globalProject = projectToParentMapping.get(projectId);
+                          
+                        if(globalProject !=null && processingProjectMap.containsKey(globalProject.Id))
+                        {
+                           globalProject = processingProjectMap.get(globalProject.Id);
+                        }
+
                         if(currentProjectType.IPM_Fast_Forward_Phase_Change__c)
                         {
                             Map<Id,IPM_Project__c> childProjectMap = projectToChildMapping.get(projectId);
