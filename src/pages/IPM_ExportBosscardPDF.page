@@ -201,7 +201,7 @@
                 <div class="dataTableBottom"></div>
                 <div>
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_ONE} {!$Label.IPM_BACKGROUND}
+                       {!$Label.IPM_BACKGROUND}
                     </div>
                     <div class="bdText">
                         <apex:outputField value="{!Bosscard.IPM_Background__c}" />
@@ -222,37 +222,37 @@
                         <apex:outputField value="{!Bosscard.IPM_Potential_Business_Opportunity__c}" />
                     </div>
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_THREE} {!$Label.IPM_SCOPE}
+                         {!$Label.IPM_SCOPE}
                     </div>
                     <div class="bdText">
                         <apex:outputField value="{!Bosscard.IPM_Scope__c}" />
                     </div>
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_FOUR} {!$Label.IPM_SUSTAIN}
+                        {!$Label.IPM_SUSTAINABILITY}
                     </div>
                     <div class="bdText">
                         <apex:outputField value="{!Bosscard.IPM_Sustainibility__c}" />
                     </div>
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_FIVE} {!$Label.IPM_CONSTRAINT}
+                         {!$Label.IPM_CONSTRAINTS}
                     </div>
                     <div class="bdText">
                         <apex:outputField value="{!Bosscard.IPM_Constraints__c}" />
                     </div>
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_SIX} {!$Label.IPM_ASSUMPTION}
+                         {!$Label.IPM_ASSUMPTIONS}
                     </div>
                     <div class="bdText">
                         <apex:outputField value="{!Bosscard.IPM_Assumptions__c}" />
                     </div>
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_SEVEN} {!$Label.IPM_RESOURCE}
+                         {!$Label.IPM_RESOURCES}
                     </div>
                     <div class="bdText">
                         <apex:outputField value="{!Bosscard.IPM_Resources__c}" />
                     </div>  
                     <div class="heading2 bold">
-                        {!$Label.IPM_NUMBER_EIGHT} {!$Label.IPM_DELIVERABLE}
+                         {!$Label.IPM_DELIVERABLES}
                     </div>
                     <div class="bdText">
                         <apex:outputField value="{!Bosscard.IPM_Deliverables__c}" />
