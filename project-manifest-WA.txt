@@ -77,6 +77,7 @@ src/classes/Core_WP_WorkPlaceControllerHelper.cls
 src/classes/Core_WP_WorkPlaceControllerHelper.cls-meta.xml
 src/classes/Core_WP_WorkplaceGAWrapperClass.cls
 src/classes/Core_WP_WorkplaceGAWrapperClass.cls-meta.xml
+src/objects/CORE_WorkPlace__c.object
 src/objects/Workplace__c.object
 src/staticresources/CORE_WP_WorkplaceStyles.resource
 src/staticresources/CORE_WP_WorkplaceStyles.resource-meta.xml
