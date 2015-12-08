@@ -2,7 +2,7 @@
 <ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
     <baseObject>Everyday_Activity__c</baseObject>
     <category>other</category>
-    <deployed>false</deployed>
+    <deployed>true</deployed>
     <description>Everyday Activities with Feed</description>
     <join>
         <outerJoin>false</outerJoin>
