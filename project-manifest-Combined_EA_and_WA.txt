@@ -113,3 +113,15 @@ src/reports/Everyday_Action_Reports/Everyday_Action_Leaderboard.report
 src/staticresources/CORE_WP_WorkplaceStyles.resource
 src/staticresources/CORE_WP_WorkplaceStyles.resource-meta.xml
 src/tabs/Everyday_Activity__c.tab
+src/aura/EA_LookupSObject/EA_LookupSObject.auradoc
+src/aura/EA_LookupSObject/EA_LookupSObject.cmp
+src/auraEA_LookupSObject/EA_LookupSObject.cmp-meta.xml
+src/auraEA_LookupSObject/EA_LookupSObject.css
+src/auraEA_LookupSObject/EA_LookupSObjectController.js
+src/auraEA_LookupSObject/EA_LookupSObjectRenderer.js
+src/auraEA_MyAction_Component/EA_MyAction_Component.cmp
+src/auraEA_MyAction_Component/EA_MyAction_Component.cmp-meta.xml
+src/auraEA_chatteEmail_component/EA_chatteEmail_component.cmp
+src/auraEA_chatteEmail_component/EA_chatteEmail_component.cmp-meta.xml
+src/auraEA_chatteEmail_component/EA_chatteEmail_component.css
+src/auraEA_chatteEmail_component/EA_chatteEmail_componentHelper.js
