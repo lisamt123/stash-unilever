@@ -130,7 +130,6 @@ src/classes/EA_Wrapper_ClassTestClass.cls
 src/classes/EA_Wrapper_Class.cls-meta.xml
 src/classes/EA_Wrapper_ClassTestClass.cls-meta.xml
 src/objects/EA_Team_Member__c.object
-src/applications/Everyday_Action.app
 src/classes/EA_Constants.cls
 src/classes/EA_Constants.cls-meta.xml
 src/classes/EA_ConstantsTestClass.cls
@@ -241,3 +240,7 @@ src/aura/EA_ToDoActivityPage/EA_ToDoActivityPageController.js
 src/aura/EA_ToDoActivityPage/EA_ToDoActivityPageHelper.js
 src/aura/EA_UpdateLookupId_Event/EA_UpdateLookupId_Event.evt
 src/aura/EA_UpdateLookupId_Event/EA_UpdateLookupId_Event.evt-meta.xml
+src/aura/svg/src/aura/svg
+src/aura/svg/svg.cmp-meta.xml
+src/aura/svg/svgController.js
+src/aura/svg/svgRenderer.js
