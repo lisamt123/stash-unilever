@@ -125,3 +125,8 @@ src/aura/EA_chatteEmail_component/EA_chatteEmail_component.cmp
 src/aura/EA_chatteEmail_component/EA_chatteEmail_component.cmp-meta.xml
 src/aura/EA_chatteEmail_component/EA_chatteEmail_component.css
 src/aura/EA_chatteEmail_component/EA_chatteEmail_componentHelper.js
+src/classes/EA_Wrapper_Class.cls
+src/classes/EA_Wrapper_ClassTestClass.cls
+src/classes/EA_Wrapper_Class.cls-meta.xml
+src/classes/EA_Wrapper_ClassTestClass.cls-meta.xml
+src/objects/EA_Team_Member__c.object
