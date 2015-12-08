@@ -36,9 +36,9 @@ src/aura/EA_FeedBack_comp/EA_FeedBack_compHelper.js
 src/aura/EA_FeedBack_comp/EA_FeedBack_compRenderer.js
 src/aura/EA_Feedback_Event/EA_Feedback_Event.evt
 src/aura/EA_Feedback_Event/EA_Feedback_Event.evt-meta.xml
-src/aura/EA_InvitedActivities_Comp.cmp
-src/aura/EA_InvitedActivities_Comp.cmp-meta.xml
-src/aura/EA_InvitedActivities_CompController.js
+src/aura/EA_InvitedActivities/EA_InvitedActivities_Comp.cmp
+src/aura/EA_InvitedActivities/EA_InvitedActivities_Comp.cmp-meta.xml
+src/aura/EA_InvitedActivities/EA_InvitedActivities_CompController.js
 src/aura/EA_LookupSObject/EA_LookupSObject.auradoc
 src/aura/EA_LookupSObject/EA_LookupSObject.cmp
 src/aura/EA_LookupSObject/EA_LookupSObject.cmp-meta.xml
@@ -169,8 +169,6 @@ src/objects/EA_ReportingGA__c.object
 src/objects/EA_Team_Member__c.object
 src/objects/EA_ThemesDetails__c.object
 src/objects/Everyday_Activity__c.object
-src/permissionsets/Everyday_Action_Admin.permissionset
-src/permissionsets/Everyday_Action_User.permissionset
 src/reportTypes/Everyday_Activities_with_Feed.reportType
 src/reportTypes/Everyday_Activities_with_User.reportType
 src/reports/Everyday_Action_Reports-meta.xml
