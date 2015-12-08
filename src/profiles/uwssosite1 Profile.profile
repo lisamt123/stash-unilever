@@ -33707,11 +33707,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>OV_Report__c.Admin_View</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
         <recordType>OV_Shelf__c.Moment</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>

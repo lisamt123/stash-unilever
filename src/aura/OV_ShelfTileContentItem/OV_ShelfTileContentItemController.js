@@ -1,10 +1,16 @@
 ({
     doInit: function(component, event, helper) {
-        var reportItem             = component.get('v.reportItem');
-        var reportDocumentFileType = !!reportItem.reportDocument ? reportItem.reportDocument.reportDocumentFileType : '';
+        var reportItem                  = component.get('v.reportItem');
+        var reportDocumentFileType      = !!reportItem.reportDocument ? reportItem.reportDocument.reportDocumentFileType : '';
+        var reportDocumentFileExtension = !!reportItem.reportDocument ? reportItem.reportDocument.reportDocumentFileExtension : '';
 
         if (reportItem.reportIsStatic === true) {
-            component.set('v.documentIcon', helper.getDocumentIconByType(reportDocumentFileType));
+            component.set('v.documentIcon',
+                helper.getDocumentIconByType(
+                    reportDocumentFileType,
+                    reportDocumentFileExtension
+                )
+            );
         } else {
             component.set('v.documentIcon', '/resource/reportDocumentTypeIcons/link_60.png');
 

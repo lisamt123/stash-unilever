@@ -14,7 +14,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 1.0 -   Dan Harfleet            24/06/2015      INITIAL DEVELOPMENT
 1.1 -   Maciej Krol             06/08/2015      CHANGES RELATED TO CONTENT PROXY
 **********************************************************************/
-public with sharing class OV_ReportContentPreviewController {	
+public with sharing class OV_ReportContentPreviewController {   
     private static String PARAM_DEVICE_TYPE = 'device_type';
     private static String CONFIG_THUMB_SIZE = OV_ThumbnailPreviewBuilder.DESKTOP; 
  

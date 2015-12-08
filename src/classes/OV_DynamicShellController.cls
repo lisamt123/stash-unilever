@@ -32,7 +32,15 @@ public with sharing class OV_DynamicShellController {
         this.report = (OV_Report__c)standardController.getRecord();
 
         OV_Report__c reportFull;
-        try {          
+        try {    
+            /*SECURITY - CRUD/FLS Enforcement */
+            String [] accessFields = new String [] {'Id', 'Desktop_Content_Proxy__r', 'Mobile_Content_Proxy__r', 'Tablet_Content_Proxy__r' };
+            OV_SecurityHelper.doPrivilegedOp('OV_Report__c', accessFields);
+
+            String [] proxyAccessFields = new String [] {'Url__c'};
+            OV_SecurityHelper.doPrivilegedOp('OV_ContentProxy__c', proxyAccessFields);
+            /*SECURITY - CRUD/FLS Enforcement */     
+
             reportFull = [SELECT Id, Desktop_Content_Proxy__r.Url__c, Mobile_Content_Proxy__r.Url__c, Tablet_Content_Proxy__r.Url__c FROM OV_Report__c WHERE Id = :this.report.Id LIMIT 1];
 
             if(deviceType == DEVICE_DESKTOP){

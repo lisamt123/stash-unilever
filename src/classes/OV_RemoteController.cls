@@ -29,10 +29,10 @@ public with sharing class OV_RemoteController {
 
     private static Object getValueFromMap(Map<String, String> providedMap, String key, Boolean isBoolean){
         if(isBoolean){
-           return (providedMap.containsKey(key) && !String.isEmpty(providedMap.get(key))) ? Boolean.valueOf(providedMap.get(key)) : false; 
+           return (providedMap.containsKey(key) && !String.isEmpty(providedMap.get(key))) ? Boolean.valueOf(providedMap.get(key)) : false;
         }else{
             return (providedMap.containsKey(key) && !String.isEmpty(providedMap.get(key))) ? providedMap.get(key) : '';
-        }        
+        }
     }
 
     private static String isDevice(String deviceType){
@@ -58,7 +58,7 @@ public with sharing class OV_RemoteController {
             String category  = categoryId;
             String function  = functionId;
             Boolean mine     = mineOnly;
-            String device    = isDevice(deviceType);           
+            String device    = isDevice(deviceType);
 
             if(filtersFromCache){
                 Map<String, String> savedFilters = OV_Utils.getSavedFiltersFromObject();
@@ -73,8 +73,10 @@ public with sharing class OV_RemoteController {
 
             List<OV_Wrapper.ShelfWrapper> res = OV_SearchService2.search(geography, category, function, mine, recordTypeName, device);
             resultMap.put('shelfs', res);
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0001, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0002, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting search: ' + resultMap);
@@ -96,8 +98,10 @@ public with sharing class OV_RemoteController {
 
             Map<String, Object> res = OV_SearchService2.getTileReports2(geographyId, categoryId, functionId, mineOnly, recordTypeName, shelfTileId, device);
             resultMap.put('structure', res);
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0003, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0004, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting getTileReports: ' + resultMap);
@@ -120,8 +124,10 @@ public with sharing class OV_RemoteController {
             OV_Wrapper.ReportWrapper res = OV_SearchService2.getReportDetails(reportId, shelfTileId, device);
 
             resultMap.put('report', res);
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0005, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0006, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting getReport: ' + resultMap);
@@ -158,8 +164,10 @@ public with sharing class OV_RemoteController {
             List<OV_Wrapper.ReportWrapper> res = OV_KPIService.getReports(kpiNameId);
 
             resultMap.put('kpiReports', res);
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0007, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0008, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting getReports');
@@ -180,8 +188,10 @@ public with sharing class OV_RemoteController {
             List<OV_Wrapper.KPIElementWrapper> res = OV_KPIService.getKPIElements(kpiNameId, reportId);
 
             resultMap.put('kpiElements', res);
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0009, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0010, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting getKPIElements');
@@ -199,8 +209,10 @@ public with sharing class OV_RemoteController {
         try{
             OV_KPIService.addKPIElementToMyKPIs(kpiElementIds, shouldBeNotified);
 
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0011, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0012, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting addKPIElementToMyKPIs');
@@ -218,8 +230,10 @@ public with sharing class OV_RemoteController {
         try{
             OV_KPIService.deleteMyKPI(kpiElementId);
 
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0013, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0014, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting deleteMyKPI');
@@ -235,8 +249,14 @@ public with sharing class OV_RemoteController {
         System.debug(LoggingLevel.DEBUG, 'Entering getMyKPIElements');
 
         Map<String, Object> resultMap = new Map<String, Object>();
-        List<OV_Wrapper.KPIElementWrapper> res = OV_KPIService.getMyKPIElements(geographyId, categoryId, functionId, mineOnly);
-        resultMap.put('kpiElements', res);
+        try{
+            List<OV_Wrapper.KPIElementWrapper> res = OV_KPIService.getMyKPIElements(geographyId, categoryId, functionId, mineOnly);
+            resultMap.put('kpiElements', res);
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0015, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
+        }catch(Exception ex){
+            return new OV_Wrapper('Code: RC0016, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
+        }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting getMyKPIElements');
         return new OV_Wrapper(RESULTS, SUCCESS_CODE, resultMap);
@@ -270,7 +290,7 @@ public with sharing class OV_RemoteController {
             resultMap.put('comparatorFilters', comparatorFiltersList);
             resultMap.put('channelFilters', channelFiltersList);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0017, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
         System.debug(LoggingLevel.DEBUG, 'Exiting getFilters');
         return new OV_Wrapper(RESULTS, SUCCESS_CODE, resultMap);
@@ -286,8 +306,10 @@ public with sharing class OV_RemoteController {
         System.debug(LoggingLevel.DEBUG, 'Entering addReportToFavourites: '+ reportId + ' ' +shelfTileId);
         try{
             OV_ReportService.addReportToFavourites(reportId, shelfTileId);
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0018, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0019, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting addReportToFavourites');
@@ -305,8 +327,10 @@ public with sharing class OV_RemoteController {
         try{
             OV_ReportService.deleteReportFromFavourites(reportId);
 
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0020, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0021, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting deleteReportFromFavourites');
@@ -328,8 +352,10 @@ public with sharing class OV_RemoteController {
             Map<String, List<OV_Wrapper.ReportWrapper>> res = OV_SearchService2.getMyFavouritesReports(geographyId, categoryId, functionId, mineOnly, device);
 
             resultMap.put('reports', res);
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0022, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0023, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting getMyFavouritesReports');
@@ -348,8 +374,10 @@ public with sharing class OV_RemoteController {
         Map<String, Object> resultMap = new Map<String, Object>();
         try{
             OV_ReportService.increaseViewsCounter(reportId);
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0024, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0025, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting increaseViewsCounter');
@@ -359,20 +387,38 @@ public with sharing class OV_RemoteController {
     /*******************************************************************
     Purpose: Method responsible for saving report usage entries
     Parameters: [String reportId, String shelfTileId, String operationType, String deviceType, String versionNumber]
-    Returns: OV_Wrapper 
+    Returns: OV_Wrapper
     ********************************************************************/
     @AuraEnabled
-    public static OV_Wrapper saveUsageEntry(Id reportId, String shelfTileId, String operationType, String deviceType, String versionNumber){        
+    public static OV_Wrapper saveUsageEntry(Id reportId, String shelfTileId, String operationType, String deviceType, String versionNumber){
         System.debug(LoggingLevel.DEBUG, 'Entering saveUsageEntry: ' + reportId + ' ' + shelfTileId + ' ' + operationType + ' ' + deviceType + ' ' + versionNumber);
 
         Map<String, Object> resultMap = new Map<String, Object>();
         try{
             OV_ReportUsageService.saveUsageEntry(reportId, shelfTileId, operationType, deviceType, versionNumber);
+        }catch(NoAccessException ex){
+            return new OV_Wrapper('Code: RC0026, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }catch(Exception ex){
-            return new OV_Wrapper(ex.getMessage(), EXCEPTION_CODE, null);
+            return new OV_Wrapper('Code: RC0027, Message: '+ex.getMessage(), EXCEPTION_CODE, null);
         }
 
         System.debug(LoggingLevel.DEBUG, 'Exiting saveUsageEntry');
-        return new OV_Wrapper(RESULTS, SUCCESS_CODE, resultMap); 
+        return new OV_Wrapper(RESULTS, SUCCESS_CODE, resultMap);
+    }
+
+    @AuraEnabled
+    public static OV_Wrapper addPostLink(Map<String, String> params){
+        ConnectApi.LinkCapabilityInput linkInput                             = new ConnectApi.LinkCapabilityInput();
+        linkInput.url                                                        = params.get('link');
+        linkInput.urlName                                                    = params.get('linkName');
+
+        ConnectApi.FeedElementCapabilitiesInput feedElementCapabilitiesInput = new ConnectApi.FeedElementCapabilitiesInput();
+        feedElementCapabilitiesInput.link                                    = linkInput;
+
+        ConnectApi.FeedItemInput input                                       = new ConnectApi.FeedItemInput();
+        input.capabilities                                                   = feedElementCapabilitiesInput;
+
+        ConnectApi.FeedElement feedElement                                   = ConnectApi.ChatterFeeds.updateFeedElement(null, params.get('id'), input);
+        return new OV_Wrapper(RESULTS, SUCCESS_CODE, new Map<String, Object>{'feedElement' => feedElement});
     }
 }
