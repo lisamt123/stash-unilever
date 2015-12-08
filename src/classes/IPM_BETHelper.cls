@@ -152,14 +152,24 @@ public without sharing class IPM_BETHelper {
         setRegionalRoles.addAll(IPM_ConstantUtils.STRING_REGIONAL_ROLES.SPLIT(';'));
         setLocalRoles.addALl(IPM_ConstantUtils.STRING_LOCAL_ROLES.SPLIT(';'));
         list < IPM_Milestone__c > lstMS = new list < IPM_Milestone__c > ();
+        set<id> setIds = new set<id>();
         BET_BETWrapper bwrap = new BET_BETWrapper();
         bwrap = BET_BETService.getBet(betId);
         //Get All users to be given access
         for (IPM_Project__c proj: [select IPM_Project_Leader__c, Deputy_Project_Leader__c, (select IPM_User__c from IPM_Project_Resources__r where IPM_User__c != null and((IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_REGIONAL and IPM_Role_Type__c in : setRegionalRoles) OR(IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_LOCAL and IPM_Role_Type__c in : setLocalRoles))),(select id, IPM_Phase__c from IPM_Milestones__r where IPM_Type_of_Milestone__c = : IPM_ConstantUtils.STRING_BET and IPM_Name__c like: (IPM_ConstantUtils.SYMBOL_PERCENTAGE + IPM_ConstantUtils.BET_MS_FIRST_RELEASE + IPM_ConstantUtils.SYMBOL_PERCENTAGE)) from IPM_Project__c where (IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.BET__c = : betId) OR (IPM_Parent_Project__r.IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c = : betId) limit 10000]) {
-            lstMemberRequests.add(generateBETMember(proj.IPM_Project_Leader__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
-            lstMemberRequests.add(generateBETMember(proj.Deputy_Project_Leader__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
+            if(setIds.isEmpty() || (!setIds.isEmpty() && !setIds.contains(proj.IPM_Project_Leader__c))){
+                lstMemberRequests.add(generateBETMember(proj.IPM_Project_Leader__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
+                setIds.add(proj.IPM_Project_Leader__c);
+            }
+            if(setIds.isEmpty() || (!setIds.isEmpty() && !setIds.contains(proj.Deputy_Project_Leader__c))){
+                lstMemberRequests.add(generateBETMember(proj.Deputy_Project_Leader__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
+                setIds.add(proj.Deputy_Project_Leader__c);
+            }
             for (IPM_Project_Resource__c proMember: proj.IPM_Project_Resources__r) {
-                lstMemberRequests.add(generateBETMember(proMember.IPM_User__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
+                if(setIds.isEmpty() || (!setIds.isEmpty() && !setIds.contains(proMember.IPM_User__c))){
+                    lstMemberRequests.add(generateBETMember(proMember.IPM_User__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
+                    setIds.add(proMember.IPM_User__c);
+                }
             }
             if(bwrap!=null){
                 for(IPM_Milestone__c betMS :proj.IPM_Milestones__r){
@@ -180,8 +190,12 @@ public without sharing class IPM_BETHelper {
     //Method to Request BET access for eligible new members in IPM
     public static void sendBETAccessRequest(list < id > lstUserId, id betId, id projectId) {
         list < BET_BETWrapper.MemberRequest > lstMemberRequests = new list < BET_BETWrapper.MemberRequest > ();
+        set<id> setIds = new set<Id>();
         for (id usrId: lstUserId) {
-            lstMemberRequests.add(generateBETMember(usrId, IPM_ConstantUtils.BET_MANAGER_ACCESS));
+            if(setIds.isEmpty() || (!setIds.isEmpty() && !setIds.contains(usrId))){
+                lstMemberRequests.add(generateBETMember(usrId, IPM_ConstantUtils.BET_MANAGER_ACCESS));
+                setIds.add(usrId);
+            }
         }
         //Call BET service to send access request
         if (!lstMemberRequests.isEmpty()) {
