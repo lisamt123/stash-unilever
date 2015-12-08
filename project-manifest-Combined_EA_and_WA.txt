@@ -177,3 +177,8 @@ src/staticresources/EA_StaticResource.resource
 src/staticresources/EA_StaticResource.resource-meta.xml
 src/triggers/EA_SendFeedback_Notification_trigger.trigger
 src/triggers/EA_SendFeedback_Notification_trigger.trigger-meta.xml
+src/aura/EA_UserProfile_Component/EA_UserProfile_Component.cmp
+src/aura/EA_UserProfile_Component/EA_UserProfile_Component.cmp-meta.xml
+src/aura/EA_UserProfile_Component/EA_UserProfile_Component.css
+src/aura/EA_UserProfile_Component/EA_UserProfile_ComponentController.js
+src/aura/EA_UserProfile_Component/EA_UserProfile_ComponentHelper.js
