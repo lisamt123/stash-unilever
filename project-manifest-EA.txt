@@ -122,6 +122,7 @@ src/aura/svg/svg.cmp-meta.xml
 src/aura/svg/svgController.js
 src/aura/svg/svgRenderer.js
 src/classes/AA_ApplicationWrapperObj_Test.cls
+src/classes/AA_ApplicationWrapperObj_Test.cls-meta.xml
 src/classes/EA_Constants.cls
 src/classes/EA_Constants.cls-meta.xml
 src/classes/EA_ConstantsTestClass.cls
