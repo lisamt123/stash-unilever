@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <icon>EA_Icon_Images/EA_App_Icon.svg</icon>
-	<aura>true</aura>
+    <icon>EA_Icon_Images/EA_App_Icon.svg</icon>	
     <label>Everyday Actions</label>
-    <mobileReady>false</mobileReady>
+    <mobileReady>true</mobileReady>
+	<auraComponent>true</auraComponent>
     <motif>Custom270: TV Widescreen</motif>
 </CustomTab>
