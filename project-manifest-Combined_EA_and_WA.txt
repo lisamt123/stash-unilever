@@ -240,7 +240,7 @@ src/aura/EA_ToDoActivityPage/EA_ToDoActivityPageController.js
 src/aura/EA_ToDoActivityPage/EA_ToDoActivityPageHelper.js
 src/aura/EA_UpdateLookupId_Event/EA_UpdateLookupId_Event.evt
 src/aura/EA_UpdateLookupId_Event/EA_UpdateLookupId_Event.evt-meta.xml
-src/aura/svg/src/aura/svg
+src/aura/svg/svg.cmp
 src/aura/svg/svg.cmp-meta.xml
 src/aura/svg/svgController.js
 src/aura/svg/svgRenderer.js
