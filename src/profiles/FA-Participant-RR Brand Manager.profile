@@ -81,6 +81,11 @@
         <visible>false</visible>
     </applicationVisibilities>
     <applicationVisibilities>
+        <application>One_View_KPIs</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
         <application>PSAR</application>
         <default>false</default>
         <visible>false</visible>
@@ -1911,27 +1916,27 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsCenterController</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsCenterControllerHelper</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsDetailWrapperClass</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsGAWrapperClass</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_NewsWrapperClass</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_NC_Test_NewsApp</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>Core_SendToChatterController</apexClass>
@@ -3231,7 +3236,7 @@
     </classAccesses>
     <classAccesses>
         <apexClass>NewsArticleFeedController_NewsApp</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>NewsArticleHandler</apexClass>
@@ -3244,6 +3249,14 @@
     <classAccesses>
         <apexClass>NewsArticle_OverrideViewCon</apexClass>
         <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_BatchKpiNotification</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_BatchKpiNotification_Test</apexClass>
+        <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>OV_ChatterService</apexClass>
@@ -3314,7 +3327,83 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>OV_KpiController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiController_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiDimensionService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiDimensionServiceSoql</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiDimensionServiceSoql_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiDimensionWrapper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiDimensionWrapper_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>OV_KpiElementHandler</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiNotificationFormatter</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiNotificationFormatter_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiTransactionFavServiceImpl_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiTransactionFavoriteService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiTransactionFavoriteServiceImpl</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiTransactionService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiTransactionServiceImpl</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiTransactionServiceImpl_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiUtils</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiUtils_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiWrapper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_KpiWrapper_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -3378,6 +3467,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>OV_ReportService_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>OV_ReportUsageService</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3391,6 +3484,14 @@
     </classAccesses>
     <classAccesses>
         <apexClass>OV_SearchService2_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_SecurityHelper</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_SecurityHelper_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -3434,6 +3535,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>OV_TriggerHandler_Test</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>OV_Utils</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3443,6 +3548,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>OV_WithoutSharingService</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>OV_WithoutSharingService_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -22046,17 +22155,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.News_Article_Topics__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.News_Body__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.News_Publish_Date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22071,17 +22180,17 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.Related_Links__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.Related_News_Article__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.Share_Count__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22121,7 +22230,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>News_Article__c.View_Count__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -22151,6 +22260,186 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OV_Geography__c.Parent_Geography__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Brand__c.Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Brand__c.Parent_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Brand__c.Parent_Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Business_Unit__c.Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Business_Unit__c.Parent_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Business_Unit__c.Parent_Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Channel__c.Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Channel__c.Parent_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Channel__c.Parent_Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Customer__c.Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Customer__c.Parent_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Customer__c.Parent_Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Geography__c.Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Geography__c.Parent_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Geography__c.Parent_Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_KPI_Name__c.Direction_Sentiment__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_KPI_Name__c.Value_Type__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_KPI_Name__c.Visible_Columns__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_NAProductCategory__c.Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_NAProductCategory__c.Parent_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_NAProductCategory__c.Parent_Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_NA_Brand__c.Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_NA_Brand__c.Parent_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_NA_Brand__c.Parent_Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_NA_OPCO__c.Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_NA_OPCO__c.Parent_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_NA_OPCO__c.Parent_Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_NA_Sales_Org__c.Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_NA_Sales_Org__c.Parent_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_NA_Sales_Org__c.Parent_Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Org_Unit__c.Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Org_Unit__c.Parent_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Org_Unit__c.Parent_Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Product_Category__c.Level__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Product_Category__c.Parent_Id__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Dimension_Product_Category__c.Parent_Level__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -22231,6 +22520,221 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>OV_KPI_Element__c.TimeSpan__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction_Favorite__c.Chatter_Update_Message__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction_Favorite__c.Report__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction_Favorite__c.Wants_Notifications__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Brand_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Brand__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Business_Unit_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Business_Unit__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Channel_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Channel__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Current_Time_Period__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Customer_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Customer__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Direction_Change__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.External_UID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Fire_Notification__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Forecast_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Geography_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Geography__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.NA_Brand_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.NA_Brand__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.NA_OPCO_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.NA_OPCO__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.NA_Product_Category_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.NA_Product_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.NA_Sales_Org_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.NA_Sales_Org__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Organisational_Unit_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Organisational_Unit__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Product_Category_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Product_Category__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Target_Value__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Time_Range_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Time_Range__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Value_Delta__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Value_Prefix_Formatted__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Value_Prefix_Previous_Formatted__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Value_Prefix__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Value_Suffix_Formatted__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Value_Suffix_Previous_Formatted__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Value_Suffix_Previous__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.Value_Suffix__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.WL_Group_Code__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>OV_KPI_Transaction__c.WL_Group__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -30482,7 +30986,7 @@
         <layout>Asset_Scoring__c-Asset Scoring Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Asset_Scoring__c-Asset Scoring Layout</layout>
+        <layout>Asset_Scoring__c-Resource</layout>
         <recordType>Asset_Scoring__c.Asset</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -31144,7 +31648,7 @@
         <recordType>Marketing_Basics__c.Activity</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Marketing_Basics__c-Activity</layout>
+        <layout>Marketing_Basics__c-Resource</layout>
         <recordType>Marketing_Basics__c.Resource</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -31155,7 +31659,7 @@
         <recordType>Marketing_SOW__c.ChildSowMarketing</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Marketing_SOW__c-Copy Marketing SOW Layout</layout>
+        <layout>Marketing_SOW__c-Marketing SOW Layout</layout>
         <recordType>Marketing_SOW__c.ParentSowMarketing</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -31189,6 +31693,48 @@
         <layout>OV_Geography__c-One View Geography Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>OV_KPI_Dimension_Brand__c-One View KPI Dimension Brand Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_Business_Unit__c-One View Dimension Business Unit Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_Channel__c-One View KPI Dimension Channel Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_Customer__c-One View KPI Customer Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_Geography__c-One View KPI Dimension Geography Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_KPI_Name__c-One View KPI Dimension KPI Name Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_NAProductCategory__c-OneView KPI Dimension NAProductCategory Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_NA_Brand__c-One View KPI Dimension NA Brand Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_NA_OPCO__c-One View KPI Dimension NA OPCO Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_NA_Sales_Org__c-One View KPI Dimension NA Sales Org Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_Org_Unit__c-One View Dimension Organisational Unit Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_Product_Category__c-One View KPI Dimension Product Category Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_Time_Range__c-One View KPI Dimension Time Range Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Dimension_WL_GROUP__c-One View KPI Dimension WL GROUP Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>OV_KPI_Element_Interest__c-One View KPI Element Interest Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -31196,6 +31742,12 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>OV_KPI_Name__c-One View KPI Name Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Transaction_Favorite__c-One View KPI Transaction Favorite Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OV_KPI_Transaction__c-One View KPI Transaction Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>OV_Profile__c-One View Profile Layout</layout>
@@ -31241,11 +31793,11 @@
         <recordType>Oblix_Calculator__c.Box_Range</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Calculator__c-BoxRange</layout>
+        <layout>Oblix_Calculator__c-Oblix Calculator Layout</layout>
         <recordType>Oblix_Calculator__c.Country_Box_Number</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Calculator__c-BoxRange</layout>
+        <layout>Oblix_Calculator__c-Role Rate Card</layout>
         <recordType>Oblix_Calculator__c.Role_Rate</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -31262,23 +31814,23 @@
         <recordType>Oblix_Project_Assets__c.Admin</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Audio Visual</layout>
         <recordType>Oblix_Project_Assets__c.Audio_Visual</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Digital</layout>
         <recordType>Oblix_Project_Assets__c.Digital</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Experiential</layout>
         <recordType>Oblix_Project_Assets__c.Experiential</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Static Imagery</layout>
         <recordType>Oblix_Project_Assets__c.Static_Imagery</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>Oblix_Project_Assets__c-Agency Project Assets Layout</layout>
+        <layout>Oblix_Project_Assets__c-Stimulus Materials %2F Research Requirements</layout>
         <recordType>Oblix_Project_Assets__c.Stimulus_Materials_Research_requirements</recordType>
     </layoutAssignments>
     <layoutAssignments>
@@ -32922,7 +33474,7 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>NewsArticleFeed_NewsApp</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>NewsArticle_OverrideView</apexPage>
@@ -33952,11 +34504,6 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>false</default>
-        <recordType>OV_Report__c.Admin_View</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <default>false</default>
         <recordType>OV_Shelf__c.Moment</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -34205,6 +34752,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>My_Approvals_Custom</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>News_Centre</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

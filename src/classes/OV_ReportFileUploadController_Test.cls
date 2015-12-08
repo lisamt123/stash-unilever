@@ -225,6 +225,29 @@ private class OV_ReportFileUploadController_Test {
         System.assertEquals(expectedDeviceType, actualDeviceType);
     }
 
+    @isTest static void testNoReportError() {
+        OV_Report__c report = insertReport(reportLabel);
+
+        PageReference pageReference = new PageReference(reportFileUploadURL);
+        Test.setCurrentPage(pageReference);
+        ApexPages.currentPage().getParameters().put(deviceTypeLabel, 'M');
+        ApexPages.currentPage().getParameters().put(reportIdLabel, report.Id);
+
+        delete report;
+
+        OV_ReportContentServiceImpl service = new OV_ReportContentServiceImpl();
+
+        Test.startTest();
+        OV_ReportFileUploadController controller = new OV_ReportFileUploadController(service);
+        //String actualDeviceType = controller.deviceTypeName;
+        
+        PageReference actualPageReference = controller.upload();
+        System.assertEquals(null, actualPageReference);
+        
+        Test.stopTest();
+
+        //System.assertEquals(expectedDeviceType, actualDeviceType);
+    }
 
     @isTest static void testSelectedLibrary(){
         Id idFixture = getMockId();
@@ -243,8 +266,6 @@ private class OV_ReportFileUploadController_Test {
 
 
     @isTest static void testLibraryList(){
-        
-    
         OV_Report__c report = insertReport(reportLabel);
 
         PageReference pageReference = new PageReference(reportFileUploadURL);
@@ -265,6 +286,9 @@ private class OV_ReportFileUploadController_Test {
         SelectOption option = options[0];
         System.assertEquals('unit test library', option.getLabel());
         System.assertEquals(idFixture, option.getValue());
+        controller.changeStaticDynamic();
+        String name = controller.reportName;
+        
     }
 
     private static Id getMockId(){

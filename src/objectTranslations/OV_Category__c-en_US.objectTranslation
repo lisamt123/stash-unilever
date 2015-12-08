@@ -14,6 +14,17 @@
         <relationshipLabel><!-- One View Categories --></relationshipLabel>
     </fields>
     <layouts>
+        <layout>Category Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Fields --></label>
+            <section>New Fields</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>One View Category Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>

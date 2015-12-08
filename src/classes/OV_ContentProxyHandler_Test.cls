@@ -70,8 +70,7 @@ private class OV_ContentProxyHandler_Test {
     }
     
     @isTest
-    static void contentProxyHandlerAfterUpdate_Test(){
-        
+    static void contentProxyHandlerAfterUpdate_Test(){        
         OV_Trigger_Enablement__c triggerSwitchCustomSetting = OV_Trigger_Enablement__c.getOrgDefaults();
         triggerSwitchCustomSetting.ContentProxy__c = true;
         insert triggerSwitchCustomSetting;

@@ -9,10 +9,12 @@
         <value>One View Report Favourites</value>
     </caseValues>
     <fields>
+        <help><!-- Message triggered when a Report has been deleted --></help>
         <label><!-- Chatter Delete Message --></label>
         <name>Chatter_Delete_Message__c</name>
     </fields>
     <fields>
+        <help><!-- Chatter message sent when a new version of a report has been uploaded. --></help>
         <label><!-- Chatter Update Message --></label>
         <name>Chatter_Update_Message__c</name>
     </fields>

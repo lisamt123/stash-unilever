@@ -67,10 +67,8 @@
         // get current value
         var reportListShown = component.get('v.reportListShown');
         // change it if needed
-        if (component.get('v.shelfTile.shelfTileId') !== event.getParam('shelfTileId')) {
-            if (reportListShown !== false) {
-                component.set('v.reportListShown', false);
-            }
+        if (component.get('v.shelfTile.shelfTileId') !== event.getParam('shelfTileId') && reportListShown !== false) {
+            component.set('v.reportListShown', false);
         }
     }
 })
