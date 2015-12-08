@@ -244,3 +244,7 @@ src/aura/svg/svg.cmp
 src/aura/svg/svg.cmp-meta.xml
 src/aura/svg/svgController.js
 src/aura/svg/svgRenderer.js
+src/aura/ImageComponent/ImageComponent.cmp
+src/aura/ImageComponent/ImageComponent.cmp-meta.xml
+src/aura/ImageComponent/ImageComponent.css
+src/aura/ImageComponent/ImageComponentController.js
