@@ -30,7 +30,6 @@ class IPM_BETHelper_Test {
     private final static string TEST_BET02 = 'TestBet0';
     private final static string TEST_BET03 = 'TestBet1';
     private final static string TEST_BET04 = 'TestBet2';
-    private final static string TEST_BET05 = 'TestBet0';
     private final static string IPM_Role_BD= 'BD';
     private final static string IPM_Role_CD= 'CD';
     private final static string TEST_BET = 'TestBet';
@@ -264,7 +263,7 @@ class IPM_BETHelper_Test {
             projectList[3].IPM_Project_Type__c = Rollout;
             projectList[3].IPMProject_Span__c = Regional;
             projectList[3].IPM_Project_Job_Status__c = Completed;
-            projectList[3].IPM_Project_Name__c = 'TEST_PROJECT08';
+            projectList[3].IPM_Project_Name__c = TEST_PROJECT08;
             projectList[3].IPM_Parent_Project__c = parentProj.id;
 
             insert new List < IPM_Project__c > {
@@ -607,9 +606,9 @@ class IPM_BETHelper_Test {
 
         User testRunningUser = [Select Id, LastName from User where LastName = : USER_LAST_NAME
         limit 1];
-
-        List < IPM_Milestone__c > IPMsam1 = IPM_TestFactory_Helper.createIPMMilestoneList(false, 2);
         Test.StartTest(); 
+        List < IPM_Milestone__c > IPMsam1 = IPM_TestFactory_Helper.createIPMMilestoneList(false, 2);
+
         uw_BET__c betRecord1 = [Select id, name, Status__c, FinalReleaseDate__c, Final_Release_Due_Date__c, FirstReleaseDate__c, First_Release_Due_Date__c, Is_Archived__c, OwnerId, Category_Group__c, Product_Category__c, Brand_Position__c, Product_Brand__c from uw_BET__c where name = : TEST_BET03
         limit 1];
         betRecord1.Status__c = 'Unreleased';

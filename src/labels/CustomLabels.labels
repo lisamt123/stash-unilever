@@ -11557,7 +11557,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM TLD Misaligned</shortDescription>
-        <value>is no longer aligned with the Target Launch Date of the Regional Project,</value>
+        <value>is no longer aligned with the Regional Project</value>
     </labels>
     <labels>
         <fullName>IPM_TLD_SHOULD_BE_GREATER_THAN_TODAY</fullName>

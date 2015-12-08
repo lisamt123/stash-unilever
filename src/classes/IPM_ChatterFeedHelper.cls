@@ -681,6 +681,8 @@ public with sharing class IPM_ChatterFeedHelper {
                                 FROM IPM_Project_Rollout__c
                                 WHERE (IPM_Project__c IN:newProjIds) OR (Regional_Project__c IN:newProjIds) OR (Local_Project__c IN:newProjIds)
                                 LIMIT:IPM_ConstantUtils.MaxLimit];
+     List<IPM_Project_Resource__c> resourceList = [Select IPM_User__c,IPM_Project__c from IPM_Project_Resource__c 
+     where IPM_Role_Type__c =: IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE and IPM_Project__c IN: newProjIds and IPM_Project_Role_Owner__c = true LIMIT 50000];
                                 
      Id localRollout = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
      
@@ -696,12 +698,26 @@ public with sharing class IPM_ChatterFeedHelper {
             regionalUserSet.add(projRollout.Regional_Project__r.IPM_Project_Leader__c);
             regionalUserSet.add(projRollout.Regional_Project__r.Deputy_Project_Leader__c);
             regionalUserSet.add(projRollout.Regional_Project__r.IPM_Finance_Member__c);
-               
+            for(IPM_Project_Resource__c eachResource:resourceList)
+            {   
+               if(projRollout.Regional_Project__c == eachResource.IPM_Project__c && eachResource.IPM_User__c != null)
+               {
+                    regionalUserSet.add(eachResource.IPM_User__c);
+               }
+            }   
+            regionalUserSet.remove(null);
             Set<Id> localUserSet = new Set<Id> ();
             localUserSet.add(projRollout.Local_Project__r.IPM_Project_Leader__c);
             localUserSet.add(projRollout.Local_Project__r.Deputy_Project_Leader__c);
             localUserSet.add(projRollout.Local_Project__r.IPM_Finance_Member__c);
-                
+            for(IPM_Project_Resource__c eachResource:resourceList)
+            {   
+               if(projRollout.Local_Project__c == eachResource.IPM_Project__c && eachResource.IPM_User__c != null)
+               {
+                    localUserSet.add(eachResource.IPM_User__c);
+               }
+            }
+            localUserSet.remove(null);     
             projectIdUserSetMap.put(projRollout.Regional_Project__c,regionalUserSet);
             projectIdUserSetMap.put(projRollout.Local_Project__c,localUserSet);
                 
@@ -713,7 +729,7 @@ public with sharing class IPM_ChatterFeedHelper {
                 
          }
      }
-     IPM_ChatterUtils.postChatterFeedWithMention(projectIds,subjectIdMessageMap,subjectIdMentionIdMap); 
+     IPM_ChatterUtils.postChatterFeedWithMention(projectIds,subjectIdMessageMap,projectIdUserSetMap); 
      clearData();
            
     } 
@@ -726,7 +742,7 @@ public with sharing class IPM_ChatterFeedHelper {
      clearData();
      Set<Id> financialSet = new Set<Id>();
      Map<ID,String> financialMap = new Map<Id,String>();
-      if(updatedFinancials != null)  
+  
       for(IPM_Financial__c eachFin:updatedFinancials)
       {
             projectIds.add(eachFin.Local_Project__c);
@@ -818,7 +834,7 @@ public with sharing class IPM_ChatterFeedHelper {
                     }
                     
                     String currGate = IPM_Utils.phaseGateDocumentMap.get(eachRollout.IPM_Project__r.IPM_Phase__c);
-                    Datetime upcomingMilestoneDueDate=System.now();
+                    Datetime upcomingMilestoneDueDate=null; //NO SONAR : If the current milestone date is not set, then need to display blank or null value 
                     for(IPM_Milestone__c eachMilestone:milestoneList)
                     {
                       if(eachMilestone.IPM_Planned_Date__c != null && eachMilestone.IPM_Phase__c == eachRollout.IPM_Project__r.IPM_Phase__c && currGate.equalsIgnoreCase(eachMilestone.IPM_Type_of_gate__c))
