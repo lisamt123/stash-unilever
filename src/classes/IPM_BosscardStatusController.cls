@@ -128,8 +128,7 @@ global with sharing class IPM_BosscardStatusController{
             
         }
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
-                IPM_ConstantUtils.IPM_BOSS_BOSSCARD_CTRL,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
         }
     }
     
@@ -183,9 +182,9 @@ global with sharing class IPM_BosscardStatusController{
         catch(Exception ex){
             // Rollback to the previous  values
             Database.rollback(sp);
-                        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
                 IPM_ConstantUtils.IPM_BOSS_CREATE_PROJECT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
             
         }
         return NewProject.id;
@@ -239,7 +238,7 @@ global with sharing class IPM_BosscardStatusController{
         catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
                 IPM_ConstantUtils.IPM_BOSS_BOSSCARDUPDATE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
        }
     }
     
