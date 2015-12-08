@@ -2,7 +2,6 @@
 private class AA_ApplicationWrapperObj_Test {
 
     static testMethod void myUnitTest() {
-        /*VVO*/
         AA_ApplicationWrapperObj obj = new AA_ApplicationWrapperObj();
         obj.errorCode='test';
         obj.isAcceptedTermsCondition=true;
