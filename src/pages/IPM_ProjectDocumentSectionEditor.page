@@ -109,7 +109,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="panel-group">
-                                                            <div class="row noMargin">
+                                                            <div class="secComponent noMargin">
                                                                 <!---OLD BUTTON POSITIONS--->
                                                                 <c:IPM_Section_GateChecklist getSecid="{!projDocSecId}" getDocType="{!projDoc.IPM_GateDocuments__c}"  editGateSect="{!IsEditableOutC}"></c:IPM_Section_GateChecklist>
                                                                 <c:IPM_OTIFSectionStatus otfType="Section" getSectionId="{!projDocSec.Id}" isEdtable="{!IsEditableOutC}" ></c:IPM_OTIFSectionStatus>
@@ -126,6 +126,17 @@
                                                                 <c:IPM_AssortmentStrategy Editable="true" ProSecID="{!projDocSecId}" rendered="{!if(AND(project.IPM_Phase__c='Market Ready',projDocSec.IPM_Master_Section_External_Id__c='Assortment_Strategy'),true,false)}"></c:IPM_AssortmentStrategy>
                                                                 
                                                                 <c:IPM_Financial_ActionStandards isEditable="{!IsEditableOutC}"  secId="{!projDocSec.Id}" projId="{!projectId}" rendered="{!OR(AND(projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPM_Project_Type__c!='Rollout'),AND(projdocsec.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',project.IPM_Project_Type__c=='Rollout',project.IPMProject_Span__c!='Local'))}"  ></c:IPM_Financial_ActionStandards>                                                      
+                                                           		 <apex:outputPanel layout="block" rendered="{!AND(project.IPM_Phase__c='Ideas',project.IPM_Project_Type__c!='Operational')}">
+                                                           			 <c:IPM_GateCMI Editable="{!isEditGateCMI}" getProjectId="{!projectId}" getSectionId="{!projDocSec.Id}" getGate="{!projDoc.IPM_GateDocuments__c}" rendered="{!if(CONTAINS(projDocSec.IPM_Master_Section_External_Id__c,'Mix_Qualification_Plan_and_Action_Standards'),If(AND(project.IPM_Phase__c='Ideas',countOfCountries<1),false,true),false)}" />   
+                                                        		</apex:outputPanel>
+                                                        		<apex:outputPanel layout="block" rendered="{!AND(project.IPM_Phase__c!='Ideas',project.IPM_Project_Type__c!='Operational')}">
+                                                          		  <c:IPM_GateCMI_Contract Editable="{!isEditGateCMI}" getProjectId="{!projectId}"  getGate="{!projDoc.IPM_GateDocuments__c}" getSectionId="{!projDocSec.Id}" rendered="{!AND(project.IPMProject_Span__c='Regional',CONTAINS(projDocSec.IPM_Master_Section_External_Id__c,'Mix_Qualification_Plan_and_Action_Standards'))}" />  
+                                                           		  <c:IPM_GateCMI_Consolidated getGate="{!projDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" getSectionId="{!projDocSec.Id}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards',OR(project.IPMProject_Span__c='Global',project.IPMProject_Span__c='Local'))}"></c:IPM_GateCMI_Consolidated>
+                                                        		</apex:outputPanel>
+                                                        		                                                        		
+                                                        		 <c:IPM_CU_Complexity gateType="{!projDoc.IPM_GateDocuments__c}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}" getSectionId="{!projDocSec.Id}" isEdit="{!IsCRRTEditable}" rendered="{!AND(project.IPM_Project_Type__c!='Operational',projDocSec.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas'))}">                                   </c:IPM_CU_Complexity>
+                                                  				 <c:IPM_CU_Complexity_Consolidated getGateType="{!projDoc.IPM_GateDocuments__c}" isGateDoc="false" getProjId="{!project.Id}" rendered="{!AND(project.IPM_Project_Type__c!='Operational',project.IPMProject_Span__c='Global',projDocSec.IPM_Master_Section_External_Id__c='CU_And_Complexity')}" /> 
+                                                        		    
                                                             </div>
                                                         </div> 
                                                     </div>
@@ -145,31 +156,7 @@
                                                             {!$Label.IPM_GENERATE_ROLLOUT_FOR_CONSUMER_EVIDENCE}                       
                                                         </div>
                                                     </div>
-                                                </apex:outputPanel>
-                                                
-                                                
-                                                
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <apex:outputPanel layout="block" rendered="{!AND(project.IPM_Phase__c='Ideas',project.IPM_Project_Type__c!='Operational')}">
-                                                            <c:IPM_GateCMI Editable="{!isEditGateCMI}" getProjectId="{!projectId}" getSectionId="{!projDocSec.Id}" getGate="{!projDoc.IPM_GateDocuments__c}" rendered="{!if(CONTAINS(projDocSec.IPM_Master_Section_External_Id__c,'Mix_Qualification_Plan_and_Action_Standards'),If(AND(project.IPM_Phase__c='Ideas',countOfCountries<1),false,true),false)}" />   
-                                                        </apex:outputPanel>
-                                                        <apex:outputPanel layout="block" rendered="{!AND(project.IPM_Phase__c!='Ideas',project.IPM_Project_Type__c!='Operational')}">
-                                                            <c:IPM_GateCMI_Contract Editable="{!isEditGateCMI}" getProjectId="{!projectId}"  getGate="{!projDoc.IPM_GateDocuments__c}" getSectionId="{!projDocSec.Id}" rendered="{!AND(project.IPMProject_Span__c='Regional',CONTAINS(projDocSec.IPM_Master_Section_External_Id__c,'Mix_Qualification_Plan_and_Action_Standards'))}" />  
-                                                            <c:IPM_GateCMI_Consolidated getGate="{!projDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" getSectionId="{!projDocSec.Id}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards',OR(project.IPMProject_Span__c='Global',project.IPMProject_Span__c='Local'))}"></c:IPM_GateCMI_Consolidated>
-                                                        </apex:outputPanel>           
-                                                    </div>
-                                                </div> 
-                                                
-                                                <div class="row cuCount">
-                                                   <div class="col-sm-12">
-                                                  
-                                                          <c:IPM_CU_Complexity gateType="{!projDoc.IPM_GateDocuments__c}" proModel="{project.IPM_GateKeeping_Model__c}" ProSpan="{project.IPMProject_Span__c}" phaseName="{!project.IPM_Phase__c}" getSectionId="{!projDocSec.Id}" isEdit="{!IsCRRTEditable}" rendered="{!AND(project.IPM_Project_Type__c!='Operational',projDocSec.IPM_Master_Section_External_Id__c='CU_And_Complexity',OR(project.IPMProject_Span__c='Regional',project.IPMProject_Span__c='Local',project.IPM_Phase__c='Ideas'))}">
-                                                           </c:IPM_CU_Complexity>
-                                                   <c:IPM_CU_Complexity_Consolidated getGateType="{!projDoc.IPM_GateDocuments__c}" isGateDoc="false" getProjId="{!project.Id}" rendered="{!AND(project.IPM_Project_Type__c!='Operational',project.IPMProject_Span__c='Global',projDocSec.IPM_Master_Section_External_Id__c='CU_And_Complexity')}" /> 
-                                                   
-                                                 </div>   
-                                                </div>                                               
+                                                </apex:outputPanel>                                                
                                                 
                                                 <!--Button Alignment--->
                                                 <apex:outputPanel rendered="{! If(AND(IsEditableOutC=true),'true','false')}">    

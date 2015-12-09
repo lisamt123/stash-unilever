@@ -64,8 +64,9 @@
         #wrapper {margin-left:5mm!important; margin-right:5mm!important;margin-top:10mm !important;float:left;}
         .headSecBlock {display:inline-block; padding-left:8px; text-transform:uppercase; padding-right:8px; margin-top:6px; color:#555!important; border-left:0.25pt solid #a8a8a8!important; }        
         .headSecBlock.smallText {font-size:9pt!important;font-weight:normal;} 
-        .headSecBlock.global{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/globe.png')}'); background-repeat:no-repeat;background-position:10px 3px;} 
-        .headSecBlock.local{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/icoLocal.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
+        .headSecBlock.global{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/star_s.png')}'); background-repeat:no-repeat;background-position:10px 3px;} 
+        .headSecBlock.operational{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/hammer_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
+        .headSecBlock.local{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/location_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
          h5 {font-size:13px!important;}        
         .projLogo{width:100%!important;}        
         .floatLeft{float:left;}
@@ -422,7 +423,8 @@
                 </td>
                 <td align="center">        
                 <apex:outputText value="{!projectDoc.IPM_GateDocuments__c }" styleClass="headSecBlock bold"/>
-                <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock global" rendered="{!project.IPM_Project_Type__c='Original'}"/>    
+                <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock global" rendered="{!project.IPM_Project_Type__c='Original'}"/>
+                 <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock operational"  rendered="{!project.IPM_Project_Type__c='Operational'}"/>    
                 <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock local"  rendered="{!project.IPM_Project_Type__c='Rollout'}"/>
                 <apex:outPutpanel rendered="{!IF(OR(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Document_Status__c='Proposed'), 'true', 'false')}">
                     <div class="headSecBlock bold">{!projectDoc.IPM_Document_Status__c}</div>

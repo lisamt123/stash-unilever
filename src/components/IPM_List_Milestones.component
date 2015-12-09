@@ -160,7 +160,7 @@
                         <div class="col-xs-2 ipmCheckbox milestoneCheck">
                             
                             
-                            <apex:outputPanel rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
+                            <apex:outputPanel styleClass="misalignchck" rendered="{! AND(p.isEditable,isSDateEdit,isEditable)}">
                                 <a class="icoButton edit1 editMilestoneBtn" value="{!$Page.IPM_EditMilestone}?projectId={!projectId}&taskId={!p.record['Id']}&isEdit={!isEditable}&isDateEdit={!isSDateEdit}" title="{!$Label.IPM_EDIT}" >
                                     <input type="checkbox" value="{!p.isChecked}"   id="{!p.record['Id']}" isDisabled="{!if(or(AND(NOT(ISNULL(p.record['IPM_Milestone__c'])),isEditable=true),AND(ISNULL(p.record['IPM_Milestone__c'] ),isSDateEdit=true,isEditable=true)),'false','true')}"/>
                                 </a>

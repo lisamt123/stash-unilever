@@ -23,12 +23,15 @@
                         <div class="pull-left">
                             <span class="ipmpanel-heading"><apex:outputText value="{!project.IPM_Project_Name__c}" /></span>
                         </div>             
-                        <div class="secNameHeader SecButtonSet">
+                        <div class="secNameHeader projDetails SecButtonSet">
                              <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Original'}">
-                                 <span class="headerglb"></span>
+                                 <span class="orgIcon"></span>
+                             </apex:outputPanel>
+                             <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Operational'}">
+                                 <span class="oprtnIcon"></span>
                              </apex:outputPanel>
                              <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Rollout'}">
-                                 <span class="headerlocal"></span>
+                                 <span class="rollIcon"></span>
                              </apex:outputPanel>
                              <span class="grentxt">{!project.IPMProject_Span__c} {!project.IPM_Project_Type__c}</span> 
                         </div>

@@ -123,8 +123,18 @@
                         <div class="col-sm-3">
                         <div class="topheader">{!$Label.IPM_KeyProjectDetails}</div>
                         <div class="greyborder"></div>
-                        <div class="globeContainer">
-                            <span class="keyTitle pull-left">{!project.IPM_Project_Name__c} | </span><span class="headerglb"></span><span class="grentxt">{!project.IPMProject_Span__c}</span>
+                        <div class="globeContainer projOverview">
+                            <span class="keyTitle pull-left">{!project.IPM_Project_Name__c} | </span> 
+                            <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Original'}">
+                                 <span class="orgIcon"></span>
+                             </apex:outputPanel>
+                             <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Operational'}">
+                                 <span class="oprtnIcon"></span>
+                             </apex:outputPanel>
+                             <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Rollout'}">
+                                 <span class="rollIcon"></span>
+                             </apex:outputPanel>
+                            <span class="grentxt">{!project.IPMProject_Span__c}</span>
                         </div>
                          <div class="SecButtonSet" >
                                 <apex:outputPanel rendered="{! AND (NOT(bPhaseChangeInProgress) , isProjLeader)}">
