@@ -3310,10 +3310,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>OV_KpiElementHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>OV_NewShelfTileController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -31121,10 +31117,6 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>OV_Report__c-Report Layout</layout>
-    </layoutAssignments>
-    <layoutAssignments>
-        <layout>OV_Report__c-Report Layout</layout>
-        <recordType>OV_Report__c.Admin_View</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>OV_ShelfTileReport__c-Shelf Tile Report Layout</layout>

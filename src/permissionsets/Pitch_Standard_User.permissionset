@@ -3277,10 +3277,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>OV_KpiElementHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>OV_NewShelfTileController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
