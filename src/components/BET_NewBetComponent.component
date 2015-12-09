@@ -134,7 +134,10 @@
 
     </apex:outputPanel>
 
-    <apex:outputPanel id="betMembers">
+    <apex:outputPanel id="betMembers" rendered="{!goToMemberSelection}">
+
+        <apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>
+
         <c:BET_SuggestMembers BetID="{!bet.id}" 
                             ProjectId="{!IF(bet.IPM_Project__c == null,bet.Inoplan_Project__c,bet.IPM_Project__c)}" 
                             Callback="/{!bet.id}" 
