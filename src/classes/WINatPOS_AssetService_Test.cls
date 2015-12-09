@@ -16,9 +16,10 @@ private class WINatPOS_AssetService_Test {
 
     static testMethod void testDeleteAsset1() {
     	
-    	Profile p = [select Id, Name from Profile where Name  = 'Unilever Way - Marketing - System Administrator Lite' limit 1];
+    	Profile p = [select Id, Name from Profile where Name  = 'Standard User' limit 1];
     	Profile profileSystemAdmin = [select Id, Name from Profile where Name  = 'System Administrator' limit 1];
         //create test data
+        
         User testUser = new User(
 				profileId = p.id, 
 				username = 'testXXX@test.com', 
@@ -73,9 +74,10 @@ private class WINatPOS_AssetService_Test {
     
     static testMethod void testDeleteAsset2() {
     	
-    	Profile p = [select Id, Name from Profile where Name  = 'Unilever Way - Marketing - System Administrator Lite' limit 1];
+    	Profile p = [select Id, Name from Profile where Name  = 'Standard User' limit 1];
     	Profile profileSystemAdmin = [select Id, Name from Profile where Name  = 'System Administrator' limit 1];
         //create test data
+        
         User testUser = new User(
 				profileId = p.id, 
 				username = 'testXXX@test.com', 
@@ -86,6 +88,7 @@ private class WINatPOS_AssetService_Test {
 				timezonesidkey = 'Europe/London', 
 				alias='nuser', 
 				lastname='lastname'
+                
 			);
 		insert testUser;
 		
