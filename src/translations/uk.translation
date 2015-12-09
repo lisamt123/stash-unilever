@@ -61,6 +61,10 @@
         <name>OneView</name>
     </customApplications>
     <customApplications>
+        <label><!-- One View KPIs --></label>
+        <name>One_View_KPIs</name>
+    </customApplications>
+    <customApplications>
         <label><!-- PSAR --></label>
         <name>PSAR</name>
     </customApplications>
@@ -7197,6 +7201,14 @@
         <name>Matrix_Currency_Desc</name>
     </customLabels>
     <customLabels>
+        <label><!-- OV_MobileApplicationInfo --></label>
+        <name>OV_MobileApplicationInfo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- OV_NewLine --></label>
+        <name>OV_NewLine</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40 --></label>
         <name>Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40</name>
     </customLabels>
@@ -9255,6 +9267,10 @@
     <customTabs>
         <label><!-- Inside Unilever --></label>
         <name>Inside_Unilever</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- KPI Notifications --></label>
+        <name>KPI_Notifications</name>
     </customTabs>
     <customTabs>
         <label><!-- Masterbrand --></label>

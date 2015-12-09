@@ -11275,6 +11275,22 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>All figures in thousands of Euro unless another currency is specified.</value>
     </labels>
     <labels>
+        <fullName>OV_MobileApplicationInfo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OV_MobileApplicationInfo</shortDescription>
+        <value>OneView Next Generation is not yet available on mobile devices but development is underway. Look on our Chatter group to find out more about plans for 2016.</value>
+    </labels>
+    <labels>
+        <fullName>OV_NewLine</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OV_NewLine</shortDescription>
+        <value>&lt;
+
+&gt;</value>
+    </labels>
+    <labels>
         <fullName>Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40</fullName>
         <categories>Oblix Calculator</categories>
         <language>en_US</language>

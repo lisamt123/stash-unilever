@@ -24,6 +24,7 @@ History
 VERSION  AUTHOR            DATE              DETAIL            Description
 
 1.0   Pawel Niedziela    24/09/2015      INITIAL DEVELOPMENT   Trigger Handler for the OV_ContentProxy__c SObject.
+1.1   Maciej Krol        16/10/2015      INITIAL DEVELOPMENT   Modifications related to new OV_Report_Favourite__c object
 
 ***********************************************************************/
 public with sharing class OV_ContentProxyHandler implements OV_Trigger{
@@ -32,12 +33,14 @@ public with sharing class OV_ContentProxyHandler implements OV_Trigger{
     private Map<Id, List<OV_Report__c>> contentProxyToReportsMap = new Map<Id, List<OV_Report__c>>();
 
     private Map<Id, List<OV_Report_Favourite__c>> reportIdToReportsFavouritesMap = new Map<Id, List<OV_Report_Favourite__c>>();
-    
+
     Map<Id, OV_Report__c> reportsMap = new Map<Id, OV_Report__c>();
     Map<Id, OV_Report_Favourite__c> reportsFavouriteMap = new Map<Id, OV_Report_Favourite__c>();
 
     List<ConnectApi.BatchInput> batchInputs = new List<ConnectApi.BatchInput>();
     List<List<ConnectApi.BatchInput>> listOfPacs = new List<List<ConnectApi.BatchInput>>();
+
+    private static final String UPDATE_MESSAGE = 'Update';
 
     // Constructor
     public OV_ContentProxyHandler(){
@@ -175,11 +178,11 @@ public with sharing class OV_ContentProxyHandler implements OV_Trigger{
             for(OV_Report__c tmpr : tmpReports){
                 if(reportIdToReportsFavouritesMap.containsKey(tmpr.Id)){
                     for(OV_Report_Favourite__c tmprepfav : reportIdToReportsFavouritesMap.get(tmpr.Id)){
-          
-                        ConnectApi.FeedItemInput input = createReportUpdateNotification(tmprepfav);
+
+                        ConnectApi.FeedItemInput input = OV_Utils.generateReportNotification(tmprepfav, UPDATE_MESSAGE);
 
                         ConnectApi.BatchInput batchInput = new ConnectApi.BatchInput(input);
-                        batchInputs.add(batchInput);                        
+                        batchInputs.add(batchInput);
                     }
                 }
             }
@@ -236,7 +239,7 @@ public with sharing class OV_ContentProxyHandler implements OV_Trigger{
 
         System.debug('Entering andFinally');
 
-        if( batchInputs.size()>0 ){
+        if( ! batchInputs.isEmpty() ){
             Integer dmlLimit = Limits.getLimitDmlStatements();
             List<ConnectApi.BatchInput> pack = new List<ConnectApi.BatchInput>();
             for(Integer j = 0 ; j < batchInputs.size() ; j++){
@@ -316,7 +319,7 @@ public with sharing class OV_ContentProxyHandler implements OV_Trigger{
             }
         }
 
-        reportsFavouriteMap = new Map<Id, OV_Report_Favourite__c>([SELECT Id, Chatter_Update_Message__c, Chatter_Delete_Message__c, Report__c, User__r.User__c FROM OV_Report_Favourite__c WHERE Report__c IN :reportsMap.keySet()]);
+        reportsFavouriteMap = new Map<Id, OV_Report_Favourite__c>([SELECT Id, Chatter_Update_Message__c, Chatter_Delete_Message__c, Report__c, User__r.User__c, Favourite_From_Shelf_Tile__c, Favourite_From_Shelf_Tile__r.Tile_Colour__c, Favourite_From_Shelf_Tile__r.ICON_Label__c, Favourite_From_Shelf_Tile__r.Id FROM OV_Report_Favourite__c WHERE Report__c IN :reportsMap.keySet()]);
 
         for(OV_Report_Favourite__c tmpReportFavourite : reportsFavouriteMap.values()){
             if(reportIdToReportsFavouritesMap.containsKey(tmpReportFavourite.Report__c)){
@@ -326,73 +329,7 @@ public with sharing class OV_ContentProxyHandler implements OV_Trigger{
                 reportIdToReportsFavouritesMap.put(tmpReportFavourite.Report__c, reps);
             }
         }
-        
+
         System.debug('Exiting initChangedContentProxies');
-    }
-
-
-    /*******************************************************************
-
-        Purpose:  Creates Chatter Feed Item which will be posted.
-
-        Parameters: [OV_Report_Favourite__c reportFavourite]
-
-        Returns: [ConnectApi.FeedItemInput]
-
-        Throws [Exceptions]: [optional]
-
-    ********************************************************************/
-    private ConnectApi.FeedItemInput createReportUpdateNotification(OV_Report_Favourite__c reportFavourite) {
-
-        System.debug('Entering createReportUpdateNotification: ' + ' reportFavourite: ' + reportFavourite);
-
-        return createReportNotification(reportFavourite, 'Update');
-    }
-
-
-    /*******************************************************************
-
-        Purpose:  Creates Chatter Feed Item which will be posted.
-
-        Parameters: [OV_Report_Favourite__c reportFavourite, String type]
-
-        Returns: [ConnectApi.FeedItemInput]
-
-        Throws [Exceptions]: [optional]
-
-    ********************************************************************/
-    private ConnectApi.FeedItemInput createReportNotification(OV_Report_Favourite__c reportFavourite, String type) {
-
-        System.debug('Entering createReportNotification: ' + ' reportFavourite: ' + reportFavourite + ' type: ' + type);
-
-        String field;
-        if(type == 'Update'){
-           field = reportFavourite.Chatter_Update_Message__c;
-        }else{
-            field = reportFavourite.Chatter_Delete_Message__c;
-        }
-
-        ConnectApi.FeedItemInput input = new ConnectApi.FeedItemInput();
-        input.subjectId = reportFavourite.Report__c;
-
-        ConnectApi.MessageBodyInput body = new ConnectApi.MessageBodyInput();
-        body.messageSegments = new List<ConnectApi.MessageSegmentInput>();
-
-        ConnectApi.MentionSegmentInput mentionSegment = new ConnectApi.MentionSegmentInput();
-        mentionSegment.id = reportFavourite.User__r.User__c;
-        body.messageSegments.add(mentionSegment);
-
-        ConnectApi.TextSegmentInput textSegment = new ConnectApi.TextSegmentInput();
-
-        textSegment.text = '\n ' + field;
-
-        body.messageSegments.add(textSegment);
-
-        input.body = body;
-
-        System.debug('Exiting getKpiElementInterests: ' + input);
-
-        return input;
-
     }
 }

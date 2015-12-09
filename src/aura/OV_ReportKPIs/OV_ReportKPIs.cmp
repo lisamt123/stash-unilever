@@ -1,4 +1,6 @@
 <aura:component controller="OV_RemoteController">
+    <aura:dependency resource="markup://c:OV_MyKPIs" />
+
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler event="c:OV_TabClickEvent" action="{!c.loadData}" />
     <aura:handler event="aura:doneRendering" action="{!c.doneRendering}" />
@@ -99,7 +101,7 @@
 
     <aura:handler event="c:OV_FavouriteUpdateEvent" action="{!c.favUpdate}"/>
 
-    <div class="row">
+<!--     <div class="row hidden">
         <div aura:id="KPIContent" class="kpiContent js-kpiContent">
             <div class="row">
                 <div class="kpiContent-controls col-xs-12 text-center">
@@ -127,6 +129,10 @@
                 </aura:renderIf>
             </div>
         </div>
+    </div> -->
+    <c:OV_MyKPIs />
+    <div class="row section-separator">
+        <div class="col-xs-12 section-separator">&nbsp;</div>
     </div>
     <div aura:id="KPIFavouriteReports" class="row shelfTile-contentList kpiFavouriteReports js-kpiFavouriteReports">
         <div class="col-xs-12 title">
@@ -150,7 +156,7 @@
             </aura:renderIf>
         </div>
     </div>
-    <div class="row">
+    <div class="row hidden">
         <div aura:id="newKPIDialog" class="kpiControls js-newKPIDialog">
             <div class="kpiControls-dialog">
                 <div class="titleBar">
@@ -301,4 +307,5 @@
             </div>
         </div>
     </div>
+    <c:OV_KPIWizard />
 </aura:component>

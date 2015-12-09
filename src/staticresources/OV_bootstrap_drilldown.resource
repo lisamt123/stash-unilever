@@ -191,18 +191,29 @@
 				var getIndex = findMaxIndex(maxUl);
 
 				// Set menu container height
+				/*
 				if(defaults.link_type == 'link'){
 					menuHeight = itemHeight * (maxItems + getIndex);
 				} else {
 					menuHeight = itemHeight * maxItems;
 
 				}
+				*/
 				//-------------------------------
 				// mewsoft
 				var showObj = $('> ul', $wrapper);
 				var itemCount = $('>li', showObj).length;
-				var menuHeight = itemHeight * itemCount;
-				var menuHeightAll = itemHeight * itemCount + $($header).height();
+				//var menuHeight = itemHeight * itemCount;
+				
+				var menuHeight = 0;
+				//maciek
+				for(var i=0;i<itemCount;i++){
+					menuHeight += $($('>li', showObj)[i]).height();
+				}
+
+				//maciek
+				//var menuHeightAll = itemHeight * itemCount + $($header).height();
+				var menuHeightAll = menuHeight + $($header).height();
 
 				if (defaults.menu_height) {
 					$($wrapper).css({height: defaults.menu_height, width: menuWidth, 'overflow-y':'auto', 'overflow-x':'hidden'});
@@ -312,10 +323,19 @@
 			var showObj = $('> ul',element);
 			var itemHeight = $(element).outerHeight(true);
 			var itemCount = $('>li', showObj).length;
-			var menuHeight = itemHeight * itemCount;
+			//var menuHeight = itemHeight * itemCount;
+			var menuHeight = 0;
+
+			//maciek
+			for(var i=0;i<itemCount;i++){
+				menuHeight += $($('>li', showObj)[i]).height();
+			}
+
+
 			$(obj).css({height: menuHeight+'px'});
 
 			var headerHeight = $($header).outerHeight(true);
+			//maciek
 			var menuHeightAll = menuHeight + headerHeight;
 
 			if (defaults.menu_height) {
@@ -459,9 +479,18 @@
 			}
 			var itemCount = $('>li', showObj).length;
 			var itemHeight = $('li',showObj).outerHeight(true);
-			var menuHeight = (itemHeight * itemCount);
+			//var menuHeight = (itemHeight * itemCount);
+			var menuHeight = 0;
+
+			//maciek
+			for(var i=0;i<itemCount;i++){
+				menuHeight += $($('>li', showObj)[i]).height();
+			}
+
 			var headerHeight = $($header).outerHeight(true);
-			var menuHeightAll = (itemHeight * itemCount) + headerHeight;
+			//maciek
+			//var menuHeightAll = (itemHeight * itemCount) + headerHeight;
+			var menuHeightAll = menuHeight + headerHeight;
 
 			if (defaults.menu_height) {
 				if (defaults.hide_empty && !itemCount){
