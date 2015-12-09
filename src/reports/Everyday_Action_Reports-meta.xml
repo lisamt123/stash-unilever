@@ -2,7 +2,7 @@
 <ReportFolder xmlns="http://soap.sforce.com/2006/04/metadata">
     <folderShares>
         <accessLevel>Manage</accessLevel>
-        <sharedTo>vaibhav.vora@unilever.com.preprodsb</sharedTo>
+        <sharedTo>vaibhav.vora@unilever.com</sharedTo>
         <sharedToType>User</sharedToType>
     </folderShares>
     <name>Everyday Action Reports</name>
