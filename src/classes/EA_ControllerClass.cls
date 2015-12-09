@@ -383,9 +383,12 @@ activities for current user.
 * @param  
 * @return list of wrapper class. 
 */  
-    @AuraEnabled
-    public static List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> getcommentDetail(String ActivityID){       
-        List<FeedItem> feedList=[SELECT Body,CreatedById,CreatedDate,Id,ParentId FROM FeedItem WHERE ParentId =:ActivityID Limit 5];       
+     @AuraEnabled
+    public static List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> getcommentDetail(String ActivityID){ 
+    	
+    	ID actID = Id.valueOf(ActivityID); 
+    	
+        List<Everyday_Activity__Feed> feedList=[SELECT id, Body,CreatedById,CreatedDate,InsertedById,ParentId,RelatedRecordId FROM Everyday_Activity__Feed WHERE ParentId =:actID Limit 5];       
         List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper> wrapperList=new List<EA_Wrapper_Class.EA_FeaturedContent_Wrapper>(); 
         
         //Query inside for loop - fix   
@@ -396,9 +399,9 @@ activities for current user.
         
         if(feedList != null && feedList.size()>0){
             
-            for(FeedItem fiObj : feedList){
+            for(Everyday_Activity__Feed fiObj : feedList){
                 
-                userIds.add(fiObj.CreatedById);
+                userIds.add(fiObj.InsertedById);
             }
             
             if(userIds != null && userIds.size()>0){
@@ -415,12 +418,12 @@ activities for current user.
                 }
             }
             
-             for(FeedItem feedObj :feedList){
+             for(Everyday_Activity__Feed feedObj :feedList){
                 EA_Wrapper_Class.EA_FeaturedContent_Wrapper objwrapper=new EA_Wrapper_Class.EA_FeaturedContent_Wrapper();
                 objwrapper.description=feedObj.Body;
                
-                objwrapper.userName= idToUSerNameMap.get(feedObj.CreatedById);
-                objwrapper.uerPhotoUrl=idToUSerPhotoURLMap.get(feedObj.CreatedById);     
+                objwrapper.userName= idToUSerNameMap.get(feedObj.InsertedById);
+                objwrapper.uerPhotoUrl=idToUSerPhotoURLMap.get(feedObj.InsertedById);     
                 decimal Hours = decimal.valueOf((System.now().getTime()-datetime.valueof(feedObj.CreatedDate).getTime())/(1000*60*60));
                 decimal decMinutes = ((System.now().getTime())/1000/60) - ((datetime.valueof(feedObj.CreatedDate).getTime())/1000/60);
                 String strTimeFormat='';
@@ -594,7 +597,17 @@ activities for current user.
     
                 feedItemInput.body = messageBodyInput;
                 feedItemInput.feedElementType = ConnectApi.FeedElementType.FeedItem;
-                feedItemInput.subjectId = Label.EA_System_User_ID;
+                 
+                if(Test.isRunningTest()){
+				 
+					User userObj = [SELECT id, Name FROM User WHERE Name =: 'Chatter Support'];
+					feedItemInput.subjectId = userObj.id;
+				}
+				else{
+					
+					feedItemInput.subjectId = EA_ReportingGA__c.getInstance('EA_System_User_ID').Text_Value__c;
+				}
+                
                
                 ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput, null);
                 
