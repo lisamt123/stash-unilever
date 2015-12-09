@@ -3321,10 +3321,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>OV_KpiElementHandler</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>OV_KpiNotificationFormatter</apexClass>
         <enabled>false</enabled>
     </classAccesses>

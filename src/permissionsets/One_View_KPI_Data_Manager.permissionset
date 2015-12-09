@@ -66,7 +66,7 @@
     </applicationVisibilities>
     <applicationVisibilities>
         <application>One_View_KPIs</application>
-        <visible>false</visible>
+        <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>PSAR</application>
@@ -3318,10 +3318,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>OV_KpiDimensionWrapper_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>OV_KpiElementHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>

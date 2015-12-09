@@ -550,10 +550,6 @@ Daily / Other = YYYYMMDD e.g.20151118 --></help>
             <section>Tablet Files</section>
         </sections>
     </layouts>
-    <recordTypes>
-        <label><!-- Admin View --></label>
-        <name>Admin_View</name>
-    </recordTypes>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Frequency is Dynamic. Please remove Value --></errorMessage>
