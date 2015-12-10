@@ -6097,6 +6097,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_AgencyUsers10__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_AgencyUsers1__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -6118,6 +6123,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_Brand_Estimate__c.AF_AgencyUsers5__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_AgencyUsers6__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_AgencyUsers7__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_AgencyUsers8__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_Brand_Estimate__c.AF_AgencyUsers9__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7092,6 +7117,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_AgencyUsers10__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_OOPS_Actual__c.AF_AgencyUsers1__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7113,6 +7143,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_OOPS_Actual__c.AF_AgencyUsers5__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_AgencyUsers6__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_AgencyUsers7__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_AgencyUsers8__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_AgencyUsers9__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -7177,6 +7227,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Approver_10__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>AF_OOPS_Actual__c.AF_Cat_Finance_Approver_1__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -7198,6 +7253,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>AF_OOPS_Actual__c.AF_Cat_Finance_Approver_5__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Approver_6__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Approver_7__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Approver_8__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>AF_OOPS_Actual__c.AF_Cat_Finance_Approver_9__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
