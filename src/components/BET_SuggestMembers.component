@@ -19,7 +19,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     <apex:includeScript value="{!$Resource.BET}/scripts/SuggestedMembers.js" />
     <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
     
-    <apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>
+    <!--<apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>-->
     <apex:stylesheet value="{!$Resource.BET}/css/BETQtip.css" />
     
     <apex:attribute name="BetID" description="BET ID" type="Id" 
@@ -45,24 +45,27 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     
 
 	<script>
-        //store current jquery version
-        var quickFix = $;
-        //restore previous one only for $
-        jQuery.noConflict();
-        //store the previous jquery version
-        var qtipJQuery = $;
-        // restore the newest version to $
-        $ = quickFix;
-        function enableTooltip() {
-            qtipJQuery( document ).ready(function( jq ) {
-                qtipJQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
-                qtipJQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
-             }
-            );
+        var pup = {!usedInPopup};
+        if(!pup){
+            //store current jquery version
+            var quickFix = $;
+            //restore previous one only for $
+            jQuery.noConflict();
+            //store the previous jquery version
+            var qtipJQuery = $;
+            // restore the newest version to $
+            $ = quickFix;
+            function enableTooltip() {
+                qtipJQuery( document ).ready(function( jq ) {
+                    qtipJQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
+                    qtipJQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
+                 }
+                );
+            }
+            //fix overlay issue "dialog is on top overlay layer"
+            $.blockUI.defaults.css['z-index']        = 1601;
+            $.blockUI.defaults.overlayCSS['z-index'] = 1600;
         }
-        //fix overlay issue "dialog is on top overlay layer"
-        $.blockUI.defaults.css['z-index']        = 1601;
-        $.blockUI.defaults.overlayCSS['z-index'] = 1600;
 	</script>
 
 
@@ -87,6 +90,11 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                          reRender="suggestedMembersContainer,suggestedMembersContainerbet">
         <apex:param name="newlyAddedUsers" value="" assignTo="{!newlyAddedUsers}"/>
     </apex:actionFunction>
+
+    <!--<apex:actionFunction action="{!addNewMembers}" name="addNewMembers" oncomplete="unlockUI();"
+                         reRender="suggestedMembersContainer,suggestedMembersContainerbet">
+        <apex:param name="newlyAddedUsers" value="" assignTo="{!newlyAddedUsers}"/>
+    </apex:actionFunction>-->
 
 
     <p class="suggestedMembersInfo" style="{!IF(usedInPopup,'','display:none;')}">
@@ -394,6 +402,11 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                                 <input  type="checkbox" onclick="var $ = jQuery.noConflict(); selectOrUnselectModal($(this));" 
                                         id="userIdCheckbox_{!memberItem.id}" 
                                         value="{!memberItem}"/>
+
+                                <!--<input  type="checkbox" onclick="var $ = jQuery.noConflict(); selectOrUnselectModal($(this));addAllNewMembers();" 
+                                        id="userIdCheckbox_{!memberItem.id}" 
+                                        value="{!memberItem}"/>-->
+
                                 <img class="circularSmall" alt="{!memberItem.name}" src="{!memberItem.SmallPhotoUrl}" width="45px" height="45px"/>
                                 <span class="searchResultItem">{!memberItem.name}</span>
                                 <span class="searchResultItem">{!memberItem.Title}</span>
