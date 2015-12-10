@@ -149,6 +149,38 @@ h5.titleHelpStyle
 }) 
         }
     </script>
+    <!-- Adding comma in Text box -->
+<script>
+jQuery( function() {
+ jQuery('input.number').keyup(function(event){
+      // skip for arrow keys
+      if(event.which >= 37 && event.which <= 40){
+          event.preventDefault();
+      }
+      var $this = jQuery(this);
+      var num = $this.val().replace(/,/gi, "").split("").reverse().join("");
+      var num2 = RemoveRougeChar(num.replace(/(.{3})/g,"$1,").split("").reverse().join("")); 
+      console.log(num2);
+      
+      
+      // the following line has been simplified. Revision history contains original.
+      $this.val(num2);
+  });
+});
+
+ function RemoveRougeChar(convertString){
+    
+    
+    if(convertString.substring(0,1) == ","){
+        
+        return convertString.substring(1, convertString.length)            
+        
+    }
+    return convertString;
+    
+}
+</script>
+<!-- Adding comma in Text box End -->
 <!-- Bootstrap Tooltip Method End-->
 
      <!-- Bootstrap_Js File End -->
@@ -282,7 +314,7 @@ h5.titleHelpStyle
                </span>  
                </apex:outputpanel>  
              <apex:outputpanel rendered="{!!IsReadyforPO}">
-            <apex:inputText value="{!TraditionalDisplay}" maxlength="10" onkeypress="return isNumberKey(event)" styleClass="values1" disabled="false" rendered="{!IsEditMode}" id="tradinput">
+            <apex:inputText value="{!TraditionalDisplay}" maxlength="10" onkeypress="return isNumberKey(event)" styleClass="values1 number" disabled="false" rendered="{!IsEditMode}" id="tradinput">
                     <apex:actionSupport event="onchange" 
                                 action="{!calculateTotal}" 
                                 rerender="totalFigure2" /> 
@@ -309,7 +341,7 @@ h5.titleHelpStyle
               </span>
                </apex:outputpanel>
                 <apex:outputpanel rendered="{!!IsReadyforPO}">
-                <apex:inputText value="{!DigitalDisplay}" maxlength="10" onkeypress="return isNumberKey(event)" styleClass="values1" disabled="false" rendered="{!IsEditMode}">
+                <apex:inputText value="{!DigitalDisplay}" maxlength="10" onkeypress="return isNumberKey(event)" styleClass="values1 number" disabled="false" rendered="{!IsEditMode}">
                    <apex:actionSupport event="onchange" 
                                 action="{!calculateTotal}" 
                                 rerender="totalFigure2" /> 
@@ -335,7 +367,7 @@ h5.titleHelpStyle
                </span>
                  </apex:outputpanel>
               <apex:outputpanel rendered="{!!IsReadyforPO}">
-              <apex:inputText onkeypress="return isNumberKey(event)" maxlength="10" value="{!AdaptationDisplay}" styleClass="values1" disabled="false" rendered="{!IsEditMode}">
+              <apex:inputText onkeypress="return isNumberKey(event)" maxlength="10" value="{!AdaptationDisplay}" styleClass="values1 number" disabled="false" rendered="{!IsEditMode}">
                                 <apex:actionSupport event="onchange" action="{!calculateTotal}" rerender="AdataiveLocal,totalFigure2"/> 
                 </apex:inputText>
                 </apex:outputpanel>

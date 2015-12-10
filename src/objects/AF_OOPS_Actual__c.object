@@ -76,6 +76,15 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_AgencyUsers10__c</fullName>
+        <externalId>false</externalId>
+        <label>AgencyUsers10</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_AgencyUsers1__c</fullName>
         <description>Email address for Agency User</description>
         <externalId>false</externalId>
@@ -120,6 +129,42 @@
         <description>Email address for Agency User</description>
         <externalId>false</externalId>
         <label>AgencyUsers5</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_AgencyUsers6__c</fullName>
+        <externalId>false</externalId>
+        <label>AgencyUsers6</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_AgencyUsers7__c</fullName>
+        <externalId>false</externalId>
+        <label>AgencyUsers7</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_AgencyUsers8__c</fullName>
+        <externalId>false</externalId>
+        <label>AgencyUsers8</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_AgencyUsers9__c</fullName>
+        <externalId>false</externalId>
+        <label>AgencyUsers9</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Email</type>
@@ -389,6 +434,17 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>AF_Cat_Finance_Approver_10__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance Approver 10</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>OOPS_Actuals9</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>AF_Cat_Finance_Approver_1__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Category Finance Approver id</description>
@@ -444,6 +500,50 @@
         <label>Cat Finance Approver 5</label>
         <referenceTo>User</referenceTo>
         <relationshipName>OOPS_Actuals4</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_Approver_6__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance Approver 6</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>OOPS_Actuals5</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_Approver_7__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance Approver 7</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>OOPS_Actuals6</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_Approver_8__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance Approver 8</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>OOPS_Actuals7</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>AF_Cat_Finance_Approver_9__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Cat Finance Approver 9</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>OOPS_Actuals8</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>

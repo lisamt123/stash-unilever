@@ -8,6 +8,13 @@
         <value>Select the Quarter(s) you wish to adjust and press continue</value>
     </labels>
     <labels>
+        <fullName>AF_AgencyChatter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_AgencyChatter</shortDescription>
+        <value>https://unilever.my.salesforce.com/0F9E00000009IuP?fromEmail=1</value>
+    </labels>
+    <labels>
         <fullName>AF_AgencyEstimateSuccess</fullName>
         <language>en_US</language>
         <protected>false</protected>

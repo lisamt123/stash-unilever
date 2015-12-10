@@ -101,6 +101,10 @@
         <name>AF_Adjust_Quarters</name>
     </customLabels>
     <customLabels>
+        <label><!-- AF_AgencyChatter --></label>
+        <name>AF_AgencyChatter</name>
+    </customLabels>
+    <customLabels>
         <label><!-- AF_AgencyEstimateSuccess --></label>
         <name>AF_AgencyEstimateSuccess</name>
     </customLabels>
