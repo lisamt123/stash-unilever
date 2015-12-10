@@ -1,10 +1,17 @@
 src/classes/Oblix_Ctrl07ProjectEdit_CC.cls
+src/classes/Oblix_Ctrl07ProjectEdit_CC.cls-meta.xml
 src/classes/Oblix_Ctrl09_nonCampaignEdit.cls
+src/classes/Oblix_Ctrl09_nonCampaignEdit.cls-meta.xml
 src/classes/Oblix_Utils.cls
+src/classes/Oblix_Utils.cls-meta.xml
 src/classes/Oblix_wrapper_NonCamp.cls
+src/classes/Oblix_wrapper_NonCamp.cls-meta.xml
 src/labels/CustomLabels.labels
 src/objects/Marketing_SOW__c.object
 src/pages/Oblix_VF07_ProjectView.page
+src/pages/Oblix_VF07_ProjectView.page-meta.xml
 src/pages/Oblix_VF08_ProjectEdit.page
+src/pages/Oblix_VF08_ProjectEdit.page-meta.xml
 src/pages/Oblix_VF09_nonCampaignEdit.page
+src/pages/Oblix_VF09_nonCampaignEdit.page-meta.xml
 src/reportTypes/Oblix_SWOP_SOW.reportType
