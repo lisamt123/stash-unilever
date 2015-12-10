@@ -25,6 +25,10 @@
         <name>AF_AgencyName__c</name>
     </fields>
     <fields>
+        <label><!-- AF_AgencyUsers10 --></label>
+        <name>AF_AgencyUsers10__c</name>
+    </fields>
+    <fields>
         <label><!-- AF_AgencyUsers1 --></label>
         <name>AF_AgencyUsers1__c</name>
     </fields>
@@ -43,6 +47,22 @@
     <fields>
         <label><!-- AF_AgencyUsers5 --></label>
         <name>AF_AgencyUsers5__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_AgencyUsers6 --></label>
+        <name>AF_AgencyUsers6__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_AgencyUsers7 --></label>
+        <name>AF_AgencyUsers7__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_AgencyUsers8 --></label>
+        <name>AF_AgencyUsers8__c</name>
+    </fields>
+    <fields>
+        <label><!-- AF_AgencyUsers9 --></label>
+        <name>AF_AgencyUsers9__c</name>
     </fields>
     <fields>
         <label><!-- AgencyView --></label>

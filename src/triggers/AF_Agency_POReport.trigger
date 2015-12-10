@@ -19,8 +19,11 @@ trigger AF_Agency_POReport on AF_Agency_Estimate__c (after insert,after update,b
         }
         deletePOReport = true;
     }
-    if(AgencyEstids.size()>0){
+    if(AgencyEstids.size()>0 && !system.isBatch()){
         AF_GetBaseFeePOData.CreatePOReportFromAgencyEstimate(AgencyEstids,deletePOReport);
+    }
+    else if(AgencyEstids.size()>0 && system.isBatch()){
+    AF_GetBaseFeePOData.BatchcreatePOReportFromAgencyEstimate(AgencyEstids,deletePOReport);
     }
 
 }
