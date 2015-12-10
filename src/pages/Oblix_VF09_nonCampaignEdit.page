@@ -851,17 +851,17 @@
                            
                            
                            <apex:outputPanel id="Oblix_ItemsId">
-                           <apex:actionFunction action="{!fillAgencyDepartment}" oncomplete="$.unblockUI()" name="adupdate" reRender="AD,RT,rate,result,add,errMsg" />
-                            <apex:actionFunction action="{!fillRoleTitle}" oncomplete="$.unblockUI()" name="RTupdate" reRender="RT,rate,result,add,errMsg"/>
-                             <apex:actionFunction action="{!fillRate}" oncomplete="$.unblockUI()" name="Rateupdate" reRender="rate,hours,result,add,errMsg"/>
+                           <apex:actionFunction action="{!fillAgencyDepartment}" oncomplete="$.unblockUI()" name="adupdate" reRender="AD,RT,rate,rater,result,add,errMsg" />
+                            <apex:actionFunction action="{!fillRoleTitle}" oncomplete="$.unblockUI()" name="RTupdate" reRender="RT,rate,rater,result,add,errMsg"/>
+                             <apex:actionFunction action="{!fillRate}" oncomplete="$.unblockUI()" name="Rateupdate" reRender="rate,rater,hours,result,add,errMsg"/>
                              <apex:actionFunction action="{!calculResult}" oncomplete="$.unblockUI()"  name="resultupdate" reRender="result,add,errMsg"/>
-                            <apex:actionFunction action="{!fillAgencyDepartment1}" oncomplete="$.unblockUI()" name="adupdate1" reRender="AD1,RT1,rate1,result1,add1,errMsg1"/>
-                            <apex:actionFunction action="{!fillRoleTitle1}" oncomplete="$.unblockUI()" name="RTupdate1" reRender="RT1,rate1,add1,errMsg1"/>
-                             <apex:actionFunction action="{!fillRate1}" oncomplete="$.unblockUI()" name="Rateupdate1" reRender="rate1,prcent,result1,add1,errMsg1"/>
+                            <apex:actionFunction action="{!fillAgencyDepartment1}" oncomplete="$.unblockUI()" name="adupdate1" reRender="AD1,RT1,rate1,rater1,result1,add1,errMsg1"/>
+                            <apex:actionFunction action="{!fillRoleTitle1}" oncomplete="$.unblockUI()" name="RTupdate1" reRender="RT1,rate1,rater1,add1,errMsg1"/>
+                             <apex:actionFunction action="{!fillRate1}" oncomplete="$.unblockUI()" name="Rateupdate1" reRender="rate1,rater1,prcent,result1,add1,errMsg1"/>
                              <apex:actionFunction action="{!calculResult1}" oncomplete="$.unblockUI()"  name="resultupdate1" reRender="result1,add1,errMsg1"/>
                               
                              <apex:actionFunction action="{!delElm}" oncomplete="$.unblockUI()"  name="delelem" reRender="Oblix_card,errMsg,saveStatus"/>
-                             <apex:actionFunction action="{!editItem}" oncomplete="$.unblockUI()"  name="delelemEdit" reRender="Oblix_card,country,AD, RT, rate, hours,result,errMsg1"/>
+                             <apex:actionFunction action="{!editItem}" oncomplete="$.unblockUI()"  name="delelemEdit" reRender="Oblix_card,country,AD, RT, rate,rater, hours,result,errMsg1"/>
                 
                 <apex:outputPanel id="allInputs">              
                            <div class="Oblix_recordType">
@@ -872,7 +872,7 @@
                            <table width="100%">
                                <tr class="Oblix_recordTypeth">
                                     <th>
-                                        <div class="Oblix_div_left">
+                                        <div class="Oblix_div_left" style="font-size: 13px;">
                                             items
                                         </div>
                                       </th>   
@@ -965,12 +965,14 @@
                                      <tr height="50">
                                           <td width="20%">   
                                              <span style="font-size:14px">   {!$Label.Oblix_lbl_UIUX_Hourly_rate}: € </span>
-                                             <apex:outputLabel value="{!myAct.Rate}" style="font-size:14px" id="rate" styleclass="rateclass" >
+                                             <apex:outputLabel value="{!myAct.Rate}" style="font-size:14px; display:none;" id="rate" styleclass="rateclass" >
+                                             </apex:outputLabel>
+                                              <apex:outputLabel value="{!myAct.RateRounded}" style="font-size:14px" id="rater" styleclass="rateclass" >
                                              </apex:outputLabel> 
                                           </td>
                                           <td  width="5%"></td>
                                           <td  width="20%"> 
-                                              <apex:input type="number"  styleClass="hourss input_init"   html-min="0" value="{!myAct.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(($(this).val()*parseInt($('.rateclass').text())).toFixed(0)+' ');formatNumber ($('.rslt'));}"
+                                              <apex:input type="number"  styleClass="hourss input_init"   html-min="0" value="{!myAct.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}"
                                                disabled="{!IF(myAct.valVisible==false,false,false)}" id="hours" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);"/>
                                               <span style="font-size:14px">{!$Label.Oblix_lbl_UIUX_hours}  </span>
                                           </td> 
@@ -985,7 +987,7 @@
                                           <td  width="5%"></td>
                                           <td  width="20%">
                                           <apex:commandButton value="{!IF(edit1,'Update','Add')}" action="{!addToNew}" styleclass="btn ui-button ui-state-default largBtn" onclick="blockme();" oncomplete="$.unblockUI()" 
-                                          rerender="nameid,otherId,activityid,name,country,AD, RT, rate, hours,result,Oblix_card,myMessages,saveStatus,Oblix_card,add" disabled="{!IF(myAct.addVisible==false,true,false)}" id="add"/>
+                                          rerender="nameid,otherId,activityid,name,country,AD, RT,rater, rate, hours,result,Oblix_card,myMessages,saveStatus,Oblix_card,add" disabled="{!IF(myAct.addVisible==false,true,false)}" id="add"/>
                                            
                                           </td>
                                     </tr>
@@ -1056,7 +1058,10 @@
                                           <td width="20%">
                                             <span style="font-size:14px"> 
                                             <span style="font-size:14px">Full Year Rate: € </span>
-                                             <apex:outputLabel value="{!myRes.Rate}" style="width:90%;" id="rate1" styleClass="rateclass1">
+                                             <apex:outputLabel value="{!myRes.Rate}" style="width:90%;display:none;" id="rate1" styleClass="rateclass1">
+                                            
+                                             </apex:outputLabel>
+                                             <apex:outputLabel value="{!myRes.RateRounded}" style="width:90%;" id="rater1" styleClass="rateclass1">
                                             
                                              </apex:outputLabel>
                                               </span>
@@ -1064,7 +1069,7 @@
                                            </td>
                                           <td  width="5%"></td>
                                           <td  width="20%">
-                                           <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" value="{!myRes.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(($(this).val()/100*parseInt($('.rateclass1').text())).toFixed(2)); formatNumber ($('.rslt1'));}" 
+                                           <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" value="{!myRes.val}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(Math.round($(this).val()/100*parseFloat($('.rateclass1').text()).toFixed(2))); formatNumber ($('.rslt1'));}" 
                                            disabled="{!IF(myRes.valVisible==false,false,false)}"   id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " />
                                            <span style="font-size:14px">%  </span>
                                           </td> 
@@ -1081,7 +1086,7 @@
                                           <td  width="5%"></td>
                                           <td  width="20%">
                                            <apex:commandButton value="{!IF(edit2,'Update','Add')}" action="{!addToNew1}" styleclass="btn ui-button ui-state-default" onclick="blockme();" oncomplete="$.unblockUI()" 
-                                           rerender="Oblix_card,nameid1,result1, myMessages1,saveStatus,country1,AD1, RT1, rate1, prcent,add1" disabled="{!IF(myRes.addVisible==false,true,false)}" id="add1"/>
+                                           rerender="Oblix_card,nameid1, myMessages1,saveStatus,country1,AD1, RT1,rater1, rate1, prcent,add1" disabled="{!IF(myRes.addVisible==false,true,false)}" id="add1"/>
                                            
                                            </td>
                                     </tr>
@@ -1133,7 +1138,7 @@
                                                     <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Delete}" action="{!delElm}" rerender="Oblix_card,saveStatus "  onclick="blockme();" oncomplete="$.unblockUI()" id="del" rendered="{!not(edit1 || edit2 )}">
                                                         <apex:param name="param1" assignTo="{!ElemToDel  }" value="{!rowNum}" />
                                                     </apex:commandButton>
-                                                    <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!editItem}" reRender="countryId2,nameid,nameid1,otherId,activityid,name1,dr,Oblix_card,country,AD, RT, rate, hours,result,Oblix_card,add,country1,AD1, RT1, rate1, prcent,result1,add1"
+                                                    <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" action="{!editItem}" reRender="countryId2,nameid,nameid1,otherId,activityid,name1,dr,Oblix_card,country,AD, RT,rater, rate, hours,result,Oblix_card,add,country1,AD1, RT1, rate1,rater1, prcent,result1,add1"
                                                      onclick="{!IF(rtActivity==asset.recordTypeId,'showTab1();','showTab2();')}"  oncomplete="$.unblockUI()" id="edit"  ><!-- rendered="{!not(edit1 || edit2 )}" -->
                                                          <apex:param name="param2" assignTo="{!elemToEdit}" value="{!rowNum}" />
                                                     </apex:commandButton>
@@ -1147,7 +1152,8 @@
                                                   
                                             </div>
                                              <br/>
-                                            <apex:variable var="rowNum" value="{!rowNum + 1}"/>                                  
+                                            <apex:variable var="rowNum" value="{!rowNum + 1}"/>  
+                                                                         
                                     </apex:repeat>
                                   <script>   formatNumber ($('.isFee'));    </script>
                                 </apex:outputPanel>
