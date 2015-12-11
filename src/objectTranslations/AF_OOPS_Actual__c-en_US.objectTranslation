@@ -13,6 +13,10 @@
         <name>AF_Active_Rejection_Comment__c</name>
     </fields>
     <fields>
+        <label><!-- AgencyUsers10 --></label>
+        <name>AF_AgencyUsers10__c</name>
+    </fields>
+    <fields>
         <label><!-- AgencyUsers1 --></label>
         <name>AF_AgencyUsers1__c</name>
     </fields>
@@ -31,6 +35,22 @@
     <fields>
         <label><!-- AgencyUsers5 --></label>
         <name>AF_AgencyUsers5__c</name>
+    </fields>
+    <fields>
+        <label><!-- AgencyUsers6 --></label>
+        <name>AF_AgencyUsers6__c</name>
+    </fields>
+    <fields>
+        <label><!-- AgencyUsers7 --></label>
+        <name>AF_AgencyUsers7__c</name>
+    </fields>
+    <fields>
+        <label><!-- AgencyUsers8 --></label>
+        <name>AF_AgencyUsers8__c</name>
+    </fields>
+    <fields>
+        <label><!-- AgencyUsers9 --></label>
+        <name>AF_AgencyUsers9__c</name>
     </fields>
     <fields>
         <label><!-- Agency Action Q1 --></label>
@@ -211,6 +231,11 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Cat Finance Approver 10 --></label>
+        <name>AF_Cat_Finance_Approver_10__c</name>
+        <relationshipLabel><!-- OOPS Actuals (Cat Finance Approver 10) --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Cat Finance Approver 1 --></label>
         <name>AF_Cat_Finance_Approver_1__c</name>
         <relationshipLabel><!-- OOPS Actuals (Cat Finance Approver 1) --></relationshipLabel>
@@ -234,6 +259,26 @@
         <label><!-- Cat Finance Approver 5 --></label>
         <name>AF_Cat_Finance_Approver_5__c</name>
         <relationshipLabel><!-- OOPS Actuals (Cat Finance Approver 5) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance Approver 6 --></label>
+        <name>AF_Cat_Finance_Approver_6__c</name>
+        <relationshipLabel><!-- OOPS Actuals (Cat Finance Approver 6) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance Approver 7 --></label>
+        <name>AF_Cat_Finance_Approver_7__c</name>
+        <relationshipLabel><!-- OOPS Actuals (Cat Finance Approver 7) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance Approver 8 --></label>
+        <name>AF_Cat_Finance_Approver_8__c</name>
+        <relationshipLabel><!-- OOPS Actuals (Cat Finance Approver 8) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cat Finance Approver 9 --></label>
+        <name>AF_Cat_Finance_Approver_9__c</name>
+        <relationshipLabel><!-- OOPS Actuals (Cat Finance Approver 9) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Cat Finance Email 1 --></label>

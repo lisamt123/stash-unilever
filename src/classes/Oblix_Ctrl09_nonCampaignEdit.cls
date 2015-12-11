@@ -324,7 +324,7 @@
             newItem.Role_Title__c =  myAct.selectedRoleTitle;
             newItem.Agency_Department__c = myAct.selectedAgencyDepartment;
             calculResult();
-            newItem.OblixOtherItemFee__c = Math.round(Decimal.valueof(myAct.result));//.setScale(0); // myAct.result =myAct.result.setScale(2);
+            newItem.OblixOtherItemFee__c = Integer.valueof(myAct.result);//.setScale(0); // myAct.result =myAct.result.setScale(2);
             Marketing_Basics__c x = newItem;
             if (edit1) { // c'est un update
                 newItems[ElemToEdit] = x;
@@ -374,9 +374,7 @@
            // newItem1.id = itemID1;
             newItem1.Agency_Department__c = myRes.selectedAgencyDepartment;
             calculResult1();
-         //   newItem1.OblixOtherItemFee__c = Integer.valueof(myRes.result);//.setScale(0); // result =result.setScale(2)
-            newItem1.OblixOtherItemFee__c = Math.round(Decimal.valueof(myRes.result));//.setScale(0); // result =result.setScale(2)
-         
+            newItem1.OblixOtherItemFee__c = Integer.valueof(myRes.result);//.setScale(0); // result =result.setScale(2)
             if (edit2) { // c'est un Edit
                 newItems[ElemToEdit] = newItem1;
                 edit2 = false;
@@ -392,7 +390,7 @@
         */
         public void calculResult() {
             system.debug('============+=+=+=+=+=+=+=+=+= calculResult=+=+=+=+=+=+=+=+=+============================');
-            myAct.result = String.valueof(Math.round(Decimal.valueof(myAct.Rate.trim()) * myAct.val));//.setScale(0));
+            myAct.result = String.valueof((Integer.valueof(myAct.Rate.trim()) * myAct.val));//.setScale(0));
             //  result =result;
         }
         
@@ -401,7 +399,7 @@
         */
         public void calculResult1() {
             system.debug('============+=+=+=+=+=+=+=+=+= calculResult1=+=+=+=+=+=+=+=+=+============================');
-            myRes.result = String.valueof(Math.round(Decimal.valueof(myRes.Rate.trim()) * myRes.val / 100));//.setScale(0));
+            myRes.result = String.valueof((Integer.valueof(myRes.Rate.trim()) * myRes.val / 100));//.setScale(0));
             //result1 =result1;       
         }
         
@@ -423,8 +421,7 @@
                 myRes.valVisible = true;
                 myRes.resultVisible = true;
                 myRes.addVisible = true;
-                myRes.Rate = String.valueOf((Rates[0].FTE__c));//Integer.valueOf  Math.round
-                myRes.RateRounded = String.valueOf( Math.round(Rates[0].FTE__c));//Integer.valueOf 
+                myRes.Rate = String.valueOf(Integer.valueOf(Rates[0].FTE__c));
                 errMsg1 = false;
             }
         /*    if (Rates.size() > 1) {
@@ -453,8 +450,7 @@
                 myAct.valVisible = true;
                 myAct.resultVisible = true;
                 myAct.addVisible = true;
-                myAct.Rate = String.valueOf((Rates[0].Role_Daily_Rate_EUR__c));//Math.round
-                myAct.RateRounded = String.valueOf(Math.round(Rates[0].Role_Daily_Rate_EUR__c));//
+                myAct.Rate = String.valueOf(Integer.valueOf(Rates[0].Role_Daily_Rate_EUR__c));
                 errMsg = false;
             }
            /*  if (Rates.size() > 1) {

@@ -90,6 +90,10 @@
         <name>L5_Short_Desc__c</name>
     </fields>
     <fields>
+        <label><!-- Retention Days --></label>
+        <name>Retention_Days__c</name>
+    </fields>
+    <fields>
         <label><!-- Unique Key --></label>
         <name>Unique_Key__c</name>
     </fields>

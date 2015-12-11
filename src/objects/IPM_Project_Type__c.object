@@ -374,4 +374,5 @@
         <unique>false</unique>
     </fields>
     <label>IPM Project Type</label>
+    <visibility>Public</visibility>
 </CustomObject>

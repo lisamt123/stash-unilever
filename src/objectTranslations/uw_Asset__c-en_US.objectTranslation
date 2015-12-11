@@ -499,6 +499,10 @@
         <name>Description__c</name>
     </fields>
     <fields>
+        <label><!-- File Id --></label>
+        <name>File_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Is Strategic Document --></label>
         <name>Is_bucket_field__c</name>
     </fields>

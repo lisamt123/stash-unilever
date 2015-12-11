@@ -11,7 +11,6 @@
     <detailPageRefreshMethod>autoRefresh</detailPageRefreshMethod>
     <enableCustomizeMyTabs>false</enableCustomizeMyTabs>
     <enableKeyboardShortcuts>true</enableKeyboardShortcuts>
-    <enableListViewReskin>true</enableListViewReskin>
     <enableMultiMonitorComponents>true</enableMultiMonitorComponents>
     <enablePinTabs>true</enablePinTabs>
     <isServiceCloudConsole>true</isServiceCloudConsole>
@@ -190,9 +189,13 @@
     <tab>mdm_Product_Category__c</tab>
     <tab>cec_Store__c</tab>
     <tab>User_Default_Setting__c</tab>
+    <tab>CEC_ChequeBook_Detail__c</tab>
     <workspaceMappings>
         <mapping>
             <tab>Article__c</tab>
+        </mapping>
+        <mapping>
+            <tab>CEC_ChequeBook_Detail__c</tab>
         </mapping>
         <mapping>
             <tab>User_Default_Setting__c</tab>

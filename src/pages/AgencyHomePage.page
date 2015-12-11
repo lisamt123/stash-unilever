@@ -111,9 +111,19 @@ $('document').ready(function(){
     }
 
     
-       
-    
-      
+    function Chatterlink(){
+        if({!isAgencyFlag}) {
+         var urlStr = '{!$Label.AF_AgencyUrlLink}/servlet/servlet.FileDownload?file={!$Label.AF_DocumentId}';
+         window.open(urlStr);
+
+        }else{ 
+        var urlStr = '{!$Label.AF_UrlLink}{!$Label.AF_AgencyChatter}';
+        window.open(urlStr);
+        
+      }
+    }
+
+   
     
     <!--Adjust Quarter onclick action -->
     <!-- CategoryId -->
@@ -429,7 +439,7 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
            </td>
            <td class="Reports"><apex:commandButton value="Reports" action="{!redirectToReportPage}"/></td>
            <!--<td style="width:10%;text-align:right;"> <apex:commandButton value="Back to Chatter" action="{!redirectToChatterPage}" style="width:120px;background:#007DBB;margin-top: 40px;margin-top: 26px;border:none;color:white;border-radius:10px;padding:10px;"/> </td> -->
-           <td class="Help"> <apex:image url="{!$Resource.Help}" onclick="openHelpLink();"/> </td>
+           <td class="Help"> <apex:image url="{!$Resource.Help}" onclick="Chatterlink();"/> </td>
        </tr>
        </table>
   </div>    
@@ -649,7 +659,7 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
                        <table>   
                             <tr>
                                 <td class="firstlabelName">
-                                <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Annual_Base_Fee_Target}">Unilever Base Fee</apex:outputLink>
+                                <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Annual_Base_Fee_Target}">Unilever Targets</apex:outputLink>
                                 
                                 </td>
                                 <td> 
@@ -657,8 +667,9 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
                                 <!--<a class="custom-link modalButton firstlabelValue" title="{!$Label.AF_LP_Base_Fee_Targets}" data-toggle="modal" data-src="/apex/AF_BrandEstimate?Id={!Best.Id}"  data-target="#myModal" data-backdrop="static" 
    data-keyboard="false">€ {!best.Base_Fee_Total__c}</a>-->
                                 <apex:outputLink onclick="TargetBaseFees('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}','{!Best.Id}');return false;" html-data-toggle="modal" html-data-target="#myModal" html-data-backdrop="static" html-data-src="/apex/AF_BrandEstimate?Id={!Best.Id}" title="{!$Label.AF_LP_Base_Fee_Targets}" id="theLink" styleClass="custom-link modalButton firstlabelValue">
+                                €&nbsp;
                                 <apex:outputText value="{0,number,###,###,###}">
-                                €<apex:param value="{!best.Base_Fee_Total__c}"/>
+                                <apex:param value="{!best.Base_Fee_Total__c}"/>
                                 </apex:outputText>
                                 </apex:outputLink>
                                 </td>
@@ -692,7 +703,7 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
                                     <!--<apex:outputLink onclick="AgencyMatrix('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}','{!Best.Brand__c}','{!Best.AF_Agency__c}');return false;" styleClass="custom-link modalButton" title="{!$Label.AF_LP_Enter_BF_estimates} {!$Label.AF_LP_Naming_Convention}">
                                     Base Fees</apex:outputLink>-->
                                      <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="apex/AF_UL_BrandEstimate_Matrices?bId={!Best.Brand__c}&fy={!financialYear}&aId={!Best.AF_Agency__c}&brandvalue={!selectedBrandOption}&category={!categoryNameStr}+'::'+{!CategoryId}&Year={!financialYear}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
-                                     title="{!$Label.AF_LP_Enter_BF_estimates} {!$Label.AF_LP_Naming_Convention}">Base Fees</a>
+                                     title="{!$Label.AF_LP_Enter_BF_estimates} {!$Label.AF_LP_Naming_Convention}">Base Fee Matrix</a>
                                     </td>
                                     <td >
                                     <apex:outputField value="{!best.AF_Status_Base_Fees__c}" rendered="{!IF(best.AF_Status_Base_Fees__c!='With Category Finance','true','false')}"></apex:outputField>
@@ -721,7 +732,7 @@ function BonusQuartely(brandval,catname,cat,BrandId,fy,AgencyId){
                                     <td >
                                     <!--<apex:outputLink onclick="oopsMatrix('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!Best.Brand__c}','{!financialYear}','{!Best.AF_Agency__c}');return false;" styleClass="custom-link" title="{!$Label.AF_LP_y81a}">OOPs</apex:outputLink>-->
                                     <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="apex/AF_UL_OOPS_SelectMatrices?bId={!Best.Brand__c}&fy={!financialYear}&aId={!Best.AF_Agency__c}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
-                                     title="{!$Label.AF_LP_y81a}">OOPs</a>
+                                     title="{!$Label.AF_LP_y81a}">OOPS Matrix</a>
                                     </td>
                                     <td >
                                     <apex:outputField value="{!best.AF_Status_OOPs_Estimate__c}" rendered="{!IF(best.AF_Status_OOPs_Estimate__c!='with category finance','true','false')}"/>

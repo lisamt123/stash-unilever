@@ -84,4 +84,5 @@
         <type>Checkbox</type>
     </fields>
     <label>IPM CompanyCard</label>
+    <visibility>Public</visibility>
 </CustomObject>

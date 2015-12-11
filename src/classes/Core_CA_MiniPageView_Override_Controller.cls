@@ -1,4 +1,4 @@
-public class Core_CA_MiniPageView_Override_Controller{
+public with sharing class Core_CA_MiniPageView_Override_Controller{
     
     public String customPageURL {get;set;}
     public Core_CA_MiniPageView_Override_Controller(ApexPages.StandardController controller) {

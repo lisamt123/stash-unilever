@@ -38,4 +38,5 @@
         <unique>false</unique>
     </fields>
     <label>IPM POS RQS Mapping</label>
+    <visibility>Public</visibility>
 </CustomObject>

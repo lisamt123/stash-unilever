@@ -139,4 +139,5 @@
         <unique>false</unique>
     </fields>
     <label>IPM OTIF Status</label>
+    <visibility>Public</visibility>
 </CustomObject>

@@ -81,6 +81,74 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>PII_Account_Address_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: To enable the PII Account address check functionality</description>
+        <externalId>false</externalId>
+        <label>PII Account Address Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PII_Account_Name_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: To enable the PII Account Name check functionality</description>
+        <externalId>false</externalId>
+        <label>PII Account Name Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PII_DOB_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: To enable the PII Date of Birth check functionality</description>
+        <externalId>false</externalId>
+        <label>PII DOB Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PII_Email_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: To enable the PII email check functionality</description>
+        <externalId>false</externalId>
+        <label>PII Email Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PII_Keywords__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Keywords to be considered for PII Warning check. Delimited by hypen &apos;-&apos;</inlineHelpText>
+        <label>PII Keywords</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>PII_Phone_Number_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: To enable the PII phone check functionality</description>
+        <externalId>false</externalId>
+        <label>PII Phone Number Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Recommended_Products_Page_Size__c</fullName>
+        <description>CEC: To store the recommended products page limit</description>
+        <externalId>false</externalId>
+        <label>Recommended Products Page Size</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Safety_Alert_Email_Id__c</fullName>
         <externalId>false</externalId>
         <label>Safety Alert Email Id</label>

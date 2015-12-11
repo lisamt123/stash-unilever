@@ -38,6 +38,35 @@
         <name>Mulesoft_User_Id__c</name>
     </fields>
     <fields>
+        <label><!-- PII Account Address Check --></label>
+        <name>PII_Account_Address_Check__c</name>
+    </fields>
+    <fields>
+        <label><!-- PII Account Name Check --></label>
+        <name>PII_Account_Name_Check__c</name>
+    </fields>
+    <fields>
+        <label><!-- PII DOB Check --></label>
+        <name>PII_DOB_Check__c</name>
+    </fields>
+    <fields>
+        <label><!-- PII Email Check --></label>
+        <name>PII_Email_Check__c</name>
+    </fields>
+    <fields>
+        <help><!-- Keywords to be considered for PII Warning check. Delimited by hypen &apos;-&apos; --></help>
+        <label><!-- PII Keywords --></label>
+        <name>PII_Keywords__c</name>
+    </fields>
+    <fields>
+        <label><!-- PII Phone Number Check --></label>
+        <name>PII_Phone_Number_Check__c</name>
+    </fields>
+    <fields>
+        <label><!-- Recommended Products Page Size --></label>
+        <name>Recommended_Products_Page_Size__c</name>
+    </fields>
+    <fields>
         <label><!-- Safety Alert Email Id --></label>
         <name>Safety_Alert_Email_Id__c</name>
     </fields>

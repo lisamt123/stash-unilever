@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Team Member</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Team Members</value>
+    </caseValues>
+    <fields>
+        <label><!-- Activity_Due_Date --></label>
+        <name>Activity_Due_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Activity Due Day --></label>
+        <name>Activity_Due_Day__c</name>
+        <picklistValues>
+            <masterLabel>Next Week</masterLabel>
+            <translation><!-- Next Week --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>One Month</masterLabel>
+            <translation><!-- One Month --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Today</masterLabel>
+            <translation><!-- Today --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Tomorrow</masterLabel>
+            <translation><!-- Tomorrow --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Two Weeks</masterLabel>
+            <translation><!-- Two Weeks --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Activity Points --></label>
+        <name>Activity_Points__c</name>
+    </fields>
+    <fields>
+        <label><!-- Everyday Activity --></label>
+        <name>Everyday_Activity__c</name>
+        <relationshipLabel><!-- Team Members --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Feedback --></label>
+        <name>Feedback_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invitation Status --></label>
+        <name>Invitation_Status__c</name>
+        <picklistValues>
+            <masterLabel>Accepted</masterLabel>
+            <translation><!-- Accepted --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Declined</masterLabel>
+            <translation><!-- Declined --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Invited</masterLabel>
+            <translation><!-- Invited --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Self</masterLabel>
+            <translation><!-- Self --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Invitation Text --></label>
+        <name>Invitation_Text__c</name>
+    </fields>
+    <fields>
+        <label><!-- Invited By --></label>
+        <name>Invited_By__c</name>
+        <relationshipLabel><!-- Team Members (Invited By) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Participant --></label>
+        <name>Participant__c</name>
+        <relationshipLabel><!-- Team Members (Participant) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Rating By Participant --></label>
+        <name>Rating_By_Participant__c</name>
+    </fields>
+    <fields>
+        <label><!-- Type --></label>
+        <name>Type__c</name>
+        <picklistValues>
+            <masterLabel>Invitee</masterLabel>
+            <translation><!-- Invitee --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Participant</masterLabel>
+            <translation><!-- Participant --></translation>
+        </picklistValues>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

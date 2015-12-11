@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This object is used to capture Milestone Dates</description>
@@ -768,6 +769,11 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <filterScope>Everything</filterScope>
         <label>All</label>
         <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
     </listViews>
     <listViews>
         <fullName>Mini_Milestones</fullName>

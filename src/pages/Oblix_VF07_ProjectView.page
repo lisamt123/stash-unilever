@@ -204,7 +204,7 @@
                                        <tr>
                                           <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c != null}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixCountries__c.label} : </strong><br/>{!SelectedProject.OblixCountries__c}</td></apex:outputPanel>
                                           <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c == null && SelectedProject.OblixRegion__c != 'World'}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label} : </strong><br/>{!SelectedProject.OblixRegion__c}</td></apex:outputPanel>
-                                          <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c == null && SelectedProject.OblixRegion__c == 'World'}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label} : </strong> Global (countries > 15)</td> </apex:outputPanel>      <!--<apex:image url="{!$Resource.Oblix_Icon_Globe}" width="32" height="32" style="vertical-align:middle;"/>-->
+                                          <apex:outputPanel rendered="{!SelectedProject.OblixCountries__c == null && SelectedProject.OblixRegion__c == 'World'}"> <td style="vertical-align: top;" ><strong>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label} : </strong><apex:image url="{!$Resource.Oblix_Icon_Globe}" width="32" height="32" style="vertical-align:middle;"/></td></apex:outputPanel>
                                        </tr>
                                        <tr><td colspan="2">&nbsp;</td></tr>
                                        <tr>

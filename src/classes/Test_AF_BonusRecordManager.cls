@@ -6,6 +6,8 @@
 @isTest(SeeAlldata=true)
 public class Test_AF_BonusRecordManager  
 {    
+    Static Integer IcurrYear = System.Today().year();
+    Static string currYear=string.valueof(IcurrYear);
     Static testMethod void bonusRecordManager ()
     {
      Test.startTest();
@@ -82,6 +84,18 @@ public class Test_AF_BonusRecordManager
      System.assertEquals(brandEst1.Brand__c, bran.id);
      
      brandEstSet.add(brandEst1.Id);
+     
+     AF_Currency__c curr = new AF_Currency__c();
+     curr.AF_Country__c = 'Ecuador';
+     curr.AF_Currency_Code__c = 'USD';
+     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Fiscal_Year_new__c = currYear;
+     curr.Currency_Unit__c = 'US $';
+     curr.AF_Fiscal_Year__c = system.today();
+     curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
+     curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
+     curr.Ready_For_PO_Exchange_Rate_To_EUR__c = 1.6112;
+     insert curr;
           
      //Insert Agency Entity
      RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
@@ -256,6 +270,18 @@ public class Test_AF_BonusRecordManager
      System.assertEquals(brandEst1.Brand__c, bran.id);
      
      brandEstSet.add(brandEst1.Id);
+     
+     AF_Currency__c curr = new AF_Currency__c();
+     curr.AF_Country__c = 'Ecuador';
+     curr.AF_Currency_Code__c = 'USD';
+     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Fiscal_Year_new__c = currYear;
+     curr.Currency_Unit__c = 'US $';
+     curr.AF_Fiscal_Year__c = system.today();
+     curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
+     curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
+     curr.Ready_For_PO_Exchange_Rate_To_EUR__c = 1.6112;
+     insert curr;
           
      //Insert Agency Entity
      RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       

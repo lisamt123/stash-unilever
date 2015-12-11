@@ -7,7 +7,8 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>noreply.headstart@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>HRO_Onboarding/HRO_Overdue_task_notifications</template>
     </alerts>
     <alerts>
@@ -17,7 +18,8 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>noreply.headstart@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>HRO_Onboarding/HRO_Pre_Boarding_welcome_email</template>
     </alerts>
     <alerts>
@@ -27,7 +29,8 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>noreply.headstart@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>HRO_Onboarding/HRO_Proactive_notification_Beyond</template>
     </alerts>
     <alerts>
@@ -37,7 +40,8 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>noreply.headstart@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>HRO_Onboarding/HRO_Proactive_notification_Day1</template>
     </alerts>
     <alerts>
@@ -47,7 +51,8 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>noreply.headstart@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>HRO_Onboarding/HRO_Proactive_notification_Month1</template>
     </alerts>
     <alerts>
@@ -57,7 +62,8 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>noreply.headstart@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>HRO_Onboarding/HRO_Proactive_notification_Month2</template>
     </alerts>
     <alerts>
@@ -67,7 +73,8 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>noreply.headstart@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>HRO_Onboarding/HRO_Proactive_notification_Month3</template>
     </alerts>
     <alerts>
@@ -77,7 +84,8 @@
         <recipients>
             <type>owner</type>
         </recipients>
-        <senderType>CurrentUser</senderType>
+        <senderAddress>noreply.headstart@unilever.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
         <template>HRO_Onboarding/HRO_Proactive_notification_Week1</template>
     </alerts>
     <rules>

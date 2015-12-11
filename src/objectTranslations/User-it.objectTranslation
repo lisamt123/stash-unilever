@@ -221,6 +221,70 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Brand Name --></label>
+        <name>IPM_Brand_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Positioning --></label>
+        <name>IPM_Brand_Positioning__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>IPM_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Role --></label>
+        <name>IPM_Role__c</name>
+        <picklistValues>
+            <masterLabel>BB</masterLabel>
+            <translation><!-- BB --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>BD</masterLabel>
+            <translation><!-- BD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CD</masterLabel>
+            <translation><!-- CD --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>CMI</masterLabel>
+            <translation><!-- CMI --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Deputy Project Leader</masterLabel>
+            <translation><!-- Deputy Project Leader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Finance</masterLabel>
+            <translation><!-- Finance --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Gate Keeper</masterLabel>
+            <translation><!-- Gate Keeper --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Project Leader</masterLabel>
+            <translation><!-- Project Leader --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>R&amp;D</masterLabel>
+            <translation><!-- R&amp;D --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Supply Chain</masterLabel>
+            <translation><!-- Supply Chain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Technical Leader</masterLabel>
+            <translation><!-- Technical Leader --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Sub Category --></label>
+        <name>IPM_Sub_Category__c</name>
+    </fields>
+    <fields>
         <label><!-- Language Skills List --></label>
         <name>Language_Skills_List__c</name>
     </fields>
@@ -551,6 +615,10 @@
             <translation><!-- Nordic --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>North America</masterLabel>
+            <translation><!-- North America --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Poland</masterLabel>
             <translation><!-- Poland --></translation>
         </picklistValues>
@@ -570,6 +638,10 @@
             <masterLabel>United Kingdom</masterLabel>
             <translation><!-- United Kingdom --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Max Refund Amount --></label>
+        <name>Max_Refund_Amount__c</name>
     </fields>
     <fields>
         <label><!-- Pass031212 --></label>
@@ -704,6 +776,38 @@
         <help>Campo  CEC, usato per specificare il livello di email selezionate random per l&apos;approvazione</help>
         <label>Percentuale Quality Check</label>
         <name>Quality_Check_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund Authorization Limit --></label>
+        <name>Refund_Authorization_Limit__c</name>
+        <picklistValues>
+            <masterLabel>Level 1</masterLabel>
+            <translation><!-- Level 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 2</masterLabel>
+            <translation><!-- Level 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 3</masterLabel>
+            <translation><!-- Level 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 4</masterLabel>
+            <translation><!-- Level 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 5</masterLabel>
+            <translation><!-- Level 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 6</masterLabel>
+            <translation><!-- Level 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 7</masterLabel>
+            <translation><!-- Level 7 --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <help><!-- Your Unilever Job Sub-Function. This field is automatically populated/updated for Unilever users each week. --></help>
@@ -1177,6 +1281,10 @@
     <fields>
         <label><!-- User License --></label>
         <name>User_License__c</name>
+    </fields>
+    <fields>
+        <label><!-- User Unique --></label>
+        <name>User_Unique__c</name>
     </fields>
     <fields>
         <label><!-- External ID --></label>
