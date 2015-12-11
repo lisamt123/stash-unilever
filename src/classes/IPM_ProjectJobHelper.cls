@@ -599,10 +599,14 @@ public without sharing class IPM_ProjectJobHelper
     public static void markProjectsAsComplete(QueueableContext qContext)
     {
         Map<Id,IPM_Project__c> successProjectMap = new Map<Id,IPM_Project__c>();
+        Map<Id, Decimal> mapProjectIdWithFilledInPerc = new Map<Id, Decimal>();
+        mapProjectIdWithFilledInPerc = prepareProjectWithFilledInPercentMap(processingProjectMap);
         for(IPM_Project__c project : processingProjectMap.values())
         {
             IPM_Project__c tempProject = new IPM_Project__c(Id=project.Id);
             tempProject.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
+            //After phase change, as next phase's document is in 'Not Started' status, following logic will populate Filled In Percentage field on IPM project depending on filled-in copied over sections'
+            tempProject.IPM_FilledIn_Percentage__c = mapProjectIdWithFilledInPerc.get(project.Id);
             if(qContext!=null)
             {  
                 tempProject.IPM_PhaseChangeQueueJobId__c = qContext.getJobId();
@@ -680,6 +684,46 @@ public without sharing class IPM_ProjectJobHelper
         {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'markProjectAsFailed',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
+    }
+    
+    /******************************************************************
+    *   @description: Method for preparing map of project id with filled-in percentages of associated document's sections
+        @param1 : Projects for which filled-in percentages need to calculated
+    */
+    public static Map<Id, Decimal> prepareProjectWithFilledInPercentMap(Map<Id,IPM_Project__c> projectMap){
+    	
+        Map<Id, Decimal> mapProjectIdWithFilledInPerc = new Map<Id, Decimal>();
+        Map<Id, IPM_Project_Document__c> mapProjectDoc = new Map<Id, IPM_Project_Document__c>([
+          																						     Select Id, IPM_Document_Status__c,IPM_Project__c,
+          																						     (Select Id, IPM_Section_Status__c FROM IPM_Project_Sections__r 
+          																						     WHERE IPM_Default_Section__c=true 
+          																						     AND IPM_Section__r.IPM_Section_Type__c NOT IN ( :IPM_ConstantUtils.SECTION_TYPE_HEADER , :IPM_ConstantUtils.SECTION_TYPE_SUBHEADER) 
+	  																								 AND IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c!=:IPM_ConstantUtils.APPENDIX
+          																						     ) 
+          																						     FROM IPM_Project_Document__c 
+          																						     WHERE IPM_Project__c IN : projectMap.keySet() 
+          																						     AND  ( IPM_Document_Status__c =:IPM_ConstantUtils.STATUS_NOT_STARTED OR (IPM_Project__r.IPM_Phase__c = :IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT AND IPM_Project__r.IPMProject_Span__c= :IPM_ConstantUtils.PROJECT_SPAN_LOCAL))
+          																						  ]);      
+        for(IPM_Project_Document__c projectDoc : mapProjectDoc.values())
+        {
+        	Integer removeoptional = 0;
+            Decimal filledinPer = 0;
+            Integer NonNegotiable = projectDoc.IPM_Project_Sections__r.size();
+        	for(IPM_Project_Document_Section__c projectDocSection : projectDoc.IPM_Project_Sections__r)
+        	{
+    				if(projectDocSection.IPM_Section_Status__c == IPM_ConstantUtils.SECTION_STATUS_FILLED)
+    				{
+    					removeoptional++;
+    				}
+        	}
+        	if(NonNegotiable!=0)
+        	{
+            	filledinPer=math.round((Decimal.valueof(removeoptional)/decimal.valueof(NonNegotiable))*100);
+            }
+            mapProjectIdWithFilledInPerc.put(projectDoc.IPM_Project__c, filledinPer);
+        } 
+        
+        return mapProjectIdWithFilledInPerc;
     }
 
 }

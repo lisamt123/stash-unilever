@@ -324,10 +324,20 @@ public with sharing class IPM_ProjectDocumentHelper
                                             {
                                                 projDocSect.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
                                             }
+                                            
+                                            if(String.isBlank(projDocSect.IPM_PDP_Document_Summary__c))
+                                            {
+                                                projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
+                                            }
+                                            else
+                                            {
+                                                projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
+                                            }
                                         }
                                         else
                                         {
                                             projDocSect.IPM_Section_Status__c = IPM_ConstantUtils.BLANK;
+                                            projDocSect.IPM_Functional_Input_Status__c = IPM_ConstantUtils.BLANK;
                                         }
                                         
                                        if(!String.isBlank(section.ProjectSpan__c) && !String.isBlank(project.IPMProject_Span__c) && section.ProjectSpan__c.contains(project.IPMProject_Span__c)){

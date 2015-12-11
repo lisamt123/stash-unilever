@@ -60,7 +60,7 @@
                                             {!projectDoc.IPM_GateDocuments__c} {!$Label.IPM_Document}
                                         </h2>
                                         <div class="SecFillProgress">
-                                            <div class="fillProgress"><apex:outputText Value="{!IF(projectDoc.IPM_Document_Status__c='Not Started',filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText><span>%</span></div>
+                                            <div class="fillProgress"><apex:outputText Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText><span>%</span></div>
                                             <div class="fillProgressTxt"> {!$Label.IPM_FILLED_IN}</div>
                                         </div>
                                         <div class="SecFillProgress olderDocLink" modalTitle="Older Gate Documents" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_GateDocAttchList}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_VIEW_OLDER_GATE_DOC}">
