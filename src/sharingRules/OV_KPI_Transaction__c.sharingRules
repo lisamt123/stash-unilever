@@ -388,7 +388,7 @@
         <sharedTo>
             <group>OV_KPI_NA_Global_Total_Pcat_Global_Fin</group>
         </sharedTo>
-        <booleanFilter>1 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7)</booleanFilter>
+        <booleanFilter>(1 OR 8 OR 9) AND (2 OR 3 OR 4 OR 5 OR 6 OR 7)</booleanFilter>
         <criteriaItems>
             <field>Business_Unit_Code__c</field>
             <operation>equals</operation>
@@ -423,6 +423,16 @@
             <field>KPI_Name_Code__c</field>
             <operation>equals</operation>
             <value>1868305629</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Business_Unit_Code__c</field>
+            <operation>equals</operation>
+            <value>MH000101</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Business_Unit_Code__c</field>
+            <operation>equals</operation>
+            <value>MH000017</value>
         </criteriaItems>
     </sharingCriteriaRules>
     <sharingCriteriaRules>

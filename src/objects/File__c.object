@@ -60,7 +60,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Read</externalSharingModel>
     <fields>
         <fullName>Asset_Group__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -414,9 +414,9 @@ Feed_ID__c=&quot;&quot;, &quot;/img/samples/light_red.gif&quot;, &quot;/img/samp
     </nameField>
     <pluralLabel>Files</pluralLabel>
     <searchLayouts>
-        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
-        <excludedStandardButtons>New</excludedStandardButtons>
         <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>New</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>

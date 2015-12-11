@@ -1604,11 +1604,11 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;, CASE( Geographic_Scope__c , &q
     <fields>
         <fullName>Job_Grade_of_Line_Manager_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( RecordTypeId , &quot;012E0000000654M&quot;,CASE( Job_Grade_of_Line_Manager__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9,0),
+        <formula>CASE( RecordTypeId , &quot;012E0000000654M&quot;,CASE( Job_Grade_of_Line_Manager__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
 CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
 CASE( RecordTypeId , &quot;012E0000000654O&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
 CASE( RecordTypeId , &quot;012E0000000654P&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
-CASE( RecordTypeId , &quot;012E0000000654Q&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11,0),
+CASE( RecordTypeId , &quot;012E0000000654Q&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12, &quot;6&quot;,14,0),
 CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),0))))))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Job Grade of Line Manager Score</label>
@@ -1676,6 +1676,10 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( Job_Grade_of_Line_Manager
             </picklistValues>
             <picklistValues>
                 <fullName>5B</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>6</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -5201,6 +5205,14 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
             </values>
             <values>
                 <fullName>4B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5B</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9368,6 +9380,14 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
             <values>
+                <fullName>5A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5B</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>WL1</fullName>
                 <default>false</default>
             </values>
@@ -10764,6 +10784,10 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
             <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>WL1</fullName>
                 <default>false</default>
             </values>
@@ -11376,6 +11400,10 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
             </values>
             <values>
                 <fullName>WL5</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>WL6</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
