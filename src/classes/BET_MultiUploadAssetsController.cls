@@ -133,7 +133,7 @@ global class BET_MultiUploadAssetsController {
             delete chatterContentPostList[0];
             return e.getMessage();
         }           
-        return null;      
+        return bet.Status__c == 'Final release' ? bet.Status__c : null;      
     } 
 
     /************************************************************

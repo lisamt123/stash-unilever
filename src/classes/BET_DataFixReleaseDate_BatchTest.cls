@@ -17,6 +17,24 @@ private class BET_DataFixReleaseDate_BatchTest {
     System.assert(bet.Final_Release_Due_Date__c != null,'Final Release Due Date should be set');
   }
 
+  @isTest static void processAssetTest() {
+    uw_Bet__c bet = BET_TestUtils.getTestBet();
+    bet.Launch_Date__c = Date.today();
+    insert bet;
+
+    uw_Asset__c asset = new uw_Asset__c(URL_of_Asset__c = 'smth/download/'+bet.id+'?smth', uw_Bet__c = bet.id);
+    insert asset;
+
+    Test.startTest();
+    BET_DataFixReleaseDate_Batch batch = new BET_DataFixReleaseDate_Batch(true);
+    Database.executeBatch(batch);
+    Test.stopTest();
+
+    asset = [Select id from uw_Asset__c where id =: asset.id];
+
+    System.assert(asset != null,'asset should exist');
+  }
+
   @isTest static void updateFileIdTest(){
     uw_Bet__c bet = BET_TestUtils.getTestBet();
     bet.Launch_Date__c = Date.today();
