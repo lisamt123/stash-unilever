@@ -13,6 +13,14 @@
         <name>Category_Logo__c</name>
     </fields>
     <fields>
+        <label><!-- Category URL Link 2 --></label>
+        <name>Category_URL_Link_2__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category URL Link --></label>
+        <name>Category_URL_Link__c</name>
+    </fields>
+    <fields>
         <label><!-- Legacy ID --></label>
         <name>Legacy_ID__c</name>
     </fields>
