@@ -151,6 +151,7 @@ public without sharing class IPM_Utils {
     public static String milePMRecordType ='IPM Project Milestones';
     public static String mileMRecordType ='IPM Milestones';
     public static String DevelopingIPM_Market_Type ='Developed';
+    public static String mileSnapRecordType ='IPM_Snapshot';
     public static String EmergingIPM_Market_Type ='Developing & Emerging';
     public static String IPM_Type_of_Milestone ='Standard';
     public static String recordTypeName ='IPM Project Tasks';
@@ -909,6 +910,7 @@ public without sharing class IPM_Utils {
             {
                 companyCardSet.add(project.IPM_Company_Card__c);  
             }
+            
         }
 
         if(!companyCardSet.isEmpty())
@@ -952,11 +954,11 @@ public without sharing class IPM_Utils {
     {
         IPM_ProjectMetadata__c selectedProjectMetadata = null;
         
-        if(project.IPM_Project_Type__c !=null && project.IPM_CompanyCardText__c !=null)
+        if(project.IPM_SourceProjectType__c !=null && project.IPM_CompanyCardText__c !=null)
         {
             for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
             {
-                if(projectMetadata.IPM_Project_Type__c == project.IPM_Project_Type__c && projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
+                if(projectMetadata.IPM_Project_Type__c == project.IPM_SourceProjectType__c && projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
                 {
                     selectedProjectMetadata = projectMetadata;
                     break;
