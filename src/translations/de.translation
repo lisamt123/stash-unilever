@@ -2121,6 +2121,82 @@
         <name>Core_NT_Network_Library_Id</name>
     </customLabels>
     <customLabels>
+        <label><!-- EA_Activity_Accepted --></label>
+        <name>EA_Activity_Accepted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_Activity_Declined --></label>
+        <name>EA_Activity_Declined</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_Chatter1 --></label>
+        <name>EA_Chatter1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_Chatter2 --></label>
+        <name>EA_Chatter2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_Chatter3 --></label>
+        <name>EA_Chatter3</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_Chatter4 --></label>
+        <name>EA_Chatter4</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_Feedback_Message --></label>
+        <name>EA_Feedback_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_Feedback_Reminder --></label>
+        <name>EA_Feedback_Reminder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_Invite_Message --></label>
+        <name>EA_Invite_Message</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_MyActionsTab_Title --></label>
+        <name>EA_MyActionsTab_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_ShareEmail1 --></label>
+        <name>EA_ShareEmail1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_ShareEmail2 --></label>
+        <name>EA_ShareEmail2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_ShareEmail3 --></label>
+        <name>EA_ShareEmail3</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_ShareEmail4 --></label>
+        <name>EA_ShareEmail4</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_ShareEmail5 --></label>
+        <name>EA_ShareEmail5</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_ShareEmail6 --></label>
+        <name>EA_ShareEmail6</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_ShareEmail7 --></label>
+        <name>EA_ShareEmail7</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_System_User_ID --></label>
+        <name>EA_System_User_ID</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EA_ThemeTab_Title --></label>
+        <name>EA_ThemeTab_Title</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Generic error message for request failures --></label>
         <name>ERROR_generic_request_failure</name>
     </customLabels>
@@ -9237,6 +9313,10 @@
         <name>Delete_Chatter_History</name>
     </customTabs>
     <customTabs>
+        <label><!-- Everyday Actions --></label>
+        <name>EA_Demo</name>
+    </customTabs>
+    <customTabs>
         <label><!-- Four Acres App --></label>
         <name>FourAcres_App</name>
     </customTabs>
@@ -9331,6 +9411,10 @@
     <customTabs>
         <label><!-- WinatPOS --></label>
         <name>WinatPOS</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Workplace --></label>
+        <name>Workplace</name>
     </customTabs>
     <customTabs>
         <label><!-- Planner --></label>
@@ -9526,6 +9610,15 @@
         <sections>
             <label><!-- Entity Exceptions --></label>
             <name>Entity Exceptions</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Agent Report Custom --></description>
+        <label><!-- Agent Report Custom --></label>
+        <name>Agent_Report_Custom</name>
+        <sections>
+            <label><!-- Agent Reports --></label>
+            <name>Agent Reports</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -10490,6 +10583,32 @@
         <sections>
             <label><!-- Planner Events --></label>
             <name>Planner Events</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Everyday Activities with Feed --></description>
+        <label><!-- Everyday Activities with Feed --></label>
+        <name>Everyday_Activities_with_Feed</name>
+        <sections>
+            <label><!-- Everyday Actions --></label>
+            <name>Everyday Actions</name>
+        </sections>
+        <sections>
+            <label><!-- Feed: Everyday Activity --></label>
+            <name>Feed: Everyday Activity</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Everyday Activities with User --></description>
+        <label><!-- Everyday Activities with User --></label>
+        <name>Everyday_Activities_with_User</name>
+        <sections>
+            <label><!-- Everyday Activities --></label>
+            <name>Everyday Activities</name>
+        </sections>
+        <sections>
+            <label><!-- Team Members --></label>
+            <name>Team Members</name>
         </sections>
     </reportTypes>
     <reportTypes>

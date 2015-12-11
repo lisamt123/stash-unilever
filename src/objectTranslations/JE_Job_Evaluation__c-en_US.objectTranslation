@@ -1005,6 +1005,10 @@
             <translation><!-- 5B --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>WL1</masterLabel>
             <translation><!-- WL1 --></translation>
         </picklistValues>

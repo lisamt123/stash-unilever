@@ -36,10 +36,6 @@
                 <name>maisie-rose.byrne@unilever.com</name>
                 <type>user</type>
             </approver>
-            <approver>
-                <name>sandra.fontano@unilever.com</name>
-                <type>user</type>
-            </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <entryCriteria>
@@ -68,10 +64,6 @@
             </approver>
             <approver>
                 <name>maisie-rose.byrne@unilever.com</name>
-                <type>user</type>
-            </approver>
-            <approver>
-                <name>sandra.fontano@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
