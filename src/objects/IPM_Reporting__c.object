@@ -109,4 +109,5 @@
         <unique>false</unique>
     </fields>
     <label>IPM Reporting</label>
+    <visibility>Public</visibility>
 </CustomObject>

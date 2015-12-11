@@ -8,4 +8,12 @@
     <tab>IPM_My_To_Do_List</tab>
     <tab>IPM_Company_Card__c</tab>
     <tab>IPM_Exchange_Rate__c</tab>
+    <tab>IPM_Project__c</tab>
+    <tab>IPM_Project_Template__c</tab>
+    <tab>IPM_Document_Template__c</tab>
+    <tab>IPM_Section__c</tab>
+    <tab>IPM_Questionnaire__c</tab>
+    <tab>IPM_Task__c</tab>
+    <tab>IPM_Milestone__c</tab>
+    <tab>IPM_CorePara_helps_example__c</tab>
 </CustomApplication>

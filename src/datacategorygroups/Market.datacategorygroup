@@ -112,6 +112,22 @@
         </dataCategory>
         <dataCategory>
             <dataCategory>
+                <label>Canada</label>
+                <name>Canada</name>
+            </dataCategory>
+            <dataCategory>
+                <label>Mexico</label>
+                <name>Mexico</name>
+            </dataCategory>
+            <dataCategory>
+                <label>United States</label>
+                <name>United_States</name>
+            </dataCategory>
+            <label>North America</label>
+            <name>North_America</name>
+        </dataCategory>
+        <dataCategory>
+            <dataCategory>
                 <label>Sri Lanka</label>
                 <name>Sri_Lanka</name>
             </dataCategory>

@@ -193,4 +193,5 @@
         <type>Checkbox</type>
     </fields>
     <label>IPM Project MetaData</label>
+    <visibility>Public</visibility>
 </CustomObject>

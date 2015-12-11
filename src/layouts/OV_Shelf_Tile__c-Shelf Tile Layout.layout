@@ -111,6 +111,10 @@
         <fields>Geography__c</fields>
         <relatedList>OV_Report__c.Favourite_From_Shelf_Tile__c</relatedList>
     </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>OV_Report_Favourite__c.Favourite_From_Shelf_Tile__c</relatedList>
+    </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
     <showInteractionLogPanel>false</showInteractionLogPanel>

@@ -24,9 +24,21 @@
             </table>
         </div>
         <script type="text/javascript">
-               var param1var = getQueryVariable();
-               if(param1var){
+               var param1var = getQueryVariable();  
+               var isIframe = inIframe ();
+               setTimeout(function(){} ,1000);
+               if(param1var ){
                    document.getElementById("homePage1").style.display="none";
+               }
+               if(isIframe){
+                   document.getElementById("homePage1").style.display="none";
+               }
+               function inIframe () {
+                   try {
+                    return window.self !== window.top;     
+                   } catch (e) {
+                    return true;
+                   }
                }
                 function getQueryVariable() {
                   var query = window.location.search.substring(1);

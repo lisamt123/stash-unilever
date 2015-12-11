@@ -76,4 +76,5 @@
         <type>TextArea</type>
     </fields>
     <label>IPM CoreParameter Strategic help content</label>
+    <visibility>Public</visibility>
 </CustomObject>

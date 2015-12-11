@@ -5,6 +5,10 @@
         <description>AF_Agency_Rejection</description>
         <protected>false</protected>
         <recipients>
+            <field>AF_AgencyUsers10__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
             <field>AF_AgencyUsers1__c</field>
             <type>email</type>
         </recipients>
@@ -14,6 +18,30 @@
         </recipients>
         <recipients>
             <field>AF_AgencyUsers3__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUsers4__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUsers5__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUsers6__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUsers7__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUsers8__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUsers9__c</field>
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
@@ -118,6 +146,10 @@
         <description>Email Notification to Agency users re target base fees</description>
         <protected>false</protected>
         <recipients>
+            <field>AF_AgencyUsers10__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
             <field>AF_AgencyUsers1__c</field>
             <type>email</type>
         </recipients>
@@ -135,6 +167,22 @@
         </recipients>
         <recipients>
             <field>AF_AgencyUsers5__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUsers6__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUsers7__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUsers8__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AF_AgencyUsers9__c</field>
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>

@@ -24,4 +24,5 @@
         <unique>true</unique>
     </fields>
     <label>IPM MCO Short Names</label>
+    <visibility>Public</visibility>
 </CustomObject>

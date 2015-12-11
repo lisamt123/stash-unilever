@@ -50,6 +50,7 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
@@ -1633,8 +1634,7 @@ ToDelete=Asset will be removed by the system automatically at the scheduled dele
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <label>Asset</label>
-    <listViews>
+    <label>Asset</label>    <listViews>
         <fullName>All_Assets</fullName>
         <columns>NAME</columns>
         <columns>Category__c</columns>

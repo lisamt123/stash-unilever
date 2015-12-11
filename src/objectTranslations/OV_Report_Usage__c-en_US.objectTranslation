@@ -104,5 +104,12 @@
         <label><!-- User Name --></label>
         <name>User_Name__c</name>
     </fields>
+    <layouts>
+        <layout>One View Report Usage Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>
