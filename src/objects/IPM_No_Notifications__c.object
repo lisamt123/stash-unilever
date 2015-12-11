@@ -11,4 +11,5 @@
         <type>Checkbox</type>
     </fields>
     <label>IPM No Notifications?</label>
+    <visibility>Public</visibility>
 </CustomObject>

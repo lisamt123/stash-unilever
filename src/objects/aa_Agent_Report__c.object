@@ -537,6 +537,14 @@ Captured Images will be stored as attachment or document object.</description>
         <queue>CI_Manager_Africa_Queue</queue>
         <sharedTo>
             <group>CI_Manager_Africa</group>
+            <group>CI_Manager_Default</group>
+            <group>CI_Manager_Europe</group>
+            <group>CI_Manager_Latin_America</group>
+            <group>CI_Manager_NametRub</group>
+            <group>CI_Manager_North_America</group>
+            <group>CI_Manager_North_Asia</group>
+            <group>CI_Manager_SEAA</group>
+            <group>CI_Manager_South_Asia</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -562,7 +570,15 @@ Captured Images will be stored as attachment or document object.</description>
         <label>CI Team Global</label>
         <language>en_US</language>
         <sharedTo>
+            <group>CI_Manager_Africa</group>
             <group>CI_Manager_Default</group>
+            <group>CI_Manager_Europe</group>
+            <group>CI_Manager_Latin_America</group>
+            <group>CI_Manager_NametRub</group>
+            <group>CI_Manager_North_America</group>
+            <group>CI_Manager_North_Asia</group>
+            <group>CI_Manager_SEAA</group>
+            <group>CI_Manager_South_Asia</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -589,7 +605,15 @@ Captured Images will be stored as attachment or document object.</description>
         <language>en_US</language>
         <queue>CI_Manager_Europe_Queue</queue>
         <sharedTo>
+            <group>CI_Manager_Africa</group>
+            <group>CI_Manager_Default</group>
             <group>CI_Manager_Europe</group>
+            <group>CI_Manager_Latin_America</group>
+            <group>CI_Manager_NametRub</group>
+            <group>CI_Manager_North_America</group>
+            <group>CI_Manager_North_Asia</group>
+            <group>CI_Manager_SEAA</group>
+            <group>CI_Manager_South_Asia</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -616,7 +640,15 @@ Captured Images will be stored as attachment or document object.</description>
         <language>en_US</language>
         <queue>CI_Manager_Latin_America_Queue</queue>
         <sharedTo>
+            <group>CI_Manager_Africa</group>
+            <group>CI_Manager_Default</group>
+            <group>CI_Manager_Europe</group>
             <group>CI_Manager_Latin_America</group>
+            <group>CI_Manager_NametRub</group>
+            <group>CI_Manager_North_America</group>
+            <group>CI_Manager_North_Asia</group>
+            <group>CI_Manager_SEAA</group>
+            <group>CI_Manager_South_Asia</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -643,7 +675,15 @@ Captured Images will be stored as attachment or document object.</description>
         <language>en_US</language>
         <queue>CI_Manager_NametRub_Queue</queue>
         <sharedTo>
+            <group>CI_Manager_Africa</group>
+            <group>CI_Manager_Default</group>
+            <group>CI_Manager_Europe</group>
+            <group>CI_Manager_Latin_America</group>
             <group>CI_Manager_NametRub</group>
+            <group>CI_Manager_North_America</group>
+            <group>CI_Manager_North_Asia</group>
+            <group>CI_Manager_SEAA</group>
+            <group>CI_Manager_South_Asia</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -670,7 +710,15 @@ Captured Images will be stored as attachment or document object.</description>
         <language>en_US</language>
         <queue>CI_Manager_North_America_Queue</queue>
         <sharedTo>
+            <group>CI_Manager_Africa</group>
+            <group>CI_Manager_Default</group>
+            <group>CI_Manager_Europe</group>
+            <group>CI_Manager_Latin_America</group>
+            <group>CI_Manager_NametRub</group>
             <group>CI_Manager_North_America</group>
+            <group>CI_Manager_North_Asia</group>
+            <group>CI_Manager_SEAA</group>
+            <group>CI_Manager_South_Asia</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -697,7 +745,15 @@ Captured Images will be stored as attachment or document object.</description>
         <language>en_US</language>
         <queue>CI_Manager_North_Asia_Queue</queue>
         <sharedTo>
+            <group>CI_Manager_Africa</group>
+            <group>CI_Manager_Default</group>
+            <group>CI_Manager_Europe</group>
+            <group>CI_Manager_Latin_America</group>
+            <group>CI_Manager_NametRub</group>
+            <group>CI_Manager_North_America</group>
             <group>CI_Manager_North_Asia</group>
+            <group>CI_Manager_SEAA</group>
+            <group>CI_Manager_South_Asia</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -724,7 +780,15 @@ Captured Images will be stored as attachment or document object.</description>
         <language>en_US</language>
         <queue>CI_Manager_SEAA_Queue</queue>
         <sharedTo>
+            <group>CI_Manager_Africa</group>
+            <group>CI_Manager_Default</group>
+            <group>CI_Manager_Europe</group>
+            <group>CI_Manager_Latin_America</group>
+            <group>CI_Manager_NametRub</group>
+            <group>CI_Manager_North_America</group>
+            <group>CI_Manager_North_Asia</group>
             <group>CI_Manager_SEAA</group>
+            <group>CI_Manager_South_Asia</group>
         </sharedTo>
     </listViews>
     <listViews>
@@ -751,6 +815,14 @@ Captured Images will be stored as attachment or document object.</description>
         <language>en_US</language>
         <queue>CI_Manager_South_Asia_Queue</queue>
         <sharedTo>
+            <group>CI_Manager_Africa</group>
+            <group>CI_Manager_Default</group>
+            <group>CI_Manager_Europe</group>
+            <group>CI_Manager_Latin_America</group>
+            <group>CI_Manager_NametRub</group>
+            <group>CI_Manager_North_America</group>
+            <group>CI_Manager_North_Asia</group>
+            <group>CI_Manager_SEAA</group>
             <group>CI_Manager_South_Asia</group>
         </sharedTo>
     </listViews>

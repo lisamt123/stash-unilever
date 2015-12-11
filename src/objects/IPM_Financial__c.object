@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
@@ -2480,7 +2481,6 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         </filters>
         <label>Finder</label>
         <language>en_US</language>
-        
     </listViews>
     <listViews>
         <fullName>Finder_Global_Projects</fullName>
@@ -2534,7 +2534,6 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <label>Finder-Regional Projects</label>
         <language>en_US</language>
     </listViews>
-    
     <nameField>
         <displayFormat>FIN-{0000}</displayFormat>
         <label>Name</label>

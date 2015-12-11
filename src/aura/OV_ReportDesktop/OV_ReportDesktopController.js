@@ -12,29 +12,15 @@
                 component.set('v.currentlyViewedVersionId', component.get('v.latestVersionId'));
 
                 if (reportData.reportIsStatic === true) {
-                    component.set('v.documentIcon', helper.getDocumentIconByType(reportData.reportDocument.reportDocumentFileType));
+                    console.log(reportData.reportDocument.reportDocumentFileType);
+                    console.warn(reportData);
+                    component.set('v.documentIcon', helper.getDocumentIconByType(
+                            reportData.reportDocument.reportDocumentFileType,
+                            reportData.reportDocument.reportDocumentFileExtension
+                        )
+                    );
 
-                    // format dates - we might want to move to to the helper ...
-                    if (reportData.reportContentVersions && reportData.reportContentVersions.length > 0) {
-                        for (var i = 0, len = reportData.reportContentVersions.length; i < len; i++) {
-                            if (!!reportData.reportContentVersions[i].LastModifiedDate) {
-                                var dateVal   = new Date(reportData.reportContentVersions[i].LastModifiedDate);
-                                var dateParts = [
-                                    dateVal.getDate() < 9 ? '0' + dateVal.getDate() : dateVal.getDate(),
-                                    '/',
-                                    dateVal.getMonth() < 9 ? '0' + (dateVal.getMonth() + 1) : dateVal.getMonth() + 1,
-                                    '/',
-                                    dateVal.getFullYear(),
-                                    ' ',
-                                    dateVal.getHours(),
-                                    ':',
-                                    dateVal.getMinutes()
-                                ];
-                                reportData.reportContentVersions[i].LastModifiedDateFormatted = dateParts.join('');
-                            }
-                        }
-                    }
-
+                    reportData = helper.formatContentVersionDates(reportData);
                 } else {
                     component.set('v.documentIcon', '/resource/reportDocumentTypeIcons/link_60.png');
 
@@ -63,6 +49,7 @@
                 }
 
                 component.set('v.reportData', reportData);
+                helper.renderIframe(component);
             } else {
                 //@TODO show error
             }
@@ -103,7 +90,13 @@
         );
 
         component.set('v.historyCounter', component.get('v.historyCounter')-1);
+        helper.renderIframe(component);
     },
+
+    doneRendering: function(component, event, helper) {
+        helper.renderIframe(component);
+    },
+
     showContent: function(component, event, helper) {
         var navigationEvent, id;
         event.stopPropagation();
@@ -179,8 +172,8 @@
                 if(window.lastLink !== e.data){
                     window.lastLink = e.data;
                     var result = window.open('/sfc/servlet.shepherd/version/download/'+e.data, '_blank');
-                    //added timeout to prevent downloading same document multiple times in very short time period, we cant use
-                    //flag because not always handleResponse is called (when iframe is not loaded)
+                    // added timeout to prevent downloading same document multiple times in very short time period, we cant use
+                    // flag because not always handleResponse is called (when iframe is not loaded)
                     setTimeout(function(){
                         window.lastLink = '';
                     }, 1000);
@@ -196,6 +189,19 @@
             };
 
             window.addEventListener('message', handleResponse, false);
+
+            /**
+             * Comment for SONAR exception
+             *
+             * There is now way to get adderes of APEX VF pages host from within JavaScript (like it used to be in VisualForce via global variables)
+             * and therefore to avoid updating code / custom settings after each deployment the '*' is used instead of a specific URL
+             *
+             * It's save to use '*'' here because:
+             * - user has no way to specify src of the iframe element, it's always set up from the code
+             * - we have full control over the code in loaded iframe
+             * - eval is never called on received response, there is no risk of executing dangerous code.
+             * - reponse is always a string (record id) which is appended to another string
+             */
             iframe.contentWindow.postMessage(' ', '*');
         }
     },

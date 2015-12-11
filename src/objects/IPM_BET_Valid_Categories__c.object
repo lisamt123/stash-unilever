@@ -3,4 +3,5 @@
     <customSettingsType>List</customSettingsType>
     <enableFeeds>false</enableFeeds>
     <label>IPM_BET_Valid_Categories</label>
+    <visibility>Public</visibility>
 </CustomObject>

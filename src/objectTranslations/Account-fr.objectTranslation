@@ -1108,6 +1108,10 @@
         <name>Previous_Names__c</name>
     </fields>
     <fields>
+        <label><!-- Profession --></label>
+        <name>Profession__c</name>
+    </fields>
+    <fields>
         <label><!-- Published --></label>
         <name>Published__c</name>
     </fields>
@@ -1134,6 +1138,34 @@
         <label><!-- Responsible Unilever Employee --></label>
         <name>Responsible_Unilever_Employee__c</name>
         <relationshipLabel><!-- Accounts --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Retention Date --></label>
+        <name>Retention_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Retention Reason --></label>
+        <name>Retention_Reason__c</name>
+        <picklistValues>
+            <masterLabel>1-Legal</masterLabel>
+            <translation><!-- 1-Legal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2-Customer Request</masterLabel>
+            <translation><!-- 2-Customer Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3-Default</masterLabel>
+            <translation><!-- 3-Default --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Retention Record Id --></label>
+        <name>Retention_Record_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Retention Record --></label>
+        <name>Retention_Record__c</name>
     </fields>
     <fields>
         <label><!-- Strategic Capabilities Video --></label>

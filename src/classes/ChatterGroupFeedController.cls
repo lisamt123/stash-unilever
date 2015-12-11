@@ -1,7 +1,7 @@
 /*Controller Class for ChatterGroupFeed VF page*/
 /*Created on 2-Feb-2014*/
 
-public class ChatterGroupFeedController {
+public  with sharing class ChatterGroupFeedController {
   
    public boolean bol_grp_member_message {get; set;} //This stores the boolean if user is member of group or now
    public string announcementBody {get; set;}        //mindtree added on 3/7/2014 descrption:This stores the Announcementpost body  

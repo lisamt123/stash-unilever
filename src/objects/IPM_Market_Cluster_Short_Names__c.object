@@ -24,4 +24,5 @@
         <unique>false</unique>
     </fields>
     <label>IPM Market Cluster Short Names</label>
+    <visibility>Public</visibility>
 </CustomObject>

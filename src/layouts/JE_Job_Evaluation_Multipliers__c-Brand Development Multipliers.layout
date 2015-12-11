@@ -74,6 +74,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Geogrpahic_Scope_Multiplier__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>No_of_Innovations_Per_Year_Multipliers__c</field>
             </layoutItems>
             <layoutItems>

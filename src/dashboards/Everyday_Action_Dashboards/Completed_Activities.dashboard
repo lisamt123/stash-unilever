@@ -77,8 +77,8 @@
             <title>Completed Activities By Function</title>
             <useReportChart>false</useReportChart>
         </components>
-    </rightSection>    
-	<runningUser>vaibhav.vora@unilever.com</runningUser>
+    </rightSection>
+    <runningUser>vaibhav.vora@unilever.com</runningUser>
     <textColor>#000000</textColor>
     <title>Completed Activities</title>
     <titleColor>#000000</titleColor>

@@ -44,7 +44,7 @@ public with sharing class OV_ReportFileUploadController {
     public String reportName{ get{ return this.report.Name; } }
 
     public String deviceTypeName{ get{ return OV_DeviceType.descriptionForType(this.deviceType); } }
-    
+
     //TODO  tag with report attributes ?
     public PageReference upload()
     {
@@ -65,7 +65,7 @@ public with sharing class OV_ReportFileUploadController {
         }else{
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Could not create content.'));
             return null;
-        }        
+        }
 
         this.file.RecordTypeId = Schema.SObjectType.ContentVersion.getRecordTypeInfosByName().get('One View').getRecordTypeId();
 
@@ -76,43 +76,43 @@ public with sharing class OV_ReportFileUploadController {
             Id contentDocumentId = this.contentVersion.ContentDocumentId;
 
             //because this.file.FirstPublishLocationId = selectedLibrary; causing error with library
-            List<ContentWorkspace> tWorkspaces = [SELECT Id FROM ContentWorkspace WHERE Id = :selectedLibrary]; 
-            if(tWorkspaces.size() > 0){
-                ContentWorkspaceDoc newWorkspaceDoc = new ContentWorkspaceDoc(); 
-                newWorkspaceDoc.ContentWorkspaceId = tWorkspaces[0].Id; 
-                newWorkspaceDoc.ContentDocumentId = contentDocumentId; 
-                insert newWorkspaceDoc;    
+            List<ContentWorkspace> tWorkspaces = [SELECT Id FROM ContentWorkspace WHERE Id = :selectedLibrary];
+            if( !tWorkspaces.isEmpty() ){
+                ContentWorkspaceDoc newWorkspaceDoc = new ContentWorkspaceDoc();
+                newWorkspaceDoc.ContentWorkspaceId = tWorkspaces[0].Id;
+                newWorkspaceDoc.ContentDocumentId = contentDocumentId;
+                insert newWorkspaceDoc;
 
                 System.debug(LoggingLevel.DEBUG, 'this.contentVersion.ContentDocumentId:' + contentDocumentId);
                 System.debug(LoggingLevel.DEBUG, 'file.ContentDocumentId:' + contentDocumentId);
-                this.report = service.updateReportWithContentProxyId(this.report, contentDocumentId, this.deviceType); 
-            }                          
+                this.report = service.updateReportWithContentProxyId(this.report, contentDocumentId, this.deviceType);
+            }
         }
         catch(Exception e)
         {
             System.debug(LoggingLevel.ERROR, e);
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Could not create content'));
             System.debug(LoggingLevel.ERROR, 'content size:' + this.file.ContentSize);
-            System.debug(LoggingLevel.DEBUG, 'OV_ReportFileUploadController.upload() end in catch block');   
+            System.debug(LoggingLevel.DEBUG, 'OV_ReportFileUploadController.upload() end in catch block');
             return STAY_ON_PAGE;
         }
-       
-        System.debug(LoggingLevel.DEBUG, 'OV_ReportFileUploadController.upload() end');   
+
+        System.debug(LoggingLevel.DEBUG, 'OV_ReportFileUploadController.upload() end');
         return PageReferenceForBackToReport();
     }
 
     public PageReference cancel(){
         return PageReferenceForBackToReport();
-    } 
+    }
 
-    public PageReference backToReport(){ 
+    public PageReference backToReport(){
         return PageReferenceForBackToReport();
-    } 
+    }
 
 
-    private void initialize(){        
+    private void initialize(){
         Id reportId = ApexPages.currentPage().getParameters().get(PARAM_REPORT_ID);
-        
+
         if(reportId == null){
             System.debug(LoggingLevel.ERROR, 'report_id page param is null');
             ApexPages.addMessage( new ApexPages.Message(ApexPages.Severity.FATAL, ERROR_PARAM_REPORT_ID) );
@@ -124,13 +124,13 @@ public with sharing class OV_ReportFileUploadController {
         if(deviceTypeParameter == null){
             System.debug(LoggingLevel.WARN, 'device_type page param should be supplied, defaulting to DESKTOP');
         }
-        
+
         this.deviceType = OV_DeviceType.typeForParameter(deviceTypeParameter);
 
         try{
             this.file = new ContentVersion();
             this.libraryOptions = buildOptionsForLibraries(service.listContentLibraries());
-            this.report = findReportById(reportId); 
+            this.report = findReportById(reportId);
         }catch(Exception e){
             ApexPages.addMessage( new ApexPages.Message(ApexPages.Severity.FATAL, 'There was a problem initializing the upload page') );
         }
@@ -154,7 +154,7 @@ public with sharing class OV_ReportFileUploadController {
 
     private OV_Report__c findReportById(Id reportId){
         System.debug(LoggingLevel.DEBUG, 'findReportById.reportId:' + reportId);
-            
+
         OV_Report__c report;
 
         try{
@@ -163,14 +163,14 @@ public with sharing class OV_ReportFileUploadController {
             System.debug(LoggingLevel.ERROR, e);
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, ERROR_REPORT_GENERAL));
         }
-        
+
         return report;
     }
 
     public PageReference changeStaticDynamic(){
         return null;
     }
-    
+
     private PageReference PageReferenceForBackToReport(){
         return new PageReference('/' + this.report.Id);
     }

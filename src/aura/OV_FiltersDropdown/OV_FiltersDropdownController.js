@@ -17,9 +17,5 @@
         var selectedFilters = component.get('v.selectedFilters');
 
         component.set('v.isCodeApplied', true);
-    },
-
-    goBack : function(component, event, helper) {
-        window.history.go(-1);
     }
 })

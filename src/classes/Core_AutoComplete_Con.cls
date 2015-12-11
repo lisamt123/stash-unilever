@@ -1,4 +1,4 @@
-global class Core_AutoComplete_Con {
+global with sharing class Core_AutoComplete_Con {
 
     public String labelField{ get; set; }
     public String valueField{ get; set; }

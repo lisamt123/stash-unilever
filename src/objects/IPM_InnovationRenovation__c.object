@@ -50,4 +50,5 @@
         <type>Checkbox</type>
     </fields>
     <label>IPM InnovationRenovation</label>
+    <visibility>Public</visibility>
 </CustomObject>

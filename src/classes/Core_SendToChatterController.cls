@@ -3,7 +3,7 @@ Class Name              : Core_SendToChatterController
 Requirement/Description : 
 */
 
-public class Core_SendToChatterController {
+public with sharing class Core_SendToChatterController {
 
     public String strPostDetail { get; set; }
     public String strSelToVal    {get;set;}

@@ -110,6 +110,25 @@ public with sharing class OV_SearchService2 {
         List<OV_ShelfTileReport__c> ovSearchList = new List<OV_ShelfTileReport__c>();
         
         System.debug(LoggingLevel.DEBUG, 'query: ' + query);
+
+        /*SECURITY - CRUD/FLS Enforcement */
+        String [] shelfTileReportAccessFields = new String [] {'Report__c', 'Shelf_Tile__c'};
+        OV_SecurityHelper.doPrivilegedOp('OV_ShelfTileReport__c', shelfTileReportAccessFields);
+
+        String [] reportAccessFields = new String [] {'Name', 'Category__c', 'Reporting_Period__c', 'Function__c', 'Geography__c', 'Business_Owner__c', 'Publisher__c', 
+                                                    'Desktop_Content_Proxy__c', 'Colour_ltng__c', 'Icon_ltng__c', 'Mobile_Content_Proxy__c', 'Tablet_Content_Proxy__c', 'Views__c', 'Report_Folder__c',
+                                                    'Report_Heading__c', 'Unit__c', 'Report_Heading_Sorting_Field__c'};
+        OV_SecurityHelper.doPrivilegedOp('OV_Report__c', reportAccessFields);
+
+        String [] shelfTileAccessFields = new String [] {'Id', 'Name', 'Colour__c', 'Tile_ICON__c', 'ICON_Label__c', 'Shelf__c', 'Sort_Order__c'};
+        OV_SecurityHelper.doPrivilegedOp('OV_Shelf_Tile__c', shelfTileAccessFields);
+
+        String [] shelfAccessFields = new String [] {'Id', 'Name', 'Colour__c'};
+        OV_SecurityHelper.doPrivilegedOp('OV_Shelf__c', shelfAccessFields);
+
+        String [] contentProxyAccessFields = new String [] {'Url__c', 'Title__c', 'LatestContentVersionId__c'};
+        OV_SecurityHelper.doPrivilegedOp('OV_ContentProxy__c', contentProxyAccessFields);
+        /*SECURITY */
         
         ovSearchList = Database.query(query);
         return ovSearchList;
@@ -217,6 +236,11 @@ public with sharing class OV_SearchService2 {
     Throws [Exceptions]: [optional]
     ********************************************************************/
     private static Map<Id, ContentVersion> getContentVersions(Set<Id> contentVersionIds){
+        /*SECURITY - CRUD/FLS Enforcement */
+        String [] accessFields = new String [] {'Id', 'Title', 'FileType', 'FileExtension', 'ContentDocumentId', 'LastModifiedDate', 'ContentSize'};
+        OV_SecurityHelper.doPrivilegedOp('ContentVersion', accessFields);
+        /*SECURITY */
+
         Map<Id, ContentVersion> idToContentVersionMap = new Map<Id, ContentVersion>();
         List<ContentVersion> contentVersions = [SELECT Id, Title, FileType, FileExtension, ContentDocumentId, LastModifiedDate, ContentSize FROM ContentVersion WHERE Id IN :contentVersionIds AND IsLatest = true];
         for(ContentVersion c : contentVersions){
@@ -231,10 +255,18 @@ public with sharing class OV_SearchService2 {
     Returns: [Set<Id>]
     Throws [Exceptions]: [optional]
     ********************************************************************/
-    private static Map<Id, OV_Report_Favourite__c> getFavouritereports(){
+    public static Map<Id, OV_Report_Favourite__c> getFavouritereports(){
+        /*SECURITY - CRUD/FLS Enforcement */
+        String [] accessFields = new String [] {'Id', 'Colour__c', 'Colour_ltng__c', 'User__c', 'Report__c'};
+        OV_SecurityHelper.doPrivilegedOp('OV_Report_Favourite__c', accessFields);
+
+        String [] shelfTileAccessFields = new String [] {'Id', 'ICON_Label__c'};
+        OV_SecurityHelper.doPrivilegedOp('OV_Shelf_Tile__c', shelfTileAccessFields);
+        /*SECURITY */
+
         Id userId = UserInfo.getUserId();
         OV_Profile__c profile = [SELECT Id FROM OV_Profile__c WHERE User__c =: userId];
-        List<OV_Report_Favourite__c> favReports = [SELECT Id, Colour__c, Colour_ltng__c, Favourite_From_Shelf_Tile__c, Favourite_From_Shelf_Tile__r.Id, Report__c, User__c FROM OV_Report_Favourite__c WHERE User__c = :profile.Id];
+        List<OV_Report_Favourite__c> favReports = [SELECT Id, Colour__c, Colour_ltng__c, Favourite_From_Shelf_Tile__c, Favourite_From_Shelf_Tile__r.Id, Favourite_From_Shelf_Tile__r.ICON_Label__c, Report__c, User__c FROM OV_Report_Favourite__c WHERE User__c = :profile.Id];
 
         Map<Id, OV_Report_Favourite__c> favReportsMap = new Map<Id, OV_Report_Favourite__c>();
         for(OV_Report_Favourite__c f : favReports){
@@ -335,6 +367,11 @@ public with sharing class OV_SearchService2 {
             }
         }
         
+        /*SECURITY - CRUD/FLS Enforcement */
+        String [] accessFields = new String [] {'Id', 'ParentId', 'Title', 'ContentType', 'CommentCount', 'LikeCount', 'RelatedRecordId'};
+        OV_SecurityHelper.doPrivilegedOp('OV_Report__Feed', accessFields);
+        /*SECURITY */  
+
         List<OV_Report__Feed> reportFeeds = [SELECT Id, ParentId, Title, ContentType, CommentCount, LikeCount, RelatedRecordId from OV_Report__Feed WHERE ParentId IN :idToReport.keySet()];
         for(OV_Report__Feed r : reportFeeds){
             if(idToReport.containsKey(r.ParentId)){
@@ -439,6 +476,33 @@ public with sharing class OV_SearchService2 {
         return structure2;
     }
 
+
+    /*******************************************************************
+    Purpose: Method for sorting contentversions by version number
+    Parameterd Description: created due to fact that versionumber is STRING field
+    Parameters: [List<ContentVersion> contentVersions]
+    Returns: [List<ContentVersion>]
+    Throws [Exceptions]: [optional]
+    ********************************************************************/
+    private static List<ContentVersion> getSortedContentVersions(List<ContentVersion> contentVersions){
+        List<Integer> order = new List<Integer>();
+        Map<Integer, ContentVersion> cVMap = new Map<Integer, ContentVersion>();
+        for(ContentVersion cV : contentVersions){
+            cVMap.put(Integer.valueOf(cV.VersionNumber), cV);
+            order.add(Integer.valueOf(cV.VersionNumber));
+        }
+        //ASC ORDER
+        order.sort();
+
+        //Because of DESC order
+        List<ContentVersion> sortedContentVersions = new List<ContentVersion>();
+        for(Integer i = order.size()-1; i>=0;i--){
+            sortedContentVersions.add(cVMap.get(order.get(i)));
+        }
+
+        return sortedContentVersions;
+    }
+
     /*******************************************************************
     Purpose: Method for returning report data.
     Parameterd Description:
@@ -474,6 +538,25 @@ public with sharing class OV_SearchService2 {
                 String whereClause = ' LIMIT 1';
                 query = query+whereClause;
             }
+
+            /*SECURITY - CRUD/FLS Enforcement */
+            String [] shelfTileReportAccessFields = new String [] {'Report__c', 'Shelf_Tile__c'};
+            OV_SecurityHelper.doPrivilegedOp('OV_ShelfTileReport__c', shelfTileReportAccessFields);
+
+            String [] reportAccessFields = new String [] {'Name', 'Geography__c', 'Category__c', 'Function__c', 'Business_Owner__c', 'Publisher__c', 'Description__c', 'Desktop_Content_Proxy__c',
+                                                        'Mobile_Content_Proxy__c', 'Tablet_Content_Proxy__c', 'Mobile_Content_Proxy__c', 'Views__c', 'Report_Folder__c'};
+            OV_SecurityHelper.doPrivilegedOp('OV_Report__c', reportAccessFields);
+
+            String [] shelfTileAccessFields = new String [] {'Id', 'Name', 'Colour__c', 'Tile_ICON__c', 'ICON_Label__c', 'Shelf__c'};
+            OV_SecurityHelper.doPrivilegedOp('OV_Shelf_Tile__c', shelfTileAccessFields);
+
+            String [] shelfAccessFields = new String [] {'Id', 'Name', 'Colour__c'};
+            OV_SecurityHelper.doPrivilegedOp('OV_Shelf__c', shelfAccessFields);
+
+            String [] contentProxyAccessFields = new String [] {'Url__c', 'Title__c', 'LatestContentVersionId__c'};
+            OV_SecurityHelper.doPrivilegedOp('OV_ContentProxy__c', contentProxyAccessFields);
+            /*SECURITY */
+
             reportTile = Database.query(query);
 
             if(deviceType == OV_RemoteController.DEVICE_MOBILE && reportTile.Report__r.Mobile_Content_Proxy__c != null && reportTile.Report__r.Mobile_Content_Proxy__r.LatestContentVersionId__c != null){
@@ -485,7 +568,8 @@ public with sharing class OV_SearchService2 {
                     reportDocument = new OV_Wrapper.ReportDocumentWrapper(reportTile.Report__r.Mobile_Content_Proxy__r.Title__c, reportTile.Report__r.Mobile_Content_Proxy__r.Url__c);
                 }
                 reportDocument.setReportShelfTileReportId(shelfTileId, reportTile.Report__c);
-                reportContentVersions = [select Id, Title, ContentDocumentId, IsLatest, VersionNumber, LastModifiedDate from ContentVersion where ContentDocumentId = :reportTile.Report__r.Mobile_Content_Proxy__r.ContentDocumentId__c order by VersionNumber desc];
+                List<ContentVersion> reportContentVersionsTmp = [select Id, Title, ContentDocumentId, IsLatest, VersionNumber, LastModifiedDate from ContentVersion where ContentDocumentId = :reportTile.Report__r.Mobile_Content_Proxy__r.ContentDocumentId__c order by VersionNumber desc];
+                reportContentVersions = getSortedContentVersions(reportContentVersionsTmp);
             }
 
             if(deviceType == OV_RemoteController.DEVICE_DESKTOP && reportTile.Report__r.Desktop_Content_Proxy__c != null && reportTile.Report__r.Desktop_Content_Proxy__r.LatestContentVersionId__c != null){
@@ -497,7 +581,8 @@ public with sharing class OV_SearchService2 {
                     reportDocument = new OV_Wrapper.ReportDocumentWrapper(reportTile.Report__r.Desktop_Content_Proxy__r.Title__c, reportTile.Report__r.Desktop_Content_Proxy__r.Url__c);
                 }   
                 reportDocument.setReportShelfTileReportId(shelfTileId, reportTile.Report__c);
-                reportContentVersions = [select Id, Title, ContentDocumentId, IsLatest, VersionNumber, LastModifiedDate from ContentVersion where ContentDocumentId = :reportTile.Report__r.Desktop_Content_Proxy__r.ContentDocumentId__c order by VersionNumber desc];                 
+                List<ContentVersion> reportContentVersionsTmp = [select Id, Title, ContentDocumentId, IsLatest, VersionNumber, LastModifiedDate from ContentVersion where ContentDocumentId = :reportTile.Report__r.Desktop_Content_Proxy__r.ContentDocumentId__c order by VersionNumber desc];                 
+                reportContentVersions = getSortedContentVersions(reportContentVersionsTmp);
             }
 
             if(deviceType == OV_RemoteController.DEVICE_TABLET && reportTile.Report__r.Tablet_Content_Proxy__c != null && reportTile.Report__r.Tablet_Content_Proxy__r.LatestContentVersionId__c != null){
@@ -509,8 +594,9 @@ public with sharing class OV_SearchService2 {
                     reportDocument = new OV_Wrapper.ReportDocumentWrapper(reportTile.Report__r.Tablet_Content_Proxy__r.Title__c, reportTile.Report__r.Tablet_Content_Proxy__r.Url__c);
                 }
                 reportDocument.setReportShelfTileReportId(shelfTileId, reportTile.Report__c);
-                reportContentVersions = [select Id, Title, ContentDocumentId, IsLatest, VersionNumber, LastModifiedDate from ContentVersion where ContentDocumentId = :reportTile.Report__r.Tablet_Content_Proxy__r.ContentDocumentId__c order by VersionNumber desc];
-            }
+                List<ContentVersion> reportContentVersionsTmp = [select Id, Title, ContentDocumentId, IsLatest, VersionNumber, LastModifiedDate from ContentVersion where ContentDocumentId = :reportTile.Report__r.Tablet_Content_Proxy__r.ContentDocumentId__c order by VersionNumber desc];
+                reportContentVersions = getSortedContentVersions(reportContentVersionsTmp);
+           }
         }catch(Exception ex){
             throw new OVException('No results for this id.', ex);
         }
@@ -520,7 +606,11 @@ public with sharing class OV_SearchService2 {
         if(isFavourite){
             wrappedReport.reportColourLtng = myReportsMap.get(reportTile.Report__c).Colour_ltng__c;
         }
-                
+
+        /*SECURITY - CRUD/FLS Enforcement */
+        String [] accessFields = new String [] {'Id', 'ParentId', 'Title', 'ContentType', 'CommentCount', 'LikeCount', 'RelatedRecordId'};
+        OV_SecurityHelper.doPrivilegedOp('OV_Report__Feed', accessFields);
+        /*SECURITY */                
 
         List<OV_Report__Feed> reportFeeds = [SELECT Id, ParentId, Title, ContentType, CommentCount, LikeCount, RelatedRecordId from OV_Report__Feed WHERE ParentId = :reportId];
         for(OV_Report__Feed r : reportFeeds){
@@ -554,19 +644,35 @@ public with sharing class OV_SearchService2 {
         +' Shelf_Tile__r.Shelf__r.Colour__c, Shelf_Tile__r.CreatedDate, Shelf_Tile__r.Shelf__r.RecordTypeId, Sort_Order__c, Report__r.Unit__r.Name,'
         +' Shelf_Tile__r.Shelf__r.CreatedDate, Report__r.Report_Folder__c FROM OV_ShelfTileReport__c ' + whereClause + ' AND Report__c IN :myReportsIds ORDER BY Shelf_Tile__r.Shelf__r.Sort_Order__c ASC NULLS LAST, Shelf_Tile__r.Shelf__r.Name, Shelf_Tile__r.Sort_Order__c ASC NULLS LAST, Shelf_Tile__r.Name, Report__r.Report_Heading_Sorting_Field__c ASC NULLS FIRST, Report__r.Report_Folder_Sorting_Field__c ASC NULLS LAST, Report__r.Unit__r.Name ASC NULLS LAST, Sort_Order__c, Report__r.Name, Report__r.CreatedDate';
 
+        /*SECURITY - CRUD/FLS Enforcement */
+        String [] shelfTileReportAccessFields = new String [] {'Report__c', 'Shelf_Tile__c'};
+        OV_SecurityHelper.doPrivilegedOp('OV_ShelfTileReport__c', shelfTileReportAccessFields);
+
+        String [] reportAccessFields = new String [] {'Name', 'Category__c', 'Reporting_Period__c', 'Function__c', 'Geography__c', 'Business_Owner__c', 'Publisher__c', 
+                                                                'Desktop_Content_Proxy__c', 'Mobile_Content_Proxy__c', 'Colour_ltng__c', 'Icon_ltng__c', 'Tablet_Content_Proxy__c',
+                                                                'Report_Heading__c', 'Views__c', 'Unit__c', 'Report_Folder__c', 'Report_Heading_Sorting_Field__c', 'Report_Folder_Sorting_Field__c'
+                                                                };
+        OV_SecurityHelper.doPrivilegedOp('OV_Report__c', reportAccessFields);
+
+        String [] shelfTileAccessFields = new String [] {'Id', 'Name', 'Colour__c', 'ICON_Label__c', 'Shelf__c', 'Sort_Order__c'};
+        OV_SecurityHelper.doPrivilegedOp('OV_Shelf_Tile__c', shelfTileAccessFields);
+
+        String [] shelfAccessFields = new String [] {'Id', 'Name', 'Colour__c', 'RecordTypeId', 'Sort_Order__c'};
+        OV_SecurityHelper.doPrivilegedOp('OV_Shelf__c', shelfAccessFields);
+
+        String [] contentProxyAccessFields = new String [] {'Url__c', 'Title__c', 'LatestContentVersionId__c'};
+        OV_SecurityHelper.doPrivilegedOp('OV_ContentProxy__c', contentProxyAccessFields);
+        /*SECURITY */
+
         List<OV_ShelfTileReport__c> shelfTileReportsList = Database.query(query);
-        
-        system.debug('******* shelfTileReportsList: ' + shelfTileReportsList);
-        
+                
         List<OV_ShelfTileReport__c> filteredShelfTileReportsList = new List<OV_ShelfTileReport__c>();
         for(OV_ShelfTileReport__c r : shelfTileReportsList){
             if(r.Shelf_Tile__r.Id == myReportsMap.get(r.Report__c).Favourite_From_Shelf_Tile__r.Id){
                 filteredShelfTileReportsList.add(r);
             }
         }
-        
-        system.debug('******* filteredShelfTileReportsList : ' + filteredShelfTileReportsList );
-        
+                
         Set<Id> contentVersionIds = new Set<Id>();
         for(OV_ShelfTileReport__c filteredShelfTileReport : filteredShelfTileReportsList){
             if(deviceType == OV_RemoteController.DEVICE_DESKTOP && filteredShelfTileReport.Report__r.Desktop_Content_Proxy__c != null && filteredShelfTileReport.Report__r.Desktop_Content_Proxy__r.LatestContentVersionId__c != null){
@@ -588,11 +694,7 @@ public with sharing class OV_SearchService2 {
         resultsMap.put(SUBJECTS, new List<OV_Wrapper.ReportWrapper>());
         resultsMap.put(MOMENTS, new List<OV_Wrapper.ReportWrapper>());
         
-        system.debug('******* resultsMap1: ' + resultsMap);
-        
         Id subjectRecordTypeId = Schema.SObjectType.OV_Shelf__c.getRecordTypeInfosByName().get('Subject').getRecordTypeId();
-
-        system.debug('******* filteredShelfTileReportsList2 : ' + filteredShelfTileReportsList );
 
         Map<Id, OV_Wrapper.ReportWrapper> idToReport = new Map<Id, OV_Wrapper.ReportWrapper>();
         for(OV_ShelfTileReport__c shelfTileReport : filteredShelfTileReportsList){
@@ -637,7 +739,7 @@ public with sharing class OV_SearchService2 {
                     resultsMap.get(MOMENTS).add(wrappedReport);
                 }
             }
-            system.debug('******* deviceType 2: ' + deviceType );   
+
             if(deviceType == OV_RemoteController.DEVICE_DESKTOP
                 && shelfTileReport.Report__r.Desktop_Content_Proxy__c != null
                 && shelfTileReport.Report__r.Desktop_Content_Proxy__r.LatestContentVersionId__c != null
@@ -645,15 +747,14 @@ public with sharing class OV_SearchService2 {
                 Boolean isStatic = (shelfTileReport.Report__r.Desktop_Content_Proxy__r.Url__c == null || shelfTileReport.Report__r.Desktop_Content_Proxy__r.Url__c == '');
                 OV_Wrapper.ReportWrapper wrappedReport = createFavouriteReport(shelfTileReport, isStatic, myReportsMap.get(shelfTileReport.Report__c));
                 idToReport.put(wrappedReport.reportId, wrappedReport);
-                system.debug('******* isStatic: ' + isStatic);
+
                 if(isStatic){
                     ContentVersion contentVer = idToContentVersionMap.get(shelfTileReport.Report__r.Desktop_Content_Proxy__r.LatestContentVersionId__c);
                     wrappedReport.reportDocument = new OV_Wrapper.ReportDocumentWrapper(contentVer, OV_ThumbnailPreviewBuilder.DESKTOP);
                 }else{
                     wrappedReport.reportDocument = new OV_Wrapper.ReportDocumentWrapper(shelfTileReport.Report__r.Desktop_Content_Proxy__r.Title__c, shelfTileReport.Report__r.Desktop_Content_Proxy__r.Url__c);
                 }
-                system.debug('******* shelfTileReport.Shelf_Tile__r.Shelf__r.RecordTypeId: ' + shelfTileReport.Shelf_Tile__r.Shelf__r.RecordTypeId);
-                system.debug('******* subjectRecordTypeId: ' + subjectRecordTypeId);
+
                 if(shelfTileReport.Shelf_Tile__r.Shelf__r.RecordTypeId == subjectRecordTypeId){
                     resultsMap.get(SUBJECTS).add(wrappedReport);
                 }else{
@@ -661,7 +762,6 @@ public with sharing class OV_SearchService2 {
                 }
             }
         }
-        system.debug('******* resultsMap2: ' + resultsMap);
 
         List<OV_Report__Feed> reportFeeds = [SELECT Id, ParentId, Title, ContentType, CommentCount, LikeCount, RelatedRecordId from OV_Report__Feed WHERE ParentId IN :idToReport.keySet()];
         for(OV_Report__Feed r : reportFeeds){

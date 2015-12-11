@@ -53,4 +53,5 @@
         <unique>false</unique>
     </fields>
     <label>IPM CMI Overall Color Mapping</label>
+    <visibility>Public</visibility>
 </CustomObject>

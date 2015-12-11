@@ -3,7 +3,7 @@
     <c:OV_UtilsLogger />
 
     <!-- load styleshets and required JS code -->
-    <ltng:require styles="/resource/OV_stylesMerged/styles.css?rev7i"
+    <ltng:require styles="/resource/OV_stylesMerged/styles.css?rev10b"
         scripts="/resource/OV_jquery, /resource/OV_bootstrap_drilldown, /resource/OV_jqueryDotDot"
         afterScriptsLoaded="{!c.doInit}"
     />
@@ -25,11 +25,16 @@
 
     <aura:attribute name="activeShelfTile" type="String" />
     <aura:attribute name="activeShelfFolderTile" type="String" />
+    <aura:attribute name="activeFolderName" type="String" />
 
     <!-- render navigation here ... -->
-
+    <aura:attribute name="debugMessage" type="String"/>
+    
     <!-- area where subcomponents will be rendered to -->
     <div aura:id="mainComponent" style="min-height:100%">
+        <aura:renderIf isTrue="{!$Browser.isPhone == true || $Browser.isTablet == true}">
+            <div class="notAvailableForMobile">{!$Label.c.OV_MobileApplicationInfo}</div>
+        </aura:renderIf>
         {!v.body}
     </div>
 </aura:component>
