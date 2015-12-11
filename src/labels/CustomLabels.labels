@@ -5105,6 +5105,13 @@ If approved your project will be linked after your Charter gate has been approve
         <value>Skip BOSSCARD</value>
     </labels>
     <labels>
+        <fullName>IPM_BRAND_BUILDING_FINANCE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BRAND_BUILDING_FINANCE</shortDescription>
+        <value>Brand Building Finance</value>
+    </labels>
+    <labels>
         <fullName>IPM_BRAND_POSITIONING</fullName>
         <language>en_US</language>
         <protected>false</protected>
