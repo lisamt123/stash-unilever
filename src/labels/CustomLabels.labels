@@ -11714,7 +11714,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_Oblix_Lbl_Innovation_Projects_Market5</shortDescription>
-        <value>Global campaign/s suitable for  &gt;15 number of markets</value>
+        <value>Global campaign/s suitable for &gt;15 number of markets</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_Role</fullName>

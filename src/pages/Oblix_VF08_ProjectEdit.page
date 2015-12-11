@@ -597,8 +597,16 @@
                     <td width="30%" style="text-align: right; word-break: normal;">
                         <h2>
                         <apex:outputPanel id="campaignFeeId">
-                        {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label} &nbsp;:&nbsp; €&nbsp;{!project.Campaign_Fees_Total__c}&nbsp; <br/>
-                        {!$ObjectType.Oblix_SOW_Projects__c.fields.Value_to_be_paid_in_Current_FY__c.label} &nbsp;:&nbsp; €&nbsp;{!project.Value_to_be_paid_in_Current_FY__c}&nbsp;
+                        {!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Fees_Total__c.label} &nbsp;:&nbsp; €&nbsp;
+                        <apex:outputText value="{0, number,###,###,##0}">
+                         <apex:param value="{!project.Campaign_Fees_Total__c}"/>
+                       </apex:outputText>
+                        &nbsp; <br/>
+                        {!$ObjectType.Oblix_SOW_Projects__c.fields.Value_to_be_paid_in_Current_FY__c.label} &nbsp;:&nbsp; €&nbsp;
+                        <apex:outputText value="{0, number,###,###,##0}">
+                         <apex:param value="{!project.Value_to_be_paid_in_Current_FY__c}"/>
+                       </apex:outputText>
+                        &nbsp;
                         </apex:outputPanel>
                         </h2>
 
@@ -861,7 +869,11 @@
                                 <div class="Oblix_card_title">
                                     <div style="float:left">{!$Label.Oblix_lbl_UIUX_Estimation_Cost} : </div>
                                     <div style="float:right">
-                                        <apex:outputPanel id="estimateId">€ {!estimateCost}  </apex:outputPanel>
+                                        <apex:outputPanel id="estimateId">€ 
+                                         <apex:outputText value="{0, number,###,###,##0}">
+                                             <apex:param value="{!estimateCost}"/>
+                                         </apex:outputText>
+                                         </apex:outputPanel>
                                     </div>
                                 </div>
                                 <apex:outputPanel id="Oblix_card">
