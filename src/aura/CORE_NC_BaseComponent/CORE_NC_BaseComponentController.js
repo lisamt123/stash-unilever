@@ -1,12 +1,5 @@
 ({
-	change : function(component, event, helper) {
-		//alert(1);
-        var temp =  component.get("v.display") ;
-        alert(temp);
-        component.set("v.display",!temp);
-        alert(component.get("v.display"));
-        //alert(1);
-	},
+
     gloablNewsActive: function(component, event, helper) {
         //alert(1);     
         var menuStyle;   

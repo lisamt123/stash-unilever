@@ -1,7 +1,7 @@
 <aura:component controller="Core_NC_NewsCenterController">
     <!--Calling doInit method to get the default information on page load-->
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
-    <!--<aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/>-->
+    <aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/>
     <!--Handling carousel Indicator Event-->
     <aura:handler event="c:CORE_NC_CaouselIndicatorEvent" action="{!c.changeActiveCarousel}" />
     <aura:attribute name="isDoneRendering" type="Boolean" default="false"/>
@@ -173,11 +173,13 @@
                         </div>
                     <!--disply rich text information of news article-->
                     <div aura:id="mydivbottom"></div>
-                    <!--<div class="leftSpaceing" id="middle">
+                    <div class="leftSpaceing" id="middle">
                         <div>                            
-                            <iframe src="{!'/apex/NewsArticleFeed_NewsApp?articleid='+v.newsId}" scrolling="false" id="iframe_id" class="fullWidth" height="250px"/>
+                            <!--<iframe src="{!'/apex/NewsArticleFeed_NewsApp?articleid='+v.newsId}" scrolling="false" id="iframe_id" class="fullWidth" height="250px"/>-->
                         </div>
-                    </div>-->
+                    </div>
+                    <input type="text"/>
+                    <div onclick="{!c.postChatterInfo}">  POST </div>
                     <forceChatter:feed type="Record" subjectId="{!v.newsId}"/>
                 </aura:if>
             </div>

@@ -58,6 +58,13 @@
 		</antcall>
 
 		<antcall target="generatePackageMembers2">
+			<param name="objtyp"  value="CustomPermission" />
+			<param name="objext"  value="customPermission" />
+			<param name="objdir"  value="customPermissions" />
+			<param name="objflt"  value="*" />
+		</antcall>		
+
+		<antcall target="generatePackageMembers2">
 			<param name="objtyp"  value="AssignmentRules" />
 			<param name="objext"  value="assignmentRules" />
 			<param name="objdir"  value="assignmentRules" />

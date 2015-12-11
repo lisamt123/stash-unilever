@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>Everyday_Activity__c.Team_Members__r$Name</field>
+    </columns>
+    <columns>
+        <field>Everyday_Activity__c.Team_Members__r$Participant__c</field>
+    </columns>
+    <columns>
+        <field>Everyday_Activity__c$Name</field>
+    </columns>
+    <columns>
+        <field>Everyday_Activity__c$RecordType</field>
+    </columns>
+    <columns>
+        <field>Everyday_Activity__c.Team_Members__r$Activity_Due_Date__c</field>
+    </columns>
+    <description>Count of activities completed based on User&apos;s Market Cluster.</description>
+    <filter>
+        <criteriaItems>
+            <column>Everyday_Activity__c.Team_Members__r$Activity_Due_Date__c</column>
+            <operator>lessOrEqual</operator>
+            <value>TODAY</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Summary</format>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Everyday_Activity__c.Team_Members__r$Participant__c.Market_Cluster__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>Completed Activities By Cluster</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>Everyday_Activities_with_User__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>Everyday_Activity__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>
