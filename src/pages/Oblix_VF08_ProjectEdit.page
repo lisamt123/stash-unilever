@@ -264,7 +264,7 @@
 
 </script>
 <!-- All action functions used in the VF  -->
-    <apex:actionFunction name="setInfoTimeLine" action="{!setInfoTimeLine}" oncomplete="$.unblockUI()" rerender="projectDetailId">
+    <apex:actionFunction name="setInfoTimeLine" action="{!setInfoTimeLine}" oncomplete="$.unblockUI()" rerender="BtnTimeLine">
         <apex:param name="projDate1" assignTo="{!project.Project_Start_Date__c}" value="" />
         <apex:param name="projDate5" assignTo="{!project.BET_first_release__c}" value="" />
         <apex:param name="projDate6" assignTo="{!project.Final_release__c}" value="" />
@@ -280,12 +280,12 @@
         <apex:param name="otherInfo" assignTo="{!project.Project_Priority__c}" value="" />
     </apex:actionFunction>
     
-    <apex:actionFunction name="setInfoCountries" action="{!setInfoCountries}" oncomplete="$.unblockUI()"  reRender="myerror,projectDetailId,valueDriversScale1">
+    <apex:actionFunction name="setInfoCountries" action="{!setInfoCountries}" oncomplete="$.unblockUI()"  reRender="myerror,projectDetailId ,valueDriversScale1">
         <apex:param name="region" assignTo="{!project.OblixRegion__c}" value="" />
         <apex:param name="countries" assignTo="{!project.OblixCountries__c}" value="" />
     </apex:actionFunction>
     
-    <apex:actionFunction name="setInfoStages" action="{!setInfoStages}" oncomplete="$.unblockUI()" reRender="campaignFeeId,projectDetailId">
+    <apex:actionFunction name="setInfoStages" action="{!setInfoStages}" oncomplete="$.unblockUI()" reRender="campaignFeeId,BtnStage">
         <apex:param name="projected" assignTo="{!project.Projected_Stage__c}" value="{!project.Projected_Stage__c}" />
         <apex:param name="completed" assignTo="{!project.Completed_Stage__c}" value="{!project.Completed_Stage__c}" />
         <apex:param name="stage" assignTo="{!project.Project_Stage__c}" value="{!project.Project_Stage__c}" />
@@ -305,15 +305,15 @@
         <apex:param name="descAsset" assignTo="{!assetInstance.Additional_Description__c}" value="" />
     </apex:actionFunction>
     
-    <apex:actionFunction name="setAgencyHub" action="{!setInfoSplitHub}"  oncomplete="{!if(projectId != null,'location.reload()','$.unblockUI()')}" rerender="valueDriversScale2,projectDetailId,redText">
+    <apex:actionFunction name="setAgencyHub" action="{!setInfoSplitHub}"  oncomplete="{!if(projectId != null,'location.reload()','$.unblockUI()')}" rerender="projectDetailId ,valueDriversScale2,redText">
         <apex:param name="splitId" assignTo="{!listItems}" value="" />
     </apex:actionFunction>
-    
+  
     <apex:actionFunction action="{!NULL}" name="changeType" reRender="jqueryId" />
     
-    <apex:actionFunction action="{!NULL}" name="changeType" reRender="jqueryId" />
-    
-    <apex:actionFunction name="setAsGlobal" action="{!setAsGlobal}" oncomplete="{!if(isError == false ,'$.unblockUI();setWorldRegion()','$.unblockUI()')}" rerender="countriesDialogPanel,valueDriversScale1,projectDetailId"/>
+    <apex:actionFunction name="setAsGlobal" action="{!setAsGlobal}" oncomplete="{!if(isError == false ,'$.unblockUI();setWorldRegion()','$.unblockUI()')}" rerender="projectDetailId ,countriesDialogPanel,valueDriversScale1">
+        
+    </apex:actionFunction>
 
 <!-- End action functions -->
 
@@ -617,7 +617,7 @@
                         <td width="100%">
 
                             <!-- Project details -->
-                            <apex:outputPanel id="projectDetailId">
+                            
                             <table width="100%">
                                 <tr>
 
@@ -660,7 +660,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>
-                                                        <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_TimeLines}" styleClass="{!IF(v1==true,'Oblix_popup_btn chekedBtnGreen', 'Oblix_popup_btn chekedBtnRed')}" onclick="PopupTimeLine();return false"/>
+                                                        <apex:commandButton value="{!$Label.Oblix_lbl_UIUX_TimeLines}" styleClass="{!IF(v1==true,'Oblix_popup_btn chekedBtnGreen', 'Oblix_popup_btn chekedBtnRed')}" onclick="PopupTimeLine();return false" id="BtnTimeLine"/>
                                                     </td>
                                                 </tr>
 
@@ -669,6 +669,7 @@
                                     </td>
                                     <td width="20%" >
                                         <section class="PrColumn3">
+                                        <apex:outputPanel id="projectDetailId">
                                             <table width="100%" class="topAlign">
                                                 <tr>
                                                     <td>
@@ -688,6 +689,7 @@
                                                 </tr>
 
                                             </table>
+                                           </apex:outputPanel>
                                         </section>
                                     </td>
                                     <td>
@@ -695,7 +697,7 @@
                                             <table width="100%">
                                                 <tr>
                                                     <td colspan="2">
-                                                        <apex:commandButton value="* {!$Label.Oblix_lbl_UIUX_Stage} " styleClass="{!IF(v5==true,'Oblix_popup_btn chekedBtnGreen', 'Oblix_popup_btn chekedBtnRed')}"  onclick="PopupStages();return false" />
+                                                        <apex:commandButton value="* {!$Label.Oblix_lbl_UIUX_Stage} " styleClass="{!IF(v5==true,'Oblix_popup_btn chekedBtnGreen', 'Oblix_popup_btn chekedBtnRed')}"  onclick="PopupStages();return false"  id="BtnStage"/>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -728,7 +730,6 @@
                                 </tr>
                             </table>
 
-                            </apex:outputPanel>
                             <!-- End Project Details -->
 
                             <!-- Record Type Content -->
