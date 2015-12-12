@@ -375,22 +375,25 @@ public with sharing class AgencyHomePageController {
         system.debug('bonusThresholdObj...'+bonusThresholdObj);
         if(bonusThresholdObj.size()>0)
         {
-        for(AF_Bonus_Results__c bonusResObj:[select id, AF_Status__c,AF_Period__c,AF_Bonus_Thresholds__c from AF_Bonus_Results__c where RecordType.Name='Bonus Quarterly' and AF_Bonus_Thresholds__c IN:bonusThresholdObj])
+        for(AF_Bonus_Results__c bonusResObj:[select id, AF_Status__c,AF_Period__c,AF_Bonus_Thresholds__c from AF_Bonus_Results__c where RecordType.Name='Bonus Quarterly' and AF_Bonus_Thresholds__c IN:bonusThresholdObj order By AF_Period__c asc])
             {
             bonusResultObj.add(bonusResObj);
             }
         }
         system.debug('bonusResultObj..'+bonusResultObj.size());
+        system.debug('bonusResultObj..'+bonusResultObj);
         system.debug('uniqueBrandEstMap..&&&&&&&&.'+uniqueBrandEstMap);
         Boolean Quarter=false;
         
         for(AF_Bonus_Threshold__c bt:bonusThresObj){
+            Quarter = false;
             List<AF_Bonus_Results__c> bonusResultSelectedObj = new List<AF_Bonus_Results__c>();
             for(AF_Bonus_Results__c br:bonusResultObj) {
                 if(bt.id == br.AF_Bonus_Thresholds__c){
                 bonusResultSelectedObj.add(br);
                 }
                 }
+                system.debug('bonusResultSelectedObj...'+bonusResultSelectedObj);
                 system.debug('bt.Brand_Agency_Combination__c....'+bt.Brand_Agency_Combination__c);
                 if(uniqueBrandEstMap.containsKey(bt.Brand_Agency_Combination__c) && !uniqueBonusThrSet.contains(bt.Brand_Agency_Combination__c))
                 {
@@ -400,7 +403,7 @@ public with sharing class AgencyHomePageController {
                    }
                    else if(bonusResultSelectedObj.size()>0){
                     for(AF_Bonus_Results__c bonusResult:bonusResultSelectedObj){
-                    Quarter = false;
+                    
                     if(bonusResult.AF_Period__c == 'Q1' && bonusDate==true && (bonusResult.AF_Status__c == 'Draft' || bonusResult.AF_Status__c =='None')){
                         Quarter= true;
                         uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='W/Cat Finance';

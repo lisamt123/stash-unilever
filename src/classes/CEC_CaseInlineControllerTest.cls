@@ -17,12 +17,58 @@ VERSION    AUTHOR            DATE            DETAIL
 @isTest(SeeAllData=false)
 public class CEC_CaseInlineControllerTest{
 
+    public static User insertUser()
+    {
+        Profile p = [SELECT Id FROM Profile WHERE Name='Unilever - Salesforce MultiApp Standard'];
+       //Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
+        //UserRole r = [SELECT Id,name FROM UserRole WHERE Name = 'CEC Global Head'];
+        //System.debug('Role' + r.name);
+        User u = new User(LastName = 'Testing', 
+                             Username = 'cectestuser@test00DE0000000bbLj.org', 
+                             Email = 'cectestuser@test00DE0000000bbLj.org', 
+                             Alias = 'utest', 
+                             TimeZoneSidKey = 'Europe/London', 
+                             LocaleSidKey = 'en_GB', 
+                             EmailEncodingKey = 'UTF-8', 
+                             ProfileId = p.Id, 
+                             LanguageLocaleKey = 'en_US',
+                             UserPermissionsKnowledgeUser = true);  
+                             
+        insert u;
+        List<PermissionSet> pslist = [SELECT Id FROM PermissionSet WHERE Name IN ('CEC_User','CEC_Manager','CEC_CRUD','CEC_Business_Admin','CEC_Knowledge_Manager','CEC_Automated_User')];
+        List<PermissionSetAssignment> psalist = new List<PermissionSetAssignment>();
+        for(PermissionSet ps:pslist)
+        {
+            PermissionSetAssignment psa = new PermissionSetAssignment();
+            psa.AssigneeId = u.Id;
+            psa.PermissionSetId = ps.Id;
+            
+            psalist.add(psa);
+        
+        }
+        
+        insert psalist;
+        
+        Group GR = [SELECT Id,name FROM Group WHERE Name = 'CEC - Knowledge Manager'];
+        GroupMember GM = new GroupMember();
+        GM.GroupId = GR.id;
+        GM.UserOrGroupId = u.Id;
+        insert GM;
+        
+        return u;
+    
+    }
+
     /**
     Test method for toggleMissingInfoDisplay method
      */  
     public static testMethod void test_toggleMissingInfoDisplay(){
         Test.startTest(); 
 
+        User u = insertUser();
+        
+         System.runAs(u)
+         {
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove');
         insert productObj;
 
@@ -57,6 +103,9 @@ public class CEC_CaseInlineControllerTest{
 
         ApexPages.StandardController stdController1 = new ApexPages.StandardController(caseObj1);
         CEC_CaseInlineController caseControllerObj1 = new CEC_CaseInlineController(stdController1);
+        
+        }
+        
         Test.stopTest(); 
     }
 
@@ -65,6 +114,11 @@ public class CEC_CaseInlineControllerTest{
      */
     public static testMethod void test_updateFormAvailabilityDetails(){
         Test.startTest(); 
+        
+        User u = insertUser();
+        
+         System.runAs(u)
+         {
 
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo');
         insert productObj;
@@ -92,6 +146,7 @@ public class CEC_CaseInlineControllerTest{
         caseControllerObj.updateFormAvailabilityDetails();
 
         system.assertEquals(caseControllerObj.productId, productObj.Id);
+        }
         Test.stopTest(); 
     }
 
@@ -101,6 +156,11 @@ public class CEC_CaseInlineControllerTest{
      
     public static testMethod void test_updatePacksizeAvailabilityDetails(){
         Test.startTest(); 
+        
+        User u = insertUser();
+        
+         System.runAs(u)
+         {
 
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove');
         insert productObj;
@@ -127,6 +187,7 @@ public class CEC_CaseInlineControllerTest{
         caseControllerObj.updatePacksizeAvailabilityDetails();
 
         system.assertEquals(caseControllerObj.productId, productObj.Id);
+        }
         Test.stopTest(); 
     }
 
@@ -135,10 +196,17 @@ public class CEC_CaseInlineControllerTest{
      */
     public static testMethod void test_updateVariantAvailabilityDetails(){
         Test.startTest(); 
+        User u = insertUser();
+        
+         System.runAs(u)
+         {
 
-        Case caseObj = new Case();
+        Case caseObj = new Case(Ownerid = u.id );
+        //caseObj.Ownerid = u.id;
         insert caseObj;
-
+        
+        System.debug('~~~case inserted' + caseObj);
+        System.debug('~~~case owner' + caseObj.Ownerid);
         mdm_Product_Category__c categoryObj = new mdm_Product_Category__c(name='Test Category', Corp_Prod_Grouping_Name__c='Group1');
         insert categoryObj;
 
@@ -164,15 +232,23 @@ public class CEC_CaseInlineControllerTest{
         caseControllerObj.caseRecord.isPacksizeKnown__c = true;        
         caseControllerObj.updateVariantAvailabilityDetails();
         system.assertEquals(caseControllerObj.productId, productObj.Id);
+        }
         Test.stopTest(); 
     }
 
     public static testMethod void test_processProductionCode(){
         Test.startTest(); 
+        
+        User u = insertUser();
+        
+         System.runAs(u)
+         {
 
         Case caseObj = new Case();
         caseObj.Production_Code__c = 'L123456789023456788';
         insert caseObj;
+        
+        System.debug('~~~case ownerp ' + caseObj.Ownerid);
 
         mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove');
         insert productObj;
@@ -197,6 +273,7 @@ public class CEC_CaseInlineControllerTest{
 
         system.assertEquals('L923456789023456788', caseObj.Production_Code__c);
 
+            }
         Test.stopTest(); 
     }
 
@@ -206,6 +283,11 @@ public class CEC_CaseInlineControllerTest{
      */
     public static testMethod void test_getCategoryValues(){
         Test.startTest(); 
+        
+        User u = insertUser();
+        
+         System.runAs(u)
+         {
 
         Case caseObj = new Case();
         insert caseObj;
@@ -221,6 +303,7 @@ public class CEC_CaseInlineControllerTest{
 
         caseControllerObj.getCategoryValues();
         system.assertEquals(catogoryList.size()>0, true);
+        }
         Test.stopTest(); 
     }
 
@@ -229,6 +312,10 @@ public class CEC_CaseInlineControllerTest{
      */
     public static testMethod void test_updateReasonHierarchy(){
         Test.startTest(); 
+        User u = insertUser();
+        
+         System.runAs(u)
+         {
 
         Case caseObj = new Case();
         insert caseObj;
@@ -245,6 +332,7 @@ public class CEC_CaseInlineControllerTest{
         caseControllerObj.reasonId = reasonObj.Id;
         caseControllerObj.updateReasonHierarchy();
         system.assertEquals(caseControllerObj.reasonId, reasonObj.Id);
+        }
         Test.stopTest(); 
     }
 
@@ -253,6 +341,10 @@ public class CEC_CaseInlineControllerTest{
      */
     public static testMethod void test_updateProductHierarchy(){
         Test.startTest(); 
+        User u = insertUser();
+        
+         System.runAs(u)
+         {
 
         Case caseObj = new Case();
         insert caseObj;
@@ -269,6 +361,7 @@ public class CEC_CaseInlineControllerTest{
         caseControllerObj.reasonId = reasonObj.Id;
         caseControllerObj.updateProductHierarchy();
         system.assertEquals(caseControllerObj.productId, productObj.Id);
+        }
         Test.stopTest(); 
     }
 
@@ -277,7 +370,10 @@ public class CEC_CaseInlineControllerTest{
      */
     public static testMethod void test_updateProductCategory(){
         Test.startTest(); 
-
+User u = insertUser();
+        
+         System.runAs(u)
+         {
         Case caseObj = new Case();
         insert caseObj;
 
@@ -293,6 +389,7 @@ public class CEC_CaseInlineControllerTest{
         caseControllerObj.reasonId = reasonObj.Id;
         caseControllerObj.updateProductCategory();
         system.assertEquals(caseControllerObj.productId, productObj.Id);
+        }
         Test.stopTest(); 
     }
     
@@ -301,7 +398,10 @@ public class CEC_CaseInlineControllerTest{
      */
     public static testMethod void test_searchMatchingProductKnowledgeArticles(){
         Test.startTest(); 
+        User u = insertUser();
         
+         System.runAs(u)
+         {
         Case caseObj = new Case();
         insert caseObj;
         
@@ -313,6 +413,7 @@ public class CEC_CaseInlineControllerTest{
         testArticle .Summary = 'KB Summary';
         testArticle .URLName = 'test';
         testArticle .Product_Code__c ='12345';
+        //testArticle.OwnerId = u.id;
         insert testArticle ;
         
         cec_Product_Information__kav insertedTestFaq = [Select KnowledgeArticleId from cec_Product_Information__kav where ID = :testArticle.Id];
@@ -324,7 +425,7 @@ public class CEC_CaseInlineControllerTest{
         caseControllerObj.productId = productObj.Id;
         caseControllerObj.searchMatchingProductKnowledgeArticles();
         system.assertEquals(1,caseControllerObj.knowledgeWrapperList.size());
-        
+        }
         Test.stopTest(); 
     }
     
@@ -333,7 +434,10 @@ public class CEC_CaseInlineControllerTest{
      */
     public static testMethod void test_searchMatchingReasonKnowledgeArticles(){
         Test.startTest(); 
+        User u = insertUser();
         
+         System.runAs(u)
+         {
         Case caseObj = new Case();
         insert caseObj;
         
@@ -357,6 +461,7 @@ public class CEC_CaseInlineControllerTest{
         caseControllerObj.reasonId = reasonObj.Id;
         caseControllerObj.searchMatchingReasonKnowledgeArticles();
         system.assertEquals(1,caseControllerObj.knowledgeWrapperList.size());
+        }
         Test.stopTest(); 
     }
     
@@ -365,6 +470,10 @@ public class CEC_CaseInlineControllerTest{
      */
     public static testMethod void test_mapArticleToCase(){
         Test.startTest(); 
+        User u = insertUser();
+        
+         System.runAs(u)
+         {
         List<RecordType> spamRec=[select id,Name from RecordType where name='Spam' limit 1];
         List<RecordType> noneRec=[select id,Name from RecordType where name='None' limit 1];
         Case caseObj = new Case();
@@ -414,6 +523,8 @@ public class CEC_CaseInlineControllerTest{
        if(spamRec.size()>0){
        System.assert(caseControllerObj.caseRecord.RecordTypeId==spamRec[0].Id);
        } 
+       
+       }
         Test.stopTest(); 
     }
    /**
@@ -423,6 +534,10 @@ public class CEC_CaseInlineControllerTest{
     public static testMethod void test_checkPopupAlert(){
     
         Test.startTest();
+        User u = insertUser();
+        
+         System.runAs(u)
+         {
     
         mdm_Product_Category__c productcatObj = new mdm_Product_Category__c(name='test', L0_Product_Category__c='Foods Category');
         insert productcatObj;
@@ -461,7 +576,7 @@ public class CEC_CaseInlineControllerTest{
         caseControllerObj.checkPopupAlert();
         
         System.assert(caseControllerObj.popupAlertCheck);
-        
+        }
         Test.stopTest();
     }
         
