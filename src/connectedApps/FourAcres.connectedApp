@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>usman.fayyaz@accenture.com</contactEmail>
+    <label>FourAcres</label>
+    <oauthConfig>
+        <callbackUrl>https://unilever.my.salesforce.com/services/oauth2/success</callbackUrl>
+        <consumerKey>3MVG9y6x0357HledJQtixtLKsxpX.GobBQ.dAkSYB0aC8qgx4jlYuFQHcC6wjDa6XXOOst.Folp80cnts8834</consumerKey>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>Full</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

@@ -205,6 +205,13 @@
 		</antcall>	
 
 		<antcall target="generatePackageMembers2">
+			<param name="objtyp"  value="FlowDefinition" />
+			<param name="objext"  value="flowDefinition" />
+			<param name="objdir"  value="flowDefinitions" />
+			<param name="objflt"  value="*" />
+		</antcall>	
+
+		<antcall target="generatePackageMembers2">
 			<param name="objtyp"  value="Group" />
 			<param name="objext"  value="group" />
 			<param name="objdir"  value="groups" />
