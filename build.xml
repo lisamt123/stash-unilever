@@ -696,6 +696,10 @@
     <delete><fileset dir="${basedir}" includes="**/CEC_Delegated_Administrators.permissionset"/></delete>
     <delete><fileset dir="${basedir}" includes="**/CEC_Automated_User.permissionset"/></delete>
     <delete><fileset dir="${basedir}" includes="**/***HELP***.homePageComponent"/></delete>
+    <delete><fileset dir="${basedir}" includes="**/JE_Job_Evaluation__c.object"/></delete>
+    <delete><fileset dir="${basedir}" includes="**/*.flow"/></delete>
+    <delete><fileset dir="${basedir}" includes="**/Account-en_US.objectTranslation"/></delete>
+    <delete><fileset dir="${basedir}" includes="**/Case.assignmentRules"/></delete>
     <delete><fileset dir="${basedir}" includes="src/package.xml"/></delete>
     <!--<antcall target="generatePackage"/>-->
   </target>
