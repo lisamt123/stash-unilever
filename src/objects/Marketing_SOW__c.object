@@ -363,7 +363,18 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Agency</label>
+        <lookupFilter>
+            <active>true</active>
+            <booleanFilter>1</booleanFilter>
+            <filterItems>
+                <field>Account.RecordType.Name</field>
+                <operation>equals</operation>
+                <value>Agency</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
         <referenceTo>Account</referenceTo>
+        <relationshipLabel>SWOP</relationshipLabel>
         <relationshipName>Marketing_SOW</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>

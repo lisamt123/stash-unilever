@@ -11581,6 +11581,15 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Total turnover &lt;€100m</value>
     </labels>
     <labels>
+        <fullName>Oblix_Lbl_By_selecting_Global</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oblix_Lbl_By_selecting_Global</shortDescription>
+        <value>By selecting Global you confirm
+
+the campaign covers more than 15 countries</value>
+    </labels>
+    <labels>
         <fullName>Oblix_Lbl_Innovation_Projects_BrandLedGrowth</fullName>
         <categories>Oblix Calculator</categories>
         <language>en_US</language>
@@ -11705,7 +11714,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_Oblix_Lbl_Innovation_Projects_Market5</shortDescription>
-        <value>Global campaign/s suitable for  &gt;15 number of markets</value>
+        <value>Global campaign/s suitable for &gt;15 number of markets</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_Role</fullName>
@@ -11845,7 +11854,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
-        <value>Production of a new film master, with creative development work already complete. Requires agency in casting and oversight of production. Ie/ reshoot of an existing script</value>
+        <value>&amp;nbsp;</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score3</fullName>
@@ -11853,7 +11862,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
-        <value>Creative development of a new master only. No production. Assumes several new scripts created for testing.</value>
+        <value>&amp;nbsp;</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score4</fullName>
@@ -12310,7 +12319,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>Banner or landing page adaptations (complex)</value>
+        <value>Static or Flash banner adaptation or Adaptation of Social Media Content (eg/ facebook post, simple imafes for e-commerce, youtube masthead)</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score2</fullName>
@@ -12318,7 +12327,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>Digital strategy adaptation / refresh. Eg/ mobile or UX strategy</value>
+        <value>Adaptation of Landing Pages, Page Take-overs etc</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score3</fullName>
@@ -12326,7 +12335,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>EDM/eNewsletters - Adapt copy, design &amp; layout.</value>
+        <value>Low - Adaptation of up to 5 digital items (eg/ banners, webpage updates, social media content/posts)</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score4</fullName>
@@ -12334,8 +12343,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>Micro site adaptation for language or localised creative concept
-8 Page / 10 Sections</value>
+        <value>Medium - Adaptation of up to 10 digital items (eg/ banners, webpage updates, social media content/posts) or Adaptation of simple social media app (eg/ FB contest)</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score5</fullName>
@@ -12343,7 +12351,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>Complex website revamp or localisation. Eg/ Inclusion of registration module, Mobile App adaptation, interactive game adaptation.</value>
+        <value>High - Adaptation of up to 15 items (eg/ banners, webpage updates, social media content/posts) or Micro site adaptation for language or localised creative concept 8 Page / 10 Sections</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory</fullName>
@@ -12399,7 +12407,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Banner, landing page, page take over, youtube uploads (includes writing the copy for you tube clips etc).</value>
+        <value>Static and Flash Banners, Social media content (eg/ facebook post, simple images for e-commerce, youtube masthead)</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score2</fullName>
@@ -12407,7 +12415,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>EDM/eNewsletters (Standard) - Originate copy, design &amp; layout</value>
+        <value>Landing Pages, Page Take-overs</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score3</fullName>
@@ -12415,7 +12423,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>EDM/eNewsletters (Complex) - Originate copy, design &amp; layout</value>
+        <value>Low - Digital bundle of assets up to 5 items (eg/ banners, webpage updates, social media content/posts)</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score4</fullName>
@@ -12423,7 +12431,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Simple app for social media eg/ facebook contest</value>
+        <value>Medium - Digital bundle of assets up to 10 items (eg/ banners, webpage updates, social media content/posts) or Simple app for social media eg/ facebook contest</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score5</fullName>
@@ -12431,8 +12439,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Micro site creation (Complex)
-8 Page / 10 Sections</value>
+        <value>High - Digital bundle of assets up to 15 items (eg/ banners, webpage updates, social media content/posts) or Micro site creation (Complex) 8 Page / 10 Sections</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Experiential</fullName>
