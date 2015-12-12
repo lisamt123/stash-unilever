@@ -303,7 +303,7 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
                         if( projsplit.OblixCountry__r.Name != null && projsplit.OblixCountry__r.Name.toUpperCase().contains(calculatorCountry.Name) && Calculator_BoxRange.contains('Box_') && myprojectFinancial == calculatorCountry.Financial_Year__c){
                             tmp_fee += (Decimal) (calculatorCountry.get(Calculator_BoxRange)!= null ? calculatorCountry.get(Calculator_BoxRange) : 0)* (projSplit.Percentage__c != null ? projSplit.Percentage__c/100 : 0);
                             System.debug('###tmp_fee : '+tmp_fee);
-                        }
+                        } 
                     }
                 }
            return tmp_fee;
