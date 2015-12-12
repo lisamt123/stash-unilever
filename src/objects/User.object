@@ -534,6 +534,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -556,6 +557,7 @@
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>DACH</controllingFieldValues>
                 <controllingFieldValues>France</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -610,6 +612,7 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Spanish</fullName>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -875,6 +878,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Poland</fullName>
                 <default>false</default>
             </picklistValues>
@@ -898,6 +905,25 @@
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Max_Refund_Amount__c</fullName>
+        <description>CEC: Max refund amount Advisors can provide</description>
+        <externalId>false</externalId>
+        <formula>IF( ISPICKVAL(Refund_Authorization_Limit__c , &quot;Level 1&quot;) , $Setup.CEC_Cheque_Authorization_Limit__c.Level_1__c,
+ IF( ISPICKVAL(Refund_Authorization_Limit__c , &quot;Level 2&quot;) , $Setup.CEC_Cheque_Authorization_Limit__c.Level_2__c,
+ IF( ISPICKVAL(Refund_Authorization_Limit__c , &quot;Level 3&quot;) , $Setup.CEC_Cheque_Authorization_Limit__c.Level_3__c, 
+ IF( ISPICKVAL(Refund_Authorization_Limit__c , &quot;Level 4&quot;) , $Setup.CEC_Cheque_Authorization_Limit__c.Level_4__c, 
+ IF( ISPICKVAL(Refund_Authorization_Limit__c , &quot;Level 5&quot;) , $Setup.CEC_Cheque_Authorization_Limit__c.Level_5__c, 
+ IF( ISPICKVAL(Refund_Authorization_Limit__c , &quot;Level 6&quot;) , $Setup.CEC_Cheque_Authorization_Limit__c.Level_6__c, 
+ IF( ISPICKVAL(Refund_Authorization_Limit__c , &quot;Level 7&quot;) , $Setup.CEC_Cheque_Authorization_Limit__c.Level_7__c, null )))))) )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Max Refund Amount</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Pass031212__c</fullName>
@@ -972,6 +998,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -991,6 +1018,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1010,6 +1038,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1029,6 +1058,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1048,6 +1078,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1067,6 +1098,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1086,6 +1118,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1105,6 +1138,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1124,6 +1158,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1143,6 +1178,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1162,6 +1198,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1181,6 +1218,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1200,6 +1238,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1219,6 +1258,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1238,6 +1278,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1257,6 +1298,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1276,6 +1318,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1295,6 +1338,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1314,6 +1358,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1333,6 +1378,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1352,6 +1398,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1371,6 +1418,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1390,6 +1438,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1409,6 +1458,7 @@
                 <controllingFieldValues>India</controllingFieldValues>
                 <controllingFieldValues>Italy</controllingFieldValues>
                 <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
                 <controllingFieldValues>Poland</controllingFieldValues>
                 <controllingFieldValues>Portugal</controllingFieldValues>
                 <controllingFieldValues>Spain</controllingFieldValues>
@@ -1432,6 +1482,45 @@
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
         <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>Refund_Authorization_Limit__c</fullName>
+        <description>CEC: Refund Authorization Limit for Advisor</description>
+        <externalId>false</externalId>
+        <label>Refund Authorization Limit</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Level 1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 4</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 5</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 6</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Level 7</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Sub_Function__c</fullName>

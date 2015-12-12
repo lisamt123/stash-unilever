@@ -91,6 +91,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_North_America_Queue_cec_Brand_Logo</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC North America Queue</label>
+        <queue>CEC_North_America_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Sri_Lanka_Queue_cec_Brand_Logo</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Sri Lanka Queue</label>
