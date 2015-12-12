@@ -25,7 +25,7 @@
             <criteriaItems>
                 <field>JE_Job_Evaluation__c.Final_Recommendation__c</field>
                 <operation>contains</operation>
-                <value>4</value>
+                <value>4,5</value>
             </criteriaItems>
         </entryCriteria>
         <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>

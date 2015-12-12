@@ -1463,6 +1463,8 @@ src/pages/uw_CustomAssetUpload.page
 src/pages/uw_CustomAssetUpload.page-meta.xml
 src/permissionsets
 src/permissionsets/BET_Operation_Admin.permissionset
+src/permissionsets/CB4L_HUB_Admin.permissionset
+src/permissionsets/CB4L_Standard_User.permissionset
 src/permissionsets/IPM_Business_Partners.permissionset
 src/permissionsets/IPM_Central_Team.permissionset
 src/permissionsets/IPM_Finance_Team.permissionset

@@ -57,11 +57,42 @@ public with sharing class OV_FilePreviewController {
 		init();
 	}
 
+    /*******************************************************************
+    Purpose: Method for sorting contentversions by version number
+    Parameterd Description: created due to fact that versionumber is STRING field
+    Parameters: [List<ContentVersion> contentVersions]
+    Returns: [List<ContentVersion>]
+    ********************************************************************/
+    private List<ContentVersion> getSortedContentVersions(List<ContentVersion> contentVersions){
+        List<Integer> order = new List<Integer>();
+        Map<Integer, ContentVersion> cVMap = new Map<Integer, ContentVersion>();
+        for(ContentVersion cV : contentVersions){
+            cVMap.put(Integer.valueOf(cV.VersionNumber), cV);
+            order.add(Integer.valueOf(cV.VersionNumber));
+        }
+        //ASC ORDER
+        order.sort();
+
+        //Because of DESC order
+        List<ContentVersion> sortedContentVersions = new List<ContentVersion>();
+        for(Integer i = order.size()-1; i>=0;i--){
+            sortedContentVersions.add(cVMap.get(order.get(i)));
+        }
+
+        return sortedContentVersions;
+    }
+
 	private List<ContentVersion> loadContentVersions(Id contentDocumentId){
 		List<ContentVersion> results = new List<ContentVersion>();
 		try{
-			results = [select Id, Title, ContentDocumentId, IsLatest, VersionNumber, LastModifiedDate from ContentVersion where ContentDocumentId = :contentDocumentId order by VersionNumber desc];
-			if(results.size() < 1)  {
+            /*SECURITY - CRUD/FLS Enforcement */
+            String [] accessFields = new String [] {'Id', 'Title', 'ContentDocumentId', 'IsLatest', 'VersionNumber', 'LastModifiedDate' };
+            OV_SecurityHelper.doPrivilegedOp('ContentVersion', accessFields);
+            /*SECURITY - CRUD/FLS Enforcement */
+
+			List<ContentVersion> resultsTmp = [select Id, Title, ContentDocumentId, IsLatest, VersionNumber, LastModifiedDate from ContentVersion where ContentDocumentId = :contentDocumentId order by VersionNumber desc];
+            results = getSortedContentVersions(resultsTmp);
+			if( results.isEmpty() ) {
 			    throw new OVException('No results');
 			}
 
@@ -101,11 +132,11 @@ public with sharing class OV_FilePreviewController {
 
     public PageReference changeVersion(){
     	List<ContentVersion> cv = [SELECT Id, VersionNumber FROM ContentVersion WHERE Id = :this.currentContentVersionId LIMIT 1];
-    	if(cv.size() > 0){
+    	if( !cv.isEmpty() ){
     		if(shelfTileId != null && shelfTileId != '' && reportId != null && reportId != ''){
-				OV_ReportUsageService.saveUsageEntry(reportId, shelfTileId, 'detail_view_version_change', DESKTOP, cv[0].VersionNumber);    		
+				OV_ReportUsageService.saveUsageEntry(reportId, shelfTileId, 'detail_view_version_change', DESKTOP, cv[0].VersionNumber);
 			}else if(reportId != null && reportId != ''){
-				OV_ReportUsageService.saveUsageEntry(reportId, 'Favourite', 'detail_view_version_change', DESKTOP, cv[0].VersionNumber);    		
+				OV_ReportUsageService.saveUsageEntry(reportId, 'Favourite', 'detail_view_version_change', DESKTOP, cv[0].VersionNumber);
 			}
     	}
         return null;
@@ -113,14 +144,14 @@ public with sharing class OV_FilePreviewController {
 
     public PageReference logDownload(){
     	List<ContentVersion> cv = [SELECT Id, VersionNumber FROM ContentVersion WHERE Id = :this.currentContentVersionId LIMIT 1];
-    	if(cv.size() > 0){
+    	if( !cv.isEmpty() ){
     		if(shelfTileId != null && shelfTileId != '' && reportId != null && reportId != ''){
-				OV_ReportUsageService.saveUsageEntry(reportId, shelfTileId, 'detail_download_document_icon', DESKTOP, cv[0].VersionNumber);    		
+				OV_ReportUsageService.saveUsageEntry(reportId, shelfTileId, 'detail_download_document_icon', DESKTOP, cv[0].VersionNumber);
 			}else if(reportId != null && reportId != ''){
-				OV_ReportUsageService.saveUsageEntry(reportId, null, 'detail_download_document_icon', DESKTOP, cv[0].VersionNumber);    		
+				OV_ReportUsageService.saveUsageEntry(reportId, null, 'detail_download_document_icon', DESKTOP, cv[0].VersionNumber);
 			}
     	}
-    	
+
     	return null;
     }
 }

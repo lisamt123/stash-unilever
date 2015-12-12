@@ -23,6 +23,7 @@
     <aura:attribute name="lastComponentId" type="String" />
 
     <aura:attribute name="activeFolderTileId" type="String"/>
+    <aura:attribute name="activeFolderName" type="String" default="" />
 
     <div>
         <div class="col-xs-12">

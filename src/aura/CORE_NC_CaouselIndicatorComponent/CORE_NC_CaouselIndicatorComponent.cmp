@@ -1,0 +1,10 @@
+<aura:component >
+    <aura:attribute name="activeCarouselIndicator" type="Boolean"/>
+    <aura:attribute name="carouselIndex" type="String"/>
+    <aura:if isTrue="{!v.activeCarouselIndicator}">
+        <img src="/resource/NewsCenterIcons/Carousel_focussed.svg" class="CarouselIndicator" />
+        <aura:set attribute="else">
+            <img onclick="{!c.sendCarouselIndex}" src="/resource/NewsCenterIcons/Carousel_hidden.svg" class="CarouselIndicator" />
+        </aura:set>
+    </aura:if>
+</aura:component>

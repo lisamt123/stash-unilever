@@ -20,7 +20,55 @@ Test class for the Helper class for Trigger for cec_EmailMessageHelper
 
 public class cec_TestSmartTemplateLoaderHelper{
 
+public static User insertUser()
+    {
+        Profile p = [SELECT Id FROM Profile WHERE Name='Unilever - Salesforce MultiApp Standard'];
+       //Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator'];
+        //UserRole r = [SELECT Id,name FROM UserRole WHERE Name = 'CEC Global Head'];
+        //System.debug('Role' + r.name);
+        User u = new User(LastName = 'Testing', 
+                             Username = 'cectestuser@test00DE0000000bbLj.org', 
+                             Email = 'cectestuser@test00DE0000000bbLj.org', 
+                             Alias = 'utest', 
+                             TimeZoneSidKey = 'Europe/London', 
+                             LocaleSidKey = 'en_GB', 
+                             EmailEncodingKey = 'UTF-8', 
+                             ProfileId = p.Id, 
+                             LanguageLocaleKey = 'en_US',
+                             UserPermissionsKnowledgeUser = true);  
+                             
+        insert u;
+        List<PermissionSet> pslist = [SELECT Id FROM PermissionSet WHERE Name IN ('CEC_User','CEC_Manager','CEC_CRUD','CEC_Business_Admin','CEC_Knowledge_Manager','CEC_Automated_User')];
+        List<PermissionSetAssignment> psalist = new List<PermissionSetAssignment>();
+        for(PermissionSet ps:pslist)
+        {
+            PermissionSetAssignment psa = new PermissionSetAssignment();
+            psa.AssigneeId = u.Id;
+            psa.PermissionSetId = ps.Id;
+            
+            psalist.add(psa);
+        
+        }
+        
+        insert psalist;
+        
+        Group GR = [SELECT Id,name FROM Group WHERE Name = 'CEC - Knowledge Manager'];
+        GroupMember GM = new GroupMember();
+        GM.GroupId = GR.id;
+        GM.UserOrGroupId = u.Id;
+        insert GM;
+        
+        return u;
+    
+    }
+
+
 public static testMethod void SmartTemplateLoaderHelper(){
+
+    User u = insertUser();
+        
+         System.runAs(u)
+         {
         Test.startTest();
         case c = new case(); 
         case c1 = new case();      
@@ -79,15 +127,15 @@ public static testMethod void SmartTemplateLoaderHelper(){
         caseList.add(c1);  
         insert caseList;
         
-    	/*case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove' limit 1];*/
-    	case caseTest = [Select Case_Brand__c, Case_Market__c from case Where Case_Brand__c = :c.Case_Brand__c limit 1];
+      /*case caseTest = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove' limit 1];*/
+      case caseTest = [Select Case_Brand__c, Case_Market__c from case Where Case_Brand__c = :c.Case_Brand__c limit 1];
 
         system.debug('------------------cbm.Brand_Market__c>>>>>>> '+caseTest.Case_Market__c);
         
         System.assertEquals(cmm.Market__c, caseTest.Case_Market__c);
         
         /*case caseTest1 = [Select Brand__c, Case_Market__c from case Where Brand__c = 'Dove' limit 1];*/
-    	case caseTest1 = [Select Case_Brand__c, Case_Market__c from case Where Case_Brand__c = :c1.Case_Brand__c  limit 1];
+      case caseTest1 = [Select Case_Brand__c, Case_Market__c from case Where Case_Brand__c = :c1.Case_Brand__c  limit 1];
 
         system.debug('------------------cbm.Brand_Market__c>>>>>>> '+caseTest1.Case_Market__c);
         
@@ -137,7 +185,7 @@ public static testMethod void SmartTemplateLoaderHelper(){
      
         caseList = null;
         ocec_SmartTemplateLoaderHelper.getDefaultEmailTemplateId(c2.id);
-
+}
         Test.stopTest();
     }
 }

@@ -1,0 +1,3 @@
+<aura:event type="APPLICATION" description="Event template" >
+    <aura:attribute name="activity" type="Everyday_Activity__c"/>
+</aura:event>

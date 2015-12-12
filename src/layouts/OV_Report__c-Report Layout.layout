@@ -126,28 +126,6 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Chatter Message</label>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Chatter_Message__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Chatter_Update_Message__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Chatter_Delete_Message__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns/>
-        <style>TwoColumnsTopToBottom</style>
-    </layoutSections>
-    <layoutSections>
-        <customLabel>true</customLabel>
-        <detailHeading>true</detailHeading>
-        <editHeading>true</editHeading>
         <label>Desktop Files</label>
         <layoutColumns>
             <layoutItems>
@@ -276,21 +254,16 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>OV_KPI_Name__c.NAME</fields>
-        <fields>TimeSpan__c</fields>
-        <fields>Brand__c</fields>
-        <fields>Brand_Comparator__c</fields>
-        <fields>Category__c</fields>
-        <fields>Function__c</fields>
-        <fields>Geography__c</fields>
-        <fields>User.LAST_UPDATE_BY</fields>
-        <relatedList>OV_KPI_Element__c.Report__c</relatedList>
-        <sortField>OV_KPI_Name__c.NAME</sortField>
-        <sortOrder>Asc</sortOrder>
+        <fields>User__c</fields>
+        <fields>Favourite_From_Shelf_Tile__c</fields>
+        <relatedList>OV_Report_Favourite__c.Report__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <relatedList>OV_Report_Favourite__c.Report__c</relatedList>
+        <fields>User__c</fields>
+        <fields>Wants_Notifications__c</fields>
+        <fields>KPI_Transaction__c</fields>
+        <relatedList>OV_KPI_Transaction_Favorite__c.Report__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

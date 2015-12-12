@@ -269,4 +269,5 @@
         <unique>false</unique>
     </fields>
     <label>IPM Coreparameter Graph</label>
+    <visibility>Public</visibility>
 </CustomObject>

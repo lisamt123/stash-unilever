@@ -108,4 +108,5 @@
         <unique>false</unique>
     </fields>
     <label>IPM CoreParameter Configration</label>
+    <visibility>Public</visibility>
 </CustomObject>

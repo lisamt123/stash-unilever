@@ -19,7 +19,9 @@ public with sharing class Core_CA_BaseApplicationServicesTest {
                             ' "modelNumber" : "123"\n' +
                             '}';*/
                             
+        
         String jsonInput = '{"OrderRequest":{"AccountId":"001L000000WadfuIAB","ContactId":"003L000000QWwKHIA1","FunctionType":"GuestPass","SalesChannel":"Lobby","ProcessCreditCard":false,"DonorInformation":{"Type":"Primary","Suffix":null,"State":"OR","SendEmailOffers":null,"PurchaseReceiptEmailId":"ncmsec@gmail.com","Prefix":"Mr.","PostalCodeExtension":null,"PostalCode":"97701","MiddleName":"","MemberNumber":"40316154","MemberCalendarPreference":"Direct Mail","LastName":"28secondary","HomePhone":"1234567890","FirstName":"Cmtest5","ExpirationDate":"2015-10-31","EmailAddress":"ncmsec@gmail.com","DOB":null,"DAnonymous":null,"Country":"United States","ContactId":"003L000000QWwKHIA1","City":"Bend","CategoryCode":"7","BusinessPhone":null,"AddressLine2":null,"AddressLine1":"SW Gift Rd","AccountId":"001L000000WadfuIAB"},"Memberships":[],"PaymentInfo":{"AccountNumber":null,"Amount":10,"CardAddress1":null,"CardCVV2Code":null,"CardExprMonth":null,"CardExprYear":null,"CardholderName":null,"CardType":null,"CardZipCode":null,"ClientAuthorization":null,"ClientTransNumber":null,"PayType":"Checks/Cash","PromotionCode":null,"TransactionNumber":null,"CashTendered":"10"},"Donations":null,"GuestPass":{"TotalGuestPassCost":10,"TemporaryPassInfo":[{"BarCode":"M4031615400001"}],"SubFuncType":"GuestPass;TemporaryPass;ChildFreePass","GuestPassInfo":{"ProductCode":"TKTGP","NumberOfUnits":2},"GuestPassCost":5,"FunctionType":"GuestPass","ChildFreePassInfo":{"ProductCode":"TKTCH","NumberOfUnits":2}}}}';
+        System.assert(jsonInput != null);
         Core_CA_ApplicationWrapper remoteServCallObj = constructRequestBody(jsonInput, 'Process Order', 'POST', 'TesturlParameter');
         Core_CA_ApplicationWrapper remoteServCallObj2 = constructRequestBody(jsonInput, 'Email Service', 'POST', 'TesturlParameter');
         Core_CA_ApplicationWrapper remoteServCallObj3 = constructRequestBody(jsonInput, 'Barcode Update', 'GET', 'TesturlParameter');
@@ -30,6 +32,7 @@ public with sharing class Core_CA_BaseApplicationServicesTest {
         Core_CA_ApplicationWrapper remoteServCallObj8 = constructRequestBody(jsonInput, 'Card Reprint Service', 'POST', 'TesturlParameter');
         Core_CA_ApplicationWrapper remoteServCallObj9 = constructRequestBody(jsonInput, 'Promotion Discount Helper', 'POST', 'TesturlParameter');
         Core_CA_ApplicationWrapper remoteServCallObj10 = constructRequestBody(jsonInput, 'Wrong Service', 'POST', 'TesturlParameter');
+        System.assert(remoteServCallObj10  != null);
         Test.startTest();
         try{
             Core_CA_BaseApplicationServices.invokeService(remoteServCallObj);
@@ -88,6 +91,7 @@ public with sharing class Core_CA_BaseApplicationServicesTest {
      private static void testHandleInvalidSvcNameReq(){
         //REST_ProcessOrder_V1.ProcessOrderResponse orderResponse = new REST_ProcessOrder_V1.ProcessOrderResponse();
         Core_CA_ApplicationWrapper responseObj = new Core_CA_ApplicationWrapper();
+        System.assert(responseObj != null);
         Core_CA_BaseApplicationServices.handleInvalidSvcNameReq(responseObj);
             
      } 

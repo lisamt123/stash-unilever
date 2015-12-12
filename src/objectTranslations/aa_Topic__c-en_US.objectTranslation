@@ -56,6 +56,13 @@ Competitor strategy; Price change trend; Other --></help>
         </picklistValues>
     </fields>
     <layouts>
+        <layout>Agent Topic Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
         <layout>Topic Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>

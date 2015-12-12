@@ -2,6 +2,7 @@
     loadFilters: function(component) {
         var actionCallback = function(action, component) {
             if (action.getState() === 'SUCCESS') {
+                debugger;
                 component.set('v.filtersDefinition', action.getReturnValue().data || {});
             }
         };

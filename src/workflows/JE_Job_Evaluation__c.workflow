@@ -31,16 +31,6 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>JE_Overall_Total_Score</fullName>
-        <field>Overall_Total_Score__c</field>
-        <formula>Total_Score_01__c + Total_Score_02__c + Total_Score_03__c + Total_Score_04__c</formula>
-        <name>JE Overall Total Score</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
         <fullName>JE_Problem_Solving</fullName>
         <description>Used to store the Problem Solving unweighted score that is used to calculate the weighted score</description>
         <field>Problem_Solving_Workflow__c</field>
@@ -66,16 +56,6 @@
         <field>Turnover_LM_s_Accountability_Workflow__c</field>
         <formula>Turnover_LM_s_Accountability_Score__c</formula>
         <name>JE Turnover LM&apos;s Accountability</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-        <reevaluateOnChange>true</reevaluateOnChange>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Job_Evaluation_Total_Score</fullName>
-        <field>Total_Score__c</field>
-        <formula>Total_Score_1__c  +  Total_Score_2__c</formula>
-        <name>JE Job Evaluation Total Score</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>

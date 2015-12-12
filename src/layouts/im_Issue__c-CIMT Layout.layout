@@ -256,11 +256,6 @@
         <style>CustomLinks</style>
     </layoutSections>
     <relatedLists>
-        <fields>NAME</fields>
-        <fields>kof_Contact__c.FullName__c</fields>
-        <relatedList>im_IssuestoStakeholders__c.Issue__c</relatedList>
-    </relatedLists>
-    <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>
     </relatedLists>
     <relatedLists>

@@ -55,7 +55,7 @@
     <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Advertising_Promotion_Comments__c</fullName>
         <externalId>false</externalId>
@@ -84,8 +84,8 @@
     <fields>
         <fullName>Advertising_Promotion_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( RecordTypeId , &quot;012L00000004VNK&quot;,CASE( Advertising_Promotion__c , &quot;Up to 1.5M&quot;, 1, &quot;1.5M - 5M&quot;, 2, &quot;5M - 20M&quot;, 3, &quot;20M - 80M&quot;, 4, &quot;More Than 80M&quot;,5,0),
-CASE( RecordTypeId , &quot;012L00000004VQs&quot;,CASE( Advertising_Promotion__c , &quot;0 to 350k Euros&quot;, 1, &quot;351 to 500k Euros&quot;, 2, &quot;500k to 1.5M Euros&quot;, 3, &quot;1.5M to 5M Euros&quot;, 4, &quot;More than 5M Euros&quot;,5,0),0))</formula>
+        <formula>CASE( RecordTypeId , &quot;012E0000000654M&quot;,CASE( Advertising_Promotion__c , &quot;Up to 1.5M&quot;, 1, &quot;1.5M - 5M&quot;, 2, &quot;5M - 20M&quot;, 3, &quot;20M - 80M&quot;, 4, &quot;More Than 80M&quot;,5,0),
+CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Advertising_Promotion__c , &quot;0 to 350k Euros&quot;, 1, &quot;351 to 500k Euros&quot;, 2, &quot;500k to 1.5M Euros&quot;, 3, &quot;1.5M to 5M Euros&quot;, 4, &quot;More than 5M Euros&quot;,5,0),0))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Advertising &amp; Promotion Score</label>
         <precision>18</precision>
@@ -215,12 +215,7 @@ CASE( RecordTypeId , &quot;012L00000004VQs&quot;,CASE( Advertising_Promotion__c 
     <fields>
         <fullName>Change_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( RecordTypeId , &quot;012L00000004VNK&quot;,CASE( Change__c , &quot;WL2 - Implement &amp; Modify&quot;, 1, &quot;WL3 - New levels of performance development&quot;, 3, &quot;WL4 - Research, invention and recommendations&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VQs&quot;,CASE( Change__c , &quot;WL2 - Implement &amp; Modify&quot;, 1, &quot;WL3 - New levels of performance development&quot;, 3, &quot;WL4 - Research, invention and recommendations&quot;, 6,0),
-CASE( RecordTypeId , &quot;012L00000004VQx&quot;,CASE( Change__c , &quot;WL2 - Implement &amp; Modify&quot;, 1, &quot;WL3 - New levels of performance development&quot;, 3, &quot;WL4 - Research, invention and recommendations&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VR2&quot;,CASE( Change__c , &quot;WL2 - Implement &amp; Modify&quot;, 1, &quot;WL3 - New levels of performance development&quot;, 3, &quot;WL4 - Research, invention and recommendations&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VRC&quot;,CASE( Change__c , &quot;WL2 - Implement &amp; Modify&quot;, 1, &quot;WL3 - New levels of performance development&quot;, 3, &quot;WL4 - Research, invention and recommendations&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE( Change__c , &quot;WL2 - Implement &amp; Modify&quot;, 1, &quot;WL3 - New levels of performance development&quot;, 3, &quot;WL4 - Research, invention and recommendations&quot;, 5,0),0))))))</formula>
+        <formula>CASE( Change__c , &quot;Looks for higher levels of performance from existing products, systems and processes.&quot;, 0.5, &quot;Decision-making involves the use of judgment and there is an emphasis on the development of new/improved procedures and on the translation of policy into operational plans.&quot;, 1,&quot;Makes self fully-available to partners to extend capacity to improve and develop higher quality systems and processes. Initiates ways of adding value and containing costs.&quot;,1.5,&quot;Thinking is towards clearly defined objectives within established policy frameworks, but requires solutions that represent improvements on current practice (direct development of new procedures).&quot;,2.85,&quot;Enhances approaches to foster change and innovation consistent with the corporate vision&quot;,3.5,&quot;Evaluates and constructs solutions to variable situations within general policies and broadly defined organizational goals.&quot;,5,0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Change Score</label>
         <precision>18</precision>
@@ -251,15 +246,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE( Change__c , &quot;WL2 - I
         <label>Change</label>
         <picklist>
             <picklistValues>
-                <fullName>WL2 - Implement &amp; Modify</fullName>
+                <fullName>Looks for higher levels of performance from existing products, systems and processes.</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>WL3 - New levels of performance development</fullName>
+                <fullName>Decision-making involves the use of judgment and there is an emphasis on the development of new/improved procedures and on the translation of policy into operational plans.</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>WL4 - Research, invention and recommendations</fullName>
+                <fullName>Makes self fully-available to partners to extend capacity to improve and develop higher quality systems and processes. Initiates ways of adding value and containing costs.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thinking is towards clearly defined objectives within established policy frameworks, but requires solutions that represent improvements on current practice (direct development of new procedures).</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Enhances approaches to foster change and innovation consistent with the corporate vision</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Evaluates and constructs solutions to variable situations within general policies and broadly defined organizational goals.</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -994,8 +1001,8 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE( Change__c , &quot;WL2 - I
     <fields>
         <fullName>Geographic_Scope_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( RecordTypeId , &quot;012L00000004VNK&quot;, CASE( Geographic_Scope__c , &quot;Operating Country&quot;, 1, &quot;MCO&quot;, 3, &quot;Cluster&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VQs&quot;, CASE( Geographic_Scope__c , &quot;Operating Country&quot;, 1, &quot;MCO&quot;, 2, &quot;Cluster&quot;, 3, &quot;Multi-Cluster&quot;, 4, &quot;Global&quot;,5,0),0))</formula>
+        <formula>CASE( RecordTypeId , &quot;012E0000000654M&quot;, CASE( Geographic_Scope__c , &quot;Operating Country&quot;, 1, &quot;MCO&quot;, 3, &quot;Cluster&quot;, 5,0),
+CASE( RecordTypeId , &quot;012E0000000654N&quot;, CASE( Geographic_Scope__c , &quot;Operating Country&quot;, 1, &quot;MCO&quot;, 2, &quot;Cluster&quot;, 3, &quot;Multi-Cluster&quot;, 4, &quot;Global&quot;,5,0),0))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Geographic Scope Score</label>
         <precision>18</precision>
@@ -1154,7 +1161,7 @@ CASE( RecordTypeId , &quot;012L00000004VQs&quot;, CASE( Geographic_Scope__c , &q
     <fields>
         <fullName>Highest_L_ship_Team_Comments__c</fullName>
         <externalId>false</externalId>
-        <label>Highest L&apos;ship Team Comments</label>
+        <label>Highest LT Comments</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1179,7 +1186,7 @@ CASE( RecordTypeId , &quot;012L00000004VQs&quot;, CASE( Geographic_Scope__c , &q
     <fields>
         <fullName>Highest_L_ship_Team_to_S_holder_Manage__c</fullName>
         <externalId>false</externalId>
-        <label>Highest L&apos;ship Team to S&apos;holder Manage</label>
+        <label>Highest LT to Stakeholder Manage</label>
         <picklist>
             <picklistValues>
                 <fullName>WL3</fullName>
@@ -1275,7 +1282,7 @@ CASE( RecordTypeId , &quot;012L00000004VQs&quot;, CASE( Geographic_Scope__c , &q
     <fields>
         <fullName>Impact_of_The_Decisions_Comments__c</fullName>
         <externalId>false</externalId>
-        <label>Impact of The Decisions Comments</label>
+        <label>Impact of Decisions Comments</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1300,7 +1307,7 @@ CASE( RecordTypeId , &quot;012L00000004VQs&quot;, CASE( Geographic_Scope__c , &q
     <fields>
         <fullName>Impact_of_The_Decisions__c</fullName>
         <externalId>false</externalId>
-        <label>Impact of The Decisions</label>
+        <label>Impact of Decisions</label>
         <picklist>
             <picklistValues>
                 <fullName>0 - 1 year</fullName>
@@ -1521,7 +1528,7 @@ CASE( RecordTypeId , &quot;012L00000004VQs&quot;, CASE( Geographic_Scope__c , &q
     <fields>
         <fullName>Influence_in_Decison_Making_Process_Comm__c</fullName>
         <externalId>false</externalId>
-        <label>Influence in Decison Making Process Comm</label>
+        <label>Influence in Decison Making Process</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1596,12 +1603,12 @@ CASE( RecordTypeId , &quot;012L00000004VQs&quot;, CASE( Geographic_Scope__c , &q
     <fields>
         <fullName>Job_Grade_of_Line_Manager_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( RecordTypeId , &quot;012L00000004VNK&quot;,CASE( Job_Grade_of_Line_Manager__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9,0),
-CASE( RecordTypeId , &quot;012L00000004VQs&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
-CASE( RecordTypeId , &quot;012L00000004VQx&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
-CASE( RecordTypeId , &quot;012L00000004VR2&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
-CASE( RecordTypeId , &quot;012L00000004VRC&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11,0),
-CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),0))))))</formula>
+        <formula>CASE( RecordTypeId , &quot;012E0000000654M&quot;,CASE( Job_Grade_of_Line_Manager__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
+CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
+CASE( RecordTypeId , &quot;012E0000000654O&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
+CASE( RecordTypeId , &quot;012E0000000654P&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
+CASE( RecordTypeId , &quot;012E0000000654Q&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12, &quot;6&quot;,14,0),
+CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( Job_Grade_of_Line_Manager__c , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),0))))))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Job Grade of Line Manager Score</label>
         <precision>18</precision>
@@ -1670,10 +1677,14 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE( Job_Grade_of_Line_Manager
                 <fullName>5B</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>6</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
@@ -1802,8 +1813,8 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE( Job_Grade_of_Line_Manager
     <fields>
         <fullName>No_of_Brands_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( RecordTypeId , &quot;012L00000004VNK&quot;,CASE( No_of_Brands__c , &quot;Usually 1 brand&quot;, 1, &quot;1-3 brands&quot;, 2, &quot;3-5 brands&quot;, 3, &quot;5-15 brands&quot;,4, &quot;15 &amp; Above&quot;,5,0),
-CASE( RecordTypeId , &quot;012L00000004VQs&quot;,CASE( No_of_Brands__c , &quot;Single brand&quot;, 1, &quot;Multiple brands and variants&quot;, 2,0) ,0))</formula>
+        <formula>CASE( RecordTypeId , &quot;012E0000000654M&quot;,CASE( No_of_Brands__c , &quot;Usually 1 brand&quot;, 1, &quot;1-3 brands&quot;, 2, &quot;3-5 brands&quot;, 3, &quot;5-15 brands&quot;,4, &quot;15 &amp; Above&quot;,5,0),
+CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( No_of_Brands__c , &quot;Single brand&quot;, 1, &quot;Multiple brands and variants&quot;, 2,0) ,0))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>No. of Brands Score</label>
         <precision>18</precision>
@@ -1933,8 +1944,8 @@ CASE( RecordTypeId , &quot;012L00000004VQs&quot;,CASE( No_of_Brands__c , &quot;S
     <fields>
         <fullName>No_of_Employees_Managed_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( RecordTypeId , &quot;012L00000004VQx&quot;,CASE( No_of_Employees_Managed__c , &quot;0-5&quot;, 1, &quot;6-8&quot;, 2, &quot;9-12&quot;,3, &quot;13-20&quot;,4, &quot;More than 20&quot;,5,0),
-CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE( No_of_Employees_Managed__c , &quot;0-400&quot;, 1, &quot;401-700&quot;, 2, &quot;700 - 1,000&quot;,3, &quot;1,100 - 3,000&quot;,4, &quot;Above 3,000&quot;,5,0),0))</formula>
+        <formula>CASE( RecordTypeId , &quot;012E0000000654O&quot;,CASE( No_of_Employees_Managed__c , &quot;0-5&quot;, 1, &quot;6-8&quot;, 2, &quot;9-12&quot;,3, &quot;13-20&quot;,4, &quot;More than 20&quot;,5,0),
+CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( No_of_Employees_Managed__c , &quot;0-400&quot;, 1, &quot;401-700&quot;, 2, &quot;700 - 1,000&quot;,3, &quot;1,100 - 3,000&quot;,4, &quot;Above 3,000&quot;,5,0),0))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>No. of Employees Managed Score</label>
         <precision>18</precision>
@@ -2014,7 +2025,7 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE( No_of_Employees_Managed__
     <fields>
         <fullName>No_of_Factories_Production_Lines_Comm__c</fullName>
         <externalId>false</externalId>
-        <label>No. of Factories &amp; Production Lines Comm</label>
+        <label>No. of Factories &amp; Production Lines</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2180,7 +2191,7 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE( No_of_Employees_Managed__
     <fields>
         <fullName>No_of_Key_Accounts_Modern_Trade_Comme__c</fullName>
         <externalId>false</externalId>
-        <label>No. of Key Accounts (Modern Trade) Comme</label>
+        <label>No. of Key Accounts (Modern Trade)</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2557,17 +2568,17 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE( No_of_Employees_Managed__
     <fields>
         <fullName>Number_of_Direct_Reports_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( RecordTypeId , &quot;012L00000004VNK&quot;,CASE(Number_of_Direct_Reports__c , &quot;0-1&quot;, 1, &quot;1-2&quot;, 2, &quot;2-3&quot;, 4, &quot;More Than 3&quot;, 5,0),
+        <formula>CASE( RecordTypeId , &quot;012E0000000654M&quot;,CASE(Number_of_Direct_Reports__c , &quot;0-1&quot;, 1, &quot;1-2&quot;, 2, &quot;2-3&quot;, 4, &quot;More Than 3&quot;, 5,0),
 
-CASE( RecordTypeId , &quot;012L00000004VQs&quot;,CASE(Number_of_Direct_Reports__c , &quot;0-1 (WL1)&quot;, 1, &quot;2-3 (WL1)&quot;, 2, &quot;1-2 (WL2)&quot;, 4, &quot;More Than 3&quot;, 5,0),
+CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE(Number_of_Direct_Reports__c , &quot;0-1 (WL1)&quot;, 1, &quot;2-3 (WL1)&quot;, 2, &quot;1-2 (WL2)&quot;, 4, &quot;More Than 3&quot;, 5,0),
 
-CASE( RecordTypeId , &quot;012L00000004VQx&quot;,CASE(Number_of_Direct_Reports__c , &quot;0-3 (WL1))&quot;, 1, &quot;3-5 (WL1)&quot;, 2, &quot;3-5 (Including 2A)&quot;, 3, &quot;6-8&quot;, 4, &quot;More than 8&quot;,5,0),
+CASE( RecordTypeId , &quot;012E0000000654O&quot;,CASE(Number_of_Direct_Reports__c , &quot;0-3 (WL1))&quot;, 1, &quot;3-5 (WL1)&quot;, 2, &quot;3-5 (Including 2A)&quot;, 3, &quot;6-8&quot;, 4, &quot;More than 8&quot;,5,0),
 
-CASE( RecordTypeId , &quot;012L00000004VR2&quot;,CASE(Number_of_Direct_Reports__c , &quot;0-2 (WL1)&quot;, 1, &quot;3-5 (WL1)&quot;, 2, &quot;6-8&quot;, 3, &quot;8-10&quot;, 4, &quot;More than 10&quot;,5,0),
+CASE( RecordTypeId , &quot;012E0000000654P&quot;,CASE(Number_of_Direct_Reports__c , &quot;0-2 (WL1)&quot;, 1, &quot;3-5 (WL1)&quot;, 2, &quot;6-8&quot;, 3, &quot;8-10&quot;, 4, &quot;More than 10&quot;,5,0),
 
-CASE( RecordTypeId , &quot;012L00000004VRC&quot;,CASE(Number_of_Direct_Reports__c , &quot;0-2 (WL1)&quot;, 1, &quot;3-5 (WL1)&quot;, 2, &quot;6-8&quot;, 3, &quot;8-10&quot;, 4, &quot;More than 10&quot;,5,0),
+CASE( RecordTypeId , &quot;012E0000000654Q&quot;,CASE(Number_of_Direct_Reports__c , &quot;0-2 (WL1)&quot;, 1, &quot;3-5 (WL1)&quot;, 2, &quot;6-8&quot;, 3, &quot;8-10&quot;, 4, &quot;More than 10&quot;,5,0),
 
-CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(Number_of_Direct_Reports__c , &quot;0-1 (WL1)&quot;, 1, &quot;1-2 (WL1)&quot;, 2, &quot;3-5&quot;, 4, &quot;More than 5&quot;,5,0),0))))))</formula>
+CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(Number_of_Direct_Reports__c , &quot;0-1 (WL1)&quot;, 1, &quot;1-2 (WL1)&quot;, 2, &quot;3-5&quot;, 4, &quot;More than 5&quot;,5,0),0))))))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Number of Direct Reports Score</label>
         <precision>18</precision>
@@ -3024,7 +3035,7 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(Number_of_Direct_Reports__
     <fields>
         <fullName>Problem_Solving_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( Problem_Solving__c , &quot;WL2 - Fact Gathering and Diagnosis; Concrete Situations&quot;, 1, &quot;WL3 - Challenging but Concrete and Operational&quot;, 3, &quot;WL4 - Strategic Nature, Abstract and Conceptual Analysis&quot;,5,0)</formula>
+        <formula>CASE( Problem_Solving__c , &quot;Problems are mainly operational and need more analysis. Identify these issues of integration so they can be dealt with at a national level.&quot;, 0.5, &quot;Problems are defined and still mainly operational. However, at this level problems are more challenging and often solutions are critical in delivering company wide strategic objective.&quot;, 1, &quot;Many conditions often require analytical and investigative review. Challenges others to learn from one another.&quot;,1.5, &quot;Thinks beyond existing procedures &amp; policies; uses judgment for solutions for the situation. Requires truly analytical interpretative/evaluative thinking using experience of existing policies &amp; practices to reason through different &amp; varied solutions.&quot;,2.85, &quot;Thinking within a general frame of reference toward functional objectives, in situations with some nebulous, intangible or unstructured aspects.&quot;,3.5,&quot;Positions a business within broadly defined strategy. Involves scanning environment &amp; anticipating impact of external forces, up to a 5-year horizon. Resolves very complex analytical, technical &amp; mgt challenges through interpretation &amp; evaluation.&quot;,5,0)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Problem Solving Score</label>
         <precision>18</precision>
@@ -3068,15 +3079,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(Number_of_Direct_Reports__
         <label>Problem Solving</label>
         <picklist>
             <picklistValues>
-                <fullName>WL2 - Fact Gathering and Diagnosis; Concrete Situations</fullName>
+                <fullName>Problems are mainly operational and need more analysis. Identify these issues of integration so they can be dealt with at a national level.</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>WL3 - Challenging but Concrete and Operational</fullName>
+                <fullName>Problems are defined and still mainly operational. However, at this level problems are more challenging and often solutions are critical in delivering company wide strategic objective.</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>WL4 - Strategic Nature, Abstract and Conceptual Analysis</fullName>
+                <fullName>Many conditions often require analytical and investigative review. Challenges others to learn from one another.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thinks beyond existing procedures &amp; policies; uses judgment for solutions for the situation. Requires truly analytical interpretative/evaluative thinking using experience of existing policies &amp; practices to reason through different &amp; varied solutions.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thinking within a general frame of reference toward functional objectives, in situations with some nebulous, intangible or unstructured aspects.</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Positions a business within broadly defined strategy. Involves scanning environment &amp; anticipating impact of external forces, up to a 5-year horizon. Resolves very complex analytical, technical &amp; mgt challenges through interpretation &amp; evaluation.</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -3194,7 +3217,7 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(Number_of_Direct_Reports__
     <fields>
         <fullName>Size_of_Activation_Per_Year_Incr_Comme__c</fullName>
         <externalId>false</externalId>
-        <label>Size of Activation Per Year (Incr) Comme</label>
+        <label>Size of Activation Per Year Comments</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3205,7 +3228,7 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(Number_of_Direct_Reports__
     <fields>
         <fullName>Size_of_Activation_Per_Year_Incrementa__c</fullName>
         <externalId>false</externalId>
-        <label>Size of Activation Per Year (incrementa</label>
+        <label>Size of Activation Per Year (increments)</label>
         <picklist>
             <picklistValues>
                 <fullName>0-5%</fullName>
@@ -3690,7 +3713,7 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(Number_of_Direct_Reports__
     <fields>
         <fullName>Total_Stores_Covered_Modern_Trade_Comm__c</fullName>
         <externalId>false</externalId>
-        <label>Total Stores Covered (Modern Trade) Comm</label>
+        <label>Total Stores Covered (Modern Trade)</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -3800,9 +3823,9 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(Number_of_Direct_Reports__
     <fields>
         <fullName>Turnover_Direct_Accountability_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( RecordTypeId , &quot;012L00000004VNK&quot;,CASE( Turnover_Direct_Accountability__c , &quot;0 - 30 m Euros&quot;, 1, &quot;30 - 150 m Euros&quot;, 2, &quot;150 - 400 m Euros&quot;, 3, &quot;400 - 800 m euros&quot;, 4, &quot;More than 800 m Euros&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VQs&quot;,CASE( Turnover_Direct_Accountability__c , &quot;0 - 100 m Euros&quot;, 1, &quot;101 - 300 m Euros&quot;, 2, &quot;301 - 600 m Euros&quot;, 3, &quot;601 - 800 m Euros&quot;, 4, &quot;More than 800 m Euros&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VQx&quot;,CASE( Turnover_Direct_Accountability__c , &quot;0 - 30 m Euros&quot;, 1, &quot;31 - 120 m Euros&quot;, 2, &quot;121 - 350 m Euros&quot;, 3, &quot;351 - 500 m Euros&quot;, 4, &quot;More than 500 m Euros&quot;, 5,0),0)))</formula>
+        <formula>CASE( RecordTypeId , &quot;012E0000000654M&quot;,CASE( Turnover_Direct_Accountability__c , &quot;0 - 30 m Euros&quot;, 1, &quot;30 - 150 m Euros&quot;, 2, &quot;150 - 400 m Euros&quot;, 3, &quot;400 - 800 m euros&quot;, 4, &quot;More than 800 m Euros&quot;, 5,0),
+CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Turnover_Direct_Accountability__c , &quot;0 - 100 m Euros&quot;, 1, &quot;101 - 300 m Euros&quot;, 2, &quot;301 - 600 m Euros&quot;, 3, &quot;601 - 800 m Euros&quot;, 4, &quot;More than 800 m Euros&quot;, 5,0),
+CASE( RecordTypeId , &quot;012E0000000654O&quot;,CASE( Turnover_Direct_Accountability__c , &quot;0 - 30 m Euros&quot;, 1, &quot;31 - 120 m Euros&quot;, 2, &quot;121 - 350 m Euros&quot;, 3, &quot;351 - 500 m Euros&quot;, 4, &quot;More than 500 m Euros&quot;, 5,0),0)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Turnover (Direct Accountability) Score</label>
         <precision>18</precision>
@@ -3932,8 +3955,8 @@ CASE( RecordTypeId , &quot;012L00000004VQx&quot;,CASE( Turnover_Direct_Accountab
     <fields>
         <fullName>Turnover_LM_s_Accountability_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( RecordTypeId , &quot;012L00000004VNK&quot;,CASE( Turnover_LM_s_Accountability__c , &quot;0 - 200 m Euros&quot;, 1, &quot;100 - 300 m Euros&quot;, 2, &quot;300 - 600 m Euros&quot;, 3, &quot;600 m to 1 b Euros&quot;, 4, &quot;More than 1 b Euros&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VQs&quot;,CASE( Turnover_LM_s_Accountability__c , &quot;0 - 300 m Euros&quot;, 1, &quot;301 - 500 m Euros&quot;, 2, &quot;501 - 800 m Euros&quot;, 3, &quot;801 m - 1b Euros&quot;, 4, &quot;More than 1 b Euros&quot;, 5,0),0))</formula>
+        <formula>CASE( RecordTypeId , &quot;012E0000000654M&quot;,CASE( Turnover_LM_s_Accountability__c , &quot;0 - 200 m Euros&quot;, 1, &quot;100 - 300 m Euros&quot;, 2, &quot;300 - 600 m Euros&quot;, 3, &quot;600 m to 1 b Euros&quot;, 4, &quot;More than 1 b Euros&quot;, 5,0),
+CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Turnover_LM_s_Accountability__c , &quot;0 - 300 m Euros&quot;, 1, &quot;301 - 500 m Euros&quot;, 2, &quot;501 - 800 m Euros&quot;, 3, &quot;801 m - 1b Euros&quot;, 4, &quot;More than 1 b Euros&quot;, 5,0),0))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Turnover (LM&apos;s Accountability) Score</label>
         <precision>18</precision>
@@ -4103,12 +4126,12 @@ CASE( RecordTypeId , &quot;012L00000004VQs&quot;,CASE( Turnover_LM_s_Accountabil
     <fields>
         <fullName>UL_Grade_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( RecordTypeId , &quot;012L00000004VNK&quot;,CASE( UL_Grade__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9,0),
-CASE( RecordTypeId , &quot;012L00000004VQs&quot;,CASE( UL_Grade__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
-CASE( RecordTypeId , &quot;012L00000004VQx&quot;,CASE( UL_Grade__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
-CASE( RecordTypeId , &quot;012L00000004VR2&quot;,CASE( UL_Grade__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
-CASE( RecordTypeId , &quot;012L00000004VRC&quot;,CASE( UL_Grade__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11,0),
-CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE( UL_Grade__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),0))))))</formula>
+        <formula>CASE( RecordTypeId , &quot;012E0000000654M&quot;,CASE( UL_Grade__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9,0),
+CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( UL_Grade__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
+CASE( RecordTypeId , &quot;012E0000000654O&quot;,CASE( UL_Grade__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
+CASE( RecordTypeId , &quot;012E0000000654P&quot;,CASE( UL_Grade__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),
+CASE( RecordTypeId , &quot;012E0000000654Q&quot;,CASE( UL_Grade__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11,0),
+CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE( UL_Grade__c  , &quot;2A&quot;, 1, &quot;2B&quot;, 2, &quot;2C&quot;, 3, &quot;3A&quot;, 5, &quot;3B&quot;, 6, &quot;4A&quot;, 8, &quot;4B&quot;, 9, &quot;5A&quot;,11, &quot;5B&quot;,12,0),0))))))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>UL Grade Score</label>
         <precision>18</precision>
@@ -4245,12 +4268,12 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE( UL_Grade__c  , &quot;2A&q
     <fields>
         <fullName>WL_of_Line_Manager_Score__c</fullName>
         <externalId>false</externalId>
-        <formula>CASE( RecordTypeId , &quot;012L00000004VNK&quot;,CASE(WL_of_Line_Manager__c , &quot;WL2&quot;, 1, &quot;WL3&quot;, 2, &quot;WL4&quot;, 4, &quot;WL5&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VQs&quot;,CASE(WL_of_Line_Manager__c , &quot;WL2&quot;, 1, &quot;WL3&quot;, 2, &quot;WL4&quot;, 4, &quot;WL5&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VQx&quot;,CASE(WL_of_Line_Manager__c , &quot;WL2&quot;, 1, &quot;WL3&quot;, 2, &quot;WL4&quot;, 4, &quot;WL5&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VR2&quot;,CASE(WL_of_Line_Manager__c , &quot;WL2&quot;, 1, &quot;WL3&quot;, 2, &quot;WL4&quot;, 4, &quot;WL5&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VRC&quot;,CASE(WL_of_Line_Manager__c , &quot;WL3&quot;, 1, &quot;WL4&quot;, 2, &quot;WL5&quot;, 4, &quot;WL6&quot;, 5,0),
-CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &quot;WL2&quot;, 1, &quot;WL3&quot;, 2, &quot;WL4&quot;, 4, &quot;WL5&quot;, 5,0),0))))))</formula>
+        <formula>CASE( RecordTypeId , &quot;012E0000000654M&quot;,CASE(WL_of_Line_Manager__c , &quot;WL2&quot;, 1, &quot;WL3&quot;, 2, &quot;WL4&quot;, 4, &quot;WL5&quot;, 5,0),
+CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE(WL_of_Line_Manager__c , &quot;WL2&quot;, 1, &quot;WL3&quot;, 2, &quot;WL4&quot;, 4, &quot;WL5&quot;, 5,0),
+CASE( RecordTypeId , &quot;012E0000000654O&quot;,CASE(WL_of_Line_Manager__c , &quot;WL2&quot;, 1, &quot;WL3&quot;, 2, &quot;WL4&quot;, 4, &quot;WL5&quot;, 5,0),
+CASE( RecordTypeId , &quot;012E0000000654P&quot;,CASE(WL_of_Line_Manager__c , &quot;WL2&quot;, 1, &quot;WL3&quot;, 2, &quot;WL4&quot;, 4, &quot;WL5&quot;, 5,0),
+CASE( RecordTypeId , &quot;012E0000000654Q&quot;,CASE(WL_of_Line_Manager__c , &quot;WL3&quot;, 1, &quot;WL4&quot;, 2, &quot;WL5&quot;, 4, &quot;WL6&quot;, 5,0),
+CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &quot;WL2&quot;, 1, &quot;WL3&quot;, 2, &quot;WL4&quot;, 4, &quot;WL5&quot;, 5,0),0))))))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>WL of Line Manager Score</label>
         <precision>18</precision>
@@ -4303,14 +4326,14 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>indirects_to_Be_Managed_Comments__c</fullName>
         <externalId>false</externalId>
-        <label>indirects to Be Managed Comments</label>
+        <label>Indirects to Be Managed Comments</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -4457,15 +4480,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         <picklistValues>
             <picklist>Change__c</picklist>
             <values>
-                <fullName>WL2 - Implement %26 Modify</fullName>
+                <fullName>Decision-making involves the use of judgment and there is an emphasis on the development of new%2Fimproved procedures and on the translation of policy into operational plans%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL3 - New levels of performance development</fullName>
+                <fullName>Enhances approaches to foster change and innovation consistent with the corporate vision</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL4 - Research%2C invention and recommendations</fullName>
+                <fullName>Evaluates and constructs solutions to variable situations within general policies and broadly defined organizational goals%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Looks for higher levels of performance from existing products%2C systems and processes%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Makes self fully-available to partners to extend capacity to improve and develop higher quality systems and processes%2E Initiates ways of adding value and containing costs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinking is towards clearly defined objectives within established policy frameworks%2C but requires solutions that represent improvements on current practice %28direct development of new procedures%29%2E</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5172,6 +5207,14 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
             <values>
+                <fullName>5A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5B</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>WL1</fullName>
                 <default>false</default>
             </values>
@@ -5491,15 +5534,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         <picklistValues>
             <picklist>Problem_Solving__c</picklist>
             <values>
-                <fullName>WL2 - Fact Gathering and Diagnosis%3B Concrete Situations</fullName>
+                <fullName>Many conditions often require analytical and investigative review%2E Challenges others to learn from one another%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL3 - Challenging but Concrete and Operational</fullName>
+                <fullName>Positions a business within broadly defined strategy%2E Involves scanning environment %26 anticipating impact of external forces%2C up to a 5-year horizon%2E Resolves very complex analytical%2C technical %26 mgt challenges through interpretation %26 evaluation%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL4 - Strategic Nature%2C Abstract and Conceptual Analysis</fullName>
+                <fullName>Problems are defined and still mainly operational%2E However%2C at this level problems are more challenging and often solutions are critical in delivering company wide strategic objective%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Problems are mainly operational and need more analysis%2E Identify these issues of integration so they can be dealt with at a national level%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinking within a general frame of reference toward functional objectives%2C in situations with some nebulous%2C intangible or unstructured aspects%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinks beyond existing procedures %26 policies%3B uses judgment for solutions for the situation%2E Requires truly analytical interpretative%2Fevaluative thinking using experience of existing policies %26 practices to reason through different %26 varied solutions%2E</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5817,15 +5872,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         <picklistValues>
             <picklist>Change__c</picklist>
             <values>
-                <fullName>WL2 - Implement %26 Modify</fullName>
+                <fullName>Decision-making involves the use of judgment and there is an emphasis on the development of new%2Fimproved procedures and on the translation of policy into operational plans%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL3 - New levels of performance development</fullName>
+                <fullName>Enhances approaches to foster change and innovation consistent with the corporate vision</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL4 - Research%2C invention and recommendations</fullName>
+                <fullName>Evaluates and constructs solutions to variable situations within general policies and broadly defined organizational goals%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Looks for higher levels of performance from existing products%2C systems and processes%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Makes self fully-available to partners to extend capacity to improve and develop higher quality systems and processes%2E Initiates ways of adding value and containing costs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinking is towards clearly defined objectives within established policy frameworks%2C but requires solutions that represent improvements on current practice %28direct development of new procedures%29%2E</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6851,15 +6918,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         <picklistValues>
             <picklist>Problem_Solving__c</picklist>
             <values>
-                <fullName>WL2 - Fact Gathering and Diagnosis%3B Concrete Situations</fullName>
+                <fullName>Many conditions often require analytical and investigative review%2E Challenges others to learn from one another%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL3 - Challenging but Concrete and Operational</fullName>
+                <fullName>Positions a business within broadly defined strategy%2E Involves scanning environment %26 anticipating impact of external forces%2C up to a 5-year horizon%2E Resolves very complex analytical%2C technical %26 mgt challenges through interpretation %26 evaluation%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL4 - Strategic Nature%2C Abstract and Conceptual Analysis</fullName>
+                <fullName>Problems are defined and still mainly operational%2E However%2C at this level problems are more challenging and often solutions are critical in delivering company wide strategic objective%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Problems are mainly operational and need more analysis%2E Identify these issues of integration so they can be dealt with at a national level%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinking within a general frame of reference toward functional objectives%2C in situations with some nebulous%2C intangible or unstructured aspects%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinks beyond existing procedures %26 policies%3B uses judgment for solutions for the situation%2E Requires truly analytical interpretative%2Fevaluative thinking using experience of existing policies %26 practices to reason through different %26 varied solutions%2E</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7177,15 +7256,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         <picklistValues>
             <picklist>Change__c</picklist>
             <values>
-                <fullName>WL2 - Implement %26 Modify</fullName>
+                <fullName>Decision-making involves the use of judgment and there is an emphasis on the development of new%2Fimproved procedures and on the translation of policy into operational plans%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL3 - New levels of performance development</fullName>
+                <fullName>Enhances approaches to foster change and innovation consistent with the corporate vision</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL4 - Research%2C invention and recommendations</fullName>
+                <fullName>Evaluates and constructs solutions to variable situations within general policies and broadly defined organizational goals%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Looks for higher levels of performance from existing products%2C systems and processes%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Makes self fully-available to partners to extend capacity to improve and develop higher quality systems and processes%2E Initiates ways of adding value and containing costs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinking is towards clearly defined objectives within established policy frameworks%2C but requires solutions that represent improvements on current practice %28direct development of new procedures%29%2E</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8223,15 +8314,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         <picklistValues>
             <picklist>Problem_Solving__c</picklist>
             <values>
-                <fullName>WL2 - Fact Gathering and Diagnosis%3B Concrete Situations</fullName>
+                <fullName>Many conditions often require analytical and investigative review%2E Challenges others to learn from one another%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL3 - Challenging but Concrete and Operational</fullName>
+                <fullName>Positions a business within broadly defined strategy%2E Involves scanning environment %26 anticipating impact of external forces%2C up to a 5-year horizon%2E Resolves very complex analytical%2C technical %26 mgt challenges through interpretation %26 evaluation%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL4 - Strategic Nature%2C Abstract and Conceptual Analysis</fullName>
+                <fullName>Problems are defined and still mainly operational%2E However%2C at this level problems are more challenging and often solutions are critical in delivering company wide strategic objective%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Problems are mainly operational and need more analysis%2E Identify these issues of integration so they can be dealt with at a national level%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinking within a general frame of reference toward functional objectives%2C in situations with some nebulous%2C intangible or unstructured aspects%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinks beyond existing procedures %26 policies%3B uses judgment for solutions for the situation%2E Requires truly analytical interpretative%2Fevaluative thinking using experience of existing policies %26 practices to reason through different %26 varied solutions%2E</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -8549,15 +8652,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         <picklistValues>
             <picklist>Change__c</picklist>
             <values>
-                <fullName>WL2 - Implement %26 Modify</fullName>
+                <fullName>Decision-making involves the use of judgment and there is an emphasis on the development of new%2Fimproved procedures and on the translation of policy into operational plans%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL3 - New levels of performance development</fullName>
+                <fullName>Enhances approaches to foster change and innovation consistent with the corporate vision</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL4 - Research%2C invention and recommendations</fullName>
+                <fullName>Evaluates and constructs solutions to variable situations within general policies and broadly defined organizational goals%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Looks for higher levels of performance from existing products%2C systems and processes%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Makes self fully-available to partners to extend capacity to improve and develop higher quality systems and processes%2E Initiates ways of adding value and containing costs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinking is towards clearly defined objectives within established policy frameworks%2C but requires solutions that represent improvements on current practice %28direct development of new procedures%29%2E</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9264,6 +9379,14 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
             <values>
+                <fullName>5A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5B</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>WL1</fullName>
                 <default>false</default>
             </values>
@@ -9587,15 +9710,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         <picklistValues>
             <picklist>Problem_Solving__c</picklist>
             <values>
-                <fullName>WL2 - Fact Gathering and Diagnosis%3B Concrete Situations</fullName>
+                <fullName>Many conditions often require analytical and investigative review%2E Challenges others to learn from one another%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL3 - Challenging but Concrete and Operational</fullName>
+                <fullName>Positions a business within broadly defined strategy%2E Involves scanning environment %26 anticipating impact of external forces%2C up to a 5-year horizon%2E Resolves very complex analytical%2C technical %26 mgt challenges through interpretation %26 evaluation%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL4 - Strategic Nature%2C Abstract and Conceptual Analysis</fullName>
+                <fullName>Problems are defined and still mainly operational%2E However%2C at this level problems are more challenging and often solutions are critical in delivering company wide strategic objective%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Problems are mainly operational and need more analysis%2E Identify these issues of integration so they can be dealt with at a national level%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinking within a general frame of reference toward functional objectives%2C in situations with some nebulous%2C intangible or unstructured aspects%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinks beyond existing procedures %26 policies%3B uses judgment for solutions for the situation%2E Requires truly analytical interpretative%2Fevaluative thinking using experience of existing policies %26 practices to reason through different %26 varied solutions%2E</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -9913,15 +10048,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         <picklistValues>
             <picklist>Change__c</picklist>
             <values>
-                <fullName>WL2 - Implement %26 Modify</fullName>
+                <fullName>Decision-making involves the use of judgment and there is an emphasis on the development of new%2Fimproved procedures and on the translation of policy into operational plans%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL3 - New levels of performance development</fullName>
+                <fullName>Enhances approaches to foster change and innovation consistent with the corporate vision</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL4 - Research%2C invention and recommendations</fullName>
+                <fullName>Evaluates and constructs solutions to variable situations within general policies and broadly defined organizational goals%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Looks for higher levels of performance from existing products%2C systems and processes%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Makes self fully-available to partners to extend capacity to improve and develop higher quality systems and processes%2E Initiates ways of adding value and containing costs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinking is towards clearly defined objectives within established policy frameworks%2C but requires solutions that represent improvements on current practice %28direct development of new procedures%29%2E</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -10636,6 +10783,10 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
             <values>
+                <fullName>6</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>WL1</fullName>
                 <default>false</default>
             </values>
@@ -10959,15 +11110,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         <picklistValues>
             <picklist>Problem_Solving__c</picklist>
             <values>
-                <fullName>WL2 - Fact Gathering and Diagnosis%3B Concrete Situations</fullName>
+                <fullName>Many conditions often require analytical and investigative review%2E Challenges others to learn from one another%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL3 - Challenging but Concrete and Operational</fullName>
+                <fullName>Positions a business within broadly defined strategy%2E Involves scanning environment %26 anticipating impact of external forces%2C up to a 5-year horizon%2E Resolves very complex analytical%2C technical %26 mgt challenges through interpretation %26 evaluation%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL4 - Strategic Nature%2C Abstract and Conceptual Analysis</fullName>
+                <fullName>Problems are defined and still mainly operational%2E However%2C at this level problems are more challenging and often solutions are critical in delivering company wide strategic objective%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Problems are mainly operational and need more analysis%2E Identify these issues of integration so they can be dealt with at a national level%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinking within a general frame of reference toward functional objectives%2C in situations with some nebulous%2C intangible or unstructured aspects%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinks beyond existing procedures %26 policies%3B uses judgment for solutions for the situation%2E Requires truly analytical interpretative%2Fevaluative thinking using experience of existing policies %26 practices to reason through different %26 varied solutions%2E</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -11238,6 +11401,10 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
                 <fullName>WL5</fullName>
                 <default>false</default>
             </values>
+            <values>
+                <fullName>WL6</fullName>
+                <default>false</default>
+            </values>
         </picklistValues>
         <picklistValues>
             <picklist>of_WL2_vs_Total_Population_Supported__c</picklist>
@@ -11285,15 +11452,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         <picklistValues>
             <picklist>Change__c</picklist>
             <values>
-                <fullName>WL2 - Implement %26 Modify</fullName>
+                <fullName>Decision-making involves the use of judgment and there is an emphasis on the development of new%2Fimproved procedures and on the translation of policy into operational plans%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL3 - New levels of performance development</fullName>
+                <fullName>Enhances approaches to foster change and innovation consistent with the corporate vision</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL4 - Research%2C invention and recommendations</fullName>
+                <fullName>Evaluates and constructs solutions to variable situations within general policies and broadly defined organizational goals%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Looks for higher levels of performance from existing products%2C systems and processes%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Makes self fully-available to partners to extend capacity to improve and develop higher quality systems and processes%2E Initiates ways of adding value and containing costs%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinking is towards clearly defined objectives within established policy frameworks%2C but requires solutions that represent improvements on current practice %28direct development of new procedures%29%2E</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12327,15 +12506,27 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         <picklistValues>
             <picklist>Problem_Solving__c</picklist>
             <values>
-                <fullName>WL2 - Fact Gathering and Diagnosis%3B Concrete Situations</fullName>
+                <fullName>Many conditions often require analytical and investigative review%2E Challenges others to learn from one another%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL3 - Challenging but Concrete and Operational</fullName>
+                <fullName>Positions a business within broadly defined strategy%2E Involves scanning environment %26 anticipating impact of external forces%2C up to a 5-year horizon%2E Resolves very complex analytical%2C technical %26 mgt challenges through interpretation %26 evaluation%2E</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>WL4 - Strategic Nature%2C Abstract and Conceptual Analysis</fullName>
+                <fullName>Problems are defined and still mainly operational%2E However%2C at this level problems are more challenging and often solutions are critical in delivering company wide strategic objective%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Problems are mainly operational and need more analysis%2E Identify these issues of integration so they can be dealt with at a national level%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinking within a general frame of reference toward functional objectives%2C in situations with some nebulous%2C intangible or unstructured aspects%2E</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Thinks beyond existing procedures %26 policies%3B uses judgment for solutions for the situation%2E Requires truly analytical interpretative%2Fevaluative thinking using experience of existing policies %26 practices to reason through different %26 varied solutions%2E</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -12624,5 +12815,5 @@ CASE( RecordTypeId , &quot;012L00000004VR7&quot;,CASE(WL_of_Line_Manager__c , &q
         </picklistValues>
     </recordTypes>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>

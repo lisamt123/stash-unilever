@@ -23,6 +23,12 @@ public with sharing class OV_ReportService {
     public static void addReportToFavourites(String reportId, String shelfTileId){
         System.debug(LoggingLevel.DEBUG, 'Entering addReportToFavourites: ' + reportId + ' ' +shelfTileId);
 
+        /*SECURITY - CRUD/FLS Enforcement */
+        OV_SecurityHelper.doPrivilegedOp('OV_Shelf_Tile__c', new String [] {'Id', 'Tile_Colour__c'});
+        OV_SecurityHelper.doPrivilegedOp('OV_Report__c', new String [] {'Id'});
+        OV_SecurityHelper.doPrivilegedOp('OV_Profile__c', new String [] {'Id'});
+        /*SECURITY - CRUD/FLS Enforcement */ 
+
         OV_Shelf_Tile__c shelfTile = [SELECT Id, Tile_Colour__c FROM  OV_Shelf_Tile__c WHERE Id = :shelfTileId LIMIT 1];
 
         OV_Report__c report = [SELECT Id FROM OV_Report__c WHERE Id = :reportId LIMIT 1];
@@ -36,6 +42,9 @@ public with sharing class OV_ReportService {
         favourite.User__c = profile.Id;
         favourite.Colour__c = shelfTile.Tile_Colour__c;
 
+        /*SECURITY - CRUD/FLS Enforcement */
+        OV_SecurityHelper.doPrivilegedOp('OV_Report_Favourite__c', new String [] {'Favourite_From_Shelf_Tile__c', 'Report__c', 'User__c', 'Colour__c'});
+        /*SECURITY*/
         insert favourite;
 
         OV_ChatterServiceImpl chatterService = new OV_ChatterServiceImpl();
@@ -51,6 +60,11 @@ public with sharing class OV_ReportService {
     ********************************************************************/
     public static void deleteReportFromFavourites(String reportId){
         System.debug(LoggingLevel.DEBUG, 'Entering deleteReportFromFavourites: ' + reportId);
+
+        /*SECURITY - CRUD/FLS Enforcement */
+        OV_SecurityHelper.doPrivilegedOp('OV_Profile__c', new String [] {'Id'});
+        OV_SecurityHelper.doPrivilegedOp('OV_Report_Favourite__c', new String [] {'Id', 'User__c', 'Report__c'});
+        /*SECURITY - CRUD/FLS Enforcement */ 
 
         Id userId = UserInfo.getUserId();
         OV_Profile__c profile = [SELECT Id FROM OV_Profile__c WHERE User__c =: userId];
@@ -81,6 +95,9 @@ public with sharing class OV_ReportService {
     ********************************************************************/
     public static void increaseViewsCounter(String reportId){
         System.debug(LoggingLevel.DEBUG, 'Entering increaseViewsCounter: ' + reportId);
+        /*SECURITY - CRUD/FLS Enforcement */
+        OV_SecurityHelper.doPrivilegedOp('OV_Report__c', new String [] {'Id', 'Views__c'});
+        /*SECURITY - CRUD/FLS Enforcement */ 
 
         OV_Report__c report = [SELECT Id, Views__c FROM OV_Report__c WHERE Id = :reportId LIMIT 1];
 

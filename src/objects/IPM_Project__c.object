@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Used by the IPM project.</description>
@@ -1164,7 +1165,7 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
     </fields>
     <fields>
         <fullName>IPM_Exists_AtLeast_OneAssmntPerEICountry__c</fullName>
-        <defaultValue>false</defaultValue>
+        <defaultValue>true</defaultValue>
         <externalId>false</externalId>
         <label>Exists At Least One Assmnt Per EICountry</label>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2506,6 +2507,11 @@ OwnerId))</formula>
         <language>en_US</language>
     </listViews>
     <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
         <fullName>Finder</fullName>
         <columns>NAME</columns>
         <columns>IPM_Project_Description__c</columns>
@@ -2548,7 +2554,6 @@ OwnerId))</formula>
         <label>Finder Local Projects</label>
         <language>en_US</language>
     </listViews>
-    
     <listViews>
         <fullName>My_IPM_Projects</fullName>
         <columns>CREATED_DATE</columns>
