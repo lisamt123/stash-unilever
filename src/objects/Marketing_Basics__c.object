@@ -58,7 +58,10 @@ Renamed to Other SOW items in reviews</description>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+<<<<<<< HEAD
     <enableSearch>false</enableSearch>
+=======
+>>>>>>> FETCH_HEAD
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>

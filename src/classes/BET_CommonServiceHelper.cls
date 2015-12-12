@@ -13,9 +13,9 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 /* Sharing setting taken from 'parent' class */
 public class BET_CommonServiceHelper {
 
-	private BET_CommonServiceHelper() {}
+    private BET_CommonServiceHelper() {}
 
-	/*****************************************************************************************
+    /*****************************************************************************************
     Purpose: Function to generate template of mail basing on BET, user and custom settings
     Parameters: uw_BET__c, User, BET_Request_Access__c
     Returns: String
@@ -52,7 +52,7 @@ public class BET_CommonServiceHelper {
         return template;
     }
 
-	/*****************************************************************************************
+    /*****************************************************************************************
     Purpose: Support method to get a BETShare object 
     Parameters:  uw_BET_Team_Member__c
     Returns: BETShare object 
@@ -98,7 +98,7 @@ public class BET_CommonServiceHelper {
         return entitySubscriptionList[0];        
     }
 
-	/*****************************************************************************************
+    /*****************************************************************************************
     Purpose: Method to add user to a BET as a member
     Parameters: Id, Id
     ******************************************************************************************/
@@ -120,7 +120,20 @@ public class BET_CommonServiceHelper {
         BETTeamMember.Team_Member__c = userId;
         BETTeamMember.BET__c = bet.Id;
         BETTeamMember.BETEnabled__c = true;
+<<<<<<< HEAD
         BETTeamMember.Access_Level__c = ToolkitAccessLevel;
+=======
+        BETTeamMember.Access_Level__c = ToolkitAccessLevel;*/
+        
+        BET_Member_Request__c betMemberRequest = new BET_Member_Request__c();
+        betMemberRequest.UserId__c = userId;
+        betMemberRequest.Brand_Experience_Toolkit__c = bet.Id;
+        betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED;
+        betMemberRequest.Do_Not_Notify_Bet__c = true;
+        betMemberRequest.External_User_Request__c = false;
+        betMemberRequest.Do_Not_Notify_User__c = true;
+        betMemberRequest.Role__c = 'Member';
+>>>>>>> FETCH_HEAD
 
         //  T0-Begin---------------------
         /*done by member trigger
@@ -151,7 +164,12 @@ public class BET_CommonServiceHelper {
       
         Savepoint sp = Database.setSavepoint();
         try {
+<<<<<<< HEAD
             insert BETTeamMember;
+=======
+            insert betMemberRequest;
+            //insert BETTeamMember;
+>>>>>>> FETCH_HEAD
             /*insert betShare; done by member trigger
             if (cgm!= null) {
                 insert cgm;
