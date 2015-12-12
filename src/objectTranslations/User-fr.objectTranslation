@@ -615,6 +615,10 @@
             <translation><!-- Nordic --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>North America</masterLabel>
+            <translation><!-- North America --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Poland</masterLabel>
             <translation><!-- Poland --></translation>
         </picklistValues>
@@ -634,6 +638,10 @@
             <masterLabel>United Kingdom</masterLabel>
             <translation><!-- United Kingdom --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Max Refund Amount --></label>
+        <name>Max_Refund_Amount__c</name>
     </fields>
     <fields>
         <label><!-- Pass031212 --></label>
@@ -768,6 +776,38 @@
         <help>Champ utilisé pour spécifier en pourcentage le nombre d&apos;emails sélectionnés pour approbation</help>
         <label>Pourcentage de contrôle qualité</label>
         <name>Quality_Check_Percentage__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund Authorization Limit --></label>
+        <name>Refund_Authorization_Limit__c</name>
+        <picklistValues>
+            <masterLabel>Level 1</masterLabel>
+            <translation><!-- Level 1 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 2</masterLabel>
+            <translation><!-- Level 2 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 3</masterLabel>
+            <translation><!-- Level 3 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 4</masterLabel>
+            <translation><!-- Level 4 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 5</masterLabel>
+            <translation><!-- Level 5 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 6</masterLabel>
+            <translation><!-- Level 6 --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Level 7</masterLabel>
+            <translation><!-- Level 7 --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <help><!-- Your Unilever Job Sub-Function. This field is automatically populated/updated for Unilever users each week. --></help>

@@ -1,0 +1,67 @@
+<!--=========================================================-->
+<!--Name:  CEC_ProductRange                                  -->
+<!--Copyright notice: @ Unilever                             -->
+<!--=========================================================-->
+<!--=========================================================-->
+<!-- Purpose:This page is used to display the products
+     which comes under the same Global CPG code of the current
+     case's Product and also the products of other Global CPG 
+     code based on the same ISO Country code.                -->
+<!--=========================================================-->
+<!--=========================================================-->
+<!-- History                                                 -->
+<!-- ---------------------------------------------------------->
+<!-- VERSION     AUTHOR            DATE            DETAIL                RELEASE/CSR     -->
+<!-- 1.0 -   Koti & Goverdhan    Nov-2015      INITIAL DEVELOPMENT       Sprint II(NA)   -->
+
+
+<apex:page Controller="CEC_ProductRangeController" showHeader="false" sidebar="false">
+    <apex:form id="form">
+        <apex:pageBlock title="Product Range">         
+         <apex:pageBlockSection columns="2">  
+            <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="productList" value="{!$Label.CEC_ProductCategory}" />
+                    <apex:actionRegion >
+                        <apex:selectList value="{!Code}" title="Product" size="1" id="products">
+                            <apex:selectOptions value="{!Codes}" />
+                            <apex:actionSupport event="onchange" rerender="Brandpanel" />
+                        </apex:selectList>
+                    </apex:actionRegion>
+            </apex:pageBlockSectionItem> 
+       
+            <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="Brandpanel" value="{!$Label.CEC_Brand}" />
+                    <apex:actionRegion >
+                        <apex:selectList value="{!brand}" title="Brand" size="1" id="Brandpanel">
+                            <apex:selectOptions value="{!brands}" />
+                        </apex:selectList>
+                    </apex:actionRegion>
+            </apex:pageBlockSectionItem> 
+            
+            <c>
+            <apex:pageBlockSectionItem helptext="displays the filtered result">
+                 <apex:commandButton value="Apply Filter" action="{!filteredCaseProducts}"  />
+            </apex:pageBlockSectionItem>
+            </c>
+         </apex:pageBlockSection> 
+        
+                                
+            <apex:pageBlockTable value="{!CaseProducts}" var="cp" id="CaseProdtable" >
+                <apex:column headerValue="Product Name" value="{!cp.name}"/>
+                <apex:column headerValue="Brand" value="{!cp.Brand__c}"/>
+                <apex:column headerValue="ISO Country Code" value="{!cp.ISO_Country_Code__c}"/>
+                <apex:column headerValue="Product Category" value="{!cp.Global_CPG_Code__r.L7_Product_Category__c}"/>
+            </apex:pageBlockTable> 
+            
+            <apex:commandButton rendered="{!con.hasPrevious}" value="first" action="{!con.first}"/>
+            <apex:commandButton rendered="{!con.hasPrevious}" value="Previous" action="{!con.previous}"/>
+            <apex:outputText rendered="{!If(con.ResultSize == null, TRUE, FALSE)}"  value="Displaying 0 Of 0"></apex:outputText>
+            <apex:outputText rendered="{!IF(con.ResultSize != null, ((con.pageNumber * con.pageSize) < con.ResultSize), FALSE)}" value="Displaying {!con.pageNumber * con.pageSize} Of {!con.ResultSize}"></apex:outputText>
+            <apex:outputText rendered="{!IF(con.ResultSize != null,((con.pageNumber * con.pageSize) >= con.ResultSize), FALSE)}" value="Displaying {!con.ResultSize} Of {!con.ResultSize}"></apex:outputText>
+           <!-- <apex:outputText rendered="{!(con.pageNumber * con.pageSize) < con.ResultSize}" value="Displaying {!con.pageNumber * con.pageSize} Of {!con.ResultSize}"></apex:outputText>
+            <apex:outputText rendered="{!(con.pageNumber * con.pageSize) >= con.ResultSize}" value="Displaying {!con.ResultSize} Of {!con.ResultSize}"></apex:outputText>-->
+            <apex:commandButton rendered="{!con.hasNext}" value="next" action="{!con.next}"/>
+            <apex:commandButton rendered="{!con.hasNext}" value="last" action="{!con.last}"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1770,6 +1770,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>CEC AlertAction Scheduler</value>
     </labels>
     <labels>
+        <fullName>CEC_Brand</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Brand</shortDescription>
+        <value>Brand</value>
+    </labels>
+    <labels>
         <fullName>CEC_CBM_NotificationBodyFooter</fullName>
         <categories>CEC : Notification</categories>
         <language>en_US</language>
@@ -1839,6 +1847,30 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_Category</shortDescription>
         <value>Category</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ChequeBook_DetailsMissing</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChequeBook_DetailsMissing</shortDescription>
+        <value>No active cheque book details present for this Brand &amp; Product Category</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ChequeBook_MaxLimt_reached</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChequeBook_MaxLimt_reached</shortDescription>
+        <value>Cheque Book max limit has been reached.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ChequeBook_input_fields_missing</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChequeBook_Input_Fields_Missing</shortDescription>
+        <value>Either Brand, Country or Product Category information is missing.</value>
     </labels>
     <labels>
         <fullName>CEC_Console_Message1</fullName>
@@ -2188,6 +2220,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Product</value>
     </labels>
     <labels>
+        <fullName>CEC_ProductCategory</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ProductCategory</shortDescription>
+        <value>Product Category</value>
+    </labels>
+    <labels>
         <fullName>CEC_Product_Hierarchy</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -2226,6 +2266,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_Reason_Hierarchy</shortDescription>
         <value>Reason Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>CEC_RecommendedProducts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_RecommendedProducts</shortDescription>
+        <value>Recommended Products</value>
     </labels>
     <labels>
         <fullName>CEC_RelatedCases</fullName>

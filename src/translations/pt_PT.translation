@@ -1009,6 +1009,10 @@
         <name>CEC_AlertActionSchedulerName</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_Brand --></label>
+        <name>CEC_Brand</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_CBM_NotificationBodyFooter --></label>
         <name>CEC_CBM_NotificationBodyFooter</name>
     </customLabels>
@@ -1043,6 +1047,18 @@
     <customLabels>
         <label><!-- CEC_Category --></label>
         <name>CEC_Category</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ChequeBook_DetailsMissing --></label>
+        <name>CEC_ChequeBook_DetailsMissing</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ChequeBook_MaxLimt_reached --></label>
+        <name>CEC_ChequeBook_MaxLimt_reached</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ChequeBook_Input_Fields_Missing --></label>
+        <name>CEC_ChequeBook_input_fields_missing</name>
     </customLabels>
     <customLabels>
         <label>Por favor guarde as alterações do caso antes de tentar adicionar um novo consumidor</label>
@@ -1221,6 +1237,10 @@
         <name>CEC_Product</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_ProductCategory --></label>
+        <name>CEC_ProductCategory</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_Product_Hierarchy --></label>
         <name>CEC_Product_Hierarchy</name>
     </customLabels>
@@ -1239,6 +1259,10 @@
     <customLabels>
         <label><!-- CEC_Reason_Hierarchy --></label>
         <name>CEC_Reason_Hierarchy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_RecommendedProducts --></label>
+        <name>CEC_RecommendedProducts</name>
     </customLabels>
     <customLabels>
         <label>Casos relacionados</label>
