@@ -34009,6 +34009,10 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Asset_Scoring__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Asset__c</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -34237,6 +34241,10 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>Marketing_SOW__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>Masterbrand</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -34390,6 +34398,22 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
     </tabSettings>
     <tabSettings>
         <tab>OV_Unit__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Oblix_Calculator__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Oblix_Marketing_SOW_Project_Splits__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Oblix_Project_Assets__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>Oblix_SOW_Projects__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>

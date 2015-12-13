@@ -11,6 +11,7 @@ public class Oblix_wrapper_NonCamp{
         public String selectedCountryname{get;set;}
         public String selectedAgencyDepartment{get;set;}
         public String Rate {get;set;}
+        public String RateRounded {get;set;}
         public String result {get;set;}
         public  integer val {get;set;}
         
@@ -40,6 +41,7 @@ public class Oblix_wrapper_NonCamp{
             selectedAgencyDepartment = empty_Value;
             result = empty_Value;
             rate = empty_Value;
+            rateRounded = empty_Value;
            
             agencyVisible = false;
             roleVisible = false;
