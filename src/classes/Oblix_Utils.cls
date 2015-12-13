@@ -6,6 +6,7 @@
     Create date: 09/ 2015
     Created by Jamal Rida
     Author : @Jamal
+    Modified by : @AES
     Details
     -------
     This class is  : used as a global class which contains all Global Methods
@@ -14,10 +15,9 @@
     Update History
     --------------
 */
+
 public with sharing class Oblix_Utils {
 
-    //private static final String PROJECT_BRIEFFING = Label.Oblix_Lbl_UIUX_Utils_Projected_Briefing;
-    //private static final String COMPLETED_BRIEFFING = Label.Oblix_Lbl_UIUX_Utils_Completed_Briefing;
     private static final String PROJECT_ASSET_NAME = 'Oblix_Project_Assets__c';
     private static final String DIGITAL = 'digital';
     private static final String AUDIO_VISUAL = 'Audio_Visual';
@@ -109,8 +109,6 @@ public with sharing class Oblix_Utils {
     public static map<string, list<string>> getMapSubCategOption() {
         map<string, list<string>> mapSubCategOption = new map<string, list<string>>();
         mapSubCategOption.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('3');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('4');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('5');
 
@@ -122,8 +120,6 @@ public with sharing class Oblix_Utils {
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory).add('5');
 
         mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('1');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('2');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('3');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('4');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('5');
@@ -182,7 +178,6 @@ public with sharing class Oblix_Utils {
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory).add('5');
 
         mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('1');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('2');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('3');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('4');
@@ -212,8 +207,6 @@ public with sharing class Oblix_Utils {
     public static map<string, string> getmapSubCategOptionDescription() {
         map<string, string> mapSubCategOptionDescription = new map<string, string>();
 
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 2, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 3, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score3);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 4, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 5, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score5);
 
@@ -223,8 +216,6 @@ public with sharing class Oblix_Utils {
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 4, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 5, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score5);
 
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 1, Label.Oblix_Lbl_UIUX_Audio_Score1);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 2, Label.Oblix_Lbl_UIUX_Audio_Score2);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 3, Label.Oblix_Lbl_UIUX_Audio_Score3);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 4, Label.Oblix_Lbl_UIUX_Audio_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 5, Label.Oblix_Lbl_UIUX_Audio_Score5);
@@ -279,18 +270,14 @@ public with sharing class Oblix_Utils {
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory + 4, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory + 5, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score5);
 
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 1, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score1);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 2, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score2);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 3, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score3);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 4, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 5, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score5);
 
-
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory + 3, Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Score3);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory + 4, Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory + 5, Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Score5);
-
 
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory + 1, Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score1);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory + 2, Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score2);
