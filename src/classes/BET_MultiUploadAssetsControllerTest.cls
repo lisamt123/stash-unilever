@@ -39,9 +39,9 @@ private class BET_MultiUploadAssetsControllerTest {
 		insert bet;
 		String betId = (String)bet.id;
 		Test.startTest();
-		System.assertEquals(BET_MultiUploadAssetsController.saveFileAndConnect(null,'Unit test asset name',uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW,'Global',uw_CustomAssetUploadExtension.BET_ASSET_APPROVED,betId) ,'Final release',NULL_EXPECTED);
-		System.assertEquals(BET_MultiUploadAssetsController.saveFileAndConnect(null,'Unit test asset name',uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW,'Global','First release',betId) ,'Final release',NULL_EXPECTED);
-		System.assertEquals(BET_MultiUploadAssetsController.saveFileAndConnect(null,null,uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW,'Global','First release',betId) ,'Final release',NULL_EXPECTED);
+		System.assert(BET_MultiUploadAssetsController.saveFileAndConnect(null,'Unit test asset name',uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW,'Global',uw_CustomAssetUploadExtension.BET_ASSET_APPROVED,betId) == null,NULL_EXPECTED);
+		System.assert(BET_MultiUploadAssetsController.saveFileAndConnect(null,'Unit test asset name',uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW,'Global','First release',betId) == null,NULL_EXPECTED);
+		System.assert(BET_MultiUploadAssetsController.saveFileAndConnect(null,null,uw_CustomAssetUploadExtension.BET_ASSET_MEDIA_TYPE_KW,'Global','First release',betId) == null,NULL_EXPECTED);
 		Test.stopTest();
 	}
 	
