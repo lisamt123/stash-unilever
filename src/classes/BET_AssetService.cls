@@ -83,7 +83,7 @@ global without sharing class BET_AssetService {
 	/************************************************************
         Purpose: Updates fileId field based on asset url
         Parameters: List<uw_Asset__c> assets
-        Returns: -
+        Returns: assets list
         Throws: -
     *************************************************************/
 	public static List<uw_Asset__c> updateFileId(List<uw_Asset__c> assets){
@@ -93,9 +93,7 @@ global without sharing class BET_AssetService {
 		Set<Id> identifiers = new Set<Id>();
 		for(uw_Asset__c asset : assets){
 			if(!String.isEmpty(asset.URL_of_Asset__c) && asset.URL_of_Asset__c.contains(validLinkPrefix)){
-				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
-	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, startIdx+25);
-	        	identifiers.add(identifier);
+	        	identifiers.add(getAssetFileIdentifier(asset));
         	}
         }
 
@@ -106,9 +104,7 @@ global without sharing class BET_AssetService {
 
 		for(uw_Asset__c asset : assets){
 			if(!String.isEmpty(asset.URL_of_Asset__c) && asset.URL_of_Asset__c.contains(validLinkPrefix)){
-				Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
-	        	Id identifier = (Id)asset.URL_of_Asset__c.substring(startIdx+10, startIdx+25);
-				asset.File_Id__c = versionFileMap.get(identifier);
+				asset.File_Id__c = versionFileMap.get(getAssetFileIdentifier(asset));
 				if(asset.File_Id__c == null && !Test.isRunningTest() && asset.Related_Feed_Item__c != null){
 					ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, asset.Related_Feed_Item__c);      
 					ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
@@ -119,6 +115,17 @@ global without sharing class BET_AssetService {
 			}
 		}
 		return assets;
+	}
+
+	/************************************************************
+        Purpose: Retrieves identifier of an asset related file
+        Parameters: uw_Asset__c asset
+        Returns: Id
+        Throws: -
+    *************************************************************/
+	public static Id getAssetFileIdentifier(uw_Asset__c asset){
+		Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/');
+	    return (Id)asset.URL_of_Asset__c.substring(startIdx+10, startIdx+25);
 	}
 
 	/************************************************************

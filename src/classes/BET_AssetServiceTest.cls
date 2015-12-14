@@ -111,5 +111,13 @@ private class BET_AssetServiceTest {
 		System.assertEquals(assets.size(),4,'There should be 4 records');
 		Test.stopTest();
 	}
+
+	@isTest static void getAssetFileIdentifierTest(){
+		Id identifier = UserInfo.getUserId();
+		uw_Asset__c asset = new uw_Asset__c(URL_of_Asset__c = '/download/'+identifier);
+		Test.startTest();
+		System.assertEquals(BET_AssetService.getAssetFileIdentifier(asset),identifier,'Identifier must match');
+		Test.stopTest();
+	}
 	
 }
