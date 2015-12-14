@@ -36,8 +36,8 @@
             <translation><!-- Animatics --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Banner Adaptations</masterLabel>
-            <translation><!-- Banner Adaptations --></translation>
+            <masterLabel>Animation</masterLabel>
+            <translation><!-- Animation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Behind the Scenes Footage</masterLabel>
@@ -64,20 +64,12 @@
             <translation><!-- Campaign Teaser Video --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Campaign Wesbite Update</masterLabel>
-            <translation><!-- Campaign Wesbite Update --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>Cinema Film</masterLabel>
             <translation><!-- Cinema Film --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Complex Adaptation</masterLabel>
             <translation><!-- Complex Adaptation --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Complex Microsite</masterLabel>
-            <translation><!-- Complex Microsite --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Complex Re-Edit</masterLabel>
@@ -96,16 +88,32 @@
             <translation><!-- Digital Strategy Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>EDM</masterLabel>
-            <translation><!-- EDM --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>EDM Adaptation</masterLabel>
             <translation><!-- EDM Adaptation --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>EDM/eNewsletter (Complex Adaptation)</masterLabel>
+            <translation><!-- EDM/eNewsletter (Complex Adaptation) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EDM/eNewsletter (Complex)</masterLabel>
+            <translation><!-- EDM/eNewsletter (Complex) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EDM/eNewsletter (Simple Adaptation)</masterLabel>
+            <translation><!-- EDM/eNewsletter (Simple Adaptation) --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>EDM/eNewsletter (Simple)</masterLabel>
+            <translation><!-- EDM/eNewsletter (Simple) --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Experiential</masterLabel>
             <translation><!-- Experiential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Experiential - Adaptation</masterLabel>
+            <translation><!-- Experiential - Adaptation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Extended Stills</masterLabel>
@@ -128,16 +136,32 @@
             <translation><!-- Flash Banners --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Flash Banners Adaptation</masterLabel>
+            <translation><!-- Flash Banners Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Flash Landing Pages</masterLabel>
             <translation><!-- Flash Landing Pages --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flash Landing Pages Adaptation</masterLabel>
+            <translation><!-- Flash Landing Pages Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Flash Take Over Adaptation</masterLabel>
+            <translation><!-- Flash Take Over Adaptation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Flash Take Overs</masterLabel>
             <translation><!-- Flash Take Overs --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Homepage</masterLabel>
-            <translation><!-- Homepage --></translation>
+            <masterLabel>High Digital Bundle</masterLabel>
+            <translation><!-- High Digital Bundle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>High Digital Bundle - Adaptation</masterLabel>
+            <translation><!-- High Digital Bundle - Adaptation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Interactive Game</masterLabel>
@@ -162,6 +186,30 @@
         <picklistValues>
             <masterLabel>Logo</masterLabel>
             <translation><!-- Logo --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low Digital Bundle</masterLabel>
+            <translation><!-- Low Digital Bundle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Low Digital Bundle - Adaptation</masterLabel>
+            <translation><!-- Low Digital Bundle - Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Digital Bundle</masterLabel>
+            <translation><!-- Medium Digital Bundle --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Medium Digital Bundle - Adaptation</masterLabel>
+            <translation><!-- Medium Digital Bundle - Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Microsite</masterLabel>
+            <translation><!-- Microsite --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Microsite Adaptation</masterLabel>
+            <translation><!-- Microsite Adaptation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Mobile APP Conceptualisation</masterLabel>
@@ -224,6 +272,10 @@
             <translation><!-- Promotional --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Promotional - Adaptation</masterLabel>
+            <translation><!-- Promotional - Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Radio</masterLabel>
             <translation><!-- Radio --></translation>
         </picklistValues>
@@ -232,8 +284,8 @@
             <translation><!-- Radio Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Re-Shoot</masterLabel>
-            <translation><!-- Re-Shoot --></translation>
+            <masterLabel>Re Shoot</masterLabel>
+            <translation><!-- Re Shoot --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Simple Adaptation</masterLabel>
@@ -244,16 +296,40 @@
             <translation><!-- Simple Edit --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>Simple Microsite</masterLabel>
-            <translation><!-- Simple Microsite --></translation>
+            <masterLabel>Social Content</masterLabel>
+            <translation><!-- Social Content --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Content - Adaptation</masterLabel>
+            <translation><!-- Social Content - Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Media App</masterLabel>
+            <translation><!-- Social Media App --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Social Media App - Adaptation</masterLabel>
+            <translation><!-- Social Media App - Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Static Banner Adaptation</masterLabel>
+            <translation><!-- Static Banner Adaptation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Static Banners</masterLabel>
             <translation><!-- Static Banners --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Static Landing Page Adaptation</masterLabel>
+            <translation><!-- Static Landing Page Adaptation --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Static Landing Pages</masterLabel>
             <translation><!-- Static Landing Pages --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Static Page Take Over Adaptation</masterLabel>
+            <translation><!-- Static Page Take Over Adaptation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Static page take overs</masterLabel>
@@ -318,14 +394,6 @@
         <picklistValues>
             <masterLabel>Website Optimisation for Mobile</masterLabel>
             <translation><!-- Website Optimisation for Mobile --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>Youtube Uploads</masterLabel>
-            <translation><!-- Youtube Uploads --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>eNewsletter Adaptation</masterLabel>
-            <translation><!-- eNewsletter Adaptation --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>eNewsletters</masterLabel>
