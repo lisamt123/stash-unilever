@@ -1,4 +1,4 @@
-public class AF_BrandEstimateHelper{
+public with sharing class AF_BrandEstimateHelper{
     
     public static void shareRecordToUser(list<AF_Brand_Estimate__c> brandEstObjList){
         List<String> agencyNameList = new List<String>();

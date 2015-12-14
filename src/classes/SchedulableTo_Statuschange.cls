@@ -1,4 +1,4 @@
-global class SchedulableTo_Statuschange implements Schedulable
+global with sharing class SchedulableTo_Statuschange implements Schedulable
   {
     global void execute(SchedulableContext ctx)
     {

@@ -48,7 +48,7 @@ public with sharing class AF_OOPSRecordManager
     public void RecalculateOOPSEstimates()
     {
         System.debug('Running RecalculateOOPSEstimates... ');
-        Double OverallPercentage;
+        
         if(OOPSActual != null)
         {
             OverallPercentage = OOPSActual.Overall__c;          
@@ -86,7 +86,7 @@ public with sharing class AF_OOPSRecordManager
     @testVisible private void LoadOOPActualSingleRecord()
     {                       
             OverallPercentage = CustomSettings.Overall_Percentage__c;
-            
+            List<AF_OOPS_Actual__c> oopInsertList = new List<AF_OOPS_Actual__c>();
             if(BrandEstimateCollection != null)
             {
                 for(AF_Brand_Estimate__c brandEstimateItem : BrandEstimateCollection.values())
@@ -94,15 +94,8 @@ public with sharing class AF_OOPSRecordManager
                     if(brandEstimateItem != null)
                     {
                         BrandEstimate = brandEstimateItem;
-                        /*
-                        try
-                        {                                               
-                            OOPSActual = [Select a.Name,a.AF_value__c, a.AF_Quarter__c, a.AF_Q3__c, a.AF_Q2__c, a.AF_Q1__c, a.AF_GR_Approval__c, a.AF_Fiscal_year__c,a.AF_Agency_lk__c, a.AF_Agency__c From AF_OOPS_Actual__c a WHERE a.AF_Fiscal_year__c = : BrandEstimate.AF_Fiscal_Year__c AND a.AF_Agency_lk__c = : BrandEstimate.AF_Agency__c AND a.AF_Brand__c = : BrandEstimate.Brand__c LIMIT 1];    
-                        }   
-                        catch(QueryException ex)
-                        {} 
-                        */                    
-                        if(BrandEstimate.AF_OOPS_Estimates_Generated__c == false)
+                                           
+                        if(!BrandEstimate.AF_OOPS_Estimates_Generated__c)
         				{
 	                        if(OOPSActual == null )
 	                        {
@@ -127,16 +120,9 @@ public with sharing class AF_OOPSRecordManager
 	                            OOPSActual.AF_Cat_Finance_Approver_2__c = BrandEstimate.AF_Cat_Finance_Approver_2__c;
 	                            OOPSActual.AF_Cat_Finance_Approver_3__c = BrandEstimate.AF_Cat_Finance_Approver_3__c;
 	                            OOPSActual.AF_Cat_Finance_Approver_4__c = BrandEstimate.AF_Cat_Finance_Approver_4__c;
-	                            OOPSActual.AF_Cat_Finance_Approver_5__c = BrandEstimate.AF_Cat_Finance_Approver_5__c;                                               
-	                           	try
-	                           	{
-	                            insert OOPSActual;
-	                           	}
-	                           	catch(DMLException ex)
-	                           	{
-	                           		OOPSActual.addError(ex);
-	                           	}      
-	                            //System.debug('New OOPSActual: ' + OOPSActual);                                  
+	                            OOPSActual.AF_Cat_Finance_Approver_5__c = BrandEstimate.AF_Cat_Finance_Approver_5__c;
+								oopInsertList.add(OOPSActual);	
+	                           	
 	                        }   
 	                        else
 	                        {
@@ -145,7 +131,15 @@ public with sharing class AF_OOPSRecordManager
         				}           
                     }   
                 }       
-            }                                                   
+            } 
+			if(oopInsertList.size()>0){
+				try{
+				insert oopInsertList;
+				}
+				catch(Exception e){
+				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPSRecordManager','LoadOOPActualSingleRecord',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				}
+			}	
     }
         
     @testVisible private void LoadBrandEstimateCollectionById(set<Id> BrandEstimateIds)
@@ -154,7 +148,7 @@ public with sharing class AF_OOPSRecordManager
         {       
             System.debug('LoadBrandEstimateCollectionById: ' + BrandEstimateIds);       
             // CreateOOPSEstimateRecordsByCollection        
-            if(BrandEstimate != null && IsBulkified == false)
+            if(BrandEstimate != null && !IsBulkified)
             {
                 BrandEstimateCollection = new Map<Id,AF_Brand_Estimate__c>();
                 BrandEstimateCollection.put(BrandEstimate.Id,BrandEstimate);
@@ -189,7 +183,7 @@ public with sharing class AF_OOPSRecordManager
     
     @testVisible private List<AF_OOPS_Estimate__c> CreateOOPSEstimateRecords()
     {               
-        List<AF_OOPS_Estimate__c> oopsEstimateCollection; 
+        List<AF_OOPS_Estimate__c> oopsEstimateCollection = new List<AF_OOPS_Estimate__c>(); 
         try
         {
             if(BrandEstimateIds.size() > 0)
@@ -200,7 +194,7 @@ public with sharing class AF_OOPSRecordManager
             if(AgencyEstimateCollection.size() > 0)
             {               
                 oopsEstimateCollection = OOPSEstimateFactory(AgencyEstimateCollection); 
-                if(BrandEstimate.AF_OOPS_Estimates_Generated__c == false)
+                if(!BrandEstimate.AF_OOPS_Estimates_Generated__c)
                 {
                 	
 	                insert oopsEstimateCollection;
@@ -244,13 +238,13 @@ public with sharing class AF_OOPSRecordManager
     
     @testVisible private AF_OOPS_Estimate__c OOPSEstimateSingleFactory(AF_Agency_Estimate__c AgencyEstimate)
     {
-        AF_OOPS_Estimate__c obj;                
+        AF_OOPS_Estimate__c obj = new AF_OOPS_Estimate__c();                
         OverallPercentage = CustomSettings.Overall_Percentage__c;
         Double Estimatevalue = 0;
         BrandEstimate = BrandEstimateCollection.get(AgencyEstimate.AF_Brand_Estimate__c);       
         if(AgencyEstimate != null)      
         {
-        	if(BrandEstimate.AF_OOPS_Estimates_Generated__c == false)
+        	if(!BrandEstimate.AF_OOPS_Estimates_Generated__c)
         	{        	
             //OOPS Estimate
             obj = new AF_OOPS_Estimate__c();                        
@@ -278,7 +272,7 @@ public with sharing class AF_OOPSRecordManager
         System.debug('pObj: ' + pObj);
         System.debug('pOverallPercentage: ' + pOverallPercentage);  
         System.debug('pAgreedBaseFee: ' + pAgreedBaseFee);      
-        Double OverallPercentage;
+        Double OverallPercentage =0;
         Double AgreedBaseFee = pAgreedBaseFee;  
         if(IsDefault){OverallPercentage = CustomSettings.Overall_Percentage__c;}else if(pOverallPercentage != null){OverallPercentage = pOverallPercentage;}                
         if(AgreedBaseFee != null){Obj.AF_Estimate__c = AgreedBaseFee*OverallPercentage/100;}else{Obj.AF_Estimate__c = 0.00;}

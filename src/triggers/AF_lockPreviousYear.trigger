@@ -21,7 +21,7 @@ trigger AF_lockPreviousYear on AF_Currency__c (before update)
          for(AF_Currency__c Afc:trigger.new)
          {
              
-             if(Afc.Locked__c == true)
+             if(Afc.Locked__c)
                  if(afc.AF_Average_Exchange_Rate_To_EUR__c!=trigger.oldmap.get(afc.id).AF_Average_Exchange_Rate_To_EUR__c)
                      afc.AF_Average_Exchange_Rate_To_EUR__c.adderror(Label.AF_Lock);
          }        

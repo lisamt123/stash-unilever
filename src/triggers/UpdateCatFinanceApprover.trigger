@@ -8,7 +8,7 @@ trigger UpdateCatFinanceApprover  on AF_Brand_Estimate__c (before Insert,before 
         if(afBrand.AF_Agency__c != null)
             UpdateBrandEstimateCatApproverValues.UpdateOopsagency(afBrand);
         }
-        if(afBrand.TriggerEmailAgency__c == false){
+        if(!afBrand.TriggerEmailAgency__c){
             system.debug('afBrand.TriggerEmailAgency__c...'+afBrand.TriggerEmailAgency__c);
             afBrand.Archived_BrandEstimate_Quarter__c = afBrand.AF_Basefee_Estimate_Initial_Quarter__c;
         }

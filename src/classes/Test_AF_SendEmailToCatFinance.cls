@@ -12,6 +12,7 @@ public class Test_AF_SendEmailToCatFinance
     AF_CatFinanceThreshold__c customList = new AF_CatFinanceThreshold__c();
     customList.AF_Date__c = system.today();
     insert customList;
+    System.Assert(customList.Id != null, 'The customsetting record not inserted');
     AF_SendEmailToCatFinance obj = new AF_SendEmailToCatFinance();
     //obj.query=null;
      Datetime dt = Datetime.now().addMinutes(1);

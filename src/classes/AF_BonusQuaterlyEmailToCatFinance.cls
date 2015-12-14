@@ -1,4 +1,4 @@
-global class AF_BonusQuaterlyEmailToCatFinance implements Schedulable
+global with sharing class AF_BonusQuaterlyEmailToCatFinance implements Schedulable
 {
      String query;
      List<AF_BonusQuarterly_Quarterdates__c> catBonusQuartFinanceDate=new  List<AF_BonusQuarterly_Quarterdates__c>();
@@ -12,7 +12,7 @@ global class AF_BonusQuaterlyEmailToCatFinance implements Schedulable
     {  
          String DayofMonth;
          DayofMonth=string.valueOf(system.now().month());
-        catBonusQuartFinanceDate= [select AF_Q1__c,AF_Q2__c,AF_Q3__c from AF_BonusQuarterly_Quarterdates__c];
+        catBonusQuartFinanceDate= [select AF_Q1__c,AF_Q2__c,AF_Q3__c from AF_BonusQuarterly_Quarterdates__c LIMIT 1];
         if(catBonusQuartFinanceDate.size()>0){
             if(catBonusQuartFinanceDate[0].AF_Q1__c == system.today() || catBonusQuartFinanceDate[0].AF_Q2__c == system.today() || catBonusQuartFinanceDate[0].AF_Q3__c == system.today()){
                 Send_Email__c NewEmailRecord= new Send_Email__c();

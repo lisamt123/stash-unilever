@@ -1,4 +1,4 @@
-Public class AF_Sendemail_categoryfinance
+Public with sharing class AF_Sendemail_categoryfinance
 {
     Public string templatebody{set;get;}
     Public string templatesubject{set;get;}
@@ -30,8 +30,7 @@ Public class AF_Sendemail_categoryfinance
        
        
         List<Id> lstusers=new List<Id>();
-            List<String> lstEmail=new List<String>();
-            string emails;
+            string emails='';
             List<PermissionSetAssignment> permissionSetAssign=[SELECT AssigneeId,Id,PermissionSetId FROM PermissionSetAssignment where PermissionSet.name=:'AF_Category_Finance'];
             if(permissionSetAssign.size()>0){
                 for(PermissionSetAssignment assignment:permissionSetAssign){

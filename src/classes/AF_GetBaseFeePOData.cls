@@ -1,11 +1,10 @@
-global class AF_GetBaseFeePOData{
+global with sharing class AF_GetBaseFeePOData{
    
     @future
     public static void CreatePOReportFromAgencyEstimate(Set<ID> AgencyEstimateIds,Boolean deletePOReport)
     {
        system.debug('AgencyEstimateIds...'+AgencyEstimateIds);
        af_po_report__c eachPORecord;
-    List<af_agency_estimate__c> lstagest = new List<af_agency_estimate__c>();
     List<af_po_report__c> lstpo = new List<af_po_report__c>();
     List<af_po_report__c> lstpoupdate = new List<af_po_report__c>();
     List<af_po_report__c> deletePOReportList = new List<af_po_report__c>();
@@ -17,7 +16,7 @@ global class AF_GetBaseFeePOData{
            mapPO.put(myagest.AF_Agency_Estimate_ID__c,myagest.id);
        }
            
-            if(AgencyEstimateIds.size()>0 && deletePOReport==false){
+            if(AgencyEstimateIds.size()>0 && !deletePOReport){
            for(af_agency_estimate__c mypo:[SELECT AF_po_report_type__c,AF_OverridePO_Adaptation_LC__c,AF_OverridePO_Digital_LC__c,AF_OverridePO_Traditional_LC__c,af_po_number__c,AF_Unilever_Entity__r.name,af_brand_estimate__r.name,af_brand_estimate__r.AF_Status_Base_Fees__c,Brand__c,af_brand_estimate__r.AF_Fiscal_Year__c,af_brand_estimate__c,id,AF_Brand_Estimate__r.Brand__r.AF_Category_Brands__r.Name,AF_Compound_Key__c,AF_Agency_Entity__r.af_legal_entity_name__c,AF_Agency_Entity__r.name,AF_Unilever_Entity_Name__c,af_total__c,af_max_quarter__c,AF_CountNoQuarters__c,AF_QuartersAlreadyDone__c,AF_Traditional__c,AF_Traditional_Local__c,AF_Digital__c,AF_Digital_Local__c,AF_Adaptation__c,AF_Adaptation_Local__c,AF_Matrix_Data_Entry_Currency__c,AF_Ready_For_PO_Entry_Currency__c,af_brand_estimate__r.af_agency__r.name FROM AF_Agency_Estimate__c where Id IN:AgencyEstimateIds])
            {
                eachPORecord = new af_po_report__c();
@@ -64,7 +63,7 @@ global class AF_GetBaseFeePOData{
               
            }
           }
-          else if(AgencyEstimateIds.size()>0 && deletePOReport==true){
+          else if(AgencyEstimateIds.size()>0 && deletePOReport){
             for(Id deleteRecords:AgencyEstimateIds){
             if (mapPO.containsKey(deleteRecords))
                {
@@ -111,7 +110,7 @@ global class AF_GetBaseFeePOData{
            mapPO.put(myagest.AF_Oops_Estimate_ID__c,myagest.id);
        }
            
-            if(OopsEstimateIds.size()>0 && deletePOReport==false){
+            if(OopsEstimateIds.size()>0 && !deletePOReport){
            for(AF_OOPS_Estimate__c mypo:[SELECT AF_PO_Report_Type__c,AF_Override_Estimate_Local__c,AF_Status__c,AF_Brand__c,AF_EstimateLocal__c,af_estimate__c,AF_PO_Number__c,AF_Unilever_Entity__r.name,AF_OOPS_Actual__r.name,AF_OOPS_Actual__r.AF_Status__c,AF_OOPS_Actual__r.AF_Fiscal_year__c,AF_OOPS_Actual__c,id,AF_OOPS_Actual__r.AF_Brand__r.AF_Category_Brands__r.Name,AF_Compound_key__c,AF_Agency_Entity__r.af_legal_entity_name__c,AF_Agency_Entity__r.name,Unilever_Entity_Name__c,AF_Total__c,AF_Max_Quarter__c,AF_CountNoQuarters__c,AF_QuatersAlreadyDone__c,AF_Traditional__c,AF_Digital__c,AF_Adaptation__c,AF_OOPS_Matrix_Currency_Code__c,AF_Ready_For_PO_Entry_Currency__c,AF_OOPS_Actual__r.AF_Agency_lk__r.name FROM AF_OOPS_Estimate__c where Id IN:OopsEstimateIds])
            {
                eachPORecord = new af_po_report__c();
@@ -157,7 +156,7 @@ global class AF_GetBaseFeePOData{
               
            }
           }
-          else if(OopsEstimateIds.size()>0 && deletePOReport==true){
+          else if(OopsEstimateIds.size()>0 && deletePOReport){
             for(Id deleteRecords:OopsEstimateIds){
             if (mapPO.containsKey(deleteRecords))
                {
@@ -190,11 +189,8 @@ global class AF_GetBaseFeePOData{
     
     public static void CalculatePoReportValues(Map<String,String> compundKeyReportType,Set<String> CompundKeys){
         List<AF_PO_Report__c> po_Report_List = new List<AF_PO_Report__c>();
-                                List<AF_PO_Report__c> updateList = new List<AF_PO_Report__c>();
-                                set<String> uniqueKey = new set<String>();
                                 set<String> baseFeeKey = new set<String>();
                                 set<String> oopsKey = new set<String>();
-                                integer i=0;
                                 for(String key:CompundKeys){
                                     if(compundKeyReportType.get(key)=='Base Fees'){
                                         baseFeeKey.add(key);
@@ -227,7 +223,6 @@ global class AF_GetBaseFeePOData{
                 Decimal calcPO=0.0;
                 Decimal total=0;
                 Decimal previousval=0.0;                                                
-                Integer counter=0;
                 Decimal quarters=0;
                 Decimal quartersdone=0;
                 Decimal calcTL=0.0;

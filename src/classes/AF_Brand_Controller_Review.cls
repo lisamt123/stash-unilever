@@ -1,4 +1,4 @@
-public class AF_Brand_Controller_Review
+public with sharing class AF_Brand_Controller_Review
 {
     public static boolean BrandReview=true;
     Map<id,set<string>> mapgroups = new Map<id,set<string>>();

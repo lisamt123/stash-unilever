@@ -1,4 +1,4 @@
-public class AF_Category_Brands 
+public with sharing class AF_Category_Brands 
 {
     List<SelectOption> options = new List<SelectOption>();
     public AF_Category_Brands(ApexPages.StandardController controller) 
@@ -29,9 +29,6 @@ public class AF_Category_Brands
         
         return options;
     }
-    
-    public void OnchangeType()
-    {}
     
     public pagereference Save_Record()
     {

@@ -96,9 +96,7 @@ public with sharing class AF_CommentsListCompController{
     {
         //PageReference pageRef = new PageReference('/apex/AF_CloseAndRefresh?IsError=false');
         //pageRef.setRedirect(true); 
-            //PageReference pageRef = new PageReference('/apex/AF_AgencyEstimate');
-        List<Exception> exceptionCollection = new List<Exception>();
-         
+            //PageReference pageRef = new PageReference('/apex/AF_AgencyEstimate'); 
         try
         {
             if(CommentRecord.AF_Comments__c.length() > 0)
@@ -157,7 +155,7 @@ public with sharing class AF_CommentsListCompController{
         system.debug('recordId..'+myCommentId);
         system.debug('myCreateId...'+myCreateId);
         system.debug('loggedin...'+UserInfo.getUserId());
-        if(myCreateId!=UserInfo.getUserId() && bCMCOSuperUser==false){
+        if(myCreateId!=UserInfo.getUserId() && !bCMCOSuperUser){
             myCommentId=null;
              apexpages.addmessage(new apexpages.message(apexpages.severity.info,'Comment cannot be Changed')); 
         }

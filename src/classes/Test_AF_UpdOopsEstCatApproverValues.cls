@@ -17,10 +17,10 @@ public class Test_AF_UpdOopsEstCatApproverValues
      Profile p=[Select Id from Profile where Name='System Administrator'];       
      
      //Insert User 
-     User u= new User(Alias = 'testuo', Email='standarduseruo@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
+     User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo@unilever.com', 
+      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
       UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo',AF_Category__c='Test Beveragesuo');
      insert u;        
       
@@ -49,7 +49,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      cat.RecordTypeId=catRT.Id;
      cat.Name='Test Beveragesuo';
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -71,7 +71,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
      brandEst.Name='Test BrandEstimateuo';
-     brandEst.AF_Status_Base_Fees__c='Initiate';  
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
      brandEst.Brand__c=bran.id;
      brandEst.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
      brandEst.AF_Fiscal_Year__c=currYear1;
@@ -84,7 +84,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      AF_Brand_Estimate__c brandEst1=new AF_Brand_Estimate__c();
      brandEst1.AF_Agency__c=acc.Id;               
      brandEst1.Name='Test BrandEstimateuo';
-     brandEst1.AF_Status_Base_Fees__c='Initiate';  
+     brandEst1.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
      brandEst1.Brand__c=bran.id;
      brandEst1.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
      brandEst1.AF_Fiscal_Year__c=currYear;
@@ -127,26 +127,26 @@ public class Test_AF_UpdOopsEstCatApproverValues
      Profile p=[Select Id from Profile where Name='System Administrator'];       
      
      //Insert User 
-     User u= new User(Alias = 'testuo', Email='standarduseruo@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
-     insert u;     
+     User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo@unilever.com', 
+      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      insert u;     
      
-    User u1= new User(Alias = 'testuo1', Email='standarduseruo1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo1', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo1@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
-     insert u1; 
+    User u1= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo1@unilever.com', 
+      EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      insert u1; 
 
      System.runAs(u)
      { 
      
      //Insert Account
      Account acc=new Account();
-     acc.Name='Test Agencyuo1';
+     acc.Name='Test_Agencyuo1';
      acc.published__c=true;
      insert acc;
      
@@ -154,27 +154,27 @@ public class Test_AF_UpdOopsEstCatApproverValues
      
      //Insert Contact
      Contact con=new Contact();
-     con.LastName='Test Con1';
+     con.LastName='Test__Con1';
      con.AccountId=acc.Id;
      con.AF_Send_Email_Notification__c = true;
-     con.Email='testcon1@test123321.com';
+     con.Email='testcon1@test123.com';
      insert Con;
      
      //Insert Contact
      Contact con1=new Contact();
-     con1.LastName='Test Con1';
+     con1.LastName='Test_Con';
      con1.AccountId=acc.Id;
      con1.AF_Send_Email_Notification__c = true;
-     con1.Email='testcon2@test123321.com';
+     con1.Email='testcon2@test12.com';
      insert Con1;
      
      //Insert Category
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesuo1';
+     cat.Name=AF_Constants.TEST_AF_Category;
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -195,8 +195,8 @@ public class Test_AF_UpdOopsEstCatApproverValues
      //Insert Brand Estimate                
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
-     brandEst.Name='Test BrandEstimateuo1';
-     brandEst.AF_Status_Base_Fees__c='Initiate';  
+     brandEst.Name='Test_BrandEstimate';
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
      brandEst.Brand__c=bran.id;
      brandEst.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
      brandEst.AF_Fiscal_Year__c=currYear;
@@ -230,25 +230,25 @@ public class Test_AF_UpdOopsEstCatApproverValues
      Profile p=[Select Id from Profile where Name='System Administrator'];       
      
      //Insert User 
-     User u= new User(Alias = 'testuo', Email='standarduseruo@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
+     User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo@unilever.com', 
+      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;     
      
-    User u1= new User(Alias = 'testuo1', Email='standarduseruo1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo1', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo1@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
+    User u1= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo1@unilever.com', 
+      EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u1; 
      
      User u2= new User(Alias = 'testuo2', Email='standarduseruo2@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo2', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo2@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
+      EmailEncodingKey='UTF-8', LastName='Test Useruo2', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo2@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u2;
 
      System.runAs(u)
@@ -256,7 +256,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      
      //Insert Account
      Account acc=new Account();
-     acc.Name='Test Agencyuo1';
+     acc.Name='Test Agencyuo';
      acc.published__c=true;
      insert acc;
      
@@ -264,18 +264,18 @@ public class Test_AF_UpdOopsEstCatApproverValues
      
      //Insert Contact
      Contact con=new Contact();
-     con.LastName='Test Con1';
+     con.LastName='Test_Cont';
      con.AccountId=acc.Id;
      con.AF_Send_Email_Notification__c = true;
-     con.Email='testcon1@test123321.com';
+     con.Email='testcon1@test12332.com';
      insert Con;
      
      //Insert Contact
      Contact con1=new Contact();
-     con1.LastName='Test Con1';
+     con1.LastName='Test_Conta';
      con1.AccountId=acc.Id;
      con1.AF_Send_Email_Notification__c = true;
-     con1.Email='testcon2@test123321.com';
+     con1.Email='testcon2@test12332.com';
      insert Con1;
      
      //Insert Contact
@@ -290,9 +290,9 @@ public class Test_AF_UpdOopsEstCatApproverValues
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesuo1';
+     cat.Name=AF_Constants.TEST_AF_Category;
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -313,8 +313,8 @@ public class Test_AF_UpdOopsEstCatApproverValues
      //Insert Brand Estimate                
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
-     brandEst.Name='Test BrandEstimateuo1';
-     brandEst.AF_Status_Base_Fees__c='Initiate';  
+     brandEst.Name='Test BrandEstimateuo';
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
      brandEst.Brand__c=bran.id;
      brandEst.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
      brandEst.AF_Fiscal_Year__c=currYear;
@@ -348,32 +348,32 @@ public class Test_AF_UpdOopsEstCatApproverValues
      Profile p=[Select Id from Profile where Name='System Administrator'];       
      
      //Insert User 
-     User u= new User(Alias = 'testuo', Email='standarduseruo@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
+     User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo@unilever.com', 
+      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;     
      
-    User u1= new User(Alias = 'testuo1', Email='standarduseruo1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo1', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo1@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
+    User u1= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo1@unilever.com', 
+      EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u1; 
      
      User u2= new User(Alias = 'testuo2', Email='standarduseruo2@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo2', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo2@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
+      EmailEncodingKey='UTF-8', LastName='Test Useruo2', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo2@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u2;
      
      User u3= new User(Alias = 'testuo3', Email='standarduseruo3@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo3', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo3@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
+      EmailEncodingKey='UTF-8', LastName='Test Useruo3', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo3@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u3;
 
      System.runAs(u)
@@ -381,7 +381,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      
      //Insert Account
      Account acc=new Account();
-     acc.Name='Test Agencyuo1';
+     acc.Name='Test Agency';
      acc.published__c=true;
      insert acc;
      
@@ -389,18 +389,18 @@ public class Test_AF_UpdOopsEstCatApproverValues
      
      //Insert Contact
      Contact con=new Contact();
-     con.LastName='Test Con1';
+     con.LastName='Test_Contac';
      con.AccountId=acc.Id;
      con.AF_Send_Email_Notification__c = true;
-     con.Email='testcon1@test123321.com';
+     con.Email='testcon1@test1233.com';
      insert Con;
      
      //Insert Contact
      Contact con1=new Contact();
-     con1.LastName='Test Con1';
+     con1.LastName='Test_Contact';
      con1.AccountId=acc.Id;
      con1.AF_Send_Email_Notification__c = true;
-     con1.Email='testcon2@test123321.com';
+     con1.Email='testcon2@test1233.com';
      insert Con1;
      
      //Insert Contact
@@ -415,9 +415,9 @@ public class Test_AF_UpdOopsEstCatApproverValues
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesuo1';
+     cat.Name=AF_Constants.TEST_AF_Category;
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -438,8 +438,8 @@ public class Test_AF_UpdOopsEstCatApproverValues
      //Insert Brand Estimate                
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
-     brandEst.Name='Test BrandEstimateuo1';
-     brandEst.AF_Status_Base_Fees__c='Initiate';  
+     brandEst.Name='Test BrandEstimateu';
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
      brandEst.Brand__c=bran.id;
      brandEst.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
      brandEst.AF_Fiscal_Year__c=currYear;
@@ -473,39 +473,39 @@ public class Test_AF_UpdOopsEstCatApproverValues
      Profile p=[Select Id from Profile where Name='System Administrator'];       
      
      //Insert User 
-     User u= new User(Alias = 'testuo', Email='standarduseruo@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
+     User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo@unilever.com', 
+      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;     
      
-    User u1= new User(Alias = 'testuo1', Email='standarduseruo1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo1', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo1@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
+    User u1= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo1@unilever.com', 
+      EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u1; 
      
      User u2= new User(Alias = 'testuo2', Email='standarduseruo2@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo2', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo2@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
+      EmailEncodingKey='UTF-8', LastName='Test Useruo2', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo2@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u2;
      
      User u3= new User(Alias = 'testuo3', Email='standarduseruo3@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo3', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo3@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
+      EmailEncodingKey='UTF-8', LastName='Test Useruo3', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo3@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u3;
      
      User u4= new User(Alias = 'testuo4', Email='standarduseruo4@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo4', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo4@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c='Test Beveragesuo1');
+      EmailEncodingKey='UTF-8', LastName='Test Useruo4', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo3@test121.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u4;
 
      System.runAs(u)
@@ -513,7 +513,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      
      //Insert Account
      Account acc=new Account();
-     acc.Name='Test Agencyuo1';
+     acc.Name='Test__Agency';
      acc.published__c=true;
      insert acc;
      
@@ -521,18 +521,18 @@ public class Test_AF_UpdOopsEstCatApproverValues
      
      //Insert Contact
      Contact con=new Contact();
-     con.LastName='Test Con1';
+     con.LastName='Test Cont';
      con.AccountId=acc.Id;
      con.AF_Send_Email_Notification__c = true;
-     con.Email='testcon1@test123321.com';
+     con.Email='testcon1@test123.com';
      insert Con;
      
      //Insert Contact
      Contact con1=new Contact();
-     con1.LastName='Test Con1';
+     con1.LastName='Test_Conta';
      con1.AccountId=acc.Id;
      con1.AF_Send_Email_Notification__c = true;
-     con1.Email='testcon2@test123321.com';
+     con1.Email='testcon2@test123.com';
      insert Con1;
      
      //Insert Contact
@@ -547,9 +547,9 @@ public class Test_AF_UpdOopsEstCatApproverValues
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesuo1';
+     cat.Name=AF_Constants.TEST_AF_Category;
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -570,8 +570,8 @@ public class Test_AF_UpdOopsEstCatApproverValues
      //Insert Brand Estimate                
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
-     brandEst.Name='Test BrandEstimateuo1';
-     brandEst.AF_Status_Base_Fees__c='Initiate';  
+     brandEst.Name='Test BrandEstimat';
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
      brandEst.Brand__c=bran.id;
      brandEst.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
      brandEst.AF_Fiscal_Year__c=currYear;

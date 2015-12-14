@@ -193,7 +193,6 @@
      
      Attachment a3 = new Attachment();
      a3.name = 'test Doc3';
-     Blob bodyBlob2 = Blob.valueOf('Unit Test Attachment Body3');
      a3.body = bodyBlob1;
      a3.ParentId = bonSum.id;
      insert a3;

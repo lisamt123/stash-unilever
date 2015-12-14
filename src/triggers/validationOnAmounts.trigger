@@ -45,9 +45,6 @@ if(Trigger.isBefore){
         //List<AF_Sub_Result__c> subResult = new List<AF_Sub_Result__c>();
         List<AF_Bonus_Results__c> bonusResultList = new List<AF_Bonus_Results__c>();
         List<AF_Bonus_Results__c> bonusResultQuartList = new List<AF_Bonus_Results__c>();
-        
-        
-        Decimal BonusableFeesQuarterly=0;
         List<AF_Sub_Result__c> queryListofSubResult= new List<AF_Sub_Result__c>();
         try{
         queryListofSubResult = [select AF_Bonusable_Fees__c,AF_Bonus_Threshold__c,AF_Total_Bonus_Value__c,AF_Qual_Bonus_Value__c,AF_Quant_Bonus_Value__c,AF_Period__c from AF_Sub_Result__c where AF_Bonus_Threshold__c IN :BonusThresholdId];
@@ -55,10 +52,6 @@ if(Trigger.isBefore){
         catch(Exception e){
             system.debug(e);
         }
-        
-        
-        Decimal QuantBonusQuarterly=0;
-        String Quarter ;
         Set<String> QuaterSet = new Set<String>();
         Map<Id,Decimal> bonusfeesAnnualMap = new Map<Id,Decimal>();
         Map<Id,Decimal> quantBonusAnnualMap = new Map<Id,Decimal>();

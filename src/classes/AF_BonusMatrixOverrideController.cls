@@ -134,9 +134,7 @@ public with sharing class AF_BonusMatrixOverrideController
                 apexpages.addmessage(new apexpages.message(apexpages.severity.Confirm,'Record successfully saved'));          
                  }
                }
-               else{
-                
-               }
+               
               }
         catch(Exception ex)
         {
@@ -155,12 +153,12 @@ public with sharing class AF_BonusMatrixOverrideController
     }
     private string CommaFilter(string value)
     {
-        if(value.contains(',') == true){value = value.replaceAll(',','');}
+        if(value.contains(',')){value = value.replaceAll(',','');}
         return value;       
     } 
   public void CalculateLocalC(){
         try{
-        if(BonusMatrixValue!=null || BonusMatrixValue!=''){
+        if(BonusMatrixValue!=null && BonusMatrixValue!=''){
         String bonusvalue=BonusMatrixValue.Remove(',');
         EsLocal=Decimal.valueof(bonusvalue)*BonusMatrixObj.AF_Agency_Exchange_Rate__c;
        // BonusMatrixObj.AF_Bonus_Local_Value__c=(EsLocal);

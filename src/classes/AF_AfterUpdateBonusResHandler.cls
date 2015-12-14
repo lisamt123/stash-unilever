@@ -1,7 +1,6 @@
-public class AF_AfterUpdateBonusResHandler {
+public with sharing class AF_AfterUpdateBonusResHandler {
  
-    public static void AF_AfterUpdHandler(AF_Bonus_Results__c[] bonResultList) {
-        List<AF_Bonus_Results__c> BonusResultsCollection;  
+    public static void AF_AfterUpdHandler(AF_Bonus_Results__c[] bonResultList) { 
      Set<String> BonusResultIds = new Set<String>();
       
          

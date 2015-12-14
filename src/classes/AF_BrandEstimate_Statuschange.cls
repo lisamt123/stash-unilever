@@ -1,4 +1,4 @@
-global class AF_BrandEstimate_Statuschange implements Database.Batchable<sObject>
+global with sharing class AF_BrandEstimate_Statuschange implements Database.Batchable<sObject>
 {
      global final String query;
      String statusBasefee='Ready for PO';

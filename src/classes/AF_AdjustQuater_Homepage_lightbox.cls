@@ -1,4 +1,4 @@
-public class AF_AdjustQuater_Homepage_lightbox{
+public With Sharing class AF_AdjustQuater_Homepage_lightbox{
     public string ControlToFocus{get;set;}
     Public list<AF_Brand_Estimate__c> brandEstimate{get;set;}// Create Brand Estimate object list
     public String Category{get;set;}// To get Category value from URL parameter
@@ -108,15 +108,12 @@ public class AF_AdjustQuater_Homepage_lightbox{
      String QuarterName='';
      list<String>addQuarter=new list<String>();
      list<String> validateAddQuarter=new list<String>();
-     list<String>addDummyQuarter=new list<String>();
      selectedBrandEstimateIds = new Set<String>();
      String changedBrandName;
-     String brandQuarter='';
      String raiseNewPOQuarters;
     for(wrapChechbox B:QuarterEstimate){
        
-       if(B.selected == true){
-           brandQuarter = '';
+       if(B.selected){
            changedBrandName = '';
            QuarterName='';
            quarterformat=''; 
@@ -128,7 +125,7 @@ public class AF_AdjustQuater_Homepage_lightbox{
             changedBrandName = B.BrandRecord.Brand__r.Name +'-';     
             changedBrandName=changedBrandname+B.BrandRecord.AF_Agency__r.Name +' '; 
            
-            if(B.Q1 == true){
+            if(B.Q1){
             
                 if(!raiseNewPOQuarters.contains('Q1')){
                     addquarter.add('Q1');
@@ -136,21 +133,21 @@ public class AF_AdjustQuater_Homepage_lightbox{
                 }
                                        
              }
-             if(B.Q2 == true){
+             if(B.Q2){
              
              if(!raiseNewPOQuarters.contains('Q2')){
                 addquarter.add('Q2');
                                 
               }       
              }
-             if(B.Q3 == true){
+             if(B.Q3){
              
              if(!raiseNewPOQuarters.contains('Q3')){
                 addquarter.add('Q3');
                 
                }
                 }
-             if(B.Q4 == true){
+             if(B.Q4){
              
              if(!raiseNewPOQuarters.contains('Q4')){
                 addquarter.add('Q4');
@@ -232,16 +229,16 @@ public class AF_AdjustQuater_Homepage_lightbox{
             ChangedBrand.put(B.BrandRecord.Id,changedBrandName);
             ChangedQuarter.put(B.BrandRecord.Id,QuarterName);
             String raiseQuarter='';
-            if(B.Q1 == true){
+            if(B.Q1){
             raiseQuarter = 'Q1';
             }
-            if(B.Q2 == true){
+            if(B.Q2){
             raiseQuarter = raiseQuarter+';'+'Q2';
             }
-            if(B.Q3 == true){
+            if(B.Q3){
             raiseQuarter = raiseQuarter+';'+'Q3';
             }
-            if(B.Q4 == true){
+            if(B.Q4){
             raiseQuarter = raiseQuarter+';'+'Q4';
             }
             
@@ -256,7 +253,7 @@ public class AF_AdjustQuater_Homepage_lightbox{
             apexpages.addmessage(new apexpages.message(apexpages.severity.info,'Please select current base fee name,Which you want to update'));   // Page message to select atleast one records for update
                
            }
-           else if(displaypopquarter!= true){
+           else if(!displaypopquarter){
            displayPopup = true;
            }            
             
@@ -290,7 +287,7 @@ public class AF_AdjustQuater_Homepage_lightbox{
      }
      catch(Exception e)
      {
-     
+     ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_AdjustQuater_Homepage_lightbox','saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
      }
     
  }

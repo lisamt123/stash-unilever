@@ -12,7 +12,7 @@ test.starttest();
 
 af_SendCurrencyReminder sch=new af_SendCurrencyReminder();
 
-
+System.Assert(sch!= null, 'The CurrencyReminder record not inserted');
 Database.BatchableContext BC ;
 SchedulableContext ctx;
 sch.execute(ctx);

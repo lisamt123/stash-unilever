@@ -84,7 +84,7 @@ public class Test_AF_RaisenewPO_Homepage_lightbox
      
      System.assertEquals(brandEst.Brand__c, bran.id);
      
-     List<AF_Brand_Estimate__c> branEs4=[select name,AF_Basefee_Estimate_Initial_Quarter__c,AF_RaiseNewPOQuarters__c,AF_BackupQuarter__c,AF_Pilot_Model__c,Archived_BrandEstimate_Quarter__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,Brand__r.Name,AF_Agency__r.Name,Brand__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Active__c,AF_Controller_Flag__c from AF_Brand_Estimate__c];     
+     List<AF_Brand_Estimate__c> branEs4=[select name,AF_Basefee_Estimate_Initial_Quarter__c,AF_RaiseNewPOQuarters__c,AF_BackupQuarter__c,AF_Pilot_Model__c,Archived_BrandEstimate_Quarter__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,Brand__r.Name,AF_Agency__r.Name,Brand__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Active__c,AF_Controller_Flag__c from AF_Brand_Estimate__c LIMIT 50000];     
      System.debug(branEs4+'Test Class List agter insert');
      
      AF_Currency__c curr = new AF_Currency__c();
@@ -148,13 +148,13 @@ public class Test_AF_RaisenewPO_Homepage_lightbox
      bonThres.AF_Outstanding__c=20;
      insert bonThres;
      
-    List<AF_Brand_Estimate__c> branEs3=[select name,AF_Basefee_Estimate_Initial_Quarter__c,AF_RaiseNewPOQuarters__c,AF_BackupQuarter__c,AF_Pilot_Model__c,Archived_BrandEstimate_Quarter__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,Brand__r.Name,AF_Agency__r.Name,Brand__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Active__c,AF_Controller_Flag__c from AF_Brand_Estimate__c];     
+    List<AF_Brand_Estimate__c> branEs3=[select name,AF_Basefee_Estimate_Initial_Quarter__c,AF_RaiseNewPOQuarters__c,AF_BackupQuarter__c,AF_Pilot_Model__c,Archived_BrandEstimate_Quarter__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,Brand__r.Name,AF_Agency__r.Name,Brand__c,AF_Fiscal_Year__c,AF_Status_Base_Fees__c,AF_Active__c,AF_Controller_Flag__c from AF_Brand_Estimate__c LIMIT 50000];     
      System.debug(branEs3+'Test Class List Before Constructor');
      
      ApexPages.currentPage().getParameters().put('category',cat.id);
      ApexPages.currentPage().getParameters().put('Year',currYear);
      AF_RaisenewPO_Homepage_lightbox raiseHome=new AF_RaisenewPO_Homepage_lightbox ();
-     List<AF_Brand_Estimate__c> branEs2=[select name,AF_Basefee_Estimate_Initial_Quarter__c,AF_RaiseNewPOQuarters__c,AF_BackupQuarter__c,AF_Pilot_Model__c,Archived_BrandEstimate_Quarter__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,Brand__r.Name,AF_Agency__r.Name,Brand__c,AF_Fiscal_Year__c from AF_Brand_Estimate__c];     
+     List<AF_Brand_Estimate__c> branEs2=[select name,AF_Basefee_Estimate_Initial_Quarter__c,AF_RaiseNewPOQuarters__c,AF_BackupQuarter__c,AF_Pilot_Model__c,Archived_BrandEstimate_Quarter__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,Brand__r.Name,AF_Agency__r.Name,Brand__c,AF_Fiscal_Year__c from AF_Brand_Estimate__c LIMIT 50000];     
      System.debug(branEs2+'Test Class List Constructor');
      AF_RaisenewPO_Homepage_lightbox.wrapChechbox wr=new AF_RaisenewPO_Homepage_lightbox.wrapChechbox(brandEst,true,true,true,false);
      wr.Selected=true;
@@ -162,7 +162,7 @@ public class Test_AF_RaisenewPO_Homepage_lightbox
      raiseHome.QuarterEstimate=brandEstimateRecords;     
      raiseHome.showPopup();
      raiseHome.saveBrandEstimate();   
-     List<AF_Brand_Estimate__c> branEs=[select name,AF_Basefee_Estimate_Initial_Quarter__c,AF_RaiseNewPOQuarters__c,AF_BackupQuarter__c,AF_Pilot_Model__c,Archived_BrandEstimate_Quarter__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,Brand__r.Name,AF_Agency__r.Name,Brand__c,AF_Fiscal_Year__c from AF_Brand_Estimate__c];     
+     List<AF_Brand_Estimate__c> branEs=[select name,AF_Basefee_Estimate_Initial_Quarter__c,AF_RaiseNewPOQuarters__c,AF_BackupQuarter__c,AF_Pilot_Model__c,Archived_BrandEstimate_Quarter__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,Brand__r.Name,AF_Agency__r.Name,Brand__c,AF_Fiscal_Year__c from AF_Brand_Estimate__c LIMIT 50000];     
      List<AF_Brand_Estimate__c> branEst=[select name,AF_Basefee_Estimate_Initial_Quarter__c,AF_RaiseNewPOQuarters__c,AF_BackupQuarter__c,AF_Pilot_Model__c,Archived_BrandEstimate_Quarter__c,AF_Traditional__c,AF_Digital__c,AF_Adaptive__c,Brand__r.Name,AF_Agency__r.Name,Brand__c,AF_Fiscal_Year__c from AF_Brand_Estimate__c where AF_Status_Base_Fees__c = 'Ready for PO' and AF_Fiscal_Year__c =:currYear  and AF_Active__c=True and AF_Controller_Flag__c=False order by name asc limit 49999];
      System.debug(branEs+'Test Class List Initial');
      System.debug(branEst+'Test Class List');

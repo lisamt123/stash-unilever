@@ -1,4 +1,4 @@
-public class AF_MultiSelectComponent{
+public with sharing class AF_MultiSelectComponent{
  Public list<selectOption> groupListComp;
  Set<String> gidComp = new Set<String>();
  Public list<selectOption> gmListComp;
@@ -285,7 +285,6 @@ public class AF_MultiSelectComponent{
         system.debug('tobeDeletedList...'+tobeDeletedList);
         List<String> deletegmIds=new List<String>();
         for(String s:newDeletedList){
-            GroupMember gm = new GroupMember();
             for(String avG:tobeDeletedList){
             
                 if(avg.split('::').get(1)==s){

@@ -1,4 +1,4 @@
-public class AF_FieldHistoryCompController {
+public with sharing class AF_FieldHistoryCompController {
 
     public String ParentRecordId {get;set;}
     public String ParentObjectType {get;set;} 
@@ -10,7 +10,6 @@ public class AF_FieldHistoryCompController {
     public String IsViewAll{get;set;}
     public Boolean IsViewAllLink{get;set;}
     public String IsViewAllValue{get;set;}
-    private string SOQLFields;
     public boolean isAgencyFlag{get;set;} //to check wether logged in user is partner user or not
    /* public String getParentRecordId(){ return ParentRecordId; }
     public void setParentRecordId(String s){
@@ -41,7 +40,6 @@ public class AF_FieldHistoryCompController {
                 isAgencyFlag=true;
             }              
             wrp = new List<WrapperHistory>();
-            string type; 
             Schema.SObjectType objSchema;
             Map<String, Schema.SObjectField> fieldMap;
             Map<String, Schema.SObjectType> schemaMap = Schema.getGlobalDescribe();

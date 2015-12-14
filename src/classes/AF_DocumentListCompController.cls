@@ -1,4 +1,4 @@
-public class AF_DocumentListCompController{
+public with sharing class AF_DocumentListCompController{
 
     //Members
     public String ParentRecordId {get;set;}

@@ -1,6 +1,6 @@
 /* Class is used for  update Agency esimatate Exhcage Rates */
 
-Public Class AF_UpdateAgencyEstimatesValues
+Public with sharing Class AF_UpdateAgencyEstimatesValues
 {
     //Static Mehtod 
     public static void UpdateExchageRates(list<AF_Agency_Estimate__c> ae)
@@ -231,7 +231,7 @@ Public Class AF_UpdateAgencyEstimatesValues
                        }
                     }
                    
-                   if(Testexit==true)
+                   if(Testexit)
                    break;
                }
                /*if(MatrixRecoundCount==matrixRecords.size())

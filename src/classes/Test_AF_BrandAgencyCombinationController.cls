@@ -29,7 +29,7 @@ Static string currYear1=string.valueof(IcurrYear1);
      insert acc;
      
      
-     
+     System.Assert(acc.Id != null, 'The Account record not inserted');
      //Insert Category
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
@@ -39,7 +39,7 @@ Static string currYear1=string.valueof(IcurrYear1);
      cat.AF_Super_category__c='Drinks';
      insert cat;
      
-     
+     System.Assert(cat.Id != null, 'The category record not inserted');
      
      //Insert Brand
      RecordType brandRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Brand' Limit 1];
@@ -50,7 +50,7 @@ Static string currYear1=string.valueof(IcurrYear1);
      brand.AF_Category_Brands__c=cat.Id;
      insert brand;
      
-     
+     System.Assert(brand.Id != null, 'The Brand record not inserted');
      
      //Insert Brand Estimate                  
      AF_Brand_Estimate__c brandEstimate=new AF_Brand_Estimate__c();
@@ -64,7 +64,7 @@ Static string currYear1=string.valueof(IcurrYear1);
      brandEstimate.AF_Traditional__c=20;    
      brandEstimate.AF_Cat_Finance_Approver_1__c=u.Id;    
      insert brandEstimate;
-     
+     System.Assert(brandEstimate.Id != null, 'The brandEstimate record not inserted');
    //  ApexPages.StandardController sc = new ApexPages.StandardController(brand);
    //  ApexPages.currentPage().getParameters().put('id',brand.id);      
      

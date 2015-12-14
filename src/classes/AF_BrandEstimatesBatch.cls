@@ -1,4 +1,4 @@
-global class AF_BrandEstimatesBatch implements Database.Batchable<sObject>
+global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<sObject>
 {
      global final String query;
      String statusBasefee='Ready for PO';
@@ -20,7 +20,6 @@ global class AF_BrandEstimatesBatch implements Database.Batchable<sObject>
     {  
         list<AF_Brand_Estimate__c > abelist = new list<AF_Brand_Estimate__c >();
         list<AF_Agency_Estimate__c> agest_list = new list<AF_Agency_Estimate__c >();
-        list<AF_OOPS_Estimate__c> aoop_list = new list<AF_OOPS_Estimate__c>();
         AF_Brand_Estimate__c  abe = [select id,Name,af_agency__r.name,brand__r.name,AF_Active__c,AF_Adaptive__c ,   AF_Copied__c,AF_Agency__c,Agency_Base_Fee__c,AF_Basefee_Estimate_Initial_Quarter__c,Base_Fee_Total__c,AF_Bonus_Trigger_Date__c,Brand__c,AF_Comment_Type__c,AF_Controller_Flag__c,AF_Created_By_Batch__c,AF_Digital__c,AF_Fiscal_Year__c,AF_Measure_Bonus__c,AF_Overall_OOPS__c,AF_Status_Base_Fees__c,AF_Status_Bonus__c,AF_Status_OOPs_Atcual__c,AF_Status_OOPs_Estimate__c,AF_Traditional__c,AF_Locked__c from AF_Brand_Estimate__c where id in :brandEstimateList];
         AF_Brand_Estimate__c  abe_new = abe.clone(false,true);
         abe_new.AF_Fiscal_Year__c = string.valueof(system.today().year());
@@ -60,7 +59,10 @@ global class AF_BrandEstimatesBatch implements Database.Batchable<sObject>
                       
                           insert agest_list;
                     }
-                  } catch(exception e) {}
+                  } 
+                  catch(exception ex) {
+                  ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimatesBatch','execute',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+                  }
                         
                   /*   // oops estimates   
                     List<AF_OOPS_Estimate__c> aolist = [select id,Name,AF_Agency_Entity__c,AF_Agency_Entity_Column_Name__c,AF_Agency_Exchange_Rate__c,AF_Agency_Spot_Rate__c,AF_Archived__c,AF_Brand_Estimate__c,AF_Estimate__c,AF_Estimate_Local__c,AF_Fiscal_Year__c,AF_Locked__c,AF_Overall_OOPS__c,AF_Quarter__c,AF_Rate_Currency__c,AF_Rate_Type__c,AF_Status__c,AF_Unilever_Entity__c,AF_Unilever_Entity_Column_Name__c from AF_OOPS_Estimate__c where AF_Brand_Estimate__c = : abe.Id];
@@ -78,7 +80,7 @@ global class AF_BrandEstimatesBatch implements Database.Batchable<sObject>
                     }
                     if(aoop_list.size() > 0)
                         insert aoop_list; */  
-                   if(abe.AF_Locked__c == false) {      
+                   if(!abe.AF_Locked__c) {      
                     abe.AF_Locked__c  = true;
                     abe.AF_Copied__c = true;
                     abelist.add(abe);
@@ -94,7 +96,6 @@ global class AF_BrandEstimatesBatch implements Database.Batchable<sObject>
     global void finish(Database.BatchableContext BC)
     {
             List<Id> lstusers=new List<Id>();
-            List<String> lstEmail=new List<String>();
             string emails;
             List<PermissionSetAssignment> permissionSetAssign=[SELECT AssigneeId,Id,PermissionSetId FROM PermissionSetAssignment where PermissionSet.name=:'AF_CMCO_Super_User'];
             if(permissionSetAssign.size()>0){

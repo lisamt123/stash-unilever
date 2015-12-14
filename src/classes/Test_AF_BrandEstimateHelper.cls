@@ -14,8 +14,6 @@ public class Test_AF_BrandEstimateHelper
     {
     Test.startTest();
 
-     
-     Profile p=[Select Id from Profile where Name='System Administrator'];
      Profile p1=[Select Id from Profile where Name='Agency Fee Platform User'];//add
      
      

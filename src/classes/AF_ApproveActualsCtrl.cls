@@ -10,7 +10,6 @@ public with sharing class AF_ApproveActualsCtrl {
     private Map<String, AF_OOPS_Actual__c> quarterActualsMap;
     private List<String> quartersOrder;
     public String selectedQuarter{get;set;}
-    private Map<String, Boolean> documentMap = new Map<String, Boolean>();
     public String message{get;set;}
     public String rjComment{get;set;}
     public static Map<String, String> docQuarterMap = new Map<String, String>{
@@ -33,7 +32,6 @@ public with sharing class AF_ApproveActualsCtrl {
     public List<actualApproval> lstActualApprovals {get;set;}
     public AF_ApproveActualsCtrl() {
 
-        User userObj = new User();
         isAgency = false;
         isFinance = false;
         
@@ -102,7 +100,6 @@ public with sharing class AF_ApproveActualsCtrl {
     public List<actualApproval> getActualApprovals() {
         
             Integer quarterSum = 0;
-            Integer actualvalue=0;
             actualApprovalList = new List<actualApproval>();
             actualApproval wrapActual;
             for(String eachQuarter : docQuarterMap.keySet()) {
@@ -114,7 +111,7 @@ public with sharing class AF_ApproveActualsCtrl {
                     quarterSum = getActualInputs(eachQuarter) != null ? quarterSum + getActualInputs(eachQuarter) : quarterSum;
                 }else {
                     wrapActual = new actualApproval(null, null, 
-                                                    eachQuarter, 'NoAction', null, null);    
+                                                    eachQuarter, AF_Constants.NOACTION, null, null);    
                 }
                 system.debug(eachQuarter + ' ** wrapActual : ' + wrapActual);
                                 
@@ -147,7 +144,7 @@ public with sharing class AF_ApproveActualsCtrl {
     
     public String getUserAction(String quarterStatus, String eachQuarter) {
         
-        String valueToReturn;
+        String valueToReturn='';
         Map<String, Boolean> quarterDateMap = new Map<String, Boolean>();
         List<AF_AgencyEmailAlerts__c> agencyAccessList = AF_AgencyEmailAlerts__c.getall().values();
         for(AF_AgencyEmailAlerts__c eachSetting : agencyAccessList) {
@@ -175,9 +172,9 @@ public with sharing class AF_ApproveActualsCtrl {
         if(isAgency) {
             if(quarterDateMap.get(eachQuarter)) {
                 valueToReturn = isBackUpUploaded(eachQuarter) && 
-                                    userActionMap.get('ag-'+quarterStatus) == 'EnterActuals' ? 'submit' : userActionMap.get('ag-'+quarterStatus);
+                                    userActionMap.get('ag-'+quarterStatus) == AF_Constants.ENTERACTUALS ? 'submit' : userActionMap.get('ag-'+quarterStatus);
             }else {
-                valueToReturn = 'NoAction';
+                valueToReturn = AF_Constants.NOACTION;
             }
         }else if(isFinance) {
             valueToReturn = userActionMap.get('cf-'+quarterStatus);
@@ -188,7 +185,7 @@ public with sharing class AF_ApproveActualsCtrl {
     
     private String getQuarterStatus(String quarter) {
         
-        String valueToReturn;
+        String valueToReturn='';
         if(quarter == 'Q1') {
             valueToReturn = quarterActualsMap.get(quarter).AF_Status_Q1__c;
         }else if(quarter == 'Q2') {
@@ -219,7 +216,7 @@ public with sharing class AF_ApproveActualsCtrl {
     }
     private Boolean getActualUploadedValues(AF_OOPS_Actual__c oop, String quarter) {
         
-        Boolean valueToReturn;
+        Boolean valueToReturn=false;
         if(quarter == 'Q1') {
             valueToReturn = oop.AF_Q1_Backup__c;
         }else if(quarter == 'Q2') {
@@ -254,59 +251,59 @@ public with sharing class AF_ApproveActualsCtrl {
         Boolean isDoc = false;
         List<AF_OOPS_Actual__c> updateOopsActual = new List<AF_OOPS_Actual__c>();
         Integer counter =0;
+		//Set<String> documentBackup = new Set<String>();
+		//Set<Id> oopsIdSet = new Set<Id>();
         system.debug('selectedQuarter..'+selectedQuarter);
         for(actualApproval oop:actualApprovalList){
         if(oop.quarter == selectedQuarter){
+		    //documentBackup.add(docQuarterMap.get(oop.quarter));
+			//oopsIdSet.add(oop.oopsActual.Id);
             AF_OOPS_Actual__c oopsActl = [SELECT Name, Quarter__c, AF_Status_Q1__c, AF_Status_Q2__c, AF_Status_Q3__c, AF_Status_Q4__c,
                             AF_Q1__c, AF_Q2__c, AF_Q3__c, AF_Q4__c,AF_Q1_Backup__c,AF_Q2_Backup__c,AF_Q3_Backup__c,AF_Q4_Backup__c,
                             (SELECT ContentType FROM Attachments WHERE ContentType = :docQuarterMap.get(oop.quarter)) 
                         FROM AF_OOPS_Actual__c 
                         WHERE Id = :oop.oopsActual.Id];
-            if(oopsActl.Attachments.size() > 0 && !getActualUploadedValues(oopsActl, oop.quarter)) {
+            if(oopsActl.Attachments.size() > 0 && !getActualUploadedValues(oopsActl, oop.quarter)){
                 isDoc = true;
-            }
-            system.debug('oop.quarter...'+oop.quarter);
-            /*if(!isDoc){
-             counter++;
-             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Please attach a file and then save ' +  oop.quarter + '  Actuals'));
-            }*/
+            }            
             if(counter==0){
         if(oop.quarter=='Q1'&& oop.actualInput != null && oop.actualInput !=0){
                 oop.oopsActual.AF_Q1__c = oop.actualInput;
-                oop.oopsActual.AF_Status_Q1__c = 'With Category Finance';
-                oop.oopsActual.AF_Status__c='With Category Finance';
+                oop.oopsActual.AF_Status_Q1__c = AF_Constants.CATEGORY_FINANCE;
+                oop.oopsActual.AF_Status__c=AF_Constants.CATEGORY_FINANCE;
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'NoAction';
+                oop.userAction = AF_Constants.NOACTION;
                 }
                else if(oop.quarter=='Q2' && oop.actualInput != null && oop.actualInput !=0){
                 
                 oop.oopsActual.AF_Q2__c = oop.actualInput;
-                oop.oopsActual.AF_Status_Q2__c = 'With Category Finance';
-                oop.oopsActual.AF_Status__c='With Category Finance';
+                oop.oopsActual.AF_Status_Q2__c = AF_Constants.CATEGORY_FINANCE;
+                oop.oopsActual.AF_Status__c=AF_Constants.CATEGORY_FINANCE;
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'NoAction';
+                oop.userAction = AF_Constants.NOACTION;
                 }
                else if (oop.quarter=='Q3' && oop.actualInput != null && oop.actualInput !=0){
                 oop.oopsActual.AF_Q3__c = oop.actualInput;
-                oop.oopsActual.AF_Status_Q3__c = 'With Category Finance';
-                oop.oopsActual.AF_Status__c='With Category Finance';
+                oop.oopsActual.AF_Status_Q3__c = AF_Constants.CATEGORY_FINANCE;
+                oop.oopsActual.AF_Status__c=AF_Constants.CATEGORY_FINANCE;
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'NoAction';
+                oop.userAction = AF_Constants.NOACTION;
                 }
                 else if(oop.quarter=='Q4'){
                 system.debug('inside Q4');
                 oop.oopsActual.AF_Q4__c = oop.actualInput;
                 oop.actualInput = oop.actualInput;
-                oop.oopsActual.AF_Status_Q4__c = 'With Category Finance';
-                oop.oopsActual.AF_Status__c='With Category Finance';
+                oop.oopsActual.AF_Status_Q4__c = AF_Constants.CATEGORY_FINANCE;
+                oop.oopsActual.AF_Status__c=AF_Constants.CATEGORY_FINANCE;
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'NoAction';
+                oop.userAction = AF_Constants.NOACTION;
                 }
                 }
         }
+		
         
         }
         system.debug('updateOopsActual...'+updateOopsActual);
@@ -328,7 +325,7 @@ public with sharing class AF_ApproveActualsCtrl {
                 oop.oopsActual.AF_Q1_Backup__c = false;
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'NoAction';
+                oop.userAction = AF_Constants.NOACTION;
                 }
                 if(oop.quarter=='Q2'){
                 oop.oopsActual.AF_Status_Q2__c = 'Approved';
@@ -336,7 +333,7 @@ public with sharing class AF_ApproveActualsCtrl {
                 oop.oopsActual.AF_Q2_Backup__c = false;
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'NoAction';
+                oop.userAction = AF_Constants.NOACTION;
                 }
                 if(oop.quarter=='Q3'){
                 oop.oopsActual.AF_Status_Q3__c = 'Approved';
@@ -344,7 +341,7 @@ public with sharing class AF_ApproveActualsCtrl {
                 oop.oopsActual.AF_Q3_Backup__c = false;
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'NoAction';
+                oop.userAction = AF_Constants.NOACTION;
                 }
                 if(oop.quarter=='Q4'){
                 oop.oopsActual.AF_Status_Q4__c = 'Approved';
@@ -352,14 +349,15 @@ public with sharing class AF_ApproveActualsCtrl {
                 oop.oopsActual.AF_Q4_Backup__c = false;
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'NoAction';
+                oop.userAction = AF_Constants.NOACTION;
                 }
         }
-        if(updateOopsActual.size()>0){
-            update updateOopsActual;
-        }
+        
         
     }
+	if(updateOopsActual.size()>0){
+          update updateOopsActual;
+        }
     //ListActualApprovals();
     return null;
     }
@@ -377,7 +375,7 @@ public with sharing class AF_ApproveActualsCtrl {
                 system.debug('** rjComment Q1 : ' +oop.rejectComments);
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'NoAction';
+                oop.userAction = AF_Constants.NOACTION;
                 }
                 if(oop.quarter=='Q2'){
                 oop.oopsActual.AF_Status_Q2__c = 'Rejected - Enter Actuals';
@@ -387,7 +385,7 @@ public with sharing class AF_ApproveActualsCtrl {
                 system.debug('** rjComment Q2 : ' +oop.rejectComments);
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'NoAction';
+                oop.userAction = AF_Constants.NOACTION;
                 }
                 if(oop.quarter=='Q3'){
                 oop.oopsActual.AF_Status_Q3__c = 'Rejected - Enter Actuals';
@@ -397,7 +395,7 @@ public with sharing class AF_ApproveActualsCtrl {
                 system.debug('** rjComment Q3 : ' +oop.rejectComments);
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'NoAction';
+                oop.userAction = AF_Constants.NOACTION;
                 }
                 if(oop.quarter=='Q4'){
                 oop.oopsActual.AF_Status_Q4__c = 'Rejected - Enter Actuals';
@@ -407,15 +405,16 @@ public with sharing class AF_ApproveActualsCtrl {
                 system.debug('** rjComment Q4 : ' +oop.rejectComments);
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'NoAction';
+                oop.userAction = AF_Constants.NOACTION;
                 }
                 
         }
-        if(updateOopsActual.size()>0){
-            update updateOopsActual;
-        }
+        
     
     }
+	if(updateOopsActual.size()>0){
+            update updateOopsActual;
+        }
       // ListActualApprovals(); 
          return null;
     }
@@ -430,33 +429,34 @@ public with sharing class AF_ApproveActualsCtrl {
                 oop.oopsActual.AF_Q1_Backup__c = false;
 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'EnterActuals';
+                oop.userAction = AF_Constants.ENTERACTUALS;
                 }
                 if(oop.quarter=='Q2'){
                 oop.oopsActual.AF_Q2_Backup__c = false;
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'EnterActuals';
+                oop.userAction = AF_Constants.ENTERACTUALS;
                 }
                 if(oop.quarter=='Q3'){
                 oop.oopsActual.AF_Q3_Backup__c = false;
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'EnterActuals';
+                oop.userAction = AF_Constants.ENTERACTUALS;
                 }
                 if(oop.quarter=='Q4'){
                 oop.oopsActual.AF_Q4_Backup__c = false;
                 
                 updateOopsActual.add(oop.oopsActual);
-                oop.userAction = 'EnterActuals';
+                oop.userAction = AF_Constants.ENTERACTUALS;
                 }
                 
         }
-        if(updateOopsActual.size()>0){
-            update updateOopsActual;
-        }
+        
     
     }
+	if(updateOopsActual.size()>0){
+            update updateOopsActual;
+        }
       // ListActualApprovals(); 
          return null;
     }

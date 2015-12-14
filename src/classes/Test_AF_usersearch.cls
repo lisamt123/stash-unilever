@@ -20,6 +20,7 @@ public class Test_AF_usersearch{
       TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
       UserName='testuser@test123321.com',AF_Brand__c='Test Brand1',AF_Category__c='Test Beverages1');
      insert u;  
+     System.Assert(u.Id != null, 'The User record not inserted');
     test.starttest(); 
      af_usersearch  aff=new af_usersearch();
      aff.firstName=u.firstname;
@@ -53,7 +54,7 @@ public class Test_AF_usersearch{
       TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
       UserName='testuser@test123321.com',AF_Brand__c='Test Brand1',AF_Category__c='Test Beverages1');
      insert u; 
-   
+   System.Assert(u.Id != null, 'The User record not inserted');
  
     test.starttest();
    af_usersearch  aff=new af_usersearch();

@@ -91,7 +91,7 @@ public with sharing class AF_OOPSEstimateController {
   
     public PageReference Save()
     {        
-        PageReference pageRef;                         
+        //PageReference pageRef;                         
         try
         {
     
@@ -127,7 +127,7 @@ public with sharing class AF_OOPSEstimateController {
     }
     private string CommaFilter(string value)
     {
-        if(value.contains(',') == true){value = value.replaceAll(',','');}
+        if(value.contains(',')){value = value.replaceAll(',','');}
         return value;       
     } 
     

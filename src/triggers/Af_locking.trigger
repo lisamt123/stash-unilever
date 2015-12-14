@@ -4,7 +4,7 @@ trigger Af_locking on AF_Brand_Estimate__c (before update) {
    for(AF_Brand_Estimate__c a : trigger.new)
    {
        AF_Brand_Estimate__c ab = trigger.oldmap.get(a.id);
-       if(ab.AF_Locked__c == true && a.AF_Locked__c == true  )
+       if(ab.AF_Locked__c && a.AF_Locked__c )
          useridset.add(userinfo.getuserid());
    }
   //map<id,PermissionSetAssignment> pmap = new map<id,PermissionSetAssignment>([SELECT AssigneeId,Id,PermissionSetId FROM PermissionSetAssignment where PermissionSet.name=:'AF_CMCO_Super_User' limit 10]);
@@ -18,7 +18,7 @@ trigger Af_locking on AF_Brand_Estimate__c (before update) {
    {
       system.debug(userset +'u====');
        AF_Brand_Estimate__c ab = trigger.oldmap.get(a.id);
-       if(ab.AF_Locked__c == true && a.AF_Locked__c == true && !userset.contains(userinfo.getuserid()) )
+       if(ab.AF_Locked__c && a.AF_Locked__c && !userset.contains(userinfo.getuserid()) )
           a.adderror('Record is locked, CMCO Super user can only edit this records');
    }
 }

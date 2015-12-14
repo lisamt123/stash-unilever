@@ -198,7 +198,7 @@ public class Test_AF_AfterUpdateOOPSActual
      update oopsActual;    
      
      //Instantiating AF_OOPSRecordManager Class
-     AF_OOPSRecordManager oopsRM=new AF_OOPSRecordManager(brandEst);
+     
      
      //Insert Brand Estimate                  
      AF_Brand_Estimate__c brandEst1=new AF_Brand_Estimate__c();

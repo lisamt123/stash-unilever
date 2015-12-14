@@ -21,7 +21,7 @@ public class Test_AF_Sendemail_categoryfinance
       TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
       UserName='testusersm@test123321.com',AF_Brand__c='Test Brandsm',AF_Category__c='Test Beveragessm');
      insert u;        
-     
+     System.Assert(u.Id != null, 'The User record not inserted');
      System.runAs(u)
      { 
        AF_Sendemail_categoryfinance sendMailCatFin=new AF_Sendemail_categoryfinance();

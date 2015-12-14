@@ -1,4 +1,4 @@
-public class AF_middlebonusmatrix {
+public with sharing class AF_middlebonusmatrix {
     public String url_brandid{get;set;}
     Public String url_agencyid{get;set;}
     Public String url_year{get;set;}

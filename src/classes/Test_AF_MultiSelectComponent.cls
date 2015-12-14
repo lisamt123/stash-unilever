@@ -28,16 +28,19 @@ PermissionSet ps1=new PermissionSet();
 ps1.Name = 'AF_Sairam';
 ps1.Label = 'AF_Sairam';
 insert ps1; 
+System.Assert(ps1.Id != null, 'The Permission set record not inserted');
 
 PermissionSet ps2=new PermissionSet();
 ps2.Name = 'AF_Martin';
 ps2.Label = 'AF_Martin';
 insert ps2;
+System.Assert(ps2.Id != null, 'The Permission set record not inserted');
 
 PermissionSetAssignment psa1 = new PermissionSetAssignment();
 psa1.AssigneeId = u.Id;
 psa1.PermissionSetId = ps1.Id;     
 insert psa1;
+System.Assert(psa1.Id != null, 'The permissionsetAssigment record not inserted');
 
 /*PermissionSetAssignment psa2 = new PermissionSetAssignment();
 psa2.AssigneeId = u.Id;
@@ -49,14 +52,14 @@ insert psa2;*/
 Group gr = new Group();
 gr.Name = 'af_reetha';
 insert gr;
-
+System.Assert(gr.Id != null, 'The Group record not inserted');
 //insert groupmember
 
 GroupMember gmember = new GroupMember();
 gmember.UserOrGroupId = u.Id;
 gmember.GroupId = gr.Id;
 insert gmember;
- 
+ System.Assert(gmember.Id != null, 'The GroupMember record not inserted');
 ApexPages.currentPage().getParameters().put('userid', u.id); 
 //Intialize the Class
 AF_MultiSelectComponent af=new AF_MultiSelectComponent();
@@ -101,16 +104,19 @@ PermissionSet ps1=new PermissionSet();
 ps1.Name = 'AF_Sairam';
 ps1.Label = 'AF_Sairam';
 insert ps1; 
+System.Assert(ps1.Id != null, 'The Permission  set record not inserted');
 
 PermissionSet ps2=new PermissionSet();
 ps2.Name = 'AF_Martin';
 ps2.Label = 'AF_Martin';
 insert ps2;
+System.Assert(ps2.Id != null, 'The permission set record not inserted');
 
 PermissionSetAssignment psa1 = new PermissionSetAssignment();
 psa1.AssigneeId = u.Id;
 psa1.PermissionSetId = ps1.Id;     
 insert psa1;
+System.Assert(psa1.Id != null, 'The brandEstimate record not inserted');
 
 /*PermissionSetAssignment psa2 = new PermissionSetAssignment();
 psa2.AssigneeId = u.Id;
@@ -122,12 +128,14 @@ Group gr = new Group();
 gr.Name = 'af_reetha';
 gr.DeveloperName='af_reetha';
 insert gr;
+System.Assert(gr.Id != null, 'The Group record not inserted');
 
 //insert group member
 GroupMember gmember = new GroupMember();
 gmember.UserOrGroupId = u.Id;
 gmember.GroupId = gr.Id;
 insert gmember;
+ System.Assert(gmember.Id != null, 'The GroupMember record not inserted');
  
 ApexPages.currentPage().getParameters().put('userid', u.id); 
 //Intialize the Class

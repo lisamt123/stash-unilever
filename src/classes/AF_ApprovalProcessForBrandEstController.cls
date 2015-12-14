@@ -30,6 +30,7 @@ public Class AF_ApprovalProcessForBrandEstController
     public boolean ApprovalButton{set;get;}
     Public boolean IsCatFinanceEdited{get;set;}
     Public boolean isAgency{get;set;}
+    private static string AF_ApprovalProcessForBrandEstController = 'AF_ApprovalProcessForBrandEstController';
     public void RejectBrandEstComment()
     {
         displayPopupRejComment=true;
@@ -444,7 +445,7 @@ public Class AF_ApprovalProcessForBrandEstController
             if(LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' &&  Targetprocess.size()==0)
             {
               
-                if(Controllerflag==true)
+                if(Controllerflag)
                 {
                     if(BrandEstRecord!=null)
                     {
@@ -458,8 +459,9 @@ public Class AF_ApprovalProcessForBrandEstController
                 ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'You cannot flag the record'));
                 
             }
-           }catch(exception e)
+           }catch(exception ex)
            {
+           	ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'TrueControllerFlag',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
            }
     
     }
@@ -502,9 +504,9 @@ public Class AF_ApprovalProcessForBrandEstController
            // }      
         
         }
-        catch(exception e)
+        catch(exception ex)
         {
-        
+        ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_ApprovalProcessForBrandEstController,'TrueControllerFlag',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
         }
     
     }

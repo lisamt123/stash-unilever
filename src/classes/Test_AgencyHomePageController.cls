@@ -18,9 +18,9 @@ public class Test_AgencyHomePageController
      
      //Insert User 
      User u= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='CMCO Super User',isActive=true, 
+      EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='CMCO Super User',isActive=true, 
       UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c='Test Beveragesc');
      insert u;        
      
@@ -48,7 +48,7 @@ public class Test_AgencyHomePageController
      cat.RecordTypeId=catRT.Id;
      cat.Name='Test Beveragesc';
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -79,11 +79,11 @@ public class Test_AgencyHomePageController
      System.assertEquals(brandEst.Brand__c, bran.id);
      
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_COUNTRY_CODE;
      curr.AF_Fiscal_Year_new__c = currYear;
-     curr.Currency_Unit__c = 'US $';
+     curr.Currency_Unit__c = AF_Constants.TEST_CURRENCY_UNIT;
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
@@ -104,7 +104,7 @@ public class Test_AgencyHomePageController
      AF_Entity__c entity1=new AF_Entity__c();
      entity1.Name='Test Entityc';        
      entity1.AF_Agency__c=acc.Id;
-     entity1.AF_Country__c='Australia';
+     entity1.AF_Country__c='Austra';
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
@@ -174,9 +174,9 @@ public class Test_AgencyHomePageController
      
      //Insert User 
      User u= new User(Alias = 'testc1', Email='standarduserc1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userc1', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
+      EmailEncodingKey='UTF-8', LastName='Test Userc1', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
       UserName='testuserc1@test123321.com',AF_Brand__c='Test Brandc1',AF_Category__c='Test Beveragesc1');
      insert u;        
      
@@ -204,7 +204,7 @@ public class Test_AgencyHomePageController
      cat.RecordTypeId=catRT.Id;
      cat.Name='Test Beveragesc1';
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -235,11 +235,11 @@ public class Test_AgencyHomePageController
      System.assertEquals(brandEst.Brand__c, bran.id);
      
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_COUNTRY_CODE;
      curr.AF_Fiscal_Year_new__c = currYear;
-     curr.Currency_Unit__c = 'US $';
+     curr.Currency_Unit__c = AF_Constants.TEST_CURRENCY_UNIT;
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
@@ -260,7 +260,7 @@ public class Test_AgencyHomePageController
      AF_Entity__c entity1=new AF_Entity__c();
      entity1.Name='Test Entityc';        
      entity1.AF_Agency__c=acc.Id;
-     entity1.AF_Country__c='Australia';
+     entity1.AF_Country__c='Australi';
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
@@ -335,9 +335,9 @@ public class Test_AgencyHomePageController
      
      //Insert User 
      User u= new User(Alias = 'testc2', Email='standarduserc2@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userc2', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
+      EmailEncodingKey='UTF-8', LastName='Test Userc2', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
       UserName='testuserc2@test123321.com',AF_Brand__c='Test Brandc2',AF_Category__c='Test Beveragesc2');
      insert u;        
      
@@ -365,7 +365,7 @@ public class Test_AgencyHomePageController
      cat.RecordTypeId=catRT.Id;
      cat.Name='Test Beveragesc2';
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -392,11 +392,11 @@ public class Test_AgencyHomePageController
      System.assertEquals(brandEst.Brand__c, bran.id);
      
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_COUNTRY_CODE;
      curr.AF_Fiscal_Year_new__c = currYear;
-     curr.Currency_Unit__c = 'US $';
+     curr.Currency_Unit__c = AF_Constants.TEST_CURRENCY_UNIT;
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
@@ -416,7 +416,7 @@ public class Test_AgencyHomePageController
      RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
      AF_Entity__c entity1=new AF_Entity__c();
      entity1.Name='Test Entityc2';        
-     entity1.AF_Country__c='Australia';
+     entity1.AF_Country__c='Australiya';
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
@@ -471,9 +471,9 @@ public class Test_AgencyHomePageController
      
      //Insert User 
      User u= new User(Alias = 'testc3', Email='standarduserc3@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userc3', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Procurement',isActive=true, 
+      EmailEncodingKey='UTF-8', LastName='Test Userc3', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Procurement',isActive=true, 
       UserName='testuserc3@test123321.com',AF_Brand__c='Test Brandc3',AF_Category__c='Test Beveragesc3');
      insert u;        
      
@@ -501,7 +501,7 @@ public class Test_AgencyHomePageController
      cat.RecordTypeId=catRT.Id;
      cat.Name='Test Beveragesc3';
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -528,11 +528,11 @@ public class Test_AgencyHomePageController
      System.assertEquals(brandEst.Brand__c, bran.id);
      
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_COUNTRY_CODE;
      curr.AF_Fiscal_Year_new__c = currYear;
-     curr.Currency_Unit__c = 'US $';
+     curr.Currency_Unit__c = AF_Constants.TEST_CURRENCY_UNIT;
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
@@ -552,7 +552,7 @@ public class Test_AgencyHomePageController
      RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
      AF_Entity__c entity1=new AF_Entity__c();
      entity1.Name='Test Entityc3';        
-     entity1.AF_Country__c='Australia';
+     entity1.AF_Country__c='Austria';
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      

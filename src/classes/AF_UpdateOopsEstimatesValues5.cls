@@ -1,6 +1,6 @@
 /* Class is used for  update oops Estimate Exchage Rates */
 
-Public Class AF_UpdateOopsEstimatesValues5
+Public with sharing Class AF_UpdateOopsEstimatesValues5
 {
     //Static Mehtod 
     public static void UpdateExchageRates(list<AF_OOPS_Estimate__c> ae)
@@ -280,7 +280,7 @@ Public Class AF_UpdateOopsEstimatesValues5
                     }  
                     
                   } 
-                   if(Testexit==true)
+                   if(Testexit)
                    break;
                }
          }

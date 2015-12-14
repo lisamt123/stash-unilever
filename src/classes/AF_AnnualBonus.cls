@@ -1,4 +1,4 @@
-public class AF_AnnualBonus {
+public with sharing class AF_AnnualBonus {
     Public Boolean IsDraft{get;set;}
     public Decimal bonusTradDigitalFee{get;set;}
     public Boolean showmainblock{get;set;}
@@ -47,6 +47,11 @@ public class AF_AnnualBonus {
     public  decimal sum_of_bonusable_fees_onload { get; set; } //to hold the sum of Bonusable fees on load 03-09-2014
     public Integer Totals_BonusMeasureTrad { get; set; }
     public Integer Totals_BonusMeasureDigital { get; set; }
+    /*Start code refactoring*/
+    private static String Digital = 'Digital';
+    private static String Trad = 'Trad';
+    private static String AF_AnnualBonus = 'AF_AnnualBonus';
+    /*End code refactoring*/
     /**    constructor    **/
     public  AF_AnnualBonus() {
         noDisplay=true;
@@ -65,8 +70,7 @@ public class AF_AnnualBonus {
         IsEditable=false;
         isAgency = false;
         agency_name='';
-        Brand_name='';
-        Integer Quant=null;
+        Brand_name=''; 
         Country_name='';
         Traditional_value=0;
         Digital_value=0;
@@ -102,7 +106,7 @@ public class AF_AnnualBonus {
             AF_Pilot_Model= Pilot_model.get(0).AF_Pilot_Model__c; 
             No_Bonus_Check = Pilot_model.get(0).AF_No_Bonus__c;
         }
-        if(AF_Pilot_Model==false){
+        if(!AF_Pilot_Model){
             
             set<string> agencyEstUnqStr = new set<string>();
             
@@ -137,7 +141,7 @@ public class AF_AnnualBonus {
                         String countryDigital = bonus_SubResult_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
                         String countryTrad = bonus_SubResult_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
                         Integer count=0;
-                        if(bonus_SubResult_Obj.AF_Digital__c == true){
+                        if(bonus_SubResult_Obj.AF_Digital__c){
                             if(!countryBMMap.containsKey(countryDigital)){
                                 countryBMMap.put(countryDigital,1);
                             }
@@ -147,7 +151,7 @@ public class AF_AnnualBonus {
                                 countryBMMap.put(countryDigital,count);
                             }
                         }
-                        if(bonus_SubResult_Obj.AF_Traditional__c == true){
+                        if(bonus_SubResult_Obj.AF_Traditional__c){
                             if(!countryBMMap.containsKey(countryTrad)){
                                 countryBMMap.put(countryTrad,1);
                             }
@@ -172,8 +176,8 @@ public class AF_AnnualBonus {
                         //String BMStr = agencyname_id.substring(0,15)+'::'+ brandname_id.substring(0,15)+'::'+bonus_Threshold_Obj.AF_Country__r.AF_Country__c+'::'+bonus_Threshold_Obj.Year__c+'::'+bonus_Threshold_Obj.Bonus_Measure__c;
                         String BMStr = bonus_SubResult_Obj.AF_Unique_Thresholds__c;
                         map<String,boolean> tradDigMapBM = new map<String,boolean>();
-                        tradDigMapBM.put('Digital',bonus_SubResult_Obj.AF_Digital__c);
-                        tradDigMapBM.put('Trad',bonus_SubResult_Obj.AF_Traditional__c);
+                        tradDigMapBM.put(Digital,bonus_SubResult_Obj.AF_Digital__c);
+                        tradDigMapBM.put(Trad,bonus_SubResult_Obj.AF_Traditional__c);
                         bonus_Threshold_Trad_Dig_BM_Map.put(BMStr,tradDigMapBM);
                         system.debug('bonus_Threshold_Trad_Dig_BM_Map...****'+bonus_Threshold_Trad_Dig_BM_Map);
                     }
@@ -189,17 +193,17 @@ public class AF_AnnualBonus {
                                 String StrTemp = agencyname_id+'::'+ brandname_id+'::'+bonus_Threshold_Obj.AF_Country__r.AF_Country__c+'::'+bonus_Threshold_Obj.AF_Bonus_Threshold__r.Year__c;
                                 if(countryBMMap.size()>0){
                                 if(countryBMMap.get(countryDigital)>0 && countryBMMap.get(countryTrad) >0){
-                                    tradDigMapBMtemp.put('Trad',true);
-                                    tradDigMapBMtemp.put('Digital',true);
+                                    tradDigMapBMtemp.put(Trad,true);
+                                    tradDigMapBMtemp.put(Digital,true);
                                 }
                                 else if(countryBMMap.get(countryDigital)>0){
                                     
-                                    tradDigMapBMtemp.put('Digital',true);
-                                    tradDigMapBMtemp.put('Trad',false);
+                                    tradDigMapBMtemp.put(Digital,true);
+                                    tradDigMapBMtemp.put(Trad,false);
                                 }
                                 else if(countryBMMap.get(countryTrad)>0){
-                                  tradDigMapBMtemp.put('Trad',true);
-                                  tradDigMapBMtemp.put('Digital',false);
+                                  tradDigMapBMtemp.put(Trad,true);
+                                  tradDigMapBMtemp.put(Digital,false);
                                 }
                                 bonus_Threshold_Trad_Dig_BM_MapTemp.put(StrTemp,tradDigMapBMtemp);
                             }
@@ -239,13 +243,11 @@ public class AF_AnnualBonus {
                             setofnonthreshold_country.add(oddagency.AF_Unilever_Entity__r.AF_Country__c);
                         }
                     } 
-                    if(setofnonthreshold_country.size()>0 && No_Bonus_Check==false){
+                    if(setofnonthreshold_country.size()>0 && !No_Bonus_Check){
                         Apexpages.addmessage(new apexpages.message(apexpages.severity.WARNING,  'The Thresholds entered do not match the Unilever entity/entities in the Base Fees matrix. Please resolve the following mismatches by setting Bonus Threshold for Unilever entities: '+ ' '+ setofnonthreshold_country ));
                     }
                 }
-                
-                map<String,Integer> AgencyMap= new map<String,Integer>();
-                map<String,Integer>AgencyTotalfees=new map<String,Integer>();
+                             
                 Map<String,Integer> EntityAmtMap = new Map<String,Integer>();
                 Decimal totalbonusval=0;
                 
@@ -282,15 +284,15 @@ public class AF_AnnualBonus {
                     }
                     system.debug('EntityAmtMap....****'+EntityAmtMap);
                     if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c)!=null){
-                                if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get('Digital') && bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get('Trad')){
+                                if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Digital) && bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Trad)){
                                 Totals_BonusMeasureDigital = Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
                                 Totals_BonusMeasureTrad = Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
                                 }
-                                else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get('Digital')){
+                                else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Digital)){
                                 Totals_BonusMeasureDigital = Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
                                 
                                 }
-                                else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get('Trad')){
+                                else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Trad)){
                                 Totals_BonusMeasureTrad = Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
                                 }
                             }
@@ -335,11 +337,11 @@ public class AF_AnnualBonus {
                     Integer count=0;
                     String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
                     String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
-                    if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get('Digital')==true){
+                    if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Digital)){
                         count = BonusMeasureCalcMap.get(countryDigital);
                         system.debug(count);
                     }
-                    if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get('Trad')==true){
+                    if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Trad)){
                         count = count+BonusMeasureCalcMap.get(countryTrad);
                         system.debug(count);
                     }
@@ -375,7 +377,7 @@ public class AF_AnnualBonus {
             string brandname_id=bonus_Threshold_Obj.Brand_Name__c;  
             string str=agencyname_id.substring(0,15)+'::'+brandname_id.substring(0,15)+'::'+bonus_Threshold_Obj.AF_Country__r.AF_Country__c+'::'+bonus_Threshold_Obj.Year__c;
             string strBM=agencyname_id.substring(0,15)+'::'+brandname_id.substring(0,15)+'::'+bonus_Threshold_Obj.AF_Country__r.AF_Country__c+'::'+bonus_Threshold_Obj.Year__c+'::'+bonus_Threshold_Obj.Bonus_Measure__c;
-            decimal bonus_fees=agencyMap.get(str);
+            
             */
                     string strBM = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
                     
@@ -390,11 +392,7 @@ public class AF_AnnualBonus {
                             qual_per=0;
                             }
                             
-                            if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==null){
-                                
-                            }
-                            
-                            else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
+                             if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
                                 
                                 Qual_value=Custom_Qualatative.X1__c;
                                 sum_of_qual_value=sum_of_qual_value + Qual_value;
@@ -426,11 +424,9 @@ public class AF_AnnualBonus {
                             else{
                             qual_per=0;
                             }
-                            if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==null){
                             
-                            }
                             
-                            else if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
+                             if(mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==1 || mapBonus_result.get(bonus_Threshold_Obj.AF_Unique_Thresholds__c).AF_Qual__c==2){
                                 
                                 Qual_value=Custom_Qualatative.X1__c;
                                 sum_of_qual_value=sum_of_qual_value + Qual_value;
@@ -464,14 +460,14 @@ public class AF_AnnualBonus {
                     Integer count=0;
                     String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
                     String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
-                    if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get('Digital')==true){
+                    if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Digital)){
                         
                         count = BonusMeasureCalcMap.get(countryDigital);
                         system.debug('strBM...***digital'+strBM);
                         system.debug(count);
                         
                     }
-                    if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get('Trad')==true){
+                    if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Trad)){
                         count = count+BonusMeasureCalcMap.get(countryTrad);
                         system.debug('strBM...***Trad'+strBM);
                         system.debug(count);
@@ -512,7 +508,7 @@ public class AF_AnnualBonus {
                 system.debug(e);
             }*/
         } 
-        if(AF_Pilot_Model==true)
+        if(AF_Pilot_Model)
         {
             bonusTradDigitalFee = 0;
             Decimal renumRating = 0;
@@ -529,10 +525,10 @@ public class AF_AnnualBonus {
             bonusThresholdRenumeration =[select id,AF_Digital__c,AF_Traditional__c from AF_Bonus_Threshold__c where Agency_Name__c =:agency_id and Brand_Name__c=:Brand_id and Year__c=:current_year and AF_Country__c=null limit 1];
             
             for(AF_Agency_Estimate__c agEstObj:[Select id,AF_Total__c,AF_Bonus_Agency_Formula__c,name,Agency_Account__c,Brand__c, AF_Unilever_Entity__c,AF_Digital__c,AF_Traditional__c,AF_Unilever_Entity__r.name from AF_Agency_Estimate__c where AF_Agency_Entity__r.AF_Agency__c=:agency_id and AF_Brand_Estimate__r.Brand__c=:Brand_id and AF_Fiscal_Year__c=:current_year and AF_Brand_Estimate__r.AF_Active__c=True]){
-                if(bonusThresholdRenumeration[0].AF_Digital__c==True){
+                if(bonusThresholdRenumeration[0].AF_Digital__c){
                     TotalDigitalValue=TotalDigitalValue + (integer.valueof(agEstObj.AF_Digital__c));
                 }
-                if(bonusThresholdRenumeration[0].AF_Traditional__c==True){
+                if(bonusThresholdRenumeration[0].AF_Traditional__c){
                     TotalTraditionalValue=TotalTraditionalValue + (integer.valueof(agEstObj.AF_Traditional__c));
                 }
             }
@@ -565,8 +561,6 @@ public class AF_AnnualBonus {
     }
     public void Calculate_Bonus() {
         system.debug('inside the action support method..****');
-        decimal bonus_value=0;
-        decimal bonus_per=0;
         sum_of_bonus_per=0;
         sum_of_bonus_val=0;
         sum_of_quant_qual_value=0;
@@ -645,9 +639,7 @@ public class AF_AnnualBonus {
 
     public void Calculate_Qual() {
         sum_of_qual_value=0;
-        sum_of_qual_percent=0;
-        Decimal TotalBonuspercent;
-        Decimal TotalBonusValue ;
+        sum_of_qual_percent=0; 
         sum_of_quant_qual_value=0;
         sum_of_quant_qual_percent=0;
         
@@ -785,7 +777,6 @@ public class AF_AnnualBonus {
     public void UpdateBonus() {
         Calculate_Bonus();
         Calculate_Qual();
-        Boolean isQuantEmptyUpdate=false;
         list<AF_Sub_Result__c> bonus_latestlist=new list<AF_Sub_Result__c>();
         // RecordType rt = [select id,Name from RecordType where SobjectType='AF_Bonus_Results__c' and Name='Bonus Annual' Limit 1];
         for(wrapbonus w_bonus:QuartelyBonus){
@@ -842,7 +833,7 @@ public class AF_AnnualBonus {
         Calculate_Remun_Per2();
         Boolean isrenumEmptyupdate=false;
         AF_Bonus_Results__c newRecord = new AF_Bonus_Results__c();
-        
+        List<AF_Bonus_Results__c> newRecordList = new List<AF_Bonus_Results__c>();
         RecordType rt = [select id,Name from RecordType where SobjectType='AF_Bonus_Results__c' and Name='Bonus Annual' Limit 1];
         try{
             bonusResult = [select AF_Total_Bonus_Value__c,AF_Remuneration_Percentage__c,AF_Remuneration_Rating__c,AF_Locked__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c=:bonusThresholdRenumeration[0].Id];
@@ -861,29 +852,30 @@ public class AF_AnnualBonus {
             newRecord.AF_Total_Bonus_Value__c=w_bonus.renumCalcAmount;
             if(bonusResult.size()>0)
             newRecord.Id =  bonusResult[0].Id;
-            if(isrenumEmptyupdate==true){
+			newRecordList.add(newRecord);
+			}
+            if(isrenumEmptyupdate){
                 apexpages.addmessage(new apexpages.message(apexpages.severity.Error,'Please complete all Required results before Draft'));
             }
             else{
-                if(newRecord != null){
+                if(newRecordList.size()>0){
                     Try{
                         upsert newRecord;
                         // update newRecord;
                         apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,'Record has been successfully Saved'));
                     }
-                    catch(exception e){
-                        
+                    catch(exception ex){
+                        ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AnnualBonus,'UpdateBonus2',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
                     }
                 }
             }
             
-        }
+        
     }
     
     public void ConfirmBonus() {
         Calculate_Bonus();
         Calculate_Qual();
-        Boolean isQuantEmptyConfirm=false;
         list<AF_Sub_Result__c> bonus_latestlist=new list<AF_Sub_Result__c>();
         //RecordType rt = [select id,Name from RecordType where SobjectType='AF_Bonus_Results__c' and Name='Bonus Annual' Limit 1];
         for(wrapbonus w_bonus:QuartelyBonus){
@@ -912,8 +904,8 @@ public class AF_AnnualBonus {
                     
                     apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,'Record has been successfully submitted'));
                 }
-                catch(exception e){
-                    
+                catch(exception ex){
+                    ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AnnualBonus,'ConfirmBonus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
                 }
             }
         }
@@ -923,7 +915,7 @@ public class AF_AnnualBonus {
         Calculate_Remun_Per2();
         Boolean isrenumEmptyConfirm=false;
         AF_Bonus_Results__c newRecord = new AF_Bonus_Results__c();
-        
+        List<AF_Bonus_Results__c> newRecordList = new List<AF_Bonus_Results__c>();
         RecordType rt = [select id,Name from RecordType where SobjectType='AF_Bonus_Results__c' and Name='Bonus Annual' Limit 1];
         try{
             bonusResult = [select AF_Total_Bonus_Value__c,AF_Remuneration_Percentage__c,AF_Remuneration_Rating__c,AF_Locked__c from AF_Bonus_Results__c where AF_Bonus_Thresholds__c=:bonusThresholdRenumeration[0].Id];
@@ -943,23 +935,25 @@ public class AF_AnnualBonus {
             newRecord.AF_Total_Bonus_Value__c=w_bonus.renumCalcAmount;
             if(bonusResult.size()>0)
             newRecord.Id =  bonusResult[0].Id;
-            if(isrenumEmptyConfirm==true){
+			newRecordList.add(newRecord);
+			}
+            if(isrenumEmptyConfirm){
                 apexpages.addmessage(new apexpages.message(apexpages.severity.Error,'Please complete all Quantitative results before submitting'));
             }
             else{
-                if(newRecord != null){
+                if(newRecordList.size()>0){
                     Try{
                         upsert newRecord;
                         
                         apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,'Record has been successfully Submitted'));
                     }
-                    catch(exception e){
-                        
+                    catch(exception ex){
+                        ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AnnualBonus,'ConfirmBonus2',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
                     }
                 }
             }
             
-        }
+        
     }
     public class wrapbonus{
         public String Countryname{get;set;}

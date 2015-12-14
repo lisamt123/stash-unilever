@@ -1,4 +1,4 @@
-public class AF_RaisenewPO_Homepage_lightbox{
+public with sharing class AF_RaisenewPO_Homepage_lightbox{
     Public list<AF_Brand_Estimate__c> brandEstimate{get;set;}
     
     public Boolean Quarter1;
@@ -120,14 +120,13 @@ public class AF_RaisenewPO_Homepage_lightbox{
         List<String> gapQuarter = new List<String>();
         List<String>addQuarter=new List<String>();
         String newBrandName='';
-        String changedBrandName='';
         String quarterformat='';
         String brandQuarter='';
         displayPopup = true;
  
     for(wrapChechbox B:QuarterEstimate){
         
-        if(B.selected == true){
+        if(B.selected){
            countOfSelectedBaseFee++;
            system.debug('countOfSelectedBaseFee....'+countOfSelectedBaseFee);
            brandQuarter = '';
@@ -140,20 +139,20 @@ public class AF_RaisenewPO_Homepage_lightbox{
            newBrandName=newBrandName+B.BrandRecord.AF_Agency__r.Name;
            
             counter=0;
-             if(B.Q1 == true){
+             if(B.Q1){
                 newQuarter = newQuarter+'Q1;';
                 gapQuarter.add('Q1');
                 
              }
-             if(B.Q2 == true){
+             if(B.Q2){
                newQuarter = newQuarter+'Q2;';
                gapQuarter.add('Q2');
              }
-             if(B.Q3 == true){
+             if(B.Q3){
                 newQuarter = newQuarter+'Q3;';
                 gapQuarter.add('Q3');
              }
-             if(B.Q4 == true){
+             if(B.Q4){
                 newQuarter = newQuarter+'Q4;';
                 gapQuarter.add('Q4');
              }
@@ -163,7 +162,6 @@ public class AF_RaisenewPO_Homepage_lightbox{
             system.debug('backupBrandQuarter...'+backupBrandQuarter);   
             system.debug('tempvalueMap....'+tempvalueMap);  
             List<String> tempSplit = new List<String>();
-            List<String> backupBrandQuarterSplit = new List<String>();
             if(tempvalueMap.size()>0){
             for(String key:backupBrandQuarter.keySet()){  
                 for(String keyNewValue:tempvalueMap.keySet()){ 
@@ -192,7 +190,6 @@ public class AF_RaisenewPO_Homepage_lightbox{
             }
             else{
             String missQuarter='';
-           Integer count=0;
             for(String qr:gapQuarter){
                 qr = qr.remove('Q');
                 missQuarter = missQuarter+qr;
@@ -216,7 +213,6 @@ public class AF_RaisenewPO_Homepage_lightbox{
                 if(!missQuarter.contains(pos)){
                     displayPopup = false;
                     //displaypopquarter=true;
-                    count=1;
                     apexpages.addmessage(new apexpages.message(apexpages.severity.error,'Quarters are missing'));
                     break;
                 }
@@ -413,7 +409,6 @@ public class AF_RaisenewPO_Homepage_lightbox{
 }
 public void SendEmailNotification(){
 Set<String>Agency_Name=new set<String>();
-Set<String>Contact_Email=new Set<String>();
 List<AF_Agency_Estimate__c> NewAgencyRecord=new list<AF_Agency_Estimate__c>();
 List<String> AgencySendEmailIds = new List<String>();
 List<Send_Email__c> Send_Email_List=new list<Send_Email__c>();

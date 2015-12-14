@@ -1,4 +1,4 @@
-global class af_SendCurrencyReminder implements Schedulable
+global with sharing class af_SendCurrencyReminder implements Schedulable
 {
     
     global void execute(SchedulableContext ctx) 

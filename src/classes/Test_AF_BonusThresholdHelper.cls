@@ -12,7 +12,6 @@ public class Test_AF_BonusThresholdHelper
     Static string currYear1=string.valueof(IcurrYear1);
     Static testMethod void bonusThresholdHelper ()
     {
-     Profile p=[Select Id from Profile where Name='System Administrator'];
      profile p1=[select id from profile where Name='Agency Fee Platform User'];//add
 
      

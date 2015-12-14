@@ -1,4 +1,4 @@
-public class AF_CountryBreakdownCheck {
+public with sharing class AF_CountryBreakdownCheck {
     
     public Boolean CheckCountryBreakdown(String pBrandEstimate)
     {

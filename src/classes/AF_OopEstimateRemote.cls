@@ -5,12 +5,12 @@ global with sharing class AF_OopEstimateRemote {
     @remoteAction
     global static Map<String, String> getOOPSEstimateRecords(String agencyId, String oopsActualId) {
         
-        String ulId, tdOpenTag = '<td>',tdCloseTag = '</td>', trOpenTag = '<tr>', trCloseTag = '</tr>', space = '&nbsp;', lBreak = '<br/>';
+        String tdCloseTag = '</td>', trOpenTag = '<tr>', trCloseTag = '</tr>';
         String strongStrt = '<Strong>', strongEnd = '</strong>';
         Set<String> columnsSet = new Set<String>();
         Set<String> rowsSet = new Set<String>();
         Map<String, String> ulOopsMatrixMap = new Map<String, String>();
-        Integer colTotal = 0, colTotalLocal = 0, rowTotal = 0, rowTotalLocal=0, colTotalVal = 0, rowTotalVal = 0, rowTotalA = 0, colTotalA = 0; 
+        Integer colTotal = 0, rowTotal = 0, colTotalVal = 0, rowTotalVal = 0, rowTotalA = 0, colTotalA = 0; 
         Map<String, AF_OOPS_Estimate__c> oopsULRelationMap = new Map<String, AF_OOPS_Estimate__c>();
         List<AF_OOPS_Estimate__c> agencyEstimates = [SELECT  AF_Agency_Entity__c, AF_Unilever_Entity__c, AF_Agency_Entity__r.AF_Country__c,AF_Unilever_Entity__r.Name,
                                                                 AF_OOPS_Actual__c, AF_Estimate__c, AF_OOPS_Matrix_Currency_Code__c, AF_IsCrossBorder__c,AF_EstimateLocal__c,
@@ -37,8 +37,6 @@ global with sharing class AF_OopEstimateRemote {
         system.debug('** agencyNameMap : ' + agencyNameMap);
         system.debug('** agenciesToSelect : ' + agenciesToSelect);
         system.debug('** ulEntitiesToSelect : ' + ulEntitiesToSelect);
-        Map<String, String> ulEntityDetails = new Map<String, String>();
-        List<String> colOrder = new List<String>();
         String  colDetail = ''; //Column variable which gets added to the map finally.
         String rowDetail = ''; //Row variable which gets added to the map finally.
 
@@ -130,9 +128,9 @@ global with sharing class AF_OopEstimateRemote {
     public static String processOopsRow(Boolean isValue, AF_OOPS_Estimate__c agSObj, 
                                         Map<String, AF_OOPS_Estimate__c> oopsULRelationMap, 
                                         String aId, String uId, String bId) {
-        String tdOpenTag = '<td>',tdCloseTag = '</td>', trOpenTag = '<tr>', trCloseTag = '</tr>', space = '&nbsp;', lBreak = '<br/>', spacer = ' ';
+        String tdCloseTag = '</td>', lBreak = '<br/>', spacer = ' ';
         String rowDetailToReturn = '';
-        String href, title = '';
+        String href;
         if(isValue) {
             Integer total = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_Estimate__c/1000);
             Integer totalLocal = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_EstimateLocal__c/1000);

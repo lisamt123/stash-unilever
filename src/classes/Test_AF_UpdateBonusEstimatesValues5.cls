@@ -31,7 +31,7 @@ public class Test_AF_UpdateBonusEstimatesValues5
      acc.Name='Test Agencyer';
      acc.published__c=true;
      insert acc;
-     
+     System.Assert(acc.Id != null, 'The Account record not inserted');
      //inser Contact
      Contact con=new Contact();
      con.LastName='Test Cono';
@@ -39,7 +39,7 @@ public class Test_AF_UpdateBonusEstimatesValues5
      con.email = 'standarduserbec@unilever.com';
      con.AF_Send_Email_Notification__c = true;
      insert Con;
-     
+     System.Assert(Con.Id != null, 'The Contact record not inserted');
      
      //Insert Category
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
@@ -49,7 +49,7 @@ public class Test_AF_UpdateBonusEstimatesValues5
      cat.AF_Pilot_Model__c=false;     
      cat.AF_Super_category__c='Drinks';
      insert cat;
-     
+     System.Assert(cat.Id != null, 'The Category record not inserted');
      //Insert Brand
      RecordType brandRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Brand' Limit 1];
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
@@ -58,7 +58,7 @@ public class Test_AF_UpdateBonusEstimatesValues5
      bran.Name='Test Brander';
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
-     
+     System.Assert(bran.Id != null, 'The Brand record not inserted');
      //Insert Brand Estimate                  
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
@@ -68,7 +68,7 @@ public class Test_AF_UpdateBonusEstimatesValues5
      brandEst.AF_Locked__c=false; 
      brandEst.AF_Pilot_Model__c=true;
      insert brandEst;
-     
+     System.Assert(brandEst.Id != null, 'The brandEstimate record not inserted');
      AF_Currency__c curr = new AF_Currency__c();
      curr.AF_Country__c = 'Algeria';
      curr.AF_Currency_Code__c = 'USD';
@@ -80,7 +80,7 @@ public class Test_AF_UpdateBonusEstimatesValues5
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
      curr.Ready_For_PO_Exchange_Rate_To_EUR__c = 1.6112;
      insert curr;
-     
+     System.Assert(curr.Id != null, 'The Currency record not inserted');
       //Insert Agency Entity
      RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
      AF_Entity__c entity1=new AF_Entity__c();
@@ -89,7 +89,7 @@ public class Test_AF_UpdateBonusEstimatesValues5
      entity1.AF_Country__c='Algeria';
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
-     
+     System.Assert(entity1.Id != null, 'The AgencyEntity record not inserted');
      //Insert Unilever Entity
      RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
      AF_Entity__c entity2=new AF_Entity__c();
@@ -97,7 +97,7 @@ public class Test_AF_UpdateBonusEstimatesValues5
      entity2.AF_Country__c='Indonesia';        
      entity2.RecordTypeId=entiRT2.Id;         
      insert entity2;
-     
+     System.Assert(entity2.Id != null, 'The unilerverEntity record not inserted');
       //Insert Agency Estimate 
      AF_Agency_Estimate__c agency=new AF_Agency_Estimate__c();
      agency.AF_Brand_Estimate__c=brandEst.Id;
@@ -110,14 +110,14 @@ public class Test_AF_UpdateBonusEstimatesValues5
      agency.AF_Status__c='Ready for PO';
      agency.AF_Fiscal_Year__c=currYear;
      insert agency;
-     
+     System.Assert(agency.Id != null, 'The Agencyestimate record not inserted');
      //Insert Bonus Summary
      AF_Bonus_Summary__c bonSum=new AF_Bonus_Summary__c();
      bonSum.AF_Agency__c=acc.Id;
      bonSum.AF_Brand__c=bran.Id;
      bonSum.AF_Fiscal_Year__c=currYear1;   
      insert bonSum;
-     
+     System.Assert(bonsum.Id != null, 'The bonusummary record not inserted');
      //Insert Bonus Threshold
      AF_Bonus_Threshold__c bonThres=new AF_Bonus_Threshold__c();
      bonThres.Agency_Name__c=acc.Id;
@@ -125,13 +125,13 @@ public class Test_AF_UpdateBonusEstimatesValues5
      bonThres.Brand_Name__c=bran.Id;
      bonThres.AF_Country__c=entity2.id;
      insert bonThres;
-     
+     System.Assert(bonThres.Id != null, 'The Bonusthershold record not inserted');
      //Insert Bonus Results 
      AF_Bonus_Results__c bonRes=new AF_Bonus_Results__c();
      bonRes.AF_Bonus_Thresholds__c=bonThres.Id;
      bonRes.AF_Total_Bonus_Value__c=23;
      insert bonRes;
-     
+     System.Assert(bonRes.Id != null, 'The Bonusresult record not inserted');
      //Insert Bonus Matrix
      AF_Bonus_Matrix__c bonMat=new AF_Bonus_Matrix__c();
      bonMat.AF_Agency_Entity__c=entity1.Id;
@@ -157,7 +157,7 @@ public class Test_AF_UpdateBonusEstimatesValues5
      mtable.AF_Ready_For_PO_Country__c ='Algeria';
     mtable.Ready_For_PO_Conversion__c = 'USD';
     insert mtable;
-    
+    System.Assert(mtable.Id != null, 'The Matrixtable record not inserted');
     AF_UpdateBonusEstimatesValues5.UpdateExchageRates(bonMatrixList);
         
         Test.stopTest();

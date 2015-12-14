@@ -3,6 +3,14 @@ public class Test_AF_AnnualBonus
 {    
     Static Integer IcurrYear = System.Today().year();
     Static string currYear=string.valueof(IcurrYear);
+    private static String brandName = 'test brandab';
+    private static String agencyEntityName ='Test Entityab3';
+    private static String agencyEntityCountry = 'Singapore';
+    private static String bonusMeasure ='BM1';
+    private static String Brandid = 'Brandid';
+    private static String Agencyid = 'Agencyid';
+    private static String Year = 'Year';
+    private static String categoryName ='Test Beveragesab1';
     Static testMethod void annualBonus()
     {
      Test.startTest();
@@ -11,9 +19,9 @@ public class Test_AF_AnnualBonus
      
      //Insert User 
      User u= new User(Alias = 'testab', Email='standarduserab@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userab', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
+      EmailEncodingKey='UTF-8', LastName='Test Userab', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
       UserName='testuserab@test123321.com',AF_Brand__c='Test Brandab',AF_Category__c='Test Beveragesab');
      insert u;        
      
@@ -26,7 +34,7 @@ public class Test_AF_AnnualBonus
      acc.published__c=true;
      insert acc;
      
-     System.Assert(acc.Id != null, 'The account record not inserted');
+     System.Assert(acc.Id != null,AF_Constants.TEST_ASSERT_MSG);
      
      //Insert Category
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
@@ -35,10 +43,10 @@ public class Test_AF_AnnualBonus
      cat.RecordTypeId=catRT.Id;
      cat.Name='Test Beveragesab';
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
-     System.Assert(cat.Id != null, 'The Category record not inserted');
+     System.Assert(cat.Id != null, AF_Constants.TEST_ASSERT_MSG_CATEGORY);
      
      //Insert Brand
      RecordType brandRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Brand' Limit 1];
@@ -55,7 +63,7 @@ public class Test_AF_AnnualBonus
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
      brandEst.Name='Test BrandEstimateab';
-     brandEst.AF_Status_Base_Fees__c='Ready for PO';  
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_READYFORPO;  
      brandEst.AF_Fiscal_Year__c=currYear;
      brandEst.AF_Active__c = true;
      brandEst.AF_Copied__c= false;
@@ -76,7 +84,7 @@ public class Test_AF_AnnualBonus
      insert customRecord;
      
      AF_AnnualBonus_Qual__c customRecord1 = new AF_AnnualBonus_Qual__c();
-     customRecord1.Name = 'Qualitative Value';
+     customRecord1.Name = AF_Constants.TEST_QUAL_VALUE;
      customRecord1.X1__c = 0;
      customRecord1.X2__c = 0;
      customRecord1.X3__c = 5;
@@ -85,7 +93,7 @@ public class Test_AF_AnnualBonus
      insert customRecord1;
      
      AF_QuarterlyBonus__c QB = new AF_QuarterlyBonus__c();
-     QB.Name = 'Bonus Threshold';
+     QB.Name = AF_Constants.TEST_BONUS_THRESHOLD;
      QB.Minimum__c = 5;
      QB.Outstanding__c = 15;
      QB.Stretching__c = 10;
@@ -93,11 +101,11 @@ public class Test_AF_AnnualBonus
      
      System.assertEquals(brandEst.Brand__c, bran.id);
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_COUNTRY_CODE;
      curr.AF_Fiscal_Year_new__c = currYear;
-     curr.Currency_Unit__c = 'US $';
+     curr.Currency_Unit__c = AF_Constants.TEST_CURRENCY_UNIT;
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
@@ -118,22 +126,22 @@ public class Test_AF_AnnualBonus
      AF_Entity__c entity1=new AF_Entity__c();
      entity1.Name='Test Entityab';        
      entity1.AF_Agency__c=acc.Id;
-     entity1.AF_Country__c='Australia';
+     entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
       AF_Entity__c entity3=new AF_Entity__c();
-     entity3.Name='Test Entityab3';        
+     entity3.Name=agencyEntityName;        
      entity3.AF_Agency__c=acc.Id;
-     entity3.AF_Country__c='Singapore';
+     entity3.AF_Country__c=agencyEntityCountry;
      entity3.RecordTypeId=entiRT1.Id;         
      insert entity3;
      
      //Insert Unilever Entity
      RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
      AF_Entity__c entity2=new AF_Entity__c();
-     entity2.Name='Austria';
-     entity2.AF_Country__c='Austria';        
+     entity2.Name=AF_Constants.TEST_UNILEVER_ENTITY_COUNTRY;
+     entity2.AF_Country__c=AF_Constants.TEST_UNILEVER_ENTITY_COUNTRY;        
      entity2.RecordTypeId=entiRT2.Id;         
      insert entity2; 
      
@@ -154,7 +162,7 @@ public class Test_AF_AnnualBonus
      agency.AF_Adaptation__c=22;
      agency.AF_Digital__c=22;
      agency.AF_Traditional__c=22; 
-     agency.AF_Status__c='With Agency';
+     agency.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
      insert agency;
      
      //Insert Agency Estimate 
@@ -166,7 +174,7 @@ public class Test_AF_AnnualBonus
      agency1.AF_Adaptation__c=22;
      agency1.AF_Digital__c=22;
      agency1.AF_Traditional__c=22; 
-     agency1.AF_Status__c='With Agency';
+     agency1.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
      insert agency1;
      
     
@@ -208,7 +216,7 @@ public class Test_AF_AnnualBonus
      subResult.AF_Minimum__c = 1;
      subResult.AF_Outstanding__c = 3;
      subResult.AF_Stretching__c = 2;
-     subResult.Bonus_Measure__c = 'BM1';
+     subResult.Bonus_Measure__c = bonusMeasure;
      insert subResult;
      
      
@@ -222,7 +230,7 @@ public class Test_AF_AnnualBonus
      subResult1.AF_Minimum__c = 5;
      subResult1.AF_Outstanding__c = 7;
      subResult1.AF_Stretching__c = 6;
-     subResult1.Bonus_Measure__c = 'BM1';
+     subResult1.Bonus_Measure__c = bonusMeasure;
      subResult1.AF_Quant_Bonus_Value__c = 156;
      subResult1.AF_Total_Bonus_Value__c = 3800;
      subResult1.AF_Bonusable_Fees__c = 35;
@@ -245,9 +253,9 @@ public class Test_AF_AnnualBonus
      //bonRes.AF_Remuneration_Percentage__c=15;
      insert bonRes;
      
-     ApexPages.currentPage().getParameters().put('Brandid',bran.id);
-     ApexPages.currentPage().getParameters().put('Agencyid',acc.id);
-     ApexPages.currentPage().getParameters().put('Year',currYear);
+     ApexPages.currentPage().getParameters().put(Brandid,bran.id);
+     ApexPages.currentPage().getParameters().put(Agencyid,acc.id);
+     ApexPages.currentPage().getParameters().put(Year,currYear);
      AF_AnnualBonus annulBonus=new AF_AnnualBonus();
      annulBonus.UpdateBonus();
      annulBonus.ConfirmBonus();
@@ -266,10 +274,10 @@ public class Test_AF_AnnualBonus
      
      //Insert User 
      User u= new User(Alias = 'testab1', Email='standarduserab1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userab1', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuserab1@test123321.com',AF_Brand__c='Test Brandab1',AF_Category__c='Test Beveragesab1');
+      EmailEncodingKey='UTF-8', LastName='Test Userab1', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuserab1@test123321.com',AF_Brand__c='Test Brandab1',AF_Category__c=categoryName);
      insert u;        
      
      System.runAs(u)
@@ -281,18 +289,18 @@ public class Test_AF_AnnualBonus
      acc.published__c=true;
      insert acc;
      
-     System.Assert(acc.Id != null, 'The account record not inserted');
+     System.Assert(acc.Id != null, AF_Constants.TEST_ASSERT_MSG);
      
      //Insert Category
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesab1';
+     cat.Name=categoryName;
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
-     System.Assert(cat.Id != null, 'The Category record not inserted');
+     System.Assert(cat.Id != null, AF_Constants.TEST_ASSERT_MSG_CATEGORY);
      
      //Insert Brand
      RecordType brandRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Brand' Limit 1];
@@ -309,7 +317,7 @@ public class Test_AF_AnnualBonus
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
      brandEst.Name='Test BrandEstimateab1';
-     brandEst.AF_Status_Base_Fees__c='Ready for PO';  
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_READYFORPO;  
      brandEst.AF_Fiscal_Year__c=currYear;
      brandEst.AF_Active__c = true;
      brandEst.AF_Pilot_Model__c=false;
@@ -330,7 +338,7 @@ public class Test_AF_AnnualBonus
      insert customRecord;
      
      AF_AnnualBonus_Qual__c customRecord1 = new AF_AnnualBonus_Qual__c();
-     customRecord1.Name = 'Qualitative Value';
+     customRecord1.Name = AF_Constants.TEST_QUAL_VALUE;
      customRecord1.X1__c = 0;
      customRecord1.X2__c = 0;
      customRecord1.X3__c = 5;
@@ -339,7 +347,7 @@ public class Test_AF_AnnualBonus
      insert customRecord1;
      
       AF_QuarterlyBonus__c QB = new AF_QuarterlyBonus__c();
-     QB.Name = 'Bonus Threshold';
+     QB.Name = AF_Constants.TEST_BONUS_THRESHOLD;
      QB.Minimum__c = 5;
      QB.Outstanding__c = 15;
      QB.Stretching__c = 10;
@@ -347,11 +355,11 @@ public class Test_AF_AnnualBonus
      
      System.assertEquals(brandEst.Brand__c, bran.id);
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_COUNTRY_CODE;
      curr.AF_Fiscal_Year_new__c = currYear;
-     curr.Currency_Unit__c = 'US $';
+     curr.Currency_Unit__c = AF_Constants.TEST_CURRENCY_UNIT;
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
@@ -372,22 +380,22 @@ public class Test_AF_AnnualBonus
      AF_Entity__c entity1=new AF_Entity__c();
      entity1.Name='Test Entityab1';        
      entity1.AF_Agency__c=acc.Id;
-     entity1.AF_Country__c='Australia';
+     entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
       AF_Entity__c entity3=new AF_Entity__c();
-     entity3.Name='Test Entityab3';        
+     entity3.Name=agencyEntityName;        
      entity3.AF_Agency__c=acc.Id;
-     entity3.AF_Country__c='Singapore';
+     entity3.AF_Country__c=agencyEntityCountry;
      entity3.RecordTypeId=entiRT1.Id;         
      insert entity3;
      
      //Insert Unilever Entity
      RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
      AF_Entity__c entity2=new AF_Entity__c();
-     entity2.Name='Austria';
-     entity2.AF_Country__c='Austria';        
+     entity2.Name=AF_Constants.TEST_UNILEVER_ENTITY_COUNTRY;
+     entity2.AF_Country__c=AF_Constants.TEST_UNILEVER_ENTITY_COUNTRY;        
      entity2.RecordTypeId=entiRT2.Id;         
      insert entity2; 
      
@@ -400,7 +408,7 @@ public class Test_AF_AnnualBonus
      agency.AF_Adaptation__c=22;
      agency.AF_Digital__c=22;
      agency.AF_Traditional__c=22; 
-     agency.AF_Status__c='With Agency';
+     agency.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
      insert agency;
      
       //Insert Agency Estimate 
@@ -412,7 +420,7 @@ public class Test_AF_AnnualBonus
      agency1.AF_Adaptation__c=22;
      agency1.AF_Digital__c=22;
      agency1.AF_Traditional__c=22; 
-     agency1.AF_Status__c='With Agency';
+     agency1.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
      insert agency1;
          
      //Insert OOPS Estimate
@@ -453,7 +461,7 @@ public class Test_AF_AnnualBonus
      subResult.AF_Minimum__c = 1;
      subResult.AF_Outstanding__c = 3;
      subResult.AF_Stretching__c = 2;
-     subResult.Bonus_Measure__c = 'BM1';
+     subResult.Bonus_Measure__c = bonusMeasure;
      insert subResult;
      
      
@@ -467,7 +475,7 @@ public class Test_AF_AnnualBonus
      subResult1.AF_Minimum__c = 5;
      subResult1.AF_Outstanding__c = 7;
      subResult1.AF_Stretching__c = 6;
-     subResult.Bonus_Measure__c = 'BM1';
+     subResult.Bonus_Measure__c = bonusMeasure;
      insert subResult1;
          
      //Insert Bonus Results 
@@ -486,9 +494,9 @@ public class Test_AF_AnnualBonus
      bonRes.AF_Remuneration_Rating__c =3;*/
      insert bonRes;
      
-     ApexPages.currentPage().getParameters().put('Brandid',bran.id);
-     ApexPages.currentPage().getParameters().put('Agencyid',acc.id);
-     ApexPages.currentPage().getParameters().put('Year',currYear);
+     ApexPages.currentPage().getParameters().put(Brandid,bran.id);
+     ApexPages.currentPage().getParameters().put(Agencyid,acc.id);
+     ApexPages.currentPage().getParameters().put(Year,currYear);
      AF_AnnualBonus annulBonus1=new AF_AnnualBonus();
      annulBonus1.UpdateBonus();
      //annulBonus1.UpdateBonus2();
@@ -509,10 +517,10 @@ public class Test_AF_AnnualBonus
      
      //Insert User 
      User u= new User(Alias = 'testab1', Email='standarduserab1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userab1', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuserab1@test123321.com',AF_Brand__c='Test Brandab1',AF_Category__c='Test Beveragesab1');
+      EmailEncodingKey='UTF-8', LastName='Test Userab1', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuserab1@test123321.com',AF_Brand__c='Test Brandab1',AF_Category__c=categoryName);
      insert u;        
      
      System.runAs(u)
@@ -524,18 +532,18 @@ public class Test_AF_AnnualBonus
      acc.published__c=true;
      insert acc;
      
-     System.Assert(acc.Id != null, 'The account record not inserted');
+     System.Assert(acc.Id != null, AF_Constants.TEST_ASSERT_MSG);
      
      //Insert Category
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesab1';
+     cat.Name=categoryName;
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
-     System.Assert(cat.Id != null, 'The Category record not inserted');
+     System.Assert(cat.Id != null, AF_Constants.TEST_ASSERT_MSG_CATEGORY);
      
      //Insert Brand
      RecordType brandRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Brand' Limit 1];
@@ -552,7 +560,7 @@ public class Test_AF_AnnualBonus
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
      brandEst.Name='Test BrandEstimateab1';
-     brandEst.AF_Status_Base_Fees__c='Ready for PO';  
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_READYFORPO;  
      brandEst.AF_Fiscal_Year__c=currYear;
      brandEst.AF_Active__c = true;
      brandEst.AF_Pilot_Model__c=true;
@@ -573,7 +581,7 @@ public class Test_AF_AnnualBonus
      insert customRecord;
      
      AF_AnnualBonus_Qual__c customRecord1 = new AF_AnnualBonus_Qual__c();
-     customRecord1.Name = 'Qualitative Value';
+     customRecord1.Name = AF_Constants.TEST_QUAL_VALUE;
      customRecord1.X1__c = 0;
      customRecord1.X2__c = 0;
      customRecord1.X3__c = 5;
@@ -582,7 +590,7 @@ public class Test_AF_AnnualBonus
      insert customRecord1;
      
       AF_QuarterlyBonus__c QB = new AF_QuarterlyBonus__c();
-     QB.Name = 'Bonus Threshold';
+     QB.Name = AF_Constants.TEST_BONUS_THRESHOLD;
      QB.Minimum__c = 5;
      QB.Outstanding__c = 15;
      QB.Stretching__c = 10;
@@ -590,11 +598,11 @@ public class Test_AF_AnnualBonus
      
      System.assertEquals(brandEst.Brand__c, bran.id);
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_COUNTRY_CODE;
      curr.AF_Fiscal_Year_new__c = currYear;
-     curr.Currency_Unit__c = 'US $';
+     curr.Currency_Unit__c = AF_Constants.TEST_CURRENCY_UNIT;
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
@@ -615,22 +623,22 @@ public class Test_AF_AnnualBonus
      AF_Entity__c entity1=new AF_Entity__c();
      entity1.Name='Test Entityab1';        
      entity1.AF_Agency__c=acc.Id;
-     entity1.AF_Country__c='Australia';
+     entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
       AF_Entity__c entity3=new AF_Entity__c();
-     entity3.Name='Test Entityab3';        
+     entity3.Name=agencyEntityName;        
      entity3.AF_Agency__c=acc.Id;
-     entity3.AF_Country__c='Singapore';
+     entity3.AF_Country__c=agencyEntityCountry;
      entity3.RecordTypeId=entiRT1.Id;         
      insert entity3;
      
      //Insert Unilever Entity
      RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
      AF_Entity__c entity2=new AF_Entity__c();
-     entity2.Name='Austria';
-     entity2.AF_Country__c='Austria';        
+     entity2.Name=AF_Constants.TEST_UNILEVER_ENTITY_COUNTRY;
+     entity2.AF_Country__c=AF_Constants.TEST_UNILEVER_ENTITY_COUNTRY;        
      entity2.RecordTypeId=entiRT2.Id;         
      insert entity2; 
      
@@ -643,7 +651,7 @@ public class Test_AF_AnnualBonus
      agency.AF_Adaptation__c=22;
      agency.AF_Digital__c=22;
      agency.AF_Traditional__c=22; 
-     agency.AF_Status__c='With Agency';
+     agency.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
      insert agency;
          
      //Insert OOPS Estimate
@@ -696,9 +704,9 @@ public class Test_AF_AnnualBonus
      bonRes.AF_Remuneration_Rating__c =3;
      insert bonRes;
      
-     ApexPages.currentPage().getParameters().put('Brandid',bran.id);
-     ApexPages.currentPage().getParameters().put('Agencyid',acc.id);
-     ApexPages.currentPage().getParameters().put('Year',currYear);
+     ApexPages.currentPage().getParameters().put(Brandid,bran.id);
+     ApexPages.currentPage().getParameters().put(Agencyid,acc.id);
+     ApexPages.currentPage().getParameters().put(Year,currYear);
      AF_AnnualBonus annulBonus1=new AF_AnnualBonus();
      //annulBonus1.UpdateBonus();
      annulBonus1.UpdateBonus2();
@@ -719,9 +727,9 @@ public class Test_AF_AnnualBonus
      
      //Insert User 
      User u= new User(Alias = 'testab', Email='standarduserab@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userab', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
+      EmailEncodingKey='UTF-8', LastName='Test Userab', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
       UserName='testuserab@test123321.com',AF_Brand__c='Test Brandab',AF_Category__c='Test Beveragesab');
      insert u;        
      
@@ -734,7 +742,7 @@ public class Test_AF_AnnualBonus
      acc.published__c=true;
      insert acc;
      
-     System.Assert(acc.Id != null, 'The account record not inserted');
+     System.Assert(acc.Id != null, AF_Constants.TEST_ASSERT_MSG);
      
      //Insert Category
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
@@ -743,10 +751,10 @@ public class Test_AF_AnnualBonus
      cat.RecordTypeId=catRT.Id;
      cat.Name='Test Beveragesab';
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
-     System.Assert(cat.Id != null, 'The Category record not inserted');
+     System.Assert(cat.Id != null, AF_Constants.TEST_ASSERT_MSG_CATEGORY);
      
      //Insert Brand
      RecordType brandRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Brand' Limit 1];
@@ -763,7 +771,7 @@ public class Test_AF_AnnualBonus
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
      brandEst.Name='Test BrandEstimateab';
-     brandEst.AF_Status_Base_Fees__c='Ready for PO';  
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_READYFORPO;  
      brandEst.AF_Fiscal_Year__c=currYear;
      brandEst.AF_Active__c = true;
      brandEst.AF_Copied__c= false;
@@ -784,7 +792,7 @@ public class Test_AF_AnnualBonus
      insert customRecord;
      
      AF_AnnualBonus_Qual__c customRecord1 = new AF_AnnualBonus_Qual__c();
-     customRecord1.Name = 'Qualitative Value';
+     customRecord1.Name = AF_Constants.TEST_QUAL_VALUE;
      customRecord1.X1__c = 0;
      customRecord1.X2__c = 0;
      customRecord1.X3__c = 5;
@@ -793,7 +801,7 @@ public class Test_AF_AnnualBonus
      insert customRecord1;
      
      AF_QuarterlyBonus__c QB = new AF_QuarterlyBonus__c();
-     QB.Name = 'Bonus Threshold';
+     QB.Name = AF_Constants.TEST_BONUS_THRESHOLD;
      QB.Minimum__c = 5;
      QB.Outstanding__c = 15;
      QB.Stretching__c = 10;
@@ -801,11 +809,11 @@ public class Test_AF_AnnualBonus
      
      System.assertEquals(brandEst.Brand__c, bran.id);
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_COUNTRY_CODE;
      curr.AF_Fiscal_Year_new__c = currYear;
-     curr.Currency_Unit__c = 'US $';
+     curr.Currency_Unit__c = AF_Constants.TEST_CURRENCY_UNIT;
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
@@ -826,22 +834,22 @@ public class Test_AF_AnnualBonus
      AF_Entity__c entity1=new AF_Entity__c();
      entity1.Name='Test Entityab';        
      entity1.AF_Agency__c=acc.Id;
-     entity1.AF_Country__c='Australia';
+     entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
       AF_Entity__c entity3=new AF_Entity__c();
-     entity3.Name='Test Entityab3';        
+     entity3.Name=agencyEntityName;        
      entity3.AF_Agency__c=acc.Id;
-     entity3.AF_Country__c='Singapore';
+     entity3.AF_Country__c=agencyEntityCountry;
      entity3.RecordTypeId=entiRT1.Id;         
      insert entity3;
      
      //Insert Unilever Entity
      RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
      AF_Entity__c entity2=new AF_Entity__c();
-     entity2.Name='Austria';
-     entity2.AF_Country__c='Austria';        
+     entity2.Name=AF_Constants.TEST_UNILEVER_ENTITY_COUNTRY;
+     entity2.AF_Country__c=AF_Constants.TEST_UNILEVER_ENTITY_COUNTRY;        
      entity2.RecordTypeId=entiRT2.Id;         
      insert entity2; 
      
@@ -862,7 +870,7 @@ public class Test_AF_AnnualBonus
      agency.AF_Adaptation__c=22;
      agency.AF_Digital__c=22;
      agency.AF_Traditional__c=22; 
-     agency.AF_Status__c='With Agency';
+     agency.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
      insert agency;
      
      
@@ -877,7 +885,7 @@ public class Test_AF_AnnualBonus
      agency2.AF_Adaptation__c=22;
      agency2.AF_Digital__c=22;
      agency2.AF_Traditional__c=22; 
-     agency2.AF_Status__c='With Agency';
+     agency2.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
      insert agency2;
          
      //Insert OOPS Estimate
@@ -917,7 +925,7 @@ public class Test_AF_AnnualBonus
      subResult.AF_Minimum__c = 1;
      subResult.AF_Outstanding__c = 3;
      subResult.AF_Stretching__c = 2;
-     subResult.Bonus_Measure__c = 'BM1';
+     subResult.Bonus_Measure__c = bonusMeasure;
      insert subResult;
      
      
@@ -931,7 +939,7 @@ public class Test_AF_AnnualBonus
      subResult1.AF_Minimum__c = 5;
      subResult1.AF_Outstanding__c = 7;
      subResult1.AF_Stretching__c = 6;
-     subResult.Bonus_Measure__c = 'BM1';
+     subResult.Bonus_Measure__c = bonusMeasure;
      subResult.AF_Quant_Bonus_Value__c = 156;
      subResult.AF_Total_Bonus_Value__c = 3800;
      subResult.AF_Bonusable_Fees__c = 35;
@@ -954,9 +962,9 @@ public class Test_AF_AnnualBonus
      //bonRes.AF_Remuneration_Percentage__c=15;
      insert bonRes;
      
-     ApexPages.currentPage().getParameters().put('Brandid',bran.id);
-     ApexPages.currentPage().getParameters().put('Agencyid',acc.id);
-     ApexPages.currentPage().getParameters().put('Year',currYear);
+     ApexPages.currentPage().getParameters().put(Brandid,bran.id);
+     ApexPages.currentPage().getParameters().put(Agencyid,acc.id);
+     ApexPages.currentPage().getParameters().put(Year,currYear);
      AF_AnnualBonus annulBonus=new AF_AnnualBonus();
      annulBonus.UpdateBonus();
      annulBonus.ConfirmBonus();

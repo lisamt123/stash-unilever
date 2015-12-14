@@ -1,4 +1,4 @@
-public class AF_Bonusthresholds {
+public with sharing class AF_Bonusthresholds {
     public String agencyId{get;set;}
     public String ParentId{get;set;}
     public string brand_estimate_id = ApexPages.currentPage().getParameters().get('id');
@@ -39,10 +39,6 @@ public class AF_Bonusthresholds {
       }
     }
     
-     Public void addwrapper(){
-   
-     
-   }
  public List<Selectoption>getMeasure(){
         measure_criteria=new list<Selectoption>();
         Schema.DescribeFieldResult CommprefField = AF_Bonus_Threshold__c.Bonus_Measure__c.getDescribe(); 
@@ -81,7 +77,6 @@ public class AF_Bonusthresholds {
  public void SaveBonusThresholds(){
         list<AF_Bonus_Threshold__c>bonus_latestlist=new list<AF_Bonus_Threshold__c>();
         String uniquethreshold='';
-        Boolean isUnique;
         Try{
         For(wrapbonus bonus_thresolds:BonusThresholds){
           

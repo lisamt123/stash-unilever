@@ -283,7 +283,6 @@ public  with sharing class AF_MatrixAgencySummary {
     }
     
      public pagereference grApprove(){
-     Boolean isAllApproved=false;
      List<AF_OOPS_Actual__c> updateOopsActual = new List<AF_OOPS_Actual__c>();
          for(AF_OOPS_Actual__c oops:oopsActListObj){
             

@@ -1,12 +1,8 @@
-public class UpdateBrandEstimateCatApproverValues
+public with sharing class UpdateBrandEstimateCatApproverValues
 {
 
     public Static void UpdateBrandingEstimates(List<AF_Brand_Estimate__c> BrandRecords)
     {
-    
-        list<AF_Brand_Estimate__c>  afBrands=new list<AF_Brand_Estimate__c>();
-        List<user> Userlist=new List<user>();
-        Map<id,List<String>> usermap=new Map<id,List<String>>();
         List<string> BrandStrings=new list<String>();
         list<id> userids=new list<id>();
         String DummyUserid;

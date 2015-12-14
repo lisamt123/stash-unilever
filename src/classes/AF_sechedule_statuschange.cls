@@ -1,4 +1,4 @@
-global class AF_sechedule_statuschange
+global with sharing class AF_sechedule_statuschange
   {
     public static void start()
       {

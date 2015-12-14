@@ -13,6 +13,7 @@ public class Test_AFCallingSchedulable_BrandEstimates
      be.AF_Currency_Uploaded__c = true;
      be.AF_Trigger_Date__c = system.today();
      insert be;
+     System.Assert(be.Id != null, 'The Custom record not inserted');
     AFCallingSchedulable_BrandEstimates.start();
     Test.stopTest();
     

@@ -1,12 +1,8 @@
-public class AF_UpdateOopsEstimateCatApproverValues
+public with sharing class AF_UpdateOopsEstimateCatApproverValues
 {
 
     public Static void UpdateOopsEstimates(List<AF_OOPS_Actual__c> BrandRecords)
     {
-    
-        list<AF_OOPS_Actual__c>  afBrands=new list<AF_OOPS_Actual__c>();
-        List<user> Userlist=new List<user>();
-        Map<id,List<String>> usermap=new Map<id,List<String>>();
         List<string> BrandStrings=new list<String>();
         list<id> userids=new list<id>();
         String DummyUserid;

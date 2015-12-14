@@ -1,4 +1,4 @@
-public class AF_BatchProcess_copy {
+public with sharing class AF_BatchProcess_copy {
    Public pagereference confirm()
    {
        //pagereference p = new pagereference('/apex/AgencyHomePage');

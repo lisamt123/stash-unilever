@@ -1,4 +1,4 @@
-public class AF_BonusThresholdHelper{
+public with sharing class AF_BonusThresholdHelper{
     public static void shareRecordToUser(List<AF_Bonus_Threshold__c> bonusThresholdObjList){
         List<String> agencyNameList = new List<String>();
         Map<string,string> userTypeMap = new Map<string,string>();

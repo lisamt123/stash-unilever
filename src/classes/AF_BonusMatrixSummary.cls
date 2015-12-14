@@ -31,7 +31,6 @@ public with sharing class AF_BonusMatrixSummary {
         Decimal overallBonus=0;
         qualValue=0;
         quant=0;
-        Set<Id> threSholdsSet = new Set<Id>();
         bonusableFee=0;
         totalfee=0;
         overallbonusPer=0;

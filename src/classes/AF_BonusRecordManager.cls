@@ -13,7 +13,6 @@ Global with sharing class AF_BonusRecordManager {
     private List<AF_Brand_Estimate__c> BrandEstimateCollection; 
     private AF_Bonus_Results__c GlobalBonusResults;
     private AF_Bonus_Summary__c BonusSummary;
-    private AF_Bonus_Matrix__c BonusMatrix;
     private AF_Bonus_Threshold__c BonusThreshold; 
     private List<AF_Bonus_Matrix__c> BonusMatrixCollection;
     private Map<string,double> CountryTotalMap = new Map<string,double>();
@@ -65,7 +64,7 @@ Global with sharing class AF_BonusRecordManager {
             
             for(AF_Brand_Estimate__c brandEstimate : BrandEstimateCollection)
             {
-                if(brandEstimate.AF_Basefee_Estimate_Initial_Quarter__c.contains('Q4') == true && brandEstimate.AF_No_Bonus__c==false)
+                if(brandEstimate.AF_Basefee_Estimate_Initial_Quarter__c.contains(AF_Constants.QUARTER4)  && !brandEstimate.AF_No_Bonus__c)
                 {
                     BonusMatrixCollection = BonusMultiObjectFactory(brandEstimate, AgencyEstimateCollection);
                 }               
@@ -82,7 +81,7 @@ Global with sharing class AF_BonusRecordManager {
     {
         set<Id> BonusThresholdId = new set<Id>();
         IsMatrixError = false;
-        if(pBrandEstimate.AF_Pilot_Model__c == true){IsPilotModel=true;}else{IsPilotModel=false;}
+        if(pBrandEstimate.AF_Pilot_Model__c){IsPilotModel=true;}else{IsPilotModel=false;}
         
         List<AF_Bonus_Matrix__c> objCollection = new List<AF_Bonus_Matrix__c>();
         set<Id> BonusThresholdIds = new set<Id>();
@@ -98,7 +97,6 @@ Global with sharing class AF_BonusRecordManager {
         List<AF_Agency_Estimate__c> filteredAgencyEstimateCollection = new List<AF_Agency_Estimate__c>(); 
         List<AF_Bonus_Summary__c> BonusSummarys = [Select a.Name, a.Id, a.AF_Status__c, a.AF_Fiscal_Year__c, a.AF_Brand__c, a.AF_Agency__c From AF_Bonus_Summary__c a where a.AF_Brand__c = : pBrandEstimate.Brand__c AND a.AF_Agency__c = : pBrandEstimate.AF_Agency__c AND a.AF_Fiscal_Year__c = : pBrandEstimate.AF_Fiscal_Year__c LIMIT 1];
         
-        set<string> UnileverEntityCollection = new set<string>();
         set<string> UnileverEntityWithBonusThresholdCollection = new set<string>();
        
         for(AF_Bonus_Summary__c bs : BonusSummarys)
@@ -113,7 +111,7 @@ Global with sharing class AF_BonusRecordManager {
         Boolean isUpdate = false;
         for(AF_Bonus_Threshold__c bonusThreshold : BonusThresholdCollection) 
         {               
-            if(pBrandEstimate.AF_Pilot_Model__c == true)
+            if(pBrandEstimate.AF_Pilot_Model__c)
             {
                 bonusThreshold.AF_Pilot_Model__c = true;
                 isUpdate = true;
@@ -122,7 +120,7 @@ Global with sharing class AF_BonusRecordManager {
         
         try
         {
-            if(isUpdate == true)
+            if(isUpdate)
             {
                 update BonusThresholdCollection;
             }   
@@ -132,7 +130,7 @@ Global with sharing class AF_BonusRecordManager {
             System.debug(ex);   
         }
 
-        if(IsPilotModel == false)
+        if(!IsPilotModel)
         {
 
                      
@@ -146,7 +144,6 @@ Global with sharing class AF_BonusRecordManager {
                     CountryNameAndTotalCollection.put(String.ValueOf(ar.get('CountryName')),Double.valueof(ar.get('CountryTotal')));                                
                 }               
             }
-            Boolean result = false;
             Boolean finalResult = true;
             set<string> CountryNames =  new set<string>(); 
             set<string> BonusThresholdCountryNames = new set<string>(); 
@@ -156,7 +153,7 @@ Global with sharing class AF_BonusRecordManager {
                     
                 for(AF_Bonus_Threshold__c bonusThreshold : BonusThresholdCollection) 
                 {
-                    if(BonusThresholdCountryNames.contains(bonusThreshold.Country_Name__c) == false)
+                    if(!BonusThresholdCountryNames.contains(bonusThreshold.Country_Name__c))
                     {
                         BonusThresholdCountryNames.add(bonusThreshold.Country_Name__c);
                     }                   
@@ -166,7 +163,7 @@ Global with sharing class AF_BonusRecordManager {
                 for(string countryName : CountryNameAndTotalCollection.keySet()) 
                 {
                     system.debug('CountryNames: ' + countryName);
-                    if(CountryNames.contains(countryName) == false)
+                    if(!CountryNames.contains(countryName))
                     {
                         CountryNames.add(countryName);  
                     }                   
@@ -178,7 +175,7 @@ Global with sharing class AF_BonusRecordManager {
                 {
                     system.debug('countryName to check: ' + countryName);
                     system.debug('countryName result: ' + BonusThresholdCountryNames.contains(countryName));
-                    if(BonusThresholdCountryNames.contains(countryName) == true)                                
+                    if(BonusThresholdCountryNames.contains(countryName))                                
                     ExceptionList.remove(countryName); 
                 }
                 
@@ -187,24 +184,11 @@ Global with sharing class AF_BonusRecordManager {
                 {
                     finalResult = false;
                 }
-               /*                                                 
-                if(finalResult == false)
-                {
-                    MatrixErrorMessage = 'Cannot create bonus matrix due to insufficient Bonus Threshold records. ';
-                    string countries = '';
-                    for(string countryName : ExceptionList)
-                    {
-                        countries = countries + countryName + ' , ';
-                    }
-                    countries = countries.substring(0,countries.length()-2);
-                    MatrixErrorMessage = MatrixErrorMessage + ' Please add Bonus Thresholds for the following unilever entities:  ' +countries; 
-                    IsMatrixError = true;                   
-                }
-                */ 
+               
             }
         }
         
-        if(IsMatrixError == false)
+        if(!IsMatrixError)
         {
                                                     
             for(AF_Bonus_Threshold__c bonusThreshold : BonusThresholdCollection) 
@@ -218,7 +202,7 @@ Global with sharing class AF_BonusRecordManager {
             }
            system.debug('UnileverEntityWithBonusThresholdCollection.size():' + UnileverEntityWithBonusThresholdCollection.size());
            
-            if(IsPilotModel != true)
+            if(!IsPilotModel)
             {
                 for(AF_Agency_Estimate__c agencyEstimate : pAgencyEstimateCollection)
                 {
@@ -230,7 +214,7 @@ Global with sharing class AF_BonusRecordManager {
                     }
                 }
             }
-            else if(IsPilotModel == true)
+            else if(IsPilotModel)
             {
                 for(AF_Agency_Estimate__c agencyEstimate : pAgencyEstimateCollection)
                 {
@@ -252,7 +236,7 @@ Global with sharing class AF_BonusRecordManager {
                 {   
                     objCollection = new List<AF_Bonus_Matrix__c>();  
                                                 
-                    if(IsPilotModel == false)
+                    if(!IsPilotModel)
                     {                                                   
                         for(AF_Bonus_Results__c br :  BonusResultsCollection.Values())
                         {
@@ -282,25 +266,23 @@ Global with sharing class AF_BonusRecordManager {
                         
                     }
                     
-                    if(IsPilotModel == true)
+                    if(IsPilotModel)
                     {
                         objCollection = PilotModelBonusMatrixGenerator(pBrandEstimate,objCollection, GlobalBonusResults,bonusThreshold);                    
                     }               
                     
-                    if(objCollection.size() > 0)
-                    {
-                        try
-                        {                       
-                            insert objCollection; //this DML in the FOR LOOP
-                        }
-                        catch(DMLException ex)
-                        {
-                            System.debug(ex);
-                        }       
-                    }           
+                            
                     
-                }                                   
-            }
+                }  
+			if(objCollection.size() > 0){
+				try{                       
+					insert objCollection; 
+                }
+                catch(DMLException e){
+					ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusRecordManager','BonusMultiObjectFactory',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+                }       
+            }   		
+        }
         }           
         return objCollection;   
     }
@@ -391,10 +373,10 @@ Global with sharing class AF_BonusRecordManager {
                     if(subresult!=null){
                     for(AF_Sub_Result__c sb:subresult){
                         if(sb.AF_Bonus_Threshold__c == pBonusThreshold.Id){
-                            if(sb.AF_Digital__c == true){
+                            if(sb.AF_Digital__c){
                                 Digital = true;
                             }
-                            if(sb.AF_Traditional__c == true){
+                            if(sb.AF_Traditional__c){
                                 Traditional = true;
                             }
                         }
@@ -417,11 +399,11 @@ Global with sharing class AF_BonusRecordManager {
                     else{
                     if(pAgencyEstimate.AF_Fiscal_Year__c == pBonusThreshold.Year__c)
                     {
-                        if(pBonusThreshold.AF_Digital__c == true)
+                        if(pBonusThreshold.AF_Digital__c )
                         {
                             BonusableFee =  BonusableFee + pAgencyEstimate.AF_Digital__c;
                         }   
-                        if(pBonusThreshold.AF_Traditional__c == true)
+                        if(pBonusThreshold.AF_Traditional__c )
                         {
                             BonusableFee = BonusableFee + pAgencyEstimate.AF_Traditional__c;
                         }                       
@@ -516,14 +498,13 @@ Global with sharing class AF_BonusRecordManager {
     
     public Boolean BonusThresholdValidationCheck(AF_Brand_Estimate__c pBrandEstimate)
     {                          
-            Boolean result = false;
             Boolean finalResult = false;
             set<string> CountryNames =  new set<string>(); 
             set<string> BonusThresholdCountryNames = new set<string>(); 
             //set<string> ExceptionList = new set<string>(); 
-            if(pBrandEstimate.AF_Pilot_Model__c==false && pBrandEstimate.AF_No_Bonus__c == false){
+            if(!pBrandEstimate.AF_Pilot_Model__c && !pBrandEstimate.AF_No_Bonus__c){
             
-            if(pBrandEstimate.AF_Status_Base_Fees__c == 'With Category Finance' && pBrandEstimate.AF_Basefee_Estimate_Initial_Quarter__c.contains('Q4') == true)
+            if(pBrandEstimate.AF_Status_Base_Fees__c == AF_Constants.CATEGORY_FINANCE  && pBrandEstimate.AF_Basefee_Estimate_Initial_Quarter__c.contains(AF_Constants.QUARTER4) )
             {
                 Map<String,Double> CountryNameAndTotalCollection = new Map<String,Double>();            
                 List<AggregateResult> AgencyEstimateTotalCountByCountry = [SELECT SUM(AF_Total__c) CountryTotal,AF_Unilever_Entity__r.AF_Country__c CountryName FROM AF_Agency_Estimate__c  where AF_Brand_Estimate__c=: pBrandEstimate.Id GROUP BY AF_Unilever_Entity__r.AF_Country__c];
@@ -542,7 +523,7 @@ Global with sharing class AF_BonusRecordManager {
                         
                     for(AF_Bonus_Threshold__c bonusThreshold : BonusThresholdCollection) 
                     {
-                        if(BonusThresholdCountryNames.contains(bonusThreshold.Country_Name__c) == false)
+                        if(!BonusThresholdCountryNames.contains(bonusThreshold.Country_Name__c))
                         {
                             BonusThresholdCountryNames.add(bonusThreshold.Country_Name__c);
                         }                   
@@ -552,7 +533,7 @@ Global with sharing class AF_BonusRecordManager {
                     for(string countryName : CountryNameAndTotalCollection.keySet()) 
                     {
                         system.debug('CountryNames: ' + countryName);
-                        if(CountryNames.contains(countryName) == false)
+                        if(!CountryNames.contains(countryName))
                         {
                             CountryNames.add(countryName);  
                         }                   
@@ -564,7 +545,7 @@ Global with sharing class AF_BonusRecordManager {
                     {
                         system.debug('countryName to check: ' + countryName);
                         system.debug('countryName result: ' + BonusThresholdCountryNames.contains(countryName));
-                        if(BonusThresholdCountryNames.contains(countryName) == true)                                
+                        if(BonusThresholdCountryNames.contains(countryName))                                
                         ExceptionList.remove(countryName); 
                     }
                 

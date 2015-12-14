@@ -12,6 +12,7 @@ public class Test_AF_BonusQuaterlyEmailToCatFinance
     AF_BonusQuarterly__c customList = new AF_BonusQuarterly__c();
     customList.AF_BonusQuarterlyDate__c = system.today();
     insert customList;
+    System.Assert(customList.Id != null, 'The custom record not inserted');
     AF_BonusQuaterlyEmailToCatFinance obj = new AF_BonusQuaterlyEmailToCatFinance();
      Datetime dt = Datetime.now().addMinutes(1);
      String CRON_EXP = '0 '+ dt.minute() + ' * ' + dt.day() + ' ' + dt.month() + ' ? ' + dt.year();

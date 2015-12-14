@@ -70,18 +70,11 @@ public class Test_AF_Utils
      
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
-     
-     Id i = AF_Utils.getRecordId('Brand Estimate');
-     Id j = AF_Utils.getEntityRecordId('Agency Entity');
-     Id k=AF_Utils.getBonusResRecordId('Bonus Annual');
-     Boolean agency = AF_Utils.isAgencyUser(u.id);
-     String res = AF_Utils.getResourceURL('AF_isComment');
-     Boolean b = AF_Utils.isValidID(u.id);
+    
      Map<Id,sObject> maptest = new  Map<Id,sObject>();
       AF_Brand_Estimate__c obj = new AF_Brand_Estimate__c();
      maptest.put(brandEst.id,obj );
-     List<AF_Brand_Estimate__c> brand = AF_Utils.ConvertMapValuesToList(maptest);
-     String s = AF_Utils.EntityNameValue(entity1.id);
+    
      
     
      }

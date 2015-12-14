@@ -1,4 +1,4 @@
-global class SchedulableToBrandEstimatesBatch implements Schedulable
+global with sharing class SchedulableToBrandEstimatesBatch implements Schedulable
   {
     global void execute(SchedulableContext ctx)
       {

@@ -71,6 +71,7 @@ public class AF_AgencyEstimateController
     public String overridePONumber{get;set;}
     Public String brandEstQuarter;
     public Boolean POOverrideDisplay{get;set;}
+    private static string AF_AgencyEstimateController = 'AF_AgencyEstimateController';
     public String TraditionalDisplay{     
         get{String result = '';if(AgencyEstimate .AF_Traditional__c != null){if(AgencyEstimate .AF_Traditional__c > 0) {result = AgencyEstimate .AF_Traditional__c.format();}else{result ='';}}return result;}
         set{/*System.debug('TraditionalDisplay: ' + value);*/value = CommaFilter(value);System.debug('TraditionalDisplay: ' + value);if(value != ''){AgencyEstimate .AF_Traditional__c = Integer.valueOf(value);}else{AgencyEstimate.AF_Traditional__c = 0.00;}}
@@ -117,7 +118,7 @@ public class AF_AgencyEstimateController
         
     private string CommaFilter(string value)
     {
-        if(value.contains(',') == true){value = value.replaceAll(',','');}
+        if(value.contains(',')){value = value.replaceAll(',','');}
         return value;       
     }
             
@@ -242,22 +243,22 @@ public class AF_AgencyEstimateController
         //EntityExceptionCollection = new List<AF_Entity_Exception__c>();  
         LoggedinUser=[select id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c,profile.name  from  User  where id=:Userinfo.getuserid()   and IsActive=true  Order by CreatedDate Limit 50000];             
         if(LoggedinUser.AF_Agency_Fees_User_Type__c!=null){
-            if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Regional Category Finance'){
+            if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Regional Category Finance'){
                 isPOEditable=true;
             }
-           if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency' ){
+           if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY ){
                 isAgencyEstEditable=true;
             } 
-            if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Procurement'  ||  LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency'){
+            if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Procurement'  ||  LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
             IsReadonlyPO=true;
                }
-            if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance'|| LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Procurement' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Regional Category Finance'||LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency' ){
+            if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User' || LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE|| LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Procurement' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Controller' || LoggedinUser.AF_Agency_Fees_User_Type__c=='Regional Category Finance'||LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY ){
             IsShowPOTab=true;
                }  
-            if(LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency'){
+            if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY){
             isAgency= true;
             }
-            if(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance'){
+            if(LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE){
             isCatFinance= true;
             }
             if(LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO User'){
@@ -273,9 +274,9 @@ public class AF_AgencyEstimateController
             }
             
         }
-        cmcoEditDateList = [select AF_CMCO_Rights__c from AF_CMCO__c];
+        cmcoEditDateList = [select AF_CMCO_Rights__c from AF_CMCO__c LIMIT 1];
         if(cmcoEditDateList.size()>0){
-            if(cmcoEditDateList[0].AF_CMCO_Rights__c == true){
+            if(cmcoEditDateList[0].AF_CMCO_Rights__c){
                 isCMCOReadyPOEdit = true;
                 system.debug('isCMCOReadyPOEdit...'+isCMCOReadyPOEdit);
             }
@@ -323,7 +324,7 @@ public class AF_AgencyEstimateController
                     }
                 }
                 
-                if(AgencyEstimate.AF_isLocked__c == null || AgencyEstimate.AF_isLocked__c == false)IsLocked = true;else{IsLocked = false;}
+                if(AgencyEstimate.AF_isLocked__c == null || !AgencyEstimate.AF_isLocked__c)IsLocked = true;else{IsLocked = false;}
                 CalculateTotal();
                 if(AgencyEstimate.af_total__c >0)
                 {
@@ -380,8 +381,8 @@ public class AF_AgencyEstimateController
         }
         
 
-        if((AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c=='With Agency' && LoggedinUser.AF_Agency_Fees_User_Type__c=='Agency') || 
-           (AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c=='With Category Finance' && LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance') ||
+        if((AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c=='With Agency' && LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_AGENCY) || 
+           (AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c=='With Category Finance' && LoggedinUser.AF_Agency_Fees_User_Type__c==AF_Constants.UT_CATEGORY_FINANCE) ||
            LoggedinUser.AF_Agency_Fees_User_Type__c=='CMCO Super User')
         {
             SubmitButtonDisplay=true;            
@@ -487,7 +488,7 @@ public class AF_AgencyEstimateController
                 
                 system.debug('OverrideTotal..2.'+OverrideTotal);
     
-    if(errMsgOverride==false){
+    if(!errMsgOverride){
         
     update AgencyEstimate;
     overrideTrad =  AgencyEstimate.AF_OverridePO_Traditional_LC__c;
@@ -545,7 +546,7 @@ public class AF_AgencyEstimateController
             System.debug('\n Agency:'+AgencyEstimate.AF_Brand_Estimate__r.AF_CMCO_Rejected__c);
             System.debug('\n Agency:'+AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c);
             //if(AgencyEstimate.AF_Brand_Estimate__r.AF_CMCO_Rejected__c==true &&AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c == 'With Category Finance')
-            if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c == 'With Category Finance' && isCatFinance==true)
+            if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c == AF_Constants.CATEGORY_FINANCE && isCatFinance)
             AgencyEstimate.AF_Category_Finance_Flag__c=true;
             
            
@@ -592,7 +593,11 @@ public class AF_AgencyEstimateController
                  System.debug('AF_Value_Euro__c'+Entity_exc1.AF_Value_Euro__c);
                  updatedenitytexception.add(Entity_exc1);
                }
+			   }
+			   }
+		if(updatedenitytexception.size()>0){
         update updatedenitytexception;
+		}
         Wrapperlist.clear();
        TotalPercent=0;
        TotalValue=0; 
@@ -613,9 +618,7 @@ public class AF_AgencyEstimateController
         }
        
         }    
-      }
     }
-   }
   } 
    public void delCounrtyRecord(){
    
@@ -642,7 +645,7 @@ public class AF_AgencyEstimateController
         Integer counterWrapper=-1;
         for(Entitywrapper ent:Wrapperlist){
             counterWrapper++;
-            if(ent.del == false && ent.position == posDelete){
+            if(!ent.del && ent.position == posDelete){
             //TotalPercent = (TotalPercent - ent.EntityEx.AF_Value__c);
             //TotalValue = (TotalValue - ent.EntityEx.AF_Value_Euro__c);
                 break;
@@ -699,7 +702,7 @@ public class AF_AgencyEstimateController
        // TotalDisplay = string.ValueOf(calc.round()); 
          TotalDisplayN=calc.round(); 
          
-       if(AgencyEstimate.AF_Agency_Exchange_Rate__c!=null && IsReadyforPO==false){
+       if(AgencyEstimate.AF_Agency_Exchange_Rate__c!=null && !IsReadyforPO){
         AgencyEstimate.AF_Digital_Local__c=AgencyEstimate.AF_Agency_Exchange_Rate__c* AgencyEstimate .AF_Digital__c;
         AgencyEstimate.AF_Traditional_Local__c= AgencyEstimate.AF_Agency_Exchange_Rate__c*AgencyEstimate .AF_Traditional__c;
         AgencyEstimate.AF_Adaptation_Local__c=AgencyEstimate.AF_Agency_Exchange_Rate__c*AgencyEstimate .AF_Adaptation__c ; 
@@ -850,9 +853,9 @@ public void SaveEntityExceptionRecords(){
        }
        
     }
-    Catch(exception ex){
-    
-   }
+    catch(exception ex){
+    ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_AgencyEstimateController,'SaveEntityExceptionRecords',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+    }
 }     
   public class Entitywrapper{
     public AF_Entity_Exception__c EntityEx{get;set;}

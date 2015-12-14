@@ -1,6 +1,4 @@
 public with sharing class AF_BonusFeeStdCtrlExt {
-    
-    private final AF_Bonus_Summary__c bonusSummary;
     public String agencyId{get;set;}
     public String bonusSummaryId {get;set;}
     public Boolean noEstimates{get;set;}

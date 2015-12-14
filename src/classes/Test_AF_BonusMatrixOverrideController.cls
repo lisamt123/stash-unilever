@@ -170,13 +170,11 @@ public class Test_AF_BonusMatrixOverrideController
      
      
      ApexPages.currentPage().getParameters().put('CHParentId',agency.id);
-     AF_ViewAllController viewCtrl1=new AF_ViewAllController();
-     
+  
      ApexPages.currentPage().getParameters().put('CHParentId',oopEst.id);
-     AF_ViewAllController viewCtrl2=new AF_ViewAllController();
      
      ApexPages.currentPage().getParameters().put('CHParentId',bonMat.id);
-     AF_ViewAllController viewCtrl3=new AF_ViewAllController();     
+      
      
      Test.stopTest();
      }

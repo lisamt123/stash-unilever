@@ -1,4 +1,4 @@
-public class AF_EmailToCatFinance 
+public with sharing class AF_EmailToCatFinance 
 {
     List<AF_Brand_Estimate__c> lstBrandEstimate=new list<AF_Brand_Estimate__c>();
     public AF_EmailToCatFinance()

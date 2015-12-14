@@ -5,8 +5,8 @@
  */
  
  @isTest(SeeAlldata=false)
-public class Test_AF_AttachmentUploadController
-{ 
+	public class Test_AF_AttachmentUploadController
+	{ 
     Static Integer IcurrYear = System.Today().year();
     Static string currYear=string.valueof(IcurrYear);
     Static testMethod void addAttachmentController()
@@ -16,11 +16,11 @@ public class Test_AF_AttachmentUploadController
      Profile p=[Select Id from Profile where Name='System Administrator'];       
      
      //Insert User 
-     User u= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
-      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c='Test Beveragesc');
+     User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email=AF_Constants.TEST_USER_EMAIL, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_AGENCY,isActive=true, 
+      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;        
      
      System.runAs(u)
@@ -28,7 +28,7 @@ public class Test_AF_AttachmentUploadController
      
      //Insert Account
      Account acc=new Account();
-     acc.Name='Test Agencyc';
+     acc.Name='Test name';
      acc.published__c=true;
      insert acc;
      
@@ -38,9 +38,9 @@ public class Test_AF_AttachmentUploadController
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesc';
+     cat.Name=AF_Constants.TEST_AF_Category;
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_AF_Category;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -64,8 +64,8 @@ public class Test_AF_AttachmentUploadController
      //Insert Brand Estimate                  
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
-     brandEst.Name='Test BrandEstimatec';
-     brandEst.AF_Status_Base_Fees__c='Ready for PO';  
+     brandEst.Name='Test BrandEstimate';
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_READYFORPO;  
      brandEst.AF_Fiscal_Year__c=currYear;
      brandEst.AF_Active__c = true;
      brandEst.AF_Copied__c= false;
@@ -76,11 +76,11 @@ public class Test_AF_AttachmentUploadController
      
      System.assertEquals(brandEst.Brand__c, bran.id);
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_COUNTRY_CODE;
      curr.AF_Fiscal_Year_new__c = currYear;
-     curr.Currency_Unit__c = 'US $';
+     curr.Currency_Unit__c = AF_Constants.TEST_CURRENCY_UNIT;
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
@@ -99,16 +99,16 @@ public class Test_AF_AttachmentUploadController
      //Insert Agency Entity
      RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
      AF_Entity__c entity1=new AF_Entity__c();
-     entity1.Name='Test Entitym';        
+     entity1.Name='Test_Entitys';        
      entity1.AF_Agency__c=acc.Id;
-     entity1.AF_Country__c='Australia';
+     entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
      //Insert Unilever Entity
      RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
      AF_Entity__c entity2=new AF_Entity__c();
-     entity2.Name='Test Unilever Entitym';        
+     entity2.Name='Test_Unilever_Entity';        
      entity2.RecordTypeId=entiRT2.Id;         
      insert entity2; 
      
@@ -121,7 +121,7 @@ public class Test_AF_AttachmentUploadController
      agency.AF_Adaptation__c=22;
      agency.AF_Digital__c=22;
      agency.AF_Traditional__c=22; 
-     agency.AF_Status__c='With Agency';
+     agency.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
      insert agency;
          
      //Insert OOPS Estimate
@@ -181,11 +181,11 @@ public class Test_AF_AttachmentUploadController
      Profile p=[Select Id from Profile where Name='System Administrator'];       
      
      //Insert User 
-     User u= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
-      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c='Test Beveragesc');
+     User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email=AF_Constants.TEST_USER_EMAIL, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_AGENCY,isActive=true, 
+      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;        
      
      System.runAs(u)
@@ -193,7 +193,7 @@ public class Test_AF_AttachmentUploadController
      
      //Insert Account
      Account acc=new Account();
-     acc.Name='Test Agencyc';
+     acc.Name='Test Account Name';
      acc.published__c=true;
      insert acc;
      
@@ -203,9 +203,9 @@ public class Test_AF_AttachmentUploadController
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesc';
+     cat.Name=AF_Constants.TEST_AF_Category;
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_AF_Category;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -230,8 +230,8 @@ public class Test_AF_AttachmentUploadController
      //Insert Brand Estimate                  
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
-     brandEst.Name='Test BrandEstimatec';
-     brandEst.AF_Status_Base_Fees__c='Ready for PO';  
+     brandEst.Name='Test_BrandEstimate';
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_READYFORPO;  
      brandEst.AF_Fiscal_Year__c=currYear;
      brandEst.AF_Active__c = true;
      brandEst.AF_Copied__c= false;
@@ -243,11 +243,11 @@ public class Test_AF_AttachmentUploadController
      System.assertEquals(brandEst.Brand__c, bran.id);
      
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_COUNTRY_CODE;
      curr.AF_Fiscal_Year_new__c = currYear;
-     curr.Currency_Unit__c = 'US $';
+     curr.Currency_Unit__c = AF_Constants.TEST_CURRENCY_UNIT;
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
@@ -265,16 +265,16 @@ public class Test_AF_AttachmentUploadController
      //Insert Agency Entity
      RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
      AF_Entity__c entity1=new AF_Entity__c();
-     entity1.Name='Test Entitym';        
+     entity1.Name='Test Entity';        
      entity1.AF_Agency__c=acc.Id;
-     entity1.AF_Country__c='Australia';
+     entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
      //Insert Unilever Entity
      RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
      AF_Entity__c entity2=new AF_Entity__c();
-     entity2.Name='Test Unilever Entitym';        
+     entity2.Name='Test Unilever Entity';        
      entity2.RecordTypeId=entiRT2.Id;         
      insert entity2; 
      
@@ -287,7 +287,7 @@ public class Test_AF_AttachmentUploadController
      agency.AF_Adaptation__c=22;
      agency.AF_Digital__c=22;
      agency.AF_Traditional__c=22; 
-     agency.AF_Status__c='With Agency';
+     agency.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
      insert agency;
          
      //Insert OOPS Estimate
@@ -347,11 +347,11 @@ public class Test_AF_AttachmentUploadController
      Profile p=[Select Id from Profile where Name='System Administrator'];       
      
      //Insert User 
-     User u= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
-      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c='Test Beveragesc');
+     User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email=AF_Constants.TEST_USER_EMAIL, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_AGENCY,isActive=true, 
+      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;        
      
      System.runAs(u)
@@ -359,7 +359,7 @@ public class Test_AF_AttachmentUploadController
      
      //Insert Account
      Account acc=new Account();
-     acc.Name='Test Agencyc';
+     acc.Name='Account_Name';
      acc.published__c=true;
      insert acc;
      
@@ -369,9 +369,9 @@ public class Test_AF_AttachmentUploadController
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesc';
+     cat.Name=AF_Constants.TEST_AF_Category;
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_AF_Category;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -394,8 +394,8 @@ public class Test_AF_AttachmentUploadController
      //Insert Brand Estimate                  
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
-     brandEst.Name='Test BrandEstimatec';
-     brandEst.AF_Status_Base_Fees__c='Ready for PO';  
+     brandEst.Name='Test BrandEstimate_';
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_READYFORPO;  
      brandEst.AF_Fiscal_Year__c=currYear;
      brandEst.AF_Active__c = true;
      brandEst.AF_Copied__c= false;
@@ -406,11 +406,11 @@ public class Test_AF_AttachmentUploadController
      
      System.assertEquals(brandEst.Brand__c, bran.id);
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_COUNTRY_CODE;
      curr.AF_Fiscal_Year_new__c = currYear;
-     curr.Currency_Unit__c = 'US $';
+     curr.Currency_Unit__c = AF_Constants.TEST_CURRENCY_UNIT;
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
@@ -428,16 +428,16 @@ public class Test_AF_AttachmentUploadController
      //Insert Agency Entity
      RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
      AF_Entity__c entity1=new AF_Entity__c();
-     entity1.Name='Test Entitym';        
+     entity1.Name='Test_Entitym';        
      entity1.AF_Agency__c=acc.Id;
-     entity1.AF_Country__c='Australia';
+     entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
      //Insert Unilever Entity
      RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
      AF_Entity__c entity2=new AF_Entity__c();
-     entity2.Name='Test Unilever Entitym';        
+     entity2.Name='Test Unilever_Entitym';        
      entity2.RecordTypeId=entiRT2.Id;         
      insert entity2; 
      
@@ -450,7 +450,7 @@ public class Test_AF_AttachmentUploadController
      agency.AF_Adaptation__c=22;
      agency.AF_Digital__c=22;
      agency.AF_Traditional__c=22; 
-     agency.AF_Status__c='With Agency';
+     agency.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
      insert agency;
          
      //Insert OOPS Estimate
@@ -509,11 +509,11 @@ public class Test_AF_AttachmentUploadController
      Profile p=[Select Id from Profile where Name='System Administrator'];       
      
      //Insert User 
-     User u= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
-      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c='Test Beveragesc');
+     User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email=AF_Constants.TEST_USER_EMAIL, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_AGENCY,isActive=true, 
+      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;        
      
      System.runAs(u)
@@ -521,7 +521,7 @@ public class Test_AF_AttachmentUploadController
      
      //Insert Account
      Account acc=new Account();
-     acc.Name='Test Agencyc';
+     acc.Name='TEST_Account_Name';
      acc.published__c=true;
      insert acc;
      
@@ -531,9 +531,9 @@ public class Test_AF_AttachmentUploadController
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesc';
+     cat.Name=AF_Constants.TEST_AF_Category;
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_AF_Category;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -558,8 +558,8 @@ public class Test_AF_AttachmentUploadController
      //Insert Brand Estimate                  
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
-     brandEst.Name='Test BrandEstimatec';
-     brandEst.AF_Status_Base_Fees__c='Ready for PO';  
+     brandEst.Name='Test BrandEstimate_Record';
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_READYFORPO;  
      brandEst.AF_Fiscal_Year__c=currYear;
      brandEst.AF_Active__c = true;
      brandEst.AF_Copied__c= false;
@@ -570,11 +570,11 @@ public class Test_AF_AttachmentUploadController
      
      System.assertEquals(brandEst.Brand__c, bran.id);
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_COUNTRY_CODE;
      curr.AF_Fiscal_Year_new__c = currYear;
-     curr.Currency_Unit__c = 'US $';
+     curr.Currency_Unit__c = AF_Constants.TEST_CURRENCY_UNIT;
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
      curr.Ready_For_PO_Exchange_Rate_SGD_To_USD__c=1.0000;
@@ -592,16 +592,16 @@ public class Test_AF_AttachmentUploadController
      //Insert Agency Entity
      RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
      AF_Entity__c entity1=new AF_Entity__c();
-     entity1.Name='Test Entitym';        
+     entity1.Name='Test_Entity';        
      entity1.AF_Agency__c=acc.Id;
-     entity1.AF_Country__c='Australia';
+     entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
      //Insert Unilever Entity
      RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
      AF_Entity__c entity2=new AF_Entity__c();
-     entity2.Name='Test Unilever Entitym';        
+     entity2.Name='Test_Unilever_Entitym';        
      entity2.RecordTypeId=entiRT2.Id;         
      insert entity2; 
      
@@ -614,7 +614,7 @@ public class Test_AF_AttachmentUploadController
      agency.AF_Adaptation__c=22;
      agency.AF_Digital__c=22;
      agency.AF_Traditional__c=22; 
-     agency.AF_Status__c='With Agency';
+     agency.AF_Status__c=AF_Constants.BASE_FEES_WITH_AGENCY;
      insert agency;
          
      //Insert OOPS Estimate

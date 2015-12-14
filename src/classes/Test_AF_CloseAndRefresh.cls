@@ -21,14 +21,13 @@ public class Test_AF_CloseAndRefresh
       TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
       UserName='testusercr@test123321.com',AF_Brand__c='Test Brandcr',AF_Category__c='Test Beveragescr');
      insert u;        
-     
+     System.Assert(u.Id != null, 'The User record not inserted');
      System.runAs(u)
      { 
         ApexPages.currentPage().getParameters().put('IsError','false');      
-        AF_CloseAndRefresh cloRef=new AF_CloseAndRefresh();
         ApexPages.currentPage().getParameters().put('IsError','true');     
         ApexPages.currentPage().getParameters().put('ErrorMessage','error');        
-        AF_CloseAndRefresh cloRef1=new AF_CloseAndRefresh();
+        
      }
     Test.stopTest();
     }

@@ -1,16 +1,14 @@
-Global class AF_brandEstimatehandlerHelper{
+Global with sharing class AF_brandEstimatehandlerHelper{
     global static boolean testvar=false;
     @future
   public static void brandEstimatehandlerMethod(Set<String> brandSet){
     
     Set<Id> brandEstIdcatfin = new Set<Id>();
     List<AF_Brand_Estimate__c> brandEstWithAgencyList = new List<AF_Brand_Estimate__c>();
-    List<AF_Brand_Estimate__c> brandEstWithcatfinList = new List<AF_Brand_Estimate__c>();
     List<AF_Brand_Estimate__c> brandEstList = new  List<AF_Brand_Estimate__c>();
     List<AF_Brand_Estimate__c> brandEstupdateList = new  List<AF_Brand_Estimate__c>();
     List<AF_Brand_Estimate__c> brandEstimateList = new  List<AF_Brand_Estimate__c>();
     list<ProcessInstanceWorkitem> workItem=new list<ProcessInstanceWorkitem>();
-    Set<String> workItemId = new Set<String>();
     testvar=true; 
     brandEstList = [select Id,Brand__r.Name,AF_Status_Base_Fees__c from AF_Brand_Estimate__c where Brand__r.Name IN:brandSet and AF_Active__c=true and AF_Status_Base_Fees__c!='Ready for PO'];
     for(AF_Brand_Estimate__c b:brandEstList){

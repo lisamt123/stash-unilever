@@ -1,4 +1,4 @@
-public class AF_OopsActualHelper{
+public with sharing class AF_OopsActualHelper{
     
      public static void shareRecordToUser(List<AF_OOPS_Actual__c> oopsActualObjList){
         List<String> agencyNameList = new List<String>();

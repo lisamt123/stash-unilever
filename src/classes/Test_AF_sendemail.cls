@@ -28,7 +28,7 @@ public class Test_AF_sendemail
         pa.PermissionSetId = per.id;
         pa.AssigneeId = u.id;
         insert pa;
-        
+        System.Assert(pa.Id != null, 'The Permissionset record not inserted');
         System.runAs(u)
         { 
             AF_TriggerDate__c  customList = new AF_TriggerDate__c ();

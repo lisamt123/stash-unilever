@@ -1,4 +1,4 @@
-global class AF_SendEmailToCatFinance implements Schedulable
+global with sharing class AF_SendEmailToCatFinance implements Schedulable
 {
      String query;
      List<AF_CatFinanceThreshold__c> catFinanceDate=new  List<AF_CatFinanceThreshold__c>();
@@ -10,7 +10,7 @@ global class AF_SendEmailToCatFinance implements Schedulable
     
     global void execute(SchedulableContext ctx) 
     {  
-        catFinanceDate = [select AF_Date__c from AF_CatFinanceThreshold__c];
+        catFinanceDate = [select AF_Date__c from AF_CatFinanceThreshold__c LIMIT 1];
         if(catFinanceDate.size()>0){
             if(catFinanceDate[0].AF_Date__c == system.today()){
                 Send_Email__c NewEmailRecord= new Send_Email__c();

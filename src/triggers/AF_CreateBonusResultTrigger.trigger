@@ -7,7 +7,7 @@ trigger AF_CreateBonusResultTrigger on AF_Bonus_Threshold__c (after insert) {
     String recTypeId = [select id from recordType where name='Bonus Annual' AND SobjectType='AF_Bonus_Results__c'].Id;
     
     for(AF_Bonus_Threshold__c bonusThObj : trigger.new){
-        if(bonusThObj.AF_Pilot_Model__c==false){
+        if(!bonusThObj.AF_Pilot_Model__c){
         AF_Bonus_Results__c bonResObj = new AF_Bonus_Results__c();
         bonResObj.RecordTypeId=recTypeId;
         bonResObj.AF_Bonus_Thresholds__c=bonusThObj.Id;

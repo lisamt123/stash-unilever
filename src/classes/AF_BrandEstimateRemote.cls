@@ -30,7 +30,7 @@ global with sharing class AF_BrandEstimateRemote {
     @remoteAction
     global static Map<String, String> getAgencyEstimateRecords(String agencyId, String brandEstimateId) {
         
-        String ulId, tdOpenTag = '<td>',tdCloseTag = '</td>', trOpenTag = '<tr>', trCloseTag = '</tr>', space = ' ', lBreak = '<br/>';
+        String tdCloseTag = '</td>', trOpenTag = '<tr>', trCloseTag = '</tr>';
         Boolean isLocked = false;
         String strongStrt = '<Strong>', strongEnd = '</strong>';
         Set<String> columnsSet = new Set<String>();
@@ -67,8 +67,6 @@ global with sharing class AF_BrandEstimateRemote {
         system.debug('** agencyNameMap : ' + agencyNameMap);
         system.debug('** agenciesToSelect : ' + agenciesToSelect);
         system.debug('** ulEntitiesToSelect : ' + ulEntitiesToSelect);
-        Map<String, String> ulEntityDetails = new Map<String, String>();
-        List<String> colOrder = new List<String>();
         String  colDetail = ''; //Column variable which gets added to the map finally.
         String rowDetail = ''; //Row variable which gets added to the map finally.
         String imgPath = AF_Utils.isAgencyUser(UserInfo.getUserId()) ? Label.AF_AgencyUrlLink : Label.AF_UrlLink;
@@ -161,9 +159,9 @@ global with sharing class AF_BrandEstimateRemote {
     public static String processAgencyRow(Boolean isValue, AF_Agency_Estimate__c agSObj, 
                                         Map<String, AF_Agency_Estimate__c> agencyULRelationMap, 
                                         String aId, String uId, String bId) {
-        String tdOpenTag = '<td>',tdCloseTag = '</td>', trOpenTag = '<tr>', trCloseTag = '</tr>', space = ' ', lBreak = '<br/>', euro = 'EUR';
+        String tdCloseTag = '</td>', space = ' ', lBreak = '<br/>', euro = 'EUR';
         String rowDetailToReturn = '';
-        String href, title = '';
+         String href;
         if(isValue) {
             String currCode = agSObj.Matrix_Currency_Code__c != null ? agSObj.Matrix_Currency_Code__c : '';
             Integer total = truncateDecimal(agSObj.AF_Total__c/1000);
@@ -565,8 +563,6 @@ global with sharing class AF_BrandEstimateRemote {
     global static void archiveAgencyEntityToEstimates(String sObjectId, String sobjectName, String rowName) {
         
         system.debug('** sObjectId : ' + sObjectId + ' :: sobjectName : ' + sobjectName + ' :: rowName : ' + rowName);
-        AF_Bonus_Summary__c brandsObj;
-        Map<String, String> brMap;
         Id ulRecordTypeId = AF_Utils.getEntityRecordId(Label.Entity_RT_Unilever);
         List<AF_Agency_Estimate__c> agencyEstimatesToDelete = new List<AF_Agency_Estimate__c>();
         List<AF_OOPS_Estimate__c> oopsEstimatesToDelete = new List<AF_OOPS_Estimate__c>();
@@ -598,9 +594,6 @@ global with sharing class AF_BrandEstimateRemote {
     
     @remoteAction
     global static void archiveUnileverEntityToEstimates(String sObjectId, String sObjectName, String colsArr, String agencyId) {
-        
-        AF_Bonus_Summary__c brandsObj;
-        Map<String, String> brMap;
         Id agRecordTypeId = AF_Utils.getEntityRecordId(Label.Entity_RT_Agency);
         List<AF_Agency_Estimate__c> agencyEstimatesToDelete = new List<AF_Agency_Estimate__c>();
         List<AF_OOPS_Estimate__c> oopsEstimatesToDelete = new List<AF_OOPS_Estimate__c>();
@@ -707,7 +700,6 @@ global with sharing class AF_BrandEstimateRemote {
     global static void addSingleULAGEntity(String sObjectId, String sObjectName, String rowName, String colName, String agencyId) {
         
         List<String> colsArr = new List<String>{colName};
-        String bonusResultId;
         AF_Bonus_Summary__c brandsObj;
         Map<String, String> brMap;
         List<String> rowsArr = new List<String>{rowName};
@@ -765,10 +757,8 @@ global with sharing class AF_BrandEstimateRemote {
         
         Map<String, String> bRMapToReturn = new Map<String, String>();
         Id bRRecordTypeId = AF_Utils.getBonusResRecordId(Label.Bonus_Annual);
-        Set<Id> brIdsSet = new Set<Id>();
         Boolean isPilotmodel2=false;
         List<AF_Bonus_Threshold__c> bonusTHList=new  List<AF_Bonus_Threshold__c>();
-        List<AF_Bonus_Results__c> bonusResultsToCreate = new List<AF_Bonus_Results__c>();
 
          for(AF_Brand_Estimate__c brandEstimate :[Select Id,AF_Pilot_Model__c  from AF_Brand_Estimate__c 
                                                     where AF_Active__c = true
@@ -776,11 +766,11 @@ global with sharing class AF_BrandEstimateRemote {
                                                     AND Brand__c=: brandsObj.AF_Brand__c
                                                     AND AF_Fiscal_Year__c =:brandsObj.AF_Fiscal_Year__c 
                                                     AND AF_Pilot_Model__c = true]){
-            if(brandEstimate .AF_Pilot_Model__c ==true){
+            if(brandEstimate .AF_Pilot_Model__c){
             isPilotmodel2 = true;
             }
         }
-        if(isPilotmodel2==true){
+        if(isPilotmodel2){
          bonusTHList = [SELECT AF_Country__c, AF_Country__r.AF_Country__c, 
                                                             (SELECT Name FROM Bonus_Results__r WHERE RecordTypeId = :bRRecordTypeId LIMIT 1)
                                                             FROM AF_Bonus_Threshold__c 
@@ -817,7 +807,7 @@ global with sharing class AF_BrandEstimateRemote {
             
            
         }
-        if(isPilotmodel2==true){
+        if(isPilotmodel2){
         bRMapToReturn.put('IsPilot', 'IsPilot');
         }
         system.debug('bRMapToReturn --- '+bRMapToReturn);
@@ -835,12 +825,11 @@ global with sharing class AF_BrandEstimateRemote {
         return bonusMatrixToReturn;
     }
     
-    private static AF_Bonus_Results__c buildBonusResult(String bonusThreshold) {
+     private static AF_Bonus_Results__c buildBonusResult(String bonusThreshold) {
         AF_Bonus_Results__c bonusResultToReturn = new AF_Bonus_Results__c();
         bonusResultToReturn.AF_Bonus_Thresholds__c = bonusThreshold;
         return bonusResultToReturn;
-    }
-    
+    }   
     public static AF_Agency_Estimate__c buildAgencyEstimate(String agencyEntityId, String ulEntityId, String brandEstimateId) {
         system.debug('** rowId : ' + ulEntityId);
         AF_Agency_Estimate__c agEstToReturn = new AF_Agency_Estimate__c();
@@ -876,7 +865,7 @@ global with sharing class AF_BrandEstimateRemote {
                                                     AND Brand__c=: brandsObj.AF_Brand__c
                                                     AND AF_Fiscal_Year__c =:brandsObj.AF_Fiscal_Year__c 
                                                     AND AF_Pilot_Model__c = true]){
-            if(brandEstimate .AF_Pilot_Model__c==true ){
+            if(brandEstimate .AF_Pilot_Model__c ){
              isPilotModel = true;
             }
            

@@ -1,11 +1,11 @@
-global class AF_sendemail implements Schedulable
+global with sharing class AF_sendemail implements Schedulable
 {
     global void execute(SchedulableContext sc)
     {    
         try{
         AF_TriggerDate__c ATD = AF_TriggerDate__c.getOrgDefaults();
-        string subject;
-        string templatebody;
+        string subject='';
+        string templatebody='';
         for(emailtemplate emt : [select id,name,HtmlValue,body,subject from emailtemplate where name =: 'AF_Sendemail' limit 1])
         {
             subject = emt.subject;
@@ -15,8 +15,7 @@ global class AF_sendemail implements Schedulable
         {
             system.debug(' inside==');
             List<Id> lstusers=new List<Id>();
-            List<String> lstEmail=new List<String>();
-            string emails;
+            string emails='';
             List<PermissionSetAssignment> permissionSetAssign=[SELECT AssigneeId,Id,PermissionSetId FROM PermissionSetAssignment where PermissionSet.name=:'AF_CMCO_Super_User'];
             if(permissionSetAssign.size()>0){
                 for(PermissionSetAssignment assignment:permissionSetAssign){

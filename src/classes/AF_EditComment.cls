@@ -28,7 +28,7 @@ public with sharing class AF_EditComment
         ErrorCollection = new List<CustomException>();
         
         CommentRecord = [Select a.SystemModstamp, a.OwnerName__c, a.OwnerId, a.Name, a.LastModifiedDate, a.LastModifiedById, a.IsDeleted, a.Id, a.CreatedDate, a.CreatedById, a.AF_Public__c, a.AF_Parent_Record_Id__c, a.AF_Parent_Object_Type__c, a.AF_Comments__c, a.AF_Bonus__c From AF_Comments__c a where a.Id = : CommentId];   
-        if(IsEdit == true){IsAdd = false;}else{IsAdd = true;}     
+        if(IsEdit){IsAdd = false;}else{IsAdd = true;}     
     }
     public PageReference SaveComment()
     {

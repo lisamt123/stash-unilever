@@ -49,6 +49,8 @@ public with sharing class AF_BonusQuarterly {
     public decimal sum_of_bonus_basefee_onload {get;set;}
     public Boolean displaySubmitButton{get;set;}
     public Boolean displaySubmitSave{get;set;}
+    private static String Digital = 'Digital';
+    private static String Trad = 'Trad';
     //upto here
     //contructor
     public  AF_BonusQuarterly() {
@@ -77,9 +79,6 @@ public with sharing class AF_BonusQuarterly {
         AF_Outstanding=0;
         AF_Stretching=0;
         AF_Traditional=false;
-        Integer Quant=null;
-        Decimal Bonus_Percent=0;
-        Integer Bonus_value=0;
         brandestimate_id='';
         Country_name='';
         Traditional_value=0;
@@ -94,8 +93,6 @@ public with sharing class AF_BonusQuarterly {
         isQuantEmpty=false;
         isNoRecord=True;
         //10-09-2014
-        Integer LockedTraditional=0;
-        Integer LockedDigital=0;
         //01-09-2014
         sum_of_bonus_basefee=0;
         sum_of_bonus_basefee_onload=0;
@@ -120,7 +117,7 @@ public with sharing class AF_BonusQuarterly {
         
         list<AF_Brand_Estimate__c>Pilot_model=[select ID,AF_Pilot_Model__c,AF_No_Bonus__c from AF_Brand_Estimate__c where  Brand__c=:Brand_id and AF_Agency__c=:agency_id and AF_Fiscal_Year__c=:current_year and AF_Active__c=True limit 1];    
         if(Pilot_model.size()>0){
-            if(Pilot_model.get(0).AF_Pilot_Model__c==true){
+            if(Pilot_model.get(0).AF_Pilot_Model__c){
                 showmainblock=false; 
                 apexpages.addmessage(new apexpages.message(apexpages.severity.info,'You have confirmed that your Brand Estimates is on the remuneration Pilot Model and that Quant Bonus tracking is therefore not applicable'));
                 
@@ -174,7 +171,7 @@ public with sharing class AF_BonusQuarterly {
                                 String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
                                 String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
                                 Integer count=0;
-                                if(bonus_Threshold_Obj.AF_Digital__c == true){
+                                if(bonus_Threshold_Obj.AF_Digital__c){
                                     if(!countryBMMap.containsKey(countryDigital)){
                                         countryBMMap.put(countryDigital,1);
                                     }
@@ -184,7 +181,7 @@ public with sharing class AF_BonusQuarterly {
                                         countryBMMap.put(countryDigital,count);
                                     }
                                 }
-                                if(bonus_Threshold_Obj.AF_Traditional__c == true){
+                                if(bonus_Threshold_Obj.AF_Traditional__c){
                                     if(!countryBMMap.containsKey(countryTrad)){
                                         countryBMMap.put(countryTrad,1);
                                     }
@@ -206,13 +203,13 @@ public with sharing class AF_BonusQuarterly {
                                     unileverContCount = unileverContCount+1;
                                     countryCountMap.put(bonus_Threshold_Obj.AF_Country__r.AF_Country__c,unileverContCount);
                                 }
-                                String StrTemp = agencyname_id+'::'+ brandname_id+'::'+bonus_Threshold_Obj.AF_Country__r.AF_Country__c+'::'+bonus_Threshold_Obj.AF_Bonus_Threshold__r.Year__c;
+                                //String StrTemp = agencyname_id+'::'+ brandname_id+'::'+bonus_Threshold_Obj.AF_Country__r.AF_Country__c+'::'+bonus_Threshold_Obj.AF_Bonus_Threshold__r.Year__c;
                                 String BMStr = bonus_Threshold_Obj.AF_Unique_Thresholds__c;
                                 map<String,boolean> tradDigMapBM = new map<String,boolean>();
                                 //map<String,boolean> tradDigMapBMtemp = new map<String,boolean>();
-                                tradDigMapBM.put('Digital',bonus_Threshold_Obj.AF_Digital__c);
+                                tradDigMapBM.put(Digital,bonus_Threshold_Obj.AF_Digital__c);
                                 //tradDigMapBMtemp.put('Digital',bonus_Threshold_Obj.AF_Digital__c);
-                                tradDigMapBM.put('Trad',bonus_Threshold_Obj.AF_Traditional__c);
+                                tradDigMapBM.put(Trad,bonus_Threshold_Obj.AF_Traditional__c);
                                 //tradDigMapBMtemp.put('Trad',bonus_Threshold_Obj.AF_Traditional__c);
                                 bonus_Threshold_Trad_Dig_BM_Map.put(BMStr,tradDigMapBM);
                                 //bonus_Threshold_Trad_Dig_BM_MapTemp.put(StrTemp,tradDigMapBMtemp);
@@ -228,17 +225,17 @@ public with sharing class AF_BonusQuarterly {
                                 String StrTemp = agencyname_id+'::'+ brandname_id+'::'+bonus_Threshold_Obj.AF_Country__r.AF_Country__c+'::'+bonus_Threshold_Obj.AF_Bonus_Threshold__r.Year__c;
                                 if(countryBMMap.size()>0){
                                 if(countryBMMap.get(countryDigital)>0 && countryBMMap.get(countryTrad) >0){
-                                    tradDigMapBMtemp.put('Trad',true);
-                                    tradDigMapBMtemp.put('Digital',true);
+                                    tradDigMapBMtemp.put(Trad,true);
+                                    tradDigMapBMtemp.put(Digital,true);
                                 }
                                 else if(countryBMMap.get(countryDigital)>0){
                                     
-                                    tradDigMapBMtemp.put('Digital',true);
-                                    tradDigMapBMtemp.put('Trad',false);
+                                    tradDigMapBMtemp.put(Digital,true);
+                                    tradDigMapBMtemp.put(Trad,false);
                                 }
                                 else if(countryBMMap.get(countryTrad)>0){
-                                  tradDigMapBMtemp.put('Trad',true);
-                                  tradDigMapBMtemp.put('Digital',false);
+                                  tradDigMapBMtemp.put(Trad,true);
+                                  tradDigMapBMtemp.put(Digital,false);
                                 }
                                 bonus_Threshold_Trad_Dig_BM_MapTemp.put(StrTemp,tradDigMapBMtemp);
                             }
@@ -259,7 +256,7 @@ public with sharing class AF_BonusQuarterly {
                         mapBonus_result.put(bonusResObj.AF_Unique_Thresholds__c,bonusResObj);
                         
                         //checking for locked Bonus Result record 
-                        if(bonusResObj.AF_Locked__c==true){
+                        if(bonusResObj.AF_Locked__c){
                             IsLocked=True;
                         }else{
                             IsLocked=false;
@@ -288,14 +285,12 @@ public with sharing class AF_BonusQuarterly {
                             }
                         }
                         showmainblock=True;
-                        if(setofnonthreshold_country.size()>0 && Pilot_model.get(0).AF_No_Bonus__c==false){
+                        if(setofnonthreshold_country.size()>0 && !Pilot_model.get(0).AF_No_Bonus__c){
                             displaySubmitButton = true; 
                             Apexpages.addmessage(new apexpages.message(apexpages.severity.WARNING,  'The Thresholds entered do not match the Unilever entity/entities in the Base Fees matrix. Please resolve the following mismatches by setting Bonus Threshold for Unilever entities: '+ ' '+ setofnonthreshold_country ));
                         }
                     }
-                    
-                    map<String,Integer> AgencyMap= new map<String,Integer>();
-                    
+                                        
                     Map<String,Integer> EntityAmtMap = new Map<String,Integer>();
                     list<AF_Agency_Estimate__c>lstof_agencyestimates=new list<AF_Agency_Estimate__c>();
                     lstof_agencyestimates=[Select id,AF_Bonus_Agency_Formula__c,name,Agency_Account__c,Brand__c, AF_Unilever_Entity__c,AF_Digital__c,AF_Traditional__c,AF_Unilever_Entity__r.name,AF_Unilever_Entity__r.AF_Country__c from AF_Agency_Estimate__c where AF_Bonus_Agency_Formula__c IN :agencyEstUnqStr and AF_Brand_Estimate__r.AF_Active__c=True];
@@ -329,16 +324,16 @@ public with sharing class AF_BonusQuarterly {
                             system.debug('bonus_Threshold_Trad_Dig_BM_MapTemp....'+bonus_Threshold_Trad_Dig_BM_MapTemp);
                             if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c)!=null){
                             system.debug('inside the loop of agnecy ******');
-                                if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get('Digital') && bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get('Trad')){
+                                if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Digital) && bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Trad)){
                                 
                                 Totals_BonusMeasureDigital = Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
                                 Totals_BonusMeasureTrad = Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
                                 }
-                                else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get('Digital')){
+                                else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Digital)){
                                 Totals_BonusMeasureDigital = Totals_BonusMeasureDigital + (integer.valueof(agEstObj.AF_Digital__c));
                                 
                                 }
-                                else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get('Trad')){
+                                else if(bonus_Threshold_Trad_Dig_BM_MapTemp.get(agEstObj.AF_Bonus_Agency_Formula__c).get(Trad)){
                                 Totals_BonusMeasureTrad = Totals_BonusMeasureTrad + (integer.valueof(agEstObj.AF_Traditional__c));
                                 }
                             }
@@ -393,11 +388,11 @@ public with sharing class AF_BonusQuarterly {
                         Integer count=0;
                         String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
                         String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
-                        if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get('Digital')==true){
+                        if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Digital)){
                             count = BonusMeasureCalcMap.get(countryDigital);
                             system.debug(count);
                         }
-                        if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get('Trad')==true){
+                        if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Trad)){
                             count = count+BonusMeasureCalcMap.get(countryTrad);
                             system.debug(count);
                         }
@@ -434,14 +429,14 @@ public with sharing class AF_BonusQuarterly {
                         Integer count=0;
                         String countryDigital = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'D';
                         String countryTrad = bonus_Threshold_Obj.AF_Country__r.AF_Country__c + '::' + 'T';
-                        if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get('Digital')==true){
+                        if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Digital)){
                             
                             count = BonusMeasureCalcMap.get(countryDigital);
                             system.debug('strBM...***digital'+strBM);
                             system.debug(count);
                             
                         }
-                        if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get('Trad')==true){
+                        if(bonus_Threshold_Trad_Dig_BM_Map.get(strBM).get(Trad)){
                             count = count+BonusMeasureCalcMap.get(countryTrad);
                             system.debug('strBM...***Trad'+strBM);
                             system.debug(count);
@@ -473,8 +468,6 @@ public with sharing class AF_BonusQuarterly {
     //Calculate quant bonus
     public void Calculate_Bonus() {
         //CallBonusQuarterly();
-        decimal bonus_value=0;
-        decimal bonus_per=0;
         sum_of_bonus_per=0;
         sum_of_bonus_val=0;
         Decimal Quantvalue=0;
@@ -547,7 +540,6 @@ public with sharing class AF_BonusQuarterly {
     public void UpdateBonus() {
         //CallBonusQuarterly();
         Calculate_Bonus();
-        Boolean isQuantEmpty;
         displaySubmitSave = false;
         integer success=0;
         list<AF_Sub_Result__c> bonus_latestlist=new list<AF_Sub_Result__c>();
@@ -638,7 +630,6 @@ public with sharing class AF_BonusQuarterly {
     public void ConfirmBonus() {
         CallBonusQuarterly();
         Calculate_Bonus();
-        Boolean isQuantEmpty;
         list<AF_Sub_Result__c> bonus_latestlist=new list<AF_Sub_Result__c>();
         
         

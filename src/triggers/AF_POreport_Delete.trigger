@@ -22,8 +22,8 @@ trigger AF_POreport_Delete on AF_Brand_Estimate__c (before delete,after update) 
     }
     else if(Trigger.isUpdate){
         for(AF_Brand_Estimate__c  eachRecord:Trigger.New){
-            if((eachRecord.AF_Dont_Show_on_Report__c==false && Trigger.oldMap.get(eachRecord.Id).AF_Dont_Show_on_Report__c==true && 
-            eachRecord.AF_Active__c==true && Trigger.oldMap.get(eachRecord.Id).AF_Active__c==false)||(eachRecord.AF_Basefee_Estimate_Initial_Quarter__c!=Trigger.oldMap.get(eachRecord.Id).AF_Basefee_Estimate_Initial_Quarter__c)){
+            if((!eachRecord.AF_Dont_Show_on_Report__c && Trigger.oldMap.get(eachRecord.Id).AF_Dont_Show_on_Report__c && 
+            eachRecord.AF_Active__c && !Trigger.oldMap.get(eachRecord.Id).AF_Active__c)||(eachRecord.AF_Basefee_Estimate_Initial_Quarter__c!=Trigger.oldMap.get(eachRecord.Id).AF_Basefee_Estimate_Initial_Quarter__c)){
                 BrandEstids.add(eachRecord.Id);
             }
         }

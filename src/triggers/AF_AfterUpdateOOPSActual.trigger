@@ -5,14 +5,14 @@ trigger AF_AfterUpdateOOPSActual on AF_OOPS_Actual__c (after update)
     AF_OOPSRecordManager OOPSRecordManager;
        
     OOPSRecordManager = new AF_OOPSRecordManager();
-    if(AF_RecursiveTriggerHelper.isAlreadyModified() == false)
+    if(!AF_RecursiveTriggerHelper.isAlreadyModified())
     {
         for(AF_OOPS_Actual__c  oopsActual:Trigger.new )
         {   
             AF_OOPS_Actual__c oldoopsactual=Trigger.oldMap.get(oopsActual.Id); 
             if(oldoopsactual.Overall__c!=oopsActual.Overall__c){               
             //5-09-2014---- if(oopsActual.AF_iS_OOPS_Percentage__c == false && oopsActual.AF_Matrix_Generated__c == false)
-             if(oopsActual.AF_iS_OOPS_Percentage__c == false )
+             if(!oopsActual.AF_iS_OOPS_Percentage__c)
             {
                 OOPSRecordManager.OOPSActual = oopsActual;       
                 OOPSRecordManager.RecalculateOOPSEstimates();

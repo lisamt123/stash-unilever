@@ -6,7 +6,7 @@ trigger AF_Brand_Controller_Review on AF_Brand_Estimate__c (after update)
         set<id> Brids = new set<id>();
         for(AF_Brand_Estimate__c Br : trigger.new)
         {
-            if(Br.AF_Status_Base_Fees__c=='With CMCO' && Br.AF_Category_Finance_Approved__c==true)
+            if(Br.AF_Status_Base_Fees__c==AF_Constants.BASE_FEES_WIHTCMCO && Br.AF_Category_Finance_Approved__c)
                 Brids.add(Br.id);
                 
             system.debug('@@@ Brand Ids first='+Brids);

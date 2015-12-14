@@ -114,7 +114,7 @@ global with sharing class AF_BrandEstimateController2
                     brandid=BrandEstimateObj.Brand__c;
                     Fyear=BrandEstimateObj.AF_Fiscal_Year__c;   
                     //ispilotModel=BrandEstimateObj.AF_Locked__c;
-                    if(BrandEstimateObj.AF_Locked__c == null || BrandEstimateObj.AF_Locked__c == false)IsLocked = true;else{IsLocked = false;}
+                    if(BrandEstimateObj.AF_Locked__c == null || !BrandEstimateObj.AF_Locked__c)IsLocked = true;else{IsLocked = false;}
                     CalculateTotal();
                     
                     
@@ -123,12 +123,12 @@ global with sharing class AF_BrandEstimateController2
                     if(BrandEstimateObj.AF_Status_Base_Fees__c == 'Ready for PO'){
                         ReadyforPO = true;
                     }
-                    if(BrandEstimateObj.AF_Status_Base_Fees__c == 'Ready for PO' && BrandEstimateObj.AF_Basefee_Estimate_Initial_Quarter__c.contains('Q4') == true){
+                    if(BrandEstimateObj.AF_Status_Base_Fees__c == AF_Constants.BASE_FEES_READYFORPO && BrandEstimateObj.AF_Basefee_Estimate_Initial_Quarter__c.contains(AF_Constants.QUARTER4)){
                         hideDeleteLink = true;
                         
                     }
                     system.debug('hideDeleteLink....'+hideDeleteLink);
-                    if(ispilotModel==true){
+                    if(ispilotModel){
                         showpilot=true;
                     }
                     getPilotmethod();
@@ -146,16 +146,12 @@ global with sharing class AF_BrandEstimateController2
             System.debug(ex);
         }
         
-        if(ispilotModel==False){
+        if(!ispilotModel){
             
             addwrapper();
             //bonusThresholdValidation();
         }
-        else{
-            
-            //ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.info,'Pilot model is on');
-            // ApexPages.addMessage(myMsg);
-        }
+        
         CommentRecord = new AF_Comments__c();
         getMeasure();
         GetCountry();
@@ -164,7 +160,7 @@ global with sharing class AF_BrandEstimateController2
     
     public void bonusThresholdValidation(){
         system.debug('inside bonus threshold check');
-        if(ispilotModel==False && NoBonusCheck==false){
+        if(!ispilotModel && !NoBonusCheck){
             Integer i=0;
             String errormsg = 'The Thresholds entered do not match the Unilever entity/entities in the Base Fees matrix. Please resolve the following mismatches by setting Bonus Threshold for Unilever entities:{';
             AF_BonusRecordManager bonusRecordManager = new AF_BonusRecordManager();
@@ -296,7 +292,7 @@ global with sharing class AF_BrandEstimateController2
             Integer counterWrapper=-1;
             for(wrapbonus bt:BonusThresholds){
                 counterWrapper++;
-                if(bt.del == false && bt.position == posDelete){
+                if(!bt.del && bt.position == posDelete){
                     break;
                 }
                 
@@ -370,12 +366,7 @@ global with sharing class AF_BrandEstimateController2
         }
         catch(DMLException ex)
         {           
-            //if(ex.getMessage().contains('There are no user records with this Brand')){ErrorMessage = 'There are no user records with this Brand';}                                 
-            //Apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,  ex.getMessage() ));
-            //pageRef = new PageReference('/apex/AF_CloseAndRefresh?IsError=true&ErrorMessage=' + ErrorMessage);
-            //pageRef.setRedirect(true); 
-            // ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.info,ex.getMessage());
-            // ApexPages.addMessage(myMsg);                         
+            ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateController2','Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());                       
         }
         return null;
         
@@ -386,8 +377,6 @@ global with sharing class AF_BrandEstimateController2
         AF_Bonus_Threshold__c btInsertRecords;
         set<String> countrySet = new set<String>();
         
-        String uniquethreshold='';
-        Boolean isUnique;
         Integer counter=0;
         System.Savepoint previousSnapShot = Database.setSavepoint();
         Boolean isDig_Trad=false;//03-09-2014 traditional or digital should be selected
@@ -397,7 +386,7 @@ global with sharing class AF_BrandEstimateController2
                 For(wrapbonus bonus_thresolds:BonusThresholds){
                     btInsertRecords  = new AF_Bonus_Threshold__c();
                     //03-09-2014 traditional or digital should be selected
-                    if(bonus_thresolds.bonusthresholds.AF_Digital__c==false && bonus_thresolds.bonusthresholds.AF_Traditional__c==false){
+                    if(!bonus_thresolds.bonusthresholds.AF_Digital__c && !bonus_thresolds.bonusthresholds.AF_Traditional__c){
                         isDig_Trad=true;
                     }
                     system.debug('bonus_thresolds.bonusthresholds.AF_Bonus_Threshold__r.AF_Country__c ****'+bonus_thresolds.bonusthresholds.AF_country__c);
@@ -428,14 +417,13 @@ global with sharing class AF_BrandEstimateController2
                    counter=0;
                    isDig_Trad=false;
                 }
-                if(counter==0 && isDig_Trad==false){
+                if(counter==0 && !isDig_Trad){
                     for(AF_Bonus_Threshold__c bt:bonusInsertList){
                         if(bt.Id == null){
                             delBonusThresholdCountry.add(bt.AF_Country__c);
                         }
                     }
                     upsert bonusInsertList;
-                    List<AF_Bonus_Threshold__c> btgetId = new List<AF_Bonus_Threshold__c>();
                     Map<String,String> bonusIdCountryMap = new Map<String,String>();
                     for(AF_Bonus_Threshold__c b:bonusInsertList){
                         if(!bonusIdCountryMap.containskey(b.AF_Country__c)){
@@ -466,7 +454,7 @@ global with sharing class AF_BrandEstimateController2
                     Apexpages.addmessage(new apexpages.message(apexpages.severity.confirm,  'Records successfully saved' ));
                     bonusThresholdValidation();
                 }
-                else if(isDig_Trad==true){
+                else if(isDig_Trad){
                     
                     ApexPages.Message myMsg = new ApexPages.Message(ApexPages.Severity.INFO,'Please select \'Traditional\' or \'Digital\'');
                     ApexPages.addMessage(myMsg);
@@ -550,23 +538,23 @@ global with sharing class AF_BrandEstimateController2
     
     private string CommaFilter(string value)
     {
-        if(value.contains(',') == true){value = value.replaceAll(',','');}
+        if(value.contains(',') ){value = value.replaceAll(',','');}
         return value;       
     }
     
     public void bonusCheck(){
         list<AF_Bonus_Threshold__c> No_Bonus_thresholds=new list<AF_Bonus_Threshold__c>();
-        if(NoBonusCheck==true){
+        if(NoBonusCheck){
             BrandEstimateObj.AF_No_Bonus__c = true;
         }
         else{
             BrandEstimateObj.AF_No_Bonus__c = false;
         }
         No_Bonus_thresholds=[Select Id from AF_Bonus_Threshold__c  where Brand_Name__c=:brandid.substring(0,15) and Agency_Name__c=:agencyid.substring(0,15) and Year__c=:Fyear];
-        if(BrandEstimateObj.AF_Pilot_Model__c==false && No_Bonus_thresholds.size()==0 && BrandEstimateObj.AF_No_Bonus__c==true){
+        if(!BrandEstimateObj.AF_Pilot_Model__c && No_Bonus_thresholds.size()==0 && BrandEstimateObj.AF_No_Bonus__c){
             update BrandEstimateObj;
         }
-        else if(BrandEstimateObj.AF_Pilot_Model__c==false && No_Bonus_thresholds.size()==0 && BrandEstimateObj.AF_No_Bonus__c ==false ){
+        else if(!BrandEstimateObj.AF_Pilot_Model__c && No_Bonus_thresholds.size()==0 && !BrandEstimateObj.AF_No_Bonus__c ){
             NoBonusCheck = false;
             ispilotModel = false;
             bonusThresholdValidation();
@@ -582,7 +570,7 @@ global with sharing class AF_BrandEstimateController2
         
         //try
         //    {
-        if(ispilotModel==True){
+        if(ispilotModel){
             getPilotmethod();
             showpilot=true;
             
@@ -635,9 +623,9 @@ global with sharing class AF_BrandEstimateController2
     }
     public void SaveBonusRemeneration(){
         try{
-            if(ispilotModel==True){
+            if(ispilotModel){
 
-                if(R_Traditional==True || R_Digital==True)
+                if(R_Traditional || R_Digital)
                 {
                     BrandEstimateObj.AF_Pilot_Model__c = ispilotModel;
                     BrandEstimateObj.IsUpdate__c = true;

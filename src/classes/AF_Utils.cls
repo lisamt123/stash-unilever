@@ -1,4 +1,4 @@
-public class AF_Utils
+public with sharing class AF_Utils
 {
     //help methods
     public static Id getRecordId(string pRecordType)
@@ -29,7 +29,7 @@ public class AF_Utils
     // Pass the resource name
     public static String getResourceURL(String resourceName){
 
-        string paramToReturn;
+        string paramToReturn='';
         // Fetching the resource
         List<StaticResource> resourceList= [SELECT Name, NamespacePrefix, SystemModStamp FROM StaticResource WHERE Name = :resourceName];
 

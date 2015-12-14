@@ -94,9 +94,10 @@ public with sharing class AF_BrandAgencyCombinationController
                          ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Confirm,' The Brand/Agency Combination has been successfully created'));
                   
                       }
-                      catch(Exception e)
+                      catch(Exception ex)
                       {
-                      
+                      ExceptionLoggingHelper.createApplicationLevelErrorLog (AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandAgencyCombinationController',
+                                                  'save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
                       }
                       
                     }

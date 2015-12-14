@@ -10,6 +10,9 @@ public class Test_AF_ApproveActualsCtrl
     Static string currYear=string.valueof(IcurrYear);
     Static Integer IcurrYear1 = System.Today().year()-1;
     Static string currYear1=string.valueof(IcurrYear1);
+    private static String attachment_Data = 'Test Data for document attachment';
+    private static String brandId='bId';
+    private static String accountId = 'aId';
     Static testMethod void approveActualsCtrl()
     {
      Test.startTest();
@@ -18,9 +21,9 @@ public class Test_AF_ApproveActualsCtrl
      
      //Insert User 
      User u= new User(Alias = 'testac', Email='standarduserac@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Usera123', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
+      EmailEncodingKey='UTF-8', LastName='Test Usera123', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
       UserName='testuserac@test123321.com',AF_Brand__c='Test Brandac',AF_Category__c='Test Beveragesac');
      insert u;        
       
@@ -33,7 +36,7 @@ public class Test_AF_ApproveActualsCtrl
      acc1.published__c=true;
      insert acc1;
      
-     System.Assert(acc1.Id != null, 'The account record not inserted');
+     System.Assert(acc1.Id != null, AF_Constants.TEST_ASSERT_MSG);
      
      //Insert Category
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
@@ -41,7 +44,7 @@ public class Test_AF_ApproveActualsCtrl
      cat.RecordTypeId=catRT.Id;
      cat.Name='Test Beveragesac';
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -61,7 +64,7 @@ public class Test_AF_ApproveActualsCtrl
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc1.Id;               
      brandEst.Name='Test BrandEstimateac';
-     brandEst.AF_Status_Base_Fees__c='Initiate';  
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
      brandEst.Brand__c=bran.id;
      insert brandEst;
      
@@ -77,7 +80,7 @@ public class Test_AF_ApproveActualsCtrl
      oopsActual.Quarter__c='Q1;Q2';
      insert oopsActual;   
      
-     Blob b = Blob.valueOf('Test Data for document attachment');  
+     Blob b = Blob.valueOf(attachment_Data);  
      Attachment attach = new Attachment();  
      attach.Name = 'Test Attachment';  
      attach.Body = b;  
@@ -87,10 +90,10 @@ public class Test_AF_ApproveActualsCtrl
          
      /* Adding parameters to page URL */
      //For Brand Id
-     ApexPages.currentPage().getParameters().put('bId',bran.id);         
+     ApexPages.currentPage().getParameters().put(brandId,bran.id);         
         
      //For Agency Id
-     ApexPages.currentPage().getParameters().put('aId',acc1.Id);
+     ApexPages.currentPage().getParameters().put('accountId',acc1.Id);
         
      //For Fiscal year
      ApexPages.currentPage().getParameters().put('fy',currYear);   
@@ -113,9 +116,9 @@ Static testMethod void approveActualsCtrl1()
      
      //Insert User 
      User u= new User(Alias = 'testac1', Email='standarduserac1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Usera1123', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
+      EmailEncodingKey='UTF-8', LastName='Test Usera1123', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
       UserName='testuserac1@test123321.com',AF_Brand__c='Test Brandac1',AF_Category__c='Test Beveragesac1');
      insert u;        
       
@@ -128,7 +131,7 @@ Static testMethod void approveActualsCtrl1()
      acc1.published__c=true;
      insert acc1;
      
-     System.Assert(acc1.Id != null, 'The account record not inserted');
+     System.Assert(acc1.Id != null, AF_Constants.TEST_ASSERT_MSG);
      
      //Insert Category
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
@@ -136,7 +139,7 @@ Static testMethod void approveActualsCtrl1()
      cat.RecordTypeId=catRT.Id;
      cat.Name='Test Beveragesac1';
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -156,7 +159,7 @@ Static testMethod void approveActualsCtrl1()
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc1.Id;               
      brandEst.Name='Test BrandEstimateac1';
-     brandEst.AF_Status_Base_Fees__c='Initiate';  
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
      brandEst.Brand__c=bran.id;
      insert brandEst;
      
@@ -173,7 +176,7 @@ Static testMethod void approveActualsCtrl1()
      insert oopsActual;   
      
      //Insert Attachment
-     Blob b = Blob.valueOf('Test Data for document attachment');  
+     Blob b = Blob.valueOf(attachment_Data);  
      Attachment attach = new Attachment();  
      attach.Name = 'Test Attachment1';  
      attach.Body = b;  
@@ -183,10 +186,10 @@ Static testMethod void approveActualsCtrl1()
          
      /* Adding parameters to page URL */
      //For Brand Id
-     ApexPages.currentPage().getParameters().put('bId',bran.id);         
+     ApexPages.currentPage().getParameters().put(brandId,bran.id);         
         
      //For Agency Id
-     ApexPages.currentPage().getParameters().put('aId',acc1.Id);
+     ApexPages.currentPage().getParameters().put('accountId',acc1.Id);
         
      //For Fiscal year
      ApexPages.currentPage().getParameters().put('fy',currYear1);   
@@ -209,9 +212,9 @@ Static testMethod void approveActualsCtrl1()
      
      //Insert User 
      User u= new User(Alias = 'testac2', Email='standarduserac2@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Usera1223', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
+      EmailEncodingKey='UTF-8', LastName='Test Usera1223', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
       UserName='testuserac2@test123321.com',AF_Brand__c='Test Brandac2',AF_Category__c='Test Beveragesac2');
      insert u;        
       
@@ -224,7 +227,7 @@ Static testMethod void approveActualsCtrl1()
      acc1.published__c=true;
      insert acc1;
      
-     System.Assert(acc1.Id != null, 'The account record not inserted');
+     System.Assert(acc1.Id != null, AF_Constants.TEST_ASSERT_MSG);
      
      //Insert Category
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
@@ -232,7 +235,7 @@ Static testMethod void approveActualsCtrl1()
      cat.RecordTypeId=catRT.Id;
      cat.Name='Test Beveragesac2';
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -252,7 +255,7 @@ Static testMethod void approveActualsCtrl1()
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc1.Id;               
      brandEst.Name='Test BrandEstimateac2';
-     brandEst.AF_Status_Base_Fees__c='Initiate';  
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
      brandEst.Brand__c=bran.id;
      insert brandEst;
      
@@ -269,7 +272,7 @@ Static testMethod void approveActualsCtrl1()
      insert oopsActual;   
      
      //Insert Attachment
-     Blob b = Blob.valueOf('Test Data for document attachment');  
+     Blob b = Blob.valueOf(attachment_Data);  
      Attachment attach = new Attachment();  
      attach.Name = 'Test Attachment2';  
      attach.Body = b;  
@@ -279,10 +282,10 @@ Static testMethod void approveActualsCtrl1()
          
      /* Adding parameters to page URL */
      //For Brand Id
-     ApexPages.currentPage().getParameters().put('bId',bran.id);         
+     ApexPages.currentPage().getParameters().put(brandId,bran.id);         
         
      //For Agency Id
-     ApexPages.currentPage().getParameters().put('aId',acc1.Id);
+     ApexPages.currentPage().getParameters().put('accountId',acc1.Id);
         
      //For Fiscal year
      ApexPages.currentPage().getParameters().put('fy',currYear);   
@@ -305,9 +308,9 @@ Static testMethod void approveActualsCtrl1()
      
      //Insert User 
      User u= new User(Alias = 'testac3', Email='standarduserac3@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Usera1323', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
+      EmailEncodingKey='UTF-8', LastName='Test Usera1323', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
       UserName='testuserac3@test123321.com',AF_Brand__c='Test Brandac3',AF_Category__c='Test Beveragesac3');
      insert u;        
       
@@ -320,7 +323,7 @@ Static testMethod void approveActualsCtrl1()
      acc1.published__c=true;
      insert acc1;
      
-     System.Assert(acc1.Id != null, 'The account record not inserted');
+     System.Assert(acc1.Id != null, AF_Constants.TEST_ASSERT_MSG);
      
      //Insert Category
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
@@ -328,7 +331,7 @@ Static testMethod void approveActualsCtrl1()
      cat.RecordTypeId=catRT.Id;
      cat.Name='Test Beveragesac3';
      cat.AF_Pilot_Model__c=false;     
-     cat.AF_Super_category__c='Drinks';
+     cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
      System.Assert(cat.Id != null, 'The Category record not inserted');
@@ -348,7 +351,7 @@ Static testMethod void approveActualsCtrl1()
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc1.Id;               
      brandEst.Name='Test BrandEstimateac3';
-     brandEst.AF_Status_Base_Fees__c='Initiate';  
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
      brandEst.Brand__c=bran.id;
      insert brandEst;
      
@@ -365,7 +368,7 @@ Static testMethod void approveActualsCtrl1()
      insert oopsActual;   
      
      //Insert Attachment
-     Blob b = Blob.valueOf('Test Data for document attachment');  
+     Blob b = Blob.valueOf(attachment_Data);  
      Attachment attach = new Attachment();  
      attach.Name = 'Test Attachment3';  
      attach.Body = b;  
@@ -375,10 +378,10 @@ Static testMethod void approveActualsCtrl1()
          
      /* Adding parameters to page URL */
      //For Brand Id
-     ApexPages.currentPage().getParameters().put('bId',bran.id);         
+     ApexPages.currentPage().getParameters().put(brandId,bran.id);         
         
      //For Agency Id
-     ApexPages.currentPage().getParameters().put('aId',acc1.Id);
+     ApexPages.currentPage().getParameters().put('accountId',acc1.Id);
         
      //For Fiscal year
      ApexPages.currentPage().getParameters().put('fy',currYear);   

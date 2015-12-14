@@ -1,4 +1,4 @@
-Public class AF_Assigncategories
+Public with sharing class AF_Assigncategories
 {
   Public boolean catpanel{set;get;}
     public AF_Assigncategories(ApexPages.StandardController controller) {
@@ -12,10 +12,10 @@ Public class AF_Assigncategories
          
          if(lead1.user__c != null)
          {
-              user u;
+              user u=new user();
             
-             string User_category;
-             string user_brand;
+             string User_category='';
+             string user_brand='';
               for(user uu : [select id,name,AF_Category__c,AF_Brand__c from user where id =: lead1.user__C limit 1])
               {
                   u =uu;
@@ -24,8 +24,8 @@ Public class AF_Assigncategories
               }
                if(u != null ) 
               {
-              string cname;
-              string bname;
+              string cname='';
+              string bname='';
               if(lead1.Category_Brands__c != null)
                       cname = [select id,name from AF_Category_Brand__c where id=: lead1.Category_Brands__c limit 1].name;
                  if(lead1.Brand__c != null)

@@ -1,4 +1,4 @@
-public class AF_CustomSetting{
+public with sharing class AF_CustomSetting{
     
     public SettingProxy setting {get; set;}
     public AgencyEmailAlertsProxy emailAlerts {get;set;}
