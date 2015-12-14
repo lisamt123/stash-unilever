@@ -631,7 +631,7 @@
                                             <div class="modal-title">{!if(showSuggestedMembers && !memberCallFromURL,$Label.IPM_AddBETMembers,$Label.IPM_CreateNewBETTitle)}</div>
                                         </div>
                                     <div class="createNewBrandExp">
-                                        <div><strong>{!$Label.IPM_welcomeToFeasibility}</strong>{!if(showSuggestedMembers && memberCallFromURL,'',$Label.IPM_BETComponentMessage)}</div>
+                                        <div>{!if(showSuggestedMembers && memberCallFromURL,'',$Label.IPM_BETComponentMessage)}</div>
                                         <div id="ipmGetStartedTab" class="modal-body">
                                         
                                         <apex:outputpanel rendered="{!!showSuggestedMembers}" >   
