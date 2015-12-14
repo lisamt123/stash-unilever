@@ -52,10 +52,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
-<<<<<<< HEAD
     <enableSearch>true</enableSearch>
-=======
->>>>>>> FETCH_HEAD
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>

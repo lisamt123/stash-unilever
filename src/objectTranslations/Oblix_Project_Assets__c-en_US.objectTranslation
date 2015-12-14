@@ -36,13 +36,8 @@
             <translation><!-- Animatics --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
             <masterLabel>Animation</masterLabel>
             <translation><!-- Animation --></translation>
-=======
-            <masterLabel>Banner Adaptations</masterLabel>
-            <translation><!-- Banner Adaptations --></translation>
->>>>>>> FETCH_HEAD
         </picklistValues>
         <picklistValues>
             <masterLabel>Behind the Scenes Footage</masterLabel>
@@ -69,13 +64,6 @@
             <translation><!-- Campaign Teaser Video --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
-=======
-            <masterLabel>Campaign Wesbite Update</masterLabel>
-            <translation><!-- Campaign Wesbite Update --></translation>
-        </picklistValues>
-        <picklistValues>
->>>>>>> FETCH_HEAD
             <masterLabel>Cinema Film</masterLabel>
             <translation><!-- Cinema Film --></translation>
         </picklistValues>
@@ -84,13 +72,6 @@
             <translation><!-- Complex Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
-=======
-            <masterLabel>Complex Microsite</masterLabel>
-            <translation><!-- Complex Microsite --></translation>
-        </picklistValues>
-        <picklistValues>
->>>>>>> FETCH_HEAD
             <masterLabel>Complex Re-Edit</masterLabel>
             <translation><!-- Complex Re-Edit --></translation>
         </picklistValues>
@@ -107,7 +88,6 @@
             <translation><!-- Digital Strategy Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
             <masterLabel>EDM Adaptation</masterLabel>
             <translation><!-- EDM Adaptation --></translation>
         </picklistValues>
@@ -126,27 +106,16 @@
         <picklistValues>
             <masterLabel>EDM/eNewsletter (Simple)</masterLabel>
             <translation><!-- EDM/eNewsletter (Simple) --></translation>
-=======
-            <masterLabel>EDM</masterLabel>
-            <translation><!-- EDM --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>EDM Adaptation</masterLabel>
-            <translation><!-- EDM Adaptation --></translation>
->>>>>>> FETCH_HEAD
         </picklistValues>
         <picklistValues>
             <masterLabel>Experiential</masterLabel>
             <translation><!-- Experiential --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
             <masterLabel>Experiential - Adaptation</masterLabel>
             <translation><!-- Experiential - Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-=======
->>>>>>> FETCH_HEAD
             <masterLabel>Extended Stills</masterLabel>
             <translation><!-- Extended Stills --></translation>
         </picklistValues>
@@ -167,18 +136,14 @@
             <translation><!-- Flash Banners --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
             <masterLabel>Flash Banners Adaptation</masterLabel>
             <translation><!-- Flash Banners Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-=======
->>>>>>> FETCH_HEAD
             <masterLabel>Flash Landing Pages</masterLabel>
             <translation><!-- Flash Landing Pages --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
             <masterLabel>Flash Landing Pages Adaptation</masterLabel>
             <translation><!-- Flash Landing Pages Adaptation --></translation>
         </picklistValues>
@@ -187,23 +152,16 @@
             <translation><!-- Flash Take Over Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-=======
->>>>>>> FETCH_HEAD
             <masterLabel>Flash Take Overs</masterLabel>
             <translation><!-- Flash Take Overs --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
             <masterLabel>High Digital Bundle</masterLabel>
             <translation><!-- High Digital Bundle --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>High Digital Bundle - Adaptation</masterLabel>
             <translation><!-- High Digital Bundle - Adaptation --></translation>
-=======
-            <masterLabel>Homepage</masterLabel>
-            <translation><!-- Homepage --></translation>
->>>>>>> FETCH_HEAD
         </picklistValues>
         <picklistValues>
             <masterLabel>Interactive Game</masterLabel>
@@ -230,7 +188,6 @@
             <translation><!-- Logo --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
             <masterLabel>Low Digital Bundle</masterLabel>
             <translation><!-- Low Digital Bundle --></translation>
         </picklistValues>
@@ -255,8 +212,6 @@
             <translation><!-- Microsite Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-=======
->>>>>>> FETCH_HEAD
             <masterLabel>Mobile APP Conceptualisation</masterLabel>
             <translation><!-- Mobile APP Conceptualisation --></translation>
         </picklistValues>
@@ -317,13 +272,10 @@
             <translation><!-- Promotional --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
             <masterLabel>Promotional - Adaptation</masterLabel>
             <translation><!-- Promotional - Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-=======
->>>>>>> FETCH_HEAD
             <masterLabel>Radio</masterLabel>
             <translation><!-- Radio --></translation>
         </picklistValues>
@@ -332,13 +284,8 @@
             <translation><!-- Radio Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
             <masterLabel>Re Shoot</masterLabel>
             <translation><!-- Re Shoot --></translation>
-=======
-            <masterLabel>Re-Shoot</masterLabel>
-            <translation><!-- Re-Shoot --></translation>
->>>>>>> FETCH_HEAD
         </picklistValues>
         <picklistValues>
             <masterLabel>Simple Adaptation</masterLabel>
@@ -349,7 +296,6 @@
             <translation><!-- Simple Edit --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
             <masterLabel>Social Content</masterLabel>
             <translation><!-- Social Content --></translation>
         </picklistValues>
@@ -368,34 +314,24 @@
         <picklistValues>
             <masterLabel>Static Banner Adaptation</masterLabel>
             <translation><!-- Static Banner Adaptation --></translation>
-=======
-            <masterLabel>Simple Microsite</masterLabel>
-            <translation><!-- Simple Microsite --></translation>
->>>>>>> FETCH_HEAD
         </picklistValues>
         <picklistValues>
             <masterLabel>Static Banners</masterLabel>
             <translation><!-- Static Banners --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
             <masterLabel>Static Landing Page Adaptation</masterLabel>
             <translation><!-- Static Landing Page Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-=======
->>>>>>> FETCH_HEAD
             <masterLabel>Static Landing Pages</masterLabel>
             <translation><!-- Static Landing Pages --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
             <masterLabel>Static Page Take Over Adaptation</masterLabel>
             <translation><!-- Static Page Take Over Adaptation --></translation>
         </picklistValues>
         <picklistValues>
-=======
->>>>>>> FETCH_HEAD
             <masterLabel>Static page take overs</masterLabel>
             <translation><!-- Static page take overs --></translation>
         </picklistValues>
@@ -460,17 +396,6 @@
             <translation><!-- Website Optimisation for Mobile --></translation>
         </picklistValues>
         <picklistValues>
-<<<<<<< HEAD
-=======
-            <masterLabel>Youtube Uploads</masterLabel>
-            <translation><!-- Youtube Uploads --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>eNewsletter Adaptation</masterLabel>
-            <translation><!-- eNewsletter Adaptation --></translation>
-        </picklistValues>
-        <picklistValues>
->>>>>>> FETCH_HEAD
             <masterLabel>eNewsletters</masterLabel>
             <translation><!-- eNewsletters --></translation>
         </picklistValues>

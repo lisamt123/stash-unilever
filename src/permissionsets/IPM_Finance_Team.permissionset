@@ -25482,10 +25482,6 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-<<<<<<< HEAD
-        <editable>false</editable>
-        <field>aa_Agent_Report__c.Source__c</field>
-=======
         <editable>false</editable>
         <field>aa_Agent_Report__c.Source__c</field>
         <readable>false</readable>
@@ -25723,507 +25719,50 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ar_Application__c.Previous_Names__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>aa_Agent_Report__c.Status__c</field>
-=======
         <field>ar_Application__c.Rate_Card_Comments__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>aa_Agent_Report__c.Sub_Topics__c</field>
-=======
         <field>ar_Application__c.Status__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>aa_Agent_Report__c.Topic__c</field>
-=======
         <field>ar_Application__c.Strategic_Capabilities_Video__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>aa_Agent_Report__c.Town__c</field>
-=======
         <field>ar_Application__c.Strategic_Capabilities__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>aa_Agent_Report__c.User_Department__c</field>
-=======
         <field>ar_Application__c.Supplier_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>aa_Agent_Report__c.latitude__c</field>
-=======
         <field>ar_Application__c.Town_City__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>aa_Agent_Report__c.longitude__c</field>
-=======
         <field>ar_Application__c.Vimeo_Link__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>aa_Country__c.Cluster_Id__c</field>
-=======
         <field>ar_Application__c.Website__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>aa_Topic__c.Sub_Topic__c</field>
-=======
-        <field>ar_Application__c.Your_Title__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>aa_Topic__c.Test_Sub_Topic__c</field>
-=======
-        <field>ar_Competitor__c.Agency__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>aa_Topic__c.Topic_Name__c</field>
-=======
-        <field>ar_Competitor__c.Application__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Agency_Portal_CMS__c.Body__c</field>
-=======
-        <field>ar_Competitor__c.Brand__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Agency_Portal_CMS__c.Order__c</field>
-=======
-        <field>ar_Competitor__c.Country__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Agency_Portal_CMS__c.Published__c</field>
-=======
-        <field>ar_Competitor__c.Date__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Agency_Portal_CMS__c.Title__c</field>
-=======
-        <field>ar_Competitor__c.Service_Description__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Agency_Portal_CMS__c.Type__c</field>
-=======
-        <field>ar_Experience__c.Activity_Ongoing__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Additional_Information__c</field>
-=======
-        <field>ar_Experience__c.Activity_from__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Address__c</field>
-=======
-        <field>ar_Experience__c.Activity_to__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Agency_Expertise__c</field>
-=======
-        <field>ar_Experience__c.Agencies_Strengths__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Agency__c</field>
-=======
-        <field>ar_Experience__c.Agency__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Agree_to_Audits__c</field>
-=======
-        <field>ar_Experience__c.Application__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Agree_to_comply_Unilever_Supplier_Code__c</field>
-=======
-        <field>ar_Experience__c.Awards_Accolades__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Agree_to_logo_use__c</field>
-=======
-        <field>ar_Experience__c.Brand_Competitor__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Awards__c</field>
-=======
-        <field>ar_Experience__c.Brand__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Business_activity_types__c</field>
-=======
-        <field>ar_Experience__c.Brief_Description__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Cannot_reapply_until__c</field>
-=======
-        <field>ar_Experience__c.Case_Studies__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Company_Name__c</field>
-=======
-        <field>ar_Experience__c.Category__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Company_Structure__c</field>
-=======
-        <field>ar_Experience__c.Client_Contact_Details__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Contract_authority__c</field>
-=======
-        <field>ar_Experience__c.Country_Market__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Country__c</field>
-=======
-        <field>ar_Experience__c.Date_of_Activity__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Currency__c</field>
-=======
-        <field>ar_Experience__c.Design_Efficiency__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.D_B_Duns_Number__c</field>
-=======
-        <field>ar_Experience__c.Design_Process__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Discipline__c</field>
-=======
-        <field>ar_Experience__c.External_Id__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Email__c</field>
-=======
-        <field>ar_Experience__c.Featured_Quote__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.First_Name__c</field>
-=======
-        <field>ar_Experience__c.Links__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Form_Progress__c</field>
-=======
-        <field>ar_Experience__c.Market_Developing_Experience__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.General_Email__c</field>
-=======
-        <field>ar_Experience__c.Other_supporting_Information__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.General_Fax__c</field>
-=======
-        <field>ar_Experience__c.Outline_of_Project__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.General_Phone__c</field>
-=======
-        <field>ar_Experience__c.Project_Title__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Job_Title__c</field>
-=======
-        <field>ar_Experience__c.Strategic_Capabilities__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Legal_Designation__c</field>
-=======
-        <field>ar_Experience__c.Sustainability__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Length_of_client_relationship__c</field>
-=======
-        <field>ar_Experience__c.Unilever_Non_Unilever__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Ownership_Status__c</field>
-=======
-        <field>ar_Experience__c.Video_Link__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Phone_Landline__c</field>
-=======
-        <field>ar_Experience__c.Video__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Phone_Mobile__c</field>
-=======
-        <field>ar_Financial__c.Agency__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Postal_Code__c</field>
-=======
-        <field>ar_Financial__c.Application__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Previous_Names__c</field>
-=======
-        <field>ar_Financial__c.Big_Clients__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Rate_Card_Comments__c</field>
-=======
-        <field>ar_Financial__c.Business_generated_by_Unilever__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Status__c</field>
-=======
-        <field>ar_Financial__c.Currency__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Strategic_Capabilities_Video__c</field>
-=======
-        <field>ar_Financial__c.Debt_Ratio__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Strategic_Capabilities__c</field>
-=======
-        <field>ar_Financial__c.Gross_Margin__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Supplier_Code__c</field>
-=======
-        <field>ar_Financial__c.Indirect_Costs_Overheads__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Town_City__c</field>
-=======
-        <field>ar_Financial__c.Net_Income_Profit__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Vimeo_Link__c</field>
-=======
-        <field>ar_Financial__c.Number_of_Clients__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>ar_Application__c.Website__c</field>
-=======
-        <field>ar_Financial__c.Number_of_Employees__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Application__c.Your_Title__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -26470,1781 +26009,985 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>ar_Financial__c.Total_Liabilities__c</field>
-=======
-        <field>ar_Financial__c.Small_Clients__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Financial__c.Total_Revenue__c</field>
-=======
-        <field>ar_Financial__c.Total_Assets__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card_Location__c.Agency__c</field>
-=======
-        <field>ar_Financial__c.Total_Liabilities__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card_Location__c.Application__c</field>
-=======
-        <field>ar_Financial__c.Total_Revenue__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card_Location__c.Country__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card_Location__c.Agency__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card_Location__c.Rate_Card_Comments__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card_Location__c.Application__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.Agency__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card_Location__c.Country__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.Application__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card_Location__c.Rate_Card_Comments__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.Definition__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.Agency__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.Discipline__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.Application__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.FRC_Country__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.Definition__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.Master_Artwork__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.Discipline__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.Material_Costs_Included__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.FRC_Country__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.Maximum_Allowable_Price__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.Master_Artwork__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.Order__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.Material_Costs_Included__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.Per_Item__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.Maximum_Allowable_Price__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.Subject_to_Annual_Rebate_Scheme__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.Order__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.Task_Group__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.Per_Item__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Fixed_Price_Rate_Card__c.Task_Group_short__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.Subject_to_Annual_Rebate_Scheme__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.Agency__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.Task_Group__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.Application__c</field>
-=======
-        <field>ar_Fixed_Price_Rate_Card__c.Task_Group_short__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.Bi_Lingual_staff_servicing_customers__c</field>
-=======
-        <field>ar_Geography__c.Agency__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.City__c</field>
-=======
-        <field>ar_Geography__c.Application__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.Country__c</field>
-=======
-        <field>ar_Geography__c.Bi_Lingual_staff_servicing_customers__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.Languages_Available__c</field>
-=======
-        <field>ar_Geography__c.City__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.List_of_provided_services__c</field>
-=======
-        <field>ar_Geography__c.Country__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.Local_office_working_with_UL_today__c</field>
-=======
-        <field>ar_Geography__c.Languages_Available__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.No_of_FTE_s_Employees__c</field>
-=======
-        <field>ar_Geography__c.List_of_provided_services__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.No_of_Years_established_in_the_country__c</field>
-=======
-        <field>ar_Geography__c.Local_office_working_with_UL_today__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.Office_Address__c</field>
-=======
-        <field>ar_Geography__c.No_of_FTE_s_Employees__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.Office_Company_Name__c</field>
-=======
-        <field>ar_Geography__c.No_of_Years_established_in_the_country__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.Other_available_languages__c</field>
-=======
-        <field>ar_Geography__c.Office_Address__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.Overview_of_services_and_other_experienc__c</field>
-=======
-        <field>ar_Geography__c.Office_Company_Name__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.Percent_of_total_revenue__c</field>
-=======
-        <field>ar_Geography__c.Other_available_languages__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Geography__c.Subsidiary_or_Partner__c</field>
-=======
-        <field>ar_Geography__c.Overview_of_services_and_other_experienc__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Agency__c</field>
-=======
-        <field>ar_Geography__c.Percent_of_total_revenue__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Application__c</field>
-=======
-        <field>ar_Geography__c.Subsidiary_or_Partner__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Attached_to_Supporting_Docs_Tab__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Agency__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Custom_Setting_Data__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Application__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Date_First_Joined__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Attached_to_Supporting_Docs_Tab__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Description__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Custom_Setting_Data__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Expiration_date__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Date_First_Joined__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Held__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Description__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Insurance_Type__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Expiration_date__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Level_of_Cover__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Held__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Membership_No_Where_applicable__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Insurance_Type__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Organisation__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Level_of_Cover__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Policy__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Membership_No_Where_applicable__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Provider__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Organisation__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Sphere_of_Influence__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Policy__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Insurance_and_Policy__c.Start_Date_of_Policy__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Provider__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rate_Card__c.Agency__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Sphere_of_Influence__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rate_Card__c.Application__c</field>
-=======
-        <field>ar_Insurance_and_Policy__c.Start_Date_of_Policy__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rate_Card__c.Country__c</field>
-=======
-        <field>ar_Rate_Card__c.Agency__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rate_Card__c.Currency__c</field>
-=======
-        <field>ar_Rate_Card__c.Application__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rate_Card__c.Discipline__c</field>
-=======
-        <field>ar_Rate_Card__c.Country__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rate_Card__c.Hours_in_a_Typical_Working_Day__c</field>
-=======
-        <field>ar_Rate_Card__c.Currency__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rate_Card__c.Maximum_Allowable_Price__c</field>
-=======
-        <field>ar_Rate_Card__c.Discipline__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rate_Card__c.Role_Description__c</field>
-=======
-        <field>ar_Rate_Card__c.Hours_in_a_Typical_Working_Day__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rate_Card__c.Role_Type__c</field>
-=======
-        <field>ar_Rate_Card__c.Maximum_Allowable_Price__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rate_Card__c.Role__c</field>
-=======
-        <field>ar_Rate_Card__c.Role_Description__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rate_Card__c.Standard_Daily_Rate__c</field>
-=======
-        <field>ar_Rate_Card__c.Role_Type__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rate_Card__c.Unilever_Daily_Rate__c</field>
-=======
-        <field>ar_Rate_Card__c.Role__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rating_Review__c.Clarity_of_Strategy__c</field>
-=======
-        <field>ar_Rate_Card__c.Standard_Daily_Rate__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rating_Review__c.Collaboration_Fit__c</field>
-=======
-        <field>ar_Rate_Card__c.Unilever_Daily_Rate__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rating_Review__c.Craft_Execution__c</field>
-=======
-        <field>ar_Rating_Review__c.Clarity_of_Strategy__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rating_Review__c.Creativity_Ideas__c</field>
-=======
-        <field>ar_Rating_Review__c.Collaboration_Fit__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rating_Review__c.Insight_Foresight__c</field>
-=======
-        <field>ar_Rating_Review__c.Craft_Execution__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rating_Review__c.Options_Rated_Count__c</field>
-=======
-        <field>ar_Rating_Review__c.Creativity_Ideas__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rating_Review__c.Overall__c</field>
-=======
-        <field>ar_Rating_Review__c.Insight_Foresight__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rating_Review__c.Review__c</field>
-=======
-        <field>ar_Rating_Review__c.Options_Rated_Count__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Rating_Review__c.Value_for_Money__c</field>
-=======
-        <field>ar_Rating_Review__c.Overall__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Revenue_Breakdown__c.Agency__c</field>
-=======
-        <field>ar_Rating_Review__c.Review__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Revenue_Breakdown__c.Application__c</field>
-=======
-        <field>ar_Rating_Review__c.Value_for_Money__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Revenue_Breakdown__c.Category__c</field>
-=======
-        <field>ar_Revenue_Breakdown__c.Agency__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Revenue_Breakdown__c.Discipline__c</field>
-=======
-        <field>ar_Revenue_Breakdown__c.Application__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Revenue_Breakdown__c.Revenue_Contribution__c</field>
-=======
-        <field>ar_Revenue_Breakdown__c.Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Shareholder__c.Agency__c</field>
-=======
-        <field>ar_Revenue_Breakdown__c.Discipline__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Shareholder__c.Application__c</field>
-=======
-        <field>ar_Revenue_Breakdown__c.Revenue_Contribution__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Shareholder__c.End_Date_of_Holding__c</field>
-=======
-        <field>ar_Shareholder__c.Agency__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Shareholder__c.Holding__c</field>
-=======
-        <field>ar_Shareholder__c.Application__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Shareholder__c.Start_Date_of_Holding__c</field>
-=======
-        <field>ar_Shareholder__c.End_Date_of_Holding__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Supplier_Info__c.Agency__c</field>
-=======
-        <field>ar_Shareholder__c.Holding__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Supplier_Info__c.Application__c</field>
-=======
-        <field>ar_Shareholder__c.Start_Date_of_Holding__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Supplier_Info__c.Copy_of_Rates__c</field>
-=======
-        <field>ar_Supplier_Info__c.Agency__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Supplier_Info__c.Covered_by_Contract__c</field>
-=======
-        <field>ar_Supplier_Info__c.Application__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Supplier_Info__c.Customer_Influence__c</field>
-=======
-        <field>ar_Supplier_Info__c.Copy_of_Rates__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Supplier_Info__c.Discount_Negotiated__c</field>
-=======
-        <field>ar_Supplier_Info__c.Covered_by_Contract__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Supplier_Info__c.Length_of_Relationship__c</field>
-=======
-        <field>ar_Supplier_Info__c.Customer_Influence__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Supplier_Info__c.Products_Services__c</field>
-=======
-        <field>ar_Supplier_Info__c.Discount_Negotiated__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>ar_Supplier_Info__c.Rates_Negotiated__c</field>
-=======
-        <field>ar_Supplier_Info__c.Length_of_Relationship__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer001__c</field>
-=======
-        <field>ar_Supplier_Info__c.Products_Services__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer002__c</field>
-=======
-        <field>ar_Supplier_Info__c.Rates_Negotiated__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer003__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer001__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer004__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer002__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer005__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer003__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer006__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer004__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer007__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer005__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer008__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer006__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer009__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer007__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer010__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer008__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer011__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer009__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer012__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer010__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer013__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer011__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer014__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer012__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer015__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer013__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer016__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer014__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer017__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer015__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer018__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer016__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer019__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer017__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer020__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer018__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer021__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer019__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer022__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer020__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer023__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer021__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer024__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer022__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer025__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer023__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer026__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer024__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer027__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer025__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer028__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer026__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer029__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer027__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer030__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer028__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer031__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer029__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer032__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer030__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer033__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer031__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer034__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer032__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer035__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer033__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer036__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer034__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer037__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer035__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer038__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer036__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer039__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer037__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer040__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer038__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer041__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer039__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer042__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer040__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Answer043__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer041__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer044__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer042__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer045__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Answer043__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer046__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer044__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Additional_Case_Information__c.Answer045__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer047__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer046__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer048__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer047__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer049__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer048__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer050__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer049__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer051__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer050__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer052__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer051__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer053__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer052__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer054__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer053__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer055__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer054__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer056__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer055__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer057__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer056__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer058__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer057__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer059__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer058__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer060__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer059__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer061__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer060__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer062__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer061__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer063__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer062__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer064__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer063__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer065__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer064__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer066__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer065__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer067__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer066__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer068__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer067__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer069__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer068__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer070__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer069__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer071__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer070__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer072__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer071__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer073__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer072__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer074__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer073__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer075__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer074__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer076__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer075__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer077__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer076__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer078__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer077__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer079__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer078__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer080__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer079__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer081__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer080__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer082__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer081__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer083__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer082__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer084__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer083__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer085__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer084__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer086__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer085__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer087__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer086__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer088__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer087__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer089__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer088__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer090__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer089__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer091__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer090__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer092__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer091__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer093__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer092__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer094__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer093__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer095__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer094__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer096__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer095__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer097__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer096__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer098__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer097__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer099__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer098__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Answer100__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer099__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Case__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Answer100__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Close_Case_2__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Case__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Close_Case_3__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Close_Case_2__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Close_Case_4__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Close_Case_3__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Close_Case_5__c</field>
-=======
         <field>cec_Additional_Case_Information__c.Close_Case_4__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-=======
         <field>cec_Additional_Case_Information__c.Close_Case_5__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
->>>>>>> FETCH_HEAD
         <field>cec_Additional_Case_Information__c.Issue__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28317,7 +27060,6 @@
         <editable>false</editable>
         <field>cec_Additional_Case_Information__c.Question014__c</field>
         <readable>false</readable>
-<<<<<<< HEAD
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -28327,384 +27069,210 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Additional_Case_Information__c.Question016__c</field>
-=======
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Additional_Case_Information__c.Question015__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question017__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question016__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question018__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question017__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question019__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question018__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question020__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question019__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question021__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question020__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question022__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question021__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question023__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question022__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question024__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question023__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question025__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question024__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question026__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question025__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question027__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question026__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question028__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question027__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question029__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question028__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question030__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question029__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question031__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question030__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question032__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question031__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question033__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question032__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question034__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question033__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question035__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question034__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question036__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question035__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question037__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question036__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question038__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question037__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question039__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question038__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question040__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question039__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question041__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question040__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question042__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question041__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question043__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question042__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question044__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question043__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question045__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question044__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question046__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question045__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question047__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question046__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question048__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question047__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question049__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question048__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question050__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question049__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question051__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question050__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question052__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question051__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question053__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question052__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question054__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question053__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question055__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question054__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Additional_Case_Information__c.Question056__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question055__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-=======
         <field>cec_Additional_Case_Information__c.Question056__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
->>>>>>> FETCH_HEAD
         <field>cec_Additional_Case_Information__c.Question057__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -28767,7 +27335,6 @@
         <editable>false</editable>
         <field>cec_Additional_Case_Information__c.Question069__c</field>
         <readable>false</readable>
-<<<<<<< HEAD
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -28777,2436 +27344,1350 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>cec_Additional_Case_Information__c.Question071__c</field>
-=======
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>cec_Additional_Case_Information__c.Question070__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question072__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question071__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question073__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question072__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question074__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question073__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question075__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question074__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question076__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question075__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question077__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question076__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question078__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question077__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question079__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question078__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question080__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question079__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question081__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question080__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question082__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question081__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question083__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question082__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question084__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question083__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question085__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question084__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question086__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question085__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question087__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question086__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question088__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question087__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question089__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question088__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question090__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question089__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question091__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question090__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question092__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question091__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question093__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question092__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question094__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question093__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question095__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question094__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question096__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question095__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question097__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question096__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question098__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question097__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question099__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question098__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.Question100__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question099__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.URL__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.Question100__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q10__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.URL__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q11__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q10__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q12__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q11__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q13__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q12__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q14__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q13__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q15__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q14__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q16__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q15__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q17__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q16__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q18__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q17__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q19__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q18__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q1__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q19__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q20__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q1__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q21__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q20__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q22__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q21__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q23__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q22__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q24__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q23__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q25__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q24__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q26__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q25__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q27__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q26__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q28__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q27__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q29__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q28__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q2__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q29__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q30__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q2__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q31__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q30__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q32__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q31__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q33__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q32__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q34__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q33__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q35__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q34__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q36__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q35__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q37__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q36__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q38__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q37__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q39__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q38__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q3__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q39__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q40__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q3__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q41__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q40__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q42__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q41__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q43__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q42__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q44__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q43__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q45__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q44__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q46__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q45__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q47__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q46__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q48__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q47__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q49__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q48__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q4__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q49__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q50__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q4__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q51__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q50__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q52__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q51__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q53__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q52__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q54__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q53__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q5__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q54__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q6__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q5__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q7__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q6__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q8__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q7__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Additional_Case_Information__c.q9__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q8__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Action__c.Alert_Rule_Id__c</field>
-=======
-        <field>cec_Additional_Case_Information__c.q9__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Action__c.Email_Template_Name__c</field>
-=======
-        <field>cec_Alert_Action__c.Alert_Rule_Id__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Action__c.Popup_Message__c</field>
-=======
-        <field>cec_Alert_Action__c.Email_Template_Name__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Action__c.Questionnaire_URL__c</field>
-=======
-        <field>cec_Alert_Action__c.Popup_Message__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Action__c.To__c</field>
-=======
-        <field>cec_Alert_Action__c.Questionnaire_URL__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Action__c.Type__c</field>
-=======
-        <field>cec_Alert_Action__c.To__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.Active__c</field>
-=======
-        <field>cec_Alert_Action__c.Type__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.Alert_Type_Image__c</field>
-=======
-        <field>cec_Alert_Rule__c.Active__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.All_Market__c</field>
-=======
-        <field>cec_Alert_Rule__c.Alert_Type_Image__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.Group_By_Day_Code__c</field>
-=======
-        <field>cec_Alert_Rule__c.All_Market__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.L0_Product_Category__c</field>
-=======
-        <field>cec_Alert_Rule__c.Group_By_Day_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.L1_Product_Category__c</field>
-=======
-        <field>cec_Alert_Rule__c.L0_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.L1_Reason_Code__c</field>
-=======
-        <field>cec_Alert_Rule__c.L1_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.L2_Product_Category__c</field>
-=======
-        <field>cec_Alert_Rule__c.L1_Reason_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.L3_Product_Category__c</field>
-=======
-        <field>cec_Alert_Rule__c.L2_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.L3_Reason_Code__c</field>
-=======
-        <field>cec_Alert_Rule__c.L3_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.L5_Product_Category__c</field>
-=======
-        <field>cec_Alert_Rule__c.L3_Reason_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.L5_Reason_Code__c</field>
-=======
-        <field>cec_Alert_Rule__c.L5_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.L7_Product_Category__c</field>
-=======
-        <field>cec_Alert_Rule__c.L5_Reason_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.Market__c</field>
-=======
-        <field>cec_Alert_Rule__c.L7_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.Product_Category__c</field>
-=======
-        <field>cec_Alert_Rule__c.Market__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.Product_Level__c</field>
-=======
-        <field>cec_Alert_Rule__c.Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.Reason_Code__c</field>
-=======
-        <field>cec_Alert_Rule__c.Product_Level__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.Reason_Level__c</field>
-=======
-        <field>cec_Alert_Rule__c.Reason_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Rule__c.Type__c</field>
-=======
-        <field>cec_Alert_Rule__c.Reason_Level__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Tracker__c.Alert_Threshold__c</field>
-=======
-        <field>cec_Alert_Rule__c.Type__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Tracker__c.Current_Threshold__c</field>
-=======
-        <field>cec_Alert_Tracker__c.Alert_Threshold__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Tracker__c.DayCode__c</field>
-=======
-        <field>cec_Alert_Tracker__c.Current_Threshold__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Tracker__c.L5_Reason_Code__c</field>
-=======
-        <field>cec_Alert_Tracker__c.DayCode__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Tracker__c.Product_No_Size__c</field>
-=======
-        <field>cec_Alert_Tracker__c.L5_Reason_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Tracker__c.Rule_Type__c</field>
-=======
-        <field>cec_Alert_Tracker__c.Product_No_Size__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Tracker__c.Trigger_Email__c</field>
-=======
-        <field>cec_Alert_Tracker__c.Rule_Type__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Alert_Tracker__c.Unique_Id__c</field>
-=======
-        <field>cec_Alert_Tracker__c.Trigger_Email__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Brand_Logo__c.Country__c</field>
-=======
-        <field>cec_Alert_Tracker__c.Unique_Id__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Brand_Logo__c.Logo__c</field>
-=======
-        <field>cec_Brand_Logo__c.Country__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_Brand_Mapping__c.Auto_Response_Template__c</field>
-=======
-        <field>cec_Brand_Logo__c.Logo__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_Brand_Mapping__c.Brand_Market__c</field>
-=======
-        <field>cec_Case_Brand_Mapping__c.Auto_Response_Template__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_Brand_Mapping__c.Brand__c</field>
-=======
-        <field>cec_Case_Brand_Mapping__c.Brand_Market__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_Brand_Mapping__c.Country__c</field>
-=======
-        <field>cec_Case_Brand_Mapping__c.Brand__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_Brand_Mapping__c.Default_Outbound_Email__c</field>
-=======
-        <field>cec_Case_Brand_Mapping__c.Country__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_Brand_Mapping__c.Default_Template_Name__c</field>
-=======
-        <field>cec_Case_Brand_Mapping__c.Default_Outbound_Email__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_Brand_Mapping__c.External_Image_Address__c</field>
-=======
-        <field>cec_Case_Brand_Mapping__c.Default_Template_Name__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_Brand_Mapping__c.Inbound_Email__c</field>
-=======
-        <field>cec_Case_Brand_Mapping__c.External_Image_Address__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_Brand_Mapping__c.Language__c</field>
-=======
-        <field>cec_Case_Brand_Mapping__c.Inbound_Email__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_Brand_Mapping__c.Outbound_Email_Address__c</field>
-=======
-        <field>cec_Case_Brand_Mapping__c.Language__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_Brand_Mapping__c.Skill__c</field>
-=======
-        <field>cec_Case_Brand_Mapping__c.Outbound_Email_Address__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_QC_Mapping__c.Product__c</field>
-=======
-        <field>cec_Case_Brand_Mapping__c.Skill__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_QC_Mapping__c.QC_Type__c</field>
-=======
-        <field>cec_Case_QC_Mapping__c.Product__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_QC_Mapping__c.Reason_Code__c</field>
-=======
-        <field>cec_Case_QC_Mapping__c.QC_Type__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_QC_Mapping__c.Status__c</field>
-=======
-        <field>cec_Case_QC_Mapping__c.Reason_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Case_QC_Mapping__c.Verbatim__c</field>
-=======
-        <field>cec_Case_QC_Mapping__c.Status__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Enclosure__c.Active__c</field>
-=======
-        <field>cec_Case_QC_Mapping__c.Verbatim__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Enclosure__c.Brand__c</field>
-=======
-        <field>cec_Enclosure__c.Active__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Enclosure__c.Country__c</field>
-=======
-        <field>cec_Enclosure__c.Brand__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Enclosure__c.FileName__c</field>
-=======
-        <field>cec_Enclosure__c.Country__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Enclosure__c.ItemValue__c</field>
-=======
-        <field>cec_Enclosure__c.FileName__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Enclosure__c.MailItemName__c</field>
-=======
-        <field>cec_Enclosure__c.ItemValue__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Enclosure__c.MaximumQty__c</field>
-=======
-        <field>cec_Enclosure__c.MailItemName__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Enclosure__c.Type__c</field>
-=======
-        <field>cec_Enclosure__c.MaximumQty__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_FAQ__kav.Additional_Information__c</field>
-=======
-        <field>cec_Enclosure__c.Type__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_FAQ__kav.Additional_Sensitive_Information__c</field>
-=======
-        <field>cec_FAQ__kav.Additional_Information__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_FAQ__kav.Answer__c</field>
-=======
-        <field>cec_FAQ__kav.Additional_Sensitive_Information__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_FAQ__kav.Approved_by_Legal__c</field>
-=======
-        <field>cec_FAQ__kav.Answer__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_FAQ__kav.Legacy_Text__c</field>
-=======
-        <field>cec_FAQ__kav.Approved_by_Legal__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_FAQ__kav.Meta_Tags__c</field>
-=======
-        <field>cec_FAQ__kav.Legacy_Text__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_FAQ__kav.Question__c</field>
-=======
-        <field>cec_FAQ__kav.Meta_Tags__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_FAQ__kav.Related_PDF_2__c</field>
-=======
-        <field>cec_FAQ__kav.Question__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_FAQ__kav.Related_PDF_3__c</field>
-=======
-        <field>cec_FAQ__kav.Related_PDF_2__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_FAQ__kav.Related_PDF__c</field>
-=======
-        <field>cec_FAQ__kav.Related_PDF_3__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_FAQ__kav.Sensitive_Text__c</field>
-=======
-        <field>cec_FAQ__kav.Related_PDF__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Advisor_Name__c</field>
-=======
-        <field>cec_FAQ__kav.Sensitive_Text__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Advisor_Nameold__c</field>
-=======
-        <field>cec_Fulfilment__c.Advisor_Name__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.AgentID__c</field>
-=======
-        <field>cec_Fulfilment__c.Advisor_Nameold__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.AgentIDold__c</field>
-=======
-        <field>cec_Fulfilment__c.AgentID__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.AgentPosition__c</field>
-=======
-        <field>cec_Fulfilment__c.AgentIDold__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Brand_Logo__c</field>
-=======
-        <field>cec_Fulfilment__c.AgentPosition__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.CaseBrand__c</field>
-=======
-        <field>cec_Fulfilment__c.Brand_Logo__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Case_Market__c</field>
-=======
-        <field>cec_Fulfilment__c.CaseBrand__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Case_Product_Category__c</field>
-=======
-        <field>cec_Fulfilment__c.Case_Market__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Case__c</field>
-=======
-        <field>cec_Fulfilment__c.Case_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Cheque_Number__c</field>
-=======
-        <field>cec_Fulfilment__c.Case__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Cheque_Sent__c</field>
-=======
-        <field>cec_Fulfilment__c.Cheque_Number__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Cheque_Voided__c</field>
-=======
-        <field>cec_Fulfilment__c.Cheque_Sent__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Country_BrandLogo__c</field>
-=======
-        <field>cec_Fulfilment__c.Cheque_Voided__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Country__c</field>
-=======
-        <field>cec_Fulfilment__c.Country_BrandLogo__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Document_Approval__c</field>
-=======
-        <field>cec_Fulfilment__c.Country__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Enclosure1_Notes__c</field>
-=======
-        <field>cec_Fulfilment__c.Document_Approval__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Enclosure1__c</field>
-=======
-        <field>cec_Fulfilment__c.Enclosure1_Notes__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Enclosure2_Notes__c</field>
-=======
-        <field>cec_Fulfilment__c.Enclosure1__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Enclosure2__c</field>
-=======
-        <field>cec_Fulfilment__c.Enclosure2_Notes__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Enclosure3_Notes__c</field>
-=======
-        <field>cec_Fulfilment__c.Enclosure2__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Enclosure3__c</field>
-=======
-        <field>cec_Fulfilment__c.Enclosure3_Notes__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Enclosure4_Notes__c</field>
-=======
-        <field>cec_Fulfilment__c.Enclosure3__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Enclosure4__c</field>
-=======
-        <field>cec_Fulfilment__c.Enclosure4_Notes__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Enclosure5_Notes__c</field>
-=======
-        <field>cec_Fulfilment__c.Enclosure4__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Enclosure5__c</field>
-=======
-        <field>cec_Fulfilment__c.Enclosure5_Notes__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Fulfilled__c</field>
-=======
-        <field>cec_Fulfilment__c.Enclosure5__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Full_Name__c</field>
-=======
-        <field>cec_Fulfilment__c.Fulfilled__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Fullname__c</field>
-=======
-        <field>cec_Fulfilment__c.Full_Name__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Fullnameold__c</field>
-=======
-        <field>cec_Fulfilment__c.Fullname__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.ID__c</field>
-=======
-        <field>cec_Fulfilment__c.Fullnameold__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.IsPrintedLocally__c</field>
-=======
-        <field>cec_Fulfilment__c.ID__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Market__c</field>
-=======
-        <field>cec_Fulfilment__c.IsPrintedLocally__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Message__c</field>
-=======
-        <field>cec_Fulfilment__c.Market__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Payable_To__c</field>
-=======
-        <field>cec_Fulfilment__c.Message__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.PostOption__c</field>
-=======
-        <field>cec_Fulfilment__c.Payable_To__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.QA_flag__c</field>
-=======
-        <field>cec_Fulfilment__c.PostOption__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Refund_Currency__c</field>
-=======
-        <field>cec_Fulfilment__c.QA_flag__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Refund_Value__c</field>
-=======
-        <field>cec_Fulfilment__c.Refund_Currency__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Salutation__c</field>
-=======
-        <field>cec_Fulfilment__c.Refund_Value__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Salutationold__c</field>
-=======
-        <field>cec_Fulfilment__c.Salutation__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.Type__c</field>
-=======
-        <field>cec_Fulfilment__c.Salutationold__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.isApproved__c</field>
-=======
-        <field>cec_Fulfilment__c.Type__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Fulfilment__c.isSubmitted__c</field>
-=======
-        <field>cec_Fulfilment__c.isApproved__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Brand__c</field>
-=======
-        <field>cec_Fulfilment__c.isSubmitted__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.CEC_Product__c</field>
-=======
-        <field>cec_Issue__c.Brand__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Date_of_Manufacture__c</field>
-=======
-        <field>cec_Issue__c.CEC_Product__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Date_of_Manufacture_str__c</field>
-=======
-        <field>cec_Issue__c.Date_of_Manufacture__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.DayCode__c</field>
-=======
-        <field>cec_Issue__c.Date_of_Manufacture_str__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Expiry_Date__c</field>
-=======
-        <field>cec_Issue__c.DayCode__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.L0_Product_Category__c</field>
-=======
-        <field>cec_Issue__c.Expiry_Date__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.L1_Product_Category__c</field>
-=======
-        <field>cec_Issue__c.L0_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.L2_Product_Category__c</field>
-=======
-        <field>cec_Issue__c.L1_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.L3_Product_Category__c</field>
-=======
-        <field>cec_Issue__c.L2_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.L4_Product_Category__c</field>
-=======
-        <field>cec_Issue__c.L3_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.L5_Product_Category__c</field>
-=======
-        <field>cec_Issue__c.L4_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.L6_Product_Category__c</field>
-=======
-        <field>cec_Issue__c.L5_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.L7_Product_Category__c</field>
-=======
-        <field>cec_Issue__c.L6_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Market__c</field>
-=======
-        <field>cec_Issue__c.L7_Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.MyVerb__c</field>
-=======
-        <field>cec_Issue__c.Market__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.P0_Code__c</field>
-=======
-        <field>cec_Issue__c.MyVerb__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.P1_Code__c</field>
-=======
-        <field>cec_Issue__c.P0_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.P2_Code__c</field>
-=======
-        <field>cec_Issue__c.P1_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.P3_Code__c</field>
-=======
-        <field>cec_Issue__c.P2_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.P4_Code__c</field>
-=======
-        <field>cec_Issue__c.P3_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.P5_Code__c</field>
-=======
-        <field>cec_Issue__c.P4_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.P6_Code__c</field>
-=======
-        <field>cec_Issue__c.P5_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.P7_Code__c</field>
-=======
-        <field>cec_Issue__c.P6_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Product_Rule_level__c</field>
-=======
-        <field>cec_Issue__c.P7_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Product_UPC__c</field>
-=======
-        <field>cec_Issue__c.Product_Rule_level__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Production_Code__c</field>
-=======
-        <field>cec_Issue__c.Product_UPC__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Purchase_Date__c</field>
-=======
-        <field>cec_Issue__c.Production_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_Code__c</field>
-=======
-        <field>cec_Issue__c.Purchase_Date__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L0_Code__c</field>
-=======
-        <field>cec_Issue__c.Reason_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L0_desc__c</field>
-=======
-        <field>cec_Issue__c.Reason_L0_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L1_Code__c</field>
-=======
-        <field>cec_Issue__c.Reason_L0_desc__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L1_desc__c</field>
-=======
-        <field>cec_Issue__c.Reason_L1_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L2_Code__c</field>
-=======
-        <field>cec_Issue__c.Reason_L1_desc__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L2_desc__c</field>
-=======
-        <field>cec_Issue__c.Reason_L2_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L3_Code__c</field>
-=======
-        <field>cec_Issue__c.Reason_L2_desc__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L3_desc__c</field>
-=======
-        <field>cec_Issue__c.Reason_L3_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L4_Code__c</field>
-=======
-        <field>cec_Issue__c.Reason_L3_desc__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L4_desc__c</field>
-=======
-        <field>cec_Issue__c.Reason_L4_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L5_Code__c</field>
-=======
-        <field>cec_Issue__c.Reason_L4_desc__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L5_Short_desc__c</field>
-=======
-        <field>cec_Issue__c.Reason_L5_Code__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_L5_desc__c</field>
-=======
-        <field>cec_Issue__c.Reason_L5_Short_desc__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Reason_Rule_level__c</field>
-=======
-        <field>cec_Issue__c.Reason_L5_desc__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Store_Location__c</field>
-=======
-        <field>cec_Issue__c.Reason_Rule_level__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Store__c</field>
-=======
-        <field>cec_Issue__c.Store_Location__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.UPC_Code_Detail__c</field>
-=======
-        <field>cec_Issue__c.Store__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.Verbatim__c</field>
-=======
-        <field>cec_Issue__c.UPC_Code_Detail__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.isFormKnown__c</field>
-=======
-        <field>cec_Issue__c.Verbatim__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.isPacksizeKnown__c</field>
-=======
-        <field>cec_Issue__c.isFormKnown__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Issue__c.isVariantKnown__c</field>
-=======
-        <field>cec_Issue__c.isPacksizeKnown__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Additional_Information__c</field>
-=======
-        <field>cec_Issue__c.isVariantKnown__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Additional_Product_Information__c</field>
-=======
-        <field>cec_Product_Information__kav.Additional_Information__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Additional_Sensitive_Information__c</field>
-=======
-        <field>cec_Product_Information__kav.Additional_Product_Information__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Approved_by_Legal__c</field>
-=======
-        <field>cec_Product_Information__kav.Additional_Sensitive_Information__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Availability__c</field>
-=======
-        <field>cec_Product_Information__kav.Approved_by_Legal__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Benefit__c</field>
-=======
-        <field>cec_Product_Information__kav.Availability__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Brand__c</field>
-=======
-        <field>cec_Product_Information__kav.Benefit__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Date_Code_Location__c</field>
-=======
-        <field>cec_Product_Information__kav.Brand__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.GTIN_Code_Last_4__c</field>
-=======
-        <field>cec_Product_Information__kav.Date_Code_Location__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Ingredients__c</field>
-=======
-        <field>cec_Product_Information__kav.GTIN_Code_Last_4__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Legacy_Text__c</field>
-=======
-        <field>cec_Product_Information__kav.Ingredients__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Meta_Tags__c</field>
-=======
-        <field>cec_Product_Information__kav.Legacy_Text__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Nutrition_Information__c</field>
-=======
-        <field>cec_Product_Information__kav.Meta_Tags__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.PDF_Version_2__c</field>
-=======
-        <field>cec_Product_Information__kav.Nutrition_Information__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.PDF_Version_3__c</field>
-=======
-        <field>cec_Product_Information__kav.PDF_Version_2__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.PDF_Version__c</field>
-=======
-        <field>cec_Product_Information__kav.PDF_Version_3__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Pack_Shot__c</field>
-=======
-        <field>cec_Product_Information__kav.PDF_Version__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Packaging_Description__c</field>
-=======
-        <field>cec_Product_Information__kav.Pack_Shot__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>cec_Product_Information__kav.Product_Code__c</field>
-=======
-        <field>cec_Product_Information__kav.Packaging_Description__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>cec_Product_Information__kav.Product_De_listed__c</field>
-=======
-        <field>cec_Product_Information__kav.Product_Code__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-=======
         <field>cec_Product_Information__kav.Product_De_listed__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
->>>>>>> FETCH_HEAD
         <field>cec_Product_Information__kav.Product_Description__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -35337,7 +32818,6 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>WinAtPOSBrandViewForwarder</apexPage>
-<<<<<<< HEAD
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
@@ -35634,494 +33114,8 @@
     </pageAccesses>
     <pageAccesses>
         <apexPage>uw_CustomAssetUpload</apexPage>
-=======
         <enabled>false</enabled>
     </pageAccesses>
-    <pageAccesses>
-        <apexPage>WinAtPOSCategoryViewForwarder</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>WinAtPOSPrintablePDFView</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>WinAtPOSSearchPDFView</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>WinatPOSAssetView</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>WinatPOSAssetViewForwarder</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>WinatPOSCategoryView</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>WinatPOSUpload</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>Wrapper</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>af_usersearchpage</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>approvalscacheimages</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>approvalscacheimagesmanifest</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>bc_help_pop_up</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>bc_help_pop_up10</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>bc_help_pop_up3</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>bc_help_pop_up4</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>bc_help_pop_up5</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>bc_help_pop_up6</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>bc_help_pop_up7</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>bc_help_pop_up8</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>bc_help_pop_up9</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>bc_help_pop_up_combined1</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>bc_help_pop_up_combined2</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>be_help_pop_up</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_DefaultPreference</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_EventDelete</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_EventEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_EventOptOut</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_EventRepresentativeSelection</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_News</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_Planner</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_PlannerEventVisibility</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_PlannerSelection</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_PlannerSelectionMarket</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_PoaP</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_RecordDetail</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>cp_countrySelectionWarning</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>groupMaster</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>im_IssueCreationDialogue</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>im_IssuesLP</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_AllContentInIsll</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ArticleEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_BrainResults</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_BusinessFundamentals</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_CarouselEditPage</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ChatterGroupSearch</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_CommuniBrain</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ContentEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ContentUploader</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_DeleteChatterHistory</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_DeliverSLBrandExp</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EditPageContent</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EmbedSustainableLIMP</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EventDetail</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EventMembers</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Events</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EventsDetail</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Events_Edit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Home</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ModeratorEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_MyLibrary</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_NewsArchive</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Partnerships</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_PastEvents</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_SMEEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_SustainExpertEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_SustainableLivingExperts</apexPage>
->>>>>>> FETCH_HEAD
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_TemplateMain</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_USLPBrandTablbEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_UslpAmbition</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>maketingRedirect</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>myLogOut</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>unilever_way_home</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>uw_BetEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>uw_CustomAssetUpload</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <recordTypeVisibilities>
-        <recordType>AF_Bonus_Results__c.Bonus_Annual</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>AF_Bonus_Results__c.Bonus_Quarterly</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>AF_Brand_Estimate__c.Brand_Estimate</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>AF_Category_Brand__c.AF_Brand</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>AF_Category_Brand__c.AF_Category</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>AF_Entity__c.AF_Agency_Entity</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>AF_Entity__c.AF_Unilever_Entity</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Account.Agency</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Account.Agency_Fee</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Account.Pitch_Agency</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Account.Standard</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Article__c.Brand_Centre_Article</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Article__c.Home_Page_Article</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Asset_Scoring__c.Asset</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Brand_Centre_Content__c.Article_Content</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Brand_Centre_Content__c.Header_Section_Community</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Brand_Centre_Content__c.Header_Section_Latest_News</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Brand_Centre_Content__c.Header_Section_Online</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Brand_Centre_Content__c.Header_Section_Right_Side</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Brand_Centre_Content__c.Non_Video_Link_Content</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Brand_Centre_Content__c.Video_Link_Content</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Brand_Centre_New__c.Brand_Centre_Management</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Brand_Centre_New__c.Brand_Centre_Read_only</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Case.None</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Case.Spam</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Contact.Agency_Contact</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Contact.Pitch_Contact</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Contact.Standard_Contact</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>ContentVersion.One_View</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Core_Approval_Details__c.Ariba</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Core_Approval_Details__c.GTES</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Core_Approval_Header__c.Ariba</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Core_Approval_Header__c.GTES</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Core_Approver_Details__c.Ariba</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Core_Approver_Details__c.GTES</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Everyday_Activity__c.Boosting_Wellbeing</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Everyday_Activity__c.Building_Inclusion</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Everyday_Activity__c.People_Champion</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Everyday_Activity__c.Working_Effectively</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>FAU_Module_Participant__c.FAU_Campus</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>FAU_Module_Participant__c.FAU_Off_Campus</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>FAU_Program__c.Core</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>FAU_Program__c.Franchise</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>FAU_Program__c.Template</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>FAU_Program__c.Template_Inactive</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>FAU_Webinar__c.FAU_Normal</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>FAU_Webinar__c.FAU_Registration</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>AF_Bonus_Results__c.Bonus_Annual</recordType>
         <visible>false</visible>
@@ -36587,197 +33581,6 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-<<<<<<< HEAD
-=======
-        <recordType>Idea.InternalIdeasIdeaRecordType</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Idea.Record_type_for_community_09aE0000000PLSXIA4_entity_Idea</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Idea.Record_type_for_community_09aE0000000PLkaIAG_entity_Idea</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Idea.Record_type_for_community_09aE0000000PLkuIAG_entity_Idea</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Idea.Record_type_for_community_09aE0000000PLkzIAG_entity_Idea</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Idea.Record_type_for_community_09aE0000000YIk2IAG_entity_Idea</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>JE_Job_Evaluation_Multipliers__c.Brand_Building_Multipliers</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>JE_Job_Evaluation_Multipliers__c.Brand_Development_Multipliers</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>JE_Job_Evaluation_Multipliers__c.Customer_Development_Multipliers</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>JE_Job_Evaluation_Multipliers__c.Finance_Multipliers</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>JE_Job_Evaluation_Multipliers__c.Human_Resources_Multipliers</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>JE_Job_Evaluation_Multipliers__c.Supply_Chain_Multipliers</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>JE_Job_Evaluation__c.Brand_Building</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>JE_Job_Evaluation__c.Brand_Development</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>JE_Job_Evaluation__c.Customer_Development</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>JE_Job_Evaluation__c.Finance</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>JE_Job_Evaluation__c.Human_Resources</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>JE_Job_Evaluation__c.Supply_Chain</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Marketing_Basics__c.Activity</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Marketing_Basics__c.Resource</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Marketing_SOW__c.ChildSowMarketing</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Marketing_SOW__c.ParentSowMarketing</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>OV_Shelf__c.Moment</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>OV_Shelf__c.Subject</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Oblix_Calculator__c.Box_Range</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Oblix_Calculator__c.Country_Box_Number</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Oblix_Calculator__c.Role_Rate</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Oblix_Project_Assets__c.Admin</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Oblix_Project_Assets__c.Audio_Visual</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Oblix_Project_Assets__c.Digital</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Oblix_Project_Assets__c.Experiential</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Oblix_Project_Assets__c.Static_Imagery</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>Oblix_Project_Assets__c.Stimulus_Materials_Research_requirements</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>PersonAccount.PersonAccount</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>PersonAccount.Pitch_Expert</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>aa_Agent_App_Competitor_Brand__c.Competitor_Brand</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>aa_Agent_App_Competitor_Brand__c.Unilever_Brand</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>aa_Agent_Report__c.Agent_Report</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>aa_Agent_Report__c.CI_Manger_Record_type</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>aa_Agent_Report__c.Competitor_Report</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>aa_Agent_Report__c.Competitor_Review_Publish_Report</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>aa_Agent_Report__c.ETS_Members_Record_Type</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>aa_Agent_Report__c.Unilever_Agent_Published_Report</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>aa_Agent_Report__c.Unilever_Agent_Report</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>ar_Experience__c.Experience</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>ar_Experience__c.Expertise</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
-        <recordType>ar_Experience__c.Project</recordType>
-        <visible>false</visible>
-    </recordTypeVisibilities>
-    <recordTypeVisibilities>
->>>>>>> FETCH_HEAD
         <recordType>ar_Fixed_Price_Rate_Card__c.Artwork</recordType>
         <visible>false</visible>
     </recordTypeVisibilities>
@@ -36942,13 +33745,10 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-<<<<<<< HEAD
         <tab>Asset_Scoring__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-=======
->>>>>>> FETCH_HEAD
         <tab>Asset__c</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -37177,13 +33977,10 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-<<<<<<< HEAD
         <tab>Marketing_SOW__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-=======
->>>>>>> FETCH_HEAD
         <tab>Masterbrand</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -37275,7 +34072,6 @@
         <tab>OV_KPI_Dimension_NA_Sales_Org__c</tab>
         <visibility>None</visibility>
     </tabSettings>
-<<<<<<< HEAD
     <tabSettings>
         <tab>OV_KPI_Dimension_Org_Unit__c</tab>
         <visibility>None</visibility>
@@ -37354,70 +34150,6 @@
     </tabSettings>
     <tabSettings>
         <tab>Oblix_SOW_Projects__c</tab>
-=======
-    <tabSettings>
-        <tab>OV_KPI_Dimension_Org_Unit__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_KPI_Dimension_Product_Category__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_KPI_Dimension_Time_Range__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_KPI_Dimension_WL_GROUP__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_KPI_Element_Interest__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_KPI_Element__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_KPI_Name__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_KPI_Transaction_Favorite__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_KPI_Transaction__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_Profile__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_Report_Usage__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_Report__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_ShelfTileReport__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_Shelf_Tile__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_Shelf__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>OV_Unit__c</tab>
->>>>>>> FETCH_HEAD
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>

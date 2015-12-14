@@ -14388,7 +14388,6 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-<<<<<<< HEAD
         <editable>true</editable>
         <field>File__c.Is_Primary_Image__c</field>
         <readable>true</readable>
@@ -14400,19 +14399,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-=======
-        <editable>true</editable>
-        <field>File__c.Is_Primary_Image__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>File__c.Last_Download_Time__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
->>>>>>> FETCH_HEAD
         <field>File__c.Legacy_ID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -30705,7 +30691,6 @@
         <editable>false</editable>
         <field>uw_Asset__c.Related_Feed_Comment__c</field>
         <readable>false</readable>
-<<<<<<< HEAD
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -31025,820 +31010,275 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>uw_BET__c.Max_of_Order_Of_Display__c</field>
-=======
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Asset__c.Related_Feed_Item__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>uw_Asset__c.Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Asset__c.Studio_Asset_Type__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Asset__c.Sub_Function__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Asset__c.Think_Big_Promotion_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Asset__c.URL_of_Asset__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Asset__c.Usage__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Asset__c.betFeedID__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Asset__c.thumbnail__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.Access_Level__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.BETEnabled__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.BET__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.Editing__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.Invite_Pending__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.IsOwner__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.Pending_Request__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.Request_Status__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.Role__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.Scheduled_Delete_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.StudioEnabled__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.Team_Member__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET_Team_Member__c.email__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Background_Colour__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Banner_1_Location__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Banner_2_Location__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Banner_Colour__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Border_Colour__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Brand_Keyword_Search__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Brand_Position_Keyword_Search__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Brand_Position__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Brand__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Category_Group_Keyword_Search__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Category_Group__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Category_Keyword_Search__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Category_Level_2__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Category_Level_3__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Category__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.CollaborationGroupId__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Collaboration_Group__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Component_Colour__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Date_Published__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Deletion_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Description__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.FinalReleaseDate__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Final_Release_Due_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Final_release_date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.FirstReleaseDate__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.First_Release_Due_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.First_release_date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Font_Colour__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Group__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.IPM_Project__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Icon_Location__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Inherit_Branding__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Inoplan_Project_Keyword_Search__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Inoplan_Project__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Is_Archived__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Is_Deleted__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Is_Fabric_Conditioners__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Launch_Date__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Link__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Market_Cluster__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_BET__c.Market_Clusters__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.No_Of_Asset_Items__c</field>
-=======
-        <field>uw_BET__c.Max_of_Order_Of_Display__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Owner_Keyword_Search__c</field>
-=======
-        <field>uw_BET__c.No_Of_Asset_Items__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Presentation_Id__c</field>
-=======
-        <field>uw_BET__c.Owner_Keyword_Search__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Product_Brand__c</field>
-=======
-        <field>uw_BET__c.Presentation_Id__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Product_Category_Sub_Division__c</field>
-=======
-        <field>uw_BET__c.Product_Brand__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Product_Category__c</field>
-=======
-        <field>uw_BET__c.Product_Category_Sub_Division__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Project_ID__c</field>
-=======
-        <field>uw_BET__c.Product_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Project__c</field>
-=======
-        <field>uw_BET__c.Project_ID__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Region_Keyword_Search__c</field>
-=======
-        <field>uw_BET__c.Project__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Region__c</field>
-=======
-        <field>uw_BET__c.Region_Keyword_Search__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Scope__c</field>
-=======
-        <field>uw_BET__c.Region__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Sharing__c</field>
-=======
-        <field>uw_BET__c.Scope__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Status__c</field>
-=======
-        <field>uw_BET__c.Sharing__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Studio_Chatter_Group__c</field>
-=======
-        <field>uw_BET__c.Status__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Studio__c</field>
-=======
-        <field>uw_BET__c.Studio_Chatter_Group__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.StylePalette__c</field>
-=======
-        <field>uw_BET__c.Studio__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Sub_Category__c</field>
-=======
-        <field>uw_BET__c.StylePalette__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Total_Actual_Assets__c</field>
-=======
-        <field>uw_BET__c.Sub_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Total_Expected_Assets__c</field>
-=======
-        <field>uw_BET__c.Total_Actual_Assets__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Total_Number_of_Members__c</field>
-=======
-        <field>uw_BET__c.Total_Expected_Assets__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.Total_assets__c</field>
-=======
-        <field>uw_BET__c.Total_Number_of_Members__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_BET__c.uw_Brand__c</field>
-=======
-        <field>uw_BET__c.Total_assets__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.BETs_URL__c</field>
-=======
-        <field>uw_BET__c.uw_Brand__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Background_Colour__c</field>
-=======
-        <field>uw_Brand__c.BETs_URL__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Banner_Colour__c</field>
-=======
-        <field>uw_Brand__c.Background_Colour__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Banner_Location__c</field>
-=======
-        <field>uw_Brand__c.Banner_Colour__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Border_Colour__c</field>
-=======
-        <field>uw_Brand__c.Banner_Location__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Brand_Centre_Page__c</field>
-=======
-        <field>uw_Brand__c.Border_Colour__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Brand_Centre_URL__c</field>
-=======
-        <field>uw_Brand__c.Brand_Centre_Page__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Brand_Logo_Image_ID__c</field>
-=======
-        <field>uw_Brand__c.Brand_Centre_URL__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Category__c</field>
-=======
-        <field>uw_Brand__c.Brand_Logo_Image_ID__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Component_Colour__c</field>
-=======
-        <field>uw_Brand__c.Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Description__c</field>
-=======
-        <field>uw_Brand__c.Component_Colour__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Facebook_URL__c</field>
-=======
-        <field>uw_Brand__c.Description__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Facebook__c</field>
-=======
-        <field>uw_Brand__c.Facebook_URL__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Font_Colour__c</field>
-=======
-        <field>uw_Brand__c.Facebook__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Learning_Hub__c</field>
-=======
-        <field>uw_Brand__c.Font_Colour__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Logo_Location__c</field>
-=======
-        <field>uw_Brand__c.Learning_Hub__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Logo__c</field>
-=======
-        <field>uw_Brand__c.Logo_Location__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Old_Brand_To_Remove__c</field>
-=======
-        <field>uw_Brand__c.Logo__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Parent_Brand__c</field>
-=======
-        <field>uw_Brand__c.Old_Brand_To_Remove__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.StylePalette__c</field>
-=======
-        <field>uw_Brand__c.Parent_Brand__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Styleoutput__c</field>
-=======
-        <field>uw_Brand__c.StylePalette__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Sub_Category__c</field>
-=======
-        <field>uw_Brand__c.Styleoutput__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Twitter_URL__c</field>
-=======
-        <field>uw_Brand__c.Sub_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Twitter__c</field>
-=======
-        <field>uw_Brand__c.Twitter_URL__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Website__c</field>
-=======
-        <field>uw_Brand__c.Twitter__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.You_Tube_2_URL__c</field>
-=======
-        <field>uw_Brand__c.Website__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.You_Tube_URL__c</field>
-=======
-        <field>uw_Brand__c.You_Tube_2_URL__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Brand__c.Youtube__c</field>
-=======
-        <field>uw_Brand__c.You_Tube_URL__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Inoplan_Project__c.Brand__c</field>
-=======
-        <field>uw_Brand__c.Youtube__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Inoplan_Project__c.Category__c</field>
-=======
-        <field>uw_Inoplan_Project__c.Brand__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Inoplan_Project__c.Phase__c</field>
-=======
-        <field>uw_Inoplan_Project__c.Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>uw_Inoplan_Project__c.Project_Description__c</field>
-=======
-        <field>uw_Inoplan_Project__c.Phase__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
-        <field>uw_Inoplan_Project__c.Project_Id__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>uw_Inoplan_Project__c.Project_Span__c</field>
-=======
         <field>uw_Inoplan_Project__c.Project_Description__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -31855,28 +31295,15 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>uw_Inoplan_Project__c.Sub_Category__c</field>
->>>>>>> FETCH_HEAD
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-<<<<<<< HEAD
-        <field>uw_Inoplan_Project__c.Sub_Category__c</field>
-=======
-        <field>uw_Links__c.BC_Link_Type__c</field>
->>>>>>> FETCH_HEAD
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-<<<<<<< HEAD
         <field>uw_Links__c.BC_Link_Type__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-=======
->>>>>>> FETCH_HEAD
         <field>uw_Links__c.BC_Ordinal__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -33598,7 +33025,6 @@
     <pageAccesses>
         <apexPage>isll_AllContentInIsll</apexPage>
         <enabled>false</enabled>
-<<<<<<< HEAD
     </pageAccesses>
     <pageAccesses>
         <apexPage>isll_ArticleEdit</apexPage>
@@ -33717,126 +33143,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-=======
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ArticleEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_BrainResults</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_BusinessFundamentals</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_CarouselEditPage</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ChatterGroupSearch</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_CommuniBrain</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ContentEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ContentUploader</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_DeleteChatterHistory</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_DeliverSLBrandExp</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EditPageContent</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EmbedSustainableLIMP</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EventDetail</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EventMembers</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Events</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_EventsDetail</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Events_Edit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Home</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_ModeratorEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_MyLibrary</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_NewsArchive</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_Partnerships</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_PastEvents</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_SMEEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_SustainExpertEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_SustainableLivingExperts</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_TemplateMain</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_USLPBrandTablbEdit</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
-        <apexPage>isll_UslpAmbition</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
->>>>>>> FETCH_HEAD
         <apexPage>maketingRedirect</apexPage>
         <enabled>false</enabled>
     </pageAccesses>
@@ -34485,13 +33791,10 @@
         <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
-<<<<<<< HEAD
         <tab>Asset_Scoring__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-=======
->>>>>>> FETCH_HEAD
         <tab>Asset__c</tab>
         <visibility>Visible</visibility>
     </tabSettings>
@@ -34691,7 +33994,6 @@
         <tab>IPM_Task__c</tab>
         <visibility>None</visibility>
     </tabSettings>
-<<<<<<< HEAD
     <tabSettings>
         <tab>Ideas</tab>
         <visibility>None</visibility>
@@ -34722,34 +34024,6 @@
     </tabSettings>
     <tabSettings>
         <tab>Marketing_SOW__c</tab>
-=======
-    <tabSettings>
-        <tab>Ideas</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>In_Store_Executions</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Innovations</tab>
-        <visibility>Visible</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>Inside_Unilever</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>JE_Job_Evaluation_Multipliers__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>JE_Job_Evaluation__c</tab>
-        <visibility>None</visibility>
-    </tabSettings>
-    <tabSettings>
-        <tab>KPI_Notifications</tab>
->>>>>>> FETCH_HEAD
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
@@ -34909,7 +34183,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-<<<<<<< HEAD
         <tab>Oblix_Calculator__c</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -34926,8 +34199,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-=======
->>>>>>> FETCH_HEAD
         <tab>One_View</tab>
         <visibility>None</visibility>
     </tabSettings>

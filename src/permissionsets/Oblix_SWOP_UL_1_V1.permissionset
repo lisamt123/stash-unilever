@@ -33827,13 +33827,10 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-<<<<<<< HEAD
         <tab>Asset_Scoring__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-=======
->>>>>>> FETCH_HEAD
         <tab>Asset__c</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -34062,13 +34059,10 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-<<<<<<< HEAD
         <tab>Marketing_SOW__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-=======
->>>>>>> FETCH_HEAD
         <tab>Masterbrand</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -34225,7 +34219,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-<<<<<<< HEAD
         <tab>Oblix_Calculator__c</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -34242,8 +34235,6 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
-=======
->>>>>>> FETCH_HEAD
         <tab>One_View</tab>
         <visibility>None</visibility>
     </tabSettings>
