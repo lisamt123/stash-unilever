@@ -539,7 +539,7 @@
                     <apex:outputPanel rendered="{!betInformationMessage != ''}" styleClass="infoMsg">
                     <apex:outputText value="{!betInformationMessage}" escape="false"/>
                     </apex:outputPanel>                    
-                    <apex:outputpanel rendered="{!BETId != null}">
+                    <apex:outputpanel rendered="{!project.BET__c != null}">
                         <div class="row">
                             <div class="col-xs-3 headerlogo">
                                 <apex:image value="{!$Resource.IPM_BET_Logo}" />
@@ -654,7 +654,6 @@
                                             </div>
                                        </apex:outputpanel>
                                        <apex:outputpanel rendered="{!showSuggestedMembers}">
-                                       <apex:outputText value="sample render text"/>
                                             <apex:outputpanel rendered="{!memberCallFromURL}">
                                                 <ul class="ipmStartedTabs">
                                                     <li class="betdetails tabOdd "><a href="#betdetails"  >{!$Label.IPM_BETDetails}</a></li>

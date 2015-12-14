@@ -49,26 +49,42 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 {
                     projectAssociatedWithProjectTypesList.add(project); 
                 }
-                 //Set default BET value
-                if(Trigger.isUpdate && String.isBlank(project.IPM_BET_Toolkit__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                    project.IPM_BET_Toolkit__c = IPM_ConstantUtils.CREATE_NEW_BET ;
-                }
-                //Set BET MIlestone Dates as Project Target launch Dates
-                if(Trigger.isUpdate && (project.IPM_BET_Toolkit__c == IPM_ConstantUtils.CREATE_NEW_BET || project.IPM_BET_Toolkit__c == IPM_ConstantUtils.LINK_EXISTING_BET ) && project.IPM_Target_Launch_Dates__c!=null && ((project.BET_TLD_First_Release_Date__c==null || project.BET_TLD_Final_Release_Date__c==null) || project.IPM_Target_Launch_Dates__c!= ((IPM_Project__c) trigger.oldMap.get(project.id)).IPM_Target_Launch_Dates__c)){
-                    project.BET_TLD_First_Release_Date__c = BET_BETService.getFirstReleaseDueDate(project.IPM_Target_Launch_Dates__c);
-                    project.BET_TLD_Final_Release_Date__c = BET_BETService.getFirstReleaseDueDate(project.IPM_Target_Launch_Dates__c);
-                }
-                //Reset BET Milestones when BET option is selected as No BET
-                if(Trigger.isUpdate && project.IPM_BET_Toolkit__c == IPM_ConstantUtils.NO_BET && ((IPM_Project__c) trigger.oldmap.get(project.id)).IPM_BET_Toolkit__c != IPM_ConstantUtils.NO_BET){
-                    project.BET_TLD_First_Release_Date__c = null;
-                    project.BET_TLD_Final_Release_Date__c = null;
-                }
-                //Save Last BET detail
-                if(Trigger.isUpdate && ((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c!=null && project.BET__c != ((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c){
-                    BET_BETWrapper bwrap = new BET_BETWrapper();
-                    bwrap = (BET_BETWrapper)BET_BETService.getBet(((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c);
-                    if(bwrap!=null){
-                        project.BET_Last_BET__c = bwrap.betName;
+                //Process BET flow
+                if(Trigger.isUpdate){
+                    //Set default BET value
+                    if(String.isBlank(project.IPM_BET_Toolkit__c) && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
+                        project.IPM_BET_Toolkit__c = IPM_ConstantUtils.CREATE_NEW_BET ;
+                    }
+                    //Set BET MIlestone Dates as Project Target launch Dates
+                    if((project.IPM_BET_Toolkit__c == IPM_ConstantUtils.CREATE_NEW_BET || project.IPM_BET_Toolkit__c == IPM_ConstantUtils.LINK_EXISTING_BET ) && project.IPM_Target_Launch_Dates__c!=null && ((project.BET_TLD_First_Release_Date__c==null || project.BET_TLD_Final_Release_Date__c==null) || project.IPM_Target_Launch_Dates__c!= ((IPM_Project__c) trigger.oldMap.get(project.id)).IPM_Target_Launch_Dates__c)){
+                        project.BET_TLD_First_Release_Date__c = BET_BETService.getFirstReleaseDueDate(project.IPM_Target_Launch_Dates__c);
+                        project.BET_TLD_Final_Release_Date__c = BET_BETService.getFirstReleaseDueDate(project.IPM_Target_Launch_Dates__c);
+                    }
+                    //Reset BET Milestones when BET option is selected as No BET
+                    if(project.IPM_BET_Toolkit__c == IPM_ConstantUtils.NO_BET && ((IPM_Project__c) trigger.oldmap.get(project.id)).IPM_BET_Toolkit__c != IPM_ConstantUtils.NO_BET){
+                        project.BET_TLD_First_Release_Date__c = null;
+                        project.BET_TLD_Final_Release_Date__c = null;
+                    }
+                    //Save Last BET detail
+                    if(((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c!=null && project.BET__c != ((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c){
+                        project.Bulk_BET_Member_Request__c = false;
+                        BET_BETWrapper bwrap = new BET_BETWrapper();
+                        bwrap = (BET_BETWrapper)BET_BETService.getBet(((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c);
+                        if(bwrap!=null){
+                            project.BET_Last_BET__c = bwrap.betName;
+                        }
+                    }
+                    //Send BET Link Request for requested BET link on phase change from Ideas to Feasibility
+                    if(project.BET_Link_Requested__c!=null && !IPM_ConstantUtils.PHASE_IDEAS.equals(project.IPM_Phase__c) && IPM_ConstantUtils.PHASE_IDEAS.equals(((IPM_Project__c) trigger.oldmap.get(project.id)).IPM_Phase__c)){
+                        BET_LinkingService.follow(project.id,project.BET_Link_Requested__c,new list<id> {project.IPM_Project_Leader__c,project.Deputy_Project_Leader__c});      
+                    }
+                    //Send Rollout member access request for associated BET if it is already past First Release status
+                    if(project.BET__c!= null && (project.BET__c != ((IPM_Project__c) trigger.oldmap.get(project.id)).BET__c)){
+                        BET_BETWrapper bwrap = new BET_BETWrapper();
+                        bwrap = (BET_BETWrapper)BET_BETService.getBet(project.BET__c);
+                        if(bwrap.status == IPM_ConstantUtils.BET_FIRST_RELEASE || bwrap.status == IPM_ConstantUtils.BET_FINAL_RELEASE){
+                            IPM_BETHelper.sendBETAccessRequestonFirstRelease(project.BET__c);   
+                        }
                     }
                 }
             }

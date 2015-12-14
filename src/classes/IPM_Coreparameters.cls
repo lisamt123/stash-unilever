@@ -499,7 +499,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         if(String.isNotBlank(betId) && betId!=IPM_Coreparameter.BET_Link_Requested__c){
             IPM_Coreparameter.BET_Link_Requested__c=betId;
             IPM_Coreparameter.BET_Link_Requested_on_Date__c=system.now();
-            BET_LinkingService.follow(projectid,betId,new list<id> {IPM_Coreparameter.IPM_Project_Leader__c,IPM_Coreparameter.Deputy_Project_Leader__c});
+            if(!IPM_ConstantUtils.PHASE_IDEAS.equals(IPM_Coreparameter.IPM_Phase__c)){
+                BET_LinkingService.follow(projectid,betId,new list<id> {IPM_Coreparameter.IPM_Project_Leader__c,IPM_Coreparameter.Deputy_Project_Leader__c});
+            }
         }
         IPM_Coreparameter.IPM_Market__c=market_STR;
         IPM_Coreparameter.IPM_Sub_sector__c=subSector_STR;

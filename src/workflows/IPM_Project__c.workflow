@@ -417,7 +417,7 @@
         <fullName>IPM_BET_WF_AutoApproveBETlink</fullName>
         <active>true</active>
         <description>time based workflow to update the BET link after 72 hours on the project</description>
-        <formula>!ISNULL(BET_Link_Requested__c) &amp;&amp; !ISBLANK(BET_Link_Requested__c)</formula>
+        <formula>!ISNULL(BET_Link_Requested__c) && !ISBLANK(BET_Link_Requested__c) && NOT( ISPICKVAL( IPM_Phase__c , 'Ideas') )</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
             <actions>
