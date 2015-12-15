@@ -8458,7 +8458,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_LinkBETPLMsg</shortDescription>
-        <value>You have requested to link your project to this BET: <b></b>. <br/><br/> If this request is approved the BET will be linked within 72 hours of the link request.</value>
+        <value>You have requested to link your project to this If this request is approved the BET will be linked within 72 hours of the link request.</value>
     </labels>
     <labels>
         <fullName>IPM_LinkBETPLMsgIdeas</fullName>
