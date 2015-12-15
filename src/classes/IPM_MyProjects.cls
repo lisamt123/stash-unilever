@@ -121,7 +121,9 @@ public with sharing class IPM_MyProjects{
         	}else{
             	projects.add(new ProjectWrapper(proj, mapdocsDate.get(proj.Id),new IPM_Bosscard__c()));
             } 
-        	}
+          }else
+            projectsWithoutCurrentMilestoneDueDate.add(new ProjectWrapper(proj, null,new IPM_Bosscard__c()));
+            
             projectcount ++;
         }
         projects.addAll(projectsWithoutCurrentMilestoneDueDate);
