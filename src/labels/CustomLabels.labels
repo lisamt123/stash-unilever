@@ -613,6 +613,20 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>General Information</value>
     </labels>
     <labels>
+        <fullName>Accept_from_Local</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Accept from Local</shortDescription>
+        <value>Accept Local TLD</value>
+    </labels>
+    <labels>
+        <fullName>Accept_from_Regional</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Accept from Regional</shortDescription>
+        <value>Accept Regional TLD</value>
+    </labels>
+    <labels>
         <fullName>Agency_Email_Alerts</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -626,6 +640,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <shortDescription>Agency Fee Title</shortDescription>
         <value>Agency Fees Online</value>
     </labels>
+    <labels>
+        <fullName>Agree_and_Proceed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agree and Proceed</shortDescription>
+        <value>Agree and Proceed</value>
+    </labels>    
     <labels>
         <fullName>BETManagerRole</fullName>
         <language>en_US</language>
@@ -1755,6 +1776,20 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Bonus Annual</value>
     </labels>
     <labels>
+        <fullName>Business_Case_Update_Needed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Business Case Update Needed</shortDescription>
+        <value>Business Case Update Needed</value>
+    </labels>
+    <labels>
+        <fullName>Business_Case_Update_Needed_Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Business Case Update Needed Value</shortDescription>
+        <value>You have just changed the Target Launch Date (TLD) of the project. Changes to the TLD of the project influences the Business Case and impacts calculations like the Funnel Value - please ensure that your Finance team member updates the Business Case to reflect the change in TLD.</value>
+    </labels>    
+    <labels>
         <fullName>CEC_CaseAccountMissing</fullName>
         <categories>CEC:Case_Error</categories>
         <language>en_US</language>
@@ -2275,6 +2310,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <shortDescription>CEC_isVariantKnown</shortDescription>
         <value>Is Variant Known?</value>
     </labels>
+    <labels>
+        <fullName>Cancel_and_Revert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel and Revert</shortDescription>
+        <value>Cancel and Revert</value>
+    </labels>    
     <labels>
         <fullName>Core_NT_App_Url</fullName>
         <language>en_US</language>
@@ -11564,7 +11606,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM TLD Misaligned</shortDescription>
-        <value>is no longer aligned with the Regional Project</value>
+        <value>is no longer aligned with the Target Launch Date of the Regional Project,</value>
     </labels>
     <labels>
         <fullName>IPM_TLD_SHOULD_BE_GREATER_THAN_TODAY</fullName>
@@ -12257,8 +12299,15 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_welcomeToFeasibility</shortDescription>
-        <value>We just need you to confirm a few details and then we can create the new BET for your project. Any changes you make here will not affect your IPM project.</value>
-    </labels>
+	 <value>We just need you to confirm a few details and then we can create the new BET for your project. Any changes you make here will not affect your IPM project.</value>
+   </labels>
+   <labels>
+        <fullName>TLD_After_Charter_Contract_and_Market_Ready_Milestone_Dates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TLD After Charter Contract and Market Ready Milestone Dates</shortDescription>
+        <value>Target Launch Date must be after Charter, Contract and Market Ready mandatory milestones.</value>
+    </labels>  
     <labels>
         <fullName>ipmFinSummaryBIC</fullName>
         <language>en_US</language>

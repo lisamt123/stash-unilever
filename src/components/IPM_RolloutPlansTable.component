@@ -313,7 +313,7 @@
                                             <td scope="col" width="190px">
                                                 <div class="incHeight">                                                    
                                                     <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
-                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}"/>
+                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/> 
                                                 </div>
                                             </td>
                                             <td scope="col" width="100px">
@@ -438,4 +438,53 @@
             </div>  
         </div>
     </div>
+<!-- Modal -->
+    <div id="tldWarningDialog" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="modal-title">{!$Label.Business_Case_Update_Needed}</div>
+                </div>
+                <div class="modal-body">
+                    <div class="removeapprpopup">
+                        <span class="removeApprText">{!$Label.Business_Case_Update_Needed_Value}</span>
+                        <div class="remvButtonContainer pull-right">  
+                            <div class="pull-left buttonMarginRight noPadright">
+                                <input type="button" class="ipmButton" data-dismiss="modal" value="{!$Label.Cancel_and_Revert}" onClick="revertTLDValue();"/>
+                            </div>
+                            <div class="buttonMarginRight noPadright pull-left" >
+                                <!-- <span class="ipmButton primary" data-dismiss="modal" >Agree and Proceed</span> -->
+                    <apex:commandLink value="{!$Label.Agree_and_Proceed}"  rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  oncomplete="hideTldWarningDialog();" >
+                    </apex:commandLink>
+                        
+                            </div>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    function TLDDateCheck(param){
+        var newTLDValue = param.value;
+        tldOrignalValue = param.defaultValue;
+        selectedDateField = param;
+        if(newTLDValue != tldOrignalValue){
+            jq('#tldWarningDialog').modal('show'); 
+            return false;
+        }
+        return true;
+    }
+    function revertTLDValue(){
+        selectedDateField.value = tldOrignalValue;
+    }
+    function hideTldWarningDialog(){
+        jq('#tldWarningDialog').modal('hide'); 
+    }
+    var tldOrignalValue = "";
+    var selectedDateField = "";
+ 
+  
+</script>
 </apex:component>

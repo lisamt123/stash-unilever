@@ -65,6 +65,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public boolean updateApproach{get;set;}// is user update project approach
     public string isFromEditPage{get;set;}// For UI usage
     public boolean isProjectNameBlank{get;set;}//is no duplicate name
+    public boolean isTLDFieldEditable{get;set;}// To make TLD field readonly #REQ02427          
     /****************************************************************************
     @Description : Initialization of the constructor
     *****************************************************************************/
@@ -136,6 +137,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             getMilesTaskIpmuserType();
         }
         getAllcompanycard();
+        setIsTLDFieldEditable(); 
         // Block User from Performing any operation if project is under processing.
         if(!String.isBlank(project.IPM_Project_Job_Status__c) && 
            (project.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE || project.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_PROCESSING) )
@@ -1029,6 +1031,52 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         else{
             isProjectNameBlank=false;
         }
+    }
+    /********************************************************************************
+    *@Description : To make Target Launch Date editable
+    *********************************************************************************/
+    private void setIsTLDFieldEditable(){
+        if(project!= null && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL  && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS){
+            isTLDFieldEditable = false;
+        } else if (project!= null && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS){
+            list<IPM_Project_Rollout__c> childProject = [Select Id,Name from IPM_Project_Rollout__c where IPM_Project__c = :project.Id or Regional_Project__c = :project.Id limit 1];
+            if(!childProject.isEmpty()){
+                isTLDFieldEditable = false;
+            }else {
+                isTLDFieldEditable = true;
+            }         
+        }else if(project!= null && project.IPMProject_Span__c == IPM_ConstantUtils.IPMREGIONAL && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS){
+                isTLDFieldEditable = false;     
+        }else if(project!= null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
+            if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_PLE || project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT){
+                isTLDFieldEditable = false; 
+            } else if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_MARKET_READY){
+                list<IPM_Project_Document__c> ipmProjDocuments = [Select Id,  IPM_Document_Status__c, IPM_Proposed_Date__c, IPM_GateDocuments__c from IPM_Project_Document__c where IPM_Project__c  = :project.Id and IPM_GateDocuments__c = :IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT];
+                if(!ipmProjDocuments.isEmpty()){
+                    IPM_Project_Document__c ipmProjDoc = ipmProjDocuments[0];
+                    if(ipmProjDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_NOT_STARTED || ipmProjDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_IN_PROGRESS){
+                        isTLDFieldEditable = true;
+                    } else{
+                        isTLDFieldEditable = false;
+                    }
+                }
+            } else if(project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE || project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY){
+                List<IPM_Financial__c>  financeList = [SELECT Id, IPM_Business_Case_Confirmed__c FROM IPM_Financial__c WHERE Local_Project__c=:projectId];
+                if(!financeList.isEmpty()){
+                    IPM_Financial__c financeObj = financeList[0];
+                    if(financeObj.IPM_Business_Case_Confirmed__c){
+                        isTLDFieldEditable = false;
+                    } else {
+                        isTLDFieldEditable = true;
+                    }               
+                }
+            } else {
+                isTLDFieldEditable = true;
+            }
+        }else if(project !=null){
+            isTLDFieldEditable = true;
+        } 
+               
     }
     /********************************************************************************
     *@Description :hide project suggetion names

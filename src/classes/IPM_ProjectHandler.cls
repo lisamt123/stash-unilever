@@ -24,6 +24,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     public Set<Id>changeOwnerProjects=new Set<Id>();
     
     private Map<Id,IPM_Project__c> rolloutTLDChangedProjList = new Map<Id,IPM_Project__c> {};
+    private List<IPM_Project__c> tldChangeProjListForMilestones = new List<IPM_Project__c> {};
     
     /***********************************************************************************************************************************
     * bulkBefore
@@ -868,19 +869,14 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             }
         }
         
+        if(oldProject.IPM_Target_Launch_Dates__c != incomingProject.IPM_Target_Launch_Dates__c)
+        {
+            incomingProject.MisAligned_Confirmed_By_Finance_Leader__c = false;
+        }        
+        
         //process incoming project status
         IPM_ProjectHelper.handleEcoDesignSyncProcess(incomingProject,oldProject);
-        
-        //To update Rollout TLD date on Rollout Projet Object
-      /*  if(oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= incomingProject.Rollout_Plan_Target_Launch_Date__c)
-        {
-            rolloutTLDChangedProjList.put(incomingProject.IPM_Project_Rollout__c,incomingProject);
-            /*IPM_Project_Rollout__c rolloutProj = [Select Id, Target_Launch_Date__c from IPM_Project_Rollout__c where Id = :oldProject.IPM_Project_Rollout__c limit 1];
-            if(incomingProject.Rollout_Plan_Target_Launch_Date__c != rolloutProj.Target_Launch_Date__c){
-                rolloutProj.Target_Launch_Date__c = incomingProject.Rollout_Plan_Target_Launch_Date__c;
-                rolloutTLDChangedProjList.add(rolloutProj);
-            }
-        }    */    
+   
     }
     
     /***********************************************************************************************************************************
@@ -919,15 +915,14 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         }
         
         //To update Rollout TLD date on Rollout Projet Object
-        if(oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= newProject.Rollout_Plan_Target_Launch_Date__c)
+        if((oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= newProject.Rollout_Plan_Target_Launch_Date__c) || (oldProject.IPM_Target_Launch_Dates__c != newProject.IPM_Target_Launch_Dates__c))
         {
             rolloutTLDChangedProjList.put(newProject.IPM_Project_Rollout__c,newProject);
-            /*IPM_Project_Rollout__c rolloutProj = [Select Id, Target_Launch_Date__c from IPM_Project_Rollout__c where Id = :oldProject.IPM_Project_Rollout__c limit 1];
-            if(incomingProject.Rollout_Plan_Target_Launch_Date__c != rolloutProj.Target_Launch_Date__c){
-                rolloutProj.Target_Launch_Date__c = incomingProject.Rollout_Plan_Target_Launch_Date__c;
-                rolloutTLDChangedProjList.add(rolloutProj);
-            }*/
-        }        
+        }
+        if(oldProject.IPM_Target_Launch_Dates__c != newProject.IPM_Target_Launch_Dates__c)
+        {
+            tldChangeProjListForMilestones.add(newProject);
+        }
         
     }
     
@@ -965,10 +960,15 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 System.enqueueJob(changeOwnerHandler);      
         }
         
-        /*if(!rolloutTLDChangedProjList.isEmpty()){
+        if(!rolloutTLDChangedProjList.isEmpty()){
             IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
             rolloutPlanTLDSync.syncTLDDates(rolloutTLDChangedProjList,null);
-        }*/
+        }
+        
+        if(!tldChangeProjListForMilestones.isEmpty()){
+            IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
+            rolloutPlanTLDSync.updatedMilestoneTLD(tldChangeProjListForMilestones);     
+        }
         ExceptionLoggingHelper.insertLogRecordList();
     }
 }

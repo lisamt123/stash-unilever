@@ -223,6 +223,12 @@
                                                                         </apex:actionFunction>
                                                                        </apex:outputPanel>
                                                                    </apex:outputPanel> 
+                                                                        <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational',isTargetLaunchDateMisaligned)}">
+                                                                         <div class="ipmButton secondary" onclick="alignTLDRecords();">{!tldAcceptFromValue}</div>
+                                                                        <apex:actionFunction name="alignTLDRecords" action="{!alignTLD}" reRender="rolloutPanel,tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                            <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
+                                                                        </apex:actionFunction>
+                                                                        </apex:outputPanel>                                                                   
                                                         
                                                                     <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditMode, false)}">
                                                                         <div class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}</div>
@@ -281,11 +287,44 @@
                                                                       <apex:param name="country" value="" assignTo="{!Country}"/>  
                                                                       <apex:param name="check" value="" assignTo="{!CheckCountry}"/> 
                                                                 </apex:actionFunction>
- 																<apex:outputPanel id="milestoneFinanceDataValidationMessagePanel" rendered="{!NOT(milestoneFinanceDataValidationMessage=='')}">
+                                                                 <apex:outputPanel id="misAlignErrorPanel" rendered="{!isTargetLaunchDateMisaligned}">
+                                                                    <div class="misAlignedTLD">
+                                                                        <apex:outputText value="{!validationErrorMessage}"/>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                                <apex:outputPanel id="milestoneFinanceDataValidationMessagePanel" rendered="{!NOT(milestoneFinanceDataValidationMessage=='')}">
                                                                     <div class="misAlignedTLD">
                                                                         <apex:outputText value="{!milestoneFinanceDataValidationMessage}"/>
                                                                     </div>
                                                                 </apex:outputPanel>
+                                                                <apex:outputPanel id="financeLeaderErrMsg" rendered="{!AND(isEditable,NOT(showMisalignedConfirmbtn))}" >
+                                                                     <div class="misAlignedTLD"> 
+                                                                        <apex:outputText value="The Target Launch Date for {!currentFinancial.Display_Name__c} has been updated to {!currentTargetLaunchDate} from {!previousTargetLaunchDate}. Please confirm that any necessary updates to the business case have been made."/>
+                                                                    </div>
+                                                                    <apex:outputPanel rendered="{!isEditable}">  
+                                                                    <div class="ipmButton primary" onclick="updateConfirmBtn()" style="float: right;">Confirm</div>  
+                                                                        <apex:actionFunction name="updateConfirmBtn" action="{!updateMisalignmentByFinanceLeader}" reRender="rolloutPanel,tabContentPanel" status="loadingStatus"/>
+                                                                    </apex:outputPanel>  
+                                                                </apex:outputPanel>   
+                                                                    <!-- Variables -->
+                                                                <apex:variable value="{!IF(CONTAINS(currentFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
+                                                               
+                                                                <!-- Target Launch Date Start -->
+                                                                <apex:outputPanel id="targetLaunchDate" rendered="{!NOT(isConsolidatedOrNonkey)}">
+                                                                    <table class="ipmFinancetable fintable table table-bordered" border="0" cellpadding="0" cellspacing="0">
+                                                                        <thead>
+                                                                            <tr>
+                                                                                <th class="blueBorder" scope="col" colspan="3" width="35%">
+                                                                                    <span class="finproject finspace">Target Launch Date:</span>
+                                                                                </th>
+                                                                                <th class="" scope="col" colspan="{!colSpan}" width="65%">
+                                                                                    <span class="finproject" style="{!IF(isTargetLaunchDateMisaligned, 'border:solid;border-color: #ff0000;', '')}">{!targetLaunchDateToDisplay}</span>
+                                                                                </th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                    </table>
+                                                                </apex:outputPanel>
+                                                                <!-- Target Launch Date End -->                                                                   
                                                                 
                                                                
                                                                 

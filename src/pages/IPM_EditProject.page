@@ -221,8 +221,8 @@
                                     <div class="col-sm-6 rightColumn">
                                         <apex:outputPanel layout="block" id="TargetDatePanel" styleClass="inputField launchPeriod" >
                                             <div class="tldLabel"><apex:outputLabel value="{!$Label.IPM_TARGET_LAUNCH_DATE}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span></div>
-                                            <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar" rendered="{!isEditable}" onfocus="DatePicker.pickDate(true, this , false);"/>                                                              
-                                            <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" rendered="{!!isEditable}"/>
+                                            <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar" rendered="{!And(isEditable,isTLDFieldEditable)}" onfocus="DatePicker.pickDate(true, this , false);" onchange="TLDDateCheck()"/>                                                              
+                                            <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" rendered="{!OR(!isEditable,!isTLDFieldEditable)}"/>
                                             <apex:outputLabel value="{!project.IPM_Target_Launch_Date__c} [In Bosscard]" styleClass="tldQ" rendered="{!IF(project.IPM_Target_Launch_Date__c !='','true','false')}"/>
                                             <apex:outputPanel id="TLDPMsg">
                                                 <apex:outputText value="{!$Label.IPM_SELECT_TLD}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Target_Launch_Dates__c'))}" styleClass="TldErrMsg"/>
@@ -374,7 +374,37 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>  
+
+<!-- Modal -->
+    <div id="tldWarningDialog" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="modal-title">{!$Label.Business_Case_Update_Needed}</div>
+                </div>
+                <div class="modal-body">
+                    <div class="removeapprpopup">
+                        <span class="removeApprText">{!$Label.Business_Case_Update_Needed_Value}</span>
+                        <div class="remvButtonContainer pull-right">  
+                            <div class="pull-left buttonMarginRight noPadright">
+                                <input type="button" class="ipmButton" data-dismiss="modal" value="{!$Label.Cancel_and_Revert}" onClick="revertTLDValue();"/>
+                            </div>
+                            <div class="buttonMarginRight noPadright pull-left" >
+                                <!-- <span class="ipmButton primary" data-dismiss="modal" >Agree and Proceed</span> 
+                    <apex:commandLink value="{!$Label.Agree_and_Proceed}"  rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  oncomplete="hideTldWarningDialog();" >
+                    </apex:commandLink> -->
+                    <a class="coreparameters custMarginbottom ipmButton primary" onClick="hideTldWarningDialog()">{!$Label.Agree_and_Proceed}</a>
+                        
+                            </div>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}" type="text/javascript"></script>    
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.min.js')}" type="text/javascript"></script>      
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script> 
@@ -442,7 +472,22 @@
                jq(this).show(); 
            }
        });
-    });                         
+    }); 
+    function TLDDateCheck(){
+        var newTLDValue = jq('.dateInputBox').val();
+        if(newTLDValue != tldOrignalValue){
+            jq('#tldWarningDialog').modal('show'); 
+            return false;
+        }
+        return true;
+    }
+    function revertTLDValue(){
+        jq('.dateInputBox').val(tldOrignalValue);
+    }
+    function hideTldWarningDialog(){
+        jq('#tldWarningDialog').modal('hide'); 
+    }
+    const tldOrignalValue = jq('.dateInputBox').prop("defaultValue");   
     </script>
     </apex:outputPanel>
      <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_EditProject.js')}" type="text/javascript"></script>
