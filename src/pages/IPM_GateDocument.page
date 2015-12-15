@@ -11,8 +11,9 @@
         <apex:define name="body">
         <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>            
             <apex:form >
+                <div class='cust-overlay'></div> 
                 <apex:pageMessages />
-                    <div class="gradientbg"> 
+                    <div class="gradientbg">  
                             <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument" />  
                     </div>
                 
@@ -345,8 +346,7 @@
                                        
                                     </div>
                                 </div>
-                                <div class="col-sm-10 rightContentBlock pull-right tempWrapper noPadleft noPadright">
-                                    <div class='cust-overlay'></div>                                    
+                                <div class="col-sm-10 rightContentBlock pull-right tempWrapper noPadleft noPadright">                                   
                                     <div class="row secDisMsg clearfix">
                                         <apex:outputPanel layout="block" rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved',isReadable=false),true,false)}">
                                             <div class="col-sm-2 pull-left openModal" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddManageSections}?id={!project.Id}&DocType={!projectDoc.IPM_GateDocuments__c}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_Add_Manage_Sections}" modalTitle="{!$Label.IPM_Add_Manage_Sections}">
