@@ -106,11 +106,8 @@ global without sharing class BET_AssetService {
 			if(!String.isEmpty(asset.URL_of_Asset__c) && asset.URL_of_Asset__c.contains(validLinkPrefix)){
 				asset.File_Id__c = versionFileMap.get(getAssetFileIdentifier(asset));
 				if(asset.File_Id__c == null && !Test.isRunningTest() && asset.Related_Feed_Item__c != null){
-					ConnectApi.FeedItem fi = ConnectApi.ChatterFeeds.getFeedItem(null, asset.Related_Feed_Item__c);      
-					ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) fi.attachment;
-					if(ca != null){
-						asset.File_Id__c = ca.id;
-					}
+					ConnectApi.ContentAttachment ca = (ConnectApi.ContentAttachment) ConnectApi.ChatterFeeds.getFeedItem(null, asset.Related_Feed_Item__c).attachment;
+					asset.File_Id__c = ca == null ? null : ca.id;
 				}
 			}
 		}

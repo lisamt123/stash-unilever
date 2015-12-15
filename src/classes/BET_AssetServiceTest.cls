@@ -51,7 +51,8 @@ private class BET_AssetServiceTest {
 		BET_ExpectedAssets__c ea = new BET_ExpectedAssets__c(Brand_Experience_Toolkit__c = bet.id, Expected__c = 1, Type__c = 'Test');
 		insert ea;
 		Test.startTest();
-		System.assert(BET_AssetService.expectedAssetsSetForBet(bet.id),'There sould be expected asets for this bet');
+		System.assert(!BET_AssetService.expectedAssetsSetForBet(null),'There should be no expected assets for this bet');
+		System.assert(BET_AssetService.expectedAssetsSetForBet(bet.id),'There should be expected assets for this bet');
 		Test.stopTest();
 	}
 
