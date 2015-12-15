@@ -120,7 +120,9 @@
                                         </th>
                                         <th scope="col" width="190px" colspan="1">
                                             <div class="incHeight">
-                                                <apex:outputField value="{!localProject.IPM_Target_Launch_Dates__c}"/>
+                                                <!-- <apex:outputField value="{!localProject.IPM_Target_Launch_Dates__c}"/> -->
+                                                <apex:outputField value="{!localProject.Rollout_Plan_Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
+                                                <apex:inputField value="{!lstcompleteProjects[localProjectID].Rollout_Plan_Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/>
                                             </div>
                                         </th>
                                         <th scope="col" width="100px" colspan="1">
@@ -206,7 +208,7 @@
                                         <th scope="col" width="190px" colspan="1">
                                             <div class="incHeight">
                                                 <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
-                                                <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}"/>
+                                                <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/>
                                             </div>
                                         </th>
                                         <th scope="col" width="100px" colspan="1">
@@ -339,6 +341,55 @@
             </div>  
         </div>
     </div>
+<!-- Modal -->
+    <div id="tldWarningDialog" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="modal-title">{!$Label.Business_Case_Update_Needed}</div>
+                </div>
+                <div class="modal-body">
+                    <div class="removeapprpopup">
+                        <span class="removeApprText">{!$Label.Business_Case_Update_Needed_Value}</span>
+                        <div class="remvButtonContainer pull-right">  
+                            <div class="pull-left buttonMarginRight noPadright">
+                                <input type="button" class="ipmButton" data-dismiss="modal" value="{!$Label.Cancel_and_Revert}" onClick="revertTLDValue();"/>
+                            </div>
+                            <div class="buttonMarginRight noPadright pull-left" >
+                                <!-- <span class="ipmButton primary" data-dismiss="modal" >Agree and Proceed</span> -->
+                    <apex:commandLink value="{!$Label.Agree_and_Proceed}"  rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  oncomplete="hideTldWarningDialog();" >
+                    </apex:commandLink>
+                        
+                            </div>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    function TLDDateCheck(param){
+
+        selectedDateInputBox = param;
+        var newTLDValue = param.defaultValue;
+        tldOrignalValue = param.value;
+        if(newTLDValue != tldOrignalValue){
+            jq('#tldWarningDialog').modal('show'); 
+            return false;
+        }
+        return true;
+    }
+    function revertTLDValue(){
+       // jq('.dateInputBox').val(tldOrignalValue);
+       selectedDateInputBox.value = selectedDateInputBox.defaultValue;
+    }
+    function hideTldWarningDialog(){
+        jq('#tldWarningDialog').modal('hide'); 
+    }
+    var selectedDateInputBox = "";
+	
+</script>   
       
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_LocalRolloutPlans.js')}" type="text/javascript"></script>    
 </apex:component>

@@ -121,6 +121,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public Set<String> proSubSectionParentsSequenceList1;//DEF1474 - contains all headers sequence
     
     public Static final String ENVIRONMENTAL_IMPACT = 'Environmental_Impact';
+    public Boolean bDocStatusNotStartedOrApproved{get;set;}//Flag to check if document is in Not Started or Approved Status
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
@@ -132,6 +133,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         IsUpdateStatus=false;
         isPDFDownload=true;
         isExemptFromThresholdITO=false;
+        bDocStatusNotStartedOrApproved = false;
         //Total filter counts
         NonNegotiableCount=0;
         OptionalCount=0;
@@ -273,7 +275,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         getProjectDocumentSection();
         getDocumentSectionMap();
         gateDocumentData(project.Id);
-        If(projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_NOT_STARTED){
+        If(projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_NOT_STARTED || projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_APPROVED){
+            bDocStatusNotStartedOrApproved = true;
             //For Storing Filled-In Percentage Calculation in Project Object 
             Integer NonNegotiable=[SELECT count() FROM IPM_Project_Document_Section__c 
                                    WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER AND 

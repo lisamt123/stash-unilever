@@ -179,21 +179,6 @@ private class IPM_BD_BB_Report_Batch_Test {
             list<IPM_Project__c> projectListtest = new list<IPM_Project__c>([SELECT id FROM IPM_Project__c WHERE id IN:projectList Limit 100]);
             system.assertEquals(projectList.size(),projectListtest.size());
             
-            /*globalprojectlist = IPM_TestFactory_Helper.createIPMProjectList(false,1);
-            id projid;
-            for(IPM_Project__c p:globalprojectlist ){
-                    p.IPMProject_Span__c =IPM_Utils.valueGlobal;
-                    p.IPM_Project_Type__c = IPM_Utils.Original;
-                    p.IPM_Category_Text__c = IPM_ConstantUtils.HHC_CONSTANT;
-                    p.IPM_Project_Leader__c = testUser.Id;
-                    p.Project_External_ID__c = p.id + p.IPMProject_Span__c;
-                    
-            }
-            insert globalprojectlist;
-            list<IPM_Project__c> projectListtest = new list<IPM_Project__c>([SELECT id FROM IPM_Project__c WHERE id IN:globalprojectlist Limit 10]);
-            system.assertEquals(globalprojectlist.size(),projectListtest.size());
-            projid=projectListtest[0].id;*/
-            
         // Create Regional Rollouts for Created Global project.
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,globalprojectlist,new List<User>{userList[1],userList[1],userList[1]});
             insert regionalRolloutList;
@@ -342,7 +327,7 @@ private class IPM_BD_BB_Report_Batch_Test {
             IPM_BD_BB_Report_Batch  b = new IPM_BD_BB_Report_Batch(query); 
             database.executebatch(b,100);
         }   
-        system.assertequals(system.now().day(),reportParameter.Last_Batch_RunDate__c.day(),'Error in Batch Last run date update');            
+        system.assertequals(system.now().day(),reportParameter.Last_Batch_RunDate__c.day(),'Error in Batch Last run date update - initializeData1 Method');            
     }
         static testMethod void testBDBBreport2() { 
         initializeData2();            
@@ -351,7 +336,7 @@ private class IPM_BD_BB_Report_Batch_Test {
             IPM_BD_BB_Report_Batch  b = new IPM_BD_BB_Report_Batch(query); 
             database.executebatch(b,100);
         }   
-        system.assertequals(system.now().day(),reportParameter.Last_Batch_RunDate__c.day(),'Error in Batch Last run date update');            
+        system.assertequals(system.now().day(),reportParameter.Last_Batch_RunDate__c.day(),'Error in Batch Last run date update - initializeData2 Method');            
     }
     
     

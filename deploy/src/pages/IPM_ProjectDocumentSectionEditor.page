@@ -10,14 +10,13 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_SecEditor.css')}"/>     
     <apex:composition template="IPM_TemplateRevamp"> 
         <apex:define name="body" >
-            <div class="gradientbg">
-                <apex:form >               
-                    <c:IPM_ProjectDetails project="{!project}" />
-                </apex:form>                
-            </div>
-            <div class="ipmContent">            
-                <apex:pagemessages id="pmsg"/>
-                <apex:form id="form">
+            <apex:form id="form">
+                <div class='cust-overlay'></div>
+                <div class="gradientbg">
+                        <c:IPM_ProjectDetails project="{!project}" />
+                </div>
+                <div class="ipmContent">            
+                    <apex:pagemessages id="pmsg"/>
                     <div class="row">  
                         <div class="col-sm-12">
                             <div class="panel-group pageHeadToolbar clearfix">
@@ -188,7 +187,7 @@
                                                 <div class="row">
                                                     <apex:outputPanel layout="block" styleClass="col-sm-12 dateUpdate" rendered="{! if(projDocSec.IPM_PDPHistoty__c !=null,'true','false')}">
                                                         <div class="panel">
-                                                            <apex:outputText value="Last updated by: {!projDocSec.IPM_PDPHistoty__c} on"  />
+                                                            <apex:outputText value="Last updated by: {!projDocSec.IPM_PDPHistoty__c} on "  />
                                                               <apex:outputField value="{!projDocSec.IPM_PDPHistoty_Date__c}" />   
                                                         </div>
                                                     </apex:outputPanel> 
@@ -320,7 +319,7 @@
                                                             <div class="row">
                                                                 <div class="col-sm-12 dateUpdate">
                                                                     <div class="panel">
-                                                                        <apex:outputText value="Last updated by: {!projDocSec.IPM_GateHistory__c} on" id="txtarea" rendered="{! if(projDocSec.IPM_GateHistory__c!=null,'true','false')}"/> <apex:outputField value="{!projDocSec.IPM_GateHistory_Date__c}"/>  
+                                                                        <apex:outputText value="Last updated by: {!projDocSec.IPM_GateHistory__c} on " id="txtarea" rendered="{! if(projDocSec.IPM_GateHistory__c!=null,'true','false')}"/> <apex:outputField value="{!projDocSec.IPM_GateHistory_Date__c}"/>  
                                                                     </div>
                                                                 </div> 
                                                             </div>
@@ -512,14 +511,14 @@
                                                                                 </div>
                                                                             </div>
                                                                         </div> 
-                                                                        <c:IPM_BCC_Consolidate projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" rendered="{!projDocSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'}"></c:IPM_BCC_Consolidate>
+                                                                        <c:IPM_BCC_Consolidate projSpan="{!project.IPMProject_Span__c}" projectId="{!project.Id}" rendered="{!AND(projDocSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment',project.IPM_Phase__c!='Ideas',project.IPMProject_Span__c!='Global')}"></c:IPM_BCC_Consolidate>
                                                                     </div>
                                                                 </div>
                                                             </apex:outputPanel>
                                                             <div class="row">
                                                                 <div class="col-sm-12 dateUpdate">
                                                                     <div class="panel">
-                                                                        <apex:outputText value="Last updated by: {!projDocSec.IPM_GateHistory__c} on" id="txtarea1" rendered="{! if(projDocSec.IPM_GateHistory__c!=null,'true','false')}"/>
+                                                                        <apex:outputText value="Last updated by: {!projDocSec.IPM_GateHistory__c} on " id="txtarea1" rendered="{! if(projDocSec.IPM_GateHistory__c!=null,'true','false')}"/>
                                                                           <apex:outputField value="{!projDocSec.IPM_GateHistory_Date__c}"/>  
                                                                     </div>
                                                                 </div> 
@@ -695,8 +694,8 @@
                     <div id="ipmDeleteModalDiv">
                         <c:IPM_ConfirmModal />
                     </div>
-                </apex:form> 
-            </div>
+                </div>
+            </apex:form> 
         </apex:define>
     </apex:composition>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script>

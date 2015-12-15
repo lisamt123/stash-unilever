@@ -660,13 +660,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     */
     public void TaskDelete(){
         getAssociatedTask();
-        IPM_Task__c tasktodelete=new IPM_Task__c();
         try{
-            tasktodelete=[SELECT id FROM IPM_Task__c WHERE id=:taskid];
-            //To Check CRUD
-            if (IPM_Task__c.sObjectType.getDescribe().isDeletable()){
-                delete tasktodelete;
-            }    
+            delete [SELECT id FROM IPM_Task__c WHERE id=:taskid];
         }
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));

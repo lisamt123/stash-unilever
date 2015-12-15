@@ -20,6 +20,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     public Set<Id> phaseChangeRolloutSet = new Set<Id>();
     
     private Map<Id,IPM_Project_Rollout__c> rolloutProjectTLDChanged = new Map<Id,IPM_Project_Rollout__c> {};
+    private Map<Id,IPM_Project_Rollout__c> globalProjIdRollout = new Map<Id,IPM_Project_Rollout__c> {};     
     
     /**
     * @description:bulkBefore
@@ -105,8 +106,10 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     * @para:old sobject record
     * @para:new sobject record
     */
-    public void beforeUpdate(SObject oldSo, SObject so){   
-        //This method has been included as the class implements the ITrigger interface         
+    public void beforeUpdate(SObject oldSo, SObject so)
+    {   
+        //This method has been included as the class implements the ITrigger interface   
+        
         if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
         {
             return;
@@ -114,6 +117,12 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         
         IPM_Project_Rollout__c oldRollout = (IPM_Project_Rollout__c)oldSo; 
         IPM_Project_Rollout__c newRollout = (IPM_Project_Rollout__c)so;   
+              
+        if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c )
+        {
+            newRollout.MisAligned_Confirmed_By_Finance_Leader__c = false;     
+            newRollout.Previous_Target_Launch_Date__c = oldRollout.Target_Launch_Date__c;                   
+        }               
     }
     
     /**
@@ -195,6 +204,13 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         }
         if( oldRollout.Target_Launch_Date__c != newRollout.Target_Launch_Date__c ){
             rolloutProjectTLDChanged.put(oldRollout.Id,newRollout);
+            if(!globalProjIdRollout.containskey(newRollout.IPM_Project__c) && !globalProjIdRollout.containskey(newRollout.Regional_Project__c)){
+                if(newRollout.Regional_Project__c != null){
+                    globalProjIdRollout.put(newRollout.Regional_Project__c,newRollout);  
+                } else if(newRollout.IPM_Project__c != null){
+                    globalProjIdRollout.put(newRollout.IPM_Project__c,newRollout); 
+                }
+            }            
         }        
 
     }
@@ -237,10 +253,11 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
             }
         }
         
-        /*if(!rolloutProjectTLDChanged.isEmpty()){
+        if(!rolloutProjectTLDChanged.isEmpty()){
             IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-            rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);         
-        }*/
+            rolloutPlanTLDSync.syncTLDDates(null,rolloutProjectTLDChanged);
+            rolloutPlanTLDSync.notifyGlobalProjectFinanceLeader(globalProjIdRollout);                      
+        }
         ExceptionLoggingHelper.insertLogRecordList();
     }
 }

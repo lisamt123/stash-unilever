@@ -21,7 +21,8 @@ public with sharing class IPM_ProjectDocumentHelper
     {
         IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED => 'IPM_Approval_Date__c',
         IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED => 'IPM_Postponement_Date__c',
-        IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED => 'IPM_Stopped_Date__c'
+        IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED => 'IPM_Stopped_Date__c',
+        IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED => 'IPM_Proposed_Date__c'
     };
     
     
@@ -262,16 +263,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                                 // If the sections are Same
                                                 if(section.External_ID__c !=null && existingProjectDocSec.IPM_Master_Section_External_Id__c !=null && 
                                                     existingProjectDocSec.IPM_Master_Section_External_Id__c == section.External_ID__c && 
-                                                    !matchedDocumentSectionsSet.contains(existingProjectDocSec.Id) )
-                                                {
-                                                    matchedDocumentSectionsSet.add(existingProjectDocSec.Id);
-                                                    projDocSect.Id = existingProjectDocSec.Id;
-                                                    projDocSect.IPM_Gate_Document_Summary__c = existingProjectDocSec.IPM_Gate_Document_Summary__c;
-                                                    projDocSect.IPM_PDP_Document_Summary__c = existingProjectDocSec.IPM_PDP_Document_Summary__c;
-                                                    break;
-                                                }
-                                                else if(existingProjectDocSec.IPM_Section_Sequence_Number__c == section.IPM_Section_Sequence__c && 
-                                                        !matchedDocumentSectionsSet.contains(existingProjectDocSec.Id) )
+                                                    !matchedDocumentSectionsSet.contains(existingProjectDocSec.Id) && section.ProjectSpan__c.contains(project.IPMProject_Span__c) )
                                                 {
                                                     matchedDocumentSectionsSet.add(existingProjectDocSec.Id);
                                                     projDocSect.Id = existingProjectDocSec.Id;
@@ -302,9 +294,11 @@ public with sharing class IPM_ProjectDocumentHelper
                                         else if(currentProject.IPM_Complexity__c == IPM_ConstantUtils.COMPLEXITY_LITE)
                                         {
                                             projDocSect.IPM_Default_Section__c= !section.IPM_Negotiable__c; 
-                                        }
+                                        } 
+                                        
                                         initiateCopyOverLogic(associatedGate,projDocSect,section.External_ID__c,currentProject,parentProject);
-                                        String summary=projDocSect.IPM_Gate_Document_Summary__c;
+                                        
+                                        String summary=projDocSect.IPM_Gate_Document_Summary__c; 
                                         if(String.isNotBlank(summary)){
                                             summary=summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,'');
                                          }   
@@ -323,10 +317,20 @@ public with sharing class IPM_ProjectDocumentHelper
                                             {
                                                 projDocSect.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
                                             }
+                                            
+                                            if(String.isBlank(projDocSect.IPM_PDP_Document_Summary__c))
+                                            {
+                                                projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
+                                            }
+                                            else
+                                            {
+                                                projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
+                                            }
                                         }
                                         else
                                         {
                                             projDocSect.IPM_Section_Status__c = IPM_ConstantUtils.BLANK;
+                                            projDocSect.IPM_Functional_Input_Status__c = IPM_ConstantUtils.BLANK;
                                         }
                                         
                                        if(!String.isBlank(section.ProjectSpan__c) && !String.isBlank(project.IPMProject_Span__c) && section.ProjectSpan__c.contains(project.IPMProject_Span__c)){
@@ -427,7 +431,7 @@ public with sharing class IPM_ProjectDocumentHelper
                             {
                                 if(targetProDocSection.IPM_Master_Section_External_Id__c == currentSectionExternalId)
                                 {
-                                    sourceObject = targetProDocSection;
+                                    sourceObject = targetProDocSection;    
                                     break;
                                 }
                             }
@@ -452,7 +456,7 @@ public with sharing class IPM_ProjectDocumentHelper
                         {
                             if(currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)
                             {
-                                incomingSection.put(targetField,sourceObject.get(sourceField));    
+                                incomingSection.put(targetField,sourceObject.get(sourceField));        
                             }    
                             else 
                             {   if(targetProjectDocument !=null)

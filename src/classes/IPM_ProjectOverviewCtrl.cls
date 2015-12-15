@@ -102,7 +102,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     public static final String STR_NEWVALUE = 'NewValue';
     public static final String STR_CREATEDBY = 'CreatedById';
     public static final String STR_FIELD = 'field';
-    private String SPACE = ' ';
+    private static final String SPACE = ' ';
     
     private static final string CLASS_NAME = IPM_ProjectOverviewCtrl.class.getName();
     public List<IPM_Milestone__c> rolloutProjectRecentMilestone {get;set;}
@@ -133,7 +133,6 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     public id BrandPositionId{get;set;}
     public Map<Id,Date>ProjDueDateMap = new Map<Id,Date>();
     //For Incomplete Child Project Alert Message
-    public Integer childProjectsIncomplete=0;
     public String childProjectsIncompleteAlert{get; set;}
     public String ecoDesignAlert {get;set;}
     public String ecoDesignSecId {get;set;}
@@ -277,36 +276,46 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             bPhaseChangeInProgress = false;
             
             if( (noOfNotifications != null && noOfNotifications >= 1) || (alertscount != null && alertscount >=1) )
-                bShowAlertsBar = true;
-           else 
-                bShowAlertsBar = false;
-       }
-       else
-       {
-                bPhaseChangeInProgress = true;
-                bShowAlertsBar = false;
-       }
-                
+            {
+            	bShowAlertsBar = true;
+            }	
+            else 
+            {
+            	bShowAlertsBar = false;
+            }	
+        }
+        else
+        {
+            bPhaseChangeInProgress = true;
+            bShowAlertsBar = false;
+        }
+        
         /**********************************************************
-       Logic to set boolean variable bShowShipToTradeButton in order to show Ship to Trade button 
-       when original project is in Market deployment phase / operational project in Market Ready phase
-       ***********************************************************/     
-        if( ( projectDoc != null && projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_APPROVED && project.IPM_Phase__c == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE) || 
-             (project.IPM_Phase__c == IPM_ConstantUtils.MARKET_READY_GATE && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) )
-                bShowShipToTradeButton = true;
-       else
-                bShowShipToTradeButton = false;
-                
-       /**********************************************************
-       Logic to set boolean variable bShowChangeStatusButton in order to show Change Status button 
-       ***********************************************************/     
-       if( ( projectDoc != null && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS && 
-            projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.STATUS_NOT_STARTED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_PLE ) && IsUpdateStatus == true)
-                bShowChangeStatusButton = true;
-       else
-                bShowChangeStatusButton = false;
-                
-       
+    Logic to set boolean variable bShowShipToTradeButton in order to show Ship to Trade button 
+    when original project is in Market deployment phase / operational project in Market Ready phase
+    ***********************************************************/     
+        if( ( projectDoc != null && projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_APPROVED && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && project.IPM_Phase__c == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE) || 
+                (project.IPM_Phase__c == IPM_ConstantUtils.MARKET_READY_GATE && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) )
+        {
+        	bShowShipToTradeButton = true;
+        }	
+        else
+        {
+        	bShowShipToTradeButton = false;
+        }	
+        
+        /**********************************************************
+    Logic to set boolean variable bShowChangeStatusButton in order to show Change Status button 
+    ***********************************************************/     
+        if( ( projectDoc != null && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS && 
+                    projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.STATUS_NOT_STARTED && projectDoc.IPM_Document_Status__c != IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_PLE ) && IsUpdateStatus)
+        {
+ 	       bShowChangeStatusButton = true;
+        }   
+        else{
+        	bShowChangeStatusButton = false;
+        }
+        
     }
     
     /*******************************************************************************************************
@@ -314,30 +323,30 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     */
        private void init() {
         /*
-         * retreiving the selective project details with all its associated related lists like PD, PS, Tasks & Milestones
+        * retreiving the selective project details with all its associated related lists like PD, PS, Tasks & Milestones
         */
-         project = [SELECT name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_Project_Stopped_By__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
-                                IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,
-                                IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c,
-                                IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,
-                                IPM_Clustering__r.Name, IPM_Brand_Positioning__c,IPM_White_Space_Project__c,IPM_Bosscard_Status__c,IPM_Bosscard__c,IPM_Gatekeeping_Model__c,IPM_Category__r.name,IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_BET_Toolkit__c,
-                                IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
-                                Deputy_Project_Leader__c, IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
-                                IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,
-                                IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,
-                              (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
-                                    IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,IPM_Active__c,
-                                    IPM_Project__c
-                                    FROM Tasks__r 
-                                    WHERE IPM_Assignee__c = :UserInfo.getUserId() AND IPM_Phase__c = :currPhase AND IPM_Active__c=TRUE
-                                    ORDER BY IPM_Due_Date1__c limit 10000),
-                            (SELECT id,name,IPM_Project__c from IPM_Countries__r limit 10000),
-                            (SELECT IPM_Project_Template__r.IPM_Template_Complexity__c,LastModifiedBy.Name,IPM_GateDocuments__c,
-                                    IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,IPM_Approval_Date__c,
-                                    LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c
-                                    From Project_Documents__r limit 10000),
-                            (SELECT IPM_Phase__c,IPM_Project__c, IPM_Type_of_gate__c,IPM_Due_Date__c,IPM_Type_of_Milestone__c FROM IPM_Milestones__r limit 10000)
-                            ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
+        project = [SELECT name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_Project_Stopped_By__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
+        IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,
+        IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c,
+        IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,
+        IPM_Clustering__r.Name, IPM_Brand_Positioning__c,IPM_White_Space_Project__c,IPM_Bosscard_Status__c,IPM_Bosscard__c,IPM_Gatekeeping_Model__c,IPM_Category__r.name,IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_BET_Toolkit__c,
+        IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
+        Deputy_Project_Leader__c, IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
+        IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,
+        IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,
+        (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
+        IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,IPM_Active__c,
+        IPM_Project__c
+        FROM Tasks__r 
+        WHERE IPM_Assignee__c = :UserInfo.getUserId() AND IPM_Phase__c = :currPhase AND IPM_Active__c=TRUE
+        ORDER BY IPM_Due_Date1__c limit 10000),
+        (SELECT id,name,IPM_Project__c from IPM_Countries__r limit 10000),
+        (SELECT IPM_Project__c ,IPM_Project_Template__r.IPM_Template_Complexity__c,LastModifiedBy.Name,IPM_GateDocuments__c,
+        IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,IPM_Approval_Date__c,
+        LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c
+        From Project_Documents__r limit 10000),
+        (SELECT IPM_Phase__c,IPM_Project__c, IPM_Type_of_gate__c,IPM_Due_Date__c,IPM_Type_of_Milestone__c FROM IPM_Milestones__r limit 10000)
+        ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
 
                             ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
                             (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
@@ -599,7 +608,8 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             rolloutsGenerated = true;
         }
         for(IPM_Project_Document_Section__c eachProSection : projectSectionsList) {
-            if(eachProSection.IPM_Section_Status__c == IPM_ConstantUtils.STATUS_NOT_FILLED && (eachProSection.IPM_Section_Sequence__c != NULL && !eachProSection.IPM_Section_Sequence__c.startsWith('8.'))) {
+        	if((eachProSection.IPM_Section_Status__c == IPM_ConstantUtils.SECTION_STATUS_FILLED || eachProSection.IPM_Section_Status__c == IPM_ConstantUtils.STATUS_NOT_STARTED) 
+        	      && (eachProSection.IPM_Section_Sequence__c != NULL && !eachProSection.IPM_Section_Sequence__c.startsWith('8.'))) {
                 projectSections.add(eachProSection);
             }
             if(eachProSection.IPM_Master_Section_External_Id__c == ENVIRONMENTAL_IMPACT && !project.IPM_Exists_AtLeast_OneAssmntPerEICountry__c && rolloutsGenerated) {
@@ -609,16 +619,17 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             }
             projectSectionsSet.add(eachProSection.Id);
         }
-        for(IPM_Project_Document_Section__c eachProSection : projectSectionsList) {
-            if(eachProSection.IPM_Section_Status__c == IPM_ConstantUtils.STATUS_NOT_STARTED && (eachProSection.IPM_Section_Sequence__c != NULL && !eachProSection.IPM_Section_Sequence__c.startsWith('8.'))) {
+        /*for(IPM_Project_Document_Section__c eachProSection : projectSectionsList) {
+        	if(eachProSection.IPM_Section_Status__c == IPM_ConstantUtils.STATUS_NOT_STARTED && (eachProSection.IPM_Section_Sequence__c != NULL && !eachProSection.IPM_Section_Sequence__c.startsWith('8.'))) {
                 projectSections.add(eachProSection);
             }
-        }
-        
+        }*/
         //Now everything is done with retrieving the data, now get the history of the activities done.
         if(!projectMSSet.isEmpty()) 
-          getMSDetail(projectMSSet);
-          
+        {
+        	getMSDetail(projectMSSet);
+        }	
+        
         loadObjectHistory();
 
         /*BET processing*/
@@ -708,7 +719,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             additionalAlertMessages.add(String.format(System.label.IPM_BETAddMembersAlert,new String[]{projectId}));
             alertscount += 1 ;            
         }
-           
+        
         //Retrieve Category Id, Category Group Id & Brand Position Id for new BET Creation: Retrieve these values only if CERATE BET component is to be called
         if(project.IPM_BET_Toolkit__c == IPM_ConstantUtils.CREATE_NEW_BET &&  string.isBlank(project.bet__c)){
             list<MDO_BrandPosition__c> lstBrandPos = new list<MDO_BrandPosition__c>();
@@ -719,27 +730,37 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                 BrandPositionId = lstBrandPos[0].id;    
             }
             if(!lstCat.isEmpty()){
-                categryId = lstCat[0].id;
+                categryId = lstCat[0].id;  
                 CategoryGroupId = lstCat[0].parent_L2__c;
             }
         }
         //Alert for Regional project not past Contract or Market Ready
-        Integer childProjectsIncomplete=0;
-        if(project!=null && (project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY || project.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY) && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
-            childProjectsIncomplete=[SELECT Count() FROM IPM_Project_Document__c WHERE IPM_Project__r.IPM_Parent_Project__c=:project.Id AND (IPM_Document_Status__c!=:IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED OR IPM_Document_Status__c!=:IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED) AND IPM_Project__r.IPM_Phase__c=:project.IPM_Phase__c];
-        }
-        String currentGate = '';
-        if(childProjectsIncomplete>0){
-            ++noOfNotifications; 
-            if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY){
+       List<IPM_Project_Document__c> childProjectsDocumentsIncomplete=new List<IPM_Project_Document__c> ();
+       if(project!=null && (project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY || project.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY) && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+       {
+        childProjectsDocumentsIncomplete=[SELECT IPM_Project__r.IPM_Parent_Project__c FROM IPM_Project_Document__c WHERE IPM_Project__r.IPM_Parent_Project__c=:project.Id AND 
+        (IPM_Document_Status__c=:IPM_ConstantUtils.STATUS_IN_PROGRESS OR IPM_Document_Status__c=:IPM_ConstantUtils.STATUS_NOT_STARTED)
+		AND IPM_Project__r.IPM_Phase__c=:project.IPM_Phase__c LIMIT 50000];
+        String currentGate = IPM_ConstantUtils.BLANK; 
+        for(IPM_Project_Document__c parentDoc:project.Project_Documents__r)
+        {  
+         for(IPM_Project_Document__c childDoc:childProjectsDocumentsIncomplete)	 
+         {	
+        	if(IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED.equalsIgnoreCase(parentDoc.IPM_Document_Status__c) && parentDoc.IPM_Project__c == childDoc.IPM_Project__r.IPM_Parent_Project__c)
+        	{
+        	  ++noOfNotifications;
+              if(IPM_ConstantUtils.PHASE_FEASIBILITY.equalsIgnoreCase(project.IPM_Phase__c)){
                 currentGate=IPM_ConstantUtils.CONTRACT_GATE;
-            }
-            else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY){
-                currentGate=IPM_ConstantUtils.MARKET_READY_GATE;
-            }
-            childProjectsIncompleteAlert=System.Label.IPM_Alert_Please_be_aware_that_some_of_your_regional_rollouts_have_not_progresse+IPM_ConstantUtils.IPM_SPACE +currentGate+ IPM_ConstantUtils.IPM_SPACE+System.label.IPM_Alert_Gate_or_proposed_to_go_through + IPM_ConstantUtils.IPM_SPACE+currentGate+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Alert_Gate;
+               }
+              else if(IPM_ConstantUtils.PHASE_CAPABILITY.equalsIgnoreCase(project.IPM_Phase__c)){
+              currentGate=IPM_ConstantUtils.MARKET_READY_GATE;
+              }
+              childProjectsIncompleteAlert=System.Label.IPM_Alert_Please_be_aware_that_some_of_your_regional_rollouts_have_not_progresse+IPM_ConstantUtils.IPM_SPACE +currentGate+ IPM_ConstantUtils.IPM_SPACE+System.label.IPM_Alert_Gate_or_proposed_to_go_through + IPM_ConstantUtils.IPM_SPACE+currentGate+IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Alert_Gate;
+        	}
+         }	   
         }
-     
+       }
+        
     }
     
      /*******************************************************************

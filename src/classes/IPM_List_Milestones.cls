@@ -86,12 +86,12 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
             projectId = ApexPages.currentPage().getParameters().get('Pid');
         }
         projectObj = [SELECT IPM_Phase__c,IPM_Fast_Track_Project__c, IPM_CompanyCardText__c, IPM_Target_Launch_Dates__c,IPM_Market_Type__c, IPM_Project_Type__c, IPMProject_Span__c, IPM_GateKeeping_Model__c,
-                    BET_First_Release_Missed__c,BET_Final_Release_Missed__c,BET_MS_First_Release_Date__c,BET_MS_Final_Release_Date__c,BET_TLD_First_Release_Date__c,BET_TLD_Final_Release_Date__c  FROM IPM_Project__c WHERE Id =:projectId];
+                    BET_First_Release_Missed__c,BET_Final_Release_Missed__c,BET_MS_First_Release_Date__c,BET_MS_Final_Release_Date__c,BET_TLD_First_Release_Date__c,BET_TLD_Final_Release_Date__c, BET__c  FROM IPM_Project__c WHERE Id =:projectId];
         projectPhase =  projectObj != null && projectObj.IPM_Phase__c != null ? projectObj.IPM_Phase__c : '';
         initializeMilestones();
         phaseMsList.sort();//customised sort
         //Code to add BET related messages
-        if((projectObj.BET_TLD_First_Release_Date__c < projectObj.BET_MS_First_Release_Date__c) || (projectObj.BET_TLD_Final_Release_Date__c < projectObj.BET_MS_Final_Release_Date__c)){
+        if(projectObj.BET__c!=null && ((projectObj.BET_TLD_First_Release_Date__c < projectObj.BET_MS_First_Release_Date__c) || (projectObj.BET_TLD_Final_Release_Date__c < projectObj.BET_MS_Final_Release_Date__c))){
             isWarningRequired = true;   
             warningMessages.add(system.label.IPM_BETMilestoneDateMismatch);
         }

@@ -45,7 +45,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public Boolean isError {get; set;} //Boolean variable to indicate error on page
     public String errorMessage {get; set;} //Error Message to be displayed on the page  
     public String validationError{get;set;}
-    
+    private Map<Id,Date> localProjIdTLDMap = new Map<Id,Date> {};
     public static final String CANCEL_REDIRECT = 'cancelRedirect';
     public static final String BOOLEAN_TRUE = 'true';
     public static final String CHECK_ROLLOUTS = 'checkRollouts';
@@ -131,7 +131,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                            IPM_GateKeeping_Model__c,IPM_Gate_Keeping_Module__c,IPM_IsCompleted__c,IPM_Market_Type__c,IPM_Market__c,
                            IPM_Parent_Project__c,IPM_Parent_Project__r.Name,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_Phase__c,IPM_PM_Approach__c,IPM_Project_Description__c,
                            IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPM_Project_Logo_Id__c,IPM_Project_Logo__c,IPM_Project_Name__c,
-                           IPM_Project_Type__c,IPM_Sector__c,IPM_Strategic_Intent__c,IPM_Sub_Category__c,IPM_Sub_sector__c,IPM_Target_Launch_Dates__c,
+                           IPM_Project_Type__c,IPM_Sector__c,IPM_Strategic_Intent__c,IPM_Sub_Category__c,IPM_Sub_sector__c,IPM_Target_Launch_Dates__c,Rollout_Plan_Target_Launch_Date__c,
                            IPM_Target_Launch_Date__c,IPM_Technical_Project_Leader__c,IPM_UserCategory__c,Is_Archieved__c,Name,Sustainability_Period__c,IPM_ProjectSubType__c, 
                            (SELECT Id, IPM_Project_Name__c FROM IPM_Projects__r),
                            (SELECT Id, IPM_Document_Status__c, IPM_GateDocuments__c, IPM_Project__c, IPM_Project_Template__c, IPM_Contract_GateKeeper_Model__c, IPM_Project__r.IPMProject_Span__c, IPM_Project__r.IPM_Project_Name__c FROM Project_Documents__r)
@@ -365,7 +365,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
         { // If it is a Global Project, get regional Projects and associated Rollouts against regional Projects.
                 
-            String queryString = 'SELECT Id, Name, IPM_Project_Name__c,IPM_Phase__c,IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c, ';
+            String queryString = 'SELECT Id, Name, IPM_Project_Name__c,IPM_Phase__c,IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c, Rollout_Plan_Target_Launch_Date__c, ';
             
             queryString+= ' (SELECT ';
             
@@ -409,11 +409,13 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             for(IPM_Project__c regionalProject : associatedProjectMap.values())
             {
                 lstcompleteProjects.put(regionalProject.Id,regionalProject); // Add Regional Projects to the composite Map
+                localProjIdTLDMap.put(regionalProject.Id,regionalProject.Rollout_Plan_Target_Launch_Date__c);
                 setRegionalProjectNames.add(regionalProject.IPM_Project_Name__c);
                 //Check Leader Status
                 for(IPM_Project__c localProject : regionalProject.IPM_Projects__r)
                 {
-                    lstcompleteProjects.put(localProject.Id,localProject); // Add Local Rollouts to the composite Map                         
+                    lstcompleteProjects.put(localProject.Id,localProject); // Add Local Rollouts to the composite Map      
+                    localProjIdTLDMap.put(localProject.Id,localProject.Rollout_Plan_Target_Launch_Date__c);                 
                 }
            }
         } 
@@ -421,7 +423,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         {
             String localSpan = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;//used in the query below
             
-            String queryString = ' SELECT Id, Name, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c,IPM_Project_Rollout__c ';
+            String queryString = ' SELECT Id, Name, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c,IPM_Project_Rollout__c,Rollout_Plan_Target_Launch_Date__c ';
             queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: localSpan';
             queryString+= ' ORDER BY IPM_Project_Name__c';
             
@@ -435,6 +437,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             {
                 setLocalProjectNames.add(localProject.IPM_Project_Name__c); 
                 localProjectAssociatedRollouts.add(localProject.IPM_Project_Rollout__c);
+                localProjIdTLDMap.put(localProject.Id,localProject.Rollout_Plan_Target_Launch_Date__c);                 
             }
             
             // Add to composite List for Country checking 
@@ -778,27 +781,71 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     updaterolloutsMap.put(rolloutId,rollout); 
                 }
             }
+            List<IPM_Project__c> updateLocalProjTLDList = new List<IPM_Project__c>{};
+            for(IPM_Project__c localRolloutProj :lstcompleteProjects.values()){
+                Date oldTLD = localProjIdTLDMap.get(localRolloutProj.Id);
+                if(oldTLD != localRolloutProj.Rollout_Plan_Target_Launch_Date__c){
+                    updateLocalProjTLDList.add(localRolloutProj);
+                }
+            }
 
             System.SavePoint rollOutSavePoint = Database.SetSavePoint();
            
             validationError = IPM_ConstantUtils.BLANK;
             
-            if(updaterolloutsMap != NULL && !updaterolloutsMap.isEmpty())
+            if((updaterolloutsMap != NULL && !updaterolloutsMap.isEmpty()) || (updateLocalProjTLDList != NULL && !updateLocalProjTLDList.isEmpty()))
             {
-                List<IPM_Project_Rollout__c> rolloutsToUpdate = updaterolloutsMap.values();
-                
-                for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
-                {
-                    if(rollout.Target_Launch_Date__c < System.today())
+                if(updaterolloutsMap != NULL && !updaterolloutsMap.isEmpty()){
+                    List<IPM_Project_Rollout__c> rolloutsToUpdate = updaterolloutsMap.values();
+                    Date dateToCompare = getLeastProjectMilestonesDate();
+                    for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
                     {
-                        validationError = Label.IPM_Target_Launch_Date_Error;
-                        break;
-                    }    
+                        if(rollout.Target_Launch_Date__c < System.today())
+                        {
+                            validationError = Label.IPM_Target_Launch_Date_Error;
+                            break;
+                        } 
+                        if(rollOut.Target_Launch_Date__c < dateToCompare)
+                        {
+                            validationError = Label.TLD_After_Charter_Contract_and_Market_Ready_Milestone_Dates;
+                          
+                            break;
+                        }       
+                    }               
+                    
+                    for(IPM_Project_Rollout__c rollout : updaterolloutsMap.values())
+                    {
+                        if(rollout.Target_Launch_Date__c < System.today())
+                        {
+                            validationError = Label.IPM_Target_Launch_Date_Error;
+                            break;
+                        }    
+                    }
                 }
-    
+                if(updateLocalProjTLDList != NULL && !updateLocalProjTLDList.isEmpty()){
+                    Date dateToCompare = getLeastProjectMilestonesDate();
+                    for(IPM_Project__c localProject : updateLocalProjTLDList)
+                    {
+                        if(localProject.Rollout_Plan_Target_Launch_Date__c < System.today())
+                        {
+                            validationError = Label.IPM_Target_Launch_Date_Error;
+                            break;
+                        } 
+                        if(localProject.Rollout_Plan_Target_Launch_Date__c < dateToCompare)
+                        {
+                            validationError = Label.TLD_After_Charter_Contract_and_Market_Ready_Milestone_Dates;
+                            break;
+                        }   
+                    }               
+                }
                 if(String.isBlank(validationError))
                 {
-                    update updaterolloutsMap.values();    
+                    if(!updaterolloutsMap.isEmpty()){
+                        update updaterolloutsMap.values();
+                    }
+                    if(!updateLocalProjTLDList.isEmpty()){
+                        update updateLocalProjTLDList;
+                    }
                     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,Label.IPM_PROCESSING_REQUEST));
                     isEditMode=false;
                     return refreshPage();
@@ -857,7 +904,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             IPM_Project_Rollout__c deleteProjectRollout = new IPM_Project_Rollout__c(Id = selectedMCORollout);
             //For CRUD
             delete deleteProjectRollout;              
-			getProjectRollouts();
+	getProjectRollouts();
             return null;
                         
         } 
@@ -869,4 +916,23 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             return null;
         }
     }
+    /*******************************************************************************************************
+    * @description  Method to get a date prior to any of mandatory project Milestones (except PLE and Target Launch Date).
+    * @param        NONE
+    * @return       Date
+    */
+    private Date getLeastProjectMilestonesDate(){
+        //Method invoked in IPM_LocalRolloutPlansTable component
+        List<String> milestoneNames = new List<String>{'Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval'};
+        List<IPM_Milestone__c> milestones = [Select Id,IPM_Active__c, IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: project.Id and IPM_Active__c = true and IPM_Due_Date__c != null and IPM_Name__c in: milestoneNames];
+        Date leastProjectMilestonesDate = null;
+        for(IPM_Milestone__c i :milestones){
+            if(leastProjectMilestonesDate == null){
+                leastProjectMilestonesDate = i.IPM_Due_Date__c;
+            } else if(leastProjectMilestonesDate < i.IPM_Due_Date__c){
+                leastProjectMilestonesDate = i.IPM_Due_Date__c;
+            } 
+        }
+        return leastProjectMilestonesDate;
+    }       
 }

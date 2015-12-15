@@ -186,7 +186,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
-                                        <div class="percentage"><a href="{!$Page.IPM_GateDocument}?id={!project.Id}"><apex:outputText Value="{!IF(projectDoc.IPM_Document_Status__c='Not Started',filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText>%</a></div>
+                                        <div class="percentage"><a href="{!$Page.IPM_GateDocument}?id={!project.Id}"><apex:outputText Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText>%</a></div>
                                     </div>
                                 </div>
                             </apex:outputPanel>
@@ -539,7 +539,7 @@
                     <apex:outputPanel rendered="{!betInformationMessage != ''}" styleClass="infoMsg">
                     <apex:outputText value="{!betInformationMessage}" escape="false"/>
                     </apex:outputPanel>                    
-                    <apex:outputpanel rendered="{!BETId != null}">
+                    <apex:outputpanel rendered="{!project.BET__c != null}">
                         <div class="row">
                             <div class="col-xs-3 headerlogo">
                                 <apex:image value="{!$Resource.IPM_BET_Logo}" />
@@ -631,7 +631,7 @@
                                             <div class="modal-title">{!if(showSuggestedMembers && !memberCallFromURL,$Label.IPM_AddBETMembers,$Label.IPM_CreateNewBETTitle)}</div>
                                         </div>
                                     <div class="createNewBrandExp">
-                                        <div><strong>{!$Label.IPM_welcomeToFeasibility}</strong>{!if(showSuggestedMembers && memberCallFromURL,'',$Label.IPM_BETComponentMessage)}</div>
+                                        <div>{!if(showSuggestedMembers && memberCallFromURL,'',$Label.IPM_BETComponentMessage)}</div>
                                         <div id="ipmGetStartedTab" class="modal-body">
                                         
                                         <apex:outputpanel rendered="{!!showSuggestedMembers}" >   
@@ -654,7 +654,6 @@
                                             </div>
                                        </apex:outputpanel>
                                        <apex:outputpanel rendered="{!showSuggestedMembers}">
-                                       <apex:outputText value="sample render text"/>
                                             <apex:outputpanel rendered="{!memberCallFromURL}">
                                                 <ul class="ipmStartedTabs">
                                                     <li class="betdetails tabOdd "><a href="#betdetails"  >{!$Label.IPM_BETDetails}</a></li>

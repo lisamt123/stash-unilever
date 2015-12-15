@@ -195,16 +195,15 @@ public with sharing class IPM_CountryHandler implements ITrigger{
                 if(cntry.IPM_Project__c != null)
                 {
                     projectIdSet.add(cntry.IPM_Project__c);
-
-                    if(cntry.IPM_Regional_Project__c != null)
-                    {
-                        projectIdSet.add(cntry.IPM_Regional_Project__c);
-                    }
-                    
-                    if(cntry.IPM_Local_Project__c != null)
-                    {
-                        projectIdSet.add(cntry.IPM_Local_Project__c);
-                    }
+                }
+                if(cntry.IPM_Regional_Project__c != null)
+                {
+                    projectIdSet.add(cntry.IPM_Regional_Project__c);
+                }
+                
+                if(cntry.IPM_Local_Project__c != null)
+                {
+                    projectIdSet.add(cntry.IPM_Local_Project__c);
                 }
             }
             

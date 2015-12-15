@@ -11,8 +11,9 @@
         <apex:define name="body">
         <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_GateDocument.css')}"/>            
             <apex:form >
+                <div class='cust-overlay'></div> 
                 <apex:pageMessages />
-                    <div class="gradientbg"> 
+                    <div class="gradientbg">  
                             <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument" />  
                     </div>
                 
@@ -60,7 +61,7 @@
                                             {!projectDoc.IPM_GateDocuments__c} {!$Label.IPM_Document}
                                         </h2>
                                         <div class="SecFillProgress">
-                                            <div class="fillProgress"><apex:outputText Value="{!IF(projectDoc.IPM_Document_Status__c='Not Started',filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText><span>%</span></div>
+                                            <div class="fillProgress"><apex:outputText Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText><span>%</span></div>
                                             <div class="fillProgressTxt"> {!$Label.IPM_FILLED_IN}</div>
                                         </div>
                                         <div class="SecFillProgress olderDocLink" modalTitle="Older Gate Documents" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_GateDocAttchList}?id={!project.Id}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_VIEW_OLDER_GATE_DOC}">
@@ -345,8 +346,7 @@
                                        
                                     </div>
                                 </div>
-                                <div class="col-sm-10 rightContentBlock pull-right tempWrapper noPadleft noPadright">
-                                    <div class='cust-overlay'></div>                                    
+                                <div class="col-sm-10 rightContentBlock pull-right tempWrapper noPadleft noPadright">                                   
                                     <div class="row secDisMsg clearfix">
                                         <apex:outputPanel layout="block" rendered="{!IF(AND(projectDoc.IPM_Document_Status__c!='Approved',isReadable=false),true,false)}">
                                             <div class="col-sm-2 pull-left openModal" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_AddManageSections}?id={!project.Id}&DocType={!projectDoc.IPM_GateDocuments__c}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_Add_Manage_Sections}" modalTitle="{!$Label.IPM_Add_Manage_Sections}">
@@ -646,7 +646,10 @@
                                                         </div> 
                                                     </apex:outputPanel>
                                                     <div class="pull-left noPadright"> 
-                                                        <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}&suggestedMembersButton=true&createBET=true'" styleClass="ipmButton primary">
+                                                        <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}&suggestedMembersButton=true&createBET=true'" styleClass="ipmButton primary" rendered="{!project.IPM_Phase__c='Ideas'}">
+                                                            <apex:param name="approveDocumentStatus" value="Approved" assignTo="{!projectDoc.IPM_Document_Status__c}"/>
+                                                        </apex:commandButton>
+                                                        <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}'" styleClass="ipmButton primary" rendered="{!project.IPM_Phase__c!='Ideas'}">
                                                             <apex:param name="approveDocumentStatus" value="Approved" assignTo="{!projectDoc.IPM_Document_Status__c}"/>
                                                         </apex:commandButton>
                                                     </div> 

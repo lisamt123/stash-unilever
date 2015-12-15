@@ -1041,7 +1041,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <fullName>IPM_Clusters__c</fullName>
         <description>To fill this formula field from IPM Cluster</description>
         <externalId>false</externalId>
-        <formula>IF((ISPICKVAL(IPMProject_Span__c, &apos;Global&apos;) &amp;&amp; ISPICKVAL(IPM_Project_Type__c , &apos;Original&apos;)), IPM_Cluster__r.IPM_Cluster_Name__c,  IF((ISPICKVAL( IPMProject_Span__c, &apos;Regional&apos;) &amp;&amp; ISPICKVAL(IPM_Project_Type__c , &apos;Rollout&apos;)), IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c,  IF((ISPICKVAL( IPMProject_Span__c, &apos;Local&apos;) &amp;&amp; ISPICKVAL(IPM_Project_Type__c , &apos;Rollout&apos;)), IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c, &apos;&apos;) ) )</formula>
+        <formula>IF(AND(ISPICKVAL(IPM_SourceProjectType__c,&apos;Original&apos;), IPM_CompanyCardText__c=&apos;Global Company Card&apos;),IF(ISPICKVAL(IPMProject_Span__c, &apos;Global&apos;),IPM_Cluster__r.IPM_Cluster_Name__c,IF(ISPICKVAL(IPMProject_Span__c, &apos;Regional&apos;),IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c,IF(ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c,&apos;&apos;))),IF(AND(ISPICKVAL(IPM_SourceProjectType__c,&apos;Original&apos;), IPM_CompanyCardText__c=&apos;Regional Company Card&apos;),IF(ISPICKVAL(IPMProject_Span__c, &apos;Regional&apos;),IPM_Cluster__r.IPM_Cluster_Name__c,IF(ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c,&apos;&apos; ) ),&apos;&apos; ))</formula>
         <label>IPM Project Clusters</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1209,7 +1209,7 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <externalId>false</externalId>
         <label>Exists At Least One Assmnt Per EICountry</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -1432,11 +1432,11 @@ OwnerId))</formula>
         <picklist>
             <picklistValues>
                 <fullName>Developed</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Developing &amp; Emerging</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -2281,6 +2281,17 @@ OwnerId))</formula>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MisAligned_Confirmed_By_Finance_Leader__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>MisAligned TLD Confirmed By Finance Leader</description>
+        <externalId>false</externalId>
+        <label>MisAligned Confirmed By Finance Leader</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Parent_Planned_Global_Contract_Date__c</fullName>

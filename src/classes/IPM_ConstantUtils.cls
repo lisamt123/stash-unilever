@@ -799,8 +799,8 @@ public class IPM_ConstantUtils {
     public static String BET_FINAL_RELEASE = 'Final Release';
     public static String BET_UNRELEASED = 'Unreleased';           
      // BET Milestones related constants
-    public final static string BET_MS_FIRST_RELEASE = 'BETFirstRelease';
-    public final static string BET_MS_FINAL_RELEASE = 'BETFinalRelease';
+    public final static string BET_MS_FIRST_RELEASE = 'BET First Release';
+    public final static string BET_MS_FINAL_RELEASE = 'BET Final Release';
     public final static string STRING_BET = 'BET';
     public final static string STRING_MS_BET_FIRSTRELEASE = 'Brand Experience Toolkit(BET) First Release';
     public final static string STRING_MS_BET_FINALRELEASE = 'Brand Experience Toolkit(BET) Final Release';
