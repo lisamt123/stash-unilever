@@ -122,20 +122,20 @@
   <!-- ***************************************************************************** -->
   <target name="validateIPMTest1">
     <echo level="info">Testing the deployment of IPM NG</echo>
-		<sf:deploy username="${sf.username}"
-		  password="${sf.password}"
-		  serverurl="${sf.serverurl}"
-		  checkOnly="true"
-		  logType="Debugonly"
-		  testLevel="RunSpecifiedTests"
-		  allowMissingFiles="true"
-		  autoUpdatePackage="true"
-		  ignoreWarnings="true"
-		  deployRoot="src"
-		  pollWaitMillis="${sfdc.pollWaitMillis}"
-		  maxPoll="${sfdc.maxPoll}">
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      testLevel="RunSpecifiedTests"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="src"
+      pollWaitMillis="${sfdc.pollWaitMillis}"
+      maxPoll="${sfdc.maxPoll}">
           <runTest>IPM_List_Milestones_Test</runTest>
-		</sf:deploy>
+    </sf:deploy>
   </target>  
   
   <!-- ***************************************************************************** -->
