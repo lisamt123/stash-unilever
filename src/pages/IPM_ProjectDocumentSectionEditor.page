@@ -20,10 +20,10 @@
                     <div class="row">  
                         <div class="col-sm-12">
                             <div class="panel-group pageHeadToolbar clearfix">
-                                <div class="row">                                                            
+                                <div class="row">                                                             
                                     <div class="col-sm-11 noPadleft noPadright pull-left pageHeading">                                    
                                         <span class="SecButtonSet pull-left">
-                                            <a class="icoButton arrow-left" href="{!$Page.IPM_GateDocument}?id={!projectId}&printDoc={!projDoc.IPM_GateDocuments__c}"></a>
+                                            <a class="icoButton arrow-left" title="{!$Label.IPM_Go_back_to_gate}" href="{!$Page.IPM_GateDocument}?id={!projectId}&printDoc={!projDoc.IPM_GateDocuments__c}"></a>
                                         </span>
                                         <h2 class="pageTitle">
                                                 <apex:outputText value="{!projDocSec.IPM_Section_Sequence__c}"/> 

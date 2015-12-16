@@ -74,10 +74,10 @@
     </td>
     <td>    
             <apex:outputPanel id="gkSlide" styleClass="sliderGk" rendered="{!IF(AND(editTable,gk.IPM_Section_Sequence_Number__c=null, gk.IPM_Section_Sequence_Number__c='',isEditable) ,true,false)}">
-               <input type="hidden" name="answer" value="{!gk.IPM_GK_Answers__c}"/>
+               <input type="hidden" name="secGkans" value="{!gk.IPM_GK_Answers__c}"/>
                <div class="legendSld gateKeeperSlider">
                    <label for="s0"  onclick="updateGKList('{!gk.Id}','0','{!JSENCODE(gk.IPM_Comments__c)}',false);">{!$Label.IPM_SELECT}</label>
-                   <input type="radio" name="score" id="s0" value="0" />
+                   <input type="radio" name="score" id="s0" value="{!$Label.IPM_SELECT}" />
                    <label for="s1"  onclick="updateGKList('{!gk.Id}','{!$Label.IPM_YES}','{!JSENCODE(gk.IPM_Comments__c)}',false);" class="info" title="{!gk.IPM_HelpText_Yes__c}">{!$Label.IPM_YES}</label>
                    <input type="radio" name="score" id="s1" value="{!$Label.IPM_YES}"/>
                    <label for="s2"  onclick="updateGKList('{!gk.Id}','{!$Label.IPM_PARTLY}','{!JSENCODE(gk.IPM_Comments__c)}',false);" class="info" title="{!gk.IPM_HelpText_Partly__c}">{!$Label.IPM_PARTLY}</label>

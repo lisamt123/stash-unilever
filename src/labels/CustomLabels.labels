@@ -7999,6 +7999,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Original</value>
     </labels>
     <labels>
+        <fullName>IPM_Go_back_to_gate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Go_back_to_gate</shortDescription>
+        <value>Go back to Gate Document Overview</value>
+    </labels>
+    <labels>
         <fullName>IPM_GotoIPMPortal</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10662,6 +10669,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_Remove_Country</shortDescription>
         <value>Are you sure you want to remove this Country?</value>
+    </labels>
+     <labels>
+        <fullName>IPM_Remove_Customer_Channel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Remove_Customer_Channel</shortDescription>
+        <value>Remove Customer Channel</value>
     </labels>
     <labels>
         <fullName>IPM_Remove_Member</fullName>

@@ -79,7 +79,7 @@
                     </td>
                     
                     <td>
-                     <apex:outputPanel id="gkSlide" styleClass="sliderGk" rendered="{!IF(AND(con.Section_Content_Ext_Id__c='OTIF_Status',isEditable) ,true,false)}">
+                     <apex:outputPanel rendered="{!IF(AND(con.Section_Content_Ext_Id__c='OTIF_Status',isEditable) ,true,false)}">
                         <apex:outputPanel rendered="{!Iseditable}">
              
                             <apex:outputPanel rendered="{!con.IPM_OTIF_No_of_Status__c=4}" styleClass="sliderOTIF">

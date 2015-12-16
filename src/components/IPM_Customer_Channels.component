@@ -137,7 +137,7 @@
                                 </div>
                                 <apex:outputPanel rendered="{!isEditable}">
                                     <div class="col-sm-2 SecButtonSet noPadright pull-right noMtop">
-                                        <a class="icoButton delete deleteChannel" title="Remove Customer Channel" onclick="deletecc('{!con.Id}');"></a>
+                                        <a class="icoButton delete deleteChannel" title="{!$Label.IPM_Remove_Customer_Channel}" onclick="deletecc('{!con.Id}');"></a>
                                     </div>
                                 </apex:outputPanel>
                             </div>
