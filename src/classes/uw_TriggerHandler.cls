@@ -1,4 +1,4 @@
-/*----------------------------------------------------------------<T01>-----------------------------
+﻿/*----------------------------------------------------------------<T01>-----------------------------
 Author:        Accenture
 Company:       Accenture
 Description:   This class contains helper methods to the triggers on object uw_bet__C
@@ -1516,7 +1516,7 @@ private Boolean canDemoteAsset(String objId, uw_Asset__c asset, SObject so) {
             String iBody = System.Label.UW_OPEN_STUDIO_FROM_GROUP;
             iBody += '<br/><a href="/' +  betMap.get(studio2BetIdMap.get(cGroup.Id)).Id+'"><img width="60" height="60" src="'+toolkitUrl+'"/></a><br/><br/>'; 
             cGroup.InformationBody  = iBody;
-            //cGroup.FullPhotoURL = '/servlet/servlet.FileDownload—file=015L000000093sA';
+            //cGroup.FullPhotoURL = '/servlet/servlet.FileDownloadâ€”file=015L000000093sA';
             
         }
         

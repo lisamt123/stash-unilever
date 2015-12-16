@@ -181,10 +181,9 @@ public with sharing class BET_CategoryBrandSelectionController {
 
 	public void onFabricConditionersChange(){
 		System.debug('Entering onFabricConditionersChange');
+		bet.Is_Fabric_Conditioners__c = true;
 		if(String.isBlank(fabricConditioner) || fabricConditioner == NO){
 			bet.Is_Fabric_Conditioners__c = false;
-		} else {
-			bet.Is_Fabric_Conditioners__c = true;
 		}
 	}
 
