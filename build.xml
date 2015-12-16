@@ -122,20 +122,20 @@
   <!-- ***************************************************************************** -->
   <target name="validateIPMTest1">
     <echo level="info">Testing the deployment of IPM NG</echo>
-		<sf:deploy username="${sf.username}"
-		  password="${sf.password}"
-		  serverurl="${sf.serverurl}"
-		  checkOnly="true"
-		  logType="Debugonly"
-		  testLevel="RunSpecifiedTests"
-		  allowMissingFiles="true"
-		  autoUpdatePackage="true"
-		  ignoreWarnings="true"
-		  deployRoot="src"
-		  pollWaitMillis="${sfdc.pollWaitMillis}"
-		  maxPoll="${sfdc.maxPoll}">
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      checkOnly="true"
+      logType="Debugonly"
+      testLevel="RunSpecifiedTests"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="src"
+      pollWaitMillis="${sfdc.pollWaitMillis}"
+      maxPoll="${sfdc.maxPoll}">
           <runTest>IPM_List_Milestones_Test</runTest>
-		</sf:deploy>
+    </sf:deploy>
   </target>  
   
   <!-- ***************************************************************************** -->
@@ -653,7 +653,7 @@
       </fileset>
     </replaceregexp>
     <replaceregexp byline="false" flags="gm">
-      <regexp pattern="[\s].*userPermissions.*[\s].*[\s].*(ViewAllData|EditBillingInfo|ManageSandboxes|ManageTranslation|CustomizeApplication|LightningExperienceUser|ManageContentProperties|ManageContentTypes|ContentAdministrator).*[\s].*"/>
+      <regexp pattern="[\s].*userPermissions.*[\s].*[\s].*(ViewAllData|EditBillingInfo|ManageSandboxes|ManageTranslation|CustomizeApplication|LightningExperienceUser|ManageContentProperties|ManageContentTypes|ContentAdministrator|RetainFieldHistory).*[\s].*"/>
       <substitution expression=""/>
       <fileset dir="${basedir}">
         <include name="**/*.profile"/>
@@ -698,7 +698,7 @@
     <delete><fileset dir="${basedir}" includes="**/***HELP***.homePageComponent"/></delete>
     <delete><fileset dir="${basedir}" includes="**/JE_Job_Evaluation__c.object"/></delete>
     <delete><fileset dir="${basedir}" includes="**/*.flow"/></delete>
-    <delete><fileset dir="${basedir}" includes="**/Account-en_US.objectTranslation"/></delete>
+    <delete><fileset dir="${basedir}" includes="**/objectTranslations/Account*"/></delete>
     <delete><fileset dir="${basedir}" includes="**/Case.assignmentRules"/></delete>
     <delete><fileset dir="${basedir}" includes="src/package.xml"/></delete>
     <!--<antcall target="generatePackage"/>-->
