@@ -74,9 +74,11 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     <apex:actionFunction name="addMembers" action="{!addMembers}"></apex:actionFunction>
 
 
-    <apex:actionFunction name="deleteMember" action="{!deleteMember}"  oncomplete="unlockUI();">
+    <apex:actionFunction name="deleteMember" action="{!deleteMember}"  oncomplete="unlockUI();" 
+        reRender="suggestedMembersContainer,suggestedMembersContainerbet">
         <apex:param id="memberToDelete" name="memberToDelete" value="" assignTo="{!memberToDelete}"/>
     </apex:actionFunction>
+    
     <apex:actionFunction name="delExternalMemeber" action="{!delExternalMemeber}" oncomplete="unlockUI();" reRender="suggestedMembersContainer,suggestedMembersContainerbet">
         <apex:param id="emailToDelete" name="emailToDelete" value="" assignTo="{!emailToDelete}"/>
     </apex:actionFunction>
