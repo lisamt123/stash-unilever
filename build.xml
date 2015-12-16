@@ -653,7 +653,7 @@
       </fileset>
     </replaceregexp>
     <replaceregexp byline="false" flags="gm">
-      <regexp pattern="[\s].*userPermissions.*[\s].*[\s].*(ViewAllData|EditBillingInfo|ManageSandboxes|ManageTranslation|CustomizeApplication|LightningExperienceUser|ManageContentProperties|ManageContentTypes|ContentAdministrator).*[\s].*"/>
+      <regexp pattern="[\s].*userPermissions.*[\s].*[\s].*(ViewAllData|EditBillingInfo|ManageSandboxes|ManageTranslation|CustomizeApplication|LightningExperienceUser|ManageContentProperties|ManageContentTypes|ContentAdministrator|RetainFieldHistory).*[\s].*"/>
       <substitution expression=""/>
       <fileset dir="${basedir}">
         <include name="**/*.profile"/>
@@ -698,7 +698,7 @@
     <delete><fileset dir="${basedir}" includes="**/***HELP***.homePageComponent"/></delete>
     <delete><fileset dir="${basedir}" includes="**/JE_Job_Evaluation__c.object"/></delete>
     <delete><fileset dir="${basedir}" includes="**/*.flow"/></delete>
-    <delete><fileset dir="${basedir}" includes="**/Account-en_US.objectTranslation"/></delete>
+    <delete><fileset dir="${basedir}" includes="**/objectTranslations/Account*"/></delete>
     <delete><fileset dir="${basedir}" includes="**/Case.assignmentRules"/></delete>
     <delete><fileset dir="${basedir}" includes="src/package.xml"/></delete>
     <!--<antcall target="generatePackage"/>-->
