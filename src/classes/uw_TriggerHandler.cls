@@ -338,8 +338,8 @@ private Boolean canDemoteAsset(String objId, uw_Asset__c asset, SObject so) {
             }
         }
         
-		//Cognizant Amended Code to check for set size
-		//start of amended code
+        //Cognizant Amended Code to check for set size
+        //start of amended code
         List<CollaborationGroup> collabGroups = new List<CollaborationGroup>();
         List<uw_BET__c> relatedBets = new List<uw_BET__c>();
         Map<Id, Pinnovate_Preference__c> pinnovates = new Map<Id, Pinnovate_Preference__c>{};
@@ -352,16 +352,16 @@ private Boolean canDemoteAsset(String objId, uw_Asset__c asset, SObject so) {
             relatedBets = [Select Id, Studio_Chatter_Group__c from uw_Bet__c where Studio_Chatter_Group__c in :collabGroupsIdSet];
         
             
-	        for (uw_BET__c bet:relatedBets)
-	        {
-	            mapOfGroupsToBets.put(bet.Studio_Chatter_Group__c, bet);
-	        }
+            for (uw_BET__c bet:relatedBets)
+            {
+                mapOfGroupsToBets.put(bet.Studio_Chatter_Group__c, bet);
+            }
         
             
             for(Pinnovate_Preference__c pinnovate : [Select Id, Name from Pinnovate_Preference__c where Name IN :collabGroupsIdSet])
                 pinnovates.put(pinnovate.Name, pinnovate);
         } 
-		//end of amended code
+        //end of amended code
         system.debug('handleFeedItemBeforeInsert: 1.3');
         List<CollaborationGroup> collabGroupsToUpdate = new List<CollaborationGroup>();
         Map<Id, Pinnovate_Preference__c> newPinnovates = new Map<Id, Pinnovate_Preference__c>();
@@ -1516,7 +1516,7 @@ private Boolean canDemoteAsset(String objId, uw_Asset__c asset, SObject so) {
             String iBody = System.Label.UW_OPEN_STUDIO_FROM_GROUP;
             iBody += '<br/><a href="/' +  betMap.get(studio2BetIdMap.get(cGroup.Id)).Id+'"><img width="60" height="60" src="'+toolkitUrl+'"/></a><br/><br/>'; 
             cGroup.InformationBody  = iBody;
-            //cGroup.FullPhotoURL = '/servlet/servlet.FileDownload—file=015L000000093sA';
+            //cGroup.FullPhotoURL = '/servlet/servlet.FileDownloadâ€”file=015L000000093sA';
             
         }
         
