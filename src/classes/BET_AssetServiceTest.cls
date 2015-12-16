@@ -51,7 +51,8 @@ private class BET_AssetServiceTest {
 		BET_ExpectedAssets__c ea = new BET_ExpectedAssets__c(Brand_Experience_Toolkit__c = bet.id, Expected__c = 1, Type__c = 'Test');
 		insert ea;
 		Test.startTest();
-		System.assert(BET_AssetService.expectedAssetsSetForBet(bet.id),'There sould be expected asets for this bet');
+		System.assert(!BET_AssetService.expectedAssetsSetForBet(null),'There should be no expected assets for this bet');
+		System.assert(BET_AssetService.expectedAssetsSetForBet(bet.id),'There should be expected assets for this bet');
 		Test.stopTest();
 	}
 
@@ -109,6 +110,14 @@ private class BET_AssetServiceTest {
 		assets = [select id from uw_Asset__c where uw_Bet__c =: bet.id];
 		Test.startTest();
 		System.assertEquals(assets.size(),4,'There should be 4 records');
+		Test.stopTest();
+	}
+
+	@isTest static void getAssetFileIdentifierTest(){
+		Id identifier = UserInfo.getUserId();
+		uw_Asset__c asset = new uw_Asset__c(URL_of_Asset__c = '/download/'+identifier);
+		Test.startTest();
+		System.assertEquals(BET_AssetService.getAssetFileIdentifier(asset),identifier,'Identifier must match');
 		Test.stopTest();
 	}
 	
