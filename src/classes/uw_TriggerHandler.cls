@@ -1,4 +1,4 @@
-/*----------------------------------------------------------------<T01>-----------------------------
+﻿/*----------------------------------------------------------------<T01>-----------------------------
 Author:        Accenture
 Company:       Accenture
 Description:   This class contains helper methods to the triggers on object uw_bet__C
@@ -338,19 +338,30 @@ private Boolean canDemoteAsset(String objId, uw_Asset__c asset, SObject so) {
             }
         }
         
-        List<CollaborationGroup> collabGroups = [Select Id, OwnerId, Name, InformationBody from CollaborationGroup where Id in: collabGroupsIdSet];
-        
-        List<uw_BET__c> relatedBets = [Select Id, Studio_Chatter_Group__c from uw_Bet__c where Studio_Chatter_Group__c in :collabGroupsIdSet];
-        Map<Id,uw_BET__c> mapOfGroupsToBets = new Map<Id,uw_BET__c>();
-        for (uw_BET__c bet:relatedBets)
-        {
-            mapOfGroupsToBets.put(bet.Studio_Chatter_Group__c, bet);
-        }
-        
+		//Cognizant Amended Code to check for set size
+		//start of amended code
+        List<CollaborationGroup> collabGroups = new List<CollaborationGroup>();
+        List<uw_BET__c> relatedBets = new List<uw_BET__c>();
         Map<Id, Pinnovate_Preference__c> pinnovates = new Map<Id, Pinnovate_Preference__c>{};
-        for(Pinnovate_Preference__c pinnovate : [Select Id, Name from Pinnovate_Preference__c where Name IN :collabGroupsIdSet])
-            pinnovates.put(pinnovate.Name, pinnovate);
+        Map<Id,uw_BET__c> mapOfGroupsToBets = new Map<Id,uw_BET__c>();
+        
+        if(!collabGroupsIdSet.isEmpty())
+        {
+            collabGroups = [Select Id, OwnerId, Name, InformationBody from CollaborationGroup where Id in: collabGroupsIdSet];
+        
+            relatedBets = [Select Id, Studio_Chatter_Group__c from uw_Bet__c where Studio_Chatter_Group__c in :collabGroupsIdSet];
+        
             
+	        for (uw_BET__c bet:relatedBets)
+	        {
+	            mapOfGroupsToBets.put(bet.Studio_Chatter_Group__c, bet);
+	        }
+        
+            
+            for(Pinnovate_Preference__c pinnovate : [Select Id, Name from Pinnovate_Preference__c where Name IN :collabGroupsIdSet])
+                pinnovates.put(pinnovate.Name, pinnovate);
+        } 
+		//end of amended code
         system.debug('handleFeedItemBeforeInsert: 1.3');
         List<CollaborationGroup> collabGroupsToUpdate = new List<CollaborationGroup>();
         Map<Id, Pinnovate_Preference__c> newPinnovates = new Map<Id, Pinnovate_Preference__c>();
