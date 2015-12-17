@@ -115,5 +115,30 @@ public without sharing class IPM_WithoutShareController {
         }
         
     }
+    /********************************************************************************
+    *@Description :create ipm user profile
+    *@Param:company card id, user id and category
+    *@return:none.
+    *********************************************************************************/
+    public static void createUserProfile(id ccId,id userId,String ccCategory){
+    	IPM_User_Profile__c newUserProfile=new 	IPM_User_Profile__c();
+    	newUserProfile.IPM_User__c=userId;
+    	newUserProfile.IPM_Company_Card__c=ccId;
+    	newUserProfile.IPM_User_Role__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_BD;
+    	newUserProfile.IPM_User_Function__c=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
+    	newUserProfile.IPM_User_Category__c=ccCategory;
+    	try{
+    		insert newUserProfile;
+    		
+    	}
+    	Catch(Exception ex){
+    		 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_WithoutShareController.class.getName(),
+                'createUserProfile',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+   
+    	     
+    	}
+    	
+    }
     
 }

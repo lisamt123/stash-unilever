@@ -204,7 +204,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 if(preparedCompanyCardList.size() == 1)
                 {
                     project.IPM_Company_Card__c =   preparedCompanyCardList.get(0).getValue();
-                    if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c))
+                    if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c) && project.IPM_CompanyCardText__c==null)
                     {
                         project.IPM_CompanyCardText__c = companyCardToRecordType.get(project.IPM_Company_Card__c);
                     }
@@ -231,7 +231,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         projectMetadata = new IPM_ProjectMetadata__c();
         project.IPM_Project_Type__c = project.IPM_Category_Text__c = project.IPM_GateKeeping_Model__c = project.IPM_Approver_of_Charter__c = project.IPM_ProjectSubType__c =project.IPMProject_Span__c = project.IPM_Phase__c = project.IPM_Complexity__c = project.IPM_Child_Complexity__c = IPM_ConstantUtils.BLANK;
         
-        if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c))
+        if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c) && project.IPM_CompanyCardText__c==null)
         {
             project.IPM_CompanyCardText__c = companyCardToRecordType.get(project.IPM_Company_Card__c);
         }
@@ -618,6 +618,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 project.IPM_Phase__c = projectMetadata.IPM_DefaultPhase__c;
                 project.IPM_Complexity__c =  projectMetadata.IPM_DefaultComplexity__c;
                 project.IPM_Child_Complexity__c = projectMetadata.IPM_DefaultComplexity__c;
+                if(IPM_ConstantUtils.IPMREGIONAL.Equals(project.IPMProject_Span__c)){
+                	project.IPM_GateKeeping_Model__c=projectMetadata.IPM_Default_GateKeeping_Model__c;	
+                }
         }
         
            
@@ -640,8 +643,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 
         if(!skipValidation)
         {
-            if(!project.IPM_IsSaved__c)
+            if(!project.IPM_IsSaved__c && !isRollout.Equals(project.IPM_Project_Type__c))
             {
+                
                 populateProjectTypeInformation(projectMetadata);
             }
         
@@ -669,7 +673,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 }
             }
             
-            if( (!String.isBlank(project.IPM_Project_Name__c) && !Pattern.matches(IPM_ConstantUtils.IPM_PROJECTNAME_PATTERN ,project.IPM_Project_Name__c)) || (project.IPM_Project_Type__c != isRollout && project.IPM_Project_Name__c.contains(IPM_ConstantUtils.UNDERSCORE)))
+            if( !isRollout.Equals(project.IPM_Project_Type__c) && !String.isBlank(project.IPM_Project_Name__c) && !Pattern.matches(IPM_ConstantUtils.IPM_PROJECTNAME_PATTERN ,project.IPM_Project_Name__c))
             {
                 isContainSpecialChars=true;
                 
@@ -686,7 +690,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             }
             
             //To display error when project name is not unique across all company card.
-            if(!String.isBlank(project.IPM_Project_Name__c)){
+            if(!String.isBlank(project.IPM_Project_Name__c) && !isRollout.Equals(project.IPM_Project_Type__c)){
                 string bossId=IPM_ConstantUtils.BLANK;
                 if(project.IPM_Bosscard__c!=null){
                     bossId=project.IPM_Bosscard__c;
@@ -732,7 +736,13 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                     project.IPM_Project_Name__c = project.IPM_Project_Name__c + shortNameSTR;
                 }
             }  
-                          
+           if(project.IPM_Project_Gatekeeper__c==null && project.IPM_Company_Card__c!=null){
+	            list<IPM_User_Profile__c>lstGatekeeper=[SELECT IPM_User__c FROM IPM_User_Profile__c WHERE IPM_Company_Card__c=:project.IPM_Company_Card__c AND
+	            										IPM_User_Function__c=:IPM_ConstantUtils.TEAM_GATEKEEPER LIMIT 1];  
+	            if(lstGatekeeper!=null && !lstGatekeeper.isEmpty()){
+	            	project.IPM_Project_Gatekeeper__c=lstGatekeeper[0].IPM_User__c;	
+	            } 
+            }	               
             update project;
             
             if(!skipValidation)

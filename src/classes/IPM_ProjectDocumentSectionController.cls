@@ -897,7 +897,10 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                     cmiList=[SELECT Id,IPM_Gate_CMI__c,IPM_Gate_CMI__r.Gate__c,IPM_CMI_Result__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Is_Free_Text__c FROM IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c=:projDocSecId and IPM_CMI_Is_Free_Text__c=false];
                     for(IPM_Project_Document_Section_Content__c cmi:cmiList)
                     {
-                        if((projDoc.IPM_GateDocuments__c=='Charter' && cmi.IPM_Gate_CMI__r.Gate__c=='Charter' && String.isBlank(cmi.IPM_CMI_Result__c)) || ((projDoc.IPM_GateDocuments__c=='Contract' || projDoc.IPM_GateDocuments__c=='Market Ready') && (cmi.IPM_Gate_CMI__r.Gate__c=='Contract' || cmi.IPM_Gate_CMI__r.Gate__c=='Market Ready') && String.isBlank(cmi.IPM_CMI_Results_Acheived__c))){
+                        if((IPM_ConstantUtils.CHARTER_GATE==projDoc.IPM_GateDocuments__c && String.isBlank(cmi.IPM_CMI_Result__c)) ||
+							(IPM_ConstantUtils.CONTRACT_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.CONTRACT_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Results_Acheived__c)) || 
+							(IPM_ConstantUtils.CONTRACT_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.MARKET_READY_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Result__c)) || 
+							(IPM_ConstantUtils.MARKET_READY_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.MARKET_READY_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Results_Acheived__c))){
                             showmsg=true;
                             status=false;
                         }    

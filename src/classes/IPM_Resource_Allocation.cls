@@ -715,38 +715,63 @@ public with sharing class IPM_Resource_Allocation {
 		
 		String selectCompanyCard = ' SELECT Id, name, IPM_TxtGeographical_Scope__c, IPM_Managed_Category__c,IPM_Market_Cluster__c FROM IPM_Company_Card__c ';
 		String whereClause = ' WHERE Id in:filteredCompanyCardList AND  IPM_Managed_Category__c INCLUDES(:projectManagedCategory) ';
-		
+		 string noCompanyCard='WHERE IPM_Managed_Category__c INCLUDES(:projectManagedCategory) ';
 		if(inContextRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
 		{
 			whereClause += ' AND IPM_TxtGeographical_Scope__c in :locationFilter ';
+                        noCompanyCard +=' AND IPM_TxtGeographical_Scope__c IN :locationFilter ';
 		}
 		else
 		{
 			whereClause += ' AND IPM_TxtGeographical_Scope__c like :locationFilter ';
+			noCompanyCard +=' AND IPM_TxtGeographical_Scope__c LIKE :locationFilter ';
 		}
 		
 		String limitString = ' LIMIT 50000';
 		
 		String finalQueryString = selectCompanyCard + whereClause + limitString;
-		system.debug('@@@ query string -->>'+finalQueryString);
+	 	String finalNoCompanyCard=selectCompanyCard + noCompanyCard + limitString;
         List<IPM_Company_Card__c> lstCompanyCards = database.query(finalQueryString);
-
-        if(IPM_ConstantUtils.USER_FUNCTON_PL.equalsIgnoreCase(ButtonLabel) || IPM_ConstantUtils.USER_FUNCTON_CL.equalsIgnoreCase(ButtonLabel))
-        {                                                                                                
-            inContextRollout.IPM_Regional_PL_Text__c = lstUser[0].Name;
-            inContextRollout.IPM_Regional_PL__c = lstUser[0].Id;
-            
-            if(!lstCompanyCards.isEmpty())
-            {
-        		inContextRollout.IPM_Company_Card__c = lstCompanyCards[0].Id; // assigning regional company card
+    
+        if(!lstUser.isEmpty())
+        { 
+            if(IPM_ConstantUtils.USER_FUNCTON_PL.equalsIgnoreCase(ButtonLabel) || IPM_ConstantUtils.USER_FUNCTON_CL.equalsIgnoreCase(ButtonLabel))
+            {   
+                                                                                                           
+                inContextRollout.IPM_Regional_PL_Text__c = lstUser[0].Name;
+                inContextRollout.IPM_Regional_PL__c = lstUser[0].Id;
+                
+                if(!lstCompanyCards.isEmpty())
+                {
+                    inContextRollout.IPM_Company_Card__c = lstCompanyCards[0].Id; // assigning regional company card
+                }
+                else{// get all company card associated with category,market cluster/countries
+                    List<IPM_Company_Card__c> lstCompanyCardsToAssign = database.query(finalNoCompanyCard);
+                    if(!lstCompanyCardsToAssign.isEmpty()){
+                        inContextRollout.IPM_Company_Card__c=lstCompanyCardsToAssign[0].id;//assign company card to project leader
+                        IPM_WithoutShareController.createUserProfile(lstCompanyCardsToAssign[0].id,lstUser[0].Id,projectManagedCategory);//create user profile for selected PL with company card
+                    }
+                    
+                }
+             if(inContextRollout.IPM_Company_Card__c!=null){
+                id companyCardId=inContextRollout.IPM_Company_Card__c;
+                list<IPM_User_Profile__c>lstGatekeeper=[SELECT IPM_User__c FROM IPM_User_Profile__c WHERE IPM_Company_Card__c=:companyCardId 
+                                                        AND IPM_User_Function__c=:IPM_ConstantUtils.TEAM_GATEKEEPER LIMIT 1];  
+                if(lstGatekeeper!=null && !lstGatekeeper.isEmpty()){
+                    inContextRollout.IPM_Rollout_Gatekeeper__c=lstGatekeeper[0].IPM_User__c;    
+                }else{
+                inContextRollout.IPM_Rollout_Gatekeeper__c=lstUser[0].Id;   
+             	}  
+             }else{
+                inContextRollout.IPM_Rollout_Gatekeeper__c=lstUser[0].Id;   
+             }  
             }
-        }
-        else if(IPM_ConstantUtils.USER_FUNCTON_FL.equalsIgnoreCase(ButtonLabel))
-        {                                    
-            inContextRollout.IPM_Finance_Member_Text__c = lstUser[0].Name;     
-            inContextRollout.Finance_Member__c = lstUser[0].Id;       
-        } 
-                  
+            else if(IPM_ConstantUtils.USER_FUNCTON_FL.equalsIgnoreCase(ButtonLabel))
+            {                                    
+                inContextRollout.IPM_Finance_Member_Text__c = lstUser[0].Name;     
+                inContextRollout.Finance_Member__c = lstUser[0].Id;       
+            } 
+        }          
         try
         {
         	update inContextRollout;   

@@ -264,6 +264,17 @@
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
+     <fields>
+        <fullName>IPM_Rollout_Gatekeeper__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Rollout Gatekeeper</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>IPM_Rollout_Gatekeepers</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
     <fields>
         <fullName>IPM_RolloutJobType__c</fullName>
         <externalId>false</externalId>
