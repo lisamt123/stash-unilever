@@ -67,12 +67,37 @@ private class BET_AccessServiceTest {
 		Test.stopTest();
 	}
 
+	@isTest static void RequestAccessExceptionTest() {
+		BET_BETWrapper.MemberRequest mRequest = new BET_BETWrapper.MemberRequest();
+		mRequest.UserId = UserInfo.getUserId();
+		IPM_BETWrapper project = new IPM_BETWrapper(BET_TestUtils.createIPMProject('TEST_PROJECT_NAME'));
+		Test.startTest();
+		try{
+			List<Id> ids = BET_AccessService.RequestAccess(new List<BET_BETWrapper.MemberRequest>{mRequest},null,project.projectId);
+			System.assert(ids.isEmpty(),'List should be empty');
+		}catch(BET_CustomBETException exc){
+			System.assertEquals(exc.getMessage(),'Unable to create access request',EXCEPTION_MSG);
+		}
+		Test.stopTest();
+	}
+
 	@isTest static void RequestExternalUserAccessTest(){
 		Test.startTest();
 		uw_Bet__c bet = BET_TestUtils.getTestBet();
 		insert bet;
 		Id requestId = BET_AccessService.RequestExternalUserAccess(EMAIL_TEST,bet.id);
 		System.assert(requestId != null,'Access request identifier should not equal to null');
+		Test.stopTest();
+	}
+
+	@isTest static void RequestExternalUserAccessExceptionTest(){
+		Test.startTest();
+		try{
+			BET_AccessService.RequestExternalUserAccess(EMAIL_TEST,null);
+			System.assertEquals(0,1,EXCEPTION_MSG);
+		}catch(Exception e){
+			System.assertEquals(1,1,EXCEPTION_MSG);
+		}
 		Test.stopTest();
 	}
 
