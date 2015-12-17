@@ -187,7 +187,7 @@
                                             <td scope="col" width="180px">
                                                 <apex:outputField value="{!localProject.IPM_Project_Leader__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>
-                                            <td scope="col" width="125px">
+                                            <td scope="col" width="120px">
                                                 <apex:outputField value="{!localProject.IPM_Finance_Member__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>                
                                         </tr>                                    

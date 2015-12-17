@@ -231,7 +231,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         projectMetadata = new IPM_ProjectMetadata__c();
         project.IPM_Project_Type__c = project.IPM_Category_Text__c = project.IPM_GateKeeping_Model__c = project.IPM_Approver_of_Charter__c = project.IPM_ProjectSubType__c =project.IPMProject_Span__c = project.IPM_Phase__c = project.IPM_Complexity__c = project.IPM_Child_Complexity__c = IPM_ConstantUtils.BLANK;
         
-        if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c) && project.IPM_CompanyCardText__c==null)
+        if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c))
         {
             project.IPM_CompanyCardText__c = companyCardToRecordType.get(project.IPM_Company_Card__c);
         }

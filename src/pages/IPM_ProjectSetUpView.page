@@ -661,6 +661,34 @@
             <div id="ipmModalDiv">
                 <c:IPM_ModalHeaderDiv />
             </div>
+            <div id="basicModal" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"
+                                aria-hidden="true">&times;</button>
+                            <div class="modal-title">{!$Label.IPM_CP_Unlink}</div>
+                        </div>
+                        <div class="">
+                            <div class="paracont">
+                                <p>
+                                    <apex:outputText value="{!$Label.IPM_BETUnlinkingMessage}">
+                                        <!--<apex:param value="{!PreSelectedBet.betName}" />-->
+                                    </apex:outputText>
+                                </p>
+                            </div>
+                            <div class="paracont">
+                                <div class="floatR">
+                                    <a href="#" title="{!$Label.IPM_Back}" class="ipmButton"
+                                         data-dismiss="modal">{!$Label.IPM_CANCEL}</a> <a href="#"
+                                        title="{!$Label.IPM_SAVE_AND_CONTINUE}" onClick="unlinkBET();"
+                                        class="ipmButton primary" data-dismiss="modal">{!$Label.IPM_CP_Unlink}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </apex:define> 
     </apex:composition> 
     </apex:form> 

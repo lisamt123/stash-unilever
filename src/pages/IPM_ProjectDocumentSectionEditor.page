@@ -13,7 +13,7 @@
             <apex:form id="form">
                 <div class='cust-overlay'></div>
                 <div class="gradientbg">
-                        <c:IPM_ProjectDetails project="{!project}" />
+                        <c:IPM_ProjectDetails project="{!project}" activeItem="gateDocument"/>
                 </div>
                 <div class="ipmContent">            
                     <apex:pagemessages id="pmsg"/>

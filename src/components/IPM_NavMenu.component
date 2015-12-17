@@ -24,7 +24,7 @@
                 
                     <li class="tabOdd {!IF(activeItem== 'overview', 'active', '')}"><a href="{!$Page.IPM_ProjectOverview}?id={!projID}"><span>{!$Label.IPM_Overview}</span></a></li>
                     <li class="tabEven {!IF(activeItem=='milestonesAndTasks', 'active', '')}"><a href="{!$Page.IPM_Tasklist}?id={!projID}"><span>{!$Label.IPM_MilestoneAndTodo}</span></a></li>
-                   <li class="tabOdd dropdown {!IF(activeItem=='bosscard', 'active', '')}{!IF(activeItem=='charter', 'active', '')}{!IF(activeItem=='contract', 'active', '')}{!IF(activeItem=='market ready', 'active', '')}{!IF(activeItem=='market deployment', 'active', '')}">
+                   <li class="tabOdd dropdown {!IF(activeItem=='gateDocument', 'active', '')}">
                         <a href="#" data-toggle="dropdown">
                           <span>{!$Label.IPM_Gate} {!$Label.IPM_Document}<div class="gateddown"></div></span>
                         </a>

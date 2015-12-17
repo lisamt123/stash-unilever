@@ -325,17 +325,21 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                 break;   
             }
         }
-           
+        
+        integer questionSequence=0;// introduced to accomodate differnt sequencing for Original and Operational Projects   
         for(IPM_Questionnaire__c gkQ : gateKeepercheckListMaster)
-        {
+        {  
             for(IPM_Project_Document_Section__c projectDocumentSection : projectGateSpecificSections)
             {
+               
                if(gkQ.IPM_Section_External_Id__c!=null && !String.isBlank(gkQ.IPM_Section_External_Id__c) && 
                projectDocumentSection.IPM_Master_Section_External_Id__c!=null && !String.isBlank(projectDocumentSection.IPM_Master_Section_External_Id__c) &&
                        gkQ.IPM_Section_External_Id__c.trim() == projectDocumentSection.IPM_Master_Section_External_Id__c.trim())
                 {
                     if(!IPM_ProjectHelper.projectSectionMap.containsKey(projectDocumentSection.Id))
                     {
+                      
+                        questionSequence++; 
                         IPM_Questionnaire__c tempGKQ = new IPM_Questionnaire__c();
                         tempGKQ.IPM_Project__c = project.Id;
                         tempGKQ.IPM_Question_Help_Text__c = gkQ.IPM_Question_Help_Text__c;
@@ -346,7 +350,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                         tempGKQ.IPM_RQS_Gate_Type__c = gateType;
                         tempGKQ.IPM_GK_Answers__c = gkQ.IPM_GK_Answers__c;
                         tempGKQ.RecordTypeId = recTypeGK;
-                        tempGKQ.IPM_Sequence_Number__c =gkQ.IPM_Sequence_Number__c; 
+                        tempGKQ.IPM_Sequence_Number__c =questionSequence; 
                         tempGKQ.IPM_Section_Sequence_Number__c = projectDocumentSection.IPM_Section_Sequence_Number__c; 
                         tempGKQ.IPM_Project_Document_Section__c = projectDocumentSection.Id;
                         tempGKQ.IPM_Section_External_Id__c= gkQ.IPM_Section_External_Id__c;                 
@@ -358,8 +362,11 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                 if(gkQ.IPM_Section_External_Id__c==null)
                
                 {
+                  
                     if(!IPM_ProjectHelper.projectSectionMap.containsKey(projectDocumentSection.Id))
                     {
+                      
+                       questionSequence++;
                         IPM_Questionnaire__c tempGKQ = new IPM_Questionnaire__c();
                         tempGKQ.IPM_Project__c = project.Id;
                         tempGKQ.IPM_Question_Help_Text__c = gkQ.IPM_Question_Help_Text__c;
@@ -370,7 +377,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                         tempGKQ.IPM_RQS_Gate_Type__c = gateType;
                         tempGKQ.IPM_GK_Answers__c = gkQ.IPM_GK_Answers__c;
                         tempGKQ.RecordTypeId = recTypeGK;
-                        tempGKQ.IPM_Sequence_Number__c = gkQ.IPM_Sequence_Number__c;
+                        tempGKQ.IPM_Sequence_Number__c = questionSequence;
                         tempGKQ.IPM_Section_External_Id__c= gkQ.IPM_Section_External_Id__c;
                         insertProjectGKCheckList.add(tempGKQ);
                     }
