@@ -16,7 +16,7 @@ Test Class: testWrappers,testController are test methods in this class
 -----------------------------------------------------------------</T01>----------------------------*/
 //New ADFS
 public with sharing class uw_TriggerHandler { 
-    public static Boolean CHECK_BRAND_CATEGORY_RELATION = true;
+    public static Boolean CHECK_BRAND_CATEGORY_RELATION = true; 
     private static final String GROUP_NAME_POSTFIX = ' External View';
     private static final String CANNOT_DELETE_NOT_OWNER = 'Cannot delete Post because it contains a file which has been labelled. Please contact the Toolkit Owner.';
     private static final String CANNOT_DELETE_CHATTER_FILE = 'This Chatter File has been labelled in the Studio {0}. Please contact the Toolkit Owner: {1} who can delete the file. ';
@@ -338,19 +338,27 @@ private Boolean canDemoteAsset(String objId, uw_Asset__c asset, SObject so) {
             }
         }
         
-        List<CollaborationGroup> collabGroups = [Select Id, OwnerId, Name, InformationBody from CollaborationGroup where Id in: collabGroupsIdSet];
-        
-        List<uw_BET__c> relatedBets = [Select Id, Studio_Chatter_Group__c from uw_Bet__c where Studio_Chatter_Group__c in :collabGroupsIdSet];
-        Map<Id,uw_BET__c> mapOfGroupsToBets = new Map<Id,uw_BET__c>();
-        for (uw_BET__c bet:relatedBets)
-        {
-            mapOfGroupsToBets.put(bet.Studio_Chatter_Group__c, bet);
-        }
-        
+        List<CollaborationGroup> collabGroups = new List<CollaborationGroup>();
+        List<uw_BET__c> relatedBets = new List<uw_BET__c>();
         Map<Id, Pinnovate_Preference__c> pinnovates = new Map<Id, Pinnovate_Preference__c>{};
-        for(Pinnovate_Preference__c pinnovate : [Select Id, Name from Pinnovate_Preference__c where Name IN :collabGroupsIdSet])
-            pinnovates.put(pinnovate.Name, pinnovate);
+        Map<Id,uw_BET__c> mapOfGroupsToBets = new Map<Id,uw_BET__c>();
+        
+        if(!collabGroupsIdSet.isEmpty())
+        {
+            collabGroups = [Select Id, OwnerId, Name, InformationBody from CollaborationGroup where Id in: collabGroupsIdSet];
+        
+            relatedBets = [Select Id, Studio_Chatter_Group__c from uw_Bet__c where Studio_Chatter_Group__c in :collabGroupsIdSet];
+        
             
+            for (uw_BET__c bet:relatedBets)
+            {
+                mapOfGroupsToBets.put(bet.Studio_Chatter_Group__c, bet);
+            }
+        
+            
+            for(Pinnovate_Preference__c pinnovate : [Select Id, Name from Pinnovate_Preference__c where Name IN :collabGroupsIdSet])
+                pinnovates.put(pinnovate.Name, pinnovate);
+        } 
         system.debug('handleFeedItemBeforeInsert: 1.3');
         List<CollaborationGroup> collabGroupsToUpdate = new List<CollaborationGroup>();
         Map<Id, Pinnovate_Preference__c> newPinnovates = new Map<Id, Pinnovate_Preference__c>();
