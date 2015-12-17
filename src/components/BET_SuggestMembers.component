@@ -59,7 +59,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                 qtipJQuery( document ).ready(function( jq ) {
                     qtipJQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
                     qtipJQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
-                 }
+                    }
                 );
             }
             //fix overlay issue "dialog is on top overlay layer"
@@ -130,7 +130,10 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 
                 <apex:outputPanel id="suggestedMembersContainerbet" >
                 <script type="text/javascript">
-                    enableTooltip();
+                    var pup = {!usedInPopup};
+                    if(!pup){
+                        enableTooltip();
+                    }
                 </script>
 
                 <div class="note">
