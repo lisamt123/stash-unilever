@@ -452,7 +452,7 @@ public with sharing class IPM_ProjectDocumentHelper
                         // Get the source Api Name from which to copy
                         String sourceField = sourceFieldAPIList.get(counter);
                         String targetField = targetFieldAPIList.get(counter);
-                        if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && (incomingSection.get(targetField) == null || incomingSection.get(targetField) == false))
+                        if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && incomingSection.get(targetField) == null)
                         {
                             if(currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)
                             {
