@@ -12,8 +12,8 @@ trigger AF_updateBonusThreshold on AF_Sub_Result__c (after update, after insert)
     Set<String> year = new set<String>();
     list<AF_Sub_Result__c>  bonusThrehsoldList= new list<AF_Sub_Result__c>();
     
-    if(checkRecursiveBonusQuarterly.run){
-    checkRecursiveBonusQuarterly.run=false;
+    if(AF_CheckRecursiveBonusQuarterly.run){
+    AF_CheckRecursiveBonusQuarterly.run=false;
     for(AF_Sub_Result__c SubResList : trigger.new){
         if(SubResList.AF_Bonus_Threshold__c!=null ){
             bonusthreshold.add(SubResList.AF_Bonus_Threshold__c);

@@ -3,7 +3,6 @@ public class Test_AF_AnnualBonus
 {    
     Static Integer IcurrYear = System.Today().year();
     Static string currYear=string.valueof(IcurrYear);
-    private static String brandName = 'test brandab';
     private static String agencyEntityName ='Test Entityab3';
     private static String agencyEntityCountry = 'Singapore';
     private static String bonusMeasure ='BM1';
@@ -259,8 +258,8 @@ public class Test_AF_AnnualBonus
      AF_AnnualBonus annulBonus=new AF_AnnualBonus();
      annulBonus.UpdateBonus();
      annulBonus.ConfirmBonus();
-     annulBonus.Calculate_Remun();
-     annulBonus.Calculate_Remun_Per();
+     //annulBonus.Calculate_Remun();
+     //annulBonus.Calculate_Remun_Per();
      Test.stopTest();
 
    }
@@ -712,9 +711,9 @@ public class Test_AF_AnnualBonus
      annulBonus1.UpdateBonus2();
      //annulBonus1.ConfirmBonus();
      annulBonus1.ConfirmBonus2();
-     annulBonus1.Calculate_Remun();
+     //annulBonus1.Calculate_Remun();
      annulBonus1.Calculate_Remun2();
-     annulBonus1.Calculate_Remun_Per();
+     //annulBonus1.Calculate_Remun_Per();
      Test.stopTest();
    }
  }

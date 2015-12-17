@@ -96,7 +96,7 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
     global void finish(Database.BatchableContext BC)
     {
             List<Id> lstusers=new List<Id>();
-            string emails;
+            string emails='';
             List<PermissionSetAssignment> permissionSetAssign=[SELECT AssigneeId,Id,PermissionSetId FROM PermissionSetAssignment where PermissionSet.name=:'AF_CMCO_Super_User'];
             if(permissionSetAssign.size()>0){
                 for(PermissionSetAssignment assignment:permissionSetAssign){

@@ -70,7 +70,7 @@ public class Test_AF_UpdateBonusEstimatesValues5
      insert brandEst;
      System.Assert(brandEst.Id != null, 'The brandEstimate record not inserted');
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Algeria';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
      curr.AF_Currency_Code__c = 'USD';
      curr.Country_Currency__c = 'Algeria-USD';
      curr.AF_Fiscal_Year_new__c = currYear;

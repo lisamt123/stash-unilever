@@ -1,7 +1,7 @@
 trigger Af_AfterInsertBonusThresholdShare on AF_Bonus_Threshold__c (before insert,before update,after insert) {
     
     if(Trigger.isAfter){
-    AF_BonusThresholdHelper.shareRecordToUser(trigger.new);
+    //AF_BonusThresholdHelper.shareRecordToUser(trigger.new);
     }  
     if(Trigger.isBefore){
     for(AF_Bonus_Threshold__c b:trigger.new){

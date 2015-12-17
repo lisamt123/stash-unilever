@@ -9,7 +9,6 @@ public class Test_AF_AdjustQuater_Homepage_lightbox
     Static Integer IcurrYear = System.Today().year();
     Static string currYear=string.valueof(IcurrYear);
     private static String agencyFeesUserType = 'Agency';
-    private static String categoryBrands = 'category';
     private static String Fyear = 'Year';
     Static testMethod void adjustQuater_Homepage_lightbox()
     {

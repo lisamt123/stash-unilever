@@ -16,7 +16,7 @@ public class Test_AF_BrandEstimateController2
      
      //Insert User 
      User u= new User(Alias = 'testo', Email='standarduserbec@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userbec', LanguageLocaleKey='en_US', 
+      EmailEncodingKey='UTF-8', LastName='Test Userbec', LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey='en_US', ProfileId = p.Id, 
       TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
       UserName='testuserbec@test123321.com',AF_Brand__c='Test Brander',AF_Category__c='Test Beverageser');

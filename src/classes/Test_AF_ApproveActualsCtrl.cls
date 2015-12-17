@@ -93,7 +93,7 @@ public class Test_AF_ApproveActualsCtrl
      ApexPages.currentPage().getParameters().put(brandId,bran.id);         
         
      //For Agency Id
-     ApexPages.currentPage().getParameters().put('accountId',acc1.Id);
+     ApexPages.currentPage().getParameters().put(accountId,acc1.Id);
         
      //For Fiscal year
      ApexPages.currentPage().getParameters().put('fy',currYear);   
@@ -189,7 +189,7 @@ Static testMethod void approveActualsCtrl1()
      ApexPages.currentPage().getParameters().put(brandId,bran.id);         
         
      //For Agency Id
-     ApexPages.currentPage().getParameters().put('accountId',acc1.Id);
+     ApexPages.currentPage().getParameters().put(accountId,acc1.Id);
         
      //For Fiscal year
      ApexPages.currentPage().getParameters().put('fy',currYear1);   
@@ -285,7 +285,7 @@ Static testMethod void approveActualsCtrl1()
      ApexPages.currentPage().getParameters().put(brandId,bran.id);         
         
      //For Agency Id
-     ApexPages.currentPage().getParameters().put('accountId',acc1.Id);
+     ApexPages.currentPage().getParameters().put(accountId,acc1.Id);
         
      //For Fiscal year
      ApexPages.currentPage().getParameters().put('fy',currYear);   
@@ -381,7 +381,7 @@ Static testMethod void approveActualsCtrl1()
      ApexPages.currentPage().getParameters().put(brandId,bran.id);         
         
      //For Agency Id
-     ApexPages.currentPage().getParameters().put('accountId',acc1.Id);
+     ApexPages.currentPage().getParameters().put(accountId,acc1.Id);
         
      //For Fiscal year
      ApexPages.currentPage().getParameters().put('fy',currYear);   

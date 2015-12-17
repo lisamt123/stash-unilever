@@ -19,7 +19,7 @@ public class Test_AF_updateBonusThreshold
      
      //Insert User
      User u= new User(Alias = 'testbth', Email='standarduserbth@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userbth', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbth', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
       LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id,
       TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Procurement',isActive=true,AF_UserTypeText__c='Regional Category Finance', 
       UserName='testuserbth@test123321.com',AF_Brand__c='Test Brandbth',AF_Category__c='Test Beveragesbth');
@@ -619,7 +619,7 @@ public class Test_AF_updateBonusThreshold
      
      delete agencyEstList;
      
-     AF_UpdateAgencyEstimatesValues.UpdateExchageRates(agencyEstList);
+     //AF_UpdateAgencyEstimatesValues.UpdateExchageRates(agencyEstList);
      
      Test.stopTest();
     }

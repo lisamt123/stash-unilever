@@ -176,10 +176,7 @@ Public with sharing Class AF_UpdateBonusEstimatesValues5
                            if(agencyEst.AF_Status__c=='Ready for PO')
                                {     
                                     
-                                   system.debug('Here:' +MatrixReadyforConversion.get(mt.id));
-                                   system.debug('Here:' +readypcode);
-                                   system.debug('Here:' +CurrencyMapforGBP.get(readypcode));
-                                   system.debug('Here:' +CurrencyMapforUSD.get(readypcode));
+                    
                                    if(MatrixReadyforConversion.get(mt.id)!='--None--' && MatrixReadyforConversion.get(mt.id)=='GBP'){
                                    agencyEst.AF_Ready_For_PO_Exchange_Rate__c= CurrencyMapforUSD.get(readypcode);
                                    /*Below code for reporting purpose --Start*/
@@ -192,7 +189,7 @@ Public with sharing Class AF_UpdateBonusEstimatesValues5
                                    agencyEst.ReadyforPOExchangeRateTemp__c= CurrencyMapforGBP.get(readypcode);
                                    /*Below code for reporting purpose --End*/
                                    }
-                                   system.debug('Here:' +agencyEst.AF_Ready_For_PO_Exchange_Rate__c);
+                        
                                    
                                    
                                    if(agencyEst.AF_BonusMatrixCode__c!=matrixDataEntryCurrency.get(mt.id))

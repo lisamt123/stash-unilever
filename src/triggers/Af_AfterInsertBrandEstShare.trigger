@@ -13,7 +13,7 @@ trigger Af_AfterInsertBrandEstShare on AF_Brand_Estimate__c (after insert,after 
     //Call the method to share this records to Users who belongs to category
     if(Trigger.isInsert)
     {
-    AF_BrandEstimateHelper.shareRecordToUser(trigger.new);
+   // AF_BrandEstimateHelper.shareRecordToUser(trigger.new);
     
     }
      System.debug('TRIGGER BEING EXECUTED....');

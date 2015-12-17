@@ -10,7 +10,9 @@ static testmethod void AF_MultiSelectComponent()
 {
 
 test.starttest();
-Profile p=[Select Id from Profile where Name='System Administrator'];       
+Profile p=[Select Id from Profile where Name='System Administrator']; 
+string User_permissonset_user1='AF_Sairam';
+string User_permissonset_user2 = 'AF_Martin';     
 List<String> permList =  new List<String>();
 List<String> permSelectedList =  new List<String>();
 
@@ -25,13 +27,13 @@ User u= new User(Alias = 'test123', Email='standarduser@unilever.com',
 //insert permission set      
      
 PermissionSet ps1=new PermissionSet();  
-ps1.Name = 'AF_Sairam';
+ps1.Name = 'User_permissonset_user1';
 ps1.Label = 'AF_Sairam';
 insert ps1; 
 System.Assert(ps1.Id != null, 'The Permission set record not inserted');
 
 PermissionSet ps2=new PermissionSet();
-ps2.Name = 'AF_Martin';
+ps2.Name = 'User_permissonset_user2';
 ps2.Label = 'AF_Martin';
 insert ps2;
 System.Assert(ps2.Id != null, 'The Permission set record not inserted');

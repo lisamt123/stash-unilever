@@ -6,7 +6,7 @@ trigger UpdateCatFinanceApprover  on AF_Brand_Estimate__c (before Insert,before 
         if(afBrand.AF_Status_Base_Fees__c=='With Agency'){
         afBrandEstimates.add(afBrand); 
         if(afBrand.AF_Agency__c != null)
-            UpdateBrandEstimateCatApproverValues.UpdateOopsagency(afBrand);
+            AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagency(afBrand);
         }
         if(!afBrand.TriggerEmailAgency__c){
             system.debug('afBrand.TriggerEmailAgency__c...'+afBrand.TriggerEmailAgency__c);
@@ -14,5 +14,5 @@ trigger UpdateCatFinanceApprover  on AF_Brand_Estimate__c (before Insert,before 
         }
                
     }
-    UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(afBrandEstimates);
+    AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(afBrandEstimates);
 }

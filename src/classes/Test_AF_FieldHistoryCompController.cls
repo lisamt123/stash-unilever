@@ -18,9 +18,9 @@ public class Test_AF_FieldHistoryCompController
      //Insert User 
      User u= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
       EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
       TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
-      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c='Test Beveragesc');
+      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;        
      
      System.runAs(u)
@@ -60,8 +60,7 @@ public class Test_AF_FieldHistoryCompController
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
      brandEst.Name='Test BrandEstimatec';
-     brandEst.AF_Status_Base_Fees__c='Ready for PO';  
-     brandEst.AF_Fiscal_Year__c='2013';
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_READYFORPO;  
      brandEst.AF_Active__c = true;
      brandEst.AF_Copied__c= false;
      brandEst.AF_Locked__c = false;  

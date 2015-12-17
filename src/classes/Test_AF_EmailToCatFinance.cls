@@ -19,7 +19,7 @@ public class Test_AF_EmailToCatFinance
       EmailEncodingKey='UTF-8', LastName='Test User123', LanguageLocaleKey='en_US', 
       LocaleSidKey='en_US', ProfileId = p.Id, 
       TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuser@test123321.com',AF_Brand__c='Test Brand1',AF_Category__c='Test Beverages1');
+      UserName='testuser@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c='Test Beverages1');
      insert u; 
     
     PermissionSet ps = [SELECT Id,Name FROM PermissionSet where Name='AF_Category_Finance'];

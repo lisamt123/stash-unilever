@@ -17,11 +17,11 @@ public class Test_AF_UpdOopsEstCatApproverValues
      Profile p=[Select Id from Profile where Name='System Administrator'];       
      
      //Insert User 
-     User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey=AF_Constants.LocaleKey, 
+     User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email=AF_Constants.TEST_USER_EMAIL, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Useruo', LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo',AF_Category__c='Test Beveragesuo');
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName=AF_Constants.TEST_UserName,AF_Brand__c='Test Branduo',AF_Category__c='Test Beveragesuo');
      insert u;        
       
      System.runAs(u)
@@ -33,7 +33,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      acc.published__c=true;
      insert acc;
      
-     System.Assert(acc.Id != null, 'The account record not inserted');
+     System.Assert(acc.Id != null, 'The account1 record inserted');
      
      //inser Contact
      Contact con=new Contact();
@@ -52,7 +52,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      cat.AF_Super_category__c=AF_Constants.TEST_SUPER_CATEGORY;
      insert cat;
      
-     System.Assert(cat.Id != null, 'The Category record not inserted');
+     System.Assert(cat.Id != null, 'The Category1 record inserted');
      
      //Insert Brand
      RecordType brandRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Brand' Limit 1];
@@ -138,7 +138,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
       EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
       TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
       insert u1; 
 
      System.runAs(u)

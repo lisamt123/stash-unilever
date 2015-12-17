@@ -60,7 +60,6 @@ public class Test_AF_BonusRecordManager
      brandEst.AF_Status_Base_Fees__c='Initiate';  
      brandEst.Brand__c=bran.id;
      brandEst.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
-     brandEst.AF_Fiscal_Year__c='2013';
      brandEst.AF_Pilot_Model__c=true;
      insert brandEst;
      

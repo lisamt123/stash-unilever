@@ -16,7 +16,7 @@ public class Test_AF_AgencyEstimateController
      
      //Insert User 
      User u= new User(Alias = 'testa', Email='standardusera@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Usera', LanguageLocaleKey='en_US', 
+      EmailEncodingKey='UTF-8', LastName='Test Usera', LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey='en_US', ProfileId = p.Id, 
       TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
       UserName='testusera@test123321.com',AF_Brand__c='Test Brandea',AF_Category__c='Test Beveragesea');
@@ -84,7 +84,7 @@ public class Test_AF_AgencyEstimateController
      RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
      AF_Entity__c entity1=new AF_Entity__c();
      entity1.Name='Test Entitya';        
-     entity1.AF_Country__c='Australia'; 
+     entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY; 
      entity1.AF_Agency__c=acc.Id;
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;

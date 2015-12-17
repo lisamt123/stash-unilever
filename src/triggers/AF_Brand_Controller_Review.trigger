@@ -1,7 +1,7 @@
 trigger AF_Brand_Controller_Review on AF_Brand_Estimate__c (after update) 
 {
-    system.debug('@@@ run first='+checkRecursive.run);
-    if(checkRecursive.run)
+    system.debug('@@@ run first='+AF_CheckRecursive.run);
+    if(AF_CheckRecursive.run)
     {
         set<id> Brids = new set<id>();
         for(AF_Brand_Estimate__c Br : trigger.new)
@@ -11,8 +11,8 @@ trigger AF_Brand_Controller_Review on AF_Brand_Estimate__c (after update)
                 
             system.debug('@@@ Brand Ids first='+Brids);
         }
-        checkRecursive.run=false;
-        system.debug('@@@ run last='+checkRecursive.run);
+        AF_CheckRecursive.run=false;
+        system.debug('@@@ run last='+AF_CheckRecursive.run);
         if(!Brids.isempty())
         {
             AF_Brand_Controller_Review Brd=new AF_Brand_Controller_Review();

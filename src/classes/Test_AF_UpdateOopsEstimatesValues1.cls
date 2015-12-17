@@ -72,8 +72,8 @@ public class Test_AF_UpdateOopsEstimatesValues1
      
      AF_Currency__c curr = new AF_Currency__c();
      curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
-     curr.Country_Currency__c = 'Eucador-USD';
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     curr.Country_Currency__c = AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      curr.AF_Fiscal_Year_new__c = currYear;
      curr.Currency_Unit__c = 'US $';
      curr.AF_Fiscal_Year__c = system.today();
@@ -105,7 +105,7 @@ public class Test_AF_UpdateOopsEstimatesValues1
      //Insert Unilever Entity
      RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
      AF_Entity__c entity2=new AF_Entity__c();
-     entity2.Name='Indonesia';        
+     entity2.Name=AF_Constants.TEST_UNILEVER_ENTITY_COUNTRY;        
      entity2.AF_Country__c='Indonesia';
      entity2.RecordTypeId=entiRT2.Id;         
      insert entity2; 

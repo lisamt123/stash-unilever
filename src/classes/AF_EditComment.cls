@@ -43,7 +43,8 @@ public with sharing class AF_EditComment
         }
         catch(Exception ex)
         {
-                system.debug(ex);  
+                ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_EditComment','SaveComment',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+  
         }
         //return pageRef;
        

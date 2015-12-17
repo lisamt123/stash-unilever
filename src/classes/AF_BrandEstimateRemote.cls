@@ -59,9 +59,9 @@ global with sharing class AF_BrandEstimateRemote {
         orderedRow.sort();
         Map<String, AF_Entity__c> agencyNameMap = getAllAgencyEntities(agencyId);
         Map<String, String> ulNameMap = getUnileverEntitiesByName();
-        List<String> agenciesToSelect = getAgencyEntities(agencyId, brandEstimateId, 'AF_Brand_Estimate__c'); 
+        List<String> agenciesToSelect = getAgencyEntities(agencyId, brandEstimateId, AF_Constants.SOBJECT_BRANDESTIMATE_APINAME); 
         // These are the Agency Entities which are not created as Agency Estimates.
-        List<String> ulEntitiesToSelect = getUnileverEntities(brandEstimateId, 'AF_Brand_Estimate__c'); 
+        List<String> ulEntitiesToSelect = getUnileverEntities(brandEstimateId, AF_Constants.SOBJECT_BRANDESTIMATE_APINAME); 
         // These are those Unilever Entities which are not created as a record for Agency Estimates.
         
         system.debug('** agencyNameMap : ' + agencyNameMap);
@@ -88,10 +88,10 @@ global with sharing class AF_BrandEstimateRemote {
                     colAdaptation += truncateDecimal(agencyULRelationMap.get(keyMatch).AF_Adaptation__c);
                 }
             }
-            String dispColTotal = colTotal > 0 ? 'EUR ' + currencyFormatted(colTotal) : '';
-            String dispColDigital = colDigital > 0 ? 'EUR ' + currencyFormatted(colDigital) : '';
-            String dispColTraditional = colTraditional > 0 ? 'EUR ' + currencyFormatted(colTraditional) : '';
-            String dispColAdaptation = colAdaptation > 0 ? 'EUR ' + currencyFormatted(colAdaptation) : '';
+            String dispColTotal = colTotal > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(colTotal) : '';
+            String dispColDigital = colDigital > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(colDigital) : '';
+            String dispColTraditional = colTraditional > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(colTraditional) : '';
+            String dispColAdaptation = colAdaptation > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(colAdaptation) : '';
             rowDetail += '<td align=\"center\" title=\"\" class=\"totalCell details-control" t=\"' + dispColTraditional + '\" d=\"' + dispColDigital;
             rowDetail += '\" a=\"' + dispColAdaptation + '\"><a l e=\"' + dispColTotal + '\">';
             if(colTotal != 0) {
@@ -132,10 +132,10 @@ global with sharing class AF_BrandEstimateRemote {
             }
             String dispArchiveImg = (rowTotalA > 0 || isLocked) ?  '' : archiveImg;
             rowDetail += '<td align=\"center\" class=\"headRow">'+ strongStrt +  eachRow + dispArchiveImg + strongEnd + tdCloseTag;
-            String dispRowTotal = (rowTotal > 0) ? 'EUR ' + currencyFormatted(rowTotal) : '';
-            String dispRowDigital = rowDigital > 0 ? 'EUR ' + currencyFormatted(rowDigital) : '';
-            String dispRowTraditional = rowTraditional > 0 ? 'EUR ' + currencyFormatted(rowTraditional) : '';
-            String dispRowAdaptation = rowAdaptation > 0 ? 'EUR ' + currencyFormatted(rowAdaptation) : '';
+            String dispRowTotal = (rowTotal > 0) ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(rowTotal) : '';
+            String dispRowDigital = rowDigital > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(rowDigital) : '';
+            String dispRowTraditional = rowTraditional > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(rowTraditional) : '';
+            String dispRowAdaptation = rowAdaptation > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(rowAdaptation) : '';
             rowDetail += '<td align=\"center\" title=\"\" class=\"totalCell mydisplaytotal details-control" t=\"' + dispRowTraditional + '\" d=\"' + dispRowDigital;
             rowDetail += '\" a=\"' + dispRowAdaptation + '\"><a class="margin0" l e=\"' + dispRowTotal + '\">' + strongStrt + dispRowTotal + strongEnd + '</a>' + tdCloseTag;
             for(String eachCol : orderedColumn) { //Display the agency estimate records
@@ -222,7 +222,7 @@ global with sharing class AF_BrandEstimateRemote {
             rowDetailToReturn += ' class=\"modalButton3\">';
             if(total != 0) {
                 rowDetailToReturn += '<div class="imageHolder" style=\"float:left;height:100%\">' + crsBrdrImg + cmntImg;
-                rowDetailToReturn += '</div><div>' + 'EUR ' + currencyFormatted(total);
+                rowDetailToReturn += '</div><div>' + AF_Constants.AF_CURRENCY_EUR + currencyFormatted(total);
                 rowDetailToReturn = agSObj.AF_Total__c != agSObj.AF_Total_Local__c ? rowDetailToReturn + lBreak + currCode + ' ' + currencyFormatted(totalLocal) : rowDetailToReturn;
             } else if(totalWithoutRounding > 0 && totalWithoutRounding <= 499){
                 rowDetailToReturn += '<div style=\"float:left;height:100%\">' + crsBrdrImg + '<br/>' + cmntImg;
@@ -431,11 +431,11 @@ global with sharing class AF_BrandEstimateRemote {
         List<AF_Entity__c> agancyEntityList = [SELECT AF_Country__c From AF_Entity__c 
                                                 WHERE RecordTypeId = :agencyRecordTypeId AND
                                                         AF_Agency__c = :agencyId and af_inactive__c=false ORDER BY AF_Country__c];
-        if(sobjectName == 'AF_Brand_Estimate__c') {
+        if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
             for(AF_Agency_Estimate__c eachAgencyEstimate : getAgencyEstimates(sObjectId)) {
                 estimatesSet.add(eachAgencyEstimate.AF_Agency_Entity__r.AF_Country__c);
             }
-        } else if(sobjectName == 'AF_OOPS_Actual__c') {
+        } else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
             for(AF_OOPS_Estimate__c oopsEstimates : getOopsEstimates(sObjectId)) {
                 estimatesSet.add(oopsEstimates.AF_Agency_Entity__r.AF_Country__c);
             }
@@ -459,15 +459,15 @@ global with sharing class AF_BrandEstimateRemote {
         List<AF_Entity__c> unileverEntityList = [SELECT Name From AF_Entity__c 
                                                     WHERE RecordTypeId = :ulRecordTypeId ORDER BY Name];
 
-        if(sobjectName == 'AF_Brand_Estimate__c') {
+        if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
             for(AF_Agency_Estimate__c eachAgencyEstimate : getULBrandEstimates(sObjectId)) {
                 estimatesSet.add(eachAgencyEstimate.AF_Unilever_Entity__r.Name);
             }
-        } else if(sobjectName == 'AF_OOPS_Actual__c') {
+        } else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
             for(AF_OOPS_Estimate__c oopsEstimates : getULOopsEstimates(sObjectId)) {
                 estimatesSet.add(oopsEstimates.AF_Unilever_Entity__r.Name);
             }
-        } else if(sobjectName == 'AF_Bonus_Summary__c') {
+        } else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
             for(AF_Bonus_Matrix__c bonusEstimates : getULBonusEstimates(sObjectId)) {
                 estimatesSet.add(bonusEstimates.AF_Unilever_Entity__r.Name);
             }
@@ -494,17 +494,17 @@ global with sharing class AF_BrandEstimateRemote {
         Map<String, String> agULMap = new Map<String, String>();
         Set<String> columnsSet = new Set<String>();
         
-        if(sobjectName == 'AF_Brand_Estimate__c') {
+        if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
             for(AF_Agency_Estimate__c eachEst : getAgencyEstimates(sObjectId)) {
                 columnsSet.add(eachEst.AF_Agency_Entity__c);
                 agULMap.put(eachEst.AF_Agency_Entity__c+'-'+eachEst.AF_Unilever_Entity__c, eachEst.AF_Agency_Entity__c);
             }
-        }else if(sobjectName == 'AF_OOPS_Actual__c') {
+        }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
             for(AF_OOPS_Estimate__c eachEst : getOopsEstimates(sObjectId)) {
                 columnsSet.add(eachEst.AF_Agency_Entity__c);
                 agULMap.put(eachEst.AF_Agency_Entity__c+'-'+eachEst.AF_Unilever_Entity__c, eachEst.AF_Agency_Entity__c);
             }
-        }else if(sobjectName == 'AF_Bonus_Summary__c') {
+        }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
             for(AF_Bonus_Matrix__c eachEst : getBonusMatrices(sObjectId)) {
                 columnsSet.add(eachEst.AF_Agency_Entity__c);
                 agULMap.put(eachEst.AF_Agency_Entity__c+'-'+eachEst.AF_Unilever_Entity__c, eachEst.AF_Agency_Entity__c);
@@ -512,7 +512,7 @@ global with sharing class AF_BrandEstimateRemote {
         }
         Map<String, String> rowNameMap = getEntityIds(rowsArr, ulRecordTypeId, null);
         Set<String> rowsSet = new Set<String>();
-        if(sobjectName == 'AF_Bonus_Summary__c'){
+        if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
             rowsSet.addAll(rowNameMap.values());
             brandsObj = getBrandSummaryDetails(sObjectId);
             
@@ -526,15 +526,15 @@ global with sharing class AF_BrandEstimateRemote {
         for(String eachRow : rowsArr) {
             for(String eachCol : columnsSet) {
                 String key = eachCol+'-'+rowNameMap.get(eachRow);
-                if(sobjectName == 'AF_Brand_Estimate__c' && !agULMap.containsKey(key)) {
+                if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME && !agULMap.containsKey(key)) {
                     entityListsToCreate.add(buildAgencyEstimate(eachCol, rowNameMap.get(eachRow), sObjectId));
                     agULMap.put(key, key);
-                }else if(!agULMap.containsKey(key) && sobjectName == 'AF_OOPS_Actual__c') {
+                }else if(!agULMap.containsKey(key) && sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
                     entityOopsListsToCreate.add(buildOopsEstimate(eachCol, rowNameMap.get(eachRow), sObjectId));
                     agULMap.put(key, key);
-                }else if(!agULMap.containsKey(key) && sobjectName == 'AF_Bonus_Summary__c') {
+                }else if(!agULMap.containsKey(key) && sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
                     system.debug(' **eachCol ' + eachCol + '::' + rowNameMap.get(eachRow) + '::' +  sObjectId + '::' + brMap.get(rowNameMap.get(eachRow)));
-                    if(brMap.get('IsPilot')=='IsPilot'){
+                    if(brMap.get(AF_Constants.IS_PILOT)==AF_Constants.IS_PILOT){
                     entityBonusListsToCreate.add(buildBonusMatrix(eachCol, rowNameMap.get(eachRow), sObjectId, brMap.get('Null')));
                     agULMap.put(key, key);
                     }else{
@@ -547,13 +547,13 @@ global with sharing class AF_BrandEstimateRemote {
             }
         }
         
-        if(sobjectName == 'AF_Brand_Estimate__c') {
+        if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
             system.debug('** entityListsToCreate : ' + entityListsToCreate);
             insert entityListsToCreate;
-        }else if(sobjectName == 'AF_OOPS_Actual__c'){
+        }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME){
             system.debug('** entityOopsListsToCreate : ' + entityOopsListsToCreate);
             insert entityOopsListsToCreate;
-        }else if(sobjectName == 'AF_Bonus_Summary__c'){
+        }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
             system.debug('** entityBonusListsToCreate : ' + entityBonusListsToCreate);
             insert entityBonusListsToCreate;
         }
@@ -567,7 +567,7 @@ global with sharing class AF_BrandEstimateRemote {
         List<AF_Agency_Estimate__c> agencyEstimatesToDelete = new List<AF_Agency_Estimate__c>();
         List<AF_OOPS_Estimate__c> oopsEstimatesToDelete = new List<AF_OOPS_Estimate__c>();
         List<AF_Bonus_Matrix__c> bonusMatrixToDelete = new List<AF_Bonus_Matrix__c>();
-        if(sobjectName == 'AF_Brand_Estimate__c') {
+        if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
             for(AF_Agency_Estimate__c eachAgencyEstimate : archiveAgencyEstimatesPerUnileverEntity(rowName, sObjectId)) {
                 agencyEstimatesToDelete.add(eachAgencyEstimate);
             }
@@ -575,16 +575,17 @@ global with sharing class AF_BrandEstimateRemote {
             delete agencyEstimatesToDelete;
             }
             catch(Exception e){
-                system.debug(e);
+                ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveAgencyEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+
             }
-        }else if(sobjectName == 'AF_OOPS_Actual__c') {
+        }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
             for(AF_OOPS_Estimate__c eachOopsEstimate : archiveOopsEstimatesPerUnileverEntity(rowName, sObjectId)) {
                 system.debug(' ** eachOopsEstimate : ' + eachOopsEstimate);
                 oopsEstimatesToDelete.add(eachOopsEstimate);
             }
             system.debug('** oopsEstimatesToDelete : ' + oopsEstimatesToDelete);
             delete oopsEstimatesToDelete;
-        }else if(sobjectName == 'AF_Bonus_Summary__c') {
+        }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
             for(AF_Bonus_Matrix__c eachBonusMatrix : archiveBonusMatrixPerUnileverEntity(rowName, sObjectId)) {
                 bonusMatrixToDelete.add(eachBonusMatrix);
             }
@@ -598,7 +599,7 @@ global with sharing class AF_BrandEstimateRemote {
         List<AF_Agency_Estimate__c> agencyEstimatesToDelete = new List<AF_Agency_Estimate__c>();
         List<AF_OOPS_Estimate__c> oopsEstimatesToDelete = new List<AF_OOPS_Estimate__c>();
         List<AF_Bonus_Matrix__c> bonusMatrixToDelete = new List<AF_Bonus_Matrix__c>();
-        if(sobjectName == 'AF_Brand_Estimate__c') {
+        if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
             for(AF_Agency_Estimate__c eachAgencyEstimate : archiveAgencyEstimatesPerAgencyEntity(colsArr, sObjectId)) {
                 agencyEstimatesToDelete.add(eachAgencyEstimate);
             }
@@ -606,9 +607,9 @@ global with sharing class AF_BrandEstimateRemote {
             delete agencyEstimatesToDelete;
             }
             catch(Exception e){
-                system.debug(e);
+            ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
             }
-        }else if(sobjectName == 'AF_OOPS_Actual__c') {
+        }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
             for(AF_OOPS_Estimate__c eachOopsEstimate : archiveOopsEstimatesPerAgencyEntity(colsArr, sObjectId)) {
                 oopsEstimatesToDelete.add(eachOopsEstimate);
             }
@@ -616,9 +617,9 @@ global with sharing class AF_BrandEstimateRemote {
             delete oopsEstimatesToDelete;
             }
             catch(Exception e){
-                system.debug(e);
+            ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateRemote','archiveUnileverEntityToEstimates',e.getMessage(),e.getTypeName(),e.getStackTraceString());
             }
-        }else if(sobjectName == 'AF_Bonus_Summary__c') {
+        }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
             for(AF_Bonus_Matrix__c eachBonusMatrix : archiveBonusMatrixPerAgencyEntity(colsArr, sObjectId)) {
                 bonusMatrixToDelete.add(eachBonusMatrix);
             }
@@ -639,24 +640,24 @@ global with sharing class AF_BrandEstimateRemote {
         Map<String, String> colNameMap = getEntityIds(colsArr, agRecordTypeId, agencyId);
         Map<String, String> agULMap = new Map<String, String>();
         Set<String> rowsSet = new Set<String>();
-        if(sobjectName == 'AF_Brand_Estimate__c') {
+        if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
             for(AF_Agency_Estimate__c eachEst : getAgencyEstimates(sObjectId)) {
                 rowsSet.add(eachEst.AF_Unilever_Entity__c);
                 agULMap.put(eachEst.AF_Agency_Entity__c+'-'+eachEst.AF_Unilever_Entity__c, eachEst.AF_Unilever_Entity__c);
             }
-        }else if(sobjectName == 'AF_OOPS_Actual__c') {
+        }else if(sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
             for(AF_OOPS_Estimate__c eachEst : getOopsEstimates(sObjectId)) {
                 rowsSet.add(eachEst.AF_Unilever_Entity__c);
                 agULMap.put(eachEst.AF_Agency_Entity__c+'-'+eachEst.AF_Unilever_Entity__c, eachEst.AF_Unilever_Entity__c);
             }
-        }else if(sobjectName == 'AF_Bonus_Summary__c') {
+        }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
             for(AF_Bonus_Matrix__c eachEst : getBonusMatrices(sObjectId)) {
                 rowsSet.add(eachEst.AF_Unilever_Entity__c);
                 agULMap.put(eachEst.AF_Agency_Entity__c+'-'+eachEst.AF_Unilever_Entity__c, eachEst.AF_Unilever_Entity__c);
             }
         }
         
-        if(sobjectName == 'AF_Bonus_Summary__c'){
+        if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
             brandsObj = getBrandSummaryDetails(sObjectId);
             brMap = getBonusResultsMap(rowsSet, brandsObj);
         }
@@ -664,15 +665,15 @@ global with sharing class AF_BrandEstimateRemote {
         for(String eachCol : colsArr) {
             for(String eachRow : rowsSet) {
                 String key = colNameMap.get(eachCol)+'-'+eachRow;
-                if(sobjectName == 'AF_Brand_Estimate__c' && !agULMap.containsKey(key)) {
+                if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME && !agULMap.containsKey(key)) {
                     entityListsToCreate.add(buildAgencyEstimate(colNameMap.get(eachCol), eachRow, sObjectId));
                     agULMap.put(key, key);
-                }else if(!agULMap.containsKey(key) && sobjectName == 'AF_OOPS_Actual__c') {
+                }else if(!agULMap.containsKey(key) && sobjectName == AF_Constants.SOBJECT_OOPSACTUAL_APINAME) {
                     entityOopsListsToCreate.add(buildOopsEstimate(colNameMap.get(eachCol), eachRow, sObjectId));
                     agULMap.put(key, key);
-                }else if(!agULMap.containsKey(key) && sobjectName == 'AF_Bonus_Summary__c') {
+                }else if(!agULMap.containsKey(key) && sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
                     system.debug('** brMap.get(eachRow) : ' + brMap.get(eachRow) + ' :: ' + eachRow);
-                    if(brMap.get('IsPilot')=='IsPilot'){
+                    if(brMap.get(AF_Constants.IS_PILOT)==AF_Constants.IS_PILOT){
                     entityBonusListsToCreate.add(buildBonusMatrix(colNameMap.get(eachCol), eachRow, sObjectId, brMap.get('Null')));
                     agULMap.put(key, key);
                     }else{
@@ -684,13 +685,13 @@ global with sharing class AF_BrandEstimateRemote {
             }
         }
         
-        if(sobjectName == 'AF_Brand_Estimate__c') {
+        if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
             system.debug('** entityListsToCreate : ' + entityListsToCreate);
             insert entityListsToCreate;
-        }else if(sobjectName == 'AF_OOPS_Actual__c'){
+        }else if(sobjectName ==AF_Constants.SOBJECT_OOPSACTUAL_APINAME){
             system.debug('** entityOopsListsToCreate : ' + entityOopsListsToCreate);
             insert entityOopsListsToCreate;
-        }else if(sobjectName == 'AF_Bonus_Summary__c'){
+        }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
             system.debug('** entityBonusListsToCreate : ' + entityBonusListsToCreate);
             insert entityBonusListsToCreate;
         }
@@ -710,7 +711,7 @@ global with sharing class AF_BrandEstimateRemote {
         List<AF_Bonus_Matrix__c> entityBonusListsToCreate = new List<AF_Bonus_Matrix__c>();
         Map<String, String> colNameMap = getEntityIds(colsArr, agRecordTypeId, agencyId);
         Map<String, String> rowNameMap = getEntityIds(rowsArr, ulRecordTypeId, null);
-        if(sobjectName == 'AF_Bonus_Summary__c'){
+        if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
             brandsObj = getBrandSummaryDetails(sObjectId);
             brMap = getBonusResultsMap(rowsIdSet, brandsObj);
         }
@@ -724,13 +725,13 @@ global with sharing class AF_BrandEstimateRemote {
         for(String eachCol : colsArr) {
             for(String eachRow : rowsArr) {
                 String key = eachCol+'-'+eachRow;
-                if(!agULMap.containsKey(key) && sobjectName == 'AF_Brand_Estimate__c') {
+                if(!agULMap.containsKey(key) && sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
                     entityListsToCreate.add(buildAgencyEstimate(colNameMap.get(eachCol), rowNameMap.get(eachRow), sObjectId));
                     agULMap.put(key, key);
-                }else if(!agULMap.containsKey(key) && sobjectName == 'AF_Bonus_Summary__c') {
+                }else if(!agULMap.containsKey(key) && sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME) {
                     system.debug('** eachRow : ' + eachRow + ' :: ' + rowNameMap.get(eachRow));
                     
-                    if(brMap.get('IsPilot')=='IsPilot'){
+                    if(brMap.get(AF_Constants.IS_PILOT)==AF_Constants.IS_PILOT){
                    entityBonusListsToCreate.add(buildBonusMatrix(colNameMap.get(eachCol), rowNameMap.get(eachRow), sObjectId, brMap.get('Null')));
                     agULMap.put(key, key);
                     }else{
@@ -742,10 +743,10 @@ global with sharing class AF_BrandEstimateRemote {
             }
         }
         
-        if(sobjectName == 'AF_Brand_Estimate__c') {
+        if(sobjectName == AF_Constants.SOBJECT_BRANDESTIMATE_APINAME) {
             system.debug('** entityListsToCreate : ' + entityListsToCreate);
             insert entityListsToCreate;
-        }else if(sobjectName == 'AF_Bonus_Summary__c'){
+        }else if(sobjectName == AF_Constants.SOBJECT_BONUS_SUMMARY_APINAME){
             system.debug('** entityBonusListsToCreate : ' + entityBonusListsToCreate);
             insert entityBonusListsToCreate;
         }
@@ -808,7 +809,7 @@ global with sharing class AF_BrandEstimateRemote {
            
         }
         if(isPilotmodel2){
-        bRMapToReturn.put('IsPilot', 'IsPilot');
+        bRMapToReturn.put(AF_Constants.IS_PILOT, AF_Constants.IS_PILOT);
         }
         system.debug('bRMapToReturn --- '+bRMapToReturn);
         return bRMapToReturn;

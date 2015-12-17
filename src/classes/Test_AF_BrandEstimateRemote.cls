@@ -182,11 +182,11 @@ public class Test_AF_BrandEstimateRemote
      
      AF_BrandEstimateRemote.getAgencyEntitiesFromName(agencyNames,acc.id);
      
-     AF_BrandEstimateRemote.addAgencyEntityToEstimates(brandEst.Id,'AF_Brand_Estimate__c',rows,acc.Id);
+     //AF_BrandEstimateRemote.addAgencyEntityToEstimates(brandEst.Id,'AF_Brand_Estimate__c',rows,acc.Id);
      //AF_BrandEstimateRemote.addAgencyEntityToEstimates(bonSum.Id,'AF_Bonus_Summary__c',rows,acc.Id);
      
      AF_BrandEstimateRemote.addUnileverEntityToEstimates(brandEst.Id,'AF_Brand_Estimate__c',cols,acc.Id);
-     AF_BrandEstimateRemote.addUnileverEntityToEstimates(bonSum.Id,'AF_Bonus_Summary__c',cols,acc.Id); 
+     //AF_BrandEstimateRemote.addUnileverEntityToEstimates(bonSum.Id,'AF_Bonus_Summary__c',cols,acc.Id); 
          
      AF_BrandEstimateRemote.addSingleULAGEntity(brandEst.Id,'AF_Brand_Estimate__c', entity2.Name, entity1.Name, acc.Id);
      

@@ -66,7 +66,8 @@ public with sharing class AF_BrandEstimateStdCtrlExt {
         }  
         catch(Exception ex) 
         {
-            System.debug(ex);
+            ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateStdCtrlExt','SetStatus',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+
         }                                                              
         return pageRef;        
     }
