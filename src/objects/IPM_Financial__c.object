@@ -994,6 +994,19 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <visibleLines>25</visibleLines>
     </fields>
     <fields>
+        <fullName>IPM_Inoplan_Fin_External_Id__c</fullName>
+        <description>IPM Inoplan Fin External Id - To be used by Data Migration</description>
+        <externalId>true</externalId>
+        <label>IPM_Inoplan_Fin_External_Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Project_Rollout__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
