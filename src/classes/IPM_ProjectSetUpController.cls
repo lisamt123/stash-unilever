@@ -283,7 +283,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 if(!availableCategoryStringSet.isEmpty())
                 {
                     availableCategoryStringList.addAll(availableCategoryStringSet);
-                    project.IPM_Region_Shr__c=availableCategoryList[0].IPM_TxtGeographical_Scope__c;
+                    if(project.Market_Cluster_Name__c!=null){
+                        project.IPM_Region_Shr__c=project.Market_Cluster_Name__c;
+                    }else{
+                        project.IPM_Region_Shr__c=availableCategoryList[0].IPM_TxtGeographical_Scope__c;
+                    } 
+                    
                     // Check if category List is equals to 1, go ahead and populate BrandPositioning 
                     if(availableCategoryStringList.size() == 1)
                     {

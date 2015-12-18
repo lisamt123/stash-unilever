@@ -412,15 +412,8 @@ Global with sharing class IPM_BosscardController {
         }
                           
         else {
-            try{
-                splitSaveMethod();
-                            
-            } 
-            catch(Exception ex){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
-                                                           IPM_ConstantUtils.IPM_BOSS_SAVE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);    
-            }           
-        }       
+           splitSaveMethod();
+         }       
     }
     
     /********************************************************************************
@@ -567,7 +560,13 @@ Global with sharing class IPM_BosscardController {
             bosscard.id=BossCUrl_ID;
         if(String.isNotBlank(bosscard.id)){
             Bossupdatedlst.add(bossCard);
-            update bossCard;
+            try{
+            	update bossCard;
+            }
+            catch(Exception ex){
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
+                                                           IPM_ConstantUtils.IPM_BOSS_SAVE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);    
+            } 	
             category_Booln=false;
             company_Booln=false;
             isSave=true; 
@@ -610,6 +609,7 @@ Global with sharing class IPM_BosscardController {
         bosscard.IPM_Gate_Keeper__c=null;
         try{
             update bosscard;
+            isAddApprover=true;
         }
         catch(Exception ex) {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
