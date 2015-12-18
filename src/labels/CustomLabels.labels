@@ -8216,6 +8216,20 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Innovation Year ITO Cannot be greater than GTO, Please Paste(ctrl + V) correct Data!!</value>
     </labels>
     <labels>
+        <fullName>IPM_ITO_GTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ITO_GTO_CALENDAR</shortDescription>
+        <value>Calendar Year ITO Cannot be greater than GTO.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ITO_GTO_INNOVATION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ITO_GTO_INNOVATION</shortDescription>
+        <value>Innovation Year ITO Cannot be greater than GTO.</value>
+    </labels>
+    <labels>
         <fullName>IPM_IdsApprovalNotNullMSg</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11656,6 +11670,20 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_TLD_SHOULD_BE_GREATER_THAN_TODAYDate</shortDescription>
         <value>Please select TLD more than current date</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLD_VR_Misaligned</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLD_VR_Misaligned</shortDescription>
+        <value>Target Launch Date for {0} is misaligned: Value at Regional = {1} value at Local = {2}</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLD_VR_Misaligned_Part_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLD_VR_Misaligned_Part_Msg</shortDescription>
+        <value>is misaligned: Value at Regional</value>
     </labels>
     <labels>
         <fullName>IPM_TOPPING_UP_ON_THINGS</fullName>

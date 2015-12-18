@@ -81,9 +81,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         get {
             Boolean flag = false;
             
-            //if(currentFinancial!=null && (currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) || currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY))) {
-            if(currentFinancial!=null && (currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE))) {
-                
+            if(currentFinancial!=null && (currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) || currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY))) {
+                 
                 flag = true;
             }
             return flag;
@@ -304,9 +303,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
     public void updateCountry()
     { 
+    	try{
         IPM_Country__c UpdateCountry = [Select Country_Name__c, Id, Calculation_Index__c From IPM_Country__c where Id =: Country Limit 1];
         UpdateCountry.Calculation_Index__c = CheckCountry;
         update UpdateCountry;
+    	} catch (Exception ex){
+            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+       }
     }
     
     /*******************************************************************************************************
@@ -1581,7 +1584,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         }        
                     return isValidationFailed;
     }
-//DEF2339 & DEF2344 fix start
+
     private Boolean validateMilestoneAndFinacialData() {
         Date milestoneDate = getProjectMilestoneDate();
         Boolean result = milestoneDate!=null && 
@@ -2063,15 +2066,22 @@ private Date getProjectMilestoneDate(){
 
         //-------------- CURRENCY RELATED CHANGES ENDS HERE ------------------
     public pageReference loadCurrencyPage(){
-        pageReference pg = new pageReference('/apex/IPM_Financial_Currency?id='+ project.id);
-        return pg;
+    	try{
+            PageReference templatePage = Page.IPM_Financial_Currency;
+            templatePage.getParameters().put(IPM_ConstantUtils.SF_ID, project.Id);
+            templatePage.setRedirect(true);
+            return templatePage;
+    	 } catch (Exception eX){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                    null,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+            isError = true;
+            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            return null;
+        }
+       
     }
     
-    /*
-        @description - Query all the currency data and build a map so that when currecy is changed, respective exchange rate can be applied
-        @by - Sanjay Singh
-        @date - 14/10/2015
-        */
+   
     
     String[] currencies = new String[]{};
     public decimal decMultFactor = 1;
@@ -2118,41 +2128,7 @@ private Date getProjectMilestoneDate(){
             return null;
         }
     
-    /*This methid is called every time currency is changed on IPM_Financial_Currency page*/
-    /* DO NOT DELETE - KEPT FOR PERFORMANCE CHECK
-    private void getFinancialsPartial(){
-        if (currentFinancial != NULL){
-            financialsInnovation = new IPM_FinancialWrapper();
-            financialsCalendar = new IPM_FinancialWrapper();
-            
-            volumeUnit = (String) currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
-            
-            For (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
-                //Add to Map
-                mapFinancialYears.put(generateMapKey(finYear.Year_Type__c, finYear.Year__c, finYear.PL_Type__c), finYear);
-                
-                //Innovation Years
-                if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_INNOVATION){
-                    generateFinancials(finYear, financialsInnovation);
-                                  
-                }
-                //Calendar Years
-                else if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR){
-                    generateFinancials(finYear, financialsCalendar);
-                    
-               }
-            }
-           
-        }else{
-            //When page is loaded [currentFinancial] has all the data so no need to query every time currency is changed
-            getFinancials();
-        }
-    }*/
     
-    /*public pageReference goBacktoFin(){
-        pageReference ref = new pageReference('/apex/IPM_Financial?id='+projectId);
-        return ref;
-    }*/
     //-------------- CURRENCY RELATED CHANGES ENDS HERE ------------------
     /*******************************************************************************************************
     * @description  Used to align TLD of MCO/Country with Local Rollout Project
@@ -2245,8 +2221,8 @@ private Date getProjectMilestoneDate(){
             if(localProjectTLD!= '' && localProjectTLD!=localProjectRolloutTLD) {
                 flag = true;
                 isMisalignedTLD  = true;
-                validationErrorMessage = 'Target Launch Date for '+localProjectName+' is misaligned: Value at Regional = '+localProjectRolloutTLD+'; value at Local = '+localProjectTLD;
-            } else if(validationErrorMessage.contains('is misaligned: Value at Regional')) {
+                validationErrorMessage = String.format(Label.IPM_TLD_VR_Misaligned,new List<String>{localProjectName,localProjectRolloutTLD,localProjectTLD});
+            } else if(validationErrorMessage.contains(Label.IPM_TLD_VR_Misaligned_Part_Msg)) {
                 isMisalignedTLD  = false;
                 validationErrorMessage = '';
             }          
