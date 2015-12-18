@@ -180,13 +180,20 @@
                                             <apex:actionStatus startText="" id="refreshPos" startStyleClass="proInit"/>    
                                             <apex:outputPanel id="SingleBrandPanel" rendered="{!NOT(projectMetadata.IPM_MultipleBrandPosApplicable__c)}">
                                                 <label class="ipmSelect custSelectWidth">
-                                                    <apex:selectList value="{!project.IPM_Brand_Positioning__c}" multiselect="false" size="1" styleClass="selBrandPos" >
+                                                    <apex:selectList value="{!project.IPM_Brand_Positioning__c}" multiselect="false" size="1" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),true,false)}"  styleClass="selBrandPos" >
                                                         <apex:selectOptions value="{!brandPos}"></apex:selectOptions>
                                                     </apex:selectList>
                                                 </label>
                                             </apex:outputPanel>
                                             <apex:outputPanel layout="block" rendered="{!AND(projectMetadata.IPM_MultipleBrandPosApplicable__c)}" styleClass="noPadright noPadleft dropdown brandposListContainer ipmDropDown" >    
-                                                <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clickCmiList" >
+                                                
+                        <apex:outputPanel rendered="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),true,false)}"  >
+                            <apex:OutputText value="{!project.IPM_Brand_Positioning__c}" id="brandPosDisableField"/>
+                        </apex:outputPanel>
+                        
+                        <apex:outputpanel rendered="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),false,true)}">
+                        
+                        <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clickCmiList" >
                                                     <div class="ipmDropDownSelect">
                                                         <span class='brandSelValues'>Select</span>
                                                         <a class="listArrow"></a>    
@@ -211,8 +218,10 @@
                                                             </div>
                                                         </li>
                                                     </apex:outputPanel>
-                                                </apex:outputPanel>      
-                                            </apex:outputPanel>              
+                                                </apex:outputPanel>  
+                        </apex:outputPanel>
+                                            </apex:outputPanel>
+                        
                                             <apex:outputPanel layout="block">
                                                 <apex:outputText value="{!$Label.IPM_SELECT_BRAND_POSITIONING}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Brand_Positioning__c'))}" styleClass="brandErrMsg"/>
                                             </apex:outputPanel>
