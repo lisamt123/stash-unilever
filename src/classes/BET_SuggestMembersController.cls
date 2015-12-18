@@ -361,13 +361,17 @@ public with sharing class BET_SuggestMembersController {
 
         System.debug('Exiting method addMembers method processes with success');
         if(callbackCtrl != null){
-            PageReference pr = new PageReference(callbackCtrl);
-            pr.setRedirect(true);
-            return pr;
+            return goToCallback(callbackCtrl);
         }        
         
         return null;
 	}
+
+    public PageReference goToCallback(String callback){
+        PageReference pr = new PageReference(callback);
+        pr.setRedirect(true);
+        return pr;
+    }
 	
 	public void insertMemberRequestsRecords(Id betFollowRequestId,Id betOwnerId){
 		List<BET_Member_Request__c> betMembersToInsert = new List<BET_Member_Request__c>();
