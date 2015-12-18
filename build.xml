@@ -567,25 +567,13 @@
   <!-- *************************************************************************************** -->
   <!-- CI Sandbox setup scripts to allow data dependent tests to pass                          -->
   <!-- *************************************************************************************** -->
-  <target name="sandbox-setup" depends="enable-deploy-user">
+  <target name="sandbox-setup">
     <echo level="info">CI Sandbox setup scripts to allow data dependent tests to pass</echo>
     <antcall target="ExecAnonScript">
       <param name="what" value="${basedir}/scripts/sandbox-setup.apex" />
       <param name="username" value="${sf.username}" />
       <param name="password" value="${sf.password}" />
       <param name="serverurl" value="${sf.serverurl}"/>
-    </antcall>
-  </target>
-  <!-- *************************************************************************************** -->
-  <!-- Enable CI deploy user which is used to run unit tests                                   -->
-  <!-- *************************************************************************************** -->
-  <target name="enable-deploy-user">
-    <echo level="info">Enable CI deploy user which is used to run unit tests</echo>
-    <antcall target="ExecAnonScript">
-      <param name="what" value="${basedir}/scripts/enable-deploy-user.apex" />
-      <param name="username" value="${sf.username}" />
-      <param name="password" value="${sf.password}" />
-      <param name="host" value="${sf.serverurl}"/>
     </antcall>
   </target>
   <!-- **************************************************************************************** -->
