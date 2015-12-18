@@ -1269,7 +1269,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 finWrapper.lstIncrementalPLValueMarketShare.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Value_Market_Share_Regional__c, finYear.Value_Market_Share_Local__c, finYear.Value_Market_Share_Difference__c, 1));
                 finWrapper.lstIncrementalPLVolume.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Regional__c, finYear.Volume_Local__c, finYear.Volume_Difference__c));
                 finWrapper.lstIncrementalPLVolumeTons.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Volume_Tons_Regional__c, finYear.Volume_Tons_Local__c, finYear.Volume_Tons_Difference__c));
-                finWrapper.lstIncrementalPLTurnover.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX), finYear.Turnover_Regional__c, finYear.Turnover_Local__c, finYear.Turnover_Difference__c));
+                finWrapper.lstIncrementalPLTurnover.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX)* decMultFactor, finYear.Turnover_Regional__c, finYear.Turnover_Local__c, finYear.Turnover_Difference__c));
                 finWrapper.lstIncrementalPLGrossProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Gross_Profit_Regional__c , finYear.Gross_Profit_Local__c, finYear.Gross_Profit_Difference__c));
                 finWrapper.lstIncrementalPLAdvertising.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Advertising_Promotions_Regional__c , finYear.Advertising_Promotions_Local__c, finYear.Advertising_Promotions_Difference__c));
                 finWrapper.lstIncrementalPLProfit.add(new IPM_FinancialValueWrapper(Integer.valueOf(finYear.Year__c), (Decimal) finYear.get(IPM_ConstantUtils.FIELD_LITERAL_PROFIT_BEFORE_OVERHEADS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) * decMultFactor, finYear.Profit_Before_Overheads_Regional__c, finYear.Profit_Before_Overheads_Local__c, finYear.Profit_Before_Overheads_Difference__c));
@@ -2265,7 +2265,7 @@ private Date getProjectMilestoneDate(){
                                 }
                             }
                         }                                                   
-                        if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c.format()!=null){
+                        if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c !=null){
                                 showMisalignedConfirmbtn = mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c;
                                 currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();  
                                 previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();                               
@@ -2276,8 +2276,8 @@ private Date getProjectMilestoneDate(){
                                 }
                         }                        
                 }
-            }else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
-                if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c.format()!=null){
+            }else if(project!=null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
+                if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c !=null){
                     showMisalignedConfirmbtn = mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c;
                     previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();
                     currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();                 
@@ -2286,8 +2286,9 @@ private Date getProjectMilestoneDate(){
                     } else if (mcoCountryRolloutPlan.Target_Launch_Date__c.format() == mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format() ){
                         showMisalignedConfirmbtn = true;
                     }  
-            } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
-                    if(localRolloutProject.Previous_Target_Launch_Date__c !=null && localRolloutProject.IPM_Target_Launch_Dates__c.format() !=null){
+                 }    
+            } else if(project!=null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+                    if(localRolloutProject != null && localRolloutProject.Previous_Target_Launch_Date__c !=null && localRolloutProject.IPM_Target_Launch_Dates__c !=null){
                         showMisalignedConfirmbtn = localRolloutProject.MisAligned_Confirmed_By_Finance_Leader__c;
                         previousTargetLaunchDate = localRolloutProject.Previous_Target_Launch_Date__c.format();
                         currentTargetLaunchDate = localRolloutProject.IPM_Target_Launch_Dates__c.format();
@@ -2297,7 +2298,7 @@ private Date getProjectMilestoneDate(){
                             showMisalignedConfirmbtn = true;
                         } 
                     } 
-                } 
+                 
             } 
         } 
 }

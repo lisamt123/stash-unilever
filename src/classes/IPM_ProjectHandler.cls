@@ -725,7 +725,20 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             // Call IPM BET Helper method to send IPM updates to BET
             IPM_BETHelper.sendIPMupdatetoBET((List<IPM_Project__c>)Trigger.New, (List<IPM_Project__c>)Trigger.Old);
            // EPIC172 implementation start
-               //removed the custompermission 
+           
+           
+            Map<ID,IPM_Project__c> updatedProjects = new Map<ID,IPM_Project__c>();
+            Map<Id,IPM_Project__c> mapNewProjects = (Map<Id,IPM_Project__c>)Trigger.newMap;
+            Map<Id,IPM_Project__c> mapOldProjects = (Map<Id,IPM_Project__c>)Trigger.oldMap;
+            for(IPM_Project__c project: mapNewProjects.values()) {
+                if ( project.IPM_Target_Launch_Dates__c != mapOldProjects.get(project.Id).IPM_Target_Launch_Dates__c ) {
+                    updatedProjects.put(project.Id,project);
+                }
+            }
+            if(!updatedProjects.isEmpty()) {
+                IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
+                syncFinanceTableTLD.syncProjectFinancialTLD(updatedProjects);
+            }
             // EPIC172 implementation end
             
               

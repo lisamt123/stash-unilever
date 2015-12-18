@@ -9,7 +9,7 @@
 
 
 <apex:component controller="IPM_RolloutPlansTableController" allowDML="true"> 
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_editproject.css')}"/>  
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_EditProject.css')}"/>  
 
     <apex:outputPanel rendered="{!isError}">
         <div class="finGreyBG">

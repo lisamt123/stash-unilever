@@ -172,6 +172,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                         if(!oldfinancial.Copy_Global_to_Regional__c )
                         {
                             newfinancial.Copy_Global_to_Regional__c = true;
+                        }else{
+                            newfinancial.Copy_Global_to_Regional__c = false;
                         }
                     }
                 }
@@ -179,7 +181,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             }
         }
         
-       /* if(newfinancial.Local_Project__c !=null && newFinancial.RecordtypeID != CONSOLIDATED_FINANCIAL_RECORDTYPE)
+        if(newfinancial.Local_Project__c !=null && newFinancial.RecordtypeID != CONSOLIDATED_FINANCIAL_RECORDTYPE)
         {
             Id localProjectId = newfinancial.Local_Project__c; 
             if(associatedProjectMap.containsKey(localProjectId))
@@ -190,19 +192,23 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                     if( project.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.ROLLOUT_COPYOVER_ELIGIBLE_PHASE || 
                         project.IPM_CompanyCardText__c == IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL )
                     {
-                       /* if(!oldfinancial.Copy_Global_to_Local__c)
+                        if(!oldfinancial.Copy_Global_to_Local__c)
                         {
-                            //newfinancial.Copy_Global_to_Local__c = true;
+                            newfinancial.Copy_Global_to_Local__c = true;
+                        }else{
+                        	newfinancial.Copy_Global_to_Local__c = false;
                         }
                         
                         if(!oldfinancial.Copy_Regional_to_Local__c)
                         {
-                            //newfinancial.Copy_Regional_to_Local__c = true;
+                            newfinancial.Copy_Regional_to_Local__c = true;
+                        }else{
+                        	newfinancial.Copy_Regional_to_Local__c = false;
                         }
                     }
                 }
             }
-        }*/
+        }
     }
     
     /**

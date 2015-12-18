@@ -228,7 +228,7 @@
 	IF(AND(Year_3_iTO_Global__c &gt;=15000, Year_3_iTO_Global__c&lt;50000), 
 		&quot;Large&quot;, 
 		IF( AND(Year_3_iTO_Global__c &gt;=3000, Year_3_iTO_Global__c&lt;15000), 
-			&quot;Mid&quot;, 
+			&quot;Medium&quot;, 
 			IF( OR(Year_3_iTO_Global__c=0, ISNULL(Year_3_iTO_Global__c)), 
 				&quot;&quot;, 
 				&quot;Small&quot;

@@ -929,7 +929,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         for(IPM_Milestone__c i :milestones){
             if(leastProjectMilestonesDate == null){
                 leastProjectMilestonesDate = i.IPM_Due_Date__c;
-            } else if(leastProjectMilestonesDate < i.IPM_Due_Date__c){
+            } else if(leastProjectMilestonesDate > i.IPM_Due_Date__c){
                 leastProjectMilestonesDate = i.IPM_Due_Date__c;
             } 
         }

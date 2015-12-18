@@ -7,7 +7,7 @@
 **********************************************************************************************************************************************************
 -->
 <apex:component controller="IPM_RolloutPlansTableController" allowDML="true">
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_editproject.css')}"/> 
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_EditProject.css')}"/> 
     <apex:outputPanel rendered="{!isError}">
         <div class="finGreyBG">    
             <apex:outputText value="{!errorMessage}" rendered="{!AND(errorMessage!=null,LEN(errorMessage)>0)}"/>
@@ -40,8 +40,8 @@
                 </div>
             </apex:outputPanel>
         </div>        
-         <apex:outputPanel id="validationErrorMsg" rendered="{!AND(NOT(ISNULL(validationError)),NOT(ISBLANK(validationError)))}">
-            <apex:outputText styleClass="rolloutErrorBox" value="{!validationError}"/> 
+         <apex:outputPanel id="validationErrorMsg">
+            <apex:outputText styleClass="rolloutErrorBox" value="{!validationError}" rendered="{!AND(NOT(ISNULL(validationError)),NOT(ISBLANK(validationError)))}"/> 
         </apex:outputPanel>
         
         <table class="ipmTable table table-bordered myListTable">

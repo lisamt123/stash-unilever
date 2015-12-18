@@ -541,7 +541,7 @@
                   
                             <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">     
                     <td>
-                        <apex:outputText value="{!fin.Business_Impact_Global__c}"/>
+                        <apex:outputText value="{!globalbusinessImpactStr}"/>
                     </td>
                     </apex:outputText>
                  
@@ -549,7 +549,7 @@
                     
                             <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">     
                     <td>
-                        <apex:outputText value="{!fin.Business_Impact_Local__c}"/>
+                        <apex:outputText value="{!globalbusinessImpactStr}"/>
                     </td>
                     </apex:outputText>
                     
@@ -557,7 +557,7 @@
 
                             <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">     
                     <td>
-                        <apex:outputText value="{!fin.Business_Impact_Regional__c}"/>
+                        <apex:outputText value="{!globalbusinessImpactStr}"/>
                     </td>
                  
                     </apex:outputText>

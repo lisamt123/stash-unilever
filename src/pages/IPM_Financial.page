@@ -187,6 +187,12 @@
                                                         <div class="col-sm-6">
                                                                 <div class="ipmfinHeading1">Financial Business Case - {!currentFinancial.Display_Name__c}</div>                                                                                                                             
                                                          </div>
+                                                         		<apex:outputPanel id="msgss" rendered="{!isEditMode}">
+                                                                    <div class="misAlignedTLD">
+                                                                        <apex:outputText value="{!$Label.IPM_Label_for_Financial_Edit}"/>
+                                                                    </div>
+                                                                </apex:outputPanel>
+                                                                
                                                             <div role="tabpanel" class="tab-pane {!IF(currentTab == 'myview', 'active', '')}" id="myView">
                                                             <!-- Project Name Header -->
                                                             <div class="row">

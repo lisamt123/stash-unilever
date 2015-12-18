@@ -443,17 +443,20 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
            //DEF2103 - Copy Global Business Impact for Regional and Local projects from Global Project
            if(project.IPMProject_Span__c=='Regional'){
                list<IPM_Financial__c> liFinParentReg = [select Business_Impact_Global__c from IPM_Financial__c where (Parent_Project__c=:project.IPM_Parent_Project__c OR global_project_id__c=:project.IPM_Parent_Project__c) and parent_project__r.IPMProject_Span__c='Global' limit 1];
-               if (liFinParentReg!=null && liFinParentReg.size()>0){
-                   globalbusinessImpactStr += liFinParentReg[0].Business_Impact_Global__c;
-               }
+	            if (liFinParentReg!=null && liFinParentReg.size()>0){
+	                globalbusinessImpactStr = liFinParentReg[0].Business_Impact_Global__c;
+	            }
            }
            else if(project.IPMProject_Span__c=='Local'){
                list<IPM_Financial__c> liFinParentLoc = [select Business_Impact_Global__c from IPM_Financial__c where global_project_id__c=:project.IPM_Global_Project_Id__c and parent_Project__c=:project.IPM_Global_Project_Id__c limit 1];
-               if (liFinParentLoc!=null && liFinParentLoc.size()>0){
-                   globalbusinessImpactStr += liFinParentLoc[0].Business_Impact_Global__c;
-               }
+	            if (liFinParentLoc!=null && liFinParentLoc.size()>0){
+	                globalbusinessImpactStr = liFinParentLoc[0].Business_Impact_Global__c;
+	            }
            }
-           
+        //DEF3019
+        if (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+           	globalbusinessImpactStr = IPM_ConstantUtils.BLANK;	
+        }
          BusinessCaseMessageMap = new Map<String, String>();
         List<IPM_Financial__c> financialList = [Select Id, RecordTypeId, Global_Project_Id__c,Regional_Project__c,Local_Project__c, Financial_External_ID__c, Display_Name__c,
                                                  Parent_Project__r.Name,

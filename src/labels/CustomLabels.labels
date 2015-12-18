@@ -8426,6 +8426,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Local Project:</value>
     </labels>
     <labels>
+        <fullName>IPM_Label_for_Financial_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Label for Financial Edit</shortDescription>
+        <value>Any edits to be done to financials business case must be in EURO&apos;s only.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Later</fullName>
         <language>en_US</language>
         <protected>false</protected>

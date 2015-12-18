@@ -280,14 +280,15 @@
                                 
                             </apex:outputPanel>
                             
-                            <apex:outputpanel >
                             <div class="greyborder"></div>
+                            <apex:outputpanel rendered="{!project.IPM_Project_Type__c!='Operational'}">
+                            
                             <div class="row">
                                 <div class="col-sm-8 pr0">
                                     <div class="keycontent">{!$Label.IPM_BusinessImpact}</div>
                                 </div>
                                 <div class="col-sm-3 pl0">
-                                    &euro;{!globalbusinessImpactStr}<!--{!IF(project.IPMProject_Span__c=='Global',globalbusinessImpactStr,regionalORlocalBusinessImpactStr)}-->
+                                    {!globalbusinessImpactStr}
                                 </div>
                             </div>
                             <div class="greyborder"></div>
