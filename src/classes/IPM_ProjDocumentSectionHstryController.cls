@@ -49,8 +49,11 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
         }else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
             gateDocument=IPM_ConstantUtils.CONTRACT_GATE;
             nextPhase = IPM_ConstantUtils.PHASE_CAPABILITY ;
-        }else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT){      
+        }else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){      
             gateDocument=IPM_ConstantUtils.CHARTER_GATE;
+            nextPhase = IPM_ConstantUtils.PHASE_CAPABILITY ;
+       }else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){      
+            gateDocument=IPM_ConstantUtils.CONTRACT_GATE;
             nextPhase = IPM_ConstantUtils.PHASE_CAPABILITY ;
                 }else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH){      
             gateDocument=IPM_ConstantUtils.CONTRACT_GATE; 
@@ -68,7 +71,10 @@ public with sharing class IPM_ProjDocumentSectionHstryController extends IPM_Pro
             gateDocument=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE; 
         }else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_PLE && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL){
             gateDocument=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;  
-        }if((project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_CAPABILITY && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
+        }
+        
+        
+        if((project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_CAPABILITY && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
             (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
             (project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_PLE && project.IPMProject_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_LOCAL) ||
             ((project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_READY || project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT) && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)){        

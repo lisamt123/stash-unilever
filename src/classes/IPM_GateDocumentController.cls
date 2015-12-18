@@ -835,7 +835,10 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                    globalbusinessImpactStr = liFinParentLoc[0].Business_Impact_Global__c;
                }
            }
-            
+           if(string.isBlank(globalbusinessImpactStr) || (string.isNotBlank(globalbusinessImpactStr) && globalbusinessImpactStr.contains(IPM_ConstantUtils.NullString)))
+           {
+                        globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
+           }
             Integer flag=[select count() from IPM_Country__c where Local_Rollout__r.IPM_Status__c='First' AND (IPM_Project__c=:projectId 
                      OR IPM_Regional_Project__c=:projectId OR IPM_Local_Project__c=:projectId)];
             if(flag>0)

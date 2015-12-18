@@ -11249,7 +11249,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Section Not Filled</shortDescription>
-        <value>Error:This Section will be considered as not filled in</value>
+        <value>Note: This section will not be considered filled in until the Summary or functional sections have been completed by the respective users.</value>
     </labels>
     <labels>
         <fullName>IPM_SelectBrandPosition</fullName>
@@ -11718,7 +11718,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TRADEMARK_QUESTIONS</shortDescription>
-        <value>TradeMark Questions:</value>
+        <value>TradeMark Question:</value>
     </labels>
     <labels>
         <fullName>IPM_TRAINING_OR_TECHNICAL</fullName>
