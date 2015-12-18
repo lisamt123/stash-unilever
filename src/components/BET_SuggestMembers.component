@@ -59,7 +59,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
                 qtipJQuery( document ).ready(function( jq ) {
                     qtipJQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
                     qtipJQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
-                 }
+                    }
                 );
             }
             //fix overlay issue "dialog is on top overlay layer"
@@ -130,7 +130,10 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 
                 <apex:outputPanel id="suggestedMembersContainerbet" >
                 <script type="text/javascript">
-                    enableTooltip();
+                    var pup = {!usedInPopup};
+                    if(!pup){
+                        enableTooltip();
+                    }
                 </script>
 
                 <div class="note">
@@ -380,8 +383,14 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
         <div class="modal-dialog">
                 <div class="modal-content">
                 <div id="#ipmAddMemberModal" class="modal-header modal-header-bet">
-                    <button type="button" class="{!IF(usedInPopup,'close','close-bet')}" data-dismiss="modal" style="{!IF(usedInPopup,'display:none;','')}">&times;</button>
-                    <h4 class="modal-title modal-title-bet">{!$Label.BET_SuggestedMemberModalHeader}</h4>
+                     <button type="button" class="{!IF(usedInPopup,'close','close-bet')}" style="{!IF(usedInPopup,'','display:none;')}">
+                     &times;
+                     </button>
+                     <button type="button" class="{!IF(usedInPopup,'close','close-bet')}" data-dismiss="modal" 
+                     style="{!IF(usedInPopup,'display:none;','')}">
+                     &times;
+                     </button>
+                     <h4 class="modal-title modal-title-bet">{!$Label.BET_SuggestedMemberModalHeader}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="searchModal" style="{!IF(usedInPopup,'padding-left: 20px;padding-top:20px;','padding-top:1px;')}">
