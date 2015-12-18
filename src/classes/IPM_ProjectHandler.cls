@@ -656,9 +656,9 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     lstBETMilestones.add(new IPM_Milestone__c(Name = IPM_ConstantUtils.BET_MS_FINAL_RELEASE , IPM_Name__c = IPM_ConstantUtils.BET_MS_FINAL_RELEASE , IPM_Project__c = p.id, IPM_Type_of_Milestone__c = IPM_ConstantUtils.STRING_BET, RecordTypeId =  Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(), IPM_Due_Date__c = BET_BETService.getFinalReleaseDueDate(p.IPM_Target_Launch_Dates__c) , ExternalField__c=p.id+IPM_ConstantUtils.STRING_MS_BET_FINALRELEASE, IPM_Active__c = true));
                 }
                 //BET Milestone Due Dates to be updated
-                if((string.isNotBlank(p.BET__c) && proj.BET__c!= p.BET__c) || (String.isBlank(p.BET__c) && (proj.IPM_Target_Launch_Dates__c !=p.IPM_Target_Launch_Dates__c || string.isNotBlank(proj.BET__c)) && (p.IPM_BET_Toolkit__c != null && (p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_CreateNewBET) || p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_BET_Link_Existing)))) ){
+                if((p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && string.isNotBlank(p.BET__c) && proj.BET__c!= p.BET__c) || (p.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && String.isBlank(p.BET__c) && (proj.IPM_Target_Launch_Dates__c !=p.IPM_Target_Launch_Dates__c || string.isNotBlank(proj.BET__c)) && (p.IPM_BET_Toolkit__c != null && (p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_CreateNewBET) || p.IPM_BET_Toolkit__c.equalsIgnoreCase(Label.IPM_BET_Link_Existing)))) ){
                     mapProjBETupdate.put(p.id, p);  
-                }  
+                }   
                 //New PL/DPL, for requesting BET access 
                 list<id> lstBETaccessIds = new list<id>();
                 if(string.isNotBlank(p.BET__c) && p.BET__c==proj.BET__c){
