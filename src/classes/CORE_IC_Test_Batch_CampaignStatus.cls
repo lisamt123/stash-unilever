@@ -8,8 +8,8 @@ private class CORE_IC_Test_Batch_CampaignStatus {
         IdeaTheme ida = new IdeaTheme();
         ida.Title='Aviance Beauty Solutions12';
         ida.Status='Active';
-        ida.StartDate=Date.newInstance(2015, 12, 17);
-        ida.EndDate=Date.newInstance(2016, 2, 17);
+        ida.StartDate=Date.newInstance(2020, 12, 17);
+        ida.EndDate=Date.newInstance(2021, 2, 17);
         ida.Categories__c='Test';
         ida.CommunityId=tests.Id;
         insert ida;
@@ -22,8 +22,8 @@ private class CORE_IC_Test_Batch_CampaignStatus {
         IdeaTheme ida1 = [SELECT Id FROM IdeaTheme WHERE Id =: ida.Id];
         ida1.Title='Aviance Beauty Solutions123';
         ida1.Status='Active';
-        ida1.StartDate=Date.newInstance(2015, 12, 15);
-        ida1.EndDate=Date.newInstance(2016, 2, 17);
+        ida1.StartDate=Date.newInstance(2020, 12, 15);
+        ida1.EndDate=Date.newInstance(2021, 2, 17);
         ida1.Categories__c='Test';
         update ida1;
         
@@ -36,7 +36,7 @@ private class CORE_IC_Test_Batch_CampaignStatus {
         ida.Title='Aviance Beauty Solutions1234';
         ida.Status='Active';
         ida.StartDate=System.now();
-        ida.EndDate=Date.newInstance(2016, 2, 17);
+        ida.EndDate=Date.newInstance(2021, 2, 17);
         ida.Categories__c='Test';
         ida.CommunityId=tests.Id;
         ida.Chatter_Post__c=true;
