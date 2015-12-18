@@ -328,7 +328,7 @@
                                         </div>
                                         
                                         <div class="modal-body">
-                                            <div class="container-fluid">
+                                            <div class="container-fluid removePadd">
                                                 <div class="row">    
                                                     <div class="col-sm-12">
                                                         <span class="skipDesc">{!nextPhaseMessage}</span>
@@ -631,7 +631,7 @@
                                             <div class="modal-title">{!if(showSuggestedMembers && !memberCallFromURL,$Label.IPM_AddBETMembers,$Label.IPM_CreateNewBETTitle)}</div>
                                         </div>
                                     <div class="createNewBrandExp">
-                                        <div>{!if(showSuggestedMembers && memberCallFromURL,'',$Label.IPM_BETComponentMessage)}</div>
+                                        <div class="italicTxt">{!if(showSuggestedMembers && memberCallFromURL,'',$Label.IPM_BETComponentMessage)}</div>
                                         <div id="ipmGetStartedTab" class="modal-body">
                                         
                                         <apex:outputpanel rendered="{!!showSuggestedMembers}" >   
@@ -641,8 +641,8 @@
                                             </ul> 
                                             
                                                                                         
-                                            <div class="panel-body" id="betdetails">
-                                                <div class="container-fluid">
+                                            <div class="panel-body removePadd" id="betdetails">
+                                                <div class="container-fluid paddTB15">
                                                     <div class="row">    
                                                         <div class="col-sm-12">
                                                             <span class="skipDesc">
