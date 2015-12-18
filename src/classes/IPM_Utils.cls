@@ -1261,7 +1261,10 @@ public without sharing class IPM_Utils {
      mail.setToAddresses(toAddresses);
      mail.setSubject(emailSubject + apexJob.Status);
      mail.setPlainTextBody(emailBody1 + apexJob.TotalJobItems + emailBody2 + apexJob.NumberOfErrors + emailBody3);
-     Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+     // If running as a unit test don't try to send the email
+     if (!Test.isRunningTest()) {
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+     }
     }
     
     /**************************************************************
