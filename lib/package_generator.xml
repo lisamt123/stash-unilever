@@ -478,7 +478,7 @@
 			   var objexc = project.getProperty('objexc');
 			   var stage  = project.getProperty('stage.dir');
 			   var target  = project.getProperty('target');
-				 java.lang.System.out.println(objtyp); 
+				 
 			   var msg = '';
 			   msg+='\t<types>\n';
 

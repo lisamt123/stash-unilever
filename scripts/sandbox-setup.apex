@@ -1,7 +1,7 @@
-String adminUserId = '005E0000002cAtm';
+String adminUserId = '005E0000002cAtm'; //SFDC2 Admin2
 List<CollaborationGroup> cGrps = new List<CollaborationGroup>();
-
 Map <String, Id> cgMap = new Map <String, Id>();
+
 for(CollaborationGroup cg : [select Id, Name from CollaborationGroup where name='All Four Acres' or name like 'groupName-%']) {
     cgMap.put(cg.Name, cg.Id);
 }
@@ -14,8 +14,9 @@ for(Integer i=0;i<7;i++) {
         cgrps.add(new CollaborationGroup(Name='groupName-'+i, CollaborationType='Public',OwnerId = adminUserId));
     }
 }
-insert cGrps;
-
+if(!cgrps.isEmpty()) {
+    insert cgrps;
+}
 cgMap.clear();
 for(CollaborationGroup cg : [select Id, Name from CollaborationGroup where name='All Four Acres' or name like 'groupName-%']) {
     cgMap.put(cg.Name, cg.Id);
