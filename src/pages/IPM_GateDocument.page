@@ -126,7 +126,7 @@
                                                  </apex:actionFunction> 
                                              <!---Design Idea:GateDocument Refactor Ends Here---->
                                                      
-                                            <apex:outputPanel rendered="{!IF(OR(AND(projectDoc.IPM_Document_Status__c='Approved'&& project.IPM_Phase__c='Market Deployment'), AND (project.IPM_Phase__c='Market Ready' && project.IPM_Project_Type__c = 'Operational')),True,False)}">
+                                            <apex:outputPanel rendered="{!IF(OR(AND(projectDoc.IPM_Document_Status__c='Approved'&& project.IPM_Phase__c='Market Deployment' && project.IPMProject_Span__c='Local'), AND (project.IPM_Phase__c='Market Ready' && project.IPM_Project_Type__c = 'Operational')),True,False)}">
                                                 
                                                 <div class="SecStatusUpdate dstatusButton shipTrade" data-toggle="modal" data-target="#shipToPLE"  data-backdrop="static" data-keyboard="false">
                                                     <input type="button" class="ipmButton" value="{!$Label.IPM_Ship_To_Trade_Button}" />
