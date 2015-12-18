@@ -11147,6 +11147,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Summary</value>
     </labels>
     <labels>
+        <fullName>IPM_SUMMARY_TEXT_MINIMUM_LIMIT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_SUMMARY_TEXT_MINIMUM_LIMIT</shortDescription>
+        <value>A minimum of 15 characters is required to be entered to be considered as filled in.</value>
+    </labels>
+    <labels>
         <fullName>IPM_SUPPLY_CHAIN_QUESTIONS</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11369,6 +11376,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM Select Sustainability</shortDescription>
         <value>Select Sustainability Period</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Select_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Select Text</shortDescription>
+        <value>Please select one of the values.</value>
     </labels>
     <labels>
         <fullName>IPM_Select_existing_Toolkit</fullName>
