@@ -9,7 +9,8 @@ class IPM_BETHelper_Test {
     Static String Completed = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
     Static String Regional = IPM_ConstantUtils.COMPANY_CARD_REGIONAL;
     Static String FirstRelease = IPM_ConstantUtils.BET_FIRST_RELEASE;
-    Static String Unreleased = IPM_ConstantUtils.BET_UNRELEASED;
+    Static String Unreleased = IPM_ConstantUtils.BET_UNRELEASED; 
+    Static String BET_MS_FINAL_RELEASE = IPM_ConstantUtils.BET_MS_FINAL_RELEASE;
     Static String IPM_ProjectType = 'IPM_ProjectType';
     Static String IPM_BET_Search_Test = 'IPM_BET_Search_Test';
     Static String FinalRelease = 'Final Release';
@@ -33,7 +34,6 @@ class IPM_BETHelper_Test {
     private final static string IPM_Role_BD= 'BD';
     private final static string IPM_Role_CD= 'CD';
     private final static string TEST_BET = 'TestBet';
-    private final static string IPM_NAME_MS = '1stBETFinalRelease11orBETFirstRelease';
     private final static string ERROR_FAILED_TO_UPDATE_BET_MILESTONE ='Failed to update  BET Milestone passed checkbox';
     private final static string ERROR_FAILED_TO_ARCHIVE = 'Failed to archieve';
 
@@ -74,7 +74,7 @@ class IPM_BETHelper_Test {
         betRecord1.Status__c = Unreleased;
         uw_BET__c betRecord2 = BET_TestUtils.getTestBet();
         betRecord2.name = TEST_BET01;
-        betRecord2.Status__c = FirstRelease;
+        betRecord2.Status__c = FirstRelease ;
         insert new List < uw_BET__c > {
             betRecord1, betRecord2
         };
@@ -330,7 +330,7 @@ class IPM_BETHelper_Test {
         List < IPM_Milestone__c > IPMsam1 = IPM_TestFactory_Helper.createIPMMilestoneList(false, 2);
         List < IPM_Milestone__c > IPMsam2 = IPM_TestFactory_Helper.createIPMMilestoneList(false, 2);
 
-        uw_BET__c betRecord1 = [Select id from uw_BET__c where name = : TEST_BET00
+        uw_BET__c betRecord1 = [Select id from uw_BET__c where name = : TEST_BET00  
         limit 1];
         uw_BET__c betRecord2 = [Select id from uw_BET__c where name = : TEST_BET01
         limit 1];
@@ -351,21 +351,20 @@ class IPM_BETHelper_Test {
 
             for (IPM_Milestone__c ipmMilestone: IPMsam1) {
                 ipmMilestone.IPM_Due_Date__c = Date.today() - 365;
-                ipmMilestone.IPM_Name__c = Math.random() + 'BETFirstRelease';
+                ipmMilestone.IPM_Name__c = Math.random() + IPM_ConstantUtils.BET_MS_FIRST_RELEASE ;
                 ipmMilestone.IPM_Project__c = proj0.id;
                 ipmMilestone.IPM_Type_of_Milestone__c = 'BET';
-                ipmMilestone.IPM_Name__c = IPM_NAME_MS;
             }
 
             for (IPM_Milestone__c ipmMilestone: IPMsam2) {
                 ipmMilestone.IPM_Due_Date__c = Date.today() - 365;
-                ipmMilestone.IPM_Name__c = Math.random() + 'BETFinalRelease';
+                ipmMilestone.IPM_Name__c = Math.random() + BET_MS_FINAL_RELEASE;
                 ipmMilestone.IPM_Project__c = proj1.id;
             }
 
             List < IPM_Milestone__c > milestoneList = new List < IPM_Milestone__c > ();
             milestoneList.addAll(IPMsam1);
-            milestoneList.addAll(IPMsam2);
+            milestoneList.addAll(IPMsam2); 
 
             insert milestoneList;
 
@@ -375,7 +374,7 @@ class IPM_BETHelper_Test {
             Test.starttest();
             IPM_BETHelper.updateBETMilestoneMissOnProject(mapProjectBETMS);
             Test.stopTest();
-
+            
             System.assertEquals([Select BET_First_Release_Missed__c, BET_Final_Release_Missed__c from IPM_project__c where id = : proj0.Id].BET_First_Release_Missed__c, true, ERROR_FAILED_TO_UPDATE_BET_MILESTONE);
             System.assertEquals([Select BET_First_Release_Missed__c, BET_Final_Release_Missed__c from IPM_project__c where id = : proj1.Id].BET_Final_Release_Missed__c, true, ERROR_FAILED_TO_UPDATE_BET_MILESTONE);
 
@@ -604,11 +603,12 @@ class IPM_BETHelper_Test {
     //test method for method to update Phase of BET Final Release Milestone
     private static testmethod void testupdatePhaseBETMSFinalRelease() {
 
+        
         User testRunningUser = [Select Id, LastName from User where LastName = : USER_LAST_NAME
         limit 1];
         Test.StartTest(); 
         List < IPM_Milestone__c > IPMsam1 = IPM_TestFactory_Helper.createIPMMilestoneList(false, 2);
-
+        
         uw_BET__c betRecord1 = [Select id, name, Status__c, FinalReleaseDate__c, Final_Release_Due_Date__c, FirstReleaseDate__c, First_Release_Due_Date__c, Is_Archived__c, OwnerId, Category_Group__c, Product_Category__c, Brand_Position__c, Product_Brand__c from uw_BET__c where name = : TEST_BET03
         limit 1];
         betRecord1.Status__c = 'Unreleased';
@@ -623,7 +623,7 @@ class IPM_BETHelper_Test {
                 ipmMilestone.IPM_Due_Date__c = Date.today() - 365;
                 ipmMilestone.IPM_Project__c = proj0.id;
                 ipmMilestone.IPM_Type_of_Milestone__c = IPM_ConstantUtils.STRING_BET;
-                ipmMilestone.IPM_Name__c = IPM_NAME_MS + IPM_ConstantUtils.BET_MS_FINAL_RELEASE;
+                ipmMilestone.IPM_Name__c = Math.random()+BET_MS_FINAL_RELEASE;
                 ipmMilestone.IPM_Phase__c = null;
             }
                
