@@ -13,10 +13,10 @@ public class Test_AF_BonusRecordManager
      Profile p=[Select Id from Profile where Name='System Administrator'];       
      
      //Insert User 
-     User u= new User(Alias = 'test6', Email='standarduser6@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userbm', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
+     User u= new User(Alias = AF_Constants.TEST_Alias, Email='standarduser6@unilever.com', 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbm', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
       UserName='testuserbm@test123321.com',AF_Brand__c='Test Brandbm',AF_Category__c='Test Beveragesbm');
      insert u;        
       
@@ -108,7 +108,7 @@ public class Test_AF_BonusRecordManager
      agenEst.AF_Brand_Estimate__c=brandEst.Id;
      agenEst.AF_Agency_Entity__c=entity1.Id;
      agenEst.AF_Unilever_Entity__c=entity2.Id;
-     agenEst.AF_Fiscal_Year__c='2013';
+     agenEst.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
      agenEst.AF_Adaptation__c=324;
      agenEst.AF_Adaptation_Local__c=23;
      agenEst.AF_Digital__c=12;
@@ -121,7 +121,7 @@ public class Test_AF_BonusRecordManager
      AF_Bonus_Summary__c bonSum=new AF_Bonus_Summary__c();
      bonSum.AF_Agency__c=acc.Id;
      bonSum.AF_Brand__c=bran.Id;
-     bonSum.AF_Fiscal_Year__c='2013';   
+     bonSum.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;   
      insert bonSum;
      
      System.assertEquals(bonSum.AF_Agency__c, acc.id);
@@ -132,7 +132,7 @@ public class Test_AF_BonusRecordManager
      bonThres.AF_Brand_Estimate__c=brandEst.Id;
      bonThres.Brand_Name__c=bran.Id;
      bonThres.AF_Country__c=entity2.id;
-     bonThres.Year__c='2013';
+     bonThres.Year__c=AF_Constants.TEST_FISCALYEAR;
      bonThres.AF_Digital__c=true;
      bonThres.AF_Traditional__c=true;
      insert bonThres;
@@ -188,10 +188,10 @@ public class Test_AF_BonusRecordManager
      Profile p=[Select Id from Profile where Name='System Administrator'];       
      
      //Insert User 
-     User u= new User(Alias = 'test6', Email='standarduser61@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userbm1', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
+     User u= new User(Alias = AF_Constants.TEST_Alias, Email='standarduser61@unilever.com', 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbm1', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
       UserName='testuserbm1@test123321.com',AF_Brand__c='Test Brandbm1',AF_Category__c='Test Beveragesbm1');
      insert u;        
       
@@ -235,7 +235,7 @@ public class Test_AF_BonusRecordManager
      brandEst.AF_Status_Base_Fees__c='Initiate';  
      brandEst.Brand__c=bran.id;
      brandEst.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
-     brandEst.AF_Fiscal_Year__c='2013';
+     brandEst.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
      brandEst.AF_Pilot_Model__c=false;
      insert brandEst;
      
@@ -282,7 +282,7 @@ public class Test_AF_BonusRecordManager
      agenEst.AF_Brand_Estimate__c=brandEst.Id;
      agenEst.AF_Agency_Entity__c=entity1.Id;
      agenEst.AF_Unilever_Entity__c=entity2.Id;
-     agenEst.AF_Fiscal_Year__c='2013';
+     agenEst.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
      agenEst.AF_Adaptation__c=324;
      agenEst.AF_Adaptation_Local__c=23;
      agenEst.AF_Digital__c=12;
@@ -295,7 +295,7 @@ public class Test_AF_BonusRecordManager
      AF_Bonus_Summary__c bonSum=new AF_Bonus_Summary__c();
      bonSum.AF_Agency__c=acc.Id;
      bonSum.AF_Brand__c=bran.Id;
-     bonSum.AF_Fiscal_Year__c='2013';   
+     bonSum.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;   
      insert bonSum;
      
      System.assertEquals(bonSum.AF_Agency__c, acc.id);
@@ -306,7 +306,7 @@ public class Test_AF_BonusRecordManager
      bonThres.AF_Brand_Estimate__c=brandEst.Id;
      bonThres.Brand_Name__c=bran.Id;
      bonThres.AF_Country__c=entity2.id;
-     bonThres.Year__c='2013';
+     bonThres.Year__c=AF_Constants.TEST_FISCALYEAR;
      bonThres.AF_Digital__c=true;
      bonThres.AF_Traditional__c=true;
      bonThres.AF_Country__c=entity2.Id;

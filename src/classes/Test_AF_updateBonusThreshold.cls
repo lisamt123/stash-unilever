@@ -32,9 +32,9 @@ public class Test_AF_updateBonusThreshold
      **/
      
      User u1= new User(Alias = 'testbth1', Email='standarduserbth1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userbth1', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbth1', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
       LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id,
-      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true,AF_UserTypeText__c='Regional Category Finance', 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true,AF_UserTypeText__c='Regional Category Finance', 
       UserName='testuserbth1@test123321.com',AF_Brand__c='Test Brandbth1',AF_Category__c='Test Beveragesbth1');
      insert u1; 
          
@@ -328,8 +328,8 @@ public class Test_AF_updateBonusThreshold
      User u= new User(Alias = 'testuo', Email='standarduseruo@unilever.com', 
       EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
       LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo',AF_Category__c='Test Beveragesuo');
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c='Test Beveragesuo');
      insert u;        
       
      System.runAs(u)
@@ -339,8 +339,8 @@ public class Test_AF_updateBonusThreshold
      User u1= new User(Alias = 'testuo1', Email='standarduseruo@unilever.com', 
       EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
       LocaleSidKey=AF_Constants.TEST_LanguageLocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
-      UserName='testuseruo1@test123321.com',AF_Brand__c='Test Branduo',AF_Category__c='Test Beveragesuo');
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo1@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c='Test Beveragesuo');
      insert u1;
      
      //Insert Account
@@ -375,7 +375,7 @@ public class Test_AF_updateBonusThreshold
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
      bran.RecordTypeId=brandRT.Id;
      bran.AF_Pilot_Model__c=false;    
-     bran.Name='Test Branduo';
+     bran.Name=AF_Constants.TEST_BRAND;
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
      

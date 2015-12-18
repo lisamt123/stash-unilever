@@ -826,12 +826,7 @@ global with sharing class AF_BrandEstimateRemote {
         return bonusMatrixToReturn;
     }
     
-     private static AF_Bonus_Results__c buildBonusResult(String bonusThreshold) {
-        AF_Bonus_Results__c bonusResultToReturn = new AF_Bonus_Results__c();
-        bonusResultToReturn.AF_Bonus_Thresholds__c = bonusThreshold;
-        return bonusResultToReturn;
-    }   
-    public static AF_Agency_Estimate__c buildAgencyEstimate(String agencyEntityId, String ulEntityId, String brandEstimateId) {
+      public static AF_Agency_Estimate__c buildAgencyEstimate(String agencyEntityId, String ulEntityId, String brandEstimateId) {
         system.debug('** rowId : ' + ulEntityId);
         AF_Agency_Estimate__c agEstToReturn = new AF_Agency_Estimate__c();
         agEstToReturn.AF_Brand_Estimate__c = brandEstimateId;

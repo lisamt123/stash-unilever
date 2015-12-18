@@ -36,8 +36,7 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 		Map<id,String>  matrixReadyforconversion=new Map<id,String>();
 		Map<id,String>  ReadyForPOEntryCurrency=new Map<id,String>();
 		Integer MatrixRecoundCount=0;
-		Double USDValue=0.0;
-		Double EURValue=0.0;
+		
 		set<String> agencyCountries=new set<String>();
 		set<String> unileverCountries=new set<String>();
 		if(agencyRecords.size()>0)
@@ -108,11 +107,7 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 		catch(Exception e){
 		ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_UpdateOopsEstimatesValues5','AF_UpdateOopsEstimatesValues5',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		}      
-		if(USDCurrencyTable!=null)
-		if(USDCurrencyTable.AF_Average_Exchange_Rate_To_EUR__c!=null)
-		{
-			EURValue=USDCurrencyTable.AF_Average_Exchange_Rate_To_EUR__c;
-		}    
+		  
 		// Query for Retrieve Currency Records
 		List<AF_Currency__c> currencyrecords;
 		try{    
@@ -130,9 +125,7 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 				CurrencyMapforUSD.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_SGD_To_USD__c );
 				CurrencyMapforGBP.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_To_EUR__c );
 			}
-			If(curren.AF_Currency_Code__c=='EUR')
-			if(curren.Ready_For_PO_Exchange_Rate_To_EUR__c!=null)
-			USDValue=curren.Ready_For_PO_Exchange_Rate_To_EUR__c;
+			
 		}
 		if(agencyRecords.size()>0)
 		for(AF_OOPS_Estimate__c agencyEst:agencyRecords)

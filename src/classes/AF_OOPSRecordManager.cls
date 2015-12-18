@@ -21,6 +21,7 @@ public with sharing class AF_OOPSRecordManager
 	private AF_OOPS_Settings__c CustomSettings {get;set;}
 	public String MatrixErrorMessage {get;set;}
 	public Boolean IsMatrixError {get;set;}
+	private static String  AF_OOPSRecordManager= 'AF_OOPSRecordManager';
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_OOPSRecordManager
@@ -84,7 +85,7 @@ public with sharing class AF_OOPSRecordManager
 				}   
 				catch(DMLException ex)
 				{
-					ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPSRecordManager','RecalculateOOPSEstimates',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+					ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,'RecalculateOOPSEstimates',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 					for(AF_OOPS_Estimate__c oopsEstimate : OOPSEstimateCollection)
 					{
 						oopsEstimate.addError(ex);
@@ -146,7 +147,7 @@ public with sharing class AF_OOPSRecordManager
 				insert oopInsertList;
 			}
 			catch(Exception e){
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPSRecordManager','LoadOOPActualSingleRecord',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,'LoadOOPActualSingleRecord',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 			}
 		}	
 	}
@@ -174,7 +175,7 @@ public with sharing class AF_OOPSRecordManager
 		}
 		catch(DMLException ex)
 		{
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPSRecordManager','LoadBrandEstimateCollectionById',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,'LoadBrandEstimateCollectionById',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			for(AF_Brand_Estimate__c brandEstimate : BrandEstimateCollection.values())
 			{
 				brandEstimate.addError(ex);
@@ -236,7 +237,7 @@ public with sharing class AF_OOPSRecordManager
 		}
 		catch(DMLException ex)
 		{
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPSRecordManager','CreateOOPSEstimateRecords',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,'CreateOOPSEstimateRecords',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			BrandEstimate.addError(ex);
 		}
 		return oopsEstimateCollection;
@@ -349,7 +350,7 @@ public with sharing class AF_OOPSRecordManager
 		}
 		catch(DMLException ex)
 		{
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_OOPSRecordManager','DeleteOOPSActualRecordsByCollection',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,'DeleteOOPSActualRecordsByCollection',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			for(AF_OOPS_Actual__c oopsActual : OOPSActualCollection)
 			{
 				oopsActual.addError(ex);

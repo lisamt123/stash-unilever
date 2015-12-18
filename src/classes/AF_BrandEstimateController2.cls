@@ -49,6 +49,7 @@ global with sharing class AF_BrandEstimateController2
 	public Boolean ReadyforPO{get;set;}
 	public Boolean hideDeleteLink{get;set;}
 	set<String> BIds = new set<String>();
+	private static String AF_BrandEstiamte_Controller2=  'AF_BrandEstimateController2';
 	/*************************************************************************************
 *  @Description: this method is used to query and display BrandEstimate Traditional figure
 *  @name : TraditionalDisplay
@@ -211,7 +212,7 @@ global with sharing class AF_BrandEstimateController2
 		}
 		catch(Exception ex) 
 		{
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateController2','AF_BrandEstimateController2',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_BrandEstiamte_Controller2,AF_BrandEstiamte_Controller2,ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 		}
 		if(!ispilotModel){
 			addwrapper();
@@ -307,7 +308,7 @@ global with sharing class AF_BrandEstimateController2
 				delBonus = [select Id,AF_country__c,AF_Bonus_Threshold__c,AF_Bonus_Threshold__r.Year__c,AF_deletion_key__c from AF_Sub_Result__c where Id=:delCountryId and AF_Bonus_Threshold__r.Year__c=:string.valueof(System.Today().year())];
 			}
 			catch(Exception ex){
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateController2','delCounrtyRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_BrandEstiamte_Controller2,'delCounrtyRecord',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			}
 			countryToDelete = delBonus.AF_country__c;
 			bonusId = delBonus.AF_Bonus_Threshold__c;
@@ -342,7 +343,7 @@ global with sharing class AF_BrandEstimateController2
 					BonusThresholds.remove(counter);
 				}
 				catch(Exception e){
-					ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateController2','delCounrtyRecord',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+					ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_BrandEstiamte_Controller2,'delCounrtyRecord',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 					apexpages.addmessage(new apexpages.message(apexpages.severity.Error,'This Threshold is in use by Matrix and cannot be deleted'));  
 				}
 			}
@@ -434,7 +435,7 @@ global with sharing class AF_BrandEstimateController2
 		}
 		catch(DMLException ex)
 		{           
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateController2','Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());                       
+			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_BrandEstiamte_Controller2,'Save',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());                       
 		}
 		return null;
 	}
@@ -574,7 +575,7 @@ global with sharing class AF_BrandEstimateController2
 		}
 		catch(Exception ex)
 		{
-		ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateController2','showPopup',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());	
+		ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_BrandEstiamte_Controller2,'showPopup',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());	
 		} 
 	}
 	/*****************************************************************************************
@@ -679,7 +680,7 @@ global with sharing class AF_BrandEstimateController2
 				getMeasure();
 			}
 			catch(Exception e){
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimateController2','checkpilot',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_BrandEstiamte_Controller2,'checkpilot',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 				ispilotModel=true;
 				apexpages.addmessage(new apexpages.message(apexpages.severity.Error,'Only '+BT_Remuneration[0].CreatedBy.Name+' the record owner can uncheck the pilot Model'));  
 			}

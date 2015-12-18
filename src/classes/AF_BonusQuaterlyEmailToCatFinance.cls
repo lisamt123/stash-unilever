@@ -59,5 +59,6 @@ global with sharing class AF_BonusQuaterlyEmailToCatFinance implements Schedulab
 	//finish Mehtod
 	global void finish(Database.BatchableContext BC)
 	{
+		system.debug('Batch execution completed');
 	}
 }

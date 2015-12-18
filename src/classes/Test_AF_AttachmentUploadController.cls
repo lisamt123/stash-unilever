@@ -20,7 +20,7 @@
       EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
       TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_AGENCY,isActive=true, 
-      UserName='testuserc@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
+      UserName=AF_Constants.TEST_UserName,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;        
      
      System.runAs(u)
@@ -50,7 +50,7 @@
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
      bran.RecordTypeId=brandRT.Id;
      bran.AF_Pilot_Model__c=false;    
-     bran.Name='Test Brandc';
+     bran.Name=AF_Constants.TEST_BRAND;
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
      
@@ -185,7 +185,7 @@
       EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
       TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_AGENCY,isActive=true, 
-      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c=AF_Constants.TEST_AF_Category);
+      UserName=AF_Constants.TEST_UserName,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;        
      
      System.runAs(u)
@@ -215,7 +215,7 @@
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
      bran.RecordTypeId=brandRT.Id;
      bran.AF_Pilot_Model__c=false;    
-     bran.Name='Test Brandc';
+     bran.Name=AF_Constants.TEST_BRAND;
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
      
@@ -351,7 +351,7 @@
       EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
       TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_AGENCY,isActive=true, 
-      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c=AF_Constants.TEST_AF_Category);
+      UserName=AF_Constants.TEST_UserName,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;        
      
      System.runAs(u)
@@ -381,7 +381,7 @@
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
      bran.RecordTypeId=brandRT.Id;
      bran.AF_Pilot_Model__c=false;    
-     bran.Name='Test Brandc';
+     bran.Name=AF_Constants.TEST_BRAND;
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
      
@@ -513,7 +513,7 @@
       EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
       TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_AGENCY,isActive=true, 
-      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c=AF_Constants.TEST_AF_Category);
+      UserName=AF_Constants.TEST_UserName,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;        
      
      System.runAs(u)
@@ -549,7 +549,7 @@
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
      bran.RecordTypeId=brandRT.Id;
      bran.AF_Pilot_Model__c=false;    
-     bran.Name='Test Brandc';
+     bran.Name=AF_Constants.TEST_BRAND;
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
      

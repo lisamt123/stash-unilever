@@ -445,17 +445,6 @@ public with sharing class AF_AgencyEstimateController
 		return UEList;
 	}
 	/**********************************************************************
-*  @Description: this method is to get an entity is central hub 
-*  @name : IsCentralHub
-*  @param : parentId
-*  @return: boolean.
-**********************************************************************/	
-	private boolean IsCentralHub(string pId)
-	{
-		AF_Entity__c entity = [SELECT id, IsCentralHub__c FROM AF_Entity__c WHERE Id = : pId];
-		return entity.IsCentralHub__c;
-	}
-	/**********************************************************************
 *  @Description: this method is to display the confirmation box 
 *  @name : confirmBox
 *  @param : none

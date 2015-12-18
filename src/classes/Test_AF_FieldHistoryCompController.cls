@@ -17,10 +17,10 @@ public class Test_AF_FieldHistoryCompController
      
      //Insert User 
      User u= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey='en_US', 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
-      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
+      UserName=AF_Constants.TEST_UserName,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;        
      
      System.runAs(u)
@@ -38,7 +38,7 @@ public class Test_AF_FieldHistoryCompController
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesc';
+     cat.Name=AF_Constants.TEST_AF_Category;
      cat.AF_Pilot_Model__c=false;     
      cat.AF_Super_category__c='Drinks';
      insert cat;
@@ -50,7 +50,7 @@ public class Test_AF_FieldHistoryCompController
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
      bran.RecordTypeId=brandRT.Id;
      bran.AF_Pilot_Model__c=false;    
-     bran.Name='Test Brandc';
+     bran.Name=AF_Constants.TEST_BRAND;
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
      
@@ -91,8 +91,8 @@ public class Test_AF_FieldHistoryCompController
      oopsActual.AF_Agency__c=acc.Id;
      oopsActual.AF_BrandEstimateId__c=brandEst.id;
      oopsActual.AF_Brand__c=bran.Id;
-     oopsActual.AF_Fiscal_year__c='2013';
-     oopsActual.AF_Status__c = 'Ready for PO';
+     oopsActual.AF_Fiscal_year__c=AF_Constants.TEST_FISCALYEAR;
+     oopsActual.AF_Status__c = AF_Constants.BASE_FEES_READYFORPO;
      insert oopsActual;   
      
      //Insert Agency Entity
@@ -116,7 +116,7 @@ public class Test_AF_FieldHistoryCompController
      agency.AF_Brand_Estimate__c=brandEst.Id;
      agency.AF_Agency_Entity__c=entity1.id;
      agency.AF_Unilever_Entity__c=entity2.Id;  
-     agency.AF_Fiscal_Year__c='2013';
+     agency.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
      agency.AF_Adaptation__c=22;
      agency.AF_Digital__c=22;
      agency.AF_Traditional__c=22;
@@ -152,8 +152,8 @@ public class Test_AF_FieldHistoryCompController
      AF_Bonus_Summary__c bonSum=new AF_Bonus_Summary__c();
      bonSum.AF_Agency__c=acc.Id;
      bonSum.AF_Brand__c=bran.Id;
-     bonSum.AF_Fiscal_Year__c='2013';
-     bonSum.AF_Status__c = 'Ready for PO';
+     bonSum.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
+     bonSum.AF_Status__c = AF_Constants.BASE_FEES_READYFORPO;
      insert bonSum;
      
      //Insert Bonus Threshold
@@ -200,10 +200,10 @@ Static testMethod void fieldHistoryCompController1()
      
      //Insert User 
      User u= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
-      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c='Test Beveragesc');
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
+      UserName=AF_Constants.TEST_UserName,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;        
      
      System.runAs(u)
@@ -221,7 +221,7 @@ Static testMethod void fieldHistoryCompController1()
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesc';
+     cat.Name=AF_Constants.TEST_AF_Category;
      cat.AF_Pilot_Model__c=false;     
      cat.AF_Super_category__c='Drinks';
      insert cat;
@@ -233,7 +233,7 @@ Static testMethod void fieldHistoryCompController1()
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
      bran.RecordTypeId=brandRT.Id;
      bran.AF_Pilot_Model__c=false;    
-     bran.Name='Test Brandc';
+     bran.Name=AF_Constants.TEST_BRAND;
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
      
@@ -243,8 +243,8 @@ Static testMethod void fieldHistoryCompController1()
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
      brandEst.Name='Test BrandEstimatec';
-     brandEst.AF_Status_Base_Fees__c='Ready for PO';  
-     brandEst.AF_Fiscal_Year__c='2013';
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_READYFORPO;  
+     brandEst.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
      brandEst.AF_Active__c = true;
      brandEst.AF_Copied__c= false;
      brandEst.AF_Locked__c = false;  
@@ -276,8 +276,8 @@ Static testMethod void fieldHistoryCompController1()
      oopsActual.AF_Agency__c=acc.Id;
      oopsActual.AF_BrandEstimateId__c=brandEst.id;
      oopsActual.AF_Brand__c=bran.Id;
-     oopsActual.AF_Fiscal_year__c='2013';
-     oopsActual.AF_Status__c = 'Ready for PO';
+     oopsActual.AF_Fiscal_year__c=AF_Constants.TEST_FISCALYEAR;
+     oopsActual.AF_Status__c = AF_Constants.BASE_FEES_READYFORPO;
      insert oopsActual;   
      
      //Insert Agency Entity
@@ -301,7 +301,7 @@ Static testMethod void fieldHistoryCompController1()
      agency.AF_Brand_Estimate__c=brandEst.Id;
      agency.AF_Agency_Entity__c=entity1.id;
      agency.AF_Unilever_Entity__c=entity2.Id;  
-     agency.AF_Fiscal_Year__c='2013';
+     agency.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
      agency.AF_Adaptation__c=22;
      agency.AF_Digital__c=22;
      agency.AF_Traditional__c=22; 
@@ -327,8 +327,8 @@ Static testMethod void fieldHistoryCompController1()
      AF_Bonus_Summary__c bonSum=new AF_Bonus_Summary__c();
      bonSum.AF_Agency__c=acc.Id;
      bonSum.AF_Brand__c=bran.Id;
-     bonSum.AF_Fiscal_Year__c='2013';
-     bonSum.AF_Status__c = 'Ready for PO';
+     bonSum.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
+     bonSum.AF_Status__c = AF_Constants.BASE_FEES_READYFORPO;
      insert bonSum;
      
      //Insert Bonus Threshold
@@ -379,10 +379,10 @@ Static testMethod void fieldHistoryCompController2()
      
      //Insert User 
      User u= new User(Alias = 'testc', Email='standarduserc@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userc', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
-      UserName='testuserc@test123321.com',AF_Brand__c='Test Brandc',AF_Category__c='Test Beveragesc');
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userc', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
+      UserName=AF_Constants.TEST_UserName,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;        
      
      System.runAs(u)
@@ -400,7 +400,7 @@ Static testMethod void fieldHistoryCompController2()
      RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
      AF_Category_Brand__c cat=new AF_Category_Brand__c();
      cat.RecordTypeId=catRT.Id;
-     cat.Name='Test Beveragesc';
+     cat.Name=AF_Constants.TEST_AF_Category;
      cat.AF_Pilot_Model__c=false;     
      cat.AF_Super_category__c='Drinks';
      insert cat;
@@ -412,7 +412,7 @@ Static testMethod void fieldHistoryCompController2()
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
      bran.RecordTypeId=brandRT.Id;
      bran.AF_Pilot_Model__c=false;    
-     bran.Name='Test Brandc';
+     bran.Name=AF_Constants.TEST_BRAND;
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
      
@@ -422,8 +422,8 @@ Static testMethod void fieldHistoryCompController2()
      AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
      brandEst.AF_Agency__c=acc.Id;               
      brandEst.Name='Test BrandEstimatec';
-     brandEst.AF_Status_Base_Fees__c='Ready for PO';  
-     brandEst.AF_Fiscal_Year__c='2013';
+     brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_READYFORPO;  
+     brandEst.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
      brandEst.AF_Active__c = true;
      brandEst.AF_Copied__c= false;
      brandEst.AF_Locked__c = false;  
@@ -454,8 +454,8 @@ Static testMethod void fieldHistoryCompController2()
      oopsActual.AF_Agency__c=acc.Id;
      oopsActual.AF_BrandEstimateId__c=brandEst.id;
      oopsActual.AF_Brand__c=bran.Id;
-     oopsActual.AF_Fiscal_year__c='2013';
-     oopsActual.AF_Status__c = 'Ready for PO';
+     oopsActual.AF_Fiscal_year__c=AF_Constants.TEST_FISCALYEAR;
+     oopsActual.AF_Status__c = AF_Constants.BASE_FEES_READYFORPO;
      insert oopsActual;   
      
      //Insert Agency Entity
@@ -479,7 +479,7 @@ Static testMethod void fieldHistoryCompController2()
      agency.AF_Brand_Estimate__c=brandEst.Id;
      agency.AF_Agency_Entity__c=entity1.id;
      agency.AF_Unilever_Entity__c=entity2.Id;  
-     agency.AF_Fiscal_Year__c='2013';
+     agency.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
      agency.AF_Adaptation__c=22;
      agency.AF_Digital__c=22;
      agency.AF_Traditional__c=22; 
@@ -503,8 +503,8 @@ Static testMethod void fieldHistoryCompController2()
      AF_Bonus_Summary__c bonSum=new AF_Bonus_Summary__c();
      bonSum.AF_Agency__c=acc.Id;
      bonSum.AF_Brand__c=bran.Id;
-     bonSum.AF_Fiscal_Year__c='2013';
-     bonSum.AF_Status__c = 'Ready for PO';
+     bonSum.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
+     bonSum.AF_Status__c = AF_Constants.BASE_FEES_READYFORPO;
      insert bonSum;
      
      //Insert Bonus Threshold

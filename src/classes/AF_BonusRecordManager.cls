@@ -22,6 +22,7 @@ global with sharing class AF_BonusRecordManager {
 	public String MatrixErrorMessage {get;set;}
 	public Boolean IsMatrixError {get;set;}
 	global set<string> ExceptionList = new set<string>();
+	private static String AF_Bonus_Record_Manager=  'AF_BonusRecordManager';
 	/**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_BonusRecordManager
@@ -71,7 +72,7 @@ global with sharing class AF_BonusRecordManager {
 		}
 		catch(DMLException ex)
 		{
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusRecordManager','LoadBrandEstimateCollectionById',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Bonus_Record_Manager,'LoadBrandEstimateCollectionById',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			
 		}
 	}
@@ -99,7 +100,7 @@ global with sharing class AF_BonusRecordManager {
 		}
 		catch(DMLException ex)
 		{ 
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusRecordManager','CreateMultiObjectRecords',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Bonus_Record_Manager,'CreateMultiObjectRecords',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			
 		}
 	}
@@ -148,7 +149,7 @@ global with sharing class AF_BonusRecordManager {
 		}
 		catch(DMLException ex)
 		{
-			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusRecordManager','BonusMultiObjectFactory',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Bonus_Record_Manager,'BonusMultiObjectFactory',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 			
 		}
 		if(!IsPilotModel)
@@ -163,7 +164,6 @@ global with sharing class AF_BonusRecordManager {
 					CountryNameAndTotalCollection.put(String.ValueOf(ar.get('CountryName')),Double.valueof(ar.get('CountryTotal')));                                
 				}               
 			}
-			Boolean finalResult = true;
 			set<string> CountryNames =  new set<string>(); 
 			set<string> BonusThresholdCountryNames = new set<string>(); 
 			set<string> ExceptionList = new set<string>(); 
@@ -188,10 +188,6 @@ global with sharing class AF_BonusRecordManager {
 				{
 					if(BonusThresholdCountryNames.contains(countryName))                                
 					ExceptionList.remove(countryName); 
-				}
-				if(ExceptionList.size() > 0)
-				{
-					finalResult = false;
 				}
 			}
 		}
@@ -264,7 +260,7 @@ global with sharing class AF_BonusRecordManager {
 						insert objCollection; 
 					}
 					catch(DMLException e){
-						ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusRecordManager','BonusMultiObjectFactory',e.getMessage(),e.getTypeName(),e.getStackTraceString());
+						ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Bonus_Record_Manager,'BonusMultiObjectFactory',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 					}       
 				}   		
 			}
@@ -293,7 +289,7 @@ global with sharing class AF_BonusRecordManager {
 			}
 			catch(DMLException ex)
 			{
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusRecordManager','BonusSummarySingleFactory',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Bonus_Record_Manager,'BonusSummarySingleFactory',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 				
 			}       
 		}                                           
@@ -323,7 +319,7 @@ global with sharing class AF_BonusRecordManager {
 			}
 			catch(DMLException ex)
 			{
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusRecordManager','BonusResultSingleFactory',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Bonus_Record_Manager,'BonusResultSingleFactory',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 
 			}       
 		}   
@@ -403,7 +399,7 @@ global with sharing class AF_BonusRecordManager {
 			}
 			catch(DMLException ex)
 			{
-				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BonusRecordManager','BonusMatrixSingleFactory',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+				ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_Bonus_Record_Manager,'BonusMatrixSingleFactory',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
 
 			}
 		}

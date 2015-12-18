@@ -71,7 +71,7 @@ public class Test_AF_UpdateOopsEstimatesValues1
      System.assertEquals(brandEst.Brand__c, bran.id);
      
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
      curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
      curr.Country_Currency__c = AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      curr.AF_Fiscal_Year_new__c = currYear;
@@ -96,9 +96,9 @@ public class Test_AF_UpdateOopsEstimatesValues1
      //Insert Agency Entity
      RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
      AF_Entity__c entity1=new AF_Entity__c();
-     entity1.Name='Algeria';        
+     entity1.Name=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;        
      entity1.AF_Agency__c=acc.Id;
-     entity1.AF_Country__c='Algeria';
+     entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
@@ -106,7 +106,7 @@ public class Test_AF_UpdateOopsEstimatesValues1
      RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
      AF_Entity__c entity2=new AF_Entity__c();
      entity2.Name=AF_Constants.TEST_UNILEVER_ENTITY_COUNTRY;        
-     entity2.AF_Country__c='Indonesia';
+     entity2.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      entity2.RecordTypeId=entiRT2.Id;         
      insert entity2; 
      
@@ -120,7 +120,7 @@ public class Test_AF_UpdateOopsEstimatesValues1
      oopEst.AF_Unilever_Entity__c=entity2.Id;
      oopEst.AF_Estimate__c=55;
      oopEst.AF_Status__c='Ready for PO';
-     oopEst.AF_Ready_For_PO_Entry_Currency__c = 'USD';
+     oopEst.AF_Ready_For_PO_Entry_Currency__c = AF_Constants.AF_CURRENCY_USD;
      oopEst.AF_Ready_For_PO_Exchange_Rate__c = 1.6112;
      //insert oopEst;       
     
@@ -129,13 +129,13 @@ public class Test_AF_UpdateOopsEstimatesValues1
      
      
     AF_Matrix_Table__c mtable = new AF_Matrix_Table__c();
-    mtable.AF_Agency_Country__c = 'Algeria';
-     mtable.AF_Unilver_Country__c = 'Indonesia';
-     mtable.AF_Matrix_Country__c = 'Ecuador';
-     mtable.AF_Matrix_Currency_Code__c = 'USD';
-     mtable.AF_Ready_For_PO_Currency_Code__c = 'USD';
-     mtable.AF_Ready_For_PO_Country__c ='Algeria';
-    mtable.Ready_For_PO_Conversion__c = 'USD';
+    mtable.AF_Agency_Country__c = AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
+     mtable.AF_Unilver_Country__c = AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
+     mtable.AF_Matrix_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     mtable.AF_Matrix_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     mtable.AF_Ready_For_PO_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     mtable.AF_Ready_For_PO_Country__c =AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
+    mtable.Ready_For_PO_Conversion__c = AF_Constants.AF_CURRENCY_USD;
     insert mtable;   
      
      /*AF_BrandEstimate_TriggerDate__c branEstTriDt=new AF_BrandEstimate_TriggerDate__c();
@@ -219,8 +219,8 @@ public class Test_AF_UpdateOopsEstimatesValues1
      System.assertEquals(brandEst.Brand__c, bran.id);
      
      AF_Currency__c curr = new AF_Currency__c();
-     curr.AF_Country__c = 'Ecuador';
-     curr.AF_Currency_Code__c = 'USD';
+     curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
      curr.Country_Currency__c = 'Eucador-USD';
      curr.AF_Fiscal_Year_new__c = currYear;
      curr.Currency_Unit__c = 'US $';
@@ -244,17 +244,17 @@ public class Test_AF_UpdateOopsEstimatesValues1
      //Insert Agency Entity
      RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
      AF_Entity__c entity1=new AF_Entity__c();
-     entity1.Name='Algeria';        
+     entity1.Name=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;        
      entity1.AF_Agency__c=acc.Id;
-     entity1.AF_Country__c='Algeria';
+     entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      entity1.RecordTypeId=entiRT1.Id;         
      insert entity1;
      
      //Insert Unilever Entity
      RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
      AF_Entity__c entity2=new AF_Entity__c();
-     entity2.Name='Indonesia';        
-     entity2.AF_Country__c='Indonesia';
+     entity2.Name=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;        
+     entity2.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
      entity2.RecordTypeId=entiRT2.Id;         
      insert entity2; 
      
@@ -268,7 +268,7 @@ public class Test_AF_UpdateOopsEstimatesValues1
      oopEst.AF_Unilever_Entity__c=entity2.Id;
      oopEst.AF_Estimate__c=55;
      oopEst.AF_Status__c='With Agency';
-     oopEst.AF_Ready_For_PO_Entry_Currency__c = 'USD';
+     oopEst.AF_Ready_For_PO_Entry_Currency__c = AF_Constants.AF_CURRENCY_USD;
      oopEst.AF_Ready_For_PO_Exchange_Rate__c = 1.6112;
      oopEst.AF_Fiscal_Year__c = currYear;
      //insert oopEst;       
@@ -278,13 +278,13 @@ public class Test_AF_UpdateOopsEstimatesValues1
      
      
     AF_Matrix_Table__c mtable = new AF_Matrix_Table__c();
-    mtable.AF_Agency_Country__c = 'Algeria';
-     mtable.AF_Unilver_Country__c = 'Indonesia';
-     mtable.AF_Matrix_Country__c = 'Ecuador';
-     mtable.AF_Matrix_Currency_Code__c = 'USD';
-     mtable.AF_Ready_For_PO_Currency_Code__c = 'USD';
-     mtable.AF_Ready_For_PO_Country__c ='Algeria';
-    mtable.Ready_For_PO_Conversion__c = 'USD';
+    mtable.AF_Agency_Country__c = AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
+     mtable.AF_Unilver_Country__c = AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
+     mtable.AF_Matrix_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+     mtable.AF_Matrix_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     mtable.AF_Ready_For_PO_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+     mtable.AF_Ready_For_PO_Country__c =AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
+    mtable.Ready_For_PO_Conversion__c = AF_Constants.AF_CURRENCY_USD;
     insert mtable;   
      
      /*AF_BrandEstimate_TriggerDate__c branEstTriDt=new AF_BrandEstimate_TriggerDate__c();

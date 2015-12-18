@@ -96,12 +96,10 @@ public with sharing class AF_BrandAgencyCombinationController
 				newBrand.Name= selectedoption.split('::').get(1)+'-'+selectedoptionAgency.split('::').get(1)+'-Q1'+'-'+financialYear;
 				newBrand.AF_Agency__c=selectedoptionAgency.split('::').get(0);    
 				newBrand.Brand__c=selectedoption.split('::').get(0);
-				newBrand.AF_Fiscal_Year__c=financialYear;
-				// Database.insert(newBrand, dmo); 
+				newBrand.AF_Fiscal_Year__c=financialYear; 
 				try
 				{
 					insert newBrand;
-					//displayPopup=true;
 					ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Confirm,' The Brand/Agency Combination has been successfully created'));
 				}
 				catch(Exception ex)

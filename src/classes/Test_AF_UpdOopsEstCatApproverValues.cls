@@ -18,7 +18,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      
      //Insert User 
      User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email=AF_Constants.TEST_USER_EMAIL, 
-      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Useruo', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
       TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
       UserName=AF_Constants.TEST_UserName,AF_Brand__c='Test Branduo',AF_Category__c='Test Beveragesuo');
@@ -128,16 +128,16 @@ public class Test_AF_UpdOopsEstCatApproverValues
      
      //Insert User 
      User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
       insert u;     
      
     User u1= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
       UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
       insert u1; 
 
@@ -184,7 +184,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
      bran.RecordTypeId=brandRT.Id;
      bran.AF_Pilot_Model__c=false;    
-     bran.Name='Test Branduo1';
+     bran.Name=AF_Constants.TEST_BRAND;
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
      
@@ -231,24 +231,24 @@ public class Test_AF_UpdOopsEstCatApproverValues
      
      //Insert User 
      User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;     
      
     User u1= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u1; 
      
      User u2= new User(Alias = 'testuo2', Email='standarduseruo2@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo2', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Useruo2', LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName='testuseruo2@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo2@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u2;
 
      System.runAs(u)
@@ -302,7 +302,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
      bran.RecordTypeId=brandRT.Id;
      bran.AF_Pilot_Model__c=false;    
-     bran.Name='Test Branduo1';
+     bran.Name=AF_Constants.TEST_BRAND;
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
      
@@ -349,31 +349,31 @@ public class Test_AF_UpdOopsEstCatApproverValues
      
      //Insert User 
      User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;     
      
     User u1= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u1; 
      
      User u2= new User(Alias = 'testuo2', Email='standarduseruo2@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo2', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Useruo2', LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName='testuseruo2@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo2@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u2;
      
      User u3= new User(Alias = 'testuo3', Email='standarduseruo3@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo3', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Useruo3', LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName='testuseruo3@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo3@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u3;
 
      System.runAs(u)
@@ -427,7 +427,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
      bran.RecordTypeId=brandRT.Id;
      bran.AF_Pilot_Model__c=false;    
-     bran.Name='Test Branduo1';
+     bran.Name=AF_Constants.TEST_BRAND;
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
      
@@ -474,38 +474,38 @@ public class Test_AF_UpdOopsEstCatApproverValues
      
      //Insert User 
      User u= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName='testuseruo@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u;     
      
     User u1= new User(Alias = AF_Constants.TEST_USER_ALIAS_NAME, Email='standarduseruo1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName=AF_Constants.TEST_USER_EMAIL,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u1; 
      
      User u2= new User(Alias = 'testuo2', Email='standarduseruo2@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo2', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Useruo2', LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName='testuseruo2@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo2@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u2;
      
      User u3= new User(Alias = 'testuo3', Email='standarduseruo3@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo3', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Useruo3', LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName='testuseruo3@test123321.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo3@test123321.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u3;
      
      User u4= new User(Alias = 'testuo4', Email='standarduseruo4@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Useruo4', LanguageLocaleKey=AF_Constants.LocaleKey, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Useruo4', LanguageLocaleKey=AF_Constants.LocaleKey, 
       LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-      UserName='testuseruo3@test121.com',AF_Brand__c='Test Branduo1',AF_Category__c=AF_Constants.TEST_AF_Category);
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+      UserName='testuseruo3@test121.com',AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
      insert u4;
 
      System.runAs(u)
@@ -559,7 +559,7 @@ public class Test_AF_UpdOopsEstCatApproverValues
      AF_Category_Brand__c bran=new AF_Category_Brand__c();
      bran.RecordTypeId=brandRT.Id;
      bran.AF_Pilot_Model__c=false;    
-     bran.Name='Test Branduo1';
+     bran.Name=AF_Constants.TEST_BRAND;
      bran.AF_Category_Brands__c=cat.Id;
      insert bran;
      

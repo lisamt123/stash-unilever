@@ -16,9 +16,9 @@ public class Test_AF_BrandEstimateRemote
      
      //Insert User 
      User u= new User(Alias = 'testber', Email='standarduserber@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userber', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userber', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
       UserName='testuserber@test123321.com',AF_Brand__c='Test Brandber',AF_Category__c='Test Beveragesber');
      insert u;        
      
@@ -205,9 +205,9 @@ public class Test_AF_BrandEstimateRemote
      
      //Insert User 
      User u= new User(Alias = 'testber1', Email='standarduserber1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userber1', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Finance',isActive=true, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userber1', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
       UserName='testuserber1@test123321.com',AF_Brand__c='Test Brandber1',AF_Category__c='Test Beveragesber1');
      insert u;        
      

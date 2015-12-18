@@ -16,9 +16,8 @@ public class Test_AF_BrandEstimateController2
      
      //Insert User 
      User u= new User(Alias = 'testo', Email='standarduserbec@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userbec', LanguageLocaleKey=AF_Constants.LocaleKey, 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
       UserName='testuserbec@test123321.com',AF_Brand__c='Test Brander',AF_Category__c='Test Beverageser');
      insert u;        
       
@@ -156,9 +155,9 @@ Static testMethod void brandEstimateController21()
      
      //Insert User 
      User u= new User(Alias = 'testbec1', Email='standarduserbec1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userbec', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='CMCO Super User',isActive=true, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbec', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='CMCO Super User',isActive=true, 
       UserName='testuserbec11@test123321.com',AF_Brand__c='Test Brandbec1',AF_Category__c='Test Beveragesbec1');
       insert u;        
       
@@ -352,9 +351,9 @@ Static testMethod void brandEstimateController21()
      
      //Insert User 
      User u= new User(Alias = 'testbec1', Email='standarduserbec1@unilever.com', 
-      EmailEncodingKey='UTF-8', LastName='Test Userbec', LanguageLocaleKey='en_US', 
-      LocaleSidKey='en_US', ProfileId = p.Id, 
-      TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='CMCO Super User',isActive=true, 
+      EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbec', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+      LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+      TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='CMCO Super User',isActive=true, 
       UserName='testuserbec11@test123321.com',AF_Brand__c='Test Brandbec1',AF_Category__c='Test Beveragesbec1');
       insert u;        
       
