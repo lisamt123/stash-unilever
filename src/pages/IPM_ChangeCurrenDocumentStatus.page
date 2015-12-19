@@ -16,14 +16,7 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/datepicker.css')}"/>     
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Modal1.css')}"/> 
     
-    <apex:form >
-        <apex:outputPanel layout="block" id="pmsg">
-            <apex:outputPanel styleClass="topErrMsgContainer" layout="block" rendered="{!AND(OR(showPostpone,showStop),showErrorMsg!='')}">
-                <div class="redInfoIcon">
-                </div>
-                <span class="topErrMsg">{!showErrorMsg}</span>
-            </apex:outputPanel>
-        </apex:outputPanel>        
+    <apex:form >              
         <apex:outputPanel id="srcp">
             <script>
             var status= '{!JSENCODE(status)}';
@@ -75,7 +68,14 @@
                                 
                                 <div class="col-xs-12 toolTipMsg marginTop"><apex:outputText value="{!$Label.IPM_ABOUT_STOPPED_STATE}"/>
                                 </div>
-                                <apex:outputLabel styleClass="marginTop" value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/>
+                                <apex:outputPanel layout="block" styleClass="col-xs-12 messageBox infoMsg marginTop">
+                                        <apex:outputPanel layout="block" styleClass="SecButtonSet">
+                                            <a class="icoButton red-info" title="info"></a>
+                                            <span class="msgTxt">{!$Label.IPM_Stopmsg}
+                                            </span> 
+                                        </apex:outputPanel>
+                                    </apex:outputPanel> 
+                                  <apex:outputLabel styleClass="marginTop" value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/>                                
                                 <apex:inputTextarea value="{!projectDoc.IPM_Stopped_Comments__c}"/>
                             </apex:outputPanel>
                         </apex:outputPanel>
@@ -86,7 +86,7 @@
                                 <div class="col-xs-12 toolTipMsg marginTop">
                                     <apex:outputText value="{!$Label.IPM_ABOUT_PROPOSED_STATE}"/>
                                 </div>
-                                <apex:outputPanel rendered="{!if(OR(showSkipSections,isDefaultAvailable),true,false)}">
+                                <apex:outputPanel rendered="{!OR(showSkipSections,isDefaultAvailable)}">
                                     <apex:outputPanel layout="block" styleClass="col-xs-12 messageBox infoMsg marginTop" rendered="{!showSkipSections}">
                                         <apex:outputPanel layout="block" styleClass="SecButtonSet">
                                             <a class="icoButton red-info" title="info"></a>
@@ -146,10 +146,6 @@
                                         <span class="errTitle">{!$Label.IPM_Risks}</span>
                                         <span class="errList">{!$Label.IPM_Please_complete_the_Risk_mitigation_plan_before_proposing_gate_document} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!riskSectionId}" target="_top">{!$Label.IPM_Risk_Section}</a></span> 
                                     </apex:outputPanel> 
-                                    <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!cmiError}">
-                                        <span class="errTitle">{!$Label.IPM_CMI}</span>
-                                        <span class="errList">{!$Label.IPM_CMI_Fill} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!cmiSectionId}" target="_top">{!$Label.IPM_CMI_Section}</a></span> 
-                                    </apex:outputPanel>
                                     <apex:outputPanel styleClass="errorBlock" layout="block" rendered="{!ecoDesignNoAssessmentError}">
                                         <span class="errTitle">{!$Label.IPM_EcoDesign_Assessment}</span>
                                         <span class="errList">{!$Label.IPM_EcoDesign_Fill} <a href="{!$Page.IPM_ProjectDocumentSectionEditor}?id={!projectId}&projDocSecId={!ecoDesignSectionId}" target="_top">{!$Label.IPM_EcoDesign_Assessment_Section}</a></span> 
@@ -163,6 +159,14 @@
                         <apex:outputPanel id="postpone" styleClass="postpone">
                             <apex:outputPanel rendered="{!If(Status='Postponed',true,false)}" > 
                                 <div class="col-xs-12 toolTipMsg marginTop"><apex:outputLabel value="{!$Label.IPM_POSTPONE_AND_RETRIEVE_FROM_PRO_ARCHIVE}" /></div>
+                                <apex:outputPanel layout="block" styleClass="col-xs-12 messageBox infoMsg marginTop" id="postponeMsg">
+                                        <apex:outputPanel layout="block" styleClass="SecButtonSet">
+                                            <a class="icoButton red-info" title="info"></a>
+                                            <span class="msgTxt">{!$Label.IPM_Postpone_Msg}
+                                            </span> 
+                                            <span class="msgTxt">{!showErrorMsg}</span>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
                                 <apex:outputPanel >
                                     <div class='input-group date'>
                                         <apex:outputLabel value="{!$Label.IPM_POSTPONE_ON}"/>
@@ -181,9 +185,11 @@
                             <apex:outputPanel rendered="{!If(Status='Approved',true,false)}" > 
                                 <div class="col-xs-12 toolTipMsg marginTop"><apex:outputLabel value="{!$Label.IPM_APPROVE_AND_NO_ACTION}" /></div>
                                 <apex:outputPanel layout="block" styleClass="col-sm-12 noPadleft noPadright approvedBox">                           
-                                    
                                     <apex:outputLabel value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/> <i>(Optional)</i>
+                                    <apex:outputPanel rendered="{!AND(project.IPM_Phase__c!=isCapability,isOperational)}">
                                     <span class="bluText">* Goes to <apex:outputText value="{!IF(projectDoc.IPM_GateDocuments__c='Charter',' Contract',(IF(projectDoc.IPM_GateDocuments__c='Contract',' Market Ready',(IF(projectDoc.IPM_GateDocuments__c='Market Ready',' Market Deployment',' PLE')))))}"></apex:outputText>  Gate document, Section Feedback from Last Gate</span>
+                                    </apex:outputPanel>
+                                    
                                     <apex:inputTextarea value="{!projectDoc.IPM_Approved_Comments__c}"/>
                                     <apex:outputPanel rendered="{!if(projectDoc.IPM_GateDocuments__c=='Charter',True,False)}">
                                         
@@ -233,8 +239,10 @@
                                 <div class="col-xs-12 toolTipMsg marginTop "><apex:outputLabel value="{!$Label.IPM_APPROVED_AND_ALLOW_CHANGES}" /></div>
                                 <div class="approvedBox">
                                     <apex:outputLabel value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/> <i>{!$Label.IPM_Document_Optional}</i>
+                    <apex:outputPanel rendered="{!AND(project.IPM_Phase__c!=isCapability,isOperational)}">
                                     <span class="bluText">* Goes to <apex:outputText value="{!IF(projectDoc.IPM_GateDocuments__c='Charter',' Contract',(IF(projectDoc.IPM_GateDocuments__c='Contract',' Market Ready',(IF(projectDoc.IPM_GateDocuments__c='Market Ready',' Market Deployment',' PLE')))))}"></apex:outputText> Gate document, Section Feedback from Last Gate</span>
-                                </div>
+                     </apex:outputPanel>
+                </div>
                                 <apex:inputTextarea value="{!projectDoc.IPM_Approved_Comments__c}"/>        
                                 <apex:outputPanel layout="block" rendered="{!if(projectDoc.IPM_GateDocuments__c=='Charter',True,False)}">
                                     
@@ -286,7 +294,7 @@
                                         <a class="ipmButton projectBKProcess primary pull-right" data-toggle="modal" data-target="#initiateProjectBKPanel" data-backdrop="static" data-keyboard="false">Change</a>
                                     </apex:outputPanel>
                                     <apex:outputPanel id="normalSave" rendered="{!Status!='Approved'}" >
-                                        <apex:commandButton value="{!$Label.IPM_CHANGE_DOC_STATUS}" action="{!submit}" status="Loading" onComplete="goToParentPage();" reRender="srcp,pmsg,validationMsg" styleClass="ipmButton primary"/>
+                                        <apex:commandButton value="{!$Label.IPM_CHANGE_DOC_STATUS}" action="{!submit}" status="Loading" onComplete="goToParentPage();" reRender="srcp,postponeMsg,validationMsg" styleClass="ipmButton primary"/>
                                     </apex:outputPanel>
                                 </div>
                                 <apex:outputPanel layout="block" rendered="{!Status=='Approved'}">
@@ -312,7 +320,7 @@
                                                                 </apex:outputPanel>
                                                                 <apex:actionStatus startText="" id="Loading1" startStyleClass="proInit"/>
                                                                     <div class="pull-left noPadright">
-                                                                        <apex:commandButton value="{!$Label.IPM_CHANGE_DOC_STATUS}" action="{!submit}" status="Loading" onComplete="goToParentPage();" reRender="srcp,pmsg,validationMsg" styleClass="ipmButton primary"/>                                  
+                                                                        <apex:commandButton value="{!$Label.IPM_CHANGE_DOC_STATUS}" action="{!submit}" status="Loading" onComplete="goToParentPage();" reRender="srcp,postponeMsg,validationMsg" styleClass="ipmButton primary"/>                                  
                                                                     </div> 
                                                             </div>
                                                         </div>  
@@ -355,7 +363,7 @@
                                 </div> 
                             </apex:outputPanel>
                             <div class="fleft noPadright">
-                                <apex:commandButton value="{!$Label.IPM_Confirm}" html-data-dismiss="modal" action="{!submit}" status="Loading" onComplete="goToParentPage();" reRender="srcp,pmsg" styleClass="ipmButton primary" />
+                                <apex:commandButton value="{!$Label.IPM_Confirm}" html-data-dismiss="modal" action="{!submit}" status="Loading" onComplete="goToParentPage();" reRender="srcp,postponeMsg" styleClass="ipmButton primary" />
                             </div> 
                         </div>               
                     </div>
