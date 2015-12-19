@@ -231,7 +231,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         projectMetadata = new IPM_ProjectMetadata__c();
         project.IPM_Project_Type__c = project.IPM_Category_Text__c = project.IPM_GateKeeping_Model__c = project.IPM_Approver_of_Charter__c = project.IPM_ProjectSubType__c =project.IPMProject_Span__c = project.IPM_Phase__c = project.IPM_Complexity__c = project.IPM_Child_Complexity__c = IPM_ConstantUtils.BLANK;
         
-        if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c) && project.IPM_CompanyCardText__c==null)
+        if(companyCardToRecordType.containsKey(project.IPM_Company_Card__c))
         {
             project.IPM_CompanyCardText__c = companyCardToRecordType.get(project.IPM_Company_Card__c);
         }
@@ -283,7 +283,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
                 if(!availableCategoryStringSet.isEmpty())
                 {
                     availableCategoryStringList.addAll(availableCategoryStringSet);
-                    project.IPM_Region_Shr__c=availableCategoryList[0].IPM_TxtGeographical_Scope__c;
+                    if(project.Market_Cluster_Name__c!=null){
+                        project.IPM_Region_Shr__c=project.Market_Cluster_Name__c;
+                    }else{
+                        project.IPM_Region_Shr__c=availableCategoryList[0].IPM_TxtGeographical_Scope__c;
+                    } 
+                    
                     // Check if category List is equals to 1, go ahead and populate BrandPositioning 
                     if(availableCategoryStringList.size() == 1)
                     {
