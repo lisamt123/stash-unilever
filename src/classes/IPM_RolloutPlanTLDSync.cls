@@ -12,7 +12,8 @@ public with sharing class IPM_RolloutPlanTLDSync {
             List<IPM_Project_Rollout__c> listToUpdateRolloutProject = new List<IPM_Project_Rollout__c>{};
             List<IPM_Project__c> listToUpdateLocalProject = new List<IPM_Project__c>{};
             Map<Id,Id> projIdRolloutIdMapRegional = new Map<Id,Id>{};
-            Map<Id,Id> projIdRolloutIdMapGlobal = new Map<Id,Id>{};         
+            Map<Id,Id> projIdRolloutIdMapGlobal = new Map<Id,Id>{};            
+            
             if(null != updatedRollouts){
                 for(IPM_Project_Rollout__c rolloutProj :[Select Id, Target_Launch_Date__c,Local_Project_Target_Launch_Date__c from IPM_Project_Rollout__c where Id = : updatedRollouts.keySet() limit 50000]){
                     IPM_Project__c ipmProj = updatedRollouts.get(rolloutProj.Id);
@@ -100,19 +101,7 @@ public with sharing class IPM_RolloutPlanTLDSync {
                                 origProjectList.add(ipmProject);    
                             }
                         }
-                    }
-                    if(ipmProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
-                        Date newTLDDate = updatedLocalProjects.get(projIdRolloutIdMapGlobal.get(ipmProject.Id)).Target_Launch_Date__c;
-                        if(ipmProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && ipmProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS){ 
-                            if(newTLDDate < globalProjRollOutMap.get(ipmProject.Id)){
-                                ipmProject.IPM_Target_Launch_Dates__c = newTLDDate;
-                                origProjectList.add(ipmProject);
-                            } else if(globalProjRollOutMap.get(ipmProject.Id) != ipmProject.IPM_Target_Launch_Dates__c){
-                                ipmProject.IPM_Target_Launch_Dates__c = globalProjRollOutMap.get(ipmProject.Id);
-                                origProjectList.add(ipmProject);    
-                            }
-                        }
-                    }                   
+                    }               
                 }
             }
             
@@ -135,7 +124,11 @@ public with sharing class IPM_RolloutPlanTLDSync {
             'syncTLDDates',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }      
     }
-
+    /*******************************************************************************************************
+    * @description  Method to update TLD on milestone
+    * @param        List IPM_Project
+    * @return       NONE
+    */
     public void updatedMilestoneTLD( List<IPM_Project__c> projects) {    
         try{
             Map<Id,IPM_Project__c> projIdProjectMap = new Map<Id,IPM_Project__c> {};
@@ -161,7 +154,11 @@ public with sharing class IPM_RolloutPlanTLDSync {
             'updatedMilestoneTLD',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }      
-    
+    /*******************************************************************************************************
+    * @description  Method to notify Global Finance leader about TLD Date Changes
+    * @param        Map projectId,projectRollout
+    * @return       NONE
+    */    
     public void notifyGlobalProjectFinanceLeader(Map<Id, IPM_Project_Rollout__c> globalProjIdRollout ){
         List<Id> projIdList = new List<Id>{};
         for(IPM_Project__c ipmProj : [Select Id,IPMProject_Span__c, IPM_Project_Type__c, IPM_Phase__c from IPM_Project__c where Id in : globalProjIdRollout.keySet() limit 50000]){
