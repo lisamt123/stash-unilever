@@ -26,10 +26,7 @@
     <!-- 27.09 changes -->
 
     <apex:pageMessages id="theMSgs" rendered="{!ProjectId != null}"/>
-    
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/ipmbuttons.css')}"/>
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_CreateBet.css')}"/>
-    
+
     <!--- 27.09 changes -->
     <apex:outputPanel rendered="{!ProjectId == null}">
         <c:BET_NewBetComponent betobj="{!betObj}" cdata="{!componentData}"/>
@@ -42,11 +39,11 @@
                 <apex:outputLabel >{!$Label.BET_BET_Name}</apex:outputLabel>
             </div>
             <div class="item-input">
-                <apex:inputText styleClass="txtboxx" value="{!betobject.name}"/>
+                <apex:inputText value="{!betobject.name}"/>
             </div>
         </div>             
 
-        <div class="form-item paddingT20P">
+        <div class="form-item">
             <div class="item-label">
                 <apex:outputLabel >{!$Label.BET_Owner}</apex:outputLabel>
             </div>
@@ -55,7 +52,7 @@
             </div>
         </div>             
 
-        <div class="form-item paddingT20P">
+        <div class="form-item">
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Category_Group__c.Label}</apex:outputLabel>
             </div>
@@ -64,7 +61,7 @@
             </div>
         </div>
 
-        <div class="form-item paddingT20P">
+        <div class="form-item">
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Product_Category__c.Label}</apex:outputLabel>
             </div>
@@ -74,7 +71,7 @@
         </div>
 
         <!-- FabricConditioner begin -->
-        <div class="form-item paddingT20P" style="{!IF(fabricConditionerCategory,'display:none;','display:none;')}">
+        <div class="form-item" style="{!IF(fabricConditionerCategory,'display:none;','display:none;')}">
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Is_Fabric_Conditioners__c.Label}</apex:outputLabel>
             </div>
@@ -84,7 +81,7 @@
         </div>
         <!-- FabricConditioner end -->
 
-        <div class="form-item paddingT20P">
+        <div class="form-item">
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Brand_Position__c.Label}</apex:outputLabel>
             </div>
@@ -93,19 +90,19 @@
             </div>
         </div>
 
-        <div class="form-item paddingT20P">
+        <div class="form-item">
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Product_Brand__c.Label}</apex:outputLabel>
             </div>
             <div class="item-input">
-                <apex:selectList styleClass="brandDrop" value="{!selectedBrand}" size="1" multiselect="false">
+                <apex:selectList value="{!selectedBrand}" size="1" multiselect="false">
                     <apex:selectOptions value="{!brands}" />
                 </apex:selectList>
             </div>
         </div>
 
         <!-- FabricConditioner begin -->
-        <div class="form-item paddingT20P" style="{!IF(fabricConditionerCategory,'','')}">
+        <div class="form-item" style="{!IF(fabricConditionerCategory,'','')}">
         <!-- FabricConditioner end -->
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.IPM_Project__c.Label}</apex:outputLabel>
@@ -115,16 +112,16 @@
             </div>
         </div>
 
-        <div class="form-item paddingT20P">
+        <div class="form-item">
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
             </div>
             <div class="item-input-description">
-                <apex:inputTextarea styleClass="wid100P txtarea" rows="3" value="{!betobject.Description__c}" />
+                <apex:inputTextarea rows="5" value="{!betobject.Description__c}" />
             </div>
         </div>
 
-        <div class="form-item paddingT20P">
+        <div class="form-item">
             <div class="item-label">
                 <apex:outputLabel >{!$Label.BET_TargetLaunchDate}</apex:outputLabel>
             </div>
@@ -134,9 +131,9 @@
             </div>
         </div>
 
-        <div class="betActionButtons pull-right">
-            <apex:commandButton value="{!$Label.BET_SkipForNow}" styleClass="ipmButton bgnone pull-left marginR10" action="{!skipForNow}" />
-            <apex:commandButton value="{!$Label.BET_CreateNewBet}" styleClass="ipmButton btn-create-bet primary pull-left" action="{!upsertBet}" 
+        <div class="betActionButtons">
+            <apex:commandButton value="{!$Label.BET_SkipForNow}" styleClass="btn-cancel" action="{!skipForNow}" />
+            <apex:commandButton value="{!$Label.BET_CreateNewBet}" styleClass="btn-create-bet" action="{!upsertBet}" 
                                 rerender="theMSgs"/>
         </div>
 

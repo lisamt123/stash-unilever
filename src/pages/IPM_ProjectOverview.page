@@ -9,6 +9,7 @@
 
 <apex:page sidebar="false" standardStylesheets="false" controller="IPM_ProjDocumentSectionHstryController" extensions="IPM_ProjectOverviewCtrl,IPM_GetHelpDoc">
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ProjectOverview.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_CreateBet.css')}"/>
     <apex:form >   
     <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
     <apex:composition template="IPM_TemplateRevamp">
