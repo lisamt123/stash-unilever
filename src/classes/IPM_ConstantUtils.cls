@@ -1174,4 +1174,5 @@ public class IPM_ConstantUtils {
    public static final String CHARTER_GATE_APPROVAL_MILESTONE = 'Charter Gate Approval';
    public static final String CONTRACT_GATE_APPROVAL_MILESTONE = 'Contract Gate Approval';
    public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
+   public static finaL String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
 }

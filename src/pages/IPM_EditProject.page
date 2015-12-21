@@ -15,6 +15,7 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Checkbox.css')}"/> 
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_RadioButton.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_EditProject.css')}"/> 
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ProjectSetupDesign.css')}"/>
     
     <div class="container-fluid">
         <apex:form >   
@@ -117,11 +118,13 @@
                                             <label class="ipmSelect">
                                                 <apex:actionRegion >
                                                     <apex:outputPanel >
-                                                        <apex:selectList size="1" value="{!project.IPM_Company_Card__c}" styleClass="selCompany" disabled="{!OR(ISBLANK(project.Id),project.IPM_IsSaved__c,NOT(isEditable))}">  
-                                                            <apex:actionSupport event="onchange" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript" status="refreshCategory" />
+                                                        <apex:selectList size="1" value="{!project.IPM_Company_Card__c}" onchange="callCompanyCard();" styleClass="selCompany" disabled="{!OR(ISBLANK(project.Id),project.IPM_IsSaved__c,NOT(isEditable))}">  
                                                             <apex:selectOptions value="{!Allcompanycard}" />
                                                         </apex:selectList>
                                                     </apex:outputPanel>
+                                                    <apex:actionfunction name="callCompanyCard" onComplete="callBrandPos();" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,fastTrackPanel,whiteSpacePanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript,multiBPositions" status="refreshCategory" />
+                                                    <apex:actionfunction name="callBrandPos" action="{!none}" reRender="BrandPositionPanel,multiBPositions" status="refreshCategory" />
+                                                                                
                                                 </apex:actionRegion>
                                             </label>
                                             <apex:outputPanel layout="block" id="CompanyMsg">
@@ -297,25 +300,36 @@
                                 <div class="row">
                                     <div class="col-sm-12"> 
                                         <apex:outputPanel id="WhiteSpaceFastTrackPanel">
-                                            <apex:outputPanel rendered="{!OR(projectMetadata.IPM_FastTrackApplicable__c,projectMetadata.IPM_WhiteSpaceApplicable__c)}"> 
-                                                <div class="col-sm-12 yellowBox noPadleft">
-                                                    <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox" rendered="{!projectMetadata.IPM_FastTrackApplicable__c}" > 
-                                                        <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability')),true,false)}"/>
-                                                        <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
-                                                    </apex:outputPanel>
-                                                    <apex:outputPanel id="whiteSpacePanel" styleClass="whiteSpaceBox" rendered="{!projectMetadata.IPM_WhiteSpaceApplicable__c}" >
-                                                        <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_White_Space_Project__c}" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c)),true,false)}"/>
-                                                        <apex:actionSupport event="onchange" reRender="WhiteSpaceHelpTextpanel"  />
-                                                        <span class="projectraLabel">{!$Label.IPM_White_Space}</span>
-                                                    </apex:outputPanel>
-                                                </div>
-                                                <apex:outputPanel id="WhiteSpaceHelpTextpanel">
-                                                    <apex:outputPanel styleClass="col-sm-12 yellowBox" layout="block" rendered="{!AND(project.IPM_White_Space_Project__c,isEditable)}" >
-                                                        <apex:outputText value="{!$Label.IPM_WhiteSpace_HelpText}" />
-                                                    </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!OR(projectMetadata.IPM_FastTrackApplicable__c,projectMetadata.IPM_WhiteSpaceApplicable__c)}"> 
+                                        <div class="col-sm-12 yellowBox noPadleft">
+                                            <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox" >
+                                                <apex:outputPanel rendered="{!projectMetadata.IPM_FastTrackApplicable__c}" > 
+                                                    <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability')),true,false)}"/>
+                                                    <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
+                                                    <apex:actionSupport event="onchange" reRender="FastTrackHelpTextpanel"  />
                                                 </apex:outputPanel>
                                             </apex:outputPanel>
+                                            <apex:outputPanel id="whiteSpacePanel" styleClass="whiteSpaceBox" >
+                                                 <apex:outputPanel rendered="{!projectMetadata.IPM_WhiteSpaceApplicable__c}" >
+                                                    <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_White_Space_Project__c}" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c)),true,false)}"/>
+                                                    <apex:actionSupport event="onchange" reRender="WhiteSpaceHelpTextpanel"  />
+                                                    <span class="projectraLabel">{!$Label.IPM_White_Space}</span>
+                                                    <apex:actionSupport event="onchange" reRender="WhiteSpaceHelpTextpanel"  />
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                        </div>
+                                        <apex:outputPanel id="FastTrackHelpTextpanel">
+                                            <apex:outputPanel styleClass="col-sm-12 toolTipMsg radioTooltip10 marginT20" layout="block" rendered="{!AND(project.IPM_Fast_Track_Project__c,isEditable)}" >
+                                                <apex:outputText value="{!$Label.IPM_FastTrack_HelpText}" />
+                                             </apex:outputPanel>
                                         </apex:outputPanel>
+                                        <apex:outputPanel id="WhiteSpaceHelpTextpanel">
+                                            <apex:outputPanel styleClass="col-sm-12 yellowBox" layout="block" rendered="{!AND(project.IPM_White_Space_Project__c,isEditable)}" >
+                                            <apex:outputText value="{!$Label.IPM_WhiteSpace_HelpText}" />
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 noPadleft">

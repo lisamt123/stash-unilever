@@ -732,7 +732,11 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             {
                 project.IPM_IsSaved__c = true;
             }
-            
+            if(!projectMetadata.IPM_FastTrackApplicable__c && !projectMetadata.IPM_WhiteSpaceApplicable__c )
+            {
+                project.IPM_White_Space_Project__c=false;
+                project.IPM_Fast_Track_Project__c=false;
+            }
             if(project.IPM_Project_Type__c != isRollout && APPENDREGIONMAP.containsKey(project.IPMProject_Span__c))
             {
                 String shortNameSTR = regionShortName();

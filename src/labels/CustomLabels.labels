@@ -7369,6 +7369,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Fast Track project</value>
     </labels>
     <labels>
+        <fullName>IPM_FastTrack_HelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FastTrack HelpText</shortDescription>
+        <value>Fast Track projects are not expected to meet On Time requirements of 6 months between Market Ready Approval and Launch.</value>
+    </labels>
+    <labels>
         <fullName>IPM_File_Uploaded_Successfully</fullName>
         <language>en_US</language>
         <protected>false</protected>

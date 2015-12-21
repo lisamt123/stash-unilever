@@ -141,7 +141,7 @@ public with sharing class IPM_List_Milestones extends AbstractStandardSetExtensi
                 isEditable = false;
             }
             // Target Launch Date will be read only
-            if(eachMilestone.IPM_Name__c.equalsignorecase(IPM_Utils.TargetLaunchDateShiptoTrade)){
+            if(eachMilestone.IPM_Name__c.equalsignorecase(IPM_Utils.TargetLaunchDateShiptoTrade) || IPM_ConstantUtils.SHIPTO_TRADE_TLD.equalsignorecase(eachMilestone.IPM_Name__c)){
                 isEditable = false;
             }
             
