@@ -88,6 +88,7 @@ private class BET_NewBetComponentControllerTest {
 		controller.bet = betObject;
 		Test.startTest();
 		System.assertEquals(controller.ownerOrManager,true,'User is bet owner');
+		controller.ownerOrManager = false;
 		Test.stopTest();
 	}
 	
