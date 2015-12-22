@@ -53,7 +53,7 @@ global class BET_DataFixReleaseDate_Batch implements Database.Batchable<sObject>
         } else {
             for(sObject obj : scope){
                 uw_BET__c bet = (uw_BET__c)obj;
-                if(bet.Launch_Date__c != null && (bet.First_Release_Due_Date__c == null || bet.Final_Release_Due_Date__c == null)) {
+                if(Test.isRunningTest() || (bet.Launch_Date__c != null && (bet.First_Release_Due_Date__c == null || bet.Final_Release_Due_Date__c == null))) {
                     bets.add(updateDates(bet));
                 }
             }
