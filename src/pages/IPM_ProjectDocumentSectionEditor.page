@@ -268,7 +268,7 @@
                                         </div>
                                         <!-----FUnctional Input END---->
                                     </div>
-                                    <!-----S END---->
+                                    <!-----Summary Side for 2 column view Begin---->
                                     <apex:outputPanel rendered="{!if(OR(projDocSec.IPM_Master_Section_External_Id__c=='Risk',projDocSec.IPM_Master_Section_External_Id__c=='OTIF_Status',projDocSec.IPM_Master_Section_External_Id__c=='Gate_Keeper_Checklist',projDocSec.IPM_Master_Section_External_Id__c=='Country_Feedback_Requirements',projDocSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'),false,true)}">
                                         <div class="col-sm-6">
                                             <div class="panel">   
@@ -324,13 +324,9 @@
                                                                 </div> 
                                                             </div>
                                                             <div class="row">
-                                                                <apex:outputPanel rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c='Risk',true,false)}">       
-                                                                </apex:outputPanel>
-                                                            </div>
-                                                            <div class="row">
                                                                 <div class="col-sm-12">
                                                                     <div class="panel secEditSummary">   
-                                                                        
+                                                                        <span class="filledinDesc asterisk">{!$Label.IPM_SUMMARY_TEXT_MINIMUM_LIMIT}</span>
                                                                         <apex:inputField id="gate" styleClass="countTarget" value="{!projDocSec.IPM_Gate_Document_Summary__c}" rendered="{! If(AND(IsEditableSumm=true),'true','false')}" />
                                                                         <apex:outputField styleClass="countTarget" value="{!projDocSec.IPM_Gate_Document_Summary__c}" id="gate1"  rendered="{! If(AND(IsEditableSumm=true),'false','true')}" />        
                                                                         <div class="row charCount">
@@ -471,6 +467,8 @@
                                             </div>
                                         </div>
                                     </apex:outputPanel>
+                                    <!-- 2 Column Summary ends -->
+                                    <!-- 1 Column Summary Begins -->
                                     <apex:outputPanel layout="block" rendered="{!if(OR(projDocSec.IPM_Master_Section_External_Id__c=='Risk',projDocSec.IPM_Master_Section_External_Id__c=='OTIF_Status',projDocSec.IPM_Master_Section_External_Id__c=='Gate_Keeper_Checklist',projDocSec.IPM_Master_Section_External_Id__c=='Country_Feedback_Requirements',projDocSec.IPM_Master_Section_External_Id__c=='BD/BB_Alignment'),true,false)}">
                                         <div class="col-sm-12">
                                             <div class="panel">   
@@ -544,6 +542,7 @@
                                                                 <div class="col-sm-12">
                                                                     <div class="panel secEditSummary">
                                                                         <div class="row">
+                                                                            <span class="filledinDesc asterisk">{!$Label.IPM_SUMMARY_TEXT_MINIMUM_LIMIT}</span>
                                                                             <div class="col-sm-5 pull-right charcount textRight">
                                                                                 <span>{!$Label.IPM_CHAR_REMAINING} </span> <strong id="lblCharCountGate2">{!remainingChar}</strong>
                                                                             </div>
@@ -684,6 +683,7 @@
                                             </div>
                                         </div>
                                     </apex:outputPanel>
+                                    <!-- 1 column summary ends -->
                                 </div>
                             </div>
                         </div>

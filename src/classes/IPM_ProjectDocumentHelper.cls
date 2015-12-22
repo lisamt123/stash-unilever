@@ -309,14 +309,8 @@ public with sharing class IPM_ProjectDocumentHelper
                                         if(section.IPM_Section_Type__c !=IPM_ConstantUtils.SECTION_TYPE_HEADER && 
                                             section.IPM_Section_Type__c!=IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
                                         {
-                                            if(String.isBlank(projDocSect.IPM_Gate_Document_Summary__c))
-                                            {
-                                                projDocSect.IPM_Section_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
-                                            }
-                                            else
-                                            {
-                                                projDocSect.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
-                                            }
+                                           // DEF2994 Restrict the copy over of Filled in logic 16/12/2015
+                                          		projDocSect.IPM_Section_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;                                          
                                             
                                             if(String.isBlank(projDocSect.IPM_PDP_Document_Summary__c))
                                             {
