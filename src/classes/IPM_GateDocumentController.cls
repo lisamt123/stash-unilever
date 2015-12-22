@@ -791,6 +791,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     /****************************************************
     @description For Exporting Gate Document Data in PDF
     @param Project Id
+    @ Business Rule: This functions is used to Display the data in for the Gate Documetn PDF, i which data needs to be pulled from Various entities, hence it is complex.
     */
     void gateDocumentData(Final Id pId){
         //For Generating PDF Retrieving Project Rollouts,Finance and Project Document Sections
