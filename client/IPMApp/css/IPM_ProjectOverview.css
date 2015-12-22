@@ -17,6 +17,7 @@
          .fl {
              float: left;
          }
+		 .searchModal .lookupSearchIcon{background-image: url("../images/search.svg");border: 0px;background-size: 20px 20px;width: 28px;height: 29px;background-position: 5px 6px;background-repeat: no-repeat;position: relative;left: -34px;background-color: #fff;}
 		 .pull-right{float:right;}
 		 .tradeDesc{margin: 10px 0px;display: block;}
 		 .tradeButtonContainer{margin:15px;}
@@ -1473,3 +1474,22 @@
     @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
 		.col-xs-8-1024{   width: 54.666667% !important;}
 	}
+	.projOverview .orgIcon {margin-top: 2px;}
+	.projOverview .oprtnIcon {margin-left: 2px;margin-top: 1px;}	           
+    .projOverview .rollIcon {margin-top: 3px;} 
+	
+	/*Create BET POPup New*/
+	  .italicTxt
+      {
+        font-style:italic
+      }
+      .removePadd
+      {
+         padding:0 !important;
+      }
+      .paddTB15
+      {
+        padding:15px 0 15px 0 !important;
+      }
+
+

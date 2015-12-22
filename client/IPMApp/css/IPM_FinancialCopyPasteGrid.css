@@ -6,12 +6,9 @@
 	- Author        : Cognizant Technology Solutions  
 *******************************************************************************************/
 /* ===GLOBAL STYLES=== */
-.row{max-width:100% !important;}
 .panel,table{border:0 !important;}
 table{margin-bottom:0 !important;}
-table tr th, table tr td{padding:0 !important;}
 .headerSearchLeftRoundedCorner #phSearchInput{top:2px !important;}
-form .row .row,.row .row{margin:0 !important;}
 .panel{padding:0 !important;margin-top: 10px;}
 label{cursor:auto !important;}
 .grentxt{margin-top: 4px;}

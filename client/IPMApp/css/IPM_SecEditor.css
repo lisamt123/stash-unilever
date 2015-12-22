@@ -36,7 +36,7 @@
 	.panelOutcome {border-bottom:1px solid #ddd!important; padding-bottom:7px!important; margin-bottom:10px!important; margin-top:6px!important;font-size:1.2em; font-weight:bold; }
 	.panelMessage { padding-bottom:0 !important;margin-top:10px; margin-bottom:10px!important; box-shadow:none!important;font-size:16px; color:#00699d; font-style:italic; }
 	.dateUpdate{ padding-bottom:7px!important;font-size:1em; color:#666; }
-	.marginFloatedBlock {margin-bottom:10px;}
+	.marginFloatedBlock {margin-bottom:10px;margin-top:10px;}
 	.notifyTeam {font-size:1em; }
 	.notifyTeam input[type=checkbox] {position:relative; top:2px;}
 	.leftSideBar {margin-top:10px;}
@@ -107,7 +107,7 @@
 	#ipmModal .modal-dialog{margin:15px auto;}
 	
 	.ipmSelect {border-radius:3px;-webkit-border-radius:3px;-webkit-border-radius:3px;position:relative; z-index:0; display:inline-block;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;}
-	.ipmSelect select {padding:3px;padding-right:20px; background: transparent;border: none;}
+	.ipmSelect select {padding:3px;padding-right:20px; border: none;}
 	
 	
 	.aTaskbutton{font-family:Arial;font-size:1em;font-weight:bold;color:#007DBB;}
@@ -459,7 +459,7 @@
     .edSelectCountry label {display:block;margin-bottom:10px;}     
     .tblCRRTStat>tbody>tr:nth-of-type(even) td {background-color:#fff!important;}
     .tblCRRTStat>tbody>tr:nth-of-type(odd) td {background-color:#f8f8f8!important;}
-    .altBGcolor {background:#ebf8fc!important;width:100%;padding-bottom: 10px;}
+    .altBGcolor {background:#ebf8fc!important;width:100%;}
     .CMIGateDoc .ipmAcrdnHeader{border-top:none !important;}
     .CMIcountryAccordian{border: 1px #dce3e2 solid;margin: 10px 0;} 
     .gkcStatus {text-align:center; color:#fff; font-size:12px; display:inline-block; min-width:85px;}
@@ -474,7 +474,7 @@
 	.Green{background:#6c9a40;border-radius:1px!important;margin-right:0!important;display:block!important;}
 	.Amber{background:#e98824;}
 	.notApplicable{max-width:76px;background:#555;color:#fff;text-align:center;font-size:10px;}
-	.Red,.Green,.Amber{max-width:40px;height:auto!important;width:auto!important;color:#fff;text-align:center;font-size:10px;}
+	.Red,.Green,.Amber{max-width:40px;height:auto!important;width:auto!important;color:#fff;text-align:center;font-size:12px;}
 /*CMI List*/	
 	.navbar-nav li:last-child > a > span{margin-top:0px !important;}   
 	.ipmAccordian {display:block;margin: 10px 0;}
@@ -543,7 +543,7 @@
 	.cmigTable:nth-child(even) .rContainer {    background-color: #fff;margin-bottom:0px !important;}
 	.cmigTable:nth-child(odd) .rContainer {    background-color: #F8F8F8;margin-top: 0px !important;}
 	.skipCheck{float:left;}
-	.skipTestLabel{color:#555;float: left;display: block;margin-left: 10px;}
+	.skipTestLabel{color:#555;float: left;display: block;margin-left: 15px;}
 	.checkMarginTop{margin-top:5px;}
 	.cmiListcont{float: left;  display: block;  border: 1px solid #636363;  width: 100%;}
 	.skipCommentHead{color:#555;display: block;margin-bottom: 10px;}
@@ -561,7 +561,7 @@
 	.cuContainerTextBox {float: left;width: 30%;}               
     .cuRadioTextBox {height: 25px; width: 100%;}
     .cuCount .ipmRadioButton {width: 14em;}
-    .row.cuCount td {display: block;  height:2em; font-style: italic;}
+    .cuCount .cuRadio td {display: block;  height:2em; font-style: italic;}
 	.cuCount .noOfCu { font-weight: bold;   margin-bottom:10px;}
 	/*.row.StarContainer {background-color: #edfaff; margin: 0px;}
 	.row.cuCount {  margin: 0px; background-color: #edfaff;}*/
@@ -600,6 +600,8 @@
     border-color: #01B1A6 transparent!important;
     border-width: 0 10px 10px;
 }
+.ui-lefttip .ui-tooltip-content::after{left: 20px !important;}
+.ui-lefttip{left: 10px !important;}
 .oprtnTopAlertContainer { 
  background: url("../images/alert_1a.png") no-repeat 10px 10px #FFF582; 
  background-size: 22px; 
@@ -647,19 +649,19 @@
 	.assortList1 .filterActionscc{padding:0px !important;}
 
 .cust-overlay {
-    background: #fff url(../images/ajax-loader.gif) no-repeat center;
+    background: #fff url(../images/ajax-loader.gif) no-repeat center 10%;
     width: 100%;
     height: 100%;
-    padding: 0px;
+    padding: 0;
     color: #000;
     text-align: center;
     position: absolute;
     z-index: 100;
     display: block;
-    opacity: 0.7;
-    -moz-opacity: 0.7;
-    -webkit-opacity: 0.7;
-    filter: alpha(opacity=70);
+    opacity: 0.8;
+    -moz-opacity: 0.8;
+    -webkit-opacity: 0.8;
+    filter: alpha(opacity=80);
 }
 .custSelectWidth select{padding-right:0px !important;}
 /* Financial styles */
@@ -709,3 +711,12 @@
 .toDoLeft{float:left;margin-right:5px;}
 .todoDate{display: block;margin-top: 3px;}
 .assortPriority{float:left;margin-left:20px;}
+.secComponent {background: #ebf8fc;}
+.secComponent:after {content:""; clear:both; visibility:hidden; display:block;} 
+.noPaddingNbg {background: transparent !important;padding-left: 0 !important;}
+.filledinDesc{font-style:italic;font-size:11px !important;}
+.ipmFintableAlign.table thead tr th{font-size:0.705em}
+.ipmFintableAlign.table thead tr th:nth-child(2){width:18%;}
+.ipmFintableAlign.table thead tr th:nth-child(3),.ipmFintableAlign.table thead tr th:nth-child(4){width:12%;}
+.ipmFintableAlign.table thead tr th:nth-child(5){width:15.2%;}
+.ipmFintableAlign.table{width:902px;max-width:902px}

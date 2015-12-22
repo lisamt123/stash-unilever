@@ -15,10 +15,12 @@ jq(document).ready(function() {
 	});
 	jq(".teamCheck").change(function(){
 		var $this = jq(this);
-		if($this.is(':checked')) 
-			$this.closest('tr').addClass('selected'); 
-		else 
+		if($this.is(':checked')) {
+			$this.closest('tr').addClass('selected');
+		}			
+		else {
 			$this.closest('tr').removeClass('selected');
+			}
 	});
 	jq('.teamSearch1 input').clearSearch();
 	jq('.teamSearch2 input').clearSearch();

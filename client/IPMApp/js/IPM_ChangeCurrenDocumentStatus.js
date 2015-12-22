@@ -86,16 +86,18 @@ jq(document).ready(function() {
 /* Below script is validate the BOSSCARD status and navigate to respective pages */
 function goToParentPage() {
     if (window.location.search.indexOf('ipmProjectOverview') > -1) {
-        window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
+		window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
     } else {
-        if (status == IPMApp.Stopped && makeStop == true) {
+		if (status == IPMApp.Stopped && makeStop == true) {
             window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
         } else if (status == IPMApp.Proposed && makeValid == true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
         } else if (status == IPMApp.Postponed && makePostpone == true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
-        } else if (status == IPMApp.Approved && makeApprove == true) {
+        } else if (status == IPMApp.Approved && makeApprove == true && IPMApp.projectPhase == 'Ideas') {
             window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId + '&showMembers=true&createBET=true';
+		} else if (status == IPMApp.Approved && makeApprove == true) {
+			window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
         } else if (status == IPMApp.ApprovedEdit && makeValid == true) {
             window.top.location.href = IPMApp.GateDocumentPage + '?id=' + IPMApp.projectId + '&printDoc=' + IPMApp.projectDoc;
         }
@@ -192,8 +194,9 @@ function changeCurrentStatus(changestatus) {
         jq("#changeStatus").addClass("slider4");
         jq.each(itemsProposed, function(key, value) {
             var w = PointerF;
-            if (key === 0 || key === itemsProposed.length - 1)
+            if (key === 0 || key === itemsProposed.length - 1){
                 w = PointerF / 2;
+				}
             jq("#legend .ipmStatusTabs").append("<li><span class='" + value + "'></span><span class='StatusLabel'>" + value + "</span><div class='ipmRadioButton'><label for='statusRadioBtn_" + key + "'></label><input type='radio' name='gateStatus' value='" + value + "' id='statusRadioBtn_" + key + "' /></div></li>");
         });
     } else {
@@ -221,8 +224,9 @@ function changeCurrentStatus(changestatus) {
         jq("#changeStatus").addClass("slider3");
         jq.each(items, function(key, value) {
             var w = PointerT;
-            if (key === 0 || key === items.length - 1)
+            if (key === 0 || key === items.length - 1){
                 w = PointerT / 2;
+				}
             jq("#legend .ipmStatusTabs").append("<li><span class='" + value + "'></span><span class='StatusLabel'>" + value + "</span><div class='ipmRadioButton'><label for='statusRadioBtn_" + key + "'></label><input type='radio' name='gateStatus' value='" + value + "' id='statusRadioBtn_" + key + "' /></div></li>");
         });
     }

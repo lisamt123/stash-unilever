@@ -10,6 +10,9 @@
 	jq(".dueDate").each(function () {
 		jq(this).text(jq(this).text().replace('00:00:00 GMT',''));
 	});
+	jq('.modal-header-bet .close').click(function() {  
+		jq('#myModal').modal('hide');
+	});
  /* Below code is to show or hide the alerts container */
 	 jq(document).on('click', '.alertAccordian', function() {
 		var $this = jq(this);

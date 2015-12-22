@@ -20,6 +20,7 @@ function openWin() {
 }
 $(document).ready(function() {
     var sustPeriod = IPMAppFin.Sustainability;
+	var BI = IPMAppFin.BI;
     var personalData;
     var customValidator = function(value, callback) {};
     var container = document.getElementById('FinancialGrid');
@@ -387,19 +388,20 @@ $(document).ready(function() {
                             Y5CITO = globalchanges[j][3];
                         }
                     }
-                    GTO = Y1GTO + Y2GTO + Y3GTO + Y4GTO + Y5GTO;
-                    CGTO = Y1CGTO + Y2CGTO + Y3CGTO + Y4CGTO + Y5CGTO;
-                    ITO = Y1ITO + Y2ITO + Y3ITO + Y4ITO + Y5ITO;
-                    CITO = Y1CITO + Y2CITO + Y3CITO + Y4CITO + Y5CITO;
-                    if (ITO > GTO) {
-                        alert(IPMAppFin.IPM_ITOValidation);
-                        Validationflag = 'true';
-                    }
-                    if (CITO > CGTO) {
-                        alert(IPMAppFin.IPM_ITOCalValidation);
-                        Validationflag = 'true';
-                    }
-
+					if(BI == 'Small'){
+						GTO = Y1GTO + Y2GTO + Y3GTO + Y4GTO + Y5GTO;
+						CGTO = Y1CGTO + Y2CGTO + Y3CGTO + Y4CGTO + Y5CGTO;
+						ITO = Y1ITO + Y2ITO + Y3ITO + Y4ITO + Y5ITO;
+						CITO = Y1CITO + Y2CITO + Y3CITO + Y4CITO + Y5CITO;
+						if (ITO > GTO) {
+							alert(IPMAppFin.IPM_ITOValidation);
+							Validationflag = 'true';
+						}
+						if (CITO > CGTO) {
+							alert(IPMAppFin.IPM_ITOCalValidation);
+							Validationflag = 'true';
+						}
+					}
                     if (Validationflag == 'false' && Validationflag1 == 'false' && Validationflag2 == 'false' && Validationflag3 == 'false' && Validationflag4 == 'false' && Validationflag5 == 'false' && Validationflag6 == 'false') {
                         document.getElementById('DivButton').style.display = 'inline';
                     } else {
@@ -409,19 +411,13 @@ $(document).ready(function() {
             }
         },
         afterValidate: function(isValid, value, row, prop, source) {
-            if (source == "paste") {
-                if (!isValid) {
-                    if (errorflag == "false") {
-                        alert(IPMAppFin.FinancialGrid_MSG3);
-                        errorflag = "true";
-                        document.getElementById("Clrbtn").click();
-                    }
-                }
-            } else if (source == "edit") {
-                if (!isValid) {
+            if (source == "paste" && !isValid && errorflag == "false") {
+				alert(IPMAppFin.FinancialGrid_MSG3);
+				errorflag = "true";
+				document.getElementById("Clrbtn").click();             
+            } else if (source == "edit" && !isValid) {
                     alert(IPMAppFin.FinancialGrid_MSG3);
                     document.getElementById("Clrbtn").click();
-                }
             }
         }
     });
@@ -434,7 +430,7 @@ function chdropdown(valx) {
     Visualforce.remoting.Manager.invokeAction(IPMAppFin.GetFinancialYearRA,
         JSON.stringify(globalchanges), valx, IPMAppFin.span, IPMAppFin.projectType,
         function(result, event) {
-            if (event.status) {} else if (event.type === 'exception') {
+            if (event.type === 'exception') {
                 document.getElementById("responseErrors").innerHTML = event.message + ":" + event.where;
             } else {
                 document.getElementById("responseErrors").innerHTML = event.message;
