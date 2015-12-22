@@ -740,8 +740,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             }              
         }
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
-                'getProjectDocumentSection',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
     } 
     
@@ -763,9 +762,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                 order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
         }
         catch(Exception ex){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
-                'getDocumentSectionMap',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
     }
     
@@ -799,6 +796,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         //For Generating PDF Retrieving Project Rollouts,Finance and Project Document Sections
         try{
             String nam=project.IPM_Project_Name__c;
+            globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
             country=new IPM_Country__c();
             rollOut=new list<IPM_Project_Rollout__c>();
             rollOut=[SELECT Name,IPM_Status__c,IPM_Rollout_Span__c FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:project.Id];
@@ -810,15 +808,15 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
              }
              /*DEF 2248*/
             finProjectPriority = new IPM_Financial__c();
-            if (project.IPMProject_Span__c=='Local'){
-                finProjectPriority = [Select ipm_cpp_local__c from IPM_Financial__c where Financial_External_ID__c =: project.name limit 1];
+            if (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL){
+                finProjectPriority = [Select ipm_cpp_local__c from IPM_Financial__c where Financial_External_ID__c =: nam limit 1];
             }    
             
             //DEF2450 - BI copy to child projects ?? or it should be 2103 where BI to be displayed on gate document
             //Note: If project is regional or Local fin.Business_Impact_Global__c will not be relevant as BI should be coming from global project
             //Regional and Local Financial records have their own calculated Business Impact Global which should NOT be used.
-            if(project.IPMProject_Span__c=='Regional'){
-               list<IPM_Financial__c> liFinParentReg = [select Business_Impact_Global__c from IPM_Financial__c where (Parent_Project__c=:project.IPM_Parent_Project__c OR global_project_id__c=:project.IPM_Parent_Project__c) and parent_project__r.IPMProject_Span__c='Global' limit 1];
+            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
+               list<IPM_Financial__c> liFinParentReg = [select Business_Impact_Global__c from IPM_Financial__c where (Parent_Project__c=:project.IPM_Parent_Project__c OR global_project_id__c=:project.IPM_Parent_Project__c) and parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL limit 1];
                if (!liFinParentReg.isEmpty())
                {
                     if (liFinParentReg[0].Business_Impact_Global__c!=null)
@@ -827,28 +825,24 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                     }
                }
            }
-           else if(project.IPMProject_Span__c=='Local')
+           else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
            {
                list<IPM_Financial__c> liFinParentLoc = [select Business_Impact_Global__c from IPM_Financial__c where global_project_id__c=:project.IPM_Global_Project_Id__c and parent_Project__c=:project.IPM_Global_Project_Id__c limit 1];
                if (!liFinParentLoc.isEmpty())
                {
                    globalbusinessImpactStr = liFinParentLoc[0].Business_Impact_Global__c;
                }
-           }
-           if(string.isBlank(globalbusinessImpactStr) || (string.isNotBlank(globalbusinessImpactStr) && globalbusinessImpactStr.contains(IPM_ConstantUtils.NullString)))
-           {
-                        globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
-           }
+           }          
            //DEF3019
                if (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
                         globalbusinessImpactStr = IPM_ConstantUtils.BLANK;      
                }
-            Integer flag=[select count() from IPM_Country__c where Local_Rollout__r.IPM_Status__c='First' AND (IPM_Project__c=:projectId 
+            Integer flag=[select count() from IPM_Country__c where Local_Rollout__r.IPM_Status__c=:IPM_ConstantUtils.ROLLOUT_LEADER AND (IPM_Project__c=:projectId 
                      OR IPM_Regional_Project__c=:projectId OR IPM_Local_Project__c=:projectId)];
             if(flag>0)
             {
                 country=[select Country_Name__c,MCO_Name__c,IPM_Project__c,IPM_Regional_Project__c,IPM_Local_Project__c,Local_Rollout__r.IPM_Status__c
-                     from IPM_Country__c where Local_Rollout__r.IPM_Status__c='First' AND (IPM_Project__c=:projectId 
+                     from IPM_Country__c where Local_Rollout__r.IPM_Status__c=:IPM_ConstantUtils.ROLLOUT_LEADER AND (IPM_Project__c=:projectId 
                      OR IPM_Regional_Project__c=:projectId OR IPM_Local_Project__c=:projectId) limit 1];
             }         
             
@@ -858,16 +852,14 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                     Name,LastModifiedBy.Name,LastModifiedDate,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.External_ID__c,IPM_Project_Document__c,IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Gate_Document_Summary__c,IPM_FunctionalRole__c,
                                     IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c,IPM_Has_Appendix__c,IPM_Master_Section_External_Id__c
                                     FROM IPM_Project_Document_Section__c 
-                                    WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Section_Sequence__c!='8' and IPM_Default_Section__c=true 
+                                    WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Default_Section__c=true 
                                     AND ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c !=:IPM_ConstantUtils.BLG ))//to exlude section 5.3 for BLG projects
                                     order by IPM_Section__r.IPM_Section_Sequence__c asc];
            
             getAppendixSections();
         }
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
-                'gateDocumentData',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-           
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
     } 
     
