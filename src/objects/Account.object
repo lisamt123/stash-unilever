@@ -1389,33 +1389,6 @@
         <type>Picklist</type>
     </fields>
     <fields>
-        <fullName>Local_Currency__c</fullName>
-        <externalId>false</externalId>
-        <label>Local Currency</label>
-        <picklist>
-            <picklistValues>
-                <fullName>AUD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>EURO</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>GBP</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>USD</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>true</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <type>Picklist</type>
-    </fields>
-    <fields>
         <fullName>Machine_Id__c</fullName>
         <description>TO: List of machine id of the customers</description>
         <externalId>false</externalId>
@@ -2083,7 +2056,7 @@
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
-    <fields>
+	<fields>
         <fullName>UID_Branch__c</fullName>
         <description>Branch of Unilever that sells to distributor (primary account only)</description>
         <externalId>false</externalId>
@@ -2459,7 +2432,7 @@
         </filters>
         <label>Pitch Experts</label>
     </listViews>
-    <listViews>
+	<listViews>
         <fullName>Primary_Account_View</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
@@ -2468,7 +2441,6 @@
         <columns>UID_Branch__c</columns>
         <columns>UID_Geography__c</columns>
         <columns>UID_Segment__c</columns>
-        <columns>Local_Currency__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>ACCOUNT.RECORDTYPE</field>
@@ -2523,7 +2495,7 @@
             <roleAndSubordinatesInternal>CEC_Global_Head</roleAndSubordinatesInternal>
         </sharedTo>
     </listViews>
-    <listViews>
+	<listViews>
         <fullName>Secondary_Account_View</fullName>
         <columns>ACCOUNT.NAME</columns>
         <columns>ACCOUNT.ACCOUNT_NUMBER</columns>
@@ -2532,7 +2504,6 @@
         <columns>UID_Branch__c</columns>
         <columns>UID_Geography__c</columns>
         <columns>UID_Segment__c</columns>
-        <columns>Local_Currency__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>ACCOUNT.RECORDTYPE</field>
@@ -3465,17 +3436,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Local_Currency__c</picklist>
-            <values>
-                <fullName>AUD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USD</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Ownership</picklist>
             <values>
                 <fullName>Other</fullName>
@@ -3580,51 +3540,6 @@
             </values>
             <values>
                 <fullName>Reseller</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Geography__c</picklist>
-            <values>
-                <fullName>OTHERS</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Region__c</picklist>
-            <values>
-                <fullName>EUROPE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MIDDLE EAST ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NORTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SOUTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SOUTH EAST ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USA</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Segment__c</picklist>
-            <values>
-                <fullName>NON PI CUSTOMERS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PI CUSTOMERS</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4560,17 +4475,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Local_Currency__c</picklist>
-            <values>
-                <fullName>AUD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USD</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Ownership</picklist>
             <values>
                 <fullName>Other</fullName>
@@ -4698,51 +4602,6 @@
             </values>
             <values>
                 <fullName>Reseller</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Geography__c</picklist>
-            <values>
-                <fullName>OTHERS</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Region__c</picklist>
-            <values>
-                <fullName>EUROPE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MIDDLE EAST ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NORTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SOUTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SOUTH EAST ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USA</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Segment__c</picklist>
-            <values>
-                <fullName>NON PI CUSTOMERS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PI CUSTOMERS</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5559,17 +5418,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Local_Currency__c</picklist>
-            <values>
-                <fullName>AUD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USD</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Ownership</picklist>
             <values>
                 <fullName>Other</fullName>
@@ -5674,51 +5522,6 @@
             </values>
             <values>
                 <fullName>Reseller</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Geography__c</picklist>
-            <values>
-                <fullName>OTHERS</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Region__c</picklist>
-            <values>
-                <fullName>EUROPE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MIDDLE EAST ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NORTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SOUTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SOUTH EAST ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USA</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Segment__c</picklist>
-            <values>
-                <fullName>NON PI CUSTOMERS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PI CUSTOMERS</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -6654,17 +6457,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Local_Currency__c</picklist>
-            <values>
-                <fullName>AUD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USD</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Ownership</picklist>
             <values>
                 <fullName>Other</fullName>
@@ -6792,51 +6584,6 @@
             </values>
             <values>
                 <fullName>Reseller</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Geography__c</picklist>
-            <values>
-                <fullName>OTHERS</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Region__c</picklist>
-            <values>
-                <fullName>EUROPE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MIDDLE EAST ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NORTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SOUTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SOUTH EAST ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USA</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Segment__c</picklist>
-            <values>
-                <fullName>NON PI CUSTOMERS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PI CUSTOMERS</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -7654,17 +7401,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Local_Currency__c</picklist>
-            <values>
-                <fullName>AUD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USD</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Ownership</picklist>
             <values>
                 <fullName>Other</fullName>
@@ -7772,53 +7508,8 @@
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
-            <picklist>UID_Geography__c</picklist>
-            <values>
-                <fullName>OTHERS</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Region__c</picklist>
-            <values>
-                <fullName>EUROPE</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>MIDDLE EAST ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NORTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SOUTH ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SOUTH EAST ASIA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USA</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>UID_Segment__c</picklist>
-            <values>
-                <fullName>NON PI CUSTOMERS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>PI CUSTOMERS</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
     </recordTypes>
-    <recordTypes>
+	<recordTypes>
         <fullName>UID_Primary_Account</fullName>
         <active>true</active>
         <description>Indicates that account is a distributor&apos;s account</description>
@@ -10493,7 +10184,7 @@
         <customTabListAdditionalFields>ACCOUNT.SITE</customTabListAdditionalFields>
         <customTabListAdditionalFields>PC_ADDRESS2_CITY</customTabListAdditionalFields>
         <customTabListAdditionalFields>PC_ADDRESS2_ZIP</customTabListAdditionalFields>
-        <customTabListAdditionalFields>UID_Region__c</customTabListAdditionalFields>
+		<customTabListAdditionalFields>UID_Region__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UID_Branch__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UID_Geography__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>UID_Segment__c</customTabListAdditionalFields>
