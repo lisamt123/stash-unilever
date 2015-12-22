@@ -378,7 +378,8 @@
                                                                         <div class="col-sm-8 innerHead">
                                                                             <span class="user"><apex:outputText value="{!projectDoc.IPM_Updated_User_By__r.Name}"/></span>
                                                                             <apex:outputText value="{!projectDoc.IPM_Document_Status__c}"/>
-                                                                            <span class="status-date">On <apex:outputfield value="{!projectDoc.IPM_Approval_Date__c}"/></span>
+                                                                            <span class="status-date">On </span>
+                                                                            <apex:outputfield value="{!projectDoc.IPM_Approval_Date__c}"/>
                                                                         </div>
                                                                         <div class="col-sm-4 txtRight updateStatus">                                   
                                                                             
@@ -409,7 +410,8 @@
                                                                                 <apex:outputText value="{!projectDoc.LastModifiedBy.Name}"/> </span> 
                                                                             <span class="action-txt"><apex:outputText value="{!IF(OR(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Postponement_Date__c!=null),'Postponed',projectDoc.IPM_Document_Status__c)}"/>
                                                                             </span>
-                                                                            <span class="status-date">On <apex:outputfield value="{!projectDoc.IPM_Postponement_Date__c}"/></span>
+                                                                            <span class="status-date">On </span>
+                                                                            <apex:outputfield value="{!projectDoc.IPM_Postponement_Date__c}"/>
                                                                             
                                                                         </div>
                                                                         <div class="col-sm-4 txtRight updateStatus">                                
