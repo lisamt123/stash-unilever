@@ -12,7 +12,6 @@ public with sharing class IPM_Assumptions_Controller {
     public string gateDocType{get;set;}// used in corresponding component
     public string contentName{get; set;} //For saving comments 
     public string comments{get; set;} //For saving comments 
-    public Id assumptionId{get; set;} //For getting section content id
     public ID projDocSecId{ 
         get {
             return projDocSecId; // to get the project document section ID from the component used from Gate document page
@@ -65,7 +64,7 @@ public with sharing class IPM_Assumptions_Controller {
     */
     public void saveAssumptions(){
         try{
-            assumption=new IPM_Project_Document_Section_Content__c();
+            getAssumptions();
             if(contentName==IPM_ConstantUtils.MARKET_SIZE) {
                 assumption.IPM_Assumption_Market_Size__c=comments;
             }
@@ -74,13 +73,13 @@ public with sharing class IPM_Assumptions_Controller {
             }
             else if(contentName==IPM_ConstantUtils.CAPEX){
                 assumption.IPM_Assumption_CAPEX__c=comments;
-        	}
+            }
             else if(contentName==IPM_ConstantUtils.COUNTRIES){
                 assumption.IPM_Assumption_Countries__c=comments;
-    		}
+            }
             else if(contentName==IPM_ConstantUtils.GM){
                 assumption.IPM_Assumption_GM__c=comments;
-			}	    
+            }       
             else if(contentName==IPM_ConstantUtils.VOLUME_ASSUMPTION){
                 assumption.IPM_Assumption_Volume__c=comments;
             }
@@ -106,7 +105,6 @@ public with sharing class IPM_Assumptions_Controller {
                 insert assumption;
             }
             else{
-                assumption.Id=assumptionId;
                 update assumption;
             }
         }
