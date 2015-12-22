@@ -46,8 +46,7 @@ public with sharing class IPM_UserTriggerHandler {
         }
         IPM_TaskHelper.reAssignTasksForInActiveUsrs(newUsrs);//reassign their current tasks
         IPM_ProjectResourceTriggerHandler.notifyRoleChangeToPLs(changeRoleIds);
-        IPM_ChatterFeedHelper.postChatterIfUserInactive(newUsrs);
-        IPM_ChatterFeedHelper.postChatterIfResourceInactive(newUsrs);
+        
        }  
     }
     /**************************************************************

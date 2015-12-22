@@ -51,6 +51,12 @@ public with sharing class IPM_MilestoneHelper
       @Description: This method will be called from IPM_ProjectHandler to Process Milestones for incoming Project.
       @Param1: incomingProjects from IPM_Project__c trigger
     */
+    
+    /* @sonar 
+    This method is currently used for Creating Milestones, Copying Milestones, Marking Milestones as completed on Phase change and Preparing snapshots On Gate Document Change.
+    This results in checking Milestones at various levels, based on various Conditions. This results in increase in Complexity. 
+    */
+    
     public static void manageMilestones(Map<Id,IPM_Project__c> incomingProjects)
     {
         List<IPM_Milestone__c> deleteProjectMilestones = new List<IPM_Milestone__c>();
@@ -241,6 +247,12 @@ public with sharing class IPM_MilestoneHelper
       @param1 :Map of <Id of Project of incoming Milestone> 
       @param2 :Map of <Id of incoming Milestone and Milestone Record >.
     */
+    
+    /* @sonar 
+    	This method is currently used for copying Over Due dates for Milestones at various levels.Once the due date is populated on a Milestone, System identifies its parent and child Milestones and based on certain conditions including scope and Project Type Parameters.
+    	Since it involves searching recursively across various Project Levels,it results in increasing complexity. 
+    */ 
+    
     public static void CopyMilestones(Map<Id,IPM_Project__c> incomingProjectMap,Map<Id,IPM_Milestone__c> eligibleMilestoneMap)
     {
         

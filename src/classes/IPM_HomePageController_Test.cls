@@ -324,6 +324,7 @@ public class IPM_HomePageController_Test{
             eachProject.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
             eachProject.IPM_Parent_Project__c = regionalProjs[i].Id;
             eachProject.IPM_Target_Launch_Dates__c = System.today() + 9;
+            eachProject.Rollout_Plan_Target_Launch_Date__c = System.today() + 11;
             lstLocalProjects.add(eachProject);
         }   
         insert lstLocalProjects;

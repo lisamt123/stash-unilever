@@ -321,11 +321,11 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     /*******************************************************************************************************
     * @description: initial method which actually retrieves information for all the columns mentioned in the project overview page
     */
-       private void init() {
+    private void init() {
         /*
         * retreiving the selective project details with all its associated related lists like PD, PS, Tasks & Milestones
         */
-        project = [SELECT name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_Project_Stopped_By__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
+        project = [SELECT Rollout_Plan_Target_Launch_Date__c,name,IPM_Project_Type__c,Exempt_from_Threshold__c,IPM_Parent_Project__r.BET_Link_Requested__c,IPM_Stopped_Date_Time__c,IPM_Project_Stopped_By__c,IPM_Stopped_Comments__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Complexity__c, IPM_Parent_Project__r.IPM_Parent_Project__c,Bulk_BET_Member_Request__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c,
         IPM_PM_Approach__c,IPM_Project_Leader__r.Name, IPM_Project_Gatekeeper__r.Name, IPM_Project_Description__c, IPM_Stopped_Phase__c,Is_Archieved__c, IPM_BET_Toolkit__c,BET__c,IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,IPM_Parent_Project__r.BET_Denied_BET_Link__c,
         IPM_Project_Leader__r.SmallPhotoUrl, IPM_Project_Gatekeeper__r.SmallPhotoUrl,IPM_Brand__c,IPM_Stopped_By__c,IPM_Phase__c,IPM_Fast_Track_Project__c,BET_Link_Requested__c,IPM_CompanyCardText__c ,IPM_ProjectSubType__c,IPM_Parent_Project__r.BET_Link_Requested_on_Date__c,BET_Denied_BET_Link__c,
         IPM_Stopped_By__r.Name,IPM_UserCategory__c, IPM_Sub_Category__c, IPM_FilledIn_Percentage__c,IPM_Category_Text__c,IPMProject_Span__c,IPM_Project_Logo__c,IPM_Parent_Project__r.BET__c,IPM_Parent_Project__r.IPM_BET_Toolkit__c,BET_Link_Requested_on_Date__c,
@@ -348,8 +348,8 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         (SELECT IPM_Phase__c,IPM_Project__c, IPM_Type_of_gate__c,IPM_Due_Date__c,IPM_Type_of_Milestone__c FROM IPM_Milestones__r limit 10000)
         ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
 
-                            ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
-                            (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
+        ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,Rollout_Plan_Target_Launch_Date__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
+        (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
 
                              limit 10000)
                              FROM IPM_Project__c 
@@ -488,8 +488,8 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
           }
         }
         }
-      
-        //Adding alert for Regional-Local financial and TLD misalignments
+        
+        //Adding alert for Regional-Local financial
         List<IPM_Financial__c> RegionalOrLocalFins = new List<IPM_Financial__c>();
         RegionalOrLocalFins = [SELECT Id, Name, Misaligned__c, Misaligned_Date__c, Target_Launch_Date__c, Regional_Project__c, Regional_Project__r.Name, Regional_Project__r.IPM_Target_Launch_Dates__c, Local_Project__c, Local_Project__r.Name, Local_Project__r.IPM_Target_Launch_Dates__c 
                                                         FROM IPM_Financial__c WHERE Regional_Project__c =: project.Id OR Local_Project__c=: project.Id limit 50000];
@@ -504,34 +504,29 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             }
      
         }        
-      
-      //Adding alert for TLD misalignment
-      List<IPM_Project_Rollout__c>projectRolloutList = [SELECT Id,Target_Launch_Date__c,RecordTypeId,Regional_Project__c,Regional_Project__r.IPM_Target_Launch_Dates__c,
-                        Regional_Project__r.IPM_Project_Name__c,Local_Project__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Project_Name__c
-                        FROM IPM_Project_Rollout__c
-                        WHERE (IPM_Project__c =: project.id) OR (Regional_Project__c =: project.id) OR (Local_Project__c =: project.id)
-                        LIMIT:IPM_ConstantUtils.MaxLimit];
-     Id localRollout = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
-     
-     for(IPM_Project_Rollout__c projRollout : projectRolloutList)
-     {
-     if(projRollout.RecordTypeId == localRollout && projRollout.Local_Project__c != null && projRollout.Target_Launch_Date__c != null && projRollout.Local_Project__r.IPM_Target_Launch_Dates__c != null &&
-            projRollout.Target_Launch_Date__c != projRollout.Local_Project__r.IPM_Target_Launch_Dates__c && projRollout.Regional_Project__c != null)
-            {
-                if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
-                {
-                    lstFinTLDAlertMessage.add(IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + projRollout.Local_Project__r.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + projRollout.Regional_Project__r.IPM_Project_Name__c);
+        
+        //Adding alert for TLD misalignment
+        if(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
+        {
+        	for(IPM_Project__c localProj: project.IPM_Projects__r)
+        	{ 
+        		if(localProj.IPM_Target_Launch_Dates__c != localProj.Rollout_Plan_Target_Launch_Date__c)
+        		{
+        			lstFinTLDAlertMessage.add(IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + 
+        			localProj.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + project.IPM_Project_Name__c);
                     ++noOfNotifications;
-                }
-                if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(project.IPMProject_Span__c))
-                {
-                    LstLocalFinTLDMisalignedMessage.add(IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + projRollout.Local_Project__r.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + projRollout.Regional_Project__r.IPM_Project_Name__c);
+        		}
+        	}	
+        }
+        if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(project.IPMProject_Span__c) && project.IPM_Target_Launch_Dates__c != project.Rollout_Plan_Target_Launch_Date__c)
+		{
+        			LstLocalFinTLDMisalignedMessage.add(IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1 + 
+        			project.IPM_Project_Name__c + IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT2 + project.IPM_Parent_Project__r.IPM_Project_Name__c);
                     ++noOfNotifications;
-                }
-            }
-     }
-                                                                   
-      //Calculate nearest Gate Due date for Rollout 
+        }
+        
+         
+        //Calculate nearest Gate Due date for Rollout 
 
        //process for Tasks RL
         for(IPM_Task__c eachTask : project.Tasks__r) {

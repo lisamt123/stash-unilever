@@ -263,97 +263,28 @@ public with sharing class IPM_ChatterFeedHelper {
             {
                 oldProject = oldProjectMap.get(incomingProject.Id);
             }
-
-            // Project Leader
-            if(oldProject == null && incomingProject.IPM_Project_Leader__c != null)
-            {
-                memebersToFollow.add(incomingProject.IPM_Project_Leader__c);
-            }
-            else if(oldProject!=null && incomingProject.IPM_Project_Leader__c !=oldProject.IPM_Project_Leader__c )
-            {
-                if(incomingProject.IPM_Project_Leader__c != null)
-                {
-                    memebersToFollow.add(incomingProject.IPM_Project_Leader__c);
-                }
-                if(oldProject.IPM_Project_Leader__c!=null)
-                {
-                    memebersToUnFollow.add(oldProject.IPM_Project_Leader__c);
-                }
-            }
-            
-            
-            // Techincal Project Leader
-            if(oldProject == null && incomingProject.IPM_Technical_Project_Leader__c != null)
-            {
-                memebersToFollow.add(incomingProject.IPM_Technical_Project_Leader__c);
-                
-            }
-            else if(oldProject!=null && incomingProject.IPM_Technical_Project_Leader__c !=oldProject.IPM_Technical_Project_Leader__c )
-            {
-                if(incomingProject.IPM_Technical_Project_Leader__c != null)
-                {
-                    memebersToFollow.add(incomingProject.IPM_Technical_Project_Leader__c);
-                }
-                if(oldProject.IPM_Technical_Project_Leader__c!=null)
-                {
-                    memebersToUnFollow.add(oldProject.IPM_Technical_Project_Leader__c);
-                }
-            }
-    
-            // Project GateKeeper
-            if(oldProject == null && incomingProject.IPM_Project_Gatekeeper__c != null)
-            {
-                memebersToFollow.add(incomingProject.IPM_Project_Gatekeeper__c);
-                
-            }
-            else if(oldProject!=null && incomingProject.IPM_Project_Gatekeeper__c !=oldProject.IPM_Project_Gatekeeper__c )
-            {
-                if(incomingProject.IPM_Project_Gatekeeper__c != null)
-                {
-                    memebersToFollow.add(incomingProject.IPM_Project_Gatekeeper__c);
-                }
-                if(oldProject.IPM_Project_Gatekeeper__c!=null)
-                {
-                    memebersToUnFollow.add(oldProject.IPM_Project_Gatekeeper__c);
-                }
-            }
-            
-            // Deputy project Leader
-            if(oldProject == null && incomingProject.Deputy_Project_Leader__c != null)
-            {
-                memebersToFollow.add(incomingProject.Deputy_Project_Leader__c);
-                
-            }
-            else if(oldProject!=null && incomingProject.Deputy_Project_Leader__c !=oldProject.Deputy_Project_Leader__c )
-            {
-                if(incomingProject.Deputy_Project_Leader__c != null)
-                {
-                    memebersToFollow.add(incomingProject.Deputy_Project_Leader__c);
-                }
-                
-                if(oldProject.Deputy_Project_Leader__c!=null)
-                {
-                    memebersToUnFollow.add(oldProject.Deputy_Project_Leader__c);
-                }
-            }
-        
-            // Finance Member
-            if(oldProject == null && incomingProject.IPM_Finance_Member__c != null)
-            {
-                memebersToFollow.add(incomingProject.IPM_Finance_Member__c);
-                
-            }
-            else if(oldProject!=null && incomingProject.IPM_Finance_Member__c !=oldProject.IPM_Finance_Member__c )
-            {
-                if(incomingProject.IPM_Finance_Member__c != null)
-                {
-                    memebersToFollow.add(incomingProject.IPM_Finance_Member__c);
-                }
-                if(oldProject.IPM_Finance_Member__c!=null)
-                {
-                    memebersToUnFollow.add(oldProject.IPM_Finance_Member__c);
-                }
-            }
+			List<String> apiNames = new List<String> {'IPM_Project_Leader__c','IPM_Technical_Project_Leader__c','IPM_Project_Gatekeeper__c',
+				'Deputy_Project_Leader__c','IPM_Finance_Member__c'};
+			
+			for(String apiName : apiNames)
+        	{
+                if(oldProject == null && incomingProject.get(apiName) != null)
+	            {
+	                memebersToFollow.add((Id)incomingProject.get(apiName));
+	            }
+	            else if(oldProject!=null && incomingProject.get(apiName) !=oldProject.get(apiName) )
+	            {
+	                if(incomingProject.get(apiName) != null)
+	                {
+	                    memebersToFollow.add((Id)incomingProject.get(apiName));
+	                }
+	                if(oldProject.get(apiName) !=null)
+	                {
+	                    memebersToUnFollow.add((Id)oldProject.get(apiName));
+	                }
+	            }
+        	}
+        	
             
             if(!memebersToUnFollow.isEmpty())
             {
@@ -372,74 +303,7 @@ public with sharing class IPM_ChatterFeedHelper {
     }
     
     
-     /**
-    @Description: Method which checks if the user is inactive
-    @param1 - newField: new sobject in the context
-    **/
-    public static void postChatterIfUserInactive(List<User> updatedUsers) 
-    {
-        clearData();
-        Set<Id> usersId = new Set<Id>();
-        for(User eachUser : updatedUsers) {
-            usersId.add(eachUser.Id);
-        }
-        
-        for(IPM_Project__c eachProject:[Select IPM_Finance_Member__r.Name,IPM_Finance_Member__r.Manager.id,IPM_Finance_Member__c,Deputy_Project_Leader__r.Name,
-        IPM_Project_Leader__r.Manager.id,Deputy_Project_Leader__r.Manager.id,IPM_Project_Leader__r.Name,IPM_Project_Leader__c,Deputy_Project_Leader__c, 
-        IPM_Technical_Project_Leader__r.Manager.id,IPM_Technical_Project_Leader__r.Name,IPM_Project_Gatekeeper__r.Manager.id,IPM_Project_Gatekeeper__r.Name,
-        IPM_Technical_Project_Leader__c,IPM_Project_Gatekeeper__c
-        from IPM_Project__c 
-        where Deputy_Project_Leader__c IN :updatedUsers OR IPM_Project_Leader__c IN :updatedUsers OR IPM_Technical_Project_Leader__c IN :updatedUsers OR 
-        IPM_Finance_Member__c IN :updatedUsers OR IPM_Project_Gatekeeper__c IN :updatedUsers LIMIT:IPM_ConstantUtils.MaxLimit])
-        {
-            mentionId.clear();
-            if(eachProject.id != null) 
-            {  
-                Set<Id> tmpSet = new Set<Id>();
-                if(eachProject.IPM_Project_Leader__c !=  null)
-                { 
-                  tmpSet.add(eachProject.IPM_Project_Leader__c);
-                }
-                if(eachProject.Deputy_Project_Leader__c !=  null)
-                { 
-                  tmpSet.add(eachProject.Deputy_Project_Leader__c);
-                }
-            if(usersId.contains(eachProject.IPM_Project_Leader__c)){
-              if(eachProject.IPM_Project_Leader__r.Manager.id !=  null){
-                tmpSet.add(eachProject.IPM_Project_Leader__r.Manager.id);
-              }
-                subjectIdMessageMap.put(eachProject.id,IPM_ConstantUtils.IPM_SPACE+ eachProject.IPM_Project_Leader__r.Name +
-                IPM_ConstantUtils.EMPTY_STRING_DELIMITER+System.label.IPM_No_Longer_Active_User);
-            }
-            if(usersId.contains(eachProject.Deputy_Project_Leader__c)){
-                tmpSet.add(eachProject.Deputy_Project_Leader__r.Manager.id);
-                subjectIdMessageMap.put(eachProject.id,IPM_ConstantUtils.IPM_SPACE+ eachProject.Deputy_Project_Leader__r.Name +
-                IPM_ConstantUtils.EMPTY_STRING_DELIMITER+System.label.IPM_No_Longer_Active_User);
-            }
-            if(usersId.contains(eachProject.IPM_Finance_Member__c)){
-                tmpSet.add(eachProject.IPM_Finance_Member__r.Manager.id);
-                subjectIdMessageMap.put(eachProject.id,IPM_ConstantUtils.IPM_SPACE+ eachProject.IPM_Finance_Member__r.Name +
-                IPM_ConstantUtils.EMPTY_STRING_DELIMITER+System.label.IPM_No_Longer_Active_User);
-            }
-            if(usersId.contains(eachProject.IPM_Technical_Project_Leader__c)){
-                tmpSet.add(eachProject.IPM_Technical_Project_Leader__r.Manager.id);
-                subjectIdMessageMap.put(eachProject.id,IPM_ConstantUtils.IPM_SPACE+ eachProject.IPM_Technical_Project_Leader__r.Name +
-                IPM_ConstantUtils.EMPTY_STRING_DELIMITER+System.label.IPM_No_Longer_Active_User);
-            }
-            if(usersId.contains(eachProject.IPM_Project_Gatekeeper__c)){
-                tmpSet.add(eachProject.IPM_Project_Gatekeeper__r.Manager.id);
-                subjectIdMessageMap.put(eachProject.id,IPM_ConstantUtils.IPM_SPACE+ eachProject.IPM_Project_Gatekeeper__r.Name +
-                IPM_ConstantUtils.EMPTY_STRING_DELIMITER+System.label.IPM_No_Longer_Active_User);
-            }
-            tmpSet.remove(null);
-            projectIds.add(eachProject.id);
-            subjectIdMentionIdMap.put(eachProject.id,tmpSet);
-          } 
-        }
-        
-        IPM_ChatterUtils.postChatterFeedWithMention(projectIds, subjectIdMessageMap, subjectIdMentionIdMap ); 
-    }
-    
+     
     
       /**************************************************************
     * @description: If a project is updated to a Fast Track project,he will get a chatter feed.
@@ -548,44 +412,6 @@ public with sharing class IPM_ChatterFeedHelper {
                 IPM_ChatterUtils.postChatterFeedWithMention(projectIds, subjectIdMessageMap, subjectIdMentionIdMap );
     }
     
-    /**************************************************************
-      @description:If a task is assigned to a assignee,he will get an @mention and a chatter feed
-      @param1 newProjects : newly created project
-   */
-    public static void postChatterIfResourceInactive(List<User> updatedResources){
-        clearData();
-        Set<Id> updatedUsers = new Map<Id,User>(updatedResources).keySet();
-       for(IPM_Project_Resource__c eachPResource :  [SELECT IPM_User__c,IPM_User__r.Name, IPM_Project__c,IPM_User__r.Manager.id,
-                                                    IPM_Project__r.Deputy_Project_Leader__c, IPM_Project__r.IPM_Project_Leader__c
-                                                    FROM IPM_Project_Resource__c
-                                                    WHERE IPM_User__c IN :updatedUsers LIMIT:IPM_ConstantUtils.MaxLimit]) 
-       {
-         if(eachPResource.IPM_Project__c != null) 
-         {  
-            if(!subjectIdMentionIdMap.containsKey(eachPResource.IPM_Project__c)) {
-                Set<Id> tmpSet = new Set<Id>();
-                if(eachPResource.IPM_Project__r.IPM_Project_Leader__c !=  null)
-                { 
-                  tmpSet.add(eachPResource.IPM_Project__r.IPM_Project_Leader__c);
-                }
-                if(eachPResource.IPM_Project__r.Deputy_Project_Leader__c !=  null)
-                { 
-                  tmpSet.add(eachPResource.IPM_Project__r.Deputy_Project_Leader__c);
-                }
-                if(eachPResource.IPM_User__r.Manager.id !=  null)
-                { 
-                  tmpSet.add(eachPResource.IPM_User__r.Manager.id );
-                }
-	                
-                  subjectIdMentionIdMap.put(eachPResource.IPM_Project__c, tmpSet);
-            }
-             
-          subjectIdMessageMap.put(eachPResource.IPM_Project__c, IPM_ConstantUtils.IPM_SPACE+eachPResource.IPM_User__r.Name +IPM_ConstantUtils.IPM_SPACE+ Label.IPM_Inactive_Users_Text);
-          projectIds.add(eachPResource.IPM_Project__c);
-         } 
-      }
-           IPM_ChatterUtils.postChatterFeedWithMention(projectIds,subjectIdMessageMap,subjectIdMentionIdMap);
-    }
     
      /**************************************************************
       @description:Post chatter if Local and regional financial is misaligned
@@ -670,62 +496,59 @@ public with sharing class IPM_ChatterFeedHelper {
    */
    public static void postChatterIfLocalRegionalTLDMisaligned(List<IPM_Project__c> updatedProjects){
      clearData();
-     Set<Id> newProjIds = new Map<Id,IPM_Project__c>(updatedProjects).keySet();
-     string chatterPostMessage ='';
+     String chatterPostMessage ='';
      Map<Id, Set<Id>> projectIdUserSetMap = new Map<Id, Set<Id>>(); 
      subjectIdMessageMap = new map<id,string>();
-     list<IPM_Project_Rollout__c> projectRolloutList = [SELECT Id,Target_Launch_Date__c,RecordTypeId,
-                                IPM_Project__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Project__r.Deputy_Project_Leader__c,IPM_Project__r.IPM_Finance_Member__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Project__r.IPM_Project_Name__c,
-                                Regional_Project__c,Regional_Project__r.IPM_Project_Leader__c,Regional_Project__r.Deputy_Project_Leader__c,Regional_Project__r.IPM_Finance_Member__c,Regional_Project__r.IPM_Target_Launch_Dates__c,Regional_Project__r.IPM_Project_Name__c,
-                                Local_Project__c,Local_Project__r.IPM_Project_Leader__c,Local_Project__r.Deputy_Project_Leader__c,Local_Project__r.IPM_Finance_Member__c,Local_Project__r.IPM_Target_Launch_Dates__c,Local_Project__r.IPM_Project_Name__c
-                                FROM IPM_Project_Rollout__c
-                                WHERE (IPM_Project__c IN:newProjIds) OR (Regional_Project__c IN:newProjIds) OR (Local_Project__c IN:newProjIds)
+     List<IPM_Project__c> tldUpdatedProjects = [SELECT IPMProject_Span__c,id,IPM_Project_Leader__c,Deputy_Project_Leader__c,IPM_Finance_Member__c,IPM_Project_Name__c,
+                                IPM_Parent_Project__r.IPM_Project_Leader__c,IPM_Parent_Project__r.Deputy_Project_Leader__c,
+                                IPM_Parent_Project__r.IPM_Finance_Member__c,IPM_Parent_Project__r.IPM_Project_Name__c,
+                                Rollout_Plan_Target_Launch_Date__c,IPM_Target_Launch_Dates__c
+                                FROM IPM_Project__c
+                                WHERE id IN :updatedProjects
                                 LIMIT:IPM_ConstantUtils.MaxLimit];
-     List<IPM_Project_Resource__c> resourceList = [Select IPM_User__c,IPM_Project__c from IPM_Project_Resource__c 
-     where IPM_Role_Type__c =: IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE and IPM_Project__c IN: newProjIds and IPM_Project_Role_Owner__c = true LIMIT 50000];
-                                
-     Id localRollout = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
-     
-     for(IPM_Project_Rollout__c projRollout : projectRolloutList)
+    List<IPM_Project_Resource__c> resourceList = [Select IPM_User__c,IPM_Project__c from IPM_Project_Resource__c 
+     where IPM_Role_Type__c =: IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE and IPM_Project_Role_Owner__c = true LIMIT 50000];
+                                   
+     for(IPM_Project__c localProj : tldUpdatedProjects)
      {
-       if(projRollout.RecordTypeId == localRollout && projRollout.Local_Project__c != null && projRollout.Target_Launch_Date__c != null && projRollout.Local_Project__r.IPM_Target_Launch_Dates__c != null &&
-         projRollout.Target_Launch_Date__c != projRollout.Local_Project__r.IPM_Target_Launch_Dates__c && projRollout.Regional_Project__c != null)
+       if(IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(localProj.IPMProject_Span__c) && localProj.Rollout_Plan_Target_Launch_Date__c != null && localProj.IPM_Target_Launch_Dates__c != null &&
+         localProj.Rollout_Plan_Target_Launch_Date__c != localProj.IPM_Target_Launch_Dates__c)
        {
-         projectIds.add(projRollout.Local_Project__c);
-            projectIds.add(projRollout.Regional_Project__c);    
+            projectIds.add(localProj.id);
+            projectIds.add(localProj.IPM_Parent_Project__c);    
             
             Set<Id> regionalUserSet = new Set<Id> ();
-            regionalUserSet.add(projRollout.Regional_Project__r.IPM_Project_Leader__c);
-            regionalUserSet.add(projRollout.Regional_Project__r.Deputy_Project_Leader__c);
-            regionalUserSet.add(projRollout.Regional_Project__r.IPM_Finance_Member__c);
+            regionalUserSet.add(localProj.IPM_Parent_Project__r.IPM_Project_Leader__c);
+            regionalUserSet.add(localProj.IPM_Parent_Project__r.Deputy_Project_Leader__c);
+            regionalUserSet.add(localProj.IPM_Parent_Project__r.IPM_Finance_Member__c);
             for(IPM_Project_Resource__c eachResource:resourceList)
             {   
-               if(projRollout.Regional_Project__c == eachResource.IPM_Project__c && eachResource.IPM_User__c != null)
+               if(localProj.IPM_Parent_Project__c == eachResource.IPM_Project__c && eachResource.IPM_User__c != null)
                {
                     regionalUserSet.add(eachResource.IPM_User__c);
                }
             }   
             regionalUserSet.remove(null);
             Set<Id> localUserSet = new Set<Id> ();
-            localUserSet.add(projRollout.Local_Project__r.IPM_Project_Leader__c);
-            localUserSet.add(projRollout.Local_Project__r.Deputy_Project_Leader__c);
-            localUserSet.add(projRollout.Local_Project__r.IPM_Finance_Member__c);
+            localUserSet.add(localProj.IPM_Project_Leader__c);
+            localUserSet.add(localProj.Deputy_Project_Leader__c);
+            localUserSet.add(localProj.IPM_Finance_Member__c);
             for(IPM_Project_Resource__c eachResource:resourceList)
             {   
-               if(projRollout.Local_Project__c == eachResource.IPM_Project__c && eachResource.IPM_User__c != null)
+               if(localProj.id == eachResource.IPM_Project__c && eachResource.IPM_User__c != null)
                {
                     localUserSet.add(eachResource.IPM_User__c);
                }
             }
             localUserSet.remove(null);     
-            projectIdUserSetMap.put(projRollout.Regional_Project__c,regionalUserSet);
-            projectIdUserSetMap.put(projRollout.Local_Project__c,localUserSet);
+            projectIdUserSetMap.put(localProj.IPM_Parent_Project__c,regionalUserSet);
+            projectIdUserSetMap.put(localProj.id,localUserSet);
                 
-            chatterPostMessage=System.label.IPM_Target_Launch_Date_Msg+IPM_ConstantUtils.IPM_SPACE+projRollout.Local_Project__r.IPM_Project_Name__c+
-            IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_TLD_Misaligned+IPM_ConstantUtils.IPM_SPACE+projRollout.Regional_Project__r.IPM_Project_Name__c;
+            chatterPostMessage=System.label.IPM_Target_Launch_Date_Msg+IPM_ConstantUtils.IPM_SPACE+localProj.IPM_Project_Name__c+
+            IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_TLD_Misaligned+IPM_ConstantUtils.IPM_SPACE+localProj.IPM_Parent_Project__r.IPM_Project_Name__c;
                 
-            subjectIdMessageMap.put(projRollout.Regional_Project__c,chatterPostMessage); 
-            subjectIdMessageMap.put(projRollout.Local_Project__c,chatterPostMessage);     
+            subjectIdMessageMap.put(localProj.IPM_Parent_Project__c,chatterPostMessage); 
+            subjectIdMessageMap.put(localProj.id,chatterPostMessage);     
                 
          }
      }
@@ -745,7 +568,7 @@ public with sharing class IPM_ChatterFeedHelper {
   
       for(IPM_Financial__c eachFin:updatedFinancials)
       {
-            projectIds.add(eachFin.Local_Project__c);
+        projectIds.add(eachFin.Local_Project__c);
         projectIds.add(eachFin.Regional_Project__c);
         projectIds.add(eachFin.Parent_Project__c);
         financialSet.add(eachFin.id);
