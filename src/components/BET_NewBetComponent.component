@@ -136,6 +136,9 @@
 
     <apex:outputPanel id="betMembers" rendered="{!goToMemberSelection}">
 
+        <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />
+        <apex:includeScript value="{!$Resource.BET}/scripts/bootstrap.min.js" />
+        <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />
         <apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>
 
         <c:BET_SuggestMembers BetID="{!bet.id}" 
