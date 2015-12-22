@@ -223,20 +223,40 @@
     <fields>
         <fullName>Business_Impact_Global__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(Year_3_iTO_Global__c &gt;= 50000, 
+        <formula>IF(AND( NOT(ISBLANK(Parent_Project__c)), ISPICKVAL(Parent_Project__r.IPM_Project_Type__c,&quot;Original&quot;), ISBLANK( Regional_Project__c ),ISBLANK( Local_Project__c ),ISPICKVAL(Parent_Project__r.IPM_Phase__c,&quot;Ideas&quot;)  ),
+ IF(Year_3_iTO_Global__c==0,&quot;&quot;, 
+     IF(Year_3_iTO_Global__c &gt;= 50000, 
 	&quot;Super&quot;, 
 	IF(AND(Year_3_iTO_Global__c &gt;=15000, Year_3_iTO_Global__c&lt;50000), 
 		&quot;Large&quot;, 
 		IF( AND(Year_3_iTO_Global__c &gt;=3000, Year_3_iTO_Global__c&lt;15000), 
 			&quot;Medium&quot;, 
-			IF( OR(Year_3_iTO_Global__c=0, ISNULL(Year_3_iTO_Global__c)), 
-				&quot;&quot;, 
-				&quot;Small&quot;
+			IF( OR(Year_3_iTO_Global__c &lt;3000,Year_3_iTO_Global__c&lt;0), 
+				&quot;Small&quot;, &quot;NA&quot;
 			)
 		)
-	)
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+	 )
+     )
+ ),
+IF(AND( NOT(ISBLANK(Parent_Project__c)), ISPICKVAL(Parent_Project__r.IPM_Project_Type__c,&quot;Original&quot;), ISBLANK( Regional_Project__c ),ISBLANK( Local_Project__c ),NOT(ISPICKVAL(Parent_Project__r.IPM_Phase__c,&quot;Ideas&quot;))  ),
+ IF(Year_3_iTO_Regional__c==0,&quot;&quot;, 
+     IF(Year_3_iTO_Regional__c &gt;= 50000, 
+	&quot;Super&quot;, 
+	IF(AND(Year_3_iTO_Regional__c &gt;=15000, Year_3_iTO_Regional__c&lt;50000), 
+		&quot;Large&quot;, 
+		IF( AND(Year_3_iTO_Regional__c &gt;=3000, Year_3_iTO_Regional__c&lt;15000), 
+			&quot;Medium&quot;, 
+			IF( OR(Year_3_iTO_Regional__c &lt;3000,Year_3_iTO_Regional__c&lt;0), 
+				&quot;Small&quot;, &quot;NA&quot;
+			)
+		)
+	 )
+     )
+ ),
+IF(NOT(ISBLANK(Parent_Project__c)),
+ Parent_Project__r.BI__c,&quot;&quot;  
+ )
+))</formula>
         <label>Business Impact Global</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -2437,7 +2457,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.Year_Type__c</field>
             <operation>equals</operation>
-            <value>Calendar</value>
+            <value>Innovation</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.PL_Type__c</field>

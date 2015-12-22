@@ -34,8 +34,8 @@
                                 <div class="col-sm-7 pull-right clearfix">
                                      
                                     <div class="SecButtonSet pull-right">
-                                        <apex:outputPanel layout="block" styleClass="copyFBC" rendered="{!AND(isEditable,NOT(isRolloutError))}">
-                                            <apex:commandbutton value="Copy from FBC xls" action="{!CopyPasteTemplate}" styleClass="ipmButton primary" title="Copy Paste Financial Update" rendered="true"/>
+                                        <apex:outputPanel layout="block" styleClass="copyFBC" rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode),NOT(isRolloutError))), false)}">
+                                            <apex:commandbutton value="{!$Label.IPM_Financial_CopyPaste}" action="{!CopyPasteTemplate}" styleClass="ipmButton primary" title="Copy Paste Financial Update" rendered="true"/>
                                         </apex:outputPanel>
                                         <!-- 
                                         <apex:outputPanel rendered="{!AND(NOT(isError),project.IPM_Phase__c <> 'PLE')}">
