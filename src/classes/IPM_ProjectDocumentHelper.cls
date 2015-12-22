@@ -301,7 +301,9 @@ public with sharing class IPM_ProjectDocumentHelper
                                         String summary=projDocSect.IPM_Gate_Document_Summary__c; 
                                         if(String.isNotBlank(summary)){
                                             summary=summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,'');
-                                         }   
+                                         }  
+                                         
+                                         // the below logic is required because from Bosscard RTF field data needs to be copied into RTF field of Section with Character Limit 
                                          if(associatedGate==IPM_ConstantUtils.CHARTER_GATE && String.isNotBlank(projDocSect.IPM_Gate_Document_Summary__c) && summary.length()>(Integer)section.IPM_Character_Limit__c){
                                             projDocSect.IPM_Gate_Document_Summary__c=summary.subString(0,(Integer)section.IPM_Character_Limit__c);
                                         }

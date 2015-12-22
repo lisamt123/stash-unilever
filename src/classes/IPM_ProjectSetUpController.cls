@@ -76,6 +76,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     /****************************************************************************
     @Description : To initialize all variables
     *****************************************************************************/
+    //NPath Complexity-As per business logic, different flows needs to be followed in Project Creation, hence the logic is complex
     public void initialise() {
         ComplexityType = IPM_ConstantUtils.BLANK;
         businessErrorField  = IPM_ConstantUtils.BLANK;
@@ -213,7 +214,8 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
             if(project.IPM_Company_Card__c !=null &&  !String.isBlank(project.IPM_CompanyCardText__c))
             {
                 getCategory();
-                getProjectSubTypes(); 
+                getProjectSubTypes();
+                  
             }
         }
         catch(Exception ex)
@@ -319,6 +321,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     @Description : Getting List of Brand Positionings
     @Return: List of brand positioning
     *****************************************************************************/
+    //NPath Complexity-Based on the Business Logic all brand positions needs to be fetched for various conditions
     public List<SelectOption> getBrandPos()
     {   
         List<Selectoption> brandOptionList = new List<Selectoption>();
@@ -447,6 +450,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     @Description : Getting List of Sub Project types
     @Return: List of Sub Project types
     *****************************************************************************/
+    //NPath Complexity-Based on the Business Logic fetching project sub type required for various conditions
     public List<SelectOption> getProjectSubTypes()
     {
         // Get Picklist Values from Database and then based on Project Type Filter those values
@@ -635,6 +639,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     @Description : For Saving Project and Proceed to Next Step
     @Return: Page Reference
     *****************************************************************************/
+    //NPath Complexity- Business Logic requires complex validations to be enforced before project is saved
     public void saveProceed()
     {
         isBusinessError = false;
@@ -722,6 +727,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     @Description : For Saving Project and Proceed to Next Step
     @Return: null
     *****************************************************************************/
+    //NPath Complexity-Business Logic requires complex validations to be enforced before project is saved.
     public void processProjectSave()
     {
         try
@@ -888,6 +894,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     /****************************************************************************
     @Description : Get Milestone and task access
     *****************************************************************************/
+    //NPath Complexity-Baed on the business Logic security has to be enforced for various conditions before giving access to project setup screen
     public void getMilesTaskIpmuserType(){
         try
         {

@@ -1,8 +1,13 @@
+/***********************************************************************************************************************************************************
+* @author Cognizant
+* @date  15/12/2014
+* @description To create test data irrespective of user roles and sharing. Hence without sharing
+**************************************************************************************************/
 public without sharing class IPM_TestFactory_Helper {
     public static final String CHARTER_GATE_FULL = 'Charter Gate Full';
     public static final String IDEA_GRAPHIC= 'Idea / Graphic';
     public static final String IDEAS = 'Ideas';
-    public static final boolean FALSE_VAR = False;
+    public static boolean FALSE_VAR = False;
     public static final String GCLT_RCLT = 'GCLT & RCLT';
     public static final String TEST_CONTENT =  'A quick brown fox jumped over a lazy dog';
     public static final String NEWVARIANTSIZE_STR = 'New Variant/ Size';
@@ -30,7 +35,7 @@ public without sharing class IPM_TestFactory_Helper {
     public static final string SUSTAINABILITY_PERIOD = 'Project_Sustainability_Period__c';
     public static final string IPM_SECTION_Name = 'ipm_section_name__c'; 
     public static final string PROJECT_LEADER = 'project leader';
-    public static final string TESTMANAGEDCATEGORY = 'testmanagedcategory'; 
+    public static final string TESTMANAGEDCATEGORY = 'Laundry'; 
     public static final string INDIA = 'India';
     public static final String IPM_DOCUMENT_TEMPLATE = 'IPM_Document_Template__c';
     
@@ -1854,6 +1859,13 @@ public without sharing class IPM_TestFactory_Helper {
         
      return listSecConShare;
     }
+    public static List<IPM_Gate_CMI_KPI_Inputs__c> loadCMIKPIInput(){
+    	return Test.loadData(IPM_Gate_CMI_KPI_Inputs__c.sObjectType, 'IPM_GateCMIKPIInputs');
+    }
+    public static List<IPM_CMI_Color_Mapping__c> loadCMIColorMapping(){
+    	return Test.loadData(IPM_CMI_Color_Mapping__c.sObjectType, 'IPM_CMIColorCodes');
+    }
+    
     
     public static final String FEASIBILITY = 'Feasibility';
     public static final String IPM_PHASE = 'IPM_Phase__c';
