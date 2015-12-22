@@ -12,7 +12,7 @@
  VERSION AUTHOR DATE DETAIL Description 
  1.0 Bolima 13/12/2015 INITIAL DEVELOPMENT for Stock Cover Calculation
  ***********************************************************************/
-public class UID_StockCoverTriggerHelper {
+public with sharing class UID_StockCoverTriggerHelper {
     
     private static final String PRIMARY_SALES_RECORDTYPE_NAME = 'Primary Sales';
     private static final String SECONDARY_SALES_RECORDTYPE_NAME = 'Secondary Sales';
@@ -28,7 +28,7 @@ public class UID_StockCoverTriggerHelper {
         Set <Id> stockedProdIds = new Set <Id>(); 
         //Store Stored Product Record Id 
         for (UID_Stocked_Product__c n : newStockedProduct) {
-             if (n.UID_Stock_Cover_Calculation_Flag__c == True && oldStockedProduct.get(n.Id).UID_Stock_Cover_Calculation_Flag__c == False) {
+             if (n.UID_Stock_Cover_Calculation_Flag__c && !oldStockedProduct.get(n.Id).UID_Stock_Cover_Calculation_Flag__c) {
                  stockedProdIds.add(n.Id);
              }
         }  
@@ -82,10 +82,10 @@ public class UID_StockCoverTriggerHelper {
         From UID_Stocked_Product_Summary__c Where UID_Material_ID__c IN : materialID AND UID_Stocked_Product__r.UID_Distributor__c IN : accountID AND UID_Sales_Date__c IN : previousMonth])
         {
             String openingMapID = os.UID_Material_ID__c + os.UID_Stocked_Product__r.UID_Distributor__c + os.UID_Sales_Date__c;
-            if(openingStockMap .containsKey(openingMapID)) {
+            if(openingStockMap.containsKey(openingMapID)) {
                 openingStockMap.get(openingMapID).add(os);
             }
-            else if(!openingStockMap.containsKey(openingMapID)) {
+            else {
                 List <UID_Stocked_Product_Summary__c> openingList= new List <UID_Stocked_Product_Summary__c >();
                 openingList.add(os);
                 openingStockMap.put(openingMapID, openingList);
@@ -101,7 +101,7 @@ public class UID_StockCoverTriggerHelper {
             if(primarySalesMap.containsKey(primaryMapID)) {
                 primarySalesMap.get(primaryMapID).add(ps);
             }
-            else if(!primarySalesMap.containsKey(primaryMapID)) {
+            else{
                 List <OrderItem> primaryList= new List <OrderItem>();
                 primaryList.add(ps);
                 primarySalesMap.put(primaryMapID, primaryList);
@@ -116,7 +116,7 @@ public class UID_StockCoverTriggerHelper {
             if(secondarySalesMap.containsKey(secondaryMapID)) {
                 secondarySalesMap.get(secondaryMapID).add(ss);
             }
-            else if(!secondarySalesMap.containsKey(secondaryMapID)) {
+            else{
                 List <OrderItem> secondaryList= new List <OrderItem>();
                 secondaryList.add(ss);
                 secondarySalesMap.put(secondaryMapID, secondaryList);
@@ -131,7 +131,7 @@ public class UID_StockCoverTriggerHelper {
             if(last3MonthMap.containsKey(last3MapID )) {
                 last3MonthMap.get(last3MapID).add(lm);
             }
-            else if(!last3MonthMap.containsKey(last3MapID)) {
+            else{
                 List <OrderItem> last3List= new List <OrderItem>();
                 last3List.add(lm);
                 last3MonthMap.put(last3MapID, last3List);
@@ -160,17 +160,19 @@ public class UID_StockCoverTriggerHelper {
             Decimal month3rd = 0;
             
             //A:Opening Stock of the month = Closing stock for last month (M-1)
-            if(openingStockMap.get(sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -1)) != NULL) {
-                for(UID_Stocked_Product_Summary__c ci: openingStockMap.get(sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -1))){
+            String openingStockMapKey = sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -1);
+            if(openingStockMap.get(openingStockMapKey) != NULL) {
+                for(UID_Stocked_Product_Summary__c ci: openingStockMap.get(openingStockMapKey)){
                     if(ci.UID_Avail_Quantity__c != NULL){
                         totalOpening = totalOpening + ci.UID_Avail_Quantity__c;
                     }
                 }
             }
-         
+         	
             //B:Shipments received in same calendar month = Primary Sales for this month(M)
-            if(primarySalesMap.get(sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, 0)) != NULL) {
-                for(OrderItem ps: primarySalesMap.get(sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, 0))){
+            String primarySalesMapKey = sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, 0);
+            if(primarySalesMap.get(primarySalesMapKey) != NULL) {
+                for(OrderItem ps: primarySalesMap.get(primarySalesMapKey)){
                     if(ps.UID_Order_Quantity__c != NULL){
                         totalPrimary = totalPrimary + ps.UID_Order_Quantity__c;
                     }
@@ -178,8 +180,9 @@ public class UID_StockCoverTriggerHelper {
             }
             
             //C:Sales for the month = Secondary Sales for this month (M) from Distributor 
-            if(secondarySalesMap.get(sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, 0)) != NULL) {
-                for(OrderItem ps: secondarySalesMap.get(sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, 0))){
+            String secondarySalesMapKey = sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, 0);
+            if(secondarySalesMap.get(secondarySalesMapKey) != NULL) {
+                for(OrderItem ps: secondarySalesMap.get(secondarySalesMapKey)){
                     if(ps.UID_Order_Quantity__c != NULL){
                         totalSecondary = totalSecondary + ps.UID_Order_Quantity__c;
                     }
@@ -188,25 +191,26 @@ public class UID_StockCoverTriggerHelper {
             
             //D:Closing Stock = A+B-C
             Decimal totalClosing = (totalOpening + totalPrimary) - totalSecondary;
-            
-            if(last3MonthMap.get(sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -1)) != NULL) {
-                for(OrderItem ps: last3MonthMap.get(sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -1))){
+            String last3MonthMapKey1 = sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -1);
+            if(last3MonthMap.get(last3MonthMapKey1) != NULL) {
+                for(OrderItem ps: last3MonthMap.get(last3MonthMapKey1)){
                     if(ps.UID_Order_Quantity__c != NULL){
                         month1st = month1st  + ps.UID_Order_Quantity__c;
                     }
                 }
             }
-            
-            if(last3MonthMap.get(sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -2)) != NULL) {
-                for(OrderItem ps: last3MonthMap.get(sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -2))){
+            String last3MonthMapKey2 = sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -2);
+            if(last3MonthMap.get(last3MonthMapKey2) != NULL) {
+                for(OrderItem ps: last3MonthMap.get(last3MonthMapKey2)){
                     if(ps.UID_Order_Quantity__c != NULL){
                         month2nd = month2nd  + ps.UID_Order_Quantity__c;
                     }
                 }
             }
             
-            if(last3MonthMap.get(sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -3)) != NULL) {
-                for(OrderItem ps: last3MonthMap.get(sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -3))){
+            String last3MonthMap3= sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -3);
+            if(last3MonthMap.get(last3MonthMap3) != NULL) {
+                for(OrderItem ps: last3MonthMap.get(last3MonthMap3)){
                     if(ps.UID_Order_Quantity__c != NULL){
                         month3rd = month3rd  + ps.UID_Order_Quantity__c;
                     }
