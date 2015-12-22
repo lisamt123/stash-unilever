@@ -8,8 +8,6 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  03-08-2015  Initial
 *************************************************************************************/
-
-/* Service class uses without sharing due to it is used by external system*/
 public without sharing class BET_LinkingService {
 
 	public static final String FOLLOW_STATUS_NEW = 'New';
@@ -78,10 +76,11 @@ public without sharing class BET_LinkingService {
 		IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(ProjectId);
 		BET_LinkingServiceValidator.validateFollowRequest(betRecords);
 		try{
+			Boolean setToAutoApprove = BET_Settings__c.getOrgDefaults().FollowRequestAutoApproved__c == null ? false : BET_Settings__c.getOrgDefaults().FollowRequestAutoApproved__c;
 			Boolean shouldBeAutoApproved = checkIfFollowRequestShouldBeAutoapproved(betRecords.get(0),managers);
 			BET_Follow_Request__c followRequest = createFollowRequest(project,betRecords.get(0),managers);
 			createRelatedMemberRequests(followRequest,betRecords.get(0),managers);
-			if(shouldBeAutoApproved) {
+			if(shouldBeAutoApproved || setToAutoApprove) {
 				followRequest.Status__c = FOLLOW_STATUS_APPROVED;
 				update followRequest;
 			} else {
