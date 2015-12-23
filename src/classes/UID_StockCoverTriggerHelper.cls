@@ -17,6 +17,8 @@ public with sharing class UID_StockCoverTriggerHelper {
     private static final String PRIMARY_SALES_RECORDTYPE_NAME = 'Primary Sales';
     private static final String SECONDARY_SALES_RECORDTYPE_NAME = 'Secondary Sales';
     
+    private static Set <Id> stockedProdIds; 
+    
     /******************************************************************* 
     Purpose: Populate Report Month of Order
     Parameters: List<Orders> new Orders
@@ -25,7 +27,7 @@ public with sharing class UID_StockCoverTriggerHelper {
   
     public static void computeStockCover(List<UID_Stocked_Product__c> newStockedProduct , Map<Id, UID_Stocked_Product__c> oldStockedProduct){
         
-        Set <Id> stockedProdIds = new Set <Id>(); 
+        stockedProdIds = new Set <Id>(); 
         //Store Stored Product Record Id 
         for (UID_Stocked_Product__c n : newStockedProduct) {
              if (n.UID_Stock_Cover_Calculation_Flag__c && !oldStockedProduct.get(n.Id).UID_Stock_Cover_Calculation_Flag__c) {
@@ -33,11 +35,11 @@ public with sharing class UID_StockCoverTriggerHelper {
              }
         }  
         
-        calculateStockCover(stockedProdIds);
+        calculateStockCover();
     }
     
     @future
-    public static void calculateStockCover(Set <Id> stockedProdIds) { 
+    public static void calculateStockCover() { 
         //Variable Declations    
         Map <String, List <UID_Stocked_Product_Summary__c>> openingStockMap = new Map <String, List<UID_Stocked_Product_Summary__c >>();
         Map <String, List <OrderItem>> last3MonthMap = new Map <String, List <OrderItem>>();
@@ -131,6 +133,7 @@ public with sharing class UID_StockCoverTriggerHelper {
             Decimal stockCover = (totalClosing / (totallast3Mont == 0 ? 1 : totallast3Mont)) * 30;
             
             sd.UID_Stock_Cover__c = stockCover;
+                        
         }
         
         update stockDetails;
