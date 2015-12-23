@@ -303,61 +303,15 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         //Retrieving Project Record Using Page URL Parameter Id
         projectId=ApexPages.currentPage().getParameters().get('Id');
         printDoc=ApexPages.currentPage().getParameters().get('printDoc');
-        if(String.IsNotBlank(String.valueOf(projectId))){
-            getIpmuserType();   
-            if(String.IsBlank(String.valueOf(printDoc))){
-                
-                if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)
-                {
-                    gateDocument=IPM_ConstantUtils.CHARTER_GATE; 
-                }
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_GCLT)           
-                {
-                        gateDocument=IPM_ConstantUtils.CONTRACT_GATE;
-                }    
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
-                {    
-                    gateDocument=IPM_ConstantUtils.CONTRACT_GATE;
-                }
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT)      
-                {    
-                    gateDocument=IPM_ConstantUtils.CHARTER_GATE;
-                }
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH)      
-                {
-                    gateDocument=IPM_ConstantUtils.CONTRACT_GATE;                       
-                }
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY)            
-                {
-                    gateDocument=IPM_ConstantUtils.MARKET_READY_GATE;
-                }
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_READY && (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL))
-                {
-                	gateDocument=IPM_ConstantUtils.MARKET_READY_GATE;
-                }
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_READY && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-                {
-                	gateDocument=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;
-                }
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-                {
-                	gateDocument=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;    
-                }
-                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_PLE && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-                {
-                	gateDocument=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;
-                }	       
-            }
-            else{
-                gateDocument=printDoc;
-            }
-            
+        if(String.IsNotBlank(String.valueOf(projectId)) && String.IsNotBlank(String.valueOf(printDoc))){
+            getIpmuserType();  
+            gateDocument=printDoc;
             //Retrieving Project Document Record    
             List<IPM_Project_Document__c> lstProjectDoc = new List<IPM_Project_Document__c>();
-            lstProjectDoc=[SELECT Id,IPM_Contract_GateKeeper_Model__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,
-                        IPM_Approval_Date__c,LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c,LastModifiedBy.Name,IPM_GateDocuments__c, 
-                        IPM_Updated_User_By__c,IPM_Updated_User_By__r.Name,IPM_Updated_User_By__r.smallPhotoURL FROM IPM_Project_Document__c 
-                        WHERE IPM_Project__c=:project.Id and IPM_GateDocuments__c=:gateDocument];
+            lstProjectDoc=[SELECT Id,IPM_Contract_GateKeeper_Model__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,IPM_Updated_User_By__r.smallPhotoURL,
+                                  IPM_Approval_Date__c,LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c,LastModifiedBy.Name,IPM_GateDocuments__c,IPM_Updated_User_By__c,IPM_Updated_User_By__r.Name 
+                           FROM IPM_Project_Document__c 
+                           WHERE IPM_Project__c=:project.Id AND IPM_GateDocuments__c=:gateDocument];
             if(!lstProjectDoc.isEmpty()){
                 projectDoc = lstProjectDoc[0];
                 isEditLinkAvailable();
@@ -365,7 +319,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             
             lstMstn=new List<IPM_Milestone__c>();
             IPM_Milestone__c mstn = new IPM_Milestone__c();
-            lstMstn=[select IPM_Due_Date__c,IPM_Type_of_gate__c from IPM_Milestone__c where IPM_Type_of_gate__c=:projectDoc.IPM_GateDocuments__c and IPM_Project__c=:projectId LIMIT 1]; 
+            lstMstn=[SELECT IPM_Due_Date__c,IPM_Type_of_gate__c 
+                     FROM IPM_Milestone__c 
+                     WHERE IPM_Type_of_gate__c=:projectDoc.IPM_GateDocuments__c and IPM_Project__c=:projectId LIMIT 1]; 
             if(!lstMstn.isEmpty()){
                 mstn = lstMstn[0];
                 if(String.IsNotBlank(String.valueOf(mstn.IPM_Due_Date__c))){
@@ -384,8 +340,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public void getIpmuserType(){
         try{
             Integer guestCount=0;
-            guestCount=[SELECT COUNT() FROM IPM_Project_Resource__c WHERE IPM_Role_Type__c=:IPM_ConstantUtils.IPM_ROLE_GUEST
-                        AND IPM_Project__c=:projectId AND IPM_User__c=:userinfo.getuserid()  AND IPM_Project__r.Is_Archieved__c=false LIMIT 1];
+            guestCount=[SELECT COUNT() FROM IPM_Project_Resource__c 
+                        WHERE IPM_Role_Type__c=:IPM_ConstantUtils.IPM_ROLE_GUEST AND IPM_Project__c=:projectId AND 
+                              IPM_User__c=:userinfo.getuserid()  AND IPM_Project__r.Is_Archieved__c=false LIMIT 1];
             if(guestCount>0){
                 isPDFDownload=false;
             }
@@ -769,6 +726,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     /*************************************************************************************************************************************************************
     @description To Create PDF for Gate Document
     @return URL
+    @Business Rule: This functions is used to Display the data in for the Gate Documetn PDF, i which data needs to be pulled from Various entities, hence it is complex.
+    
     */  
     public PageReference exportToPdf(){ 
         try{
