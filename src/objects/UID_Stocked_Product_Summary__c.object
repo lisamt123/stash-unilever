@@ -200,17 +200,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>UID_Material_ID_Group__c</fullName>
-        <externalId>false</externalId>
-        <label>Material ID Group</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>UID_Material_Id__c</fullName>
         <externalId>false</externalId>
         <formula>UID_Material__r.UID_Material_ID__c</formula>
@@ -289,17 +278,6 @@
         <formula>CASE(TEXT (Month(  UID_Stocked_Product__r.UID_Start_Date__c )) ,&quot;1&quot;, &quot;Q1&quot;, &quot;2&quot;, &quot;Q1&quot;,&quot;3&quot;,&quot;Q1&quot;,&quot;4&quot;,&quot;Q2&quot;,&quot;5&quot;,&quot;Q2&quot;,&quot;6&quot;,&quot;Q2&quot;,&quot;7&quot;,&quot;Q3&quot;,&quot;8&quot;,&quot;Q3&quot;,&quot;9&quot;,&quot;Q3&quot;,&quot;10&quot;,&quot;Q4&quot;,&quot;11&quot;,&quot;Q4&quot;,&quot;Q4&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Quarter</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UID_Sales_Date_Group__c</fullName>
-        <externalId>false</externalId>
-        <label>Sales Date Group</label>
-        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

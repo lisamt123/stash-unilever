@@ -114,16 +114,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>UID_Material_ID_Group__c</fullName>
-        <externalId>false</externalId>
-        <label>Material ID Group</label>
-        <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>UID_Material_ID__c</fullName>
         <externalId>false</externalId>
         <formula>PricebookEntry.Product2.UID_Material_ID__c</formula>
@@ -176,16 +166,6 @@
         <externalId>false</externalId>
         <label>Purchase Order</label>
         <length>25</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UID_Sales_Date_Group__c</fullName>
-        <externalId>false</externalId>
-        <label>Sales Date Group</label>
-        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <type>Text</type>
