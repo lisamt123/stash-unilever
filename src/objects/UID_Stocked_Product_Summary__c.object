@@ -361,16 +361,17 @@
     </fields>
     <fields>
         <fullName>UID_Stocked_Product__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Stocked Product</label>
         <referenceTo>UID_Stocked_Product__c</referenceTo>
         <relationshipLabel>Stocked Product Summary</relationshipLabel>
         <relationshipName>Stocked_Product_Summary</relationshipName>
-        <required>false</required>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <fields>
         <fullName>UID_WS_Price__c</fullName>

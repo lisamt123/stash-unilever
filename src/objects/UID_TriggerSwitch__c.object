@@ -4,7 +4,7 @@
     <description>Trigger switch for UID project objects</description>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>Inventory_Trigger_Switch__c</fullName>
+        <fullName>UID_Inventory_Trigger_Switch__c</fullName>
         <defaultValue>true</defaultValue>
         <externalId>false</externalId>
         <label>Inventory Trigger Switch</label>
@@ -12,7 +12,7 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>Order_Trigger_Switch__c</fullName>
+        <fullName>UID_Order_Trigger_Switch__c</fullName>
         <defaultValue>true</defaultValue>
         <externalId>false</externalId>
         <label>Order Trigger Switch</label>

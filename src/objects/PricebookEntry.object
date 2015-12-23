@@ -48,17 +48,6 @@
         <fullName>StandardPrice</fullName>
     </fields>
     <fields>
-        <fullName>UID_Cost_in_USD__c</fullName>
-        <description>Cost of SKU in USD</description>
-        <externalId>false</externalId>
-        <label>Cost in USD</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>3</scale>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>UID_Material_ID__c</fullName>
         <description>Material ID of SKU</description>
         <externalId>false</externalId>
@@ -66,27 +55,6 @@
         <label>Material ID</label>
         <required>false</required>
         <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>UID_Profit_Margin__c</fullName>
-        <description>Profit Margin of SKU</description>
-        <externalId>false</externalId>
-        <label>Profit Margin</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>2</scale>
-        <type>Percent</type>
-    </fields>
-    <fields>
-        <fullName>UID_Sell_Price_in_USD__c</fullName>
-        <description>USD Sell price of SKU</description>
-        <externalId>false</externalId>
-        <label>Sell Price in USD</label>
-        <precision>18</precision>
-        <required>false</required>
-        <scale>3</scale>
-        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
