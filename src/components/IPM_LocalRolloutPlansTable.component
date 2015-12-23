@@ -128,9 +128,11 @@
                                         <th scope="col" width="100px" colspan="1">
                                             <!--<apex:outputField value="{!localRollout.IPM_Status__c}"/>-->
                                         </th>
+                                       
                                         <th scope="col" width="180px" colspan="1">
                                             <apex:outputField value="{!localProject.IPM_Project_Leader__c}"/>
                                         </th>
+                                      
                                         <th scope="col" width="120px" colspan="1">
                                             <apex:outputField value="{!localProject.IPM_Finance_Member__c}"/>
                                         </th>
@@ -218,23 +220,35 @@
                                         <apex:outputPanel rendered="{!if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c=='Original',project.IPM_Phase__c=='Ideas'),false,true)}">
                                               
                                         <th scope="col" width="180px" colspan="1">
-                                            <apex:outputField value="{!localrollout.IPM_Regional_PL__r.Name}" rendered="{!NOT(isEditMode)}"/>                                        
+                                        
+                                        <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                                <apex:image styleClass="rounded" url="{!localrollout.IPM_Regional_PL__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                        </apex:outputPanel>
+                                            
+                                        <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
+                                            <apex:outputField value="{!localrollout.IPM_Regional_PL__r.Name}"/>                                        
                                             <apex:outputPanel id="countryLeaderPanel" rendered="{!isEditMode}">
                                                 <div class="" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Country_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Country_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Project&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
                                                     <span class="" >{!$Label.IPM_Select_Country_Leader}</span>
                                                 </div>
                                             </apex:outputPanel>
-                                         
+                                         </apex:outputPanel> 
                                         </th>
                                         
-                                        <th scope="col" width="110px" colspan="1">
-                                            <apex:outputField value="{!localrollout.Finance_Member__r.Name}" rendered="{!NOT(isEditMode)}"/>
+                                        <th scope="col" width="120px" colspan="1">
+                                        
+                                        <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                                <apex:image styleClass="rounded" url="{!localrollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
+                                        </apex:outputPanel>
+                                        
+                                        <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
+                                            <apex:outputField value="{!localrollout.Finance_Member__r.Name}"/>
                                             <apex:outputPanel id="financeLeaderPanel" rendered="{!isEditMode}">
                                                 <div class="" id="selectproLeader" data-toggle="modal" html-text="{!$LABEL.IPM_Finance_Leader}" data-target="#ipmAddMemberModal" title="{!$LABEL.IPM_Select_Finance_Leader}" value="{!$page.IPM_Resource_Allocation}?id={!project.Id}&Category={!project.IPM_Category_Text__c}&invokedFrom=Rollouts&RolloutLeaderType=Finance&RolloutId={!localRollout.Id}&RolloutSpan=Local" data-backdrop="static" data-keyboard="false" >
                                                     <span class="" >{!$Label.IPM_Select_Finance_Leader}</span>
                                                 </div>
                                             </apex:outputPanel>
-                                         
+                                      </apex:outputPanel>   
                                         </th>
                                      </apex:outputPanel> 
                                     </tr>
@@ -388,7 +402,7 @@
         jq('#tldWarningDialog').modal('hide'); 
     }
     var selectedDateInputBox = "";
-	
+    
 </script>   
       
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_LocalRolloutPlans.js')}" type="text/javascript"></script>    

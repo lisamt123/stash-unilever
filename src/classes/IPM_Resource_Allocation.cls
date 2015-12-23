@@ -83,12 +83,9 @@ public with sharing class IPM_Resource_Allocation {
     public Boolean isLeaderTypePL{get;set;}
     //@description:to distinguish if the Rollouts user selection is for FL
     public Boolean isLeaderTypeFL{get;set;}
-    //@description:List of user profiles to be listed for PL selection
-    public List<IPM_User_Profile__c> plUserProfiles{get;set;}
-    //@description:List of user profiles to be listed for FL selection
-    public List<IPM_User_Profile__c> flUserProfiles{get;set;}
+    
     //@description:hold SELECTed leader member value FROM page
-    public string SelectedLeaderMember{get;set;}
+    public string selectedLeaderMember{get;set;}
     //@description:hold SELECTed leader member value FROM page
     public string rolloutId{get;set;}
     //@description:hold SELECTed span of rollout leader member value FROM page
@@ -96,12 +93,7 @@ public with sharing class IPM_Resource_Allocation {
     //@description: leader user profiles filtered from IPM_RolloutPlansTableController 
     public list<IPM_User_Profile__c> leaderUsers{get;set;}
    
-    // map and list from table controller
-    public List<IPM_User_Profile__c> lstIPMUserProfiles;
-    public Map<String,Id> plNameMap {get; set;} //Map of Names and Ids of Project Leaders
-    public Map<String,Id> flNameMap {get; set;} //Map of Names and Ids of Finance Members
-    public Map<String,IPM_User_Profile__c> plUserNameProfileMap {get; set;} //Map of Names and User Profiles of Project Leaders, used in Resource Allocation
-    public Map<String,IPM_User_Profile__c> flUserNameProfileMap {get; set;} //Map of Names and User Profiles of Finance Members, used in Resource Allocation 
+  
     @TestVisible private static final String REGIONAL_ROLLOUT_RECORDTYPE =Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId(); //Recordtype Id for Regional Rollouts on IPM_Project_Rollout__c object cant delete it using in the query below
     @TestVisible private static final String LOCAL_ROLLOUT_RECORDTYPE =Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId(); //Recordtype Id for Local Rollouts on IPM_Project_Rollout__c object cant delete it using in the query below
     
@@ -116,81 +108,69 @@ public with sharing class IPM_Resource_Allocation {
         searchTeambyCat=IPM_ConstantUtils.TEAM_MYCATEGORY;
         isNoMatchfound=IPM_ConstantUtils.BLANK;
         changeRoleType=IPM_ConstantUtils.BLANK;
+        isLeaderTypePL=false;
+        isLeaderTypeFL=false;
+        isInvokedFromRollouts = false;
         
         projectID=Apexpages.currentpage().getParameters().get(String.escapeSingleQuotes(IPM_ConstantUtils.TEAM_PROJECTID));
         IPM_Project__c ipmproject=[SELECT id,Deputy_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Project_Leader__c,IPMProject_Span__c,
             IPM_Technical_Project_Leader__c,IPM_Company_Card__c,IPM_Category_Text__c FROM 
-            IPM_Project__c WHERE id=:projectID limit 1];
+            IPM_Project__c WHERE id=:projectID LIMIT 1];
         category=Ipmproject.IPM_Category_Text__c;
 
         // get user profile map
-        
-        lstIPMUserProfiles = [SELECT IPM_User__c, IPM_User__r.Name, IPM_User__r.UserRole.Name, ipm_user__r.smallphotourl, ipm_user__r.Email, IPM_User_Function__c,IPM_User_Role__c, IPM_Region__c, IPM_Company_Card__c 
-                                                            FROM IPM_User_Profile__c 
-                                                            WHERE  IPM_User__r.IsActive = true AND IPM_User_Role__c=: IPM_ConstantUtils.PROJECT_LEADER LIMIT 50000];
-                                                            
-        plUserNameProfileMap = new Map<String,IPM_User_Profile__c>();
-        flUserNameProfileMap = new Map<String,IPM_User_Profile__c>();    
-                                                            
-        plNameMap = new Map<String,Id>();
-        flNameMap = new Map<String,Id>();
-        
         string invokedFrom = Apexpages.currentpage().getParameters().get(IPM_ConstantUtils.INVOKED_FROM); 
         if(invokedFrom != Null && invokedFrom.equals(IPM_ConstantUtils.INVOKED_FROM_ROLLOUTS))
         {
             isInvokedFromRollouts = true;   
         }
         
-        for(IPM_User_Profile__c userProfile : lstIPMUserProfiles)
-        {
-            //Add Unique Names
-            if(!plNameMap.containsKey(userProfile.IPM_User__r.Name))
-            {
-                plNameMap.put(userProfile.IPM_User__r.Name, userProfile.IPM_User__c);
-                plUserNameProfileMap.put(userProfile.IPM_User__r.Name, userProfile);
-            }
-
-            //Add Unique Names
-            if(!flNameMap.containsKey(userProfile.IPM_User__r.Name))
-            {
-                flNameMap.put(userProfile.IPM_User__r.Name, userProfile.IPM_User__c);
-                flUserNameProfileMap.put(userProfile.IPM_User__r.Name, userProfile);
-            }
-         }
+      
         
-        if(isInvokedFromRollouts!=null && isInvokedFromRollouts){
+       if(isInvokedFromRollouts!=null && isInvokedFromRollouts)
+        {
             leaderUsers = new list<IPM_User_Profile__c>();
-            //RolloutCntlr = new IPM_RolloutPlansTableController();
+            
             leaderType = Apexpages.currentpage().getParameters().get(IPM_ConstantUtils.ROLLOUT_LEADER_TYPE);           
             rolloutId = Apexpages.currentpage().getParameters().get(IPM_ConstantUtils.ROLLOUTID);            
             rolloutSpan = Apexpages.currentpage().getParameters().get(IPM_ConstantUtils.ROLLOUT_SPAN);
             
-            if(leaderType != Null && leaderType==IPM_ConstantUtils.ROLLOUT_PL_TYPE){
+            if(leaderType != Null && leaderType==IPM_ConstantUtils.ROLLOUT_PL_TYPE)
+            {
                 isLeaderTypePL = true;  
-                plUserProfiles = plUserNameProfileMap.values();
-                leaderUsers.addAll(plUserProfiles);
-                if(leaderType==IPM_ConstantUtils.ROLLOUT_PL_TYPE && rolloutSpan == IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL){
+              
+                if(leaderType==IPM_ConstantUtils.ROLLOUT_PL_TYPE && rolloutSpan == IPM_ConstantUtils.ROLLOUT_SPAN_REGIONAL)
+                {
                     ButtonLabel=IPM_ConstantUtils.USER_FUNCTON_PL;
-                }else if(leaderType==IPM_ConstantUtils.ROLLOUT_PL_TYPE && rolloutSpan == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL){
+                }
+                else if(leaderType==IPM_ConstantUtils.ROLLOUT_PL_TYPE && rolloutSpan == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL)
+                {
                     ButtonLabel=IPM_ConstantUtils.USER_FUNCTON_CL;
                 }
-            }else if(leaderType==IPM_ConstantUtils.ROLLOUT_FL_TYPE){
-                isLeaderTypeFL = true;  
-                flUserProfiles = flUserNameProfileMap.values();             
-                leaderUsers.addAll(flUserProfiles);
+            }
+            else if(leaderType==IPM_ConstantUtils.ROLLOUT_FL_TYPE)
+            {
+                isLeaderTypeFL = true; 
                 ButtonLabel=IPM_ConstantUtils.USER_FUNCTON_FL;
-            }        
-        }else{
-            if(String.IsNotBlank(String.valueOf(ipmproject.Deputy_Project_Leader__c))){
+            }  
+            
+            getSameCategoryRolloutProfiles();      
+        }else
+        {
+            if(String.IsNotBlank(String.valueOf(ipmproject.Deputy_Project_Leader__c)))
+            {
                 avoidDupUser.add(ipmproject.Deputy_Project_Leader__c);
             }
-            if(String.IsNotBlank(String.valueOf(ipmproject.IPM_Project_Gatekeeper__c))){
+            if(String.IsNotBlank(String.valueOf(ipmproject.IPM_Project_Gatekeeper__c)))
+            {
                 avoidDupUser.add(ipmproject.IPM_Project_Gatekeeper__c);
             }
-            if(String.IsNotBlank(String.valueOf(ipmproject.IPM_Project_Leader__c))){
+            if(String.IsNotBlank(String.valueOf(ipmproject.IPM_Project_Leader__c)))
+            {
                 avoidDupUser.add(Ipmproject.IPM_Project_Leader__c);
             }
-            if(String.IsNotBlank(String.valueOf(ipmproject.IPM_Technical_Project_Leader__c))){
+            if(String.IsNotBlank(String.valueOf(ipmproject.IPM_Technical_Project_Leader__c)))
+            {
                 avoidDupUser.add(Ipmproject.IPM_Technical_Project_Leader__c);
             }
             
@@ -199,7 +179,8 @@ public with sharing class IPM_Resource_Allocation {
             DPL=Apexpages.currentpage().getParameters().get(IPM_ConstantUtils.TEAM_DPL); 
             
             
-            if(IPM_ConstantUtils.TEAM_TRUE==PL||IPM_ConstantUtils.TEAM_TRUE==DPL){
+            if(IPM_ConstantUtils.TEAM_TRUE==PL||IPM_ConstantUtils.TEAM_TRUE==DPL)
+            {
                 isPLEdit=true;
             }
             projectID=String.escapeSingleQuotes(projectID);
@@ -208,17 +189,18 @@ public with sharing class IPM_Resource_Allocation {
             
             RoletypeRND=Apexpages.currentpage().getParameters().get(IPM_ConstantUtils.TEAM_ROLETYPE);
             
-            //category=Apexpages.currentpage().getParameters().get(IPM_ConstantUtils.TEAM_CATEGORY);
-            
+                 
             coreMembers=Apexpages.currentpage().getParameters().get(IPM_ConstantUtils.TEAM_COREMEMBER);
             
             CCardName=Ipmproject.IPM_Company_Card__c;
-            if(IPM_ConstantUtils.TEAM_RND==RoletypeRND){
+            if(IPM_ConstantUtils.TEAM_RND==RoletypeRND)
+            {
                 roleType=IPM_ConstantUtils.TEAM_RESEARCH_DEVELOPMENT;
             }
             changeRoleType = roleType;
             
-            if(IPM_ConstantUtils.TEAM_GUEST==roleType){
+            if(IPM_ConstantUtils.TEAM_GUEST==roleType)
+            {
                 searchTeambyCat=IPM_ConstantUtils.TEAM_ALLCATEGORY;
             }
             //get list of role FROM user object
@@ -230,10 +212,15 @@ public with sharing class IPM_Resource_Allocation {
     /*************************************************************************************************************
     * @description:Get all members FROM same category for functional role.
     */
-    public void getSameCategory(){
-        list<IPM_Project_Resource__c>lstoldres=[SELECT IPM_User__c FROM IPM_Project_Resource__c WHERE IPM_Project__c=:projectID limit 50000];
+    public void getSameCategory()
+    {
+        
+        
+        list<IPM_Project_Resource__c>lstoldres=[SELECT IPM_User__c FROM IPM_Project_Resource__c WHERE IPM_Project__c=:projectID LIMIT 50000];
+        
         map<id,id>uniqueUsers=new map<id,id>();
-        for(IPM_Project_Resource__c res:lstoldres){
+        for(IPM_Project_Resource__c res:lstoldres)
+        {
             oldresourceid.add(res.IPM_User__c);
         }
 
@@ -241,51 +228,61 @@ public with sharing class IPM_Resource_Allocation {
         list<IPM_User_Profile__c>lstuser=new list<IPM_User_Profile__c>();
         string UQuery=IPM_ConstantUtils.BLANK;      
         
-        if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY){
+        if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY)
+        {
             UQuery=IPM_ConstantUtils.BLANK;
             UQuery = BEGIN_QUERY_TEAM;
             UQuery = UQuery+MID_QUERY_TEAM;
-            UQuery = UQuery+'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True and ';
+            UQuery = UQuery+'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True AND ';
             UQuery = UQuery+' IPM_User_Category__c INCLUDES (:category)';
             
            
             if(String.IsNotBlank(String.valueOf(changeRoleType)))
             {
-                UQuery=UQuery+' and '+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\'';
+                UQuery=UQuery+' AND '+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\'';
             }
             UQuery= UQuery + '  ) AND IPM_User__r.id NOT IN :oldresourceid'+QUERY_LIMIT;
             
-        }else if(IPM_ConstantUtils.TEAM_ALLCATEGORY==searchTeambyCat){
-            if(IPM_ConstantUtils.TEAM_GUEST==roleType){
+        }
+        else if(IPM_ConstantUtils.TEAM_ALLCATEGORY==searchTeambyCat)
+        {
+            if(IPM_ConstantUtils.TEAM_GUEST==roleType)
+            {
                 UQuery=IPM_ConstantUtils.BLANK;
                 UQuery =BEGIN_QUERY_TEAM;
                 UQuery = UQuery+MID_QUERY_TEAM;
                 UQuery = UQuery+'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True';
-                UQuery = UQuery+' and IPM_HoldCategory__c!=null) ';
+                UQuery = UQuery+' AND IPM_HoldCategory__c!=null) ';
                 UQuery = UQuery+'AND IPM_User__r.id NOT IN :oldresourceid '+QUERY_LIMIT;
                 
-            }else{
+            }
+            else
+            {
                 UQuery =IPM_ConstantUtils.BLANK;
                 UQuery = BEGIN_QUERY_TEAM;
                 UQuery = UQuery+MID_QUERY_TEAM;
-                UQuery = UQuery+'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True and ';
-                UQuery = UQuery+' IPM_HoldCategory__c !=null ';
+                UQuery = UQuery+'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True AND ';
+                UQuery = UQuery+' IPM_HoldCategory__c != null ';
                 if(String.IsNotBlank(String.valueOf(changeRoleType)))
                 {
-                    UQuery = UQuery+' and '+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\' ';
+                    UQuery = UQuery+' AND '+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\' ';
                 }
                 UQuery = UQuery+' ) AND IPM_User__r.id NOT IN :oldresourceid '+QUERY_LIMIT;
             } 
         }
-        try{
+        try
+        {
             lstuser=database.query(UQuery);
         }
-        catch(QueryException ex){
+        catch(QueryException ex)
+        {
            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
         }
 
-        for(IPM_User_Profile__c u:lstuser){
-            if((avoidDupUser.contains(u.IPM_User__r.id) && u.IPM_User_Role__c=='R&D') || !avoidDupUser.contains(u.IPM_User__r.id) ){
+        for(IPM_User_Profile__c u:lstuser)
+        {
+            if((avoidDupUser.contains(u.IPM_User__r.id) && u.IPM_User_Role__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_RD) || !avoidDupUser.contains(u.IPM_User__r.id) )
+            {
                 uniqueUsers.put(u.IPM_User__c,u.id);
             }
         }
@@ -294,7 +291,8 @@ public with sharing class IPM_Resource_Allocation {
         IPM_User__r.email,IPM_User__r.SmallPhotoUrl,
         IPM_User__r.UserRole.Name 
         FROM IPM_user_profile__c WHERE id IN:uniqueUsers.values()];
-        for(IPM_User_Profile__c u:lstuser){
+        for(IPM_User_Profile__c u:lstuser)
+        {
             teamMembers.add(new wrapperclass(u));
         }
         
@@ -302,71 +300,104 @@ public with sharing class IPM_Resource_Allocation {
     /*************************************************************************************************************
     * @description:Search for same category members
     */
-    public void filterTeamMember(){
+    public void filterTeamMember()
+    {
         map<id,id>uniqueUsers=new map<id,id>();
         teamMembers=new list<wrapperclass>();
         list<IPM_User_Profile__c>lstuser=new list<IPM_User_Profile__c>();
         string uQuery=IPM_ConstantUtils.BLANK;
        
-        string querySearchTeamMem=IPM_ConstantUtils.PERCENTAGE+searchTeamMem +IPM_ConstantUtils.PERCENTAGE;//used in the query below
+        string querySearchTeamMem=IPM_ConstantUtils.PERCENTAGE+String.escapeSingleQuotes(searchTeamMem) +IPM_ConstantUtils.PERCENTAGE;//used in the query below
         UQuery='SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,IPM_User__r.email, ';
         uQuery=uQuery+QUERY_FIELDS_STR;
         uQuery=uQuery+QUERY_WHERE_STR;
+       
         if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY){
-            uQuery=uQuery+QUERY_HOLDCATEGORY_STR + String.escapeSingleQuotes(category) + '%\' and ';
-            uQuery=uQuery+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\')and(IPM_User__r.name Like :querySearchTeamMem  or ';
-            uQuery=uQuery+'IPM_User__r.email Like :querySearchTeamMem or  IPM_User_Role__c Like :querySearchTeamMem)';
-            uQuery=uQuery+' AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
             
+            if(String.IsNotBlank(category))
+            {
+                
+                uQuery=uQuery+QUERY_HOLDCATEGORY_STR + String.escapeSingleQuotes(category) + '%\')';
+            }
+            
+            if(String.IsNotBlank(changeRoleType))
+            {
+                
+                uQuery=' AND ' + uQuery+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\')'; 
+            }
+          
+            uQuery=uQuery+' AND (IPM_User__r.name LIKE :querySearchTeamMem  OR ';
+            uQuery=uQuery+'IPM_User__r.email LIKE :querySearchTeamMem OR  IPM_User_Role__c LIKE :querySearchTeamMem)';
+            uQuery=uQuery+' AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
+           
         }
-        else if(searchTeambyCat==IPM_ConstantUtils.TEAM_ALLCATEGORY ){
-            if(roleType==IPM_ConstantUtils.TEAM_GUEST){
-                uQuery=uQuery+' and IPM_HoldCategory__c !=null)and';
-                uQuery=uQuery+'(IPM_User__r.name Like :querySearchTeamMem  or IPM_User__r.email Like :querySearchTeamMem or ';
+        else if(searchTeambyCat==IPM_ConstantUtils.TEAM_ALLCATEGORY )
+        {
+            if(roleType==IPM_ConstantUtils.TEAM_GUEST)
+            {
+                uQuery=uQuery+' AND IPM_HoldCategory__c !=null)AND';
+                uQuery=uQuery+'(IPM_User__r.name LIKE :querySearchTeamMem  OR IPM_User__r.email LIKE :querySearchTeamMem OR ';
                 uQuery=uQuery+'IPM_User_Role__c LIKE :querySearchTeamMem) AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
             }
-            else{
-                uQuery=uQuery+' and IPM_HoldCategory__c !=null and ';
-                uQuery=uQuery+QUERY_ROLE_STR+changeRoleType+'\')and(IPM_User__r.name Like :querySearchTeamMem  or ';
-                uQuery=uQuery+'IPM_User__r.email Like :querySearchTeamMem or  IPM_User_Role__c Like :querySearchTeamMem)';
+            else
+            {
+                uQuery=uQuery+' AND IPM_HoldCategory__c !=null AND ';
+                uQuery=uQuery+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\')AND(IPM_User__r.name LIKE :querySearchTeamMem  OR ';
+                uQuery=uQuery+'IPM_User__r.email LIKE :querySearchTeamMem OR  IPM_User_Role__c LIKE :querySearchTeamMem)';
                 uQuery=uQuery+'AND IPM_User__r.id !=:oldresourceid '+QUERY_LIMIT;
             }
         }
-        try{
+        try
+        {
+             
             lstuser=database.query(uQuery);
+            
         }
-        catch(QueryException ex){
+        catch(QueryException ex)
+        {
             
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
             'filterTeamMember',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null); 
         }
-        if(lstuser.isEmpty()){
+        if(lstuser.isEmpty())
+        {
             isNoMatchfound=IPM_ConstantUtils.TEAM_TRUE;
         }
-        else{
+        else
+        {
             isNoMatchfound=IPM_ConstantUtils.BLANK;
         }
-        for(IPM_User_Profile__c u:lstuser){
-            if((avoidDupUser.contains(u.IPM_User__r.id) && u.IPM_User_Role__c=='R&D') || !avoidDupUser.contains(u.IPM_User__r.id) ){
+        for(IPM_User_Profile__c u:lstuser)
+        {
+            if((avoidDupUser.contains(u.IPM_User__r.id) && u.IPM_User_Role__c==IPM_ConstantUtils.FUNCTIONAL_ROLE_RD) || !avoidDupUser.contains(u.IPM_User__r.id) )
+            {
                 uniqueUsers.put(u.IPM_User__c,u.id);
             }
         }
+        
+        
         lstuser=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,IPM_User__r.email,
         IPM_User__r.SmallPhotoUrl, 
         IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE id IN:uniqueUsers.values() limit 50000];
-        for(IPM_User_Profile__c u:lstuser){
+        
+        
+        for(IPM_User_Profile__c u:lstuser)
+        {
             teamMembers.add(new wrapperclass(u));
         }
     }
     /*************************************************************************************************************
     * @description:Add members FROM same category which are SELECTed FROM page
     */
-    public void addMemberToWrapper(){
+    public void addMemberToWrapper()
+    {
         list<IPM_Project_Resource__c>lstnewResource=new list<IPM_Project_Resource__c>();
         
-        for(wrapperclass MAdd:teamMembers){
-            if(MAdd.checkboxuser != null && MAdd.checkboxuser){
+        for(wrapperclass MAdd:teamMembers)
+        {
+            if(MAdd.checkboxuser != null && MAdd.checkboxuser)
+            {
                 
                 IPM_Project_Resource__c iPMresource=new IPM_Project_Resource__c();
                 iPMresource=new IPM_Project_Resource__c();
@@ -374,10 +405,12 @@ public with sharing class IPM_Resource_Allocation {
                 iPMresource.IPM_User__c=MAdd.listofuser.IPM_User__r.id;
                 iPMresource.IPM_Role_Type__c=roleType;
                 
-                if(CountProjectMembers(roleType)>0){
+                if(CountProjectMembers(roleType)>0)
+                {
                     iPMresource.IPM_Project_Role_Owner__c=false;
                 }
-                else if(CountProjectMembers(roleType)==0 && lstnewResource.isEmpty()){
+                else if(CountProjectMembers(roleType)==0 && lstnewResource.isEmpty())
+                {
                     iPMresource.IPM_Project_Role_Owner__c=true;
                 }
                 iPMresource.IPM_Unique_Resource__c=projectID+MAdd.listofuser.IPM_User__r.id;//added to support data migration
@@ -385,18 +418,19 @@ public with sharing class IPM_Resource_Allocation {
             }
             
         }
-        try{
+        try
+        {
             insert lstnewResource;
         }
-        catch(DmlException ex){
-            
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+        catch(DmlException ex)
+        {
+           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
              ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
                  ADD_MEMBER_TO_WRAPPER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
             
         }
-        catch(Exception ex){
-            
+        catch(Exception ex)
+        {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
                  ADD_MEMBER_TO_WRAPPER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
@@ -407,15 +441,18 @@ public with sharing class IPM_Resource_Allocation {
     /*************************************************************************************************************
     * @description:Get list of already assigned members in the current project
     */
-    public void  getAssignedTeamMember(){
+    public void  getAssignedTeamMember()
+    {
         assignedList=new set<string>();
         assignedMember=new list<IPM_Project_Resource__c>();
         assignedMember=[SELECT id,IPM_User__c,IPM_User__r.name,IPM_User__r.SmallPhotoUrl,IPM_Project_Role_Owner__c,
         IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE IPM_Role_Type__c=:roleType and 
         IPM_Project__r.id=:projectID order by IPM_User__c ASC limit 50000]; 
         
-        if(!assignedMember.isEmpty()){
-            for(IPM_Project_Resource__c assignedmem:assignedMember){
+        if(!assignedMember.isEmpty())
+        {
+            for(IPM_Project_Resource__c assignedmem:assignedMember)
+            {
                 assignedList.add(assignedmem.IPM_User__r.id);
                 avoidDupUser.add(assignedmem.IPM_User__c);
             }
@@ -428,7 +465,8 @@ public with sharing class IPM_Resource_Allocation {
     * @description:list out all users FROM user profile and add one boolean value with user profile record.
     *               this is used while adding the SELECTed users FROM page
     */
-    public class wrapperclass{
+    public class wrapperclass
+    {
         /*************************************************************************************************************
         * @description:flag whether check box in true or false
         */
@@ -441,7 +479,8 @@ public with sharing class IPM_Resource_Allocation {
         * @description:constructor,get user profile records.
         * @param:user profile object
         */
-        public wrapperclass(IPM_User_Profile__c lstuser){
+        public wrapperclass(IPM_User_Profile__c lstuser)
+        {
             checkboxuser=false;
             listofuser=lstuser;
         }
@@ -449,25 +488,30 @@ public with sharing class IPM_Resource_Allocation {
     /*************************************************************************************************************
     * @description:Get Core members FROM user profiles(PL,DPL,TPL,Gatekeeper users)
     */
-    public void getCoreMemberds(){
+    public void getCoreMemberds()
+    {
         string strCoreMem=IPM_ConstantUtils.BLANK;
         lstUserProfile=new list<IPM_User_Profile__c>();
         string uQuery=IPM_ConstantUtils.BLANK;
 
-        if(IPM_ConstantUtils.TEAM_COREPL==coreMembers){
+        if(IPM_ConstantUtils.TEAM_COREPL==coreMembers)
+        {
             buttonLabel=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
             strCoreMem=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
         }
-        else if(IPM_ConstantUtils.TEAM_COREDPL==coreMembers){
+        else if(IPM_ConstantUtils.TEAM_COREDPL==coreMembers)
+        {
             buttonLabel=IPM_ConstantUtils.TEAM_DEPUTY_PROJECT_LEADER;
             strCoreMem=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
             
         }
-        else if(IPM_ConstantUtils.TEAM_COREGATEK==coreMembers){
+        else if(IPM_ConstantUtils.TEAM_COREGATEK==coreMembers)
+        {
             buttonLabel=IPM_ConstantUtils.TEAM_GATEKEEPER;
             strCoreMem=IPM_ConstantUtils.TEAM_GATEKEEPER;
         }
-        else if(IPM_ConstantUtils.TEAM_CORETPL==coreMembers){
+        else if(IPM_ConstantUtils.TEAM_CORETPL==coreMembers)
+        {
             buttonLabel=IPM_ConstantUtils.TEAM_TECHNICAL_PROJECT_LEADER;
             strCoreMem=IPM_ConstantUtils.TEAM_RESEARCH_DEVELOPMENT;
             uQuery=BEGIN_QUERY;
@@ -476,7 +520,8 @@ public with sharing class IPM_Resource_Allocation {
             uQuery=uQuery+QUERY_HOLDCATEGORY_STR + String.escapeSingleQuotes(category) + PERCENTAGE_SLASH ;
             uQuery=uQuery+' AND IPM_User_Role__c=\''+strCoreMem+'\') '+QUERY_LIMIT;
         }    
-        if(IPM_ConstantUtils.TEAM_COREPL ==coreMembers || IPM_ConstantUtils.TEAM_COREDPL==coreMembers || IPM_ConstantUtils.TEAM_COREGATEK==coreMembers){
+        if(IPM_ConstantUtils.TEAM_COREPL ==coreMembers || IPM_ConstantUtils.TEAM_COREDPL==coreMembers || IPM_ConstantUtils.TEAM_COREGATEK==coreMembers)
+        {
             uQuery=BEGIN_QUERY;
             uQuery=uQuery+QUERY_FIELDS_STR;
             uQuery=uQuery+QUERY_WHERE_STR;
@@ -484,11 +529,14 @@ public with sharing class IPM_Resource_Allocation {
             uQuery=uQuery+' AND IPM_User_Function__c=\''+strCoreMem+'\' AND IPM_Company_Card__c=\''+CCardName+'\') '+QUERY_LIMIT;
         }
         
-        if(string.isNotBlank(uQuery)){
-            try{
+        if(string.isNotBlank(uQuery))
+        {
+            try
+            {
                 lstUserProfile=database.query(uQuery);
             }
-            catch(QueryException ex){
+            catch(QueryException ex)
+            {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));    
             }
         }
@@ -497,7 +545,8 @@ public with sharing class IPM_Resource_Allocation {
     /*************************************************************************************************************
     * @description:Filter core members FROM user profiles(PL,DPL,TPL,Gatekeeper users)
     */
-    public void filterCoreMember(){
+    public void filterCoreMember()
+    {
         lstUserProfile=new list<IPM_User_Profile__c>();
         string strCoreMem=IPM_ConstantUtils.BLANK;
         string uQuery=IPM_ConstantUtils.BLANK;
@@ -506,10 +555,12 @@ public with sharing class IPM_Resource_Allocation {
         uQuery=uQuery+QUERY_FIELDS_STR;
         uQuery=uQuery+QUERY_WHERE_STR;
         uQuery=uQuery+QUERY_HOLDCATEGORY_STR + String.escapeSingleQuotes(category) + '%\')' ;
-        if(IPM_ConstantUtils.TEAM_COREPL==coreMembers || IPM_ConstantUtils.TEAM_COREDPL==coreMembers){
+        if(IPM_ConstantUtils.TEAM_COREPL==coreMembers || IPM_ConstantUtils.TEAM_COREDPL==coreMembers)
+        {
             strCoreMem=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
         }
-        else if(IPM_ConstantUtils.TEAM_COREGATEK==coreMembers){
+        else if(IPM_ConstantUtils.TEAM_COREGATEK==coreMembers)
+        {
             strCoreMem=IPM_ConstantUtils.TEAM_GATEKEEPER;
         }
         else if(IPM_ConstantUtils.TEAM_CORETPL==coreMembers)
@@ -585,8 +636,7 @@ public with sharing class IPM_Resource_Allocation {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
              ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
                 UPDATE_CORE_MEMBER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-          
-        }
+       }
     } 
     /*************************************************************************************************************
     * @description:Hold core member id from UI
@@ -648,7 +698,7 @@ public with sharing class IPM_Resource_Allocation {
     {
         list<IPM_Project_Resource__c>lstnewResource=new list<IPM_Project_Resource__c>();
         lstnewResource=[SELECT Id FROM IPM_Project_Resource__c WHERE IPM_Role_Type__c=:IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE
-        and IPM_Project__c IN:newproAndUserMap.keySet() and IPM_User__c =:newproAndUserMap.values()];
+        AND IPM_Project__c IN:newproAndUserMap.keySet() AND IPM_User__c =:newproAndUserMap.values()];
         
         if(!lstnewResource.isEmpty())
         {
@@ -672,7 +722,6 @@ public with sharing class IPM_Resource_Allocation {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
                 DELETE_FINANCE_MEMBER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-               
             }
         }
     }
@@ -710,23 +759,23 @@ public with sharing class IPM_Resource_Allocation {
         
         if(!lstRegRollout.isEmpty())
         {
-        	inContextRollout = lstRegRollout[0];
-        	if(inContextRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
-	        {
+            inContextRollout = lstRegRollout[0];
+            if(inContextRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
+            {
                 
-	        	locationFilter.add(inContextRollout.Market_Cluster_Name__c);
-	        }
-	        else if(inContextRollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
-	        {
+                locationFilter.add(inContextRollout.Market_Cluster_Name__c);
+            }
+            else if(inContextRollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+            {
                 
-	        	for(IPM_Country__c country : inContextRollout.IPM_Countries_Local__r)
-				{ 
-					if(!String.isBlank(country.Country_Name__c))
-				    {
-				     	locationFilter.add(IPM_ConstantUtils.PERCENTAGE + country.Country_Name__c+IPM_ConstantUtils.PERCENTAGE); 
-				    }
-				} 
-	        }
+                for(IPM_Country__c country : inContextRollout.IPM_Countries_Local__r)
+                { 
+                    if(!String.isBlank(country.Country_Name__c))
+                    {
+                        locationFilter.add(IPM_ConstantUtils.PERCENTAGE + country.Country_Name__c+IPM_ConstantUtils.PERCENTAGE); 
+                    }
+                } 
+            }
         }
         
         String selectCompanyCard = ' SELECT Id, name, IPM_TxtGeographical_Scope__c, IPM_Managed_Category__c,IPM_Market_Cluster__c FROM IPM_Company_Card__c ';
@@ -737,21 +786,20 @@ public with sharing class IPM_Resource_Allocation {
             {
                 whereClause += ' AND IPM_TxtGeographical_Scope__c IN :locationFilter ';
                 
-		}
-		else
-		{
-			whereClause += ' AND IPM_TxtGeographical_Scope__c like :locationFilter ';
+            }
+            else
+            {
+                whereClause += ' AND IPM_TxtGeographical_Scope__c LIKE :locationFilter ';
                 
-		}
-		
-		String limitString = ' LIMIT 50000';
-		
-		String finalQueryString = selectCompanyCard + whereClause + limitString;
+            }
+        
+        String limitString = ' LIMIT 50000';
+        String finalQueryString = selectCompanyCard + whereClause + limitString;
         
         List<IPM_Company_Card__c> lstCompanyCards = database.query(finalQueryString);
 		Set<id>companyCardIdSet=new Set<id>();
 		if(!lstCompanyCards.isEmpty())
-       		 {
+        {
 			for(IPM_Company_Card__c ccid:lstCompanyCards){
 				companyCardIdSet.add(ccid.id);
 			}
@@ -776,8 +824,9 @@ public with sharing class IPM_Resource_Allocation {
 						inContextRollout.IPM_Company_Card__c=lstCompanyCards[0].id;//assign company card to project leader
                         IPM_WithoutShareController.createUserProfile(lstCompanyCards[0].id,selectedLeaderMember,projectManagedCategory);//create user profile for selected PL with company card
                     }
-                    
+					
                 }
+                
              if(inContextRollout.IPM_Company_Card__c!=null){
                 id companyCardId=inContextRollout.IPM_Company_Card__c;
                 list<IPM_User_Profile__c>lstGatekeeper=[SELECT IPM_User__c FROM IPM_User_Profile__c WHERE IPM_Company_Card__c=:companyCardId 
@@ -786,7 +835,7 @@ public with sharing class IPM_Resource_Allocation {
                     inContextRollout.IPM_Rollout_Gatekeeper__c=lstGatekeeper[0].IPM_User__c;    
                 }else{
                 inContextRollout.IPM_Rollout_Gatekeeper__c=lstUser[0].Id;   
-             	}  
+                }  
              }else{
                 inContextRollout.IPM_Rollout_Gatekeeper__c=lstUser[0].Id;   
              }  
@@ -799,7 +848,7 @@ public with sharing class IPM_Resource_Allocation {
         }          
         try
         {
-        	update inContextRollout;   
+            update inContextRollout;   
         }
         catch(DmlException ex)
         {
@@ -815,6 +864,7 @@ public with sharing class IPM_Resource_Allocation {
                 ASSIGN_LEADER_MEMBER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
+    
     
     /*************************************************************************************************************
     * @description:Get all members FROM same category for functional role.
@@ -921,6 +971,7 @@ public with sharing class IPM_Resource_Allocation {
                 uniqueUserMapId.put(u.IPM_User__r.Id,u.id);
                 
             }
+         
         }
         if(!uniqueUserMapId.isEmpty())
         {
@@ -936,7 +987,8 @@ public with sharing class IPM_Resource_Allocation {
     /*************************************************************************************************************
     * @description:Filter leader members FROM user profiles
     */
-    public void filterLeaderMember(){
+    public void filterLeaderMember()
+    {
         lstUserProfile=new list<IPM_User_Profile__c>();
         string strCoreMem=IPM_ConstantUtils.BLANK; // used in the query
         string UQuery=IPM_ConstantUtils.BLANK;
@@ -997,9 +1049,10 @@ public with sharing class IPM_Resource_Allocation {
         
     }
     
-     public Integer CountProjectMembers(string role){
+     public Integer CountProjectMembers(string role)
+     {
         Integer countUserRole=[SELECT count() 
         FROM IPM_Project_Resource__c WHERE IPM_Project__c=:projectID AND IPM_Role_Type__c=:role];
-          return  countUserRole;
+        return  countUserRole;
     }
 }
