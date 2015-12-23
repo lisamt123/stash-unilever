@@ -220,9 +220,7 @@ public with sharing class IPM_FinancialTriggerHandler
                                                 where id in: mapNewFinancials.keyset() limit: IPM_ConstantUtils.MaxLimit ];
        financialMisalignQuery = new List<IPM_Financial__c>();
         for(IPM_Financial__c ipmFinancials :lstFinancials) {
-        	system.debug('//>boolean' + ipmFinancials.Misaligned__c);
-            ///if(ipmFinancials.RecordType.Name==IPM_ConstantUtils.DEFAULT_FINANCIAL_RT && ipmFinancials.MisalignmentDateTime__c == System.now(){
-            /*DEF2168 Fix: Above condition will never eval to true as there is always a time difference between record update and system.now()*/
+        /*DEF2168 Fix: Above condition will never eval to true as there is always a time difference between record update and system.now()*/
             if(ipmFinancials.RecordType.Name==IPM_ConstantUtils.DEFAULT_FINANCIAL_RT && ipmFinancials.Misaligned__c) { 
                 financialMisalignQuery.add(ipmFinancials);
             }

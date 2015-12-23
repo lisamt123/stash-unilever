@@ -98,7 +98,7 @@
                                                                         <li class="{!IF(financial.Status__c == $Label.IPM_SUBMITTED, $Label.IPM_SUBMIT_CODE, IF(financial.Status__c == $Label.IPM_IN_PROGRESS, $Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE))} {!IF(currentFinancialId == financial.Id, $Label.IPM_Selected, '')} finRecord">
                                                                             <div class="incHeight" id="flagID">              
                                                                                 <span class="key wordwrap">
-                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!IF(AND(NOT(CONTAINS(financial.Financial_External_ID__c, '_NONKEY')), currentTab == 'myview'), TRUE, FALSE)}"/>
+                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!IF(AND(NOT(CONTAINS(financial.Financial_External_ID__c, '_NONKEY')), currentTab == 'myview', project.IPM_Phase__c <> 'Ideas'), TRUE, FALSE)}"/>
                                                                                 </span>
                                                                             
                                                                             <apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
@@ -274,7 +274,7 @@
                                                                 </apex:outputPanel>
                                                             </div> 
                                                             
-                                                             <apex:outputText rendered="{!AND(NOT(showTopDownTab),NOT(showRollupTab),(associatedCountryList.size >0))}">
+                                                             <apex:outputText rendered="{!AND((associatedCountryList.size >0))}">
                                                              <div class="countryListDiv">
                                                                 <apex:outputPanel styleClass="countryLabel" rendered="{!associatedCountryList.size >0 }">{!$Label.IPM_RolloutCountriesLabel}</apex:outputPanel>
                                                                     <div class="countryCheckList clearfix">

@@ -7,9 +7,6 @@
 */
 public with sharing class IPM_FinancialController extends IPM_ProjectIntermediateController  
 { 
-
-    //public IPM_Project__c project {get; set;} //The project record for which the financial business cases are being viewed
-    
     public Integer sustainabilityPeriod {get; set;} //Sustainability Period relevant for this set of business cases. 
     public Integer colSpan {get; set;} //Derived from Sustainability Perido. Used to define the number of columns visible on the Financial Table
     
@@ -81,8 +78,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         get {
             Boolean flag = false;
             
-            if(currentFinancial!=null && (currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) || currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY))) {
-                 
+            if(currentFinancial!=null && (currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE))) {
+                
                 flag = true;
             }
             return flag;
@@ -596,7 +593,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name, Financial_External_ID__c, Status__c FROM IPM_Financial__c
                                                             WHERE Regional_Project__c =: project.Id 
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE
-                                                            AND (NOT Financial_External_ID__c LIKE: nonKeyLike) 
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
 
         lstRolloutWrappers.add( new RolloutWrapper( project.Market_Cluster_Name__c, lstRegionalFinancials) );
@@ -662,7 +658,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
              
             for(IPM_Financial__c financial : regionalRollout.IPM_Financials__r)
             {
-                
                 if ((firstFinancialId == NULL) || (firstFinancialId == IPM_ConstantUtils.BLANK))
                 {
                     firstFinancialId = financial.Id;
@@ -673,8 +668,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     currentFinancialId = previousFinancialId;
                 }
             }
-           
         }
+        
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
       
         lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.Market_Cluster_Name__c
@@ -751,6 +746,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
           return mapConsolidatedFinancials.containsKey(IPM_ConstantUtils.IPMGLOBAL);
+          
         }
         else{ 
              return mapDefaultFinancials.containsKey(IPM_ConstantUtils.IPMGLOBAL);
@@ -771,7 +767,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         List<IPM_Project__c> lstRegionalProject = [SELECT Id, Market_Cluster_Name__c, (SELECT Id, Financial_External_Id__c, Status__c 
                                                             FROM IPM_Financials_Regional__r
                                                             WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE 
-                                                            AND (NOT Financial_External_ID__c LIKE: nonKeyLike)
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c)
                                                             FROM IPM_Project__c
                                                             WHERE IPM_Parent_Project__c =: project.Id
@@ -842,7 +837,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                             FROM IPM_Financial__c
                                                             WHERE Regional_Project__c =: project.Id
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE 
-                                                            AND (NOT Financial_External_ID__c LIKE: nonKeyLike)
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
                                                        
         lstRolloutWrappers.add( new RolloutWrapper( project.Market_Cluster_Name__c, lstRegionalFinancials ) );
@@ -1014,7 +1008,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                             FROM IPM_Financial__c   
                                                             WHERE Regional_Project__c =: project.Id
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE
-                                                            AND (NOT Financial_External_ID__c LIKE: nonKeyLike)
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
                                                             
                                                      
@@ -1524,7 +1517,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private Boolean validateInnovationFinancialRecords(IPM_FinancialWrapper finWrapper, String yearType){
         isValidationFailed = false;
         //Validate Innovation Year cell data
-        if(yearType == IPM_ConstantUtils.YEAR_TYPE_INNOVATION){
+        if(yearType == IPM_ConstantUtils.YEAR_TYPE_INNOVATION && !currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
                 validateY0Turnover(finWrapper.y0Turnover);
                 
                 //Validate Gross Turnover values 
@@ -1564,7 +1557,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private Boolean validateCalendarFinancialRecords(IPM_FinancialWrapper finWrapper, String yearType){
         isValidationFailed = false;
         //Validate Calendar Year cell data
-        if(yearType == IPM_ConstantUtils.YEAR_TYPE_CALENDAR){
+        if(yearType == IPM_ConstantUtils.YEAR_TYPE_CALENDAR && !currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
                 
                 //Validate Gross Turnover values 
                 Boolean isValidateGrossTurnoverFailed = validateGrossTurnover(finWrapper.lstGrossPLTurnover);

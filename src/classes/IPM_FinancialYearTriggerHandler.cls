@@ -406,7 +406,7 @@ public with sharing class IPM_FinancialYearTriggerHandler{
             List<IPM_Project_Document_Section_Content__c> projDocSecConList=new List<IPM_Project_Document_Section_Content__c>();
             Set<Id> projectIds=new Set<Id>();
             for(IPM_Financial_Year__c newFinYear:mapNewFinancialYears.values()){
-                if((newFinYear.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) || newFinYear.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_DEFAULT)) && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c && (String.isBlank(newFinYear.Regional_External_Id__c) || (String.isBlank(newFinYear.Global_External_Id__c) && String.isNotBlank(newFinYear.Regional_External_Id__c)))){
+                if(newFinYear.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c && (String.isBlank(newFinYear.Regional_External_Id__c) || (String.isBlank(newFinYear.Global_External_Id__c) && String.isNotBlank(newFinYear.Regional_External_Id__c)))){
                     newFinYearList.add(newFinYear);
                     projectIds.add(newFinYear.Global_Project_Id__c);
                 }
