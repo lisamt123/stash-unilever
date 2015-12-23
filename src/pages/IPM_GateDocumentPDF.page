@@ -434,6 +434,16 @@
         {
            clear:both;
         }
+        .ceCommentBox
+        {
+           width:78%;
+           float:right;
+        }
+        .consumerImgContainer
+        {
+           min-height:250px;
+           display:block;
+        }
     </style>
 </head>
 <body class="docBody">

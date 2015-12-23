@@ -10433,6 +10433,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Review Risk Quick Scan</value>
     </labels>
     <labels>
+        <fullName>IPM_REVIEW_RISK_QUICK_SCAN</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_REVIEW_RISK_QUICK_SCAN</shortDescription>
+        <value>Review Risk Quick Scan</value>
+    </labels>
+    <labels>
         <fullName>IPM_RISKY</fullName>
         <language>en_US</language>
         <protected>true</protected>
