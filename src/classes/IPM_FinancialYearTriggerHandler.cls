@@ -232,9 +232,9 @@ public with sharing class IPM_FinancialYearTriggerHandler{
     * @return                       NONE
     */
     private void consolidateFinancialRecord(IPM_Financial_Year__c newFinancialYear, IPM_Financial_Year__c newConsolidatedFY, IPM_Financial_Year__c oldFinancialYear, IPM_Financial_Year__c oldConsolidatedFY){
-        processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_VOLUME);
-        processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS);
-       //processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE);
+       // processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_VOLUME);
+       // processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS);
+       // processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE);
         processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS);
         processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT);
         processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_TURNOVER);
