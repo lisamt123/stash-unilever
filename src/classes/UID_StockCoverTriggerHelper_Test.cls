@@ -125,7 +125,7 @@ public class UID_StockCoverTriggerHelper_Test{
         List<Order> newOrders = new List<Order>();
         List<OrderItem> newOrderItems = new List<OrderItem>();
         
-        String status = 'Draft';
+        String STATUS_DRAFT = 'Draft';
         
         //create trigger switch(custom settings)
         UID_TriggerSwitch__c settingTriggerSwitch = UID_TriggerSwitch__c.getOrgDefaults();
@@ -174,7 +174,7 @@ public class UID_StockCoverTriggerHelper_Test{
             primaryOrderCurrentMonth.AccountId = testAccount00.Id;
             primaryOrderCurrentMonth.UID_Distributor__c = testAccount00.Id;
             primaryOrderCurrentMonth.EffectiveDate = System.today();
-            primaryOrderCurrentMonth.Status = status;
+            primaryOrderCurrentMonth.Status = STATUS_DRAFT;
             primaryOrderCurrentMonth.UID_Invoice_Number__c = '920151111';
             primaryOrderCurrentMonth.RecordTypeId = primaryAccountRecordType;
             primaryOrderCurrentMonth.Pricebook2Id =  pricebookId;       
@@ -184,7 +184,7 @@ public class UID_StockCoverTriggerHelper_Test{
             secondaryOrderCurrentMonth.AccountId = secondaryAccount00.Id;
             secondaryOrderCurrentMonth.UID_Distributor__c = testAccount00.Id;
             secondaryOrderCurrentMonth.EffectiveDate = System.today();
-            secondaryOrderCurrentMonth.Status = status;
+            secondaryOrderCurrentMonth.Status = STATUS_DRAFT;
             secondaryOrderCurrentMonth.UID_Invoice_Number__c = '11/18/2015/secondaryOrderCurrentMonth';
             secondaryOrderCurrentMonth.RecordTypeId = secondaryAccountRecordType;
             secondaryOrderCurrentMonth.Pricebook2Id =  pricebookId;  
@@ -194,7 +194,7 @@ public class UID_StockCoverTriggerHelper_Test{
             secondaryOrderPrevMonth.AccountId = secondaryAccount00.Id;
             secondaryOrderPrevMonth.UID_Distributor__c = testAccount00.Id;
             secondaryOrderPrevMonth.EffectiveDate = System.today().AddMonths(-1);
-            secondaryOrderPrevMonth.Status = status;
+            secondaryOrderPrevMonth.Status = STATUS_DRAFT;
             secondaryOrderPrevMonth.UID_Invoice_Number__c = '11/18/2015/secondaryOrderPrevMonth';
             secondaryOrderPrevMonth.RecordTypeId = secondaryAccountRecordType;
             secondaryOrderPrevMonth.Pricebook2Id =  pricebookId;  
@@ -204,7 +204,7 @@ public class UID_StockCoverTriggerHelper_Test{
             secondaryOrderPrev2Month.AccountId = secondaryAccount00.Id;
             secondaryOrderPrev2Month.UID_Distributor__c = testAccount00.Id;
             secondaryOrderPrev2Month.EffectiveDate = System.today().AddMonths(-2);
-            secondaryOrderPrev2Month.Status = status;
+            secondaryOrderPrev2Month.Status = STATUS_DRAFT;
             secondaryOrderPrev2Month.UID_Invoice_Number__c = '11/18/2015/secondaryOrderPrev2Month';
             secondaryOrderPrev2Month.RecordTypeId = secondaryAccountRecordType;
             secondaryOrderPrev2Month.Pricebook2Id =  pricebookId;  
@@ -214,7 +214,7 @@ public class UID_StockCoverTriggerHelper_Test{
             secondaryOrderPrev3Month.AccountId = secondaryAccount00.Id;
             secondaryOrderPrev3Month.UID_Distributor__c = testAccount00.Id;
             secondaryOrderPrev3Month.EffectiveDate = System.today().AddMonths(-3);
-            secondaryOrderPrev3Month.Status = status;
+            secondaryOrderPrev3Month.Status = STATUS_DRAFT;
             secondaryOrderPrev3Month.UID_Invoice_Number__c = '11/18/2015/secondaryOrderPrev3Month';
             secondaryOrderPrev3Month.RecordTypeId = secondaryAccountRecordType;
             secondaryOrderPrev3Month.Pricebook2Id =  pricebookId;

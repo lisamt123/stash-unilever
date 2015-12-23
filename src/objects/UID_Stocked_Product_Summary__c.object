@@ -58,6 +58,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>UID_Avail_Quantity__c</fullName>
+        <defaultValue>0</defaultValue>
         <externalId>false</externalId>
         <label>Avail Quantity</label>
         <precision>18</precision>

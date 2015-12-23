@@ -78,68 +78,17 @@ public with sharing class UID_StockCoverTriggerHelper {
         }
         
         //Store Per Material Total Opening Stock in Map. MaterialID + Account + Report Date
-        for (UID_Stocked_Product_Summary__c os : [Select UID_Material_ID__c, UID_Avail_Quantity__c, UID_Stocked_Product__r.UID_Distributor__c, UID_Sales_Date__c, UID_Stocked_Product__r.UID_Report_Date__c
-        From UID_Stocked_Product_Summary__c Where UID_Material_ID__c IN : materialID AND UID_Stocked_Product__r.UID_Distributor__c IN : accountID AND UID_Sales_Date__c IN : previousMonth])
-        {
-            String openingMapID = os.UID_Material_ID__c + os.UID_Stocked_Product__r.UID_Distributor__c + os.UID_Sales_Date__c;
-            if(openingStockMap.containsKey(openingMapID)) {
-                openingStockMap.get(openingMapID).add(os);
-            }
-            else {
-                List <UID_Stocked_Product_Summary__c> openingList= new List <UID_Stocked_Product_Summary__c >();
-                openingList.add(os);
-                openingStockMap.put(openingMapID, openingList);
-            }   
-            
-        }
-        
+        openingStockMap = getStockedProducts(materialID, accountID, previousMonth);
+                
         //Store Per Material Total Quantity for Primary Sales in Map. MaterialID + Account + Report Date
-        for (OrderItem ps : [Select UID_Material_ID__c, UID_Order_Quantity__c, Order.UID_Distributor__c, UID_Sales_Date__c, Order.UID_Report_Date__c
-        From OrderItem WHERE UID_Material_ID__c IN : materialID AND Order.UID_Distributor__r.Id IN : accountID AND UID_Sales_Date__c IN : currentMonth AND order.RecordType.Name =: PRIMARY_SALES_RECORDTYPE_NAME])
-        {
-            String primaryMapID = ps.UID_Material_ID__c + ps.Order.UID_Distributor__c + ps.UID_Sales_Date__c;
-            if(primarySalesMap.containsKey(primaryMapID)) {
-                primarySalesMap.get(primaryMapID).add(ps);
-            }
-            else{
-                List <OrderItem> primaryList= new List <OrderItem>();
-                primaryList.add(ps);
-                primarySalesMap.put(primaryMapID, primaryList);
-            }   
-        }
-        
+        primarySalesMap = getPrimarySales(materialID, accountID, currentMonth);
+                
         //Store Per Material Total Quantity for Secondary Sales in Map. MaterialID + Account + Report Date
-        for (OrderItem ss : [Select UID_Material_ID__c, UID_Order_Quantity__c, Order.UID_Distributor__c, UID_Sales_Date__c, Order.UID_Report_Date__c
-        From OrderItem WHERE UID_Material_ID__c IN : materialID AND Order.UID_Distributor__r.Id IN : accountID AND UID_Sales_Date__c IN : currentMonth AND order.RecordType.Name =: SECONDARY_SALES_RECORDTYPE_NAME])
-        {
-            String secondaryMapID = ss.UID_Material_ID__c + ss.Order.UID_Distributor__c + ss.UID_Sales_Date__c;
-            if(secondarySalesMap.containsKey(secondaryMapID)) {
-                secondarySalesMap.get(secondaryMapID).add(ss);
-            }
-            else{
-                List <OrderItem> secondaryList= new List <OrderItem>();
-                secondaryList.add(ss);
-                secondarySalesMap.put(secondaryMapID, secondaryList);
-            }  
-        }
-        
+        secondarySalesMap = getSecondarySales(materialID, accountID, currentMonth);
+                
         //Store Per Material Total Quantity for the Last 3 Months in Map. MaterialID + Account + Report Date
-        for (OrderItem lm : [Select UID_Material_ID__c, UID_Order_Quantity__c, Order.UID_Distributor__c, UID_Sales_Date__c, Order.UID_Report_Date__c
-        From OrderItem WHERE UID_Material_ID__c IN : materialID AND Order.UID_Distributor__c IN : accountID AND UID_Sales_Date__c IN : last3Months AND order.RecordType.Name =: SECONDARY_SALES_RECORDTYPE_NAME])
-        {
-            String last3MapID = lm.UID_Material_ID__c + lm.Order.UID_Distributor__c + lm.UID_Sales_Date__c;
-            if(last3MonthMap.containsKey(last3MapID )) {
-                last3MonthMap.get(last3MapID).add(lm);
-            }
-            else{
-                List <OrderItem> last3List= new List <OrderItem>();
-                last3List.add(lm);
-                last3MonthMap.put(last3MapID, last3List);
-            }     
-        }
-        
-        
-                  
+        last3MonthMap = getLast3Month(materialID, accountID, last3Months);
+                          
          /* Stock Cover Formula Version 1.0
          * 
          * A:Opening Stock of the month = Closing stock for last month (M-1)
@@ -161,61 +110,26 @@ public with sharing class UID_StockCoverTriggerHelper {
             
             //A:Opening Stock of the month = Closing stock for last month (M-1)
             String openingStockMapKey = sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -1);
-            if(openingStockMap.get(openingStockMapKey) != NULL) {
-                for(UID_Stocked_Product_Summary__c ci: openingStockMap.get(openingStockMapKey)){
-                    if(ci.UID_Avail_Quantity__c != NULL){
-                        totalOpening = totalOpening + ci.UID_Avail_Quantity__c;
-                    }
-                }
-            }
-         	
+            totalOpening = setTotalOpening(openingStockMapKey, openingStockMap);
+            
             //B:Shipments received in same calendar month = Primary Sales for this month(M)
             String primarySalesMapKey = sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, 0);
-            if(primarySalesMap.get(primarySalesMapKey) != NULL) {
-                for(OrderItem ps: primarySalesMap.get(primarySalesMapKey)){
-                    if(ps.UID_Order_Quantity__c != NULL){
-                        totalPrimary = totalPrimary + ps.UID_Order_Quantity__c;
-                    }
-                }
-            }
+            totalPrimary = setTotalPrimary(primarySalesMapKey, primarySalesMap);
             
             //C:Sales for the month = Secondary Sales for this month (M) from Distributor 
             String secondarySalesMapKey = sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, 0);
-            if(secondarySalesMap.get(secondarySalesMapKey) != NULL) {
-                for(OrderItem ps: secondarySalesMap.get(secondarySalesMapKey)){
-                    if(ps.UID_Order_Quantity__c != NULL){
-                        totalSecondary = totalSecondary + ps.UID_Order_Quantity__c;
-                    }
-                }
-            }
-            
+            totalSecondary = setTotalSecondary(secondarySalesMapKey, secondarySalesMap);
+                        
             //D:Closing Stock = A+B-C
             Decimal totalClosing = (totalOpening + totalPrimary) - totalSecondary;
             String last3MonthMapKey1 = sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -1);
-            if(last3MonthMap.get(last3MonthMapKey1) != NULL) {
-                for(OrderItem ps: last3MonthMap.get(last3MonthMapKey1)){
-                    if(ps.UID_Order_Quantity__c != NULL){
-                        month1st = month1st  + ps.UID_Order_Quantity__c;
-                    }
-                }
-            }
+            month1st = setMonth1st(last3MonthMapKey1, last3MonthMap);
+                        
             String last3MonthMapKey2 = sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -2);
-            if(last3MonthMap.get(last3MonthMapKey2) != NULL) {
-                for(OrderItem ps: last3MonthMap.get(last3MonthMapKey2)){
-                    if(ps.UID_Order_Quantity__c != NULL){
-                        month2nd = month2nd  + ps.UID_Order_Quantity__c;
-                    }
-                }
-            }
+            month2nd = setMonth2nd(last3MonthMapKey2, last3MonthMap);
             
             String last3MonthMap3= sd.UID_Material_ID__c + sd.UID_Stocked_Product__r.UID_Distributor__c + getReportMonth(sd.UID_Stocked_Product__r.UID_Report_Date__c, -3);
-            if(last3MonthMap.get(last3MonthMap3) != NULL) {
-                for(OrderItem ps: last3MonthMap.get(last3MonthMap3)){
-                    if(ps.UID_Order_Quantity__c != NULL){
-                        month3rd = month3rd  + ps.UID_Order_Quantity__c;
-                    }
-                }
-            }
+            month3rd = setMonth3rd(last3MonthMap3, last3MonthMap);
             
             //E:Last 3 month Rolling Avg Sales less DT Margin =  (Secondary Sales in M-1+  Secondary Sales in M-2 +Secondary Sales in M-3)/3
             Decimal totallast3Mont = (month1st + month2nd + month3rd) / 3;
@@ -240,6 +154,147 @@ public with sharing class UID_StockCoverTriggerHelper {
         system.debug('Exiting getReportMonth: '+ resultReportMonth);
         
         return resultReportMonth;
+    }
+    
+    
+    public static Map <String, List <UID_Stocked_Product_Summary__c>> getStockedProducts(Set <String> materialID, Set <Id> accountID, Set <String> previousMonth) {
+        Map <String, List <UID_Stocked_Product_Summary__c>> openingStockMap = new Map <String, List<UID_Stocked_Product_Summary__c >>();
+        
+        //Store Per Material Total Opening Stock in Map. MaterialID + Account + Report Date
+        for (UID_Stocked_Product_Summary__c os : [Select UID_Material_ID__c, UID_Avail_Quantity__c, UID_Stocked_Product__r.UID_Distributor__c, UID_Sales_Date__c, UID_Stocked_Product__r.UID_Report_Date__c
+        From UID_Stocked_Product_Summary__c Where UID_Material_ID__c IN : materialID AND UID_Stocked_Product__r.UID_Distributor__c IN : accountID AND UID_Sales_Date__c IN : previousMonth])
+        {
+            String openingMapID = os.UID_Material_ID__c + os.UID_Stocked_Product__r.UID_Distributor__c + os.UID_Sales_Date__c;
+            if(openingStockMap.containsKey(openingMapID)) {
+                openingStockMap.get(openingMapID).add(os);
+            }
+            else {
+                List <UID_Stocked_Product_Summary__c> openingList= new List <UID_Stocked_Product_Summary__c >();
+                openingList.add(os);
+                openingStockMap.put(openingMapID, openingList);
+            }   
+            
+        }        
+        return openingStockMap;
+    }
+    
+    public static Map <String, List <OrderItem>> getPrimarySales(Set <String> materialID, Set <Id> accountID, Set <String> currentMonth) {
+        Map <String, List <OrderItem>> primarySalesMap = new Map <String, List <OrderItem>>();
+        
+        //Store Per Material Total Quantity for Primary Sales in Map. MaterialID + Account + Report Date
+        for (OrderItem ps : [Select UID_Material_ID__c, UID_Order_Quantity__c, Order.UID_Distributor__c, UID_Sales_Date__c, Order.UID_Report_Date__c
+        From OrderItem WHERE UID_Material_ID__c IN : materialID AND Order.UID_Distributor__r.Id IN : accountID AND UID_Sales_Date__c IN : currentMonth AND order.RecordType.Name =: PRIMARY_SALES_RECORDTYPE_NAME])
+        {
+            String primaryMapID = ps.UID_Material_ID__c + ps.Order.UID_Distributor__c + ps.UID_Sales_Date__c;
+            if(primarySalesMap.containsKey(primaryMapID)) {
+                primarySalesMap.get(primaryMapID).add(ps);
+            }
+            else{
+                List <OrderItem> primaryList= new List <OrderItem>();
+                primaryList.add(ps);
+                primarySalesMap.put(primaryMapID, primaryList);
+            }   
+        }
+       
+        return primarySalesMap;
+    }
+    
+    public static Map <String, List <OrderItem>> getSecondarySales(Set <String> materialID, Set <Id> accountID, Set <String> currentMonth) {
+        Map <String, List <OrderItem>> secondarySalesMap = new Map <String, List <OrderItem>>();
+        for (OrderItem ss : [Select UID_Material_ID__c, UID_Order_Quantity__c, Order.UID_Distributor__c, UID_Sales_Date__c, Order.UID_Report_Date__c
+                             From OrderItem WHERE UID_Material_ID__c IN : materialID AND Order.UID_Distributor__r.Id IN : accountID AND UID_Sales_Date__c IN : currentMonth AND order.RecordType.Name =: SECONDARY_SALES_RECORDTYPE_NAME])
+        {
+            String secondaryMapID = ss.UID_Material_ID__c + ss.Order.UID_Distributor__c + ss.UID_Sales_Date__c;
+            if(secondarySalesMap.containsKey(secondaryMapID)) {
+                secondarySalesMap.get(secondaryMapID).add(ss);
+            }
+            else{
+                List <OrderItem> secondaryList= new List <OrderItem>();
+                secondaryList.add(ss);
+                secondarySalesMap.put(secondaryMapID, secondaryList);
+            }  
+        }
+        return secondarySalesMap;
+    }
+    
+    public static Map <String, List <OrderItem>> getLast3Month(Set <String> materialID, Set <Id> accountID, Set <String> last3Months) {
+        Map <String, List <OrderItem>> last3MonthMap = new Map <String, List <OrderItem>>();
+        
+        //Store Per Material Total Quantity for the Last 3 Months in Map. MaterialID + Account + Report Date
+        for (OrderItem lm : [Select UID_Material_ID__c, UID_Order_Quantity__c, Order.UID_Distributor__c, UID_Sales_Date__c, Order.UID_Report_Date__c
+                             From OrderItem WHERE UID_Material_ID__c IN : materialID AND Order.UID_Distributor__c IN : accountID AND UID_Sales_Date__c IN : last3Months AND order.RecordType.Name =: SECONDARY_SALES_RECORDTYPE_NAME])
+        {
+            String last3MapID = lm.UID_Material_ID__c + lm.Order.UID_Distributor__c + lm.UID_Sales_Date__c;
+            if(last3MonthMap.containsKey(last3MapID )) {
+                last3MonthMap.get(last3MapID).add(lm);
+            }
+            else{
+                List <OrderItem> last3List= new List <OrderItem>();
+                last3List.add(lm);
+                last3MonthMap.put(last3MapID, last3List);
+            }     
+        }
+        return last3MonthMap;
+    }
+    
+    private static Decimal setTotalOpening(String openingStockMapKey, Map <String, List <UID_Stocked_Product_Summary__c>> openingStockMap) {
+		Decimal totalOpening = 0;
+		if(openingStockMap.get(openingStockMapKey) != NULL) {
+                for(UID_Stocked_Product_Summary__c ci: openingStockMap.get(openingStockMapKey)){
+                    totalOpening = totalOpening + ci.UID_Avail_Quantity__c;                    
+                }
+            }
+		return totalOpening;
+	}
+    
+    private static Decimal setTotalPrimary(String primarySalesMapKey, Map <String, List <OrderItem>> primarySalesMap) {
+		Decimal totalPrimary = 0;
+		if(primarySalesMap.get(primarySalesMapKey) != NULL) {
+        	for(OrderItem ps: primarySalesMap.get(primarySalesMapKey)){
+            	totalPrimary = totalPrimary + ps.UID_Order_Quantity__c;                    
+        	}
+        }
+		return totalPrimary;		
+    }
+    
+    private static Decimal setTotalSecondary(String secondarySalesMapKey, Map <String, List <OrderItem>> secondarySalesMap) {
+		Decimal totalSecondary = 0;
+		if(secondarySalesMap.get(secondarySalesMapKey) != NULL) {
+                for(OrderItem ps: secondarySalesMap.get(secondarySalesMapKey)){
+                    totalSecondary = totalSecondary + ps.UID_Order_Quantity__c;                    
+                }
+            }
+		return totalSecondary;		
+    }
+    
+    private static Decimal setMonth1st(String last3MonthMapKey1, Map <String, List <OrderItem>> last3MonthMap) {
+		Decimal month1st = 0;
+		if(last3MonthMap.get(last3MonthMapKey1) != NULL) {
+                for(OrderItem ps: last3MonthMap.get(last3MonthMapKey1)){
+                    month1st = month1st  + ps.UID_Order_Quantity__c;                    
+                }
+            }
+		return month1st;		
+    }
+    
+    private static Decimal setMonth2nd(String last3MonthMapKey2, Map <String, List <OrderItem>> last3MonthMap) {
+		Decimal month2nd = 0;
+		if(last3MonthMap.get(last3MonthMapKey2) != NULL) {
+                for(OrderItem ps: last3MonthMap.get(last3MonthMapKey2)){
+                    month2nd = month2nd  + ps.UID_Order_Quantity__c;                    
+                }
+            }
+		return month2nd;		
+    }
+    
+    private static Decimal setMonth3rd(String last3MonthMap3, Map <String, List <OrderItem>> last3MonthMap) {
+		Decimal month3rd = 0;
+		if(last3MonthMap.get(last3MonthMap3) != NULL) {
+                for(OrderItem ps: last3MonthMap.get(last3MonthMap3)){
+                    month3rd = month3rd  + ps.UID_Order_Quantity__c;                    
+                }
+            }
+		return month3rd;		
     }
 
 }

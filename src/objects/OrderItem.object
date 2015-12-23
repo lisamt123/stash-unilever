@@ -159,6 +159,7 @@
     </fields>
     <fields>
         <fullName>UID_Order_Quantity__c</fullName>
+        <defaultValue>0</defaultValue>
         <description>Order quantity of SKU sold</description>
         <externalId>false</externalId>
         <label>Order Quantity</label>
