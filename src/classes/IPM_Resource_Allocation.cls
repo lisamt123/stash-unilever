@@ -405,11 +405,11 @@ public with sharing class IPM_Resource_Allocation {
                 iPMresource.IPM_User__c=MAdd.listofuser.IPM_User__r.id;
                 iPMresource.IPM_Role_Type__c=roleType;
                 
-                if(CountProjectMembers(roleType)>0)
+                if(CountProjectMembers(roleType)>0 && !roleType.equals(IPM_ConstantUtils.IPM_ROLE_GUEST))
                 {
                     iPMresource.IPM_Project_Role_Owner__c=false;
                 }
-                else if(CountProjectMembers(roleType)==0 && lstnewResource.isEmpty())
+                else if(CountProjectMembers(roleType)==0 && lstnewResource.isEmpty() && !roleType.equals(IPM_ConstantUtils.IPM_ROLE_GUEST))
                 {
                     iPMresource.IPM_Project_Role_Owner__c=true;
                 }
