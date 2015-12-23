@@ -280,7 +280,7 @@
                                                                     <div class="countryCheckList clearfix">
                                                                         <apex:variable value="{!1}" var="rowNum"/>
                                                                         <apex:repeat value="{!associatedCountryList}" var="clist" rendered="{!associatedCountryList.size >0}" >
-                                                                            <apex:inputCheckbox value="{!clist.Calculation_Index__c}" onchange="UpdateCheckbox('{!clist.ID}',this.checked )" disabled="{!Or(project.IPM_Phase__c <> 'Ideas',!isEditable)}"/>
+                                                                            <apex:inputCheckbox value="{!clist.Calculation_Index__c}" onchange="updateCheckbox('{!clist.ID}',this.checked )" disabled="{!Or(project.IPM_Phase__c <> 'Ideas',!isEditable)}"/>
                                                                             <label>{!clist.Country_Name__c}</label>                                                                                                                          
                                                                         <apex:variable var="rowNum" value="{!rowNum + 1}"/>
                                                                     </apex:repeat>
@@ -289,7 +289,7 @@
                                                             </apex:outputText>
      
                                                              <c:IPM_FinancialTabHeader ipmFinancial="{!currentFinancial}" fieldSuffix="{!fieldSuffix}" /> 
-                                                             <apex:actionFunction name="ActionUpdate" oncomplete="" action="{!updateCountry}">  
+                                                                <apex:actionFunction name="ActionUpdate" oncomplete="" action="{!updateCountry}">  
                                                                       <apex:param name="country" value="" assignTo="{!Country}"/>  
                                                                       <apex:param name="check" value="" assignTo="{!CheckCountry}"/> 
                                                                 </apex:actionFunction>
@@ -371,16 +371,15 @@
                                                                     isy0ProfitInvalid="{!isy0ProfitInvalid}"
                                                                 />
                                                         </div>
-
+                                                        
                                                         <!-- Top Down Summary Tab -->
                                                         <apex:outputText rendered="{!IF(currentTab == 'topdown', 'true', 'false')}">
-                                                          
                                                             <div class="countryListDiv">
                                                                     <apex:outputPanel styleClass="countryLabel" rendered="{!associatedCountryList.size >0 }">{!$Label.IPM_RolloutCountriesLabel}</apex:outputPanel>
                                                                         <div class="countryCheckList clearfix">
                                                                             <apex:variable value="{!1}" var="rowNum"/>
                                                                             <apex:repeat value="{!associatedCountryList}" var="clist" rendered="{!associatedCountryList.size >0}" >
-                                                                                <apex:inputCheckbox value="{!clist.Calculation_Index__c}" onchange="UpdateCheckbox('{!clist.ID}',this.checked )" disabled="{!Or(project.IPM_Phase__c <> 'Ideas',!isEditable)}"/>
+                                                                                <apex:inputCheckbox value="{!clist.Calculation_Index__c}" onchange="updateCheckbox('{!clist.ID}',this.checked )" disabled="{!Or(project.IPM_Phase__c <> 'Ideas',!isEditable)}"/>
                                                                                 <label>{!clist.Country_Name__c}</label>                                                                                                                          
                                                                             <apex:variable var="rowNum" value="{!rowNum + 1}"/>
                                                                         </apex:repeat>
