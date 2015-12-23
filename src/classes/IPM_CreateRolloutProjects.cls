@@ -88,7 +88,9 @@ public with sharing class IPM_CreateRolloutProjects
                         IPM_Clustering__c= ipmProject.IPM_Clustering__c,
                         IPM_IsSaved__c = ipmProject.IPM_IsSaved__c,
                         IPM_White_Space_Project__c=ipmProject.IPM_White_Space_Project__c,
-                        Project_External_ID__c=rollout.External_Id__c
+                        Project_External_ID__c=rollout.External_Id__c,
+                        IPM_Bosscard_Status__c=ipmProject.IPM_Bosscard_Status__c
+                        
                     );
                     
                     if( projectType.IPM_CreateRegionalProjects__c  && 
