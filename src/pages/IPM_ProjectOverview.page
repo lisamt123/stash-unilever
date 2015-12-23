@@ -541,7 +541,7 @@
                     <apex:outputPanel rendered="{!betInformationMessage != ''}" styleClass="infoMsg">
                     <apex:outputText value="{!betInformationMessage}" escape="false"/>
                     </apex:outputPanel>                    
-                    <apex:outputpanel rendered="{!project.BET__c != null}">
+                    <apex:outputpanel rendered="{!project.BET__c!= null}">
                         <div class="row">
                             <div class="col-xs-3 headerlogo">
                                 <apex:image value="{!$Resource.IPM_BET_Logo}" />
@@ -734,9 +734,11 @@
             <c:IPM_ModalHeaderDiv />
         </div> 
         <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript"></script>
+        <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script>
         <apex:outputPanel id="compScript">
             <script>         
-                var jq=jQuery.noConflict();          
+                var jq=jQuery.noConflict(); 
+                jq('.searchModal .form-control').clearSearch();        
                 jq('.ipmCheckbox > input[type=checkbox].selected').each(function(){
                     jq(this).attr("checked", true);
                 });
@@ -768,7 +770,7 @@
 </apex:form>
 <script>
 
-var IPMApp = {showSuggestedMembers:{!showSuggestedMembers}, ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}', DocumentStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}'};
+var IPMApp = {showSuggestedMembers:'{!showSuggestedMembers}', ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}', DocumentStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}'};
 
 </script>
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectOverview.js')}" type="text/javascript"></script>   
