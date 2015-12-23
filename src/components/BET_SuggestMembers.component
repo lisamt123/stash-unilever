@@ -13,11 +13,11 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 <apex:component controller="BET_SuggestMembersController" allowDML="true">
 
     <apex:includeScript value="{!URLFOR($Resource.jscolor_1_4_1, 'jscolor/jscolor.js')}" />
-    <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />
+    <!--<apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />-->
     <apex:includeScript value="{!$Resource.BET}/scripts/blockUI.js" />
-    <apex:includeScript value="{!$Resource.BET}/scripts/bootstrap.min.js" />
+    <!--<apex:includeScript value="{!$Resource.BET}/scripts/bootstrap.min.js" /> -->
     <apex:includeScript value="{!$Resource.BET}/scripts/SuggestedMembers.js" />
-    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
+    <!--<apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" /> -->
     
     <!--<apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>-->
     <apex:stylesheet value="{!$Resource.BET}/css/BETQtip.css" />

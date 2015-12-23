@@ -120,5 +120,23 @@ private class BET_AssetServiceTest {
 		System.assertEquals(BET_AssetService.getAssetFileIdentifier(asset),identifier,'Identifier must match');
 		Test.stopTest();
 	}
+
+	@istest static void approvedAssetTypesNumerMapTest(){
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		insert bet;
+
+		uw_Asset__c asset1 = new uw_Asset__c(name = 'test123321a', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID,Order_Of_Display__c = null,Status__c = APPROVED_STATUS,Media_Type__c = 'type1');
+		uw_Asset__c asset2 = new uw_Asset__c(name = 'test123321b', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID,Order_Of_Display__c = 1.0,Status__c = APPROVED_STATUS,Media_Type__c = 'type2');
+		uw_Asset__c asset3 = new uw_Asset__c(name = 'test123321c', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID,Order_Of_Display__c = 1.0,Status__c = APPROVED_STATUS,Media_Type__c = 'type3');
+		uw_Asset__c asset4 = new uw_Asset__c(name = 'test123321d', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID,Order_Of_Display__c = 2.0,Status__c = APPROVED_STATUS,Media_Type__c = 'type4');
+
+		List<uw_Asset__c> assets = new List<uw_Asset__c>{asset1,asset2,asset3,asset4};
+		insert assets;
+
+		Map<String,Integer> nmap = BET_AssetService.approvedAssetTypesNumerMap(bet.id);
+		Test.startTest();
+		System.assertEquals(nmap.keySet().size(),4,'There should be 4 records');
+		Test.stopTest();
+	}
 	
 }
