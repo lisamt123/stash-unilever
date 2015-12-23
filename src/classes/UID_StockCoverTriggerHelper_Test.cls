@@ -87,31 +87,101 @@ public class UID_StockCoverTriggerHelper_Test{
     }
     
     /******************************************************************* 
-    Purpose: Trigger bulk test
+    Purpose: CalculationFlag is set to False
     Parameters: 
     Returns: void
-    ********************************************************************/  
-    /*static testMethod void setReportMonthBulkTest(){
-        prepareData();
-        List<UID_Stocked_Product__c> inventoriesForInsert = new List<UID_Stocked_Product__c>();
+    ********************************************************************/
+    static testMethod void calcFlagIsFalseTest(){
+    	prepareData();
+        Test.startTest();
+        UID_Stocked_Product__c testStockedProduct00 = new UID_Stocked_Product__c();
+            testStockedProduct00.UID_Start_Date__c = System.today().AddMonths(0);
+            testStockedProduct00.UID_End_Date__c = System.today().AddMonths(0);
+            testStockedProduct00.UID_Distributor__c = testAccount00.Id;
+            testStockedProduct00.UID_Stock_Cover_Calculation_Flag__c = False;
         
-        for(integer i=0; i<30; i++){
-            UID_Stocked_Product__c newInventory = new UID_Stocked_Product__c();
-                newInventory.UID_Start_Date__c = System.today();
-                newInventory.UID_End_Date__c = System.today();
-                newInventory.UID_Distributor__c = testAccount00.Id;
-            inventoriesForInsert.add(newInventory);
+        database.insert(testStockedProduct00, FALSE);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary00 = new UID_Stocked_Product_Summary__c();
+            testStockedSummary00.UID_Avail_Quantity__c = 100;
+            testStockedSummary00.UID_Material__c = testProduct00.Id;
+            testStockedSummary00.UID_Stocked_Product__c = testStockedProduct00.Id;
+       
+       database.insert(testStockedSummary00, FALSE);
+        
+        List <UID_Stocked_Product__c> testStockList = [Select ID, UID_Stock_Cover_Calculation_Flag__c From UID_Stocked_Product__c 
+                                                       Where Id =: testStockedProduct00.id];
+        
+        for (UID_Stocked_Product__c t : testStockList) {
+            t.UID_Stock_Cover_Calculation_Flag__c = False;
+            
         }
+        update testStockList;
         
-        database.insert(inventoriesForInsert, FALSE);
-        List <UID_Stocked_Product__c> stockedProductList = [SELECT Id, UID_Stock_Cover_Calculation_Flag__c FROM UID_Stocked_Product__c WHERE Id IN: inventoriesForInsert];
-        for (UID_Stocked_Product__c s : stockedProductList)
-        {
-            s.UID_Stock_Cover_Calculation_Flag__c = True;
+        
+        List<UID_Stocked_Product_Summary__c> testStockSummaryList1 = [Select ID, UID_Avail_Quantity__c, UID_Stock_Cover__c
+                                                                     	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary00.id];
+		System.debug('testStockSummaryList1: ' + testStockSummaryList1[0].ID);
+        System.debug('testStockSummaryList1: ' + testStockSummaryList1[0].UID_Avail_Quantity__c);
+        System.debug('testStockSummaryList1: ' + testStockSummaryList1[0].UID_Stock_Cover__c);
+        
+        /*        
+        List <UID_Stocked_Product__c> testStockList1 = [Select ID, UID_Stock_Cover_Calculation_Flag__c, UID_Start_Date__c, UID_End_Date__c 
+                                                        From UID_Stocked_Product__c Where Id =: testStockedProduct00.id];
+        System.assertEquals(FALSE, testStockList1[0].UID_Stock_Cover_Calculation_Flag__c);
+        */
+        
+        Test.stopTest();
+    }
+    
+    /******************************************************************* 
+    Purpose: CalculationFlag is set to True
+    Parameters: 
+    Returns: void
+    ********************************************************************/
+    static testMethod void calcFlagIsTrueTest(){
+    	prepareData();
+        Test.startTest();
+        UID_Stocked_Product__c testStockedProduct00 = new UID_Stocked_Product__c();
+            testStockedProduct00.UID_Start_Date__c = System.today().AddMonths(0);
+            testStockedProduct00.UID_End_Date__c = System.today().AddMonths(0);
+            testStockedProduct00.UID_Distributor__c = testAccount00.Id;
+            testStockedProduct00.UID_Stock_Cover_Calculation_Flag__c = False;
+        
+        database.insert(testStockedProduct00, FALSE);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary00 = new UID_Stocked_Product_Summary__c();
+            testStockedSummary00.UID_Avail_Quantity__c = 100;
+            testStockedSummary00.UID_Material__c = testProduct00.Id;
+            testStockedSummary00.UID_Stocked_Product__c = testStockedProduct00.Id;
+       
+       database.insert(testStockedSummary00, FALSE);
+        
+        List <UID_Stocked_Product__c> testStockList = [Select ID, UID_Stock_Cover_Calculation_Flag__c From UID_Stocked_Product__c 
+                                                       Where Id =: testStockedProduct00.id];
+        
+        for (UID_Stocked_Product__c t : testStockList) {
+            t.UID_Stock_Cover_Calculation_Flag__c = True;
+            
         }
+        update testStockList;
         
-        update stockedProductList;
-    }*/
+        
+        List<UID_Stocked_Product_Summary__c> testStockSummaryList1 = [Select ID, UID_Avail_Quantity__c, UID_Stock_Cover__c
+                                                                     	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary00.id];
+		System.debug('testStockSummaryList1: ' + testStockSummaryList1[0].ID);
+        System.debug('testStockSummaryList1: ' + testStockSummaryList1[0].UID_Avail_Quantity__c);
+        System.debug('testStockSummaryList1: ' + testStockSummaryList1[0].UID_Stock_Cover__c);
+        
+        /*        
+        List <UID_Stocked_Product__c> testStockList1 = [Select ID, UID_Stock_Cover_Calculation_Flag__c, UID_Start_Date__c, UID_End_Date__c 
+                                                        From UID_Stocked_Product__c Where Id =: testStockedProduct00.id];
+        System.assertEquals(FALSE, testStockList1[0].UID_Stock_Cover_Calculation_Flag__c);
+        */
+        
+        Test.stopTest();
+    }
+    
     
     /******************************************************************* 
     Purpose: prepare account and product;create custom settings
