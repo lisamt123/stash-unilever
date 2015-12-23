@@ -561,7 +561,7 @@ private class IPM_ChatterFeedHelper_Test {
     		pResourceDetails.put(eachResource.id,'test');
     	}
     	IPM_ChatterFeedHelper.postChatterUpdateToUser(projectOwnerMap,pResourceDetails);
-    	for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed]){
+    	for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed limit 50000]){
         if(projectFeed.Body.contains(CREATED))
             {
                 System.assert(projectFeed.Body.contains(CREATED),FEED_UPDATED_ASSERT);
@@ -593,6 +593,13 @@ private class IPM_ChatterFeedHelper_Test {
     	platformUser =IPM_TestFactory_Helper.returnPlatformUser();
     	System.runAs(platformUser) {
     		IPM_ChatterFeedHelper.manageChatterFollowMembers(newProjectMap,oldProjectMap);
+    		for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed limit 50000])
+    		{
+    		 if(projectFeed.Body.contains(IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project))
+             {
+    		 	System.assert(projectFeed.Body.contains(IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project),FEED_UPDATED_ASSERT);
+             }
+    	    }	
     	}	
     }
   

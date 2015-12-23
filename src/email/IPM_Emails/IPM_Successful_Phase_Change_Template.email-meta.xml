@@ -7,13 +7,15 @@
     <name>IPM Successful Phase Change Template</name>
     <style>freeForm</style>
     <subject>{!IPM_Project__c.IPM_Project_Name__c} Project Successfully Processed</subject>
-    <textOnly>Your project has successfully moved to the phase {!IPM_Project__c.IPM_Phase__c}
+    <textOnly>Your project has successfully moved to {!IPM_Project__c.IPM_Phase__c} phase
 
 
 
 Please find the project specific details:
 Project Name: {!IPM_Project__c.IPM_Project_Name__c}
 Current Phase: {!IPM_Project__c.IPM_Phase__c}
+
+
 {!IPM_Project__c.IPMProjectBaseURL__c}</textOnly>
     <type>html</type>
 </EmailTemplate>

@@ -127,7 +127,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Successful_Phase_Change_Template</template>
+        <template>IPM_Emails/IPM_Successful_Phase_Change_Template</template>
     </alerts>
     <fieldUpdates>
         <fullName>Bosscard_Status</fullName>

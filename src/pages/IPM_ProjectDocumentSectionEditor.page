@@ -227,7 +227,7 @@
                                                                                         <apex:image styleClass="attchImage" value="{!If(Contains(attach.Name,'.xls'),URLFOR($Resource.IPM_Resource, 'images/ico_excel.png'),IF(Contains(attach.Name,'.doc'),URLFOR($Resource.IPM_Resource, 'images/ico_word.png'),IF(Contains(attach.Name,'.ppt'),URLFOR($Resource.IPM_Resource, 'images/ico_ppt.png'),IF(Contains(attach.Name,'.txt'),URLFOR($Resource.IPM_Resource, 'images/ico_text.png'),IF(Contains(attach.Name,'.pdf'),URLFOR($Resource.IPM_Resource, 'images/ico_pdf.png'),URLFOR($Resource.IPM_Resource, 'images/ico_img.png'))))))}"/>
                                                                                         <apex:outputLink styleClass="fileName" value="/servlet/servlet.FileDownload?file={!attach.Id}" target="_blank">{!attach.Name}</apex:outputLink>  
                                                                                         <apex:outputPanel rendered="{! If(AND(IsEditableOutC=true),'true','false')}">  
-                                                                                            <a class="icoButton mdown delete" title="Delete" onclick="CallAttachDelete('{!attach.Id}')"></a>
+                                                                                            <a class="icoButton mdown delete" title="Delete" onclick="callAttachDelete('{!attach.Id}')"></a>
                                                                                         </apex:outputPanel>
                                                                                     </div>
                                                                                 </apex:outputPanel>
@@ -364,7 +364,7 @@
                                                                                                     <apex:image styleClass="attchImage" value="{!If(Contains(attach.Name,'.xls'),URLFOR($Resource.IPM_Resource, 'images/ico_excel.png'),IF(Contains(attach.Name,'.doc'),URLFOR($Resource.IPM_Resource, 'images/ico_word.png'),IF(Contains(attach.Name,'.ppt'),URLFOR($Resource.IPM_Resource, 'images/ico_ppt.png'),IF(Contains(attach.Name,'.txt'),URLFOR($Resource.IPM_Resource, 'images/ico_text.png'),IF(Contains(attach.Name,'.pdf'),URLFOR($Resource.IPM_Resource, 'images/ico_pdf.png'),URLFOR($Resource.IPM_Resource, 'images/ico_img.png'))))))}"/>
                                                                                                     <apex:outputLink styleClass="fileName" value="/servlet/servlet.FileDownload?file={!attach.Id}" target="_blank">{!attach.Name}</apex:outputLink>  
                                                                                                     <apex:outputPanel rendered="{! If(AND(IsEditableSumm=true),'true','false')}">  
-                                                                                                        <a class="icoButton mdown delete" title="Delete" onclick="CallAttachDelete('{!attach.Id}')"></a>
+                                                                                                        <a class="icoButton mdown delete" title="Delete" onclick="callAttachDelete('{!attach.Id}')"></a>
                                                                                                     </apex:outputPanel>
                                                                                                 </div>
                                                                                             </apex:outputPanel>
@@ -430,7 +430,9 @@
                                                                                     </apex:inputCheckbox>
                                                                                 </div>
                                                                                 <div class="col-xs-11 noPadleft">
-                                                                                    <span class="wrapping"><strong><apex:outputText value="{!tk.IPM_Task_Name__c}" ></apex:outputText></strong></span> 
+                                                                                    <span class="wrapping">
+                                                                                    <apex:outputPanel rendered="{!tk.IPM_Task_Type__c = 'Non-Negotiable'}">*</apex:outputPanel> 
+                                                                                    <strong><apex:outputText value="{!tk.IPM_Task_Name__c}" ></apex:outputText></strong></span> 
                                                                                     <apex:outputPanel layout="block" styleClass="toDoLeft">
                                                                                         <apex:outputText value="{!$Label.IPM_IS_PENDING_WITH}" rendered="{!!tk.IPM_Completed__c}"></apex:outputText> 
                                                                                     </apex:outputPanel>
@@ -580,7 +582,7 @@
                                                                                                     <apex:image styleClass="attchImage" value="{!If(Contains(attach.Name,'.xls'),URLFOR($Resource.IPM_Resource, 'images/ico_excel.png'),IF(Contains(attach.Name,'.doc'),URLFOR($Resource.IPM_Resource, 'images/ico_word.png'),IF(Contains(attach.Name,'.ppt'),URLFOR($Resource.IPM_Resource, 'images/ico_ppt.png'),IF(Contains(attach.Name,'.txt'),URLFOR($Resource.IPM_Resource, 'images/ico_text.png'),IF(Contains(attach.Name,'.pdf'),URLFOR($Resource.IPM_Resource, 'images/ico_pdf.png'),URLFOR($Resource.IPM_Resource, 'images/ico_img.png'))))))}"/>
                                                                                                     <apex:outputLink styleClass="fileName" value="/servlet/servlet.FileDownload?file={!attach.Id}" target="_blank">{!attach.Name}</apex:outputLink>  
                                                                                                     <apex:outputPanel rendered="{! If(AND(IsEditableSumm=true),'true','false')}">  
-                                                                                                        <a class="icoButton mdown delete" title="Delete" onclick="CallAttachDelete('{!attach.Id}')"></a>
+                                                                                                        <a class="icoButton mdown delete" title="Delete" onclick="callAttachDelete('{!attach.Id}')"></a>
                                                                                                     </apex:outputPanel>
                                                                                                 </div>
                                                                                             </apex:outputPanel>

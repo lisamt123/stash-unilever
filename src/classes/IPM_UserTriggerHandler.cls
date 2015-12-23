@@ -13,18 +13,7 @@ public with sharing class IPM_UserTriggerHandler {
         m_isExecuting = isExecuting;
     }
     
-     /**************************************************************
-    * @description: After update context
-    * @param1 newUsers : The list of new users in the trigger context
-    * @param2 oldUsersMap : old Users map
-    */
-    public void OnAfterUpdate(User[] newUsers, Map<Id, User> oldUsersMap) 
-    {    
-    
-    }
-    
-    
-     public void bulkAfter()
+    public void bulkAfter()
     {
        if(Trigger.isUpdate)
        {

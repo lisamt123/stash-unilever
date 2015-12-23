@@ -6,7 +6,7 @@ trigger UserTrigger on User (after delete, after update) {
     
     IPM_UserTriggerHandler handler = new IPM_UserTriggerHandler(Trigger.isExecuting);
     if(Trigger.isUpdate && Trigger.isAfter){
-        handler.OnAfterUpdate(Trigger.new, Trigger.oldMap);
+        //handler.OnAfterUpdate(Trigger.new, Trigger.oldMap);
         handler.bulkAfter();
     } else if(Trigger.isDelete && Trigger.isAfter) {
         handler.OnAfterDelete(Trigger.old);
