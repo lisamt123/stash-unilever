@@ -541,7 +541,7 @@
                     <apex:outputPanel rendered="{!betInformationMessage != ''}" styleClass="infoMsg">
                     <apex:outputText value="{!betInformationMessage}" escape="false"/>
                     </apex:outputPanel>                    
-                    <apex:outputpanel rendered="{!project.BET__c!= null}">
+                    <apex:outputpanel rendered="{!BETId!= null}">
                         <div class="row">
                             <div class="col-xs-3 headerlogo">
                                 <apex:image value="{!$Resource.IPM_BET_Logo}" />
@@ -590,8 +590,7 @@
                             </div>
                          </div>
                          <div class="greyborder"></div>
-                         <apex:commandLink value="{!$Label.IPM_AccessBET}" status="teamDelete" action="/{!BETId}"  rendered="{!(BETId!=null && isIdeasPhase && hasBETAccess != $Label.IPM_BETRequestPending && hasBETAccess != $Label.IPM_BETRequestNo && hasBETAccess !='' )}" styleclass="ipmButton primary" target="_blank"/>
-                    </apex:outputpanel>
+                   	</apex:outputpanel>
                     <apex:outputPanel rendered="{!!isIdeasPhase}" id="betButtonSection">
                         <apex:outputpanel rendered="{!hasBETAccess == $Label.IPM_BETRequestPending}">
                             <div class="row">
@@ -670,7 +669,7 @@
                                                     <div class="row"> 
                                                         <div class="col-sm-12">
                                                             <span class="skipDesc">                                                         
-                                                                    <c:BET_SuggestMembers BetID="{!BETId}" ProjectID="{!ProjectId}" Callback="{!URLFOR('/apex/ipm_projectoverview?id=' +project.id)}" Suggested_Members="{!suggestedMembersList}" User_buckets="{!memberBucketList}" Suggested_Managers="{!suggestedManagerList}" usedInPopup="true"/>
+                                                                    <c:BET_SuggestMembers BetID="{!IF(BETId!=null,BETId,requestedBETId)}" ProjectID="{!ProjectId}" Callback="{!URLFOR('/apex/ipm_projectoverview?id=' +project.id)}" Suggested_Members="{!suggestedMembersList}" User_buckets="{!memberBucketList}" Suggested_Managers="{!suggestedManagerList}" usedInPopup="true"/>
                                                             </span>
                                                         </div>            
                                                     </div>  

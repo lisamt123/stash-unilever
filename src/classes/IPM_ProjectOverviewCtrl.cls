@@ -640,7 +640,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         isOriginal = (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ) ;
        if(isOriginal && projMetadata!= null && projMetadata.BET__c && !isRollout){
             projectWithBET = projectId;
-            setBETDetails(project.IPM_BET_Toolkit__c,project.BET_Link_Requested__c,project.BET__c!=null?project.BET__c:project.BET_Link_Requested__c);
+            setBETDetails(project.IPM_BET_Toolkit__c,project.BET_Link_Requested__c,project.BET__c);
              isLinkDenied = String.isNotBlank(project.BET_Denied_BET_Link__c);
         }else if(isRollout && String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__c)){
             projectWithBET = project.IPM_Parent_Project__r.IPM_Parent_Project__c;

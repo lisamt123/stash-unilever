@@ -4883,7 +4883,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BETUnlinkingMessage</shortDescription>
-        <value>This will unlike your IPM project from {0}. Be aware that unlinking could result in the BET having no associated IPM project. Any mini-milestones associated with the linked BET will be removed within the IPM project. Are you sure want to continue?</value>
+        <value>This will unlink your IPM project from {0} BET. Be aware that unlinking could result in the BET having no associated IPM project. Any mini-milestones associated with the linked BET will be removed within the IPM project. Are you sure you want to continue?</value>
     </labels>
     <labels>
         <fullName>IPM_BET_BETUpdate_failure_ErrMsg</fullName>

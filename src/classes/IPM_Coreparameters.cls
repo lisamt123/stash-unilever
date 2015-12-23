@@ -26,6 +26,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     }
     // Boolean to control rendering of BET Search Component
     public boolean bLinkBET {get;set;}
+    //Variable to store reset BET options
+    public string resetBEToption;
     
     //*@description: store project id from url parameter
     public string ProjectID{get;set;}
@@ -154,7 +156,7 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         update updateProj ;             
         projbetlink = '';
         betId = '';
-        IPM_Coreparameter.BET_Link_Requested__c='';
+        IPM_Coreparameter.BET_Link_Requested__c=null;
         IPM_Coreparameter.BET_Link_Requested_on_Date__c=null;
         IPM_Coreparameter.BET__c = null;
         return null;
@@ -228,7 +230,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         bLinkBET = true;
         If(IPM_Coreparameter!=null && (IPM_Coreparameter.BET_Link_Requested__c!=null || String.isNotBlank(IPM_Coreparameter.BET__c))){
             bLinkBET = false;
-        }      
+        }
+        resetBEToption = IPM_Coreparameter.IPM_BET_Toolkit__c;
     }
     @TestVisible private  void initialise(){
         isEditCoreparameter=false;
@@ -307,6 +310,14 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         getStrategicGraph();
         betValue();
         getAccessonPage();
+        //Reset BET option for eligible IPM Projects
+        if(string.isNotBlank(resetBEToption) && IPM_Coreparameter.BET_Link_Requested__c==null && IPM_Coreparameter.BET__c==null){
+            IPM_Coreparameter.IPM_BET_Toolkit__c = resetBEToption;  
+        }
+        searchstring = '';
+        searchresultBet.clear();
+        betId = '';
+        
     }
     /****************************************************************************
     @Description :Method to get core parameter configuration
@@ -508,6 +519,8 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
         //IPM_Coreparameter.IPM_BET_Toolkit__c=betValue_STR; 
         isThresholdSaved =true;
         updateCoreParameter();
+        //Update Reset BET option upon save
+        resetBEToption = IPM_Coreparameter.IPM_BET_Toolkit__c;
     }
         
     /****************************************************************************
