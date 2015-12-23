@@ -48,16 +48,6 @@
         <fullName>StandardPrice</fullName>
     </fields>
     <fields>
-        <fullName>UID_Material_ID__c</fullName>
-        <description>Material ID of SKU</description>
-        <externalId>false</externalId>
-        <formula>Product2.UID_Material_ID__c</formula>
-        <label>Material ID</label>
-        <required>false</required>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>UnitPrice</fullName>
     </fields>
     <fields>
