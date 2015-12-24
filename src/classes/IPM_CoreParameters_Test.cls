@@ -494,9 +494,8 @@ private with sharing class IPM_CoreParameters_Test {
             testProject.bet__c = bet1.id;
 
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, testProject.id);
-            sic.initialise();
-
             Test.startTest();
+            sic.initialise();
             sic.Replace();
             ProjectWithOutBoss.BET_Link_Requested__c = '';
             //update ProjectWithOutBoss;
