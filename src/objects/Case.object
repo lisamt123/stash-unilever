@@ -2975,6 +2975,46 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_Nordic_Queue_Sweden_V3</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.ORIGIN</columns>
+        <columns>CASES.CREATED_DATE_DATE_ONLY</columns>
+        <columns>CONTACT.LAST_NAME</columns>
+        <filterScope>Queue</filterScope>
+        <filters>
+            <field>CASES.CLOSED</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>Country__c</field>
+            <operation>startsWith</operation>
+            <value>Sweden</value>
+        </filters>
+        <filters>
+            <field>CASES.STATUS</field>
+            <operation>notEqual</operation>
+            <value>Closed,Closed as Duplicate</value>
+        </filters>
+        <filters>
+            <field>CONTACT.LAST_NAME</field>
+            <operation>equals</operation>
+            <value>web</value>
+        </filters>
+        <label>CEC Nordic Queue - Sweden Bio-tex</label>
+        <language>en_US</language>
+        <queue>CEC_Nordic_Queue</queue>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_Europe</role>
+            <role>CEC_Manager_Nordic</role>
+            <role>CEC_User_Nordic</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Nordic_Queue_Unknown</fullName>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
