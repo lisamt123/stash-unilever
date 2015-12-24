@@ -32,6 +32,8 @@
 
     <!-- Variables -->
     <apex:variable value="{!IF(CONTAINS(ipmFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
+    <apex:variable value="{!IF(project.IPM_Phase__c=='Feasibility', TRUE, FALSE)}" var="isFeasibility"/>
+    <apex:variable value="{!IF(CONTAINS(ipmFinancial.Financial_External_ID__c, '_NONKEY'), TRUE, FALSE)}" var="isNonKey"/>
     
     <!-- Financial Table -->
     <div class="table-responsive">
@@ -74,7 +76,9 @@
                 <td class="fintleblubg">%</td>
                 <td class="fintleblubg blueBorder"></td>
                 <!-- Y0 -->
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),showMisalignment, (finWrapper.y0ValueMarketShareDifference != NULL), finWrapper.y0ValueMarketShareDifference > 0), 'misaligned', '')}">
+                <!-- Hide red boxes for 3084 NOT(isConsolidated)--> 
+                <!-- Hide red boxes for 2712 NOT(isFeasibility) && NOT(isNonKey)-->
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (finWrapper.y0ValueMarketShareDifference != NULL), finWrapper.y0ValueMarketShareDifference > 0), 'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0ValueMarketShareDifference != NULL), finWrapper.y0ValueMarketShareDifference>0, NOT(isEditMode))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0ValueMarketShareRegional}%
@@ -87,8 +91,10 @@
                     </apex:outputText>
                 </td>
                 <!-- GROSS -->
+                <!-- Hide red boxes for 3084 NOT(isConsolidated)-->
+                <!-- Hide red boxes for 2712 NOT(isFeasibility) && NOT(isNonKey)-->
                 <apex:repeat value="{!finWrapper.lstGrossPLValueMarketShare}" var="valueWrapper">
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0), 'misaligned', '')}">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference>0, NOT(isEditMode))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}%
                                                                      {!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}%">
@@ -101,7 +107,7 @@
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!finWrapper.lstIncrementalPLValueMarketShare}" var="valueWrapper">
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0), 'misaligned', '')}">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference>0, NOT(isEditMode))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}%
                                                                      {!$Label.IPM_VALUE_MARKET_SHARE} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}%">
@@ -116,9 +122,11 @@
             </tr>
             
             <!-- Volume -->
+            <!-- Hide red boxes for 3084 NOT(isConsolidated)-->
+            <!-- Hide red boxes for 2712 NOT(isFeasibility) && NOT(isNonKey)-->
             <tr>
                 <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
-                <td class="fintleblubg {!IF(isInnovation, IF(AND(NOT(isConsolidated),showMisalignment, (ipmFinancial.Volume_Unit_Difference__c != NULL), ipmFinancial.Volume_Unit_Difference__c > 0), 'misaligned', ''), '')}">
+                <td class="fintleblubg {!IF(isInnovation, IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (ipmFinancial.Volume_Unit_Difference__c != NULL), ipmFinancial.Volume_Unit_Difference__c > 0), 'misaligned', ''), '')}">
                     <apex:outputText rendered="{!NOT(isConsolidated)}">
                         <!-- Global Values -->
                         <apex:outputPanel rendered="{!IF(fieldSuffix=='Global',TRUE,FALSE)}">
@@ -159,7 +167,7 @@
                 </td>
                 <td class="fintleblubg blueBorder"></td>
                 <!-- Y0 -->
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),showMisalignment, (finWrapper.y0VolumeDifference!= NULL), finWrapper.y0VolumeDifference > 0), 'misaligned', '')}">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (finWrapper.y0VolumeDifference!= NULL), finWrapper.y0VolumeDifference > 0), 'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0VolumeDifference != NULL), finWrapper.y0VolumeDifference>0, NOT(isEditMode))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0VolumeRegional}
@@ -177,7 +185,7 @@
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!finWrapper.lstGrossPLVolume}" var="valueWrapper">
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0), 'misaligned', '')}">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, NOT(isEditMode))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_VOLUME} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
@@ -194,7 +202,7 @@
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!finWrapper.lstIncrementalPLVolume}" var="valueWrapper">
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0), 'misaligned', '')}">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, NOT(isEditMode))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_VOLUME} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
@@ -213,15 +221,17 @@
             </tr>
 
             <!-- Volume Tons -->
+            <!-- Hide red boxes for 3084 NOT(isConsolidated)-->
+            <!-- Hide red boxes for 2712 NOT(isFeasibility) && NOT(isNonKey)-->
             <apex:outputText rendered="{!isConsolidated}">
                 <tr>
                     <td class="fintleblubg finproject">{!$Label.ipmFinTableVolume}</td>
-                    <td class="fintleblubg {!IF(isInnovation, IF(AND(NOT(isConsolidated),showMisalignment, (ipmFinancial.Volume_Unit_Difference__c!= NULL), ipmFinancial.Volume_Unit_Difference__c > 0), 'misaligned', ''), '')}">
+                    <td class="fintleblubg {!IF(isInnovation, IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (ipmFinancial.Volume_Unit_Difference__c!= NULL), ipmFinancial.Volume_Unit_Difference__c > 0), 'misaligned', ''), '')}">
                         {!$Label.IPM_Fin_Tons}
                     </td>
                     <td class="fintleblubg blueBorder"></td>
                     <!-- Y0 -->
-                    <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),showMisalignment, (ipmFinancial.Volume_Unit_Difference__c!= NULL), finWrapper.y0VolumeTonsDifference > 0), 'misaligned', '')}">
+                    <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (ipmFinancial.Volume_Unit_Difference__c!= NULL), finWrapper.y0VolumeTonsDifference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!isInnovation}">
                             <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0VolumeTonsDifference!= NULL), finWrapper.y0VolumeTonsDifference>0, OR(NOT(isEditMode), isConsolidated))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0VolumeTonsRegional}
@@ -239,7 +249,7 @@
                     </td>
                     <!-- GROSS -->
                     <apex:repeat value="{!finWrapper.lstGrossPLVolumeTons}" var="valueWrapper">
-                        <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0), 'misaligned', '')}">
+                        <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                             <apex:outputText rendered="{!AND(showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                          {!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
@@ -256,7 +266,7 @@
                     </apex:repeat>
                     <!-- INCREMENTAL -->
                     <apex:repeat value="{!finWrapper.lstIncrementalPLVolumeTons}" var="valueWrapper">
-                        <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0), 'misaligned', '')}">
+                        <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                             <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
                                 <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                          {!$Label.IPM_VOLUME_TONS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
@@ -276,12 +286,14 @@
             </apex:outputText>
 
             <!-- Turnover -->
+            <!-- Hide red boxes for 3084 NOT(isConsolidated)-->
+            <!-- Hide red boxes for 2712 NOT(isFeasibility) && NOT(isNonKey)-->
             <tr>
                 <td class="fintleblubg finproject">{!$Label.ipmFinTableTurnover}</td>
                 <td class="fintleblubg">&euro; &#39;000</td>
                 <td class="fintleblubg greenplus blueBorder">(+)</td>
                 <!-- Y0 -->
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(AND(isy0TurnoverInvalid,isInnovation), AND(NOT(isConsolidated),isInnovation, showMisalignment, (finWrapper.y0TurnoverDifference != NULL), finWrapper.y0TurnoverDifference > 0)), 'misaligned', '')}">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(AND(isy0TurnoverInvalid,isInnovation), AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),isInnovation, showMisalignment, (finWrapper.y0TurnoverDifference != NULL), finWrapper.y0TurnoverDifference > 0)), 'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0TurnoverDifference != NULL), finWrapper.y0TurnoverDifference>0, OR(NOT(isEditMode), isConsolidated))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0TurnoverRegional}
@@ -300,7 +312,7 @@
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!finWrapper.lstGrossPLTurnover}" var="valueWrapper">
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
@@ -317,7 +329,7 @@
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!finWrapper.lstIncrementalPLTurnover}" var="valueWrapper">
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid,AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid,AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_TURNOVER} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_TURNOVER} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
@@ -336,12 +348,14 @@
             </tr>
 
             <!-- Gross Profit -->
+            <!-- Hide red boxes for 3084 NOT(isConsolidated)-->
+            <!-- Hide red boxes for 2712 NOT(isFeasibility) && NOT(isNonKey)-->
             <tr>
                 <td class="fintleblubg finproject">{!$Label.ipmFinTableGrossProfit}</td>
                 <td class="fintleblubg">&euro; &#39;000</td>
                 <td class="fintleblubg greenplus blueBorder">(+)</td>
                 <!-- Y0 -->
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(AND(isy0GrossProfitInvalid, isInnovation), AND(NOT(isConsolidated),showMisalignment, (finWrapper.y0GrossProfitDifference!= NULL), finWrapper.y0GrossProfitDifference > 0)), 'misaligned', '')}">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(AND(isy0GrossProfitInvalid, isInnovation), AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (finWrapper.y0GrossProfitDifference!= NULL), finWrapper.y0GrossProfitDifference > 0)), 'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0GrossProfitDifference != NULL), finWrapper.y0GrossProfitDifference>0, OR(NOT(isEditMode), isConsolidated))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0GrossProfitRegional}
@@ -359,7 +373,7 @@
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!finWrapper.lstGrossPLGrossProfit}" var="valueWrapper">
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
@@ -376,7 +390,7 @@
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!finWrapper.lstIncrementalPLGrossProfit}" var="valueWrapper">
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference!= NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
@@ -395,12 +409,14 @@
             </tr>
             
             <!-- Advertising & Promotions (LABEL CHANGED TO BMI - 20/04/2015) -->
+            <!-- Hide red boxes for 3084 NOT(isConsolidated)-->
+            <!-- Hide red boxes for 2712 NOT(isFeasibility) && NOT(isNonKey)-->
             <tr>
                 <td class="fintleblubg finproject">{!$Label.ipmFinTableAdvertisingPromotions}</td>
                 <td class="fintleblubg">&euro; &#39;000</td>
                 <td class="fintleblubg redminus blueBorder">(-)</td>
                 <!-- Y0 -->
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),showMisalignment, (finWrapper.y0AdvertisingDifference!= NULL),  finWrapper.y0AdvertisingDifference > 0), 'misaligned', '')}">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (finWrapper.y0AdvertisingDifference!= NULL),  finWrapper.y0AdvertisingDifference > 0), 'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0AdvertisingDifference != NULL), finWrapper.y0AdvertisingDifference>0, OR(NOT(isEditMode), isConsolidated))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0AdvertisingRegional}
@@ -418,7 +434,7 @@
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!finWrapper.lstGrossPLAdvertising}" var="valueWrapper">
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0), 'misaligned', '')}">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
@@ -435,7 +451,7 @@
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!finWrapper.lstIncrementalPLAdvertising}" var="valueWrapper">
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0), 'misaligned', '')}">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_BMI} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_BMI} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
@@ -454,12 +470,14 @@
             </tr>
 
             <!-- Profit before Overheads -->
+            <!-- Hide red boxes for 3084 NOT(isConsolidated)-->
+            <!-- Hide red boxes for 2712 NOT(isFeasibility) && NOT(isNonKey)-->
             <tr>
                 <td class="fintleblubg finproject">{!$Label.ipmFinTableProfitBeforeOverheads}</td>
                 <td class="fintleblubg">&euro; &#39;000</td>
                 <td class="fintleblubg greenplus blueBorder">(+)</td>
                 <!-- Y0 -->
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(AND(isy0ProfitInvalid, isInnovation), AND(NOT(isConsolidated),isInnovation, showMisalignment, (finWrapper.y0ProfitDifference != NULL), finWrapper.y0ProfitDifference > 0)), 'misaligned', '')}">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(AND(isy0ProfitInvalid, isInnovation), AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),isInnovation, showMisalignment, (finWrapper.y0ProfitDifference != NULL), finWrapper.y0ProfitDifference > 0)), 'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(showMisalignment, (finWrapper.y0ProfitDifference != NULL), finWrapper.y0ProfitDifference>0, OR(NOT(isEditMode), isConsolidated))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0ProfitRegional}
@@ -477,7 +495,7 @@
                 </td>
                 <!-- GROSS -->
                 <apex:repeat value="{!finWrapper.lstGrossPLProfit}" var="valueWrapper">
-                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(NOT(isConsolidated),isInnovation, showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
+                    <td class="{!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),isInnovation, showMisalignment, (valueWrapper.difference != NULL), valueWrapper.difference > 0)), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">
@@ -494,7 +512,7 @@
                 </apex:repeat>
                 <!-- INCREMENTAL -->
                 <apex:repeat value="{!finWrapper.lstIncrementalPLProfit}" var="valueWrapper">
-                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(NOT(isConsolidated),showMisalignment, (valueWrapper.difference != NULL),  valueWrapper.difference > 0)), 'misaligned', '')}">
+                    <td class="iPLBorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(OR(valueWrapper.isValueInvalid, AND(NOT(isConsolidated),NOT(isFeasibility),NOT(isNonKey),showMisalignment, (valueWrapper.difference != NULL),  valueWrapper.difference > 0)), 'misaligned', '')}">
                         <apex:outputText rendered="{!AND(showMisalignment, valueWrapper.difference>0, OR(NOT(isEditMode), isConsolidated))}">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_REGIONAL_LEVEL} {!valueWrapper.regionalValue}
                                                                      {!$Label.IPM_PROFIT_BEFORE_OVERHEADS} {!$Label.IPM_AT_LOCAL_LEVEL} {!valueWrapper.localValue}">

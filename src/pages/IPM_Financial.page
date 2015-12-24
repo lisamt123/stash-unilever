@@ -34,8 +34,13 @@
                                 <div class="col-sm-7 pull-right clearfix">
                                      
                                     <div class="SecButtonSet pull-right">
-                                        <apex:outputPanel layout="block" styleClass="copyFBC" rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode),NOT(isRolloutError))), false)}">
-                                            <apex:commandbutton value="{!$Label.IPM_Financial_CopyPaste}" action="{!CopyPasteTemplate}" styleClass="ipmButton primary" title="Copy Paste Financial Update" rendered="true"/>
+                                       <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE')}">
+                                            <apex:outputPanel layout="block" styleClass="copyFBC" rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(isEditable,project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode),NOT(isRolloutError))), false)}">
+                                                <apex:outputPanel id="opCurr" styleClass="selCur">
+                                                     <apex:commandButton rendered="{!NOT(isEditMode)}" action="{!loadCurrencyPage}" value="Local Currency View" styleClass="ipmButton primary currButton" alt="{!$Label.IPM_currency_button_hover}" title="{!$Label.IPM_currency_button_hover}"/>
+                                                </apex:outputPanel>
+                                                <apex:commandbutton value="{!$Label.IPM_Financial_CopyPaste}" action="{!CopyPasteTemplate}" styleClass="ipmButton primary" title="Copy Paste Financial Update" rendered="true"/>
+                                            </apex:outputPanel>
                                         </apex:outputPanel>
                                         <!-- 
                                         <apex:outputPanel rendered="{!AND(NOT(isError),project.IPM_Phase__c <> 'PLE')}">
@@ -162,10 +167,8 @@
                                                         <apex:outputText rendered="{!NOT(isError)}">
                                                             <div class="requiredInput">
                                                                 <div class="requiredBlock"></div>
-                                                                <apex:panelGrid columns="2" columnClasses="fincol1,fincol2" border="0" cellpadding="1" cellspacing="1">
-                                                                    <apex:outputPanel id="opCurr">
-                                                                        <apex:commandButton rendered="{!NOT(isEditMode)}" action="{!loadCurrencyPage}" value="Local Currency View" styleClass="ipmButton primary currButton" alt="{!$Label.IPM_currency_button_hover}" title="{!$Label.IPM_currency_button_hover}"/>
-                                                                    </apex:outputPanel>
+                                                                <apex:panelGrid columns="2" columnClasses="fincol1,fincol2" styleClass="wid100P" border="0" cellpadding="1" cellspacing="1">
+                                                                    
                                                                     <apex:selectList styleClass="fieldFont drpfield" value="{!selectedDocumentSection}" multiselect="false" size="1">
                                                                         <apex:selectOptions value="{!documentSections}" />
                                                                         <apex:actionSupport event="onchange" action="{!goToSection}" status="loadingStatus"/>
@@ -348,6 +351,8 @@
                                                                     isy0GrossProfitInvalid="{!isy0GrossProfitInvalid}"
                                                                     isy0ProfitInvalid="{!isy0ProfitInvalid}"
                                                                     
+                                                                    showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
+                                                                    project="{!project}"
                                                                 />
                                                         
                                                                 <c:IPM_FinancialSummaryTable ipmFinancial="{!currentFinancial}"
@@ -369,6 +374,8 @@
                                                                     validationErrorMessage="{!validationErrorMessage}"
                                                                     isy0GrossProfitInvalid="{!isy0GrossProfitInvalid}"
                                                                     isy0ProfitInvalid="{!isy0ProfitInvalid}"
+                                                                    showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
+                                                                    project="{!project}"
                                                                 />
                                                         </div>
                                                         

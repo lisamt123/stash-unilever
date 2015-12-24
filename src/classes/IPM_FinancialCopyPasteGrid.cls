@@ -78,12 +78,9 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                         soql = soql +' and Global_Project_Id__c = \''+String.escapeSingleQuotes(projectId)+'\'';
                 }
                 if(span == IPM_ConstantUtils.Regional && projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){ 
-                        if(projectType != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                           qdisplayname = '\'%key)\'';          
-                           soql = soql +' and Regional_Project__c = \''+String.escapeSingleQuotes(projectId)+'\' and (NOT Display_Name__c like'  +qdisplayname+ ')';
-                        }else{
+                        
                            soql = soql +' and Regional_Project__c = \''+String.escapeSingleQuotes(projectId)+'\'';
-                        }
+                       
                 }
                 if(span == IPM_ConstantUtils.Local && projectType != IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
                         soql = soql +' and Local_Project__c = \''+String.escapeSingleQuotes(projectId)+'\'';
