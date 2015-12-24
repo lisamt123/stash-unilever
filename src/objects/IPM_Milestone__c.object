@@ -842,7 +842,6 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <columns>IPM_Project_Type__c</columns>
         <columns>IPM_Project__c</columns>
         <columns>IPM_Phase_Order__c</columns>
-        <columns>IPM_Milestone__c</columns>
         <columns>IPM_Active__c</columns>
         <columns>IPM_Market_Type__c</columns>
         <columns>RECORDTYPE</columns>
@@ -865,7 +864,7 @@ IF(TEXT(IPM_Project__r.IPM_Market_Type__c) = &apos;Developing &amp; Emerging&apo
         <fullName>My_Milestones</fullName>
         <columns>NAME</columns>
         <columns>IPM_Project__c</columns>
-        <filterScope>Mine</filterScope>
+        <filterScope>Everything</filterScope>
         <label>My Milestones</label>
     </listViews>
     <listViews>
