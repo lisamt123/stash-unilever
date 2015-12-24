@@ -3640,7 +3640,44 @@
         <field>IPM_Milestone__c.IPM_Type_of_gate__c</field>
         <readable>true</readable>
     </fieldPermissions>
-    <fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_Idea__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_Feasibility__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_Capability__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_Market_Ready__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_Market_Deployment__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    
+	<fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Milestone__c.IPM_Due_Date_Post_Launch_Evaluation__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	
+	<fieldPermissions>
         <editable>false</editable>
         <field>IPM_Milestone__c.IPM_Violate_Preferred_Date__c</field>
         <readable>true</readable>
