@@ -111,7 +111,7 @@ public with sharing class IPM_EcoDesignSection {
                                                     And IPM_Project__c =:projId Order by IPM_SKU_Type__c asc LIMIT 50000]) {
                 countryAssessmentMap.get(assessmentEle.IPM_Country__r.Country_Name__c).add(assessmentEle);                                          
             }
-            if(project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE){
+            if(project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE && project.IPM_GateKeepingModel__c == GKM4){
             	for(IPM_Assessment__c assessmentEle : [Select Id,IPM_SKU_Type__c,IPM_Country__r.Country_Name__c From IPM_Assessment__c 
                                                        Where IPM_Country__c IN:countriesList and Project_Phase__c =:IPM_ConstantUtils.PHASE_IDEAS Order by IPM_SKU_Type__c asc LIMIT 50000]) {
 				    nonEICountryWithIdeasPhase.add(assessmentEle.IPM_Country__r.Country_Name__c);
