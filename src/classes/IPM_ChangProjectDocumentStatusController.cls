@@ -105,7 +105,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     showSkipSections=true;
                     oldSize=projSectionList.size();
                 }
-                if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+                if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL==project.IPMProject_Span__c) ){
                     isOperational=true;
                 }
                 
