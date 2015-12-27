@@ -923,16 +923,16 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     private Date getLeastProjectMilestonesDate(){
         //Method invoked in IPM_LocalRolloutPlansTable component
-        List<String> milestoneNames = new List<String>{'Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval'};
-        List<IPM_Milestone__c> milestones = [Select Id,IPM_Active__c, IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: project.Id and IPM_Active__c = true and IPM_Due_Date__c != null and IPM_Name__c in: milestoneNames];
+        List<String> milestoneNames = new List<String>{IPM_ConstantUtils.CHARTER_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.CONTRACT_GATE_APPROVAL_MILESTONE,IPM_ConstantUtils.MARKET_READY_GATE_APPROVAL_MILESTONE};
+        List<IPM_Milestone__c> milestones = [Select Id,IPM_Active__c, IPM_Due_Date__c from IPM_Milestone__c where IPM_Project__c =: project.Id and IPM_Active__c = true and IPM_Due_Date__c != null and IPM_Name__c in: milestoneNames limit 50000];
         Date leastProjectMilestonesDate = null;
         for(IPM_Milestone__c i :milestones){
             if(leastProjectMilestonesDate == null){
                 leastProjectMilestonesDate = i.IPM_Due_Date__c;
-            } else if(leastProjectMilestonesDate > i.IPM_Due_Date__c){
+            } else if(leastProjectMilestonesDate < i.IPM_Due_Date__c){
                 leastProjectMilestonesDate = i.IPM_Due_Date__c;
             } 
         }
         return leastProjectMilestonesDate;
-    }       
+    }        
 }
