@@ -18,7 +18,7 @@
     <apex:attribute name="isEditable" type="Boolean" description="To check if User is a Finance Leader"/>    
     <apex:attribute name="showMisalignedConfirmbtn" type="Boolean" description="misalign confirm button"/>    
     <apex:attribute name="project" type="IPM_Project__c" description="Current Project"/>      
-    <!-- Validation Message -->
+    <!-- Validation Message --> 
     <apex:outputPanel id="errorPanel" rendered="{!AND(isValidationError, isInnovation)}">
         <div class="finAlertBox">
             <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
