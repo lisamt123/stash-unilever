@@ -120,7 +120,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
         // The latest Target_Launch_Date__c of the sibling local rollouts is going to be the TLD  of finalcial and financial year records
         Set<ID> regionalRolloutIDs = new Set<ID>();
         for(IPM_Project_Rollout__c projRollout: localNonkeyRollouts.values()) {
-            if(projRollout.Regional_Rollout__c!=null) {
+            if(projRollout.Regional_Rollout__c!=null && projRollout.Regional_Project__c ==null ) {
             	regionalRolloutIDs.add(projRollout.Regional_Rollout__c);
             }
             
@@ -195,18 +195,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 			            }
 		            }
 	        	} 
-	        	// handle global original
-	        	else {
-			        // collect finalcials records for update. 
-			        for(IPM_Project_Rollout__c projRollout: localNonkeyRollouts.values()) {
-		        		for(IPM_Financial__c financial: regionalProject.IPM_Financials_Regional__r) {
-		        			if(financial.Financial_External_ID__c==projRollout.name) {
-		        				financial.Target_Launch_Date__c = projRollout.Target_Launch_Date__c;
-					        	financialsMap.put(financial.id, financial);
-		        			}
-		        		}
-			        }
-	        	}
+	        
 	        }	
         }
     }
@@ -227,7 +216,9 @@ public with sharing class IPM_SyncFinanceTableTLD {
         // The Target_Launch_Date__c of the sibling key local rollouts is going to be the TLD of finalcial and financial year records
         Set<ID> regionalRolloutIDs = new Set<ID>();
         for(IPM_Project_Rollout__c projRollout: localKeyRollouts.values()) {
-            regionalRolloutIDs.add(projRollout.Regional_Rollout__c);
+            if(projRollout.Regional_Rollout__c!=null && projRollout.Regional_Project__c ==null ) {
+                regionalRolloutIDs.add(projRollout.Regional_Rollout__c);
+            }
         }
         // Get the local rollouts of the regional rollouts. The rocords are order by Target_Launch_Date__c, so the first record in the list is latest TLD
         // Get the key finalcial records of regionla rollout as well
