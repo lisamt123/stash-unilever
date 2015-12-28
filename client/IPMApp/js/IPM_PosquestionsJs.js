@@ -180,7 +180,7 @@ function changeScore(id,score)
 	}
 	
 /* Below code is redirect to a page */
-	function GotoParentPage()
+	function goToParentPage()
 	{            
 		window.top.location.href = IPMApp.pageName+'?id='+IPMApp.projectId+'&projDocSecId='+IPMApp.projDocSecId;
 	}    

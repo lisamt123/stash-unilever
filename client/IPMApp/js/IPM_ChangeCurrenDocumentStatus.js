@@ -31,6 +31,7 @@ jq(document).ready(function() {
     });
     /* Below script is for the Tab Functionality */
     jq(".ipmStatusTabs").on("click", 'li', function() {
+		jq(".proInitLoader").show().delay(1000).fadeOut();
         var $this = jq(this);
         var statTabList = jq('.ipmStatusTabs').find('li');
         statTabList.removeClass('active');

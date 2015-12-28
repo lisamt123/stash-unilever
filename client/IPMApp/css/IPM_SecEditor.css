@@ -715,8 +715,11 @@
 .secComponent:after {content:""; clear:both; visibility:hidden; display:block;} 
 .noPaddingNbg {background: transparent !important;padding-left: 0 !important;}
 .filledinDesc{font-style:italic;font-size:11px !important;}
-.ipmFintableAlign.table thead tr th{font-size:0.705em}
-.ipmFintableAlign.table thead tr th:nth-child(2){width:18%;}
-.ipmFintableAlign.table thead tr th:nth-child(3),.ipmFintableAlign.table thead tr th:nth-child(4){width:12%;}
-.ipmFintableAlign.table thead tr th:nth-child(5){width:15.2%;}
+
+/* Financial table styles */
+.ipmFintableAlign.table thead tr th{font-size:0.800em; text-align:center}
+.ipmFintableAlign.table thead tr th:nth-child(2){width:13%;}
+.ipmFintableAlign.table thead tr th:nth-child(3),.ipmFintableAlign.table thead tr th:nth-child(4){width:9%;}
+.ipmFintableAlign.table thead tr th:nth-child(5){width:11%;}
 .ipmFintableAlign.table{width:902px;max-width:902px}
+.ipmFintableAlign.table tbody tr td textarea{width:98%}

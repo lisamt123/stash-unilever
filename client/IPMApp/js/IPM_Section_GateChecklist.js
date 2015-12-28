@@ -10,6 +10,7 @@ var jq = jQuery.noConflict();
 /* Below code is to set the slider */
 jq(document).ready(function() {
     initSliderSecGk();
+	jq(".sliderGk").unbind('click');
 });
 
 /* Below code is to update the gate keeper list */
@@ -40,7 +41,12 @@ jq(s).each(function() {
             var pointer = ui.value - 1;
             jq('#s' + itemsSecGK.indexOf(answerSecGK)+1).prop('checked', true);
             score = itemsSecGK[pointer];
-        }
+        },
+		slide: function( event, ui ) {
+			jq(".sliderGk").on("mousedown", function() {
+				e.stopImmediatePropagation();
+			});
+		},
     });
     
     if (answerSecGK == IPMAppSecGK.yes) {           

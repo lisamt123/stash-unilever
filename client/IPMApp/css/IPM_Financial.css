@@ -29,6 +29,7 @@
 	.fincol1 {width:50px; text-align:left;}
 	.fincol2 {width:180px; text-align:left;}
 	.finspace{margin-left:5px;}
+	.wid100P{width:100%;}
 	.leftSideBar {margin-top:10px;}
 	.leftSideBar h4 {color:#253b78; font-size:1.1em; font-weight:bold;}
 	.leftSideBar ul.docFilter li {word-break:break-all;margin-left:0!important; display:block; }
