@@ -1,4 +1,4 @@
-<apex:component >
+<apex:component allowDML="true">
     <apex:attribute name="ipmFinancial" type="IPM_Financial__c" required="true" description="IPM Financial object record"/>
     <apex:attribute name="finWrapper" type="IPM_FinancialWrapper" required="true" description="ipmFinancialWrapper object"/>
     <apex:attribute name="colSpan" type="Integer" required="true" description="Column Span for Financial Table"/>
@@ -12,6 +12,11 @@
     <apex:attribute name="validationErrorMessage" type="string" description="Error message to be shown when there is validation error for financial values"/>
     <apex:attribute name="isy0GrossProfitInvalid" type="Boolean" description="Flag to check if there is validation error for y0GrossProfit value"/>
     <apex:attribute name="isy0ProfitInvalid" type="Boolean" description="Flag to check if there is validation error for Y0Profit value"/>
+    <apex:attribute name="isConsolidatedOrNonkey" type="Boolean" description="Flag to check the type of financials"/>
+    <apex:attribute name="isTargetLaunchDateMisaligned" type="Boolean" description="Flag to check the target launch date misalignment"/>
+    <apex:attribute name="targetLaunchDateToDisplay" type="String" description="Target launch date either from local project or local rollout"/>
+    <apex:attribute name="isEditable" type="Boolean" description="To check if User is a Finance Leader"/>    
+    <apex:attribute name="showMisalignedConfirmbtn" type="Boolean" description="misalign confirm button"/>    
     <apex:attribute name="project" type="IPM_Project__c" description="Current Project"/>      
     <!-- Validation Message -->
     <apex:outputPanel id="errorPanel" rendered="{!AND(isValidationError, isInnovation)}">
