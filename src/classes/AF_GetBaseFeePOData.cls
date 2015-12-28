@@ -1,3 +1,12 @@
+/*****************************************************************************************************************************
+   @Author :Cognizant
+   @name : AF_GetBaseFeePOData
+   @CreateDate : 11/9/2014
+   @Description : This is a controller class updates the records in po report object
+   @              based on the Agencyestimate
+   @Version : 1.0
+   @reference : none
+  ****************************************************************************************************************************/
 global with sharing class AF_GetBaseFeePOData{
    
     @future
@@ -92,8 +101,101 @@ global with sharing class AF_GetBaseFeePOData{
         lstpo.clear();
         lstpoUpdate.clear();
     }
+    
+        public static void BatchcreatePOReportFromAgencyEstimate(Set<ID> AgencyEstimateIds,Boolean deletePOReport)
+    {
+        system.debug('AgencyEstimateIds...'+AgencyEstimateIds);
+        af_po_report__c eachPORecord;
+        List<af_agency_estimate__c> lstagest = new List<af_agency_estimate__c>();
+        List<af_po_report__c> lstpo = new List<af_po_report__c>();
+        List<af_po_report__c> lstpoupdate = new List<af_po_report__c>();
+        List<af_po_report__c> deletePOReportList = new List<af_po_report__c>();
+        Map<ID,ID> mapPO = new Map<ID,ID>();
+        List<af_po_report__c> lstpochk = new List<af_po_report__c>([select id,AF_Agency_Estimate_ID__c from af_po_report__c where AF_PO_Report_Type__c= 'Base Fees' LIMIT 50000]);
+        for(af_po_report__c myagest:lstpochk)
+        {
+            mapPO.put(myagest.AF_Agency_Estimate_ID__c,myagest.id);
+        }
+        if(AgencyEstimateIds.size()>0 && deletePOReport==false){
+            for(af_agency_estimate__c mypo:[SELECT AF_po_report_type__c,AF_OverridePO_Adaptation_LC__c,AF_OverridePO_Digital_LC__c,AF_OverridePO_Traditional_LC__c,af_po_number__c,AF_Unilever_Entity__r.name,af_brand_estimate__r.name,af_brand_estimate__r.AF_Status_Base_Fees__c,Brand__c,af_brand_estimate__r.AF_Fiscal_Year__c,af_brand_estimate__c,id,AF_Brand_Estimate__r.Brand__r.AF_Category_Brands__r.Name,AF_Compound_Key__c,AF_Agency_Entity__r.af_legal_entity_name__c,AF_Agency_Entity__r.name,AF_Unilever_Entity_Name__c,af_total__c,af_max_quarter__c,AF_CountNoQuarters__c,AF_QuartersAlreadyDone__c,AF_Traditional__c,AF_Traditional_Local__c,AF_Digital__c,AF_Digital_Local__c,AF_Adaptation__c,AF_Adaptation_Local__c,AF_Matrix_Data_Entry_Currency__c,AF_Ready_For_PO_Entry_Currency__c,af_brand_estimate__r.af_agency__r.name FROM AF_Agency_Estimate__c where Id IN:AgencyEstimateIds])
+            {
+                eachPORecord = new af_po_report__c();
+                eachPORecord.AF_PO_Report_Type__c= mypo.AF_PO_Report_Type__c;
+                eachPORecord.af_po_number__c=mypo.af_po_number__c;
+                eachPORecord.AF_Adaptation_Local__c=mypo.AF_Adaptation_Local__c;
+                eachPORecord.AF_Adaptation__c=mypo.AF_Adaptation__c;
+                eachPORecord.AF_Digital_Local__c=mypo.AF_Digital_Local__c;
+                eachPORecord.AF_Digital__c=mypo.AF_Digital__c;
+                eachPORecord.AF_Traditional_Local__c=mypo.AF_Traditional_Local__c;
+                eachPORecord.AF_Traditional__c=mypo.AF_Traditional__c;
+                eachPORecord.AF_Brand_Estimate_Name__c=mypo.af_brand_estimate__r.name;
+                eachPORecord.AF_Base_Fee_Status__c=mypo.af_brand_estimate__r.AF_Status_Base_Fees__c;
+                eachPORecord.AF_Fiscal_Year__c=mypo.af_brand_estimate__r.AF_Fiscal_Year__c;
+                eachPORecord.Fiscal_Year__c=mypo.af_brand_estimate__r.AF_Fiscal_Year__c;
+                eachPORecord.AF_Brand_Estimate_ID__c=mypo.af_brand_estimate__c;
+                eachPORecord.AF_Agency_Estimate_ID__c=mypo.id;
+                eachPORecord.AF_Category__c=mypo.AF_Brand_Estimate__r.Brand__r.AF_Category_Brands__r.Name;
+                eachPORecord.AF_Compound_Key__c=mypo.AF_Compound_Key__c;
+                eachPORecord.AF_Legal_Entity_Name__c=mypo.AF_Agency_Entity__r.af_legal_entity_name__c;
+                eachPORecord.AF_Agency_Entity__c=mypo.AF_Agency_Entity__r.name;
+                eachPORecord.AF_Agency_Name__c=mypo.af_brand_estimate__r.af_agency__r.name;
+                eachPORecord.AF_Unilever_Entity__c=mypo.AF_Unilever_Entity__r.name;
+                eachPORecord.AF_Total__c=mypo.af_total__c;
+                eachPORecord.af_max_quarter__c =mypo.af_max_quarter__c;
+                eachPORecord.AF_CountNoQuarters__c=mypo.AF_CountNoQuarters__c;
+                eachPORecord.AF_QuatersAlreadyDone__c=mypo.AF_QuartersAlreadyDone__c;
+                eachPORecord.AF_Matrix_Code__c=mypo.AF_Matrix_Data_Entry_Currency__c;
+                eachPORecord.AF_Ready_for_PO_Code__c=mypo.AF_Ready_For_PO_Entry_Currency__c;
+                eachPORecord.AF_Brand__c = mypo.Brand__c;
+                eachPORecord.AF_Unilever_Entity__c=mypo.AF_Unilever_Entity__r.name;
+                eachPORecord.AF_OverridePO_Adaptation_LC__c = mypo.AF_OverridePO_Adaptation_LC__c;
+                eachPORecord.AF_OverridePO_Digital_LC__c   = mypo.AF_OverridePO_Digital_LC__c;
+                eachPORecord.AF_OverridePO_Traditional_LC__c =  mypo.AF_OverridePO_Traditional_LC__c;
+                system.debug('eachPORecord...'+eachPORecord);
+                if (mapPO.containsKey(mypo.id))
+                {
+                    eachPORecord.id = mapPO.get(mypo.id);
+                    lstpoUpdate.add(eachPORecord);
+                }else
+                {
+                    lstpo.add(eachPORecord);
+                }
+            }
+        }
+        else if(AgencyEstimateIds.size()>0 && deletePOReport==true){
+            for(Id deleteRecords:AgencyEstimateIds){
+                if (mapPO.containsKey(deleteRecords))
+                {
+                    af_po_report__c deleteEachRecord = new af_po_report__c();
+                    deleteEachRecord.id = mapPO.get(deleteRecords);
+                    deletePOReportList.add(deleteEachRecord);
+                }
+            }
+        }
+        system.debug('lstpo size:'+ lstpo.size());
+        system.debug('lstpoUpdate size:'+ lstpoUpdate.size());
+        if(lstpo.size()>0)
+        {
+            database.insert(lstpo);
+        }
+        if(lstpoUpdate.size()>0)
+        {
+            database.update(lstpoUpdate);
+        }
+        system.debug('deletePOReportList...'+deletePOReportList);
+        if(deletePOReportList.size()>0){
+            delete deletePOReportList;
+        }
+        lstpo.clear();
+        lstpoUpdate.clear();
+    }
    
-              
+      /***********************************************************************************
+*  @Description: this method updates the records in po report based on oopestimate
+*  @name : CreatePOReportFromOopsEstimate
+*  @param : none.
+*  @return: none.
+*************************************************************************************/        
     public static void CreatePOReportFromOopsEstimate(Set<ID> OopsEstimateIds,Boolean deletePOReport)
     {
        system.debug('OopsEstimateIds...'+OopsEstimateIds);
@@ -186,7 +288,12 @@ global with sharing class AF_GetBaseFeePOData{
         lstpoUpdate.clear();
     }
  
-    
+    /***********************************************************************************
+*  @Description: this method will calculate the oopsvalues in po report
+*  @name : CreatePOReportFromOopsEstimate
+*  @param : none.
+*  @return: none.
+*************************************************************************************/        
     public static void CalculatePoReportValues(Map<String,String> compundKeyReportType,Set<String> CompundKeys){
         List<AF_PO_Report__c> po_Report_List = new List<AF_PO_Report__c>();
                                 set<String> baseFeeKey = new set<String>();
@@ -212,7 +319,12 @@ global with sharing class AF_GetBaseFeePOData{
                
     } 
     
-   
+    /***********************************************************************************
+*  @Description: this method will calculate the Basefees values in po report
+*  @name : calculateBaseOopsvalues
+*  @param : none.
+*  @return: none.
+*************************************************************************************/      
  public static void calculateBaseOopsvalues(List<AF_PO_Report__c> po_Report_List){
     List<AF_PO_Report__c> updateList = new List<AF_PO_Report__c>();
   set<String> uniqueKey = new set<String>();

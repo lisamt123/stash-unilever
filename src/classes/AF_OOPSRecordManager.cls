@@ -13,6 +13,8 @@ public with sharing class AF_OOPSRecordManager
 	public List<AF_OOPS_Estimate__c> OOPSEstimateCollection {get;set;}
 	public List<AF_OOPS_Actual__c> OOPSActualCollection {get;set;}
 	public AF_OOPS_Actual__c OOPSActual {get;set;} 
+        public List<AF_OOPS_Actual__c> bulkOOPSActualList {get;set;}
+        public List<AF_OOPS_Estimate__c> bulkOOPSEstimateCollection {get;set;}
 	public AF_Brand_Estimate__c BrandEstimate {get;set;}
 	public Boolean IsBulkified {get;set;} 
 	private Set<Id> BrandEstimateIds;
@@ -61,39 +63,88 @@ public with sharing class AF_OOPSRecordManager
 	{
 		CustomSettings = AF_OOPS_Settings__c.getOrgDefaults();
 	}
+	
+	   
+    public void bulkRecalculateOOPSEstimates()
+    {
+        if(bulkOOPSActualList !=null && !bulkOOPSActualList.isEmpty())
+        {
+            bulkLoadOOPSEstimateRecordsByCollection();
+            Map<ID,List<AF_OOPS_Estimate__c>> OOPSActualToEstimateCollection = new Map<ID,List<AF_OOPS_Estimate__c>>();
+            for(AF_OOPS_Estimate__c tempOOPSEstimate : bulkOOPSEstimateCollection)
+            {
+                List<AF_OOPS_Estimate__c> associatedEstimateCollection = new List<AF_OOPS_Estimate__c>();
+                if(OOPSActualToEstimateCollection.containsKey(tempOOPSEstimate.AF_OOPS_Actual__c))
+                {
+                    associatedEstimateCollection = OOPSActualToEstimateCollection.get(tempOOPSEstimate.AF_OOPS_Actual__c);
+                }
+                associatedEstimateCollection.add(tempOOPSEstimate);
+                OOPSActualToEstimateCollection.put(tempOOPSEstimate.AF_OOPS_Actual__c,associatedEstimateCollection);
+            }
+            
+            for(ID OOPSActualID : OOPSActualToEstimateCollection.keySet())
+            {
+                List<AF_OOPS_Estimate__c> associatedEstimateCollection = OOPSActualToEstimateCollection.get(OOPSActualID);
+                processOOPSEstimates(OOPSActual,associatedEstimateCollection);
+                OOPSEstimateCollection.addAll(associatedEstimateCollection);
+                try
+                {                                               
+                    update OOPSEstimateCollection;  
+                }   
+                catch(DMLException ex)
+                {    
+                    for(AF_OOPS_Estimate__c oopsEstimate : OOPSEstimateCollection)
+                    {
+                        oopsEstimate.addError(ex);
+                    }
+                    System.debug('ex: ' + ex);
+                    ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,
+                                                                          'bulkRecalculateOOPSEstimates',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());              
+                }
+            }
+            
+        }	
+    }
 	/******************************************************************************************
 *  @Description: this method is used to recalculate the OOPS Value on change of OOPS Percentage
 *  @name : RecalculateOOPSEstimates
 *  @param : none
 *  @return: none.
 **************************************************************************************************/
-	public void RecalculateOOPSEstimates()
-	{
-		if(OOPSActual != null)
-		{
-			OverallPercentage = OOPSActual.Overall__c;          
-			LoadOOPSEstimateRecordsByCollection();
-			if(OOPSEstimateCollection.size() > 0)
-			{
-				for(AF_OOPS_Estimate__c oopsEstimate : OOPSEstimateCollection)
-				{
-					oopsEstimate = OverallPercentageCalculation((Double)oopsEstimate.AF_Agreed_Base_Fees__c, (Double)OOPSActual.Overall__c,oopsEstimate,false);
-				}           
-				try
-				{                                               
-					update OOPSEstimateCollection;  
-				}   
-				catch(DMLException ex)
-				{
-					ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,'RecalculateOOPSEstimates',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
-					for(AF_OOPS_Estimate__c oopsEstimate : OOPSEstimateCollection)
-					{
-						oopsEstimate.addError(ex);
-					}
-				}           
-			}
-		}
-	}
+	public void recalculateOOPSEstimates()
+    {
+        if(OOPSActual != null)
+        {
+            overallPercentage = OOPSActual.Overall__c;          
+            LoadOOPSEstimateRecordsByCollection();
+            processOOPSEstimates(OOPSActual,OOPSEstimateCollection);
+            try
+            {                                               
+                update OOPSEstimateCollection;  
+            }   
+            catch(DMLException ex)
+            {    
+                for(AF_OOPS_Estimate__c oopsEstimate : OOPSEstimateCollection)
+                {
+                    oopsEstimate.addError(ex);
+                }
+                System.debug('ex: ' + ex);
+                ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,
+                                                                      'recalculateOOPSEstimates',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());              
+            }
+        }
+    }
+    
+     @testVisible private void processOOPSEstimates(AF_OOPS_Actual__c OOPSActual,List<AF_OOPS_Estimate__c> OOPSEstimateCollection)
+    { 
+        if( !OOPSEstimateCollection.isEmpty() )
+        {
+            for(AF_OOPS_Estimate__c oopsEstimate : OOPSEstimateCollection)
+            {
+                oopsEstimate = overallPercentageCalculation((Double)oopsEstimate.AF_Agreed_Base_Fees__c, (Double)OOPSActual.Overall__c,oopsEstimate,false);            
+            }           
+        }
+    }
 	/******************************************************************************************
 *  @Description: this method is used to insert the OOPSactual record from BrandEstimate
 *  @name : LoadOOPActualSingleRecord
@@ -182,6 +233,8 @@ public with sharing class AF_OOPSRecordManager
 			}
 		}
 	}
+	
+	
 	/******************************************************************************************
 *  @Description: this method is used to call CreateOOPSEstimateRecords method 
 *  @name : CreateOOPSEstimateRecordsByCollection
@@ -199,9 +252,25 @@ public with sharing class AF_OOPSRecordManager
 *  @return: none.
 **************************************************************************************************/
 	public void LoadOOPSEstimateRecordsByCollection()
+    {       
+        if(OOPSActual !=null)
 	{       
 		OOPSEstimateCollection = [Select a.SystemModstamp, a.Name, a.LastViewedDate, a.LastReferencedDate, a.LastModifiedDate, a.LastModifiedById, a.LastActivityDate, a.IsDeleted, a.Id, a.CreatedDate, a.CreatedById, a.AF_isComment__c, a.AF_Unilever_Entity__c, a.AF_Unilever_Entity_Column_Name__c, a.AF_Status__c, a.AF_Rate_Type__c, a.AF_Rate_Currency__c, a.AF_Quarter__c, a.AF_Overall_OOPS__c, a.AF_OOPS_Actual__c, a.AF_Locked__c, a.AF_Is_Crossborder_Wk__c, a.AF_IsCrossBorder__c, a.AF_Fiscal_Year__c, a.AF_Estimate__c, a.AF_EstimateLocal__c, a.AF_Brand_Estimate__c, a.AF_Archived__c, a.AF_Agreed_Base_Fees__c, a.AF_Agency_Spot_Rate__c, a.AF_Agency_Exchange_Rate__c, a.AF_Agency_Entity__c, a.AF_Agency_Entity_Column_Name__c, a.AF_Agency_Account__c From AF_OOPS_Estimate__c a where AF_OOPS_Actual__c = : OOPSActual.Id];     
 	}
+    }
+	public void bulkLoadOOPSEstimateRecordsByCollection()
+    {   
+        if(bulkOOPSActualList!=null && !bulkOOPSActualList.isEmpty() )
+        {    
+            bulkOOPSEstimateCollection = [Select a.SystemModstamp, a.Name, a.LastViewedDate, a.LastReferencedDate, a.LastModifiedDate, a.LastModifiedById, a.LastActivityDate,
+                                          a.IsDeleted, a.Id, a.CreatedDate, a.CreatedById, a.AF_isComment__c, a.AF_Unilever_Entity__c, a.AF_Unilever_Entity_Column_Name__c, 
+                                          a.AF_Status__c, a.AF_Rate_Type__c, a.AF_Rate_Currency__c, a.AF_Quarter__c, a.AF_Overall_OOPS__c, a.AF_OOPS_Actual__c, 
+                                          a.AF_Locked__c, a.AF_Is_Crossborder_Wk__c, a.AF_IsCrossBorder__c, a.AF_Fiscal_Year__c, a.AF_Estimate__c, a.AF_EstimateLocal__c, 
+                                          a.AF_Brand_Estimate__c, a.AF_Archived__c, a.AF_Agreed_Base_Fees__c, a.AF_Agency_Spot_Rate__c, a.AF_Agency_Exchange_Rate__c, 
+                                          a.AF_Agency_Entity__c, a.AF_Agency_Entity_Column_Name__c, a.AF_Agency_Account__c FROM AF_OOPS_Estimate__c a 
+                                          WHERE AF_OOPS_Actual__c in : bulkOOPSActualList LIMIT 50000];
+        }     
+    }
 	/******************************************************************************************
 *  @Description: this method is used to create OOPSEstimate records 
 *  @name : CreateOOPSEstimateRecords

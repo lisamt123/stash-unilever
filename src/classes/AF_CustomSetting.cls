@@ -1,3 +1,12 @@
+/*****************************************************************************************************************************
+   @Author :Cognizant
+   @name : AF_CustomSetting
+   @CreateDate : 22/8/2014
+   @Description : This is a controller class used in the AF_CustomSetting page to 
+   @               display all the custom setting used in the Agency fees application 
+   @Version : 1.0
+   @reference : none
+  ****************************************************************************************************************************/
 public with sharing class AF_CustomSetting{
     
     public SettingProxy setting {get; set;}
@@ -22,7 +31,12 @@ public with sharing class AF_CustomSetting{
     public List<AF_AnnualBonus_Qual__c> annualBonusQualList{get;set;}
     public AF_OOPS_Settings__c oopsPercentage{get;set;}
     public AF_Links__c afLinks{get;set;}
-    
+     /***********************************************************************************
+*  @Description: this contructor method will refer the custom setting 
+*  @name : AF_CustomSetting
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public AF_CustomSetting()
     {
         dummyList = new List<AF_AnnualBonus_Qual__c>();
@@ -67,50 +81,132 @@ public with sharing class AF_CustomSetting{
         
         
     } 
-    
+      /***********************************************************************************
+*  @Description: this method will get the QuarterlyBonus
+*  @name : submitCustomSetting
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitCustomSetting(){
     system.debug('inside method');
     update setting.getQuarterlyBonus();
     
     }
+       /***********************************************************************************
+*  @Description: this method will get the triggerDate
+*  @name : submitTriggerDate
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitTriggerDate(){
     upsert emailAlerts.gettriggerDate();
     }
+     /***********************************************************************************
+*  @Description: this method will get the AgencyEmailAlerts
+*  @name : submitAgencyEmailAlerts
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitAgencyEmailAlerts(){
     upsert emailAlerts.getAgencyEmailAlerts();
     }
+    /***********************************************************************************
+*  @Description: this method will get the AgencyBonus
+*  @name : submitAgencyBonusMap
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitAgencyBonusMap(){
     upsert emailAlerts.getAgencyBonus();
     }
+    /***********************************************************************************
+*  @Description: this method will get the LinkList
+*  @name : submitBonusLink
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitBonusLink(){
     upsert bonusLinkList;
     }
+     /***********************************************************************************
+*  @Description: this method will get the DummyID
+*  @name : submitDummyUserId
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitDummyUserId(){
     upsert emailAlerts.getDummyID();
     }
+     /***********************************************************************************
+*  @Description: this method will get the CMCORights
+*  @name : submitAFCMCO
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitAFCMCO(){
     upsert emailAlerts.getCMCORights();
     }
+    /***********************************************************************************
+*  @Description: this method will get the CatFinance
+*  @name : submitCatFinThreshold
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitCatFinThreshold(){
     upsert emailAlerts.getCatFinance();
     }
+     /***********************************************************************************
+*  @Description: this method will get the BrandtriggerDate
+*  @name : submitbrandTriggerDate
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitbrandTriggerDate(){
     upsert emailAlerts.getBrandtriggerDate();
     }
+     /***********************************************************************************
+*  @Description: this method will get the BonusQuarterly
+*  @name : submitBonusQuarterly
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitBonusQuarterly(){
     upsert emailAlerts.getBonusQuarterly();
     }
-   
+    /***********************************************************************************
+*  @Description: this method will get the AnnualBonus
+*  @name : submitAnnualBonusQual
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitAnnualBonusQual(){
     upsert emailAlerts.getAnnualBonus();
     }
+     /***********************************************************************************
+*  @Description: this method will get the OopsPercent
+*  @name : submitoopsPercentage
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitoopsPercentage(){
     system.debug('inside oops...');
     update emailAlerts.getOopsPercent();
     }
+    /***********************************************************************************
+*  @Description: this method will get the AFLinks
+*  @name : submitAFLinks
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void submitAFLinks(){
     upsert emailAlerts.getAFLinks();
     }
+    /***********************************************************************************
+*  @Description: this method is used to pass the date parameters to string
+*  @name : dateConversionMethod
+*  @param : none.
+*  @return: string.
+*************************************************************************************/
     public  static String dateConversionMethod(String quarter){
         List<String> dateDisplay = new List<String>();
         String finalDate='';
@@ -124,7 +220,12 @@ public with sharing class AF_CustomSetting{
         system.debug('dateDisplayddddddd'+dateDisplay+'finalDate'+finalDate);
         return finalDate;
         }
-    
+     /***********************************************************************************
+*  @Description: this method is used wrap the class for custom setting
+*  @name : SettingProxy
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public class SettingProxy {
         
         public String Name {get;set;}
@@ -132,7 +233,12 @@ public with sharing class AF_CustomSetting{
         public Decimal Stretching {get;set;}
         public Decimal Outstanding {get;set;}
         public id id{get;set;}
-        
+         /***********************************************************************************
+*  @Description: this method is used wrap the AF_QuarterlyBonus__c  custom setting
+*  @name : SettingProxy
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
         public SettingProxy(AF_QuarterlyBonus__c QB) {
             this.id = QB.id;
             this.Name = QB.Name;
@@ -140,7 +246,12 @@ public with sharing class AF_CustomSetting{
             this.Stretching = QB.Stretching__c;
             this.Outstanding = QB.Outstanding__c;
         }
-        
+            /***********************************************************************************
+*  @Description: this method is used wrap the QuarterlyBonus  custom setting
+*  @name : AF_QuarterlyBonus__c
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
         public AF_QuarterlyBonus__c getQuarterlyBonus() {
             system.debug('this.Min...'+this.Min);
             return new AF_QuarterlyBonus__c(
@@ -200,7 +311,12 @@ public with sharing class AF_CustomSetting{
         public String BrandTriggerId{get;set;}
         public String BrandTriggerDate{get;set;}
         public Boolean Brandcurrency{get;set;}
-        
+        /***********************************************************************************
+*  @Description: this is wrapper class for the  custom setting
+*  @name : AgencyEmailAlertsProxy
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
         
         public AgencyEmailAlertsProxy(AF_AgencyEmailAlerts__c AE,AF_TriggerDate__c TD,DummyUser__c DU,AF_OOPS_Settings__c oops,AF_Links__c link,AF_AnnualBonus_Qual__c qual,AF_AnnualBonus_Qual__c qual1,AF_Agency_Bonus_Access__c agencyBonus,AF_CMCO__c cmco,AF_CatFinanceThreshold__c catFin,AF_BonusQuarterly__c bquart,AF_BrandEstimate_TriggerDate__c triggerDate) {
             this.AgencyEmailid = AE.id;
@@ -249,7 +365,12 @@ public with sharing class AF_CustomSetting{
             //system.debug('BonusQuartQ1bbbbb '+BonusQuartQ1 +'BonusQuartQ2 '+BonusQuartQ2 );
         }
         
-                      
+        /***********************************************************************************
+*  @Description: this method is used to wrap the BrandtriggerDate
+*  @name : AF_BrandEstimate_TriggerDate__c
+*  @param : none.
+*  @return: none.
+*************************************************************************************/               
         public AF_BrandEstimate_TriggerDate__c getBrandtriggerDate() {
             
             return new AF_BrandEstimate_TriggerDate__c(
@@ -258,6 +379,12 @@ public with sharing class AF_CustomSetting{
                 AF_Trigger_Date__c = date.parse(this.BrandTriggerDate)
             );
         }
+         /***********************************************************************************
+*  @Description: this method is used to wrap the AgencyEmailAlerts
+*  @name : AF_AgencyEmailAlerts__c
+*  @param : none.
+*  @return: none.
+*************************************************************************************/     
         public AF_AgencyEmailAlerts__c getAgencyEmailAlerts() {
             
             return new AF_AgencyEmailAlerts__c(
@@ -269,7 +396,12 @@ public with sharing class AF_CustomSetting{
                 Q4__c = date.parse(this.Q4)
             );
         }
-        
+         /***********************************************************************************
+*  @Description: this method is used to wrap the triggerDate
+*  @name : AF_TriggerDate__c
+*  @param : none.
+*  @return: none.
+*************************************************************************************/  
         public AF_TriggerDate__c gettriggerDate() {
             
             return new AF_TriggerDate__c(
@@ -277,7 +409,12 @@ public with sharing class AF_CustomSetting{
                 Date__c = date.parse(this.triggerDate)
             );
         }
-        
+        /***********************************************************************************
+*  @Description: this method is used to wrap the DummyID
+*  @name : DummyUser__c
+*  @param : none.
+*  @return: none.
+*************************************************************************************/  
         public DummyUser__c getDummyID() {
             
             return new DummyUser__c(
@@ -285,7 +422,12 @@ public with sharing class AF_CustomSetting{
                 User_id__c=this.dummyUserId
             );
         }
-        
+        /***********************************************************************************
+*  @Description: this method is used to wrap the OopsPercent
+*  @name : AF_OOPS_Settings__c
+*  @param : none.
+*  @return: none.
+*************************************************************************************/  
         public AF_OOPS_Settings__c getOopsPercent() {
             
             return new AF_OOPS_Settings__c(
@@ -293,7 +435,12 @@ public with sharing class AF_CustomSetting{
                 Overall_Percentage__c=this.oopsPercentage
             );
         }
-        
+        /***********************************************************************************
+*  @Description: this method is used to wrap the AFLinks
+*  @name : AF_Links__c
+*  @param : none.
+*  @return: none.
+*************************************************************************************/  
         public AF_Links__c getAFLinks() {
             
             return new AF_Links__c(
@@ -301,7 +448,12 @@ public with sharing class AF_CustomSetting{
                 AF_Community_Link__c=this.links
             );
         }
-        
+       /***********************************************************************************
+*  @Description: this method is used to wrap the AnnualBonus
+*  @name : getAnnualBonus
+*  @param : none.
+*  @return: none.
+*************************************************************************************/   
         public List<AF_AnnualBonus_Qual__c> getAnnualBonus() {
             List<AF_AnnualBonus_Qual__c> annualBonus = new List<AF_AnnualBonus_Qual__c>();
             AF_AnnualBonus_Qual__c AB = new AF_AnnualBonus_Qual__c();
@@ -327,7 +479,12 @@ public with sharing class AF_CustomSetting{
             system.debug('annualBonus...'+annualBonus);
             return annualBonus;
         }
-        
+         /***********************************************************************************
+*  @Description: this method is used to wrap the AgencyBonus
+*  @name : AF_Agency_Bonus_Access__c
+*  @param : none.
+*  @return: none.
+*************************************************************************************/   
         public AF_Agency_Bonus_Access__c getAgencyBonus() {
             
             return new AF_Agency_Bonus_Access__c(
@@ -338,7 +495,12 @@ public with sharing class AF_CustomSetting{
                 
             );
         }
-        
+          /***********************************************************************************
+*  @Description: this method is used to wrap the CMCORights
+*  @name : AF_CMCO__c
+*  @param : none.
+*  @return: none.
+*************************************************************************************/   
         public AF_CMCO__c getCMCORights() {
             
             return new AF_CMCO__c(
@@ -346,7 +508,12 @@ public with sharing class AF_CustomSetting{
                 AF_CMCO_Rights__c=this.cmcoRights
             );
         }
-        
+        /***********************************************************************************
+*  @Description: this method is used to wrap the CatFinance
+*  @name : AF_CatFinanceThreshold__c
+*  @param : none.
+*  @return: none.
+*************************************************************************************/   
         public AF_CatFinanceThreshold__c getCatFinance() {
             
             return new AF_CatFinanceThreshold__c(
@@ -354,7 +521,12 @@ public with sharing class AF_CustomSetting{
                 AF_Date__c=date.parse(this.catFinDate)
             );
         }
-        
+         /***********************************************************************************
+*  @Description: this method is used to wrap the BonusQuarterly
+*  @name : AF_BonusQuarterly__c
+*  @param : none.
+*  @return: none.
+*************************************************************************************/   
         public AF_BonusQuarterly__c getBonusQuarterly() {
        
            

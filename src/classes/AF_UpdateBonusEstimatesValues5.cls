@@ -1,18 +1,19 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_UpdateBonusEstimatesValues5
-   @CreateDate : 13/8/2014
-   @Description : This is a controller class for trigger of BonusMatrix 
-   @			  this is used to calculate the local currency.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
-public with sharing class AF_UpdateBonusEstimatesValues5
+@Author :Cognizant
+@name : AF_OOPSRecordManagerAsyncWrapper
+@CreateDate : 17/6/2014
+@Description : This is controller class is used AF_UpdateBonusMatrix trigger.
+@			  
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
+public with sharing Class AF_UpdateBonusEstimatesValues5
 {
+	//Static Method 
 	/***********************************************************************************
-*  @Description: this method is used to calculate the local currency
+*  @Description: this method is used to create update Bonus Exchange Rates.
 *  @name : UpdateExchageRates
-*  @param : ae
+*  @param : none.
 *  @return: none.
 *************************************************************************************/
 	public static void UpdateExchageRates(list<AF_Bonus_Matrix__c> ae)
@@ -35,7 +36,7 @@ public with sharing class AF_UpdateBonusEstimatesValues5
 		Map<id,String>  matrixReadyforconversion=new Map<id,String>();
 		Map<id,String>  ReadyForPOEntryCurrency=new Map<id,String>();
 		Integer MatrixRecoundCount=0;
-		Double EURValue=0.0;
+		Double USDValue=0.0;
 		set<String> agencyCountries=new set<String>();
 		set<String> unileverCountries=new set<String>();
 		if(agencyRecords.size()>0)
@@ -60,7 +61,6 @@ public with sharing class AF_UpdateBonusEstimatesValues5
 			unileverEntityNames.put(entity.id,entity.AF_Country__c );// Add id,and its unilever Country from Entity 
 			unileverCountries.add(entity.AF_Country__c);
 		}
-		//Query for matrix Table reocrds 
 		list<AF_Matrix_Table__c> matrixRecords=[select id, AF_Agency_Country__c,AF_Matrix_Country__c,Ready_For_PO_Conversion__c,AF_Matrix_country_Currency__c,AF_Matrix_Currency_Code__c,AF_Ready_For_PO_Country__c,AF_Ready_For_PO_Country_Currency__c,AF_Ready_For_PO_Currency_Code__c,AF_Unilver_Country__c from AF_Matrix_Table__c where AF_Agency_Country__c IN : agencyCountries And AF_Unilver_Country__c IN : unileverCountries limit 50000];
 		if(matrixRecords.size()>0)
 		for(AF_Matrix_Table__c mtable:matrixRecords)
@@ -91,13 +91,6 @@ public with sharing class AF_UpdateBonusEstimatesValues5
 				mapMatrixtable.put(mtable.id,matrixCountries);
 			}     
 		}
-		// Query for USD Currency
-		AF_Currency__c USDCurrencyTable=[select id,Country_Currency__c,AF_Currency_Code__c,AF_Average_Exchange_Rate_To_EUR__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,Ready_For_PO_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and AF_Currency_Code__c=:'USD'  and AF_Fiscal_Year_new__c=:string.valueof(System.now().year())  Order by Createddate limit 1];
-		if(USDCurrencyTable!=null)
-		if(USDCurrencyTable.AF_Average_Exchange_Rate_To_EUR__c!=null)
-		{
-			EURValue=USDCurrencyTable.AF_Average_Exchange_Rate_To_EUR__c;
-		}    
 		// Query for Retrieve Currency Records
 		List<AF_Currency__c> currencyrecords=[select id,Country_Currency__c,Ready_For_PO_Exchange_Rate_To_EUR__c,AF_Currency_Code__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,AF_Average_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and Country_Currency__c IN:currncycodes  and AF_Fiscal_Year_new__c=:string.valueof(System.now().year()) limit 50000];
 		if(currencyrecords.size()>0)
@@ -109,6 +102,9 @@ public with sharing class AF_UpdateBonusEstimatesValues5
 				CurrencyMapforUSD.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_SGD_To_USD__c );
 				CurrencyMapforGBP.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_To_EUR__c );
 			}
+			If(curren.AF_Currency_Code__c=='EUR')
+			if(curren.Ready_For_PO_Exchange_Rate_To_EUR__c!=null)
+			USDValue=curren.Ready_For_PO_Exchange_Rate_To_EUR__c;
 		}
 		if(agencyRecords.size()>0)
 		for(AF_Bonus_Matrix__c agencyEst:agencyRecords)

@@ -236,4 +236,53 @@ public with sharing class AF_UpdateBrandEstimateCatApproverValues
             }
         }
     }
+    
+    public static void UpdateOopsagencyBulk(List<AF_Brand_Estimate__c> BrandRecords){
+        Map<Id,List<AF_Brand_Estimate__c>> accountToBrandRecordList = new Map<Id,List<AF_Brand_Estimate__c>>();
+    
+        for(AF_Brand_Estimate__c brandRecord : BrandRecords){
+            if(brandRecord.AF_Agency__c != null){
+                List<AF_Brand_Estimate__c> associatedBrandRecordList = new List<AF_Brand_Estimate__c>(); 
+                if(accountToBrandRecordList.containsKey(brandRecord.AF_Agency__c)){
+                    associatedBrandRecordList = accountToBrandRecordList.get(brandRecord.AF_Agency__c);
+                }
+                associatedBrandRecordList.add(brandRecord);
+                accountToBrandRecordList.put(brandRecord.AF_Agency__c,associatedBrandRecordList);
+            }
+        }
+        
+        if(!accountToBrandRecordList.isempty()){
+            for(Account lAccount : [SELECT Id,(SELECT id,name,email,AccountId FROM Contacts WHERE AF_Send_Email_Notification__c =: true)  FROM Account WHERE Id in :accountToBrandRecordList.keySet() LIMIT 50000]){
+                List<Contact> contactsList =  lAccount.contacts;    
+                if(accountToBrandRecordList.containsKey(lAccount.Id)){
+                    List<AF_Brand_Estimate__c> associatedBrandList = accountToBrandRecordList.get(lAccount.Id);
+                    for(AF_Brand_Estimate__c brand : associatedBrandList){
+                        processContact(contactsList,brand);
+                    }
+                }                                   
+            }
+        }
+    }
+    
+    public  static void processContact(List<Contact> cList,AF_Brand_Estimate__c ao)
+    {
+        if(!clist.isEmpty() && clist.size()==1){
+            if(clist[0].email != null && clist[0].email != '')
+                ao.AF_AgencyUsers1__c = clist[0].email;
+        }
+        if(!clist.isEmpty() && clist.size()==2){
+            if(clist[0].email != null && clist[0].email != '')
+                ao.AF_AgencyUsers1__c = clist[0].email;
+            if(clist[1].email != null && clist[1].email != '')
+                ao.AF_AgencyUsers2__c = clist[1].email;
+        }
+        if(!clist.isEmpty() && clist.size()>=3){
+            if(clist[0].email != null && clist[0].email != '')
+                ao.AF_AgencyUsers1__c = clist[0].email;
+            if(clist[1].email != null && clist[1].email != '')
+                ao.AF_AgencyUsers2__c = clist[1].email;
+            if(clist[2].email != null && clist[2].email != '')
+                ao.AF_AgencyUsers3__c = clist[2].email;
+        }
+    }
 }

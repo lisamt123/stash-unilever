@@ -1,17 +1,42 @@
+/*****************************************************************************************************************************
+   @Author :Cognizant
+   @name : AF_Utils
+   @CreateDate : 2/6/2014
+   @Description : This is a common class used in the application 
+   @Version : 1.0
+   @reference : none
+  ****************************************************************************************************************************/
 public with sharing class AF_Utils
 {
     //help methods
+    /***********************************************************************************
+*  @Description: this method is used to get the Brandestimate  record type
+*  @name : getRecordId
+*  @param : none.
+*  @return: none.
+*************************************************************************************/	 
     public static Id getRecordId(string pRecordType)
     {
         return Schema.SObjectType.AF_Brand_Estimate__c.getRecordTypeInfosByName().get(pRecordType).getRecordTypeId();   
     }
     
     //help methods
+    /***********************************************************************************
+*  @Description: this method is used to get the entity record type
+*  @name : getEntityRecordId
+*  @param : none.
+*  @return: none.
+*************************************************************************************/	 
     public static Id getEntityRecordId(string pRecordType)
     {
         return Schema.SObjectType.AF_Entity__c.getRecordTypeInfosByName().get(pRecordType).getRecordTypeId();   
     }
-    
+     /***********************************************************************************
+*  @Description: this method is used to get the BonusResult record type
+*  @name : getBonusResRecordId
+*  @param : none.
+*  @return: none.
+*************************************************************************************/	 
     public static Id getBonusResRecordId(string pRecordType)
     {
         return Schema.SObjectType.AF_Bonus_Results__c.getRecordTypeInfosByName().get(pRecordType).getRecordTypeId();   
@@ -25,7 +50,12 @@ public with sharing class AF_Utils
         
         return valueToReturn;
     }
-    
+     /***********************************************************************************
+*  @Description: this method is check the resource from static resource and returns the string
+*  @name : getResourceURL
+*  @param : none.
+*  @return: string.
+*************************************************************************************/	  
     // Pass the resource name
     public static String getResourceURL(String resourceName){
 
@@ -54,6 +84,12 @@ public with sharing class AF_Utils
 
     }
     
+      /***********************************************************************************
+*  @Description: this method is to map the sobjects id to it's corresponding object 
+*  @name : ConvertMapValuesToList
+*  @param : none.
+*  @return: list.
+*************************************************************************************/	  
     public static List<sObject> ConvertMapValuesToList(Map<Id,sObject> sObjectMap)
     {
         List<sObject> sObjectList = new List<sObject>(); 
@@ -63,7 +99,12 @@ public with sharing class AF_Utils
         }
         return sObjectList;
     }
-    
+    /***********************************************************************************
+*  @Description: this method is to check the entity id 
+*  @name : EntityNameValue
+*  @param : none.
+*  @return: string.
+*************************************************************************************/	  
     public static string EntityNameValue(string entityId)
     {
         string result = null;

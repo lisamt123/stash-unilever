@@ -9,6 +9,26 @@
   ****************************************************************************************************************************/
 public with sharing Class AF_UpdateOopsEstimatesValues5
 {
+		static set<id>   AgencyEntity= new set<id>();
+		static set<id>   unileverEntity=new set<id>();
+		static set<String> fYear=new set<String>();
+		static Map<id ,String> AgencyEntityNames=new Map<id,String>();
+		static Map<id ,String> unileverEntityNames=new Map<id,String>();
+		static List<string> matrixCountries=new list<string>();
+		static Map<id,list<string>>  mapMatrixtable=new Map<id,list<string>>();
+		static Map<id,string> mapMatrixcountry=new Map<id,string>();
+		static Map<id,string> mapReadyForPOCountry=new Map<id,string>();
+		static Map<string,Double>  CurrencyMap=new  Map<string,Double>();
+		static Map<string,Double>  CurrencyMapforUSD=new  Map<string,Double>();
+		static Map<string,Double>  CurrencyMapforGBP=new  Map<string,Double>();
+		static set<string>  currncycodes=new set<string>();
+		static list<string> matrixString;
+		static Map<id,String>  matrixDataEntryCurrency=new Map<id,String>();
+		static Map<id,String>  matrixReadyforconversion=new Map<id,String>();
+		static Map<id,String>  ReadyForPOEntryCurrency=new Map<id,String>();
+		static Integer MatrixRecoundCount=0;
+		static set<String> agencyCountries=new set<String>();
+		static set<String> unileverCountries=new set<String>();
 	/***********************************************************************************
 *  @Description: this method is used to calculate the local currency of OOPSEstimate
 *  @name : UpdateExchageRates
@@ -17,28 +37,7 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 *************************************************************************************/	
 	public static void UpdateExchageRates(list<AF_OOPS_Estimate__c> ae)
 	{
-		set<id>   AgencyEntity= new set<id>();
-		set<id>   unileverEntity=new set<id>();
-		set<String> fYear=new set<String>();
-		Map<id ,String> AgencyEntityNames=new Map<id,String>();
-		Map<id ,String> unileverEntityNames=new Map<id,String>();
 		List<AF_OOPS_Estimate__c> agencyRecords=ae;
-		List<string> matrixCountries=new list<string>();
-		Map<id,list<string>>  mapMatrixtable=new Map<id,list<string>>();
-		Map<id,string> mapMatrixcountry=new Map<id,string>();
-		Map<id,string> mapReadyForPOCountry=new Map<id,string>();
-		Map<string,Double>  CurrencyMap=new  Map<string,Double>();
-		Map<string,Double>  CurrencyMapforUSD=new  Map<string,Double>();
-		Map<string,Double>  CurrencyMapforGBP=new  Map<string,Double>();
-		set<string>  currncycodes=new set<string>();
-		list<string> matrixString;
-		Map<id,String>  matrixDataEntryCurrency=new Map<id,String>();
-		Map<id,String>  matrixReadyforconversion=new Map<id,String>();
-		Map<id,String>  ReadyForPOEntryCurrency=new Map<id,String>();
-		Integer MatrixRecoundCount=0;
-		
-		set<String> agencyCountries=new set<String>();
-		set<String> unileverCountries=new set<String>();
 		if(agencyRecords.size()>0)
 		for(AF_OOPS_Estimate__c agencyEst:agencyRecords)
 		{   
@@ -99,15 +98,9 @@ public with sharing Class AF_UpdateOopsEstimatesValues5
 				mapMatrixtable.put(mtable.id,matrixCountries);
 			}     
 		}
-		// Query for USD Currency
-		AF_Currency__c USDCurrencyTable;
-		try{
-			USDCurrencyTable=[select id,Country_Currency__c,AF_Currency_Code__c,AF_Average_Exchange_Rate_To_EUR__c,Ready_For_PO_Exchange_Rate_SGD_To_USD__c,Ready_For_PO_Exchange_Rate_To_EUR__c from AF_Currency__c where Locked__c=:false and AF_Currency_Code__c=:'USD'  and AF_Fiscal_Year_new__c IN :fYear  Order by Createddate limit 1];
-		}
-		catch(Exception e){
-		ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_UpdateOopsEstimatesValues5','AF_UpdateOopsEstimatesValues5',e.getMessage(),e.getTypeName(),e.getStackTraceString());
-		}      
-		  
+		retrieveCurrency(agencyRecords,matrixRecords);
+	}
+	public static void retrieveCurrency(List<AF_OOPS_Estimate__c> agencyRecords,List<AF_Matrix_Table__c> matrixRecords){
 		// Query for Retrieve Currency Records
 		List<AF_Currency__c> currencyrecords;
 		try{    

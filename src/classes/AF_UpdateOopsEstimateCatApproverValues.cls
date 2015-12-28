@@ -19,12 +19,9 @@ public with sharing class AF_UpdateOopsEstimateCatApproverValues
 	{
 		List<string> BrandStrings=new list<String>();
 		list<id> userids=new list<id>();
-		String DummyUserid;
 		set<id> brandids=new set<id>();
 		Map<id,string> brandMap=new Map<id,String>();
 		List<AF_Category_Brand__c> CatBrands=new  List<AF_Category_Brand__c>();
-		DummyUser__c Dummy = DummyUser__c.getOrgDefaults();
-		DummyUserid=Dummy.User_id__c;
 		if(BrandRecords.size()>0)
 		for(AF_OOPS_Actual__c br:BrandRecords)
 		{
@@ -65,7 +62,17 @@ public with sharing class AF_UpdateOopsEstimateCatApproverValues
 					}
 				}    
 			} 
-			if(userids.size()==0)
+			processUsers(userids,Brandest);
+		}
+			
+		
+	}
+	
+	public  static void processUsers(List<Id> userids,AF_OOPS_Actual__c Brandest){
+		String DummyUserid;
+		DummyUser__c Dummy = DummyUser__c.getOrgDefaults();
+		DummyUserid=Dummy.User_id__c;
+		if(userids.size()==0)
 			Brandest.addError('There are no user records with this Brand');
 			else if(userids.size()==1)
 			{
@@ -107,7 +114,6 @@ public with sharing class AF_UpdateOopsEstimateCatApproverValues
 				Brandest.AF_Cat_Finance_Approver_4__c=userids[3];
 				Brandest.AF_Cat_Finance_Approver_5__c=userids[4];
 			}
-		}
 	}
 	/***********************************************************************************
 *  @Description: this method is used to populate the Agency Users for OOPS Actual
@@ -115,37 +121,59 @@ public with sharing class AF_UpdateOopsEstimateCatApproverValues
 *  @param : BrandRecords
 *  @return: none.
 *************************************************************************************/
-	public Static void UpdateOopsagency(AF_OOPS_Actual__c BrandRecords)
-	{
-		AF_OOPS_Actual__c ao = BrandRecords;
-		if(ao.AF_Agency_lk__c != null)
-		{
-			list<contact> clist = new list<contact>();
-			for(contact c : [select id,name,email,accountid from contact where accountid =: ao.AF_Agency_lk__c and AF_Send_Email_Notification__c =: true])
-			{
-				clist.add(c);
-			}
-			if(clist.size() > 0 && clist.size()==1)
-			{
-				if(clist[0].email != null && clist[0].email != '')
-				ao.AF_AgencyUsers1__c = clist[0].email;
-			}
-			if(clist.size() > 0 && clist.size()==2)
-			{
-				if(clist[0].email != null && clist[0].email != '')
-				ao.AF_AgencyUsers1__c = clist[0].email;
-				if(clist[1].email != null && clist[1].email != '')
-				ao.AF_AgencyUsers2__c = clist[1].email;
-			}
-			if(clist.size() > 0 && clist.size()>=3)
-			{
-				if(clist[0].email != null && clist[0].email != '')
-				ao.AF_AgencyUsers1__c = clist[0].email;
-				if(clist[1].email != null && clist[1].email != '')
-				ao.AF_AgencyUsers2__c = clist[1].email;
-				if(clist[2].email != null && clist[2].email != '')
-				ao.AF_AgencyUsers3__c = clist[2].email;
-			}
-		}
-	}
+	
+	public static void UpdateOopsagencyBulk(List<AF_OOPS_Actual__c> BrandRecords)
+    {
+        Map<Id,List<AF_OOPS_Actual__c>> accountToBrandRecordList = new Map<Id,List<AF_OOPS_Actual__c>>();
+    
+        for(AF_OOPS_Actual__c brandRecord : BrandRecords){
+            if(brandRecord.AF_Agency_lk__c != null){
+                List<AF_OOPS_Actual__c> associatedBrandRecordList = new List<AF_OOPS_Actual__c>(); 
+                if(accountToBrandRecordList.containsKey(brandRecord.AF_Agency_lk__c)){
+                    associatedBrandRecordList = accountToBrandRecordList.get(brandRecord.AF_Agency_lk__c);
+                }
+                associatedBrandRecordList.add(brandRecord);
+                accountToBrandRecordList.put(brandRecord.AF_Agency_lk__c,associatedBrandRecordList);
+            }
+        }
+        
+        if(!accountToBrandRecordList.isEmpty()){
+            for(Account lAccount : [SELECT Id,(SELECT id,name,email,AccountId FROM Contacts WHERE AF_Send_Email_Notification__c =: true)  FROM Account WHERE Id in :accountToBrandRecordList.keySet() LIMIT 50000]){
+                List<Contact> contactsList =  lAccount.contacts;    
+                if(accountToBrandRecordList.containsKey(lAccount.Id)){
+                    List<AF_OOPS_Actual__c> associatedBrandList = accountToBrandRecordList.get(lAccount.Id);
+                    for(AF_OOPS_Actual__c brand : associatedBrandList){
+                        processContact(contactsList,brand);
+                    }
+                }                                   
+            }
+        }
+    }
+    
+    public  static void processContact(List<Contact> cList,AF_OOPS_Actual__c ao){
+        if(!clist.isEmpty() && clist.size()==1){
+            if(clist[0].email != null && clist[0].email != ''){
+                ao.AF_AgencyUsers1__c = clist[0].email;
+            }
+        }
+        if(!clist.isEmpty() && clist.size()==2){
+            if(clist[0].email != null && clist[0].email != ''){
+                ao.AF_AgencyUsers1__c = clist[0].email;
+            }
+            if(clist[1].email != null && clist[1].email != ''){
+                ao.AF_AgencyUsers2__c = clist[1].email;
+            }
+        }
+        if(!clist.isEmpty() && clist.size()>=3){
+            if(clist[0].email != null && clist[0].email != ''){
+                ao.AF_AgencyUsers1__c = clist[0].email;
+            }
+            if(clist[1].email != null && clist[1].email != ''){
+                ao.AF_AgencyUsers2__c = clist[1].email;
+            }
+            if(clist[2].email != null && clist[2].email != ''){
+                ao.AF_AgencyUsers3__c = clist[2].email;
+            }
+        }
+    }
 }

@@ -1,3 +1,10 @@
+<!--  
+   *************************************************************************
+   *@Description:This page is used to input AnnualBonus Figures 
+   *@Author: Cognizant
+   *@Created Date: 20/07/2014 
+   *************************************************************************
+   -->
 <apex:page controller="AF_AnnualBonus" showHeader="false" sidebar="false" docType="HTML-5.0">
 
 <!-- Common_Style File Start -->
@@ -11,7 +18,7 @@
 <script>  
  $( function() {
     $('.two-digits').keyup(function(){
-        //alert('Hi');
+        
         if($(this).val().indexOf('.')!=-1){         
             if($(this).val().split(".")[1].length > 2){                
                 if( isNaN( parseFloat( this.value ) ) ) return;
@@ -27,7 +34,7 @@
       
      if (e.which != 46 && e.which > 31 && (e.which < 48 || e.which > 57) && (e.which < 43 || e.which > 45)){
         
-        //$("#errmsg").html("Digits Only").show().fadeOut("slow");
+        
         alert("Please enter numbers only.");
                return false;
     }
@@ -145,9 +152,7 @@
   </apex:facet>
  </apex:column>
  <apex:column headerValue="Bonusable Fees" styleClass="wid50P">
-<!--<apex:outputText value="{0,number,###,###,###}">
-          <apex:param value="{!QB.total_bonus_fees}"/>
- </apex:outputText>-->
+
  <apex:outputPanel >
  <apex:outputPanel rendered="{!AND(IsEditable,NOT(QB.bonusResObj.AF_Locked__c))}">
  <apex:inputText value="{!QB.total_bonus_fees}" rendered="{!IF(QB.countryCount>1,'true','false')}">
@@ -332,8 +337,7 @@
                
                 <apex:inputtext value="{!renum.renumRating}" rendered="{!AND(NOT(renum.Locked),NOT(isAgency))}" onFocus="javascript:this.maxLength=2;"   id="renum2" onkeypress="return isNumberKey(event)"  style="text-align: center;font-size: 16px;width:60px;">
                     <div class="regTitlecont2" id="renum3"></div>
-                       <!-- <apex:actionSupport event="onchange" action="{!Calculate_Remun2}" reRender="renum4,renum6" >
-                        </apex:actionSupport>-->
+                       
                 </apex:inputtext>
             </apex:outputpanel>
         </apex:column>

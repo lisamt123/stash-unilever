@@ -1,3 +1,12 @@
+/*****************************************************************************************************************************
+   @Author :Cognizant
+   @name : af_usersearch
+   @CreateDate : 17/6/2014
+   @Description : This is used to display the user details in ASC based on their lastname
+   @			  
+   @Version : 1.0
+   @reference : none
+  ****************************************************************************************************************************/
 public with sharing class af_usersearch {
     public String firstname {get;set;}
     public String lastname {get;set;}
@@ -14,7 +23,12 @@ public with sharing class af_usersearch {
     get  { if (sortDir == null) {  sortDir = 'asc'; } return sortDir;  }
     set;
   }
-
+/***********************************************************************************
+*  @Description: this method is to sort in by lastname 
+*  @name : sortField
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
   // the current field to sort by. defaults to last name
   public String sortField {
     get  { if (sortField == null) {sortField = 'lastName'; } return sortField;  }
@@ -32,15 +46,25 @@ public with sharing class af_usersearch {
     soql = 'select id,firstname, lastname,email,name from user where lastname LIKE \'a%\'';
     runQuery();
   }
-
+/***********************************************************************************
+*  @Description: this method is to sort in ASC 
+*  @name : toggleSort
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
   // toggles the sorting of query from asc<-->desc
   public void toggleSort() {
     // simply toggle the direction
-    sortDir = sortDir.equals('asc') ? 'desc' : 'asc';
+    sortDir = 'asc'.equals(sortDir)? 'desc' : 'asc';
     // run the query again
     runQuery();
   }
-
+/***********************************************************************************
+*  @Description: this method is to query the users from the database and display's the error message 
+*  @name : runQuery
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
   // runs the actual query
   public void runQuery() {
 
@@ -52,23 +76,28 @@ public with sharing class af_usersearch {
 
   }
 
-
+/***********************************************************************************
+*  @Description: this method is to check the user name and emails 
+*  @name : runSearch
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
   public PageReference runSearch() {
 
 
 
     soql = 'select id,firstname, lastname,email,name from user where ';
-    if (!firstName.equals(''))
+    if (!''.equals(firstName))
     soql += 'firstname LIKE \''+String.escapeSingleQuotes(firstName)+'%\'';
-    if (!lastName.equals('')){
-        if (!firstName.equals('')) soql +=' and ';
+    if (!''.equals(lastName)){
+        if (!''.equals(firstName)) soql +=' and ';
         soql += 'lastname LIKE \''+String.escapeSingleQuotes(lastName)+'%\'';
       }
-      if (!email.equals('')){
+      if (!''.equals(email)){
          if (!firstName.equals('') || !lastName.equals('') ) soql +=' and '; 
         soql += 'email LIKE \''+String.escapeSingleQuotes(email)+'%\'';
       }
-    if(!firstName.equals('') || !lastName.equals('') || !email.equals('') )
+    if(!''.equals(firstName) || !''.equals(lastName) || !''.equals(email) )
     {runQuery();}
 
     return null;

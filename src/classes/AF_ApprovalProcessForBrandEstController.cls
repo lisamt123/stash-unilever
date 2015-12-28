@@ -88,7 +88,7 @@ public with sharing class AF_ApprovalProcessForBrandEstController
 					displayPopup=false;
 					displayPopUpRej=false;
 					Approvalpopup=false;
-					ref=new pagereference('/apex/AgencyHomePage?brandvalue='+brandvalue1+CATEGORY_ASSIGNMENT+catageory1+YEAR_ASSIGNMENT+year1);
+					ref=new pagereference(AF_Constants.URL_HOMEPAGE+brandvalue1+CATEGORY_ASSIGNMENT+catageory1+YEAR_ASSIGNMENT+year1);
 					ref.setRedirect(true);
 				}
 				else
@@ -130,7 +130,7 @@ public with sharing class AF_ApprovalProcessForBrandEstController
 					displayPopup=false;
 					displayPopUpRej=false;
 					Approvalpopup=false;
-					ref=new pagereference('/apex/AgencyHomePage?brandvalue='+brandvalue1+CATEGORY_ASSIGNMENT+catageory1+YEAR_ASSIGNMENT+year1);
+					ref=new pagereference(AF_Constants.URL_HOMEPAGE+brandvalue1+CATEGORY_ASSIGNMENT+catageory1+YEAR_ASSIGNMENT+year1);
 					ref.setRedirect(true);
 				}
 				else
@@ -171,7 +171,7 @@ public with sharing class AF_ApprovalProcessForBrandEstController
 					displayPopup=false;
 					displayPopUpRej=false;
 					Approvalpopup=false;
-					ref=new pagereference('/apex/AgencyHomePage?brandvalue='+brandvalue1+CATEGORY_ASSIGNMENT+catageory1+YEAR_ASSIGNMENT+year1);
+					ref=new pagereference(AF_Constants.URL_HOMEPAGE+brandvalue1+CATEGORY_ASSIGNMENT+catageory1+YEAR_ASSIGNMENT+year1);
 					ref.setRedirect(true);
 				}
 				else
@@ -350,7 +350,7 @@ public with sharing class AF_ApprovalProcessForBrandEstController
 				displayPopUpRej=false;
 				Approvalpopup=false;
 			}
-			pagereference ref= new pagereference('/apex/AgencyHomePage?brandvalue='+brandvalue1+CATEGORY_ASSIGNMENT+catageory1+YEAR_ASSIGNMENT+year1);
+			pagereference ref= new pagereference(AF_Constants.URL_HOMEPAGE+brandvalue1+CATEGORY_ASSIGNMENT+catageory1+YEAR_ASSIGNMENT+year1);
 			ref.setredirect(true);
 			return null;
 		}
@@ -395,7 +395,7 @@ public with sharing class AF_ApprovalProcessForBrandEstController
 			displayPopup=false;
 			displayPopUpRej=false;
 			Approvalpopup=false;
-			ref=new pagereference('/apex/AgencyHomePage?brandvalue='+brandvalue1+CATEGORY_ASSIGNMENT+catageory1+YEAR_ASSIGNMENT+year1);
+			ref=new pagereference(AF_Constants.URL_HOMEPAGE+brandvalue1+CATEGORY_ASSIGNMENT+catageory1+YEAR_ASSIGNMENT+year1);
 			ref.setredirect(true);
 		} 
 		else 
@@ -492,7 +492,7 @@ public with sharing class AF_ApprovalProcessForBrandEstController
 		if(ACR.size()>0)
 		update ACR;
 		displayPopupRejComment=true;      
-		pagereference ref= new pagereference('/apex/AgencyHomePage?brandvalue='+brandvalue1+CATEGORY_ASSIGNMENT+catageory1+YEAR_ASSIGNMENT+year1);
+		pagereference ref= new pagereference(AF_Constants.URL_HOMEPAGE+brandvalue1+CATEGORY_ASSIGNMENT+catageory1+YEAR_ASSIGNMENT+year1);
 		ref.setredirect(true);
 		return null;
 	}

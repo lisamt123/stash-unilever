@@ -1,14 +1,17 @@
 /*****************************************************************************************************************************
-   @Author :Cognizant
-   @name : AF_brandEstimatehandlerHelper
-   @CreateDate : 3/11/15
-   @Description : This is a controller class for User object trigger, 
-   @			  this is used to update the latest cat finance users and agency users in BrandEstimate.
-   @Version : 1.0
-   @reference : none
-  ****************************************************************************************************************************/
+@Author :Cognizant
+@name : AF_brandEstimatehandlerHelper
+@CreateDate : 3/11/15
+@Description : This is a controller class for User object trigger, 
+@			  this is used to update the latest cat finance users and agency users in BrandEstimate.
+@Version : 1.0
+@reference : none
+****************************************************************************************************************************/
 global with sharing class AF_brandEstimatehandlerHelper{
 	global static boolean testvar=false;
+	public static Map<Id,Id> brandWorkitem = new Map<Id,Id>();
+	public static List<AF_Brand_Estimate__c> brandEstimateList = new  List<AF_Brand_Estimate__c>();
+	public static List<AF_Brand_Estimate__c> brandEstupdateList = new  List<AF_Brand_Estimate__c>();
 	/*********************************************************************************************************
 *  @Description: this method is used to update the latest catfinnace users and Agency users in BrandEstimate
 *  @name : brandEstimatehandlerMethod
@@ -20,8 +23,6 @@ global with sharing class AF_brandEstimatehandlerHelper{
 		Set<Id> brandEstIdcatfin = new Set<Id>();
 		List<AF_Brand_Estimate__c> brandEstWithAgencyList = new List<AF_Brand_Estimate__c>();
 		List<AF_Brand_Estimate__c> brandEstList = new  List<AF_Brand_Estimate__c>();
-		List<AF_Brand_Estimate__c> brandEstupdateList = new  List<AF_Brand_Estimate__c>();
-		List<AF_Brand_Estimate__c> brandEstimateList = new  List<AF_Brand_Estimate__c>();
 		list<ProcessInstanceWorkitem> workItem=new list<ProcessInstanceWorkitem>();
 		testvar=true; 
 		brandEstList = [select Id,Brand__r.Name,AF_Status_Base_Fees__c from AF_Brand_Estimate__c where Brand__r.Name IN:brandSet and AF_Active__c=true and AF_Status_Base_Fees__c!='Ready for PO'];
@@ -38,7 +39,6 @@ global with sharing class AF_brandEstimatehandlerHelper{
 			update brandEstWithAgencyList;
 		}
 		workItem  =[Select p.Id,P.ActorId,p.ProcessInstance.TargetObjectId from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId IN:brandEstIdcatfin  limit 50000];
-		Map<Id,Id> brandWorkitem = new Map<Id,Id>();
 		if(workItem.size()>0){
 			for(ProcessInstanceWorkitem  pis:workItem){
 				if(pis.ActorId!=Label.AF_Dummy_User){
@@ -46,6 +46,15 @@ global with sharing class AF_brandEstimatehandlerHelper{
 				}
 			}
 		}
+	    brandEstApprovalProcess();
+	}
+	/*********************************************************************************************************
+*  @Description: this method is used to reject and update the latest catfinance users in BrandEstimate
+*  @name : brandEstApprovalProcess
+*  @param : none
+*  @return: none.
+**************************************************************************************************************/
+	public static void brandEstApprovalProcess(){
 		for(ID wid : brandWorkitem.keySet()){
 			Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
 			req.setComments('Rejecting for change Approver'); //RejectComment

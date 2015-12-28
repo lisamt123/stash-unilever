@@ -1,3 +1,11 @@
+/*****************************************************************************************************************************
+   @Author :Cognizant
+   @name : AF_EmailToCatFinance
+   @CreateDate : 22/9/2014
+   @Description : This controller class is used to send emails to category finance based on the status
+   @Version : 1.0
+   @reference : none
+  ****************************************************************************************************************************/
 public with sharing class AF_EmailToCatFinance 
 {
     List<AF_Brand_Estimate__c> lstBrandEstimate=new list<AF_Brand_Estimate__c>();
@@ -11,6 +19,12 @@ public with sharing class AF_EmailToCatFinance
     }
     
     public boolean displayPopup {get; set;}
+    /***********************************************************************************
+*  @Description: this method will confirm email based on the permission set
+*  @name : confirm
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public PageReference confirm() 
     {       
         
@@ -63,7 +77,7 @@ public with sharing class AF_EmailToCatFinance
                     }
                     
                     
-                    if(!emailslist.isempty())
+                    if(!emailslist.isempty() && !Test.isRunningTest())
                     {     
                         Messaging.sendEmail(emailslist);
                     }
@@ -78,7 +92,12 @@ public with sharing class AF_EmailToCatFinance
         }
         return null;
     }
-    
+     /***********************************************************************************
+*  @Description: this method will close the displaypopup
+*  @name : closePopup
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void closePopup() 
         { 
            system.debug('control is inside Closepopup action method');
