@@ -532,7 +532,7 @@ ISPICKVAL(IPM_Phase__c, &apos;Market Deployment&apos;)), ISCHANGED( IPM_Target_L
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>ISPICKVAL(IPM_Project_Job_Status__c,&apos;Completed&apos;)</formula>
+        <formula>AND(ISPICKVAL(IPM_ProjectJobType__c,&apos;Phase Change&apos;),ISPICKVAL(IPM_Project_Job_Status__c,&apos;Completed&apos;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
