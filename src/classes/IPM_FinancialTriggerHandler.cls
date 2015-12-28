@@ -327,7 +327,11 @@ public with sharing class IPM_FinancialTriggerHandler
         }
             
         initialiseConsolidation(mapNewFinancials, mapOldFinancials);
-        IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved((List<IPM_Financial__c>)Trigger.New);
+   
+        //Adding system.debugs for understanding a defect root cause. Please exclude in SONAR
+        system.debug('mapNewFinancials.values()..'+mapNewFinancials.values());
+        system.debug('(List<IPM_Financial__c>)Trigger.New..'+(List<IPM_Financial__c>)Trigger.New);
+        IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved(mapNewFinancials.values());
     }
 
     /*******************************************************************************************************
