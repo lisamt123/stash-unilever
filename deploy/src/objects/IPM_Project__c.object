@@ -2031,13 +2031,17 @@ OwnerId))</formula>
         <fullName>IPM_Sub_sector__c</fullName>
         <externalId>false</externalId>
         <label>Sub sector</label>
-        <length>255</length>
-        <required>false</required>
+        <picklist>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_Target_Launch_Date__c</fullName>

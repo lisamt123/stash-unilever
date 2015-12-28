@@ -12,7 +12,8 @@
     <apex:attribute name="validationErrorMessage" type="string" description="Error message to be shown when there is validation error for financial values"/>
     <apex:attribute name="isy0GrossProfitInvalid" type="Boolean" description="Flag to check if there is validation error for y0GrossProfit value"/>
     <apex:attribute name="isy0ProfitInvalid" type="Boolean" description="Flag to check if there is validation error for Y0Profit value"/>
-     <!-- Validation Message -->
+    <apex:attribute name="project" type="IPM_Project__c" description="Current Project"/>      
+    <!-- Validation Message -->
     <apex:outputPanel id="errorPanel" rendered="{!AND(isValidationError, isInnovation)}">
         <div class="finAlertBox">
             <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
