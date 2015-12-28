@@ -3054,16 +3054,8 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Sub_sector__c</picklist>
             <values>
-                <fullName>MDW Machine Maintenance</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
-            </values>
-            <values>
-                <fullName>Machine Dishwash Adjustment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Machine Wash</fullName>
-                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
