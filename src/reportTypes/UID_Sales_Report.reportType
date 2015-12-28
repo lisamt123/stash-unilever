@@ -306,11 +306,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Local_Currency__c</field>
-            <table>Account</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Machine_Id__c</field>
             <table>Account</table>
         </columns>
@@ -769,11 +764,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>UID_Sales_Type__c</field>
-            <table>Account.Orders__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>ShippingAddress</field>
             <table>Account.Orders__r</table>
         </columns>
@@ -972,7 +962,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>UID_Invoice_Number2__c</field>
+            <field>UID_Invoice_Number__c</field>
             <table>Account.Orders__r.OrderItems</table>
         </columns>
         <columns>

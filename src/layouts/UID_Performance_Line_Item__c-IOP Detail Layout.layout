@@ -28,7 +28,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>IOP_Value__c</field>
+                <field>UID_IOP_Value__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns/>

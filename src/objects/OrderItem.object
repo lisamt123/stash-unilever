@@ -81,7 +81,7 @@
         <fullName>UID_Distributor_Value__c</fullName>
         <description>USD value of SKU</description>
         <externalId>false</externalId>
-        <formula>IF(UID_Sales_Flag__c == 0, UID_Order_Quantity__c * ListPrice, UID_Invoice_Value__c)</formula>
+        <formula>UID_Invoice_Value__c</formula>
         <label>Distributor Value</label>
         <precision>18</precision>
         <required>false</required>
