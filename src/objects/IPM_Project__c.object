@@ -2643,12 +2643,7 @@ OwnerId))</formula>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
             <value>IPM_Project__c.Clustering</value>
-        </filters>
-        <filters>
-            <field>CREATEDBY_USER</field>
-            <operation>equals</operation>
-            <value>Gautam Bhatia</value>
-        </filters>
+        </filters>       
         <label>Original Projects</label>
     </listViews>
     <nameField>
