@@ -142,7 +142,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <groupingColumn>Account.Orders__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
             <header>YTD Primary Sales Value (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/YTD_Primary_Sales_Value_USD_Mil</report>
@@ -169,7 +169,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <groupingColumn>Account.Orders__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
             <header>YTD Secondary Sales Value (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/YTD_Secondary_Sales_Value_USD_Mil</report>

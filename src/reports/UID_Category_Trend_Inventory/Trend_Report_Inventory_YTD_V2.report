@@ -15,7 +15,7 @@
         <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
         <legendPosition>Right</legendPosition>
         <location>CHART_TOP</location>
-        <secondaryGroupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Year__c</secondaryGroupingColumn>
+        <secondaryGroupingColumn>Account.Stocked_Products__r$UID_Report_Date__c</secondaryGroupingColumn>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
@@ -42,8 +42,8 @@
     </columns>
     <format>Summary</format>
     <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Year__c</field>
+        <dateGranularity>FiscalYear</dateGranularity>
+        <field>Account.Stocked_Products__r$UID_Report_Date__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
@@ -65,7 +65,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>Account.Stocked_Products__r$UID_Start_Date__c</dateColumn>
+        <interval>INTERVAL_PREVCURY</interval>
     </timeFrameFilter>
 </Report>

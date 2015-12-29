@@ -161,6 +161,7 @@
         <fields>UID_Net_Quantity__c</fields>
         <fields>UID_List_Price__c</fields>
         <fields>UID_WS_Price__c</fields>
+        <relatedList>UID_Inventory__c.UID_Material__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

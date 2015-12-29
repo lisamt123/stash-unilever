@@ -296,8 +296,8 @@ public class UID_StockCoverTriggerHelper_Test{
         
         //create trigger switch(custom settings)
         UID_TriggerSwitch__c settingTriggerSwitch = UID_TriggerSwitch__c.getOrgDefaults();
-            settingTriggerSwitch.Inventory_Trigger_Switch__c = TRUE;
-            settingTriggerSwitch.Order_Trigger_Switch__c = TRUE;
+            settingTriggerSwitch.UID_Inventory_Trigger_Switch__c = TRUE;
+            settingTriggerSwitch.UID_Order_Trigger_Switch__c = TRUE;
         database.insert(settingTriggerSwitch, FALSE);
         //create products
         testProduct00 = new Product2();

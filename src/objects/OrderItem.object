@@ -206,18 +206,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>UID_Year__c</fullName>
-        <description>Year of SKU sold</description>
-        <externalId>false</externalId>
-        <formula>TEXT(Order.UID_Year__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Year</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>UnitPrice</fullName>
         <trackHistory>false</trackHistory>
     </fields>

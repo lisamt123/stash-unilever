@@ -52,8 +52,8 @@
     </filter>
     <format>Summary</format>
     <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Account.Orders__r$UID_Year__c</field>
+        <dateGranularity>FiscalYear</dateGranularity>
+        <field>Account.Orders__r$UID_Report_Date__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
@@ -77,7 +77,7 @@
     <sortColumn>Account.Orders__r.OrderItems$UID_Order_Quantity__c</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
-        <dateColumn>Account$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>Account.Orders__r$EffectiveDate</dateColumn>
+        <interval>INTERVAL_PREVCURY</interval>
     </timeFrameFilter>
 </Report>

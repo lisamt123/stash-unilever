@@ -682,11 +682,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>UID_Material_ID_Group__c</field>
-            <table>Account.Stocked_Products__r.Stocked_Product_Summary__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>UID_Month__c</field>
             <table>Account.Stocked_Products__r.Stocked_Product_Summary__r</table>
         </columns>
@@ -743,11 +738,6 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>UID_WS_Price__c</field>
-            <table>Account.Stocked_Products__r.Stocked_Product_Summary__r</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
-            <field>UID_Year__c</field>
             <table>Account.Stocked_Products__r.Stocked_Product_Summary__r</table>
         </columns>
         <columns>

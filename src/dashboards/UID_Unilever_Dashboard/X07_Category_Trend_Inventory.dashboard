@@ -201,7 +201,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
-            <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Report_Date__c</groupingColumn>
             <header>Monthly Inventory Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Inventory/Trend_Report_Inventory_M_Q2</report>
@@ -231,7 +231,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Quarter__c</groupingColumn>
-            <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Report_Date__c</groupingColumn>
             <header>Quarterly Inventory Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Inventory/Trend_Report_Inventory_Q_Q3</report>
@@ -261,7 +261,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
-            <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Report_Date__c</groupingColumn>
             <header>Monthly Inventory Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Inventory/Trend_Report_Inventory_M_V3</report>
@@ -291,7 +291,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Quarter__c</groupingColumn>
-            <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Report_Date__c</groupingColumn>
             <header>Quarterly Inventory Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Inventory/Trend_Report_Inventory_Q_V3</report>

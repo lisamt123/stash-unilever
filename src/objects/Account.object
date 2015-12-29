@@ -8441,17 +8441,6 @@
             </values>
         </picklistValues>
         <picklistValues>
-            <picklist>Local_Currency__c</picklist>
-            <values>
-                <fullName>AUD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USD</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
             <picklist>Ownership</picklist>
             <values>
                 <fullName>Other</fullName>
@@ -9773,18 +9762,7 @@
                 <fullName>Less than 6 Months</fullName>
                 <default>false</default>
             </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Local_Currency__c</picklist>
-            <values>
-                <fullName>AUD</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USD</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
+        </picklistValues>        
         <picklistValues>
             <picklist>Ownership</picklist>
             <values>

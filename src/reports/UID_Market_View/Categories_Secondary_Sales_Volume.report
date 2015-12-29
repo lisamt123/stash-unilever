@@ -45,11 +45,6 @@
             <operator>equals</operator>
             <value>Order.UID_Secondary_Sales</value>
         </criteriaItems>
-        <criteriaItems>
-            <column>Account.Orders__r$UID_Year__c</column>
-            <operator>equals</operator>
-            <value>2015</value>
-        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
@@ -72,7 +67,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>Account.Orders__r$EffectiveDate</dateColumn>
+        <interval>INTERVAL_CURY</interval>
     </timeFrameFilter>
 </Report>

@@ -69,7 +69,7 @@ PREVGROUPVAL(OrderItem.UID_Distributor_Value__c:SUM, Order.EffectiveDate, 12 )</
     <scope>organization</scope>
     <showDetails>false</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>Account.Orders__r$EffectiveDate</dateColumn>
+        <interval>INTERVAL_PREVCURY</interval>
     </timeFrameFilter>
 </Report>

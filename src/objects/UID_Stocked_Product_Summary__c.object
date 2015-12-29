@@ -363,18 +363,6 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <fields>
-        <fullName>UID_Year__c</fullName>
-        <externalId>false</externalId>
-        <formula>TEXT(YEAR( UID_Stocked_Product__r.UID_Start_Date__c ))</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>Year</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>Stocked Product Summary</label>
     <nameField>
         <displayFormat>SPS-{0000}</displayFormat>

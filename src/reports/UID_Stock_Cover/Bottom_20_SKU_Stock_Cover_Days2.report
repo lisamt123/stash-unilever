@@ -87,7 +87,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>Account.Stocked_Products__r$UID_Start_Date__c</dateColumn>
+        <interval>INTERVAL_LASTTHISMONTH</interval>
     </timeFrameFilter>
 </Report>

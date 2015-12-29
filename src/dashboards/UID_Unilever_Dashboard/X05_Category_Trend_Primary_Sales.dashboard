@@ -78,7 +78,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <groupingColumn>Account.Orders__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
             <header>YTD Primary Sales Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Sales/Trend_Report_Primary_Sales_YTD_Q</report>
@@ -108,7 +108,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Quarter__c</groupingColumn>
-            <groupingColumn>Account.Orders__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
             <header>QTD Primary Sales Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Sales/Trend_Report_Primary_Sales_Q_Q</report>
@@ -138,7 +138,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <groupingColumn>Account.Orders__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
             <header>YTD Primary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Sales/Trend_Report_Primary_Sales_YTD_V</report>
@@ -168,7 +168,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Quarter__c</groupingColumn>
-            <groupingColumn>Account.Orders__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
             <header>QTD Primary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Sales/Trend_Report_Primary_Sales_Q_V</report>
@@ -201,7 +201,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <groupingColumn>Account.Orders__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
             <header>MTD Primary Sales Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Sales/Trend_Report_Primary_Sales_M_Q</report>
@@ -231,7 +231,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Quarter__c</groupingColumn>
-            <groupingColumn>Account.Orders__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
             <header>Quarterly Primary Sales Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Sales/Trend_Report_Primary_Sales_Q_Q_1</report>
@@ -261,7 +261,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <groupingColumn>Account.Orders__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
             <header>MTD Primary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Sales/Trend_Report_Primary_Sales_M_V</report>
@@ -291,7 +291,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Quarter__c</groupingColumn>
-            <groupingColumn>Account.Orders__r$UID_Year__c</groupingColumn>
+            <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
             <header>Quarterly Primary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Sales/Trend_Report_Primary_Sales_Q_V_1</report>

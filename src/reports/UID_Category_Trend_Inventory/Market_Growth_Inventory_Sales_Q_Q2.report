@@ -54,7 +54,7 @@ PREVGROUPVAL(UID_Stocked_Product_Summary__c.UID_Avail_Quantity__c:SUM, UID_Stock
     <scope>organization</scope>
     <showDetails>false</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>Account.Stocked_Products__r$UID_Start_Date__c</dateColumn>
+        <interval>INTERVAL_PREVCURY</interval>
     </timeFrameFilter>
 </Report>

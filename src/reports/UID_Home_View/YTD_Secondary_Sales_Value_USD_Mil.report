@@ -36,7 +36,7 @@
         <field>Account.Orders__r$Account</field>
     </columns>
     <columns>
-        <field>Account.Orders__r.OrderItems$UID_Invoice_Number2__c</field>
+        <field>Account.Orders__r.OrderItems$UID_Invoice_Number__c</field>
     </columns>
     <columns>
         <aggregateTypes>Sum</aggregateTypes>
@@ -48,17 +48,12 @@
             <operator>equals</operator>
             <value>Order.UID_Secondary_Sales</value>
         </criteriaItems>
-        <criteriaItems>
-            <column>Account.Orders__r$UID_Year__c</column>
-            <operator>equals</operator>
-            <value>2014</value>
-        </criteriaItems>
         <language>en_US</language>
     </filter>
     <format>Summary</format>
     <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Account.Orders__r$UID_Year__c</field>
+        <dateGranularity>FiscalYear</dateGranularity>
+        <field>Account.Orders__r$UID_Report_Date__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
@@ -80,7 +75,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>Account.Orders__r$EffectiveDate</dateColumn>
+        <interval>INTERVAL_PREVCURY</interval>
     </timeFrameFilter>
 </Report>

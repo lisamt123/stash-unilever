@@ -35,14 +35,6 @@
         <aggregateTypes>Sum</aggregateTypes>
         <field>Account.Orders__r.OrderItems$UID_Distributor_Value__c</field>
     </columns>
-    <filter>
-        <criteriaItems>
-            <column>Account.Orders__r$UID_Year__c</column>
-            <operator>equals</operator>
-            <value>2015</value>
-        </criteriaItems>
-        <language>en_US</language>
-    </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>MonthInYear</dateGranularity>
@@ -68,7 +60,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>Account.Orders__r$EffectiveDate</dateColumn>
+        <interval>INTERVAL_CURY</interval>
     </timeFrameFilter>
 </Report>

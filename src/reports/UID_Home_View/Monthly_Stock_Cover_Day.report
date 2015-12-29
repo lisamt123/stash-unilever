@@ -55,11 +55,6 @@
     </columns>
     <filter>
         <criteriaItems>
-            <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Year__c</column>
-            <operator>equals</operator>
-            <value>2015</value>
-        </criteriaItems>
-        <criteriaItems>
             <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Stock_Cover__c</column>
             <operator>notEqual</operator>
             <value>0</value>
@@ -91,7 +86,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>Account.Stocked_Products__r$UID_Start_Date__c</dateColumn>
+        <interval>INTERVAL_CURY</interval>
     </timeFrameFilter>
 </Report>

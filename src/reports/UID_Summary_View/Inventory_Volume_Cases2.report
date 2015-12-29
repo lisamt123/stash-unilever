@@ -39,14 +39,6 @@
         <aggregateTypes>Sum</aggregateTypes>
         <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</field>
     </columns>
-    <filter>
-        <criteriaItems>
-            <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Year__c</column>
-            <operator>equals</operator>
-            <value>2015</value>
-        </criteriaItems>
-        <language>en_US</language>
-    </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>MonthInYear</dateGranularity>
@@ -67,7 +59,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>Account.Stocked_Products__r$UID_Start_Date__c</dateColumn>
+        <interval>INTERVAL_CURY</interval>
     </timeFrameFilter>
 </Report>

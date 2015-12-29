@@ -30,7 +30,7 @@
         <field>Account.Orders__r.OrderItems$UID_Material_ID__c</field>
     </columns>
     <columns>
-        <field>Account.Orders__r.OrderItems$UID_Invoice_Number2__c</field>
+        <field>Account.Orders__r.OrderItems$UID_Invoice_Number__c</field>
     </columns>
     <columns>
         <field>Account.Orders__r$Account</field>
@@ -44,11 +44,6 @@
             <column>Account.Orders__r$RecordType</column>
             <operator>equals</operator>
             <value>Order.UID_Primary_Sales</value>
-        </criteriaItems>
-        <criteriaItems>
-            <column>Account.Orders__r$UID_Year__c</column>
-            <operator>equals</operator>
-            <value>2015</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
@@ -72,7 +67,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>Account$CreatedDate</dateColumn>
-        <interval>INTERVAL_CUSTOM</interval>
+        <dateColumn>Account.Orders__r$EffectiveDate</dateColumn>
+        <interval>INTERVAL_CURY</interval>
     </timeFrameFilter>
 </Report>
