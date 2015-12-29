@@ -36,18 +36,18 @@ function callsearch(){
 	 } 
 }
 /* Below code is to save the selected team members */
-function SubmitOnClick (objSubmitBtn) {
+function submitOnClick (objSubmitBtn) {
     objSubmitBtn.disabled = true;
     objSubmitBtn.value = 'Adding...';
     saveMembers();
 }
 /* Below code is to add the selected members */
-function SubmitAdd(objSubmitBtn){
+function submitAdd(objSubmitBtn){
    objSubmitBtn.value='Add';
    objSubmitBtn.disabled = false;
 }   
 /* Below code is to save the role of the members */
-function SubmitOnClick_Role(objSubmitBtn) {
+function submitOnClick_Role(objSubmitBtn) {
     objSubmitBtn.disabled = true;
     objSubmitBtn.value = 'Adding...';
     RoleAndCategoryMem();

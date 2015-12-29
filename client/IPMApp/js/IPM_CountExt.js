@@ -39,7 +39,7 @@ jq(document).ready(function() {
 					var objTextArea = this.document.$.body;
 					var strText = objTextArea.textContent;
 					if ((e.data.domEvent.$.keyCode == 8) || (e.data.domEvent.$.keyCode == 46) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode == 36)) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode == 35)) || (e.data.domEvent.$.keyCode == 35) || (e.data.domEvent.$.keyCode == 36) || (e.data.domEvent.$.keyCode == 37) || (e.data.domEvent.$.keyCode == 38) || (e.data.domEvent.$.keyCode == 39) || (e.data.domEvent.$.keyCode == 40)) {
-						ShowCharacterCount();
+						showCharacterCount();
 						e.cancelBubble = false;
 						e.returnValue = true;
 						return true;
@@ -51,7 +51,7 @@ jq(document).ready(function() {
 						e.stop();
 						return false;
 					} else {
-						ShowCharacterCount();
+						showCharacterCount();
 						e.cancelBubble = false;
 						e.returnValue = true;
 						return true;
@@ -67,10 +67,10 @@ jq(document).ready(function() {
 							return false;
 						}
 						if (event.data.$.keyCode == 8 || event.data.$.keyCode == 46) {
-							ShowCharacterCount();
+							showCharacterCount();
 							return true;
 						}
-						ShowCharacterCount();
+						showCharacterCount();
 					});
 					//paste event
 					this.document.on("paste", function(event) {
@@ -121,7 +121,7 @@ jq(document).ready(function() {
 							});
 							element.innerHTML = wrapper.innerHTML;
 							strText = wrapper.textContent || wrapper.innerText;
-							ShowCharacterCount(strText);
+							showCharacterCount(strText);
 						}, 100);
 					});
 				});           
@@ -137,7 +137,7 @@ jq(document).ready(function() {
         }
     };
     /* Below code is to calculate the characters remaining */
-    function ShowCharacterCount(strText) {
+    function showCharacterCount(strText) {
         // below condition for copy paste and undo redo
         if (arguments.length > 0) {
             var rem = MaxLength - parseInt(strText.length);

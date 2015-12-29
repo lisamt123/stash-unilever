@@ -78,7 +78,7 @@ function modalFunc(title, confirmMsg) {
     jq('#ipmDeleteModal .modal-title').html(title);
     jq('#ipmDeleteModal .confirmMsg').html(confirmMsg);
 }
-function UpdateCheckbox(Country, check) {
+function updateCheckbox(Country, check) {
     ActionUpdate(Country, check);
 }
 var dots;

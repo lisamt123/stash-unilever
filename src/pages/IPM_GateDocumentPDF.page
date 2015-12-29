@@ -439,9 +439,9 @@
            width:78%;
            float:right;
         }
-        .consumerImgContainer
+         .consumerImgContainer
         {
-           min-height:250px;
+           min-height:160px;
            display:block;
         }
     </style>

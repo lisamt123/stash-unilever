@@ -211,7 +211,7 @@ function hilightTaskScript(){
 	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
 
-function CallAttachDelete(attid) {
+function callAttachDelete(attid) {
     CallAttachId(attid);
 }
 
