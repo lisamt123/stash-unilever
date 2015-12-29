@@ -154,17 +154,6 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>UID_Inventory_Date__c</fields>
-        <fields>UID_Inventory_Value__c</fields>
-        <fields>UID_In_Quantity__c</fields>
-        <fields>UID_Out_Quantity__c</fields>
-        <fields>UID_Net_Quantity__c</fields>
-        <fields>UID_List_Price__c</fields>
-        <fields>UID_WS_Price__c</fields>
-        <relatedList>UID_Inventory__c.UID_Material__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <relatedList>UID_Performance_Line_Item__c.UID_Product__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>

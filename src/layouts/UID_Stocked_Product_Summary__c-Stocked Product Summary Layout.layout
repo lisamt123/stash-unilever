@@ -89,10 +89,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>UID_Year__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>UID_Sales_Date__c</field>
             </layoutItems>
         </layoutColumns>
