@@ -1,0 +1,405 @@
+<apex:page sidebar="false"  controller="Amr_SavingSummaryPageController">
+<apex:form >
+  <style>
+  
+  body{background:#fff; font-family: Verdana, Arial, sans-serif;margin:0 auto;font-size: 12px;}
+ 
+ /* Ad Main section CSS */
+.container{width:1170px; margin: 0 auto;}
+.navbar-header{background:#F6F6F6;}
+.navbar-header img{float:left;}
+.clear{clear:both;}
+.form-control { border-radius: 30px 0 0 30px;padding: 0 100px 0 8px; height: 25px;border:2px solid #dcdcdc;}
+.form-groupright {padding: 20px;float:left;padding: 20px 0 20px 150px;}
+.btn {border-radius: 30px;}
+ .btn-default {background-color:#fbf9fc;border: medium none;border-bottom-left-radius: 0;border-top-left-radius: 0;color: #1796BF;padding: 5px 10px 5px 0;font-weight:bold;font-size:12px;}
+    #myNavbar{float:right;display:inline;}
+    #myNavbar a{text-decoration:none;padding: 20px 15px 0px 20px;display:block;color:#1796bf;}
+    #myNavbar ul li {display: inline-block;list-style-type:none;color:#1796BF;font-size:12px;font-weight:bold;}
+    .caret{display: inline-block;width: 0;height: 0;vertical-align: middle;border-top: 4px dashed;border-right: 4px solid transparent;border-left: 4px solid transparent;margin-left: 5px;}
+    .admanager_text a{color:#fff !important;background: #1796bf none repeat scroll 0 0;border-radius: 30px;padding: 5px 30px 5px 5px !important;}
+    .caret1{color:#fff;margin: 0 -21px 0 20px;}
+    .subsection{background:#e1f0f5; border-bottom:solid #20b0b9 2px; padding-left:10px; padding-top: 10px;}
+    .subsection > ul {margin: 0; padding:0px}
+    .subsection ul li{display: inline-block;list-style-type:none;}
+    .subsection a{text-decoration:none;display:block;color:#1796BF;padding:2px 8px; font-size: 13px; border-top-left-radius:10px; border-top-right-radius:10px;}
+    .subsection .active a{color:#fff; background: none repeat scroll 0 0 #20b0b9;}
+    #myNavbar > ul {padding: 0 30px 0 0;}
+    
+     
+ /* Ad saving section CSS */
+ .savingsection h1{color:#3c3c3c;font-size: 23px;}
+ .submisiontext h4{margin:0px;padding: 23px 0 0 0px;color:#8B8B8B;}
+ .submisiontext input[type=text]{border: 1px solid #e6e6e6;
+    border-radius: 10px;
+    padding: 5px 10px;width: 80%;color:#20b0b9; font-size:30px;}
+    .redtxt input[type=text]{color:#FD0000;}
+    #savingvalidation{width:32%;float: left;}
+    .rightnav{width:68%;float:right;}
+    .filters h3{background: none repeat scroll 0 0 #f6f6f6;padding: 5px 10px;border-radius:5px;}
+    .swidth20{border:1px solid #e6e6e6;margin:20px 0px;border-radius:10px;overflow:hidden;}
+    .sbox_content{padding: 15px;background:#f8f8f8;}
+    .sbox_header{padding:10px;border-bottom:1px solid #e6e6e6;background:#e6e6e6;}
+     .sbox_header h3{margin:0;padding:0;font-size:14px;}
+     table, th, td {border: 1px solid #d4d4d4;border-collapse: collapse;font-size: 12px;margin-top:15px;} 
+     td {
+    padding: 5px;
+    text-align: left;}
+    th{text-align:center;padding: 5px;}
+select{width:16%;padding:5px 6px 5px 6px;}
+.Firstinput {padding: 0 0 0 116px;}
+.Firstinput input[type=text]{border:1px solid #EDEDED;border-radius:5px;}
+.secondinput input[type=text]{width:44%;border:1px solid #EDEDED;border-radius:5px;}
+.yeartxt {margin-top: 60px;font-size:20px;color: #8b8b8b;}
+.numbertxt{text-align: right;}
+.middtext{text-align: center;}
+.caret2{margin-left:5px;color:#646464;border-top: 12px dashed;border-left: 7px solid transparent;border-right: 7px solid transparent;display: inline-block;vertical-align: middle;position: relative;left:702px;}
+.caret3{border-bottom: 12px dashed;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    color: #646464;
+    display: inline-block;
+    left: 647px;
+    margin-left: 5px;
+    position: relative;
+    vertical-align: middle;}    
+  </style>
+<!---Ad Main section---->
+ 
+ <div class="container">
+ <!---ad savings section --->
+        <div class="savingsection">
+           <h1>Saving Summary</h1></div>
+           
+           
+           <div id="savingvalidation">
+           <div class="submisiontext">
+           <h4>Total Sumbissions</h4>
+           <input type="text" name="adname" value="20"/>
+           </div>
+           <div class="submisiontext txt20">
+           <h4>Total Savings</h4>
+           <input type="text" name="adname" value="$256,000"/>
+           </div>
+           <div class="yeartxt">
+           <h3>In August 2015</h3>
+           </div>
+           <div class="submisiontext">
+           <h4>Total Sumbissions</h4>
+           <input type="text" name="adname" value="0"/>
+           </div>
+           <div class="submisiontext redtxt">
+           <h4>Total Savings</h4>
+           <input type="text" name="adname" value="$0.00"/>
+           </div>
+           </div>
+           
+           
+           <div class="rightnav">
+           <div class="filters">
+             <h3>Filerts<span class="caret2"></span></h3>
+             </div>
+            
+               <div class="submittedsection">
+               <div class="sjoblist swidth20">
+                                 <div class="sbox_header">
+                                <h3>Job alerts(3)<span class="caret3"></span></h3>
+                                </div>
+                                <div class="sbox_content jobalerts">
+                                <div class="sort_dropdown">
+                                <select>
+                                <option>sort by year..</option>
+                                    </select>
+                                <span class="Firstinput"><input type="text" value=""/></span>
+                                <span class="secondinput"><input type="text" value=""/></span>
+
+                                </div>
+                                <table style="width:100%">
+                            <tr>
+                            <th></th>
+                            <th>Year</th>       
+                            <th>Month</th>
+                            <th>Ad Manager no.</th>
+                            <th colspan="1">Product type</th>
+                            <th>Details</th>        
+                          </tr>
+                              <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            <tr>
+                                <td class="middtext">1</td>
+                                <td class="middtext">2015</td>      
+                                <td class="middtext">MAY</td>
+                                <td class="numbertxt">00094098448509</td>
+                                <td>Consumern Food Items</td>
+                                <td class="middtext"><apex:commandLink value="view" action="{!showPopup}" rerender="popup"/></td>
+                            </tr>
+                            </table>
+</div>
+</div>
+</div>        
+</div>
+</div>  
+
+           <apex:outputPanel id="popup">
+                 
+                <apex:outputPanel id="popInnerOutputPnl" styleClass="customPopup" layout="block" rendered="{!displayPopUp}" >
+                     <apex:commandButton value="X" title="Close the popup" action="{!closePopup}" styleClass="closeButton" rerender="popup">
+                     </apex:commandButton>
+                     <apex:pageblock >
+                     <apex:pageblockSection >
+                      <table style="float:left; width:100%" class="savingsDetail">
+                            <tr>
+                            <th class="Year">Year</th>       
+                            <th class="Month">Month</th>
+                            <th class="prodType" colspan="1">Product type</th>
+                          </tr>
+                          <tr >
+                            <td class="mytablebodystyle Year" >2015 </td>
+                            <td class="mytablebodystyle Month">May  </td>    
+                            <td class="mytablebodystyle prodType">Consumer food item
+                            </td>
+                          </tr>
+                          </table>
+                             <br></br><br></br>
+                             <div class="prodMaster">
+                                <h3> Masters</h3>                         
+                                 <br></br>                             
+                                 <div class="block1">
+                                    <span>No.</span><br></br>
+                                    <input type ="number" value="{!saving.No_of_Masters__c}"/></div>
+                                 <div class="block2">
+                                    <span>Duration</span><br></br>
+                                    <input type ="text" value="{!saving.Duration_of_Masters__c}"/>
+                                 </div>
+                             </div>
+                             <div class="prodMaster">
+                                <h3> Films and Shoots</h3>                         
+                                 <br></br>                             
+                                 <div class="block1">
+                                    <span>Total Films</span><br></br>
+                                    <input type ="number" value="{!saving.Total_no_of_films__c}"/></div>
+                                 <div class="block2">
+                                    <span>No. of Shoot days</span><br></br>
+                                    <input type ="text" value="{!saving.No_of_shoot_days__c}"/>
+                                 </div>
+                             </div>
+                             <div class="prodMaster">
+                                <h3> Additional Films</h3>                         
+                                 <br></br>                             
+                                 <div class="block1">
+                                    <span>No.</span><br></br>
+                                    <input type ="number" value="{!saving.Shoot_Location__c}"/></div>
+                                 <div class="block2">
+                                    <span>Duration</span><br></br>
+                                    <input type ="text" value="{!saving.Duration_of_Additional_Films__c}"/>
+                                 </div>
+                             </div>
+                             <br></br><br></br>
+                             <div class="prodMaster">
+                                <h3> RAP</h3>                         
+                                 <br></br>                             
+                                 <div class="block1">
+                                    <span>No.</span><br></br>
+                                    <input type ="number" value="{!saving.Stage_RAP_engaged__c}"/></div>
+                                 <div class="block2">
+                                    <span>Duration</span><br></br>
+                                    <input type ="text" value="{!saving.Shoot_Location__c}"/>
+                                 </div>
+                             </div>
+                             
+                             </apex:pageblockSection>
+                     </apex:pageblock>
+                     <apex:commandButton value="Ok" action="{!redirectPopup}" styleClass="closeButton" rerender="popup">
+                     </apex:commandButton>
+                </apex:outputPanel>
+            </apex:outputPanel> 
+            
+                                                                
+</apex:form>
+<style type="text/css">
+.customPopup {
+    background-color: white;
+    border-style: solid;
+    border-width: 2px;
+    left: 20%;
+    padding: 10px;
+    position: absolute;
+    z-index: 9999;
+    /* These are the 3 css properties you will need to tweak so the pop 
+                            up displays in the center of the screen. First set the width. Then set 
+                            margin-left to negative half of what the width is. You can also add 
+                            the height property for a fixed size pop up.*/
+    width: 800px;
+    height: 400px;
+    top: 20%;
+}
+
+.disabledTextBox {
+    background-color: white;
+    border: 1px solid;
+    color: black;
+    cursor: default;
+    width: 150px;
+    display: table;
+    padding: 2px 1px;
+    text-align:right;
+}   
+
+.closeButton {
+    float: right;
+}
+
+.customPopup .dataCol.first.last{
+    width:100%;
+}
+
+.savingsDetail .Year, .savingsDetail .Month{
+    width: 10%;
+    min-width: 60px;
+    text-align: center;
+}
+
+.savingsDetail .prodType{
+    text-align: center;
+}
+
+.prodMaster{
+    float: left;
+    width: 30%;
+    margin: 1.5%;
+}
+
+.prodMaster h3{
+    font-size: large;
+}
+
+.prodMaster .block1{
+    width: 40%;
+    float: left;
+    margin-right: 5%;
+}
+
+.prodMaster .block2{
+    width: 55%;
+    float: left;
+}
+
+.prodMaster .block1 input, .prodMaster .block2 input{
+    width: 100%;
+    color: lightblue;
+}
+
+</style>
+
+</apex:page>

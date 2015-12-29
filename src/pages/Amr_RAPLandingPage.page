@@ -1,0 +1,291 @@
+<apex:page controller="Amr_JobPortfolioController" sidebar="false" >
+
+<apex:form >
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css"/>
+  
+  <script>
+
+  $(function() {
+    $( "#datepicker" ).datepicker();
+     $( "#datepicker1" ).datepicker();
+  });
+  </script>
+  
+  <script type="text/javascript">
+  
+      function callActionFunctionStartDate(startDate) {
+        
+        callContrlStartDate(startDate);
+       }  
+     function callActionFunctionEndDate(endDate) {
+    
+       callContrlEndDate(endDate);
+      
+    }
+  
+</script>
+    
+   <apex:pageBlock id="pbAlertId">
+       <apex:pageBlockSection title="Job Alerts">
+           <apex:pageBlockTable value="{!alertList}" var="alert">
+               <apex:column value="{!alert.New_Alert__c}" headerValue="Date"/>
+                <apex:column value="{!alert.Alert_Message__c}" headerValue="Alert Message"/>
+                <apex:column headerValue="Hide">
+                    <apex:commandLink value="Hide"  action="{!hideAlert}" reRender="pbAlertId,refreshHideButtons,showUnhideRecords1" >
+                    <apex:param name="recordId"  assignTo="{!chosenAlertId}" value="{!alert.id}"/>
+                    </apex:commandLink>
+                    </apex:column>
+           </apex:pageBlockTable>
+       </apex:pageBlockSection>
+  </apex:pageBlock>
+  
+  <apex:outputPanel id="refreshHideButtons">
+  <apex:commandButton action="{!unHideAlertShow}" value="Check Unhide Alerts" reRender="showUnhideRecords1,refreshHideButtons" rendered="{!!flagForButtons}"/>
+  <apex:commandButton action="{!unHideAlertHide}" value="UnHide Alerts" reRender="showUnhideRecords1,refreshHideButtons" rendered="{!flagForButtons}" />
+  </apex:outputPanel>
+  
+  <apex:pageBlock >
+  <apex:outputPanel id="showUnhideRecords1">
+  <apex:outputPanel id="showUnhideRecords" rendered="{!showUnhideRecords}">
+  
+  <apex:pageBlockTable value="{!unHideAlertList}" var="unHide">
+      <apex:column value="{!unHide.New_Alert__c}" headerValue="Date"/>
+      <apex:column value="{!unHide.Alert_Message__c}"/>
+  </apex:pageBlockTable>
+  </apex:outputPanel>
+   </apex:outputPanel>
+   </apex:pageBlock>
+   
+    <apex:pageBlock id="searchBlockId">
+    <apex:pageBlockSection id="searchSectionId" collapsible="true"  title="Search And Filters" columns="1" >
+    
+    
+    <apex:outputLabel value="Start Date" />
+    <input type="text" id="datepicker" onchange="callActionFunctionStartDate(this.value);"/>
+    
+    
+    
+     <apex:outputLabel value="End Date"/>
+     <input type="text" id="datepicker1" onchange="callActionFunctionEndDate(this.value);"/>
+     
+  
+     <apex:actionRegion >
+    <apex:outputLabel value="Category"/>
+     <apex:selectList value="{!categoryName}" size="1"  multiselect="false" >  
+         <apex:actionSupport event="onchange" reRender="brandPosPick,brandPick" />        
+        <apex:selectOptions value="{!CategoryList}" />              
+      </apex:selectList>
+      
+      <apex:outputLabel value="Brand Position Name"/>
+      <apex:selectList id="brandPosPick" value="{!brandPos}" size="1" multiselect="false" > 
+      <apex:actionSupport event="onchange" reRender="brandPick" />              
+        <apex:selectOptions value="{!BrandPositioningList}" />              
+      </apex:selectList>
+     
+      <apex:outputLabel value="Brand Name"/>
+      <apex:selectList id="brandPick" value="{!brandName}" size="1" multiselect="false" >                   
+        <apex:selectOptions value="{!BrandList}" />              
+      </apex:selectList>
+    </apex:actionRegion>
+       
+    <apex:inputField value="{!jobDetails.Project_Leader_Cluster__c}"   />
+    <apex:inputField value="{!jobDetails.Project_Leader_Country__c}"   />
+    
+    <apex:inputField value="{!jobDetails.Lead_Creative_Agency_name__c}" />
+   
+   <apex:inputField value="{!jobDetails.Broadcast_Market__c}" />
+     
+    <apex:inputField value="{!jobDetails.Stage_of_Production_Activity__c}" />
+     
+    <apex:inputField value="{!jobDetails.Job_Accepted__c}" />
+        
+    <apex:inputField value="{!jobDetails.Job_Started__c}" />
+       
+    <apex:inputField value="{!jobDetails.Job_Reported__c}" />
+      
+    <apex:inputField value="{!jobDetails.Job_Shared__c}" />
+   
+    <apex:inputField value="{!jobDetails.AdManagerText__c}"  />
+    
+    <apex:outputPanel >
+    <apex:outputLabel value="Unilever project Leader Email" />
+    <apex:inputText value="{!jobDetails.Unilever_Project_Leader_Email__c}" />
+   </apex:outputPanel>
+    
+    <apex:inputField value="{!jobDetails.Project_Name__c}" />
+    
+   <apex:commandButton value="Apply" action="{!getJobDetailSearch}" reRender="listRefresh">
+      
+   </apex:commandButton>
+   
+     </apex:pageBlockSection> 
+       <script>
+     twistSection(document.getElementById('{!$Component.searchBlockId.searchSectionId}').getElementsByTagName('img')[0])
+     </script>  
+     </apex:pageBlock><br/><br/>
+
+    <apex:actionFunction action="{!getJobDetailSearch}" name="callContrlStartDate" reRender="listRefresh1">
+       <apex:param name="param" value="" id="y" assignTo="{!startDate}" />
+    </apex:actionFunction>
+    
+    <apex:actionFunction action="{!getJobDetailSearch}" name="callContrlEndDate" reRender="listRefresh1">
+       <apex:param name="param16" value="" id="y16" assignTo="{!endDate}" />
+    </apex:actionFunction> 
+       
+    <apex:outputPanel id="listRefresh">     
+   <apex:pageBlock id="priorityJobListBlockId"> 
+   <apex:pageBlockSection title="Priority Jobs" columns="1" collapsible="true">
+   
+   <apex:outputPanel rendered="{!showPageButtonForPriority}">
+              <apex:commandButton value="<<" action="{!beginningForPriorityJobs}" disabled="{!DisablePreviousForPriorityJobs}"  reRender="listRefresh"/>
+              <apex:commandButton value="<" action="{!previousForPriorityJobs}" disabled="{!DisablePreviousForPriorityJobs}" reRender="listRefresh"/>
+              <apex:commandButton value=">" action="{!nextForPriorityJobs}" disabled="{!DisableNextForPriorityJobs}" reRender="listRefresh"/>
+              <apex:commandButton value=">>" action="{!lastForPriorityJobs}" disabled="{!DisableNextForPriorityJobs}" reRender="listRefresh"/>
+   </apex:outputPanel>           
+   <apex:pageBlockTable value="{!priorityJobsToShow}" var="job" >
+           <apex:column headerValue="ADManager Number">
+              <apex:commandLink value="{!job.AdManagerText__c}" action="{!jobSheetPageTransfer}" target="_blank">
+              <apex:param name="chosenId" value="{!job.id}" assignTo="{!chosenId}"/>  
+              </apex:commandLink>
+              </apex:column>
+               <apex:column headerValue="Date Logged">
+               <apex:outputText value="{0,date,MM/dd/yy}"><apex:param value="{!job.CreatedDate}" /></apex:outputText>
+               </apex:column> 
+               <apex:column value="{!job.Stage_of_Production_Activity__c}" headerValue="Stage Of production Activity"/>
+               <apex:column value="{!job.Unilever_Project_Leader_Email__c}" headerValue="Project Leader Email"/>
+               <apex:column value="{!job.Project_Leader_Country__c}" headerValue="Location of Unilever Project Leader (Country)"/> 
+               <apex:column value="{!job.Category__c}" headerValue="Category"/>
+               <apex:column value="{!job.Brand__c}" headerValue="Brand Name"/>
+               <apex:column value="{!job.Project_Name__c}" headerValue="Project Name"/>
+               <apex:column value="{!job.Lead_Creative_Agency_name__c}" headerValue="Lead/Creative Agency Name"/>
+               <apex:column value="{!job.Allocated_Budget_euro__c}" headerValue="Allocated Budget (Euro)"/>
+               <apex:column value="{!job.Broadcast_Market__c}" headerValue="Broadcast market"/>
+               <apex:column value="{!job.Production_Activity__c}" headerValue="Production Activity Type"/>
+               <apex:column value="{!job.Job_Shared__c}" headerValue="Job Shared"/>
+               <apex:column value="{!job.Job_Accepted__c}" headerValue="Accepted And Email Sent"/>
+               <apex:column value="{!job.Job_Started__c}" headerValue="Started"/>
+               <apex:column value="{!job.Job_Reported__c}" headerValue="Reported"/>
+                             
+                              
+   </apex:pageBlockTable>
+   </apex:pageBlockSection>
+   </apex:pageBlock>
+   
+   <apex:pageBlock >
+    <apex:pageBlockSection title="Pending Jobs"  columns="1" collapsible="true">
+    
+    <apex:outputPanel rendered="{!showPageButtonForPending}">
+              <apex:commandButton value="<<" action="{!beginningForPendingJobs}" disabled="{!DisablePreviousForPendingJobs}"  reRender="listRefresh"/>
+              <apex:commandButton value="<" action="{!previousForPendingJobs}" disabled="{!DisablePreviousForPendingJobs}" reRender="listRefresh"/>
+              <apex:commandButton value=">" action="{!nextForPendingJobs}" disabled="{!DisableNextForPendingJobs}" reRender="listRefresh"/>
+              <apex:commandButton value=">>" action="{!lastForPendingJobs}" disabled="{!DisableNextForPendingJobs}" reRender="listRefresh"/>
+    </apex:outputPanel>
+   <apex:pageBlockTable value="{!pendingJobsToShow}" var="job" >
+               <apex:column headerValue="ADManager Number">
+               <apex:commandLink value="{!job.AdManagerText__c}"  action="{!jobSheetPageTransfer}"  target="_blank">
+               <apex:param name="chosenId" value="{!job.id}" assignTo="{!chosenId}"/>  
+               </apex:commandLink>
+               </apex:column>
+               <apex:column headerValue="Date Logged">
+               <apex:outputText value="{0,date,MM/dd/yy}"><apex:param value="{!job.CreatedDate}" /></apex:outputText>
+               </apex:column> 
+               <apex:column value="{!job.Stage_of_Production_Activity__c}" headerValue="Stage Of production Activity"/>
+               <apex:column value="{!job.Unilever_Project_Leader_Email__c}" headerValue="Project Leader Email"/>
+               <apex:column value="{!job.Project_Leader_Country__c}" headerValue="Location of Unilever Project Leader (Country)"/>
+               <apex:column value="{!job.Category__c}" headerValue="Category"/>
+               <apex:column value="{!job.Brand__c}" headerValue="Brand Name"/>
+               <apex:column value="{!job.Project_Name__c}" headerValue="Project Name"/>
+               <apex:column value="{!job.Lead_Creative_Agency_name__c}" headerValue="Lead/Creative Agency Name"/>
+               <apex:column value="{!job.Allocated_Budget_euro__c}" headerValue="Allocated Budget (Euro)"/>
+               <apex:column value="{!job.Broadcast_Market__c}" headerValue="Broadcast market"/>
+               <apex:column value="{!job.Production_Activity__c}" headerValue="Production Activity Type"/>
+               <apex:column value="{!job.Job_Shared__c}" headerValue="Job Shared"/>
+               <apex:column value="{!job.Job_Accepted__c}" headerValue="Accepted And Email Sent"/>
+               <apex:column value="{!job.Job_Started__c}" headerValue="Started"/>
+               <apex:column value="{!job.Job_Reported__c}" headerValue="Reported"/>
+               
+   </apex:pageBlockTable>
+   </apex:pageBlockSection>
+   </apex:pageBlock>
+   
+    <apex:pageBlock >
+    <apex:pageBlockSection title="Dormant Jobs"  columns="1" collapsible="true">
+    
+    <apex:outputPanel rendered="{!showPageButtonForDormant}">
+              <apex:commandButton value="<<" action="{!beginningForDormantJobs}" disabled="{!DisablePreviousForDormantJobs}"  reRender="listRefresh"/>
+              <apex:commandButton value="<" action="{!previousForDormantJobs}" disabled="{!DisablePreviousForDormantJobs}" reRender="listRefresh"/>
+              <apex:commandButton value=">" action="{!nextForDormantJobs}" disabled="{!DisableNextForDormantJobs}" reRender="listRefresh"/>
+              <apex:commandButton value=">>" action="{!lastForDormantJobs}" disabled="{!DisableNextForDormantJobs}" reRender="listRefresh"/>
+   </apex:outputPanel>       
+   <apex:pageBlockTable value="{!dormantJobsToShow}" var="job">
+               <apex:column headerValue="ADManager Number">
+               <apex:commandLink value="{!job.AdManagerText__c}"  action="{!jobSheetPageTransfer}"  target="_blank">
+               <apex:param name="chosenId" value="{!job.id}" assignTo="{!chosenId}"/>  
+               </apex:commandLink>
+               </apex:column>
+               <apex:column headerValue="Date Logged">
+               <apex:outputText value="{0,date,MM/dd/yy}"><apex:param value="{!job.CreatedDate}" /></apex:outputText>
+               </apex:column> 
+               <apex:column value="{!job.Stage_of_Production_Activity__c}" headerValue="Stage Of production Activity"/>
+               <apex:column value="{!job.Unilever_Project_Leader_Email__c}" headerValue="Project Leader Email"/>
+               <apex:column value="{!job.Project_Leader_Country__c}" headerValue="Location of Unilever Project Leader (Country)"/>
+               <apex:column value="{!job.Category__c}" headerValue="Category"/>
+               <apex:column value="{!job.Brand__c}" headerValue="Brand Name"/>  
+               <apex:column value="{!job.Project_Name__c}" headerValue="Project Name"/>
+               <apex:column value="{!job.Lead_Creative_Agency_name__c}" headerValue="Lead/Creative Agency Name"/>
+               <apex:column value="{!job.Allocated_Budget_euro__c}" headerValue="Allocated Budget (Euro)"/>
+               <apex:column value="{!job.Broadcast_Market__c}" headerValue="Broadcast market"/>
+               <apex:column value="{!job.Production_Activity__c}" headerValue="Production Activity Type"/>
+               <apex:column value="{!job.Job_Shared__c}" headerValue="Job Shared"/>
+               <apex:column value="{!job.Job_Accepted__c}" headerValue="Accepted And Email Sent"/>
+               <apex:column value="{!job.Job_Started__c}" headerValue="Started"/>
+               <apex:column value="{!job.Job_Reported__c}" headerValue="Reported"/>
+               
+   </apex:pageBlockTable>
+   </apex:pageBlockSection>
+   </apex:pageBlock>
+   
+   
+   <apex:pageBlock >
+    <apex:pageBlockSection title="Live Jobs"  columns="1" collapsible="true">
+    
+    <apex:outputPanel rendered="{!showPageButtonForLive}">
+              <apex:commandButton value="<<" action="{!beginningForLiveJobs}" disabled="{!DisablePreviousForLiveJobs}"  reRender="listRefresh"/>
+              <apex:commandButton value="<" action="{!previousForLiveJobs}" disabled="{!DisablePreviousForLiveJobs}" reRender="listRefresh"/>
+              <apex:commandButton value=">" action="{!nextForLiveJobs}" disabled="{!DisableNextForLiveJobs}" reRender="listRefresh"/>
+              <apex:commandButton value=">>" action="{!lastForLiveJobs}" disabled="{!DisableNextForLiveJobs}" reRender="listRefresh"/>
+   </apex:outputPanel>         
+   <apex:pageBlockTable value="{!liveJobsToShow}" var="job">
+               <apex:column headerValue="ADManager Number">
+               <apex:commandLink value="{!job.AdManagerText__c}" action="{!jobSheetPageTransfer}"  target="_blank">
+               <apex:param name="chosenId" value="{!job.id}" assignTo="{!chosenId}"/>  
+               </apex:commandLink>
+               </apex:column>
+               <apex:column headerValue="Date Logged">
+               <apex:outputText value="{0,date,MM/dd/yy}"><apex:param value="{!job.CreatedDate}" /></apex:outputText>
+               </apex:column> 
+               <apex:column value="{!job.Stage_of_Production_Activity__c}" headerValue="Stage Of production Activity"/>
+               <apex:column value="{!job.Unilever_Project_Leader_Email__c}" headerValue="Project Leader Email"/>
+               <apex:column value="{!job.Project_Leader_Country__c}" headerValue="Location of Unilever Project Leader (Country)"/>  
+               <apex:column value="{!job.Category__c}" headerValue="Category"/>
+               <apex:column value="{!job.Brand__c}" headerValue="Brand Name"/>
+               <apex:column value="{!job.Project_Name__c}" headerValue="Project Name"/>
+               <apex:column value="{!job.Lead_Creative_Agency_name__c}" headerValue="Lead/Creative Agency Name"/>
+               <apex:column value="{!job.Allocated_Budget_euro__c}" headerValue="Allocated Budget (Euro)"/>
+               <apex:column value="{!job.Broadcast_Market__c}" headerValue="Broadcast market"/>
+               <apex:column value="{!job.Production_Activity__c}" headerValue="Production Activity Type"/>
+               <apex:column value="{!job.Job_Shared__c}" headerValue="Job Shared"/>
+               <apex:column value="{!job.Job_Accepted__c}" headerValue="Accepted And Email Sent"/>
+               <apex:column value="{!job.Job_Started__c}" headerValue="Started"/>
+               <apex:column value="{!job.Job_Reported__c}" headerValue="Reported"/>
+               
+   </apex:pageBlockTable>
+   </apex:pageBlockSection>
+  </apex:pageBlock>
+   </apex:outputPanel>     
+    
+ </apex:form>
+</apex:page>

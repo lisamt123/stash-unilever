@@ -1,0 +1,46 @@
+<apex:page controller="Amr_Sharing" showHeader="false">
+   
+    <style>
+.alloc_table tr td{
+border: 1px solid;
+border-radius:20px;
+
+}
+.radio_pick tr td{
+text-align:left;
+border:0px none;
+}
+</style>
+    <apex:form >
+        <apex:pageBlock >
+           <table class = "alloc_table" width = "100%"  style="text-align:center">
+               <tr>
+                   <td> 
+                        <apex:outputPanel >
+                            <apex:outputLabel value="Re - Allocate" style="font-weight:bold;"/><br/><br/><br/><br/>
+                           <apex:selectList label="Select the user Name" multiselect="false" size="1" value="{!selectusername}">
+                <apex:selectOptions value="{!usernam}"></apex:selectOptions>
+                </apex:selectList>
+                <apex:commandButton value="Change owner" action="{!Reallocate}" reRender="pgbt"/> 
+                        </apex:outputPanel>
+                   </td>
+                  
+                    
+                   <td> 
+                        <apex:outputPanel >
+                            <apex:outputLabel value="Share" style="font-weight:bold;"/><br/><br/><br/><br/>
+                             <apex:selectList label="Select the user Name" multiselect="true" size="2" value="{!selectusername }">
+                <apex:selectOptions value="{!usernam}"></apex:selectOptions>
+                </apex:selectList>
+                  <apex:commandButton value="Share record" action="{!relatedrecords}" reRender="pgbt"/>
+                            
+                          
+                        </apex:outputPanel>
+                   </td>
+                 
+                
+               </tr>
+           </table>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

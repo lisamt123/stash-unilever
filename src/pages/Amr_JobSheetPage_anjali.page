@@ -1,0 +1,278 @@
+<apex:page controller="Amr_JobSheetPageController_anjali">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>
+        
+        $(document).ready(function(){
+         $("[id$=prodtype]").prop("disabled",false);
+        
+        });
+        
+        function Edit(id) {
+          //alert(id);
+          EditSaving(id);
+        } 
+        
+        function save(id,Production){
+         // alert('hello-->'+id);
+         // alert('hello-->'+Production);
+          
+          SaveData(id,Production);
+        }
+        
+       
+       
+        
+    </script> 
+    <apex:form >
+        <apex:actionFunction name="EditSaving" action="{!SaveUpdatedData}" ReRender="submittedData">
+                <apex:param name="one" value="" assignTo="{!IdValue}"/>    
+        </apex:actionFunction>
+        
+       <apex:actionFunction name="SaveData" action="{!SaveNewData}" ReRender="submittedData">
+                <apex:param name="one" value="" assignTo="{!IdNeedToUpdate}"/>   
+                <apex:param name="two" value="" assignTo="{!productionType}"/>  
+                
+        </apex:actionFunction>
+        
+    </apex:form>
+    
+    
+    <apex:form >
+    
+        <apex:pageBlock >
+            <apex:pageMessages id="msgs" />
+
+            <b><apex:outputLabel >Job Sheet</apex:outputLabel></b>
+            <br />
+            <br />
+           <!-- <apex:commandLink value="Back to Job Portfolio" />-->
+            <br />
+            <br />
+
+            <apex:pageBlockSection title="New Saving line" columns="1"
+                collapsible="false">
+
+                <apex:dataTable value="{!lstQuoteToaddRow}" var="QuoteObj"
+                    styleClass="tableClass" rowClasses="odd,even" border="1"
+                    cellspacing="5" cellpadding="5" id="newSavingLine">
+                    <apex:column >
+                        <apex:facet name="header">AdManager No</apex:facet>
+                        <apex:outputText value="{!adManagerNumber}" />
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Production Type:</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Production_Type__c}" />
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">No Of Masters</apex:facet>
+                        <apex:inputField value="{!QuoteObj.No_of_Masters__c}" />
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Duration of Masters</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Duration_of_Masters__c}" />
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">No of Additional Films</apex:facet>
+                        <apex:inputField value="{!QuoteObj.No_of_Additional_Films__c}" />
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Duration Of Additional Films</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Duration_of_Additional_Films__c}" />
+                    </apex:column>
+                    <!--<apex:column >
+                        <apex:facet name="header">Total No of Films</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Total_no_of_films__c}" />
+                    </apex:column>-->
+                    <apex:column >
+                        <apex:facet name="header">No of Shoot Days</apex:facet>
+                        <apex:inputField value="{!QuoteObj.No_of_shoot_days__c}" />
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Stage RAP engaged</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Stage_RAP_engaged__c}" />
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Shoot Location </apex:facet>
+                      
+                        <apex:selectList value="{!selectedCountry}" multiselect="true" size="5">
+                         <apex:selectOptions value="{!shootLocation}"/>
+                      </apex:selectList>
+
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">Script Title</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Script_Title__c}" />
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Has there been a scope re-brief?</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Scope_re_brief__c}" />
+                    </apex:column>
+                  <apex:column > 
+              
+               <apex:facet name="header"></apex:facet>
+               
+                     <apex:inputFile value="{!document.body}"
+                            filename="{!document.name}" />   
+                 <!--  <apex:commandButton action="{!uploadDocument}" value="Upload"/>  -->
+                      <apex:commandLink value="Click Here to upload Document" action="{!redirectNewPage}" target="_blank"/>
+                       <apex:messages />
+                    </apex:column>  -->
+                    
+
+                    <apex:column >
+                        <apex:commandLink value="+" action="{!addRowSavingLine}" />
+                    </apex:column>
+
+
+                </apex:dataTable>
+                <!--<apex:actionFunction name="calltoQuote" action="{!addRowSavingLine}"
+                    status="step_status" reRender="newSavingLine,submittedData,msgs" />  -->
+                
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        
+         
+       <apex:actionRegion > 
+            <apex:pageBlock >
+                <apex:pageBlockSection title="Submitted Savings" columns="1"
+                    collapsible="true">
+              
+                    <apex:pageblockTable value="{!quoteList}" var="quoteObj"
+                        cellpadding="20" border="1" id="submittedData">
+                         
+                        <!-- <apex:column > 
+                           {!quoteObj.id}
+                           <apex:facet name="header"></apex:facet>
+                            <apex:inputhidden value="{!quoteObj.id}" id="theField1"/>
+                            <apex:inputFile value="{!document.body}" filename="{!document.name}"  onclick="test()"/>
+                            
+                            
+                        <apex:commandButton action="{!uploadDocument}" value="Upload" >
+                           
+                        </apex:commandButton>
+                       </apex:column>  --> 
+                    
+                        <apex:column >
+                            <apex:facet name="header">Enter Quote</apex:facet>
+                            <apex:outputLink target="_blank" value="apex/Amr_QuotePage?id={!quoteObj.id}">Quote</apex:outputLink>
+                        </apex:column>
+                        
+                        
+                        <apex:column >
+                            
+                            
+                            <apex:commandLink rendered="{!if(IdValue == quoteObj.id ,false,true) ||(  isEdit  == true && isSave  == false)}" onclick="Edit('{!quoteObj.id}');return Null;">Edit</apex:commandLink>
+                          
+                            <apex:commandLink rendered="{!if(IdValue == quoteObj.id ,true,false) && ( isSave  == true && isEdit  == false)}" action="{!SaveNewData}"  >Save</apex:commandLink>
+                           
+                        </apex:column>
+                         
+                        <!--<apex:column headervalue="Month Submitted">
+                            <apex:outputText value="{!quoteObj.Job_Details__c}" />
+                        </apex:column>-->
+                        <apex:column headervalue="ADManager No:">
+                     
+                            <apex:outputText value="{!quoteObj.Job_Details__r.AdManagerText__c}" />
+                        </apex:column>
+                        <!-- Production_Type -->
+                        <apex:column rendered="{!if(IdValue == quoteObj.id,true,false)}" headerValue="Production Type:">
+                            
+                            <apex:inputField value="{!quoteObj.Production_Type__c}" />
+                       </apex:column>
+                        <apex:column headervalue="Production Type:"
+                            value="{!quoteObj.Production_Type__c}" rendered="{!if(IdValue == quoteObj.id,false,true)}" id="prodtype"/>
+                         
+                          <!-- No Of Masters -->
+                          <apex:outputText value="{!isSave}">{!isSave}</apex:outputText>
+                        <apex:column rendered="{!if(IdValue == quoteObj.id,true,false) && isSave  == true}" headerValue="No Of Masters:">
+                             <apex:inputField value="{!quoteObj.No_of_Masters__c}" />
+                       </apex:column>
+                        <apex:column headervalue="No Of Masters"
+                            value="{!quoteObj.No_of_Masters__c}" rendered="{!if(IdValue == quoteObj.id,false,true)}" />
+                            
+                            
+                         <!-- Duration of Masters-->    
+                      <apex:column rendered="{!if(IdValue == quoteObj.id,true,false) }" headerValue="Duration of Masters:">
+                            
+                            <apex:inputField value="{!quoteObj.Duration_of_Masters__c}" />
+                       </apex:column>
+                        <apex:column headervalue="Duration of Masters"
+                            value="{!quoteObj.Duration_of_Masters__c}" rendered="{!if(IdValue == quoteObj.id,false,true)}"/>
+                            
+                           <!-- No of Additional Films-->     
+                        <apex:column rendered="{!if(IdValue == quoteObj.id,true,false)}" headerValue="No of Additional Films:">
+                            
+                            <apex:inputField value="{!quoteObj.No_of_Additional_Films__c}" />
+                       </apex:column>   
+                        <apex:column headervalue="No of Additional Films"
+                            value="{!quoteObj.No_of_Additional_Films__c}" rendered="{!if(IdValue == quoteObj.id,false,true)}"/>
+                            
+                         <!-- Duration Of Additional Films-->     
+                       <apex:column rendered="{!if(IdValue == quoteObj.id,true,false)}" headerValue="Duration Of Additional Films:">  
+                            <apex:inputField value="{!quoteObj.Duration_of_Additional_Films__c}" />
+                       </apex:column>   
+                        <apex:column headervalue="Duration Of Additional Films"
+                            value="{!quoteObj.Duration_of_Additional_Films__c}" rendered="{!if(IdValue == quoteObj.id,false,true)}"/>
+                            
+                         <!-- Total No of Films--> 
+                        <apex:column rendered="{!if(IdValue == quoteObj.id,true,false)}" headerValue="Total No of Films:">
+                            
+                            <apex:inputField value="{!quoteObj.Total_no_of_films__c}" />
+                       </apex:column>     
+                        <apex:column headervalue="Total No of Films"
+                            value="{!quoteObj.Total_no_of_films__c}" rendered="{!if(IdValue == quoteObj.id,false,true)}"/>
+                            
+                           <!--No of Shoot Days-->   
+                            <apex:column rendered="{!if(IdValue == quoteObj.id,true,false)}" headerValue="No of Shoot Days:">
+                            
+                            <apex:inputField value="{!quoteObj.No_of_shoot_days__c}" />
+                       </apex:column>    
+                        <apex:column headervalue="No of Shoot Days"
+                            value="{!quoteObj.No_of_shoot_days__c}" rendered="{!if(IdValue == quoteObj.id,false,true)}"/>
+                            
+                            
+                         <!--Stage RAP engaged-->    
+                       <apex:column rendered="{!if(IdValue == quoteObj.id,true,false)}" headerValue="Stage RAP engaged:">
+                            
+                            <apex:inputField value="{!quoteObj.Stage_RAP_engaged__c}" />
+                       </apex:column>     
+                        <apex:column headervalue="Stage RAP engaged"
+                            value="{!quoteObj.Stage_RAP_engaged__c}"  rendered="{!if(IdValue == quoteObj.id,false,true)}"/>
+                            
+                            
+                          <!--Shoot Location-->       
+                        <apex:column rendered="{!if(IdValue == quoteObj.id,true,false)}" headerValue="Shoot Location">
+                            
+                            <!--<apex:inputField value="{!quoteObj.Shoot_Location__c}" />-->
+                            
+                             <apex:selectList value="{!selectedCountry}" multiselect="true" size="5">
+                               <apex:selectOptions value="{!shootLocation}"/>
+                             </apex:selectList>
+                      </apex:column>         
+                        <apex:column headervalue="Shoot Location"
+                            value="{!quoteObj.Shoot_Location__c}" rendered="{!if(IdValue == quoteObj.id,false,true)}"/>
+                          
+                         <!--Script Title-->         
+                       <apex:column rendered="{!if(IdValue == quoteObj.id,true,false)}" headerValue="Script Title">
+                            
+                            <apex:inputField value="{!quoteObj.Script_Title__c}" />
+                       </apex:column>     
+                        <apex:column headervalue="Script Title"
+                            value="{!quoteObj.Script_Title__c}" rendered="{!if(IdValue == quoteObj.id,false,true)}"/>
+                          
+                         <apex:column rendered="{!if(IdValue == quoteObj.id,true,false)}" headerValue="Has there been a scope re-brief?">
+                            
+                            <apex:inputField value="{!quoteObj.Scope_re_brief__c}" />
+                       </apex:column>     
+                        <apex:column headervalue="Has there been a scope re-brief?"
+                            value="{!quoteObj.Scope_re_brief__c}"  rendered="{!if(IdValue == quoteObj.id,false,true)}"/>
+                            
+                    </apex:pageblockTable>
+                    
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+       </apex:actionRegion>
+
+    </apex:form>
+</apex:page>

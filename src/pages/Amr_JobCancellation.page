@@ -1,0 +1,82 @@
+<apex:page standardController="Amr_Job_Details__c" extensions="Amr_JobCancellationController" sidebar="false"> 
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+     <script>
+        
+        function setFocusOnLoad() {}
+        // jQuery workarounds to make it work.
+        var j$ = jQuery.noConflict();
+        function fixId(myid) {
+            return '#' + myid.replace(new RegExp("(:|\\.)", "g"), '\\\$1');
+        }
+        
+        j$(function() {
+            j$('a').attr('target', '_top');
+        });
+           function checkAll(cb,cbid){
+            var inputElem = document.getElementsByTagName("input");                    
+            for(var i=0; i<inputElem.length; i++){            
+                 if(inputElem[i].id.indexOf(cbid)!=-1){                                       
+                    inputElem[i].checked = cb.checked;
+                 }
+            }
+    }
+</script>  
+   <apex:form >
+    
+    <b><apex:outputLabel >Job Cancellation</apex:outputLabel></b><br/><br/>
+    <apex:pageBlock id="pb" >
+         <apex:pageMessages id="showmsg" ></apex:pageMessages>
+          <apex:pageBlockTable value="{!ListWrapperMethod}" var="wrapVar" id="pagetable">
+                <apex:column width="10" >
+                    <apex:facet name="header">
+                         <apex:inputCheckbox id="selectAllChecks" value="{!wrapVar.SelectBox}" onclick="checkAll(this,'eachrow')" />   
+                       
+               </apex:facet>
+               <apex:inputcheckbox value="{!wrapVar.SelectBox}" id="eachrow"  />
+               
+               </apex:column>
+             
+             <!-- To add edit in the column     -->      
+              <apex:column width="80" style="vertical-align:top" headerValue="Action" >
+                     <apex:outputLink value="{!URLFOR($Action.Amr_Job_Details__c .Edit, wrapVar.sObjRec.id)}" onclick="return window.confirm('Are you sure?');">Edit</apex:outputLink> 
+              </apex:column>    
+          
+          <!-- To add Fields in the column     -->
+               
+               <apex:column value="{!wrapVar.sObjRec.AdManagerText__c}" headerValue="ADManager Number"/>
+               <apex:column headerValue="Date Logged">
+               <apex:outputText value="{0,date,MM/dd/yy}"><apex:param value="{!wrapVar.sObjRec.CreatedDate}" /></apex:outputText>
+               </apex:column>
+               <apex:column value="{!wrapVar.sObjRec.Stage_of_Production_Activity__c}" headerValue="Stage logged"/>
+               <apex:column value="{!wrapVar.sObjRec.Unilever_Project_Leader_Email__c}" headervalue="Project Leader Email"/>
+              <apex:column value="{!wrapVar.sObjRec.Project_Leader_Country__c}" headerValue="Location of Project Leader (Country)"/>
+              <apex:column value="{!wrapVar.sObjRec.Category1__c}"/>
+              <apex:column value="{!wrapVar.sObjRec.Brand_Positioning1__c}"/>
+              <apex:column value="{!wrapVar.sObjRec.Brand_Name1__c}"/>
+              <apex:column value="{!wrapVar.sObjRec.Project_Name__c}"/>
+              <apex:column value="{!wrapVar.sObjRec.Lead_Creative_Agency_name__c}"/>
+              <apex:column value="{!wrapVar.sObjRec.Allocated_Budget_euro__c}" headervalue="Allocated Budget"/>
+              <apex:column headervalue="Rap Allocated"/>
+              <apex:column value="{!wrapVar.sObjRec.Allocated__c}"/> 
+              <apex:column value="{!wrapVar.sObjRec.Accepted__c}" headerValue="Accepted & Email Sent"/>
+              <apex:column value="{!wrapVar.sObjRec.Job_Cancelled__c}"/> 
+               
+       </apex:pageBlockTable> 
+            <!-- To add button for cancel     -->
+        <apex:pageBlockButtons >
+            <apex:commandButton value="Cancel" action="{!changeStatus}" onclick="return window.confirm('Are you sure?');"/>
+        </apex:pageBlockButtons>
+        <apex:panelGrid columns="7" >
+                <apex:commandButton status="fetchStatus" reRender="pb" value="|<" action="{!first}" disabled="{!!hasPrevious}" title="First Page"/>
+                <apex:commandButton status="fetchStatus" reRender="pb" value="<" action="{!previous}" disabled="{!!hasPrevious}" title="Previous Page"/>
+                <apex:commandButton status="fetchStatus" reRender="pb" value=">" action="{!next}" disabled="{!!hasNext}" title="Next Page"/>
+                <apex:commandButton status="fetchStatus" reRender="pb" value=">|" action="{!last}" disabled="{!!hasNext}" title="Last Page"/>
+                <apex:outputText >{!(pageNumber * size)+1-size}-{!IF((pageNumber * size)>noOfRecords, noOfRecords,(pageNumber * size))} of {!noOfRecords}</apex:outputText>
+                <apex:outputPanel style="color:#4AA02C;font-weight:bold">
+                    <apex:actionStatus id="fetchStatus" startText="Fetching..." stopText=""/>
+                </apex:outputPanel>
+         </apex:panelGrid>
+      </apex:pageBlock>
+   </apex:form>
+</apex:page>

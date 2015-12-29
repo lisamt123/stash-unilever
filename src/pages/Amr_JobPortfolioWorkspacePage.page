@@ -1,0 +1,60 @@
+<apex:page controller="Amr_JobPortfolioWorkspaceController">
+<apex:pagemessages id="msgs"></apex:pagemessages>
+<apex:form Id="formId">
+    <apex:pageBlock id="pgblockForAlert">
+       
+        <apex:pageBlockSection title="Job Alerts">
+               
+                 <apex:inputField value="{!alertobj.New_Alert__c}" id="newAlertId"/>
+                 <apex:inputField value="{!alertobj.Alert_Message__c}" id="messageId"/>
+                <apex:commandButton value="Add" action="{!addNewAlert}"  reRender="pgblockForAlert,msgs" />
+          
+                <apex:pageBlockTable value="{!alertRecordList}" var="alert" id="text" rendered="{!if(alertRecordList.size>0,true,false)}">
+                    <apex:column value="{!alert.New_Alert__c}" headerValue="Date"/>
+                    <apex:column value="{!alert.Job_Id__r.AdManagerText__c}" headerValue="AD-ID"/>
+                    <apex:column value="{!alert.Alert_Message__c}" headerValue="Alert Message"/>
+                    <apex:column headerValue="Remove">
+                    <apex:commandLink value="Remove"  action="{!deleteAlert}" reRender="pgblockForAlert" >
+                    <apex:param name="recordId"  assignTo="{!chosenId}" value="{!alert.id}"/>
+                    </apex:commandLink>
+                    </apex:column>
+                </apex:pageBlockTable>
+             </apex:pageBlockSection>
+     </apex:pageBlock>
+     
+     <apex:pageBlock id="pgblockForComment">
+         <apex:pageBlockSection title="Comments">
+         <apex:inputField value="{!commentObj.new_Comment__c}"/>
+         <apex:commandButton action="{!addNewComment}" value="Add" reRender="pgblockForComment,msgs"/>
+         <apex:pageBlockTable value="{!commentRecordList}" var="comm" rendered="{!if(commentRecordList.size>0,true,false)}">
+                    <apex:column value="{!comm.new_Comment__c}" headerValue="Comment"/>
+                    <apex:column headerValue="Date">
+                    <apex:outputText value="{0,date,MM/dd/yy}"><apex:param value="{!comm.createdDate}" /></apex:outputText>
+                    </apex:column> 
+                    <apex:column headerValue="Remove">
+                    <apex:commandLink value="Remove"  action="{!deleteComment}" reRender="pgblockForComment" >
+                    <apex:param name="recordIdComm"  assignTo="{!chosenIdForComment}" value="{!comm.id}"/>
+                    </apex:commandLink>
+                    </apex:column>
+                </apex:pageBlockTable>
+         </apex:pageBlockSection>
+     </apex:pageBlock>
+      </apex:form>
+      <apex:form >
+     <apex:pageBlock >
+         <apex:pageBlockSection title="Creative Docs">
+          
+              <apex:inputFile value="{!document.body}"  filename="{!document.name}" />
+              <apex:commandButton action="{!uploadDocument}" value="Upload"/>  
+              <apex:pageBlockTable value="{!documentList}" var="doc" rendered="{!if(documentList.size>0,true,false)}">
+                    <apex:column value="{!doc.ContentFileName}" headerValue="File Name"/>
+                    <apex:column headerValue="Date">
+                    <apex:outputText value="{0,date,MM/dd/yy}"><apex:param value="{!doc.createdDate}" /></apex:outputText>
+                    </apex:column> 
+              </apex:pageBlockTable>
+         </apex:pageBlockSection>
+     </apex:pageBlock>
+    </apex:form>
+
+
+</apex:page>

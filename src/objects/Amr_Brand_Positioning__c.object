@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <enableActivities>true</enableActivities>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <fields>
+        <fullName>Category__c</fullName>
+        <label>Category</label>
+        <referenceTo>Amr_Category__c</referenceTo>
+        <relationshipLabel>Amr Brand Positionings</relationshipLabel>
+        <relationshipName>Am_Brand_Positionings</relationshipName>
+        <required>true</required>
+        <type>Lookup</type>
+    </fields>
+    <label>Amr Brand Positioning</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <nameField>
+        <label>Brand Positioning Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Amr Brand Positionings</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

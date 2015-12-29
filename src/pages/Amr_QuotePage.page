@@ -1,0 +1,169 @@
+<apex:page controller="Amr_QuotePageController">
+  <apex:form >
+  
+    <apex:pageBlock >
+        <apex:pageBlockSection title="Enter New Quote" columns="1"
+                collapsible="false">
+                <apex:dataTable value="{!quoteNewRow}" var="QuoteObj"
+                    styleClass="tableClass" rowClasses="odd,even" border="1"
+                    cellspacing="5" cellpadding="5">
+                    
+                    <apex:column >
+                        <apex:facet name="header">Is PC Part Of The Roster?</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Is_PC_part_of_the_Roster__c}" />
+                    </apex:column>
+                   
+                    <apex:column >
+                        <apex:facet name="header">PC Name</apex:facet>
+                        <apex:inputField value="{!QuoteObj.PC_name__c}" />
+                    </apex:column>
+                    
+                     <apex:column >
+                        <apex:facet name="header">PC Country Location</apex:facet>
+                        <apex:inputField value="{!QuoteObj.PC_Country__c}" />
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">Service Company Name</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Service_Company_Name__c}" />
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">PC Costs Only (Local Currency)</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Local_Currency_of_PC_Costs__c}" />
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">PC Costs Only (Local Amount)</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Local_Amount_of_PC__c}" />
+                    </apex:column>
+                    
+                     <apex:column >
+                        <apex:facet name="header">Is the PPC part of the Roster?</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Is_the_PPC_part_of_the_Roster__c}" />
+                    </apex:column>
+                    
+                     <apex:column >
+                        <apex:facet name="header">PPC Name</apex:facet>
+                        <apex:inputField value="{!QuoteObj.PPC_Name__c}" />
+                    </apex:column>
+                    
+                     <apex:column >
+                        <apex:facet name="header">PPC Country Location</apex:facet>
+                        <apex:inputField value="{!QuoteObj.PPC_Country__c}" />
+                    </apex:column>
+                    
+                    <apex:column >
+                        <apex:facet name="header">PPC Costs Only (Local Currency)</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Local_Currency_of_PPC_Costs__c}" />
+                    </apex:column>
+                   
+                   <apex:column >
+                        <apex:facet name="header">PPC Costs Only (Local Amount)</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Local_Amount_of_PPC__c}" />
+                    </apex:column> 
+                    
+                    <apex:column >
+                        <apex:facet name="header">CA/Additional agency Name</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Local_Amount_of_PPC__c}" />
+                    </apex:column> 
+                    
+                     <apex:column >
+                        <apex:facet name="header">CA Location</apex:facet>
+                        <apex:inputField value="{!QuoteObj.CA_Location__c}" />
+                    </apex:column> 
+                    
+                    <apex:column >
+                        <apex:facet name="header">CA Costs Only (Local Currency)</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Local_Currency_of_CA_Costs__c}" />
+                    </apex:column> 
+                    
+                    <apex:column >
+                        <apex:facet name="header">CA Costs Only (Local Amount)</apex:facet>
+                        <apex:inputField value="{!QuoteObj.Local_Amount_of_CA__c}" />
+                    </apex:column> 
+                    
+                     <apex:column > 
+                      <apex:facet name="header"></apex:facet>
+                      <apex:inputFile value="{!document.body}" filename="{!document.name}" />   
+                     </apex:column>
+                     
+                     <apex:column > 
+                      <apex:commandLink value="+" action="{!addRowQuote}" /> 
+                     </apex:column>
+                </apex:dataTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+  <apex:actionRegion >
+    <apex:pageBlock >
+    <apex:pageBlockSection title="Submitted Quote" columns="1"
+                    collapsible="true">
+        <apex:pageblockTable value="{!quoteOldList}" var="quoteObj"
+                        cellpadding="20" border="1" >
+        
+        <apex:column headervalue="Is PC Part Of The Roster?">
+                     <apex:outputText value="{!quoteObj.Is_PC_part_of_the_Roster__c}" />
+        </apex:column>
+        
+        <apex:column headervalue="PC Name">
+                     <apex:outputText value="{!quoteObj.PC_name__c}" />
+        </apex:column>
+        
+        <apex:column headervalue="PC Country Location">
+                     <apex:outputText value="{!quoteObj.PC_Country__c}" />
+        </apex:column>
+        
+        <apex:column headervalue="Service Company Name">
+                     <apex:outputText value="{!quoteObj.Service_Company_Name__c}" />
+        </apex:column>
+        
+        <apex:column headervalue="PC Costs Only (Local Currency)">
+                     <apex:outputText value="{!quoteObj.Local_Currency_of_PC_Costs__c}" />
+        </apex:column>
+        
+        <apex:column headervalue="PC Costs Only (Local Amount)">
+                     <apex:outputText value="{!quoteObj.Local_Amount_of_PC__c}" />
+        </apex:column>
+        
+        <apex:column headervalue="Is the PPC part of the Roster?">
+                     <apex:outputText value="{!quoteObj.Is_the_PPC_part_of_the_Roster__c}" />
+        </apex:column>
+        
+         <apex:column headervalue="PPC Name">
+                     <apex:outputText value="{!quoteObj.PPC_Name__c}" />
+        </apex:column>
+        
+        <apex:column headervalue="PPC Country Location">
+                     <apex:outputText value="{!quoteObj.PPC_Country__c}" />
+        </apex:column>
+        
+        <apex:column headervalue="PPC Costs Only (Local Currency)">
+                     <apex:outputText value="{!quoteObj.Local_Currency_of_PPC_Costs__c}" />
+        </apex:column>
+        
+        <apex:column headervalue="PPC Costs Only (Local Amount)">
+                     <apex:outputText value="{!quoteObj.Local_Amount_of_PPC__c}" />
+        </apex:column>
+        
+        <apex:column headervalue="CA/Additional agency Name">
+                     <apex:outputText value="{!quoteObj.CA_Additional_agency_Name__c}" />
+        </apex:column>
+  
+        <apex:column headervalue="CA Location">
+                     <apex:outputText value="{!quoteObj.CA_Location__c}" />
+        </apex:column>
+        
+         <apex:column headervalue="CA Costs Only (Local Currency)">
+                     <apex:outputText value="{!quoteObj.Local_Currency_of_CA_Costs__c}" />
+        </apex:column>
+        
+         <apex:column headervalue="CA Costs Only (Local Amount)">
+                     <apex:outputText value="{!quoteObj.Local_Amount_of_CA__c}" />
+        </apex:column>
+        
+        </apex:pageblockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+           </apex:actionRegion>
+  </apex:form>
+</apex:page>
