@@ -36,6 +36,8 @@ public class Test_AF_BrandEstimateCatApproverValues
 	private static String brandEstName = 'Test BrandEstimateer';
 	private static String brandEstStatus = 'Initiate';
 	private static String userId1 = '005c0000001MYGb';
+	private static String User_Mesage='The user record inserted';
+	private static String Contact_Assert_message='The contact record  inserted';
 	/***********************************************************************************
 *  @Description: this method will the test data
 *  @name : catApprovervalues1
@@ -48,75 +50,75 @@ public class Test_AF_BrandEstimateCatApproverValues
 		Profile p=[Select Id from Profile where Name='System Administrator'];       
 		//Insert User 
 		User u= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress, 
-		EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-		UserName='testuserbec@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
+		UserName=AF_Constants.TEST_UserName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u;
-		System.Assert(u.Id != null, 'The user record inserted');
+		System.Assert(u.Id != null, User_Mesage);
 		User u1= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress1, 
-		EmailEncodingKey='UTF-8', LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=userName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u1;
-		System.Assert(u1.Id != null, 'The user record inserted');
+		System.Assert(u1.Id != null, User_Mesage);
 		User u2= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress3, 
-		EmailEncodingKey='UTF-8', LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress4,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u2;
-		System.Assert(u2.Id != null, 'The user record inserted');
+		System.Assert(u2.Id != null, User_Mesage);
 		User u3= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress5, 
-		EmailEncodingKey='UTF-8', LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress6,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u3;
-		System.Assert(u3.Id != null, 'The user record inserted');
+		System.Assert(u3.Id != null, User_Mesage);
 		User u4= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress7, 
-		EmailEncodingKey='UTF-8', LastName=lastName4, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName4, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress8,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u4;
-		System.Assert(u4.Id != null, 'The user record inserted');
+		System.Assert(u4.Id != null, User_Mesage);
 		User u5= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress9, 
-		EmailEncodingKey='UTF-8', LastName=lastName5, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName5, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress10,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u5;
-		System.Assert(u5.Id != null, 'The user record inserted');
+		System.Assert(u5.Id != null, User_Mesage);
 		User u6= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress11, 
-		EmailEncodingKey='UTF-8', LastName=lastName6, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName6, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress12,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u6;
-		System.Assert(u6.Id != null, 'The user record inserted');
+		System.Assert(u6.Id != null, User_Mesage);
 		User u7= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbec7@unilever.com', 
-		EmailEncodingKey='UTF-8', LastName='Test Userbec7', LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbec7', LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName='testuserbec7@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u7;
-		System.Assert(u7.Id != null, 'The user record inserted');
+		System.Assert(u7.Id != null, User_Mesage);
 		User u8= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbec8@unilever.com', 
-		EmailEncodingKey='UTF-8', LastName='Test Userbec8', LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbec8', LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName='testuserbec8@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u8;
-		System.Assert(u8.Id != null, 'The user record inserted');
+		System.Assert(u8.Id != null, User_Mesage);
 		User u9= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbec9@unilever.com', 
-		EmailEncodingKey='UTF-8', LastName='Test Userbec9', LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbec9', LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName='testuserbec9@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u9;
-		System.Assert(u9.Id != null, 'The user record inserted');
+		System.Assert(u9.Id != null, User_Mesage);
 		System.runAs(u)
 		{
 			//Insert Account
@@ -197,68 +199,68 @@ public class Test_AF_BrandEstimateCatApproverValues
 		Profile p=[Select Id from Profile where Name='System Administrator'];       
 		//Insert User 
 		User u= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress, 
-		EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-		UserName='testuserbec@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
+		UserName=AF_Constants.TEST_UserName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u;
-		System.Assert(u.Id != null, 'The User record inserted');
+		System.Assert(u.Id != null, User_Mesage);
 		User u1= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress1, 
-		EmailEncodingKey='UTF-8', LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=userName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u1;
-		System.Assert(u1.Id != null, 'The User record inserted');
+		System.Assert(u1.Id != null, User_Mesage);
 		User u2= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress3, 
-		EmailEncodingKey='UTF-8', LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress4,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u2;
-		System.Assert(u2.Id != null, 'The User record inserted');
+		System.Assert(u2.Id != null, User_Mesage);
 		User u3= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress5, 
-		EmailEncodingKey='UTF-8', LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress6,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u3;
-		System.Assert(u3.Id != null, 'The User record inserted');
+		System.Assert(u3.Id != null, User_Mesage);
 		User u4= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress7, 
-		EmailEncodingKey='UTF-8', LastName=lastName4, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName4, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress8,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u4;
-		System.Assert(u4.Id != null, 'The User record inserted');
+		System.Assert(u4.Id != null, User_Mesage);
 		User u5= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress9, 
-		EmailEncodingKey='UTF-8', LastName=lastName5, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName5, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress10,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u5;
-		System.Assert(u5.Id != null, 'The User record inserted');
+		System.Assert(u5.Id != null, User_Mesage);
 		User u6= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress11, 
-		EmailEncodingKey='UTF-8', LastName=lastName6, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName6, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress12,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u6;
-		System.Assert(u6.Id != null, 'The User record inserted');
+		System.Assert(u6.Id != null, User_Mesage);
 		User u7= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbec7@unilever.com', 
-		EmailEncodingKey='UTF-8', LastName='Test Userbec7', LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbec7', LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName='testuserbec7@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u7;
-		System.Assert(u7.Id != null, 'The User record inserted');
+		System.Assert(u7.Id != null, User_Mesage);
 		User u8= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbec8@unilever.com', 
-		EmailEncodingKey='UTF-8', LastName='Test Userbec8', LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbec8', LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName='testuserbec8@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u8;
-		System.Assert(u8.Id != null, 'The User record inserted');
+		System.Assert(u8.Id != null, User_Mesage);
 		System.runAs(u)
 		{
 			//Insert Account
@@ -266,7 +268,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			acc.Name=AcctName;
 			acc.published__c=true;
 			insert acc;
-			System.Assert(acc.Id != null, 'The account record  inserted');
+			System.Assert(acc.Id != null, AF_Constants.TEST_ASSERT_MSG);
 			//inser Contact
 			Contact con=new Contact();
 			con.LastName=contactName;
@@ -274,7 +276,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			con.email = emailAddress;
 			con.AF_Send_Email_Notification__c = true;
 			insert Con;
-			System.Assert(Con.Id != null, 'The contact record  inserted');
+			System.Assert(Con.Id != null, Contact_Assert_message);
 			Contact con1=new Contact();
 			con1.LastName=contactName;
 			con1.AccountId=acc.Id;
@@ -331,61 +333,61 @@ public class Test_AF_BrandEstimateCatApproverValues
 		Profile p=[Select Id from Profile where Name='System Administrator'];       
 		//Insert User 
 		User u= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress, 
-		EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-		UserName='testuserbec@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
+		UserName=AF_Constants.TEST_UserName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u;
-		System.Assert(u.Id != null, 'The User record inserted');
+		System.Assert(u.Id != null, User_Mesage);
 		User u1= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress1, 
-		EmailEncodingKey='UTF-8', LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=userName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u1;
-		System.Assert(u1.Id != null, 'The User record inserted');
+		System.Assert(u1.Id != null, User_Mesage);
 		User u2= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress3, 
-		EmailEncodingKey='UTF-8', LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress4,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u2;
-		System.Assert(u2.Id != null, 'The User record inserted');
+		System.Assert(u2.Id != null, User_Mesage);
 		User u3= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress5, 
-		EmailEncodingKey='UTF-8', LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress6,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u3;
-		System.Assert(u3.Id != null, 'The User record inserted');
+		System.Assert(u3.Id != null, User_Mesage);
 		User u4= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress7, 
-		EmailEncodingKey='UTF-8', LastName=lastName4, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName4, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress8,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u4;
-		System.Assert(u4.Id != null, 'The User record inserted');
+		System.Assert(u4.Id != null, User_Mesage);
 		User u5= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress9, 
-		EmailEncodingKey='UTF-8', LastName=lastName5, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName5, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress10,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u5;
-		System.Assert(u5.Id != null, 'The User record inserted');
+		System.Assert(u5.Id != null, User_Mesage);
 		User u6= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress11, 
-		EmailEncodingKey='UTF-8', LastName=lastName6, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName6, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress12,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u6;
-		System.Assert(u6.Id != null, 'The User record inserted');
+		System.Assert(u6.Id != null, User_Mesage);
 		User u7= new User(Alias = AF_Constants.TEST_Alias, Email='standarduserbec7@unilever.com', 
-		EmailEncodingKey='UTF-8', LastName='Test Userbec7', LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbec7', LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName='testuserbec7@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u7;
-		System.Assert(u7.Id != null, 'The User record inserted');
+		System.Assert(u7.Id != null, User_Mesage);
 		System.runAs(u)
 		{
 			//Insert Account
@@ -393,7 +395,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			acc.Name=AcctName;
 			acc.published__c=true;
 			insert acc;
-			System.Assert(acc.Id != null, 'The account record  inserted');
+			System.Assert(acc.Id != null, AF_Constants.TEST_ASSERT_MSG);
 			//inser Contact
 			Contact con=new Contact();
 			con.LastName=contactName;
@@ -401,7 +403,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			con.email = emailAddress;
 			con.AF_Send_Email_Notification__c = true;
 			insert Con;
-			System.Assert(Con.Id != null, 'The Contact record  inserted');
+			System.Assert(Con.Id != null, Contact_Assert_message);
 			//Insert Category
 			RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
 			AF_Category_Brand__c cat=new AF_Category_Brand__c();
@@ -452,54 +454,54 @@ public class Test_AF_BrandEstimateCatApproverValues
 		Profile p=[Select Id from Profile where Name='System Administrator'];       
 		//Insert User 
 		User u= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress, 
-		EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-		UserName='testuserbec@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
+		UserName=AF_Constants.TEST_UserName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u;
-		System.Assert(u.Id != null, 'The User record inserted');
+		System.Assert(u.Id != null, User_Mesage);
 		User u1= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress1, 
-		EmailEncodingKey='UTF-8', LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=userName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u1;
-		System.Assert(u1.Id != null, 'The User record inserted');
+		System.Assert(u1.Id != null, User_Mesage);
 		User u2= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress3, 
-		EmailEncodingKey='UTF-8', LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress4,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u2;
-		System.Assert(u2.Id != null, 'The User record inserted');
+		System.Assert(u2.Id != null, User_Mesage);
 		User u3= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress5, 
-		EmailEncodingKey='UTF-8', LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress6,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u3;
-		System.Assert(u3.Id != null, 'The User record inserted');
+		System.Assert(u3.Id != null, User_Mesage);
 		User u4= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress7, 
-		EmailEncodingKey='UTF-8', LastName=lastName4, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName4, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress8,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u4;
-		System.Assert(u4.Id != null, 'The User record inserted');
+		System.Assert(u4.Id != null, User_Mesage);
 		User u5= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress9, 
-		EmailEncodingKey='UTF-8', LastName=lastName5, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName5, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress10,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u5;
-		System.Assert(u5.Id != null, 'The User record inserted');
+		System.Assert(u5.Id != null, User_Mesage);
 		User u6= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress11, 
-		EmailEncodingKey='UTF-8', LastName=lastName6, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName6, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress12,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u6;
-		System.Assert(u6.Id != null, 'The User record inserted');
+		System.Assert(u6.Id != null, User_Mesage);
 		System.runAs(u)
 		{
 			//Insert Account
@@ -507,7 +509,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			acc.Name=AcctName;
 			acc.published__c=true;
 			insert acc;
-			System.Assert(acc.Id != null, 'The account record  inserted');
+			System.Assert(acc.Id != null, AF_Constants.TEST_ASSERT_MSG);
 			//inser Contact
 			Contact con=new Contact();
 			con.LastName=contactName;
@@ -515,7 +517,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			con.email = emailAddress;
 			con.AF_Send_Email_Notification__c = true;
 			insert Con;
-			System.Assert(Con.Id != null, 'The contact record  inserted');
+			System.Assert(Con.Id != null, Contact_Assert_message);
 			Contact con1=new Contact();
 			con1.LastName=contactName;
 			con1.AccountId=acc.Id;
@@ -578,47 +580,47 @@ public class Test_AF_BrandEstimateCatApproverValues
 		Profile p=[Select Id from Profile where Name='System Administrator'];       
 		//Insert User 
 		User u= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress, 
-		EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-		UserName='testuserbec@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
+		UserName=AF_Constants.TEST_UserName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u;
-		System.Assert(u.Id != null, 'The User record inserted');
+		System.Assert(u.Id != null, User_Mesage);
 		User u1= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress1, 
-		EmailEncodingKey='UTF-8', LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=userName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u1;
-		System.Assert(u1.Id != null, 'The User record inserted');
+		System.Assert(u1.Id != null, User_Mesage);
 		User u2= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress3, 
-		EmailEncodingKey='UTF-8', LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress4,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u2;
-		System.Assert(u2.Id != null, 'The User record inserted');
+		System.Assert(u2.Id != null, User_Mesage);
 		User u3= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress5, 
-		EmailEncodingKey='UTF-8', LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress6,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u3;
-		System.Assert(u3.Id != null, 'The User record inserted');
+		System.Assert(u3.Id != null, User_Mesage);
 		User u4= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress7, 
-		EmailEncodingKey='UTF-8', LastName=lastName4, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName4, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress8,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u4;
-		System.Assert(u4.Id != null, 'The User record inserted');
+		System.Assert(u4.Id != null, User_Mesage);
 		User u5= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress9, 
-		EmailEncodingKey='UTF-8', LastName=lastName5, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName5, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress10,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u5;
-		System.Assert(u5.Id != null, 'The User record inserted');
+		System.Assert(u5.Id != null, User_Mesage);
 		System.runAs(u)
 		{
 			//Insert Account
@@ -626,7 +628,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			acc.Name=AcctName;
 			acc.published__c=true;
 			insert acc;
-			System.Assert(acc.Id != null, 'The account record  inserted');
+			System.Assert(acc.Id != null, AF_Constants.TEST_ASSERT_MSG);
 			//inser Contact
 			Contact con=new Contact();
 			con.LastName=contactName;
@@ -634,7 +636,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			con.email = emailAddress;
 			con.AF_Send_Email_Notification__c = true;
 			insert Con;
-			System.Assert(Con.Id != null, 'The contact record  inserted');
+			System.Assert(Con.Id != null, Contact_Assert_message);
 			//Insert Category
 			RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
 			AF_Category_Brand__c cat=new AF_Category_Brand__c();
@@ -685,40 +687,40 @@ public class Test_AF_BrandEstimateCatApproverValues
 		Profile p=[Select Id from Profile where Name='System Administrator'];       
 		//Insert User 
 		User u= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress, 
-		EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-		UserName='testuserbec@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
+		UserName=AF_Constants.TEST_UserName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u;
-		System.Assert(u.Id != null, 'The User record inserted');
+		System.Assert(u.Id != null, User_Mesage);
 		User u1= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress1, 
-		EmailEncodingKey='UTF-8', LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=userName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u1;
-		System.Assert(u1.Id != null, 'The User record inserted');
+		System.Assert(u1.Id != null, User_Mesage);
 		User u2= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress3, 
-		EmailEncodingKey='UTF-8', LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress4,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u2;
-		System.Assert(u2.Id != null, 'The User record inserted');
+		System.Assert(u2.Id != null, User_Mesage);
 		User u3= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress5, 
-		EmailEncodingKey='UTF-8', LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress6,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u3;
-		System.Assert(u3.Id != null, 'The User record inserted');
+		System.Assert(u3.Id != null, User_Mesage);
 		User u4= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress7, 
-		EmailEncodingKey='UTF-8', LastName=lastName4, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName4, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress8,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u4;
-		System.Assert(u4.Id != null, 'The User record inserted');
+		System.Assert(u4.Id != null, User_Mesage);
 		System.runAs(u)
 		{
 			//Insert Account
@@ -726,7 +728,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			acc.Name=AcctName;
 			acc.published__c=true;
 			insert acc;
-			System.Assert(acc.Id != null, 'The account record  inserted');
+			System.Assert(acc.Id != null, AF_Constants.TEST_ASSERT_MSG);
 			//inser Contact
 			Contact con=new Contact();
 			con.LastName=contactName;
@@ -734,7 +736,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			con.email = emailAddress;
 			con.AF_Send_Email_Notification__c = true;
 			insert Con;
-			System.Assert(Con.Id != null, 'The contact record  inserted');
+			System.Assert(Con.Id != null, Contact_Assert_message);
 			//Insert Category
 			RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
 			AF_Category_Brand__c cat=new AF_Category_Brand__c();
@@ -785,33 +787,33 @@ public class Test_AF_BrandEstimateCatApproverValues
 		Profile p=[Select Id from Profile where Name='System Administrator'];       
 		//Insert User 
 		User u= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress, 
-		EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-		UserName='testuserbec@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
+		UserName=AF_Constants.TEST_UserName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u;
-		System.Assert(u.Id != null, 'The User record inserted');
+		System.Assert(u.Id != null, User_Mesage);
 		User u1= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress1, 
-		EmailEncodingKey='UTF-8', LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=userName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u1;
-		System.Assert(u1.Id != null, 'The User record inserted');
+		System.Assert(u1.Id != null, User_Mesage);
 		User u2= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress3, 
-		EmailEncodingKey='UTF-8', LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress4,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u2;
-		System.Assert(u2.Id != null, 'The User record inserted');
+		System.Assert(u2.Id != null, User_Mesage);
 		User u3= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress5, 
-		EmailEncodingKey='UTF-8', LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName3, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress6,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u3;
-		System.Assert(u3.Id != null, 'The User record inserted');
+		System.Assert(u3.Id != null, User_Mesage);
 		System.runAs(u)
 		{
 			//Insert Account
@@ -819,7 +821,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			acc.Name=AcctName;
 			acc.published__c=true;
 			insert acc;
-			System.Assert(acc.Id != null, 'The account record  inserted');
+			System.Assert(acc.Id != null, AF_Constants.TEST_ASSERT_MSG);
 			//inser Contact
 			Contact con=new Contact();
 			con.LastName=contactName;
@@ -827,7 +829,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			con.email = emailAddress;
 			con.AF_Send_Email_Notification__c = true;
 			insert Con;
-			System.Assert(Con.Id != null, 'The contact record  inserted');
+			System.Assert(Con.Id != null, Contact_Assert_message);
 			//Insert Category
 			RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
 			AF_Category_Brand__c cat=new AF_Category_Brand__c();
@@ -878,26 +880,26 @@ public class Test_AF_BrandEstimateCatApproverValues
 		Profile p=[Select Id from Profile where Name='System Administrator'];       
 		//Insert User 
 		User u= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress, 
-		EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-		UserName='testuserbec@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
+		UserName=AF_Constants.TEST_UserName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u;
-		System.Assert(u.Id != null, 'The User record inserted');
+		System.Assert(u.Id != null, User_Mesage);
 		User u1= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress1, 
-		EmailEncodingKey='UTF-8', LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=userName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u1;
-		System.Assert(u1.Id != null, 'The User record inserted');
+		System.Assert(u1.Id != null, User_Mesage);
 		User u2= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress3, 
-		EmailEncodingKey='UTF-8', LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName2, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=emailAddress4,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u2;
-		System.Assert(u2.Id != null, 'The User record inserted');
+		System.Assert(u2.Id != null, User_Mesage);
 		System.runAs(u)
 		{
 			//Insert Account
@@ -905,7 +907,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			acc.Name=AcctName;
 			acc.published__c=true;
 			insert acc;
-			System.Assert(acc.Id != null, 'The account record  inserted');
+			System.Assert(acc.Id != null, AF_Constants.TEST_ASSERT_MSG);
 			//inser Contact
 			Contact con=new Contact();
 			con.LastName=contactName;
@@ -913,7 +915,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			con.email = emailAddress;
 			con.AF_Send_Email_Notification__c = true;
 			insert Con;
-			System.Assert(Con.Id != null, 'The Contact record  inserted');
+			System.Assert(Con.Id != null, Contact_Assert_message);
 			//Insert Category
 			RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
 			AF_Category_Brand__c cat=new AF_Category_Brand__c();
@@ -964,19 +966,19 @@ public class Test_AF_BrandEstimateCatApproverValues
 		Profile p=[Select Id from Profile where Name='System Administrator'];       
 		//Insert User 
 		User u= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress, 
-		EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-		UserName='testuserbec@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
+		UserName=AF_Constants.TEST_UserName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u;
-		System.Assert(u.Id != null, 'The User record inserted');
+		System.Assert(u.Id != null, User_Mesage);
 		User u1= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress1, 
-		EmailEncodingKey='UTF-8', LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=lastName, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
 		UserName=userName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u1;
-		System.Assert(u1.Id != null, 'The User record inserted');
+		System.Assert(u1.Id != null, User_Mesage);
 		System.runAs(u)
 		{
 			//Insert Account
@@ -984,7 +986,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			acc.Name=AcctName;
 			acc.published__c=true;
 			insert acc;
-			System.Assert(acc.Id != null, 'The account record  inserted');
+			System.Assert(acc.Id != null, AF_Constants.TEST_ASSERT_MSG);
 			//inser Contact
 			Contact con=new Contact();
 			con.LastName=contactName;
@@ -992,7 +994,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			con.email = emailAddress;
 			con.AF_Send_Email_Notification__c = true;
 			insert Con;
-			System.Assert(Con.Id != null, 'The account record  inserted');
+			System.Assert(Con.Id != null, AF_Constants.TEST_ASSERT_MSG);
 			//Insert Category
 			RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
 			AF_Category_Brand__c cat=new AF_Category_Brand__c();
@@ -1043,12 +1045,12 @@ public class Test_AF_BrandEstimateCatApproverValues
 		Profile p=[Select Id from Profile where Name='System Administrator'];       
 		//Insert User 
 		User u= new User(Alias = AF_Constants.TEST_Alias, Email=emailAddress, 
-		EmailEncodingKey='UTF-8', LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.LocaleKey, 
 		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
 		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
-		UserName='testuserbec@test123321.com',AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
+		UserName=AF_Constants.TEST_UserName,AF_Brand__c=brandName,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u;
-		System.Assert(u.Id != null, 'The User record inserted');
+		System.Assert(u.Id != null, User_Mesage);
 		System.runAs(u)
 		{
 			//Insert Account
@@ -1056,7 +1058,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			acc.Name=AcctName;
 			acc.published__c=true;
 			insert acc;
-			System.Assert(acc.Id != null, 'The account record  inserted');
+			System.Assert(acc.Id != null, AF_Constants.TEST_ASSERT_MSG);
 			//inser Contact
 			Contact con=new Contact();
 			con.LastName=contactName;
@@ -1064,7 +1066,7 @@ public class Test_AF_BrandEstimateCatApproverValues
 			con.email = emailAddress;
 			con.AF_Send_Email_Notification__c = true;
 			insert Con;
-			System.Assert(Con.Id != null, 'The Contact record  inserted');
+			System.Assert(Con.Id != null, Contact_Assert_message);
 			//Insert Category
 			RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
 			AF_Category_Brand__c cat=new AF_Category_Brand__c();

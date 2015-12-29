@@ -2,7 +2,7 @@
 @Author :Cognizant
 @name : Test_AF_UpdateOopsEstimatesValues1
 @Created Date : 05/08/2014.
-@Description : This Test class for AF_UpdateOopsEstimatesValues1 apex class.
+@Description : This Test class for AF_UpdateOopsEstimatesValues5 apex class.
 @Version : 1.0
 @reference : none
 ****************************************************************************************************************************/
@@ -11,22 +11,16 @@ public class Test_AF_UpdateOopsEstimatesValues1
 {    
 	Static Integer IcurrYear = System.Today().year();
 	Static string currYear=string.valueof(IcurrYear);
-	/**********************************************************************
-*  @Description: This method will have Test data.
-*  @name : updateOopsEstimatesValues1
-*  @param : none
-*  @return : none
-*************************************************************************/
 	Static testMethod void updateOopsEstimatesValues1()
 	{
 		Test.startTest();
 		Profile p=[Select Id from Profile where Name='System Administrator'];       
 		//Insert User 
-		User u= new User(Alias = 'testuv', Email='standarduseruv@unilever.com', 
-		EmailEncodingKey='UTF-8', LastName='Test Useruv', LanguageLocaleKey='en_US', 
-		LocaleSidKey='en_US', ProfileId = p.Id, 
-		TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Agency',isActive=true, 
-		UserName='testuseruv@test123321.com',AF_Brand__c='Test Branduv',AF_Category__c='Test Beveragesuv');
+		User u= new User(Alias = AF_Constants.TEST_Alias, Email=AF_Constants.TEST_USER_EMAIL, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Agency',isActive=true, 
+		UserName=AF_Constants.TEST_UserName,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u;        
 		System.runAs(u)
 		{ 
@@ -40,7 +34,7 @@ public class Test_AF_UpdateOopsEstimatesValues1
 			RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
 			AF_Category_Brand__c cat=new AF_Category_Brand__c();
 			cat.RecordTypeId=catRT.Id;
-			cat.Name='Test Beveragesuv';
+			cat.Name=AF_Constants.TEST_AF_Category;
 			cat.AF_Pilot_Model__c=false;     
 			cat.AF_Super_category__c='Drinks';
 			insert cat;
@@ -50,7 +44,7 @@ public class Test_AF_UpdateOopsEstimatesValues1
 			AF_Category_Brand__c bran=new AF_Category_Brand__c();
 			bran.RecordTypeId=brandRT.Id;
 			bran.AF_Pilot_Model__c=false;    
-			bran.Name='Test Branduv';
+			bran.Name=AF_Constants.TEST_BRAND;
 			bran.AF_Category_Brands__c=cat.Id;
 			insert bran;
 			System.assertEquals(bran.AF_Category_Brands__c, cat.Id);
@@ -68,7 +62,7 @@ public class Test_AF_UpdateOopsEstimatesValues1
 			insert brandEst;
 			System.assertEquals(brandEst.Brand__c, bran.id);
 			AF_Currency__c curr = new AF_Currency__c();
-			curr.AF_Country__c = 'Ecuador';
+			curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
 			curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
 			curr.Country_Currency__c = AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
 			curr.AF_Fiscal_Year_new__c = currYear;
@@ -89,16 +83,16 @@ public class Test_AF_UpdateOopsEstimatesValues1
 			//Insert Agency Entity
 			RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
 			AF_Entity__c entity1=new AF_Entity__c();
-			entity1.Name='Algeria';        
+			entity1.Name=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;        
 			entity1.AF_Agency__c=acc.Id;
-			entity1.AF_Country__c='Algeria';
+			entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
 			entity1.RecordTypeId=entiRT1.Id;         
 			insert entity1;
 			//Insert Unilever Entity
 			RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
 			AF_Entity__c entity2=new AF_Entity__c();
 			entity2.Name=AF_Constants.TEST_UNILEVER_ENTITY_COUNTRY;        
-			entity2.AF_Country__c='Indonesia';
+			entity2.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
 			entity2.RecordTypeId=entiRT2.Id;         
 			insert entity2; 
 			//Insert OOPS Estimate
@@ -109,19 +103,19 @@ public class Test_AF_UpdateOopsEstimatesValues1
 			oopEst.AF_Unilever_Entity__c=entity2.Id;
 			oopEst.AF_Estimate__c=55;
 			oopEst.AF_Status__c='Ready for PO';
-			oopEst.AF_Ready_For_PO_Entry_Currency__c = 'USD';
+			oopEst.AF_Ready_For_PO_Entry_Currency__c = AF_Constants.AF_CURRENCY_USD;
 			oopEst.AF_Ready_For_PO_Exchange_Rate__c = 1.6112;
 			//insert oopEst;       
 			List<AF_OOPS_Estimate__c> agencOopsEstList=new List<AF_OOPS_Estimate__c>();
 			agencOopsEstList.add(oopEst);
 			AF_Matrix_Table__c mtable = new AF_Matrix_Table__c();
-			mtable.AF_Agency_Country__c = 'Algeria';
-			mtable.AF_Unilver_Country__c = 'Indonesia';
-			mtable.AF_Matrix_Country__c = 'Ecuador';
-			mtable.AF_Matrix_Currency_Code__c = 'USD';
-			mtable.AF_Ready_For_PO_Currency_Code__c = 'USD';
-			mtable.AF_Ready_For_PO_Country__c ='Algeria';
-			mtable.Ready_For_PO_Conversion__c = 'USD';
+			mtable.AF_Agency_Country__c = AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
+			mtable.AF_Unilver_Country__c = AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
+			mtable.AF_Matrix_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+			mtable.AF_Matrix_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+			mtable.AF_Ready_For_PO_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+			mtable.AF_Ready_For_PO_Country__c =AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
+			mtable.Ready_For_PO_Conversion__c = AF_Constants.AF_CURRENCY_USD;
 			insert mtable;   
 			/*AF_BrandEstimate_TriggerDate__c branEstTriDt=new AF_BrandEstimate_TriggerDate__c();
 	branEstTriDt.AF_Currency_Uploaded__c=false;
@@ -137,22 +131,16 @@ public class Test_AF_UpdateOopsEstimatesValues1
 			Test.stopTest();
 		}
 	}
-	/**********************************************************************
-*  @Description: This method will have Test data.
-*  @name : updateOopsEstimatesValues2
-*  @param : none
-*  @return : none
-*************************************************************************/
 	Static testMethod void updateOopsEstimatesValues2()
 	{
 		Test.startTest();
 		Profile p=[Select Id from Profile where Name='System Administrator'];       
 		//Insert User 
-		User u= new User(Alias = 'testuv', Email='standarduseruv@unilever.com', 
-		EmailEncodingKey='UTF-8', LastName='Test Useruv', LanguageLocaleKey='en_US', 
-		LocaleSidKey='en_US', ProfileId = p.Id, 
-		TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c='Category Agency',isActive=true, 
-		UserName='testuseruv@test123321.com',AF_Brand__c='Test Branduv',AF_Category__c='Test Beveragesuv');
+		User u= new User(Alias = AF_Constants.TEST_Alias, Email=AF_Constants.TEST_USER_EMAIL, 
+		EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName=AF_Constants.TEST_USER_LASTNAME, LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
+		LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+		TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Category Agency',isActive=true, 
+		UserName=AF_Constants.TEST_UserName,AF_Brand__c=AF_Constants.TEST_BRAND,AF_Category__c=AF_Constants.TEST_AF_Category);
 		insert u;        
 		System.runAs(u)
 		{ 
@@ -166,7 +154,7 @@ public class Test_AF_UpdateOopsEstimatesValues1
 			RecordType catRT = [select id,Name from RecordType where SobjectType='AF_Category_Brand__c' and Name='Category' Limit 1];
 			AF_Category_Brand__c cat=new AF_Category_Brand__c();
 			cat.RecordTypeId=catRT.Id;
-			cat.Name='Test Beveragesuv';
+			cat.Name=AF_Constants.TEST_AF_Category;
 			cat.AF_Pilot_Model__c=false;     
 			cat.AF_Super_category__c='Drinks';
 			insert cat;
@@ -176,7 +164,7 @@ public class Test_AF_UpdateOopsEstimatesValues1
 			AF_Category_Brand__c bran=new AF_Category_Brand__c();
 			bran.RecordTypeId=brandRT.Id;
 			bran.AF_Pilot_Model__c=false;    
-			bran.Name='Test Branduv';
+			bran.Name=AF_Constants.TEST_BRAND;
 			bran.AF_Category_Brands__c=cat.Id;
 			insert bran;
 			System.assertEquals(bran.AF_Category_Brands__c, cat.Id);
@@ -194,8 +182,8 @@ public class Test_AF_UpdateOopsEstimatesValues1
 			insert brandEst;
 			System.assertEquals(brandEst.Brand__c, bran.id);
 			AF_Currency__c curr = new AF_Currency__c();
-			curr.AF_Country__c = 'Ecuador';
-			curr.AF_Currency_Code__c = 'USD';
+			curr.AF_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+			curr.AF_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
 			curr.Country_Currency__c = 'Eucador-USD';
 			curr.AF_Fiscal_Year_new__c = currYear;
 			curr.Currency_Unit__c = 'US $';
@@ -215,16 +203,16 @@ public class Test_AF_UpdateOopsEstimatesValues1
 			//Insert Agency Entity
 			RecordType entiRT1 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Agency Entity' Limit 1];       
 			AF_Entity__c entity1=new AF_Entity__c();
-			entity1.Name='Algeria';        
+			entity1.Name=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;        
 			entity1.AF_Agency__c=acc.Id;
-			entity1.AF_Country__c='Algeria';
+			entity1.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
 			entity1.RecordTypeId=entiRT1.Id;         
 			insert entity1;
 			//Insert Unilever Entity
 			RecordType entiRT2 = [select id,Name from RecordType where SobjectType='AF_Entity__c' and Name='Unilever Entity' Limit 1];       
 			AF_Entity__c entity2=new AF_Entity__c();
-			entity2.Name='Indonesia';        
-			entity2.AF_Country__c='Indonesia';
+			entity2.Name=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;        
+			entity2.AF_Country__c=AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
 			entity2.RecordTypeId=entiRT2.Id;         
 			insert entity2; 
 			//Insert OOPS Estimate
@@ -235,20 +223,20 @@ public class Test_AF_UpdateOopsEstimatesValues1
 			oopEst.AF_Unilever_Entity__c=entity2.Id;
 			oopEst.AF_Estimate__c=55;
 			oopEst.AF_Status__c='With Agency';
-			oopEst.AF_Ready_For_PO_Entry_Currency__c = 'USD';
+			oopEst.AF_Ready_For_PO_Entry_Currency__c = AF_Constants.AF_CURRENCY_USD;
 			oopEst.AF_Ready_For_PO_Exchange_Rate__c = 1.6112;
 			oopEst.AF_Fiscal_Year__c = currYear;
 			//insert oopEst;       
 			List<AF_OOPS_Estimate__c> agencOopsEstList=new List<AF_OOPS_Estimate__c>();
 			agencOopsEstList.add(oopEst);
 			AF_Matrix_Table__c mtable = new AF_Matrix_Table__c();
-			mtable.AF_Agency_Country__c = 'Algeria';
-			mtable.AF_Unilver_Country__c = 'Indonesia';
-			mtable.AF_Matrix_Country__c = 'Ecuador';
-			mtable.AF_Matrix_Currency_Code__c = 'USD';
-			mtable.AF_Ready_For_PO_Currency_Code__c = 'USD';
-			mtable.AF_Ready_For_PO_Country__c ='Algeria';
-			mtable.Ready_For_PO_Conversion__c = 'USD';
+			mtable.AF_Agency_Country__c = AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
+			mtable.AF_Unilver_Country__c = AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
+			mtable.AF_Matrix_Country__c = AF_Constants.TEST_CURRENCY_COUNTRY;
+			mtable.AF_Matrix_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+			mtable.AF_Ready_For_PO_Currency_Code__c = AF_Constants.AF_CURRENCY_USD;
+			mtable.AF_Ready_For_PO_Country__c =AF_Constants.TEST_AGENCY_ENTITY_COUNTRY;
+			mtable.Ready_For_PO_Conversion__c = AF_Constants.AF_CURRENCY_USD;
 			insert mtable;   
 			/*AF_BrandEstimate_TriggerDate__c branEstTriDt=new AF_BrandEstimate_TriggerDate__c();
 	branEstTriDt.AF_Currency_Uploaded__c=false;

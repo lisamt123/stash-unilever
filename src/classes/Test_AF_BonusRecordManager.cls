@@ -11,6 +11,7 @@ public class Test_AF_BonusRecordManager
 {   
     Static Integer IcurrYear = System.Today().year();
         Static string currYear=string.valueof(IcurrYear); 
+        static string BrandEstimate_Name='Test BrandEstimatebm1';
     /***********************************************************************************
 *  @Description: this method will the test data
 *  @name : bonusRecordManager
@@ -22,7 +23,7 @@ public class Test_AF_BonusRecordManager
         Test.startTest();
         Profile p=[Select Id from Profile where Name='System Administrator'];       
         //Insert User 
-        User u= new User(Alias = AF_Constants.TEST_Alias, Email='standarduser6@unilever.com', 
+        User u= new User(Alias = AF_Constants.TEST_Alias, Email=AF_Constants.TEST_USER_EMAIL, 
         EmailEncodingKey=AF_Constants.TEST_EmailEncodingKey, LastName='Test Userbm', LanguageLocaleKey=AF_Constants.TEST_LanguageLocaleKey, 
         LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
         TimeZoneSidKey=AF_Constants.TEST_TimeZoneSidKey,AF_Agency_Fees_User_Type__c='Agency',isActive=true, 
@@ -58,7 +59,7 @@ public class Test_AF_BonusRecordManager
             AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
             brandEst.AF_Agency__c=acc.Id;               
             brandEst.Name='Test BrandEstimatebm';
-            brandEst.AF_Status_Base_Fees__c='Initiate';  
+            brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
             brandEst.Brand__c=bran.id;
             brandEst.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
             brandEst.AF_Pilot_Model__c=true;
@@ -69,7 +70,7 @@ public class Test_AF_BonusRecordManager
             AF_Brand_Estimate__c brandEst1=new AF_Brand_Estimate__c();
             brandEst1.AF_Agency__c=acc.Id;               
             brandEst1.Name='Test BrandEstimatebm';
-            brandEst1.AF_Status_Base_Fees__c='Initiate';  
+            brandEst1.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
             brandEst1.AF_Pilot_Model__c=false;
             brandEst1.Brand__c=bran.id;
             brandEst1.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
@@ -219,8 +220,8 @@ public class Test_AF_BonusRecordManager
             //Insert Brand Estimate                  
             AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
             brandEst.AF_Agency__c=acc.Id;               
-            brandEst.Name='Test BrandEstimatebm1';
-            brandEst.AF_Status_Base_Fees__c='Initiate';  
+            brandEst.Name=BrandEstimate_Name;
+            brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
             brandEst.Brand__c=bran.id;
             brandEst.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
             brandEst.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
@@ -231,8 +232,8 @@ public class Test_AF_BonusRecordManager
             brandEstSet.add(brandEst.Id);
             AF_Brand_Estimate__c brandEst1=new AF_Brand_Estimate__c();
             brandEst1.AF_Agency__c=acc.Id;               
-            brandEst1.Name='Test BrandEstimatebm1';
-            brandEst1.AF_Status_Base_Fees__c='Initiate';  
+            brandEst1.Name=BrandEstimate_Name;
+            brandEst1.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
             brandEst1.Brand__c=bran.id;
             brandEst1.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
             insert brandEst1;     
@@ -367,8 +368,8 @@ public class Test_AF_BonusRecordManager
             //Insert Brand Estimate                  
             AF_Brand_Estimate__c brandEst=new AF_Brand_Estimate__c();
             brandEst.AF_Agency__c=acc.Id;               
-            brandEst.Name='Test BrandEstimatebm1';
-            brandEst.AF_Status_Base_Fees__c='Initiate';  
+            brandEst.Name=BrandEstimate_Name;
+            brandEst.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
             brandEst.Brand__c=bran.id;
             brandEst.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
             brandEst.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
@@ -379,8 +380,8 @@ public class Test_AF_BonusRecordManager
             brandEstSet.add(brandEst.Id);
             AF_Brand_Estimate__c brandEst1=new AF_Brand_Estimate__c();
             brandEst1.AF_Agency__c=acc.Id;               
-            brandEst1.Name='Test BrandEstimatebm1';
-            brandEst1.AF_Status_Base_Fees__c='Initiate';  
+            brandEst1.Name=BrandEstimate_Name;
+            brandEst1.AF_Status_Base_Fees__c=AF_Constants.BASE_FEES_INITIATE;  
             brandEst1.Brand__c=bran.id;
             brandEst1.AF_Fiscal_Year__c=AF_Constants.TEST_FISCALYEAR;
             brandEst1.AF_Basefee_Estimate_Initial_Quarter__c='Q4';
