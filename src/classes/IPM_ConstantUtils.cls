@@ -30,6 +30,7 @@ public class IPM_ConstantUtils {
     public static String STATUS_ALL = 'All';
     public static String STATUS_EXCLUDED = 'Excluded';
     public static String STATUS_NOT_STARTED = 'Not Started';
+    public static String STATUS_STARTED = 'Started';
     public static String STATUS_NOT_FILLED = 'Filled-in';
     public static String STATUS_APPROVED = 'Approved';
     public static String PD_STATUS_STOPPED = 'Stopped';

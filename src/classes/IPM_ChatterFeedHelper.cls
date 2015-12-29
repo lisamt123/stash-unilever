@@ -562,32 +562,41 @@ public with sharing class IPM_ChatterFeedHelper {
       @param1 newProjects : updated financials 
    */
     public static void postChatterIfBusinessCaseSaved(List<IPM_Financial__c> updatedFinancials){
-     clearData();
+     clearData(); 
+     //Adding system.debugs for understanding a defect root cause. Please exclude in SONAR.Will remove in next deployment
+     system.debug('updatedFinancials..'+updatedFinancials);
      Set<Id> financialSet = new Set<Id>();
      Map<ID,String> financialMap = new Map<Id,String>();
-  
       for(IPM_Financial__c eachFin:updatedFinancials)
       {
-        projectIds.add(eachFin.Local_Project__c);
-        projectIds.add(eachFin.Regional_Project__c);
-        projectIds.add(eachFin.Parent_Project__c);
-        financialSet.add(eachFin.id);
-        projectIds.remove(null);
-        if(eachFin.Local_Project__c != null || eachFin.Regional_Project__c != null || eachFin.Parent_Project__c != null)
-        {
-          subjectIdMessageMap.put(eachFin.Local_Project__c,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
-          subjectIdMessageMap.put(eachFin.Regional_Project__c,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
-          subjectIdMessageMap.put(eachFin.Parent_Project__c,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
-        }
-        financialMap.put(eachFin.id,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
-        for(Id key:subjectIdMessageMap.keySet()){
-          if(key == null)
-          {
-            subjectIdMessageMap.remove(key);
-          }
-        }
+            projectIds.add(eachFin.Local_Project__c);
+            projectIds.add(eachFin.Regional_Project__c);
+            projectIds.add(eachFin.Parent_Project__c);
+            //Adding system.debugs for understanding a defect root cause. Please exclude in SONAR.Will remove in next deployment
+            system.debug('eachFin..'+eachFin);
+            financialSet.add(eachFin.id);
+            //Adding system.debugs for understanding a defect root cause. Please exclude in SONAR.Will remove in next deployment
+            system.debug('financialSet..'+financialSet);
+            projectIds.remove(null);
+            if(eachFin.Local_Project__c != null || eachFin.Regional_Project__c != null || eachFin.Global_Project_Id__c != null)
+            {
+                subjectIdMessageMap.put(eachFin.Local_Project__c,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
+                subjectIdMessageMap.put(eachFin.Regional_Project__c,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
+                subjectIdMessageMap.put(eachFin.Parent_Project__c,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
+            }
+            financialMap.put(eachFin.id,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
+            for(Id key:subjectIdMessageMap.keySet()){
+                if(key == null)
+                {
+                    subjectIdMessageMap.remove(key);
+                }
+            }
      }
      if(IPM_CheckRecursive.runOnce()) {
+     //Adding system.debugs for understanding a defect root cause. Please exclude in SONAR.Will remove in next deployment
+     system.debug('projectIds..'+projectIds);
+     system.debug('subjectIdMessageMap..'+subjectIdMessageMap);
+     system.debug('financialSet..'+financialSet);
      IPM_ChatterUtils.postChatterFeedWithMention(projectIds, subjectIdMessageMap, null);
      IPM_ChatterUtils.postChatterFeedWithMention(financialSet, financialMap, null);
      }

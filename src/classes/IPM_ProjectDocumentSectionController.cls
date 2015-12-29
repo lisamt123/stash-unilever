@@ -535,8 +535,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                     showmsg=false;
                 }
             }
-            if(String.IsNotBlank(projDocSec.IPM_PDP_Document_Summary__c))
-                projDocSec.IPM_Functional_Input_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
+            if(String.IsNotBlank(projDocSec.IPM_PDP_Document_Summary__c) && projDocSec.IPM_PDP_Document_Summary__c.length() >=15)
+                projDocSec.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_STARTED;
             
             update projDocSec;
             

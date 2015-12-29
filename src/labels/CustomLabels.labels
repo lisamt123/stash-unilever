@@ -11147,6 +11147,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Some considerations: What is the size of the segment? Is it a new segment for Unilever? Is it growing? What is the estimated share of the segment? What size of business can we create and how incremental would it be? What kind of margins might we expect? How competitive is the segment and what type of investment would be required? Would we have any competitive advantages in the segment? Does this segment have strategic importance to key customers?</value>
     </labels>
     <labels>
+        <fullName>IPM_STARTED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Started</shortDescription>
+        <value>Started</value>
+    </labels>
+    <labels>
         <fullName>IPM_START_ADD_ROLLOUT</fullName>
         <language>en_US</language>
         <protected>false</protected>

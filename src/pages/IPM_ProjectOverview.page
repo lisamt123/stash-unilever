@@ -401,7 +401,15 @@
                                 <apex:outputPanel rendered="{!projectSections != NULL && projectSections.size > 0}" >    
                                     <div class="">
                                         <div class="fl">
-                                            <div class="fl submitted mr10"></div> <span class="f12 pr10">{!$Label.IPM_FILLED_IN}</span>
+                                            <div class="fl submitted mr10"></div> 
+                                            <apex:outputPanel rendered="{! if( $User.Id == project.IPM_Project_Leader__c , true, false)}" >      
+                                            	<span class="f12 pr10">{!$Label.IPM_FILLED_IN}</span>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel rendered="{! if($User.Id != project.IPM_Project_Leader__c , true, false)}"  >         
+                                            	<span class="f12 pr10">{!$Label.IPM_STARTED}</span>
+                                            </apex:outputPanel>	
+                                            
                                         </div>
                                         <div class="fl">
                                             <div class="fl notsubmitted mr10"></div> <span class="f12">{!$Label.IPM_NOT_STARTED}</span>
@@ -417,7 +425,7 @@
                                                     </apex:outputPanel>  
                                                  
                                                     <apex:outputPanel rendered="{! if($User.Id != project.IPM_Project_Leader__c , true, false)}"  >       
-                                                        <div class="{!IF(pS.IPM_Functional_Input_Status__c='Filled-in', 'secblock', 'secnofill')}">
+                                                        <div class="{!IF(pS.IPM_Functional_Input_Status__c='Started', 'secblock', 'secnofill')}">
                                                             <span><a href="{!$Page.IPM_ProjectDocumentSectionEditor}?Id={!pS.IPM_Project_Document__r.IPM_Project__c}&projDocSecId={!pS.Id}" >
                                                                 {!pS.IPM_Section_Sequence__c} {!pS.IPM_Section_Name__c}
                                                             </a></span>
