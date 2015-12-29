@@ -1,4 +1,4 @@
-public without sharing class AF_OOPSActualHandler implements ITrigger{
+public with sharing class AF_OOPSActualHandler implements ITrigger{
      // AF_UpdateCatFinanceApprover Trigger Logic starts
     private List<AF_OOPS_Actual__c>  afOopsEstimates=new List<AF_OOPS_Actual__c>();
     // AF_UpdateCatFinanceApprover Trigger Logic Ends

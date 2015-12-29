@@ -1,4 +1,4 @@
-public without sharing class AF_Agency_EstimateHandler implements ITrigger{
+public with sharing class AF_Agency_EstimateHandler implements ITrigger{
     Set<String> agencyEstimateUnique = new Set<String>();
     Set<Id> Agency = new Set<Id>();
     Set<Id> Brand = new Set<Id>();
@@ -55,7 +55,7 @@ public without sharing class AF_Agency_EstimateHandler implements ITrigger{
     } 
     }
     }
-    public void bulkAfter()
+   public void bulkAfter()
     {
         
     }

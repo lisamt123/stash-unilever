@@ -21,6 +21,7 @@ public class AF_Constants
     
     public static final String ANNUAL_BONUS_QUAL = '5';
     public static final String CATEGORY_FINANCE = 'With Category Finance'; 
+    public static final string CATEGORY_FINANCE_Bonus_Quarterly='W/Cat Finance';
     public static final String YEAR = 'year';
     public static final String STATUS_DRAFT = 'Draft';
     public static final String STATUS_NONE = 'None';

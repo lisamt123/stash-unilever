@@ -87,6 +87,7 @@ public with sharing class AF_OOPSRecordManager
                 List<AF_OOPS_Estimate__c> associatedEstimateCollection = OOPSActualToEstimateCollection.get(OOPSActualID);
                 processOOPSEstimates(OOPSActual,associatedEstimateCollection);
                 OOPSEstimateCollection.addAll(associatedEstimateCollection);
+            }
                 try
                 {                                               
                     update OOPSEstimateCollection;  
@@ -101,7 +102,7 @@ public with sharing class AF_OOPSRecordManager
                     ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_OOPSRecordManager,
                                                                           'bulkRecalculateOOPSEstimates',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());              
                 }
-            }
+            
             
         }	
     }

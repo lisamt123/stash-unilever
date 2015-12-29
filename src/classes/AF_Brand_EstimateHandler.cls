@@ -5,7 +5,7 @@
 *********************************************/
 
 
-public without sharing class AF_Brand_EstimateHandler implements ITrigger
+public with sharing class AF_Brand_EstimateHandler implements ITrigger
 {
     private List<AF_Brand_Estimate__c> afBrandEstimatesList = new List<AF_Brand_Estimate__c>();
     private List<AF_Brand_Estimate__c> UpdateOopsagencyList = new List<AF_Brand_Estimate__c>();

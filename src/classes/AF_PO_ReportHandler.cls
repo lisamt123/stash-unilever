@@ -3,7 +3,7 @@
 *@Date:December 2015
 *@Description : Handler class for AF_PO_Report__c 
 *********************************************/
-public without sharing class AF_PO_ReportHandler implements ITrigger
+public with sharing class AF_PO_ReportHandler implements ITrigger
 {
     set<String> compundKeySet = new set<String>();
     Map<String,String> compundKeyReportType = new Map<String,String>();

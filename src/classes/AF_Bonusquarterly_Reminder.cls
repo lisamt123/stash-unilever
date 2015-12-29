@@ -1,4 +1,4 @@
-global class AF_Bonusquarterly_Reminder implements Database.Batchable<sobject>{
+global with sharing class AF_Bonusquarterly_Reminder implements Database.Batchable<sobject>{
      global string Temp='select AF_Q1__c,AF_Q2__c,AF_Q3__c from AF_BonusQuarterly_Quarterdates__c';
      
     global AF_Bonusquarterly_Reminder(){
@@ -37,6 +37,6 @@ global class AF_Bonusquarterly_Reminder implements Database.Batchable<sobject>{
     //finish Mehtod
     global void finish(Database.BatchableContext BC)
     {
-        
+      system.debug('Batch execution finsihed');  
     }
 }

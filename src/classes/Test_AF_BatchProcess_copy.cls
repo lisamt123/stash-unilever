@@ -1,13 +1,22 @@
-/**
- * Test_AF_BatchProcess_copy: This Test class for AF_BatchProcess_copy apex class
- * @author 
- *
- */
+/*****************************************************************************************************************************
+   @Author :Cognizant
+   @name : Test_AF_BatchProcess_copy
+   @CreateDate : 13/9/2014
+   @Description : This is a Test class for AF_BatchProcess_copy class, 
+   @Version : 1.0
+   @reference : none
+  ****************************************************************************************************************************/
 @isTest(SeeAlldata=false)
 public class Test_AF_BatchProcess_copy
 {    
     Static Integer IcurrYear = System.Today().year();
     Static string currYear=string.valueof(IcurrYear);
+    /***********************************************************************************
+*  @Description: this method will the test data
+*  @name : BatchProcess_copy
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     Static testMethod void BatchProcess_copy()
     {
         Test.startTest();

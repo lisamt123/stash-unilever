@@ -354,7 +354,7 @@ public with sharing class AF_AgencyHomePageController {
             if(uniqueBrandEstMap.containsKey(bt.Brand_Agency_Combination__c) && !uniqueBonusThrSet.contains(bt.Brand_Agency_Combination__c))
             {
                 if(bonusResultSelectedObj.size()==0 && (bonusDate || bonusDateQ2 || bonusDateQ3)){
-                    uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='W/Cat Finance';
+                    uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c=AF_Constants.CATEGORY_FINANCE_Bonus_Quarterly;
                     uniqueBonusThrSet.add(bt.Brand_Agency_Combination__c);
                 }
                 else if(bonusResultSelectedObj.size()>0){
@@ -362,7 +362,7 @@ public with sharing class AF_AgencyHomePageController {
                     
                         if(bonusResult.AF_Period__c == 'Q1' && bonusDate && (bonusResult.AF_Status__c == 'Draft' || bonusResult.AF_Status__c =='None')){
                             Quarter= true;
-                            uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='W/Cat Finance';
+                            uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c=AF_Constants.CATEGORY_FINANCE_Bonus_Quarterly;
                         }
                         else if(bonusResult.AF_Period__c == 'Q1' && bonusDate && bonusResult.AF_Status__c == 'Submitted'){
                             Quarter= true;
@@ -370,7 +370,7 @@ public with sharing class AF_AgencyHomePageController {
                         }
                         if(bonusResult.AF_Period__c == 'Q2' && bonusDateQ2 && (bonusResult.AF_Status__c == 'Draft' || bonusResult.AF_Status__c =='None')){
                             Quarter= true;
-                            uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='W/Cat Finance';
+                            uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c=AF_Constants.CATEGORY_FINANCE_Bonus_Quarterly;
                         }
                         else if(bonusResult.AF_Period__c == 'Q2' && bonusDateQ2 && bonusResult.AF_Status__c == 'Submitted'){
                             Quarter= true;
@@ -378,7 +378,7 @@ public with sharing class AF_AgencyHomePageController {
                         }
                         if(bonusResult.AF_Period__c == 'Q3' && bonusDateQ3 && (bonusResult.AF_Status__c == 'Draft' || bonusResult.AF_Status__c =='None')){
                             Quarter= true;
-                            uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='W/Cat Finance';
+                            uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c=AF_Constants.CATEGORY_FINANCE_Bonus_Quarterly;
                         }
                         else if(bonusResult.AF_Period__c == 'Q3' && bonusDateQ3 && bonusResult.AF_Status__c == 'Submitted'){
                             Quarter= true;
@@ -386,7 +386,7 @@ public with sharing class AF_AgencyHomePageController {
                         }
                     }
                     if(!Quarter){
-                        uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c='W/Cat Finance';
+                        uniqueBrandEstMap.get(bt.Brand_Agency_Combination__c).AF_Bonus_Quaterly_Status__c=AF_Constants.CATEGORY_FINANCE_Bonus_Quarterly;
                     }
                     uniqueBonusThrSet.add(bt.Brand_Agency_Combination__c);
                 }

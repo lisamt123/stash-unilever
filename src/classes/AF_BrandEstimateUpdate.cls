@@ -1,4 +1,4 @@
-global class AF_BrandEstimateUpdate implements Database.Batchable<sObject>{
+global with sharing class AF_BrandEstimateUpdate implements Database.Batchable<sObject>{
     global string query = 'Select Id, Name, AF_Status_Base_Fees__c from AF_Brand_Estimate__c where Base_Fee_Total__c=0 and AF_Status_Base_Fees__c=\'Initiate\' and AF_Active__c=true';
     
     //Constructor
@@ -29,5 +29,6 @@ global class AF_BrandEstimateUpdate implements Database.Batchable<sObject>{
     }
     
     global void finish(Database.BatchableContext bc){
+    	system.debug('Batch execution finished');
     }
 }

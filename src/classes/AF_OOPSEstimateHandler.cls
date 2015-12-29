@@ -1,4 +1,4 @@
-public without sharing class AF_OOPSEstimateHandler implements ITrigger {
+public with sharing class AF_OOPSEstimateHandler implements ITrigger {
     private Set<id> OopsEstids = new Set<id>();
     Set<string> Compoundkey =new Set<string> ();
     Set<Id> OopsEstiamteId=new Set<Id>();

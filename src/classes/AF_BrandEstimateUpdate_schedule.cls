@@ -1,4 +1,4 @@
-global class AF_BrandEstimateUpdate_schedule implements Schedulable{
+global with sharing class AF_BrandEstimateUpdate_schedule implements Schedulable{
 
 
 

@@ -91,16 +91,22 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
             {
                 insert agest_list;
             }
-        } catch(exception e) {}
+        } 
+        catch(exception ex) 
+        {
+        	ExceptionLoggingHelper.createApplicationLevelErrorLog (AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_BrandEstimatesBatch',
+            'execute',ex.getMessage(),ex.getTypeName(),ex.getStackTraceString());
+        }
         for(AF_Brand_Estimate__c abe:abelist){
-            if(abe.AF_Locked__c == false) {      
+            if(!abe.AF_Locked__c) {      
                 abe.AF_Locked__c  = true;
                 abe.AF_Copied__c = true;
                 brandEstimateupdate.add(abe);
-                if(brandEstimateupdate.size() >0) 
-                update brandEstimateupdate;
+                
             }
-        }   
+        } 
+        if(brandEstimateupdate.size() >0) 
+        	update brandEstimateupdate;  
     }
     /********************************************************************************************
 *  @Description: this method is finish method of the Batch class

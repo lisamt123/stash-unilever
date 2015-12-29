@@ -3,11 +3,12 @@
 *@Date:December 2015
 *@Description : Handler class for AF_Bonus_Threshold__c.
 *********************************************/
-public without sharing class AF_Bonus_ThresholdHandler implements ITrigger
+public with sharing class AF_Bonus_ThresholdHandler implements ITrigger
 {
     // AF_CreateBonusResultTrigger Logic Starts
     private List<AF_Bonus_Results__c> bonusResultObjList = new List<AF_Bonus_Results__c>();
     private Id annualBonusRecordTypeId = null;
+    private string ErrorMessage='Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding';
     public void bulkBefore()
     {
     }
@@ -29,16 +30,16 @@ public without sharing class AF_Bonus_ThresholdHandler implements ITrigger
         // Af_AfterInsertBonusThresholdShare Trigger Logic Starts
         if(bonusThresholdInstance.AF_Minimum__c==0 && bonusThresholdInstance.AF_Stretching__c==0 && bonusThresholdInstance.AF_Outstanding__c==0 )
         {
-            bonusThresholdInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+            bonusThresholdInstance.addError(ErrorMessage);
         }
         else if((bonusThresholdInstance.AF_Minimum__c >= bonusThresholdInstance.AF_Stretching__c || bonusThresholdInstance.AF_Minimum__c >= bonusThresholdInstance.AF_Outstanding__c )){
-            bonusThresholdInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+            bonusThresholdInstance.addError(ErrorMessage);
         }
         else if((bonusThresholdInstance.AF_Stretching__c  >= bonusThresholdInstance.AF_Outstanding__c || bonusThresholdInstance.AF_Stretching__c <=bonusThresholdInstance.AF_Minimum__c )){
-            bonusThresholdInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+            bonusThresholdInstance.addError(ErrorMessage);
         }
         else if((bonusThresholdInstance.AF_Outstanding__c  <= bonusThresholdInstance.AF_Minimum__c || bonusThresholdInstance.AF_Outstanding__c <= bonusThresholdInstance.AF_Stretching__c )){
-            bonusThresholdInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+            bonusThresholdInstance.addError(ErrorMessage);
         }
         // Af_AfterInsertBonusThresholdShare Trigger Logic Ends
     }
@@ -54,16 +55,16 @@ public without sharing class AF_Bonus_ThresholdHandler implements ITrigger
         // Af_AfterInsertBonusThresholdShare Trigger Logic Starts
         if(bonusThresholdInstance.AF_Minimum__c==0 && bonusThresholdInstance.AF_Stretching__c==0 && bonusThresholdInstance.AF_Outstanding__c==0 )
         {
-            bonusThresholdInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+            bonusThresholdInstance.addError(ErrorMessage);
         }
         else if((bonusThresholdInstance.AF_Minimum__c >= bonusThresholdInstance.AF_Stretching__c || bonusThresholdInstance.AF_Minimum__c >= bonusThresholdInstance.AF_Outstanding__c )){
-            bonusThresholdInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+            bonusThresholdInstance.addError(ErrorMessage);
         }
         else if((bonusThresholdInstance.AF_Stretching__c  >= bonusThresholdInstance.AF_Outstanding__c || bonusThresholdInstance.AF_Stretching__c <=bonusThresholdInstance.AF_Minimum__c )){
-            bonusThresholdInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+            bonusThresholdInstance.addError(ErrorMessage);
         }
         else if((bonusThresholdInstance.AF_Outstanding__c  <= bonusThresholdInstance.AF_Minimum__c || bonusThresholdInstance.AF_Outstanding__c <=bonusThresholdInstance.AF_Stretching__c )){
-            bonusThresholdInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+            bonusThresholdInstance.addError(ErrorMessage);
         }
         // Af_AfterInsertBonusThresholdShare Trigger Logic Ends
     }

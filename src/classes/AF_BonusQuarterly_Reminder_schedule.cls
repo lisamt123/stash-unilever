@@ -1,4 +1,4 @@
-global class AF_BonusQuarterly_Reminder_schedule  implements Schedulable
+global with sharing class AF_BonusQuarterly_Reminder_schedule  implements Schedulable
  {
  
  
