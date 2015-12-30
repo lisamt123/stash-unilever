@@ -497,7 +497,7 @@ public class IPM_ConstantUtils {
      
      
       //Constant Declaration
-    public static String DATE_FORMAT='YYYY-MM-dd';
+    public static String DATE_FORMAT='yyyy-MM-dd' ;
     public static String PROJECT_MILESTONES='IPM Project Milestones';
     
     //Gate document various status
