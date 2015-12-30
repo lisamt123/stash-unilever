@@ -144,6 +144,8 @@ public with sharing class IPM_MyProjects{
         public String phaseValue{get;set;}
         //*@Description:Used to refer instance of IPM_Bosscard__c
         public IPM_Bosscard__c bosscardObj{get;set;}
+        //*@Description:Used to refer curernt gate name for each project
+        public String currGate{get;set;}
         
         
         /****************************************************************************
@@ -160,6 +162,7 @@ public with sharing class IPM_MyProjects{
                     projectDocumentDate = date.valueOf(datephase[0]).format();
                 }
                 phaseValue=datephase[1];
+                currGate = phaseValue.remove('Gate Approval').removeEnd(' ');
             }
         }
              

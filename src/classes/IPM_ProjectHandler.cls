@@ -242,7 +242,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     {
                         fastTrackProjects.add(incomingProject);
                     }
-                    if(oldProject.IPM_Target_Launch_Dates__c != incomingProject.IPM_Target_Launch_Dates__c)
+                    if((oldProject.IPM_Target_Launch_Dates__c != incomingProject.IPM_Target_Launch_Dates__c) || (oldProject.Rollout_Plan_Target_Launch_Date__c!= incomingProject.Rollout_Plan_Target_Launch_Date__c))
                     {
                         tldChangeProjects.add(incomingProject);
                     }

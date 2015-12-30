@@ -295,7 +295,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     when original project is in Market deployment phase / operational project in Market Ready phase
     ***********************************************************/     
         if( (( projectDoc != null && projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.STATUS_APPROVED && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && project.IPM_Phase__c == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE) || 
-                (project.IPM_Phase__c == IPM_ConstantUtils.MARKET_READY_GATE && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) && IsUpdateStatus) )
+                (project.IPM_Phase__c == IPM_ConstantUtils.MARKET_READY_GATE && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) ) && IsUpdateStatus )
         {
         	bShowShipToTradeButton = true;
         }	

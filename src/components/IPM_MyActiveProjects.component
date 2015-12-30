@@ -54,7 +54,7 @@
                    <span class="homeActiveText"> {!$Label.IPM_CurrentStatus} <strong class="percentage">
                    <!--<apex:commandLink value="{!if(p.projectObj.IPM_Target_Launch_Dates__c = null,if(p.bosscardObj.IPM_Filled_In_Percent__c!=null,p.bosscardObj.IPM_Filled_In_Percent__c,0),if(p.projectObj.IPM_FilledIn_Percentage__c != null,p.projectObj.IPM_FilledIn_Percentage__c,0))}" action="{!if(p.projectObj.IPM_Target_Launch_Dates__c!= null,'/apex/IPM_GateDocument?id='+p.projectObj.Id,'/apex/IPM_Bosscard?id='+p.bosscardObj.id)}"/>%  </strong>{!FilledString}</span>-->
 
-                  <apex:commandLink value="{!if(p.projectObj.IPM_Target_Launch_Dates__c = null,if(p.bosscardObj.IPM_Filled_In_Percent__c!=null,p.bosscardObj.IPM_Filled_In_Percent__c,0),if(p.projectObj.IPM_FilledIn_Percentage__c != null,p.projectObj.IPM_FilledIn_Percentage__c,0))}" action="{!if(p.projectObj.IPM_Target_Launch_Dates__c!= null,$Page.IPM_GateDocument+'?id='+p.projectObj.Id,$Page.IPM_Bosscard+'?id='+p.bosscardObj.id)}">
+                  <apex:commandLink value="{!if(p.projectObj.IPM_Target_Launch_Dates__c = null,if(p.bosscardObj.IPM_Filled_In_Percent__c!=null,p.bosscardObj.IPM_Filled_In_Percent__c,0),if(p.projectObj.IPM_FilledIn_Percentage__c != null,p.projectObj.IPM_FilledIn_Percentage__c,0))}" action="{!if(p.projectObj.IPM_Target_Launch_Dates__c!= null,$Page.IPM_GateDocument+'?id='+p.projectObj.Id+'&printDoc='+p.currGate,$Page.IPM_Bosscard+'?id='+p.bosscardObj.id)}">
                   </apex:commandLink>
                    % </strong>{!FilledString}</span>
 
