@@ -187,7 +187,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-5">
-                                        <div class="percentage"><a href="{!$Page.IPM_GateDocument}?id={!project.Id}"><apex:outputText Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText>%</a></div>
+                                        <div class="percentage"><a href="{!$Page.IPM_GateDocument}?id={!project.Id}&printDoc={!currGate}"><apex:outputText Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText>%</a></div>
                                     </div>
                                 </div>
                             </apex:outputPanel>

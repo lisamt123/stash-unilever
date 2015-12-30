@@ -448,7 +448,8 @@ public with sharing class IPM_ProjectDocumentHelper
                         // Get the source Api Name from which to copy
                         String sourceField = sourceFieldAPIList.get(counter);
                         String targetField = targetFieldAPIList.get(counter);
-                        if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && incomingSection.get(targetField) == null)
+                        //NO SONAR for Unnecessary Boolean Comparison, since targetField is coming from Map where two fields are of typr Text and 1 is of Checkbox, we need to explicitly check for this condition in order for Business Logic to Work 
+                        if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && (incomingSection.get(targetField) == null || incomingSection.get(targetField)==false))
                         {
                             if(currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)
                             {
