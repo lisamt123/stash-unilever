@@ -16,14 +16,8 @@ Global with sharing class IPM_BosscardController {
     public String selBrand {get; set;}
     //*@Description: selBrandPos to capture the selected Brand positioning on the BOSSCARD screen
     public String selBrandPos {get; set;}
-    //*@Description: selGate to capture the selected Gatekeeper on the BOSSCARD screen
-    public String selGate {get; set;}
     //*@Description: selCat to capture the selected Category on the BOSSCARD screen
     public String selCat {get; set;}
-    //*@Description: selSub to capture the selected Sub Category on the BOSSCARD screen
-    public String selSub {get; set;}    
-    //*@Description: isImage to capture the selected Sub Category on the BOSSCARD screen
-    public Boolean isImage {get; set;}
     //*@Description: isAccept to understand whether the BOSSCARD is accepted or not
     public Boolean isAccept {get; set;}
     //*@Description: expectedTLD to capture selected TLD on the BOSSCARD screen
@@ -42,8 +36,6 @@ Global with sharing class IPM_BosscardController {
     public string BossCUrl_ID{get;set;}
     //*@Description: initialised is used to hold the data when we click on upload image 
     public Boolean initialised{get; set;}
-    //*@Description: ProjectID is used to hold the Project ID
-    public String ProjectID{get;set;}
     //*@Description: isContainSpecialChars to throw an error if special characters are allowed
     public Boolean isContainSpecialChars{get;set;}
     //*@Description: imgurl to store the image URL.
@@ -75,7 +67,7 @@ Global with sharing class IPM_BosscardController {
     //*@Description:category mandatory
     public boolean category_Booln{get;set;}
     //*@Description:geo scope
-    private string geoScope_STR{get;set;}
+    @TestVisible private string geoScope_STR{get;set;}
     //To remove duplicate string literals
     public integer bossMaxLength{get;set;}//bosscard max length
     public static final String IPM_BOSSCARDCONTROLLER_STR = IPM_BosscardController.class.getName();//get class name
@@ -196,13 +188,13 @@ Global with sharing class IPM_BosscardController {
     *********************************************************************************/
     public List<SelectOption> getBrandPos(){
         try{
-            List<Selectoption> optns=new List<Selectoption>(); 
+            List<Selectoption> optns=new List<Selectoption>();
+            Set<Selectoption> optnBP=new Set<Selectoption>();
             List<MDO_BrandPositions__c> userBrandPos = new List<MDO_BrandPositions__c>();
             string catName=IPM_ConstantUtils.BLANK;
             set<string>UniqueBrandP=new set<string>();
             catName=selCat;
-            optns.add(new Selectoption(IPM_ConstantUtils.BLANK,system.label.IPM_SelectBrandPosition));
-            
+            optnBP.add(new Selectoption(IPM_ConstantUtils.BLANK,system.label.IPM_SelectBrandPosition));
             if(String.isNotBlank(CatName) && String.isNotBlank(geoScope_STR))
             {
                 String Query_STR=IPM_ConstantUtils.BLANK;
@@ -220,12 +212,13 @@ Global with sharing class IPM_BosscardController {
             if(!userBrandPos.isEmpty()){
                 for(MDO_BrandPositions__c u:userBrandPos){
                     if(!UniqueBrandP.Contains(u.brand_position_id__r.Name)){
-                        optns.add(new Selectoption(u.brand_position_id__r.Name ,u.brand_position_id__r.Name));
+                        optnBP.add(new Selectoption(u.brand_position_id__r.Name ,u.brand_position_id__r.Name));
                         UniqueBrandP.add(u.brand_position_id__r.Name);
                     }
                         
                 } 
             }
+            optns.addAll(optnBP);
             return optns;
         }
         catch(Exception ex) {   
