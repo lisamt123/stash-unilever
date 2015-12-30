@@ -219,17 +219,20 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
             </td>
             <td style="{!IF(isBetOwnerOrManager,'','display:none')}">
 
-              <apex:commandButton action="{!doApprove}" value="{!$Label.BET_Approve}" styleClass="buttong2y" 
-                                  style="background: #e6007e; color:white;position: relative; left: -20px;-webkit-appearance: none;" rerender="memberpage">
+              <div style="position:relative;left:-25px;">
+                <apex:commandButton action="{!doApprove}" value="{!$Label.BET_Approve}" styleClass="buttong2y" 
+                                    style="background: #e6007e; color:white;" rerender="memberpage">
+                    <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
+                </apex:commandButton>
+
+              </div>
+              
+              <div style="position:relative;top:-27px;left:20px;">
+                <apex:commandButton action="{!doDeny}" value="{!$Label.BET_Delete}" styleClass="buttong2y" 
+                                   style="background: #e6007e; color:white;" rerender="memberpage">
                   <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
-              </apex:commandButton>
-
-
-              <apex:commandButton action="{!doDeny}" value="{!$Label.BET_Delete}" styleClass="buttong2y" 
-                                 style="background: #e6007e; color:white;position: relative;top: -27px;left: 25px;-webkit-appearance: none;" rerender="memberpage">
-                <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
-              </apex:commandButton>
-
+                </apex:commandButton>
+              </div>  
               <!--<apex:commandLink action="{!doApprove}" value="{!$Label.BET_Approve}">
                 <apex:param name="obid" assignTo="{!selectedRequestId}" value="{!memberRequest.objectId}"/>
               </apex:commandLink>
