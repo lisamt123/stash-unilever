@@ -18,7 +18,7 @@
             <apex:form id="form">
                 <apex:pageMessages id="messages"/> 
                 <div class="row inlineEdit">
-                    <div class="col-xs-offset-2 col-xs-3">
+                    <div class="col-xs-3">
                             <apex:outputPanel rendered="{!!editMsNameFlag}">
                                 <apex:outputField id="mName" value="{!milestoneObj.IPM_Name__c}"  styleClass="fieldFont" />
                             </apex:outputPanel>
@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-xs-1 dateDropDown">
                         <div class="inputField">
-                            <apex:inputField value="{!milestoneObj.IPM_Due_Date__c}" id="DateP" styleClass="dateInputBox calendar">
+                            <apex:inputField value="{!milestoneObj.IPM_Due_Date__c}" id="DateP" styleClass="dateInputBox calendar marginL100P">
                             </apex:inputField>                     
                         </div>
                     </div>

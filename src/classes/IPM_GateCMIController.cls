@@ -609,9 +609,14 @@ public with sharing class IPM_GateCMIController{
         try{
             String availableCMI='';
             String deletedCMI='';
+            List<IPM_Project_Document_Section_Content__c> delContent=new List<IPM_Project_Document_Section_Content__c>();
             gateCMI=new IPM_Gate_CMI__c();
             if(!String.isBlank(gateCMIId)){
                 gateCMI=[SELECT Id,Gate__c,Element__c,Test__c,IPM_CMI_Overall_Colour_Score_Method__c FROM IPM_Gate_CMI__c WHERE Id=:gateCMIId];
+                delContent=[SELECT Id FROM IPM_Project_Document_Section_Content__c WHERE IPM_Gate_CMI__c=:gateCMIId];
+                if(delContent!=null && !delContent.isEmpty()){
+                    delete delContent;
+                }
                 deletedCMI=gateCMI.Gate__c+'/'+gateCMI.Element__c+'/'+gateCMI.Test__c;
                 delete gateCMI;
                 

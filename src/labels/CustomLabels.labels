@@ -6274,6 +6274,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <shortDescription>IPM_CreateNewBETTitle</shortDescription>
         <value>Create New Brand Experience Toolkit (BET)</value>
     </labels>
+     <labels>
+        <fullName>IPM_Create_Assotment_Strategy</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Create Assotment Strategy</shortDescription>
+        <value>Please select data to create Assortment strategy</value>
+    </labels>
     <labels>
         <fullName>IPM_Create_Regional_Rollouts</fullName>
         <language>en_US</language>

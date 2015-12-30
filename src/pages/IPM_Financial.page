@@ -311,7 +311,7 @@
                                                                         <apex:outputText value="The Target Launch Date for {!currentFinancial.Display_Name__c} has been updated to {!currentTargetLaunchDate} from {!previousTargetLaunchDate}. Please confirm that any necessary updates to the business case have been made."/>
                                                                     </div>
                                                                     <apex:outputPanel rendered="{!isEditable}">  
-                                                                    <div class="ipmButton primary" onclick="updateConfirmBtn()" style="float: right;">Confirm</div>  
+                                                                    <div class="ipmButton primary marginB10 pull-right" onclick="updateConfirmBtn()" style="float: right;">Confirm</div>  
                                                                         <apex:actionFunction name="updateConfirmBtn" action="{!updateMisalignmentByFinanceLeader}" reRender="rolloutPanel,tabContentPanel" status="loadingStatus"/>
                                                                     </apex:outputPanel>  
                                                                 </apex:outputPanel>   
