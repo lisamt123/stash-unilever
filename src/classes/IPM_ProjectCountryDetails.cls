@@ -331,7 +331,7 @@ public with sharing class IPM_ProjectCountryDetails{
             //Global project lookup on the country won't be updated in normal scenario
             if(globalProjectIds!=null && !globalProjectIds.isEmpty()){
                 for(String gpId : globalProjectIds ){
-                    if(projectIdToSyncMap.get(gpId)){
+                    if(projectIdToSyncMap.get(gpId) && projCountryCodesMap!=null && !projCountryCodesMap.isEmpty() && projCountryCodesMap.get(gpId) != null){
                         if(projMembersMap != null && !projMembersMap.isEmpty()  && projMembersMap.get(gpId)!= null && !projMembersMap.get(gpId).isEmpty()){
                             toUpdateProjList.add( new IPM_Project__c(Id = gpId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(gpId), Project_Members__c = getProjectMembersNames(projMembersMap.get(gpId)) ));
                         }
@@ -362,9 +362,9 @@ public with sharing class IPM_ProjectCountryDetails{
             
             //Update The List
             if(toUpdateProjList!=null && !toUpdateProjList.isEmpty()){
-                
+                IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
                 update toUpdateProjList;
-                
+                IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
             }
         }
     }
@@ -450,7 +450,9 @@ public with sharing class IPM_ProjectCountryDetails{
             
             //Update The List
             if(!toUpdateProjList.isEmpty()){
+                IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
                 update toUpdateProjList;                
+                IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;                
             }
         }        
     }
@@ -502,7 +504,9 @@ public with sharing class IPM_ProjectCountryDetails{
         
         //update the projects
         if(!toUpdateProjList.isEmpty()){
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             update toUpdateProjList;
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         } 
         
     }
@@ -673,8 +677,9 @@ public with sharing class IPM_ProjectCountryDetails{
         
         //update the project with appropriate value of IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag
         if(toUpdateProjList != null && !toUpdateProjList.isEmpty()){
-
+	    IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             Update toUpdateProjList;
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         }
     }
     
@@ -1052,13 +1057,13 @@ public with sharing class IPM_ProjectCountryDetails{
             IPM_Project_Document_Section__c projDocSection = projCurrentProjDocSecMap.get(proj);
             if(projDocSection!=null) {
                 if(proj.IPM_Exists_AtLeast_OneAssmntPerEICountry__c){   
-                    if(projDocSection.IPM_Functional_Input_Status__c == 'Filled-in'){
-                        toUpdateProjDocSecList.add(new IPM_Project_Document_Section__c(id=projDocSection.Id, IPM_Section_Status__c = 'Filled-in'));
+                    if(projDocSection.IPM_Functional_Input_Status__c == IPM_ConstantUtils.SECTION_STATUS_FILLED){
+                        toUpdateProjDocSecList.add(new IPM_Project_Document_Section__c(id=projDocSection.Id, IPM_Section_Status__c = IPM_ConstantUtils.SECTION_STATUS_FILLED));
                     }
                 }
                 else if(!proj.IPM_Exists_AtLeast_OneAssmntPerEICountry__c){
-                    if(projDocSection.IPM_Section_Status__c == 'Filled-in'){
-                        toUpdateProjDocSecList.add(new IPM_Project_Document_Section__c(id=projDocSection.Id, IPM_Section_Status__c = 'Not Started'));
+                    if(projDocSection.IPM_Section_Status__c == IPM_ConstantUtils.SECTION_STATUS_FILLED){
+                        toUpdateProjDocSecList.add(new IPM_Project_Document_Section__c(id=projDocSection.Id, IPM_Section_Status__c = IPM_ConstantUtils.STATUS_NOT_STARTED));
                     }
                 }
             }

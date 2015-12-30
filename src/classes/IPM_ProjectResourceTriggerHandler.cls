@@ -214,7 +214,9 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     //Update The List
     if(!toUpdateProjList.isEmpty())
     {
+    	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
         update toUpdateProjList; // Not including try , catch as when the transaction is failed roll back is handled at other class
+        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
       }
 
   }
@@ -258,7 +260,9 @@ public with sharing class IPM_ProjectResourceTriggerHandler
         //Update The List
         if(!toUpdateProjList.isEmpty())
         {
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             update toUpdateProjList; // Not including try , catch as when the transaction is failed roll back is handled at other class  
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;  
         }
     }     
   /*******************************************************************************************************

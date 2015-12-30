@@ -10,6 +10,7 @@
 
 <apex:page showHeader="false" sidebar="false" controller="IPM_Coreparameters" id="IPM_CoreparameterPage" extensions="IPM_GetHelpDoc">
     <apex:form >
+        <div class='cust-overlay'></div>
         <!-- To place the help symbol in the top right hand corner of page -->
         <apex:outputPanel layout="block" styleClass="SecButtonSet helpIco pull-right" >
             <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
@@ -36,7 +37,7 @@
                             <div class="paracont">
                                 <p>
                                     <apex:outputText value="{!$Label.IPM_BETUnlinkingMessage}">
-                                        <!--<apex:param value="{!PreSelectedBet.betName}" />-->
+                                        <apex:param value="{!PreSelectedBet.betName}" />
                                     </apex:outputText>
                                 </p>
                             </div>
