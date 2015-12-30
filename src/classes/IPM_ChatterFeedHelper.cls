@@ -571,7 +571,7 @@ public with sharing class IPM_ChatterFeedHelper {
       {
             projectIds.add(eachFin.Local_Project__c);
             projectIds.add(eachFin.Regional_Project__c);
-            projectIds.add(eachFin.Parent_Project__c);
+	    projectIds.add(eachFin.Global_Project_Id__c);
             //Adding system.debugs for understanding a defect root cause. Please exclude in SONAR.Will remove in next deployment
             system.debug('eachFin..'+eachFin);
             financialSet.add(eachFin.id);
@@ -582,7 +582,7 @@ public with sharing class IPM_ChatterFeedHelper {
             {
                 subjectIdMessageMap.put(eachFin.Local_Project__c,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
                 subjectIdMessageMap.put(eachFin.Regional_Project__c,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
-                subjectIdMessageMap.put(eachFin.Parent_Project__c,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
+                subjectIdMessageMap.put(eachFin.Global_Project_Id__c,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
             }
             financialMap.put(eachFin.id,IPM_ConstantUtils.BUSINESS_CASE_SAVED);
             for(Id key:subjectIdMessageMap.keySet()){
