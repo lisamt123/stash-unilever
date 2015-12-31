@@ -159,6 +159,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     
     private static final String CLASS_NAME = IPM_FinancialController.class.getName();//Class Name for Exception Logging
     private static Boolean isConstructorCalled = false;
+    private static String UPDATE_COUNTRY='updateCountry';
+    
     
     /*******************************************************************************************************
     * @description  Constructor
@@ -304,7 +306,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         IPM_Country__c UpdateCountry = [Select Country_Name__c, Id, Calculation_Index__c From IPM_Country__c where Id =: Country Limit 1];
         UpdateCountry.Calculation_Index__c = CheckCountry;
         update UpdateCountry;
-    	} catch (Exception ex){
+        } catch (DMLException ex){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                    UPDATE_COUNTRY,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
        }
     }
@@ -1373,7 +1377,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     IPM_ConstantUtils.EXCEPTION_CHANGESUSTAINABILITY,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
             isError = true;
-            //errorMessage = ex.getMessage() + '\n' + ex.getStackTraceString();
             errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
     }
@@ -1396,7 +1399,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     IPM_ConstantUtils.EXCEPTION_CHECKSUSTAINABILITY,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
             isError = true;
-            //errorMessage = ex.getMessage() + '\n' + ex.getStackTraceString();
             errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
     }
@@ -1503,7 +1505,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     IPM_ConstantUtils.EXCEPTION_SAVEFINANCIALS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
             isError = true;
-            //errorMessage = ex.getMessage() + '\n' + ex.getStackTraceString();
             errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
     }

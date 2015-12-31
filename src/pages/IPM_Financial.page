@@ -39,7 +39,7 @@
                                                 <apex:outputPanel id="opCurr" styleClass="selCur">
                                                      <apex:commandButton rendered="{!NOT(isEditMode)}" action="{!loadCurrencyPage}" value="Local Currency View" styleClass="ipmButton primary currButton" alt="{!$Label.IPM_currency_button_hover}" title="{!$Label.IPM_currency_button_hover}"/>
                                                 </apex:outputPanel>
-                                                <apex:commandbutton value="{!$Label.IPM_Financial_CopyPaste}" action="{!CopyPasteTemplate}" styleClass="ipmButton primary" title="Copy Paste Financial Update" rendered="true"/>
+                                                <apex:commandbutton value="{!$Label.IPM_Financial_CopyPaste}" action="{!CopyPasteTemplate}" styleClass="ipmButton primary" title="{!$Label.IPM_Financial_CopyPaste}" rendered="true"/>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
                                         <!-- 
@@ -213,7 +213,12 @@
                                                                         <div class="ipmButton secondary confirmAction" data-target="#ipmDeleteModal" data-toggle="modal" data-backdrop="static" data-keyboard="false" onclick="refreshFromRegionalJs('{!$Label.IPM_OVERWRITE_FIN_BUSINESS_CASE}', '{!$Label.IPM_ABOUT_TO_REFRESH_REG_FIN_BUSINESS_CASE}');">{!$Label.IPM_ACCEPT_REGIONAL_BC}</div>
                                                                         <apex:actionFunction name="refreshFromRegional" action="{!refreshFromRegional}" reRender="tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()"/>
                                                                     </apex:outputPanel>
-                                                        
+                                                        			<apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational',isTargetLaunchDateMisaligned)}">
+                                                                         <div class="ipmButton secondary" onclick="alignTLDRecords();">{!tldAcceptFromValue}</div>
+                                                                        <apex:actionFunction name="alignTLDRecords" action="{!alignTLD}" reRender="rolloutPanel,tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                            <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
+                                                                        </apex:actionFunction>
+                                                                        </apex:outputPanel>
                                                                     <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode))), false)}">
                                                                         
                                                                         <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational')}">
@@ -231,13 +236,7 @@
                                                                             <apex:param name="isEditMode" value="true" assignTo="{!isEditMode}"/>
                                                                         </apex:actionFunction>
                                                                        </apex:outputPanel>
-                                                                   </apex:outputPanel> 
-                                                                        <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational',isTargetLaunchDateMisaligned)}">
-                                                                         <div class="ipmButton secondary" onclick="alignTLDRecords();">{!tldAcceptFromValue}</div>
-                                                                        <apex:actionFunction name="alignTLDRecords" action="{!alignTLD}" reRender="rolloutPanel,tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
-                                                                            <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
-                                                                        </apex:actionFunction>
-                                                                        </apex:outputPanel>                                                                   
+                                                                   </apex:outputPanel>                                                                                                                                            
                                                         
                                                                     <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditMode, false)}">
                                                                         <div class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}</div>

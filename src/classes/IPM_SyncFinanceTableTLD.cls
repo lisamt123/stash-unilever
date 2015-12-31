@@ -305,6 +305,15 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	        updateFinancialYearTables();
         }
     }
+        /*
+        This method retrieves local and regional financials and financial year records.
+        Once retrieved the financial year's name & external id fields will be updated with financial's Target Launch Date. 
+        The complexity is due to handling Map/List retrieved from SOQL
+        This is required to minimise the number of SOQLs to avoid Too Many SOQL error 
+        @param  None
+         @return None
+    */
+    
     private void updateFinancialYearTables() {
         financialsYearMap = new Map<ID,IPM_Financial_Year__c>();
         fYearExternalIds = new Set<String>();

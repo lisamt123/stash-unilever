@@ -6,7 +6,7 @@
    @              process of saving the row, col data to IPM_Financialyears records.
    @Version : 1.0
    @reference : none
-  ****************************************************************************************************************************/
+****************************************************************************************************************************/
 
 //Declaring the Class Global because there is method with @Remoteaction annotation which is called from Javascript function.
 global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermediateController {
@@ -65,7 +65,7 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
     ******************************************************************************************************/
      public PageReference Query() { 
         try{
-                String qdisplayname;
+
                 ipmProject = [Select Sustainability_Period__c, BI__c,IPM_Parent_Project__c,IPM_Parent_Project__r.Name,Id, IPMProject_Span__c, IPM_Project_Logo__c, IPM_Category_Icon__c, IPM_SourceProjectType__c, IPM_Project_Type__c, IPM_CompanyCardText__c, IPM_Phase__c, IPM_Bosscard_Status__c,IPM_GateKeeping_Model__c ,IPM_Project_Name__c , IPM_Category_Text__c,IPM_Brand_Positioning__c, IPM_Bosscard__c  From IPM_Project__c where Id =:projectId limit 1];
                 sustainability = IpmProject.Sustainability_Period__c;
                 span = IpmProject.IPMProject_Span__c;
