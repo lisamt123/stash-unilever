@@ -113,7 +113,7 @@ public with sharing class IPM_ProjectDocumentHelper
     
     /**************************************************************
     * @description: Used for Updating Project Document Status as Approved.
-    * @param1 incomingProjectMap : Trigger.New projects Map
+    * @param1 incomingProjectMap : Trigger.New projects Map    * 
     */
     public static void updateProjectDocumentStatus(Map<Id,IPM_Project__c> incomingProjectMap)
     {
@@ -190,6 +190,8 @@ public with sharing class IPM_ProjectDocumentHelper
     * @description: Used for Creating project documents sections on Project Creation and Phase Change.
     * @param1 projectToDocumentMap : project to Project Document Map 
     * @param2 incomingProjects : Trigger.New projects Map
+    * @Business Logic:To the generate the sections based on the complexity and phase of the project. 
+    				  Also to handle section generation on the change in complexity of the project 
     */
     
     public static List<IPM_Project_Document_Section__c> manageProjectDocumentSections(Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap,Map<Id,IPM_Project__c> incomingProjects)
@@ -311,9 +313,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                         if(section.IPM_Section_Type__c !=IPM_ConstantUtils.SECTION_TYPE_HEADER && 
                                             section.IPM_Section_Type__c!=IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
                                         {
-                                           // DEF2994 Restrict the copy over of Filled in logic 16/12/2015
-                                          		projDocSect.IPM_Section_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;                                          
-                                            
+                                           // DEF2994 Restrict the copy over of Filled in logic 16/12/2015                                            
                                             if(String.isBlank(projDocSect.IPM_PDP_Document_Summary__c))
                                             {
                                                 projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
