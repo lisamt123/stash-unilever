@@ -28,11 +28,8 @@ private class IPM_EcoDesignSection_Test {
 	
 	/***********************************
 	Description of the purpose of the method. 
-	@name: insertAssessmentTest
+	@name: projectSetUp
 	@Description: To test insertAssessments method
-	@param: none
-	@return: none
-	@throws: none
 	***********************************/
 	@testSetup static void projectSetUp() 
 	{
@@ -66,8 +63,6 @@ private class IPM_EcoDesignSection_Test {
 			// Inserting Master Data whose OWD are set to readOnly/View All    
 			IPM_TestFactory_Helper.getProjectMasterData();
 			
-			// Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
-			//IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalProjectLeader}); 
 		} 
 		
 		// Insert the project as a Global project Leader.
@@ -100,6 +95,7 @@ private class IPM_EcoDesignSection_Test {
 	
 	/***********************************
 	* @Description: validate EcoDesign functionality for Global Original Project
+	  @name validateEcoDesignSaveGlobal
 	* *********************************/
 	public static testmethod void validateEcoDesignSaveGlobal() {
 		List<MDO_Geography__c> mdo_geoList = new List<MDO_Geography__c>();
@@ -157,6 +153,7 @@ private class IPM_EcoDesignSection_Test {
 	
 	/***********************************
 	* @Description: validate EcoDesign functionality for Regional Original Project
+	  @name validateEcoDesignSaveRegionalOriginal	
 	* *********************************/
 	
 	public static testmethod void validateEcoDesignSaveRegionalOriginal() {
@@ -236,6 +233,10 @@ private class IPM_EcoDesignSection_Test {
 		System.assertEquals(ecoDesignHandler.countryAssessmentWrapListNonEICountries.size(),3);
 	}
 	
+	/***********************************
+	* @Description: validate EcoDesign functionality for Phase change
+	* @name testForDifferentPhases
+	* *********************************/
 	public static testmethod void testForDifferentPhases() 
 	{
 		List<User> userList = [Select Id,LastName from User where LastName=: GLOBAL_PL limit 1];
@@ -339,8 +340,10 @@ private class IPM_EcoDesignSection_Test {
 		}    
 	}
 	/**
-	*  Used for Testing Global Project Creation. 
-	*  @name projectSetUp
+	*  Used for Testing Global, Regional and Local Project Creation. 
+	*  @name createRegional
+	Sonar Issue Comment : Can not reduce the NPath Complexity here as logic requires creation of Global, Regional and Local projects and
+	their associated data.  
 	*/
 	public static testmethod void createRegional()
 	{
