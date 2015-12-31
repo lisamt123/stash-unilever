@@ -4593,7 +4593,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Used in IPM BCC controller</shortDescription>
-        <value>Business Case Confirmation Saved Successfully</value>
+        <value>Business case confirmation document saved successfully</value>
     </labels>
     <labels>
         <fullName>IPM_BD</fullName>
