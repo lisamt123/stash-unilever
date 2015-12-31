@@ -58,7 +58,7 @@ public virtual with sharing class IPM_ProjectIntermediateController {
         {
             Schema.DescribeFieldResult fieldDescribe = fieldTypeMap.get(fieldAPIName).getDescribe();
             
-            if(!fieldDescribe.isNamePointing() &&  fieldAPIName != 'Id' && !systemFields.contains(fieldAPIName))
+            if(!fieldDescribe.isNamePointing() &&  !fieldAPIName.equalsIgnoreCase('Id') && !systemFields.contains(fieldAPIName))
             {
                 queryStr += ' '+fieldAPIName+',';
             }
