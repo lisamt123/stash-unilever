@@ -322,7 +322,9 @@ public class IPM_MyList_Test{
     }   
     /* task with project approch is external */
      private static testmethod void projectWithExternalApprochTest(){ 
-        Test.startTest();   
+        Test.startTest();
+            Boolean message = false; 
+            Boolean exceptn = false;   
             User globalUser = [Select Id,LastName from User where LastName=:GLOBAL_PL limit 1];
             
             // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
@@ -340,47 +342,24 @@ public class IPM_MyList_Test{
                 IPM_MyList ipm = new IPM_MyList();
                 ipm.showCompletedTasks();
                 List<Apexpages.Message> msgs = ApexPages.getMessages();
-                boolean b = false;
+                
                 for(Apexpages.Message msg : msgs){
-                	b = true;
+                    message  = true;
                 }
-                system.assertEquals(b,true,'page messages are added');
+                system.assertEquals(message  ,true,'page messages are added');
+                
+                Exception ex;
+                 try{
+                    ipm.catchBlockContent('test class',ex);
+                 }catch(Exception exp){
+                    ipm.catchBlockContent('test class',exp);
+                    exceptn =true;
+                 }
+                 system.assertEquals(exceptn ,true,'page messages are added');
              }
         Test.stopTest();
      }
      
-     /*test cases for completed task*/
-     private static testmethod void taskCatchTest(){
-        Test.startTest();
-            User globalUser = [Select Id,LastName from User where LastName=:GLOBAL_PL limit 1];
-            
-        	// Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
-        	IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
-        
-            system.RunAs(globalUser)
-            { 
-            	 list<IPM_Task__c>  tskList = getTaskList();
-                 delete tskList;
-            	 
-            	 IPM_MyList taskListResult = new IPM_MyList();
-            	 taskListResult.setPhase('Idea');
-            	 taskListResult.toggleTask = IPM_Utils.truevalue;
-            	 taskListResult.toggleRole = IPM_Utils.truevalue;
-            	 taskListResult.isCompleteTasks = IPM_Utils.f;
-            	 taskListResult.getOverduetasksSample();
-	             taskListResult.getprojectTaskssample();
-	             taskListResult.getNextSevenTasks();
-	             taskListResult.getLaterTasks();
-	             taskListResult.getcompletedTasks();
-	             taskListResult.showCompletedTasks();
-	             Exception ex;
-	             try{
-	             	taskListResult.catchBlockContent('test class',ex);
-	             }catch(Exception exp){
-	             	taskListResult.catchBlockContent('test class',exp);
-	             }
-            }
-        Test.stopTest();
-     }
+     
             
 }
