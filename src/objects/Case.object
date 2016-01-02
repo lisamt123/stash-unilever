@@ -2674,31 +2674,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Hungary_Queue_Case</fullName>
-        <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
-        <filterScope>Queue</filterScope>
-        <filters>
-            <field>CASES.STATUS</field>
-            <operation>notEqual</operation>
-            <value>Closed,Closed as Duplicate</value>
-        </filters>
-        <label>CEC Hungary Queue</label>
-        <language>en_US</language>
-        <queue>CEC_Hungary_Queue</queue>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-            <role>CEC_Manager_Europe</role>
-            <role>CEC_Manager_Hungary</role>
-            <role>CEC_User_Hungary</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>CEC_India_Tier_1_Case</fullName>
         <filterScope>Queue</filterScope>
         <filters>
