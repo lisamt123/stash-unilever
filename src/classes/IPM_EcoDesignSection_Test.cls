@@ -62,11 +62,9 @@ private class IPM_EcoDesignSection_Test {
 			
 			// Inserting Master Data whose OWD are set to readOnly/View All    
 			IPM_TestFactory_Helper.getProjectMasterData();
-			
 		} 
 		
 		// Insert the project as a Global project Leader.
-		
 		projectList = IPM_TestFactory_Helper.projectSetUp(8,globalProjectLeader);
 		
 		System.runAs(globalProjectLeader)
@@ -94,7 +92,7 @@ private class IPM_EcoDesignSection_Test {
 	
 	
 	/***********************************
-	* @Description: validate EcoDesign functionality for Global Original Project
+	* @Description: Validate EcoDesign functionality for Global Original Project
 	  @name validateEcoDesignSaveGlobal
 	* *********************************/
 	public static testmethod void validateEcoDesignSaveGlobal() {
@@ -112,13 +110,13 @@ private class IPM_EcoDesignSection_Test {
 				if(i < 7) {
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = WITH_MCO,
-					IS_EI_Country__c = true);    
+					IS_EI_Country__c = true,isActive__c = true);    
 					countryList.add(tempCountry);
 				}
 				else {
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = WITH_MCO,
-					IS_EI_Country__c = false);    
+					IS_EI_Country__c = false,isActive__c = true);    
 					countryList.add(tempCountry);
 				}
 			}
@@ -194,13 +192,13 @@ private class IPM_EcoDesignSection_Test {
 				if(i < 7) {
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = WITH_MCO,
-					IS_EI_Country__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
+					IS_EI_Country__c = true,isActive__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
 					countryList.add(tempCountry);
 				}
 				else {
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = WITH_MCO,
-					IS_EI_Country__c = false,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
+					IS_EI_Country__c = false,isActive__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
 					countryList.add(tempCountry);
 				}
 			}
@@ -257,14 +255,14 @@ private class IPM_EcoDesignSection_Test {
 				{
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = WITH_MCO,
-					IS_EI_Country__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
+					IS_EI_Country__c = true,isActive__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
 					countryList.add(tempCountry);
 				}
 				else 
 				{
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = WITH_MCO,
-					IS_EI_Country__c = false,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
+					IS_EI_Country__c = false,isActive__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
 					countryList.add(tempCountry);
 				}
 			}
@@ -344,7 +342,7 @@ private class IPM_EcoDesignSection_Test {
 	*  @name createRegional
 	Sonar Issue Comment : Can not reduce the NPath Complexity here as logic requires creation of Global, Regional and Local projects and
 	their associated data.  
-	*/
+	*/	
 	public static testmethod void createRegional()
 	{
 		// Get the newly created Projects from Database. 
@@ -419,7 +417,6 @@ private class IPM_EcoDesignSection_Test {
 			insert localRolloutList; 
 			
 			// Create Country specific information.
-			
 			for(IPM_Project_Rollout__c localRollout : localRolloutList)
 			{
 				String geoExternalId = IPM_ConstantUtils.BLANK;
@@ -433,7 +430,7 @@ private class IPM_EcoDesignSection_Test {
 				}
 				
 				IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-				IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO');    
+				IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);    
 				
 				countryList.add(tempCountry);
 			}
@@ -485,7 +482,7 @@ private class IPM_EcoDesignSection_Test {
 			regProject.Success_Timestamp_EcoDesign__c = System.now().addHours(2);
 			
 			update regProject;
-			
+
 			List<MDO_Geography__c> mdo_geoList = new List<MDO_Geography__c>();
 			for(integer i=0 ;i<10 ;i++) 
 			{
@@ -500,14 +497,14 @@ private class IPM_EcoDesignSection_Test {
 				{
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Regional_Project__c = regProject.id,IPM_Rollout_Status__c = WITH_MCO,
-					IS_EI_Country__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
+					IS_EI_Country__c = true,isActive__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
 					countryListReg.add(tempCountry);
 				}
 				else 
 				{
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Regional_Project__c = regProject.id,IPM_Rollout_Status__c = WITH_MCO,
-					IS_EI_Country__c = false,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
+					IS_EI_Country__c = false,isActive__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
 					countryListReg.add(tempCountry);
 				}
 			}
@@ -543,6 +540,5 @@ private class IPM_EcoDesignSection_Test {
 			IPM_EcoDesignSection ecoDesignHandler = new IPM_EcoDesignSection();
 			System.assertEquals(ecoDesignHandler.countryAssessmentWrapListEICountries.size(),7);        
 		}
-		
 	}
 }
