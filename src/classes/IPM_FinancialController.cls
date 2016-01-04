@@ -245,34 +245,27 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         if(currentFinancial !=null)
         { 
             String financialExtID = currentFinancial.Financial_External_ID__c;
-                        
+                         
            	if(currentFinancial.RecordTypeId == DEFAULT_FINANCIAL_RECORDTYPE && String.isNotBlank(financialExtID) )
             { 
                 if (project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS) 
                 {
                     if(globalCharter)
                     {
-                        if(currentFinancial.IPM_Key_Financial__c)
-                        {
-                            associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID AND Local_Rollout_Charter__r.IPM_Rollout_Project__c =:financialExtID];
-                        }
-                        else
-                        {
-                            associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID];
-                        }    
+                        associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c,Local_Rollout_Charter__c,Local_Rollout__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID LIMIT 50000];    
                     }
                     else
                     {
-                        if(currentFinancial.IPM_Key_Financial__c)
-                        {
-                            associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID AND Local_Rollout_Charter__r.IPM_Rollout_Project__c =:financialExtID AND isActive__c = true];
-                        }
-                        else
-                        {
-                            associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID AND isActive__c = true];
-                        }
-                    }
-                    
+                        List<IPM_Country__c> countryList =  [Select Id,Country_Name__c,Calculation_Index__c,Local_Rollout_Charter__c,Local_Rollout__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID AND isActive__c = true LIMIT 50000];
+                        
+                        for(IPM_Country__c country : countryList)
+	                    {
+	                        if(country.Local_Rollout_Charter__c == country.Local_Rollout__c )
+	                        {
+	                            associatedCountryList.add(country);
+	                        }
+	                    }
+                    }             
                 }
                 else
                 { 
@@ -313,8 +306,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                       
                        if(!localRolloutList.isEmpty())
                        {
-                          associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where Local_Rollout__c in :localRolloutList AND isActive__c = true]; 
-                          System.debug(LoggingLevel.ERROR,'associatedCountryList-->>>'+associatedCountryList); 
+                          associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where Local_Rollout__c in :localRolloutList AND isActive__c = true];  
                        }
                     }
                 }
@@ -629,7 +621,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
 
         lstRolloutWrappers.add( new RolloutWrapper( project.Market_Cluster_Name__c, lstRegionalFinancials) );
-        
         String firstFinancialId = '';
         
         For (IPM_Financial__c financial : lstRegionalFinancials)
@@ -651,11 +642,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                             FROM IPM_Financial__c 
                             WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
                             AND Regional_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
-                                                                                         
+                                                                                            
         for(IPM_Financial__c ipmFinancial : lstIpmFinancial)
         { 
             mapConsolidatedFinancials.put(ipmFinancial.Regional_Project__r.Market_Cluster_Name__c, ipmFinancial);
-            
             if (previousFinancialId == ipmFinancial.Id)
             {
                 currentFinancialId = previousFinancialId;
@@ -985,7 +975,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
 
         lstRolloutWrappers.add( new RolloutWrapper( regionalRollout.Market_Cluster_Name__c, regionalRollout.IPM_Financials__r) );
-    
+        
         String firstFinancialId = '';
         
         for(IPM_Financial__c financial : regionalRollout.IPM_Financials__r)
@@ -1024,7 +1014,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 currentFinancialId = previousFinancialId;
             }
         }
-
+        
         if ((currentFinancialId == NULL) || (currentFinancialId == IPM_ConstantUtils.BLANK))
         {
             currentFinancialId = firstFinancialId;
