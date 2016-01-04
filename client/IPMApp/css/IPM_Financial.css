@@ -254,3 +254,6 @@
 	.finalerttext  p {margin-bottom:0px !important;}
     .alertimg { width: 30px; position: relative; bottom: 7px;height:auto;}
 	.misAlignedTLD {background-repeat: no-repeat;text-indent: -2px;background-position: 10px;background-image: url('../images/alert_1b.png');color: #000;font-weight: normal;background-color: #FFFB42 !important;width: 100%;display: block;padding: 10px;float: left;margin-bottom: 10px;border-radius: 4px;padding-left: 43px;}
+	.marginB10{margin-bottom:10px}
+	.pull-right{float:right;}
+	.finPeriod{padding-left:5px;}

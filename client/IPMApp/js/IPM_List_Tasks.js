@@ -5,6 +5,7 @@
 *****************************************************************************/
 var jq = jQuery.noConflict();
 /* Below code is related to delete task modal */
+/* Since we have to reRender few scripts on Complete of an sales force action function we have put all the scripts necessary inside below function. Hence cannot split the function */
 function callbackLoadAction() {
     jq(document).on('click', '#ipmDeleteModal .removeTask', function() {
         var taskId = '';

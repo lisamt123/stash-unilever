@@ -404,6 +404,7 @@ $(document).ready(function() {
 							Validationflag = 'true';
 						}
 					}
+					/* If we reduce the number of conditional operators it will contradict with the other sonar issue 'Merge this if statement with the nested one' */
                     if (Validationflag == 'false' && Validationflag1 == 'false' && Validationflag2 == 'false' && Validationflag3 == 'false' && Validationflag4 == 'false' && Validationflag5 == 'false' && Validationflag6 == 'false') {
                         document.getElementById('DivButton').style.display = 'inline';
                     } else {

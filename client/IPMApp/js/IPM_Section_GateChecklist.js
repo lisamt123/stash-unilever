@@ -10,7 +10,6 @@ var jq = jQuery.noConflict();
 /* Below code is to set the slider */
 jq(document).ready(function() {
     initSliderSecGk();
-	jq(".sliderGk").unbind('click');
 });
 
 /* Below code is to update the gate keeper list */
@@ -43,10 +42,9 @@ jq(s).each(function() {
             score = itemsSecGK[pointer];
         },
 		slide: function( event, ui ) {
-			jq(".sliderGk").on("mousedown", function() {
-				e.stopImmediatePropagation();
-			});
-		},
+			jq(this).find(".legendSld.gateKeeperSlider label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+			jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();			
+		}
     });
     
     if (answerSecGK == IPMAppSecGK.yes) {           

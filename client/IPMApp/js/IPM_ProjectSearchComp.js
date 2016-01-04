@@ -5,6 +5,7 @@
 *@Created Date: 28/05/2015 
 *************************************************************************
 */ 
+/* Since we are using global variables we will not be able to create multiple functions. If we split the function the functionality will break. */
  jq(document).ready(function() {                           
                             
     var geoAll;

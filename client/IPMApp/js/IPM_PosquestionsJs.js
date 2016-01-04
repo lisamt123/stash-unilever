@@ -35,7 +35,11 @@ function initSlider() {
             var pointer = ui.value - 1;
             jq('#s' + ui.value).prop('checked', true);
             score = itemsProposed[pointer];
-        }
+        },
+		slide: function( event, ui ) {
+			jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+			jq(this).find(".legendSld label").eq(ui.value -1).click();
+		}
     });
 
     jq(".legendSld label").on("click", function() {
@@ -99,11 +103,14 @@ function initSlider1() {
             max: itemsProposed.length,
             animate: 'slow',
             stop: function(event, ui) {
-
                 var pointer = ui.value - 1;
                 jq('#s' + ui.value).prop('checked', true);
                 quest = itemsProposed[pointer];
-            }
+            },
+			slide: function( event, ui ) {
+				jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+				jq(this).find(".legendSld label").eq(ui.value -1).click();
+			}
         });
 
         jq(".legendSld label").on("click", function() {

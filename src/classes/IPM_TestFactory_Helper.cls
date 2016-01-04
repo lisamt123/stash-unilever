@@ -69,6 +69,10 @@ public without sharing class IPM_TestFactory_Helper {
     
     public static List<IPM_Project__c>masterProject=new List<IPM_Project__c>();
     
+    //TO query the profile
+    public static Set<String> profiles = new Set<String>{ 'System Administrator','Unilever - Force MultiApp Standard' };
+	public static List<Profile> profileList = [SELECT Id, Name FROM Profile WHERE Name IN :profiles ORDER BY Name asc];
+
    public static Id getMasterProjId(){
        masterProject=[select Id,IPM_Project_Name__c from IPM_Project__c where IPM_Project_Name__c='IPM_MasterProject' limit 1];
        return masterProject[0].Id;
@@ -111,12 +115,12 @@ public without sharing class IPM_TestFactory_Helper {
        return geographicList;   
     }
     
-    public static Profile p = [SELECT Id FROM Profile WHERE Name='Unilever - Force MultiApp Standard']; //retrieve the profile of the user
+    
     public static User createUser(Boolean doInsert) {
         String uniqueUserEMailId = getUniqueUsername();
         User u = new User(Alias = uniqueUserEMailId.substring(18,23), Email=uniqueUserEMailId, 
             EmailEncodingKey=IPM_ConstantUtils.USER_EMAIL_ENCODE, LastName='IPMUSER_LASTNAME', LanguageLocaleKey=IPM_ConstantUtils.USER_LOCALEKEY, 
-            LocaleSidKey='en_US', ProfileId = p.Id, 
+            LocaleSidKey='en_US', ProfileId = profileList[1].Id, 
             TimeZoneSidKey=IPM_ConstantUtils.USER_TIMEZONEKEY, UserName=uniqueUserEMailId, 
             isActive =true);
         
@@ -127,7 +131,6 @@ public without sharing class IPM_TestFactory_Helper {
     }
     
     //Creation of platform user
-    public static Profile ipmPlatformProfile = [SELECT Id FROM Profile WHERE Name='Unilever - Force MultiApp Standard']; //retrieve the profile of the user
     public static List<PermissionSetAssignment> lstPermissionSetAssignment ;
     
     public static User createIPMPlatformProfileUser(String IPMRole) {
@@ -137,7 +140,7 @@ public without sharing class IPM_TestFactory_Helper {
         
         User u = new User(Alias = uniqueUserEMailId.substring(18,23), Email=uniqueUserEMailId, 
             EmailEncodingKey=IPM_ConstantUtils.USER_EMAIL_ENCODE, LastName='PLATFORM_USER', LanguageLocaleKey=IPM_ConstantUtils.USER_LOCALEKEY, 
-            LocaleSidKey='en_US', ProfileId = ipmPlatformProfile.Id, 
+            LocaleSidKey='en_US', ProfileId = profileList[1].Id, 
             TimeZoneSidKey=IPM_ConstantUtils.USER_TIMEZONEKEY, UserName=uniqueUserEMailId, 
             isActive =true);
         
@@ -160,13 +163,12 @@ public without sharing class IPM_TestFactory_Helper {
         return platformUser;
     }
     
-    public static Profile PAdmin = [SELECT Id FROM Profile WHERE Name='System Administrator']; //retrieve the profile of the user
     
     public static User createUserAdmin(Boolean doInsert) {
         String uniqueUserEMailId = getUniqueUsername();
         User u = new User(Alias = uniqueUserEMailId.substring(18,23), Email=uniqueUserEMailId, 
             EmailEncodingKey=IPM_ConstantUtils.USER_EMAIL_ENCODE, LastName='IPMUSER_LASTNAME', LanguageLocaleKey=IPM_ConstantUtils.USER_LOCALEKEY, 
-            LocaleSidKey='en_US', ProfileId = PAdmin.Id, 
+            LocaleSidKey='en_US', ProfileId = profileList[0].Id, 
             TimeZoneSidKey=IPM_ConstantUtils.USER_TIMEZONEKEY, UserName=uniqueUserEMailId, 
             isActive =true);
         
@@ -240,7 +242,7 @@ public without sharing class IPM_TestFactory_Helper {
     
     public static List<IPM_Project__c> insertIPMProjectList()
     {
-    projectList = new List<IPM_Project__c>();
+		projectList = new List<IPM_Project__c>();
         
         for(Integer i = 1; i <= 3; i++)
         {

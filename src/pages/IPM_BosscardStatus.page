@@ -176,6 +176,7 @@
     </apex:outputPanel> 
     <script>
     jq('.searchLeader').clearSearch();
+    <!-- The below script needs to included in the page as RemoteAction is invoked when Bosscard is Approved to create Project, which doesnot work when referenced from Static resource-->
     function createPro(plId){
             var RemoteActionCreatePro = '{!$RemoteAction.IPM_BosscardStatusController.createProject}';
             var bossCommentValue = document.getElementById(IPMApp.ComponentBosscomments).value;
@@ -183,8 +184,7 @@
                 RemoteActionCreatePro,IPMApp.bosscardId,plId,bossCommentValue,
                 function(result, event){
                     if (event.status) {
-                        if(event.result!=null){                            
-                            
+                        if(event.result!=null){
                             if(IPMApp.boolVal=='true'){
                                  window.top.location.href=IPMApp.homeurl;
                             }else{
@@ -193,12 +193,10 @@
                                }
                              else{
                                  alert(IPMApp.systemMsg);
-                             }    
-                        
+                             }
+                        }
                     }
-                }
-            );
-               
-        }
+                );         
+            }
     </script>
 </apex:page>
