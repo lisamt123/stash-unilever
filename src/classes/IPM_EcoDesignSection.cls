@@ -79,8 +79,8 @@ public with sharing class IPM_EcoDesignSection {
             countriesList = [Select IPM_Project__c, Country_Name__c, IS_EI_Country__c,CreatedDate,
                            IPM_Regional_Proj_Association_Timestamp__c,IPM_Local_Project_Association_Timestamp__c
                            From IPM_Country__c 
-                           Where IPM_Project__c=:projId OR IPM_Local_Project__c =:projId 
-                                           OR IPM_Regional_Project__c =:projId Order by IS_EI_Country__c desc,
+                           Where (IPM_Project__c=:projId OR IPM_Local_Project__c =:projId 
+                                           OR IPM_Regional_Project__c =:projId) AND isActive__c = true Order by IS_EI_Country__c desc,
                                            Country_Name__c asc LIMIT 10000];     
         }
 

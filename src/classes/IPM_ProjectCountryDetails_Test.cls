@@ -186,7 +186,7 @@ private class IPM_ProjectCountryDetails_Test {
             
             IPM_Country__c tempCountry = new  IPM_Country__c(
                   IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
-                  IS_EI_Country__c = true);
+                  IS_EI_Country__c = true, isActive__c = true);
             insert tempCountry;
             
             IPM_Assessment__c assessment1 = IPM_TestFactory_Helper.createAssessments(false, projToUpdate.id, tempCountry.id,IPM_ConstantUtils.PHASE_IDEAS );      
@@ -197,7 +197,7 @@ private class IPM_ProjectCountryDetails_Test {
             
             IPM_Country__c tempCountry2 = new  IPM_Country__c(
                   IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
-                  IS_EI_Country__c = false);
+                  IS_EI_Country__c = false, isActive__c = true);
            insert tempCountry2;
            
            IPM_Project__c projToCheck = [Select id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c from IPM_Project__c Where Id =:projectList[0].Id limit 1][0];
@@ -231,7 +231,7 @@ private class IPM_ProjectCountryDetails_Test {
                 for(integer i=0; i<4 ; i++) {
                     IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = geo.Id,
                     IPM_Project__c = toUpdateProjList[i].id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
-                    IS_EI_Country__c = true);    
+                    IS_EI_Country__c = true, isActive__c = true);    
                 
                     countryList.add(tempCountry);
             }
@@ -306,8 +306,7 @@ private class IPM_ProjectCountryDetails_Test {
                 for(integer i=0; i<4 ; i++) {
                     IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = geo.Id,
                     IPM_Regional_Project__c = toUpdateProjList[i].id,IPM_local_Project__c =toUpdateProjList[i+1].id, IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
-                    IS_EI_Country__c = true );    
-                
+                    IS_EI_Country__c = true , isActive__c = true);    
                     countryList.add(tempCountry);
             }
                 
@@ -372,7 +371,7 @@ private class IPM_ProjectCountryDetails_Test {
                 }
                 
                 IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO);    
+                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO, isActive__c = true);    
                 
                 countryList.add(tempCountry);
             }
