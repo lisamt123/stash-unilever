@@ -507,7 +507,7 @@
         .textwidth{width:100%;}    
 		.assortTitle{margin-bottom:0px !important;}
 		.noMarginTop{margin-top:0px !important;}
-        .assormentDiv{margin-top:10px;margin-bottom:10px;border:1px #636363 solid;float:left;}
+        .assormentDiv{border:1px #636363 solid;float:left;}
         .assormentDiv .inputField{margin: 10px 0;}
         .assortmentDateSep{font-size:1.5em;display: block;float: left;margin-left: 20px;}
         .assortToDate input{margin-left: 20px;}

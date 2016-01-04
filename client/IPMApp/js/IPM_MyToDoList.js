@@ -31,6 +31,7 @@ jq(document).ready(function() {
         }
     });
 });
+/* Since we have to reRender few scripts on Complete of an sales force action function we have put all the scripts necessary inside below function. Hence cannot split the function */
 function completedFilter() {
     jq('.mytoProSearch').clearSearch();
     /* Below code is for the sorting functionality */

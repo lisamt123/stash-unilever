@@ -30,7 +30,11 @@ function initSliderGk() {
                 var pointer = ui.value - 1;
                 jq('#s' + itemsGK.indexOf(answerGK) + 1).prop('checked', true);
                 score = itemsGK[pointer];
-            }
+            },
+			slide: function( event, ui ) {
+				jq(this).find(".legendSld.gateKeeperSlider label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+				jq(this).find(".legendSld.gateKeeperSlider label").eq(ui.value -1).click();
+			}
         });
         if (answerGK == IPMAppGKC.yes) {
             jq(this).find("label[for=s1]").css({
