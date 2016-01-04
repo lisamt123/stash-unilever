@@ -62,7 +62,7 @@ public class IPM_Assumptions_Controller_Test{
     /*************************************************************************************************************************
     * @description Test Data
     */
-    @testSetup static void initializeTestMethodData(){
+    public static void initializeTestMethodData(){
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
@@ -178,14 +178,27 @@ public class IPM_Assumptions_Controller_Test{
             conList=[select Id,IPM_Assumption_T_O_Cannibalization__c from IPM_Project_Document_Section_Content__c where Id=:assumptionId];
             System.assertEquals(conList[0].IPM_Assumption_T_O_Cannibalization__c,ipmAssumContrl.comments,SAVE_ASSUMPTION_STR);
             
-            ipmAssumContrl.contentName='abc';
+            ipmAssumContrl.contentName=IPM_ConstantUtils.VOLUME_YEAR_2;
             ipmAssumContrl.saveAssumptions();
             conList=new List<IPM_Project_Document_Section_Content__c>();
-            conList=[select Id,IPM_Assumption_Yr_1_Trade_Promotion__c from IPM_Project_Document_Section_Content__c where Id=:assumptionId];
-            System.assertEquals(conList[0].IPM_Assumption_Yr_1_Trade_Promotion__c,ipmAssumContrl.comments,SAVE_ASSUMPTION_STR);
-            
-           
+            conList=[select Id,IPM_Assumption_Volume_Yr_2__c from IPM_Project_Document_Section_Content__c where Id=:assumptionId];
+            System.assertEquals(conList[0].IPM_Assumption_Volume_Yr_2__c,ipmAssumContrl.comments,SAVE_ASSUMPTION_STR);
+          
         }
         Test.stopTest();
     }
+    
+    
+    public static testMethod void testNegativeScenario(){
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            test.startTest();
+            ipmAssumContrl.projDocSecId=project.Id;
+            ipmAssumContrl.saveAssumptions();
+            conList=new List<IPM_Project_Document_Section_Content__c>();
+            conList=[select Id,IPM_Assumption_Volume_Yr_2__c from IPM_Project_Document_Section_Content__c where Id=:ipmAssumContrl.assumption.Id];
+            System.assertEquals(conList.size(),0,'catch block called');
+            Test.stopTest();
+    }
+}
 }

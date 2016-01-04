@@ -9,7 +9,6 @@
 
 @isTest
 private class IPM_ProjectCountryDetails_Test {
-    
     public static List<IPM_Project_Resource__c> projectResList;
     public static List<IPM_Project__c> projectlist;
     public static List<User> userList;
@@ -52,7 +51,6 @@ private class IPM_ProjectCountryDetails_Test {
 
          IPM_USLP_Country__c uslpCountry = new IPM_USLP_Country__c(Name=COUNTRY_FRANCE,USLPCountryISCode__c='FR');
          insert uslpCountry;
-
       }   
 
     /***********************************
@@ -102,14 +100,18 @@ private class IPM_ProjectCountryDetails_Test {
             localProjNew.IPM_Phase__c = IPM_ConstantUtils.PHASE_IDEAS;
             localProjNew.IPM_Strategic_Intent__c = PROJ_STRATEGIC_INTENT;
             insert localProjNew;
-            
-            mdm_Geography__c geo = new mdm_Geography__c(name = COUNTRY_FRANCE);
-                insert geo;      
+
+            MDO_Geography__c geo = new MDO_Geography__c(Name= 'TESTGEO', Status__c = 'Active');
+            	insert geo;     
+            MDO_Market__c market = new MDO_Market__c(Type__c=IPM_ConstantUtils.IPM_PROJECT_MARKET_TYPE_DEVELOPED);
+            	insert market;
+            MDO_MarketGeographys__c marketGeo = new MDO_MarketGeographys__c(Geography_ID__c=geo.id,Market_ID__c=market.id);   
+            	insert marketGeo;      
             List<IPM_Country__c> countryList = new List<IPM_Country__c>();
                 for(integer i=0; i<4 ; i++) {
-                    IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = geo.Id,
+                    IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = geo.Id,
                     IPM_Project__c = toUpdateProjList[i].id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
-                    IS_EI_Country__c = true);    
+                    IS_EI_Country__c = true, isActive__c = true);    
                 
                     countryList.add(tempCountry);
             }
@@ -201,9 +203,7 @@ private class IPM_ProjectCountryDetails_Test {
            IPM_Project__c projToCheck = [Select id, IPM_Exists_AtLeast_OneAssmntPerEICountry__c from IPM_Project__c Where Id =:projectList[0].Id limit 1][0];
            System.assertEquals(false,projToCheck.IPM_Exists_AtLeast_OneAssmntPerEICountry__c);
            test.stopTest();
-        }
-        
-            
+        }    
     }
     
     /***********************************
@@ -220,13 +220,16 @@ private class IPM_ProjectCountryDetails_Test {
             test.startTest();
             List<IPM_Project__c> toUpdateProjList = new List<IPM_Project__c>();
             toUpdateProjList = [Select Id,IPM_Strategic_Intent__c from IPM_Project__c where IPM_Project_Type__c =:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL limit 50000];
-            
-            
-            mdm_Geography__c geo = new mdm_Geography__c(name = COUNTRY_FRANCE);
-                insert geo;      
+
+			MDO_Geography__c geo = new MDO_Geography__c(Name= 'TESTGEO', Status__c = 'Active');
+            	insert geo;     
+            MDO_Market__c market = new MDO_Market__c(Type__c=IPM_ConstantUtils.IPM_PROJECT_MARKET_TYPE_DEVELOPED);
+            	insert market;
+            MDO_MarketGeographys__c marketGeo = new MDO_MarketGeographys__c(Geography_ID__c=geo.id,Market_ID__c=market.id);   
+            	insert marketGeo;      
             List<IPM_Country__c> countryList = new List<IPM_Country__c>();
                 for(integer i=0; i<4 ; i++) {
-                    IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = geo.Id,
+                    IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = geo.Id,
                     IPM_Project__c = toUpdateProjList[i].id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
                     IS_EI_Country__c = true);    
                 
@@ -292,11 +295,16 @@ private class IPM_ProjectCountryDetails_Test {
             localProjNew.IPM_Strategic_Intent__c = PROJ_STRATEGIC_INTENT;
             insert localProjNew;
             
-            mdm_Geography__c geo = new mdm_Geography__c(name = COUNTRY_FRANCE);
-                insert geo;      
+    		MDO_Geography__c geo = new MDO_Geography__c(Name= 'TESTGEO', Status__c = 'Active');
+            	insert geo;     
+            MDO_Market__c market = new MDO_Market__c(Type__c=IPM_ConstantUtils.IPM_PROJECT_MARKET_TYPE_DEVELOPED);
+            	insert market;
+            MDO_MarketGeographys__c marketGeo = new MDO_MarketGeographys__c(Geography_ID__c=geo.id,Market_ID__c=market.id);   
+            	insert marketGeo;      
+            	
             List<IPM_Country__c> countryList = new List<IPM_Country__c>();
                 for(integer i=0; i<4 ; i++) {
-                    IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = geo.Id,
+                    IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = geo.Id,
                     IPM_Regional_Project__c = toUpdateProjList[i].id,IPM_local_Project__c =toUpdateProjList[i+1].id, IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
                     IS_EI_Country__c = true );    
                 
@@ -321,7 +329,6 @@ private class IPM_ProjectCountryDetails_Test {
     ***********************************/
     public static testmethod void testupdateCountriesToFinancials() 
      {
-
          userList = [Select Id,Name,LastName from User limit 1000];
          User globalUser = [Select Id,Name,LastName from User where LastName='PLATFORM_USER' limit 1];
          System.runAs(globalUser)
@@ -388,6 +395,4 @@ private class IPM_ProjectCountryDetails_Test {
            test.stopTest();
          }
     }
-    
- 
  }

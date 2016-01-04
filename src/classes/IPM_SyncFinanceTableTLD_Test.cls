@@ -333,7 +333,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             project.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
             project.IPM_Temporary_Phase__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
             project.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
-            project.IPM_Target_Launch_Dates__c = System.today().addYears(3);
+            project.IPM_Target_Launch_Dates__c = targetLaunchDate;
             project.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
             project.IPM_ProjectJobType__c=IPM_ConstantUtils.JOBTYPE_PHASECHANGE;
             insert project; 
@@ -345,7 +345,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             regionalProjectRollout.IPM_Project__c=project.ID;
             regionalProjectRollout.Market_Cluster__c=MARKET_CLUSTER;
             regionalProjectRollout.IPM_Rollout_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
-            regionalProjectRollout.Target_Launch_Date__c = System.today().addYears(3);
+            regionalProjectRollout.Target_Launch_Date__c = targetLaunchDate;
             regionalProjectRollout.External_Id__c=TESTPROJECT001_REG;
             regionalProjectRollout.RecordTypeId = rolloutRegionlaRecordTypeId;
             regionalProjectRollout.IPM_Project_Job_Status__c=IPM_ConstantUtils.JOB_STATUS_COMPLETED;
@@ -364,7 +364,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             rolloutProject.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
             rolloutProject.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
             rolloutProject.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
-            rolloutProject.IPM_Target_Launch_Dates__c = System.today().addYears(3);
+            rolloutProject.IPM_Target_Launch_Dates__c = targetLaunchDate;
             rolloutProject.IPM_Project_Name__c=TESTPROJECT001_REG;
             rolloutProject.IPM_Parent_Project__c=project.ID;
             rolloutProject.IPM_ProjectJobType__c=PROJECT_CREATION;
@@ -419,7 +419,7 @@ private class IPM_SyncFinanceTableTLD_Test {
             localProject.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
             localProject.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
             localProject.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
-            localProject.IPM_Target_Launch_Dates__c = System.today().addYears(3);
+            localProject.IPM_Target_Launch_Dates__c = targetLaunchDate;
             localProject.IPM_Project_Name__c=TESTPROJECT001_REG_LOC1;
             localProject.IPM_Parent_Project__c=rolloutProject.ID;
             localProject.IPM_Project_Rollout__c = regionalProjectRollout.id;
