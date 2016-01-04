@@ -126,7 +126,8 @@
                                             </div>
                                         </th>
                                         <th scope="col" width="100px" colspan="1">
-                                            <!--<apex:outputField value="{!localRollout.IPM_Status__c}"/>-->
+                                            <apex:outputField value="{!localProject.IPM_Rollout_Status__c}"/>
+                                           
                                         </th>
                                        
                                         <th scope="col" width="180px" colspan="1">
@@ -143,11 +144,13 @@
                                                  
                         <div class="ipmAcrdnExpand">
                         <apex:repeat value="{!projectTolocalRolloutToCountryMap[localProjectID]}" var="localRolloutId">
+                        <apex:variable var="localrollout" value="{!lstcompleteRollout[localRolloutId]}"/>
                             <div class="pt20">
                                 <table class="rollouttable editable">                                 
                                     <tr class="secrow">
                                         <td width="3%">  </td>
-                                        <td width="15%">                                            
+                                        <td width="15%">  
+                                         <strong>{!$Label.IPM_MCO}: </strong> {!localrollout.MCO_Name__c}                                         
                                         </td>
                                         <td  width="47%" class="noBorder" colspan="4">
                                             <div class="separator">
@@ -214,8 +217,9 @@
                                             </div>
                                         </th>
                                         <th scope="col" width="100px" colspan="1">
-                                            <apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), false, true)}"/>
-                                            <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Status__c=='Leader'), true, false)}"/>
+                                            <!--<apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Regional_Rollout_Status__c=='Leader'), false, true)}"/> -->
+                                             <apex:outputField value="{!localRollout.IPM_Regional_Rollout_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Regional_Rollout_Status__c=='Leader'), false, true)}"/>
+                                            <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].IPM_Regional_Rollout_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Regional_Rollout_Status__c=='Leader'), true, false)}"/>
                                         </th>
                                         <apex:outputPanel rendered="{!if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c=='Original',project.IPM_Phase__c=='Ideas'),false,true)}">
                                               
