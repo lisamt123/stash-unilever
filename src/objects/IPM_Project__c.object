@@ -73,7 +73,6 @@
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
-        
         <displayedFields>
             <field>IPM_Project_Leader__c</field>
             <isFieldManaged>false</isFieldManaged>
@@ -487,26 +486,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Error</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-    </fields>
-     <fields>
-        <fullName>IPM_Regional_Rollout_Status__c</fullName>
-        <externalId>false</externalId>
-        <label>IPM Regional Rollout Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Leader</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Follower</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1881,22 +1860,13 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Rollout_Status__c</fullName>
         <externalId>false</externalId>
-        <label>Rollout Status</label>
-        <picklist>
-            <picklistValues>
-                <fullName>Leader</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Follower</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
-        <trackFeedHistory>false</trackFeedHistory>
+        <formula>Text(IPM_Project_Rollout__r.IPM_Regional_Rollout_Status__c)</formula>
+        <label>IPM Rollout Status</label>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_STOP__c</fullName>
@@ -2349,7 +2319,7 @@ OwnerId))</formula>
         <label>Project Countries</label>
         <length>5000</length>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>

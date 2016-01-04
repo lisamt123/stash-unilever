@@ -428,7 +428,7 @@ IF(NOT(ISBLANK(Parent_Project__c)),
         <externalId>false</externalId>
         <label>Charter Approved</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -438,7 +438,7 @@ IF(NOT(ISBLANK(Parent_Project__c)),
         <externalId>false</externalId>
         <label>Charter Locked</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -468,7 +468,7 @@ IF(NOT(ISBLANK(Parent_Project__c)),
         <externalId>false</externalId>
         <label>Copy Global to Local</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -478,7 +478,7 @@ IF(NOT(ISBLANK(Parent_Project__c)),
         <externalId>false</externalId>
         <label>Copy Global to Regional</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -488,7 +488,7 @@ IF(NOT(ISBLANK(Parent_Project__c)),
         <externalId>false</externalId>
         <label>Copy Local to Regional</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -498,7 +498,7 @@ IF(NOT(ISBLANK(Parent_Project__c)),
         <externalId>false</externalId>
         <label>Copy Regional to Local</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -980,7 +980,6 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
 )
 )
 )</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>IPM CPP Local</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1025,6 +1024,16 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Key_Financial__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Key Financial</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_Project_Rollout__c</fullName>
@@ -2208,6 +2217,10 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
                 <fullName>Total &apos;000 Units</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Total 000 Units</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2226,6 +2239,10 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
             </picklistValues>
             <picklistValues>
                 <fullName>Total &apos;000 Units</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Total 000 Units</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -2270,6 +2287,10 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
             </picklistValues>
             <picklistValues>
                 <fullName>Total &apos;000 Units</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Total 000 Units</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -2471,6 +2492,17 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <type>Summary</type>
     </fields>
     <fields>
+        <fullName>isActive__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>To hold the status of the Financials</description>
+        <externalId>false</externalId>
+        <label>isActive</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>isGateSubmissionDue__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -2513,7 +2545,9 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         </filters>
         <label>Finder</label>
         <language>en_US</language>
-        
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
     </listViews>
     <listViews>
         <fullName>Finder_Global_Projects</fullName>

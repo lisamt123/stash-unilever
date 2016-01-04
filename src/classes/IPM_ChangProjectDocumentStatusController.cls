@@ -97,7 +97,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section_Status__c=:IPM_ConstantUtils.STATUS_NOT_STARTED AND IPM_Default_Section__c=true AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER ORDER BY IPM_Section_Sequence__c asc];
                 
                 String standardType = IPM_ConstantUtils.STANDARD;// variable used in query below NO SONAR
-                String milestoneQuery = IPM_Utils.prepareSOQLQuery('IPM_Milestone__c',false,null);
+                String milestoneQuery = IPM_Utils.prepareSOQLQuery('IPM_Milestone__c',false,null,true);
                 String milestoneWhereClause = ' WHERE IPM_Type_of_Milestone__c =:standardType AND  IPM_Project__c=:projectId AND IPM_Active__c = true LIMIT 50000';
                 milestoneQuery = milestoneQuery + milestoneWhereClause;
                 milestoneList = database.query(milestoneQuery);            
@@ -229,7 +229,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     ******************************************************************/
     public void ecoDesignAssessmentValidate()
     {
-        String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null);
+        String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
         String projectWhereClause = ' WHERE id  =: projectId limit 1';
         projectWhereClause = projectQuery + projectWhereClause;
         List<IPM_Project__c> projList  = database.query(projectWhereClause);
@@ -728,7 +728,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 {
                     Id currentProjectId = project.Id;// used in teh query Below NO SONAR
                     
-                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
+                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
                     String rolloutWhereClause = ' WHERE IPM_Project__c =:currentProjectId  AND recordTypeId = :REGIONAL_ROLLOUT_RECORDTYPE limit 10000';
                     rolloutWhereClause = rolloutQuery + rolloutWhereClause;
                     regionalRolloutList = database.query(rolloutWhereClause);
@@ -747,7 +747,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 {
                     Id currentProjectId = project.Id;// used in the query  below NO SONAR
                      
-                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
+                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
                     String rolloutWhereClause = ' WHERE Regional_Project__c  =:currentProjectId  AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE limit 10000';
                     rolloutWhereClause = rolloutQuery + rolloutWhereClause;
                     localRolloutList = database.query(rolloutWhereClause);

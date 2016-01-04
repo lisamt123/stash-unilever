@@ -1328,4 +1328,100 @@ public without sharing class IPM_Utils {
         } 
         return false;
     } 
+    
+    /**************************************************************
+    * @description: Helper method to dynamically add fields for provided Sobject Name.Can additionally provide Child Object API Names.
+                    Used for Project back Ground Process.
+      @param1 SObjectName : sObject  whose Data is to be fetched.
+      @param2 addChild : whether child records are to be fetched.
+      @param2 addChild : Child SObject which needs to be fetched.
+    */
+    
+    public static String prepareSOQLQuery(String SObjectName ,Boolean addChild,Set<String> includededChildObjects, Boolean includeSystemFields) 
+    { 
+    	Set<String> mandatoryStandardFieldSet = new Set<String>{'id','name','recordtypeid'};
+    	
+        Set<String> skippedChildObject = new Set<String>{'IPM_Project__c'};
+        Map<String,Map<String,String>> orderByMap = new Map<String,Map<String,String>>{};
+       
+        String queryStr = ' Select ';
+
+        Schema.DescribeSObjectResult sObjectDescribe = Schema.getGlobalDescribe().get(SObjectName).getDescribe();
+        
+        Map<String,Schema.SObjectField> sobjectFieldMap = sObjectDescribe.fields.getMap();
+        
+        for(String fieldAPIName :  sobjectFieldMap.keySet())
+        {   
+            Schema.DescribeFieldResult fieldDescribe = sobjectFieldMap.get(fieldAPIName).getDescribe(); 
+            if(!mandatoryStandardFieldSet.contains(fieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() ) )
+            {
+                queryStr += ' '+fieldAPIName+',';
+            }
+        }
+        
+        if(addChild)
+        {
+            // Get Child Relationships
+            for(Schema.ChildRelationship cr : Schema.getGlobalDescribe().get(SObjectName).getDescribe().getChildRelationships())
+            {
+                // Get Child Relationship Name
+                String childRelationShipName = cr.getRelationshipName();
+                
+                // Get Child Object Reference
+                Schema.SObjectType childObjectSchema = cr.getChildSObject();
+                Schema.DescribeSObjectResult childObjectDescibe = childObjectSchema.getDescribe();
+                String childObjectAPIName = childObjectDescibe.getName();
+                 
+                if(childObjectDescibe.isCustom() && childRelationshipName!=null && includededChildObjects.contains(childObjectAPIName))
+                {
+                    Map<String,Schema.SObjectField> childFieldTypeMap = childObjectDescibe.fields.getMap();
+                
+                    queryStr += ' ( Select ';
+                    for(String childFieldAPIName : childFieldTypeMap.keySet())
+                    {
+                        Schema.DescribeFieldResult fieldDescribe = childFieldTypeMap.get(childFieldAPIName).getDescribe();
+                        if(!mandatoryStandardFieldSet.contains(childFieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() ) )
+                        {
+                            queryStr += ' '+childFieldAPIName+',';
+                        }
+                    } 
+                    
+                    if(!childObjectDescibe.getRecordTypeInfos().isEmpty())
+                    { 
+                        for(Schema.RecordTypeInfo recordInfo : childObjectDescibe.getRecordTypeInfos())
+                        {
+                            if(!recordInfo.isMaster())
+                            {
+                                queryStr += 'recordTypeId,';
+                                break;
+                            }
+                        }
+                    }
+                    
+                    queryStr += 'Id,Name from '+childRelationshipName;
+                    
+                    queryStr = queryStr.removeEnd(IPM_ConstantUtils.COMMA);
+                    
+                    queryStr += '  ),'; 
+                }
+            }   
+        }
+        
+        if(!sObjectDescribe.getRecordTypeInfos().isEmpty())
+        {
+            for(Schema.RecordTypeInfo recordInfo : sObjectDescribe.getRecordTypeInfos())
+            {
+                if(!recordInfo.isMaster())
+                {
+                    queryStr += 'recordTypeId,';
+                    break;
+                }
+            }
+        }
+                    
+        queryStr += 'Id,Name from '+SObjectName+' ';
+
+        return queryStr;
+    } 
+    
 }

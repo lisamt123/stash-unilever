@@ -182,13 +182,14 @@
                                                 </div>
                                             </td>
                                             <td scope="col" width="100px">
+                                            
                                                 <apex:outputField value="{!localRollout.IPM_Status__c}"/>
                                             </td>
                                             <td scope="col" width="180px">
-                                                <apex:outputField value="{!localProject.IPM_Project_Leader__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
+                                                <apex:outputField value="{!localRollout.IPM_Regional_PL__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>
                                             <td scope="col" width="120px">
-                                                <apex:outputField value="{!localProject.IPM_Finance_Member__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
+                                                <apex:outputField value="{!localRollout.Finance_Member__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>                
                                         </tr>                                    
                                         <tr class="secrow">
@@ -255,6 +256,7 @@
                                             <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
                                                 <apex:image styleClass="rounded" url="{!regionalRollout.IPM_Regional_PL__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
                                             </apex:outputPanel>
+                                            
                                             <apex:outputPanel styleClass="pull-left proLeaderColumn" layout="block">
                                                 <apex:outputField value="{!regionalRollout.IPM_Regional_PL__r.Name}" /><!--rendered="{!NOT(isEditMode)}"/>-->                                            
                                                <apex:outputPanel id="projectLeaderPanel" rendered="{!isEditMode}">
@@ -264,6 +266,7 @@
                                                 </apex:outputPanel>
                                             </apex:outputPanel>
                                         </th>
+                                        
                                         <th scope="col" width="120px" colspan="1"> 
                                             <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
                                                 <apex:image styleClass="rounded" url="{!regionalRollout.Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
@@ -324,7 +327,7 @@
                                                 <div class="incHeight">
                                                 </div>
                                             </td>
-                                            <td scope="col" width="125px">
+                                            <td scope="col" width="120px">
                                                 <div>
                                                 </div>
                                             </td>                
@@ -340,8 +343,8 @@
                                                     
                                                     <apex:variable var="countryString" value="" />
                                                     <apex:repeat value="{!rolloutTolocalRolloutToCountryMap[regionalRolloutID][localRolloutId]}" var="country"> 
-                                                    	<apex:variable var="countryString" value="{!countryString +','+country.Country_Name__c}" rendered="{!LEN(countryString) > 0}"/>
-                                                    	<apex:variable var="countryString" value="{!country.Country_Name__c}" rendered="{!LEN(countryString) == 0}"/>
+                                                        <apex:variable var="countryString" value="{!countryString +','+country.Country_Name__c}" rendered="{!LEN(countryString) > 0}"/>
+                                                        <apex:variable var="countryString" value="{!country.Country_Name__c}" rendered="{!LEN(countryString) == 0}"/>
                                                     </apex:repeat>
                                                     <apex:outputText value="{!countryString}"/>
                                                     
@@ -376,9 +379,9 @@
                 <div class="col-sm-6 pull-right mSpacing">
                     <apex:outputPanel rendered="{!AND(isEditMode,projectType.IPM_CreateRegionalProjects__c ) }" layout="block"> 
                         <a class="ipmButton primary pull-right" data-toggle="modal" data-target="#ipmRegionalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
-                     	<apex:actionsupport event="onclick" action="{!saveRollout}">
-             				<apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}" />
-         				 </apex:actionsupport>
+                        <apex:actionsupport event="onclick" action="{!saveRollout}">
+                            <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}" />
+                         </apex:actionsupport>
                      </apex:outputPanel>
 
                     <apex:commandLink styleClass="ipmButton primary pull-right"
@@ -389,11 +392,11 @@
                         <apex:param name="p1" assignTo="{!isEditMode}"
                             value="{!$Label.IPM_FALSE}" />
                     </apex:commandLink>
-					
-					<apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_EDIT}" action="{!editRollout}" rendered="{! if(AND(NOT(isEditMode),isEditable=true),true,false)}" onComplete="reRenderPanels();" status="loadingStatus">
+                    
+                    <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_EDIT}" action="{!editRollout}" rendered="{! if(AND(NOT(isEditMode),isEditable=true),true,false)}" onComplete="reRenderPanels();" status="loadingStatus">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_TRUE}"/>
                     </apex:commandLink>
-					
+                    
                     <apex:commandLink styleClass="ipmButton pull-right mr10" value="{!$Label.IPM_CANCEL}" action="{!cancelRollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
                         <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
@@ -466,6 +469,23 @@
         </div>
     </div>
 <script>
+    function deleteRcountries() {
+        var title = jq('.delrout').attr('value');
+        jq('#deleteRcountry').modal({
+            show: true,
+            keyboard: false,
+            backdrop: 'static'
+        });
+        jq('#deleteRcountry .modal-title').html(title);
+        <!--jq('#deleteRcountry .confirmdelrollout').attr('data-result', str);-->
+        jq('#deleteRcountry .modal-dialog').width('600px');
+        jq('#deleteRcountry .modal-dialog').height('170px');
+        jq('#deleteRcountry .modal-dialog').css({
+            'margin-top': '10%',
+            'z-index': '999'
+        });
+        jq(".confirmdelrollout").addClass("removerollout");
+    }
     function TLDDateCheck(param){
         var newTLDValue = param.value;
         tldOrignalValue = param.defaultValue;

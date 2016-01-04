@@ -7,6 +7,7 @@
 */
 public with sharing class IPM_FinancialController extends IPM_ProjectIntermediateController  
 { 
+    //public IPM_Project__c project {get; set;} //The project record for which the financial business cases are being viewed
     public Integer sustainabilityPeriod {get; set;} //Sustainability Period relevant for this set of business cases. 
     public Integer colSpan {get; set;} //Derived from Sustainability Perido. Used to define the number of columns visible on the Financial Table
     
@@ -18,8 +19,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Boolean isy0GrossProfitInvalid {get;set;} //Boolean variable to highlight the y0GrossProfit cell if the value is invalid
     
     public List<RolloutWrapper> lstRolloutWrappers {get; set;} //List of Rollout Wrappers that becomes visible for the current view
-    public Map<String, IPM_Financial__c> mapConsolidatedFinancials {get; set;} //Map of All CONSOLIDATED type financials.
-    public Map<String, IPM_Financial__c> mapDefaultFinancials {get; set;} //Map of  Defualt type financials. created by Kt
+    public  Map<String, IPM_Financial__c> mapConsolidatedFinancials {get; set;} //Map of All CONSOLIDATED type financials.
+    public  Map<String, IPM_Financial__c> mapDefaultFinancials {get; set;} //Map of  Defualt type financials. created by Kt
     public List<IPM_Project__c> lstLocalProjects ; // List of Project type 
     public Boolean isError {get; set;} //Boolean variable to indicate error on page
     public String errorMessage {get; set;} //Error Message to be displayed on the page
@@ -36,19 +37,18 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
     public Boolean showTopDownTab {get; set;} //Boolean variable to decide when to show the TopDown tab
     public Boolean showRollupTab {get; set;} //Boolean variable to decide when to show the Rollup tab
-    
+    public Boolean globalCharter {get;set;}
     public IPM_FinancialWrapper financialsInnovation {get; set;} //Wrapper to store the financial values for the Innovation Years for the currentFinancial
     public IPM_FinancialWrapper financialsCalendar {get; set;} //Wrapper to store the financial values for the Calendar Years for the currentFinancial
 
     public Map<String, IPM_Financial_Year__c> mapFinancialYears {get; set;} //Used to store the map of the financial years, based on External Id for the currentFinancial
-    public String volumeUnit {get; set;} //Used to manage the different types of Volume Units
     public String fieldSuffix {get; set;} //Used to dynamically change the field suffix based on the current view. (Accepted values are - Global,Regional.Local,Charter,Contract,MR,MD)
     
     public Boolean showMisalignment {get; set;} //Boolean variable to identify if the currentFinancial has any misalignment
     
-    public String tabLabelMyView {get; set;} //Used to define the label for My View Tab
-    public String tabLabelTopDown {get; set;} //Used to define the label for Top Down Tab
-    public String tabLabelRollup {get; set;} //Used to define the label for Rollup Tab 
+    public  String tabLabelMyView {get; set;} //Used to define the label for My View Tab
+    public  String tabLabelTopDown {get; set;} //Used to define the label for Top Down Tab
+    public  String tabLabelRollup {get; set;} //Used to define the label for Rollup Tab 
     
     public List<SelectOption> lstSustainabilityPeriod {get; set;} //Used to manage appropriate sustainability period selection on the UI
     public String selectedSustainabilityPeriod {get; set;} //Selected Sustainability Period for the currentFinancial business case
@@ -158,7 +158,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private static String CONSOLIDATED_FINANCIAL_RECORDTYPE; //Recordtype Id for Consolidated on IPM_Financial__c object
     
     private static final String CLASS_NAME = IPM_FinancialController.class.getName();//Class Name for Exception Logging
-    private static Boolean isConstructorCalled = false;
     private static String UPDATE_COUNTRY='updateCountry';
     
     
@@ -171,8 +170,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     {
         
         
-        if(!isConstructorCalled) {
-            isConstructorCalled = true;
         //IE-9 Fix
         Apexpages.currentPage().getHeaders().put('X-UA-Compatible', 'IE=edge');
         
@@ -188,14 +185,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isy0GrossProfitInvalid = false;
         isValidationError = false;
         isConsolidatedOrNonkey=false;
+        globalCharter = false;
+        
         validationErrorMessage = IPM_ConstantUtils.BLANK;
         localrollout = new IPM_Project_Rollout__c(); 
         associatedCountryList = new List<IPM_Country__c>();
         milestoneFinanceDataValidationMessage = '';
         exRate=1;            
                 
-        try
-        {
+        try{
             if (projectId != null) 
             {
                 isEditable=IPM_Utils.getIpmuserType(projectId, IPM_ConstantUtils.IPM_ROLE_FINANCE);
@@ -212,8 +210,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
               
             }
-	}
-     
+        } 
         catch (Exception ex)
         {
             isError = TRUE;
@@ -238,8 +235,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 isRolloutError = true;
             }  
         }
-        }
-     }
+      }
      
      private List<IPM_Country__c> getCountryList()
      {  
@@ -247,62 +243,90 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         List<IPM_Project_Rollout__c> localRolloutList = new List<IPM_Project_Rollout__c>();
         List<IPM_Project__c> ipmProjectList = new List<IPM_Project__c>(); 
         if(currentFinancial !=null)
-        {
+        { 
             String financialExtID = currentFinancial.Financial_External_ID__c;
-           if(currentFinancial.RecordTypeId == DEFAULT_FINANCIAL_RECORDTYPE && String.isNotBlank(financialExtID) )
-            {
-               if(!financialExtID.contains(IPM_ConstantUtils.FINANCIAL_NONKEY))
+                        
+           	if(currentFinancial.RecordTypeId == DEFAULT_FINANCIAL_RECORDTYPE && String.isNotBlank(financialExtID) )
+            { 
+                if (project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS) 
                 {
-                    ipmProjectList =  [SELECT Id,
-                                           (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c  FROM Regional_Project_Rollout__r 
-                                               WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND IPM_Rollout_Project__c = :financialExtID ),
-                                           (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c  FROM IPM_Project_Rollout__r 
-                                               WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND IPM_Rollout_Project__c = :financialExtID )   
-                                        FROM IPM_Project__c WHERE Id =:Project.Id];
+                    if(globalCharter)
+                    {
+                        if(currentFinancial.IPM_Key_Financial__c)
+                        {
+                            associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID AND Local_Rollout_Charter__r.IPM_Rollout_Project__c =:financialExtID];
+                        }
+                        else
+                        {
+                            associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID];
+                        }    
+                    }
+                    else
+                    {
+                        if(currentFinancial.IPM_Key_Financial__c)
+                        {
+                            associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID AND Local_Rollout_Charter__r.IPM_Rollout_Project__c =:financialExtID AND isActive__c = true];
+                        }
+                        else
+                        {
+                            associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID AND isActive__c = true];
+                        }
+                    }
+                    
                 }
-                else 
-                {
-                    // Update financials External Id if it is a non Key.
-                    financialExtID = currentFinancial.Regional_External_Id__c;
-                    ipmProjectList =  [SELECT Id,
-                                           (Select Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c FROM Regional_Project_Rollout__r 
-                                               WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND KeyMCO__c = FALSE AND Regional_Rollout_External_Id__c= :financialExtID),
-                                           (Select Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c FROM IPM_Project_Rollout__r 
-                                               WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND KeyMCO__c = FALSE AND Regional_Rollout_External_Id__c= :financialExtID)
-                                        FROM IPM_Project__c WHERE Id =:Project.Id];
+                else
+                { 
+                    if(!financialExtID.contains(IPM_ConstantUtils.FINANCIAL_NONKEY))
+                    {
+                        ipmProjectList =  [SELECT Id,
+                                               (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c  FROM IPM_Project_Rollout__r 
+                                                   WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND IPM_Rollout_Project__c = :financialExtID AND isActive__c = true),
+                                               (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c  FROM Regional_Project_Rollout__r 
+                                                   WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND IPM_Rollout_Project__c = :financialExtID AND isActive__c = true)       
+                                            FROM IPM_Project__c WHERE Id =:Project.Id];
+                    }
+                    else 
+                    {
+                        // Update financials External Id if it is a non Key.
+                        financialExtID = currentFinancial.Regional_External_Id__c;
+                        ipmProjectList =  [SELECT Id,
+                                               (Select Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c FROM IPM_Project_Rollout__r 
+                                                   WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND KeyMCO__c = FALSE AND Regional_Rollout_External_Id__c= :financialExtID AND isActive__c = true),
+                                               (SELECT Regional_Project__c, RecordTypeId, Local_Project__c, IPM_Project__c, MisAligned_Confirmed_By_Finance_Leader__c  FROM Regional_Project_Rollout__r 
+                                                   WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND IPM_Rollout_Project__c = :financialExtID AND isActive__c = true)           
+                                            FROM IPM_Project__c WHERE Id =:Project.Id];
+                    } 
+                    
+                    if(!ipmProjectList.isEmpty())
+                    {
+                       IPM_Project__c project = ipmProjectList[0]; 
+                       if(project.Regional_Project_Rollout__r!=null && !(project.Regional_Project_Rollout__r).isEmpty() )
+                       {
+                            localRolloutList.addAll(project.Regional_Project_Rollout__r); 
+                       }
+                       
+                       if(project.IPM_Project_Rollout__r!=null && !(project.IPM_Project_Rollout__r).isEmpty() )
+                       {
+                            localRolloutList.addAll(project.IPM_Project_Rollout__r);
+                       }
+                       
+                      
+                       if(!localRolloutList.isEmpty())
+                       {
+                          associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where Local_Rollout__c in :localRolloutList AND isActive__c = true]; 
+                          System.debug(LoggingLevel.ERROR,'associatedCountryList-->>>'+associatedCountryList); 
+                       }
+                    }
                 }
-            }
-            
-            
-            if(!ipmProjectList.isEmpty())
-            {
-               IPM_Project__c project = ipmProjectList[0];
-               if(project.Regional_Project_Rollout__r!=null && !(project.Regional_Project_Rollout__r).isEmpty() )
-               {
-                    localRolloutList.addAll(project.Regional_Project_Rollout__r); 
-               }
-               
-               if(project.IPM_Project_Rollout__r!=null && !(project.IPM_Project_Rollout__r).isEmpty() )
-               {
-                    localRolloutList.addAll(project.IPM_Project_Rollout__r);
-               }
-               
-              
-               if(!localRolloutList.isEmpty())
-               {
-                  associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where Local_Rollout__c in :localRolloutList];
-                   
-               }
             } 
         }
-        
         return associatedCountryList; 
     }
     
         
     public void updateCountry()
     { 
-    	try{
+        try{
         IPM_Country__c UpdateCountry = [Select Country_Name__c, Id, Calculation_Index__c From IPM_Country__c where Id =: Country Limit 1];
         UpdateCountry.Calculation_Index__c = CheckCountry;
         update UpdateCountry;
@@ -310,7 +334,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     UPDATE_COUNTRY,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-       }
+        }    
+        
     }
     
     /*******************************************************************************************************
@@ -478,7 +503,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
          previousFinancialId = currentFinancialId;
          currentFinancialId = NULL;
          getRecordtypes();
-         
+         globalCharter = false;
          
         if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
         {
@@ -508,6 +533,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                         } 
                         else if (currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME)
                         {
+                            globalCharter = true;
                             getRegionalTopDownWrappers();
                         }
                         else if (currentTab == IPM_ConstantUtils.TAB_ROLLUP_NAME)
@@ -523,6 +549,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                         } 
                         else if (currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME)
                         {
+                            globalCharter = true;
                             getRegionalOriginalTopDownWrappers();
                         }
                         else if (currentTab == IPM_ConstantUtils.TAB_ROLLUP_NAME)
@@ -541,6 +568,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                         getLocalMyViewWrappers();
                     }
                 }
+               
         } // If Project is Global Operational Project
         else if(project.IPM_SourceProjectType__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
         { 
@@ -569,7 +597,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         if (LOCAL_ROLLOUT_RECORDTYPE == null) {
             LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
         }
-        if (DEFAULT_FINANCIAL_RECORDTYPE == null) {
+        if (DEFAULT_FINANCIAL_RECORDTYPE == null) {  
             DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
          }     
         
@@ -586,7 +614,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     
     private void getRegionalOriginalMyViewWrappers()
     {
-        
+             
         String nonKeyLike = IPM_ConstantUtils.BLANK; 
         
         if(project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS)
@@ -594,9 +622,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
         }
         
-        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name, Financial_External_ID__c, Status__c FROM IPM_Financial__c
+        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name, Financial_External_ID__c, Status__c,IPM_Key_Financial__c  FROM IPM_Financial__c
                                                             WHERE Regional_Project__c =: project.Id 
-                                                            AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE
+                                                            AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true
+                                                            //AND (NOT Financial_External_ID__c LIKE: nonKeyLike) 
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
 
         lstRolloutWrappers.add( new RolloutWrapper( project.Market_Cluster_Name__c, lstRegionalFinancials) );
@@ -618,7 +647,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c
+        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
                             FROM IPM_Financial__c 
                             WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
                             AND Regional_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
@@ -647,13 +676,13 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         String firstFinancialId = '';
         List<IPM_Project_Rollout__c> lstRegionalRollout = new List<IPM_Project_Rollout__c>();
         
-        lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c,KeyMCO__c, Previous_Target_Launch_Date__c,(SELECT Id, Name, Financial_External_ID__c, Status__c 
+        lstRegionalRollout = [SELECT Id, Market_Cluster_Name__c,KeyMCO__c, Previous_Target_Launch_Date__c,(SELECT Id, Name, Financial_External_ID__c, Status__c,IPM_Key_Financial__c  
                                                             FROM IPM_Financials__r
-                                                            WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE
+                                                            WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c)
                                                             FROM IPM_Project_Rollout__c
                                                             WHERE IPM_Project__c =: project.Id
-                                                            AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE
+                                                            AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE AND isActive__c = true
                                                             ORDER BY Market_Cluster_Name__c Limit: IPM_ConstantUtils.MaxLimit];
        
         For (IPM_Project_Rollout__c regionalRollout : lstRegionalRollout)
@@ -676,10 +705,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
       
-        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.Market_Cluster_Name__c
+        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c, IPM_Project_Rollout__c, IPM_Project_Rollout__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
                                                  FROM IPM_Financial__c
-                                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
-                                                     AND Parent_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
+                                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
+                                                 AND Parent_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
         
        
        For(IPM_Financial__c ipmFinancial : lstIpmFinancial)
@@ -687,10 +716,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             if(ipmFinancial.IPM_Project_Rollout__c == NULL)
             {
                mapConsolidatedFinancials.put(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, ipmFinancial);
+              
             }
             else
             {
                mapConsolidatedFinancials.put(ipmFinancial.IPM_Project_Rollout__r.Market_Cluster_Name__c, ipmFinancial);
+              
             }
             
             if (previousFinancialId == ipmFinancial.Id)
@@ -720,7 +751,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
       
-        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c
+        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c,IPM_Key_Financial__c 
                                                  FROM IPM_Financial__c
                                                  WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE
                                                      AND Parent_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
@@ -770,10 +801,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Project__c> lstRegionalProject = [SELECT Id, Market_Cluster_Name__c, (SELECT Id, Financial_External_Id__c, Status__c 
                                                             FROM IPM_Financials_Regional__r
-                                                            WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE 
+                                                            WHERE RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true                                                          
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c)
                                                             FROM IPM_Project__c
-                                                            WHERE IPM_Parent_Project__c =: project.Id
+                                                            WHERE IPM_Parent_Project__c =: project.Id 
                                                             ORDER BY Market_Cluster_Name__c Limit: IPM_ConstantUtils.MaxLimit];
                                                     
                                              
@@ -798,9 +829,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
        
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c
+        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
                                                  FROM IPM_Financial__c
-                                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
+                                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
                                                      AND Parent_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
         
            
@@ -837,9 +868,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         // No need to display Non Key financials in case of Regional View. Only needs to be displayed in Global Charter
         String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
         
-        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name, Financial_External_ID__c, Status__c
+        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name, Financial_External_ID__c, Status__c,IPM_Key_Financial__c 
                                                             FROM IPM_Financial__c
-                                                            WHERE Regional_Project__c =: project.Id
+                                                            WHERE Regional_Project__c =: project.Id AND isActive__c = true
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE 
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
                                                        
@@ -861,9 +892,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-          lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c
+          lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
                                                  FROM IPM_Financial__c
-                                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
+                                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
                                                      AND Parent_Project__c =: project.IPM_Parent_Project__c Limit: IPM_ConstantUtils.MaxLimit];
                                                      
         
@@ -890,10 +921,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getRegionalOriginalTopDownWrappers()
     {
         
-        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name, Financial_External_ID__c, Status__c FROM IPM_Financial__c
+        List<IPM_Financial__c> lstRegionalFinancials = [SELECT Id, Name, Financial_External_ID__c, Status__c,IPM_Key_Financial__c  FROM IPM_Financial__c
                                                             WHERE Regional_Project__c =: project.Id 
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE
-                                                            AND Added_At_Stage__c = :IPM_ConstantUtils.PHASE_IDEAS
+                                                            AND Charter_Approved__c = true 
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];    
         
         lstRolloutWrappers.add( new RolloutWrapper( project.Market_Cluster_Name__c, lstRegionalFinancials) );
@@ -915,7 +946,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-        lstIpmFinancial =   [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c
+        lstIpmFinancial =   [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
                                 FROM IPM_Financial__c
                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
                                 AND Regional_Project__c =: project.Id Limit: IPM_ConstantUtils.MaxLimit];
@@ -943,18 +974,18 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     */
     private void getRegionalTopDownWrappers()
     {
+    	// Get the regional Rollout from where regional Projects got created.Get associated financials from those regional Rollouts.
         IPM_Project_Rollout__c regionalRollout = [SELECT Id, Market_Cluster_Name__c, KeyMCO__c,Previous_Target_Launch_Date__c ,
-                                                    (SELECT Id, Name, Financial_External_ID__c, Status__c
-                                                        FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE
+                                                    (SELECT Id, Name, Financial_External_ID__c, Status__c,IPM_Key_Financial__c 
+                                                        FROM IPM_Financials__r WHERE RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND Charter_Approved__c = true
                                                         ORDER BY Sorting_Order__c, Financial_External_Id__c)
                                                     FROM IPM_Project_Rollout__c
-                                                    WHERE IPM_Project__c =: project.IPM_Parent_Project__c
-                                                    AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE
-                                                    AND Market_Cluster__c =: project.Market_Cluster__c Limit: IPM_ConstantUtils.MaxLimit];
+                                                    WHERE Id =: project.IPM_Project_Rollout__c AND IPM_CharterApproved__c = true  
+                                                    AND RecordTypeId =: REGIONAL_ROLLOUT_RECORDTYPE Limit: IPM_ConstantUtils.MaxLimit];
 
 
         lstRolloutWrappers.add( new RolloutWrapper( regionalRollout.Market_Cluster_Name__c, regionalRollout.IPM_Financials__r) );
-        
+    
         String firstFinancialId = '';
         
         for(IPM_Financial__c financial : regionalRollout.IPM_Financials__r)
@@ -972,7 +1003,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-        lstIpmFinancial =   [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c
+        lstIpmFinancial =   [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
                                 FROM IPM_Financial__c
                                 WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
                                 AND Parent_Project__c =: project.IPM_Parent_Project__c Limit: IPM_ConstantUtils.MaxLimit];
@@ -1008,10 +1039,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private void getRegionalRollupWrappers()
     {
         String nonKeyLike = IPM_ConstantUtils.PERCENTAGE + IPM_ConstantUtils.FINANCIAL_NONKEY;
-        List<IPM_Financial__c> lstRegionalFinancials =  [SELECT Id, Name, Financial_External_ID__c, Status__c
+        List<IPM_Financial__c> lstRegionalFinancials =  [SELECT Id, Name, Financial_External_ID__c, Status__c,IPM_Key_Financial__c 
                                                             FROM IPM_Financial__c   
-                                                            WHERE Regional_Project__c =: project.Id
+                                                            WHERE Regional_Project__c =: project.Id AND isActive__c = true
                                                             AND RecordTypeId =: DEFAULT_FINANCIAL_RECORDTYPE
+                                                            AND (NOT Financial_External_ID__c LIKE: nonKeyLike)
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
                                                             
                                                      
@@ -1034,9 +1066,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
         
-        lstIpmFinancial =   [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c
+        lstIpmFinancial =   [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
                             FROM IPM_Financial__c
-                            WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
+                            WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE AND isActive__c = true
                             AND Parent_Project__c =: project.IPM_Parent_Project__c Limit: IPM_ConstantUtils.MaxLimit];
         
         if(!lstIpmFinancial.isEmpty())
@@ -1071,10 +1103,10 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @return       NONE
     */
     private void getLocalMyViewWrappers(){
-        List<IPM_Financial__c> lstLocalFinancials = [SELECT Id, Name, Financial_External_ID__c, Status__c
+        List<IPM_Financial__c> lstLocalFinancials = [SELECT Id, Name, Financial_External_ID__c, Status__c,IPM_Key_Financial__c 
                                                             FROM IPM_Financial__c
                                                             WHERE Local_Project__c =: project.Id
-                                                                AND RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE
+                                                                AND RecordtypeId =: DEFAULT_FINANCIAL_RECORDTYPE AND isActive__c = true 
                                                             ORDER BY Sorting_Order__c, Financial_External_Id__c Limit: IPM_ConstantUtils.MaxLimit];
         
                                              
@@ -1096,7 +1128,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         }
 
         List<IPM_Financial__c> lstIpmFinancial = new List<IPM_Financial__c>();
-        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c
+        lstIpmFinancial = [SELECT Id, Name, Financial_External_ID__c, Status__c, Regional_Project__c, Regional_Project__r.Market_Cluster_Name__c,IPM_Key_Financial__c 
                                                  FROM IPM_Financial__c
                                                  WHERE RecordTypeId =: CONSOLIDATED_FINANCIAL_RECORDTYPE
                                                      AND Parent_Project__c =: project.IPM_Parent_Project__r.IPM_Parent_Project__c Limit: IPM_ConstantUtils.MaxLimit];
@@ -1142,7 +1174,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         //IPM Financial Year
         queryString+= 'Last_Saved_By_Global__r.Name,Last_Saved_By_Regional__r.Name,Last_Saved_By_Local__r.Name, (SELECT ';
         For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
-            if (field != 'Id') {
+            if (field != 'Id' && field != IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) 
+            {
                 queryString+= field + ', ';
             }
         }
@@ -1463,12 +1496,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     * @param        NONE
     * @return       NONE
     */
-    public void saveFinancials() {
-               try {
+    public void saveFinancials() 
+    {
+       try 
+       {
             lstUpdateFinancials = new List<IPM_Financial_Year__c>();
             milestoneFinanceDataValidationMessage = '';
             Boolean isCalendarValidationFailed = false;
             Boolean isInnovationValidationFailed = false;
+            
             isValidationError = false;
             isEditMode = false;
             isy0TurnoverInvalid = false;
@@ -1805,6 +1841,7 @@ private Date getProjectMilestoneDate(){
         
         y0FinancialYear.put(IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, finWrapper.y0ValueMarketShare);
         y0FinancialYear.put(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, finWrapper.y0Volume);
+        y0FinancialYear.put(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX,finWrapper.y0VolumeTons);
         y0FinancialYear.put(IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, finWrapper.y0Turnover);
         y0FinancialYear.put(IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, finWrapper.y0GrossProfit);
         y0FinancialYear.put(IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, finWrapper.y0Advertising);
@@ -1815,6 +1852,7 @@ private Date getProjectMilestoneDate(){
         //GROSS P&L
         processFinancialYearRecords(finWrapper.lstGrossPLValueMarketShare, yearType, IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
         processFinancialYearRecords(finWrapper.lstGrossPLVolume, yearType, IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.FIELD_LITERAL_VOLUME + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
+        processFinancialYearRecords(finWrapper.lstGrossPLVolumeTons, yearType, IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);       
         processFinancialYearRecords(finWrapper.lstGrossPLTurnover, yearType, IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
         processFinancialYearRecords(finWrapper.lstGrossPLGrossProfit, yearType, IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
         processFinancialYearRecords(finWrapper.lstGrossPLAdvertising, yearType, IPM_ConstantUtils.PL_TYPE_GROSS, IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
@@ -1823,6 +1861,7 @@ private Date getProjectMilestoneDate(){
         //INCREMENTAL P&L
         processFinancialYearRecords(finWrapper.lstIncrementalPLValueMarketShare, yearType, IPM_ConstantUtils.PL_TYPE_INCREMENTAL, IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
         processFinancialYearRecords(finWrapper.lstIncrementalPLVolume, yearType, IPM_ConstantUtils.PL_TYPE_INCREMENTAL, IPM_ConstantUtils.FIELD_LITERAL_VOLUME + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
+        processFinancialYearRecords(finWrapper.lstIncrementalPLVolumeTons, yearType, IPM_ConstantUtils.PL_TYPE_INCREMENTAL, IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
         processFinancialYearRecords(finWrapper.lstIncrementalPLTurnover, yearType, IPM_ConstantUtils.PL_TYPE_INCREMENTAL, IPM_ConstantUtils.FIELD_LITERAL_TURNOVER + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
         processFinancialYearRecords(finWrapper.lstIncrementalPLGrossProfit, yearType, IPM_ConstantUtils.PL_TYPE_INCREMENTAL, IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
         processFinancialYearRecords(finWrapper.lstIncrementalPLAdvertising, yearType, IPM_ConstantUtils.PL_TYPE_INCREMENTAL, IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
@@ -1867,11 +1906,20 @@ private Date getProjectMilestoneDate(){
     * @return       NONE
     */
     public void refreshFromLocal() {
-        try{
+        try
+        {   
+            if(currentFinancial.Copy_Local_to_Regional__c)
+            {
+               currentFinancial.Copy_Local_to_Regional__c = false;
+               update currentFinancial;
+            }
+            
             currentFinancial.Copy_Local_to_Regional__c = true;
-            Database.update(currentFinancial);
+            update currentFinancial;
             getFinancials();
-        } catch (Exception eX) {
+        } 
+        catch (Exception ex) 
+        {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     IPM_ConstantUtils.EXCEPTION_REFRESHFROMLOCAL,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
             isError = true;
@@ -1884,12 +1932,22 @@ private Date getProjectMilestoneDate(){
     * @param        NONE
     * @return       NONE
     */
-    public void refreshFromRegional() {
-        try{
+    public void refreshFromRegional() 
+    {
+        try
+        {
+            if(currentFinancial.Copy_Regional_to_Local__c)
+            {
+                currentFinancial.Copy_Regional_to_Local__c = false;
+                update currentFinancial;  
+            }
+            
             currentFinancial.Copy_Regional_to_Local__c = true;
-            Database.update(currentFinancial);
+            update currentFinancial;
             getFinancials();
-        } catch (Exception eX) {
+        } 
+        catch (Exception ex) 
+        {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     IPM_ConstantUtils.EXCEPTION_REFRESHFROMREGIONAL,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
             isError = true;
@@ -2060,12 +2118,12 @@ private Date getProjectMilestoneDate(){
 
         //-------------- CURRENCY RELATED CHANGES ENDS HERE ------------------
     public pageReference loadCurrencyPage(){
-    	try{
+        try{
             PageReference templatePage = Page.IPM_Financial_Currency;
             templatePage.getParameters().put(IPM_ConstantUtils.SF_ID, project.Id);
             templatePage.setRedirect(true);
             return templatePage;
-    	 } catch (Exception eX){
+         } catch (Exception eX){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
                     null,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
             isError = true;
@@ -2271,4 +2329,61 @@ private Date getProjectMilestoneDate(){
                  
             } 
         } 
+        
+        
+    public void updateVolumeType()
+    {
+        populateVolumeType(financialsInnovation);
+        populateVolumeType(financialsCalendar);     
+    }   
+    
+    
+    public void populateVolumeType(IPM_FinancialWrapper finWrapper)
+    {
+        String volumeUnit = (String) currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
+        if(volumeUnit!=null && volumeUnit.equalsIgnoreCase(IPM_ConstantUtils.TotalTons))    
+        {
+            finWrapper.y0VolumeTons = finWrapper.y0Volume;
+            finWrapper.y0Volume = 0;
+            
+            for(Integer i=0;i<finWrapper.lstGrossPLVolume.size();i++)
+            {
+                IPM_FinancialValueWrapper finVolWrapper = finWrapper.lstGrossPLVolume.get(i);
+                IPM_FinancialValueWrapper finVolTonsWrapper = finWrapper.lstGrossPLVolumeTons.get(i);
+                
+                finVolTonsWrapper.value = finVolWrapper.value;
+                finVolWrapper.value = 0;
+            }
+            for(Integer i=0;i<finWrapper.lstIncrementalPLVolume.size();i++)
+            {
+                IPM_FinancialValueWrapper finVolWrapper = finWrapper.lstIncrementalPLVolume.get(i);
+                IPM_FinancialValueWrapper finVolTonsWrapper = finWrapper.lstIncrementalPLVolumeTons.get(i);
+                
+                finVolTonsWrapper.value = finVolWrapper.value;
+                finVolWrapper.value = 0;        
+            }
+        }
+        else
+        {
+            finWrapper.y0Volume = finWrapper.y0VolumeTons;
+            finWrapper.y0VolumeTons = 0;
+            
+            for(Integer i=0;i<finWrapper.lstGrossPLVolumeTons.size();i++) 
+            {
+                IPM_FinancialValueWrapper finVolTonsWrapper = finWrapper.lstGrossPLVolumeTons.get(i);
+                IPM_FinancialValueWrapper finVolWrapper = finWrapper.lstGrossPLVolume.get(i);
+                
+                finVolWrapper.value = finVolTonsWrapper.value;
+                finVolTonsWrapper.value = 0;    
+            }
+            for(Integer i=0;i<finWrapper.lstIncrementalPLVolumeTons.size();i++)
+            {
+                IPM_FinancialValueWrapper finVolTonsWrapper = finWrapper.lstIncrementalPLVolumeTons.get(i);
+                IPM_FinancialValueWrapper finVolWrapper = finWrapper.lstIncrementalPLVolume.get(i);
+                
+                finVolWrapper.value = finVolTonsWrapper.value;
+                finVolTonsWrapper.value = 0;
+            }
+        }
+    }
 }

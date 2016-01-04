@@ -100,10 +100,7 @@
                                                                                 <input type="radio" name="grp1{!country.code}" id="grp1{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'With MCO'),'checked','')} {!IF(country.mcoDisabled == true,'disabled','')}"/>
                                                                                 <label for="grp1{!country.code}" > </label>
                                                                             </apex:outputPanel>
-                                                                           <!-- <apex:outputPanel rendered="{!NOT(isEditable)}">
-                                                                                <input type="radio" disabled="true" name="grp1{!country.code}" id="grp1{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'With MCO'),'checked','')}" />
-                                                                                <label for="grp1{!country.code}" > </label>
-                                                                            </apex:outputPanel>-->
+                                                                         
                                                                         </div>
                                                                     </td>
                                                                     <td width="20%">
@@ -112,10 +109,7 @@
                                                                                 <input type="radio" name="grp1{!country.code}" id="grp2{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'Seperate'),'checked','')} {!IF(country.countryDisabled == true,'disabled','')}"/>
                                                                                 <label for="grp2{!country.code}"> </label>
                                                                             </apex:outputPanel>
-                                                                            <!-- <apex:outputPanel rendered="{!!isEditable}">
-                                                                                <input type="radio" disabled="true" name="grp1{!country.code}" id="grp2{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'Seperate'),'checked','')}"/>
-                                                                                <label for="grp2{!country.code}"> </label>
-                                                                            </apex:outputPanel> -->
+                                                                           
                                                                         </div>
                                                                     </td>
                                                                     <td width="20%">
@@ -124,10 +118,7 @@
                                                                                 <input type="radio" name="grp1{!country.code}" id="grp3{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'No Rollout'),'checked','')} {!IF(country.noRolloutDisabled == true,'disabled','')}" />
                                                                                 <label for="grp3{!country.code}"> </label>
                                                                             </apex:outputPanel>
-                                                                           <!-- <apex:outputPanel rendered="{!!isEditable}">
-                                                                                <input type="radio" disabled="true" name="grp1{!country.code}" id="grp3{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'No Rollout'),'checked','')}"/>
-                                                                                <label for="grp3{!country.code}"> </label>
-                                                                            </apex:outputPanel>-->
+                                                                          
                                                                         </div>
                                                                     </td>     
                                                                 </tr>

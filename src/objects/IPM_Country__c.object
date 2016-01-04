@@ -98,13 +98,37 @@
     <fields>
         <fullName>Added_At_Stage__c</fullName>
         <externalId>false</externalId>
-        <formula>TEXT(Local_Rollout__r.Added_At_Stage__c)</formula>
         <label>Added At Stage</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
+        <picklist>
+            <picklistValues>
+                <fullName>Ideas</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Feasibility</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Capability</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Deployment</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>PLE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Calculation_Index__c</fullName>
@@ -169,6 +193,15 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>IPM_CharterApproved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>CharterApproved</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_CountryCode__c</fullName>
         <externalId>false</externalId>
         <label>Country Code</label>
@@ -189,6 +222,19 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_FinancialAtCharter__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Financial At Charter</label>
+        <referenceTo>IPM_Financial__c</referenceTo>
+        <relationshipLabel>IPM Countries (IPM Financial At Charter)</relationshipLabel>
+        <relationshipName>IPM_Countries1_del1</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
     </fields>
     <fields>
         <fullName>IPM_Financial__c</fullName>
@@ -307,6 +353,19 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>IPM_Regional_Rollout__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Regional Rollout</label>
+        <referenceTo>IPM_Project_Rollout__c</referenceTo>
+        <relationshipLabel>IPM Countries</relationshipLabel>
+        <relationshipName>IPM_Countries</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>IPM_Rollout_Status__c</fullName>
         <externalId>false</externalId>
         <label>IPM Rollout Status</label>
@@ -367,7 +426,7 @@
         <relationshipLabel>IPM Countries (Local Rollout Charter)</relationshipLabel>
         <relationshipName>IPM_Countries_Charter</relationshipName>
         <required>false</required>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
     </fields>
@@ -472,6 +531,16 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>isActive__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>To hold the status of the Country if its deleted</description>
+        <externalId>false</externalId>
+        <label>isActive</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <label>IPM Country</label>
     <listViews>

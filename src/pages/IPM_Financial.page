@@ -103,7 +103,7 @@
                                                                         <li class="{!IF(financial.Status__c == $Label.IPM_SUBMITTED, $Label.IPM_SUBMIT_CODE, IF(financial.Status__c == $Label.IPM_IN_PROGRESS, $Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE))} {!IF(currentFinancialId == financial.Id, $Label.IPM_Selected, '')} finRecord">
                                                                             <div class="incHeight" id="flagID">              
                                                                                 <span class="key wordwrap">
-                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!IF(AND(NOT(CONTAINS(financial.Financial_External_ID__c, '_NONKEY')), currentTab == 'myview', project.IPM_Phase__c <> 'Ideas'), TRUE, FALSE)}"/>
+                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(OR(globalCharter,project.IPM_Phase__c == 'Ideas'),financial.IPM_Key_Financial__c)}" />
                                                                                 </span>
                                                                             
                                                                             <apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
@@ -179,7 +179,8 @@
                                                     </div> 
                                                 </div>
                                                 </div>
-                                                </apex:outputText>
+                                                </apex:outputText> 
+                                                <apex:actionFunction name="updateVolumeType" action="{!updateVolumeType}" rerender="tabContentPanel" status="loadingStatus"/>
                                                 <apex:actionFunction name="changeTabs" action="{!changeTabs}" reRender="rolloutPanel,tabContentPanel,headerPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                     <apex:param name="currentTab" value="" assignTo="{!currentTab}"/>
                                                 </apex:actionFunction>
@@ -188,9 +189,9 @@
                                                     <div class="tab-content">
                                                         <!-- My View Tab -->
                                                         <div class="col-sm-6">
-                                                                <div class="ipmfinHeading1">Financial Business Case - {!currentFinancial.Display_Name__c}</div>                                                                                                                             
+                                                                <div class="ipmfinHeading1">Financial Business Case - {!currentFinancial.Display_Name__c}</div>                                                                                                                           
                                                          </div>
-                                                         		<apex:outputPanel id="msgss" rendered="{!isEditMode}">
+                                                                <apex:outputPanel id="msgss" rendered="{!isEditMode}">
                                                                     <div class="misAlignedTLD">
                                                                         <apex:outputText value="{!$Label.IPM_Label_for_Financial_Edit}"/>
                                                                     </div>
@@ -265,7 +266,7 @@
                                                                 <apex:outputPanel rendered="{!IF(OR(project.Sustainability_Period_Changed__c, (project.IPM_Phase__c != 'Ideas')), TRUE, FALSE)}">
                                                                     <div class="sdropDownDiv">
                                                                         {!$Label.IPM_Sustainability_Period}
-                                                                        <apex:outputText value="{!project.Sustainability_Period__c}" />
+                                                                        <apex:outputText styleClass="finPeriod" value="{!project.Sustainability_Period__c}" />
                                                                     </div>
                                                                 </apex:outputPanel>
                                                                 <apex:outputPanel id="pollerPanel" rendered="{!sustainabilityPeriodChanging}">

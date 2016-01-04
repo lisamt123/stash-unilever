@@ -55,11 +55,12 @@
                                                    <li>
                                                        <div class="projectContainer">
                                                             <div class="pHead accrHead filterSubTitle {!IF(currentFinancialId == mapConsolidatedFinancials[rolloutWrapper.regionName].Id, 'selected', '')}">
-                                                            <span class='expico-square fa fa-minus'></span>
-                                                                <apex:commandLink value="{!rolloutWrapper.regionName}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel" rendered="{!if(project.IPMProject_Span__c != 'Local',true,false)}" status="loadingStatus" oncomplete="finScriptCallBack()">
-                                                                    <apex:param name="currentFinancialId" value="{!mapConsolidatedFinancials[rolloutWrapper.regionName].Id}" assignTo="{!currentFinancialId}"/>
-                                                                </apex:commandLink>
-                                                                <apex:outputText value="{!rolloutWrapper.regionName}" rendered="{!project.IPMProject_Span__c == 'Local'}" />
+                                                            <apex:outputText rendered="{!project.IPMProject_Span__c != 'Local'}" >
+                                                                <span class='expico-square fa fa-minus'></span>
+                                                                    <apex:commandLink value="{!rolloutWrapper.regionName}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel" rendered="{!if(project.IPMProject_Span__c != 'Local',true,false)}" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                        <apex:param name="currentFinancialId" value="{!mapConsolidatedFinancials[rolloutWrapper.regionName].Id}" assignTo="{!currentFinancialId}"/>
+                                                                    </apex:commandLink>
+                                                             </apex:outputText>        
                                                             </div> 
                                                             <div class="ipmAcrdnExpand"> 
                                                              <ul class="docFilter accordionFilters">
@@ -67,7 +68,7 @@
                                                                         <li class="{!IF(financial.Status__c == $Label.IPM_SUBMITTED, $Label.IPM_SUBMIT_CODE, IF(financial.Status__c == $Label.IPM_IN_PROGRESS, $Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE))} {!IF(currentFinancialId == financial.Id, $Label.IPM_Selected, '')} finRecord">
                                                                             <div class="incHeight" id="flagID">              
                                                                                 <span class="key wordwrap">
-                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!IF(AND(NOT(CONTAINS(financial.Financial_External_ID__c, '_NONKEY')), currentTab == 'myview'), TRUE, FALSE)}"/>
+                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!IF(AND(NOT(CONTAINS(financial.Financial_External_ID__c, '_NONKEY')), currentTab == 'myview', project.IPM_Phase__c <> 'Ideas'), TRUE, FALSE)}"/>
                                                                                 </span>
                                                                             
                                                                             <apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
@@ -94,7 +95,7 @@
                             </div>
                             </apex:outputPanel>
                             <!----------------------------------------------------- MAIN PANEL ------------------------------------------->
-                            <div class="col-sm-10 pull-right tempWrapper finTableData">                               
+                            <div class="{!IF(project.IPM_Project_Type__c != 'Operational','col-sm-10','col-sm-12')} pull-right tempWrapper finTableData">                               
                                
                                 <div class="row">                                                           
                                     <div class="col-sm-12 noPadright">                    
