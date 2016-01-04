@@ -1,9 +1,10 @@
 /***********************************************************************************************************************************************************
 * @author Cognizant
 * @date  15/12/2014
-* @description To create test data irrespective of user roles and sharing. Hence without sharing
+* @description To create test data  
 **************************************************************************************************/
-public without sharing class IPM_TestFactory_Helper {
+@isTest
+public class IPM_TestFactory_Helper {
     public static final String CHARTER_GATE_FULL = 'Charter Gate Full';
     public static final String IDEA_GRAPHIC= 'Idea / Graphic';
     public static final String IDEAS = 'Ideas';
