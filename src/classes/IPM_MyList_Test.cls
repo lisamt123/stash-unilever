@@ -348,7 +348,7 @@ public class IPM_MyList_Test{
                 }
                 system.assertEquals(message  ,true,'page messages are added');
                 
-                Exception ex;
+                Exception ex = null;
                  try{
                     ipm.catchBlockContent('test class',ex);
                  }catch(Exception exp){
