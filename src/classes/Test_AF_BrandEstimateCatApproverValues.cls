@@ -9,7 +9,6 @@
 @isTest(SeeAlldata=false)
 public class Test_AF_BrandEstimateCatApproverValues 
 {    
-	public string userid='005c0000001L88A';
 	private static String emailAddress='standarduserbec@unilever.com';
 	private static String brandName='Test Brander';
 	private static String emailAddress1='standarduserbec1@unilever.com';
@@ -35,7 +34,6 @@ public class Test_AF_BrandEstimateCatApproverValues
 	private static String superCategoryName = 'Drinks';
 	private static String brandEstName = 'Test BrandEstimateer';
 	private static String brandEstStatus = 'Initiate';
-	private static String userId1 = '005c0000001MYGb';
 	private static String User_Mesage='The user record inserted';
 	private static String Contact_Assert_message='The contact record  inserted';
 	/***********************************************************************************
@@ -178,9 +176,8 @@ public class Test_AF_BrandEstimateCatApproverValues
 			brandEstimateList.add(brandEst);
 			insert brandEstimateList;
 			AF_Brand_Estimate__c queryBrand = [select id,AF_Agency__c,AF_AgencyUsers1__c,AF_AgencyUsers2__c,AF_AgencyUsers3__c from AF_Brand_Estimate__c where id IN :brandEstimateList];
-			string userid=userId1;
 			DummyUser__c dummyuser = new DummyUser__c();
-			dummyuser.User_id__c = userid;
+			dummyuser.User_id__c = u.id;
 			insert dummyuser;
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(brandEstimateList);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagency(queryBrand);
@@ -312,9 +309,8 @@ public class Test_AF_BrandEstimateCatApproverValues
 			brandEstimateList.add(brandEst);
 			insert brandEstimateList;
 			AF_Brand_Estimate__c queryBrand = [select id,AF_Agency__c,AF_AgencyUsers1__c,AF_AgencyUsers2__c,AF_AgencyUsers3__c from AF_Brand_Estimate__c where id IN :brandEstimateList];
-			string userid=userId1;
 			DummyUser__c dummyuser = new DummyUser__c();
-			dummyuser.User_id__c = userid;
+			dummyuser.User_id__c = u1.id;
 			insert dummyuser;
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(brandEstimateList);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagency(queryBrand);
@@ -433,9 +429,8 @@ public class Test_AF_BrandEstimateCatApproverValues
 			brandEstimateList.add(brandEst);
 			insert brandEstimateList;
 			AF_Brand_Estimate__c queryBrand = [select id,AF_Agency__c,AF_AgencyUsers1__c,AF_AgencyUsers2__c,AF_AgencyUsers3__c from AF_Brand_Estimate__c where id IN :brandEstimateList];
-			string userid=userId1;
 			DummyUser__c dummyuser = new DummyUser__c();
-			dummyuser.User_id__c = userid;
+			dummyuser.User_id__c = u1.id;
 			insert dummyuser;
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(brandEstimateList);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagency(queryBrand);
@@ -559,9 +554,8 @@ public class Test_AF_BrandEstimateCatApproverValues
 			brandEstimateList.add(brandEst);
 			insert brandEstimateList;
 			AF_Brand_Estimate__c queryBrand = [select id,AF_Agency__c,AF_AgencyUsers1__c,AF_AgencyUsers2__c,AF_AgencyUsers3__c from AF_Brand_Estimate__c where id IN :brandEstimateList];
-			string userid=userId1;
 			DummyUser__c dummyuser = new DummyUser__c();
-			dummyuser.User_id__c = userid;
+			dummyuser.User_id__c = u1.id;
 			insert dummyuser;
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(brandEstimateList);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagency(queryBrand);
@@ -666,9 +660,8 @@ public class Test_AF_BrandEstimateCatApproverValues
 			brandEstimateList.add(brandEst);
 			insert brandEstimateList;
 			AF_Brand_Estimate__c queryBrand = [select id,AF_Agency__c,AF_AgencyUsers1__c,AF_AgencyUsers2__c,AF_AgencyUsers3__c from AF_Brand_Estimate__c where id IN :brandEstimateList];
-			string userid=userId1;
 			DummyUser__c dummyuser = new DummyUser__c();
-			dummyuser.User_id__c = userid;
+			dummyuser.User_id__c = u1.id;
 			insert dummyuser;
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(brandEstimateList);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagency(queryBrand);
@@ -766,9 +759,8 @@ public class Test_AF_BrandEstimateCatApproverValues
 			brandEstimateList.add(brandEst);
 			insert brandEstimateList;
 			AF_Brand_Estimate__c queryBrand = [select id,AF_Agency__c,AF_AgencyUsers1__c,AF_AgencyUsers2__c,AF_AgencyUsers3__c from AF_Brand_Estimate__c where id IN :brandEstimateList];
-			string userid=userId1;
 			DummyUser__c dummyuser = new DummyUser__c();
-			dummyuser.User_id__c = userid;
+			dummyuser.User_id__c = u1.id;
 			insert dummyuser;
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(brandEstimateList);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagency(queryBrand);
@@ -859,9 +851,8 @@ public class Test_AF_BrandEstimateCatApproverValues
 			brandEstimateList.add(brandEst);
 			insert brandEstimateList;
 			AF_Brand_Estimate__c queryBrand = [select id,AF_Agency__c,AF_AgencyUsers1__c,AF_AgencyUsers2__c,AF_AgencyUsers3__c from AF_Brand_Estimate__c where id IN :brandEstimateList];
-			string userid=userId1;
 			DummyUser__c dummyuser = new DummyUser__c();
-			dummyuser.User_id__c = userid;
+			dummyuser.User_id__c = u1.id;
 			insert dummyuser;
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(brandEstimateList);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagency(queryBrand);
@@ -945,9 +936,8 @@ public class Test_AF_BrandEstimateCatApproverValues
 			brandEstimateList.add(brandEst);
 			insert brandEstimateList;
 			AF_Brand_Estimate__c queryBrand = [select id,AF_Agency__c,AF_AgencyUsers1__c,AF_AgencyUsers2__c,AF_AgencyUsers3__c from AF_Brand_Estimate__c where id IN :brandEstimateList];
-			string userid=userId1;
 			DummyUser__c dummyuser = new DummyUser__c();
-			dummyuser.User_id__c = userid;
+			dummyuser.User_id__c = u1.id;
 			insert dummyuser;
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(brandEstimateList);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagency(queryBrand);
@@ -1024,9 +1014,8 @@ public class Test_AF_BrandEstimateCatApproverValues
 			brandEstimateList.add(brandEst);
 			insert brandEstimateList;
 			AF_Brand_Estimate__c queryBrand = [select id,AF_Agency__c,AF_AgencyUsers1__c,AF_AgencyUsers2__c,AF_AgencyUsers3__c from AF_Brand_Estimate__c where id IN :brandEstimateList];
-			string userid=userId1;
 			DummyUser__c dummyuser = new DummyUser__c();
-			dummyuser.User_id__c = userid;
+			dummyuser.User_id__c = u1.id;
 			insert dummyuser;
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(brandEstimateList);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagency(queryBrand);
@@ -1097,9 +1086,8 @@ public class Test_AF_BrandEstimateCatApproverValues
 			brandEstimateList.add(brandEst);
 			insert brandEstimateList;
 			AF_Brand_Estimate__c queryBrand = [select id,AF_Agency__c,AF_AgencyUsers1__c,AF_AgencyUsers2__c,AF_AgencyUsers3__c from AF_Brand_Estimate__c where id IN :brandEstimateList];
-			string userid=userId1;
 			DummyUser__c dummyuser = new DummyUser__c();
-			dummyuser.User_id__c = userid;
+			dummyuser.User_id__c = u.id;
 			insert dummyuser;
 			AF_UpdateBrandEstimateCatApproverValues.UpdateBrandingEstimates(brandEstimateList);
 			AF_UpdateBrandEstimateCatApproverValues.UpdateOopsagency(queryBrand);

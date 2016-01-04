@@ -59,7 +59,7 @@ public class Test_AF_CustomSetting
 			insert bl;
 			System.Assert(bl.Id != null, 'The AF_Bonus_link record  inserted');
 			DummyUser__c du = new DummyUser__c();
-			du.User_id__c = '005L0000001FiKA';
+			du.User_id__c = u.id;
 			insert du;
 			System.Assert(du.Id != null, 'The Dummy_User record inserted');
 			AF_CMCO__c ac = new AF_CMCO__c();

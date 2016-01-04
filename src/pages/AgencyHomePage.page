@@ -80,6 +80,17 @@
       function PrintCurrentPage(){
           window.print();
       }
+      function Chatterlink(){
+        if({!isAgencyFlag}) {
+         var urlStr = '{!$Label.AF_AgencyUrlLink}/servlet/servlet.FileDownload?file={!$Label.AF_DocumentId}';
+         window.open(urlStr);
+
+        }else{ 
+        var urlStr = '{!$Label.AF_UrlLink}{!$Label.AF_AgencyChatter}';
+        window.open(urlStr);
+        
+      }
+    }
       <!--Adjust Quarter onclick action -->
       <!-- CategoryId -->
       function adjustQuarter(brandval,catname,cat,fy){
@@ -366,7 +377,7 @@
                            <apex:commandButton value="Reports" action="{!redirectToReportPage}"/>
                         </td>
                         <td class="Help">
-                           <apex:image url="{!$Resource.Help}" onclick="openHelpLink();"/>
+                           <apex:image url="{!$Resource.Help}" onclick="Chatterlink();"/>
                         </td>
                      </tr>
                   </table>

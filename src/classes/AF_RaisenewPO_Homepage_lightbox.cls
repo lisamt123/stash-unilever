@@ -360,7 +360,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 			ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),'AF_RaisenewPO_Homepage_lightbox','saveBrandEstimate',e.getMessage(),e.getTypeName(),e.getStackTraceString());
 		}
 		displayPopup = False;
-		SendEmailNotification();
+		//SendEmailNotification();
 	}
 	/***********************************************************************************
 *  @Description: this method is used to send email notification to the CMCO Superuser

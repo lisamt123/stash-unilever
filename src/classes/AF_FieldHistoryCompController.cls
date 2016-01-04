@@ -74,7 +74,7 @@ public with sharing class AF_FieldHistoryCompController {
 						}
 						catch(TypeException te)
 						{
-							ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_FieldHistoryCompController,AF_MethodName,te.getMessage(),te.getTypeName(),te.getStackTraceString());
+							//ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_FieldHistoryCompController,AF_MethodName,te.getMessage(),te.getTypeName(),te.getStackTraceString());
 							wh.OldValue =  afaeh.OldValue; 
 						}
 						try{newvalueno=double.valueOf(afaeh.NewValue);newvaluestring = String.format(newvalueno.format(), args);wh.NewValue =newvaluestring;}
@@ -119,7 +119,7 @@ public with sharing class AF_FieldHistoryCompController {
 						}
 						catch(TypeException te)
 						{
-							ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_FieldHistoryCompController,AF_MethodName,te.getMessage(),te.getTypeName(),te.getStackTraceString());
+							//ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_FieldHistoryCompController,AF_MethodName,te.getMessage(),te.getTypeName(),te.getStackTraceString());
 							wh.OldValue =  oopseh.OldValue; 
 						}
 						try{
@@ -129,7 +129,7 @@ public with sharing class AF_FieldHistoryCompController {
 						}
 						catch(TypeException te)
 						{
-							ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_FieldHistoryCompController,AF_MethodName,te.getMessage(),te.getTypeName(),te.getStackTraceString());
+							//ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_FieldHistoryCompController,AF_MethodName,te.getMessage(),te.getTypeName(),te.getStackTraceString());
 							wh.NewValue =  oopseh.NewValue; 
 						}                                              
 						objSchema = schemaMap.get(ParentObjectType);                
@@ -172,7 +172,7 @@ public with sharing class AF_FieldHistoryCompController {
 						try{newvalueno=double.valueOf(bmh.NewValue);newvaluestring = String.format(newvalueno.format(), args);wh.NewValue =newvaluestring;}
 						catch(TypeException te)
 						{
-							ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_FieldHistoryCompController,AF_MethodName,te.getMessage(),te.getTypeName(),te.getStackTraceString());
+							//ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_FieldHistoryCompController,AF_MethodName,te.getMessage(),te.getTypeName(),te.getStackTraceString());
 							wh.NewValue =  bmh.NewValue; 
 						}                                              
 						objSchema = schemaMap.get(ParentObjectType);                
@@ -215,7 +215,7 @@ public with sharing class AF_FieldHistoryCompController {
 						try{newvalueno=double.valueOf(bmh.NewValue);newvaluestring = String.format(newvalueno.format(), args);wh.NewValue =newvaluestring;}
 						catch(TypeException te)
 						{
-							ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_FieldHistoryCompController,AF_MethodName,te.getMessage(),te.getTypeName(),te.getStackTraceString());
+							//ExceptionLoggingHelper.createApplicationLevelErrorLog(AF_Constants.APP_NAME,UserInfo.getUserId(),AF_FieldHistoryCompController,AF_MethodName,te.getMessage(),te.getTypeName(),te.getStackTraceString());
 							wh.NewValue =  bmh.NewValue; 
 						}                                              
 						objSchema = schemaMap.get(ParentObjectType);                

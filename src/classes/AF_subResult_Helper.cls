@@ -1,18 +1,18 @@
 public with sharing class AF_subResult_Helper{
-	public Map<Id,Decimal> bonusfeesAnnualMap = new Map<Id,Decimal>();
-    public Map<Id,Decimal> quantBonusAnnualMap = new Map<Id,Decimal>();
-    public Map<Id,Decimal> totalBonusAnnualMap = new Map<Id,Decimal>();
-    public Map<Id,Decimal> QualBonusAnnualMap = new Map<Id,Decimal>();
-	public Map<Id,Decimal> bonusfeesQ1 = new Map<Id,Decimal>();
-    public Map<Id,Decimal> bonusfeesQ2 = new Map<Id,Decimal>();
-    public Map<Id,Decimal> bonusfeesQ3 = new Map<Id,Decimal>();
-    public Map<Id,Decimal> quantBonusQ1 = new Map<Id,Decimal>();
-    public Map<Id,Decimal> quantBonusQ2 = new Map<Id,Decimal>();
-    public Map<Id,Decimal> quantBonusQ3 = new Map<Id,Decimal>();
-	List<AF_Bonus_Results__c> bonusResultQuartList = new List<AF_Bonus_Results__c>();
+	static Map<Id,Decimal> bonusfeesAnnualMap = new Map<Id,Decimal>();
+    static Map<Id,Decimal> quantBonusAnnualMap = new Map<Id,Decimal>();
+    static Map<Id,Decimal> totalBonusAnnualMap = new Map<Id,Decimal>();
+    static Map<Id,Decimal> QualBonusAnnualMap = new Map<Id,Decimal>();
+	static Map<Id,Decimal> bonusfeesQ1 = new Map<Id,Decimal>();
+    static Map<Id,Decimal> bonusfeesQ2 = new Map<Id,Decimal>();
+    static Map<Id,Decimal> bonusfeesQ3 = new Map<Id,Decimal>();
+    static Map<Id,Decimal> quantBonusQ1 = new Map<Id,Decimal>();
+    static Map<Id,Decimal> quantBonusQ2 = new Map<Id,Decimal>();
+    static Map<Id,Decimal> quantBonusQ3 = new Map<Id,Decimal>();
+	static List<AF_Bonus_Results__c> bonusResultQuartList = new List<AF_Bonus_Results__c>();
 	
-	List<AF_Bonus_Results__c> bonusResultList = new List<AF_Bonus_Results__c>();
-	public void subResultCalc(List<AF_Sub_Result__c> queryListofSubResult,Map<Id,String> status,Map<Id,Boolean> Lock,Set<Id>  BonusAnnualSubResult,Map<Id,String> BonusQuarterlySubResultMap,Set<String> QuaterSet,Set<Id> BonusQuarterlySubResult){
+	static List<AF_Bonus_Results__c> bonusResultList = new List<AF_Bonus_Results__c>();
+	public static void subResultCalc(List<AF_Sub_Result__c> queryListofSubResult,Map<Id,String> status,Map<Id,Boolean> Lock,Set<Id>  BonusAnnualSubResult,Map<Id,String> BonusQuarterlySubResultMap,Set<String> QuaterSet,Set<Id> BonusQuarterlySubResult){
 		for(AF_Sub_Result__c subResult:queryListofSubResult){
             if(subResult.AF_Period__c == null){
                 Decimal BonusableFeesAnnual=0;
