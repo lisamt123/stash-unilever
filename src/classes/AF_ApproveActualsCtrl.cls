@@ -324,7 +324,7 @@ public with sharing class AF_ApproveActualsCtrl {
 					}
 					else if(oop.quarter=='Q4'){
 						oop.oopsActual.AF_Q4__c = oop.actualInput;
-						oop.actualInput = oop.actualInput;
+						//oop.actualInput = oop.actualInput;
 						oop.oopsActual.AF_Status_Q4__c = AF_Constants.CATEGORY_FINANCE;
 						oop.oopsActual.AF_Status__c=AF_Constants.CATEGORY_FINANCE;
 						updateOopsActual.add(oop.oopsActual);

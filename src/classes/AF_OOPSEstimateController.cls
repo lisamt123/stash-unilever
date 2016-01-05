@@ -95,7 +95,7 @@ public with sharing class AF_OOPSEstimateController {
 				isCMCOSuperUser = true;
 			}
 		}
-		if(oopsEstimate.AF_Estimate__c != null){oopsEstimate.AF_Estimate__c = oopsEstimate.AF_Estimate__c;oopsEstimate.AF_Estimate__c = oopsEstimate.AF_Estimate__c.setscale(2);}      
+		if(oopsEstimate.AF_Estimate__c != null){oopsEstimate.AF_Estimate__c = oopsEstimate.AF_Estimate__c.setscale(2);}      
 		EsLocal= oopsEstimate.AF_EstimateLocal__c;
 		if(oopsEstimate.AF_OOPS_Actual__r.AF_Status__c=='with agency' && LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance')
 		{
@@ -131,7 +131,6 @@ public with sharing class AF_OOPSEstimateController {
 		{
 			if(oopsEstimate.AF_Estimate__c != null){
 				OppsEstimatesValue=OppsEstimatesValue.Remove(',');
-				oopsEstimate.AF_Estimate__c = oopsEstimate.AF_Estimate__c;
 				oopsEstimate.AF_Estimate__c = oopsEstimate.AF_Estimate__c.setscale(2);}
 			AF_RecursiveTriggerHelper.setAlreadyModified();
 			oopsEstimate.IsUpdate__c = true;   
