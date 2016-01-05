@@ -1186,7 +1186,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             financialsInnovation = new IPM_FinancialWrapper();
             financialsCalendar = new IPM_FinancialWrapper();
             
-
+            volumeUnit = (String) currentFinancial.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + fieldSuffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
            
             For (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
                 //Add to Map

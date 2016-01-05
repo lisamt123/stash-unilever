@@ -590,8 +590,8 @@ public without sharing class IPM_Utils {
     
     public static String prepareSOQLQuery(String SObjectName ,Boolean addChild,Set<String> includededChildObjects, Boolean includeSystemFields) 
     { 
-        Set<String> mandatoryStandardFieldSet = new Set<String>{'id','name','recordtypeid'};
-        
+    	Set<String> mandatoryStandardFieldSet = new Set<String>{'id','name','recordtypeid'};
+    	
         Set<String> skippedChildObject = new Set<String>{'IPM_Project__c'};
         Map<String,Map<String,String>> orderByMap = new Map<String,Map<String,String>>{};
        

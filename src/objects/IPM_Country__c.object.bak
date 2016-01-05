@@ -248,6 +248,19 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>IPM_Financial__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Financial</label>
+        <referenceTo>IPM_Financial__c</referenceTo>
+        <relationshipLabel>IPM Countries</relationshipLabel>
+        <relationshipName>IPM_Countries</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>IPM_ISO_Code__c</fullName>
         <externalId>false</externalId>
         <label>ISO Code</label>
@@ -332,6 +345,19 @@
         <referenceTo>IPM_Project__c</referenceTo>
         <relationshipLabel>IPM Countries (Regional Project)</relationshipLabel>
         <relationshipName>IPM_Countries1</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Regional_Rollout__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Regional Rollout</label>
+        <referenceTo>IPM_Project_Rollout__c</referenceTo>
+        <relationshipLabel>IPM Countries</relationshipLabel>
+        <relationshipName>IPM_Countries</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
