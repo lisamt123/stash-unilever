@@ -28,3 +28,6 @@ Thumbs.db
 # Files breaking git for Windows users 
 ######################
 ***HELP***.homePageComponent
+
+# Not adding package.xml as it is built dynamically from the src folder contents
+src/package.xml

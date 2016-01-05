@@ -42,13 +42,33 @@
         <relationshipLabel><!-- Fulfilment --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Case Brand --></label>
+        <name>CaseBrand__c</name>
+    </fields>
+    <fields>
         <label><!-- Case Market --></label>
         <name>Case_Market__c</name>
+    </fields>
+    <fields>
+        <label><!-- Case Product Category --></label>
+        <name>Case_Product_Category__c</name>
     </fields>
     <fields>
         <label><!-- Case --></label>
         <name>Case__c</name>
         <relationshipLabel><!-- Fulfilment --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Cheque Number --></label>
+        <name>Cheque_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cheque Sent --></label>
+        <name>Cheque_Sent__c</name>
+    </fields>
+    <fields>
+        <label><!-- Cheque Voided --></label>
+        <name>Cheque_Voided__c</name>
     </fields>
     <fields>
         <label><!-- Country &amp; BrandLogo --></label>
@@ -72,6 +92,10 @@
         <picklistValues>
             <masterLabel>Bulgaria</masterLabel>
             <translation><!-- Bulgaria --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canada</masterLabel>
+            <translation><!-- Canada --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Croatia</masterLabel>
@@ -142,6 +166,10 @@
             <translation><!-- Macedonia, the Former Yugoslav Republic of --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Mexico</masterLabel>
+            <translation><!-- Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Mlodova, Republic of</masterLabel>
             <translation><!-- Mlodova, Republic of --></translation>
         </picklistValues>
@@ -197,10 +225,18 @@
             <masterLabel>United Kingdom</masterLabel>
             <translation><!-- United Kingdom --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>United States</masterLabel>
+            <translation><!-- United States --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label>Aprovação de documento</label>
         <name>Document_Approval__c</name>
+    </fields>
+    <fields>
+        <label><!-- Enclosure1 Notes --></label>
+        <name>Enclosure1_Notes__c</name>
     </fields>
     <fields>
         <label>Anexo 1</label>
@@ -208,9 +244,17 @@
         <relationshipLabel><!-- Fulfilment --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Enclosure2 Notes --></label>
+        <name>Enclosure2_Notes__c</name>
+    </fields>
+    <fields>
         <label>Anexo 2</label>
         <name>Enclosure2__c</name>
         <relationshipLabel>Fulfilment (anexo2)</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Enclosure3 Notes --></label>
+        <name>Enclosure3_Notes__c</name>
     </fields>
     <fields>
         <label>Anexo 3</label>
@@ -218,9 +262,17 @@
         <relationshipLabel>Fulfilment (anexo3)</relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Enclosure4 Notes --></label>
+        <name>Enclosure4_Notes__c</name>
+    </fields>
+    <fields>
         <label>Anexo 4</label>
         <name>Enclosure4__c</name>
         <relationshipLabel>Fulfilment (anexo4)</relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Enclosure5 Notes --></label>
+        <name>Enclosure5_Notes__c</name>
     </fields>
     <fields>
         <label>Anexo 5</label>
@@ -260,12 +312,24 @@
         <name>Message__c</name>
     </fields>
     <fields>
+        <label><!-- Payable To --></label>
+        <name>Payable_To__c</name>
+    </fields>
+    <fields>
         <label>Opção de publicação</label>
         <name>PostOption__c</name>
     </fields>
     <fields>
         <label>Flag CQ</label>
         <name>QA_flag__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund Currency --></label>
+        <name>Refund_Currency__c</name>
+    </fields>
+    <fields>
+        <label><!-- Refund Value --></label>
+        <name>Refund_Value__c</name>
     </fields>
     <fields>
         <label>Saudação</label>
@@ -303,6 +367,10 @@
     <layouts>
         <layout>Fulfilment Layout</layout>
         <sections>
+            <label><!-- ChequeBook Details --></label>
+            <section>ChequeBook Details</section>
+        </sections>
+        <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
@@ -318,6 +386,10 @@
             <label>Mensagem</label>
             <section>Message</section>
         </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
     </layouts>
     <nameFieldLabel><!-- Fulfilment Name --></nameFieldLabel>
     <validationRules>
@@ -328,6 +400,10 @@
         <errorMessage>Falta o &quot;Tipo&quot; de informação para criar um Fulfilment</errorMessage>
         <name>FulfilmentType_MandatoryCheck</name>
     </validationRules>
+    <webLinks>
+        <label><!-- Add_Cheque_Details --></label>
+        <name>Add_Cheque_Details</name>
+    </webLinks>
     <webLinks>
         <label>Novo Fulfilment</label>
         <name>New_Fulfilment</name>

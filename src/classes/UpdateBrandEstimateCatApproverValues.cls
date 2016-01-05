@@ -225,7 +225,7 @@ public class UpdateBrandEstimateCatApproverValues
                  if(clist[1].email != null && clist[1].email != '')
                     ao.AF_AgencyUsers2__c = clist[1].email;
              }
-             if(clist.size() > 0 && clist.size()>=3)
+             if(clist.size() > 0 && clist.size()==3)
              {
                  if(clist[0].email != null && clist[0].email != '')
                     ao.AF_AgencyUsers1__c = clist[0].email;
@@ -234,6 +234,125 @@ public class UpdateBrandEstimateCatApproverValues
                  if(clist[2].email != null && clist[2].email != '')
                     ao.AF_AgencyUsers3__c = clist[2].email;
              }
-         }
+             if(clist.size() > 0 && clist.size()==4)
+             {
+                 if(clist[0].email != null && clist[0].email != '')
+                    ao.AF_AgencyUsers1__c = clist[0].email;
+                 if(clist[1].email != null && clist[1].email != '')
+                    ao.AF_AgencyUsers2__c = clist[1].email;
+                 if(clist[2].email != null && clist[2].email != '')
+                    ao.AF_AgencyUsers3__c = clist[2].email;
+                 if(clist[3].email != null && clist[3].email != '')
+                    ao.AF_AgencyUsers4__c = clist[3].email;
+            }
+            if(clist.size() > 0 && clist.size()==5)
+            {
+                if(clist[0].email != null && clist[0].email != '')
+                    ao.AF_AgencyUsers1__c = clist[0].email;
+                 if(clist[1].email != null && clist[1].email != '')
+                    ao.AF_AgencyUsers2__c = clist[1].email;
+                 if(clist[2].email != null && clist[2].email != '')
+                    ao.AF_AgencyUsers3__c = clist[2].email;
+                  if(clist[3].email != null && clist[3].email != '')
+                    ao.AF_AgencyUsers4__c = clist[3].email;
+                  if(clist[4].email != null && clist[4].email != '')
+                    ao.AF_AgencyUsers5__c = clist[4].email;
+            }
+            if(clist.size() > 0 && clist.size()==6)
+            {
+                if(clist[0].email != null && clist[0].email != '')
+                    ao.AF_AgencyUsers1__c = clist[0].email;
+                if(clist[1].email != null && clist[1].email != '')
+                    ao.AF_AgencyUsers2__c = clist[1].email;
+                if(clist[2].email != null && clist[2].email != '')
+                    ao.AF_AgencyUsers3__c = clist[2].email;
+                if(clist[3].email != null && clist[3].email != '')
+                    ao.AF_AgencyUsers4__c = clist[3].email;
+                if(clist[4].email != null && clist[4].email != '')
+                    ao.AF_AgencyUsers5__c = clist[4].email;
+                if(clist[5].email != null && clist[5].email != '')
+                    ao.AF_AgencyUsers6__c = clist[5].email;
+            }
+            if(clist.size() > 0 && clist.size()==7)
+            {
+                if(clist[0].email != null && clist[0].email != '')
+                    ao.AF_AgencyUsers1__c = clist[0].email;
+                if(clist[1].email != null && clist[1].email != '')
+                    ao.AF_AgencyUsers2__c = clist[1].email;
+                if(clist[2].email != null && clist[2].email != '')
+                    ao.AF_AgencyUsers3__c = clist[2].email;
+                if(clist[3].email != null && clist[3].email != '')
+                    ao.AF_AgencyUsers4__c = clist[3].email;
+                if(clist[4].email != null && clist[4].email != '')
+                    ao.AF_AgencyUsers5__c = clist[4].email;
+                if(clist[5].email != null && clist[5].email != '')
+                    ao.AF_AgencyUsers6__c = clist[5].email;
+                if(clist[6].email != null && clist[6].email != '')
+                    ao.AF_AgencyUsers7__c = clist[6].email;
+            }
+            if(clist.size() > 0 && clist.size()==8)
+            {
+                if(clist[0].email != null && clist[0].email != '')
+                    ao.AF_AgencyUsers1__c = clist[0].email;
+                if(clist[1].email != null && clist[1].email != '')
+                    ao.AF_AgencyUsers2__c = clist[1].email;
+                if(clist[2].email != null && clist[2].email != '')
+                    ao.AF_AgencyUsers3__c = clist[2].email;
+                if(clist[3].email != null && clist[3].email != '')
+                    ao.AF_AgencyUsers4__c = clist[3].email;
+                if(clist[4].email != null && clist[4].email != '')
+                    ao.AF_AgencyUsers5__c = clist[4].email;
+                if(clist[5].email != null && clist[5].email != '')
+                    ao.AF_AgencyUsers6__c = clist[5].email;
+                if(clist[6].email != null && clist[6].email != '')
+                    ao.AF_AgencyUsers7__c = clist[6].email;
+                if(clist[7].email != null && clist[7].email != '')
+                    ao.AF_AgencyUsers8__c = clist[7].email;         
+            }
+            if(clist.size() > 0 && clist.size()==9)
+            {
+                if(clist[0].email != null && clist[0].email != '')
+                    ao.AF_AgencyUsers1__c = clist[0].email;
+                if(clist[1].email != null && clist[1].email != '')
+                    ao.AF_AgencyUsers2__c = clist[1].email;
+                if(clist[2].email != null && clist[2].email != '')
+                    ao.AF_AgencyUsers3__c = clist[2].email;
+                if(clist[3].email != null && clist[3].email != '')
+                    ao.AF_AgencyUsers4__c = clist[3].email;
+                if(clist[4].email != null && clist[4].email != '')
+                    ao.AF_AgencyUsers5__c = clist[4].email;
+                if(clist[5].email != null && clist[5].email != '')
+                    ao.AF_AgencyUsers6__c = clist[5].email;
+                if(clist[6].email != null && clist[6].email != '')
+                    ao.AF_AgencyUsers7__c = clist[6].email;
+                if(clist[7].email != null && clist[7].email != '')
+                    ao.AF_AgencyUsers8__c = clist[7].email;
+                if(clist[8].email != null && clist[8].email != '')
+                    ao.AF_AgencyUsers9__c = clist[8].email;
+            }
+            if(clist.size() > 0 && clist.size()>=10)
+            {
+                if(clist[0].email != null && clist[0].email != '')
+                    ao.AF_AgencyUsers1__c = clist[0].email;
+                if(clist[1].email != null && clist[1].email != '')
+                    ao.AF_AgencyUsers2__c = clist[1].email;
+                if(clist[2].email != null && clist[2].email != '')
+                    ao.AF_AgencyUsers3__c = clist[2].email;
+                if(clist[3].email != null && clist[3].email != '')
+                    ao.AF_AgencyUsers4__c = clist[3].email;
+                if(clist[4].email != null && clist[4].email != '')
+                    ao.AF_AgencyUsers5__c = clist[4].email;
+                if(clist[5].email != null && clist[5].email != '')
+                    ao.AF_AgencyUsers6__c = clist[5].email;
+                if(clist[6].email != null && clist[6].email != '')
+                    ao.AF_AgencyUsers7__c = clist[6].email;
+                if(clist[7].email != null && clist[7].email != '')
+                    ao.AF_AgencyUsers8__c = clist[7].email;
+                if(clist[8].email != null && clist[8].email != '')
+                    ao.AF_AgencyUsers9__c = clist[8].email;
+                if(clist[9].email != null && clist[9].email != '')
+                    ao.AF_AgencyUsers10__c = clist[9].email;
+            }
+        }
     }
 }

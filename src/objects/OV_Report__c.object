@@ -54,6 +54,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -252,6 +253,10 @@
                 <default>true</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Daily</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Weekly</fullName>
                 <default>false</default>
             </picklistValues>
@@ -269,6 +274,14 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Yearly</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Period</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Other</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -628,7 +641,7 @@
         <label>Report Heading</label>
         <picklist>
             <picklistValues>
-                <fullName>Europe</fullName>
+                <fullName>Cross category</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -648,6 +661,14 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>SEAA</fullName>
                 <default>false</default>
             </picklistValues>
@@ -657,10 +678,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>South Asia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Global</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -677,10 +694,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>North Asia</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Cross category</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -720,11 +733,18 @@
 This value will be displayed on the Report Tile.</description>
         <externalId>false</externalId>
         <formula>CASE(TEXT(Frequency__c), 
-&quot;Yearly&quot;,    &quot;Year - &quot; &amp; TEXT(Value__c), 
+&quot;Yearly&quot;,    &quot;Year - &quot;   &amp; TEXT(Value__c), 
 &quot;Monthly&quot;,   &quot;Month - &quot;  &amp; TEXT(Value__c),
-&quot;Quarterly&quot;, &quot;Q&quot;       &amp; LEFT(TEXT(Value__c), 1)  &amp; &quot;-&quot; &amp; RIGHT(TEXT(Value__c), 4)  ,
+&quot;Quarterly&quot;, &quot;Q&quot;         &amp; LEFT(TEXT(Value__c), 1)  &amp; &quot;-&quot; &amp; RIGHT(TEXT(Value__c), 4)  ,
 &quot;BI-Weekly&quot;, &quot;Week - &quot;   &amp; TEXT(Value__c),
 &quot;Weekly&quot;,    &quot;Week - &quot;   &amp; TEXT(Value__c),
+&quot;Daily&quot;,     LEFT(TEXT(Value__c), 4) &amp; &quot;-&quot; &amp;     
+             Left( RIGHT(TEXT(Value__c), 4) ,2) &amp; &quot;-&quot; &amp; 
+             RIGHT(TEXT(Value__c), 2) ,
+&quot;Other&quot;,     LEFT(TEXT(Value__c), 4) &amp; &quot;-&quot; &amp;     
+             Left( RIGHT(TEXT(Value__c), 4) ,2) &amp; &quot;-&quot; &amp; 
+             RIGHT(TEXT(Value__c), 2) ,
+&quot;Period&quot;,    &quot;P&quot; &amp; RIGHT(TEXT(Value__c), 2) &amp; &quot;-&quot; &amp; LEFT(TEXT(Value__c), 4),
 &quot;Dynamic&quot;,   &quot;Dynamic&quot;,
 &quot;&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
@@ -829,13 +849,14 @@ This value will be displayed on the Report Tile.</description>
         <description>Numeric period for Frequency of Publication</description>
         <externalId>false</externalId>
         <inlineHelpText>Input the Numeric Value relevant to the Frequency:
-Yearly = &lt;YYYY&gt; e.g. 2015,
-Quarterly = &lt;QYYYY&gt;   e.g. 42015
-Monthly   =  &lt;MM&gt;  e.g. 03
-BI-Weekly = &lt;WW&gt; e.g. 50
-Weekly      = &lt;WW&gt; e.g. 16</inlineHelpText>
+Period    = YYYYPP e.g 201501
+Yearly     = YYYY    e.g. 2015,
+Quarterly = QYYYY e.g. 42015
+Monthly   =  MM  e.g. 03
+BI-Weekly / Weekly  = WW  e.g. 50
+Daily / Other = YYYYMMDD e.g.20151118</inlineHelpText>
         <label>Value</label>
-        <precision>5</precision>
+        <precision>8</precision>
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
@@ -941,350 +962,6 @@ Weekly      = &lt;WW&gt; e.g. 16</inlineHelpText>
         <type>Text</type>
     </nameField>
     <pluralLabel>One View Report Tiles</pluralLabel>
-    <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
-    <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <recordTypes>
-        <fullName>Admin_View</fullName>
-        <active>true</active>
-        <description>OneView Report Tile View for Administrators</description>
-        <label>Admin View</label>
-        <picklistValues>
-            <picklist>Frequency__c</picklist>
-            <values>
-                <fullName>BI-Weekly</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dynamic</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Monthly</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Quarterly</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Weekly</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Yearly</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Report_Folder__c</picklist>
-            <values>
-                <fullName>Beverages</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>CARREFOUR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cash Flow</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Competitor Activity</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Competitor Analysis %26 Category Reports</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Competitor Highlights</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Competitor Results</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Deo %26 Frag</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Dressings</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Equity</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Exposure</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Group Interest</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Hair Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Household Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Ice Cream</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Laundry</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>M2D</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Market Information</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Net Debt</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>O2C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Oral Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>P2P</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>R2R</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Savoury</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Service Fees</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Skin Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Skin Cleansing</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Spreads</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UAPL</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UAPL M2D</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UAPL O2C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UAPL P2P</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UAPL Procurement</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UAPL R2R</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UAPL UENS</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USCC%2FUASSC M2D</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USCC%2FUASSC O2C</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USCC%2FUASSC P2P</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USCC%2FUASSC R2R</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USLP Dashboard</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>USLP Finance FAST</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iTrack Bangladesh</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iTrack France</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iTrack Germany</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iTrack Gulf</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iTrack India</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iTrack Indonesia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iTrack Netherlands</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iTrack Pakistan</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iTrack Philippines</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iTrack Sri Lanka</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>iTrack UK</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Report_Heading__c</picklist>
-            <values>
-                <fullName>AAR</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Africa</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Americas</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Baking%2CCooking %26 Spreads</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Cross category</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Europe</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Food Solutions</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Foods</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Global</fullName>
-                <default>true</default>
-            </values>
-            <values>
-                <fullName>Global Units</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Home Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Latin America</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>NAMET%26RUB</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>North America</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>North Asia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Personal Care</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Refreshment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>SEAA</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>South Asia</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Unilever International</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-        <picklistValues>
-            <picklist>Show_on_Devices__c</picklist>
-            <values>
-                <fullName>Desktop</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Mobile</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Tablet</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
-    </recordTypes>
     <searchLayouts>
         <customTabListAdditionalFields>Title__c</customTabListAdditionalFields>
         <customTabListAdditionalFields>Description__c</customTabListAdditionalFields>
@@ -1325,6 +1002,25 @@ Weekly      = &lt;WW&gt; e.g. 16</inlineHelpText>
         <errorMessage>Frequency is Dynamic. Please remove Value</errorMessage>
     </validationRules>
     <validationRules>
+        <fullName>Value_is_a_Day_Other</fullName>
+        <active>true</active>
+        <description>Validation for where Frequency is Daily or Other  the Value is  8 digits</description>
+        <errorConditionFormula>( ISPICKVAL( Frequency__c , &quot;Daily&quot;)  || 
+  ISPICKVAL( Frequency__c , &quot;Other&quot;))
+
+&amp;&amp; ((LEN( TEXT(Value__c )) &lt;&gt; 8 ) 
+
+|| ((VALUE((RIGHT( TEXT(Value__c ) , 2))) &lt; 1 ) 
+
+|| (VALUE((RIGHT( TEXT(Value__c ) , 2))) &gt; 31 )
+|| (VALUE(  LEFT((RIGHT( TEXT(Value__c ) , 4)),2)) &gt; 12 )
+|| (VALUE(  LEFT((RIGHT( TEXT(Value__c ) , 4)),2)) &lt; 01 ) )
+
+)</errorConditionFormula>
+        <errorMessage>Frequency is Daily or Other. Please enter an 8 digit Date in the following format YYYYMMDD e.g. 20151118 = 2015-11-18
+Values: Month 01  - 12 , Day 01 -31</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>Value_is_a_Month</fullName>
         <active>true</active>
         <description>Validation for where Frequency is Monthly the Value is in range  1 - 12</description>
@@ -1336,6 +1032,21 @@ Weekly      = &lt;WW&gt; e.g. 16</inlineHelpText>
   ||   ABS(Value__c)  &lt;   1 
   ||    ABS(Value__c)  &gt;   12 ))</errorConditionFormula>
         <errorMessage>Frequency is Monthly. Please enter a 2 digit Month value between 1 and 12</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>Value_is_a_Period</fullName>
+        <active>true</active>
+        <description>Ensure the Value field is a Period and Year where the Frequency is set to Period</description>
+        <errorConditionFormula>ISPICKVAL( Frequency__c , &quot;Period&quot;) 
+
+  &amp;&amp; ((LEN( TEXT(Value__c ))  &lt;&gt; 6 )
+
+ ||   ((VALUE((RIGHT( TEXT(Value__c ) , 2))) &lt; 1 )
+
+ ||   (VALUE((RIGHT( TEXT(Value__c ) , 2))) &gt; 13 ))
+
+)</errorConditionFormula>
+        <errorMessage>Frequency is Period. Please enter a 4 digit Year and 2 digit Period e.g. 201513.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Value_is_a_Quarter</fullName>

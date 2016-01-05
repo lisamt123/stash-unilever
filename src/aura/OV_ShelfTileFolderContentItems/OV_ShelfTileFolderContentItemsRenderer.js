@@ -1,7 +1,7 @@
 ({
-	render: function(component, helper) {
-		return this.superRender();
-	},
+    render: function(component, helper) {
+        return this.superRender();
+    },
     afterRender: function (cmp, helper) {
         var afterRend = this.superAfterRender();
 

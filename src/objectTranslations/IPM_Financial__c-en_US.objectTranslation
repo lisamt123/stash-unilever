@@ -423,6 +423,10 @@
         <name>NPV_Regional__c</name>
     </fields>
     <fields>
+        <label><!-- OpCo --></label>
+        <name>OpCo__c</name>
+    </fields>
+    <fields>
         <label><!-- PBO Y1 bps vs DNDS Charter --></label>
         <name>PBO_Y1_bps_vs_DNDS_Charter__c</name>
     </fields>

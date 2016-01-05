@@ -29,14 +29,14 @@ public with sharing class OV_SequenceController {
 
         if(objectDesc.getName() == 'OV_Shelf__c' && customSettings.Shelf_Sort_Order__c != null){
         	List<OV_Shelf__c> shelfs = [SELECT Id, Sort_Order__c FROM OV_Shelf__c WHERE RecordTypeId=:recordType ORDER BY Sort_Order__c DESC LIMIT 1];
-        	if(shelfs.size() > 0){
+        	if( !shelfs.isEmpty() ){
         		sortOrder = shelfs[0].Sort_Order__c+1;
         	}
             url += '&'+customSettings.Shelf_Sort_Order__c+'='+sortOrder;
     	}
 
     	urlToRedirect = url;
-    } 
+    }
 
     public PageReference init(){
     	pagereference redirect = new PageReference('/'+this.urlToRedirect);

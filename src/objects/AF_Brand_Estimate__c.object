@@ -53,6 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -106,6 +107,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_AgencyUsers10__c</fullName>
+        <externalId>false</externalId>
+        <label>AF_AgencyUsers10</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_AgencyUsers1__c</fullName>
         <description>Holds Email address of agency user. Used for sending notifications to</description>
         <externalId>false</externalId>
@@ -154,6 +165,46 @@
         <description>Holds Email address of agency user. Used for sending notifications to</description>
         <externalId>false</externalId>
         <label>AF_AgencyUsers5</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_AgencyUsers6__c</fullName>
+        <externalId>false</externalId>
+        <label>AF_AgencyUsers6</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_AgencyUsers7__c</fullName>
+        <externalId>false</externalId>
+        <label>AF_AgencyUsers7</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_AgencyUsers8__c</fullName>
+        <externalId>false</externalId>
+        <label>AF_AgencyUsers8</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_AgencyUsers9__c</fullName>
+        <externalId>false</externalId>
+        <label>AF_AgencyUsers9</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

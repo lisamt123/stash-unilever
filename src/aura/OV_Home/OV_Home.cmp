@@ -30,6 +30,7 @@
 
     <aura:attribute name="activeShelfTileId" type="String" default="" />
     <aura:attribute name="activeFolderTileId" type="String" default="" />
+    <aura:attribute name="activeFolderName" type="String" default="" />
 
     <!-- display:none - we hide the app until all css is loaded -->
     <div id="mainAppArea" style="display:none;" class="{! 'forceShow OVBS bootstrap-sf1' + ($Browser.isPhone ? ' OV_phone' : '') + ( (!$Browser.isPhone &amp;&amp; ($Browser.isIOS || $Browser.isAndroid)) ? ' OV_tablet': '') + ( (!$Browser.isPhone &amp;&amp; !$Browser.isIOS &amp;&amp; !$Browser.isAndroid) ? ' OV_desktop' : '') }">
@@ -52,6 +53,7 @@
             filters2="{!v.filters2}"
             activeShelfTileId="{!v.activeShelfTileId}"
             activeFolderTileId="{!v.activeFolderTileId}"
+            activeFolderName="{!v.activeFolderName}"
         />
 
     </div>

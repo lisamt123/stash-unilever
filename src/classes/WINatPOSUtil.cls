@@ -429,6 +429,42 @@ public with sharing class WINatPOSUtil {
                     (Select Feed_URL__c, Name,Feed_ID__c,id From Files__r order by Name asc)
                      from Brand_Master__c where id in : brands order by name];
 	}
+    
+    /*******************************************************************
+	Purpose: Method is querying for files for assets belongs to asset group
+	Parameters: [Set<Id> brands]
+	Returns: [List<Asset__c>]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
+    public static List<Asset__c> getAssetsForAssetGroupForSearch(Set<Id> assetIds){
+    	System.Debug('*** WINatPOS getAssetsForAssetGroupForSearch with sharing input parameter brands: ' + assetIds );
+    		
+		return [SELECT Asset_Group__c,id,
+               (select Feed_ID__c, Feed_Thumbnail_URL__c, Feed_URL__c, Is_Primary_Image__c FROM Files__r where Is_Primary_Image__c = true) 
+               FROM Asset__c 
+               WHERE Asset_Group__c in : assetIds and Status__c =: WINatPOSUtil.assetTypeApproved ];
+	}
+    
+    
+    /*******************************************************************
+	Purpose: Method is querying for asset group detail page
+	Parameters: [Set<Id> brands]
+	Returns: [List<Asset__c>]
+	Throws [Exceptions]: [optional] 
+	********************************************************************/
+    public static List<Asset__c> getAssetsForAssetGroupDetailPage(Id assetGroupId){
+    	System.Debug('*** WINatPOS getAssetsForAssetGroupDetailPage with sharing input parameter brands: ' + assetGroupId );
+    		
+		return [SELECT Owner.Name, Id, Asset_Group__c, Video_URL_Link__c, Asset_Group__r.Name, Name, Category__c,Touchpoint__c,Country__c,Category__r.Name, Brand__c, Brand__r.Name, Channels__c, Description__c, Placement__c, Market_Cluster__c,POS_Asset_Type__c, BET__c, BET__r.Name,Buy_Online_in_Europe__c, 
+               (SELECT Id, Name, Category__c, Category__r.Name, Type__c, Sub_Type__c, File_Button_Text__c, Is_Primary_Image__c, Feed_ID__c, Feed_URL__c,Feed_Thumbnail_URL__c 
+               FROM Files__r 
+               Order BY Sort_Order__c ASC),
+               (SELECT ParentId, SubscriberId from FeedSubscriptionsForEntity where SubscriberId =: UserInfo.getUserId())                
+               FROM Asset__c 
+               WHERE  Status__c = :WINatPOSUtil.APPROVED
+               AND Asset_Group__c = :assetGroupId 
+               Order By Name ASC];
+	}
 	
 	
 	/*******************************************************************
@@ -503,80 +539,7 @@ public with sharing class WINatPOSUtil {
 		return Network.getNetworkId() != null;
    }
    
-   /*******************************************************************
-	Purpose: Method is handlig granting sharings for Assets
-	Parameters: [Asset__c myAsset]
-	Returns: [void]
-	Throws [Exceptions]: [optional] 
-	********************************************************************/
-	public static void handleAssetAgenciesShares(List<Asset__c> myAssetList){
-		
-		System.Debug('*** WINatPOS handleAssetAgenciesShares input parameter myAssetList: ' + myAssetList);
-		
-		List<Asset__Share> editSharesToInsert = new List<Asset__Share>();
-		List<Asset__Share> viewSharesToInsert = new List<Asset__Share>();
-		//List<Asset__Share> sharesToDelete = new List<Asset__Share>();
-
-		Set<String> publicGroupsToAdd = new Set<String>();
-		Map<Id, List<String>> assetIdToEditPublicGroupsList = new Map<Id, List<String>>();
-		Map<Id, List<String>> assetIdToViewPublicGroupsList = new Map<Id, List<String>>();
-		Map<String, Group> groupNameToObject = new Map<String, Group>();
-		
-		for(Asset__c myAsset : myAssetList){
-			if(!String.isBlank(myAsset.Agency_Edit_Access_Text__c)){
-				assetIdToEditPublicGroupsList.put(myAsset.Id, myAsset.Agency_Edit_Access_Text__c.split(';'));
-				publicGroupsToAdd.addAll(myAsset.Agency_Edit_Access_Text__c.split(';'));
-			}
-			if(!String.isBlank(myAsset.Agency_Read_Access_Text__c)){
-				assetIdToViewPublicGroupsList.put(myAsset.Id, myAsset.Agency_Read_Access_Text__c.split(';'));
-				publicGroupsToAdd.addAll(myAsset.Agency_Read_Access_Text__c.split(';'));
-			}
-		}
-		
-		for(Group myTmpGroup : [SELECT Name, ID FROM Group WHERE Name IN :publicGroupsToAdd]){
-			groupNameToObject.put(myTmpGroup.Name, myTmpGroup);
-		}
-
-		for(Asset__c myAsset : myAssetList){
-			
-			//get Groups that should be updated - edit
-			if(assetIdToEditPublicGroupsList.containsKey(myAsset.Id)){
-				for(String groupName : assetIdToEditPublicGroupsList.get(myAsset.Id)){
-					if(groupNameToObject.containsKey(groupName)){
-						editSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Edit'));
-					}
-				}
-			}
-			
-			//get Groups that should be updated - view
-			if(assetIdToViewPublicGroupsList.containsKey(myAsset.Id)){
-				for(String groupName : assetIdToViewPublicGroupsList.get(myAsset.Id)){
-					if(groupNameToObject.containsKey(groupName)){
-						viewSharesToInsert.add(new Asset__Share(ParentId = myAsset.Id, UserOrGroupId = groupNameToObject.get(groupName).Id, AccessLevel = 'Read'));
-					}
-				}
-			}
-		}
-		
-		List<Group> winAtPosPublicGroups = [SELECT Name, Id FROM Group WHERE Name like 'Win@POS%' ORDER BY Name];
-		
-		Savepoint sp = Database.setSavepoint();
-		
-		try{
-			//crean up old sharings for WinatPOS Public Groups
-			delete [SELECT Id FROM Asset__Share WHERE ParentId IN :myAssetList AND UserOrGroupId IN :winAtPosPublicGroups];
-			
-			
-			//insert new sharings
-			insert viewSharesToInsert;
-			insert editSharesToInsert;
-		}catch(Exception ex){
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.Error, ex.getMessage()));
-        	// Rollback any changes
-            Database.rollback(sp);
-		}
-		
-	}
+   
     
     /*******************************************************************
 	Purpose: Method is handlig url rewriting basing on who uploaded the file
@@ -592,6 +555,12 @@ public with sharing class WINatPOSUtil {
         if(WINatPOSUtil.checkIsCommunityUser(UserInfo.getUserId(), UserInfo.getProfileId()) && fileUrl != null){
             if(!fileUrl.startsWith('/'+communityName) && !fileUrl.containsIgnoreCase('https')){
                 fileUrl = '/'+communityName+fileUrl;
+            }else if(fileUrl.containsIgnoreCase('https')){
+                Integer startIndex = fileUrl.indexOf('/sfc/servlet');
+                if(startIndex != -1){
+                    fileUrl = '/' + communityName+fileUrl.substring(fileUrl.indexOf('/sfc/servlet'),fileUrl.length());
+                }
+			
             }
         }else if(fileUrl != null && !fileUrl.containsIgnoreCase('https')){
             fileUrl = fileUrl.replace('/' + communityName, '');

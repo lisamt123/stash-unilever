@@ -65,4 +65,5 @@
         <unique>false</unique>
     </fields>
     <label>IPM Gate CMI KPI Inputs</label>
+    <visibility>Public</visibility>
 </CustomObject>

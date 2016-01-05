@@ -35,8 +35,26 @@
         <name>Brand_Keyword_Search__c</name>
     </fields>
     <fields>
+        <label><!-- Brand Position Keyword Search --></label>
+        <name>Brand_Position_Keyword_Search__c</name>
+    </fields>
+    <fields>
+        <label><!-- Brand Positioning --></label>
+        <name>Brand_Position__c</name>
+        <relationshipLabel><!-- Brand Experience List --></relationshipLabel>
+    </fields>
+    <fields>
         <label><!-- Brand --></label>
         <name>Brand__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category Group Keyword Search --></label>
+        <name>Category_Group_Keyword_Search__c</name>
+    </fields>
+    <fields>
+        <label><!-- Category Group --></label>
+        <name>Category_Group__c</name>
+        <relationshipLabel><!-- Brand Experience List --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Category Keyword Search --></label>
@@ -347,13 +365,33 @@
         <name>Date_Published__c</name>
     </fields>
     <fields>
+        <label><!-- Deletion Date --></label>
+        <name>Deletion_Date__c</name>
+    </fields>
+    <fields>
         <help><!-- Add text that will help others search for your Brand Experience --></help>
         <label><!-- Description --></label>
         <name>Description__c</name>
     </fields>
     <fields>
+        <label><!-- Final Release Date --></label>
+        <name>FinalReleaseDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- Final Release Due Date --></label>
+        <name>Final_Release_Due_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Final release date --></label>
         <name>Final_release_date__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Release Date --></label>
+        <name>FirstReleaseDate__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Release Due Date --></label>
+        <name>First_Release_Due_Date__c</name>
     </fields>
     <fields>
         <label><!-- First release date --></label>
@@ -369,6 +407,11 @@
         <name>Group__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Project --></label>
+        <name>IPM_Project__c</name>
+        <relationshipLabel><!-- Brand Experience List --></relationshipLabel>
+    </fields>
+    <fields>
         <help><!-- The Icon appears on the Search pages. 
 The default image will be used if no file is uploaded here. --></help>
         <label><!-- Icon Location --></label>
@@ -380,7 +423,7 @@ The default image will be used if no file is uploaded here. --></help>
         <name>Inherit_Branding__c</name>
     </fields>
     <fields>
-        <label><!-- Inoplan Project Keyword Search --></label>
+        <label><!-- Project Keyword Search --></label>
         <name>Inoplan_Project_Keyword_Search__c</name>
     </fields>
     <fields>
@@ -394,9 +437,21 @@ The default image will be used if no file is uploaded here. --></help>
         <name>Is_Archived__c</name>
     </fields>
     <fields>
+        <label><!-- Is Deleted --></label>
+        <name>Is_Deleted__c</name>
+    </fields>
+    <fields>
+        <label><!-- Is this a Fabric Conditioner BET ? --></label>
+        <name>Is_Fabric_Conditioners__c</name>
+    </fields>
+    <fields>
         <help><!-- This should be your IPM Target Launch Date (ie: Ship to Trade date) --></help>
         <label><!-- Launch Date --></label>
         <name>Launch_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Link --></label>
+        <name>Link__c</name>
     </fields>
     <fields>
         <help><!-- Select the geographical level for your Brand Experience --></help>
@@ -469,6 +524,11 @@ The default image will be used if no file is uploaded here. --></help>
         <name>Presentation_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Brand --></label>
+        <name>Product_Brand__c</name>
+        <relationshipLabel><!-- Brand Experience List --></relationshipLabel>
+    </fields>
+    <fields>
         <help><!-- Which category this BET will sit under. For example, &apos;Foods&apos; or &apos;Refreshment&apos;. --></help>
         <label><!-- Division --></label>
         <name>Product_Category_Sub_Division__c</name>
@@ -496,6 +556,11 @@ The default image will be used if no file is uploaded here. --></help>
             <masterLabel>Skin</masterLabel>
             <translation><!-- Skin --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Category --></label>
+        <name>Product_Category__c</name>
+        <relationshipLabel><!-- Brand Experience List (Product Category) --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Inoplan ID --></label>
@@ -612,6 +677,14 @@ Expired - when the BET and its associated assets have expired. --></help>
         <label><!-- Sub Category --></label>
         <name>Sub_Category__c</name>
         <relationshipLabel><!-- Brand Experience --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Total Actual Assets --></label>
+        <name>Total_Actual_Assets__c</name>
+    </fields>
+    <fields>
+        <label><!-- Total Expected Assets --></label>
+        <name>Total_Expected_Assets__c</name>
     </fields>
     <fields>
         <help><!-- Total Number of BET members.Updated by trigger,when a new member is added/deleted --></help>

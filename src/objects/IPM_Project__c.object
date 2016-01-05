@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Used by the IPM project.</description>
@@ -52,6 +53,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -2556,6 +2558,11 @@ OwnerId))</formula>
         <language>en_US</language>
     </listViews>
     <listViews>
+        <fullName>All1</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
         <fullName>Finder</fullName>
         <columns>NAME</columns>
         <columns>IPM_Project_Description__c</columns>
@@ -2598,7 +2605,6 @@ OwnerId))</formula>
         <label>Finder Local Projects</label>
         <language>en_US</language>
     </listViews>
-    
     <listViews>
         <fullName>My_IPM_Projects</fullName>
         <columns>CREATED_DATE</columns>

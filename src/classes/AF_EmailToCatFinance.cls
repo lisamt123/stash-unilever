@@ -63,7 +63,7 @@ public class AF_EmailToCatFinance
                     }
                     
                     
-                    if(!emailslist.isempty())
+                    if(!emailslist.isempty() && !Test.isRunningTest())
                     {     
                         Messaging.sendEmail(emailslist);
                     }

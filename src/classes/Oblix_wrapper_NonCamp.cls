@@ -11,6 +11,7 @@ public class Oblix_wrapper_NonCamp{
         public String selectedCountryname{get;set;}
         public String selectedAgencyDepartment{get;set;}
         public String Rate {get;set;}
+        public String RateRounded {get;set;}
         public String result {get;set;}
         public  integer val {get;set;}
         
@@ -29,16 +30,18 @@ public class Oblix_wrapper_NonCamp{
         
         public void clear() {
              lookupActivity = new Marketing_Basics__c ();
+            String empty_Value = '';
             lookupActivity.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get(ActivityName);
-            lookupActivity.Activities__c = '';
-            lookupActivity.Other_Activities__c = '';
+            lookupActivity.Activities__c = empty_Value;
+            lookupActivity.Other_Activities__c = empty_Value;
             val = 0;
-            selectedCountry = '';
-            selectedCountryname = '';
-            selectedRoleTitle = '';
-            selectedAgencyDepartment = '';
-            result = '';
-            rate = '';
+            selectedCountry = empty_Value;
+            selectedCountryname = empty_Value;
+            selectedRoleTitle = empty_Value;
+            selectedAgencyDepartment = empty_Value;
+            result = empty_Value;
+            rate = empty_Value;
+            rateRounded = empty_Value;
            
             agencyVisible = false;
             roleVisible = false;

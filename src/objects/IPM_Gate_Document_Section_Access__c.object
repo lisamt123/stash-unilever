@@ -19,4 +19,5 @@
         <type>TextArea</type>
     </fields>
     <label>IPM Gate Document Section Access</label>
+    <visibility>Public</visibility>
 </CustomObject>

@@ -46,10 +46,22 @@ public with sharing class Oblix_TestUtils {
         return category;
     }
 
+    public static MDO_Category__c createSmallProductCategory(Id parentBigCategoryId){
+        MDO_Category__c category = new MDO_Category__c(name = DEFAULT_SMALL_PROD_CAT_NAME, parent_L2__c = parentBigCategoryId);
+        insert category;
+        return category;
+    }
+
     public static MDO_Category__c createBigProductCategory(){
         MDO_Category__c category = new MDO_Category__c(name = DEFAULT_BIG_PROD_CAT_NAME);
         insert category;
         return category;
+    }
+
+    public static MDO_CategoryBrands__c createCategoryBrand(MDO_Category__c category, MDO_Brand__c brand){
+        MDO_CategoryBrands__c categoryBrand = new MDO_CategoryBrands__c(product_Category_Id__c = category.Id, brand_id__c = brand.Id);
+        insert categoryBrand;
+        return categoryBrand;
     }
 
 

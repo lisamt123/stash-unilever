@@ -96,6 +96,40 @@
 <!-- Common_Style File Start -->
 <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
 <!-- Common_Style File End -->
+
+<!-- Adding comma in Text box -->
+<script>
+jQuery( function() {
+ jQuery('input.number').keyup(function(event){
+      // skip for arrow keys
+      if(event.which >= 37 && event.which <= 40){
+          event.preventDefault();
+      }
+      var $this = jQuery(this);
+      var num = $this.val().replace(/,/gi, "").split("").reverse().join("");
+      var num2 = RemoveRougeChar(num.replace(/(.{3})/g,"$1,").split("").reverse().join("")); 
+      console.log(num2);
+      
+      
+      // the following line has been simplified. Revision history contains original.
+      $this.val(num2);
+  });
+});
+
+ function RemoveRougeChar(convertString){
+    
+    
+    if(convertString.substring(0,1) == ","){
+        
+        return convertString.substring(1, convertString.length)            
+        
+    }
+    return convertString;
+    
+}
+</script>
+<!-- Adding comma in Text box End -->
+
 <!-- Only Allow Numbers and (,.+-) -->
  <script>  
  jQuery( function() {
@@ -192,7 +226,7 @@ jQuery(document).ready(function(){
            </td>
             <td class="paddingR10">                 
                <span class="labelName">Traditional: </span>                             
-            <apex:inputText value="{!TraditionalDisplay}" onkeypress="return isNumberKey(event)" id="traditionalInput"  styleClass="values1"> 
+            <apex:inputText value="{!TraditionalDisplay}" onkeypress="return isNumberKey(event)" id="traditionalInput"  styleClass="values1 number"> 
                 <apex:actionSupport event="onchange" 
                                 action="{!CalculateTotal}" 
                                 rerender="totalFigure" /> 
@@ -200,7 +234,7 @@ jQuery(document).ready(function(){
             </td> 
                 <td class="paddingR10"> 
               <span class="labelName">Digital:</span>            
-                <apex:inputText value="{!DigitalDisplay}" onkeypress="return isNumberKey(event)" styleClass="values1" >                                               
+                <apex:inputText value="{!DigitalDisplay}" onkeypress="return isNumberKey(event)" styleClass="values1 number" >                                               
                             <apex:actionSupport event="onchange" 
                                 action="{!CalculateTotal}" 
                                 rerender="totalFigure" /> 
@@ -209,7 +243,7 @@ jQuery(document).ready(function(){
                     </td> 
             <td class="paddingR10"> 
               <span class="labelName">Adaptation:</span>                       
-                <apex:inputText onkeypress="return isNumberKey(event)" value="{!AdaptationDisplay}" styleClass="values1" >                                 
+                <apex:inputText onkeypress="return isNumberKey(event)" value="{!AdaptationDisplay}" styleClass="values1 number" >                                 
                             <apex:actionSupport event="onchange" 
                                 action="{!CalculateTotal}" 
                                 rerender="totalFigure" /> 

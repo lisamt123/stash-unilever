@@ -15,7 +15,7 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 			Test.startTest();
 
 			MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
-
+ 
 			Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
 
 			Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
@@ -277,4 +277,74 @@ private class Oblix_Ctrl06SOWView_CC_Test {
 
 		}
 	}
+
+	@isTest
+	static void populateBigSmallC_Test(){
+
+		System.runAs(Oblix_TestUtils.createTestUser()) {
+
+			MDO_Brand__c brand = Oblix_TestUtils.createBrand(TEST_NAME, TEST_NAME);
+			Marketing_SOW__c marketingSow = Oblix_TestUtils.createTestMarketingSow(TEST_NAME, null,
+			                                brand.Id);
+			marketingSow.BB_or_BD__c = 'BD';
+			
+			MDO_Category__c bigCategory = Oblix_TestUtils.createBigProductCategory();
+			MDO_Category__c smallCategory = Oblix_TestUtils.createSmallProductCategory(bigCategory.Id);
+
+			Oblix_Ctrl06SOWView_CC controller = new Oblix_Ctrl06SOWView_CC();
+			controller.selSow = marketingSow;
+
+			Test.startTest();
+
+			controller.getCategoryBrand();
+
+			System.assertEquals(null, controller.selSow.SmallProductCategory__c);
+			System.assertEquals(null, controller.selSow.BigOblixProductCategory__c);
+
+			Oblix_TestUtils.createCategoryBrand(smallCategory, brand);
+
+			controller.getCategoryBrand();
+
+			Test.stopTest();
+
+			System.assertEquals(smallCategory.Id, controller.selSow.SmallProductCategory__c);
+			System.assertEquals(bigCategory.Id, controller.selSow.BigOblixProductCategory__c);
+
+		}
+
+	}
+
+	@isTest
+	static void reportListTest(){
+		System.runAs(Oblix_TestUtils.createTestUser()) {
+
+			Test.startTest();
+
+			PageReference pr = Oblix_Ctrl06SOWView_CC.reportFolderURL;
+
+			Test.stopTest();
+
+			System.assertNotEquals(null, pr);
+
+		}
+
+	}
+
+	@isTest
+	static void ftSelectOptionsTest(){
+		System.runAs(Oblix_TestUtils.createTestUser()) {
+
+			Test.startTest();
+
+			Oblix_Ctrl06SOWView_CC controller = new Oblix_Ctrl06SOWView_CC();
+			List<SelectOption> fyOptions = controller.getFYSelectOptions();
+
+			Test.stopTest();
+
+			System.assert(fyOptions.size() > 0);
+
+		}
+
+	}
+	
 }

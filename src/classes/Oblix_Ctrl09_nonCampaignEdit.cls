@@ -269,17 +269,25 @@
             return null;
         }
         
+         /*
+        Description : this action is called from button remove, its used to delete one item from the list  
+        */
         public void delElm() {
             if (newItems[elemToDel].id != null) {Xitems.add(newItems[elemToDel]);  }
             newItems.remove(elemToDel);
             saveStatus = 'Unsaved';
         }
         
+         /*
+        Description : this action is called from button edit, its used to fill the form with correct values 
+        */
         public void editItem() {
             fillData(newItems[elemToEdit]);
         }
         
-        
+         /*
+        Description : used to update List of non campaigns Activities by Adding new item or update existing Item 
+        */
         public void addToNew() {
             saveStatus = 'Unsaved';
             myMessages = false;
@@ -316,7 +324,7 @@
             newItem.Role_Title__c =  myAct.selectedRoleTitle;
             newItem.Agency_Department__c = myAct.selectedAgencyDepartment;
             calculResult();
-            newItem.OblixOtherItemFee__c = Integer.valueof(myAct.result);//.setScale(0); // myAct.result =myAct.result.setScale(2);
+            newItem.OblixOtherItemFee__c = Math.round(Decimal.valueof(myAct.result));//.setScale(0); // myAct.result =myAct.result.setScale(2);
             Marketing_Basics__c x = newItem;
             if (edit1) { // c'est un update
                 newItems[ElemToEdit] = x;
@@ -329,6 +337,9 @@
         
         }
         
+        /*
+        Description : Method used to update List of non campaigns Resources by Adding new item or update existing Item 
+        */
         public void addToNew1() {
             saveStatus = 'Unsaved';
              myMessages1 = false;
@@ -363,7 +374,9 @@
            // newItem1.id = itemID1;
             newItem1.Agency_Department__c = myRes.selectedAgencyDepartment;
             calculResult1();
-            newItem1.OblixOtherItemFee__c = Integer.valueof(myRes.result);//.setScale(0); // result =result.setScale(2)
+         //   newItem1.OblixOtherItemFee__c = Integer.valueof(myRes.result);//.setScale(0); // result =result.setScale(2)
+            newItem1.OblixOtherItemFee__c = Math.round(Decimal.valueof(myRes.result));//.setScale(0); // result =result.setScale(2)
+         
             if (edit2) { // c'est un Edit
                 newItems[ElemToEdit] = newItem1;
                 edit2 = false;
@@ -374,16 +387,27 @@
             myRes.name='';
         }
         
+         /*
+        Description : Method used to calculate result for Activity 
+        */
         public void calculResult() {
             system.debug('============+=+=+=+=+=+=+=+=+= calculResult=+=+=+=+=+=+=+=+=+============================');
-            myAct.result = String.valueof((Integer.valueof(myAct.Rate.trim()) * myAct.val));//.setScale(0));
+            myAct.result = String.valueof(Math.round(Decimal.valueof(myAct.Rate.trim()) * myAct.val));//.setScale(0));
             //  result =result;
         }
+        
+          /*
+        Description : Method used to calculate result for Resource
+        */
         public void calculResult1() {
             system.debug('============+=+=+=+=+=+=+=+=+= calculResult1=+=+=+=+=+=+=+=+=+============================');
-            myRes.result = String.valueof((Integer.valueof(myRes.Rate.trim()) * myRes.val / 100));//.setScale(0));
+            myRes.result = String.valueof(Math.round(Decimal.valueof(myRes.Rate.trim()) * myRes.val / 100));//.setScale(0));
             //result1 =result1;       
         }
+        
+        /*
+        Description : Method used to update Rate options in Resource form 
+        */
         public void fillRate1() {
             system.debug('============+=+=+=+=+=+=+=+=+= fillrate1 =+=+=+=+=+=+=+=+=+============================');
         
@@ -399,7 +423,8 @@
                 myRes.valVisible = true;
                 myRes.resultVisible = true;
                 myRes.addVisible = true;
-                myRes.Rate = String.valueOf(Integer.valueOf(Rates[0].FTE__c));
+                myRes.Rate = String.valueOf((Rates[0].FTE__c));//Integer.valueOf  Math.round
+                myRes.RateRounded = String.valueOf( Math.round(Rates[0].FTE__c));//Integer.valueOf 
                 errMsg1 = false;
             }
         /*    if (Rates.size() > 1) {
@@ -408,6 +433,10 @@
             } */
             //else there is more than 1 or 0 => error 
         }
+        
+        /*
+        Description : Method used to update Rate options in Activities form 
+        */
         public void fillRate() {
             system.debug('============+=+=+=+=+=+=+=+=+= fillrate =+=+=+=+=+=+=+=+=+============================');
         
@@ -424,7 +453,8 @@
                 myAct.valVisible = true;
                 myAct.resultVisible = true;
                 myAct.addVisible = true;
-                myAct.Rate = String.valueOf(Integer.valueOf(Rates[0].Role_Daily_Rate_EUR__c));
+                myAct.Rate = String.valueOf((Rates[0].Role_Daily_Rate_EUR__c));//Math.round
+                myAct.RateRounded = String.valueOf(Math.round(Rates[0].Role_Daily_Rate_EUR__c));//
                 errMsg = false;
             }
            /*  if (Rates.size() > 1) {
@@ -434,6 +464,9 @@
             //else there is more than 1 or 0 => error 
         }
         
+         /*
+        Description : Method used to update roleTatle options in Activities form 
+        */
         public void fillRoleTitle() {
             system.debug('============+=+=+=+=+=+=+=+=+= fillRoleTitle=+=+=+=+=+=+=+=+=+============================');
         
@@ -466,6 +499,10 @@
                 //else add error (there is no rt to select)
             }
         }
+     
+        /*
+        Description : Method used to update roleTatle options in resource form 
+        */
         public void fillRoleTitle1() {
         
             system.debug('============+=+=+=+=+=+=+=+=+= fillRoleTitle1=+=+=+=+=+=+=+=+=+============================');
@@ -501,6 +538,10 @@
                 //else add error (there is no rt to select)
             }
         }
+        
+        /*
+        Description : Method used to update Agency departements options in Activities form 
+        */
         public void fillAgencyDepartment() {
             system.debug('============+=+=+=+=+=+=+=+=+= fillAgencyDepartment=+=+=+=+=+=+=+=+=+============================');
             RoleTitles = new List < SelectOption > ();
@@ -556,6 +597,9 @@
         
         }
         
+        /*
+        Description : Method used to update Agency departements options in resources form 
+        */
         public void fillAgencyDepartment1() {
             system.debug('============+=+=+=+=+=+=+=+=+= fillAgencyDepartment1=+=+=+=+=+=+=+=+=+============================');
         
@@ -629,6 +673,10 @@
          *  @reference : getCountry(), Oblix_Utils.selectOptionSortByLabel(countries)
          * @return void
          */
+         
+        /*
+        Description : Method used to update Countries options in Activities and resources form 
+        */
         public void fillCountries() {/*
             system.debug('============+=+=+=+=+=+=+=+=+= fillCountries =+=+=+=+=+=+=+=+=+============================');
             countries = getCountry();
@@ -685,15 +733,15 @@
          */
         public pagereference back() {
             Pagereference meNewPage = Page.Oblix_VF10_nonCampaignView;
-				meNewPage.getParameters().put('MSid', MSid);
-            	meNewPage.setRedirect(True);
+                meNewPage.getParameters().put('MSid', MSid);
+                meNewPage.setRedirect(True);
             return meNewPage;
             return null;
         } 
         public pagereference backtoSow(){
          Pagereference meNewPage = Page.Oblix_VF06_SOWView;
-				meNewPage.getParameters().put('sowId', MSid);
-            	meNewPage.setRedirect(True);
+                meNewPage.getParameters().put('sowId', MSid);
+                meNewPage.setRedirect(True);
            return meNewPage;
         
         }

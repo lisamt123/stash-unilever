@@ -18,9 +18,16 @@ private class OV_SearchService2_Test {
     public static final String TABLET_LABEL         = 'Tablet';
     public static final String DESKTOP_LABEL        = 'Desktop';
         
-    /*
+    public static final String COLOR_LABEL        = '#ccc';
+    public static final String SUBJECT_LABEL        = 'Subject';
+    
     @isTest
     static void testDeviceVisibility() {
+        User u = OV_TestingHelper.createAdminUser(testLabel, 'test@test.com', 'test2');
+        system.runAs(u){
+        
+        OV_Profile__c profile = new OV_Profile__c(User__c = u.Id);
+        insert profile;
         OV_Category__c category1 = OV_TestingHelper.initCategory('Category 1', true);
         OV_Category__c category2 = OV_TestingHelper.initCategory('Category 2', category1, true);
         OV_Category__c category3 = OV_TestingHelper.initCategory('Category 3', category2, true);
@@ -41,73 +48,74 @@ private class OV_SearchService2_Test {
         OV_Report__c report2 = OV_TestingHelper.initReportWithProxy(REPORT2_LABEL, category1, function1, geography1, MOBILE_LABEL, proxy.Id, true);
         OV_Report__c report3 = OV_TestingHelper.initReportWithProxy(REPORT3_LABEL, category1, function1, geography1, TABLET_LABEL, proxy.Id, true);
 
-        OV_Shelf__c shelf1 = OV_TestingHelper.initShelf('Shelf1', 'Subject', true);
-        OV_Shelf_Tile__c tile1 = OV_TestingHelper.initShelfTile('Tile 1', '#ccc', SAMPLE_IMAGE_URL, shelf1, true);
+        OV_Shelf__c shelf1 = OV_TestingHelper.initShelf('Shelf1', SUBJECT_LABEL, true);
+        OV_Shelf_Tile__c tile1 = OV_TestingHelper.initShelfTile('Tile 1', COLOR_LABEL, SAMPLE_IMAGE_URL, shelf1, true);
 
         OV_ShelfTileReport__c connectReportToTile1 = OV_TestingHelper.initReportToShelfTile(report1, tile1, true);
         OV_ShelfTileReport__c connectReportToTile2 = OV_TestingHelper.initReportToShelfTile(report2, tile1, true);
         OV_ShelfTileReport__c connectReportToTile3 = OV_TestingHelper.initReportToShelfTile(report3, tile1, true);
 
-        List<OV_Wrapper.ShelfWrapper> result1 = OV_SearchService2.search(geography1.Id, '', '', false, 'Subject', DESKTOP_LABEL);
+        List<OV_Wrapper.ShelfWrapper> result1 = OV_SearchService2.search(geography1.Id, '', '', false, SUBJECT_LABEL, DESKTOP_LABEL);
         System.assertEquals(1, result1.size());
 
-        List<OV_Wrapper.ShelfWrapper> result2 = OV_SearchService2.search(geography1.Id, category1.Id, function1.Id, false, 'Subject', MOBILE_LABEL);
+        List<OV_Wrapper.ShelfWrapper> result2 = OV_SearchService2.search(geography1.Id, category1.Id, function1.Id, false, SUBJECT_LABEL, MOBILE_LABEL);
         System.assertEquals(1, result2.size());
 
-        List<OV_Wrapper.ShelfWrapper> result3 = OV_SearchService2.search(geography1.Id, '', '', true, 'Subject', TABLET_LABEL);
+        List<OV_Wrapper.ShelfWrapper> result3 = OV_SearchService2.search(geography1.Id, '', '', true, SUBJECT_LABEL, TABLET_LABEL);
         System.assertEquals(1, result3.size());
 
         //invalid parameters check
         try {
-            List<OV_Wrapper.ShelfWrapper> result5 = OV_SearchService2.search(geography1.Id, 'aaaaaaa', '', true, 'Subject', DESKTOP_LABEL);
+            List<OV_Wrapper.ShelfWrapper> result5 = OV_SearchService2.search(geography1.Id, 'aaaaaaa', '', true, SUBJECT_LABEL, DESKTOP_LABEL);
         }
         catch(Exception e) {
             system.assert(e.getMessage().contains('Invalid parameters to build query'));
         }
-
-        List<OV_Wrapper.ReportWrapper> reportList1 = OV_SearchService2.getTileReports(geography1.Id, '', '', false, 'Subject', result1[0].shelfTiles[0].shelfTileId, DESKTOP_LABEL);
+        /*
+        List<OV_Wrapper.ReportWrapper> reportList1 = OV_SearchService2.getTileReports(geography1.Id, '', '', false, SUBJECT_LABEL, result1[0].shelfTiles[0].shelfTileId, DESKTOP_LABEL);
         System.assertEquals(1, reportList1.size());
 
-        List<OV_Wrapper.ReportWrapper> reportList2 = OV_SearchService2.getTileReports(geography1.Id, '', '', false, 'Subject', result1[0].shelfTiles[0].shelfTileId, TABLET_LABEL);
+        List<OV_Wrapper.ReportWrapper> reportList2 = OV_SearchService2.getTileReports(geography1.Id, '', '', false, SUBJECT_LABEL, result1[0].shelfTiles[0].shelfTileId, TABLET_LABEL);
         System.assertEquals(1, reportList2.size());
 
-        List<OV_Wrapper.ReportWrapper> reportList3 = OV_SearchService2.getTileReports(geography1.Id, '', '', false, 'Subject', result1[0].shelfTiles[0].shelfTileId, MOBILE_LABEL);
+        List<OV_Wrapper.ReportWrapper> reportList3 = OV_SearchService2.getTileReports(geography1.Id, '', '', false, SUBJECT_LABEL, result1[0].shelfTiles[0].shelfTileId, MOBILE_LABEL);
         System.assertEquals(1, reportList3.size());
-
+        */
         //test getTileReports2 method
-        Map<String, Object> reportMap1 = OV_SearchService2.getTileReports2(geography1.Id, '', '', false, 'Subject', result1[0].shelfTiles[0].shelfTileId, DESKTOP_LABEL);
+        Map<String, Object> reportMap1 = OV_SearchService2.getTileReports2(geography1.Id, '', '', false, SUBJECT_LABEL, result1[0].shelfTiles[0].shelfTileId, DESKTOP_LABEL);
         System.assertEquals(1, reportMap1.keySet().size());
 
-        Map<String, Object> reportMap2 = OV_SearchService2.getTileReports2(geography1.Id, '', '', false, 'Subject', result1[0].shelfTiles[0].shelfTileId, TABLET_LABEL);
+        Map<String, Object> reportMap2 = OV_SearchService2.getTileReports2(geography1.Id, '', '', false, SUBJECT_LABEL, result1[0].shelfTiles[0].shelfTileId, TABLET_LABEL);
         System.assertEquals(1, reportMap2.keySet().size());
 
-        Map<String, Object> reportMap3 = OV_SearchService2.getTileReports2(geography1.Id, '', '', false, 'Subject', result1[0].shelfTiles[0].shelfTileId, MOBILE_LABEL);
+        Map<String, Object> reportMap3 = OV_SearchService2.getTileReports2(geography1.Id, '', '', false, SUBJECT_LABEL, result1[0].shelfTiles[0].shelfTileId, MOBILE_LABEL);
         System.assertEquals(1, reportMap3.keySet().size());
 
         //change proxy setting to test static part of methods getTileReports/getTileReports2
         proxy.Url__c = null;
         update proxy;
-
-        List<OV_Wrapper.ReportWrapper> reportList4 = OV_SearchService2.getTileReports(geography1.Id, '', '', false, 'Subject', result1[0].shelfTiles[0].shelfTileId, DESKTOP_LABEL);
+        /*
+        List<OV_Wrapper.ReportWrapper> reportList4 = OV_SearchService2.getTileReports(geography1.Id, '', '', false, SUBJECT_LABEL, result1[0].shelfTiles[0].shelfTileId, DESKTOP_LABEL);
         System.assertEquals(1, reportList4.size());
 
-        List<OV_Wrapper.ReportWrapper> reportList5 = OV_SearchService2.getTileReports(geography1.Id, '', '', false, 'Subject', result1[0].shelfTiles[0].shelfTileId, TABLET_LABEL);
+        List<OV_Wrapper.ReportWrapper> reportList5 = OV_SearchService2.getTileReports(geography1.Id, '', '', false, SUBJECT_LABEL, result1[0].shelfTiles[0].shelfTileId, TABLET_LABEL);
         System.assertEquals(1, reportList5.size());
 
-        List<OV_Wrapper.ReportWrapper> reportList6 = OV_SearchService2.getTileReports(geography1.Id, '', '', false, 'Subject', result1[0].shelfTiles[0].shelfTileId, MOBILE_LABEL);
+        List<OV_Wrapper.ReportWrapper> reportList6 = OV_SearchService2.getTileReports(geography1.Id, '', '', false, SUBJECT_LABEL, result1[0].shelfTiles[0].shelfTileId, MOBILE_LABEL);
         System.assertEquals(1, reportList6.size());
-
+        */
         //test getTileReports2 method
-        Map<String, Object> reportMap4 = OV_SearchService2.getTileReports2(geography1.Id, '', '', false, 'Subject', result1[0].shelfTiles[0].shelfTileId, DESKTOP_LABEL);
+        Map<String, Object> reportMap4 = OV_SearchService2.getTileReports2(geography1.Id, '', '', false, SUBJECT_LABEL, result1[0].shelfTiles[0].shelfTileId, DESKTOP_LABEL);
         System.assertEquals(1, reportMap4.keySet().size());
 
-        Map<String, Object> reportMap5 = OV_SearchService2.getTileReports2(geography1.Id, '', '', false, 'Subject', result1[0].shelfTiles[0].shelfTileId, TABLET_LABEL);
+        Map<String, Object> reportMap5 = OV_SearchService2.getTileReports2(geography1.Id, '', '', false, SUBJECT_LABEL, result1[0].shelfTiles[0].shelfTileId, TABLET_LABEL);
         System.assertEquals(1, reportMap5.keySet().size());
 
-        Map<String, Object> reportMap6 = OV_SearchService2.getTileReports2(geography1.Id, '', '', false, 'Subject', result1[0].shelfTiles[0].shelfTileId, MOBILE_LABEL);
+        Map<String, Object> reportMap6 = OV_SearchService2.getTileReports2(geography1.Id, '', '', false, SUBJECT_LABEL, result1[0].shelfTiles[0].shelfTileId, MOBILE_LABEL);
         System.assertEquals(1, reportMap6.keySet().size());
+        }
     }
-    */    
+       
 
     @isTest
     static void testReportDetails() {
@@ -130,8 +138,8 @@ private class OV_SearchService2_Test {
         OV_Report__c report2 = OV_TestingHelper.initReportWithProxy(REPORT2_LABEL, category1, function1, geography1, MOBILE_LABEL, proxy.Id, true);
         OV_Report__c report3 = OV_TestingHelper.initReportWithProxy(REPORT3_LABEL, category1, function1, geography1, TABLET_LABEL, proxy.Id, true);
 
-        OV_Shelf__c shelf1 = OV_TestingHelper.initShelf('Shelf1', 'Subject', true);
-        OV_Shelf_Tile__c tile1 = OV_TestingHelper.initShelfTile('Tile 1', '#ccc', SAMPLE_IMAGE_URL, shelf1, true);
+        OV_Shelf__c shelf1 = OV_TestingHelper.initShelf('Shelf1', SUBJECT_LABEL, true);
+        OV_Shelf_Tile__c tile1 = OV_TestingHelper.initShelfTile('Tile 1', COLOR_LABEL, SAMPLE_IMAGE_URL, shelf1, true);
 
         OV_ShelfTileReport__c connectReportToTile1 = OV_TestingHelper.initReportToShelfTile(report1, tile1, true);
         OV_ShelfTileReport__c connectReportToTile2 = OV_TestingHelper.initReportToShelfTile(report2, tile1, true);
@@ -152,8 +160,8 @@ private class OV_SearchService2_Test {
         OV_Wrapper.ReportWrapper result2 = OV_SearchService2.getReportDetails(report3.Id, tile1.Id, TABLET_LABEL);
         System.assertEquals(result2.reportTitle, report3.Name);
 
-        OV_Shelf__c shelf2 = OV_TestingHelper.initShelf('Shelf2', 'Subject', true);
-        OV_Shelf_Tile__c tile2 = OV_TestingHelper.initShelfTile('Tile 2', '#ccc', SAMPLE_IMAGE_URL, shelf2, true);        
+        OV_Shelf__c shelf2 = OV_TestingHelper.initShelf('Shelf2', SUBJECT_LABEL, true);
+        OV_Shelf_Tile__c tile2 = OV_TestingHelper.initShelfTile('Tile 2', COLOR_LABEL, SAMPLE_IMAGE_URL, shelf2, true);        
 
         //ContentWorkspace testWorkspace = [SELECT Id FROM ContentWorkspace WHERE Name = 'test']; 
         //create ContentVersion add it to library
@@ -235,8 +243,8 @@ private class OV_SearchService2_Test {
         OV_ContentProxy__c proxy2 = OV_TestingHelper.initContentProxy(document2.Id, titleLabel, contentVersion2.Id, SAMPLE_URL, true);
         OV_ContentProxy__c proxy3 = OV_TestingHelper.initContentProxy(document3.Id, titleLabel, contentVersion3.Id, SAMPLE_URL, true);
 
-        OV_Shelf__c shelf1 = OV_TestingHelper.initShelf('Shelf1', 'Subject', true);
-        OV_Shelf_Tile__c tile1 = OV_TestingHelper.initShelfTile('Tile 1', '#ccc', SAMPLE_IMAGE_URL, shelf1, true);
+        OV_Shelf__c shelf1 = OV_TestingHelper.initShelf('Shelf1', SUBJECT_LABEL, true);
+        OV_Shelf_Tile__c tile1 = OV_TestingHelper.initShelfTile('Tile 1', COLOR_LABEL, SAMPLE_IMAGE_URL, shelf1, true);
 
         OV_Report__c report1 = OV_TestingHelper.initReportWithProxy(REPORT1_LABEL, category1, function1, geography1, DESKTOP_LABEL, proxy1.Id, true);
         report1.Favourite_From_Shelf_Tile__c = tile1.Id;
