@@ -71,6 +71,6 @@
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>Account.Stocked_Products__r$UID_Start_Date__c</dateColumn>
-        <interval>INTERVAL_THISMONTH</interval>
+        <interval>INTERVAL_LAST60</interval>
     </timeFrameFilter>
 </Report>

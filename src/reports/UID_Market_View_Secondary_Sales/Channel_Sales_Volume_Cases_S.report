@@ -63,7 +63,7 @@
         <field>Account.Orders__r.OrderItems$UID_Material_Name__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
-    <name>Channel Sales Volume (Cases) - S</name>
+    <name>Channel Sales Volume (Cases) - Secondary</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -73,6 +73,6 @@
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>Account.Orders__r$EffectiveDate</dateColumn>
-        <interval>INTERVAL_CURY</interval>
+        <interval>INTERVAL_PREVCURY</interval>
     </timeFrameFilter>
 </Report>

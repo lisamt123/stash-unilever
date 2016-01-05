@@ -8,6 +8,10 @@
             <operator>equals</operator>
             <values>Distributor User</values>
         </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>BESTBUY MALDIVES PVT LTD</values>
+        </dashboardFilterOptions>
         <name>Distributor</name>
     </dashboardFilters>
     <dashboardFilters>
@@ -397,7 +401,7 @@
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>
-    <runningUser>rex.n.b.mangaoang@accenture.com</runningUser>
+    <runningUser>test.user1@unilever.com.uiuat</runningUser>
     <textColor>#000000</textColor>
     <title>05. Category Trend - Primary Sales</title>
     <titleColor>#000000</titleColor>

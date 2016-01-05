@@ -53,14 +53,6 @@
         <aggregateTypes>Average</aggregateTypes>
         <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Stock_Cover__c</field>
     </columns>
-    <filter>
-        <criteriaItems>
-            <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Stock_Cover__c</column>
-            <operator>notEqual</operator>
-            <value>0</value>
-        </criteriaItems>
-        <language>en_US</language>
-    </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>MonthInYear</dateGranularity>
@@ -87,6 +79,6 @@
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>Account.Stocked_Products__r$UID_Start_Date__c</dateColumn>
-        <interval>INTERVAL_CURY</interval>
+        <interval>INTERVAL_PREVCURY</interval>
     </timeFrameFilter>
 </Report>

@@ -8,6 +8,10 @@
             <operator>equals</operator>
             <values>Distributor User</values>
         </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>BESTBUY MALDIVES PVT LTD</values>
+        </dashboardFilterOptions>
         <name>Distributor</name>
     </dashboardFilters>
     <dashboardFilters>

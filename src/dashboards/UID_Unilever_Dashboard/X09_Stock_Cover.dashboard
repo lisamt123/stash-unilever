@@ -8,6 +8,10 @@
             <operator>equals</operator>
             <values>Distributor User</values>
         </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>BESTBUY MALDIVES PVT LTD</values>
+        </dashboardFilterOptions>
         <name>Distributor</name>
     </dashboardFilters>
     <dashboardFilters>
@@ -107,7 +111,7 @@
                 <axisBinding>y</axisBinding>
                 <column>FORMULA1</column>
             </chartSummary>
-            <componentType>Bar</componentType>
+            <componentType>Column</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
             </dashboardFilterColumns>
@@ -128,7 +132,6 @@
             <maxValuesDisplayed>12</maxValuesDisplayed>
             <report>UID_Stock_Cover/Monthly_Stock_Cover_Days2</report>
             <showPercentage>false</showPercentage>
-            <showPicturesOnCharts>false</showPicturesOnCharts>
             <showValues>true</showValues>
             <sortBy>RowLabelDescending</sortBy>
             <useReportChart>false</useReportChart>

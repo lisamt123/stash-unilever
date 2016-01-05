@@ -8,6 +8,10 @@
             <operator>equals</operator>
             <values>Distributor User</values>
         </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>BESTBUY MALDIVES PVT LTD</values>
+        </dashboardFilterOptions>
         <name>Distributor</name>
     </dashboardFilters>
     <dashboardFilters>
@@ -188,11 +192,10 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Channel__c</groupingColumn>
             <header>Top Channels - Sales Volume (Cases)</header>
-            <legendPosition>OnChart</legendPosition>
-            <maxValuesDisplayed>4</maxValuesDisplayed>
+            <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View_Secondary_Sales/Channel_Sales_Volume_Cases_S</report>
             <showPercentage>true</showPercentage>
             <showValues>false</showValues>
@@ -224,14 +227,13 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
             <header>Top Brands - Sales Volume (Cases)</header>
-            <legendPosition>OnChart</legendPosition>
-            <maxValuesDisplayed>5</maxValuesDisplayed>
+            <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View_Secondary_Sales/Brand_Sales_Volume_Cases_S</report>
             <showPercentage>true</showPercentage>
-            <showTotal>false</showTotal>
+            <showTotal>true</showTotal>
             <showValues>false</showValues>
             <sortBy>RowValueDescending</sortBy>
             <useReportChart>false</useReportChart>
@@ -258,14 +260,13 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
             <header>Top Brands - Sales Value (USD)</header>
-            <legendPosition>OnChart</legendPosition>
-            <maxValuesDisplayed>5</maxValuesDisplayed>
+            <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View_Secondary_Sales/Brand_Sales_Value_USD_S</report>
             <showPercentage>true</showPercentage>
-            <showTotal>false</showTotal>
+            <showTotal>true</showTotal>
             <showValues>false</showValues>
             <sortBy>RowValueDescending</sortBy>
             <useReportChart>false</useReportChart>
@@ -292,11 +293,10 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Channel__c</groupingColumn>
             <header>Top Channels - Sales Value (USD)</header>
-            <legendPosition>OnChart</legendPosition>
-            <maxValuesDisplayed>4</maxValuesDisplayed>
+            <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View_Secondary_Sales/Channel_Sales_Value_USD_S</report>
             <showPercentage>true</showPercentage>
             <showValues>false</showValues>
@@ -328,11 +328,10 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Material_Name__c</groupingColumn>
             <header>Top SKUs - Sales Volume (Cases)</header>
-            <legendPosition>OnChart</legendPosition>
-            <maxValuesDisplayed>5</maxValuesDisplayed>
+            <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View_Secondary_Sales/SKU_Sales_Volume_Cases_S</report>
             <showPercentage>true</showPercentage>
             <showValues>false</showValues>
@@ -361,11 +360,10 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Material_Name__c</groupingColumn>
             <header>Top SKUs - Sales Value (USD)</header>
-            <legendPosition>OnChart</legendPosition>
-            <maxValuesDisplayed>5</maxValuesDisplayed>
+            <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View_Secondary_Sales/SKU_Sales_Value_USD_S</report>
             <showPercentage>true</showPercentage>
             <showValues>false</showValues>
@@ -373,7 +371,7 @@
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>
-    <runningUser>christian.b.bolima@accenture.com.unilever</runningUser>
+    <runningUser>test.user1@unilever.com.uiuat</runningUser>
     <textColor>#000000</textColor>
     <title>04. Market View - Secondary Sales</title>
     <titleColor>#000000</titleColor>

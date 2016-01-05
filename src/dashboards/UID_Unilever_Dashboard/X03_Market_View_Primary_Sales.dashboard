@@ -8,6 +8,10 @@
             <operator>equals</operator>
             <values>Distributor User</values>
         </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>BESTBUY MALDIVES PVT LTD</values>
+        </dashboardFilterOptions>
         <name>Distributor</name>
     </dashboardFilters>
     <dashboardFilters>
@@ -191,14 +195,13 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
             <header>Top Brands - Sales Volumes (Cases)</header>
-            <legendPosition>OnChart</legendPosition>
-            <maxValuesDisplayed>5</maxValuesDisplayed>
+            <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View_Primary_Sales/Brand_Sales_Volumes_Cases</report>
             <showPercentage>true</showPercentage>
-            <showTotal>false</showTotal>
+            <showTotal>true</showTotal>
             <showValues>false</showValues>
             <sortBy>RowValueDescending</sortBy>
             <useReportChart>false</useReportChart>
@@ -225,14 +228,13 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
             <header>Top Brands - Sales Value (USD)</header>
-            <legendPosition>OnChart</legendPosition>
-            <maxValuesDisplayed>5</maxValuesDisplayed>
+            <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View_Primary_Sales/Brand_Sales_Value_USD</report>
             <showPercentage>true</showPercentage>
-            <showTotal>false</showTotal>
+            <showTotal>true</showTotal>
             <showValues>false</showValues>
             <sortBy>RowValueDescending</sortBy>
             <useReportChart>false</useReportChart>
@@ -262,11 +264,10 @@
             <drillEnabled>false</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Material_Name__c</groupingColumn>
             <header>Top SKUs - Sales Volumes (Cases)</header>
-            <legendPosition>OnChart</legendPosition>
-            <maxValuesDisplayed>5</maxValuesDisplayed>
+            <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View_Primary_Sales/SKU_Sales_Volumes_Cases</report>
             <showPercentage>true</showPercentage>
             <showValues>false</showValues>
@@ -295,11 +296,10 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Material_Name__c</groupingColumn>
             <header>Top SKUs - Sales Value (USD)</header>
-            <legendPosition>OnChart</legendPosition>
-            <maxValuesDisplayed>5</maxValuesDisplayed>
+            <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View_Primary_Sales/SKU_Sales_Value_USD</report>
             <showPercentage>true</showPercentage>
             <showValues>false</showValues>
@@ -307,7 +307,7 @@
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>
-    <runningUser>christian.b.bolima@accenture.com.unilever</runningUser>
+    <runningUser>test.user1@unilever.com.uiuat</runningUser>
     <textColor>#000000</textColor>
     <title>03. Market View - Primary Sales</title>
     <titleColor>#000000</titleColor>

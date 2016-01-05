@@ -8,6 +8,14 @@
             <operator>equals</operator>
             <values>Distributor User</values>
         </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>LISUN IMPORTACAO E EXPORTACAO - RRASIA</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>BESTBUY MALDIVES PVT LTD</values>
+        </dashboardFilterOptions>
         <name>Distributor</name>
     </dashboardFilters>
     <dashboardFilters>
@@ -110,7 +118,7 @@
             </chartSummary>
             <componentType>Bar</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.OrderItems$UID_Category__c</column>
@@ -188,14 +196,14 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
             <header>Brands - Primary Sales Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View/Brands_Primary_Sales_Volume_Cases</report>
             <showPercentage>true</showPercentage>
-            <showTotal>false</showTotal>
-            <showValues>true</showValues>
+            <showTotal>true</showTotal>
+            <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
@@ -221,14 +229,14 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
             <header>Brands - Primary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View/Brands_Primary_Sales_Value_USD</report>
             <showPercentage>true</showPercentage>
-            <showTotal>false</showTotal>
-            <showValues>true</showValues>
+            <showTotal>true</showTotal>
+            <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
@@ -323,14 +331,14 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
             <header>Brands - Secondary Sales Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View/Brands_Secondary_Sales_Volume_Cases</report>
             <showPercentage>true</showPercentage>
-            <showTotal>false</showTotal>
-            <showValues>true</showValues>
+            <showTotal>true</showTotal>
+            <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
@@ -356,14 +364,14 @@
             <drillEnabled>true</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
-            <expandOthers>true</expandOthers>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
             <header>Brands - Secondary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Market_View/Brands_Secondary_Sales_Value_USD</report>
             <showPercentage>true</showPercentage>
-            <showTotal>false</showTotal>
-            <showValues>true</showValues>
+            <showTotal>true</showTotal>
+            <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
@@ -371,7 +379,7 @@
     <rightSection>
         <columnSize>Wide</columnSize>
     </rightSection>
-    <runningUser>christian.b.bolima@accenture.com.unilever</runningUser>
+    <runningUser>test.user1@unilever.com.uiuat</runningUser>
     <textColor>#000000</textColor>
     <title>02. Market View</title>
     <titleColor>#000000</titleColor>

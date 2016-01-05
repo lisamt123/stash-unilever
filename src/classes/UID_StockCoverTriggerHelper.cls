@@ -17,7 +17,7 @@ public with sharing class UID_StockCoverTriggerHelper {
     private static final String PRIMARY_SALES_RECORDTYPE_NAME = 'Primary Sales';
     private static final String SECONDARY_SALES_RECORDTYPE_NAME = 'Secondary Sales';
     
-    private static Set <Id> stockedProdIds; 
+    //private static Set <Id> stockedProdIds; 
     
     /******************************************************************* 
     Purpose: Populate Report Month of Order
@@ -27,7 +27,8 @@ public with sharing class UID_StockCoverTriggerHelper {
   
     public static void computeStockCover(List<UID_Stocked_Product__c> newStockedProduct , Map<Id, UID_Stocked_Product__c> oldStockedProduct){
         
-        stockedProdIds = new Set <Id>(); 
+        Set <Id> stockedProdIds = new Set <Id>();
+        //stockedProdIds = new Set <Id>(); 
         //Store Stored Product Record Id 
         for (UID_Stocked_Product__c n : newStockedProduct) {
              if (n.UID_Stock_Cover_Calculation_Flag__c && !oldStockedProduct.get(n.Id).UID_Stock_Cover_Calculation_Flag__c) {
@@ -35,11 +36,13 @@ public with sharing class UID_StockCoverTriggerHelper {
              }
         }  
         
-        calculateStockCover();
+        calculateStockCover(stockedProdIds);
+        //calculateStockCover();
     }
     
     @future
-    public static void calculateStockCover() { 
+    public static void calculateStockCover(Set <Id> stockedProdIds) { 
+    //public static void calculateStockCover() { 
         //Variable Declations    
         Map <String, List <UID_Stocked_Product_Summary__c>> openingStockMap = new Map <String, List<UID_Stocked_Product_Summary__c >>();
         Map <String, List <OrderItem>> last3MonthMap = new Map <String, List <OrderItem>>();
