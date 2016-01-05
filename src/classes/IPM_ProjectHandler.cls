@@ -908,6 +908,16 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     * trigger.
     */
     public void beforeDelete(SObject so){      
+        //This method has been included as the class implements the ITrigger interface 
+        IPM_Project__c newProject = (IPM_Project__c) so;
+        if(newProject.IPM_Golbal_Project_OwnerId__c!=null){
+            queueSet.add(newProject.IPM_Golbal_Project_OwnerId__c);
+        }
+        IPM_GroupManagement.deleteQueue(queueSet);
+        if(IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
     }
      
     

@@ -191,7 +191,6 @@
                                             });
                                             
                                             jq(document).off('click', '.generateRolloutBtn').on('click','.generateRolloutBtn', function(){
-                                                alert('GenerateRollout-->>>'); 
                                                 var previousMcoCode = IPMRollOutAdd.SelectedMCO;
                                                 var keyMCO = jq('#keyMCO').is(":checked");
                                                 jq('.countryFilter .countryList input:checkbox').each(function(){

@@ -210,17 +210,15 @@
                                                                                             </apex:outputPanel> 
                                                                                             <span class="{!sec.IPM_CMI_Outcome_Color__c}"></span>
                                                                                         </div>
-                                                                                        <div class="cmiContractAchievedContainer">
-                                                                                            <apex:outputPanel layout="block" rendered="{!OR(AND(types.value='Contract',OR(gateType='Market Ready',gateType='Contract')),AND(types.value='Market Ready',gateType='Market Ready'))}">
-                                                                                                <apex:outputPanel layout="block" styleClass="cmiResultBox pull-left" rendered="{!isEditable}">
-                                                                                                    <apex:inputField value="{!sec.IPM_CMI_Results_Acheived__c}" rendered="{!AND(cmi.Id=sec.IPM_Gate_CMI__c,!sec.IPM_CMI_Is_Free_Text__c,OR(AND(types.value='Market Ready',gateType='Market Ready'),AND(types.value='Contract',gateType='Contract')))}"  onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false,true);"/>
-                                                                                                </apex:outputPanel>   
-                                                                                                <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!OR(AND(!isEditable,!sec.IPM_CMI_Is_Free_Text__c),AND(types.value='Contract',gateType='Market Ready'))}">
-                                                                                                    <apex:outputField value="{!sec.IPM_CMI_Results_Acheived__c}"  />
-                                                                                                </apex:outputPanel> 
-                                                                                                <span class="{!sec.IPM_CMI_Outcome_Color_Achieved__c}"></span>
+                                                                                        <apex:outputPanel styleclass="cmiContractAchievedContainer" layout="block" rendered="{!OR(AND(types.value='Contract',OR(gateType='Market Ready',gateType='Contract')),AND(types.value='Market Ready',gateType='Market Ready'))}">
+                                                                                            <apex:outputPanel layout="block" styleClass="cmiResultBox pull-left" rendered="{!isEditable}">
+                                                                                                <apex:inputField value="{!sec.IPM_CMI_Results_Acheived__c}" rendered="{!AND(cmi.Id=sec.IPM_Gate_CMI__c,!sec.IPM_CMI_Is_Free_Text__c,OR(AND(types.value='Market Ready',gateType='Market Ready'),AND(types.value='Contract',gateType='Contract')))}"  onchange="updateCMIContent('{!sec.Id}',this.value,'{!sec.IPM_CMI_Comments__c}',false,true);"/>
+                                                                                            </apex:outputPanel>   
+                                                                                            <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!OR(AND(!isEditable,!sec.IPM_CMI_Is_Free_Text__c),AND(types.value='Contract',gateType='Market Ready'))}">
+                                                                                                <apex:outputField value="{!sec.IPM_CMI_Results_Acheived__c}"  />
                                                                                             </apex:outputPanel> 
-                                                                                        </div>
+                                                                                            <span class="{!sec.IPM_CMI_Outcome_Color_Achieved__c}"></span>
+                                                                                        </apex:outputPanel> 
                                                                                         <div class="cmiContractCommentContainer">
                                                                                             <apex:outputPanel rendered="{!isEditable}">
                                                                                                 <apex:inputField styleClass="cmiCommentBox" value="{!sec.IPM_CMI_Comments__c}" rendered="{!AND(cmi.Id=sec.IPM_Gate_CMI__c,OR(AND(gateType='Contract',OR(types.value='Contract',types.value='Market Ready')),AND(gateType='Market Ready',types.value='Market Ready')))}" onchange="updateCMIContent('{!sec.Id}','{!sec.IPM_CMI_Result__c}',this.value,true,true);" />

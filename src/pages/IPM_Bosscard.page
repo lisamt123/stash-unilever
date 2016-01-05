@@ -125,7 +125,7 @@
                                 <div class="panel">
                                     <div class="panel-body custBossPadding">
                                         
-                                        <apex:actionFunction name="callsave" action="{!save}" reRender="isID"  />  
+                                        <apex:actionFunction name="callsave" reRender="validscript,companyMand,CateMand,pgmsg,nameMsg,specialchar,fill,modalpop,bossHeader,isID" action="{!save}" onComplete="upldImage();" />  
                                         <apex:outputPanel id="imgpn">
                                             
                                             <apex:outputPanel id="isID" >
@@ -137,7 +137,7 @@
                                                 </apex:outputPanel>
                                                 <apex:outputPanel id="deltImg">
                                                     <apex:outputPanel rendered="{!!isBosscardEdit}"> 
-                                                        <div value="{!$Page.IPM_ImageUpload}?id={!BossCUrl_ID}&isProject=false" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage upImageContainer" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
+                                                        <div value="{!$Page.IPM_ImageUpload}?id={!BossCUrl_ID}&isProject=false" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage upImageContainer" data-target="#ipmModal" >
                                                             <apex:image styleClass="ipmImage" value="{!URLFOR($Resource.IPM_Resource, 'images/pro_placeholder.png')}" rendered="{!isClickToUpload}" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}"/>
                                                             <apex:outputfield value="{!bosscard.IPM_Bosscard_Logo__c}" rendered="{!!isClickToUpload}"/>                                                   
                                                             
@@ -145,8 +145,8 @@
                                                         <apex:outputPanel layout="block" rendered="{!!isClickToUpload}">
                                                             <div class="imgHoverContainer">
                                                                 <div class="imgHbuttonContainer">
-                                                                   <span value="{!$Page.IPM_ImageUpload}?id={!BossCUrl_ID}&isProject=false" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage" data-target="#ipmModal" data-toggle="modal" data-keyboard="false" data-backdrop="static">
-                                                                       <apex:commandLink value="{!$Label.IPM_Update}" styleClass="imgUpdateButton" action="{!save}" reRender="none" rendered="{!!isClickToUpload}">
+                                                                   <span value="{!$Page.IPM_ImageUpload}?id={!BossCUrl_ID}&isProject=false" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage" data-target="#ipmModal" >
+                                                                       <apex:commandLink value="{!$Label.IPM_Update}" styleClass="imgUpdateButton" action="{!splitSaveMethod}" reRender="none" rendered="{!!isClickToUpload}">
                                                                             
                                                                        </apex:commandLink>
                                                                    </span>
@@ -184,6 +184,7 @@
                                         <apex:outputPanel id="specialchar">
                                             <apex:outputText value="{!$Label.IPM_BOSSCARD_DO_NOT_SPECIALCHAR}" rendered="{!isContainSpecialChars}" styleclass="fieldErrmsg"/>
                                             <apex:outputText value="{!$Label.IPM_BOSSCARD_Name_Exists}" rendered="{!isDuplicateBoss}" styleclass="fieldErrmsg"/>
+                                            <span class="hiddenBossname" data-target="{!isDuplicateBoss}"></span>
                                         </apex:outputPanel>
                                     </div>
                                     <div class="row">
@@ -246,12 +247,12 @@
                                             <div class="inputField">
                                                 <apex:outputLabel value="{!$Label.IPM_APPROVER}" styleClass="bsFieldLabel clrBoth" />
                                                 <apex:outputPanel styleClass="approvContainer" id="deltappr">  
-                                                    <apex:outputPanel styleClass="selectContainer" html-value="{!$Page.IPM_ApproverList}?Id={!bosscard.id}" html-data-target="#editApprover" html-data-toggle="modal" html-data-keyboard="false" html-data-backdrop="static" layout="block" rendered="{!isAddApprover}">
+                                                    <apex:outputPanel styleClass="selectContainer" html-value="{!$Page.IPM_ApproverList}?Id={!bosscard.id}" html-data-target="#editApprover" layout="block" rendered="{!isAddApprover}">
                                                         <apex:outputpanel rendered="{!if(bosscard.IPM_Bosscard_Status__c='In Progress',true,false)}">
-                                                            <span class="selectAppr" onclick="saveboss();">{!$Label.IPM_Select_Approver}</span>
+                                                            <span class="selectAppr" onclick="saveboss();" >{!$Label.IPM_Select_Approver}</span>
                                                         </apex:outputPanel>  
                                                     </apex:outputPanel>                                                                                        
-                                                    <apex:actionfunction name="saveboss" action="{!save}" reRender="None"/>
+                                                    <apex:actionfunction name="saveboss" action="{!save}" reRender="validscript,companyMand,CateMand,pgmsg,nameMsg,specialchar,fill,modalpop,bossHeader" onComplete="slctApprover();"/>
                                                     <apex:outputPanel styleClass="apprSelectContainer pull-left" layout="block" rendered="{!!isAddApprover}">
                                                         <div class="apprImageContainer pull-left">
                                                             <apex:image styleClass="circular apprImage pull-left" url="{!bosscard.IPM_Gate_Keeper__r.smallphotourl}"/>

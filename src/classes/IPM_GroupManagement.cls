@@ -336,5 +336,24 @@ global without sharing class  IPM_GroupManagement {
         }
         
       }
+    /*********************************************************************
+    @Description : This method is used to delete queue
+    **********************************************************************/
+          
+    @future
+    public static void deleteQueue(Set<id>Queueidset){
+        List<Group>grpsList=[SELECT Id,Name FROM Group WHERE id IN: Queueidset LIMIT 50000];
+        
+        if(grpsList!=null && !grpsList.isEmpty()){
+            try{
+                delete grpsList;
+                    
+                }catch(Exception ex){//running in future method, so we are not displaying any error in UI but create a log so system admin can track it
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+                                                       'deleteQueue',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM); 
+                }
+        }
+
+    }
 
 }
