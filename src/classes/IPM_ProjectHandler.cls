@@ -10,7 +10,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
 {       
     public static final List<String> ProjectMembersAPINames = new List<String>{'IPM_Technical_Project_Leader__c','IPM_Project_Leader__c','IPM_Project_Gatekeeper__c',
                                                                                 'IPM_Project_Gatekeeper__c','Deputy_Project_Leader__c','IPM_Finance_Member__c'};
-                                                                                
+                                                                        
     public static Map<String, Schema.SObjectField> projectFieldDesc = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();                                                                            
 
    
@@ -22,7 +22,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     
     public Set<Id> phaseChangeProjects = new Set<Id>();
     public Set<Id>changeOwnerProjects=new Set<Id>();
-    public Set<id>queueSet=new Set<id>();
+    
     private Map<Id,IPM_Project__c> rolloutTLDChangedProjList = new Map<Id,IPM_Project__c> {};
     private List<IPM_Project__c> tldChangeProjListForMilestones = new List<IPM_Project__c> {};
     
@@ -908,16 +908,6 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     * trigger.
     */
     public void beforeDelete(SObject so){      
-        //This method has been included as the class implements the ITrigger interface 
-        IPM_Project__c newProject = (IPM_Project__c) so;
-        if(newProject.IPM_Golbal_Project_OwnerId__c!=null){
-            queueSet.add(newProject.IPM_Golbal_Project_OwnerId__c);
-        }
-        IPM_GroupManagement.deleteQueue(queueSet);
-        if(IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
     }
      
     
