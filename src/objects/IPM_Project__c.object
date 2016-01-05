@@ -1183,6 +1183,26 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Data_Migrated_Gate__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Data Migrated Gate</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_Document_Update_Comments__c</fullName>
         <externalId>false</externalId>
         <label>Document Update Comments</label>
@@ -1424,6 +1444,17 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPM_MCO_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>IPM_Project_Rollout__r.MCO_Name__c</formula>
+        <label>IPM MCO Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Market_Type__c</fullName>
@@ -1845,6 +1876,17 @@ OwnerId))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_RolloutStatus__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(IPM_Project_Rollout__r.IPM_Regional_Rollout_Status__c)</formula>
+        <label>IPM_RolloutStatus</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Rollout_Added_at_Stage__c</fullName>
         <description>It will keep track of Rollout phase at the time of rollout creation</description>
         <externalId>false</externalId>
@@ -1860,13 +1902,22 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Rollout_Status__c</fullName>
         <externalId>false</externalId>
-        <formula>Text(IPM_Project_Rollout__r.IPM_Regional_Rollout_Status__c)</formula>
-        <label>IPM Rollout Status</label>
-        <required>false</required>
+        <label>Rollout Status</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Leader</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Follower</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>IPM_STOP__c</fullName>
@@ -2018,7 +2069,7 @@ OwnerId))</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-   <fields>
+    <fields>
         <fullName>IPM_Sub_sector__c</fullName>
         <externalId>false</externalId>
         <label>Sub sector</label>
@@ -2829,6 +2880,17 @@ OwnerId))</formula>
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>IPM_Data_Migrated_Gate__c</picklist>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>IPM_GateKeeping_Model__c</picklist>
             <values>
                 <fullName>GCLT %26 RCLT</fullName>
@@ -3274,6 +3336,17 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>Stopped</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>IPM_Data_Migrated_Gate__c</picklist>
+            <values>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Market Ready</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

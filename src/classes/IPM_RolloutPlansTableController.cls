@@ -365,7 +365,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
         { // If it is a Global Project, get regional Projects and associated Rollouts against regional Projects.
                 
-            String queryString = 'SELECT Id,IPM_Rollout_Status__c,Name, IPM_Project_Name__c,IPM_Phase__c,IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c, Rollout_Plan_Target_Launch_Date__c, ';
+            String queryString = 'SELECT Id,IPM_Rollout_Status__c,IPM_RolloutStatus__c,Name, IPM_Project_Name__c,IPM_Phase__c,IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c, Rollout_Plan_Target_Launch_Date__c, ';
             
             queryString+= ' (SELECT ';
             
@@ -423,7 +423,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         {
             String localSpan = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;//used in the query below
             
-            String queryString = ' SELECT Id, Name,IPM_Rollout_Status__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c,IPM_Project_Rollout__c,Rollout_Plan_Target_Launch_Date__c ';
+            String queryString = ' SELECT Id, Name,IPM_Rollout_Status__c,IPM_RolloutStatus__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c,IPM_Project_Rollout__c,Rollout_Plan_Target_Launch_Date__c ';
             queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: localSpan';
             queryString+= ' ORDER BY IPM_Project_Name__c';
             

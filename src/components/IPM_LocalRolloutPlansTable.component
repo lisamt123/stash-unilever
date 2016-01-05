@@ -1,6 +1,7 @@
 <!--  
 **********************************************************************************************************************************************************
-*@Description:This componenet is used to display local rollout plans for regional project leader and for updating local project leader and finance member
+*@Description:This component is used to display local rollout plans for regional project leader and for updating local project leader and finance member
+This componet used for regional rollout project
 *@Author: Cognizant
 *@Created Date: 12/03/2015
 *@Copyright © 2015  Unilever  
@@ -126,7 +127,7 @@
                                             </div>
                                         </th>
                                         <th scope="col" width="100px" colspan="1">
-                                            <apex:outputField value="{!localProject.IPM_Rollout_Status__c}"/>
+                                            <apex:outputField value="{!localProject.IPM_RolloutStatus__c}"/>
                                            
                                         </th>
                                        
@@ -216,6 +217,7 @@
                                                 <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/>
                                             </div>
                                         </th>
+                                       
                                         <th scope="col" width="100px" colspan="1">
                                             <!--<apex:outputField value="{!localRollout.IPM_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Regional_Rollout_Status__c=='Leader'), false, true)}"/> -->
                                              <apex:outputField value="{!localRollout.IPM_Regional_Rollout_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Regional_Rollout_Status__c=='Leader'), false, true)}"/>

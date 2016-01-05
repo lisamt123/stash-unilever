@@ -74,7 +74,7 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
         {            
             
             setRolloutStatus(setRegionalOriginalProjectIds,null);
-         }
+        }
     }
    
   public static void setRolloutStatus(Set<Id> setRegionalProjectIds, Set<Id> setGlobalProjectIds)
@@ -96,7 +96,7 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
                                                       (SELECT Id, Name,IPM_Project__c,Target_Launch_Date__c, IPM_Status__c,IPM_Regional_Rollout_Status__c,Regional_Rollout__c, Regional_Rollout__r.Target_Launch_Date__c 
                                                        FROM Regional_Project_Rollout__r  WHERE (NOT Regional_Project__c =: null) AND RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE  ORDER BY Target_Launch_Date__c),
                                                       
-                                                      (SELECT Id,Name,IPM_Target_Launch_Dates__c,IPM_Rollout_Status__c, IPM_Parent_Project__r.IPM_Parent_Project__c 
+                                                      (SELECT Id,Name,IPM_Target_Launch_Dates__c,IPM_RolloutStatus__c, IPM_Parent_Project__r.IPM_Parent_Project__c 
                                                         FROM IPM_Projects__r) 
                                                        
                                                       FROM IPM_Project__c 
@@ -133,7 +133,6 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
                 if(!isRegionalLeaderFound)
                 {
                     localRollout.IPM_Regional_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_LEADER;
-                    
                     isRegionalLeaderFound = true;
                 }
                 
@@ -160,9 +159,6 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
     }
      
     // for access updated values of local rollout status 
-    
-    
-    
      
      if(setRegionalProjectIds!= null && !setRegionalProjectIds.isEmpty())
      {
@@ -171,7 +167,7 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
                                                     (SELECT Id, Name,IPM_Project__c,Target_Launch_Date__c, IPM_Status__c,IPM_Regional_Rollout_Status__c,Regional_Rollout__c, Regional_Rollout__r.Target_Launch_Date__c 
                                                        FROM Regional_Project_Rollout__r  WHERE (NOT Regional_Project__c =: null) AND RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE  ORDER BY Target_Launch_Date__c),
                                                     
-                                                    (SELECT Id,Name,IPM_Target_Launch_Dates__c,IPM_Rollout_Status__c, IPM_Parent_Project__r.IPM_Parent_Project__c 
+                                                    (SELECT Id,Name,IPM_Target_Launch_Dates__c,IPM_RolloutStatus__c, IPM_Parent_Project__r.IPM_Parent_Project__c 
                                                         FROM IPM_Projects__r) 
                                                      
                                                     FROM IPM_Project__c 
@@ -205,24 +201,17 @@ public without sharing class  IPM_ProcessRolloutStatusAndDates
                             localRollout.IPM_Project__c = regionalProject.IPM_Parent_Project__c;
                               
                         }
-                        
-                        
+                    
                         globalLocalRolloutMap.put(localRollout.id,localRollout); 
                        
-                         
-                     
-                        
-                       
-                        // for local rollout in case of global view
-                          
-                   
+                       // for local rollout in case of global view
+                    
                         if(localRollout.Id.equals(sortedGlobalLocalRollout))
                         {
                                
                             localRollout.IPM_Status__c  = IPM_ConstantUtils.ROLLOUT_LEADER;
                             //isLeaderFound = true;
-                            
-                        }
+                       }
                         else
                         {
                              localRollout.IPM_Status__c  = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
