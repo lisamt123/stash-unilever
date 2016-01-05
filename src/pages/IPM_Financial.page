@@ -188,7 +188,7 @@
                                                 <apex:outputPanel layout="block" id="tabContentPanel" rendered="{!NOT(isError)}">
                                                     <div class="tab-content">
                                                         <!-- My View Tab -->
-                                                        <div class="col-sm-6">
+                                                        <div class="col-sm-6 wid40P">
                                                                 <div class="ipmfinHeading1">Financial Business Case - {!currentFinancial.Display_Name__c}</div>                                                                                                                           
                                                          </div>
                                                                 <apex:outputPanel id="msgss" rendered="{!isEditMode}">
@@ -201,7 +201,7 @@
                                                             <!-- Project Name Header -->
                                                             <div class="row">
                                                              
-                                                                <div class="col-sm-6 noPadleft finBtnDiv finTabHeaderExt">
+                                                                <div class="col-sm-6 noPadleft finBtnDiv finTabHeaderExt wid59P">
                                                                     <!-- Variables -->
                                                                     <apex:variable value="{!IF(CONTAINS(currentFinancial.Financial_External_ID__c, '_CONSOLIDATED'), TRUE, FALSE)}" var="isConsolidated"/>
                                                                     
