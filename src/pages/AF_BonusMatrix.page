@@ -384,12 +384,12 @@
             <div align="right" class="agencyRight">
             <div id="colPanel" align="right" class="floatR marginT-10P">
                 <select multiple="multiple" id="agCol" class="marginR10P wid140PX toggle-vis"/>
-                <img id="submit-col" class="vAlignM" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" />
+                <img id="submit-col" class="vAlignM" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" alt="Go Button"/>
              </div>
              <div id="loadColSpinner" class="spinner">
-                loading Agency Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' />
+                loading Agency Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' alt="spinner"/>
              </div>
-             <img id="add-col-panel" class="vAlignM floatR marginT-8P" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" />
+             <img id="add-col-panel" class="vAlignM floatR marginT-8P" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" alt="Add Icon"/>
             </div>
         </div>
         <table class="display mydisplay tableborder " width="100%" border="0">
@@ -401,15 +401,15 @@
         </table>
          <div class="ulRowControl">
              <div align="center">
-                 <img id="add-row-panel" class="vAlignT" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" />
+                 <img id="add-row-panel" class="vAlignT" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" alt="Add Icon"/>
              </div>
          </div>
          <div id="rowPanel">
              <select multiple="multiple" id="ulRow" class="wid140PX"/>
-             <img id="submit-row" class="vAlignM" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" />
+             <img id="submit-row" class="vAlignM" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" alt="Go Button"/>
          </div>
          <div id="loadRowSpinner" class="spinner">
-             loading UL Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' />
+             loading UL Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' alt="Spinner"/>
          </div>
          <div id="fourth" style="
     float: right;">
@@ -417,14 +417,14 @@
                             <tr>
                                 <td align="right">
                                     <div id="divpreview3" class="dispInline floatL">&nbsp;</div><img src="{!URLFOR($Resource.AF_isTax)}" height="15" width="15"/>&nbsp;Represents Cross Border billing&nbsp;
-                                    <div id="divpreview3" class="dispInline floatL">&nbsp;</div><img src="{!URLFOR($Resource.AF_isComment)}" height="15" width="15"/>&nbsp;Comment/Change to review&nbsp;
+                                    <div id="divpreview3" class="dispInline floatL">&nbsp;</div><img src="{!URLFOR($Resource.AF_isComment)}" height="15" width="15" alt="Comment Change"/>&nbsp;Comment/Change to review&nbsp;
                                 </td>
                             </tr>
                          </table>
             </div>
     </div>
     <div id="gridSpinner" class="spinner">
-        loading Matrix...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' />
+        loading Matrix...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' alt="Loading Matrix"/>
     </div>
     <c:AF_CommentsListComp ParentRecordValue="{!bonusSummaryId}" ParentObjectTypeDesc="AF_Bonus_Summary__c"  IsViewAllValue="false"  /><br/>
     <c:AF_DocumentListComp ParentRecordValue="{!bonusSummaryId}"/> 

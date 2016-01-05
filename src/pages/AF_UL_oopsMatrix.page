@@ -447,12 +447,12 @@
                            <div align="right" class="agencyRight">
                               <div id="colPanel" align="right">
                                  <select multiple="multiple" class="toggle-vis multipleDrop" id="agCol"/>
-                                 <img id="submit-col" class="alignMiddle" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}"/>
+                                 <img id="submit-col" class="alignMiddle" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" alt="Go Button"/>
                               </div>
                               <div id="loadColSpinner" class="spinner">
-                                 loading Agency Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' />
+                                 loading Agency Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' alt="Loading Image" />
                               </div>
-                              <img id="add-col-panel" class="addIconImg" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" />
+                              <img id="add-col-panel" class="addIconImg" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" alt="Add Icon"/>
                            </div>
                         </div>
                         <table class="display mydisplay tableborder " width="100%" border="0">
@@ -467,29 +467,29 @@
                         </table>
                         <div class="ulRowControl">
                            <div align="center">
-                              <img id="add-row-panel" class="verticalTopAlign"  width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" />
+                              <img id="add-row-panel" class="verticalTopAlign"  width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/add_icon.png')}" alt="Add Icon"/>
                            </div>
                         </div>
                         <div id="rowPanel">
                            <select multiple="multiple" id="ulRow" class="wid140P"/>
-                           <img id="submit-row" class="alignMiddle" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" />
+                           <img id="submit-row" class="alignMiddle" width="30" height="30" src="{!URLFOR($Resource.AF_DataTables,'AF_DataTables/examples/resources/go.png')}" alt="Go Button"/>
                         </div>
                         <div id="loadRowSpinner" class="spinner">
-                           loading UL Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' />
+                           loading UL Entities...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' alt="loading Image"/>
                         </div>
                         <div id="fourth" class="floatR">
                            <table>
                               <tr>
                                  <td align="right">
                                     <div id="divpreview3" class="previewDiv">&nbsp;</div>
-                                    <img src="{!URLFOR($Resource.AF_isTax)}" height="15" width="15"/>&nbsp;Represents Cross Border billing&nbsp;
+                                    <img src="{!URLFOR($Resource.AF_isTax)}" height="15" width="15" alt="Cross broder Billing"/>&nbsp;Represents Cross Border billing&nbsp;
                                  </td>
                               </tr>
                            </table>
                         </div>
                      </div>
                      <div id="gridSpinner" class="spinner">
-                        loading Matrix...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' />
+                        loading Matrix...<img src='https://unilever--agfeescog--c.cs14.visual.force.com/img/loading.gif' alt="Loading Spinner"/>
                      </div>
                      <apex:actionFunction name="redirecttosamepage" action="{!call_constructor}" id="redirectpage" reRender="opt2" />
                      <c:AF_CommentsListComp ParentRecordValue="{!oopsActualId}" ParentObjectTypeDesc="AF_OOPS_Actual__c"  IsViewAllValue="false"  ReturnPageURLValue="AF_UL_oopsMatrix?Id={!oopsActualId}" />
