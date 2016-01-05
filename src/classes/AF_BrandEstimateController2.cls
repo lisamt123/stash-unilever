@@ -627,7 +627,8 @@ global with sharing class AF_BrandEstimateController2
 ***********************************************************************************************/
     private string CommaFilter(string value)
     {
-        if(value.contains(',') ){value = value.replaceAll(',','');}
+        String localValue='';
+        if(value.contains(',') ){localValue = value.replaceAll(',','');}
         return value;       
     }
     /*****************************************************************************************

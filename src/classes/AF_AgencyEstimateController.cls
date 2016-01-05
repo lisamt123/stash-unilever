@@ -179,8 +179,9 @@ public with sharing class AF_AgencyEstimateController
 	}
 	private string CommaFilter(string value)
 	{
-		if(value.contains(',')){value = value.replaceAll(',','');}
-		return value;       
+		String localValue='';
+		if(value.contains(',')){localValue = value.replaceAll(',','');}
+		return localValue;       
 	}
 	/**********************************************************************
 *  @Description: this method is used to set the Traditional,Digital,Adaptation values 

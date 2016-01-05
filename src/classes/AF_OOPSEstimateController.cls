@@ -153,7 +153,8 @@ public with sharing class AF_OOPSEstimateController {
 *************************************************************************************/
 	private string CommaFilter(string value)
 	{
-		if(value.contains(',')){value = value.replaceAll(',','');}
+		String localValue='';
+		if(value.contains(',')){localValue = value.replaceAll(',','');}
 		return value;       
 	} 
 	/***************************************************************************************
