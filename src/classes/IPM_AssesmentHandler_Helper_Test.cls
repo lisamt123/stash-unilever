@@ -74,7 +74,7 @@ private class IPM_AssesmentHandler_Helper_Test {
             for(integer i=0; i<4 ; i++) {
                 IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = geo.Id,
                 IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = 'With MCO',
-                IS_EI_Country__c = true);    
+                IS_EI_Country__c = true, isActive__c = true);    
             
                 countryList.add(tempCountry);
             }
@@ -100,6 +100,9 @@ private class IPM_AssesmentHandler_Helper_Test {
             
             //to implement deletion of assessment on deletion of country
             delete countryToDelete;
+            IPM_Country__c countryToDeactivate  =  [Select Id, name from IPM_Country__c][0];
+            countryToDeactivate.isActive__c = false;
+            update countryToDeactivate;
             
             List<IPM_Assessment__c> assmntsOfDeletedCountry = [Select Id from IPM_Assessment__c where IPM_Country__c =:countryToDelete.Id];
             
