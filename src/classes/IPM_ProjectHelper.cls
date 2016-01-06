@@ -1530,6 +1530,7 @@ public with sharing class IPM_ProjectHelper
         if(!projectIdSetToBeDeleted.isEmpty() && !SKIP_TRIGGER_EXECUTION)
         {
             SKIP_TRIGGER_EXECUTION = true;    
+            IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
             
             Set<Id> associatedRolloutIds = new Set<Id>(); 
             Set<Id>bossCardid=new Set<Id>();
