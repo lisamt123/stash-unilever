@@ -14,7 +14,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     private static Map<Id,IPM_Financial__c> deleteFinancialMap = new Map<Id,IPM_Financial__c>();
     private static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
     
-    public static Boolean COPY_OVER_FIN_STARTED = false;
+    private static Set<Id> finCopyOverAlreadyInitiatedSet = new Set<Id>();
     
     //@description:Constructor
     public IPM_FinancialHandler() 
@@ -301,18 +301,19 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         IPM_Financial__c newfinancial = (IPM_Financial__c)so;
         IPM_Financial__c oldfinancial = (IPM_Financial__c)oldSo;
         
-        if(newFinancial.RecordtypeID != CONSOLIDATED_FINANCIAL_RECORDTYPE && !COPY_OVER_FIN_STARTED)
+        // If record Type is not Consolidated and Financial CopyOver has not been initiated for this Financial in same context
+        if(newFinancial.RecordtypeID != CONSOLIDATED_FINANCIAL_RECORDTYPE && !finCopyOverAlreadyInitiatedSet.contains(newfinancial.Id))
         {
             if(newfinancial.Regional_Project__c !=null &&  oldfinancial.Regional_Project__c != newfinancial.Regional_Project__c )
             {
                 newfinancial.Copy_Global_to_Regional__c = true;    
-                COPY_OVER_FIN_STARTED = true;
+                finCopyOverAlreadyInitiatedSet.add(newfinancial.Id);
             }
             
             if(newfinancial.Local_Project__c !=null && oldfinancial.Local_Project__c != newfinancial.Local_Project__c)
 	        {
 	            newfinancial.Copy_Regional_to_Local__c = true;
-	            COPY_OVER_FIN_STARTED = true;
+	            finCopyOverAlreadyInitiatedSet.add(newfinancial.Id);
 	        }
         }
     }
