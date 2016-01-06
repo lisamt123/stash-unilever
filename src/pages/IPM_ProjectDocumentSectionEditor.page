@@ -3,7 +3,7 @@
 *@Description: This page used for editing the Gate Document Sections and attaching Files
 *@Author: Cognizant
 *@Created Date: 26/12/2014
-*@Copyright � 2015  Unilever  
+*@Copyright � 2015  Unilever   
 *************************************************************************
 -->
 <apex:page Controller="IPM_ProjectDocumentSectionController" sidebar="false" standardStylesheets="true" id="page"  docType="html-5.0" extensions="IPM_GetHelpDoc">

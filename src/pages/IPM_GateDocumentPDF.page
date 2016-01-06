@@ -1,5 +1,6 @@
 <apex:page controller="IPM_GateDocumentController" sidebar="false"  renderAs="PDF" standardStylesheets="false" applyHtmlTag="false" showHeader="false" applyBodyTag="false" readOnly="true" extensions="IPM_GetHelpDoc">
 <html>
+
 <head>   
     <style type="text/css" media="print">
     
