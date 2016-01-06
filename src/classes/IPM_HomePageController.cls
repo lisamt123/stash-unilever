@@ -73,7 +73,8 @@ public with sharing class IPM_HomePageController
             
 
         // To check the history of the Project field
-        lstprojecthistory=[SELECT ParentId,Parent.IPM_Project_Name__c,Parent.Name,Parent.IPM_Fast_Track_Project__c FROM IPM_Project__History WHERE Field =: IPM_Utils.IPM_Fast_Track_Project AND CreatedDate >=: System.today()-DAY_VALUE_SEVEN LIMIT 50000];
+        lstprojecthistory=[SELECT ParentId,Parent.IPM_Project_Name__c,Parent.Name,Parent.IPM_Fast_Track_Project__c FROM IPM_Project__History WHERE Field =: IPM_Utils.IPM_Fast_Track_Project AND CreatedDate >=: System.today()-DAY_VALUE_SEVEN and Parent.IPM_Project_Leader__c = : UserInfo.getUserId()
+        LIMIT 50000];
         mapphistory=new Map<Id,IPM_Project__History>();
         for(IPM_Project__History ph:lstprojecthistory){
             if(!mapphistory.containsKey(ph.ParentId)){

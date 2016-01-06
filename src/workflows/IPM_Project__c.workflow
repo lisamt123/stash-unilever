@@ -42,7 +42,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>Workflow_Emails/IPM_Notify_Project_Leader_about_FL_confirm_TLD_change</template>
+        <template>IPM_Emails/IPM_Notify_Project_Leader_about_FL_confirm_TLD_change_on_Local_Rollout</template>
     </alerts>
     <alerts>
         <fullName>IPM_Notify_leaders_the_TLD_changed_after_Contract</fullName>
@@ -65,7 +65,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Notify_Leads_TLD_is_changed</template>
+        <template>IPM_Emails/IPM_Notify_Leads_TLD_is_changed</template>
     </alerts>
     <alerts>
         <fullName>IPM_Notify_leaders_the_TLD_changed_during_Charter_doc</fullName>
@@ -84,7 +84,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Notify_Leads_TLD_is_changed</template>
+        <template>IPM_Emails/IPM_Notify_Leads_TLD_is_changed</template>
     </alerts>
     <alerts>
         <fullName>IPM_Notify_the_Local_Project_leader_when_local_project_created</fullName>
@@ -95,7 +95,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Notify_Local_Leader_when_local_project_created</template>
+        <template>IPM_Emails/IPM_Notify_Local_Leader_when_local_project_created</template>
     </alerts>
     <alerts>
         <fullName>IPM_Project_Archival_Email_Alert</fullName>
@@ -105,7 +105,7 @@
             <type>creator</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Project_Archival_Mail_Alert</template>
+        <template>IPM_Emails/IPM_Project_Archival_Mail_Alert</template>
     </alerts>
     <alerts>
         <fullName>IPM_Send_Failure_Phase_Change_Notification</fullName>
@@ -116,7 +116,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_FailurePhaseChangeTemplate</template>
+        <template>IPM_Emails/IPM_FailurePhaseChangeTemplate</template>
     </alerts>
     <alerts>
         <fullName>IPM_Send_Success_Phase_Change_Notification</fullName>
