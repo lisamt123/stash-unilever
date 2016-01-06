@@ -1715,14 +1715,6 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <shortDescription>BET_UpdateBetAddMembers</shortDescription>
         <value>Update BET &amp; add members</value>
     </labels>
-	 <labels>
-        <fullName>BET_Uploading</fullName>
-        <categories>BET</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>BET_Uploading</shortDescription>
-        <value>Uploading...</value>
-    </labels>
     <labels>
         <fullName>BET_Upload_And_Save</fullName>
         <categories>BET</categories>
@@ -11673,34 +11665,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>TLD After Charter Contract and Market Ready Milestone Dates</shortDescription>
         <value>Target Launch Date must be after Charter, Contract and Market Ready mandatory milestones.</value>
     </labels>  
-    <labels>
-        <fullName>ipmFinSummaryBIC</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinSummaryBIC</shortDescription>
-        <value>BIC</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinSummaryCAPEX</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinSummaryCAPEX</shortDescription>
-        <value>CAPEX</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinSummaryGMbps</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinSummaryGMbps</shortDescription>
-        <value>GM Y1 bps vs DNDS</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinSummaryIRR</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinSummaryIRR</shortDescription>
-        <value>IRR</value>
-    </labels>
+     
     <labels>
         <fullName>ipmFinSummaryNPV</fullName>
         <language>en_US</language>
@@ -11708,63 +11673,14 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>ipmFinSummaryNPV</shortDescription>
         <value>NPV</value>
     </labels>
-    <labels>
-        <fullName>ipmFinSummaryPBObps</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinSummaryPBObps</shortDescription>
-        <value>PBO Y1 bps vs DNDS</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinSummaryPayback</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinSummaryPayback</shortDescription>
-        <value>Payback</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableAPofTO</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableAPofTO</shortDescription>
-        <value>BMI (% of T/O)</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableASIncrementalValueShare</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableASIncrementalValueShare</shortDescription>
-        <value>Incremental Value Share</value>
-    </labels>
-    <labels>
+ <labels>
         <fullName>LAUNCH_PINNOVATE_CMD</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>UW_LAUNCH_PINNOVATE_CMD</shortDescription>
         <value>#launchthewall</value>
     </labels>
-    <labels>
-        <fullName>ipmFinTableASInnovationValueShare</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableASInnovationValueShare</shortDescription>
-        <value>Innovation Value Share</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableAdvertisingPromotions</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableAdvertisingPromotions</shortDescription>
-        <value>BMI</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableGDgTO</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableGDgTO</shortDescription>
-        <value>gTO</value>
-    </labels>
-    <labels>
+   <labels>
         <fullName>MLST_OBJ_NAME</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11778,42 +11694,14 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Matrix Currency Desc</shortDescription>
         <value>All figures in thousands of Euro unless another currency is specified.</value>
     </labels>
-    <labels>
-        <fullName>ipmFinTableGDiAP</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableGDiAP</shortDescription>
-        <value>iBMI</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableGDiTO</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableGDiTO</shortDescription>
-        <value>iTO</value>
-    </labels>
-    <labels>
+   <labels>
     <fullName>OV_MobileApplicationInfo</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>OV_MobileApplicationInfo</shortDescription>
         <value>OneView Next Generation is not yet available on mobile devices but development is underway. Look on our Chatter group to find out more about plans for 2016.</value>
     </labels>
-    <labels>
-        <fullName>ipmFinTableGMofTO</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableGMofTO</shortDescription>
-        <value>GM (% of T/O)</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableGrossProfit</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableGrossProfit</shortDescription>
-        <value>Gross Profit</value>
-    </labels>
-    <labels>
+   <labels>
         <fullName>OV_NewLine</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11822,43 +11710,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
 
 &gt;</value>
     </labels>
-    <labels>
-        <fullName>ipmFinTablePBOofTO</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTablePBOofTO</shortDescription>
-        <value>PBO (% of T/O)</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableProfitBeforeOverheads</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableProfitBeforeOverheads</shortDescription>
-        <value>Profit Before Overheads</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableTurnover</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableTurnover</shortDescription>
-        <value>Turnover</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableValueMarketShare</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableValueMarketShare</shortDescription>
-        <value>Value Market Share</value>
-    </labels>
-    <labels>
-        <fullName>ipmFinTableVolume</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinTableVolume</shortDescription>
-        <value>Volume</value>
-    </labels>
-
-	<labels>
+<labels>
         <fullName>Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40</fullName>
         <categories>Oblix Calculator</categories>
         <language>en_US</language>
