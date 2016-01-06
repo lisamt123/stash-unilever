@@ -3062,6 +3062,7 @@ Activity Description: &apos;</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TaskNameErrorMsg</shortDescription>
+	<value>Enter Task Name.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_IN_PROGRESS_STATE</fullName>
@@ -11672,13 +11673,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Target Launch Date must be after Charter, Contract and Market Ready mandatory milestones.</value>
     </labels>  
      
-    <labels>
-        <fullName>ipmFinSummaryNPV</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>ipmFinSummaryNPV</shortDescription>
-        <value>NPV</value>
-    </labels>
+
  <labels>
         <fullName>LAUNCH_PINNOVATE_CMD</fullName>
         <language>en_US</language>
