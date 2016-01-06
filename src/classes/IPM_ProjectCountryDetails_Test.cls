@@ -114,7 +114,7 @@ private class IPM_ProjectCountryDetails_Test {
                 for(integer i=0; i<4 ; i++) {
                     IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = geo.Id,
                     IPM_Project__c = toUpdateProjList[i].id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
-                    IS_EI_Country__c = true, isActive__c = true);    
+                    IS_EI_Country__c = true);    
                 
                     countryList.add(tempCountry);
             }
