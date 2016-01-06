@@ -12,7 +12,8 @@ public with sharing class IPM_ChatterFeedHelper {
     private static final String CREATED= ' has been created!';
     private static final String CHANGED=' has changed ';
     private static final String REGIONAL_ROLLOUT_ADDED_STR1 = ' will be automatically created in IPM Navigator when ';
-    private static final String REGIONAL_ROLLOUT_ADDED_STR2= ' passes Charter. If you are not the correct  Regional Project Leader, then please notify the Global Project Leader ';
+    private static final String REGIONAL_ROLLOUT_ADDED_STR2= ' passes Charter.';
+    private static final String REGIONAL_ROLLOUT_ADDED_STR5='If you are not the correct  Regional Project Leader, then please notify the Global Project Leader ';
     private static final String REGIONAL_ROLLOUT_ADDED_STR3= ' as the Regional Project Leader. The Regional rollout ';
     private static final String REGIONAL_ROLLOUT_ADDED_STR4= ' project scope. You have been added to ';
     private static final String FAST_TRACK_STATUS_STR=' has changed the Fast Track status of project ';
@@ -359,10 +360,10 @@ public with sharing class IPM_ChatterFeedHelper {
         if(IPM_CheckRecursive.runOnce()) {
       	    IPM_ChatterUtils.postChatterFeedWithMention(projectIds, subjectIdMessageMap, null);
         }
-       	 	clearData();
-       	 	Map<Id, Set<Id>> usersMap = getProjectUsersMap(updatedProjects, null, true);
-       	 	IPM_WithoutSharingHelper.autoFollowProjectMembers(usersMap);
-       	 	 
+            clearData();
+            Map<Id, Set<Id>> usersMap = getProjectUsersMap(updatedProjects, null, true);
+            IPM_WithoutSharingHelper.autoFollowProjectMembers(usersMap);
+             
     } 
     
     /**************************************************************
@@ -382,8 +383,8 @@ public with sharing class IPM_ChatterFeedHelper {
                  projectIds.add(eachRollout.IPM_Project__c);
                  subjectIdMentionIdMap.put(eachRollout.IPM_Project__c,mentionId);  
                  postext = IPM_ConstantUtils.EMPTY_STRING_DELIMITER+System.Label.IPM_Finance_Member_Add +IPM_ConstantUtils.IPM_SPACE+eachRollout.Name+ System.Label.IPM_Finance_Member_Msg 
-                 +eachRollout.IPM_Project__r.IPM_Project_Leader__r.Name;
-                 subjectIdMessageMap.put(eachRollout.IPM_Project__c,postext);
+                 +IPM_ConstantUtils.IPM_SPACE+eachRollout.IPM_Project__r.IPM_Project_Leader__r.Name;
+                 subjectIdMessageMap.put(eachRollout.IPM_Project__c,postext); 
             }    
         	    IPM_ChatterUtils.postChatterFeedWithMention(projectIds, subjectIdMessageMap, subjectIdMentionIdMap );
         	    clearData();
@@ -563,8 +564,7 @@ public with sharing class IPM_ChatterFeedHelper {
    */
     public static void postChatterIfBusinessCaseSaved(List<IPM_Financial__c> updatedFinancials){
      clearData(); 
-     //Adding system.debugs for understanding a defect root cause. Please exclude in SONAR.Will remove in next deployment
-     system.debug('updatedFinancials..'+updatedFinancials);
+     
      Set<Id> financialSet = new Set<Id>();
      Map<ID,String> financialMap = new Map<Id,String>();
       for(IPM_Financial__c eachFin:updatedFinancials)
@@ -572,11 +572,9 @@ public with sharing class IPM_ChatterFeedHelper {
             projectIds.add(eachFin.Local_Project__c);
             projectIds.add(eachFin.Regional_Project__c);
 	    projectIds.add(eachFin.Global_Project_Id__c);
-            //Adding system.debugs for understanding a defect root cause. Please exclude in SONAR.Will remove in next deployment
-            system.debug('eachFin..'+eachFin);
+            
             financialSet.add(eachFin.id);
-            //Adding system.debugs for understanding a defect root cause. Please exclude in SONAR.Will remove in next deployment
-            system.debug('financialSet..'+financialSet);
+            
             projectIds.remove(null);
             if(eachFin.Local_Project__c != null || eachFin.Regional_Project__c != null || eachFin.Global_Project_Id__c != null)
             {
@@ -593,10 +591,7 @@ public with sharing class IPM_ChatterFeedHelper {
             }
      }
      if(IPM_CheckRecursive.runOnce()) {
-     //Adding system.debugs for understanding a defect root cause. Please exclude in SONAR.Will remove in next deployment
-     system.debug('projectIds..'+projectIds);
-     system.debug('subjectIdMessageMap..'+subjectIdMessageMap);
-     system.debug('financialSet..'+financialSet);
+     
      IPM_ChatterUtils.postChatterFeedWithMention(projectIds, subjectIdMessageMap, null);
      IPM_ChatterUtils.postChatterFeedWithMention(financialSet, financialMap, null);
      }
@@ -644,7 +639,8 @@ public with sharing class IPM_ChatterFeedHelper {
                     subjectIdMentionIdMap.put(eachRollout.IPM_Project__c,mentionId);
                     posttext = IPM_ConstantUtils.IPM_SPACE +eachRollout.Market_Cluster_Name__c +IPM_ConstantUtils.IPM_SPACE+Label.IPM_Included_In +IPM_ConstantUtils.IPM_SPACE +eachRollout.IPM_Project__r.IPM_Project_Name__c; 
                     posttext +=REGIONAL_ROLLOUT_ADDED_STR4 +  eachRollout.IPM_Project__r.IPM_Project_Name__c + REGIONAL_ROLLOUT_ADDED_STR3 + eachRollout.Name + REGIONAL_ROLLOUT_ADDED_STR1;
-                    posttext +=eachRollout.IPM_Project__r.IPM_Project_Name__c + REGIONAL_ROLLOUT_ADDED_STR2 + eachRollout.IPM_Project__r.IPM_Project_Leader__r.Name+ IPM_ConstantUtils.NEXT_LINE_STRING;   
+                    posttext +=eachRollout.IPM_Project__r.IPM_Project_Name__c + REGIONAL_ROLLOUT_ADDED_STR2 + IPM_ConstantUtils.NEXT_LINE_STRING;
+                    posttext +=REGIONAL_ROLLOUT_ADDED_STR5+eachRollout.IPM_Project__r.IPM_Project_Leader__r.Name+ IPM_ConstantUtils.NEXT_LINE_STRING;   
                     posttext += eachRollout.Name + IPM_ConstantUtils.NEXT_LINE_STRING;
                     posttext += Label.IPM_Project_Lead+ IPM_ConstantUtils.Colon + eachRollout.IPM_Regional_PL__r.Name + IPM_ConstantUtils.NEXT_LINE_STRING;
                     

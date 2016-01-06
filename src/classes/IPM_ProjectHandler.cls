@@ -456,10 +456,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     }  
                     else
                     {   
-                    	list<Id> projectIdList = new list<Id>();
-                        projectIdList.addAll(processTasksMap.keySet());
-                        Id projectId = projectIdList[0];
-                        IPM_TaskHelper.assigneUserToTask(projectId);
+                        IPM_TaskHelper.assigneUserToTask(processTasksMap.keySet());
                         updateTaskAssignee = false;
                     } 
                }

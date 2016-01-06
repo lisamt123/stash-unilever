@@ -131,17 +131,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>IPM_EcoDesign_Sync_Wait_Time__c</fullName>
-        <externalId>false</externalId>
-        <label>EcoDesign Sync Wait Time</label>
-        <precision>2</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>IPM_Fast_Forward_Phase_Change__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -311,15 +300,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>IPM_Sync_To_Eco_Design__c</fullName>
-        <defaultValue>false</defaultValue>
-        <description>Depending upon Project Type, Span and Phase this flag will determine whether Project data will sync with Eco Design system</description>
-        <externalId>false</externalId>
-        <label>Sync To Eco Design</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>IPM_UpdateFinancialsAPIName__c</fullName>
