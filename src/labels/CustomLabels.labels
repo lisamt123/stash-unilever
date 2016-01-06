@@ -8178,7 +8178,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_IN_THOUSAND_POUNDS</shortDescription>
-        <value>(in thousand pounds)</value>
+        <value>(in thousand euros)</value>
     </labels>
     <labels>
         <fullName>IPM_IS_COMPLETED_BY</fullName>
@@ -11592,7 +11592,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Sustainability Period</shortDescription>
-        <value>Sustainability Period :</value>
+        <value>Sustainability Period:</value>
     </labels>
     <labels>
         <fullName>IPM_System_Admin</fullName>
@@ -11697,7 +11697,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TLD_SHOULD_BE_GREATER_THAN_TODAYDate</shortDescription>
-        <value>Please select TLD more than current date</value>
+        <value>The target launch date cannot be in the past.</value>
     </labels>
     <labels>
         <fullName>IPM_TLD_VR_Misaligned</fullName>

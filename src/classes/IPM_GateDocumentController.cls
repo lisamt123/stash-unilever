@@ -772,10 +772,20 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                 finProjectPriority = [Select ipm_cpp_local__c from IPM_Financial__c where Financial_External_ID__c =: nam limit 1];
             }    
             
+             //DEF2103-30/12/15-Reopen for BI not calculated on Global projects-Gate document
+	        /*Analysis-IPM_Financials_Consolidated__r is not returning value may be because of recent change in BIG query above or change in formula field.
+	        New query is introduced now to fetch BI from IPM financial for global projects.
+	        */
+	        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
+	        	list<IPM_Financial__c> liFinGlobal = [SELECT Business_Impact_Global__c FROM IPM_Financial__c WHERE parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL and parent_project__c=:project.id and regional_external_id__c=null limit 1];
+	            if (liFinGlobal!=null && liFinGlobal.size()>0){
+	                globalbusinessImpactStr = liFinGlobal[0].Business_Impact_Global__c;
+	            }
+	        }
             //DEF2450 - BI copy to child projects ?? or it should be 2103 where BI to be displayed on gate document
             //Note: If project is regional or Local fin.Business_Impact_Global__c will not be relevant as BI should be coming from global project
             //Regional and Local Financial records have their own calculated Business Impact Global which should NOT be used.
-            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
+            else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
                list<IPM_Financial__c> liFinParentReg = [select Business_Impact_Global__c from IPM_Financial__c where (Parent_Project__c=:project.IPM_Parent_Project__c OR global_project_id__c=:project.IPM_Parent_Project__c) and parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL limit 1];
                if (!liFinParentReg.isEmpty())
                {
@@ -785,6 +795,18 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                     }
                }
            }
+           /*Case: When project is Regional Original*/
+            else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
+	       		string projid;
+	       		if(project.id!=null){
+	       			projid = string.valueof(project.id).substring(0,15);
+	       		}
+	       		list<IPM_Financial__c> liFinRegOrig = [select Business_Impact_Regional__c from IPM_Financial__c where (regional_external_id__c=:projid OR global_project_id__c=:projid) and regional_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL limit 1];
+	        	globalbusinessImpactStr += liFinRegOrig;
+	            if (liFinRegOrig!=null && liFinRegOrig.size()>0){
+	                globalbusinessImpactStr = liFinRegOrig[0].Business_Impact_Regional__c;
+	            }
+	        }
            else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
            {
                list<IPM_Financial__c> liFinParentLoc = [select Business_Impact_Global__c from IPM_Financial__c where global_project_id__c=:project.IPM_Global_Project_Id__c and parent_Project__c=:project.IPM_Global_Project_Id__c limit 1];
@@ -966,7 +988,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                 {
                     Id currentProjectId = project.Id; // variable used in query below NO SONAR
                     
-                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
+                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
                     String rolloutWhereClause = ' WHERE IPM_Project__c =:currentProjectId  AND recordTypeId = :REGIONAL_ROLLOUT_RECORDTYPE limit 10000';
                     rolloutWhereClause = rolloutQuery + rolloutWhereClause;
                     regionalRolloutList = database.query(rolloutWhereClause);
@@ -985,7 +1007,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                 {
                     Id currentProjectId = project.Id; // variable used in query below NO SONAR
                      
-                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
+                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
                     String rolloutWhereClause = ' WHERE Regional_Project__c  =:currentProjectId  AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE limit 10000';
                     rolloutWhereClause = rolloutQuery + rolloutWhereClause;
                     localRolloutList = database.query(rolloutWhereClause);

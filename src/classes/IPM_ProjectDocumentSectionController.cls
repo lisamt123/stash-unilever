@@ -457,8 +457,9 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                     isEcodesignEdit=true;
                 }
             }
-            if((lstofuser[0].IPM_Technical_Project_Leader__c!=null && lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid()) &&((lstofuser[0].IPM_Project_Leader__c!=null && lstofuser[0].IPM_Project_Leader__c!=lstofuser[0].IPM_Technical_Project_Leader__c) || 
-                (lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c!=lstofuser[0].IPM_Technical_Project_Leader__c))){
+            if(lstofuser[0].IPM_Technical_Project_Leader__c!=null && lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid() && 
+            lstofuser[0].IPM_Project_Leader__c!=null && lstofuser[0].IPM_Project_Leader__c!=lstofuser[0].IPM_Technical_Project_Leader__c &&
+            lstofuser[0].Deputy_Project_Leader__c!=null && lstofuser[0].Deputy_Project_Leader__c!=lstofuser[0].IPM_Technical_Project_Leader__c){
                 IsEditableSumm=false;
                 IsEditableOutC=false;
             }   
@@ -500,9 +501,9 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         checkGKCFilled();
         checkOTIFFilled(); 
         checkRMPFilled();
-      	if((project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS) || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+        if((project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS) || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
         {
-        	 checkCMICompleted();
+             checkCMICompleted();
         }
         //Getting Gate Summary and Outcome Summary Saved Date and Time
         if(IsGateSave==IPM_ConstantUtils.GATE){
@@ -601,13 +602,13 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
             if(showmsg){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.WARNING,System.Label.IPM_Section_Not_Filled));
             }
-            return null;
+            return redirectBack();
         }
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_PROJECT_DOCUMENT_SECTION_CONTROLLER,
                 IPM_ConstantUtils.ACCESS_SAVE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-                return null;    
+            return null;       
         }
     }
         
@@ -918,8 +919,10 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     
     public PageReference redirectBack(){
         PageReference url=Page.IPM_ProjectDocumentSectionEditor;
-        ApexPages.currentPage().getParameters().put('id',projectId); 
-        ApexPages.currentPage().getParameters().put(PROJ_DOC_SEC_ID,projDocSecId); 
+        projectId=ApexPages.currentPage().getParameters().get('Id');
+        projDocSecId=ApexPages.currentPage().getParameters().get(PROJ_DOC_SEC_ID);
+        url.getParameters().put('id',projectId); 
+        url.getParameters().put(PROJ_DOC_SEC_ID,projDocSecId); 
         url.setRedirect(true);
         return url;
     }    
