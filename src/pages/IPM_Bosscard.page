@@ -86,7 +86,7 @@
                                             <apex:outputPanel >
                                                 <div class="SecStatusUpdate pull-right updateBox" value="{!$Page.IPM_BosscardStatus}?id={!bosscard.Id}&goto={!gotopage}" >
                                                     <apex:commandLink value="{!$Label.IPM_Change_Status}" onComplete="checkValidation();" styleClass="ipmButton orangebg" action="{!save}" reRender="validscript,companyMand,CateMand,pgmsg,nameMsg,specialchar,fill,modalpop,bossHeader" rendered="{!!isBosscardEdit}">
-                                                        
+                                                        <apex:param assignTo="{!isNoSuccessMsg}" value="{!defaultTrue}" name="skipsuccessmsg"/>   
                                                     </apex:commandLink>
                                                 </div>
                                             </apex:outputPanel>
@@ -125,7 +125,10 @@
                                 <div class="panel">
                                     <div class="panel-body custBossPadding">
                                         
-                                        <apex:actionFunction name="callsave" reRender="validscript,companyMand,CateMand,pgmsg,nameMsg,specialchar,fill,modalpop,bossHeader,isID" action="{!save}" onComplete="upldImage();" />  
+                                        <apex:actionFunction name="callsave" reRender="validscript,companyMand,CateMand,pgmsg,nameMsg,specialchar,fill,modalpop,bossHeader,isID" action="{!save}" onComplete="upldImage();" >
+                                            <apex:param assignTo="{!isNoSuccessMsg}" value="{!defaultTrue}" name="skipsuccessmsgUploadImg"/>   
+                                        </apex:actionFunction>
+                                          
                                         <apex:outputPanel id="imgpn">
                                             
                                             <apex:outputPanel id="isID" >
@@ -146,8 +149,8 @@
                                                             <div class="imgHoverContainer">
                                                                 <div class="imgHbuttonContainer">
                                                                    <span value="{!$Page.IPM_ImageUpload}?id={!BossCUrl_ID}&isProject=false" title="{!$Label.IPM_CLICK_TO_UPLOAD_IMAGE}" class="uploadImage" data-target="#ipmModal" >
-                                                                       <apex:commandLink value="{!$Label.IPM_Update}" styleClass="imgUpdateButton" action="{!splitSaveMethod}" reRender="none" rendered="{!!isClickToUpload}">
-                                                                            
+                                                                       <apex:commandLink value="{!$Label.IPM_Update}" styleClass="imgUpdateButton" action="{!save}" reRender="none" rendered="{!!isClickToUpload}">
+                                                                           <apex:param assignTo="{!isNoSuccessMsg}" value="{!defaultTrue}" name="skipsuccessmsgUpdateImg"/>        
                                                                        </apex:commandLink>
                                                                    </span>
                                                                    <span class="imgDelButton" data-target="#deleteImgPop" data-toggle="modal" data-keyboard="false" data-backdrop="static">Delete</span>
@@ -254,7 +257,9 @@
                                                             <span class="selectAppr" onclick="saveboss();" >{!$Label.IPM_Select_Approver}</span>
                                                         </apex:outputPanel>  
                                                     </apex:outputPanel>                                                                                        
-                                                    <apex:actionfunction name="saveboss" action="{!save}" reRender="validscript,companyMand,CateMand,pgmsg,nameMsg,specialchar,fill,modalpop,bossHeader" onComplete="slctApprover();"/>
+                                                    <apex:actionfunction name="saveboss" action="{!save}" reRender="validscript,companyMand,CateMand,pgmsg,nameMsg,specialchar,fill,modalpop,bossHeader" onComplete="slctApprover();">
+                                                        <apex:param assignTo="{!isNoSuccessMsg}" value="{!defaultTrue}" name="skipsuccessmsgApprover"/>   
+                                                    </apex:actionFunction>
                                                     <apex:outputPanel styleClass="apprSelectContainer pull-left" layout="block" rendered="{!!isAddApprover}">
                                                         <div class="apprImageContainer pull-left">
                                                             <apex:image styleClass="circular apprImage pull-left" url="{!bosscard.IPM_Gate_Keeper__r.smallphotourl}"/>
