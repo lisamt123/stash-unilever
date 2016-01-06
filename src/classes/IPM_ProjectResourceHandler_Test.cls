@@ -59,7 +59,7 @@ public class IPM_ProjectResourceHandler_Test {
             IPM_ProjectResourceHandler ipmPR = new IPM_ProjectResourceHandler();
             ipmPR.afterInsert(projectRes);
             ipmPR.afterUpdate(projectRes1, projectRes);
-            IPM_Project__c proj = [Select Id, EcoDesign_Sync_Status__c, existsAtLeastOneAssmntPerEICountry__c, First_Sync_To_EcoDesign__c from IPM_Project__c limit 1000][0];
+            IPM_Project__c proj = [Select Id, EcoDesign_Sync_Status__c, First_Sync_To_EcoDesign__c from IPM_Project__c limit 1000][0];
             system.assertEquals(false, proj.First_Sync_To_EcoDesign__c, 'First_Sync_To_EcoDesign__c Is Checked');
         }
         test.stoptest();

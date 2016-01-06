@@ -71,7 +71,6 @@ private class IPM_EcoDesignSection_Test {
 		{   
 			
 			for(IPM_Project__c proj : projectList){
-				proj.Synced_From_EcoDesign_TimeStamp__c = System.now().addMinutes(15);
 				proj.First_Sync_To_EcoDesign__c = true;
 				proj.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
 				proj.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
