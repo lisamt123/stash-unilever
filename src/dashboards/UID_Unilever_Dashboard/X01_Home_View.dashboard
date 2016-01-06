@@ -295,7 +295,7 @@
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>
-    <runningUser>test.user1@unilever.com.uiuat</runningUser>
+    <runningUser>chatter.support@unilever.com</runningUser>
     <textColor>#000000</textColor>
     <title>01. Home View</title>
     <titleColor>#000000</titleColor>

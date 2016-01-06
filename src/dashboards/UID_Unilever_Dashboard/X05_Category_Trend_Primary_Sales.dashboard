@@ -401,7 +401,7 @@
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>
-    <runningUser>test.user1@unilever.com.uiuat</runningUser>
+    <runningUser>chatter.support@unilever.com</runningUser>
     <textColor>#000000</textColor>
     <title>05. Category Trend - Primary Sales</title>
     <titleColor>#000000</titleColor>
