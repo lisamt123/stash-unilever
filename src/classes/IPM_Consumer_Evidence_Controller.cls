@@ -48,7 +48,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
         try{
             IPM_IECompatible.ieFix();//For IE Compatibility
             //Retrieving Countries List
-            countryName='';
+            countryName=IPM_Constantutils.BLANK;
             couyName=new List<String>();
             countryList=new List<IPM_Country__c>();
             if(!String.isBlank(projDocSecId)){
@@ -57,7 +57,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
                             WHERE Id=:projDocSecId];
                 countryList=[SELECT Id,Country_Name__c,IPM_Project__c 
                              FROM IPM_Country__c 
-                             WHERE IPM_Project__c=:projDocSec.IPM_Project_Document__r.IPM_Project__c OR IPM_Regional_Project__c=:projDocSec.IPM_Project_Document__r.IPM_Project__c 
+                             WHERE isActive__c=true AND (IPM_Project__c=:projDocSec.IPM_Project_Document__r.IPM_Project__c OR IPM_Regional_Project__c=:projDocSec.IPM_Project_Document__r.IPM_Project__c) 
                              ORDER BY Country_Name__c asc];
                 //Getting selected country names for selection in picklist    
                 consumerEvidenceList=new List<IPM_Project_Document_Section_Content__c>();       
@@ -99,7 +99,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
     */
     public void createConcept(){
         List<IPM_Project_Document_Section_Content__c> insertCountriesConceptList=new List<IPM_Project_Document_Section_Content__c>();
-        couyName=countryName.split(',');
+        couyName=countryName.split(IPM_ConstantUtils.COMMA);
         for(Integer i=0;i<couyName.size();i++){  
             //If selected coutries does not have concepts
             if((!String.isBlank(projDocSec.IPM_Selected_Consumer_Evidence_Countries__c) && !projDocSec.IPM_Selected_Consumer_Evidence_Countries__c.contains(couyName[i])) || String.isBlank(projDocSec.IPM_Selected_Consumer_Evidence_Countries__c)){

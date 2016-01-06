@@ -10,6 +10,7 @@ public with sharing class IPM_GateCMIController{
     public static final String IPM_GATECMICONTORLLER_STR = 'ipm_gatecmicontorller';
     public static final String COPY_CMI_SECTIONS = 'copyCMISections';
     public static final String GET_COUNTRIES_STR='getCountries';
+    public static final String UPDATERESULTTIMING_STR='updateResultTiming';
     public String[] cmiNameList; //Contains List of Selected CMI Names
     public SObject ipmCMIGate; //Contains Gate CMI Object
     public String selectedCountryName; //Contains Country Names of Gate CMI
@@ -102,6 +103,7 @@ public with sharing class IPM_GateCMIController{
         else{
             soql += ' WHERE IPM_Regional_Project__c = \'' + projectId + '\'';
         }
+        soql+= ' AND isActive__c=true';
         try{
             countryList=Database.query(soql);   
         }
@@ -826,7 +828,7 @@ public with sharing class IPM_GateCMIController{
         }       
         catch(Exception ex){ 
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-                            'updateResultTiming',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+            	UPDATERESULTTIMING_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     } 
 }

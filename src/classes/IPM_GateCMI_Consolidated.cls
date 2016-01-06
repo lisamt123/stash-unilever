@@ -130,11 +130,6 @@ public with sharing class IPM_GateCMI_Consolidated{
                 }
             }
         }
-        catch(QueryException ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMI_CONSOLIDATED_STR,
-                GET_SECTION_CMI_LIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-        }
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMI_CONSOLIDATED_STR,
@@ -231,11 +226,6 @@ public with sharing class IPM_GateCMI_Consolidated{
             gateCount.put(IPM_ConstantUtils.CONTRACT_GATE,contractCount);
             gateCount.put(IPM_ConstantUtils.MARKET_READY_GATE,marketReadyCount);    
             
-        }
-        catch(QueryException ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMI_CONSOLIDATED_STR,
-                SHOW_LIST_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
