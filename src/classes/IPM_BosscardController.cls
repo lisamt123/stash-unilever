@@ -385,6 +385,9 @@ Global with sharing class IPM_BosscardController {
         }else{
             isDuplicateBoss=false;
         }
+        if(String.isNotBlank(bosscard.IPM_BosscardName__c) || bosscard.IPM_BosscardName__c!=null){
+            isNameMandatory=false;    
+        }
         //If project name is null show warning message
         if(String.isBlank(bosscard.IPM_BosscardName__c) || bosscard.IPM_BosscardName__c==null){
             isNameMandatory=true;

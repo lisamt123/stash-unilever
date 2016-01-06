@@ -8,14 +8,16 @@
 -->
 <apex:page standardController="IPM_Project__c" extensions="IPM_ProjectSetUpController,IPM_GetHelpDoc" sidebar="false" standardStylesheets="true" cache="false" docType="html-5.0">    
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_CoreParameter.css')}"/> 
-  <apex:form >  
+  <apex:form >
+  <apex:outputPanel id="setupWizard">  
     <apex:outputPanel styleClass="proxyTLP">
        
             <apex:pageMessages />
             <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" />
             <apex:actionFunction action="{!Initialise}" name="callpagerefresh" reRender="QuitProTab,createNewProject"/> 
        
-    </apex:outputPanel>    
+    </apex:outputPanel>  
+ 
     <div class='cust-overlay'></div>
     <apex:composition template="IPM_TemplateRevamp"> 
         <apex:define name="body">
@@ -66,7 +68,10 @@
                         </div>
                     </div>                 
                 </apex:outputPanel>
+                
+                <apex:actionPoller action="{!initialise}"  interval="10" rerender="setupWizard" oncomplete="reload()" enabled="{!IF(OR(project.IPM_Project_Job_Status__c = 'Eligible For Processing',project.IPM_Project_Job_Status__c = 'Processing'),true,false)}" />
                 <apex:outputPanel layout="block" styleClass="row" rendered="{!OR( project.IPM_Project_Job_Status__c == 'Eligible For Processing',project.IPM_Project_Job_Status__c == 'Processing' )}">
+                    
                     <div class="col-sm-12 custPageMarginbottom">
                         <div class="projectSetupicon">
                             <img alt="Idea"  src="{!URLFOR($Resource.IPM_Resource, 'images/Inprogress.svg')}" />
@@ -204,7 +209,7 @@
                                                                                     </apex:selectList>
                                                                                 </apex:outputPanel>
                                                                                 <apex:actionfunction name="callCompanyCard" onComplete="callBrandPos();" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,fastTrackPanel,whiteSpacePanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript,multiBPositions" status="refreshCategory" />
-                                                                                <apex:actionfunction name="callBrandPos" action="{!none}" reRender="BrandPositionPanel,multiBPositions" status="refreshCategory" />
+                                                                                <apex:actionfunction name="callBrandPos" action="{!none}" reRender="BrandPositionPanel,multiBPositions" status="refreshPos" />
                                                                                 
                                                                             </apex:actionRegion>
                                                                         </label>
@@ -220,6 +225,7 @@
                                                                           <apex:actionStatus startText="" id="refreshCategory" startStyleClass="proInit"/>
                                                                           <apex:selectList value="{!project.IPM_Category_Text__c}" multiselect="false" size="1" id="cat" disabled="{!!isEditable}" styleClass="selCategory">
                                                                               <apex:actionSupport event="onchange" action="{!none}" reRender="BrandPositionPanel,selectNextTabScript" status="refreshPos" />  
+                                                                               
                                                                               <apex:selectOptions value="{!Category}"></apex:selectOptions>
                                                                           </apex:selectList>
                                                                         </label>
@@ -236,7 +242,7 @@
                                                                             <apex:outputLabel value="{!$Label.IPM_SelectProjectType}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span>
                                                                             <apex:outputPanel layout="inline" styleClass="mandatorycolor"></apex:outputPanel>                                                                      
                                                                             <div class="ipmRadioButton oprtnRadiobtn">                                                                                      
-                                                                                <apex:selectRadio styleClass="{!IF(AND(isEditable,NOT(project.IPM_IsSaved__c)),'','disable')}" value="{!project.IPM_ProjectSubType__c}"  disabled="{!OR(project.IPM_IsSaved__c,NOT(isEditable))}" > 
+                                                                                <apex:selectRadio styleClass="{!IF(AND(isEditable,NOT(project.IPM_IsSaved__c)),'','disable')}"  value="{!project.IPM_ProjectSubType__c}"  disabled="{!OR(project.IPM_IsSaved__c,NOT(isEditable))}" > 
                                                                                     <apex:actionSupport event="onchange" action="{!populateProjectInformation}" reRender="BrandPositionPanel,gateKeepingPanel,questionCharter,WhiteSpaceFastTrackPanel,selectNextTabScript" status="refreshPos" />  
                                                                                     <span><apex:selectOptions value="{!projectSubTypes}"></apex:selectOptions></span>
                                                                                 </apex:selectRadio>
@@ -258,6 +264,7 @@
                                                             <div class="row brandPosContainer">
                                                                 <div class="col-sm-6"> 
                                                                     <apex:outputPanel id="BrandPositionPanel" layout="block" styleClass="inputField">
+                                                                       
                                                                         <apex:outputLabel value="{!$Label.IPM_BRAND_POSITIONING}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span>
                                                                         <apex:actionStatus startText="" id="refreshPos" startStyleClass="proInit"/>    
                                                                         <apex:outputPanel id="SingleBrandPanel" rendered="{!NOT(projectMetadata.IPM_MultipleBrandPosApplicable__c)}">
@@ -268,6 +275,7 @@
                                                                             </label>
                                                                         </apex:outputPanel>
                                                                         <apex:outputPanel layout="block" rendered="{!AND(projectMetadata.IPM_MultipleBrandPosApplicable__c)}" styleClass="noPadright noPadleft dropdown brandposListContainer ipmDropDown" >    
+                                                                            
                                                                             <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clickCmiList" >
                                                                                 <div class="ipmDropDownSelect">
                                                                                     <span class='brandSelValues'>{!$label.IPM_SelectBrandPosition}</span>
@@ -685,7 +693,7 @@
                             <div class="paracont">
                                 <p>
                                     <apex:outputText value="{!$Label.IPM_BETUnlinkingMessage}">
-                                        <!--<apex:param value="{!PreSelectedBet.betName}" />-->
+                                 <!--       <apex:param value="{!PreSelectedBet.betName}" /> -->  
                                     </apex:outputText>
                                 </p>
                             </div>
@@ -702,7 +710,8 @@
                 </div>
             </div>
         </apex:define> 
-    </apex:composition> 
+    </apex:composition>
+    </apex:outputPanel>
     </apex:form> 
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript"></script>
@@ -710,6 +719,12 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Limiter.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_CoreParameter.js')}" type="text/javascript"></script>   
     <apex:outputPanel id="selectNextTabScript">
+    <script>
+    function reload()
+        {
+            window.location.reload();
+        }
+    </script>
     <script>
     jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }}); 
     var apexAccountList =[];                 

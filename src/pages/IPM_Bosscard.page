@@ -196,11 +196,13 @@
                                                 <label class="ipmSelect">
                                                     <apex:selectList size="1" value="{!selectedCompany}" styleClass="compC" onchange="CCchange(this.value)" disabled="{!isBosscardEdit}" >
                                                         <apex:selectOptions value="{!Allcompanycard}"/>
-                                                        <apex:actionFunction name="CCchange" action="{!searchprojectpahse}" reRender="cat,pos" status="refreshCat">
+                                                        <apex:actionFunction name="CCchange" action="{!searchprojectpahse}" oncomplete="refreshBPos();" reRender="cat,pos" status="refreshCat">
                                                             <apex:param name="Cname" assignTo="{!selectedCompany}" value=""/>
                                                         </apex:actionFunction>
+                                                        <apex:actionFunction name="refreshBPos" action="{!getBrandposition}" reRender="pos"/>
                                                     </apex:selectList>
                                                 </label>
+                                                
                                                  <apex:outputPanel id="companyMand">
                                                    <apex:outputText value="{!$Label.IPM_Company_Card_Mandatory}" rendered="{!company_Booln}" styleclass="fieldErrmsg"/>
                                                  </apex:outputPanel>
@@ -547,8 +549,7 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Accordion.js')}" type="text/javascript"></script>    
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.ui.quarterpicker.js')}" type="text/javascript" ></script>                 
      <script>
-     var IPMApp = {changeStatus:'{!$Label.IPM_CHANGE_CURRENT_STATUS_OF_THE_BOSSCARD}', bossurl:'{!URLFOR($Page.IPM_Bosscard)}',projecturl:'{!URLFOR($Page.IPM_ProjectSetUpView)}', bosscardId:'{!bosscard.Id}', RemoteAction:'{!$RemoteAction.IPM_BosscardController.DeleteBosscard}', systemMsg:'{!$Label.IPM_System_Admin}'}; 
-     
+     var IPMApp = {changeStatus:'{!$Label.IPM_CHANGE_CURRENT_STATUS_OF_THE_BOSSCARD}', bossurl:'{!URLFOR($Page.IPM_Bosscard)}',projecturl:'{!URLFOR($Page.IPM_ProjectSetUpView)}', bosscardId:'{!bosscard.Id}', RemoteAction:'{!$RemoteAction.IPM_BosscardController.DeleteBosscard}', systemMsg:'{!$Label.IPM_System_Admin}'};     
      </script>
      <apex:outputPanel id="modalpop">
         <script>                    
