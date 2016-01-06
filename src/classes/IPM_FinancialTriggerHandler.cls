@@ -328,9 +328,6 @@ public with sharing class IPM_FinancialTriggerHandler
             
         initialiseConsolidation(mapNewFinancials, mapOldFinancials);
    
-        //Adding system.debugs for understanding a defect root cause. Please exclude in SONAR
-        system.debug('mapNewFinancials.values()..'+mapNewFinancials.values());
-        system.debug('(List<IPM_Financial__c>)Trigger.New..'+(List<IPM_Financial__c>)Trigger.New);
         IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved(mapNewFinancials.values());
     }
 
@@ -662,7 +659,6 @@ public with sharing class IPM_FinancialTriggerHandler
             List<IPM_Financial__c> newFinList=new List<IPM_Financial__c>();
             List<IPM_Project_Document_Section_Content__c> projDocSecConList=new List<IPM_Project_Document_Section_Content__c>();
             Set<Id> projectIds=new Set<Id>();
-            System.debug(mapNewFinancials.values()+'*********mapNewFinancials.values()*****');
             for(IPM_Financial__c newFin:mapNewFinancials.values()){
                 if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c){
                     newFinList.add(newFin);
@@ -705,7 +701,6 @@ public with sharing class IPM_FinancialTriggerHandler
                 if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE){// && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
                     newFinList.add(newFin);
                     projectIds.add(newFin.Parent_Project__c);
-                    system.debug('/// in projids');
                 }
                 if(newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE){// && newFin.Regional_Project__c==null && newFin.Local_Project__c==null){
                     newFinList.add(newFin);
