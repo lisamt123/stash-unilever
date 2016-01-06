@@ -25,7 +25,7 @@ global class BET_InoplanToIPMMigration_Batch implements Database.Batchable<sObje
 		return Database.getQueryLocator([select Id,name, IPM_Project__c, Product_Category__c, Inoplan_Project__c, Inoplan_Project__r.Project_Id__c 
 										from uw_BET__c
 										where IPM_Project__c = null and Inoplan_Project__c <> null and Product_Category__r.name = :catName
-											and Inoplan_Project__r.Project_Id__c <> null]);
+											and Inoplan_Project__r.Project_Id__c <> null and Is_Archived__c = false]);
 	}
 
     global void execute(Database.BatchableContext BC, List<uw_BET__c> scope) {
