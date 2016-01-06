@@ -152,9 +152,9 @@ public with sharing class AF_OOPSEstimateController {
 *************************************************************************************/
 	private string CommaFilter(string value)
 	{
-		String localValue='';
+		String localValue=value;
 		if(value.contains(',')){localValue = value.replaceAll(',','');}
-		return value;       
+		return localValue;       
 	} 
 	/***************************************************************************************
 *  @Description: this method is used to calculate the local currency value of the override amt

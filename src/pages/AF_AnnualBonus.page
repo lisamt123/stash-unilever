@@ -13,89 +13,6 @@
 <!-- jquery library Start-->
     <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
     <!-- jquery library End-->
-    
-
-<script>  
- $( function() {
-    $('.two-digits').keyup(function(){
-        
-        if($(this).val().indexOf('.')!=-1){         
-            if($(this).val().split(".")[1].length > 2){                
-                if( isNaN( parseFloat( this.value ) ) ) return;
-                this.value = parseFloat(this.value).toFixed(2);
-            }  
-         }            
-         return this; //for chaining
-    });
-    
-    
-     
-  $(".two-digits").keypress(function (e) {
-      
-     if (e.which != 46 && e.which > 31 && (e.which < 48 || e.which > 57) && (e.which < 43 || e.which > 45)){
-        
-        
-        alert("Please enter numbers only.");
-               return false;
-    }
-   });
-});
-</script>
-
- <script>
- 
-  function isNumberKey(evt)
-       {
-          var charCode = (evt.which) ? evt.which : event.keyCode;
-          var result = false;
-          var errorMsg = document.getElementById("regTitle");
-          if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57)&& charCode != 45)
-          {
-             errorMsg.innerHTML = "<b>Please use numerical characters only.</b>";
-             result = false;
-          }
-          else
-          {
-           errorMsg.innerHTML = "";
-           result = true;         
-          }             
-          return result;
-       }
- 
- function isNumberKeyforRenum(evt)
-       {
-          var charCode = (evt.which) ? evt.which : event.keyCode;
-          var result = false;
-          var errorMsg = document.getElementById("regTitle1");
-          if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57 && charCode != 45))
-          {
-             errorMsg.innerHTML = "<b>Please use numerical characters only.</b>";
-             result = false;
-          }
-          else
-          {
-           errorMsg.innerHTML = "";
-           result = true;         
-          }             
-          return result;
-       }
- 
-  function emptybox(id)
-     {
-       var temp=document.getElementById(id).value;
-       var errorMsg = document.getElementById("regTitle");
-       
-       if(temp==null||temp==''){
-         errorMsg.innerHTML = "<b>Please enter</b>";
-         return false;
-       }else{
-         return true;
-       }
-     }
-  
-     
- </script>
-
  <div class="AF_AnnualBonus">
   <apex:message />
   <div class="row">           
@@ -379,16 +296,5 @@
         </apex:ActionStatus>
  </apex:form>
 </div>
-  <script>
-  function calldisable(){
-          
-            document.getElementById('Savebutton').style.visibility = "hidden";
-            console.log('hi');
-  }
-  function callcalculateBonus(){
-    alert('Hi');
-    call_calculate_bonus();
-    alert('Hi2');
-  }
-  </script>
+  <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'AF_AnnualBonus.js')}"/>
 </apex:page>

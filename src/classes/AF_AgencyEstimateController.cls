@@ -179,7 +179,7 @@ public with sharing class AF_AgencyEstimateController
 	}
 	private string CommaFilter(string value)
 	{
-		String localValue='';
+		String localValue=value;
 		if(value.contains(',')){localValue = value.replaceAll(',','');}
 		return localValue;       
 	}

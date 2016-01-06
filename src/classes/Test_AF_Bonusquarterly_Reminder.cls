@@ -16,18 +16,14 @@ public class Test_AF_Bonusquarterly_Reminder
     curr=string.valueOf(system.now().month());
     
     //custom setting
-    //list<AF_BonusQuarterly_Quarterdates__c> Quarterly = new list <AF_BonusQuarterly_Quarterdates__c>();
     AF_BonusQuarterly_Quarterdates__c Quarter =new AF_BonusQuarterly_Quarterdates__c();
-     //Quarterly.Cat Finance reminder=system.today();
      Quarter.Name = 'Sample Quarter';
-     //Quarter.AF_Q1__c = system.today();
-     //Quarter.AF_Q2__c = system.today();
-     //Quarter.AF_Q3__c = system.today();
      Quarter.AF_Q1__c = daysBefore;
      Quarter.AF_Q2__c = daysBefore;
      Quarter.AF_Q3__c = daysBefore;
      insert Quarter;
-
+     System.Assert(Quarter.Id != null, 'The BonusQuarterly record inserted');
+     
      //insert send email
      Send_Email__c  send =new Send_Email__c ();
      send.sendEmailBonusQuartToCatFinance__c=true;
@@ -35,7 +31,7 @@ public class Test_AF_Bonusquarterly_Reminder
      send.URL_link_to_Agency_Fees__c = Label.AF_UrlLink;
      send.AF_Quarter__c='Q3' ;
      insert send;
-     
+     System.Assert(send.Id != null, 'The send_email record inserted');
      
      Test.StartTest();
      AF_BonusQuarterly_Reminder_schedule  BonusQuarterly =new AF_BonusQuarterly_Reminder_schedule();

@@ -9,26 +9,24 @@
 @isTest(SeeAlldata=false)
 public class Test_AF_SendEmailToCatFinance
 {  
-	/**********************************************************************
+    /**********************************************************************
 *  @Description: This method will have Test data.
 *  @name : AFCallingSchedulable
 *  @param : none
 *  @return : none
 *************************************************************************/  
-	Static testMethod void AFCallingSchedulable()
-	{
-		Test.StartTest();
-		AF_CatFinanceThreshold__c customList = new AF_CatFinanceThreshold__c();
-		customList.AF_Date__c = system.today();
-		insert customList;
-		System.Assert(customList.Id != null, 'The customsetting record not inserted');
-		AF_SendEmailToCatFinance obj = new AF_SendEmailToCatFinance();
-		//obj.query=null;
-		Datetime dt = Datetime.now().addMinutes(1);
-		String CRON_EXP = '0 '+ dt.minute() + ' * ' + dt.day() + ' ' + dt.month() + ' ? ' + dt.year();
-		String jobId = System.schedule('Sample_Heading', CRON_EXP, obj); 
-		Database.BatchableContext BC ;
-		obj.finish(BC);
-		Test.stopTest();
-	}
+    Static testMethod void AFCallingSchedulable()
+    {
+        Test.StartTest();
+        AF_CatFinanceThreshold__c customList = new AF_CatFinanceThreshold__c();
+        customList.AF_Date__c = system.today();
+        insert customList;
+        System.Assert(customList.Id != null, 'The customsetting record not inserted');
+        //obj.query=null;
+        Datetime dt = Datetime.now().addMinutes(1);
+        AF_SendEmailToCatFinance_schedule  EmailtoCatFinance =new AF_SendEmailToCatFinance_schedule();
+        String CRON_VALUE = '0 0 3 ? * *';
+        system.schedule('AF_SendEmailToCatFinance_schedule', CRON_VALUE, EmailtoCatFinance);
+        Test.stopTest();
+    }
 }

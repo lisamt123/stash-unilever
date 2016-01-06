@@ -331,13 +331,13 @@
             <div class="floatR">
                <apex:commandButton value="X" action="{!closePopupReject}" rerender="popuprej" styleClass="buttonX"/>
             </div>
-            <center style="margin:20px;">
+            <div style="margin:20px;">
                <h2>
                   <apex:outputLabel value="{!$Label.AF_POOveride_Warning}" styleClass="fontSize16"/>
                </h2>
                <br/><br/>
                <apex:commandButton value="Confirm" action="{!OverridePO}" styleClass="continue_btn wid70PX" reRender="pm2,po_number,po_estimateLocal,popuprej"/>
-            </center>
+            </div>
             ,
          </apex:outputPanel>
       </apex:outputPanel>

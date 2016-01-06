@@ -1,5 +1,5 @@
 global with sharing class AF_BrandEstimateRemote {
-    
+   global string Space=' ';
     public AF_BrandEstimateRemote(ApexPages.StandardController stdController) {
         
     }
@@ -30,7 +30,7 @@ global with sharing class AF_BrandEstimateRemote {
     @remoteAction
     global static Map<String, String> getAgencyEstimateRecords(String agencyId, String brandEstimateId) {
         
-        String tdCloseTag = '</td>', trOpenTag = '<tr>', trCloseTag = '</tr>';
+        String tdCloseTag = '</td>', trOpenTag = '<tr>', trCloseTag = '</tr>',Space;
         Boolean isLocked = false;
         String strongStrt = '<Strong>', strongEnd = '</strong>';
         Set<String> columnsSet = new Set<String>();
@@ -88,10 +88,10 @@ global with sharing class AF_BrandEstimateRemote {
                     colAdaptation += truncateDecimal(agencyULRelationMap.get(keyMatch).AF_Adaptation__c);
                 }
             }
-            String dispColTotal = colTotal > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(colTotal) : '';
-            String dispColDigital = colDigital > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(colDigital) : '';
-            String dispColTraditional = colTraditional > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(colTraditional) : '';
-            String dispColAdaptation = colAdaptation > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(colAdaptation) : '';
+            String dispColTotal = colTotal > 0 ? AF_Constants.AF_CURRENCY_EUR1    + currencyFormatted(colTotal) : '';
+            String dispColDigital = colDigital > 0 ? AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(colDigital) : '';
+            String dispColTraditional = colTraditional > 0 ? AF_Constants.AF_CURRENCY_EUR1    + currencyFormatted(colTraditional) : '';
+            String dispColAdaptation = colAdaptation > 0 ? AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(colAdaptation) : '';
             rowDetail += '<td align=\"center\" title=\"\" class=\"totalCell details-control" t=\"' + dispColTraditional + '\" d=\"' + dispColDigital;
             rowDetail += '\" a=\"' + dispColAdaptation + '\"><a l e=\"' + dispColTotal + '\">';
             if(colTotal != 0) {
@@ -132,10 +132,10 @@ global with sharing class AF_BrandEstimateRemote {
             }
             String dispArchiveImg = (rowTotalA > 0 || isLocked) ?  '' : archiveImg;
             rowDetail += '<td align=\"center\" class=\"headRow">'+ strongStrt +  eachRow + dispArchiveImg + strongEnd + tdCloseTag;
-            String dispRowTotal = (rowTotal > 0) ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(rowTotal) : '';
-            String dispRowDigital = rowDigital > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(rowDigital) : '';
-            String dispRowTraditional = rowTraditional > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(rowTraditional) : '';
-            String dispRowAdaptation = rowAdaptation > 0 ? AF_Constants.AF_CURRENCY_EUR + currencyFormatted(rowAdaptation) : '';
+            String dispRowTotal = (rowTotal > 0) ? AF_Constants.AF_CURRENCY_EUR1  + currencyFormatted(rowTotal) : '';
+            String dispRowDigital = rowDigital > 0 ? AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(rowDigital) : '';
+            String dispRowTraditional = rowTraditional > 0 ? AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(rowTraditional) : '';
+            String dispRowAdaptation = rowAdaptation > 0 ? AF_Constants.AF_CURRENCY_EUR1   + currencyFormatted(rowAdaptation) : '';
             rowDetail += '<td align=\"center\" title=\"\" class=\"totalCell mydisplaytotal details-control" t=\"' + dispRowTraditional + '\" d=\"' + dispRowDigital;
             rowDetail += '\" a=\"' + dispRowAdaptation + '\"><a class="margin0" l e=\"' + dispRowTotal + '\">' + strongStrt + dispRowTotal + strongEnd + '</a>' + tdCloseTag;
             for(String eachCol : orderedColumn) { //Display the agency estimate records
@@ -159,7 +159,7 @@ global with sharing class AF_BrandEstimateRemote {
     public static String processAgencyRow(Boolean isValue, AF_Agency_Estimate__c agSObj, 
                                         Map<String, AF_Agency_Estimate__c> agencyULRelationMap, 
                                         String aId, String uId, String bId) {
-        String tdCloseTag = '</td>', space = ' ', lBreak = '<br/>', euro = 'EUR';
+        String tdCloseTag = '</td>',Space, lBreak = '<br/>', euro = 'EUR';
         String rowDetailToReturn = '';
          String href;
         if(isValue) {
@@ -222,7 +222,7 @@ global with sharing class AF_BrandEstimateRemote {
             rowDetailToReturn += ' class=\"modalButton3\">';
             if(total != 0) {
                 rowDetailToReturn += '<div class="imageHolder" style=\"float:left;height:100%\">' + crsBrdrImg + cmntImg;
-                rowDetailToReturn += '</div><div>' + AF_Constants.AF_CURRENCY_EUR + currencyFormatted(total);
+                rowDetailToReturn += '</div><div>' + AF_Constants.AF_CURRENCY_EUR1  + currencyFormatted(total);
                 rowDetailToReturn = agSObj.AF_Total__c != agSObj.AF_Total_Local__c ? rowDetailToReturn + lBreak + currCode + ' ' + currencyFormatted(totalLocal) : rowDetailToReturn;
             } else if(totalWithoutRounding > 0 && totalWithoutRounding <= 499){
                 rowDetailToReturn += '<div style=\"float:left;height:100%\">' + crsBrdrImg + '<br/>' + cmntImg;

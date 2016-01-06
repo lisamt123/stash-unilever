@@ -27,6 +27,17 @@ public class Test_AF_ViewAllController
     static testmethod void AFViewAllController()
     {
         Test.startTest();
+        Profile p=[Select Id from Profile where Name='System Administrator'];       
+        //Insert User 
+        User u= new User(Alias = 'testab', Email='standarduserab@unilever.com', 
+        EmailEncodingKey='UTF-8', LastName='Test Userab', LanguageLocaleKey=AF_Constants.LocaleKey, 
+        LocaleSidKey=AF_Constants.LocaleKey, ProfileId = p.Id, 
+        TimeZoneSidKey='Europe/London',AF_Agency_Fees_User_Type__c=AF_Constants.UT_CATEGORY_FINANCE,isActive=true, 
+        UserName='testuserab@test123321.com',AF_Brand__c='Test Brandab',AF_Category__c='Test Beveragesab');
+        insert u;    
+        System.Assert(u.Id != null, AF_Constants.TEST_ASSERT_MSG);    
+        System.runAs(u)
+        {
         AF_ViewAllController  viewall = new AF_ViewAllController();
         viewall.CParentId ='14256';
         viewall.DParentId ='4654';
@@ -38,5 +49,6 @@ public class Test_AF_ViewAllController
         viewall.oopEstimate=true;
         viewall.bonusEstimate=true;
         Test.stopTest();
+        }
     }
 }

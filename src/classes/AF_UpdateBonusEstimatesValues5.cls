@@ -36,7 +36,6 @@ public with sharing Class AF_UpdateBonusEstimatesValues5
     Map<id,String>  matrixReadyforconversion=new Map<id,String>();
     Map<id,String>  ReadyForPOEntryCurrency=new Map<id,String>();
     Integer MatrixRecoundCount=0;
-    Double USDValue=0.0;
     set<String> agencyCountries=new set<String>();
     set<String> unileverCountries=new set<String>();
     if(agencyRecords.size()>0)
@@ -102,9 +101,7 @@ public with sharing Class AF_UpdateBonusEstimatesValues5
         CurrencyMapforUSD.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_SGD_To_USD__c );
         CurrencyMapforGBP.put(curren.Country_Currency__c,curren.Ready_For_PO_Exchange_Rate_To_EUR__c );
       }
-      If(curren.AF_Currency_Code__c=='EUR')
-      if(curren.Ready_For_PO_Exchange_Rate_To_EUR__c!=null)
-      USDValue=curren.Ready_For_PO_Exchange_Rate_To_EUR__c;
+      
     }
     if(agencyRecords.size()>0)
     for(AF_Bonus_Matrix__c agencyEst:agencyRecords)

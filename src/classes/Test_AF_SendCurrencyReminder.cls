@@ -15,15 +15,18 @@ public class Test_AF_SendCurrencyReminder
 *  @param : none
 *  @return : none
 *************************************************************************/  
-    static testmethod void AFCurrencySchedulable()
+    static testmethod void SchedulableContext()
     {
         test.starttest();
-        af_SendCurrencyReminder sch=new af_SendCurrencyReminder();
-        System.Assert(sch!= null, 'The CurrencyReminder record not inserted');
-        Database.BatchableContext BC ;
-        SchedulableContext ctx;
-        sch.execute(ctx);
-        sch.finish(BC);
-        test.stoptest();
+        String DayofMonth;
+        DayofMonth=string.valueOf(system.now().day());
+        Send_Email__c  email=new Send_Email__c();   
+        email.AF_CurrencyUpdateRequired__c=true;
+        insert email;
+        System.Assert(email.Id != null, 'The record inserted');
+        af_SendCurrencyReminder_schedule  EmailtoCatFinance =new af_SendCurrencyReminder_schedule();
+        String CRON_VALUE = '0 0 3 ? * *';
+        system.schedule('af_SendCurrencyReminder_schedule-yearly (TEST)', CRON_VALUE, EmailtoCatFinance);
+        test.stopTest();
     }
 }

@@ -88,6 +88,7 @@ public class AF_Constants
     
     /*AF Currencies */
     public static final string AF_CURRENCY_EUR ='EUR';
+    public static final string AF_CURRENCY_EUR1 ='EUR ';
     public static final string AF_CURRENCY_USD ='USD';
     public static final string AF_CURRENCY_GBP ='GBP';
     

@@ -182,7 +182,7 @@ public with sharing class AF_BonusMatrixOverrideController
 *******************************************************************************************/
 	private string CommaFilter(string value)
 	{
-		String localValue='';
+		String localValue=value;
 		if(value.contains(',')){localValue = value.replaceAll(',','');}
 		return localValue;       
 	} 

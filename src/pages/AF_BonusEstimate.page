@@ -6,25 +6,6 @@
    *************************************************************************
    -->
 <apex:page controller="AF_BonusMatrixOverrideController" showheader="false" >
- <script>
-     function isNumberKey(evt)
-       {
-          var charCode = (evt.which) ? evt.which : event.keyCode;
-          var result = false;
-          var errorMsg = document.getElementById("regTitle");
-          if (charCode != 46 && charCode > 31 && (charCode < 48 || charCode > 57))
-          {
-             errorMsg.innerHTML = "<b>Please enter numbers only.</b>";
-             result = false;
-          }
-          else
-          {
-           errorMsg.innerHTML = "";
-           result = true;         
-          }             
-          return result; 
-       }
-  </script>
   <!-- Common_Style File Start -->
 <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
 <!-- Common_Style File End -->
@@ -60,19 +41,6 @@
      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script> 
      <!-- Bootstrap_Js File End -->
      <!-- Bootstrap Tooltip Method Start--> 
-<script type="text/javascript" language="javascript">
-        var bsjQuery = jQuery.noConflict();
-        bsjQuery(document).ready(function() {
-           bsjQuery(myFunction);
-         }); 
-         function myFunction() {
-             bsjQuery('[data-toggle=tooltip]').tooltip(); 
-             bsjQuery(".submit_btn_screen1_bonus, .submit_btn").each(function(){
-    var originalClick = bsjQuery(this).attr("onclick");
-    bsjQuery(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
-}) 
-        }
-    </script>
 <!-- Bootstrap Tooltip Method End--> 
  <apex:form id="frm" styleClass="AF_BonusEstimate">
   <div class="row">           
@@ -220,77 +188,5 @@
 </div> 
 <!-- Bootstrap bootstrap modal window End --> 
  </apex:form>
-<!-- Bootstrap bootstrap modal window methods  Start-->
-<script>
-document.body.setAttribute("data-shouldRefreshPage", "0");
-bsjQuery(document).ready(function(){
- bsjQuery(document).on('click','.modalButton3', function(e) {
-    bsjQuery("#iframe_cont").contents().find("body").html('');
-    var src = bsjQuery(this).attr('data-src');
-    var height = bsjQuery(this).attr('data-height') || 340;
-    var width = bsjQuery(this).attr('data-width') || 1110;
-    bsjQuery('#myModal3').on('hidden.bs.modal',shouldRefreshPage);
-    bsjQuery("#myModal3 iframe").attr({'src':src,
-                        'height': height,
-                        'width': width});                                  
-});
-});
-function timerForPageRefresh(){
-    shouldRefreshPage(!bsjQuery('#myModal3').is(":visible"));
-}
-function shouldRefreshPage(flag) {
-   if(document.body.getAttribute("data-shouldRefreshPage") != "0" && flag){
-       document.body.setAttribute("data-shouldRefreshPage", "0");
-       window.location.reload(true);
-   }
-   else if(!flag){
-       window.setTimeout(timerForPageRefresh, 100);
-   }
-}
-/* Change the click attributes of save buttons to set Flag on Top document to refresh page on close of modal */
-function initializePageRefresh(){
-    var originalClick = bsjQuery(this).attr("onclick");
-    bsjQuery(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
-}
-bsjQuery('#iframe_cont').load(function(){
-    var popupFrame = bsjQuery("#iframe_cont").contents();
-    if(popupFrame.find("iframe").length ){
-        popupFrame.find("iframe").each(function(){
-            bsjQuery(this).contents().find(".EditSave").each(initializePageRefresh);
-        });
-    }
-    popupFrame.find(".EditSave").each(initializePageRefresh);
-});
-</script>
-<!-- Bootstrap bootstrap modal window methods End-->
-<!-- Bootstrap bootstrap modal window loading_img methods Start-->
-<script> 
-    bsjQuery(document).ready(function () {
-        bsjQuery('#iframe_cont').on('load', function () {
-         bsjQuery('#loader_cont, .loading_img').show();
-            console.log("madhu");
-            bsjQuery('#loader_cont, .loading_img').delay(3000).hide(0);
-        });
-    });   
-</script>
-<!-- Bootstrap bootstrap modal window loading_img methods End-->
-<script>
-function myCustFunc(){
-$(".submit_btn_screen1_bonus").each(function(){
-    var originalClick = $(this).attr("onclick");
-    $(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
-})
-}
-</script>
- <script>
-  function commentsToggleOpen(elementId) 
-  {
-      document.getElementById(elementId).style.display = 'block';
-  }
-  function commentsToggleClose(elementId) 
-  { 
-      document.getElementById(elementId).style.display = 'none';
-  }
-  commentsToggleClose('commentAddTable');
-</script>
+ <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'AF_BonusEstimate.js')}"></script>
 </apex:page>

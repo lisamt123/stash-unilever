@@ -554,12 +554,12 @@
                                                 <table>
                                                    <tr>
                                                       <td class="firstlabelName">
-                                                         <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Annual_Base_Fee_Target}">Unilever Base Fee</apex:outputLink>
+                                                         <apex:outputLink styleClass="custom-link label_tooltip" title="{!$Label.AF_LP_Annual_Base_Fee_Target}">Unilever Targets</apex:outputLink>
                                                       </td>
                                                       <td>
                                                          <apex:outputLink onclick="TargetBaseFees('{!selectedBrandOption}','{!categoryNameStr}','{!CategoryId}','{!financialYear}','{!Best.Id}');return false;" html-data-toggle="modal" html-data-target="#myModal" html-data-backdrop="static" html-data-src="/apex/AF_BrandEstimate?Id={!Best.Id}" title="{!$Label.AF_LP_Base_Fee_Targets}" id="theLink" styleClass="custom-link modalButton firstlabelValue">
                                                             <apex:outputText value="{0,number,###,###,###}">
-                                                               €
+                                                               €&nbsp;
                                                                <apex:param value="{!best.Base_Fee_Total__c}"/>
                                                             </apex:outputText>
                                                          </apex:outputLink>
@@ -593,7 +593,7 @@
                                                    <tr>
                                                       <td >
                                                          <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="apex/AF_UL_BrandEstimate_Matrices?bId={!Best.Brand__c}&fy={!financialYear}&aId={!Best.AF_Agency__c}&brandvalue={!selectedBrandOption}&category={!categoryNameStr}+'::'+{!CategoryId}&Year={!financialYear}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
-                                                            title="{!$Label.AF_LP_Enter_BF_estimates} {!$Label.AF_LP_Naming_Convention}">Base Fees</a>
+                                                            title="{!$Label.AF_LP_Enter_BF_estimates} {!$Label.AF_LP_Naming_Convention}">Base Fee Matrix</a>
                                                       </td>
                                                       <td >
                                                          <apex:outputField value="{!best.AF_Status_Base_Fees__c}" rendered="{!IF(best.AF_Status_Base_Fees__c!='With Category Finance','true','false')}"></apex:outputField>
@@ -621,7 +621,7 @@
                                                    <tr>
                                                       <td >
                                                          <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="apex/AF_UL_OOPS_SelectMatrices?bId={!Best.Brand__c}&fy={!financialYear}&aId={!Best.AF_Agency__c}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
-                                                            title="{!$Label.AF_LP_y81a}">OOPs</a>
+                                                            title="{!$Label.AF_LP_y81a}">OOPs Matrix</a>
                                                       </td>
                                                       <td >
                                                          <apex:outputField value="{!best.AF_Status_OOPs_Estimate__c}" rendered="{!IF(best.AF_Status_OOPs_Estimate__c!='with category finance','true','false')}"/>

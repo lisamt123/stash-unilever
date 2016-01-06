@@ -35,11 +35,45 @@
    <!-- Common_Style File Start -->
    <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
    <!-- Common_Style File End -->
-   <!-- JavaScript Methods AF_ApprovalProcessForBrandEstimates Start -->
-   <script type="text/javascript" src="{!URLFOR($Resource.AF_JavascriptFiles, '/AF_JavascriptFiles/AF_ApprovalProcessForBrandEstimates.js')}"/>
-   <!--<apex:includeScript value="{!URLFOR($Resource.AF_JavascriptFiles, '/AF_JavascriptFiles/AF_ApprovalProcessForBrandEstimates.js')}"/>-->
-   <!-- JavaScript Methods AF_ApprovalProcessForBrandEstimates End -->
-   
+   <script>
+      function redirection()
+      {
+      
+      var brandid='{!brandvalue1}';
+      var catageoryname="{!catageory1}";
+      catageoryname = catageoryname.replace(/ /g,'');
+      catageoryname = catageoryname.replace(/'/g,'');
+      var fyear='{!year1}';
+       if({!isAgency}){
+           var url = '{!$Label.AF_AgencyUrlLink}/apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear;
+           
+           parent.location.assign(url);   
+          }
+       else{
+           parent.location.assign('/apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear);
+       }
+      }
+      
+      function redirectionOnReject(comment)
+      {
+      
+      
+      if(comment!=''){
+      var brandid='{!brandvalue1}';
+      var catageoryname="{!catageory1}";
+      catageoryname = catageoryname.replace(/ /g,'');
+      catageoryname = catageoryname.replace(/'/g,'');
+      var fyear='{!year1}';
+      if({!isAgency}){
+          var url = '{!$Label.AF_AgencyUrlLink}/apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear;
+           parent.location.assign(url);   
+          }
+       else{
+              parent.location.assign('/apex/AgencyHomePage?brandvalue='+brandid+'&category='+catageoryname+'&Year='+fyear);
+       }
+      }
+          }
+   </script>
    <apex:Pagemessages id="pmg"/>
    <apex:attribute name="ParentRecordValue" type="String" AssignTo="{!ParentId}" Description="The parent record that the component is to work with." />
    <apex:attribute name="brandvalue" type="String" AssignTo="{!brandvalue1}" Description="for return to home page with exact values" />
@@ -85,13 +119,13 @@
          <div class="approval_floatR">
             <apex:commandButton value="X" action="{!closeApprovalPopup}" rerender="Approvepopup" styleClass="approval_closeButton1"/>
          </div>
-         <center class="approval_margin20PX">
+         <div class="approval_margin20PX">
             <h2>
                <apex:outputLabel value="{!$Label.AF_OOPS_Submit}" styleClass="approval_fontS16PX"/>
             </h2>
             <br/><br/>
             <apex:commandButton value="Confirm" action="{!SubitforApproval}" styleClass="continue_btn_SubitforApproval approval_wid70P"  rerender="Approvepopup"  oncomplete="redirection();"/>
-         </center>
+         </div>
       </apex:outputPanel>
    </apex:outputPanel>
    <apex:outputPanel id="popup">
@@ -100,7 +134,7 @@
          <div class="approval_floatR">
             <apex:commandButton value="X" action="{!closePopup}" rerender="popup" styleClass="approval_closeButton2"/>
          </div>
-         <center class="approval_margin20PX">
+         <div class="approval_margin20PX">
             <h2>
                <apex:outputlabel rendered="{!!(LoggedinUser.AF_Agency_Fees_User_Type__c=='Category Finance')}">
                   <apex:outputLabel value="{!$Label.AF_OOPS_Approval}" styleClass="approval_fontS16PX"/>
@@ -109,7 +143,7 @@
             </h2>
             <br/><br/>
             <apex:commandButton value="Confirm" action="{!ApproveRecord}" styleClass="continue_btn_ApproveRecord approval_wid70P" rerender="popup" oncomplete="redirection();"/>
-         </center>
+         </div>
       </apex:outputPanel>
    </apex:outputPanel>
    <apex:outputPanel id="popuprejcomm">
@@ -119,7 +153,7 @@
          <div class="approval_floatR">
             <apex:commandButton value="X" action="{!closePopupRejComment}" rerender="popuprejcomm"  styleClass="approval_closeButton3"/>
          </div>
-         <center class="approval_margin20PX">
+         <div class="approval_margin20PX">
             <Table border="0" align="left" cellspacing="1">
                <tr>
                   <td colspan="2">
@@ -142,7 +176,7 @@
                </tr>
             </table>
             <br/><br/>
-         </center>
+         </div>
       </apex:outputPanel>
    </apex:outputPanel>
    <apex:outputPanel id="popuprej">
@@ -151,13 +185,13 @@
          <div class="approval_floatR">
             <apex:commandButton value="X" action="{!closePopupReject}" rerender="popuprej" styleClass="approval_closeButton4"/>
          </div>
-         <center class="approval_margin20PX">
+         <div class="approval_margin20PX">
             <h2>
                <apex:outputLabel value="{!$Label.AF_OOPS_Reject}" styleClass="approval_fontS16PX"/>
             </h2>
             <br/><br/>
             <apex:commandButton value="Confirm" action="{!RejectRecord}" styleClass="continue_btn approval_wid70P" rerender="popuprej" oncomplete="redirection();"/>
-         </center>
+         </div>
       </apex:outputPanel>
    </apex:outputPanel>
 </apex:component>

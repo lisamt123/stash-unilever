@@ -627,9 +627,9 @@ global with sharing class AF_BrandEstimateController2
 ***********************************************************************************************/
     private string CommaFilter(string value)
     {
-        String localValue='';
+        String localValue=value;
         if(value.contains(',') ){localValue = value.replaceAll(',','');}
-        return value;       
+        return localValue;       
     }
     /*****************************************************************************************
 *  @Description: this method is used to update bonus is required or not for the BrandEstimate

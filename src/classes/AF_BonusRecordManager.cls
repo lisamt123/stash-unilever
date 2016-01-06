@@ -13,7 +13,6 @@ Global with sharing class AF_BonusRecordManager {
     private List<AF_Brand_Estimate__c> BrandEstimateCollection; 
     private AF_Bonus_Results__c GlobalBonusResults;
     private AF_Bonus_Summary__c BonusSummary;
-    private AF_Bonus_Matrix__c BonusMatrix;
     private AF_Bonus_Threshold__c BonusThreshold; 
     private List<AF_Bonus_Matrix__c> BonusMatrixCollection;
     private Map<string,double> CountryTotalMap = new Map<string,double>();
@@ -65,7 +64,7 @@ Global with sharing class AF_BonusRecordManager {
             
             for(AF_Brand_Estimate__c brandEstimate : BrandEstimateCollection)
             {
-                if(brandEstimate.AF_Basefee_Estimate_Initial_Quarter__c.contains('Q4') == true && !brandEstimate.AF_No_Bonus__c)
+                if(brandEstimate.AF_Basefee_Estimate_Initial_Quarter__c.contains('Q4') && !brandEstimate.AF_No_Bonus__c)
                 {
                     BonusMatrixCollection = BonusMultiObjectFactory(brandEstimate, AgencyEstimateCollection);
                 }               
