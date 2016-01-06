@@ -228,7 +228,7 @@
     <fieldUpdates>
         <fullName>Financial_Copy_G2L_Volume_Unit_000_Unit</fullName>
         <field>Volume_Unit_Local__c</field>
-        <literalValue>Total &apos;000 Units</literalValue>
+        <literalValue>Total 000 Units</literalValue>
         <name>Financial Copy G2L Volume Unit &apos;000 Unit</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -291,7 +291,7 @@
     <fieldUpdates>
         <fullName>Financial_Copy_G2R_Volume_Unit_000_Unit</fullName>
         <field>Volume_Unit_Regional__c</field>
-        <literalValue>Total &apos;000 Units</literalValue>
+        <literalValue>Total 000 Units</literalValue>
         <name>Financial Copy G2R Volume Unit &apos;000 Unit</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -354,7 +354,7 @@
     <fieldUpdates>
         <fullName>Financial_Copy_L2R_Volume_Unit_000_Unit</fullName>
         <field>Volume_Unit_Regional__c</field>
-        <literalValue>Total &apos;000 Units</literalValue>
+        <literalValue>Total 000 Units</literalValue>
         <name>Financial Copy L2R Volume Unit &apos;000 Unit</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -417,7 +417,7 @@
     <fieldUpdates>
         <fullName>Financial_Copy_R2L_Volume_Unit_000_Unit</fullName>
         <field>Volume_Unit_Local__c</field>
-        <literalValue>Total &apos;000 Units</literalValue>
+        <literalValue>Total 000 Units</literalValue>
         <name>Financial Copy R2L Volume Unit &apos;000 Unit</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
@@ -781,7 +781,7 @@
         <criteriaItems>
             <field>IPM_Financial__c.Volume_Unit_Global__c</field>
             <operation>equals</operation>
-            <value>Total &apos;000 Units</value>
+            <value>Total 000 Units</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -819,7 +819,7 @@
         <criteriaItems>
             <field>IPM_Financial__c.Volume_Unit_Global__c</field>
             <operation>equals</operation>
-            <value>Total &apos;000 Units</value>
+            <value>Total 000 Units</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -925,7 +925,7 @@
         <criteriaItems>
             <field>IPM_Financial__c.Volume_Unit_Local__c</field>
             <operation>equals</operation>
-            <value>Total &apos;000 Units</value>
+            <value>Total 000 Units</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -997,7 +997,7 @@
         <criteriaItems>
             <field>IPM_Financial__c.Volume_Unit_Regional__c</field>
             <operation>equals</operation>
-            <value>Total &apos;000 Units</value>
+            <value>Total 000 Units</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -1051,6 +1051,11 @@
             <field>IPM_Financial__c.Copy_Regional_to_Local__c</field>
             <operation>equals</operation>
             <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>IPM_Financial__c.Financial_External_ID__c</field>
+            <operation>notContain</operation>
+            <value>_NONKEY</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

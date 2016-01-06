@@ -604,7 +604,7 @@ public with sharing class IPM_ProjectCountryDetails{
 
         //Map of projectId and set of it's EI Countries
         for (IPM_Country__c country : [select id,Name, IPM_Project__c,IPM_Regional_Project__c, IPM_Local_Project__c,Country_Name__c,Country_Code__c,IS_EI_Country__c from IPM_Country__c 
-                                        where (IPM_Project__c in:projIdSet or IPM_Regional_Project__c in:projIdSet OR IPM_Local_Project__c in:projIdSet) And IS_EI_Country__c = true LIMIT 50000 ]){
+                                        where (IPM_Project__c in:projIdSet or IPM_Regional_Project__c in:projIdSet OR IPM_Local_Project__c in:projIdSet) And IS_EI_Country__c = true AND isActive__c = true LIMIT 50000 ]){
             if(country.IPM_Project__c != null){
                 if(!mapProjCountries.isEmpty() && mapProjCountries.containsKey(country.IPM_Project__c)){
                     mapProjCountries.get(country.IPM_Project__c).add(country.Country_Name__c);
@@ -731,7 +731,7 @@ public with sharing class IPM_ProjectCountryDetails{
         Map<Id,List<IPM_Country__c>> projCountryListMap = new Map<Id,List<IPM_Country__c>>();
        
         for(IPM_Country__c country : [select id, IPM_Project__c,IPM_Regional_Project__c, IPM_Local_Project__c,Country_Name__c,Country_Code__c from IPM_Country__c 
-                                        where IPM_Project__c in:projIdSet or IPM_Regional_Project__c in:projIdSet OR IPM_Local_Project__c in:projIdSet LIMIT 50000 ]){
+                                        where ( IPM_Project__c in:projIdSet or IPM_Regional_Project__c in:projIdSet OR IPM_Local_Project__c in:projIdSet ) AND isActive__c = true LIMIT 50000 ]){
 
             if(country.IPM_Project__c!=null && projIdSet.contains(country.IPM_Project__c)){
                 if(!projCountryListMap.containsKey(country.IPM_Project__c)){
