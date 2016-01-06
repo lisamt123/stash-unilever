@@ -7726,6 +7726,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>IPM Gate Keeping Module</value>
     </labels>
     <labels>
+        <fullName>IPM_GATE_STOP_COMMENTS_MEETING</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_GATE_STOP_COMMENTS_MEETING</shortDescription>
+        <value>Comments</value>
+    </labels>
+    <labels>
         <fullName>IPM_GCLT_AND_RCLT_ALL_APPROVAL</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11522,7 +11529,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Stopmsg</shortDescription>
-        <value>Please enter Postpone On Date, Comments and required actions from Gate Meeting</value>
+        <value>Please input the reason for terminating this project and any final project or gatekeeper comments.</value>
     </labels>
     <labels>
         <fullName>IPM_Stopped_Projects</fullName>

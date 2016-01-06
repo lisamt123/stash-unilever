@@ -15,10 +15,10 @@
    </apex:outputPanel>
    <div class="gatefinTabContainer">
     <!-- Action Standards -->
-    <table border="0" cellpadding="0" cellspacing="0" class="ipmFinancetable fintable table table-bordered textareabig">
+    <table border="0" cellpadding="0" cellspacing="0" class="ipmFinancetable fintable table table-bordered textareabig ipmFintableAlign">
         <thead>
             <tr>
-                <th scope="col" width="30%">                    
+                <th scope="col" width="29%">                    
                     <span class="finproject"></span>
                 </th>
                  <th scope="col">
@@ -29,7 +29,7 @@
                         <span class="finproject">   {!$Label.IPM_RESULTS} at {!gateName}</span>
                     </th>
                 </apex:repeat>
-                 <th scope="col" width="30%">                    
+                 <th scope="col" width="29%">                    
                     <span class="finproject">{!$Label.IPM_COMMENTS}</span>
                 </th>
             </tr>
