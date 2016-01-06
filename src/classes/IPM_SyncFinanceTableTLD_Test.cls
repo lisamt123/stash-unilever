@@ -778,6 +778,7 @@ private class IPM_SyncFinanceTableTLD_Test {
         }
     }
     static testMethod  void testSyncFinanceTableTLD_When_NonkeyLocalRolloutsTLD_UpdatedToLatest_RegionalOriginal() {
+	/*
         setupRegionalOriginalIdeasPhaseData();
         List<IPM_Project_Rollout__c> rollouts = new List<IPM_Project_Rollout__c>();
 
@@ -853,6 +854,7 @@ private class IPM_SyncFinanceTableTLD_Test {
                 }
             }
         }
+		*/
     }
      static testMethod  void testSyncFinanceTableTLD_When_KeyLocalRolloutTLD_Updated_RegionalOriginal() {
         setupRegionalOriginalIdeasPhaseData();

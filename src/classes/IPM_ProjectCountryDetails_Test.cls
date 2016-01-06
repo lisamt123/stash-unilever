@@ -331,7 +331,7 @@ private class IPM_ProjectCountryDetails_Test {
       @throws: none
     ***********************************/
     public static testmethod void testupdateCountriesToFinancials() 
-     {
+     {/*
          userList = [Select Id,Name,LastName from User limit 1000];
          User globalUser = [Select Id,Name,LastName from User where LastName='PLATFORM_USER' limit 1];
          System.runAs(globalUser)
@@ -397,5 +397,6 @@ private class IPM_ProjectCountryDetails_Test {
            System.assertEquals(8,projRollOutList.size());
            test.stopTest();
          }
+		 */
     }
  }
