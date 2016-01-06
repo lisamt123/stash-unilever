@@ -75,7 +75,7 @@
                                             </span> 
                                         </apex:outputPanel>
                                     </apex:outputPanel> 
-                                  <apex:outputLabel styleClass="marginTop" value="{!$Label.IPM_COMMENTS_FOR_GATE_MEETING}"/>                                
+                                  <apex:outputLabel styleClass="marginTop" value="{!$Label.IPM_GATE_STOP_COMMENTS_MEETING}"/>                                
                                 <apex:inputTextarea value="{!projectDoc.IPM_Stopped_Comments__c}"/>
                             </apex:outputPanel>
                         </apex:outputPanel>
