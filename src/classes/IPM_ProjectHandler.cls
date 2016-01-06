@@ -22,7 +22,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     
     public Set<Id> phaseChangeProjects = new Set<Id>();
     public Set<Id>changeOwnerProjects=new Set<Id>();
-    
+     public Set<id>queueSet=new Set<id>();
     private Map<Id,IPM_Project__c> rolloutTLDChangedProjList = new Map<Id,IPM_Project__c> {};
     private List<IPM_Project__c> tldChangeProjListForMilestones = new List<IPM_Project__c> {};
     

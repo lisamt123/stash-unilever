@@ -317,13 +317,13 @@ public with sharing class IPM_Resource_Allocation {
             if(String.IsNotBlank(category))
             {
                 
-                uQuery=uQuery+QUERY_HOLDCATEGORY_STR + String.escapeSingleQuotes(category) + '%\')';
+                uQuery=uQuery+QUERY_HOLDCATEGORY_STR + String.escapeSingleQuotes(category) + '%\')' +' AND ';
             }
             
             if(String.IsNotBlank(changeRoleType))
             {
                 
-                uQuery=' AND ' + uQuery+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\')'; 
+                uQuery= uQuery+QUERY_ROLE_STR+String.escapeSingleQuotes(changeRoleType)+'\''; 
             }
           
             uQuery=uQuery+' AND (IPM_User__r.name LIKE :querySearchTeamMem  OR ';
@@ -949,13 +949,7 @@ public with sharing class IPM_Resource_Allocation {
             lstuser=database.query(UQuery);
      
         }
-        catch(DmlException ex)
-        {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
-                SAME_CATEGORY_ROLLOUT_PROFILES,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-          
-        }
+        
         catch(Exception ex)
         {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
@@ -1032,12 +1026,7 @@ public with sharing class IPM_Resource_Allocation {
 		        }
 	      	}
         }
-        catch(DmlException ex)
-        {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
-                FILTER_LEADER_MEMBER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-        }
+        
         catch(Exception ex)
         {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
