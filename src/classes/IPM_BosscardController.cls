@@ -78,6 +78,8 @@ Global with sharing class IPM_BosscardController {
     public boolean isAddApprover{get;set;}//checking to add approver
     public string changeBossStatusCCS{get;set;}//Change status CSS
     public boolean isBosscardNameBlank{get;set;}//is bosscard name is blank
+    public boolean isNoSuccessMsg{get;set;}//hide successful message
+    public boolean defaultTrue{get;set;}//default true value
     /**************************************************************************************
     *@Description :Constructor to read the information from the page paramaters , 
     *To Auto suggest the names and bind the field information
@@ -98,9 +100,11 @@ Global with sharing class IPM_BosscardController {
         isBosscardEdit=false;
         isAddApprover=false;
         gotopage=true;
+        defaultTrue=true;
         isNameMandatory=false;
         isClickToUpload=false;
         isBosscardNameBlank=true;
+        isNoSuccessMsg=false;
         BossCUrl_ID=IPM_ConstantUtils.BLANK;
         changeBossStatusCCS=IPM_ConstantUtils.BLANK;
         bossMaxLength=integer.valueof(system.label.IPM_Bosscard_Maxlength);
@@ -571,7 +575,11 @@ Global with sharing class IPM_BosscardController {
             isAccept=false;
             saveMsg=true;
             isDuplicateBoss=false;
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,System.Label.IPM_Record_Insert_Success));
+            if(!isNoSuccessMsg){
+                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,System.Label.IPM_Record_Insert_Success));
+            }
+            isNoSuccessMsg=false;
+            
                   
         }
         
