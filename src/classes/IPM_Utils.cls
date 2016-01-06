@@ -508,33 +508,17 @@ public without sharing class IPM_Utils {
                                                      AND  id =: projectId AND Is_Archieved__c=false LIMIT 1];
         if(lstProjectUser!=null && !lstProjectUser.isEmpty())
         {
-            
-            if((IPM_ConstantUtils.SpanGlobal.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_IDEAS.equals(lstProjectUser[0].IPM_Phase__c))||
-               (IPM_ConstantUtils.SpanGlobal.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.FEASIBILITY_PHASE.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.SpanGlobal.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_CAPABILITY.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.SpanGlobal.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_MARKET_READY.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.SpanGlobal.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.SpanGlobal.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_PLE.equals(lstProjectUser[0].IPM_Phase__c)) ||
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_IDEAS.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.FEASIBILITY_PHASE.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_CAPABILITY.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_MARKET_READY.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_PLE.equals(lstProjectUser[0].IPM_Phase__c)) ||
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.FEASIBILITY_PHASE.equals(lstProjectUser[0].IPM_Phase__c))||
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_CAPABILITY.equals(lstProjectUser[0].IPM_Phase__c))
-         ){
-                return true;
-            }
-        
-        }
+             if(!IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(lstProjectUser[0].IPMProject_Span__c)){
+                 return true;
+             }
+         }
         //security for central team and BP users
         IPM_CustomPermission cpr = new IPM_CustomPermission();
         boolean isCentralTeam=false;
         boolean isBPUser=false;
         isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
         isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
-        if(isCentralTeam || (isBPUser && !IPM_ConstantUtils.FEASIBILITY_PHASE.equals(lstProjectUser[0].IPM_Phase__c))){
+        if(isCentralTeam || isBPUser){
            return true; 
         }  
         return false;  

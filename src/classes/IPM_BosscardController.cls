@@ -263,12 +263,13 @@ Global with sharing class IPM_BosscardController {
             integer countCat=0;
             integer conInt=1;
             string  catName=null;
-            List<Selectoption> optns=new List<Selectoption>();    
-            optns.add(new Selectoption(IPM_ConstantUtils.BLANK,system.label.IPM_SelectCategory));
+            List<Selectoption> optns=new List<Selectoption>(); 
+            Set<Selectoption> cateSet=new Set<Selectoption>();          
+            cateSet.add(new Selectoption(IPM_ConstantUtils.BLANK,system.label.IPM_SelectCategory));
             if(!userCat.isEmpty()){
                 String[] splitCatString = userCat[0].IPM_Managed_category__c.split(IPM_ConstantUtils.Delimiter);
                 for(string catg:splitCatString){
-                    optns.add(new Selectoption(catg,catg));
+                    cateSet.add(new Selectoption(catg,catg));
                     countCat++;
                     catName=catg;
                 }   
@@ -276,6 +277,7 @@ Global with sharing class IPM_BosscardController {
             if(countCat==conInt){
                 selCat=catName;
             }
+            optns.addAll(cateSet);
             return optns;
         }
         catch(Exception ex){ 
@@ -554,12 +556,12 @@ Global with sharing class IPM_BosscardController {
         if(String.isNotBlank(bosscard.id)){
             Bossupdatedlst.add(bossCard);
             try{
-            	update bossCard;
+                update bossCard;
             }
             catch(Exception ex){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
                                                            IPM_ConstantUtils.IPM_BOSS_SAVE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);    
-            } 	
+            }   
             category_Booln=false;
             company_Booln=false;
             isSave=true; 
@@ -598,10 +600,12 @@ Global with sharing class IPM_BosscardController {
     *@Description : remove approver
     *********************************************************************************/
     public void removeApprover(){
-       
+        IPM_Bosscard__c removeApprov=new IPM_Bosscard__c();
         bosscard.IPM_Gate_Keeper__c=null;
+        removeApprov.IPM_Gate_Keeper__c=bosscard.IPM_Gate_Keeper__c;
+        removeApprov.id=bosscard.id;
         try{
-            update bosscard;
+            update removeApprov;
             isAddApprover=true;
         }
         catch(Exception ex) {
@@ -615,11 +619,14 @@ Global with sharing class IPM_BosscardController {
     *@Description : remove bosscard logo
     *********************************************************************************/
     public void removeBosscardLogo(){
-        
+        IPM_Bosscard__c removeLogo=new IPM_Bosscard__c();
         bosscard.IPM_Bosscard_Logo__c=IPM_ConstantUtils.BLANK;
         bosscard.IPM_Bosscard_Logo_Id__c=IPM_ConstantUtils.BLANK;
+        removeLogo.IPM_Bosscard_Logo__c=bosscard.IPM_Bosscard_Logo__c;
+        removeLogo.IPM_Bosscard_Logo_Id__c=bosscard.IPM_Bosscard_Logo_Id__c;
+        removeLogo.id=bosscard.id;
         try{
-            update bosscard;
+            update removeLogo;
             isClickToUpload=true;
         }
         catch(Exception ex) {
