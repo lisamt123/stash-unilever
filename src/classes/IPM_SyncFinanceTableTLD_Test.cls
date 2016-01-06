@@ -785,8 +785,8 @@ private class IPM_SyncFinanceTableTLD_Test {
         String year11 = String.valueOf(targetLanchDate1.year());
         String year12 = String.valueOf(targetLanchDate1.year()+1);
         String year13 = String.valueOf(targetLanchDate1.year()+2);
-        User globalUser = [Select Id from User where Email =:GLOBAL_USER limit 1]; 
-        System.runAs(globalUser) {
+        User regionalUser = [Select Id from User where Email =:REGIONAL_USER limit 1]; 
+        System.runAs(regionalUser) {
             // update rollout1 with targetLanchDate1
             IPM_Project_Rollout__c rollout1 = [SELECT ID, Name,IPM_Project__c,Regional_Rollout__c,KeyMCO__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG_LOC1 limit 1];
             rollout1.Target_Launch_Date__c = targetLanchDate1;
@@ -800,18 +800,20 @@ private class IPM_SyncFinanceTableTLD_Test {
             rollouts.add(rollout2);
             update rollouts;
             
-            IPM_Project_Rollout__c reginolRollout = [SELECT ID, Name,IPM_Project__c FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT001_REG limit 1];
-            System.assert(reginolRollout.id!=null);
-            List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE IPM_Project_Rollout__c=:reginolRollout.id limit 5];
+            List<IPM_Project__c> regionalProject = [SELECT ID, Name FROM IPM_Project__c WHERE name=:TESTPROJECT001_REG limit 1];
+            System.assert(!regionalProject.isEmpty());
+            List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE Regional_Project__c=:regionalProject[0] .id limit 5];
             List<ID> updatedFinancialIDList = new List<ID>();
             
             for(IPM_Financial__c updatedFinancial: updatedFinancialList) {
-                if(updatedFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)) {
+                
+                
+                if(updatedFinancial.Financial_External_ID__c==regionalProject[0].name+'_CONSOLIDATED') {
                     // CONSOLIDATED financial record TLD should be the earliast of local rollouts targetLanchDate1
                     System.assertEquals(targetLanchDate1,updatedFinancial.Target_Launch_Date__c,TLD_MATCH_MSG);
                     updatedFinancialIDList.add(updatedFinancial.id);
                 }
-                if(updatedFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)) {
+                if(updatedFinancial.Financial_External_ID__c==regionalProject[0].name+'_NONKEY') {
                     // NONKEY financial record TLD should be the earliast of local rollouts, which is targetLanchDate1
                     System.assertEquals(targetLanchDate1,updatedFinancial.Target_Launch_Date__c,TLD_MATCH_MSG);
                     updatedFinancialIDList.add(updatedFinancial.id);
