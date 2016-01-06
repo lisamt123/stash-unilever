@@ -377,6 +377,11 @@
             <field>IPM_Project__c.IPM_Last_Modified_Date_Time__c</field>
             <operation>notEqual</operation>
         </criteriaItems>
+        <criteriaItems>
+            <field>IPM_Project__c.IPM_Project_Name__c</field>
+            <operation>notEqual</operation>
+            <value>IPM_MasterProject</value>
+        </criteriaItems>
         <description>Archive a Project if Inactive for More than 4 Weeks. Based on Last Modified Date REQ00378</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>
