@@ -433,26 +433,50 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         }
 
         //get global impact value for project      
+        globalbusinessImpactStr='';
+        /*KEEP THE BELOW CODE TO CHECK IMPACT OF NEW CHANGE.
         for(IPM_Financial__c fin:project.IPM_Financials_Consolidated__r){
-          if(fin.Global_External_Id__c==lstofuser[0].Name && fin.Global_External_Id__c!=null && fin.Business_Impact_Global__c != null){
-            globalbusinessImpactStr = fin.Business_Impact_Global__c;
-            break;
-          } 
+            globalbusinessImpactStr+='1';
+            if(fin.Global_External_Id__c==lstofuser[0].Name && fin.Global_External_Id__c!=null && fin.Business_Impact_Global__c != null){
+                globalbusinessImpactStr+='2';
+                globalbusinessImpactStr += fin.Business_Impact_Global__c;
+                break;
+            } 
+            globalbusinessImpactStr+='4';
             
-    }
-           //DEF2103 - Copy Global Business Impact for Regional and Local projects from Global Project
-           if(project.IPMProject_Span__c=='Regional'){
-               list<IPM_Financial__c> liFinParentReg = [select Business_Impact_Global__c from IPM_Financial__c where (Parent_Project__c=:project.IPM_Parent_Project__c OR global_project_id__c=:project.IPM_Parent_Project__c) and parent_project__r.IPMProject_Span__c='Global' limit 1];
-	            if (liFinParentReg!=null && liFinParentReg.size()>0){
-	                globalbusinessImpactStr = liFinParentReg[0].Business_Impact_Global__c;
-	            }
-           }
-           else if(project.IPMProject_Span__c=='Local'){
-               list<IPM_Financial__c> liFinParentLoc = [select Business_Impact_Global__c from IPM_Financial__c where global_project_id__c=:project.IPM_Global_Project_Id__c and parent_Project__c=:project.IPM_Global_Project_Id__c limit 1];
-	            if (liFinParentLoc!=null && liFinParentLoc.size()>0){
-	                globalbusinessImpactStr = liFinParentLoc[0].Business_Impact_Global__c;
-	            }
-           }
+        }*/
+        //DEF2103-30/12/15-Reopen for BI not calculated on Global projects
+        /*Analysis-IPM_Financials_Consolidated__r is not returning value may be because of recent change in BIG query above or change in formula field.
+        New query is introduced now to fetch BI from IPM financial for global projects.
+        */
+        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
+            list<IPM_Financial__c> liFinGlobal = [SELECT Business_Impact_Global__c FROM IPM_Financial__c WHERE parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL and parent_project__c=:lstofuser[0].Name and regional_external_id__c=null limit 1];
+            if (liFinGlobal!=null && liFinGlobal.size()>0){
+                globalbusinessImpactStr = liFinGlobal[0].Business_Impact_Global__c;
+            }
+        }
+        
+        //DEF2103 - Copy Global Business Impact for Regional and Local projects from Global Project
+        /*Case: When project is Regional Rollout*/
+        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
+            list<IPM_Financial__c> liFinParentReg = [select Business_Impact_Global__c from IPM_Financial__c where (Parent_Project__c=:project.IPM_Parent_Project__c OR global_project_id__c=:project.IPM_Parent_Project__c) and parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL limit 1];
+            if (liFinParentReg!=null && liFinParentReg.size()>0){
+                globalbusinessImpactStr = liFinParentReg[0].Business_Impact_Global__c;
+            }
+        }
+        /*Case: When project is Regional Original*/
+        else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
+            list<IPM_Financial__c> liFinRegOrig = [select Business_Impact_Regional__c from IPM_Financial__c where (regional_external_id__c=:lstofuser[0].Name OR global_project_id__c=:lstofuser[0].Name) and regional_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL limit 1];
+            if (liFinRegOrig!=null && liFinRegOrig.size()>0){
+                globalbusinessImpactStr = liFinRegOrig[0].Business_Impact_Regional__c;
+            }
+        }
+        else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL &&  project.IPM_Project_Type__c !=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+            list<IPM_Financial__c> liFinParentLoc = [select Business_Impact_Global__c from IPM_Financial__c where global_project_id__c=:project.IPM_Global_Project_Id__c and parent_Project__c=:project.IPM_Global_Project_Id__c limit 1];
+            if (liFinParentLoc!=null && liFinParentLoc.size()>0){
+                globalbusinessImpactStr = liFinParentLoc[0].Business_Impact_Global__c;
+            }
+        }
         //DEF3019
         if (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
            	globalbusinessImpactStr = IPM_ConstantUtils.BLANK;	
