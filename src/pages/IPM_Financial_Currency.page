@@ -148,7 +148,7 @@
                                                 <!------------------------------------------------- Tab Content ------------------------------------------->
                                                
                                                 <!-- Currency work starts -->
-                                                <div id="dvCurrency">
+                                                <div id="dvCurrency marginT10P">
                                                     <apex:panelGrid columns="3" columnClasses="col1Curr,col2Curr,col3Curr" border="0" cellpadding="5" cellspacing="5">
                                                         <apex:outputPanel >
                                                         <apex:outputLabel styleClass="selCur" value="Please select currency: "/> 
@@ -162,13 +162,13 @@
                                                         <apex:outputPanel >
                                                             <apex:outputText id="otl" styleClass="otlCurr" value="Currency: {!selectedCurrency}: {!exrate}"/>
                                                         </apex:outputPanel>
-                                                        <apex:outputPanel >
+                                                        <apex:outputPanel styleClass="SecButtonSet">
                                                             <apex:commandLink action="{!URLFOR('/apex/IPM_Financial?id=' +project.id)}" title="{!$Label.IPM_Currency_back_button}" >
-                                                                <i class="fa fa-arrow-left"></i>
+                                                                <i class="fa ipmButton primary">{!$Label.IPM_Currency_back_button}</i>
                                                             </apex:commandLink>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                                            <apex:commandLink styleClass="icoButton download"   title="{!$Label.IPM_Currency_print_button}" onclick="window.print();" >
-                                                            <i class="fa fa-print"></i>
+                                                            <apex:commandLink styleClass="icoButton print download printIconAlign"   title="{!$Label.IPM_Currency_print_button}" onclick="window.print();" >
+                                                            <i class="fa"></i>
                                                             </apex:commandLink>
                                                         </apex:outputPanel>    
                                                     </apex:panelGrid>
