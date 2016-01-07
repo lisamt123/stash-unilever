@@ -26,9 +26,8 @@ public class IPM_GateCMIController_Test{
     public static IPM_Project_Document_Section_Content__c projectDocSecConListObj=new IPM_Project_Document_Section_Content__c();
     private static final string COUNTRY_NAME_STR='contry name';
     private static final string RESULT_STR='result';
-    private static final string NAME_STR='cmi color';
-     public static mdo_Geography__c mdoGeo=new mdo_Geography__c();
-    private static final string INDIA_STR='IND';
+    public static mdo_Geography__c mdoGeo=new mdo_Geography__c();
+    private static final string INDIA_STR='IND'; 
     public static List<IPM_Country__c>countryList=new List<IPM_Country__c>();
     public static List<MDO_Geography__c> mdoGeoList=new List<MDO_Geography__c>();
 
@@ -130,7 +129,7 @@ public class IPM_GateCMIController_Test{
     /*************************************************************************************************************************
     * @description Test Data
     */
-    @testSetup static void initializeTestMethodData(){
+    public static void initializeTestMethodData(){
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
@@ -249,8 +248,8 @@ public class IPM_GateCMIController_Test{
     * @description Running Test Script
     */
     static testMethod void testcreateCMISections() {
-        initializeTestMethodData();
-        system.RunAs(globalUser){
+           initializeTestMethodData();
+           system.RunAs(globalUser){
             test.startTest();
             ipmCmiControl.secConId=projectDocSecConListObj.Id;
             ipmCmiControl.projectId=project.Id;
@@ -304,8 +303,8 @@ public class IPM_GateCMIController_Test{
     * @description Running Test Script
     */
     static testmethod void testupdateSkipTestReason(){
-        initializeTestMethodData();
-        system.RunAs(globalUser){
+            initializeTestMethodData();
+            system.RunAs(globalUser){
             test.startTest();
             ipmCmiControl.projDocSecId=docSec.Id;
             ipmCmiControl.secConId=projectDocSecConListObj.Id;
@@ -362,8 +361,8 @@ public class IPM_GateCMIController_Test{
     * @description Running Test Script
     */
     static testmethod void testupdateOverallScore(){
-        initializeTestMethodData();
-        system.RunAs(globalUser){
+          initializeTestMethodData();
+          system.RunAs(globalUser){
             test.startTest();
             ipmCmiControl.projDocSecId=docSec.Id;
             ipmCmiControl.secConId=projectDocSecConListObj.Id;

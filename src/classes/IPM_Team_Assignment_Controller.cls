@@ -292,7 +292,7 @@ public with sharing class IPM_Team_Assignment_Controller {
         IPM_Technical_Project_Leader__c,IPM_Project_Leader__c,IPM_Project_Description__c,
         IPM_CPP__c,IPM_CPP_Change_Reason__c,IPM_Technical_Project_Leader__r.name,
         Deputy_Project_Leader__r.name,Deputy_Project_Leader__r.id,IPM_Project_Gatekeeper__r.name,
-        IPM_Project_Leader__r.name,IPM_Project_Leader__r.IPM_Category__c,IPM_Project_Leader__r.SmallPhotoUrl,
+        IPM_Project_Leader__r.name,IPM_Project_Leader__r.SmallPhotoUrl,
         IPM_Technical_Project_Leader__r.SmallPhotoUrl,IPM_Project_Gatekeeper__r.SmallPhotoUrl,
         Deputy_Project_Leader__r.SmallPhotoUrl,IPM_Brand__c,IPM_Category_Text__c FROM IPM_Project__c
         WHERE id=:projectID LIMIT 1];
@@ -426,7 +426,7 @@ public with sharing class IPM_Team_Assignment_Controller {
         listofAssignedMem=new list<IPM_Project_Resource__c>();
         
         listofAssignedMem=[SELECT id,IPM_User__c,IPM_User__r.name,IPM_User__r.SmallPhotoUrl,
-        IPM_Project_Role_Owner__c,IPM_Role__c,
+        IPM_Project_Role_Owner__c,
         IPM_Role_Type__c FROM IPM_Project_Resource__c WHERE 
         IPM_Project__r.id=:projectID 
         ORDER BY IPM_Project_Role_Owner__c DESC LIMIT 50000];

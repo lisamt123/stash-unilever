@@ -4,8 +4,8 @@
 * @description  This class is used for updating the rollout status and dates
 */
 
-/* This class is being used to Set First and Follower on a rollout/Project , 
-    which needs access to all Rollout and Projects associated with a project
+/* This class is being used to Set First and Follower on a rollout/Project , which needs access to all Rollout and 
+   Projects associated with a project, hence has been set as Without Sharing.
 */
 
 public without sharing class  IPM_ProcessRolloutStatusAndDates {

@@ -113,6 +113,7 @@ function selectCheckboxScript() {
     /* Below script is for resetting the selected channels */
     jq(document).on('click', '.filterActionscc .ipmDropresetcc', function(e) {
         e.stopPropagation();
+		var selectedValues = IPMAppCE.countryName;
         jq(".channelList input:checkbox").each(function() {
             if (selectedValues.indexOf(jq(this).val()) == -1) {
                 jq(this).prop('checked', false);

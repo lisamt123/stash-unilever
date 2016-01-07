@@ -322,9 +322,13 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                     IsCRRTEditable=true;
                     isEditGateCMI=true;
                 }
+                if((bdSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c) && IPM_ConstantUtils.KEY_ISSUES_NEEDING_FOCUS_IN_GATE_MEETING.equals(projDocSec.IPM_Section__r.External_ID__c) && !project.IPM_Project_Type__c.equals(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))){
+                IsEditableSumm=false;
+                IsEditableOutC=false;
+                }
                 if(IPM_ConstantUtils.IPM_PACK_GRAPHICS.equals(projDocSec.IPM_Section__r.External_ID__c)){
-                    IsEditableSumm=false;
-                }  
+                IsEditableSumm=false;
+                }
             }
             else if(userRole_STR.Equals(IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI) && !project.IPM_Phase__c.Equals(IPM_ConstantUtils.PHASE_MARKET_READY)){
                 if(cmiSectionsSet.contains(projDocSec.IPM_Section__r.External_ID__c))
@@ -496,7 +500,10 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         checkGKCFilled();
         checkOTIFFilled(); 
         checkRMPFilled();
-        checkCMICompleted();
+      	if((project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS) || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+        {
+        	 checkCMICompleted();
+        }
         //Getting Gate Summary and Outcome Summary Saved Date and Time
         if(IsGateSave==IPM_ConstantUtils.GATE){
             DateTime dT = System.now();
@@ -528,8 +535,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                     showmsg=false;
                 }
             }
-            if(String.IsNotBlank(projDocSec.IPM_PDP_Document_Summary__c))
-                projDocSec.IPM_Functional_Input_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
+            if(String.IsNotBlank(projDocSec.IPM_PDP_Document_Summary__c) && projDocSec.IPM_PDP_Document_Summary__c.length() >=15)
+                projDocSec.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_STARTED;
             
             update projDocSec;
             
@@ -653,13 +660,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     */
     public void TaskDelete(){
         getAssociatedTask();
-        IPM_Task__c tasktodelete=new IPM_Task__c();
         try{
-            tasktodelete=[SELECT id FROM IPM_Task__c WHERE id=:taskid];
-            //To Check CRUD
-            if (IPM_Task__c.sObjectType.getDescribe().isDeletable()){
-                delete tasktodelete;
-            }    
+            delete [SELECT id FROM IPM_Task__c WHERE id=:taskid];
         }
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
@@ -895,7 +897,10 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                     cmiList=[SELECT Id,IPM_Gate_CMI__c,IPM_Gate_CMI__r.Gate__c,IPM_CMI_Result__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Is_Free_Text__c FROM IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c=:projDocSecId and IPM_CMI_Is_Free_Text__c=false];
                     for(IPM_Project_Document_Section_Content__c cmi:cmiList)
                     {
-                        if((projDoc.IPM_GateDocuments__c=='Charter' && cmi.IPM_Gate_CMI__r.Gate__c=='Charter' && String.isBlank(cmi.IPM_CMI_Result__c)) || ((projDoc.IPM_GateDocuments__c=='Contract' || projDoc.IPM_GateDocuments__c=='Market Ready') && (cmi.IPM_Gate_CMI__r.Gate__c=='Contract' || cmi.IPM_Gate_CMI__r.Gate__c=='Market Ready') && String.isBlank(cmi.IPM_CMI_Results_Acheived__c))){
+                        if((IPM_ConstantUtils.CHARTER_GATE==projDoc.IPM_GateDocuments__c && String.isBlank(cmi.IPM_CMI_Result__c)) ||
+							(IPM_ConstantUtils.CONTRACT_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.CONTRACT_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Results_Acheived__c)) || 
+							(IPM_ConstantUtils.CONTRACT_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.MARKET_READY_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Result__c)) || 
+							(IPM_ConstantUtils.MARKET_READY_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.MARKET_READY_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Results_Acheived__c))){
                             showmsg=true;
                             status=false;
                         }    

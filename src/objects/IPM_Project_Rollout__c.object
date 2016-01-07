@@ -134,6 +134,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Global_Regional_Finance_Leader_Email__c</fullName>
+        <description>Global/Regional Finance Leader Email</description>
+        <externalId>false</externalId>
+        <label>Global/Regional Finance Leader Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Company_Card__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -252,6 +262,17 @@
         <label>Rollout Project Leader</label>
         <referenceTo>User</referenceTo>
         <relationshipName>IPM_Project_Rollout</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+     <fields>
+        <fullName>IPM_Rollout_Gatekeeper__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>IPM Rollout Gatekeeper</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>IPM_Rollout_Gatekeepers</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
@@ -380,6 +401,15 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Local_Project_Target_Launch_Date__c</fullName>
+        <description>Local Project Target Launch Date</description>
+        <externalId>false</externalId>
+        <label>Local Project Target Launch Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Local_Project__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -430,6 +460,24 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+     <fields>
+        <fullName>MisAligned_Confirmed_By_Finance_Leader__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To store confirmation from RFL/LFL regarding TLD misalignment</description>
+        <externalId>false</externalId>
+        <label>MisAligned Confirmed By Finance Leader</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Previous_Target_Launch_Date__c</fullName>
+        <description>To store previous target launch date</description>
+        <externalId>false</externalId>
+        <label>Previous Target Launch Date</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>Project_Span__c</fullName>

@@ -29887,6 +29887,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>IPM_Project__c.BET_last_BET__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>mdm_CU_Sales_SKU_Count_Mapping__c.Brand_Name__c</field>
         <readable>false</readable>

@@ -98,15 +98,7 @@ jq(document).ready(function() {
         jq('#ipmModal .modal-dialog').width('50%');
         jq('#ipmModal .modal-dialog').height('90%');
     });
-    jq(document).on('click', '.openModal', function() {
-        var url = jq(this).attr('value');
-        var modalTitle = jq(this).attr('modalTitle');
-        openModal(url);
-        jq('#ipmModal .modal-title').html(modalTitle);
-        jq('#ipmModal .modal-dialog').width('900px');
-        jq('#ipmModal .modal-dialog').height('90%');
-        jq('#ipmModal .modal-body').addClass('status_body');
-    });
+    
     jq('.closeMessage').on('click', function() {
         jq(this).closest('.messageBox').remove();
     });
@@ -379,3 +371,14 @@ function dirApp() {
         jq("html, body").scrollTop(jq("." + appDir).offset().top);
     });
 }
+jq(window).load(function(){
+	jq(document).on('click', '.openModal', function() {
+        var url = jq(this).attr('value');
+        var modalTitle = jq(this).attr('modalTitle');
+        openModal(url);
+        jq('#ipmModal .modal-title').html(modalTitle);
+        jq('#ipmModal .modal-dialog').width('900px');
+        jq('#ipmModal .modal-dialog').height('90%');
+        jq('#ipmModal .modal-body').addClass('status_body');
+    });
+});
