@@ -102,7 +102,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
 
         set;
     }
-    public String targetLaunchDateToDisplay{
+     public Boolean isTLDYearMisaligned {
+        get;
+        set;
+    }
+	public String targetLaunchDateToDisplay{
         get {
             Date tld = null;
             String dateStr = '';
@@ -2227,6 +2231,9 @@ private Date getProjectMilestoneDate(){
     }   
     
     private void setMisalignedValue(){
+            isTLDYearMisaligned = false;
+            Integer localProjectTLDYear = 0;
+            Integer localProjectRolloutTLDYear = 0;
             List<IPM_Project__c> projList = new List<IPM_Project__c>();
             List<IPM_Project_Rollout__c> projRolloutList = new List<IPM_Project_Rollout__c>();
             localProjectTLD = '';
@@ -2239,10 +2246,12 @@ private Date getProjectMilestoneDate(){
             if(project != null && currentFinancial != null) {
                 if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
                     localProjectTLD = project.IPM_Target_Launch_Dates__c.format();
+                    localProjectTLDYear = project.IPM_Target_Launch_Dates__c.year();
                     localProjectName = project.Name;
                     projRolloutList = [Select Target_Launch_Date__c, Previous_Target_Launch_Date__c ,MisAligned_Confirmed_By_Finance_Leader__c from IPM_Project_Rollout__c where id=:project.IPM_Project_Rollout__c];
                     if(projRolloutList.size()>0) {
                         localProjectRolloutTLD = projRolloutList[0].Target_Launch_Date__c.format();
+                        localProjectRolloutTLDYear = projRolloutList[0].Target_Launch_Date__c.year();
                         mcoCountryRolloutPlan = projRolloutList[0];
                     }
                     localRolloutProject = project;
@@ -2250,10 +2259,12 @@ private Date getProjectMilestoneDate(){
                     projList = [Select (Select Name, IPM_Target_Launch_Dates__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Projects__r where name=:currentFinancial.Financial_External_ID__c), (Select Name,Previous_Target_Launch_Date__c , Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c From Regional_Project_Rollout__r where name=:currentFinancial.Financial_External_ID__c) From IPM_Project__c   where id=:project.id];
                     if(projList.size()>0 && projList[0].Regional_Project_Rollout__r.size()>0) {
                         localProjectRolloutTLD = projList[0].Regional_Project_Rollout__r[0].Target_Launch_Date__c.format();
+                        localProjectRolloutTLDYear = projList[0].Regional_Project_Rollout__r[0].Target_Launch_Date__c.year();
                         mcoCountryRolloutPlan = projList[0].Regional_Project_Rollout__r[0];
                     }
                     if(projList.size()>0 && projList[0].IPM_Projects__r.size()>0) {
                         localProjectTLD = projList[0].IPM_Projects__r[0].IPM_Target_Launch_Dates__c.format();
+                        localProjectTLDYear = projList[0].IPM_Projects__r[0].IPM_Target_Launch_Dates__c.year();
                         localProjectName = projList[0].IPM_Projects__r[0].Name;
                         localRolloutProject = projList[0].IPM_Projects__r[0]; 
                     }
@@ -2264,6 +2275,10 @@ private Date getProjectMilestoneDate(){
                 flag = true;
                 isMisalignedTLD  = true;
                 validationErrorMessage = String.format(Label.IPM_TLD_VR_Misaligned,new List<String>{localProjectName,localProjectRolloutTLD,localProjectTLD});
+                if((localProjectRolloutTLDYear-localProjectTLDYear) != 0 ) {
+                	isTLDYearMisaligned = true;
+                	validationErrorMessage += Label.IPM_TLD_Year_Misaligned;
+                }
             } else if(validationErrorMessage.contains(Label.IPM_TLD_VR_Misaligned_Part_Msg)) {
                 isMisalignedTLD  = false;
                 validationErrorMessage = '';

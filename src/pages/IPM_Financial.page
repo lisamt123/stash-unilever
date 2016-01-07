@@ -355,6 +355,7 @@
                                                                     
                                                                     showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
                                                                     project="{!project}"
+                                                                    isTLDYearMisaligned="{!isTLDYearMisaligned}"
                                                                 />
                                                         
                                                                 <c:IPM_FinancialSummaryTable ipmFinancial="{!currentFinancial}"
@@ -378,6 +379,7 @@
                                                                     isy0ProfitInvalid="{!isy0ProfitInvalid}"
                                                                     showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
                                                                     project="{!project}"
+                                                                    isTLDYearMisaligned="{!isTLDYearMisaligned}"
                                                                 />
                                                         </div>
                                                         
