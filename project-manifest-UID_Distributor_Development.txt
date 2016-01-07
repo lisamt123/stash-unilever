@@ -30,7 +30,7 @@ src/layouts/UID_Performance__c-IOP Layout.layout
 src/layouts/UID_Performance_Line_Item__c-IOP Detail Layout.layout
 src/layouts/UID_Stocked_Product__c-Stocked Product Layout.layout
 src/layouts/UID_Stocked_Product_Summary__c-Stocked Product Summary Layout.layout
-src/objects/Account.objects
+src/objects/Account.object
 src/objects/Order.object
 src/objects/OrderItem.object
 src/objects/PricebookEntry.object
@@ -126,8 +126,8 @@ src/reports/UID_Market_View-meta.xml
 src/reports/UID_Stock_Analysis-meta.xml
 src/reports/UID_Stock_Cover-meta.xml
 src/reports/UID_Summary_View-meta.xml
-src/reportTypes/UID_Stocked_Product_Reports
-src/reportTypes/UID_Sales_Report 
+src/reportTypes/UID_Stocked_Product_Reports.reportType
+src/reportTypes/UID_Sales_Report.reportType 
 src/triggers/UID_StockCoverTrigger.trigger
 src/triggers/UID_StockCoverTrigger.trigger-meta.xml
 src/workflows/Order.workflow
@@ -137,3 +137,5 @@ src/workflows/UID_Performance_Line_Item__c.workflow
 src/workflows/UID_Stocked_Product__c.workflow
 src/workflows/UID_Stocked_Product_Summary__c.workflow
 src/workflows/UID_TriggerSwitch__c.workflow
+src/roles/UID_Business_Distributor_Head.role
+src/roles/UID_Business_Distributor_Manager.role
