@@ -130,7 +130,7 @@ public class Test_AFBrandEstimateStCtrlExtSummary
      agency2.AF_Brand_Estimate__c=brand1.Id;
      agency2.AF_Agency_Entity__c=entity1.id;
      agency2.AF_Unilever_Entity__c=entity2.Id;  
-     agency2.AF_Fiscal_Year__c='2015';
+     agency2.AF_Fiscal_Year__c=currYear;
      agency2.AF_Adaptation__c=22;
      agency2.AF_Digital__c=22;
      agency2.AF_Traditional__c=22; 
@@ -149,7 +149,7 @@ public class Test_AFBrandEstimateStCtrlExtSummary
      AF_Bonus_Summary__c bonSum=new AF_Bonus_Summary__c();
      bonSum.AF_Agency__c=acc1.Id;
      bonSum.AF_Brand__c=bran.Id;
-     bonSum.AF_Fiscal_Year__c='2015';   
+     bonSum.AF_Fiscal_Year__c=currYear;   
      insert bonSum;
      
      //Insert Bonus Threshold
@@ -202,7 +202,7 @@ public class Test_AFBrandEstimateStCtrlExtSummary
      
      //Instantiating the Class AFBrandEstimateStCtrlExtSummary    
      AFBrandEstimateStCtrlExtSummary bes=new AFBrandEstimateStCtrlExtSummary(sc);  
-     bes.financialYear='2015';
+     bes.financialYear=currYear;
      bes.getbrandEstimateDetailList();      
      bes.categoryStr='Test Beverages1::'+cat.Id;
      bes.changeCatName();
@@ -265,7 +265,7 @@ public class Test_AFBrandEstimateStCtrlExtSummary
      brand1.AF_Agency__c=acc1.Id;               
      brand1.Name='Test Brand2';
      brand1.AF_Status_Base_Fees__c='Initiate';  
-     brand1.AF_Fiscal_Year__c='2015';
+     brand1.AF_Fiscal_Year__c=currYear;
      brand1.Brand__c=bran.id;   
      brand1.AF_Cat_Finance_Approver_1__c=u1.Id;    
      insert brand1;
@@ -276,7 +276,7 @@ public class Test_AFBrandEstimateStCtrlExtSummary
      curr.AF_Country__c = 'Ecuador';
      curr.AF_Currency_Code__c = 'USD';
      curr.Country_Currency__c = 'Eucador-USD';
-     curr.AF_Fiscal_Year_new__c = '2015';
+     curr.AF_Fiscal_Year_new__c = currYear;
      curr.Currency_Unit__c = 'US $';
      curr.AF_Fiscal_Year__c = system.today();
      curr.AF_Average_Exchange_Rate_To_EUR__c = 1.3253;
@@ -290,7 +290,7 @@ public class Test_AFBrandEstimateStCtrlExtSummary
      oopsActual.AF_Agency__c=acc1.Id;
      oopsActual.AF_BrandEstimateId__c=brand1.id;
      oopsActual.AF_Brand__c=bran.Id;
-     oopsActual.AF_Fiscal_year__c='2015';
+     oopsActual.AF_Fiscal_year__c=currYear;
      insert oopsActual;
      
      //Insert Agency Entity
@@ -314,7 +314,7 @@ public class Test_AFBrandEstimateStCtrlExtSummary
      agency1.AF_Brand_Estimate__c=brand1.Id;
      agency1.AF_Agency_Entity__c=entity1.id;
      agency1.AF_Unilever_Entity__c=entity2.Id;  
-     agency1.AF_Fiscal_Year__c='2015'; 
+     agency1.AF_Fiscal_Year__c=currYear; 
      insert agency1;
      
      //Insert Agency Estimate 
@@ -322,7 +322,7 @@ public class Test_AFBrandEstimateStCtrlExtSummary
      agency2.AF_Brand_Estimate__c=brand1.Id;
      agency2.AF_Agency_Entity__c=entity1.id;
      agency2.AF_Unilever_Entity__c=entity2.Id;  
-     agency2.AF_Fiscal_Year__c='2015';
+     agency2.AF_Fiscal_Year__c=currYear;
      insert agency2;
      
      //Insert OOPS Estimate
@@ -338,7 +338,7 @@ public class Test_AFBrandEstimateStCtrlExtSummary
      AF_Bonus_Summary__c bonSum=new AF_Bonus_Summary__c();
      bonSum.AF_Agency__c=acc1.Id;
      bonSum.AF_Brand__c=bran.Id;
-     bonSum.AF_Fiscal_Year__c='2015';   
+     bonSum.AF_Fiscal_Year__c=currYear;   
      insert bonSum;
      
      //Insert Bonus Threshold
@@ -391,7 +391,7 @@ public class Test_AFBrandEstimateStCtrlExtSummary
 
      //Instantiating the Class AFBrandEstimateStCtrlExtSummary    
      AFBrandEstimateStCtrlExtSummary bes=new AFBrandEstimateStCtrlExtSummary(sc);  
-     bes.financialYear='2013';
+     bes.financialYear=currYear;
      bes.getbrandEstimateDetailList(); 
      bes.categoryStr='Test Beverages2::'+cat.Id;
      bes.changeCatName();
