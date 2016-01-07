@@ -882,7 +882,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         
         //Identify if the fields on the project have changed and marked the project to be synced with ecodesign
         for (FieldSetMember fsm : Schema.SObjectType.IPM_Project__c.fieldSets.IPM_Project_Fields_EcoDesign.getFields()) {
-            if (oldProject.get(fsm.getFieldPath()) != incomingProject.get(fsm.getFieldPath()) && oldProject.First_Sync_To_EcoDesign__c && IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(incomingProject)) {
+            if (oldProject.get(fsm.getFieldPath()) != incomingProject.get(fsm.getFieldPath()) && oldProject.First_Sync_To_EcoDesign__c && IPM_ProjectCountryDetails.isProjectReadyToSyncToEcoDesign(incomingProject) && String.isNotBlank(incomingProject.Project_Countries__c) ) {
                   incomingProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
                   break;
             }

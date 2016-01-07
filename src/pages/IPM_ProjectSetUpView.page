@@ -693,7 +693,7 @@
                             <div class="paracont">
                                 <p>
                                     <apex:outputText value="{!$Label.IPM_BETUnlinkingMessage}">
-                                 <!--       <apex:param value="{!PreSelectedBet.betName}" /> -->  
+                                        <apex:param value="{!PreSelectedBet.betName}" />
                                     </apex:outputText>
                                 </p>
                             </div>

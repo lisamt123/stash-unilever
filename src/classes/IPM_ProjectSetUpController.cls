@@ -66,6 +66,32 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     public string isFromEditPage{get;set;}// For UI usage
     public boolean isProjectNameBlank{get;set;}//is no duplicate name
     public boolean isTLDFieldEditable{get;set;}// To make TLD field readonly #REQ02427          
+    //*@Description: To show preselected BET in the unlinking modal  
+    public String projbetlink {
+    get{
+        If (project.BET_Link_Requested__c!=null ){
+            return project.BET_Link_Requested__c;
+        }
+        else if(string.isNotBlank(project.bet__c)){
+            return project.bet__c;    
+        }
+        else{
+            return null;
+        }
+    } 
+    set;
+    }
+    public BET_BETWrapper PreSelectedBet{
+    get{
+        if(string.isNotBlank(projbetlink)){
+            return BET_BETService.getBet(projbetlink); 
+        }
+        else{
+            return null; 
+        }
+    }
+    set;
+    }      
     /****************************************************************************
     @Description : Initialization of the constructor
     *****************************************************************************/

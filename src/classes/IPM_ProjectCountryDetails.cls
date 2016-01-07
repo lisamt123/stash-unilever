@@ -492,11 +492,7 @@ public with sharing class IPM_ProjectCountryDetails{
                 if(projectIdToSyncMap.get(projId)){
                     if(projCountryCodesMap != null && !projCountryCodesMap.isEmpty() && projCountryCodesMap.get(projId) != null){
                         toUpdateProjList.add( new IPM_Project__c(Id = projId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(projId) ));
-                    }
-                    else{
-                        toUpdateProjList.add( new IPM_Project__c(Id = projId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY));
-                    }
-                    
+                    }                    
                 }
                 
             }
