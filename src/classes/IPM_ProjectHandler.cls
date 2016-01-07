@@ -10,7 +10,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
 {       
     public static final List<String> ProjectMembersAPINames = new List<String>{'IPM_Technical_Project_Leader__c','IPM_Project_Leader__c','IPM_Project_Gatekeeper__c',
                                                                                 'IPM_Project_Gatekeeper__c','Deputy_Project_Leader__c','IPM_Finance_Member__c'};
-                                                                        
+                                                                                
     public static Map<String, Schema.SObjectField> projectFieldDesc = IPM_Project__c.getSObjectType().getDescribe().fields.getMap();                                                                            
 
    
@@ -22,7 +22,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     
     public Set<Id> phaseChangeProjects = new Set<Id>();
     public Set<Id>changeOwnerProjects=new Set<Id>();
-     public Set<id>queueSet=new Set<id>();
+    public Set<id>queueSet=new Set<id>();
     private Map<Id,IPM_Project__c> rolloutTLDChangedProjList = new Map<Id,IPM_Project__c> {};
     private List<IPM_Project__c> tldChangeProjListForMilestones = new List<IPM_Project__c> {};
     
@@ -425,17 +425,16 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                 // Step 2 : Update References to Country and Rollouts based on incoming Project.
                 if(phaseChangeProjectMap!=null && !phaseChangeProjectMap.isEmpty() )
                 {
-                    IPM_ProjectHelper.manageProjectCountryNRolloutReferences(masterProjectMap,(Map<Id,IPM_Project__c>)Trigger.OldMap);  
+                    IPM_ProjectHelper.manageProjectCountryNRolloutReferences(phaseChangeProjectMap,(Map<Id,IPM_Project__c>)Trigger.OldMap);  
                     
                     // Step 3: Get Updated Country References.
-                    IPM_ProjectHelper.refreshProjectRolloutCountryMapping();    
-                    
-                    
+                    IPM_ProjectHelper.refreshProjectRolloutCountryMapping(phaseChangeProjectMap,(Map<Id,IPM_Project__c>)Trigger.OldMap);    
+
                     // Step 4 : Update financials based on incoming Project
                     IPM_ProjectHelper.manageProjectFinancials(phaseChangeProjectMap,(Map<Id,IPM_Project__c>)Trigger.OldMap);
                 }
                 
-                // Step 5 : Create Gate Documents and Sections for incoming Project
+                // Step 5 : Create Gate Documents and Sections for incoming Project 
                 if(!complexityChangeProjectMap.isEmpty() )
                 {    
                     IPM_ProjectHelper.manageProjectDocuments(complexityChangeProjectMap); 

@@ -735,8 +735,7 @@ public with sharing class IPM_ProjectHelper
             {
                 oldProject = oldProjectMap.get(project.Id);
             }
-            
-            
+
             if(project.IPM_Project_Rollout__c !=null)
             {
                 Id associatedRolloutId = project.IPM_Project_Rollout__c;
@@ -745,13 +744,7 @@ public with sharing class IPM_ProjectHelper
                 if(sourceRolloutMasterMap.containsKey(associatedRolloutId) && sourceRolloutMasterMap.get(associatedRolloutId) !=null)
                 {
                     IPM_Project_Rollout__c sourceRollout = sourceRolloutMasterMap.get(associatedRolloutId);
-                    
-                    if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) || (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY) )
-                    {
-                        sourceRollout.IPM_CharterApproved__c = true;
-                        updateRolloutMap.put(sourceRollout.Id,sourceRollout);       
-                    }
-                   
+ 
                     if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && sourceRollout.recordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
                     {
                         // Check for Child Rollouts to update Regional Project information.
@@ -761,20 +754,6 @@ public with sharing class IPM_ProjectHelper
                             
                             for(IPM_Project_Rollout__c localRollout : asssociatedChildRollouts.values())
                             {
-                                // Update Rollouts with Charter References. Set Charter Approved as true
-                                
-                                
-                                String financialExternalId = IPM_Utils.getFinancialExternalId(localRollout);
-                                if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) || (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY) )
-                                {
-                                	if(localRollout.IPM_CharterFinancial__c == null)
-                                	{
-                                    	localRollout.IPM_CharterFinancial__r = new IPM_Financial__c(Financial_External_ID__c =  financialExternalId);
-                                	}           
-                                    localRollout.IPM_CharterApproved__c = true;
-                                    rolloutUpdate = true;       
-                                } 
-                                
                                 
                                 // Update Rollout References.
                                 if(localRollout.Regional_Project__c != project.Id)
@@ -782,8 +761,6 @@ public with sharing class IPM_ProjectHelper
                                     localRollout.Regional_Project__c =  project.Id;
                                     rolloutUpdate = true;
                                 }
-                                
-                                
                                 
                                 if(rolloutUpdate)
                                 {
@@ -798,19 +775,6 @@ public with sharing class IPM_ProjectHelper
                                     {
                                         Boolean updateCountry = false;
                                         
-                                        
-                                        // Update Rollouts with Charter References. Set Charter Approved as true
-                                        if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) || (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY) )
-                                        {
-                                            associatedCountry.Local_Rollout_Charter__c = localRollout.Id;
-                                            if(associatedCountry.IPM_FinancialAtCharter__c == null)
-                                            {
-                                            	associatedCountry.IPM_FinancialAtCharter__r = new IPM_Financial__c(Financial_External_ID__c = financialExternalId );
-                                            }
-                                            associatedCountry.IPM_CharterApproved__c = true;
-                                            updateCountry = true;       
-                                        }
-                                
                                         if(associatedCountry.IPM_Regional_Project__c != project.Id)
                                         {
                                             associatedCountry.IPM_Regional_Project__c = project.Id; 
@@ -829,18 +793,6 @@ public with sharing class IPM_ProjectHelper
                     else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && sourceRollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
                     {
                         sourceRollout.Local_Project__c = project.Id;
-                        
-                        String financialExternalId = IPM_Utils.getFinancialExternalId(sourceRollout);
-                        
-                        if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) || (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY) )
-                        {
-                        	if(sourceRollout.IPM_CharterFinancial__c == null)
-                        	{
-                            	sourceRollout.IPM_CharterFinancial__r = new IPM_Financial__c(Financial_External_ID__c =  IPM_Utils.getFinancialExternalId(sourceRollout));
-                        	}
-                            sourceRollout.IPM_CharterApproved__c = true;
-                        }
-                        
                         updateRolloutMap.put(sourceRollout.Id,sourceRollout);
                         
                         // Update Country References.
@@ -850,17 +802,7 @@ public with sharing class IPM_ProjectHelper
                             for(IPM_Country__c associatedCountry : associatedCountryMap.values())
                             {
                                 Boolean updateCountry= false;
-                                if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) || (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY) )
-                                {
-                                    associatedCountry.Local_Rollout_Charter__c = sourceRollout.Id;
-                                    if(associatedCountry.IPM_FinancialAtCharter__c == null)
-                                    {
-                                    	associatedCountry.IPM_FinancialAtCharter__r = new IPM_Financial__c(Financial_External_ID__c = financialExternalId );
-                                    }
-                                    associatedCountry.IPM_CharterApproved__c = true;
-                                    updateCountry = true;
-                                }
-  
+   
                                 if(associatedCountry.IPM_Local_Project__c != project.Id)
                                 {
                                     associatedCountry.IPM_Local_Project__c = project.Id;
@@ -1401,18 +1343,19 @@ public with sharing class IPM_ProjectHelper
     * @description: Refresh Country Project Mapping once References have been updated.  
     */
 
-    public static void refreshProjectRolloutCountryMapping() 
+    public static void refreshProjectRolloutCountryMapping(Map<Id,IPM_Project__c> projectPhaseChange,Map<Id,IPM_Project__c> oldProjectMap) 
     {
-        if(incomingProjectIds!=null && !incomingProjectIds.isEmpty())
+        Set<Id> phaseChangeProjectIdSet = projectPhaseChange.keySet();
+        
+        if(phaseChangeProjectIdSet != null && !phaseChangeProjectIdSet.isEmpty())
         {
-            
             String projectRolloutQuery = IPM_Utils.prepareSOQLQuery(IPM_PROJECT_ROLLOUT,false,null,true);
-            String projectRolloutWhereClause = ' WHERE IPM_Project__c in:incomingProjectIds OR Local_Project__c in :incomingProjectIds OR Regional_Project__c in :incomingProjectIds '+LIMIT_CLAUSE_STR;
+            String projectRolloutWhereClause = ' WHERE IPM_Project__c in:phaseChangeProjectIdSet OR Local_Project__c in :phaseChangeProjectIdSet OR Regional_Project__c in :phaseChangeProjectIdSet '+LIMIT_CLAUSE_STR;
             projectRolloutQuery = projectRolloutQuery + projectRolloutWhereClause;
             Map<Id,IPM_Project_Rollout__c> rolloutDetailMap = new Map<Id,IPM_Project_Rollout__c>( (List<IPM_Project_Rollout__c>) database.query(projectRolloutQuery) );
-                // projectsSourceRolloutsMap contains Rollouts which recently got converted to projects and its associated Child Rollouts.
+            // projectsSourceRolloutsMap contains Rollouts which recently got converted to projects and its associated Child Rollouts.
                 
-            for(Id projectId : incomingProjectIds)
+            for(Id projectId : phaseChangeProjectIdSet )
             {
                 for(IPM_Project_Rollout__c rollout : rolloutDetailMap.values())
                 {
@@ -1430,15 +1373,24 @@ public with sharing class IPM_ProjectHelper
             }
         
             String countryQuery = IPM_Utils.prepareSOQLQuery('IPM_Country__c',false,null,true);
-            String countryWhereClause = ' WHERE IPM_Regional_Project__c in :incomingProjectIds OR IPM_Local_Project__c in:incomingProjectIds '+LIMIT_CLAUSE_STR;
+            String countryWhereClause = ' WHERE IPM_Project__c in :incomingProjectIds OR IPM_Regional_Project__c in :incomingProjectIds OR IPM_Local_Project__c in:incomingProjectIds '+LIMIT_CLAUSE_STR;
             countryQuery = countryQuery + countryWhereClause;
         
             List<IPM_Country__c> countryList = database.query(countryQuery);
             
             for(IPM_Country__c country : countryList)
             {
-                Id regionalProjectID = country.IPM_Regional_Project__c;
+            	Id globalProjectID = country.IPM_Project__c;
+            	Map<String,IPM_Country__c> globalCountries = new Map<String,IPM_Country__c>();
+            	if(projectToCountryMap.containsKey(globalProjectID))
+                {
+                    globalCountries = projectToCountryMap.get(globalProjectID);
+                }
+            	globalCountries.put(country.Country_Name__c,country);
+                projectToCountryMap.put(globalProjectID,globalCountries);
                 
+                Id regionalProjectID = country.IPM_Regional_Project__c;
+
                 Map<String,IPM_Country__c> regionalCountries = new Map<String,IPM_Country__c>();
                 if(projectToCountryMap.containsKey(regionalProjectID))
                 {
@@ -1456,6 +1408,91 @@ public with sharing class IPM_ProjectHelper
                 }
                 localCountries.put(country.Country_Name__c,country);
                 projectToCountryMap.put(localProjectID,localCountries);
+            }
+            
+            Map<Id,IPM_Project_Rollout__c> updateProjectRollout = new Map<Id,IPM_Project_Rollout__c>();
+            Map<Id,IPM_Country__c> updateProjectCountry = new Map<Id,IPM_Country__c>();
+            
+            if(!projectToRolloutMap.isEmpty())
+            {
+                for(Id projectId : projectToRolloutMap.keySet())
+                {
+                    IPM_Project__c oldProject = null;
+                    Map<Id,IPM_Project_Rollout__c> rolloutMap = projectToRolloutMap.get(projectId);
+                    
+                    if(oldProjectMap!=null && oldProjectMap.containsKey(projectId))
+                    {
+                        oldProject = oldProjectMap.get(projectId);
+                        if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS))
+                        {
+                            for(IPM_Project_Rollout__c rollout : rolloutMap.values())
+                            {
+                           		// Update Rollouts with Charter References. Set Charter Approved as true
+                           		rollout.IPM_CharterApproved__c = true;
+                           		
+                           		if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+                           		{ 
+	                            	if(rollout.IPM_CharterFinancial__c == null)
+		                        	{
+		                            	rollout.IPM_CharterFinancial__r = new IPM_Financial__c(Financial_External_ID__c =  IPM_Utils.getFinancialExternalId(rollout));
+		                        	}
+                           		}
+                               	updateProjectRollout.put(rollout.Id,rollout);
+                            }       
+                        }
+                    }
+                }
+                
+                System.debug(LoggingLevel.ERROR,'updateProjectRollout-->>>'+updateProjectRollout); 
+                if(!updateProjectRollout.isEmpty())
+                {
+                    IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
+                        update updateProjectRollout.values();
+                    IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
+                }
+            }
+
+            if(!projectToCountryMap.isEmpty())
+            {
+                for(Id projectId : projectToCountryMap.keySet())
+                {
+                    IPM_Project__c oldProject = null;
+                    Map<String,IPM_Country__c> countryMap = projectToCountryMap.get(projectId);
+                    
+                    if(oldProjectMap!=null && oldProjectMap.containsKey(projectId))
+                    {
+                        oldProject = oldProjectMap.get(projectId);     
+                        
+                        if( (oldProject!=null &&  oldProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS))
+	                    {
+	                        for(IPM_Country__c country : countryMap.values())
+	                        {
+	                           country.IPM_CharterApproved__c = true;
+	                           
+	                           country.Local_Rollout_Charter__c = country.local_Rollout__c;
+	                           
+	                           if(updateProjectRollout.containsKey(country.local_Rollout__c)) 
+	                           {
+	                           		IPM_Project_Rollout__c rollout  = updateProjectRollout.get(country.local_Rollout__c); 
+	                           		if(rollout.recordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
+                           			{
+	                           			String financialExternalId = IPM_Utils.getFinancialExternalId(rollout);
+	                           			country.IPM_FinancialAtCharter__r = new IPM_Financial__c(Financial_External_ID__c =  IPM_Utils.getFinancialExternalId(rollout));
+                           			}
+	                           }
+	                           updateProjectCountry.put(country.Id,country);
+	                        }       
+	                    }
+                    }        
+                }
+                
+                System.debug(LoggingLevel.ERROR,'updateProjectCountry-->>>'+updateProjectCountry);
+                if(!updateProjectCountry.isEmpty())
+                { 
+                    IPM_CountryHandler.SKIP_TRIGGER_EXECUTION = true;
+                        update updateProjectCountry.values();   
+                    IPM_CountryHandler.SKIP_TRIGGER_EXECUTION = false;
+                }
             }
         }
     }

@@ -29,7 +29,8 @@ public with sharing class IPM_RolloutTriggerHandler
     /*****************************************************************************************************************************
     * @description      Constructor
     */
-    public IPM_RolloutTriggerHandler(){     
+    public IPM_RolloutTriggerHandler(){
+
         mapUpsertFinancials = new Map<String, IPM_Financial__c>();
                 
         deleteRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
@@ -483,83 +484,70 @@ public with sharing class IPM_RolloutTriggerHandler
             
             IPM_Project_Rollout__c oldProjectRollout = oldRolloutsMap.get(localRollout.Id);
             
+            if(!localRollout.KeyMCO__c && localRollout.isActive__c)
+            {
+                nonkeyActiveRolloutExists = true; 
+            }
+                           
             if(oldProjectRollout != null)
             {
-                // If Rollout is a key financial or Non Key financial which has parent Project(After Charter non Key breaks into individual Financials)
-                if(localRollout.KeyMCO__c || (!localRollout.KeyMCO__c  && localRollout.Regional_Project__c != null) )
+                if(!localRollout.KeyMCO__c)
                 {
-                    // Only Create Financials if Rollout is active.
-                    if(localRollout.isActive__c)
-                    {
-	                    // If rollout was a non Key Rollout before, create Key Financials for Key Rollouts. 
-	                    // OR If rollout was inactive and now made Active,update Key financials to active.
-	                    if( (localRollout.KeyMCO__c && localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c) || (localRollout.isActive__c != oldProjectRollout.isActive__c ) )
-	                    {
-	                        createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
-	                    }
-                    }
-                    
-                    // If rollout was active before and now made inactive ,remove/inactivate Key financials.
-                    if(!localRollout.isActive__c && localRollout.isActive__c != oldProjectRollout.isActive__c)
-                    {
-                        removeKeyFinancials(financialExternalId,localRollout,financialExistingMap);
-                        localRolloutCountrySet.add(localRollout.IPM_Rollout_Project__c);   
-                    }
-                }
-                else
-                {
-                    // If Rollout was a key Before,we need to remove Key Financials.
+                    // If rollout was a Key Rollout before, remove Key Financials for corresponding Rollout 
                     if(localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c)
                     {
-                        String financialOldExternalId = IPM_Utils.getFinancialExternalId(oldProjectRollout);
-                        removeKeyFinancials(financialOldExternalId,localRollout,financialExistingMap);        
-                    }
-                } 
-            }  
-            
-            // For Checking if Non Key Exists currently and whether to retain Non Key financial or not.
-            if(!localRollout.KeyMCO__c)
-            {
-                if(localRollout.isActive__c) 
-                {
-                    nonkeyActiveRolloutExists = true;
+                        String financialOldExternalId = IPM_Utils.getFinancialExternalId(oldProjectRollout);    
+                        removeKeyFinancials(financialOldExternalId,localRollout,financialExistingMap);
+                        
+                        // Create Non Key financial for the corresponding Non Key Rollout
+                        createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
+                    } 
+                    
+                    manageActiveInActiveChanges(localRollout,oldProjectRollout,financialExternalId,financialExistingMap);         
                 }
-            }          
+                else if(localRollout.KeyMCO__c)
+                { 
+                    // If Rollout is a key Rollout,We need to generate Corresponding Key Financials.
+                    if(localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c)
+                    {
+                        //Make Sure that Rollout is active before generating Financials.
+                        if(localRollout.isActive__c)
+                        {
+                            createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
+                        }
+                    }
+                    
+                    manageActiveInActiveChanges(localRollout,oldProjectRollout,financialExternalId,financialExistingMap);
+                }
+            }        
         }
         
-        if(nonKeyFinancial == null)
-        {
-            nonKeyFinancial = new IPM_Financial__c(
-                                                    RecordTypeId = DEFAULT_FINANCIAL_RECORDTYPE,
-                                                    Financial_External_ID__c = financialNonKeyExternalId,
-                                                    isActive__c = true
-                                                  );
-                                                                  
-            if(regionalRollout!=null)
-            {
-                nonKeyFinancial.Target_Launch_Date__c = regionalRollout.Target_Launch_Date__c;
-                nonKeyFinancial.IPM_Project_Rollout__c = regionalRollout.Id;
-                nonKeyFinancial.Project_Sustainability_Period__c = regionalRollout.Calculated_Sustainability_Period__c;
-                nonKeyFinancial.Added_At_Stage__c = regionalRollout.Added_At_Stage__c;
-            }
-            else
-            {
-                nonKeyFinancial.Target_Launch_Date__c = regionalProject.IPM_Target_Launch_Dates__c; 
-                nonKeyFinancial.Project_Sustainability_Period__c = regionalProject.Sustainability_Period__c;
-                nonKeyFinancial.Added_At_Stage__c = regionalProject.IPM_Phase__c;
-            }
-        }
             
-        if(nonkeyActiveRolloutExists)
-        {
-            mapUpsertFinancials.put(financialNonKeyExternalId, nonKeyFinancial);
-        }     
-        else
+        if(!nonkeyActiveRolloutExists)
+
         {
             setDeleteFinancialExternalIds.add(financialNonKeyExternalId);
         }
     }
     
+    
+    public void manageActiveInActiveChanges(IPM_Project_Rollout__c localRollout,IPM_Project_Rollout__c oldProjectRollout,String financialExternalId,Map<String,IPM_Financial__c> financialExistingMap)
+    {
+        if(localRollout.isActive__c != oldProjectRollout.isActive__c)
+        {
+            // If rollout was active before and now made inactive ,remove/inactivate Key financials.
+            if(localRollout.isActive__c)
+            {
+                // Mark Non Key financial for the corresponding Non Key Rollout as active
+                createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
+            }
+            else
+            {
+                removeKeyFinancials(financialExternalId,localRollout,financialExistingMap);
+                localRolloutCountrySet.add(localRollout.IPM_Rollout_Project__c);
+            }
+        }
+    } 
     // Generate financials for Rollouts based on Params 
     public void createRolloutFinancials(String financialExternalId,String financialRecordType, IPM_Project_Rollout__c projectRollout,Map<String,IPM_Financial__c> financialExistingMap)
     {
@@ -611,7 +599,8 @@ public with sharing class IPM_RolloutTriggerHandler
                 projectFinancials.IPM_Project_Rollout__c = projectRollout.Regional_Rollout__c;
             }
         }
-    }                                                     
+    } 
+                                                        
     
     public void removeKeyFinancials(String financialOldExternalId,IPM_Project_Rollout__c oldProjectRollout,Map<String,IPM_Financial__c> financialExistingMap)
     {
