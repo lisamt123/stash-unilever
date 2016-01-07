@@ -242,9 +242,9 @@ public with sharing class IPM_FinancialTriggerHandler
                 }
             }
        }
-       if(updatedProjects != null && !updatedProjects.isempty()){
+       /*if(updatedProjects != null && !updatedProjects.isempty()){
        	  IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(updatedProjects);
-       }
+       }*/
        //Manage Financial Year Updates for DEFAULT Financials
        
         for(IPM_Financial__c financial : getFinancials(mapNewFinancials.keySet()))

@@ -662,7 +662,7 @@ public with sharing class IPM_TaskHelper {
     * @description: used to assign updated assignee to task
     * @param1 newTaskObj : project record
     */
-    public static void assigneUserToTask(set<Id> projectIdSet){
+    public static void assignUserToTask(set<Id> projectIdSet){
         
         // query all the task belonging to thhe project 
         list<IPM_Project__c>projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,IPM_Project_Leader__c,

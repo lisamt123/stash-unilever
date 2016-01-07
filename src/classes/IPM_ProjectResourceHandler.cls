@@ -189,7 +189,7 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
     public void afterDelete(SObject oldSo){
       //This method has been included as the class implements the ITrigger interface
         IPM_Project_Resource__c projRes = (IPM_Project_Resource__c)oldSo;
-        IPM_TaskHelper.assigneUserToTask(projRes.IPM_Project__c);
+        IPM_TaskHelper.assignUserToTask(new Set<Id>{projRes.IPM_Project__c});
     }
     
     /**
