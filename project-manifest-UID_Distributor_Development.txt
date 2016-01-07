@@ -127,7 +127,7 @@ src/reports/UID_Stock_Analysis-meta.xml
 src/reports/UID_Stock_Cover-meta.xml
 src/reports/UID_Summary_View-meta.xml
 src/reportTypes/UID_Stocked_Product_Reports.reportType
-src/reportTypes/UID_Sales_Report.reportType 
+src/reportTypes/UID_Sales_Report.reportType
 src/triggers/UID_StockCoverTrigger.trigger
 src/triggers/UID_StockCoverTrigger.trigger-meta.xml
 src/workflows/Order.workflow
