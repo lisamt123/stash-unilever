@@ -28317,11 +28317,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cec_Alert_Action__c.Questionnaire_URL__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>cec_Alert_Action__c.To__c</field>
         <readable>false</readable>
     </fieldPermissions>
