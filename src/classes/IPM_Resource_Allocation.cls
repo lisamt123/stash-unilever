@@ -311,7 +311,7 @@ public with sharing class IPM_Resource_Allocation {
         UQuery='SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,IPM_User__r.email, ';
         uQuery=uQuery+QUERY_FIELDS_STR;
         uQuery=uQuery+QUERY_WHERE_STR;
-       
+        
         if(searchTeambyCat==IPM_ConstantUtils.TEAM_MYCATEGORY){
             
             if(String.IsNotBlank(category))
@@ -349,7 +349,7 @@ public with sharing class IPM_Resource_Allocation {
         }
         try
         {
-             
+            
             lstuser=database.query(uQuery);
             
         }
@@ -520,7 +520,7 @@ public with sharing class IPM_Resource_Allocation {
             uQuery=uQuery+QUERY_HOLDCATEGORY_STR + String.escapeSingleQuotes(category) + PERCENTAGE_SLASH ;
             uQuery=uQuery+' AND IPM_User_Role__c=\''+strCoreMem+'\') '+QUERY_LIMIT;
         }    
-        if(IPM_ConstantUtils.TEAM_COREPL ==coreMembers || IPM_ConstantUtils.TEAM_COREDPL==coreMembers || IPM_ConstantUtils.TEAM_COREGATEK==coreMembers)
+        if(IPM_ConstantUtils.TEAM_COREDPL==coreMembers || IPM_ConstantUtils.TEAM_COREGATEK==coreMembers)
         {
             uQuery=BEGIN_QUERY;
             uQuery=uQuery+QUERY_FIELDS_STR;
@@ -528,12 +528,36 @@ public with sharing class IPM_Resource_Allocation {
             uQuery=uQuery+QUERY_HOLDCATEGORY_STR + String.escapeSingleQuotes(category) + PERCENTAGE_SLASH ; 
             uQuery=uQuery+' AND IPM_User_Function__c=\''+strCoreMem+'\' AND IPM_Company_Card__c=\''+CCardName+'\') '+QUERY_LIMIT;
         }
+        else if(IPM_ConstantUtils.TEAM_COREPL ==coreMembers)
+        {
+            uQuery=IPM_ConstantUtils.BLANK;
+            uQuery=BEGIN_QUERY;
+            uQuery=uQuery+QUERY_FIELDS_STR;
+            uQuery=uQuery+QUERY_WHERE_STR;
+            uQuery=uQuery+' AND IPM_User_Function__c=\''+strCoreMem+'\' ) '+QUERY_LIMIT;
+        }
         
         if(string.isNotBlank(uQuery))
         {
             try
             {
                 lstUserProfile=database.query(uQuery);
+                Map<id,id>uniqueUserMapId=new Map<id,id>();
+                if(lstUserProfile != null && !lstUserProfile.isEmpty())
+                { 
+                    for(IPM_User_Profile__c u:lstUserProfile)
+                    {
+                        uniqueUserMapId.put(u.IPM_User__c,u.id);
+                    }
+                 
+                }
+                if(!uniqueUserMapId.isEmpty())
+                {
+                    lstUserProfile=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,
+                    IPM_User__r.email,IPM_User__r.SmallPhotoUrl,
+                    IPM_User__r.UserRole.Name
+                    FROM IPM_user_profile__c WHERE id IN:uniqueUserMapId.values() Limit 50000];
+                }
             }
             catch(QueryException ex)
             {
@@ -554,7 +578,7 @@ public with sharing class IPM_Resource_Allocation {
         uQuery=BEGIN_QUERY;
         uQuery=uQuery+QUERY_FIELDS_STR;
         uQuery=uQuery+QUERY_WHERE_STR;
-        uQuery=uQuery+QUERY_HOLDCATEGORY_STR + String.escapeSingleQuotes(category) + '%\')' ;
+        
         if(IPM_ConstantUtils.TEAM_COREPL==coreMembers || IPM_ConstantUtils.TEAM_COREDPL==coreMembers)
         {
             strCoreMem=IPM_ConstantUtils.TEAM_PROJECT_LEADER;
@@ -566,19 +590,52 @@ public with sharing class IPM_Resource_Allocation {
         else if(IPM_ConstantUtils.TEAM_CORETPL==coreMembers)
         {
             strCoreMem=IPM_ConstantUtils.TEAM_RESEARCH_DEVELOPMENT;
+            uQuery=uQuery+QUERY_HOLDCATEGORY_STR + String.escapeSingleQuotes(category) + '%\')' ;
             uQuery=uQuery+' AND IPM_User_Role__c=\''+strCoreMem+'\'';
             uQuery=uQuery+' AND (IPM_User__r.name LIKE :querySearchCoreTeam OR IPM_User__r.email LIKE :querySearchCoreTeam) '+QUERY_LIMIT ;
         } 
         
-        if(IPM_ConstantUtils.TEAM_COREPL==coreMembers || IPM_ConstantUtils.TEAM_COREDPL==coreMembers || IPM_ConstantUtils.TEAM_COREGATEK==coreMembers)
+        if(IPM_ConstantUtils.TEAM_COREDPL==coreMembers || IPM_ConstantUtils.TEAM_COREGATEK==coreMembers)
         {
+            uQuery=uQuery+QUERY_HOLDCATEGORY_STR + String.escapeSingleQuotes(category) + '%\')' ;
             uQuery=uQuery+' AND IPM_User_Function__c=\''+strCoreMem+'\' AND IPM_Company_Card__c=\''+CCardName+'\' ';
+            uQuery=uQuery+' AND (IPM_User__r.name Like :querySearchCoreTeam OR IPM_User__r.email Like :querySearchCoreTeam) '+QUERY_LIMIT ;
+        }
+        else if(IPM_ConstantUtils.TEAM_COREPL==coreMembers)
+        {
+            uQuery=uQuery+' AND IPM_User_Function__c=\''+strCoreMem+'\' )';
             uQuery=uQuery+' AND (IPM_User__r.name Like :querySearchCoreTeam OR IPM_User__r.email Like :querySearchCoreTeam) '+QUERY_LIMIT ;
         }
         
         try
         {
+            
             lstUserProfile=database.query(uQuery);
+            Map<id,id>uniqueUserMapId=new Map<id,id>();
+            if(lstUserProfile != null && !lstUserProfile.isEmpty())
+            { 
+                for(IPM_User_Profile__c u:lstUserProfile)
+                {
+                    uniqueUserMapId.put(u.IPM_User__c,u.id);
+                }
+             
+            }
+            if(!uniqueUserMapId.isEmpty())
+            {
+                lstUserProfile=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,
+                IPM_User__r.email,IPM_User__r.SmallPhotoUrl,
+                IPM_User__r.UserRole.Name
+                FROM IPM_user_profile__c WHERE id IN:uniqueUserMapId.values() Limit 50000];
+            }
+            if(lstUserProfile.isEmpty())
+            {
+                isNoMatchfound=IPM_ConstantUtils.TEAM_TRUE ;
+            }
+            else
+            {
+                isNoMatchfound=IPM_ConstantUtils.BLANK;
+            }
+            
         }
         catch(QueryException ex)
         {
@@ -587,14 +644,7 @@ public with sharing class IPM_Resource_Allocation {
                 'filterCoreMember',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
        }
         
-        if(lstUserProfile.isEmpty())
-        {
-            isNoMatchfound=IPM_ConstantUtils.TEAM_TRUE ;
-        }
-        else
-        {
-            isNoMatchfound=IPM_ConstantUtils.BLANK;
-        }
+        
     } 
     /*************************************************************************************************************
     * @description:Update Core Members for current project(PL,DPL,TPL,Gatekeeper users)
@@ -605,6 +655,12 @@ public with sharing class IPM_Resource_Allocation {
         IPM_Project__c ipmproject=new IPM_Project__c(id=projectID);
         if(IPM_ConstantUtils.TEAM_COREPL==coreMembers)
         {
+            List<IPM_User_Profile__c>checkValidUserCompanyCList=[SELECT IPM_Company_Card__c FROM IPM_User_Profile__c WHERE IPM_User__c=:selecetedCoreMember AND
+                                                                     IPM_Company_Card__c =:CCardName LIMIT 1];
+                    
+            if(checkValidUserCompanyCList.isEmpty()){
+                IPM_WithoutShareController.createUserProfile(CCardName,selecetedCoreMember,category);//create user profile for selected PL with company card
+            }
             ipmproject.IPM_Project_Leader__c=selecetedCoreMember;
         }
         else if(IPM_ConstantUtils.TEAM_COREdPL==coreMembers)
@@ -797,13 +853,13 @@ public with sharing class IPM_Resource_Allocation {
         String finalQueryString = selectCompanyCard + whereClause + limitString;
         
         List<IPM_Company_Card__c> lstCompanyCards = database.query(finalQueryString);
-		Set<id>companyCardIdSet=new Set<id>();
-		if(!lstCompanyCards.isEmpty())
+        Set<id>companyCardIdSet=new Set<id>();
+        if(!lstCompanyCards.isEmpty())
         {
-			for(IPM_Company_Card__c ccid:lstCompanyCards){
-				companyCardIdSet.add(ccid.id);
-			}
-		}
+            for(IPM_Company_Card__c ccid:lstCompanyCards){
+                companyCardIdSet.add(ccid.id);
+            }
+        }
         if(!lstUser.isEmpty())
         { 
             if(IPM_ConstantUtils.USER_FUNCTON_PL.equalsIgnoreCase(ButtonLabel) || IPM_ConstantUtils.USER_FUNCTON_CL.equalsIgnoreCase(ButtonLabel))
@@ -815,16 +871,16 @@ public with sharing class IPM_Resource_Allocation {
                 if(!lstCompanyCards.isEmpty())
                 {
                     List<IPM_User_Profile__c>checkValidUserCompanyCList=[SELECT IPM_Company_Card__c FROM IPM_User_Profile__c WHERE IPM_User__c=:selectedLeaderMember AND
-																	 IPM_Company_Card__c IN:companyCardIdSet LIMIT 1];
-					
-					if(!checkValidUserCompanyCList.isEmpty()){
-						inContextRollout.IPM_Company_Card__c = checkValidUserCompanyCList[0].IPM_Company_Card__c; // assigning regional company card
-					}
-					else{// get all company card associated with category,market cluster/countries
-						inContextRollout.IPM_Company_Card__c=lstCompanyCards[0].id;//assign company card to project leader
+                                                                     IPM_Company_Card__c IN:companyCardIdSet LIMIT 1];
+                    
+                    if(!checkValidUserCompanyCList.isEmpty()){
+                        inContextRollout.IPM_Company_Card__c = checkValidUserCompanyCList[0].IPM_Company_Card__c; // assigning regional company card
+                    }
+                    else{// get all company card associated with category,market cluster/countries
+                        inContextRollout.IPM_Company_Card__c=lstCompanyCards[0].id;//assign company card to project leader
                         IPM_WithoutShareController.createUserProfile(lstCompanyCards[0].id,selectedLeaderMember,projectManagedCategory);//create user profile for selected PL with company card
                     }
-					
+                    
                 }
                 
              if(inContextRollout.IPM_Company_Card__c!=null){
@@ -996,35 +1052,35 @@ public with sharing class IPM_Resource_Allocation {
             if(UQuery!=IPM_ConstantUtils.BLANK)
             {
                 lstUserProfile=database.query(UQuery);
-            	if(lstUserProfile.isEmpty())
-	        	{
-	            	IsNoMatchfound=IPM_ConstantUtils.TEAM_TRUE ;
-	            	leaderUsers.clear();
-	       		 }
-		        else
-		        {
-		            IsNoMatchfound=IPM_ConstantUtils.BLANK;
-		            leaderUsers = lstUserProfile;	
-		            			
-					Map<Id, Id> uniqueUserMapId = new Map<Id, Id>();
-					if(leaderUsers != null && !leaderUsers.isEmpty())
-					{ 
-						for(IPM_User_Profile__c u:leaderUsers)
-						{
-							uniqueUserMapId.put(u.IPM_User__r.Id,u.id);	
-						}
-					 
-					}
-					
-					if(!uniqueUserMapId.isEmpty())
-					{
-						leaderUsers=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,
-						IPM_User__r.email,IPM_User__r.SmallPhotoUrl,
-						IPM_User__r.UserRole.Name
-						FROM IPM_user_profile__c WHERE id IN:uniqueUserMapId.values() Limit 50000];
-					}
-		        }
-	      	}
+                if(lstUserProfile.isEmpty())
+                {
+                    IsNoMatchfound=IPM_ConstantUtils.TEAM_TRUE ;
+                    leaderUsers.clear();
+                 }
+                else
+                {
+                    IsNoMatchfound=IPM_ConstantUtils.BLANK;
+                    leaderUsers = lstUserProfile;   
+                                
+                    Map<Id, Id> uniqueUserMapId = new Map<Id, Id>();
+                    if(leaderUsers != null && !leaderUsers.isEmpty())
+                    { 
+                        for(IPM_User_Profile__c u:leaderUsers)
+                        {
+                            uniqueUserMapId.put(u.IPM_User__r.Id,u.id); 
+                        }
+                     
+                    }
+                    
+                    if(!uniqueUserMapId.isEmpty())
+                    {
+                        leaderUsers=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,
+                        IPM_User__r.email,IPM_User__r.SmallPhotoUrl,
+                        IPM_User__r.UserRole.Name
+                        FROM IPM_user_profile__c WHERE id IN:uniqueUserMapId.values() Limit 50000];
+                    }
+                }
+            }
         }
         
         catch(Exception ex)
