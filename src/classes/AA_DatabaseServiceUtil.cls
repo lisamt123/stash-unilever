@@ -14,11 +14,12 @@ public with sharing class AA_DatabaseServiceUtil {
             }
         }
         catch(DMLException dmlEx){ 
-          //  throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);            
+          //  throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);         
+           System.debug('Exception:' + dmlEx);   
         }
         catch(Exception genEx){ 
           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', genEx);  
-            
+             System.debug('Exception:' + genEx);
         }  
         return idList;
     }
@@ -37,10 +38,12 @@ public with sharing class AA_DatabaseServiceUtil {
                 idList.add(upsertResult.getId());            
             }
         }catch(DMLException dmlEx){ 
-           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);            
+           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);         
+          System.debug('Exception:' + dmlEx); 
         }
         catch(Exception genEx){ 
-           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', genEx);  
+           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', genEx); 
+           System.debug('Exception:' + genEx); 
         }  
         return idList;
     } 
@@ -72,10 +75,12 @@ public with sharing class AA_DatabaseServiceUtil {
             system.debug('Chatter_Post_ID__c inserted --> ');
             idList.add(varAgentReportId);
         }catch(DMLException dmlEx){ 
-           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);            
+           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);     
+           System.debug('Exception:' + dmlEx);       
         }
         catch(Exception genEx){ 
            // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', genEx);  
+           System.debug('Exception:' + genEx);
         }  
      
         return idList;
@@ -96,9 +101,11 @@ public with sharing class AA_DatabaseServiceUtil {
             idList.add(deleteResult.getId());
             }
        }catch(DMLException dmlEx){ 
-           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', dmlEx);            
+           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', dmlEx);   
+           System.debug('Exception:' + dmlEx);         
        }catch(Exception genEx){ 
           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', genEx);  
+        System.debug('Exception:' + genEx);  
        }  
        return idList;
     }
@@ -115,10 +122,12 @@ public with sharing class AA_DatabaseServiceUtil {
                 idList.add(deleteResult.getId());            
             }
         }catch(DMLException dmlEx){ 
-           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', dmlEx);            
+           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', dmlEx);  
+           System.debug('Exception:' + dmlEx);           
         }
         catch(Exception genEx){ 
           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', genEx);  
+            System.debug('Exception:' + genEx); 
         }  
         return idList;
     }  
@@ -138,6 +147,7 @@ public with sharing class AA_DatabaseServiceUtil {
             rtId = recordTypeInfo.get(RecordTypeLabel).getRecordTypeId();//particular RecordId by  Name
         }catch(Exception ex){ 
           //  throw new BaseServiceException('Exception occured: Utility : getRecordTypeId method ',ex);
+          System.debug('Exception:' + ex);
         }
         
         return rtId;
@@ -163,6 +173,7 @@ public with sharing class AA_DatabaseServiceUtil {
             }
         }catch(Exception ex){ 
            // throw new BaseServiceException('Exception occured: Utility : getPickListValues method ',ex);
+           System.debug('Exception:' + ex);
         }  
         return pickListValues;
     }

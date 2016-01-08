@@ -34,7 +34,8 @@ public with sharing class AA_AgentAppServiceController {
             system.debug('Unilever---====>'+appWrapperObj.objGetAgentDataResponse);
   
         }catch(Exception e){
-            
+             System.debug('Exception:' + e);
+
         }
         /*catch(BaseServiceException baseAppEx){
             throw new BaseServiceException(string.valueOf(baseAppEx.getCause()),baseAppEx);
@@ -64,6 +65,7 @@ public with sharing class AA_AgentAppServiceController {
             system.debug('Competitor----====>'+appWrapperObj.objGetAgentDataResponse);
   
         }catch(Exception e){
+        	 System.debug('Exception:' + e);
             
         }
         /*catch(BaseServiceException baseAppEx){
@@ -543,7 +545,7 @@ public with sharing class AA_AgentAppServiceController {
             }
                 
         }Catch(Exception e){
-            
+             System.debug('Exception:' + e);
         }
         return agentBrandCategory;
     }

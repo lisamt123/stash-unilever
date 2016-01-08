@@ -122,7 +122,7 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
             }
 
         }catch(Exception e){
-            
+             System.debug('Exception:' + e);
         }
         /*catch(BaseServiceException baseAppEx){
             BaseServiceException.resolveExceptions(baseAppEx.getMessage(),baseAppEx);
@@ -170,6 +170,7 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
         }       
         catch(JSONException ex){
             //throw new BaseServiceException('Exception occured: BaseApplicationServices : createSerializedMapString method ', ex);
+             System.debug('Exception:' + ex);
         }
         
         return requestBodySerializedMap;
