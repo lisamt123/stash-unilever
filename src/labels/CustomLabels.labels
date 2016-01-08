@@ -7618,7 +7618,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_FinancialGrid_goBack</shortDescription>
-        <value>Go Back</value>
+        <value>Go back to Financial page</value>
     </labels>
     <labels>
         <fullName>IPM_FinancialValidationErrorMessage</fullName>
@@ -7632,7 +7632,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_Financial_CopyPaste</shortDescription>
-        <value>Copy from FBC xls</value>
+        <value>Copy from STD BC xls</value>
     </labels>
     <labels>
         <fullName>IPM_Financial_Data</fullName>

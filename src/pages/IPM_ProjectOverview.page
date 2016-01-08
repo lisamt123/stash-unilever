@@ -178,8 +178,9 @@
                                     </div>
                                 </div>
                             </apex:outputPanel>
-                            <div class="greyborder"></div>
+                            
                             <apex:outputPanel layout="block" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}">
+                            <div class="greyborder"></div>
                                 <div class="row">
                                     <div class="col-sm-7 pr0">
                                         <div class="keycontent">
@@ -193,6 +194,7 @@
                             </apex:outputPanel>
                             <apex:outputPanel layout="block" styleClass="greyborder" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}"></apex:outputPanel>
                             <apex:outputPanel layout="block"  styleClass="" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}">
+                            <div class="greyborder"></div>
                                 <div class="row">
 
                                 
@@ -330,7 +332,7 @@
                                         </div>
                                         
                                         <div class="modal-body">
-                                            <div class="container-fluid removePadd">
+                                            <div class="container-fluid">
                                                 <div class="row">    
                                                     <div class="col-sm-12">
                                                         <span class="skipDesc">{!nextPhaseMessage}</span>
