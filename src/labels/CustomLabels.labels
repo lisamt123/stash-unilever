@@ -6510,7 +6510,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_DUE_ON_TODAY</shortDescription>
-        <value>is due on today</value>
+        <value>is due today</value>
     </labels>
     <labels>
         <fullName>IPM_Data_Value_Too_Large</fullName>

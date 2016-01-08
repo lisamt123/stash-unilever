@@ -643,14 +643,6 @@ public with sharing class IPM_ChatterFeedHelper {
                     posttext +=REGIONAL_ROLLOUT_ADDED_STR5+eachRollout.IPM_Project__r.IPM_Project_Leader__r.Name+ IPM_ConstantUtils.NEXT_LINE_STRING;   
                     posttext += eachRollout.Name + IPM_ConstantUtils.NEXT_LINE_STRING;
                     posttext += Label.IPM_Project_Lead+ IPM_ConstantUtils.Colon + eachRollout.IPM_Regional_PL__r.Name + IPM_ConstantUtils.NEXT_LINE_STRING;
-                    
-                    if(eachRollout.Finance_Member__r.Name != null)
-                    {
-                        posttext += Label.IPM_Finance_Member + eachRollout.Finance_Member__r.Name + IPM_ConstantUtils.NEXT_LINE_STRING;
-                    }
-                    else{
-                        posttext += Label.IPM_Finance_Member +IPM_ConstantUtils.NEXT_LINE_STRING;
-                    }   
                     posttext += Label.IPM_CATEGORY+ IPM_ConstantUtils.Colon + eachRollout.IPM_Project__r.IPM_Category_Text__c + IPM_ConstantUtils.NEXT_LINE_STRING; 
                     posttext += Label.IPM_Brand + eachRollout.IPM_Project__r.IPM_Brand_Positioning__c + IPM_ConstantUtils.NEXT_LINE_STRING;
                     if(eachRollout.IPM_Project__r.IPM_Project_Description__c != null)
