@@ -24,7 +24,7 @@
         <div class="finAlertBox">
             <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
             <div class="col-sm-11 finalerttext">
-                <p><apex:outputText value="{!validationErrorMessage}"/></p>                        
+                <p><apex:outputText value="{!validationErrorMessage}{!$Label.IPM_ITO_GTO_Validation_Common_message}"/></p>
             </div> 
         </div>
     </apex:outputPanel>   
