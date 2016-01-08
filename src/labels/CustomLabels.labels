@@ -11680,7 +11680,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
     </labels>
 	<labels>
         <fullName>IPM_TLD_Year_Misaligned</fullName>
-        <label>Calendar Years are misaligned.</label>
+        <value>Calendar Years are misaligned.</value>
         <language>en_GB</language>
         <shortDescription>IPM_TLD_Year_Misaligned</shortDescription>
     </labels>
