@@ -142,6 +142,8 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     public boolean bShowShipToTradeButton{get;set;}//variable to show Ship to trade button
     public boolean bShowChangeStatusButton{get;set;}//variable to show Change Status button
     public boolean bPhaseChangeInProgress{get;set;}//variable to check if phase change is in progress or not
+    public string earliestTLD=null;//DEF3195 Mukul to review
+
     //SD constructor
     public IPM_ProjectOverviewCtrl(IPM_ProjDocumentSectionHstryController controller) {
        
@@ -318,6 +320,11 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         
     }
     
+    //DEF3195-Earliest Target Launch is not displayed on overview page
+    public string getEarlTLD(){
+        return earliestTLD;
+    }
+
     /*******************************************************************************************************
     * @description: initial method which actually retrieves information for all the columns mentioned in the project overview page
     */
@@ -386,6 +393,14 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                     rolloutProjectRecentMilestone = null;
                 }
          }
+        
+        //DEF3195-Earliest Target Launch is not displayed on overview page
+        list<IPM_Project_Rollout__c> ro = [select Target_Launch_Date__c from IPM_Project_Rollout__c where IPM_Regional_Rollout_Status__c=:IPM_ConstantUtils.ROLLOUT_LEADER and (IPM_Project__c=:project.id or Regional_Project__c=:project.id)];
+        if(ro!=null && ro.size()>0){
+            if(ro[0].Target_Launch_Date__c!=null){
+                earliestTLD = ro[0].Target_Launch_Date__c.format();
+            }           
+        }
          
         stoppedDate= project.IPM_Stopped_Date_Time__c!= null ? project.IPM_Stopped_Date_Time__c: null;
         // get the stopped date ipm ProjectCancel Page
