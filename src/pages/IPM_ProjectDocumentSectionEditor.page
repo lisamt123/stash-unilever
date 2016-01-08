@@ -162,7 +162,7 @@
                                                                     <div class="panel clearfix">
                                                                         <div class="noPadright marginFloatedBlock ipmButtonSet pull-right">
                                                                             <apex:outputPanel rendered="{! If(AND(IsEditableOutC=true),'true','false')}">
-                                                                                <apex:commandLink styleClass="ipmButton buttonMarginRight" value="{!$Label.IPM_CANCEL}" onclick="gotoPage()"/>
+                                                                                <span class="ipmButton buttonMarginRight" onclick="gotoPage()">{!$Label.IPM_CANCEL}</span>
                                                                                 <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
                                                                                     <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                                 </apex:commandLink>
@@ -249,7 +249,7 @@
                                                                 <div class="row Mtop">      
                                                                     <div class="panel">
                                                                         <div class="pull-right ipmButtonSet custMarginRight">
-                                                                            <apex:commandLink styleClass="ipmButton buttonMarginRight" value="{!$Label.IPM_CANCEL}" onclick="gotoPage()"  />
+                                                                            <span class="ipmButton buttonMarginRight" onclick="gotoPage()">{!$Label.IPM_CANCEL}</span>
                                                                             <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
                                                                                 <apex:param assignTo="{!IsGateSave}" value="" name="savegate"/>
                                                                             </apex:commandLink>
@@ -299,7 +299,7 @@
                                                                             <div class="row marginFloatedBlock">        
                                                                                 <div class="panel">
                                                                                     <div class="pull-right ipmButtonSet custMarginRight" >
-                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight" value="{!$Label.IPM_CANCEL}" onclick="gotoPage()"  /> 
+                                                                                        <span class="ipmButton buttonMarginRight" onclick="gotoPage()">{!$Label.IPM_CANCEL}</span>
                                                                                         <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
@@ -392,7 +392,7 @@
                                                                             <div class="row marginFloatedBlock gateMarginTop">        
                                                                                 <div class="panel">
                                                                                     <div class="pull-right ipmButtonSet custMarginRight" >
-                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight" value="{!$Label.IPM_CANCEL}" onclick="gotoPage()"  />
+                                                                                        <span class="ipmButton buttonMarginRight" onclick="gotoPage()">{!$Label.IPM_CANCEL}</span>
                                                                                         <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
@@ -499,7 +499,7 @@
                                                                             <div class="row marginFloatedBlock">         
                                                                                 <div class="panel" >
                                                                                     <div class="col-sm-6 ipmButtonSet pull-right">
-                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight" value="{!$Label.IPM_CANCEL}" onclick="gotoPage()"  /> 
+                                                                                        <span class="ipmButton buttonMarginRight" onclick="gotoPage()">{!$Label.IPM_CANCEL}</span>
                                                                                         <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
@@ -610,7 +610,7 @@
                                                                             <div class="row marginFloatedBlock gateMarginTop">
                                                                                 <div class="panel">
                                                                                     <div class="col-sm-6 ipmButtonSet pull-right">
-                                                                                        <apex:commandLink styleClass="ipmButton buttonMarginRight" value="{!$Label.IPM_CANCEL}" onclick="gotoPage()"  />
+                                                                                        <span class="ipmButton buttonMarginRight" onclick="gotoPage()">{!$Label.IPM_CANCEL}</span>
                                                                                         <apex:commandLink styleClass="ipmButton buttonMarginRight primary" value="{!$Label.IPM_SAVE}" action="{!save}" >
                                                                                             <apex:param assignTo="{!IsGateSave}" value="Gate" name="savegate"/>
                                                                                         </apex:commandLink>
