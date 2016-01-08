@@ -145,9 +145,9 @@
                         
                         <p class="clearfix">{!project.IPM_Brand_Positioning__c} | {!project.IPM_Project_Type__c}</p>
                         <p class="keycontent">{!project.IPM_Brand__c} | {!project.IPM_Category_Text__c}</p>
-                        
+                        <div class="greyborder"></div>
                         <apex:outputPanel rendered="{!project.IPM_Fast_Track_Project__c && project.IPM_Project_Type__c != 'Operational'}">
-                            <div class="greyborder"></div>
+                            
                             <div class="row">
                                 <apex:outputPanel layout="block" rendered="{!project.IPM_Fast_Track_Project__c}" styleClass="col-sm-2 pr0">
                                     <div><img src="{!URLFOR($Resource.IPM_Resource, 'images/flag_homescreen.svg')}" alt="Fast Track" class="fasttrack"/></div>
@@ -157,17 +157,19 @@
                                  </apex:outputPanel>
                                
                             </div>
+							<div class="greyborder"></div>
                         </apex:outputPanel>
                         <apex:outputPanel rendered="{!project.IPM_White_Space_Project__c && project.IPM_Project_Type__c != 'Operational'}">
-                            <div class="greyborder"></div>
+                            
                             <div class="row">
                                <apex:outputPanel layout="block" styleClass="whiteSpaceContainer" rendered="{!project.IPM_White_Space_Project__c}" >
                                     <p class="keycontent">{!$Label.IPM_White_Space_Project}</p>
                                 </apex:outputPanel>  
                             </div>
+							<div class="greyborder"></div>
                         </apex:outputPanel> 
                             <apex:outputPanel rendered="{!NOT(ISNULL(project.IPM_Clustering__r.Name))}">
-                                <div class="greyborder"></div>
+                                
                                 <apex:outputPanel styleClass="greyborder" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}"></apex:outputPanel>
                                 <div class="row">
                                     <div class="col-sm-4 pr0">
