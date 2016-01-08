@@ -82,6 +82,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     public static final String SMILESTONE_HISTORY_OBJNAME  = 'IPM_Milestone__History';
     private static final String PLANNED_STR= 'The planned ';
     public static final String KEY_FINANCE_STR = 'Key Financial Data is missing. Please update your business case: ';
+    private static final String GATE_STR='gate';
 
     public String projectDocStatusStyleClass{get;set;}
 
@@ -849,7 +850,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                             alertscount++;
                     }
                     if(DateValue==0){
-                           alertMessageToday.put(eachRec.IPM_Name__c,PLANNED_STR+eachRec.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+IPM_ConstantUtils.GATE);
+                           alertMessageToday.put(eachRec.IPM_Name__c,PLANNED_STR+eachRec.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+GATE_STR);
                            alertscount++;
                      }
                     if(DateValue<=IPM_ConstantUtils.CONST_21 && DateValue!=0 && DateValue >0){

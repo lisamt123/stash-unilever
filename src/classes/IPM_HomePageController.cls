@@ -44,6 +44,7 @@ public with sharing class IPM_HomePageController
     private static final Integer DAY_VALUE_Fourteen = 14;
     private static final String PLANNED_STR='The planned ';
     private static final String DATEFORMAT ='dd MMMM yyyy';
+    private static final String GATE_STR= 'gate';
     
     /***************************************************************
 *@Description :Constructor to fetch the details of the Project
@@ -138,7 +139,7 @@ public with sharing class IPM_HomePageController
                                ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
                                }
                           if(DateValue== 0){
-                               alertMessageDueDateToday.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,PLANNED_STR+ipmmiles.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+IPM_ConstantUtils.GATE);
+                               alertMessageDueDateToday.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,PLANNED_STR+ipmmiles.IPM_Type_of_gate__c+IPM_ConstantUtils.IPM_SPACE+GATE_STR);
                                ProjectIdMap.put(ipmmiles.IPM_Project__r.Name+ipmmiles.IPM_Name__c,ipmmiles.IPM_Project__r.Id);
                                }
                       }

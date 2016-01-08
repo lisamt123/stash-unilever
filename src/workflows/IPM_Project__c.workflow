@@ -34,6 +34,40 @@
         <template>Workflow_Emails/IPM_Notify_Finance_Leader_about_TLD_is_changed</template>
     </alerts>
     <alerts>
+        <fullName>IPM_Notify_PL_DPL_and_Gatekeeper_TLD_changed_after_Contract</fullName>
+        <description>IPM Notify PL,DPL and Gatekeeper TLD changed after Contract</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Deputy_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Gatekeeper__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>IPM_Emails/IPM_Notify_PL_DPL_and_Gatekeeper_TLD_changed_after_Contract</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_Notify_PL_and_DPL_the_TLD_changed_during_Charter_or_Contract</fullName>
+        <description>IPM Notify PL and DPL the TLD changed during Charter or Contract</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Deputy_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>IPM_Project_Leader__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>IPM_Emails/IPM_Notify_PL_and_DPL_the_TLD_changed_during_Charter_or_Contract</template>
+    </alerts>
+    <alerts>
         <fullName>IPM_Notify_Project_Leader_for_FL_TLD_confirmation</fullName>
         <description>IPM Notify Project Leader for FL TLD confirmation</description>
         <protected>false</protected>
@@ -53,7 +87,7 @@
             <type>userLookup</type>
         </recipients>
         <recipients>
-            <field>IPM_Finance_Member__c</field>
+            <field>IPM_Finance_Lead__c</field>
             <type>userLookup</type>
         </recipients>
         <recipients>
@@ -65,18 +99,18 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>IPM_Emails/IPM_Notify_Leads_TLD_is_changed</template>
+        <template>IPM_Emails/IPM_Notify_PL_DPL_FL_and_Gatekeeper_TLD_changed_after_Contract</template>
     </alerts>
     <alerts>
-        <fullName>IPM_Notify_leaders_the_TLD_changed_during_Charter_doc</fullName>
-        <description>IPM Notify leaders the TLD changed during Charter doc</description>
+        <fullName>IPM_Notify_leaders_the_TLD_changed_during_Charter_Contract</fullName>
+        <description>IPM Notify leaders the TLD changed during Charter or Contract</description>
         <protected>false</protected>
         <recipients>
             <field>Deputy_Project_Leader__c</field>
             <type>userLookup</type>
         </recipients>
         <recipients>
-            <field>IPM_Finance_Member__c</field>
+            <field>IPM_Finance_Lead__c</field>
             <type>userLookup</type>
         </recipients>
         <recipients>
@@ -84,7 +118,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>IPM_Emails/IPM_Notify_Leads_TLD_is_changed</template>
+        <template>IPM_Emails/IPM_Notify_PL_DPL_and_FL_TLD_is_changed</template>
     </alerts>
     <alerts>
         <fullName>IPM_Notify_the_Local_Project_leader_when_local_project_created</fullName>

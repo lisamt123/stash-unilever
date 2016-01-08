@@ -73,8 +73,7 @@ global without sharing class IPM_CommentsListController {
                 getCommentsWrapper();
             }
             catch(Exception ex){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-            				ADD_COMMENT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,ADD_COMMENT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);
                 string msg=ex.getmessage(); 
                 if(msg.contains(System.Label.IPM_Data_Value_Too_Large)){           
                     Apexpages.addmessage(new apexpages.message(apexpages.severity.info,System.Label.IPM_Data_Value_Too_Large));
@@ -89,11 +88,9 @@ global without sharing class IPM_CommentsListController {
                         update projDocSec;// update the project documetn section record for the counts of commens
                  }
                  catch(Exception ex){
-                         string msg=ex.getmessage(); 
-	                 Apexpages.addmessage(new apexpages.message(apexpages.severity.error,msg));
-	                 
-	                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-            				ADD_COMMENT,ex.getMessage(),ex, 'Error', null, null, null,null);
+                     Apexpages.addmessage(new apexpages.message(apexpages.severity.error,ex.getmessage()));
+                     
+                     ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,ADD_COMMENT,ex.getMessage(),ex, 'Error', null, null, null,null);
                  }
         } 
     }
@@ -144,8 +141,7 @@ global without sharing class IPM_CommentsListController {
                 }
                 catch (Exception ex){
                     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,Label.IPM_Generic_ErrorMessage )); 
-                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-            				'doDelete',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
+                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'doDelete',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION); 
                 }
            }
         }

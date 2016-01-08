@@ -1529,6 +1529,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 
                 getRolloutWrappers(currentFinancialId);
                 getFinancials();
+                IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved(new List<IPM_Financial__c>{currentFinancial});
                     
             }                   
         } catch (Exception eX){

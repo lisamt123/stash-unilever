@@ -274,7 +274,6 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         if(Trigger.isUpdate)
         {
             IPM_FinancialHelper.checkIfMisAligned((List<IPM_Financial__c>)Trigger.New,financialDetailMap);
-            IPM_ChatterFeedHelper.postChatterIfBusinessCaseSaved((List<IPM_Financial__c>)Trigger.New);
         }
     }
     /**

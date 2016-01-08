@@ -576,11 +576,12 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 if(idstr!=UserInfo.getUserId()){
                     projDocSec.IPM_Notify_Team__c=true;
                     projDocSec.IPM_Project_L_eader_Email__c=projDocSec.IPM_DocSec_Project_Leader__c;
+                    update projDocSec;
                 }
             
                 if(!lstupdatedResource.isEmpty()){
                     update lstupdatedResource;
-                    update projDocSec;
+                    
                     lstupdatedResource.clear();
                 }
             }

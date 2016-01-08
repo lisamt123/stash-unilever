@@ -177,10 +177,11 @@
                                         <div class="dueDate clusterAns"><apex:outputField value="{!project.IPM_Clustering__r.Name}" /></div>
                                     </div>
                                 </div>
+				<apex:outputPanel styleClass="greyborder" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}"></apex:outputPanel>
                             </apex:outputPanel>
+			    
+			    <apex:outputPanel layout="block" rendered="{!IF(AND(project.IPM_Phase__c!='PLE', currGateToDisplay != null),true,false)}">
                             
-                            <apex:outputPanel layout="block" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}">
-                            <div class="greyborder"></div>
                                 <div class="row">
                                     <div class="col-sm-7 pr0">
                                         <div class="keycontent">
@@ -191,10 +192,11 @@
                                         <div class="percentage"><a href="{!$Page.IPM_GateDocument}?id={!project.Id}&printDoc={!currGate}"><apex:outputText Value="{!IF(bDocStatusNotStartedOrApproved,filledInPer,project.IPM_FilledIn_Percentage__c)}"></apex:outputText>%</a></div>
                                     </div>
                                 </div>
-                            </apex:outputPanel>
+                            
                             <apex:outputPanel layout="block" styleClass="greyborder" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}"></apex:outputPanel>
+			    </apex:outputPanel>
                             <apex:outputPanel layout="block"  styleClass="" rendered="{!IF(project.IPM_Phase__c!='PLE',true,false)}">
-                            <div class="greyborder"></div>
+                            
                                 <div class="row">
 
                                 
@@ -241,8 +243,9 @@
                             </apex:outputPanel>
                             <apex:outputPanel layout="block" styleClass="charterApprover" rendered="{! rolloutProjectRecentMilestone != NULL && rolloutProjectRecentMilestone.size > 0}">
                                 <a href="{!$Page.IPM_ProjectOverview}?id={!rolloutProjectRecentMilestone[0].IPM_Project__c}">{!rolloutProjectRecentMilestone[0].IPM_Project__r.Name}</a> {!gateDueDateMessage} &nbsp;<apex:outputField value="{!rolloutProjectRecentMilestone[0].IPM_Due_Date__c}" />
-                            </apex:outputPanel>
+                            
                             <div class="greyborder"></div>
+			    </apex:outputPanel>
                             <div class="row">
                                 <div class="col-sm-8 pr0">
                                     <div class="keycontent">{!$Label.IPM_TARGET_LAUNCH_DATE}</div>
