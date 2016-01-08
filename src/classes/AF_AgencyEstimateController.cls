@@ -314,8 +314,6 @@ public with sharing class AF_AgencyEstimateController
 				IsCentralHub = AgencyEstimate.AF_CentralBilling__c;
 				if(AgencyEstimate.AF_Brand_Estimate__r.AF_Status_Base_Fees__c=='Ready for PO'){
 					IsReadyforPO=true;
-					if(AgencyEstimate.AF_PO_Number__c!=null){
-					}
 					if(AgencyEstimate.AF_Quarter_PO_Raised__c!=null){
 						PoValue=(AgencyEstimate.AF_Quarter_PO_Raised__c);
 					}

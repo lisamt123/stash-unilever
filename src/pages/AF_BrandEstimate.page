@@ -119,38 +119,12 @@ jQuery( function() {
 }
 </script>
 <!-- Adding comma in Text box End -->
-   <!-- Only Allow Numbers and (,.+-) -->
-   <script>  
-      jQuery( function() {
-         jQuery('.two-digits').keyup(function(){
-             if(jQuery(this).val().indexOf('.')!=-1){         
-                 if(jQuery(this).val().split(".")[1].length > 2){                
-                     if( isNaN( parseFloat( this.value ) ) ) return;
-                     this.value = parseFloat(this.value).toFixed(2);
-                 }  
-              }            
-              return this; //for chaining
-         });
-       jQuery(".two-digits").keypress(function (e) {
-          if (e.which != 46 && e.which > 31 && (e.which < 48 || e.which > 57) && (e.which < 43 || e.which > 45)){
-             alert("Please enter numbers only.");
-                    return false;
-         }
-        });
-      });
-   </script> 
-   <!-- Only Allow Numbers and (,.+-) End -->
+   
    <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
-   <script type="text/javascript">
-      $.noConflict();
-   </script>
+  
    <!-- Bootstrap_Js File By Kumar start-->
    <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"/>
-   <script type="text/javascript">
-      jQuery(document).ready(function(){
-         jQuery('.custom-link').tooltip();
-      });
-   </script>
+   
    <!-- Bootstrap_Js File By Kumar End -->
    <apex:form id="MainForm" styleClass="AF_BrandEstimate">
       <div class="row">
@@ -336,4 +310,5 @@ jQuery( function() {
          </apex:facet>
       </apex:ActionStatus>
    </apex:form>
+   <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'AF_BrandEstimate.js')}"/>
 </apex:page>

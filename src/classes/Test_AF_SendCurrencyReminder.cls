@@ -18,8 +18,6 @@ public class Test_AF_SendCurrencyReminder
     static testmethod void SchedulableContext()
     {
         test.starttest();
-        String DayofMonth;
-        DayofMonth=string.valueOf(system.now().day());
         Send_Email__c  email=new Send_Email__c();   
         email.AF_CurrencyUpdateRequired__c=true;
         insert email;

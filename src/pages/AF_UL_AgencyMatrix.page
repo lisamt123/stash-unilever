@@ -92,27 +92,7 @@
            );
            });
       </script>    
-      <script type="text/javascript">
-         // commentsToggleClose(commentAddTable); 
-                 $('a.addfancy').fancybox({
-                   autoSize: false,
-                         width: 900,
-                         height: 500,
-                         type: 'iframe',
-                         titlePosition: 'inside',
-                         hideOnOverlayClick:'false',
-                         hideOnContentClick:'false',
-                         helpers     : { 
-                         overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
-                         },
-                         afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
-                            //parent.location.reload(true);
-                             location.reload();
-                          }
-                 });
-             
-      </script>
-      <!--<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/lib/jquery.mousewheel-3.0.6.pack.js')}"></script>-->
+            <!--<script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/lib/jquery.mousewheel-3.0.6.pack.js')}"></script>-->
       <!-- Optionally add helpers - button, thumbnail and/or media -->
       <!--<link rel="stylesheet" href="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.css?v=1.0.3')}" type="text/css" media="screen" />
          <script type="text/javascript" src="{!URLFOR($Resource.fancyBox, 'fancyapps-fancyBox-2bb0da9/source/helpers/jquery.fancybox-buttons.js?v=1.0.3')}"></script>
@@ -314,15 +294,7 @@
    <!-- Bootstrap_Js File start-->
    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
    <!--Bootstrap Js File End -->
-   <!-- Bootstrap Tooltip methods Start -->
-   <script type="text/javascript" language="javascript">
-      var bsjQuery = $.noConflict(true);
-      bsjQuery.fn.bsTooltip= bsjQuery.fn.tooltip; 
-      bsjQuery(document).ready(function() {
-            bsjQuery('[data-toggle=tooltip]').bsTooltip();
-      });
-   </script>
-   <!-- Bootstrap Tooltip methods End -->
+   
    <body class="dt-example AF_UL_AgencyMatrix">
       <apex:form styleClass="overHidden">
          <!--  <div class="heading_main">
@@ -648,66 +620,11 @@
          <!-- /.modal -->
       </div>
       <!-- Bootstrap bootstrap modal window End -->
-      <!-- Bootstrap modal window methods  Start-->
-      <script>
-         document.body.setAttribute("data-shouldRefreshPage", "0");
-         $(document).ready(function(){
-          $(document).on('click','.modalButton3', function(e) {
-             $("#iframe_cont").contents().find("body").html('');
-             var src = $(this).attr('data-src');
-             var height = $(this).attr('data-height') || 466;
-             var width = $(this).attr('data-width') || 900;
-             $("#myModal3 iframe").attr({'src':src,
-                                 'height': height,
-                                 'width': width}); 
-             $('#myModal3').on('hidden.bs.modal',shouldRefreshPage);
-             window.setTimeout(timerForPageRefresh, 1000);
-          });
-         });
-         function timerForPageRefresh(){
-             shouldRefreshPage(!$('#myModal3').is(":visible"));
-         }
-         function shouldRefreshPage(flag) {
-            if(document.body.getAttribute("data-shouldRefreshPage") != "0" && flag){
-                document.body.setAttribute("data-shouldRefreshPage", "0");
-                window.location.reload(true);
-            }
-            else if(!flag){
-                window.setTimeout(timerForPageRefresh, 100);
-            }
-         }
-         /* Change the click attributes of save buttons to set Flag on Top document to refresh page on close of modal */
-         function initializePageRefresh(){
-             var originalClick = $(this).attr("onclick");
-             $(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
-         }
-         $('#iframe_cont').load(function(){
-             var popupFrame = $("#iframe_cont").contents();
-             if(popupFrame.find("iframe").length ){
-                 popupFrame.find("iframe").each(function(){
-                     $(this).contents().find(".upLoadDoc, .save_btn_review, .submit_btn_addcomment, .continue_btn, .save_btn, .EditSave").each(initializePageRefresh);
-                 });
-             }
-             popupFrame.find(".upLoadDoc, .save_btn_review, .submit_btn_addcomment, .continue_btn, .save_btn, .EditSave").each(initializePageRefresh);
-         });
-            
-      </script>
-      <!-- Bootstrap modal window methods End--> 
+      
       <!--
          <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/matrixControls.js')}"></script>
          -->
-      <!-- Bootstrap bootstrap modal window loading_img methods Start-->
-      <script> 
-         $(document).ready(function () {
-             $('#iframe_cont').on('load', function () {
-              $('#loader_cont, .loading_img').show();
-                 console.log("madhu");
-                 $('#loader_cont, .loading_img').delay(1000).hide(0);
-                 //setTimeout("jQuery('#loader_cont, .loading_img').hide();",1000 );
-             });
-         });   
-      </script>
-      <!-- Bootstrap bootstrap modal window loading_img methods End--> 
+      <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'AF_UL_AgencyMatrix.js')}"></script>
       <script>
          var $j = jQuery.noConflict();
                $j("#advFltr").multiselect({

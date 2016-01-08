@@ -12,31 +12,7 @@
    <!-- jquery library Start-->
    <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"/>
    <!-- jquery library End-->
-   <script>  
-      function twoDecimalCheck(){
-          $('.two-digits').keyup(function(){
-              //alert('Hi2');
-              if($(this).val().indexOf('.')!=-1){         
-                  if($(this).val().split(".")[1].length > 2){                
-                      if( isNaN( parseFloat( this.value ) ) ) return;
-                      this.value = parseFloat(this.value).toFixed(2);
-                  }  
-               }            
-               return this; //for chaining
-          });
-        $(".two-digits").keypress(function (e) {
-           if (e.which != 46 && e.which > 31 && (e.which < 48 || e.which > 57) && (e.which < 43 || e.which > 45)){
-              alert("Please enter numbers only.");
-                     return false;
-          }
-         });
-         }
-      $( function () {
-          //alert('Hi1');
-          $('.two-digits').keyup(twoDecimalCheck);
-      });
-       
-   </script>
+   
    <script>
       function isNumberKey(evt)
            {
@@ -218,4 +194,5 @@
                 document.getElementById('Savebutton').style.visibility = "hidden";
       }
    </script>
+   <apex:includeScript value="{!URLFOR($Resource.bootstrap_POC, 'AF_QuarterlyBonus.js')}"/>
 </apex:page>

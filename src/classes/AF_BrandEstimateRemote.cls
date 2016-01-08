@@ -1,5 +1,5 @@
 global with sharing class AF_BrandEstimateRemote {
-   global string Space=' ';
+   
     public AF_BrandEstimateRemote(ApexPages.StandardController stdController) {
         
     }
@@ -30,7 +30,7 @@ global with sharing class AF_BrandEstimateRemote {
     @remoteAction
     global static Map<String, String> getAgencyEstimateRecords(String agencyId, String brandEstimateId) {
         
-        String tdCloseTag = '</td>', trOpenTag = '<tr>', trCloseTag = '</tr>',Space;
+        String tdCloseTag = '</td>', trOpenTag = '<tr>', trCloseTag = '</tr>';
         Boolean isLocked = false;
         String strongStrt = '<Strong>', strongEnd = '</strong>';
         Set<String> columnsSet = new Set<String>();
@@ -159,7 +159,7 @@ global with sharing class AF_BrandEstimateRemote {
     public static String processAgencyRow(Boolean isValue, AF_Agency_Estimate__c agSObj, 
                                         Map<String, AF_Agency_Estimate__c> agencyULRelationMap, 
                                         String aId, String uId, String bId) {
-        String tdCloseTag = '</td>',Space, lBreak = '<br/>', euro = 'EUR';
+        String tdCloseTag = '</td>',Space = ' ', lBreak = '<br/>', euro = 'EUR';
         String rowDetailToReturn = '';
          String href;
         if(isValue) {
