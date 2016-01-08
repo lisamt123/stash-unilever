@@ -16,6 +16,10 @@ VERSION AUTHOR                  		DATE            DETAIL  FEATURES/CSR/TTP
 global class BET_InoplanToIPMMigration_Batch implements Database.Batchable<sObject> {
 	
 	private final String catName;
+    @TestVisible
+    private static final String IPM_BET_TOOLKIT_VALUE = 'Link to existing BET';
+    @TestVisible
+    private static final String IPM_INOPLAN_SUFFIX = '0000';
 
 	global BET_InoplanToIPMMigration_Batch(String categoryName) {
 		this.catName = categoryName;
@@ -38,6 +42,10 @@ global class BET_InoplanToIPMMigration_Batch implements Database.Batchable<sObje
         // get Inoplans External Id
         for (uw_BET__c bet : scope){
             sInoplanExtIds.add(bet.Inoplan_Project__r.Project_Id__c);
+            // IPM Inoplan Id contains 0000 on the end - since this can be potential migration issue query will try to match
+            // on both Inoplan with and without 0000 suffix
+            sInoplanExtIds.add(bet.Inoplan_Project__r.Project_Id__c + IPM_INOPLAN_SUFFIX);
+            
         }
 
         // get related IPM records
@@ -50,6 +58,10 @@ global class BET_InoplanToIPMMigration_Batch implements Database.Batchable<sObje
          for (uw_BET__c bet : scope){
             IPM_Project__c ipmProject = mIPMs.get(bet.Inoplan_Project__r.Project_Id__c);
 
+            if (ipmProject == null){
+                ipmProject = mIPMs.get(bet.Inoplan_Project__r.Project_Id__c + IPM_INOPLAN_SUFFIX);
+            }
+
             if (ipmProject == null) {
                 logIPMProjectNotFound(bet);
             } else {
@@ -59,6 +71,7 @@ global class BET_InoplanToIPMMigration_Batch implements Database.Batchable<sObje
                 }
                 BET_linkingService.Follow(ipmProject.Id, bet.Id, managersIds);
                 ipmProject.BET_Link_Requested__c = bet.Id;
+                ipmProject.IPM_BET_Toolkit__c = IPM_BET_TOOLKIT_VALUE;
                 projects.add(ipmProject);
             }
         }       
