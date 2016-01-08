@@ -139,3 +139,5 @@ src/workflows/UID_Stocked_Product_Summary__c.workflow
 src/workflows/UID_TriggerSwitch__c.workflow
 src/roles/UID_Business_Distributor_Head.role
 src/roles/UID_Business_Distributor_Manager.role
+src/profiles/Unilever - Salesforce MultiApp Standard.profile
+src/applications/Unilever_International_Distributor.app
