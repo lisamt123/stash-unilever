@@ -2188,12 +2188,12 @@ private Date getProjectMilestoneDate(){
                 localRolloutProject.IPM_Target_Launch_Dates__c = mcoCountryRolloutPlan.Target_Launch_Date__c;
                 localRolloutProject.Rollout_Plan_Target_Launch_Date__c = mcoCountryRolloutPlan.Target_Launch_Date__c;
                 update localRolloutProject;
-                setMisalignedValue();                
+				getFinancials();                 
             } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
                 mcoCountryRolloutPlan.Target_Launch_Date__c = localRolloutProject.IPM_Target_Launch_Dates__c;            
                 mcoCountryRolloutPlan.Local_Project_Target_Launch_Date__c = localRolloutProject.IPM_Target_Launch_Dates__c;            
                 update mcoCountryRolloutPlan;
-                setMisalignedValue();                
+				getFinancials();                 
             }
             
            
