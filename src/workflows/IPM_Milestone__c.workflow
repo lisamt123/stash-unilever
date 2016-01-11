@@ -17,7 +17,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Due_Date_in_the_past2</template>
+        <template>IPM_Emails/IPM_Due_Date_in_the_past2</template>
     </alerts>
     <fieldUpdates>
         <fullName>Due_Date</fullName>
