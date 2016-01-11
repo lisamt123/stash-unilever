@@ -6746,12 +6746,7 @@
         <editable>false</editable>
         <field>Account.Length_of_client_relationship__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>Account.Local_Currency__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+    </fieldPermissions>    
     <fieldPermissions>
         <editable>false</editable>
         <field>Account.Machine_Id__c</field>
