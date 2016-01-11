@@ -12,9 +12,6 @@
 
 {!IPM_Project__c.IPM_Org_Base_URL__c}apex/IPM_ProjectDocumentSectionEditor?Id={!IPM_Project_Document_Section__c.IPM_Project_ID__c}&amp;projDocSecId={!IPM_Project_Document_Section__c.Id}
 
-
-
-
 Warm Regards,</textOnly>
     <type>html</type>
 </EmailTemplate>
