@@ -144,6 +144,7 @@ private class BET_CategoryBrandSelectionControllerTest {
 		Test.stopTest();
 	}
 
+	//FabricConditioner begin
 	@isTest static void updateFabricDataTest(){
 		Test.startTest();
 		BET_CategoryBrandSelectionController controller = new BET_CategoryBrandSelectionController();
@@ -165,5 +166,6 @@ private class BET_CategoryBrandSelectionControllerTest {
 		System.assert(!controller.getFabricConditioners().isEmpty(),'Fabric Conditioner list should not be empty');
 		Test.stopTest();
 	}
+	//FabricConditioner end
 	
 }
