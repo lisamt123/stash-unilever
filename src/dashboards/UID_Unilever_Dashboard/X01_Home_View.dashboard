@@ -34,7 +34,7 @@
                 <axisBinding>y</axisBinding>
                 <column>FORMULA3</column>
             </chartSummary>
-            <componentType>ColumnLine</componentType>
+            <componentType>Column</componentType>
             <dashboardFilterColumns>
                 <column>Account.Orders__r$UID_Distributor__c</column>
             </dashboardFilterColumns>
@@ -44,7 +44,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <header>MTD Primary Sales Value vs IOP (USD,Mil)</header>
+            <header>MTD Primary Sales Value vs JBP (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/MTD_Primary_Sales_Value_vs_IOP_USD_Mil</report>
             <showPercentage>false</showPercentage>
@@ -95,7 +95,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Category__c</groupingColumn>
-            <header>Top Categories - Secondary Sales Value (USD)</header>
+            <header>Category-wise Secondary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/Categories_Secondary_Sales_Value_H</report>
             <showPercentage>true</showPercentage>
@@ -139,7 +139,7 @@
                 <axisBinding>y</axisBinding>
                 <column>Account.Orders__r.OrderItems$UID_Distributor_Value__c</column>
             </chartSummary>
-            <componentType>LineGroupedCumulative</componentType>
+            <componentType>ColumnGrouped</componentType>
             <dashboardFilterColumns>
                 <column>Account.Orders__r$UID_Distributor__c</column>
             </dashboardFilterColumns>
@@ -150,11 +150,11 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>YTD Primary Sales Value (USD,Mil)</header>
+            <header>Monthly Primary Sales Value (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/YTD_Primary_Sales_Value_USD_Mil</report>
             <showPercentage>false</showPercentage>
-            <showValues>false</showValues>
+            <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
@@ -166,7 +166,7 @@
                 <axisBinding>y</axisBinding>
                 <column>Account.Orders__r.OrderItems$UID_Distributor_Value__c</column>
             </chartSummary>
-            <componentType>LineGroupedCumulative</componentType>
+            <componentType>ColumnGrouped</componentType>
             <dashboardFilterColumns>
                 <column>Account.Orders__r$UID_Distributor__c</column>
             </dashboardFilterColumns>
@@ -176,12 +176,12 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>YTD Secondary Sales Value (USD,Mil)</header>
+            <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
+            <header>Monthly Secondary Sales Value (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/YTD_Secondary_Sales_Value_USD_Mil</report>
             <showPercentage>false</showPercentage>
-            <showValues>false</showValues>
+            <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
@@ -203,7 +203,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Channel__c</groupingColumn>
-            <header>Top Channels - Secondary Sales Value (USD)</header>
+            <header>Channel-wise Secondary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/Secondary_Channel_Sales_Value_USD</report>
             <showPercentage>true</showPercentage>
@@ -229,7 +229,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Brand__c</groupingColumn>
-            <header>Brand Stock Levels (Cases)</header>
+            <header>Brand-wise Stock Levels (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/SKU_Stock_Levels_Cases2</report>
             <showPercentage>true</showPercentage>
@@ -258,7 +258,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
-            <header>Top Brands - Primary Sales Value (USD)</header>
+            <header>Brand-wise Primary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/Brands_Primary_Sales_Value_USD_H</report>
             <showPercentage>true</showPercentage>
@@ -285,7 +285,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
-            <header>Top Brands - Secondary Sales Value (USD)</header>
+            <header>Brand-wise Secondary Sales Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/Brands_Secondary_Sales_Value_USD_H</report>
             <showPercentage>true</showPercentage>
