@@ -11801,7 +11801,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TRADEMARK_QUESTIONS</shortDescription>
-        <value>TradeMark Question:</value>
+        <value>Trademark Question:</value>
     </labels>
     <labels>
         <fullName>IPM_TRAINING_OR_TECHNICAL</fullName>
