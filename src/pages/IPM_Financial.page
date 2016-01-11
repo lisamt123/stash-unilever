@@ -32,22 +32,23 @@
                                    <span>{!$Label.IPM_Whitespace_Financials}</span> 
                                 </apex:outputPanel>                                 
                                 <div class="col-sm-7 pull-right clearfix">
-                                     
-                                    <div class="SecButtonSet pull-right">
-                                       <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE')}">
-                                            <apex:outputPanel layout="block" styleClass="copyFBC" rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(isEditable,project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode),NOT(isRolloutError))), false)}">
-                                                <apex:outputPanel id="opCurr" styleClass="selCur">
-                                                     <apex:commandButton rendered="{!NOT(isEditMode)}" action="{!loadCurrencyPage}" value="Local Currency View" styleClass="ipmButton primary currButton" alt="{!$Label.IPM_currency_button_hover}" title="{!$Label.IPM_currency_button_hover}"/>
-                                                </apex:outputPanel>
-                                                <apex:commandbutton value="{!$Label.IPM_Financial_CopyPaste}" action="{!CopyPasteTemplate}" styleClass="ipmButton primary" title="{!$Label.IPM_Financial_CopyPaste}" rendered="true"/>
-                                            </apex:outputPanel>
-                                        </apex:outputPanel>
-                                        <!-- 
-                                        <apex:outputPanel rendered="{!AND(NOT(isError),project.IPM_Phase__c <> 'PLE')}">
-                                            <apex:commandLink action="{!uploadDownloadTemplate}" styleClass="icoButton download" title="{!$Label.IPM_FINANCIALS}" rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode))), false)}"/>
-                                        </apex:outputPanel>
-                                         -->
-                                    </div>
+                                    <apex:outputPanel id="finacialButtons">  
+	                                    <div class="SecButtonSet pull-right">
+	                                       <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE')}">
+	                                            <apex:outputPanel layout="block" styleClass="copyFBC" rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(isEditable,project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode),NOT(isRolloutError))), false)}">
+	                                                <apex:outputPanel id="opCurr" styleClass="selCur">
+	                                                     <apex:commandButton rendered="{!NOT(isEditMode)}" action="{!loadCurrencyPage}" value="Local Currency View" styleClass="ipmButton primary currButton" alt="{!$Label.IPM_currency_button_hover}" title="{!$Label.IPM_currency_button_hover}"/>
+	                                                </apex:outputPanel>
+	                                                <apex:commandbutton value="{!$Label.IPM_Financial_CopyPaste}" action="{!CopyPasteTemplate}" styleClass="ipmButton primary" title="{!$Label.IPM_Financial_CopyPaste}" rendered="{!NOT(isEditMode)}"/>
+	                                            </apex:outputPanel>
+	                                        </apex:outputPanel>
+	                                        <!-- 
+	                                        <apex:outputPanel rendered="{!AND(NOT(isError),project.IPM_Phase__c <> 'PLE')}">
+	                                            <apex:commandLink action="{!uploadDownloadTemplate}" styleClass="icoButton download" title="{!$Label.IPM_FINANCIALS}" rendered="{!IF($ObjectType.IPM_Financial__c.updateable, IF(AND(project.IPMProject_Span__c == 'Global', project.IPM_Phase__c <> 'Ideas'), false, AND(NOT(isEditMode))), false)}"/>
+	                                        </apex:outputPanel>
+	                                         -->
+	                                    </div>
+                                    </apex:outputPanel>
                                 </div>                                                                  
                             </div>
                         </div>
@@ -224,7 +225,7 @@
                                                                         
                                                                         <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational')}">
                                                                          <div class="ipmButton primary" onclick="editRecord();">{!$Label.IPM_EDIT}</div>
-                                                                        <apex:actionFunction name="editRecord" action="{!editFinancials}" reRender="tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                        <apex:actionFunction name="editRecord" action="{!editFinancials}" reRender="finacialButtons,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                             <apex:param name="isEditMode" value="true" assignTo="{!isEditMode}"/>
                                                                         </apex:actionFunction>
                                                                         </apex:outputPanel>
@@ -233,7 +234,7 @@
                                                                     <apex:outputPanel rendered="{!AND($ObjectType.IPM_Financial__c.updateable,NOT(isEditMode))}">   
                                                                         <apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c == 'Operational')}">
                                                                          <div class="ipmButton primary" onclick="editRecord();">{!$Label.IPM_EDIT}</div>
-                                                                        <apex:actionFunction name="editRecord" action="{!editFinancials}" reRender="tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                        <apex:actionFunction name="editRecord" action="{!editFinancials}" reRender="finacialButtons,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                             <apex:param name="isEditMode" value="true" assignTo="{!isEditMode}"/>
                                                                         </apex:actionFunction>
                                                                        </apex:outputPanel>
@@ -241,12 +242,12 @@
                                                         
                                                                     <apex:outputPanel rendered="{!IF($ObjectType.IPM_Financial__c.updateable, isEditMode, false)}">
                                                                         <div class="ipmButton" onclick="cancel();">{!$Label.IPM_CANCEL}</div>
-                                                                        <apex:actionFunction name="cancel" reRender="rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                        <apex:actionFunction name="cancel" reRender="finacialButtons,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                             <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
                                                                         </apex:actionFunction>
                                                         
                                                                         <div class="ipmButton primary" onclick="saveRecord();">{!$Label.IPM_SAVE}</div>
-                                                                        <apex:actionFunction name="saveRecord" action="{!saveFinancials}" reRender="errorPanel,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                        <apex:actionFunction name="saveRecord" action="{!saveFinancials}" reRender="finacialButtons,errorPanel,rolloutPanel,tabContentPanel,opCurr" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                             <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
                                                                         </apex:actionFunction>
                                                                     </apex:outputPanel>
