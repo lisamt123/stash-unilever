@@ -369,40 +369,7 @@
             <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>
             <useReportChart>false</useReportChart>
-        </components>
-        <components>
-            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
-            <chartAxisRange>Auto</chartAxisRange>
-            <chartSummary>
-                <aggregate>Sum</aggregate>
-                <axisBinding>y</axisBinding>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
-            </chartSummary>
-            <componentType>ColumnGrouped</componentType>
-            <dashboardFilterColumns>
-                <column>Account$Name</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
-            </dashboardFilterColumns>
-            <displayUnits>Millions</displayUnits>
-            <drillEnabled>true</drillEnabled>
-            <drillToDetailEnabled>false</drillToDetailEnabled>
-            <enableHover>true</enableHover>
-            <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
-            <groupingColumn>Account.Stocked_Products__r$UID_Report_Date__c</groupingColumn>
-            <header>Monthly Inventory Volume (Cases)</header>
-            <legendPosition>Bottom</legendPosition>
-            <report>UID_Category_Trend_Inventory/Trend_Report_Inventory_M_Q2</report>
-            <showPercentage>false</showPercentage>
-            <showValues>true</showValues>
-            <sortBy>RowLabelAscending</sortBy>
-            <useReportChart>false</useReportChart>
-        </components>
+        </components>        
         <components>
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
