@@ -466,7 +466,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         New query is introduced now to fetch BI from IPM financial for global projects.
         */
         if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
-            list<IPM_Financial__c> liFinGlobal = [SELECT Business_Impact_Global__c FROM IPM_Financial__c WHERE parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL and parent_project__c=:lstofuser[0].Name and regional_external_id__c=null limit 1];
+            list<IPM_Financial__c> liFinGlobal = [SELECT Business_Impact_Global__c FROM IPM_Financial__c WHERE parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL and parent_project__c=:lstofuser[0].id and regional_external_id__c=null limit 1];
             if (liFinGlobal!=null && liFinGlobal.size()>0){
                 globalbusinessImpactStr = liFinGlobal[0].Business_Impact_Global__c;
             }
