@@ -8255,7 +8255,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM ITO GTO Validation Common message</shortDescription>
-        <value>Innovation/Calendar Year ITO Cannot be greater than GTO.</value>
+        <value>Innovation/Calendar Year iTO cannot be greater than GTO.</value>
     </labels>
     <labels>
         <fullName>IPM_IdsApprovalNotNullMSg</fullName>
