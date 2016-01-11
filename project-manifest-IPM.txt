@@ -1612,7 +1612,7 @@ src/quickActions/Publisher_Action.quickAction
 src/reports
 src/reports/IPM_Reports/
 src/reports/IPM_Reports/BD_BB_Alignment_Report.report
-src/reports/BET_reports/
+src/reports/BET_reports
 src/reports/BET_reports/BETs_with_IPMs.report
 src/reports/BET_reports/Bets_with_following_projects.report
 src/reports/BET_reports/Brand_Experience_History.report
