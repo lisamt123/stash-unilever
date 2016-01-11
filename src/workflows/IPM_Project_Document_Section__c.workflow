@@ -9,7 +9,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_PL_Email2</template>
+        <template>IPM_Emails/IPM_PL_Email2</template>
     </alerts>
     <alerts>
         <fullName>IPM_Send_Email_PL_OnUpdate</fullName>
@@ -143,7 +143,7 @@
         </actions>
         <active>true</active>
         <formula>IPM_Notify_Team__c=true</formula>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>IPM_Send_Mail_PL</fullName>
