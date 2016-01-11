@@ -648,15 +648,6 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Volume_Tons_Regional</fullName>
-        <field>Volume_Tons_Regional__c</field>
-        <formula>Volume_Tons_Global__c</formula>
-        <name>Volume Tons Regional</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Formula</operation>
-        <protected>false</protected>
-    </fieldUpdates>
     <rules>
         <fullName>Financial Year Charter Approved</fullName>
         <actions>
@@ -853,10 +844,6 @@
             <name>FY_Set_Copy_G2R_FALSE</name>
             <type>FieldUpdate</type>
         </actions>
-        <actions>
-            <name>Volume_Tons_Regional</name>
-            <type>FieldUpdate</type>
-        </actions>
         <active>true</active>
         <criteriaItems>
             <field>IPM_Financial_Year__c.Copy_Global_to_Regional__c</field>
@@ -938,11 +925,6 @@
             <field>IPM_Financial_Year__c.Copy_Regional_to_Local__c</field>
             <operation>equals</operation>
             <value>True</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>IPM_Financial__c.Financial_External_ID__c</field>
-            <operation>notContain</operation>
-            <value>_NONKEY</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
