@@ -175,8 +175,11 @@ public without sharing class BET_Team_MemberHandlerCls {
             }
         }
 
-        if(!relatedUsersIds.isEmpty()){
-            addStandardUserPermissionSet(relatedUsersIds);
+        if(!relatedUsersIds.isEmpty() && !(System.isBatch() || System.isFuture())){
+            addStandardUserPermissionSetFuture(relatedUsersIds);
+        }
+        else if(!relatedUsersIds.isEmpty() && (System.isBatch() || System.isFuture())){
+            addStandardUserPermissionSet(relatedUsersIds);            
         }
     }
 
@@ -187,6 +190,16 @@ public without sharing class BET_Team_MemberHandlerCls {
         Throws: -
     *************************************************************/
     @Future
+    private static void addStandardUserPermissionSetFuture(Set<Id> relatedUsersIds){
+        addStandardUserPermissionSet(relatedUsersIds);
+    }
+
+    /************************************************************
+        Purpose: Method adds CB4L_Standard_User permission sets to new members in case they do not have any other BET permission set assigned
+        Parameters: Set<Id> relatedUsersIds
+        Returns: -
+        Throws: -
+    *************************************************************/
     private static void addStandardUserPermissionSet(Set<Id> relatedUsersIds){
         if(!relatedUsersIds.isEmpty()) {
 
