@@ -106,7 +106,7 @@ global with sharing class IPM_BosscardStatusController{
                 companycard_Str=lstbosscard[0].IPM_Company_Card__c; 
                 Statusvalue=lstbosscard[0].IPM_Bosscard_Status__c; 
                 if(Statusvalue.equals(IPM_ConstantUtils.STATUS_IN_PROGRESS)){
-                	inProgressComments=lstbosscard[0].IPM_Bosscard_Approver_Comments__c;
+                    inProgressComments=lstbosscard[0].IPM_Bosscard_Approver_Comments__c;
                 }
             }
             string query_str=IPM_ConstantUtils.BLANK;
@@ -148,6 +148,9 @@ global with sharing class IPM_BosscardStatusController{
         IPM_Project__c NewProject=new IPM_Project__c();
         Savepoint sp = Database.setSavepoint();//setting the save point
         if(!lstbosscard.isEmpty()){
+                if(bossFeedback_STR.length()>255){
+                    bossFeedback_STR=bossFeedback_STR.substring(0,255);
+                }
                 BOSSCARD_Record=lstbosscard[0];
                 BOSSCARD_Record.IPM_Is_Draft__c = false;
                 BOSSCARD_Record.IPM_Is_Accepted__c=true;
@@ -184,7 +187,7 @@ global with sharing class IPM_BosscardStatusController{
             Database.rollback(sp);
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
                 IPM_ConstantUtils.IPM_BOSS_CREATE_PROJECT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
             
         }
         return NewProject.id;
@@ -216,12 +219,21 @@ global with sharing class IPM_BosscardStatusController{
     
     public void updateStatus(){
         //save bosscard comments
+        if(inProgressComments.length()>255){
+            inProgressComments=inProgressComments.substring(0,255);
+        }
+        if(inNotApprovedComments.length()>255){
+            inNotApprovedComments=inNotApprovedComments.substring(0,255);
+        }
+        if(inDiscardComments.length()>255){
+            inDiscardComments=inDiscardComments.substring(0,255);
+        }
         if(Statusvalue.equals(IPM_ConstantUtils.STATUS_IN_PROGRESS)){
-        	bosscard.IPM_Bosscard_Approver_Comments__c=inProgressComments;
+            bosscard.IPM_Bosscard_Approver_Comments__c=inProgressComments;
         }else if(Statusvalue.equals(IPM_ConstantUtils.STATUS_NOT_APPROVED)){
-        	bosscard.IPM_Bosscard_Approver_Comments__c=inNotApprovedComments;
+            bosscard.IPM_Bosscard_Approver_Comments__c=inNotApprovedComments;
         }else if(Statusvalue.equals(IPM_ConstantUtils.STATUS_DISCARD)){
-        	bosscard.IPM_Bosscard_Approver_Comments__c=inDiscardComments;
+            bosscard.IPM_Bosscard_Approver_Comments__c=inDiscardComments;
         }
         
         if(Statusvalue.equals(IPM_ConstantUtils.STATUS_IN_PROGRESS) || Statusvalue.equals(IPM_ConstantUtils.STATUS_NOT_APPROVED)){
@@ -238,7 +250,7 @@ global with sharing class IPM_BosscardStatusController{
         catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
                 IPM_ConstantUtils.IPM_BOSS_BOSSCARDUPDATE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
        }
     }
     

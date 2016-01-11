@@ -451,7 +451,7 @@ public with sharing class IPM_ProjectDocumentHelper
                         //NO SONAR for Unnecessary Boolean Comparison, since targetField is coming from Map where two fields are of typr Text and 1 is of Checkbox, we need to explicitly check for this condition in order for Business Logic to Work 
                         if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && (incomingSection.get(targetField) == null || incomingSection.get(targetField)==false))
                         {
-                            if(currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)
+                            if(copyFromGate.equals(BOSSCARD) || currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)
                             {
                                 incomingSection.put(targetField,sourceObject.get(sourceField));        
                             }    
