@@ -29,6 +29,17 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
         }
       else if(Trigger.isDelete){
             handler.onBeforeDelete((List<IPM_Project_Resource__c>)Trigger.old);
+          List<IPM_Project__c> updatedProjects = new List<IPM_Project__c>();  
+        
+        for(IPM_Project_Resource__c eachResource:(List<IPM_Project_Resource__c>)Trigger.old)
+            {
+              if(eachResource.IPM_Role_Type__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE  && eachResource.IPM_Project_Role_Owner__c)
+              {
+                IPM_Project__c project = new IPM_Project__c(Id=eachResource.IPM_Project__c,IPM_Finance_Lead__c=null);
+                updatedProjects.add(project);
+              }
+            }
+           update updatedProjects;
         }
     }
 
@@ -41,7 +52,22 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
     * any data required into maps prior execution of the trigger.
     */
     public void bulkAfter(){
-        //This is not the right way of performing everything in the bulkified method. Will comment it for now.
+      
+      if(Trigger.isInsert  || Trigger.isUpdate){
+      List<IPM_Project__c> updatedProjects = new List<IPM_Project__c>();  
+      for(IPM_Project_Resource__c eachResource:(List<IPM_Project_Resource__c>)Trigger.new)
+           {
+              if(eachResource.IPM_Role_Type__c == IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE  && eachResource.IPM_Project_Role_Owner__c)
+              {
+                IPM_Project__c project = new IPM_Project__c(Id=eachResource.IPM_Project__c);
+                project.IPM_Finance_Lead__c = eachResource.IPM_User__c;
+                updatedProjects.add(project);
+              }
+           }
+           update updatedProjects;
+      }     
+      
+      //This is not the right way of performing everything in the bulkified method. Will comment it for now.
         
     /*    IPM_ProjectResourceTriggerHandler handler = new IPM_ProjectResourceTriggerHandler();
         IPM_ProjectResourceShare shareHandler=new IPM_ProjectResourceShare();
