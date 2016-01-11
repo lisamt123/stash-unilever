@@ -18006,12 +18006,7 @@
         <editable>false</editable>
         <field>im_Issue__c.severity_RAG__c</field>
         <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>im_IssuestoStakeholders__c.StakeholderOrganisation__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+    </fieldPermissions>    
     <fieldPermissions>
         <editable>false</editable>
         <field>kof_Account__c.Address__c</field>
