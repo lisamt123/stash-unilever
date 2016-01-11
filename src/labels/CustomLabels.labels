@@ -5767,7 +5767,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_CONFIRM_BUSINESS_CASE</shortDescription>
-        <value>Confirm Business Case:Confirmation</value>
+        <value>Confirm Business Case</value>
     </labels>
     <labels>
         <fullName>IPM_CONFIRM_MODAL_NO</fullName>
