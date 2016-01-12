@@ -6,7 +6,7 @@
     <letterhead>IPM_Notification_Letterhead</letterhead>
     <name>IPM Successful Phase Change Template</name>
     <style>freeForm</style>
-    <subject>{!IPM_Project__c.IPM_Project_Name__c} Project Successfully Processed</subject>
+    <subject>{!IPM_Project__c.IPM_Project_Name__c} Project Successfully Processed </subject>
     <textOnly>Your project has successfully moved to {!IPM_Project__c.IPM_Phase__c} phase
 
 
