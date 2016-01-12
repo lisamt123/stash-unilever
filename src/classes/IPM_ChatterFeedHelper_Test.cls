@@ -577,7 +577,7 @@ private class IPM_ChatterFeedHelper_Test {
     *  To test chatter when chatter posted to user
     *  @name :testpostChatterUpdateToUser
     *  @param : nil
-    *  @return : nil
+    *  @return : nil 
     */
     private static testmethod void testManageChatterMembers (){
     	initializeData();
