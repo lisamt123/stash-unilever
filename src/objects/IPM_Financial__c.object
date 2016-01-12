@@ -448,7 +448,7 @@ IF(NOT(ISBLANK(Parent_Project__c)),
         <externalId>false</externalId>
         <label>Contract Approved</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -458,7 +458,7 @@ IF(NOT(ISBLANK(Parent_Project__c)),
         <externalId>false</externalId>
         <label>Contract Locked</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -1013,6 +1013,30 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <visibleLines>25</visibleLines>
     </fields>
     <fields>
+        <fullName>IPM_Financial_Postfix__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Financial Postfix</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Local</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_Inoplan_Fin_External_Id__c</fullName>
         <description>IPM Inoplan Fin External Id - To be used by Data Migration</description>
         <externalId>true</externalId>
@@ -1501,7 +1525,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <externalId>false</externalId>
         <label>MD Approved</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -1511,7 +1535,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <externalId>false</externalId>
         <label>MD Locked</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -1521,7 +1545,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <externalId>false</externalId>
         <label>MR Approved</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -1531,7 +1555,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <externalId>false</externalId>
         <label>MR Locked</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -2187,7 +2211,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
@@ -2272,7 +2296,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>

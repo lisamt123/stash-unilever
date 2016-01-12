@@ -265,17 +265,38 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         
         if(!deleteRolloutMap.isEmpty())
         {
-            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id from IPM_Project_Rollout__c where Id in :deleteRolloutMap.keySet()];
-            delete deleteRolloutList;
+            Map<Id,IPM_Project_Rollout__c> finalDeleteRollout = new Map<Id,IPM_Project_Rollout__c>();
+            Map<Id,IPM_Project_Rollout__c> finalUpdateRollout = new Map<Id,IPM_Project_Rollout__c>();
+            List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id from IPM_Project_Rollout__c where Id in :deleteRolloutMap.keySet() AND isActive__c = true];
+            for(IPM_Project_Rollout__c deleteRollout : deleteRolloutList)
+            {
+                if(deleteRollout.IPM_CharterApproved__c)
+                { 
+                    deleteRollout.isActive__c = false; 
+                    finalUpdateRollout.put(deleteRollout.Id,deleteRollout);
+                }
+                else
+                {
+                    finalDeleteRollout.put(deleteRollout.Id,deleteRollout);
+                }    
+            }
+            if(!finalUpdateRollout.isEmpty())
+            {
+                update finalUpdateRollout.values();
+            }
+            if(!finalDeleteRollout.isEmpty())
+            {
+                delete finalDeleteRollout.values();
+            }
         }
     }
     
-    public void beforeInsert(SObject so){
+    public void beforeInsert(SObject so)
+    {
     	if(SKIP_TRIGGER_EXECUTION)
         {
             return;
         }
-        //This method has been included as the class implements the ITrigger interface
     }
     
     public void beforeUpdate(SObject oldSo, SObject so){

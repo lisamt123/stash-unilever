@@ -208,7 +208,7 @@ This componet used for regional rollout project
                                         </th>
                                         <th scope="col" width="60px" colspan="1">
                                             <div>
-                                                <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(localRollout.KeyMCO__c,localRollout.Local_Project__c == null)}"/>
+                                                <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(localRollout.KeyMCO__c,localRollout.Local_Project__c == null,project.IPM_Phase__c=='Ideas')}"/>
                                             </div>
                                         </th>
                                         <th scope="col" width="190px" colspan="1">

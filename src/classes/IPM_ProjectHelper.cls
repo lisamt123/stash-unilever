@@ -1074,8 +1074,8 @@ public with sharing class IPM_ProjectHelper
                                             financialObj.IPM_Project_Rollout__c= regionalRollout;
                                             isChanged = true;
                                         }
+                                    }   // end of if    
                                         
-                                        // Populate financial data with calculated values ends
                                     
                                         // Check if Financial is updated with Gate indicator
                                         
@@ -1100,12 +1100,16 @@ public with sharing class IPM_ProjectHelper
                                             
                                             
                                         
+                                    if(!String.isEmpty(associatedProjectType.FinancialCopyOverPrefix__c))
+                                    {
+                                        financialObj.IPM_Financial_Postfix__c = associatedProjectType.FinancialCopyOverPrefix__c;
+                                        isChanged = true;
+                                    }
                                         
                                         if(isChanged)
                                         {
                                             financialsToUpsert.put(financialObj.Financial_External_ID__c,financialObj);   
                                         }
-                                    }   // end of if    
                                 }   
                             }
                         }                   
@@ -1217,16 +1221,6 @@ public with sharing class IPM_ProjectHelper
                                                 globalProject = project.Id;
                                             }
                                             
-                                            if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
-                                            {
-                                                if(financialObj.Parent_Project__c != project.Id)
-                                                {
-                                                    financialObj.Parent_Project__c = project.Id;
-                                                    isChanged = true;
-                                                }
-                                            }
-                                            else
-                                            {
                                                
                                                 if(localProject !=null && financialObj.get('Local_Project__c') != localProject && insertFieldAPIs.contains('Local_Project__c'))
                                                 {   
@@ -1250,7 +1244,6 @@ public with sharing class IPM_ProjectHelper
                                                 {   
                                                     financialObj.IPM_Project_Rollout__c= regionalRollout;
                                                     isChanged = true;
-                                                }
                                             }
                                                 
                                             String gateIndicatorString = associatedProjectType.IPM_FinancialGateApprovalIndicator__c;

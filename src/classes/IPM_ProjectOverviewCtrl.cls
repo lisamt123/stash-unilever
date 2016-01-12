@@ -115,7 +115,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     public User  betOwner {get;set;}//Contains BET owner details
     public String hasBETAccess{get;set;} //Defines user access on BET
     public Boolean isIdeasPhase{get;set;}//Defines if project is in ideas phase
-    private Boolean bPaginated = false;
+    @TestVisible private Boolean bPaginated = false;
     public boolean isExemptFromThresholdITO{get;set;}//check if the project is eligible to set Exempt From Threshold iTO
     public boolean showSuggestedMembers {get;set;}//Defines if suggested members button is available
     public List<Id> suggestedMembersList {get;set;}//List of functional team members to be passed to BET
@@ -681,14 +681,14 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
        if(isOriginal && projMetadata!= null && projMetadata.BET__c && !isRollout){
             projectWithBET = projectId;
             setBETDetails(project.IPM_BET_Toolkit__c,project.BET_Link_Requested__c,project.BET__c);
-             isLinkDenied = String.isNotBlank(project.BET_Denied_BET_Link__c);
+            isLinkDenied = String.isNotBlank(project.BET_Denied_BET_Link__c) && String.isBlank(project.BET__c) && String.isBlank(project.BET_Link_Requested__c);
         }else if(isRollout && String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__c)){
             projectWithBET = project.IPM_Parent_Project__r.IPM_Parent_Project__c;
-            isLinkDenied = String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c);
+            isLinkDenied = String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Denied_BET_Link__c) && String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c) && String.isNotBlank(project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c);
             setBETDetails(project.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_BET_Toolkit__c,project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c ,project.IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c);
         }else if(isRollout && String.isNotBlank(project.IPM_Parent_Project__c)){
             projectWithBET = project.IPM_Parent_Project__c;
-            isLinkDenied = String.isNotBlank(project.IPM_Parent_Project__r.BET_Denied_BET_Link__c);
+            isLinkDenied = String.isNotBlank(project.IPM_Parent_Project__r.BET_Denied_BET_Link__c) && String.isNotBlank(project.IPM_Parent_Project__r.BET__c) && String.isNotBlank(project.IPM_Parent_Project__r.BET_Link_Requested__c);
             setBETDetails(project.IPM_Parent_Project__r.IPM_BET_Toolkit__c,project.IPM_Parent_Project__r.BET_Link_Requested__c,project.IPM_Parent_Project__r.BET__c);
         }
         if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS && (project.IPM_Temporary_Phase__c == null || project.IPM_Temporary_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)){

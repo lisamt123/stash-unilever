@@ -118,7 +118,7 @@
                                     </apex:outputText>
                                 </a>
                             </apex:outputText>
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0),NOT(isEditMode) )}">
                                 <apex:param value="{!ipmFinancial.Payback_Global__c}" />
                             </apex:outputText>
                             <apex:inputText value="{!ipmFinancial.Payback_Global__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
@@ -134,7 +134,7 @@
                                     </apex:outputText>
                                 </a>
                             </apex:outputText>
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0),NOT(isEditMode))}">
                                 <apex:param value="{!ipmFinancial.Payback_Regional__c}" />
                             </apex:outputText>
                             <apex:inputText value="{!ipmFinancial.Payback_Regional__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
@@ -175,7 +175,7 @@
                                     </apex:outputText>
                                 </a>
                             </apex:outputText>
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0),OR(isConsolidated,NOT(isEditMode) ) )}">
                                 <apex:param value="{!ipmFinancial.CAPEX_Global__c}" />
                             </apex:outputText>
                             <apex:inputText value="{!ipmFinancial.CAPEX_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
@@ -191,7 +191,7 @@
                                     </apex:outputText>
                                 </a>
                             </apex:outputText>
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0),OR(isConsolidated,NOT(isEditMode) ) )}">
                                 <apex:param value="{!ipmFinancial.CAPEX_Regional__c}" />
                             </apex:outputText>
                             <apex:inputText value="{!ipmFinancial.CAPEX_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
@@ -207,7 +207,7 @@
                                     </apex:outputText>
                                 </a>
                             </apex:outputText>
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.CAPEX_Difference__c==0),OR(isConsolidated,NOT(isEditMode) ) )}">
                                 <apex:param value="{!ipmFinancial.CAPEX_Local__c}" />
                             </apex:outputText>
                             <apex:inputText value="{!ipmFinancial.CAPEX_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
@@ -228,7 +228,7 @@
                                     </apex:outputText>
                                 </a>
                             </apex:outputText>
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), (ipmFinancial.BIC_Difference__c != NULL), ipmFinancial.BIC_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), (ipmFinancial.BIC_Difference__c != NULL), ipmFinancial.BIC_Difference__c==0), OR(isConsolidated,NOT(isEditMode) ) )}">
                                 <apex:param value="{!ipmFinancial.BIC_Global__c}" />
                             </apex:outputText>
                             <apex:inputText value="{!ipmFinancial.BIC_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
@@ -244,7 +244,7 @@
                                     </apex:outputText>
                                 </a>
                             </apex:outputText>
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), (ipmFinancial.BIC_Difference__c != NULL), ipmFinancial.BIC_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), (ipmFinancial.BIC_Difference__c != NULL), ipmFinancial.BIC_Difference__c==0), OR(isConsolidated,NOT(isEditMode) ) )}">
                                 <apex:param value="{!ipmFinancial.BIC_Regional__c}" />
                             </apex:outputText>
                             <apex:inputText value="{!ipmFinancial.BIC_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
@@ -260,7 +260,7 @@
                                     </apex:outputText>
                                 </a>
                             </apex:outputText>
-                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.BIC_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
+                            <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.BIC_Difference__c==0),OR(isConsolidated,NOT(isEditMode) ) )}">
                                 <apex:param value="{!ipmFinancial.BIC_Local__c}" />
                             </apex:outputText>
                             <apex:inputText value="{!ipmFinancial.BIC_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>

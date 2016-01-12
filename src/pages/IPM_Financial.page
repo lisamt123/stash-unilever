@@ -104,7 +104,7 @@
                                                                         <li class="{!IF(financial.Status__c == $Label.IPM_SUBMITTED, $Label.IPM_SUBMIT_CODE, IF(financial.Status__c == $Label.IPM_IN_PROGRESS, $Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE))} {!IF(currentFinancialId == financial.Id, $Label.IPM_Selected, '')} finRecord">
                                                                             <div class="incHeight" id="flagID">              
                                                                                 <span class="key wordwrap">
-                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(OR(globalCharter,project.IPM_Phase__c == 'Ideas'),financial.IPM_Key_Financial__c)}" />
+                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!AND(showKeyFinancial,financial.IPM_Key_Financial__c)}" />
                                                                                 </span>
                                                                             
                                                                             <apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
@@ -125,7 +125,7 @@
                                     <div class="finLegends">
                                         <p><i class="fa fa-minus progresstatus"></i> {!$Label.IPM_IN_PROGRESS}</p>
                                         <p><i class="fa fa-minus notstarted"></i> {!$Label.IPM_NOT_STARTED}</p>
-                                        <p><i class="flag"></i> Key Country</p>                                        
+                                        <apex:outputPanel rendered="{!showKeyFinancial}" ><p><i class="flag"></i> Key Country</p></apex:outputPanel>
                                     </div>
                                 
                             </div>
@@ -217,7 +217,7 @@
                                                                     </apex:outputPanel>
                                                         			<apex:outputPanel rendered="{!AND(isEditable,project.IPM_Phase__c <> 'PLE',project.IPM_Project_Type__c != 'Operational',isTargetLaunchDateMisaligned)}">
                                                                          <div class="ipmButton secondary" onclick="alignTLDRecords();">{!tldAcceptFromValue}</div>
-                                                                        <apex:actionFunction name="alignTLDRecords" action="{!alignTLD}" reRender="rolloutPanel,tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                        <apex:actionFunction name="alignTLDRecords" action="{!alignTLD}" reRender="finacialButtons,rolloutPanel,tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                             <apex:param name="isEditMode" value="false" assignTo="{!isEditMode}"/>
                                                                         </apex:actionFunction>
                                                                         </apex:outputPanel>
@@ -314,7 +314,7 @@
                                                                         <apex:outputText value="The Target Launch Date for {!currentFinancial.Display_Name__c} has been updated to {!currentTargetLaunchDate} from {!previousTargetLaunchDate}. Please confirm that any necessary updates to the business case have been made."/>
                                                                     </div>
                                                                     <apex:outputPanel rendered="{!isEditable}">  
-                                                                    <div class="ipmButton primary marginB10 pull-right" onclick="updateConfirmBtn()" style="float: right;">Confirm</div>  
+                                                                    <div class="ipmButton primary marginB10 pull-right" onclick="updateConfirmBtn()">Confirm</div>  
                                                                         <apex:actionFunction name="updateConfirmBtn" action="{!updateMisalignmentByFinanceLeader}" reRender="rolloutPanel,tabContentPanel" status="loadingStatus"/>
                                                                     </apex:outputPanel>  
                                                                 </apex:outputPanel>   

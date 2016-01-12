@@ -28,6 +28,7 @@ public with sharing class IPM_FinancialHelper
     
     public static final String ACTIVE_FIELD = 'isActive__c';  
        
+    public static final Set<String> ADDITIONAL_FIELDS = new Set<String> { 'IPM_Financial_Postfix__c'};
     /*******************************************************************************************************
     * @description          Method to handle after insert Trigger context for IPM_Financial__c object
     * @param newFinancials  List of Trigger.new records
@@ -54,6 +55,10 @@ public with sharing class IPM_FinancialHelper
         //Y0
         IPM_Financial_Year__c financialYear = null;
         financialYear = processFinancialYear(externalId, IPM_ConstantUtils.Y0_LABEL, IPM_ConstantUtils.Y0_YEARINDEX, IPM_ConstantUtils.YEAR_TYPE_INNOVATION, NULL,ipmFinancial.recordTypeId);
+        for(String fieldAPI : ADDITIONAL_FIELDS)
+        {
+            financialYear.put(fieldAPI,ipmFinancial.get(fieldAPI));    
+        }
         upsertFinancialYearMap.put(financialYear.External_Id__c,financialYear);
         
         financialYear = processFinancialYear(externalId, IPM_ConstantUtils.Y0_LABEL, IPM_ConstantUtils.Y0_YEARINDEX, IPM_ConstantUtils.YEAR_TYPE_CALENDAR, NULL,ipmFinancial.recordTypeId);
@@ -128,8 +133,6 @@ public with sharing class IPM_FinancialHelper
         	}  
         }
     
-        System.debug(LoggingLevel.ERROR,'globalProjectIdSet-->>'+globalProjectIdSet);
-        System.debug(LoggingLevel.ERROR,'regionalProjectIdSet-->>'+regionalProjectIdSet);
         
         // Get the complete list of Financial Years from the prepared List of Regional and Global Project.
         String financialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial__c',true,new Set<String>{'IPM_Financial_Year__c'},false);
@@ -137,7 +140,6 @@ public with sharing class IPM_FinancialHelper
         financialQuery = financialQuery + financialWhereClause;
         Map<Id,IPM_Financial__c> completeFinancialMap = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>) database.query(financialQuery));    
                 
-        System.debug(LoggingLevel.ERROR,'completeFinancialMap-->>'+completeFinancialMap);
     
      
         for(IPM_Financial__c financial : completeFinancialMap.values()) 
@@ -146,18 +148,14 @@ public with sharing class IPM_FinancialHelper
             IPM_FinancialUtils.prepareConsolidatedToRelatedFinancials('IPM_Financial__c','Financial_External_ID__c',financial,consolidatedFinancialMap,consolidatedToRelatedFinancialMap,'Regional_External_Id__c',financial.recordTypeId);
         }
         
-        System.debug(LoggingLevel.ERROR,'consolidatedFinancialMap-->>'+consolidatedFinancialMap);
-        System.debug(LoggingLevel.ERROR,'consolidatedToRelatedFinancialMap-->>'+consolidatedToRelatedFinancialMap);
          
         for(String consolidatedFinancialKey : consolidatedFinancialMap.KeySet())
         {
             sObject consolidatedFinancial = consolidatedFinancialMap.get(consolidatedFinancialKey);
-            System.debug(LoggingLevel.ERROR,'consolidatedFinancial-->>'+consolidatedFinancial);
             
             if(consolidatedToRelatedFinancialMap.containsKey(consolidatedFinancialKey))
             { 
                 Map<Id,sObject> relatedDefaultFinancials = consolidatedToRelatedFinancialMap.get(consolidatedFinancialKey);
-                System.debug(LoggingLevel.ERROR,'relatedDefaultFinancials-->>'+relatedDefaultFinancials);    
                 IPM_FinancialUtils.processConsolidation('IPM_Financial__c','Financial_External_ID__c',consolidatedFinancialKey,consolidatedFinancial,relatedDefaultFinancials,upsertConsolidatedFinancialMap,fieldsToConsolidate);    
             }
         }

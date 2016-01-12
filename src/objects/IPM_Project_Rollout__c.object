@@ -434,6 +434,15 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>KeyMCOAtCharter__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Key MCO At Charter</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>KeyMCO__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>

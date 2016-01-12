@@ -104,7 +104,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,CHECK_ROLLOUTS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             isError = TRUE;
-            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            errorMessage = Label.IPM_PLEASE_CONTACT_ADMINISTRATOR;
             return null;
         }
     }
@@ -210,7 +210,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         catch (Exception ex) 
         {
             isError = TRUE;
-            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            errorMessage = Label.IPM_PLEASE_CONTACT_ADMINISTRATOR;
         }          
     }           
     
@@ -669,8 +669,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
 */
     public PageReference addRollout()
     {
-        try
-        {
             PageReference addRollouts = null;
             if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c))
             {
@@ -698,14 +696,6 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             }           
             
             return addRollouts;
-        } 
-        catch (Exception ex) 
-        {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,ADD_ROLLOUT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-            isError = TRUE;
-            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            return null;
-        }
     }
     
     /*******************************************************************************************************
@@ -879,7 +869,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,SAVE_ROLLOUT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             isError = TRUE;
-            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            errorMessage = Label.IPM_PLEASE_CONTACT_ADMINISTRATOR;
         }
         return null;
     }
@@ -942,7 +932,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
         { 
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,SAVE_ROLLOUT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             isError = TRUE; 
-            errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            errorMessage = Label.IPM_PLEASE_CONTACT_ADMINISTRATOR;
             return null;
         }
     }

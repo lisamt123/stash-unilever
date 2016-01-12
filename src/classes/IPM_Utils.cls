@@ -1355,18 +1355,21 @@ public without sharing class IPM_Utils {
     */
     public static String getFinancialExternalId(IPM_Project_Rollout__c projectRollout)
     { 
-        if(projectRollout.Regional_Project__c != null && projectRollout.Regional_Rollout__c == null && !projectRollout.IPM_Regional_Original_Project__c)
+        if (projectRollout.KeyMCO__c)
         {
             return projectRollout.IPM_Rollout_Project__c;
         }
-        else if (projectRollout.KeyMCO__c)
-        {
-            return projectRollout.IPM_Rollout_Project__c;
-        }
-        else 
-        {
-            return projectRollout.Regional_Rollout_External_Id__c + IPM_ConstantUtils.FINANCIAL_NONKEY;
-        }
+        else
+        { 
+            if(projectRollout.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS)
+	    {
+                return projectRollout.Regional_Rollout_External_Id__c + IPM_ConstantUtils.FINANCIAL_NONKEY;
+            }
+	    else
+	    {
+                return projectRollout.IPM_Rollout_Project__c;
+	    }
+	}
     } 
  	
 	/**************************************************************

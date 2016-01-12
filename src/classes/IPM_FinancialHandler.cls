@@ -83,13 +83,14 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 Map<Id,IPM_Financial__c> approvalChangedFinancialMap = new Map<Id,IPM_Financial__c>();
                 Map<Id,IPM_Financial__c> copyOverChangedFinancialMap = new Map<Id,IPM_Financial__c>();
                 Map<Id,IPM_Financial__c> activeChangedFinancialMap = new Map<Id,IPM_Financial__c>();
-                
+                Map<Id,IPM_Financial__C> additionalFieldChangedFinancialMap = new Map<Id,IPM_Financial__c>();
                 
                 Set<Id> changedFinancialSet = new Set<Id>(); 
                 Set<String> changedFinancialFieldSet = new Set<String>();
                 Map<Id,Set<String>> financialToApprovalChangeFieldMap = new Map<Id,Set<String>>();
                 Map<Id,Set<String>> financialTocopyOverChangedFieldMap = new Map<Id,Set<String>>(); 
                 Map<Id,Set<String>> financialToactiveChangedFieldMap = new Map<Id,Set<String>>();
+                Map<Id,Set<String>> financialToaddtChangedFieldMap = new Map<Id,Set<String>>();
                 
                 oldFinancialMap = (Map<Id,IPM_Financial__c>)Trigger.OldMap;
                 
@@ -168,6 +169,24 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                         }
                     }
                     
+                    // CopyOver Field Changes
+	                for(String additionalFieldAPI : IPM_FinancialHelper.ADDITIONAL_FIELDS)
+                    {
+                        String oldValue = (String)oldFinancial.get(additionalFieldAPI);
+                        String newValue = (String )financial.get(additionalFieldAPI);
+                        if(newValue != oldValue)
+                        {
+                            additionalFieldChangedFinancialMap.put(financial.Id,financial);
+                            changedFinancialSet.add(financial.Id);
+                            Set<String> changedFieldSet = new Set<String>(); 
+                            if(financialToaddtChangedFieldMap.containsKey(financial.Id))
+                            {
+                                changedFieldSet = financialToaddtChangedFieldMap.get(financial.Id);
+                            }
+                            changedFieldSet.add(additionalFieldAPI);
+                            financialToaddtChangedFieldMap.put(financial.Id,changedFieldSet);
+                        }
+                    }
                     
                     // Active Field Changes
                     Boolean oldActiveValue = (Boolean )oldFinancial.get(IPM_FinancialHelper.ACTIVE_FIELD);
@@ -199,7 +218,6 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 	                financialQuery = financialQuery + financialWhereClause;
 	                Map<Id,IPM_Financial__c> financialDetailMap = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>) database.query(financialQuery));    
 	                    
-	                System.debug(LoggingLevel.ERROR,'financialDetailMap-->>'+financialDetailMap);
 	                if(!financialDetailMap.isEmpty())
 	                {
 	                    // insert new financial Years based on Sustainability Period. 
@@ -223,6 +241,11 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                         if(!activeChangedFinancialMap.isEmpty())
                         {
                         	IPM_FinancialHelper.copyOverFinancialFields(activeChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToactiveChangedFieldMap);
+                        }
+                        // Additional Field Copy Over from Financial To Financial Years
+                        if(!additionalFieldChangedFinancialMap.isEmpty()) 
+                        {
+                        	IPM_FinancialHelper.copyOverFinancialFields(additionalFieldChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToaddtChangedFieldMap);
                         }
                         
                         // Update Copy Over values to Financial Years
