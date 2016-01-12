@@ -564,7 +564,6 @@
             <groupingColumn>Account.Orders__r.OrderItems$UID_Material_Name__c</groupingColumn>
             <header>Secondary SKU-wise Sales Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
-            <maxValuesDisplayed>10</maxValuesDisplayed>
             <report>UID_Market_View_Final/Secondary_SKU_wise_Sales_Volume_Cases_Final</report>
             <showPercentage>true</showPercentage>
             <showValues>false</showValues>

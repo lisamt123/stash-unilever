@@ -259,7 +259,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
-            <header>Monthly Stock Cover (Days</header>
+            <header>Monthly Stock Cover (Days)</header>
             <legendPosition>Bottom</legendPosition>
             <maxValuesDisplayed>12</maxValuesDisplayed>
             <report>UID_Inventory_and_Stock_Cover_View/Monthly_Stock_Cover_Days_Final</report>
@@ -291,7 +291,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c</groupingColumn>
-            <header>Top 20 SKU Stock Cover (Days</header>
+            <header>Top 20 SKU Stock Cover (Days)</header>
             <legendPosition>Bottom</legendPosition>
             <maxValuesDisplayed>20</maxValuesDisplayed>
             <report>UID_Inventory_and_Stock_Cover_View/Top_20_SKU_Stock_Cover_Days_Final</report>
@@ -393,6 +393,39 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r$UID_Report_Date__c</groupingColumn>
+            <header>Monthly Inventory Volume (Cases)</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>UID_Category_Trend_Inventory/Trend_Report_Inventory_M_Q2</report>
+            <showPercentage>false</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <aggregate>Sum</aggregate>
+                <axisBinding>y</axisBinding>
+                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
+            </chartSummary>
+            <componentType>ColumnGrouped</componentType>
+            <dashboardFilterColumns>
+                <column>Account$Name</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
+            </dashboardFilterColumns>
+            <dashboardFilterColumns>
+                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Millions</displayUnits>
+            <drillEnabled>true</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
             <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Quarter__c</groupingColumn>
             <groupingColumn>Account.Stocked_Products__r$UID_Report_Date__c</groupingColumn>
             <header>Quarterly Inventory Volume (Cases)</header>
@@ -411,7 +444,7 @@
                 <axisBinding>y</axisBinding>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
             </chartSummary>
-            <componentType>Pie</componentType>
+            <componentType>Column</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
             </dashboardFilterColumns>
@@ -430,9 +463,9 @@
             <header>Brand-wise Stock Levels (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Stock_Analysis_Final</report>
-            <showPercentage>true</showPercentage>
+            <showPercentage>false</showPercentage>
             <showValues>false</showValues>
-            <sortBy>RowValueDescending</sortBy>
+            <sortBy>RowLabelAscending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
         <components>

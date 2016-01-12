@@ -44,7 +44,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <header>MTD Primary Sales Value vs JBP (USD,Mil)</header>
+            <header>Monthly Primary Sales Value vs JBP (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/MTD_Primary_Sales_Value_vs_IOP_USD_Mil</report>
             <showPercentage>false</showPercentage>
@@ -69,12 +69,39 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <header>MTD Secondary Sales Value (USD,Mil)</header>
+            <header>Monthly Secondary Sales Value (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/MTD_Secondary_Sales_Value_USD_Mil</report>
             <showPercentage>false</showPercentage>
             <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <aggregate>Sum</aggregate>
+                <axisBinding>y</axisBinding>
+                <column>Account.Orders__r.OrderItems$UID_Distributor_Value__c</column>
+            </chartSummary>
+            <componentType>Donut</componentType>
+            <dashboardFilterColumns>
+                <column>Account.Orders__r$UID_Distributor__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Integer</displayUnits>
+            <drillEnabled>true</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
+            <header>Brand-wise Primary Sales Value (USD)</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>UID_Home_View/Brands_Primary_Sales_Value_USD_H</report>
+            <showPercentage>true</showPercentage>
+            <showTotal>true</showTotal>
+            <showValues>false</showValues>
+            <sortBy>RowValueDescending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
         <components>
@@ -150,7 +177,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>Monthly Primary Sales Value (USD,Mil)</header>
+            <header>Monthly Primary Sales vs Last Year Value (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/YTD_Primary_Sales_Value_USD_Mil</report>
             <showPercentage>false</showPercentage>
@@ -177,12 +204,39 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <header>Monthly Secondary Sales Value (USD,Mil)</header>
+            <header>Monthly Secondary Sales vs Last Year Value (USD,Mil)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Home_View/YTD_Secondary_Sales_Value_USD_Mil</report>
             <showPercentage>false</showPercentage>
             <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>
+            <useReportChart>false</useReportChart>
+        </components>
+        <components>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <chartAxisRange>Auto</chartAxisRange>
+            <chartSummary>
+                <aggregate>Sum</aggregate>
+                <axisBinding>y</axisBinding>
+                <column>Account.Orders__r.OrderItems$UID_Distributor_Value__c</column>
+            </chartSummary>
+            <componentType>Donut</componentType>
+            <dashboardFilterColumns>
+                <column>Account.Orders__r$UID_Distributor__c</column>
+            </dashboardFilterColumns>
+            <displayUnits>Integer</displayUnits>
+            <drillEnabled>true</drillEnabled>
+            <drillToDetailEnabled>false</drillToDetailEnabled>
+            <enableHover>true</enableHover>
+            <expandOthers>false</expandOthers>
+            <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
+            <header>Brand-wise Secondary Sales Value (USD)</header>
+            <legendPosition>Bottom</legendPosition>
+            <report>UID_Home_View/Brands_Secondary_Sales_Value_USD_H</report>
+            <showPercentage>true</showPercentage>
+            <showTotal>true</showTotal>
+            <showValues>false</showValues>
+            <sortBy>RowValueDescending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
         <components>
@@ -212,14 +266,9 @@
             <useReportChart>false</useReportChart>
         </components>
         <components>
-            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
-            <chartSummary>
-                <aggregate>Sum</aggregate>
-                <axisBinding>y</axisBinding>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
-            </chartSummary>
-            <componentType>Pie</componentType>
+            <componentType>Bar</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
             </dashboardFilterColumns>
@@ -228,14 +277,14 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Brand__c</groupingColumn>
             <header>Brand-wise Stock Levels (Cases)</header>
             <legendPosition>Bottom</legendPosition>
-            <report>UID_Home_View/SKU_Stock_Levels_Cases2</report>
-            <showPercentage>true</showPercentage>
+            <report>UID_Home_View/Monthly_Stock_Cover_Day</report>
+            <showPercentage>false</showPercentage>
+            <showPicturesOnCharts>false</showPicturesOnCharts>
             <showValues>false</showValues>
             <sortBy>RowValueDescending</sortBy>
-            <useReportChart>false</useReportChart>
+            <useReportChart>true</useReportChart>
         </components>
     </middleSection>
     <rightSection>
@@ -244,54 +293,50 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Orders__r.OrderItems$UID_Distributor_Value__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
-            <componentType>Donut</componentType>
+            <componentType>Column</componentType>
             <dashboardFilterColumns>
                 <column>Account.Orders__r$UID_Distributor__c</column>
             </dashboardFilterColumns>
             <displayUnits>Integer</displayUnits>
-            <drillEnabled>true</drillEnabled>
+            <drillEnabled>false</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
-            <header>Brand-wise Primary Sales Value (USD)</header>
+            <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
+            <header>Monthly Primary Sales Value Growth%</header>
             <legendPosition>Bottom</legendPosition>
-            <report>UID_Home_View/Brands_Primary_Sales_Value_USD_H</report>
-            <showPercentage>true</showPercentage>
-            <showTotal>true</showTotal>
-            <showValues>false</showValues>
-            <sortBy>RowValueDescending</sortBy>
+            <report>UID_Category_Trend_Primary_Sales/Market_Growth_Primary_Sales_M_V</report>
+            <showPercentage>false</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowLabelAscending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
         <components>
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Orders__r.OrderItems$UID_Distributor_Value__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
-            <componentType>Donut</componentType>
+            <componentType>Column</componentType>
             <dashboardFilterColumns>
                 <column>Account.Orders__r$UID_Distributor__c</column>
             </dashboardFilterColumns>
             <displayUnits>Integer</displayUnits>
-            <drillEnabled>true</drillEnabled>
+            <drillEnabled>false</drillEnabled>
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Orders__r.OrderItems$UID_Brand__c</groupingColumn>
-            <header>Brand-wise Secondary Sales Value (USD)</header>
+            <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
+            <header>Monthly Secondary Sales Value Growth%</header>
             <legendPosition>Bottom</legendPosition>
-            <report>UID_Home_View/Brands_Secondary_Sales_Value_USD_H</report>
-            <showPercentage>true</showPercentage>
-            <showTotal>true</showTotal>
-            <showValues>false</showValues>
-            <sortBy>RowValueDescending</sortBy>
+            <report>UID_Category_Trend_Primary_Secondary/Market_Growth_Secondary_Sales_M_V_Final</report>
+            <showPercentage>false</showPercentage>
+            <showValues>true</showValues>
+            <sortBy>RowLabelAscending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
     </rightSection>

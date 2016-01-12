@@ -47,6 +47,9 @@
     <columns>
         <field>Account$Name</field>
     </columns>
+    <columns>
+        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Net_Quantity__c</field>
+    </columns>
     <filter>
         <criteriaItems>
             <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Stock_Cover__c</column>

@@ -83,7 +83,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>MTD Primary Sales Value (USD)</header>
+            <header>Monthly Primary Sales vs Last Year Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Secondary/Trend_Report_Primary_Sales_M_V_Final</report>
             <showPercentage>false</showPercentage>
@@ -112,7 +112,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <header>MTD Secondary Sales Value (USD)</header>
+            <header>Monthly Secondary Sales vs Last Year Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Secondary/Trend_Report_Secondary_Sales_M_V_Final</report>
             <showPercentage>false</showPercentage>
@@ -142,7 +142,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>MTD Primary Sales Volume (Cases)</header>
+            <header>Monthly Primary Sales vs Last Year Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Secondary/Trend_Report_Primary_Sales_M_Q_Final</report>
             <showPercentage>false</showPercentage>
@@ -171,7 +171,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
-            <header>MTD Secondary Sales Volume (Cases)</header>
+            <header>Monthly Secondary Sales vs Last Year Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Secondary/Trend_Report_Secondary_Sales_M_Q_Final</report>
             <showPercentage>false</showPercentage>
@@ -201,7 +201,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Quarter__c</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>Quarterly Primary Sales Value (USD)</header>
+            <header>Quarterly Primary Sales vs Last Year Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Secondary/Trend_Report_Primary_Sales_Q_V_1_Final</report>
             <showPercentage>false</showPercentage>
@@ -231,7 +231,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Quarter__c</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>Quarterly Secondary Sales Value (USD)</header>
+            <header>Quarterly Secondary Sales vs Last Year Value (USD)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Secondary/Trend_Report_Secondary_Sales_Q_V_1_Final</report>
             <showPercentage>false</showPercentage>
@@ -261,7 +261,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Quarter__c</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>Quarterly Primary Sales Volume (Cases)</header>
+            <header>Quarterly Primary Sales vs Last Year Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Secondary/Trend_Report_Primary_Sales_Q_Q_1_Final</report>
             <showPercentage>false</showPercentage>
@@ -291,7 +291,7 @@
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r$UID_Quarter__c</groupingColumn>
             <groupingColumn>Account.Orders__r$UID_Report_Date__c</groupingColumn>
-            <header>Quarterly Secondary Sales Volume (Cases)</header>
+            <header>Quarterly Secondary Sales vs Last Year Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Secondary/Trend_Report_Secondary_Sales_Q_Q_1_Final</report>
             <showPercentage>false</showPercentage>

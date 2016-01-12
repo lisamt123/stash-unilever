@@ -47,6 +47,10 @@
     <columns>
         <field>Account$Name</field>
     </columns>
+    <columns>
+        <aggregateTypes>Sum</aggregateTypes>
+        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Net_Quantity__c</field>
+    </columns>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
