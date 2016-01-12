@@ -100,21 +100,12 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 String milestoneQuery = IPM_Utils.prepareSOQLQuery('IPM_Milestone__c',false,null,true);
                 String milestoneWhereClause = ' WHERE IPM_Type_of_Milestone__c =:standardType AND  IPM_Project__c=:projectId AND IPM_Active__c = true LIMIT 50000';
                 milestoneQuery = milestoneQuery + milestoneWhereClause;
-                milestoneList = database.query(milestoneQuery);            
-                if(projSectionList != NULL && !projSectionList.isEmpty()){
-                    showSkipSections=true;
-                    oldSize=projSectionList.size();
-                }
+                milestoneList = database.query(milestoneQuery);
+                
                 if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL==project.IPMProject_Span__c) ){
                     isOperational=true;
                 }
-                
-                for(IPM_Project_Document_Section__c pds:projSectionList){
-                    if(pds.IPM_Negotiable__c && pds.IPM_Default_Section__c){
-                        isDefaultAvailable=true;                        
-                    }                   
-                }
-                
+                               
                 // Show all Validations on selecting Propose
                 showValidationMethod();               
             }
@@ -149,8 +140,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             rolloutCount=0;
             finExternalID=IPM_ConstantUtils.BLANK;
             riskQuesList=new List<IPM_Questionnaire__c >();//instantiate questionnaire List
-           			          
-          	showValidationMethod();
+                              
+            showValidationMethod();
             proposeProject();
         }
          //functionality when Document status is POSTPONED
@@ -342,8 +333,8 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 if((projectDoc.IPM_GateDocuments__c==IPM_ConstantUtils.CHARTER_GATE && String.isBlank(risk.IPM_Charter_Comments__c) && risk.IPM_Charter_Score__c>=IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) || 
                     (projectDoc.IPM_GateDocuments__c==IPM_ConstantUtils.CONTRACT_GATE && String.isBlank(risk.IPM_Contract_Comments__c) && risk.IPM_Contract_Score__c>=IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
                     (projectDoc.IPM_GateDocuments__c==IPM_ConstantUtils.MARKET_READY_GATE && String.isBlank(risk.IPM_Market_Ready_Comments__c) && risk.IPM_Market_Ready_Score__c>=IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE)){
-            	isRiskComplete=false;                
-        		}       
+                isRiskComplete=false;                
+                }       
             }
     }
     
@@ -354,8 +345,33 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     @return: Void
     @Referenced:submit function
     **********************************************************************/
+    public void showNotFilledSections()
+    {
+    	 if(projSectionList != NULL && !projSectionList.isEmpty()){
+                    showSkipSections=true;
+                    oldSize=projSectionList.size();
+                }               
+                
+                for(IPM_Project_Document_Section__c pds:projSectionList){
+                    if(pds.IPM_Negotiable__c && pds.IPM_Default_Section__c){
+                        isDefaultAvailable=true;                        
+                }                   
+        }
+        
+        if(showSkipSections || isDefaultAvailable)
+        {
+        	showValidation=false;
+        }
+    }  
+    /***********************************************************************
+    @Description :Used on page load and on submit of the Change Button      
+    @param: Not Applicable
+    @Author: Cognizant
+    @return: Void
+    @Referenced:submit function
+    **********************************************************************/  
     public void showValidationMethod(){
-    	showErrorMsg=IPM_ConstantUtils.BLANK;
+        showErrorMsg=IPM_ConstantUtils.BLANK;
         riskSectionId=IPM_ConstantUtils.BLANK;
         //boolean value initialized
         showValidation=true;
@@ -369,18 +385,20 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 }
                 //For Risk & Eco-Design Section Id
                 if(pds.IPM_Section__r.External_ID__c==IPM_ConstantUtils.RISK_SECTION)
-        		{
-            		riskSectionId=pds.Id;
-        		}
-       			if(pds.IPM_Section__r.External_ID__c==IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_EXTERNAL_ID)
-       			{
-            		ecoDesignSectionId = pds.Id;
-        		}
+                {
+                    riskSectionId=pds.Id;
+                }
+                if(pds.IPM_Section__r.External_ID__c==IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_EXTERNAL_ID)
+                {
+                    ecoDesignSectionId = pds.Id;
+                }
                 
-           }   	
-    	 if(projectId!=null){
+           }    
+         if(projectId!=null){
+         		  //check for Filled in Sections
+         		  showNotFilledSections();
                  // Milestone Validation Check            
-            	   validateMilestone();
+                   validateMilestone();
                 // Rollouts and Financials Validation Check
                    validateRolloutAndFin();
                 // Risk Question Validation Check
@@ -467,23 +485,23 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 discriptionError=true;
             }
             
-		}
-		
-		
-	/***********************************************************************
+        }
+        
+        
+    /***********************************************************************
     @Description :Used on click of the Change Button if Proposed     
     @param: Not Applicable
     @Author: Cognizant
     @return: Void
     @Referenced:submit function
     **********************************************************************/
-		
-		public void proposeProject(){
-			// Used to Set Error Message information.
+        
+        public void proposeProject(){
+            // Used to Set Error Message information.
             String errorMsg=IPM_ConstantUtils.BLANK;
-			if(showValidation)
+            if(showValidation)
             {
-		 		showValidation=true;
+                showValidation=true;
                     project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
                     project.IPM_Document_Update_Date__c = Date.today();
                     
@@ -521,7 +539,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 showValidation=false;
                 apexpages.addmessage(new apexpages.message(apexpages.severity.error,errorMsg));
             }
-		}
+        }
     /***********************************************************************
     @Description :Used on click of the Submit Button if Stopped     
     @param: Not Applicable
@@ -531,9 +549,9 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     **********************************************************************/
     
     public void stopProject(){
-    	if(!String.isBlank(projectDoc.IPM_Stopped_Comments__c))
+        if(!String.isBlank(projectDoc.IPM_Stopped_Comments__c))
             {
-          		showStop=true;
+                showStop=true;
                 Date dt=date.parse(System.today().format());
                 projectDoc.IPM_Stopped_Date__c=dt;
                 projectDoc.IPM_Updated_User_By__c=UserInfo.getUserId();
