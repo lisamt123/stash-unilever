@@ -33445,6 +33445,14 @@
         <startAddress>87.82.0.0</startAddress>
     </loginIpRanges>
     <loginIpRanges>
+        <endAddress>87.82.208.66</endAddress>
+        <startAddress>87.82.208.66</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
+        <endAddress>87.82.216.196</endAddress>
+        <startAddress>87.82.216.196</startAddress>
+    </loginIpRanges>
+    <loginIpRanges>
         <endAddress>87.97.255.255</endAddress>
         <startAddress>87.97.0.0</startAddress>
     </loginIpRanges>
