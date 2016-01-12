@@ -433,7 +433,7 @@ public with sharing class IPM_MilestoneHelper
             Map<Id,Map<Id,IPM_Milestone__c> > targetProjectIdToMilestoneMap = new Map<Id,Map<Id,IPM_Milestone__c> >();
             Map<Id,IPM_Milestone__c> finalMilestoneMap = new Map<Id,IPM_Milestone__c>();
             
-            for (IPM_Milestone__c milestone : [select id,name ,IPM_Project__c,IPM_Phase__c,IPM_Name__c from IPM_Milestone__c where IPM_Project__c in :targetProjectIDs AND 
+            for (IPM_Milestone__c milestone : [select id,name ,IPM_Project__c,IPM_Project__r.IPMProject_Span__c,IPM_Phase__c,IPM_Name__c from IPM_Milestone__c where IPM_Project__c in :targetProjectIDs AND 
                  IPM_Name__c in:milestoneNameSet AND IPM_Phase__c in :milestonePhaseSet AND IPM_Completed__c = false ] )
             {
                 Map<Id,IPM_Milestone__c> milestoneMap = new Map<Id,IPM_Milestone__c>(); 
@@ -462,9 +462,13 @@ public with sharing class IPM_MilestoneHelper
                                 String targetKey = targetMilestone.IPM_Name__c  + targetMilestone.IPM_Phase__c;
                                 if(sourceKey == targetKey)
                                 {
-                                    targetMilestone.IPM_Planned_Date__c =  eligiblemilestone.IPM_Planned_Date__c;
-                                    finalMilestoneMap.put(targetMilestone.Id,targetMilestone);
-                                    break;
+                                    //DEF3184 fix: Any update to Regional project's's milestone's Target Launch Date(Ship to Trade) should not update Local Project's milestone's Target Launch Date(Ship to Trade)
+                                    if(!(targetMilestone.IPM_Project__r.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && targetMilestone.IPM_Name__c ==IPM_Utils.TargetLaunchDateShiptoTrade)) {
+                                        targetMilestone.IPM_Planned_Date__c =  eligiblemilestone.IPM_Planned_Date__c;
+                                        finalMilestoneMap.put(targetMilestone.Id,targetMilestone);
+                                        break;
+                                    }
+                                    
                                 }
                             }
                         }
