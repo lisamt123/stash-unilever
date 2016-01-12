@@ -9,7 +9,7 @@
 <apex:component controller="IPM_Gate_Milestones">
          <apex:attribute name="pId" type="String" AssignTo="{!projectId}" description="this is the project id"/>
          <apex:attribute name="gateDocType" type="String" AssignTo="{!gateType}" description="this indicates the type of Gate Document"/>
-      	 <apex:attribute name="gateDocStatus" type="String" AssignTo="{!gateDocumentStatus}" description="this indicates the status of Gate Document"/>
+       <apex:attribute name="gateDocStatus" type="String" AssignTo="{!gateDocumentStatus}" description="this indicates the status of Gate Document"/>
         <apex:outputPanel id="ren" >
         <table class="ipmTable table table-bordered" cellspacing="0"> 
          <thead>

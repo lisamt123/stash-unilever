@@ -11724,7 +11724,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TLD_SHOULD_BE_GREATER_THAN_TODAYDate</shortDescription>
-        <value>The target launch date cannot be in the past.</value>
+        <value>Please select a future target launch date.</value>
     </labels>
     <labels>
         <fullName>IPM_TLD_VR_Misaligned</fullName>
