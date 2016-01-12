@@ -117,7 +117,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
                     if(currentFinancial != null){
                         if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) || currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)) {
-                            tld = project.IPM_Target_Launch_Dates__c;
+                            tld = currentFinancial.Target_Launch_Date__c;
                         } else {
                             IPM_Project__c proj = [Select (Select Target_Launch_Date__c From Regional_Project_Rollout__r where name=:currentFinancial.Financial_External_ID__c) From IPM_Project__c where id=:project.id];
                             if(proj.Regional_Project_Rollout__r.size()>0) {
@@ -134,7 +134,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                             if(proj.IPM_Project_Rollout__r.size()>0) {
                                 for(IPM_Project_Rollout__c rollout:proj.IPM_Project_Rollout__r) {
                                     if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && (rollout.name+IPM_ConstantUtils.FINANCIAL_NONKEY)==currentFinancial.Financial_External_ID__c){
-                                        tld = rollout.Target_Launch_Date__c;
+                                        tld = currentFinancial.Target_Launch_Date__c;
                                         break;
                                     } else if(rollout.name==currentFinancial.Financial_External_ID__c) {
                                         tld = rollout.Target_Launch_Date__c;

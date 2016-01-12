@@ -168,7 +168,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
         }
         if(!regionalProjectIDs.isEmpty()) {
 	        List<IPM_Project__c> regionalProjList = [ SELECT ID, Name,IPM_Project_Type__c,IPMProject_Span__c,
-	        											( Select Target_Launch_Date__c 
+	        											( Select Name, Target_Launch_Date__c,Local_Project_Target_Launch_Date__c, Local_Project__c 
 	        											  From Regional_Project_Rollout__r 
 	        											  where KeyMCO__c !=true  AND isActive__c=true 
 	        											  ORDER BY Target_Launch_Date__c ASC NULLS LAST ),  
@@ -177,12 +177,11 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	        										  FROM IPM_Project__c 
 	        										  WHERE id in : regionalProjectIDs];
 	        for(IPM_Project__c regionalProject: regionalProjList) {
-	        	if(regionalProject.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && regionalProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
-	        		if(!regionalProject.Regional_Project_Rollout__r.isEmpty()) {
-		            	IPM_Project_Rollout__c localRollout = regionalProject.Regional_Project_Rollout__r[0];
-			            Date earliestTargetLaunchDate = localRollout.Target_Launch_Date__c;
+	        	if(!regionalProject.Regional_Project_Rollout__r.isEmpty()) {
+		            	IPM_Project_Rollout__c earliestlocalRollout = regionalProject.Regional_Project_Rollout__r[0];
+			            Date earliestTargetLaunchDate = earliestlocalRollout.Target_Launch_Date__c;
 			            // check to see the updated is earliest
-	                    if(localNonkeyRollouts.containsKey(localRollout.id) && !regionalProject.IPM_Financials_Regional__r.isEmpty()) {
+	                    if(localNonkeyRollouts.containsKey(earliestlocalRollout.id) && !regionalProject.IPM_Financials_Regional__r.isEmpty()) {
 			                for(IPM_Financial__c ipmFinancial: regionalProject.IPM_Financials_Regional__r) {
 			                    if(ipmFinancial.Financial_External_ID__c==regionalProject.name+'_NONKEY' || ipmFinancial.Financial_External_ID__c==regionalProject.name+'_CONSOLIDATED') {
 				                    // update financial table's Target_Launch_Date__c
@@ -191,8 +190,19 @@ public with sharing class IPM_SyncFinanceTableTLD {
 			                    }
 			                }
 			            }
-		            }
-	        	} 
+			            // update financial record if local rollout is not yet converted to local project
+			            for(IPM_Project_Rollout__c localRollout:regionalProject.Regional_Project_Rollout__r) {
+			            	if( localRollout.Local_Project__c==null && localNonkeyRollouts.containsKey(localRollout.id)) {
+				                for(IPM_Financial__c ipmFinancial: regionalProject.IPM_Financials_Regional__r) {
+				                    if(ipmFinancial.Financial_External_ID__c==localRollout.name) {
+					                    // update financial table's Target_Launch_Date__c
+					                    ipmFinancial.Target_Launch_Date__c = earliestTargetLaunchDate;
+					                    financialsMap.put(ipmFinancial.id, ipmFinancial);
+				                    }
+				                }
+			            	}
+			            }
+	        	}
 	        }	
         }
     }
@@ -259,7 +269,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
         }
     	if(!regionalProjectIDs.isEmpty()) {
 	        List<IPM_Project__c> regionalProjList = [ SELECT ID, Name,IPM_Project_Type__c,IPMProject_Span__c,
-	        											( Select Name, Target_Launch_Date__c 
+	        											( Select Name, Target_Launch_Date__c, Local_Project__c 
 	        											  From Regional_Project_Rollout__r 
 	        											  where KeyMCO__c =true AND isActive__c=true),  
 	        											( Select id, Financial_External_ID__c, Target_Launch_Date__c 
@@ -270,10 +280,10 @@ public with sharing class IPM_SyncFinanceTableTLD {
         
 		   	for(IPM_Project__c regionalProject: regionalProjList) {
         		// handle regional original project
-        		if(regionalProject.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && regionalProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
-		        	String rolloutName;
-		            Date targetLaunchDate;
-		            for(IPM_Project_Rollout__c rollout: regionalProject.Regional_Project_Rollout__r) {
+	        	String rolloutName;
+	            Date targetLaunchDate;
+	            for(IPM_Project_Rollout__c rollout: regionalProject.Regional_Project_Rollout__r) {
+    				if((rollout.Local_Project__c==null) || (regionalProject.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && regionalProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)) {
 		                rolloutName = rollout.name;
 		                targetLaunchDate = rollout.Target_Launch_Date__c;
 		                for(IPM_Financial__c ipmFinancial: regionalProject.IPM_Financials_Regional__r) {
@@ -284,7 +294,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 		                        break;
 		                    }
 		                }
-		            }
+	            	}
         		}
 	        }
     	
