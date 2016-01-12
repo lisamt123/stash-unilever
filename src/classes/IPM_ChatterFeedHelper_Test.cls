@@ -460,8 +460,10 @@ private class IPM_ChatterFeedHelper_Test {
             financial.RecordTypeId = financeMasterRecordType;
             insert financial;
             
-            IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(lstLocalProjects);
-            IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(lstRegionalProjects);
+            Set<Id> updatedLocalProjIds = new Map<Id,IPM_Project__c>(lstLocalProjects).keySet();
+            Set<Id> updatedRegionalProjIds = new Map<Id,IPM_Project__c>(lstRegionalProjects).keySet();
+            IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(updatedLocalProjIds);
+            IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(updatedRegionalProjIds);
             
             Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
