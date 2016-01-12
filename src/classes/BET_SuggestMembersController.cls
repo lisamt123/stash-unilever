@@ -286,7 +286,7 @@ public with sharing class BET_SuggestMembersController {
     *************************************************************/
     public void  searchUsers(){
         System.debug('Entering method searchUsers : ' + betIdCtrl);
-        Id betOwnerId = [SELECT OwnerId FROM uw_BET__c WHERE Id =: betIdCtrl Limit 1].get(0).OwnerId;
+        Id betOwnerId = BET_CommonService.getOwnerIdOfGivenBet(betIdCtrl);
         System.debug('Preparing searchUsers query : ' + searchUserName  +', ' + betOwnerId);
         String query = 'SELECT Id,Name,SmallPhotoUrl,Title from User where   name like \'%'+searchUserName+'%\'  '
          + ' and isActive = true {0} and Id !=: betOwnerId ' 
