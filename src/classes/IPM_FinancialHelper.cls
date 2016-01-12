@@ -268,15 +268,22 @@ public with sharing class IPM_FinancialHelper
                 newFinList.add(newFin);
                 projectIds.add(newFin.Parent_Project__c);
             }
-            else if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && newFin.Parent_Project__c==null && newFin.Regional_Project__c!=null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c)
+            else if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && newFin.Parent_Project__c==null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c)
             {
                 newFinList.add(newFin);
                 projectIds.add(newFin.Regional_Project__c);
             }
-            else if(newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c)
-            {
+            else if(newFin.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c){
                 newFinList.add(newFin);
                 projectIds.add(newFin.Parent_Project__c);
+            }
+            else if(newFin.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE && newFin.Parent_Project__c==null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c){
+                newFinList.add(newFin);
+                projectIds.add(newFin.Regional_Project__c);
+            }
+            else if(newFin.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE && newFin.Parent_Project__c==null && newFin.Regional_Project__c==null && !newFin.Charter_Approved__c){
+                newFinList.add(newFin);
+                projectIds.add(newFin.Local_Project__c);
             }
         }
             
@@ -284,7 +291,7 @@ public with sharing class IPM_FinancialHelper
         {
             projDocSecConList=[SELECT Id,IPM_IRR_Action_Standard_Charter__c,IPM_NPV_Action_Standard_Charter__c,IPM_Payback_Action_Standard_Charter__c,IPM_Content_Type__c,
                                IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c,
-                               IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c
+                               IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Type__c
                                FROM IPM_Project_Document_Section_Content__c
                                WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c In:projectIds AND IPM_Content_Type__c=:IPM_ConstantUtils.FINANCIAL_ACTION_STANDARDS AND
                                      IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c=:IPM_ConstantUtils.PHASE_IDEAS];
@@ -294,11 +301,22 @@ public with sharing class IPM_FinancialHelper
         {
             for(IPM_Project_Document_Section_Content__c secContent:projDocSecConList)
             {
-                if((secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Parent_Project__c && fin.Regional_Project__c==null) || (secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Regional_Project__c && fin.Parent_Project__c ==null))
+                if(fin.Parent_Project__c!=null && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Parent_Project__c && fin.Regional_Project__c==null)
                 {
                     secContent.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Global__c;
                     secContent.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Global__c;
                     secContent.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Global__c;
+                }
+                else if(fin.Regional_Project__c!=null && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Regional_Project__c&& fin.Parent_Project__c ==null)
+                {
+                    secContent.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Regional__c;
+                    secContent.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Regional__c;
+                    secContent.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Regional__c;
+                }
+                else if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Type__c== IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && fin.Local_Project__c!=null && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==fin.Local_Project__c){
+                    secContent.IPM_Payback_Action_Standard_Charter__c=fin.Payback_Local__c;
+                    secContent.IPM_IRR_Action_Standard_Charter__c=fin.IRR_Local__c;
+                    secContent.IPM_NPV_Action_Standard_Charter__c=fin.NPV_Local__c;
                 }
             }
         }
@@ -474,8 +492,7 @@ public with sharing class IPM_FinancialHelper
                 }
             }
         } 
-        
-        System.debug(LoggingLevel.ERROR,'upsertFinancialYearMap-->>'+upsertFinancialYearMap);           
+                   
     }
     
     

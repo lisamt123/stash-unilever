@@ -10,6 +10,7 @@
 <apex:attribute name="isEditable" type="boolean" assignTo="{!editTable}" description="Passing parameter to check is table editable or not"/>
 <apex:attribute name="secId" type="Id" required="false" assignTo="{!projDocSecId}" description="Passing Project Document Section Id"/>
 <apex:attribute name="projId" type="Id" required="true" assignTo="{!projectId}" description="Passing Project Id"/>
+<apex:attribute name="gate" type="string" assignTo="{!gateType}" description="passing gate name"/>
    <apex:outputPanel styleClass="gatefinancialbg" layout="block" rendered="{!isEditable}">
        <a href="{!$Page.IPM_Financial}?id={!projectId}">{!$Label.IPM_Navigate_Financial}</a>
    </apex:outputPanel>

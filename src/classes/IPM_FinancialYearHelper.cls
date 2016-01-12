@@ -127,22 +127,35 @@ public with sharing class IPM_FinancialYearHelper
             List<IPM_Project_Document_Section_Content__c> projDocSecConList=new List<IPM_Project_Document_Section_Content__c>();
             Set<Id> projectIds=new Set<Id>();
             for(IPM_Financial_Year__c newFinYear:mapNewFinancialYears.values()){
-                if(newFinYear.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c && (String.isBlank(newFinYear.Regional_External_Id__c) || (String.isBlank(newFinYear.Global_External_Id__c) && String.isNotBlank(newFinYear.Regional_External_Id__c)))){
+                if(newFinYear.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c){
+                    newFinYearList.add(newFinYear);
+                    projectIds.add(newFinYear.Global_Project_Id__c);
+                }
+                else if(String.isNotBlank(newFinYear.Global_External_Id__c) && newFinYear.Financial_External_Id__c==newFinYear.Global_External_Id__c && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c){
+                    newFinYearList.add(newFinYear);
+                    projectIds.add(newFinYear.Global_Project_Id__c);
+                }
+                else if(String.isNotBlank(newFinYear.Regional_External_Id__c) && newFinYear.Financial_External_Id__c==newFinYear.Regional_External_Id__c && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c){
+                    newFinYearList.add(newFinYear);
+                    projectIds.add(newFinYear.Global_Project_Id__c);
+                }
+                else if(String.isBlank(newFinYear.Regional_External_Id__c) && String.isBlank(newFinYear.Global_External_Id__c)  && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c){
                     newFinYearList.add(newFinYear);
                     projectIds.add(newFinYear.Global_Project_Id__c);
                 }
             }
             if(projectIds!=null && !projectIds.isEmpty()){
                 projDocSecConList=[SELECT Id,IPM_iTo_Action_Standard_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_gTO_Action_Standard_Charter__c,IPM_GM_Action_Standards_Charter__c,
-                                   IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c,IPM_Content_Type__c,
-                                   IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c
+                                          IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c,IPM_Content_Type__c,
+                                          IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c,
+                                          IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Project_Type__c
                                    FROM IPM_Project_Document_Section_Content__c
                                    WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c In:projectIds AND IPM_Content_Type__c=:IPM_ConstantUtils.FINANCIAL_ACTION_STANDARDS AND 
                                          IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c=:IPM_ConstantUtils.PHASE_IDEAS];  
             }
             for(IPM_Financial_Year__c finYear:newFinYearList){  
                 for(IPM_Project_Document_Section_Content__c secContent:projDocSecConList){  
-                    if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==finYear.Global_Project_Id__c){
+                    if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==finYear.Global_Project_Id__c){
                         if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental){
                             secContent.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
                             secContent.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Global__c;
@@ -151,6 +164,28 @@ public with sharing class IPM_FinancialYearHelper
                             secContent.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
                             secContent.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Global__c;
                             secContent.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Global__c;
+                        }
+                    }
+                    else if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==finYear.Global_Project_Id__c){
+                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental){
+                            secContent.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Regional__c;
+                            secContent.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Regional__c;
+                        }
+                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross){
+                            secContent.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Regional__c;
+                            secContent.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Regional__c;
+                            secContent.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Regional__c;
+                        }
+                    }
+                    else if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==finYear.Global_Project_Id__c){
+                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental){
+                            secContent.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Local__c;
+                            secContent.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Local__c;
+                        }
+                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross){
+                            secContent.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Local__c;
+                            secContent.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Local__c;
+                            secContent.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Local__c;
                         }
                     }
                 }
