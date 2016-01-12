@@ -352,10 +352,10 @@ public with sharing class BET_SuggestMembersController {
         System.debug('Entering method addMembers for following user: '+suggested_MembersCtrl);
         List<BET_Follow_Request__c> betFollowRequest = new List<BET_Follow_Request__c>();
         if(betIdCtrl != null && projectIdCtrl != null){
-            betFollowRequest = [SELECT id from BET_Follow_Request__c WHERE Brand_Experience_Toolkit__c =: betIdCtrl and Project_Id__c =:projectIdCtrl]; 
+            betFollowRequest = BET_LinkingService.getFollowRequestsForBetAndIpm(betIdCtrl,projectIdCtrl);
         }
         Id betFollowRequestId = betFollowRequest.isEmpty() ? null : betFollowRequest.get(0).id;
-        Id betOwnerId = [select ownerid from uw_BET__c where id=:betIdCtrl].ownerid;
+        Id betOwnerId = BET_CommonService.getOwnerIdOfGivenBet(betIdCtrl);
 
 		insertMemberRequestsRecords(betFollowRequestId,betOwnerId);
 
@@ -390,7 +390,7 @@ public with sharing class BET_SuggestMembersController {
         }
 
         if(!betMembersToInsert.isEmpty()){
-            insert betMembersToInsert;
+            BET_SuggestedMemberService.insertMemberRequests(betMembersToInsert);
             IPM_BETUpdateService.updateBETMemberRequest(new Set<Id> {projectIdCtrl});
         }
 	}
