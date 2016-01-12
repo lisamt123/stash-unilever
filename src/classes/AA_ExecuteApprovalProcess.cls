@@ -1,4 +1,4 @@
-global class AA_ExecuteApprovalProcess{
+global with sharing class AA_ExecuteApprovalProcess{
 
     public String AssginedOwner{get;set;}
     

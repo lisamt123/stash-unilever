@@ -363,7 +363,7 @@ public class AA_ExecuteApprovalProcess_tst {
         AA_ExecuteApprovalProcess controller10 = new AA_ExecuteApprovalProcess();
          controller10.executeApprovalfromMobile();
         
-        
+        system.assert(competitorReport10!=null);
      }
      
      static testMethod void OwnerAssignement() {
@@ -402,7 +402,7 @@ public class AA_ExecuteApprovalProcess_tst {
        // ApexPages.StandardController stdController = new ApexPages.StandardController(competitorReport);
         AA_ExecuteApprovalProcess controller = new AA_ExecuteApprovalProcess();
         controller.OwnerAssginment();
-        
+        system.assert(competitorReport!=null);
      }
      
      static testMethod void reportApproved() {

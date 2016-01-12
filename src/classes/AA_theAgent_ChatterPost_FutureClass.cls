@@ -1,4 +1,4 @@
-Public class AA_theAgent_ChatterPost_FutureClass{    
+Public with sharing class AA_theAgent_ChatterPost_FutureClass{    
    
     @future 
     public static void sendToChatter(Id objectId, ID userToMentionId, String postText, Id reportId,string Country) {    

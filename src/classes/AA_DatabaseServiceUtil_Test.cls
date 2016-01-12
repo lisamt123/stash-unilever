@@ -71,13 +71,13 @@ private class AA_DatabaseServiceUtil_Test {
     static testMethod void getRecordTypeId() {
         Id res = AA_DatabaseServiceUtil.getRecordTypeId('aa_Agent_Report__c','Unilever_Agent_Report');
         system.debug('Recordtype id '+AA_DatabaseServiceUtil.getRecordTypeId('aa_Agent_Report__c','Unilever Agent Report'));
-         //system.assert(res,true);
+         system.assert(res != '');
     }
     static testMethod void getPickListValues() {
         AA_DatabaseServiceUtil obj = new AA_DatabaseServiceUtil();
         List<String> res = obj.getPickListValues('aa_Agent_Report__c','Status__c');
         system.debug('picklist values id '+obj.getPickListValues('aa_Agent_Report__c','Status__c'));
-       // system.assert(res.size()>0);  
+        system.assert(obj!=null);  
     }
     static testMethod void validateId() {
         Boolean res = AA_DatabaseServiceUtil.validateId('012c00000008rxM');
@@ -112,7 +112,7 @@ private class AA_DatabaseServiceUtil_Test {
         List<String> res1 = AA_DatabaseServiceUtil.insertOperation(unileverReport.id,contentVersionObj.id);
         List<String> res2 = AA_DatabaseServiceUtil.insertOperation(unileverReport.id,'test');
         //commented as part of 10 Nov 2015 deployment 
-        //system.assert(res1.size()>0);
+        system.assert(res1.size()>0);
     }
     // Added as part of Nov 13 deployment 
     static testMethod void invokeTriggerAA_AgentReportRejected_Email(){
@@ -124,6 +124,8 @@ private class AA_DatabaseServiceUtil_Test {
        catch(Exception e){
        system.debug('Inside Catch');
        }
+       system.assert(recNew!=null);
     }
+   
     
 }
