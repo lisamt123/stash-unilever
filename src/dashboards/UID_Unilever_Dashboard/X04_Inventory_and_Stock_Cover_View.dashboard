@@ -371,13 +371,8 @@
             <useReportChart>false</useReportChart>
         </components>        
         <components>
-            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
-            <chartSummary>
-                <aggregate>Sum</aggregate>
-                <axisBinding>y</axisBinding>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
-            </chartSummary>
             <componentType>ColumnGrouped</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
@@ -393,11 +388,9 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
-            <groupingColumn>Account.Stocked_Products__r$UID_Report_Date__c</groupingColumn>
             <header>Monthly Inventory Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
-            <report>UID_Category_Trend_Inventory/Trend_Report_Inventory_M_Q2</report>
+            <report>UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_M_Q_2_Final</report>
             <showPercentage>false</showPercentage>
             <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>

@@ -277,9 +277,9 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <header>Brand-wise Stock Levels (Cases)</header>
+            <header>Brand-wise Stock Cover (Days)</header>
             <legendPosition>Bottom</legendPosition>
-            <report>UID_Home_View/Monthly_Stock_Cover_Day</report>
+            <report>UID_Inventory_and_Stock_Cover_View/Monthly_Stock_Cover_Days_Final</report>
             <showPercentage>false</showPercentage>
             <showPicturesOnCharts>false</showPicturesOnCharts>
             <showValues>false</showValues>
@@ -290,12 +290,8 @@
     <rightSection>
         <columnSize>Wide</columnSize>
         <components>
-            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
-            <chartSummary>
-                <axisBinding>y</axisBinding>
-                <column>FORMULA1</column>
-            </chartSummary>
             <componentType>Column</componentType>
             <dashboardFilterColumns>
                 <column>Account.Orders__r$UID_Distributor__c</column>
@@ -305,22 +301,17 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
             <header>Monthly Primary Sales Value Growth%</header>
             <legendPosition>Bottom</legendPosition>
-            <report>UID_Category_Trend_Primary_Sales/Market_Growth_Primary_Sales_M_V</report>
+            <report>UID_Category_Trend_Primary_Secondary/Market_Growth_Primary_Sales_M_V_Final</report>
             <showPercentage>false</showPercentage>
             <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
         <components>
-            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
+            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
-            <chartSummary>
-                <axisBinding>y</axisBinding>
-                <column>FORMULA1</column>
-            </chartSummary>
             <componentType>Column</componentType>
             <dashboardFilterColumns>
                 <column>Account.Orders__r$UID_Distributor__c</column>
@@ -330,7 +321,6 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Orders__r$EffectiveDate</groupingColumn>
             <header>Monthly Secondary Sales Value Growth%</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Category_Trend_Primary_Secondary/Market_Growth_Secondary_Sales_M_V_Final</report>
