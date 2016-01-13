@@ -373,7 +373,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
             <div  class="addMembersBtn" onclick="addMembers();">
                 {!$Label.BET_SuggestedMemberComponentAddMember}
             </div>
-            <div class="addMembersBtn" onclick="skipPage();">
+            <div class="skipMembersBtn" onclick="skipPage();">
                 {!$Label.BET_SuggestedMemberComponentSkipForNow}
             </div>
         </div>
