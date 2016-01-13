@@ -66,7 +66,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     @TestVisible Private Set<String>tplSectionsSet=new Set<String>{};
     private static final String PROJ_DOC_SEC_ID='projDocSecId';
     private static final String EXTERNAL_ID_ENVIRONMENTAL_IMPACT='Environmental_Impact';
-    public static final Set<String> sectionEditableOnStatus = new Set<String>{IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,IPM_ConstantUtils.STATUS_NOT_STARTED,IPM_ConstantUtils.STATUS_IN_PROGRESS};
+    public static final Set<String> sectionEditableOnStatus = new Set<String>{IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,IPM_ConstantUtils.STATUS_NOT_STARTED,IPM_ConstantUtils.STATUS_IN_PROGRESS};
 
     /****************************************************************************************************************************************************************
     * @description Fetching the Page parameters and Retrieving Project,Projerct Document and Projerct Document Section
@@ -214,9 +214,9 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         projSectionList=new list<IPM_Project_Document_Section__c>();
         
         if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
-            countOfCountries=[SELECT count() FROM IPM_Country__c WHERE IPM_Project__c=:project.id];
+            countOfCountries=[SELECT count() FROM IPM_Country__c WHERE isActive__c=true AND IPM_Project__c=:project.id];
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
-            countOfCountries=[SELECT count() FROM IPM_Country__c WHERE IPM_Regional_Project__c=:project.id];
+            countOfCountries=[SELECT count() FROM IPM_Country__c WHERE isActive__c=true AND IPM_Regional_Project__c=:project.id];
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
             countOfCountries=0;
           
@@ -473,14 +473,14 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
         if(isCentralTeam || isBPUser){
             IsEditableOutC=true;
-            isEditGateCMI=true;
-            IsCRRTEditable=true;
-            isAssortEdit=true;
-            isEcodesignEdit=true;
-            isTaskeditable=true;   
+	    isEditGateCMI=true;
+	    IsCRRTEditable=true;
+	    isAssortEdit=true;
+	    isEcodesignEdit=true;
+	    isTaskeditable=true;   
             IsEditableSumm=true;
-            markTaskAccess = true;
-            isCreateTask=true;
+	    markTaskAccess=true;
+	    isCreateTask=true;
             
         }   
     }
@@ -541,7 +541,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
             
             update projDocSec;
             
-            if(projDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_NOT_STARTED){
+            if(projDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_NOT_STARTED || projDoc.IPM_Document_Status__c==IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED){
                 projDoc.IPM_Document_Status__c=IPM_ConstantUtils.STATUS_IN_PROGRESS;
             }   
             update projDoc;
@@ -603,7 +603,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
             if(showmsg){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.WARNING,System.Label.IPM_Section_Not_Filled));
             }
-            return redirectBack();
+           
+            return null;
         }
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
