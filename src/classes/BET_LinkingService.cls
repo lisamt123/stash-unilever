@@ -240,4 +240,14 @@ public without sharing class BET_LinkingService {
 		System.debug('Exit UnFollow');
 	}
 
+	/************************************************************
+		Purpose: Method returns all follow request records for given bet and ipm project
+		Parameters: Id betIdCtrl,Id projectIdCtrl
+		Returns: List of existing follow requests
+		Throws: -
+	*************************************************************/
+	public static List<BET_Follow_Request__c> getFollowRequestsForBetAndIpm(Id betIdCtrl,Id projectIdCtrl){
+		return [SELECT id from BET_Follow_Request__c WHERE Brand_Experience_Toolkit__c =: betIdCtrl and Project_Id__c =:projectIdCtrl];
+	}
+
 }
