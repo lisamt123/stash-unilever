@@ -4544,7 +4544,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BACKGROUNDPROCESS_INPROGRESS</shortDescription>
-        <value>Your project is currently being created, so come back in a few minutes...</value>
+        <value>Your project is currently being created, so please come back in a few minutes... Please refresh the page to continue.</value>
     </labels>
     <labels>
         <fullName>IPM_BB</fullName>
@@ -10010,7 +10010,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeInProgressMsg</shortDescription>
-        <value>Your project is currently being processed, so please come back in a few minutes...</value>
+        <value>Your project is currently being processed, so please come back in a few minutes... Please refresh the page to continue.</value>
     </labels>
     <labels>
         <fullName>IPM_PhaseLabel</fullName>
