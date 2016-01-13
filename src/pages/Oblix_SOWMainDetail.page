@@ -1,0 +1,342 @@
+<apex:page sidebar="false" controller="Oblix_SOWMainDetailController" docType="html-5.0" showHeader="false" standardStylesheets="true">
+
+    <apex:form id="jqueryId">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css" />
+        <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/css/unilever-style.css')}" />
+        <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}"></script>
+        <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
+        <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/readmore.min.js')}" />
+
+
+        <script>
+            var redirectToAttachment = function(attachmentId) {
+                'use strict';
+                window.open('/servlet/servlet.FileDownload?file=' + attachmentId);
+            }
+            $(document).ready(function() {
+                //preparePH();
+                $.unblockUI();
+                $("link.user").each(function(index, value) {
+                    //console.log( index + ": " + value.href );
+                    if (value.href.indexOf("extended") > 0) {
+                        console.log('pass');
+                        $(this).attr("disabled", "disabled");
+                        this;
+                    }
+                });
+            });
+        </script>
+
+        <script>
+
+            $ = jQuery.noConflict();
+            $('.read_more').click(function() {
+                alert( "Handler for .click() called." );
+                return false;
+            });
+            $(document).ready(function() {
+                $('.countriesSelected').readmore({
+                    moreLink: '<a href="#">Read more</a>',
+                    lessLink: '<a href="#">Close</a>',
+                    collapsedHeight: 20,
+                    blockCSS: 'display: block; width: 100px;',
+                    afterToggle: function(trigger, element, expanded) {
+                        if( expanded) { // The "more" link was clicked
+                            $(this).width("width","100px");
+                        }
+                    }
+                });
+                var table = $('#sowListTable').DataTable({
+                    "dom": 'lrtip',
+                    "pagingType": "full_numbers",
+                    "bAutoWidth": false,
+                    "aoColumns": [
+                      { "sWidth": "0%" },
+                      { "sWidth": "100px" },
+                      { "sWidth": "50px" },
+                      { "sWidth": "100px" },
+                      { "sWidth": "50px" },
+                      { "sWidth": "450px" },
+                      { "sWidth": "50px" },
+                      { "sWidth": "100px" }
+                   ]
+                });
+                $('#searchBox').on('keyup', function() {
+                    table.search(this.value).draw();
+
+                });
+                $('#sowListTable tbody').on('click', 'tr', function() {
+                    if ($(this).hasClass("camp")) {
+                        blockme();
+                        $(this).toggleClass('selected');
+                        $(this).addClass('bg_selected');
+
+                        var ids = $.map(table.rows('.selected').data(), function(item) {
+                            return item[0];
+                        });
+                        //alert(ids);
+                        ViewProject(ids);
+                    } else {
+                        alert('This is a non campaign, pleas select a campaign');
+                    }
+                });
+
+            });
+        </script>
+
+        <apex:actionFunction name="SaveAttachments" action="{!SaveAttachments}" rerender="accountTable, pageMessages">
+            <apex:param value="{!allFileList}" assignTo="{!allFileList}" name="allFileList" />
+        </apex:actionFunction>
+        <apex:actionFunction name="ViewProject" action="{!ViewProject}" rerender="accountTable, pageMessages">
+            <apex:param value="{!selectedProjectId}" assignTo="{!selectedProjectId}" name="ids" />
+        </apex:actionFunction>
+        <apex:actionFunction name="deleteSOW" action="{!DeleteAction}" />
+        <apex:actionFunction name="getCategoryBrandRec" action="{!getCategoryBrand}" rerender="sowNewId" oncomplete="unblockUI();">
+            <apex:param value="{!selected_sow.OblixBrand__c}" name="brandId" />
+        </apex:actionFunction>
+
+
+
+    </apex:form>
+    <apex:form >
+        <div class="Oblix_header_bkgd">
+            <header class="Oblix_header_panel">
+                <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
+                <div class="header_divider_vertical"></div>
+                <div class="header_panel_text">
+                    <h2>Hi  {!$User.FirstName} {!$User.LastName }, Welcome to SWOP the Scope of Work Online Planner</h2>
+                    <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">Add new campaign</a>
+                    </p>
+                </div>
+                <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
+                </apex:commandButton>
+
+            </header>
+        </div>
+
+        <div class="container SOW_body">
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <h1 class="SOW_header_title">{!selected_sow.Name}</h1>
+                    <p class="SOW_body_option_links">
+                    <apex:commandLink value="Edit SOW" action="{!editActionPage}"></apex:commandLink>&nbsp;&nbsp;|
+                    <a href="" disabled="disabled">Clone SOW</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                    <apex:commandLink value="Delete SOW" action="{!deleteAction}"></apex:commandLink>
+                    </p>
+                </div>
+                <table class="SOW_header_value_summary">
+                    <tr>
+                        <td class="SOW_header_value_title">SOW total</td>
+                        <td class="SOW_header_value">
+                            <h2>€{!selected_sow.OblixSOWOverallTotal__c}</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="SOW_header_value_subtitle">Campaign total</td>
+                        <td class="SOW_header_value_subvalue">€{!selected_sow.Total_Campaign_Fee__c}</td>
+                    </tr>
+                    <tr>
+                        <td class="SOW_header_value_subtitle">Non-campaign total</td>
+                        <td class="SOW_header_value_subvalue">€{!selected_sow.OblixTotalOtherItemsFees__c}</td>
+                    </tr>
+                </table>
+            </div>
+            <hr class="divider" />
+
+            <table class="SOW_name_status_info">
+                <tr>
+                    <td class="SOW_name_status_info_titles">Status</td>
+                    <td>{!selected_sow.SOW_Status__c}</td>
+                    <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label}</td>
+                    <td>{!selected_sow.BB_or_BD__c}</td>
+                </tr>
+                <tr>
+                    <td class="SOW_name_status_info_titles">Last updated</td>
+                    <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                             <apex:param value="{!selected_sow.lastmodifiedDate}" /> 
+                        </apex:outputText> by {!selected_sow.LastModifiedBy.Name}</td>
+                    <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}</td>
+                    <td>{!selected_sow.OblixBrand__r.Name}</td>
+                </tr>
+                <tr>
+                    <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label}</td>
+                    <td>{!selected_sow.Oblix_AgencyEstimate__r.name}</td>
+                    <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.BigOblixProductCategory__c.label}</td>
+                    <td>{!selected_sow.BigOblixProductCategory__r.name}</td>
+                </tr>
+                <tr>
+                    <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label} </td>
+                    <td>{!selected_sow.Agency_Contact__r.name}</td>
+                    <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.SmallProductCategory__c.label}</td>
+                    <td>{!selected_sow.SmallProductCategory__r.name}</td>
+                </tr>
+                <tr>
+                    <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}</td>
+                    <td>{!selected_sow.Unilever_Lead__r.name}</td>
+                    <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}</td>
+                    <td>{!selected_sow.Financial_Year__c}</td>
+                </tr>
+            </table>
+            <!-- Page: -->
+            
+
+            
+            <div class="row">
+                <ul id="tabs" class="sow_tab_style nav nav-tabs sow_tab_align" data-tabs="tabs">
+                    <li class="active"><a href="#red" data-toggle="tab">Related SOW items</a>
+                    </li>
+                    <li><a href="#orange" data-toggle="tab">Related SOW Conversation</a>
+                    </li>
+                    <li><a href="#yellow" data-toggle="tab">Campaign Timeline</a>
+                    </li>
+                    <apex:commandButton value="ADD CAMPAIGN" title="ADD CAMPAIGN" action="{!AddProject}" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" disabled="{!IF(sow_id == null, true, false)}"></apex:commandButton>
+                    <button type="button" class="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign">ADD NON-CAMPAIGN
+                    </button>
+                </ul>
+            </div>
+            <!--            Welcome message to start building SOW -->
+            <apex:outputPanel id="newSOW" rendered="{!IF(li_campaign_and_non_campaign_items.size == 0,true,false)}">
+                <div class="row SOW_homepage_welcome_message" >
+                    <div class="col-lg-7 col-lg-offset-3">
+                        <h1>Click either button to start building your SOW</h1>
+                        <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-green-up-right.png')}" width="96" height="77"/>
+                    </div>
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel id="relatedItems" rendered="{!IF(li_campaign_and_non_campaign_items.size > 0,true,false)}">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="pull-right SOW_homepage_find">
+                            <label>Find a specific SOW</label>
+                            <input type="text" name="findSOW" id="searchBox" />
+                        </div>
+                        <div id="my-tab-content" class="tab-content">
+                            <div class="tab-pane active" id="red">
+
+
+                                <table class="table table-striped" id="sowListTable">
+                                    <thead>
+                                        <tr>
+                                            <th style="display:none;width:0px !important">{!$Label.Oblix_lbl_UIUX_Project_Id}</th>
+                                            <th>{!$ObjectType.Oblix_SOW_Projects__c.fields.Name.label} </th>
+                                            <th>Type</th>
+                                            <th>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label}</th>
+                                            <th ><div>Countries</div></th>
+                                            <th class="table_cell_progress_bar">Stages</th>
+                                            <th>Full campaign fee</th>
+                                            <th>FY campaign fee</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- <apex:repeat value="{!thousandBlocks}" var="block"> -->
+                                        <apex:repeat value="{!li_campaign_and_non_campaign_items}" var="campaign_and_non_campaign">
+                                            <apex:outputPanel rendered="{!campaign_and_non_campaign.s_object_type == 'Campaign'}">
+                                                <tr class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled','')} camp">
+                                                    <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
+                                                    <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
+                                                    <td>{!campaign_and_non_campaign.s_object_type}</td>
+                                                    <td>{!campaign_and_non_campaign.dynamic_object['OblixRegion__c']}</td>
+                                                    <td ><div class="countriesSelected"> {!campaign_and_non_campaign.dynamic_object['OblixCountries__c']}</div></td>
+                                                    <td class="table_progress_bar_styling">
+                                                        <div id="crumbs">
+                                                            <p>{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'Project Cancelled','')}</p>
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[0].s_css_class_name}">
+                                                                        <a></a>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[1].s_css_class_name}">
+                                                                        <a></a>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[2].s_css_class_name}">
+                                                                        <a></a>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[3].s_css_class_name}">
+                                                                        <a></a>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[4].s_css_class_name}">
+                                                                        <a></a>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                    <td>€&nbsp;
+                                                        <apex:outputText value="{0, number,###,###,##0}">
+                                                            <apex:param value="{!campaign_and_non_campaign.dynamic_object['Total_Fees_for_Project__c']}" />
+                                                        </apex:outputText>
+                                                    </td>
+                                                    <td>€&nbsp;
+                                                        <apex:outputText value="{0, number,###,###,##0}">
+                                                            <apex:param value="{!campaign_and_non_campaign.dynamic_object['Value_to_be_paid_in_Current_FY__c']}" />
+                                                        </apex:outputText>
+                                                    </td>
+                                                </tr>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!campaign_and_non_campaign.s_object_type == 'Non Campaign'}">
+                                                <tr>
+                                                    <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
+                                                    <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
+                                                    <td>{!campaign_and_non_campaign.s_object_type}</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>€&nbsp;
+                                                        <apex:outputText value="{0, number,###,###,##0}">
+                                                            <apex:param value="{!campaign_and_non_campaign.dynamic_object['OblixOtherItemFee__c']}" />
+                                                        </apex:outputText>
+                                                    </td>
+                                                </tr>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                        <!-- </apex:repeat> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="orange">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12">
+                                        <chatter:feedWithFollowers entityId="{!sow_id}">
+                                        </chatter:feedWithFollowers>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="yellow">
+                                <h1>Yellow</h1>
+                                <p>yellow yellow yellow yellow yellow</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </apex:outputPanel>
+        </div>
+    </apex:form>
+
+    <div id="dialog-confirm" title="Confirm Delete" style="display:none;">
+        <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This SOW will be deleted, together with its campaign and other related items. Are you sure?</p>
+    </div>
+
+    <!--script>
+        $('.SOWName').click(function() {
+            $('.SOWDetail').slideToggle("slow");
+            $(this).toggleClass('show');
+        });
+
+        var leaseData = {
+            !seriesProject
+        };
+    </script-->
+    <!--script src="{!URLFOR($Resource.Oblix_HightChartJS)}"></script-->
+</apex:page>

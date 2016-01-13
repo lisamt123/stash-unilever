@@ -17,7 +17,7 @@ public with sharing class Oblix_TestUtils {
           LocaleSidKey = 'en_US', ProfileId = profile.Id,firstname = 'sf test one', 
           TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
           UserName = 'testuser@test123321.com');
-        insert user;
+        insert user; 
 
         return user;
     }

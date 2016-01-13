@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Project Oblix scoring Calculator</description>
@@ -1127,7 +1126,7 @@
     </fields>
     <label>SWOP Calculator</label>
     <listViews>
-        <fullName>BoxRange</fullName>
+        <fullName>Box_Range_DS</fullName>
         <columns>OBJECT_ID</columns>
         <columns>RECORDTYPE</columns>
         <columns>NAME</columns>
@@ -1141,11 +1140,11 @@
         <columns>CREATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <filters>
-            <field>NAME</field>
+            <field>RECORDTYPE</field>
             <operation>equals</operation>
-            <value>Box Range</value>
+            <value>Oblix_Calculator__c.Box_Range</value>
         </filters>
-        <label>Box Range</label>
+        <label>Box Range DS</label>
         <language>en_US</language>
     </listViews>
     <listViews>

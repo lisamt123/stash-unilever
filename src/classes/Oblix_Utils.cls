@@ -23,7 +23,9 @@ public with sharing class Oblix_Utils {
     private static final String AUDIO_VISUAL = 'Audio_Visual';
     private static final String EXPERIENTIAL = 'Experiential';
     private static final String STATIC_IMAGERY = 'Static_Imagery';
-    
+    private static Map<String, List<String>> ms_lis_fields_in_fieldset = new  Map<String, List<String>>();
+
+
     //Used to Wrap RecordType By Object
     public static Map<string, ID> MapRecordType(String ObjectName) {
 
@@ -61,6 +63,31 @@ public with sharing class Oblix_Utils {
 
     }
     
+
+    /********************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-09
+    * @description  This function helper retrieves all fields from fieldset 
+                    of a given object
+    *********************************************************************/
+    public static list<string> getAllFieldsInFieldsSet (String obj_api_name, String fieldset_name){
+        system.debug('## ms_lis_fields_in_fieldset' + ms_lis_fields_in_fieldset);
+        if(null==ms_lis_fields_in_fieldset || (null!=ms_lis_fields_in_fieldset 
+                && null==ms_lis_fields_in_fieldset.get(obj_api_name+fieldset_name))){
+
+            List<String> li_fields = new List<String>();
+            Schema.SObjectType target_type = Schema.getGlobalDescribe().get(obj_api_name);
+            Schema.FieldSet field_set = target_type.getDescribe().fieldSets.getMap().get(fieldset_name);
+            
+            for(Schema.FieldSetMember field : field_set.getFields()) {
+                li_fields.add(field.getFieldPath());
+             }
+            ms_lis_fields_in_fieldset.put(obj_api_name+fieldset_name,li_fields);
+        }
+        return ms_lis_fields_in_fieldset.get(obj_api_name+fieldset_name);
+    }
+
+
     // Added by AES to get the list of subcategories related to recType 
     public static list<string> lstSubCatPerRecT(string recType) {
 
@@ -104,7 +131,7 @@ public with sharing class Oblix_Utils {
         }
         return lstStage;
     }
-    
+
     // Added by AES to get the map of options by Sub category  
     public static map<string, list<string>> getMapSubCategOption() {
         map<string, list<string>> mapSubCategOption = new map<string, list<string>>();
@@ -609,4 +636,11 @@ public with sharing class Oblix_Utils {
         }
         return asset.Asset_name__c;
     }
+
+    //Generic Function to exit swop and go to salesforce homepage
+    public static Pagereference exitSwop(){
+        Pagereference exitSwopHome = new Pagereference('/');
+        return exitSwopHome.setRedirect(true);
+    }
+
 }

@@ -3,6 +3,9 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
     }
     @testVisible
     boolean triggerShouldExecute = true;
+    private Map<Id, String> mids_campaign_id_hub_summary_text = new Map<Id, String>();
+    private Map<Id, String> mids_campaign_id_asset_deliverables_text = new Map<Id, String>();
+
     /**
      * bulkBefore
      *
@@ -11,14 +14,23 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
      */
     public void bulkBefore()
     {   
-        System.debug('Entering Oblix_ProjectHandler.bulkBefore'); 
-        /*
+        System.debug('Entering Oblix_ProjectHandler.bulkBefore execution'); 
+        
         if(triggerShouldExecute){
-            if(Trigger.isUpdate) {
-                //lstProjectTrigger =  Oblix_TR04ProjectBusinessDriverScore.retrieveProject(trigger.new);
+            if(Trigger.isInsert) {
+                System.debug('Entering Trigger beforeInsert'); 
+                mids_campaign_id_hub_summary_text = Oblix_ProjectHandlerLogic.retrieveCampaignHubSummary(Trigger.New);
+                mids_campaign_id_asset_deliverables_text = Oblix_ProjectHandlerLogic.retrieveAssetDeliverables(Trigger.New);
             }
         }
-        */
+        
+        if(triggerShouldExecute){
+            if(Trigger.isUpdate) {
+                System.debug('Entering Trigger beforeUpdate'); 
+                mids_campaign_id_hub_summary_text = Oblix_ProjectHandlerLogic.retrieveCampaignHubSummary(Trigger.New);
+                mids_campaign_id_asset_deliverables_text = Oblix_ProjectHandlerLogic.retrieveAssetDeliverables(Trigger.New);
+            }
+        }
     }
     
     public void bulkAfter()
@@ -28,11 +40,19 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
         
     public void beforeInsert(SObject so)
     {
+        Oblix_ProjectHandlerLogic.adjustCampaignHubSummary((Oblix_SOW_Projects__c) so , mids_campaign_id_hub_summary_text);
+        Oblix_ProjectHandlerLogic.adjustAssetDeliverables((Oblix_SOW_Projects__c) so , mids_campaign_id_asset_deliverables_text);
+
+        // temp shahin deactivating this
         Oblix_TR04ProjectBusinessDriverScore.updateProjectCalculatorFees((Oblix_SOW_Projects__c) so, Trigger.New);
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
     {
+        Oblix_ProjectHandlerLogic.adjustCampaignHubSummary((Oblix_SOW_Projects__c) so , mids_campaign_id_hub_summary_text);
+        Oblix_ProjectHandlerLogic.adjustAssetDeliverables((Oblix_SOW_Projects__c) so , mids_campaign_id_asset_deliverables_text);
+        
+        // temp shahin deactivating this
         Oblix_TR04ProjectBusinessDriverScore.updateProjectCalculatorFees((Oblix_SOW_Projects__c) so, Trigger.New);
     }
      

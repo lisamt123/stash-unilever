@@ -1,0 +1,168 @@
+<apex:page sidebar="false" controller="Oblix_SOWNonCampaignCreateController" docType="html-5.0" showHeader="false" standardStylesheets="true">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/css/unilever-style.css')}" />
+    <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}"></script>
+    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
+    <apex:form >
+        <div class="Oblix_header_bkgd">
+            <header class="Oblix_header_panel">
+                <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
+                <div class="header_divider_vertical"></div>
+                <div class="header_panel_text">
+                    <h2>Hi  {!$User.FirstName} {!$User.LastName }, Welcome to SWOP the Scope of Work Online Planner</h2>
+                    <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;
+                        <!--span>&#9658;</span>&nbsp;<a href="#">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">Add new campaign</a-->
+                    </p>
+                </div>
+                <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
+                </apex:commandButton>
+
+            </header>
+        </div>
+        <div class="container SOW_body">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <h1 class="SOW_header_title">Add Non-Campaign Items to [SOW Name]</h1>
+                </div>
+                <table class="SOW_header_value_summary">
+                    <tr>
+                        <td class="SOW_header_value_title">Non Campaign Estimated Fee</td>
+                        <td class="SOW_header_value">
+                            <h2>€360400</h2>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <hr class="divider" />
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="row">
+                        <ul class="navigation nav nav-tabs" data-tabs="tabs">
+                            <li role="presentation" class="selected active"><a href="#activity" data-toggle="tab">Add activity</a>
+                            </li>
+                            <li role="presentation"><a href="#resource" data-toggle="tab">Add dedicated resource</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div id="my-tab-content" class="tab-content">
+                        <div class="tab-pane active" id="activity">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="create_SOW_form_titles">Activity*</p>
+                                    <apex:inputField value="{!activity.nonCampaignItem.Activities__c}" styleclass="investment_project_dropdowns_right" id="activityid" onchange="if ($(this).val()=='Other'){ $('.otherr').prop('disabled', false);}else{ $('.otherr').prop('disabled', true);}" />
+                                </div>
+                                <div class="col-lg-4">
+                                    <p class="create_SOW_form_titles">Country*</p>
+                                    <apex:selectList size="1" value="{!activity.selectedCountry}" onchange="adupdate();blockme();" styleclass="investment_project_dropdowns_right" id="country">
+                                        <apex:selectOptions value="{!countries}" />
+                                    </apex:selectList>
+                                </div>
+                                <div class="col-lg-4">
+                                    <p class="create_SOW_form_titles">Agency department*</p>
+                                    <apex:selectList size="1" value="{!activity.selectedAgencyDepartment}" styleclass="picklist_init" id="AD" onchange="RTupdate();blockme();" disabled="{!IF(activity.agencyVisible==false,true,false)}"  style="min-width:100%;">
+                                               <apex:selectOptions value="{!AgencyDepartments}"/>
+                                    </apex:selectList>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-4 non_camp_dropdown_spacing">
+                                    <p class="create_SOW_form_titles">Role*</p>
+                                    <apex:selectList size="1" value="{!activity.selectedRole}" id="RT"  styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(activity.roleVisible==false,true,false)}" onchange="Rateupdate();blockme();">
+                                       <apex:selectOptions value="{!RoleTitles}"/>
+                                    </apex:selectList>
+                                </div>
+                                <div class="col-lg-8 non-campaign_hourly_rate_section">
+                                    <p>Hourly rate € <apex:outputLabel value="{!activity.Rate}" id="rate"/>
+                                        <apex:input type="number"  styleClass="hourss input_init"   html-min="0" value="{!activity.numberOFHoursRequired}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}"
+                                               disabled="{!IF(activity.valVisible==false,false,false)}" id="hours" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);"/>
+                                        <input type="number" class="hourly_rate_box" name="hourlyRate" /> hours
+                                        <button class="btn btn-primary btn_plus btn_asset_add">ADD</button>
+                                    </p>
+                                </div>
+                            </div>
+                            <table class="table table-striped" id="swopTable">
+                                <thead>
+                                    <tr>
+                                        <th>Country</th>
+                                        <th>Agency department</th>
+                                        <th>Role</th>
+                                        <th>Hourly rate</th>
+                                        <th>Hours</th>
+                                        <th>Total €</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:repeat value="{!activitySelectionList}" var="eachActivity">
+                                        <tr>
+                                            <td>{!eachActivity.selectedCountry}</td>
+                                            <td>{!eachActivity.selectedAgencyDepartment}</td>
+                                            <td>{!eachActivity.selectedRole}</td>
+                                            <td>{!eachActivity.selectedHourlyRateResult}</td>
+                                            <td>{!eachActivity.numberOFHoursRequired}</td>
+                                            <td>{!eachActivity.totalAmount}</td>
+                                            <td><img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" />
+                                            </td>
+                                        </tr>
+                                    </apex:repeat>
+                                    <!--tr>
+                                        <td>Spain</td>
+                                        <td>Creative</td>
+                                        <td>Creative Director</td>
+                                        <td>€ 252</td>
+                                        <td>15</td>
+                                        <td>€ 3080</td>
+                                        <td><img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spain</td>
+                                        <td>Creative</td>
+                                        <td>Creative Director</td>
+                                        <td>€ 252</td>
+                                        <td>15</td>
+                                        <td>€ 3080</td>
+                                        <td><img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" />
+                                        </td>
+                                    </tr-->
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn btn-primary btn-xs pull-right btn_plus btn_add_selection">ADD SELECTION TO BASKET</button>
+                        </div>
+                        <div class="tab-pane" id="resource">
+                            Empty
+                        </div>
+                    </div>  
+                </div>
+                <div class="col-lg-3 asset_shopping_basket_margin">
+                <div class="asset_shopping_basket">
+                    <div class="asset_shopping_basket_title_bar">
+                        <h2>Campaign Basket (3 assets)</h2>
+                    </div>
+                    <div class="asset_shopping_basket_item">
+                        <div class="campaign_create_agency_hub_split_table_subtitle"><img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" class="attachement_redcross" height="12" width="12" />Attachment name 1</div>
+                    </div>
+                    <div class="asset_shopping_basket_total">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <p class="asset_shopping_basket_total_fee_text">Non Campaign Estimated Fees</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <h2 class="asset_shopping_basket_total_fee_value">€360400</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="asset_shopping_basket_btn">
+                        <button type="button" class="btn btn-primary btn-xs btn_check btn_finish_basket">FINISH WITH BASKET</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+        </div>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,144 @@
+<apex:page sidebar="false" controller="Oblix_SowMainController" docType="html-5.0" showHeader="false" standardStylesheets="false">
+
+    <apex:form id="jqueryId">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css" />
+        <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
+        <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/css/unilever-style.css')}" />
+        <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $.unblockUI();
+                var table = $('#sowListTable').DataTable({
+                    "dom": 'lrtip',
+                    'pagingType': 'full_numbers'
+                });
+                $('#searchBox').on('keyup', function() {
+                    table.search(this.value).draw();
+
+                });
+                $('#sowListTable tbody').on('click', 'tr', function() {
+                    blockme();
+                    $(this).toggleClass('selected');
+                    $(this).addClass('bg_selected');
+                    var ids = $.map(table.rows('.selected').data(), function(item) {
+                        return item[0];
+                    });
+                    RerenderSelectedSow(ids);
+                });
+
+            });
+
+        </script>
+        <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
+
+    </apex:form>
+
+
+    <apex:form >
+        <apex:actionFunction name="RerenderSelectedSow" action="{!RerenderSelectedSow}" reRender="jqueryId,jqueryId2">
+            <apex:param name="selectedSewId" assignTo="{!selectedSewId}" value="" />
+        </apex:actionFunction>
+        <div class="Oblix_header_bkgd">
+            <header class="Oblix_header_panel">
+                <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
+                <div class="header_divider_vertical"></div>
+                <div class="header_panel_text">
+                    <h2>Hi {!userConnected.Name}, Welcome to SWOP the Scope of Work Online Planner</h2>
+                    <!--p><a href="#">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">SOW name</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">Add new campaign</a>
+                    </p-->
+                </div>
+                <apex:commandButton styleClass="btn btn-xs pull-right" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP"><img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/cross.png')}" width="14" height="14" />
+                </apex:commandButton>
+
+            </header>
+        </div>
+        <div class="container SOW_body">
+
+            <div class="row">
+                <div class="col-lg-8 col-md-8 SOW_homepage_header">
+                    <h1 class="SOW_header_title">SOW List</h1>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <!--button type="button" class="btn btn-primary btn-xs pull-right create_SOW_button">CREATE NEW SOW +</button-->
+                    <apex:commandButton value="{!$Label.Oblix_Lbl_UIUX_Create_Sow_Plus}" action="{!CreateSOWAction}" styleClass="btn btn-primary btn-xs pull-right create_SOW_button" reRender="jqueryId,jqueryId2" onclick="blockme()" />
+                </div>
+            </div>
+            <apex:outputPanel rendered="{!IF(thousandBlocks.size == 0,true,false)}" id="welcomeMessage">
+                <div class="row SOW_homepage_welcome_message">
+                    <div class="col-lg-8 col-lg-offset-3">
+                        <h1>Hi {!userConnected.Name}</h1>
+                        <h5>You have not created any SOW yet. Click the button to get started</h5>
+                        <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-green-up-right.png')}" width="96" height="77"/>
+                    </div>
+                </div>
+            </apex:outputPanel>
+            <hr class="divider" />
+            <apex:outputPanel rendered="{!IF(thousandBlocks.size > 0,true,false)}" id="sowListItems">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6">
+                        <!--p>Showing 1 to 10 of 17 entries&nbsp;&nbsp;|&nbsp;&nbsp;Show
+                        <select class="Oblix_picklist id=" name="" placeholder="10">
+                            <option value="5">5</option>
+                            <option value="10" selected="selected">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                        </select>
+                            entries</p-->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 ">
+                        <div class="pull-right SOW_homepage_find">
+                            <label>Find a specific SOW</label>
+                            <input type="text" name="findSOW" id="searchBox" />
+                        </div>
+
+                        <div class="Oblix_table" id="Oblix_DashId">
+                            <table class="table table-striped" id="sowListTable">
+                                <thead>
+                                    <tr>
+                                        <th style="display:none;width:0px !important">{!$ObjectType.Marketing_SOW__c.fields.Id.label}</th>
+                                        <th>{!$ObjectType.Marketing_SOW__c.fields.Name.label}</th>
+                                        <th>{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}</th>
+                                        <th>{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label}</th>
+                                        <th>{!$Label.Oblix_Lbl_UIUX_Last_updated}</th>
+                                        <th>{!$ObjectType.Marketing_SOW__c.fields.SOW_Status__c.label}</th>
+                                        <th>{!$Label.Oblix_Lbl_UIUX_05_Current}</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:repeat value="{!thousandBlocks}" var="block">
+                                        <apex:repeat value="{!block.lstMarketingSows}" var="sow">
+                                            <tr>
+                                                <td style="display:none;width:0px !important">{!sow.Id}</td>
+                                                <td>{!sow.Name}</td>
+                                                <td>{!sow.OblixBrand__r.Name}</td>
+                                                <td width="15%">{!sow.Oblix_AgencyEstimate__r.name}</td>
+                                                <td>
+                                                    <apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                                                        <apex:param value="{!sow.LastModifiedDate}" /></apex:outputText>
+                                                </td>
+                                                <td>{!sow.SOW_Status__c}</td>
+                                                <td>€&nbsp;
+                                                    <apex:outputText value="{0, number,###,###,##0}">
+                                                        <apex:param value="{!ROUND(sow.OblixSOWOverallTotal__c,0)}" />
+                                                    </apex:outputText>
+                                                </td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </apex:outputpanel>
+        </div>
+    </apex:form>
+</apex:page>

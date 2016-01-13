@@ -1,0 +1,310 @@
+<apex:page sidebar="false" controller="Oblix_SOWMainDetailController" showHeader="false" standardStylesheets="true">
+
+    
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
+    <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/css/unilever-style.css')}" />
+    <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $.unblockUI();
+        });
+        function validateFormEntries(){
+        	var validationFail = false;
+        	var sowName = $("input[id$=sowName]").val();
+        	var agencyEntry = $("input[id$=agencyField]").val();
+        	var brandEntry = $("input[id$=oblixBrand]").val();
+        	var bdbb = $("input[id$=bdbb]").val();
+        	var financialYear = $("input[id$=financialYear] :selected").val();
+
+        	if(sowName.length == 0){
+                $('#SOWName').addClass('mandatory_form_info_missing');
+                validationFail = true;
+            }else{
+                $('#SOWName').removeClass('mandatory_form_info_missing');
+            }   
+            if(agencyEntry.length == 0){
+                $('#agency').addClass('mandatory_form_info_missing');
+                validationFail = true;
+            }else{
+                $('#agency').removeClass('mandatory_form_info_missing');
+            } 
+            if(brandEntry.length == 0){
+                $('#Brand').addClass('mandatory_form_info_missing');
+                validationFail = true;
+            }else{
+                $('#Brand').removeClass('mandatory_form_info_missing');
+            } 
+            if(validationFail){
+            	return false;
+            }else{
+            	checkFileSize();
+            	return true;
+            }
+        }
+    </script>
+    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
+    <apex:form id="jqueryId">
+    <div class="Oblix_header_bkgd">
+        <header class="Oblix_header_panel">
+            <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
+            <div class="header_divider_vertical"></div>
+            <div class="header_panel_text">
+                <h2>Hi {!$User.FirstName} {!$User.LastName}, Welcome to SWOP the Scope of Work Online Planner</h2>
+                <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">SOW name</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">Add new campaign</a>
+                </p>
+            </div>
+            <button type="button" class="btn btn-xs pull-right">DONE FOR TODAY? EXIT SWOP<img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/cross.png')}" width="14" height="14"></img>
+            </button>
+
+        </header>
+    </div>
+    <div class="container SOW_body">
+        <div class="row">
+            <div class="col-lg-8 col-md-8">
+                <h1 class="SOW_header_title">Create New SOW</h1>
+            </div>
+            <!--table class="SOW_header_value_summary">
+                <tr>
+                    <td class="SOW_header_value_title">Approved</td>
+                    <td class="SOW_header_value">€
+                    	<apex:outputPanel rendered="{!selected_sow.id != null}"> 
+                         <apex:outputText value="{0, number,###,###,##0}">
+                                             <apex:param value="{!ROUND(midi_sow_id_overall_total[selected_sow.id], 0)}"/>
+                         </apex:outputText>
+                     </apex:outputPanel>  
+
+                        
+                    </td>
+                </tr>
+                <tr>
+                    <td class="SOW_header_value_subtitle">Current</td>
+                    <td class="SOW_header_value_subvalue">€<apex:outputText value="{0, number,###,###,##0}">
+                                 <apex:param value="{!ROUND(selected_sow.Oblix_Current_FY_Total__c, 0)}"/>
+                         </apex:outputText></td>
+                </tr>
+            </table-->
+        </div>
+        <hr class="divider" />
+        <apex:pageMessages id="MSG"/> 
+        <div class="row" hidden="hidden">
+            <div class="col-lg-8 col-md-8 mandatory_form_info_missing mandatory_form_info_missing_message">
+                <label for="Error" class="create_SOW_form_titles">Error - Please complete the following mandatory fields below:</label>
+                <p>SOW Name</p>
+                <p>Brand</p>
+                <p>Agency</p>
+                <p>BD/BB</p>
+            </div>
+        </div>
+        <apex:actionRegion >
+	        <div class="row new_sow_form">
+	            <div class="col-lg-4 col-md-4">
+	                <!--form-->
+	                    <div class="form-group " id="SOWName">
+	                        <label for="SOWName" class="create_SOW_form_titles">SOW Name*</label>
+	                        <!--input type="text" class="form-control" id="SOWName" placeholder="" /-->
+	                        <apex:inputField value="{!selected_sow.Name}"  styleClass="form-control" required="true" id="sowName"/>
+
+	                        <!--apex:inputField value="{!selected_sow.Name}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Name.label}" styleClass="required input_init "/-->
+	                    </div>
+	                    <apex:actionRegion >
+	                    <div class="form-group " id="Brand">
+	                        <label for="SOWName" class="create_SOW_form_titles">Brand*</label>
+	                        <div class="SOW_create_display_flex">
+	                            <!--input type="text" class="form-control" id="Brand" placeholder="" /-->
+	                            <apex:inputField value="{!selected_sow.OblixBrand__c}"  required="true" id="oblixBrand">
+	                            	
+	                            		<apex:actionSupport event="onchange" action="{!getCategoryBrand}" rerender="sowNewIdWrapper"/>
+	                            </apex:inputField>
+	                            <!--a data-toggle="modal" data-target="#brandModal"><img src="{!URLFOR($Resource.swopAssets, 'swopAssets/images/magnifyingglass29.png')}" width="20" height="20" />
+	                            </a-->
+	                        </div>
+	                    </div>
+	                    <apex:outputPanel id="sowNewIdWrapper">
+		                    <div class="form-group" id="BigCategory">
+		                        <p class="create_SOW_form_titles">Big Category*</p>
+		                        <div class="SOW_create_display_flex">
+		                            <!--input type="text" class="form-control" id="BigCategory" placeholder="" /-->
+		                            <apex:inputField value="{!selected_sow.BigOblixProductCategory__c}"     />
+		                            <!--a data-toggle="modal" data-target="#BigCategoryModal"><img src="{!URLFOR($Resource.swopAssets, 'swopAssets/images/magnifyingglass29.png')}" width="20" height="20" />
+		                            </a-->
+		                        </div>
+		                    </div>
+		                    <div class="form-group" id="SmallCategory" >
+		                        <p class="create_SOW_form_titles">Small Category*</p>
+		                        <div class="SOW_create_display_flex">
+		                            <!--input type="text" class="form-control" id="SmallCategory" placeholder="" /-->
+		                            <apex:inputField value="{!selected_sow.SmallProductCategory__c}"    />
+		                            <!--a data-toggle="modal" data-target="#SmallCategoryModal"><img src="{!URLFOR($Resource.swopAssets, 'swopAssets/images/magnifyingglass29.png')}" width="20" height="20" />
+		                            </a-->
+		                        </div>
+		                    </div>
+	    				</apex:outputPanel>
+	                    </apex:actionRegion>
+	                    <div class="form-group">
+	                        <p class="create_SOW_form_titles">Financial Year*</p>
+	                        <apex:selectList size="1" value="{!selected_sow.Financial_Year__c}" html-placeholder="{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}" id="financialYear"  styleClass="Oblix_picklist">
+	                            <apex:selectOptions value="{!FYSelectOptions}"></apex:selectOptions>
+	                         </apex:selectList>
+	                    </div>
+	                <!--/form-->
+	            </div>
+	            <div class="col-lg-4 col-md-4">
+	                <!--form-->
+	                    <div class="form-group " id="agency">
+	                        <label for="Agency" class="create_SOW_form_titles">Agency*</label>
+	                        <div class="SOW_create_display_flex">
+	                            <!--input type="text" class="form-control" id="Agency" placeholder="" /-->
+	                            <apex:inputField value="{!selected_sow.Oblix_AgencyEstimate__c}" id="agencyField" styleClass="" required="true" />
+	                            <!--a data-toggle="modal" data-target="#AgencyModal"><img src="{!URLFOR($Resource.swopAssets, 'swopAssets/images/magnifyingglass29.png')}" width="20" height="20" />
+	                            </a-->
+	                        </div>
+	                    </div>
+	                    <div class="form-group " id="inlineRadioBD">
+	                        <label for="BDBB" class="create_SOW_form_titles SOW_create_display_block">BD/BB*</label>
+	                        <apex:inputField value="{!selected_sow.BB_or_BD__c}" id="bdbb" />
+	                        <!--label class="radio-inline">
+	                            <input type="radio" name="inlineRadioOptions" id="inlineRadioBD" value="option1"> BD</input>
+	                        </label>
+	                        <label class="radio-inline">
+	                            <input type="radio" name="inlineRadioOptions" id="inlineRadioBB" value="option2"> BB</input>
+	                        </label-->
+	                    </div>
+	                    <div class="form-group" id="AgencyContact" >
+	                        <p>Agency Contact&nbsp;<span class="form_bracket_text">(Optional)</span>
+	                        </p>
+	                        <div class="SOW_create_display_flex" >
+	                            <!--input type="text" class="form-control" id="AgencyContact" placeholder="" /-->
+	                            <apex:inputField value="{!selected_sow.Agency_Contact__c}" styleClass=""/>
+	                            <!--a data-toggle="modal" data-target="#AgencyContactModal"><img src="{!URLFOR($Resource.swopAssets, 'swopAssets/images/magnifyingglass29.png')}" width="20" height="20" />
+	                            </a-->
+	                        </div>
+	                    </div>
+	                    <div class="form-group" id="UnileverContact" >
+	                        <p>Unilever Contact&nbsp;<span class="form_bracket_text">(Optional)</span>
+	                        </p>
+	                        <div class="SOW_create_display_flex">
+	                            <!--input type="text" class="form-control" id="UnileverContact" placeholder="" /-->
+	                            <apex:inputField value="{!selected_sow.Unilever_Lead__c}"  styleClass=""  />
+	                            <!--a data-toggle="modal" data-target="#UnilveverContactModal"><img src="{!URLFOR($Resource.swopAssets, 'swopAssets/images/magnifyingglass29.png')}" width="20" height="20" />
+	                            </a-->
+	                        </div>
+	                    </div>
+	                    <div class="form-group" id="UnileverAttachment">
+	                    	<p>Attachment&nbsp;<span class="form_bracket_text">(Optional)</span></p>
+                            <apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file" styleclass="v3 add_attachment_input" />
+                            <apex:actionRegion >
+                                <apex:actionFunction name="removeAttachmentsBack" action="{!refreshAttachments}" reRender="attachmentContainer" />
+                            </apex:actionRegion>
+                            <apex:commandButton styleClass="btn btn-primary btn_plus btn_asset_add" action="{!softSaveCampaign}" value="ADD" onclick="return validateFormEntries();" immediate="false" />
+                            <br/>
+                            <div id="attachmentContainer">
+                                <apex:repeat value="{!liso_attachments}" var="eachAttachment">
+                                    <div class="attachment_item" id="{!eachAttachment.Id}">
+                                        <a data-attachment-id="{!eachAttachment.Id}" onclick="removeAttachments(); return false;"><label>{!eachAttachment.Name}</label>
+                                        </a>
+                                    </div>
+                                    <br/>
+                                </apex:repeat>
+                                <br/> 
+                            </div>
+                        </div>
+	                    <div class="SOW_create_buttons">
+	                        <!--button type="button" class="btn btn-primary btn-sm pull-right save_button_spacer">SAVE SOW<img src="{!URLFOR($Resource.swopAssets, 'swopAssets/images/check.png')}" width="14" height="14" />
+	                        </button-->
+	                        <apex:commandButton value="SAVE SOW"   action="{!SaveSOW}" title="{!$Label.Oblix_lbl_UIUX_Save_Sow}" onclick="return validateFormEntries();" styleClass="btn btn-primary btn-sm pull-right btn_check btn_save_sow" immediate="false"/>
+	                        <apex:commandButton value="CANCEL" action="{!cancelAction}" title="Cancel" styleClass="btn btn-sm pull-right btn_cross btn_cancel" immediate="true" html-formnovalidate="formnovalidate"/>
+	                        <!--button type="button" class="btn btn-sm pull-right btn_cancel">CANCEL<img src="{!URLFOR($Resource.swopAssets, 'swopAssets/images/cross.png')}" width="14" height="14" />
+	                        </button-->
+	                        
+	                    </div>
+	                <!--/form-->
+	            </div>
+	        </div>
+	    </apex:actionRegion>
+
+        
+    </div>
+    </apex:form>
+    <script>
+		function getIEFileSize(file) {
+		    var myFSO = new ActiveXObject("Scripting.FileSystemObject"),
+		        filepath = file.value,
+		        thefile = myFSO.getFile(filepath);
+		    return thefile.size;
+		}
+
+		function checkFileSize() {
+			console.log('Checkfilesize called');
+		    var goodSize = true;
+		    $('input[type=file]').each(function() {
+		        if (typeof this.files[0] !== 'undefined') {
+		            var file = this.files[0],
+		                size = typeof ActiveXObject !== 'undefined' ?
+		                getIEFileSize(file) :
+		                file.fileSize || file.size;
+
+		            goodSize = 25000000 > size;
+		            if (!goodSize) {
+		                alert(this.files[0].name + ' is too large - please choose a file that is 25Mb or less');
+		            } else {
+		                if (2000000 < size) {
+		                    goodSize = confirm('The file size is ' + humanFileSize(size,true) +
+		                        ' bytes - this may take some time. Are you sure you wish to continue');
+		                }
+		            }
+
+		            return goodSize;
+		        }
+		    });
+		    return goodSize;
+		}
+		function humanFileSize(bytes, si) {
+		    var thresh = si ? 1000 : 1024;
+		    if (Math.abs(bytes) < thresh) {
+		        return bytes + ' B';
+		    }
+		    var units = si ? ['kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'] : ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'];
+		    var u = -1;
+		    do {
+		        bytes /= thresh;
+		        ++u;
+		    } while (Math.abs(bytes) >= thresh && u < units.length - 1);
+		    return bytes.toFixed(1) + ' ' + units[u];
+		}
+		var removeAttachments = function (selectedAttachments){
+	        'use strict';
+	        var selectedAttachments = [];
+			$('#attachmentContainer input:checked').each(function() {
+			    selectedAttachments.push($(this).attr('data-attachment-id'));
+			});
+			console.log(selectedAttachments);
+	        if(selectedAttachments.length !== 0){
+	            //$('#dialog').dialog('close');
+	            removeService(selectedAttachments).then(function (){
+	            	console.log(selectedAttachments);
+	            	$.each(selectedAttachments, function( index, value ) {
+  						$('#' +value).remove();
+					});
+	                removeAttachmentsBack();
+	            }, function (err){
+	                console.log(err);
+	            });
+	        }
+	    }
+	    var removeService = function (selectedAttachments){
+	        'use strict';
+	        var deferred = $.Deferred();
+	        Oblix_SOWMainDetailController.removeAttachments(selectedAttachments, function (data, status){
+	            deferred.resolve({data: data, status: status});
+	        });
+			
+	        return deferred.promise();
+	    }
+	</script>
+</apex:page>
