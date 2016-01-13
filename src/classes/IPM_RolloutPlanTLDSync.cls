@@ -139,7 +139,7 @@ public with sharing class IPM_RolloutPlanTLDSync {
                 projIdProjectMap.put(project.id, project);
             }
             List<IPM_Milestone__c> updatedMilestoneList = new List<IPM_Milestone__c> {};
-            for(IPM_Milestone__c ipmMileStone :[Select Id, IPM_Due_Date__c, IPM_Planned_Date__c, IPM_Project__c from IPM_Milestone__c where IPM_Project__c =: projIdProjectMap.keyset() and IPM_Name__c = :IPM_Utils.TargetLaunchDateShiptoTrade]){
+            for(IPM_Milestone__c ipmMileStone :[Select Id, IPM_Due_Date__c, IPM_Planned_Date__c, IPM_Project__c from IPM_Milestone__c where IPM_Project__c =: projIdProjectMap.keyset() and (IPM_Name__c = :IPM_Utils.TargetLaunchDateShiptoTrade or IPM_Name__c = :IPM_ConstantUtils.SHIPTO_TRADE_TLD)]){
                 ipmMileStone.IPM_Planned_Date__c =projIdProjectMap.get(ipmMileStone.IPM_Project__c).IPM_Target_Launch_Dates__c;
                 updatedMilestoneList.add(ipmMileStone);
             }

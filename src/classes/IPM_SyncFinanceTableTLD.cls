@@ -44,63 +44,101 @@ public with sharing class IPM_SyncFinanceTableTLD {
     */
     public void syncProjectFinancialTLD( Map<ID,IPM_Project__c> updatedProjects ) {
 		financialsMap = new Map<ID,IPM_Financial__c>();
-        // filter local projects 
+        Map<ID, IPM_Project__c> operationalProjects = new Map<ID,IPM_Project__c>();
+    	Map<ID, IPM_Project__c> localProjects = new Map<ID,IPM_Project__c>();
     	Map<ID, IPM_Project__c> projects = new Map<ID, IPM_Project__c>(	
-    																	[ Select ID, Name, IPM_Target_Launch_Dates__c, IPM_Parent_Project__c,
-    																		( Select Name, Financial_External_ID__c 
-    																		  From IPM_Financials_Local__r where isActive__c=true) 
+    																	[ Select ID, Name, IPM_Project_Type__c, IPMProject_Span__c, IPM_Target_Launch_Dates__c, IPM_Parent_Project__c,
+    																		 ( Select Name, Financial_External_ID__c 
+    																		   From IPM_Financials_Consolidated__r where isActive__c=true ),
+    																		 ( Select Name, Financial_External_ID__c 
+    																		   From IPM_Financials_Regional__r where isActive__c=true ),
+    																		 ( Select Name, Financial_External_ID__c 
+    																		   From IPM_Financials_Local__r where isActive__c=true) 
     																	  From IPM_Project__c 
-    																	  where id in: updatedProjects.keySet() and IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_LOCAL ]);
-	
-    	// collect projects which has associated financial records
-    	Set<ID> projectIdsContainsFinancials = new Set<ID>();
-    	Set<ID> projectIdsNotContainsFinancials = new Set<ID>();
-    	Set<ID> parentProjectIds = new Set<ID>();
-    	for(IPM_Project__c project: projects.values()) {
-    		if(!project.IPM_Financials_Local__r.isEmpty()) {
-    			projectIdsContainsFinancials.add(project.id);
-    		} else if(project.IPM_Parent_Project__c!=null) {
-    			parentProjectIds.add(project.IPM_Parent_Project__c);
-    			projectIdsNotContainsFinancials.add(project.id);
-    		}
-    	}
-    	if(!projectIdsContainsFinancials.isEmpty()) {
-    		for(ID projId: projectIdsContainsFinancials){
-    			IPM_Project__c project = projects.get(projId);
-    			for(IPM_Financial__c ipmFinancial:project.IPM_Financials_Local__r) {
-    				if(ipmFinancial.Financial_External_ID__c==project.name) {
-    					ipmFinancial.Target_Launch_Date__c = project.IPM_Target_Launch_Dates__c;
-				        financialsMap.put(ipmFinancial.id, ipmFinancial);
-    				}
+    																	  where id in: updatedProjects.keySet()]);
+        
+        for(IPM_Project__c updatedProject: projects.values() ) {
+        	if(updatedProject.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {
+        		// filter operational projects 
+				operationalProjects.put(updatedProject.id, updatedProject);
+        	} else if(updatedProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+        		// filter local projects 
+				localProjects.put(updatedProject.id, updatedProject);
+        	}
+        }
+
+		if(!operationalProjects.isEmpty()) {
+    		for(IPM_Project__c operationalProject: operationalProjects.values()){
+    			if(operationalProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) {
+         			for(IPM_Financial__c ipmFinancial:operationalProject.IPM_Financials_Consolidated__r) {
+    					ipmFinancial.Target_Launch_Date__c = operationalProject.IPM_Target_Launch_Dates__c;
+    			        financialsMap.put(ipmFinancial.id, ipmFinancial);
+        			}
+    			} else if(operationalProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
+        			for(IPM_Financial__c ipmFinancial:operationalProject.IPM_Financials_Regional__r) {
+    					ipmFinancial.Target_Launch_Date__c = operationalProject.IPM_Target_Launch_Dates__c;
+    			        financialsMap.put(ipmFinancial.id, ipmFinancial);
+        			}
+    			} else if(operationalProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+        			for(IPM_Financial__c ipmFinancial:operationalProject.IPM_Financials_Local__r) {
+    					ipmFinancial.Target_Launch_Date__c = operationalProject.IPM_Target_Launch_Dates__c;
+    			        financialsMap.put(ipmFinancial.id, ipmFinancial);
+        			}
     			}
     		}
-    	}
-    	if(!parentProjectIds.isEmpty()) {
-    		
-        // filter local projects 
-    		Map<ID, IPM_Project__c> parentProjects = new Map<ID, IPM_Project__c>(	
-		    																	[ Select ID, Name,
-		    																		( Select Name, IPM_Target_Launch_Dates__c 
-		    																		  From IPM_Projects__r ),
-		    																		( Select Name, Financial_External_ID__c 
-		    																		  From IPM_Financials_Regional__r  where isActive__c=true) 
-		    																	  From IPM_Project__c 
-		    																	  where id in: parentProjectIds and IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL ]);
-    		
-    		for(IPM_Project__c parentProj: parentProjects.values()){
-    			for(IPM_Financial__c ipmFinancial:parentProj.IPM_Financials_Regional__r) {
-    				if( ipmFinancial.Financial_External_ID__c==(parentProj.name+'_CONSOLIDATED') || ipmFinancial.Financial_External_ID__c==(parentProj.name+'_NONKEY') ) {
-    					
-    					for(IPM_Project__c proj:parentProj.IPM_Projects__r) {
-    						if(projectIdsNotContainsFinancials.contains(proj.id)) {
-		     					ipmFinancial.Target_Launch_Date__c = proj.IPM_Target_Launch_Dates__c;
-						      	financialsMap.put(ipmFinancial.id, ipmFinancial);
-    						}
-    					}
-    				}
-    			}
-    		}
-    	}
+		}
+		
+		if(!localProjects.isEmpty()) {
+	    	// collect projects which has associated financial records
+	    	Set<ID> projectIdsContainsFinancials = new Set<ID>();
+	    	Set<ID> projectIdsNotContainsFinancials = new Set<ID>();
+	    	Set<ID> parentProjectIds = new Set<ID>();
+	    	for(IPM_Project__c project: localProjects.values()) {
+	    		if(!project.IPM_Financials_Local__r.isEmpty()) {
+	    			projectIdsContainsFinancials.add(project.id);
+	    		} else if(project.IPM_Parent_Project__c!=null) {
+	    			parentProjectIds.add(project.IPM_Parent_Project__c);
+	    			projectIdsNotContainsFinancials.add(project.id);
+	    		}
+	    	}
+	    	if(!projectIdsContainsFinancials.isEmpty()) {
+	    		for(ID projId: projectIdsContainsFinancials){
+	    			IPM_Project__c project = localProjects.get(projId);
+	    			for(IPM_Financial__c ipmFinancial:project.IPM_Financials_Local__r) {
+	    				if(ipmFinancial.Financial_External_ID__c==project.name) {
+	    					ipmFinancial.Target_Launch_Date__c = project.IPM_Target_Launch_Dates__c;
+					        financialsMap.put(ipmFinancial.id, ipmFinancial);
+	    				}
+	    			}
+	    		}
+	    	}
+	    	if(!parentProjectIds.isEmpty()) {
+	    		
+	        // filter local projects 
+	    		Map<ID, IPM_Project__c> parentProjects = new Map<ID, IPM_Project__c>(	
+			    																	[ Select ID, Name,
+			    																		( Select Name, IPM_Target_Launch_Dates__c 
+			    																		  From IPM_Projects__r ),
+			    																		( Select Name, Financial_External_ID__c 
+			    																		  From IPM_Financials_Regional__r  where isActive__c=true) 
+			    																	  From IPM_Project__c 
+			    																	  where id in: parentProjectIds and IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL ]);
+	    		
+	    		for(IPM_Project__c parentProj: parentProjects.values()){
+	    			for(IPM_Financial__c ipmFinancial:parentProj.IPM_Financials_Regional__r) {
+	    				if( ipmFinancial.Financial_External_ID__c==(parentProj.name+'_CONSOLIDATED') || ipmFinancial.Financial_External_ID__c==(parentProj.name+'_NONKEY') ) {
+	    					
+	    					for(IPM_Project__c proj:parentProj.IPM_Projects__r) {
+	    						if(projectIdsNotContainsFinancials.contains(proj.id)) {
+			     					ipmFinancial.Target_Launch_Date__c = proj.IPM_Target_Launch_Dates__c;
+							      	financialsMap.put(ipmFinancial.id, ipmFinancial);
+	    						}
+	    					}
+	    				}
+	    			}
+	    		}
+	    	}
+		}
     	updateFinancialTables();
     }
     /*

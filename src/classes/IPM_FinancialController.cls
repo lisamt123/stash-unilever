@@ -112,7 +112,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             Date tld = null;
             String dateStr = '';
             if(project != null){
-                if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+            	if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {
+            		tld = currentFinancial.Target_Launch_Date__c;
+            	} else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
                     tld = project.IPM_Target_Launch_Dates__c;
                 } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
                     if(currentFinancial != null){
