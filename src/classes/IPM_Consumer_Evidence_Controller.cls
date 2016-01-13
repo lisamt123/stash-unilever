@@ -78,11 +78,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
                 }                                
             }
         }
-        catch(QueryException ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CONSUMER_EVIDENCE_CONTROLLER_STR,
-                    IPM_ConstantUtils.CREATECONCEPT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
-        }
+       
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CONSUMER_EVIDENCE_CONTROLLER_STR,
@@ -136,11 +132,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
             }
             showCountryList();   
         }
-        catch(DMLException ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CONSUMER_EVIDENCE_CONTROLLER_STR,
-                    IPM_ConstantUtils.CREATECONCEPT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
-        }
+       
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CONSUMER_EVIDENCE_CONTROLLER_STR,
@@ -166,11 +158,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
                 update pdsc;
             }
         }
-        catch(DMLException ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CONSUMER_EVIDENCE_CONTROLLER_STR,
-                    IPM_ConstantUtils.SAVECONCEPT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
-        }
+       
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CONSUMER_EVIDENCE_CONTROLLER_STR,
@@ -211,11 +199,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
             }
             showCountryList();
         }
-        catch(DMLException ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CONSUMER_EVIDENCE_CONTROLLER_STR,
-                    IPM_ConstantUtils.DELETECOUNTRY_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
-        }
+       
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CONSUMER_EVIDENCE_CONTROLLER_STR,
@@ -250,11 +234,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
             }
             showCountryList();
         }
-        catch(DMLException ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CONSUMER_EVIDENCE_CONTROLLER_STR,
-                    IPM_ConstantUtils.ADDCONCEPT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
-        }
+        
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CONSUMER_EVIDENCE_CONTROLLER_STR,
@@ -283,10 +263,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
             }
             showCountryList();
         }
-        catch(DMLException ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CONSUMER_EVIDENCE_CONTROLLER_STR,
-                    IPM_ConstantUtils.DELETE_IMAGE_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
-        }
+       
         catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CONSUMER_EVIDENCE_CONTROLLER_STR,
