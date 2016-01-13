@@ -144,7 +144,8 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
     public boolean bShowChangeStatusButton{get;set;}//variable to show Change Status button
     public boolean bPhaseChangeInProgress{get;set;}//variable to check if phase change is in progress or not
     public string earliestTLD=null;//DEF3195 Mukul to review
-
+    public String projectPriority{get;set;}//varibale to show project priority for local rollout projects
+    
     //SD constructor
     public IPM_ProjectOverviewCtrl(IPM_ProjDocumentSectionHstryController controller) {
        
@@ -153,6 +154,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         alertscount=0;
         taskId = BLANK_STR;
         betInformationMessage = BLANK_STR;
+        projectPriority = null;
         betOwner = new User();
         allIncompleteTasks = 0;
         IsUpdateStatus=false;
@@ -355,13 +357,18 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         From Project_Documents__r limit 10000),
         (SELECT IPM_Phase__c,IPM_Project__c, IPM_Type_of_gate__c,IPM_Due_Date__c,IPM_Type_of_Milestone__c FROM IPM_Milestones__r limit 10000)
         ,(SELECT Global_External_Id__c ,Year_3_iTO_Global__c,Business_Impact_Global__c,Business_Impact_Regional__c, Regional_External_Id__c FROM IPM_Financials_Consolidated__r WHERE (Global_External_Id__c=:lstofuser[0].Name) limit 10000)
-
+        ,(SELECT ipm_cpp_local__c from IPM_Financials_Local__r where Financial_External_ID__c =: lstofuser[0].name limit 1)
         ,(SELECT Id,IPM_Target_Launch_Dates__c,IPM_Project_Name__c,Rollout_Plan_Target_Launch_Date__c,IPM_Temporary_Phase__c  from IPM_Projects__r),
         (SELECT Id, IPM_Project__c,IPM_Project_Role_Owner__c,IPM_User__c,IPM_Role_Type__c FROM IPM_Project_Resources__r 
 
                              limit 10000)
                              FROM IPM_Project__c 
                              WHERE Id =:projectId];
+                            
+         if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && project.IPMProject_Span__c == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL )
+            projectPriority = project.IPM_Financials_Local__r[0].ipm_cpp_local__c;
+
+
          projResCompleteList = project.IPM_Project_Resources__r;
          for(IPM_Project_Resource__c res : projResCompleteList){
             if(res.IPM_User__c == UserInfo.getUserId()){

@@ -304,6 +304,18 @@
                             <div class="greyborder"></div>
                             </apex:outputpanel>
                             
+                            <apex:outputpanel rendered="{!projectPriority != null}">
+                                <div class="row">
+                                    <div class="col-sm-8 pr0">
+                                        <div class="keycontent">{!$Label.IPM_ProjectPriority}</div>
+                                    </div>
+                                    <div class="col-sm-3 pl0">
+                                        {!projectPriority}
+                                    </div>
+                                </div>
+                                <div class="greyborder"></div>
+                            </apex:outputpanel>
+
                             <div class="row mt20">
                                 <div class="col-sm-2">                        
                                     <img class="cirimg" alt="Project Leader" src="{!project.IPM_Project_Leader__r.SmallPhotoUrl}"/>

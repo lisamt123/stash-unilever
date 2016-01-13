@@ -10181,6 +10181,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>You are ready to move to {0} phase.Please go back if you need to edit any {1} data or proceed with Move to {0}.</value>
     </labels>
     <labels>
+        <fullName>IPM_ProjectPriority</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ProjectPriority</shortDescription>
+        <value>Project Priority</value>
+    </labels>
+    <labels>
         <fullName>IPM_ProjectRoute</fullName>
         <language>en_US</language>
         <protected>false</protected>
