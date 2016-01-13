@@ -213,10 +213,15 @@ public with sharing class IPM_GateCMIController{
     public void getSectionCMIList(){
         try{
             Set<String> restrictCountry=new Set<String>();  
-            resList=new List<IPM_Project_Document_Section_Content__c>();       
-            cmiList=[SELECT Id,Gate__c,IPM_CMI_Overall_Colour_Score_Method__c,Element__c,Test__c,KPI__c,Input__c,Results__c,Country__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
-                     FROM IPM_Gate_CMI__c 
-                     WHERE IPM_Project__c=:projectId];   
+            resList=new List<IPM_Project_Document_Section_Content__c>();   
+            string Query='SELECT Id,IPM_CMI_Added_At__c,Gate__c,IPM_CMI_Overall_Colour_Score_Method__c,Element__c,Test__c,KPI__c,Input__c,Results__c,Country__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c FROM IPM_Gate_CMI__c WHERE IPM_Project__c=:projectId';    
+            if(gateType=='Charter'){
+                Query=Query+' AND IPM_CMI_Added_At__c=\'Charter\'';
+            }
+            else if(gateType=='Contract'){
+                Query=Query+' AND (IPM_CMI_Added_At__c=\'Charter\' OR IPM_CMI_Added_At__c=\'Contract\')';
+            }
+            cmiList=Database.Query(Query);
             sectionList=[SELECT Id,IPM_CMI_Overall_Colour_Achieved__c,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Color_Score_Achieved__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Score_Label__c,IPM_CMI_Free_Text__c,IPM_CMI_Overall_Comments__c,IPM_CMI_Is_Free_Text__c,IPM_CMI_Result_Timing__c,IPM_CMI_Country__c,IPM_Gate_CMI__c,IPM_CMI_Input__c,IPM_CMI_Comments__c,IPM_CMI_Result__c,
                                 IPM_Project_Document_Section__c,IPM_CMI_Outcome_Color_Achieved__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Outcome_Color__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
                          FROM IPM_Project_Document_Section_Content__c 
@@ -371,6 +376,7 @@ public with sharing class IPM_GateCMIController{
             gateCMI.gate__c=testValues[0];
             gateCMI.Element__c=testValues[1];
             gateCMI.Test__c=testValues[2];
+            gateCMI.IPM_CMI_Added_At__c=gateType;
             if(testKPIMap.get(gateCMI.Test__c)!=null){
                 gateCMI.KPI__c = testKPIMap.get(gateCMI.Test__c).IPM_KPI__c;
                 gateCMI.IPM_CMI_Overall_Colour_Score_Method__c= testKPIMap.get(gateCMI.Test__c).IPM_Overall_Colour_Score_Method__c;
@@ -415,7 +421,7 @@ public with sharing class IPM_GateCMIController{
         //countryNameList=countryName.replaceAll( '\\s+', '').split(','); //Contains Selected Countries
         countryNameList=countryName.split(',');
         //Getting Gate CMI      
-        gateCMI=[SELECT id,Gate__c,Country__c,Element__c,Test__c,KPI__c,Input__c,Results__c,IPM_CMI_Overall_Colour_Score_Method__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
+        gateCMI=[SELECT id,IPM_CMI_Added_At__c,Gate__c,Country__c,Element__c,Test__c,KPI__c,Input__c,Results__c,IPM_CMI_Overall_Colour_Score_Method__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
                  FROM IPM_Gate_CMI__c 
                  WHERE Id=:gateCMIId];    
                  
@@ -614,7 +620,7 @@ public with sharing class IPM_GateCMIController{
             List<IPM_Project_Document_Section_Content__c> delContent=new List<IPM_Project_Document_Section_Content__c>();
             gateCMI=new IPM_Gate_CMI__c();
             if(!String.isBlank(gateCMIId)){
-                gateCMI=[SELECT Id,Gate__c,Element__c,Test__c,IPM_CMI_Overall_Colour_Score_Method__c FROM IPM_Gate_CMI__c WHERE Id=:gateCMIId];
+                gateCMI=[SELECT Id,IPM_CMI_Added_At__c,Gate__c,Element__c,Test__c,IPM_CMI_Overall_Colour_Score_Method__c FROM IPM_Gate_CMI__c WHERE Id=:gateCMIId];
                 delContent=[SELECT Id FROM IPM_Project_Document_Section_Content__c WHERE IPM_Gate_CMI__c=:gateCMIId];
                 if(delContent!=null && !delContent.isEmpty()){
                     delete delContent;
@@ -659,7 +665,7 @@ public with sharing class IPM_GateCMIController{
             Integer countryCount;
             countrydelList=[SELECT Id FROM IPM_Project_Document_Section_Content__c
                             WHERE IPM_Gate_CMI__c=:gateCMIId AND IPM_CMI_Country__c=:countryNameStr LIMIT 1000];
-            gateCMI=[SELECT Id,Country__c FROM IPM_Gate_CMI__c WHERE Id=:gateCMIId LIMIT 1];                
+            gateCMI=[SELECT Id,Country__c,IPM_CMI_Added_At__c FROM IPM_Gate_CMI__c WHERE Id=:gateCMIId LIMIT 1];                
             if(countrydelList!=null && !countrydelList.isEmpty()){
                 delete countrydelList; 
                 

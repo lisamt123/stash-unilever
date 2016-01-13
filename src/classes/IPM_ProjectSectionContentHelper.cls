@@ -421,6 +421,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                                    gateCMI.IPM_Skip_Test__c=sourceCMIGate.IPM_Skip_Test__c;
                                    gateCMI.IPM_Skip_Test_Reason__c=sourceCMIGate.IPM_Skip_Test_Reason__c;
                                    gateCMI.Country__c = regionalCountryList;
+                                   gateCMI.IPM_CMI_Added_At__c=sourceCMIGate.IPM_CMI_Added_At__c;
                                    insertedCMIGateList.add(gateCMI);
                                }
                            }     

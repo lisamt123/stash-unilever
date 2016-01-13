@@ -165,6 +165,29 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_CMI_Added_At__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM CMI Added At</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Charter</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Contract</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Market Ready</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>IPM_CMI_Overall_Colour_Score_Method__c</fullName>
         <externalId>false</externalId>
         <label>IPM CMI Overall Colour Score Method</label>
