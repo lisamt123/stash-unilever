@@ -253,9 +253,7 @@
                                     <div class="keycontent">{!$Label.IPM_TARGET_LAUNCH_DATE}</div>
                                 </div>
                                 <div class="col-sm-3 pl0">
-
-                                   <div class="dueDate"><apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" /></div> 
-                                    {!EarlTLD}
+                                    <div class="dueDate"><apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" /></div>
                                 </div>
                             </div>
                             <div class="greyborder"></div>
