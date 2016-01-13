@@ -448,13 +448,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     showValidation=false;
                     rolloutCountryPLFilledError=true;
                 }
-                if(fin.Year_3_iTO_Regional__c==0.00 && project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS)
-                {
-                    showValidation=false;
-                    financialError=true;
-                }
-                
-                if(fin.Year_3_iTO_Global__c==0.00 && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)
+                if(fin.Year_3_iTO_Regional__c==0.00)
                 {
                     showValidation=false;
                     financialError=true;
@@ -519,14 +513,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                             update projSectionList;
                         }
                     }
-                    catch (DmlException ex)
-                    {
-                        
-                        Database.rollback(updateSavePoint);
-                        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
-                                SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
-                            
-                    }
                     catch (Exception ex)
                     {
                         Database.rollback(updateSavePoint);
@@ -564,13 +550,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 try
                 {               
                     update project;
-                }
-                catch (DmlException ex)
-                {    
-                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));                  
-                        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
-                        SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
-                        
                 }
                 catch (Exception ex)
                 {
@@ -664,14 +643,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     showPostpone = true;    
                 }
             } 
-            catch (DmlException ex)
-            {
-                Database.Rollback(sp);
-                showErrorMsg = Label.IPM_Generic_ErrorMessage;
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
-                SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
-             
-            }
             catch (Exception ex)
             {
                 Database.Rollback(sp);
@@ -694,13 +665,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
                 project.IPM_Document_Update_Date__c = Date.today();  
                 update project;
-            }
-            catch (DmlException ex)
-            {   
-              ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
-                SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-
             }
             catch (Exception ex)
             {  
@@ -796,13 +760,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 }
                     
                 update project; 
-            }
-            catch (DmlException ex)
-            {
-                Database.Rollback(sp);
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
-                SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-
             }
             catch (Exception ex)
             {
