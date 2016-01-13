@@ -3,6 +3,16 @@
     <customSettingsType>List</customSettingsType>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>FinancialCopyOverPrefix__c</fullName>
+        <externalId>false</externalId>
+        <label>FinancialCopyOverPrefix</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_CompanyCard__c</fullName>
         <externalId>false</externalId>
         <label>Associated Company Card</label>

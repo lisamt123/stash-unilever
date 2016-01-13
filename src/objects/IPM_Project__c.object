@@ -2279,7 +2279,7 @@ OwnerId))</formula>
         <defaultValue>false</defaultValue>
         <description>TO indicate if the IPM NG Project Is Archieved</description>
         <externalId>false</externalId>
-        <label>Is Archieved</label>
+        <label>Is Archived</label>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
