@@ -536,7 +536,7 @@
                                                             </apex:outputPanel>                   
                                                             <div class="row">
                                                                 <apex:outputPanel rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c='Risk',true,false)}">
-                                                                    <c:IPM_Risk_Questionnaire getProjectId="{!projectId}" getProjectSectionId="{!projDocSecId}" riskedit="{!IsEditableSumm}" editSection="true" gateType="{!projDoc.IPM_GateDocuments__c}"></c:IPM_Risk_Questionnaire>
+                                                                    <c:IPM_Risk_Questionnaire getProjectId="{!if(AND(project.IPMProject_Span__c=='Local',project.IPM_Project_Type__c=='Rollout'),project.IPM_Parent_Project__c,projectId)}" getProjectSectionId="{!projDocSecId}" riskedit="{!IsEditableSumm}" editSection="true" gateType="{!projDoc.IPM_GateDocuments__c}"></c:IPM_Risk_Questionnaire>
                                                                 </apex:outputPanel>
                                                                 <c:IPM_Section_GateChecklist getDocType="{!projDoc.IPM_GateDocuments__c}" getSecid="{!projDocSecId}" editGateSect="{!IsEditableSumm}"></c:IPM_Section_GateChecklist>
                                                             </div>
