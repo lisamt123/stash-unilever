@@ -1552,10 +1552,10 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 {
                         removedRolloutCountryMap.put(ipmCountry.Id,ipmCountry);
                         deleteCountriesMap.put(ipmCountry.Project_Country__c,ipmCountry);
-                    } 
-                }
+                } 
+            }
                 
-            } 
+          
                        
             Set<Id> completeRolloutCountrySet = completeRolloutCountryMap.keySet();
             Set<Id> removedRolloutCountrySet = removedRolloutCountryMap.keySet();
