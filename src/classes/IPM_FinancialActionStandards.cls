@@ -199,11 +199,8 @@ public with sharing class IPM_FinancialActionStandards {
                     && (printDoc != IPM_ConstantUtils.CHARTER_GATE)){
     
                 lstGateNames.add(IPM_ConstantUtils.CONTRACT_GATE);
-                if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+                if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY){
                     processWrapperListGateValues(fieldSuffix);
-                }
-                else if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY) {
-                    processWrapperListGateValues(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL);
                 }
                 else {
                     processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_CONTRACT);
@@ -217,11 +214,8 @@ public with sharing class IPM_FinancialActionStandards {
                     && (printDoc != IPM_ConstantUtils.CONTRACT_GATE)){
     
                 lstGateNames.add(IPM_ConstantUtils.MARKET_READY_GATE);
-                if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+                if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY){
                     processWrapperListGateValues(fieldSuffix);
-                }
-                else if (project.IPM_Phase__c == IPM_ConstantUtils.PHASE_CAPABILITY) {
-                    processWrapperListGateValues(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL); 
                 }
                 else {
                     processWrapperListGateValues(IPM_ConstantUtils.FIELD_SUFFIX_MARKET_READY);
