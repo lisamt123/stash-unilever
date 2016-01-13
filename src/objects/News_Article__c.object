@@ -1161,6 +1161,12 @@
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
         <columns>UPDATEDBY_USER</columns>
+        <columns>Image_URL__c</columns>
+        <columns>Like_GA_URL__c</columns>
+        <columns>News_Article_Topics__c</columns>
+        <columns>News_Body__c</columns>
+        <columns>News_Publish_Date__c</columns>
+        <columns>Related_Links__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Site_Name__c</field>
