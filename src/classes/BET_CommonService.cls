@@ -304,5 +304,15 @@ public static boolean hasPermissionSet(String permSetName){
         }
         return !bets.isEmpty();
     }
+
+    /************************************************************
+        Purpose: Method gets owner of a given Bet
+        Parameters: Id betId
+        Returns: Id ownerId
+        Throws: -
+    *************************************************************/
+    public static Id getOwnerIdOfGivenBet(Id betId){
+        return [select ownerid from uw_BET__c where id =: betId].ownerid;
+    }
     
 }

@@ -9,6 +9,7 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
+	-webkit-appearance: none;
 }
 
 .betBtnGray {
@@ -22,6 +23,7 @@
     -webkit-border-radius: 0px;
     -moz-border-radius: 0px;
     border-radius: 0px;
+	-webkit-appearance: none;
 }
 
 body .btn {
@@ -38,10 +40,12 @@ body .btn {
 
 body .btn.btn-pink {
   	background: #BE236D none repeat scroll 0 0;
+	-webkit-appearance: none;
 }
 
 body .btn.btn-gray {
   	background: #666a6b none repeat scroll 0 0;
+	-webkit-appearance: none;
 }
 
 body .btn.btn-small-pink {
@@ -49,6 +53,7 @@ body .btn.btn-small-pink {
     font-size: 13px;
     font-weight: normal;
     padding: 0px 0px;
+	-webkit-appearance: none;
 }
 
 body .btn.btn-small-gray {
@@ -56,4 +61,5 @@ body .btn.btn-small-gray {
     font-size: 13px;
     font-weight: normal;
     padding: 0px 0px;
+	-webkit-appearance: none;
 }

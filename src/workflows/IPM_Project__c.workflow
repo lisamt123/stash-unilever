@@ -118,17 +118,6 @@
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/IPM_FailurePhaseChangeTemplate</template>
     </alerts>
-    <alerts>
-        <fullName>IPM_Send_Success_Phase_Change_Notification</fullName>
-        <description>Send Success Phase Change Notification</description>
-        <protected>false</protected>
-        <recipients>
-            <field>IPM_Project_Leader__c</field>
-            <type>userLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>IPM_Emails/IPM_Successful_Phase_Change_Template</template>
-    </alerts>
     <fieldUpdates>
         <fullName>Bosscard_Status</fullName>
         <field>IPM_Bosscard_Status__c</field>
