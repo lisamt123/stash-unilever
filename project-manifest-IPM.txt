@@ -1809,3 +1809,4 @@ src/workflows/uw_Inoplan_Project__c.workflow
 src/workflows/uw_Links__c.workflow
 src/workflows/uw_SSO_Settings__c.workflow
 src/workflows/uw_Terms_Conditions__c.workflow
+src/objects/cec_Alert_Action__c.object
