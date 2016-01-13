@@ -393,6 +393,10 @@
         <members>Oblix_jquerydataTablescolumnFilter</members>
         <members>Oblix_uiTabsArrow</members>
         <members>Oblix_viewProjectJS</members>
+        <members>Oblix_SwopAssets</members>
+        <members>Oblix_SowMainCss</members>
+        <members>Oblix_bgPattern</members>
+        <members>Oblix_bgPattern_2</members>
         <members>bootstrapSF1</members>
         <members>reportDocumentTypeIcons</members>
         <name>StaticResource</name>

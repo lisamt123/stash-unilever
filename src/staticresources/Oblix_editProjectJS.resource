@@ -374,7 +374,7 @@
 								//setAgencyHubOnComplete();
 								$( this ).dialog( "close");
 							    // btn.addClass( "chekedBtn" );
-								
+								 
 							}
 						}
 					},                                       
@@ -390,11 +390,13 @@
         $(function() {
             $( "#dialog-confirm" ).dialog({
                 resizable: false,
+				width:400,
                 modal: true,
                 buttons: {
                     "Set as Global": function() {
                         blockme();
                         setAsGlobal();
+			$('#Gselected').show();
                         $( this ).dialog( "close" );
 						$( "#dialogCountries" ).dialog( "close" );
                     },
@@ -501,26 +503,32 @@
 					  options = key.split('_');
 					}
 				  })
-					firstOption = options[0];
-				  secondOption = options[1];				  
+			      firstOption = options[0];
+				  secondOption = options[1];
+                  console.dir('### firstOption :'+firstOption);				  
 				  $('.Oblix_recordType').find('.Oblix_recordTypeth').each(function (index, el) {
 					if($(el).text().search(firstOption) !== -1 ){
 					  firstElement = $(el);
+					  console.dir('### first element :'+firstElement.html());
 					  var secondSearchArray = firstElement.first().next().find('span > div[id*="_tabs"]').children('ul');
+					  console.dir('### secondSearchArray :'+secondSearchArray);
 					  secondSearchArray.find('a').each(function (index, el) {
 						  if($(el).text().search(secondOption) !== -1){
 							secondElement = $(el);
+							console.dir('### secondElement :'+secondElement.html());
 							var curentIndex = index + 1;
 							var selector1 = 'div[id*="_tabs-' + curentIndex + '"]';
 							var selector2 = 'a[href*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
+							
 							thirdElement = secondSearchArray.siblings(selector1).find('ul').find(selector2);
+							console.dir('### thirdElement :'+thirdElement.html());
 							selectorDetailPanel = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
 						  }
 					  });
 					}
 				  });
 				  var detailPanel = thirdElement.closest('ul').siblings(selectorDetailPanel).find('tbody');
-				  
+				      console.dir('### detailPanel :'+detailPanel.html());
 					  detailPanel.find('tr').first().find('span select').val(data.data.assetName);
 					  detailPanel.find('tr').first().next().find('input').val(data.data.location);
 					  detailPanel.find('tr').first().next().next().find('input[type="text"]').val(data.data.quantity);

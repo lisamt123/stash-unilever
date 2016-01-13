@@ -156,16 +156,16 @@
         }
          .Oblix_table{
                 display:block;
-                padding: 9.5px;
-                margin: 0 58px 23px;
+                /*padding: 9.5px;
+                margin: 0 58px 23px;*/
                 font-size: 13px;
                 line-height: 1.42857143;
                 word-break: normal;
                 word-wrap: break-word;
-                background-color: #fff;
+                /*background-color: #fff;
                 border: 2px solid;
                 border-color: rgba(107,165,57,0.5);
-                border-radius: 15px;
+                border-radius: 15px;*/
         }
   
         /**** Button CSS ****/
