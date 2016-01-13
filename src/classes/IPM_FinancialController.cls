@@ -74,6 +74,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public String currentTargetLaunchDate {get;set;}
     public String previousTargetLaunchDate {get;set;}     
     public String milestoneFinanceDataValidationMessage {get;set;}
+    public boolean isITOgrtGTO{get; set;} //DEF2315
     //variable to capture financial type
     public Boolean isConsolidatedOrNonkey {
         get {
@@ -194,6 +195,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isConsolidatedOrNonkey=false;
         globalCharter = false;
         showKeyFinancial = false;
+        isITOgrtGTO = false; 
         
         validationErrorMessage = IPM_ConstantUtils.BLANK;
         localrollout = new IPM_Project_Rollout__c(); 
@@ -1544,6 +1546,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             isy0ProfitInvalid = false;
             isy0GrossProfitInvalid = false;
             isValidationFailed = false;
+            isITOgrtGTO = false;
             isCalendarValidationFailed = validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
             isInnovationValidationFailed = validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
             if(isCalendarValidationFailed || isInnovationValidationFailed){
@@ -2069,6 +2072,8 @@ private Date getProjectMilestoneDate(){
                 //Validate Turnover values.
         //isValidationFailed=false;
         Boolean isValidWrapperFailed=false;
+        isITOgrtGTO = false;
+        
         for(IPM_FinancialValueWrapper valueWrapperGross: lstGrossPLTurnover){
             for(IPM_FinancialValueWrapper valueWrapperIncremental: lstIncrementalPLTurnover){
                valueWrapperGross.isValueInvalid = false;
@@ -2076,7 +2081,7 @@ private Date getProjectMilestoneDate(){
             
                if(valueWrapperGross.index==valueWrapperIncremental.index && valueWrapperGross.Value<valueWrapperIncremental.Value){
                                isValidWrapperFailed=true;
-                             
+                               isITOgrtGTO = true; 
      
                                     }
                  if(isValidWrapperFailed){
@@ -2096,6 +2101,7 @@ private Date getProjectMilestoneDate(){
                 //Validate Turnover values.
         //isValidationFailed=false;
         Boolean isValidWrapperFailed=false;
+        isITOgrtGTO = false;
         
         for(IPM_FinancialValueWrapper valueWrapperGross: lstGrossPLTurnover){
             for(IPM_FinancialValueWrapper valueWrapperIncremental: lstIncrementalPLTurnover){
@@ -2104,7 +2110,7 @@ private Date getProjectMilestoneDate(){
               
                if(valueWrapperGross.index==valueWrapperIncremental.index && valueWrapperGross.Value<valueWrapperIncremental.Value){
                        isValidWrapperFailed=true;
-                        
+                       isITOgrtGTO = true; 
                      }
                
                  if(isValidWrapperFailed){

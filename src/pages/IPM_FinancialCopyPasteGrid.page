@@ -53,7 +53,7 @@
                            </div>    
                             <apex:commandButton value="{!$Label.IPM_FinancialGrid_goBack}" action="{!goBack}"  id="bckbtn"  styleclass="ipmButton green"  /> 
                             <button onclick="clearAll();"  id="Clrbtn" class="ipmButton green" >{!$Label.IPM_FinancialGrid_Clear}</button> 
-                             
+                            <button onclick="openWin();"  id="Upbtn" class="ipmButton green" >{!$Label.IPM_FinancialGrid_Upload}</button> 
                             <div class="gridInfo">
                                 <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG2}" rendered="{!flag}" />
                                 <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG1}" />
@@ -78,7 +78,7 @@
 </table>
 </apex:outputPanel>   
 <script> 
-    var IPMAppFin = {BI: '{!BI}', projectId:'{!projectId}',projectType: '{!projectType}' ,Sustainability:'{!Sustainability}', FinancialGrid_MSG3:'{!$Label.IPM_FinancialGrid_MSG3}', FinancialGrid_MSG4:'{!$Label.IPM_FinancialGrid_MSG4}', IPM_AandP: '{!$Label.IPM_AandP}', IPM_AdvertisingCP: '{!$Label.IPM_AdvertisingCP}',IPM_ITOCalValidation:'{!$Label.IPM_ITOCalValidation}',IPM_GMCP:'{!$Label.IPM_GMCP}',IPM_GrossProfitCP:'{!$Label.IPM_GrossProfitCP}',IPM_ITOValidation: '{!$Label.IPM_ITOValidation}',IPM_PBOPCP: '{!$Label.IPM_PBOPCP}', IPM_PBOCP: '{!$Label.IPM_PBOCP}', IPM_TurnOverCP: '{!$Label.IPM_TurnOverCP}', GetFinancialYearRA:'{!$RemoteAction.IPM_FinancialCopyPasteGrid.GetFinancialYear}', span:'{!span}', UploadBusinessCase:'{!URLFOR($Page.IPM_UploadBusinessCase)}'};
+    var IPMAppFin = {BI: '{!BI}', projectId:'{!projectId}',projectType: '{!projectType}' ,Sustainability:'{!Sustainability}',IPM_CopyPastevolumevalid: '{!$Label.IPM_CopyPastevolumevalid}', FinancialGrid_MSG3:'{!$Label.IPM_FinancialGrid_MSG3}', FinancialGrid_MSG4:'{!$Label.IPM_FinancialGrid_MSG4}', IPM_AandP: '{!$Label.IPM_AandP}', IPM_AdvertisingCP: '{!$Label.IPM_AdvertisingCP}',IPM_ITOCalValidation:'{!$Label.IPM_ITOCalValidation}',IPM_GMCP:'{!$Label.IPM_GMCP}',IPM_GrossProfitCP:'{!$Label.IPM_GrossProfitCP}',IPM_ITOValidation: '{!$Label.IPM_ITOValidation}',IPM_PBOPCP: '{!$Label.IPM_PBOPCP}', IPM_PBOCP: '{!$Label.IPM_PBOCP}', IPM_TurnOverCP: '{!$Label.IPM_TurnOverCP}', GetFinancialYearRA:'{!$RemoteAction.IPM_FinancialCopyPasteGrid.GetFinancialYear}', span:'{!span}', UploadBusinessCase:'{!URLFOR($Page.IPM_UploadBusinessCase)}'};
 </script>
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}"></script> 
 <script src="{!URLFOR($Resource.IPM_FinancialGrid, 'NewGridDemo/handsontable.full.min.js')}"></script>
