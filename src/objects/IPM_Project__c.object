@@ -1500,6 +1500,16 @@ OwnerId))</formula>
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>IPM_Misalligned__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND( TEXT(IPMProject_Span__c) = &apos;Local&apos;,IPM_Target_Launch_Dates__c &lt;&gt;   IPM_Project_Rollout__r.Target_Launch_Date__c), true,false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM_Misalligned</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>IPM_No_of_Country_Rollouts__c</fullName>
         <externalId>false</externalId>
         <label>No of Country Rollouts</label>

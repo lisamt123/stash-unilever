@@ -8,9 +8,9 @@
  ************************************************************************************************************/
 
 global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchable<sObject> {   
+  
 
-
-    global final String query; 
+    global final String query;  
     global map<id,IPM_Project__c> projectIdMap = new map<id,IPM_Project__c>();   
     global set<id> projectIdSet = new set<id>();
     global set<id> rolloutprojectIdSet = new set<id>();
@@ -371,7 +371,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 a.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
             }else if(String.isNotBlank(p.IPMProject_Span__c) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
                 a.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
-                a.IPM_Market_Cluster__c = p.Market_Cluster_Name__c;  
+                a.IPM_Market_Cluster__c = p.Market_Cluster_Name__c;
+                // *** Auto_Aligned will only be checked for local projects
+                a.IPM_Auto_Aligned_Fin_TLD__c = p.IPM_Misalligned__c; 
             }
 
             if(String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original)){
@@ -396,8 +398,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             }
 
             //Copying IPM Financial field values
-            if(projFinmap.containskey(p.Id)) {a.IPM_Auto_Aligned_Fin_TLD__c = projFinMap.get(p.id).IPM_Auto_Aligned_Fin_TLD__c;}
-
+          
             //Global Project Business Impact Global will be copy to Global,Regional & Local project
             if(projFinmap.containskey(p.Id)){ a.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; }  
 
