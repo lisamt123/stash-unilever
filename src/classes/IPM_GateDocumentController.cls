@@ -769,7 +769,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
              /*DEF 2248*/
             finProjectPriority = new IPM_Financial__c();
             if (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL){
-                finProjectPriority = [Select ipm_cpp_local__c from IPM_Financial__c where Financial_External_ID__c =: nam limit 1];
+                //added Year_3_iTO_Local__c for DEF3318
+                finProjectPriority = [Select ipm_cpp_local__c,Year_3_iTO_Local__c from IPM_Financial__c where Financial_External_ID__c =: nam limit 1];
             }    
             
              //DEF2103-30/12/15-Reopen for BI not calculated on Global projects-Gate document
@@ -817,7 +818,10 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
            }          
            //DEF3019
                if (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-                        globalbusinessImpactStr = IPM_ConstantUtils.BLANK;      
+                        globalbusinessImpactStr = IPM_ConstantUtils.BLANK;    
+                        
+                   fin= [Select Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c from IPM_Financial__c where Financial_External_ID__c =: nam limit 1];
+                          
                }
             Integer flag=[select count() from IPM_Country__c where Local_Rollout__r.IPM_Status__c=:IPM_ConstantUtils.ROLLOUT_LEADER AND (IPM_Project__c=:projectId 
                      OR IPM_Regional_Project__c=:projectId OR IPM_Local_Project__c=:projectId)];

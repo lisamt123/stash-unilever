@@ -655,7 +655,7 @@
                       
                             <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
                     <td>
-                        <apex:outputText value="{!fin.Year_3_iTO_Local__c}"/><apex:outputText rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                        <apex:outputText value="{!finProjectPriority.Year_3_iTO_Local__c}"/><apex:outputText rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </td>
                     </apex:outputText>
                   
@@ -680,7 +680,7 @@
                         {!$Label.IPM_FIRST_COUNTRY_TO_LAUNCH}
                     </td>      
                     <td>
-                        <apex:outputText value="{!country.MCO_Name__c}"/>
+                        <apex:outputText value="{!if(country.MCO_Name__c=='','N/A',country.MCO_Name__c)}"/>
                     </td>
                     <td class="label">
                         {!$Label.IPM_FAST_TRACK_COLON}
