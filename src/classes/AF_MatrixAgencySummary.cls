@@ -60,7 +60,8 @@ public  with sharing class AF_MatrixAgencySummary {
 		{ytgColour='red';}else{ytgColour='black';}
 	}
 	/***********************************************************************************
-*  @Description: this method is used to query and display the OOPS details
+*  @Description: this method is used to query and display the OOPS details to the user
+*  @             and update's the status of each Quarter of the record.
 *  @name : call_constructor
 *  @param : none
 *  @return: none.
@@ -207,7 +208,8 @@ public  with sharing class AF_MatrixAgencySummary {
 		}
 	}
 	/*****************************************************************************************
-*  @Description: this method is used to submit and change status the entered values in OOPSActual
+*  @Description: this method is used to query and check the status of each quarter status
+                  and update the entered values in OOPSActual
 *  @name : submit
 *  @param : none
 *  @return: pagereference.

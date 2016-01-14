@@ -10,7 +10,8 @@
 public with sharing class AF_UpdateOopsEstimateCatApproverValues
 {
 	/***********************************************************************************
-*  @Description: this method is used to populate the Catfinance Approvers for OOPS Actual
+*  @Description: this method is used to query the cateogry finance users and populate them
+*  @             in cat finance approvers fields in the oopestimate
 *  @name : UpdateOopsEstimates
 *  @param : BrandRecords
 *  @return: none.

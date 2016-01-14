@@ -10,8 +10,10 @@
 public with sharing Class AF_UpdateBonusEstimatesValues5
 {
   //Static Method 
-  /***********************************************************************************
-*  @Description: this method is used to create update Bonus Exchange Rates.
+  /**************************************************************************************
+*  @Description: this method is used to calculate the local currency for the entity
+*  @             based on the currency current fiscal year and average exchange rate in
+*  @             matrix table
 *  @name : UpdateExchageRates
 *  @param : none.
 *  @return: none.

@@ -14,7 +14,8 @@ public with sharing class AF_Brand_Controller_Review
     list<AF_Controller_Review__c> lstReview=new list<AF_Controller_Review__c>();
     Map<id,set<string>> mapgroupCR = new Map<id,set<string>>();
     /***********************************************************************************
-*  @Description: this method is used to query and update the controller review object
+*  @Description: this method is used to query and check's the review for all
+*  @              records in brandestimate and update it in controller review object
 *  @name : Create_Review
 *  @param : BrandId
 *  @return: none.

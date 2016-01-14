@@ -16,7 +16,13 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
     private List<AF_Agency_Estimate__c> updateAgencyEstimates=new List<AF_Agency_Estimate__c>();
     private List<AF_Agency_Estimate__c> poReportAgencyEstimates=new List<AF_Agency_Estimate__c>();
     // Af_AfterInsertBrandEstShare Trigger Logic Ends
-    
+    /***********************************************************************************
+*  @Description: this method is used to query and update the record based on the user type
+*  @             and updates the status field of the record 
+*  @name : bulkBefore
+*  @param : none
+*  @return: none.
+*************************************************************************************/
     public void bulkBefore()
     {
         if(Trigger.isUpdate || Trigger.isInsert)
@@ -230,12 +236,13 @@ public with sharing class AF_Brand_EstimateHandler implements ITrigger
         //derived as a part of trigger factory
     }
 
-    /**
-     * andFinally
-     *
-     * This method is called once all records have been processed by the trigger. Use this 
-     * method to accomplish any final operations such as creation or updates of other records.
-     */
+    /***************************************************************************************
+*  @Description: this method is used to query and update the record in the object, based on
+*  @             the parent object action, update,delete will be actioned on childobject
+*  @name : andFinally
+*  @param : none
+*  @return: none.
+*************************************************************************************/
     public void andFinally()
     {  
      // UpdateCatFinanceApprover Trigger Logic Starts

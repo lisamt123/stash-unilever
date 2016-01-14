@@ -621,7 +621,7 @@
                                                    <tr>
                                                       <td >
                                                          <a href="" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-src="apex/AF_UL_OOPS_SelectMatrices?bId={!Best.Brand__c}&fy={!financialYear}&aId={!Best.AF_Agency__c}" data-target="#myModal" class="custom-link modalButton1 cursorStyle" 
-                                                            title="{!$Label.AF_LP_y81a}">OOPs Matrix</a>
+                                                            title="{!$Label.AF_LP_y81a}">OOPS Matrix</a>
                                                       </td>
                                                       <td >
                                                          <apex:outputField value="{!best.AF_Status_OOPs_Estimate__c}" rendered="{!IF(best.AF_Status_OOPs_Estimate__c!='with category finance','true','false')}"/>

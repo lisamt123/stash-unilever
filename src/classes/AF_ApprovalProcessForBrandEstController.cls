@@ -232,8 +232,10 @@ public with sharing class AF_ApprovalProcessForBrandEstController
         LoggedinUser=[select id,IsActive,Username,Name,AF_Brand__c,AF_Agency_Fees_User_Type__c  from  User  where id=:Userinfo.getuserid()   and IsActive=true  Order by CreatedDate Limit 50000];  
         TempConstructor();
     }
-    /********************************************************************************
-*  @Description: this method is used to query and find any Approval process pending
+    /***************************************************************************************
+*  @Description: this method is used to query and find any pending approval process
+*  @             and checks the logged in users and the user type of the record matches
+*  @             then the users can able to see the button
 *  @name : TempConstructor
 *  @param : none
 *  @return: none.

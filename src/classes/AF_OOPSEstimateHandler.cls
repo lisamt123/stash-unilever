@@ -10,6 +10,7 @@ public with sharing class AF_OOPSEstimateHandler implements ITrigger {
     String OopsActualName=''; 
     Boolean deletePOReport = false;
     list<AF_OOPS_Estimate__c> oopsEstimatesRecords = new list<AF_OOPS_Estimate__c>();
+    Integer count=0;
     public void bulkBefore()
     {
         if(Trigger.isDelete){
@@ -74,9 +75,12 @@ public with sharing class AF_OOPSEstimateHandler implements ITrigger {
         AF_OOPS_Estimate__c OOPSEstimateInstance = (AF_OOPS_Estimate__c)so;
         AF_OOPS_Estimate__c oldOOPSEstimateInstance = (AF_OOPS_Estimate__c)oldSo;
         //AF_UpdateOopsEstimate Trigger Logic Starts
-        if(OOPSEstimateInstance.AF_Status__c != AF_Constants.BASE_FEES_READYFORPO &&  oldOOPSEstimateInstance.AF_Status__c != AF_Constants.BASE_FEES_READYFORPO)
-        {
-            oopsEstimatesRecords.add(OOPSEstimateInstance);
+        
+        if(OOPSEstimateInstance.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO && oldOOPSEstimateInstance.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO){
+        count++;
+        }
+        else{
+        oopsEstimatesRecords.add(OOPSEstimateInstance);
         }
         //AF_UpdateOopsEstimate Trigger Logic Ends
     }

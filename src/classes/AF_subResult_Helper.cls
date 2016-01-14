@@ -12,6 +12,13 @@ public with sharing class AF_subResult_Helper{
 	static List<AF_Bonus_Results__c> bonusResultQuartList = new List<AF_Bonus_Results__c>();
 	
 	static List<AF_Bonus_Results__c> bonusResultList = new List<AF_Bonus_Results__c>();
+	/*****************************************************************************************
+*  @Description: this method is used to create the sub result records based on the bonus thershold
+*  @             and bonus result  record type and it will calculate the quant
+*  @name : subResultCalc
+*  @param : queryListofSubResult,status,Lock,BonusAnnualSubResult,BonusQuarterlySubResultMap
+*  @return: none.
+*************************************************************************************/	
 	public static void subResultCalc(List<AF_Sub_Result__c> queryListofSubResult,Map<Id,String> status,Map<Id,Boolean> Lock,Set<Id>  BonusAnnualSubResult,Map<Id,String> BonusQuarterlySubResultMap,Set<String> QuaterSet,Set<Id> BonusQuarterlySubResult){
 		for(AF_Sub_Result__c subResult:queryListofSubResult){
             if(subResult.AF_Period__c == null){

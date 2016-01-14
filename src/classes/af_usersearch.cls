@@ -94,7 +94,7 @@ public with sharing class af_usersearch {
         soql += 'lastname LIKE \''+String.escapeSingleQuotes(lastName)+'%\'';
       }
       if (!''.equals(email)){
-         if (!''.equals(firstName) || !lastName.equals('') ) soql +=' and '; 
+         if (!''.equals(firstName) || !''.equals(lastName) ) soql +=' and '; 
         soql += 'email LIKE \''+String.escapeSingleQuotes(email)+'%\'';
       }
     if(!''.equals(firstName) || !''.equals(lastName) || !''.equals(email) )

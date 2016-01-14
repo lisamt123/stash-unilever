@@ -238,8 +238,11 @@ public with sharing class AF_AgencyHomePageController {
     public list<selectOption> getCategoryOption(){
         return categoryOptionList;
     }
-    /******************************************************************************************************
+    /**********************************************************************************************************
 *  @Description: this method is used to get and display brand estimates data related to selected category
+    brand in Ascending order in All brands and my brands in home page and maps the brand, agency and fiscal year
+    for the records, checks the bonus quarterly dates with today dates and enables bonus quaterly and changes
+    the bonus result record quarterly based on the status 
 *  @name : getbrandEstimateDetailList
 *  @param : none
 *  @return: List of AF_Brand_Estimate__c.
@@ -308,7 +311,7 @@ public with sharing class AF_AgencyHomePageController {
         Boolean bonusDate = false;
         Boolean bonusDateQ2 = false;
         Boolean bonusDateQ3 = false;
-        bonusQuarterlyDateList = [select AF_Q1__c,AF_Q2__c,AF_Q3__c from AF_BonusQuarterly_Quarterdates__c];
+        bonusQuarterlyDateList = [select AF_Q1__c,AF_Q2__c,AF_Q3__c from AF_BonusQuarterly_Quarterdates__c LIMIT 1];
         if(bonusQuarterlyDateList.size()>0){
             if(bonusQuarterlyDateList[0].AF_Q1__c <= system.today()){
                 bonusDate = true;

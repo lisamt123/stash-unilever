@@ -818,7 +818,18 @@ public with sharing class AF_AnnualBonus {
 		public Decimal totalbonusfee{get;set;}
 		public String bonusMeasureMatrix{get;set;}
 		public Integer countryCount{get;set;}
-		public wrapbonus(Decimal totalbonusfee,Decimal QualValue,Decimal QualPercent,Id b_threshold_id, String Country_Name, Decimal Minimum,Decimal Streching,Decimal Outstanding,AF_Sub_Result__c bonusResObj1,integer bonus_fees,String bonusMeasure,Integer cCount){
+		public wrapbonus(Decimal totalbonusfee,
+						 Decimal QualValue,
+						 Decimal QualPercent,
+						 Id b_threshold_id, 
+						 String Country_Name, 
+						 Decimal Minimum,
+						 Decimal Streching,
+						 Decimal Outstanding,
+						 AF_Sub_Result__c bonusResObj1,
+						 integer bonus_fees,
+						 String bonusMeasure,
+						 Integer cCount){
 			this.Countryname=Country_Name;
 			this.Minimum_bonus=minimum;
 			this.Streching_bonus=Streching;

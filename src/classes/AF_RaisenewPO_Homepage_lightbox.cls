@@ -114,7 +114,8 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 		}
 	}
 	/***********************************************************************************
-*  @Description: this method is used to handle the updation of the selected records
+*  @Description: this method is used to adjust the quarter for an exisitng record and to
+*  @             handle the updation of the selected records
 *  @name : showPopup
 *  @param : none
 *  @return: none.
@@ -292,6 +293,7 @@ public with sharing class AF_RaisenewPO_Homepage_lightbox{
 	}
 	/***********************************************************************************
 *  @Description: this method is used to insert the BrandEstimate and AgencyEstimate
+*  @             and moves the status of new record to with Agency
 *  @name : saveBrandEstimate
 *  @param : none
 *  @return: none.

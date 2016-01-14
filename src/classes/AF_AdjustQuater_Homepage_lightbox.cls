@@ -46,7 +46,7 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
 	}
 	/**********************************************************************
 *  @Description: this method is called from constructor and used to populate quarters
-@			 for each brandEstimate.
+*  @			 for each brandEstimate.
 *  @name : queryBrandEstimate
 *  @param : none
 *  @return: none.
@@ -106,13 +106,14 @@ public with sharing class AF_AdjustQuater_Homepage_lightbox{
 	public void closePopup() { 
 		displayPopup = false;    
 	} 
-	/**********************************************************************
-*  @Description: this method is to show the popup window with quarter 
-@              values populated for BrandEstimate.
+	/***********************************************************************************************************
+*  @Description: this method is used to show the popup window with quarter values populated for BrandEstimate  
+@   and update the quarter's for records based on the existing quarter's available for that record
+@   and changes the brandestimate name repectively and display's the used quarter's.
 *  @name : showPopup
 *  @param : none
 *  @return: none
-**********************************************************************/
+***************************************************************************************************/
 	public void showPopup() {
 		String quarterformat='';
 		String QuarterName='';

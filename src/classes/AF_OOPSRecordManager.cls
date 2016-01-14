@@ -24,6 +24,7 @@ public with sharing class AF_OOPSRecordManager
   public String MatrixErrorMessage {get;set;}
   public Boolean IsMatrixError {get;set;}
   private static String  AF_OOPSRecordManager= 'AF_OOPSRecordManager';
+  Boolean bulkmethod=false;
   /**********************************************************************
 *  @Description: Contructor method
 *  @name : AF_OOPSRecordManager
@@ -67,8 +68,10 @@ public with sharing class AF_OOPSRecordManager
      
     public void bulkRecalculateOOPSEstimates()
     {
+        OOPSEstimateCollection = new List<AF_OOPS_Estimate__c>();
         if(bulkOOPSActualList !=null && !bulkOOPSActualList.isEmpty())
         {
+            bulkmethod=true;
             bulkLoadOOPSEstimateRecordsByCollection();
             Map<ID,List<AF_OOPS_Estimate__c>> OOPSActualToEstimateCollection = new Map<ID,List<AF_OOPS_Estimate__c>>();
             for(AF_OOPS_Estimate__c tempOOPSEstimate : bulkOOPSEstimateCollection)
@@ -85,8 +88,9 @@ public with sharing class AF_OOPSRecordManager
             for(ID OOPSActualID : OOPSActualToEstimateCollection.keySet())
             {
                 List<AF_OOPS_Estimate__c> associatedEstimateCollection = OOPSActualToEstimateCollection.get(OOPSActualID);
-                processOOPSEstimates(associatedEstimateCollection);
-                OOPSEstimateCollection.addAll(associatedEstimateCollection);
+                processOOPSEstimates(OOPSActual,associatedEstimateCollection);
+                system.debug('associatedEstimateCollection...'+associatedEstimateCollection);
+				OOPSEstimateCollection.addAll(associatedEstimateCollection);
             }
                 try
                 {                                               
@@ -118,7 +122,7 @@ public with sharing class AF_OOPSRecordManager
         {
             overallPercentage = OOPSActual.Overall__c;          
             LoadOOPSEstimateRecordsByCollection();
-            processOOPSEstimates(OOPSEstimateCollection);
+            processOOPSEstimates(OOPSActual,OOPSEstimateCollection);
             try
             {                                               
                 update OOPSEstimateCollection;  
@@ -136,7 +140,7 @@ public with sharing class AF_OOPSRecordManager
         }
     }
     
-     @testVisible private void processOOPSEstimates(List<AF_OOPS_Estimate__c> OOPSEstimateCollection)
+     @testVisible private void processOOPSEstimates(AF_OOPS_Actual__c OOPSActual,List<AF_OOPS_Estimate__c> OOPSEstimateCollection)
     { 
         //system.debug('oopsEstimate...'+oopsEstimate);
         //system.debug('oopsEstimate.AF_Agreed_Base_Fees__c...'+oopsEstimate.AF_Agreed_Base_Fees__c);
@@ -146,7 +150,12 @@ public with sharing class AF_OOPSRecordManager
         {
             for(AF_OOPS_Estimate__c oopsEstimate : OOPSEstimateCollection)
             {
-                oopsEstimate = overallPercentageCalculation((Double)oopsEstimate.AF_Agreed_Base_Fees__c, (Double)oopsEstimate.AF_OOPS_Actual__r.Overall__c,oopsEstimate,false);            
+                if(OOPSActual!=null){
+				oopsEstimate = overallPercentageCalculation((Double)oopsEstimate.AF_Agreed_Base_Fees__c,(Double)OOPSActual.Overall__c,oopsEstimate,false);            
+				}
+				else if(bulkmethod){
+				oopsEstimate = overallPercentageCalculation((Double)oopsEstimate.AF_Agreed_Base_Fees__c,(Double)oopsEstimate.AF_OOPS_Actual__r.Overall__c,oopsEstimate,false);            
+				}
             }           
         }
     }

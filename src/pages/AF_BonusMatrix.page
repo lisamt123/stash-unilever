@@ -54,6 +54,23 @@
   height:102%;
 }
       </style>
+      <script type="text/javascript">
+            $('a.addfancy').fancybox({
+              autoSize: false,
+                    width: 1100,
+                    height: 600,
+                    type: 'iframe',
+                    titlePosition: 'inside',
+                    hideOnOverlayClick:'false',
+                    hideOnContentClick:'false',
+                    helpers     : { 
+                    overlay : {closeClick: false} // prevents closing when clicking OUTSIDE fancybox
+                    },
+                    afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+                        location.reload();
+                    }
+            });
+        </script>
         <script>
         function displaymessage(){
         if({!bonusableFee} >0){
@@ -202,13 +219,8 @@
         });
    });
     </script>
-    <!-- jquery library Start-->
-    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
-    <!-- jquery library End-->
-     <!--   Bootstrap_Js File start -->
-     <!-- Bootstrap_Js File start-->
-     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
-     <!--Bootstrap Js File End -->
+    
+     
 </head>
 <div class="AF_BonusMatrix">
 <!---Header Summary section -->
@@ -390,7 +402,7 @@
                         <table>
                             <tr>
                                 <td align="right">
-                                    <div id="divpreview3" class="dispInline floatL">&nbsp;</div><img src="{!URLFOR($Resource.AF_isTax)}" height="15" width="15"/>&nbsp;Represents Cross Border billing&nbsp;
+                                    <div id="divpreview3" class="dispInline floatL">&nbsp;</div><img src="{!URLFOR($Resource.AF_isTax)}" height="15" width="15" alt="crossbroder"/>&nbsp;Represents Cross Border billing&nbsp;
                                     <div id="divpreview3" class="dispInline floatL">&nbsp;</div><img src="{!URLFOR($Resource.AF_isComment)}" height="15" width="15" alt="Comment Change"/>&nbsp;Comment/Change to review&nbsp;
                                 </td>
                             </tr>
@@ -502,14 +514,20 @@
   {
       document.getElementById(elementId).style.display = 'block';
   }
-  }
   function commentsToggleClose(elementId) 
   { 
       document.getElementById(elementId).style.display = 'none';
   }
   commentsToggleClose('commentAddTable');
     </script>
+    <!-- jquery library Start-->
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
+    <!-- jquery library End-->
+     <!--   Bootstrap_Js File start -->
+     <!-- Bootstrap_Js File start-->
+     <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
+     <!--Bootstrap Js File End -->
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'AF_BonusMatrix.js')}"></script>
 </body>
 </div>
-<script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'AF_BonusMatrix.js')}"></script>
 </apex:page>

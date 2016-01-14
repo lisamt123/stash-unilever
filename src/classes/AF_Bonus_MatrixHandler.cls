@@ -9,6 +9,7 @@ public without sharing class AF_Bonus_MatrixHandler implements iTrigger
     // AF_UpdateBonusMatrix Trigger Logic Starts
     private List<AF_Bonus_Matrix__c> BonusMatrixRecords=new   List<AF_Bonus_Matrix__c>();
     // AF_UpdateBonusMatrix Trigger Logic Ends
+    Integer count=0;
     
     public void bulkBefore()
     {
@@ -54,9 +55,12 @@ public without sharing class AF_Bonus_MatrixHandler implements iTrigger
         AF_Bonus_Matrix__c oldBonusMtxInstance = (AF_Bonus_Matrix__c)so;
         
         // AF_UpdateBonusMatrix Trigger Logic Starts
-        if(bonusMtxInstance.AF_Status__c!= AF_Constants.BASE_FEES_READYFORPO && oldBonusMtxInstance.AF_Status__c != AF_Constants.BASE_FEES_READYFORPO)
-        {
-            BonusMatrixRecords.add(bonusMtxInstance);
+        
+        if(bonusMtxInstance.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO && oldBonusMtxInstance.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO){
+        count++;
+        }
+        else{
+        BonusMatrixRecords.add(bonusMtxInstance);
         }
         // AF_UpdateBonusMatrix Trigger Logic Ends
     }

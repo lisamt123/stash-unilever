@@ -211,12 +211,13 @@ public with sharing class AF_SubResultHandler implements ITrigger{
     {
         //derived as a part of trigger factory
     }
-    /**
-    * andFinally
-    *
-    * This method is called once all records have been processed by the trigger. Use this 
-    * method to accomplish any final operations such as creation or updates of other records.
-    */
+    /**********************************************************************
+*  @Description: this method is used to query the records from subresult
+*   @            and calculates the total and populates for each quarter 
+*  @name : andFinally
+*  @param : none
+*  @return: none.
+**********************************************************************/
     public void andFinally()
     {   
         if(!BonusThresholdId.isEmpty()){

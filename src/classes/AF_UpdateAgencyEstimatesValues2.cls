@@ -10,7 +10,9 @@
 public with sharing Class AF_UpdateAgencyEstimatesValues2
 {
 	/***********************************************************************************
-*  @Description: this method is used to calculate the local currency
+*  @Description: this method is used to calculate the local currency for the entity
+*  @             based on the currency current fiscal year and average exchange rate in
+*  @             matrix table
 *  @name : UpdateExchageRates
 *  @param : ae
 *  @return: none.

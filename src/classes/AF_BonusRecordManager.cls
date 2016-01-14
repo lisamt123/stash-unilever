@@ -55,6 +55,7 @@ Global with sharing class AF_BonusRecordManager {
     
     public void CreateMultiObjectRecords()
     {   
+        BonusMatrixCollection = new List<AF_Bonus_Matrix__c>();
         try
         {                                   
             if(BrandEstimateCollection.size() > 0)
@@ -76,7 +77,12 @@ Global with sharing class AF_BonusRecordManager {
         }
     }
     
-    //This method contains 2 DMLs in the FOR loop and is being called in the for loop again, it needs to be refactored.
+    /***********************************************************************************
+*  @Description: this method is used to query and display the quarterly bonus records
+*  @name : queryBrandEstimate
+*  @param : none
+*  @return: none.
+*************************************************************************************/
     @testVisible private List<AF_Bonus_Matrix__c> BonusMultiObjectFactory(AF_Brand_Estimate__c pBrandEstimate, List<AF_Agency_Estimate__c> pAgencyEstimateCollection)
     {
         set<Id> BonusThresholdId = new set<Id>();
@@ -286,7 +292,10 @@ Global with sharing class AF_BonusRecordManager {
                         objCollection = PilotModelBonusMatrixGenerator(pBrandEstimate,objCollection, GlobalBonusResults,bonusThreshold);                    
                     }               
                     
-                    if(objCollection.size() > 0)
+                         
+                    
+                } 
+                if(objCollection.size() > 0)
                     {
                         try
                         {                       
@@ -296,9 +305,7 @@ Global with sharing class AF_BonusRecordManager {
                         {
                             System.debug(ex);
                         }       
-                    }           
-                    
-                }                                   
+                    }                                        
             }
         }           
         return objCollection;   

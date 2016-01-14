@@ -11,7 +11,8 @@ global with sharing class AF_OopEstimateRemote {
 	public AF_OopEstimateRemote(ApexPages.StandardController stdController) {}
 	@remoteAction
 	/***********************************************************************************
-*  @Description: this method is used to query and display the oopsEstimate records
+*  @Description: this method is used to query and display the records in oops matrix 
+*  @             rows and column total of the oopsEstimate records will be displayed  
 *  @name : getOOPSEstimateRecords
 *  @param : agencyId,oopsActualId
 *  @return: Map of <String,String>.
@@ -63,8 +64,8 @@ global with sharing class AF_OopEstimateRemote {
 					colTotalA += AF_BrandEstimateRemote.truncateDecimal(oopsULRelationMap.get(keyMatch).AF_Estimate__c);
 				}
 			}
-			String dispColTotal = (colTotal > 0) ? AF_Constants.AF_CURRENCY_EUR + AF_BrandEstimateRemote.currencyFormatted(colTotal) : '';
-			String dispColTotalA = (colTotalA > 0) ? AF_Constants.AF_CURRENCY_EUR + AF_BrandEstimateRemote.currencyFormatted(colTotalA) : '';
+			String dispColTotal = (colTotal > 0) ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormatted(colTotal) : '';
+			String dispColTotalA = (colTotalA > 0) ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormatted(colTotalA) : '';
 			rowDetail += '<td align=\"center\" title=\"\" class=\"totalCell details-control';
 			rowDetail += '\" t=\"' + dispColTotalA + '\" d=\"tot\" a=\"ob\">';
 			rowDetail += '<a l e=\"' + dispColTotal + '\">' + strongStrt + dispColTotal + strongEnd + '</a>' + tdCloseTag;
@@ -105,8 +106,8 @@ global with sharing class AF_OopEstimateRemote {
 			}
 			String dispArchiveImg = (rowTotalVal > 0 || rowTotalA > 0)?  '' : archiveImg;
 			rowDetail += '<td align=\"center\" class=\"headRow">'+ strongStrt +  eachRow + dispArchiveImg + strongEnd + tdCloseTag;
-			String dispRowTotal = (rowTotal > 0) ? AF_Constants.AF_CURRENCY_EUR + AF_BrandEstimateRemote.currencyFormatted(rowTotal) : '';
-			String dispRowTotalA = (rowTotalA > 0) ? AF_Constants.AF_CURRENCY_EUR + AF_BrandEstimateRemote.currencyFormatted(rowTotalA) : '';
+			String dispRowTotal = (rowTotal > 0) ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormatted(rowTotal) : '';
+			String dispRowTotalA = (rowTotalA > 0) ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormatted(rowTotalA) : '';
 			rowDetail += '<td title=\"\" class=\"totalCell details-control';
 			rowDetail += '\" t=\"' + dispRowTotalA + '\" d=\"tot\" a=\"ob\">';
 			rowDetail += '<a l e=\"' + dispRowTotal + '\">' + strongStrt + dispRowTotal + strongEnd + '</a>' + tdCloseTag;
@@ -128,6 +129,7 @@ global with sharing class AF_OopEstimateRemote {
 	}
 	/***********************************************************************************
 *  @Description: this method is used to frame the HTML of the matrix cell display
+*  @             the total displayed on row and column will be round to it's nearest integer
 *  @name : processOopsRow
 *  @param : isValue,agSObj,oopsULRelationMap
 *  @return: String.
@@ -145,9 +147,9 @@ global with sharing class AF_OopEstimateRemote {
 			Integer totalLocalA = AF_BrandEstimateRemote.truncateDecimal(agSObj.AF_EstimateLocal__c);
 			Decimal totalWithoutRounding = agSObj.AF_Estimate__c/1000;
 			String currCode = agSObj.AF_OOPS_Matrix_Currency_Code__c != null ? agSObj.AF_OOPS_Matrix_Currency_Code__c : '';
-			String disptotal = agSObj.AF_Estimate__c > 0 ? AF_Constants.AF_CURRENCY_EUR + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
+			String disptotal = agSObj.AF_Estimate__c > 0 ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(total) : '';
 			String dispLocalTotal = agSObj.AF_EstimateLocal__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocal) : '';
-			String disptotalA = agSObj.AF_Estimate__c > 0 ? AF_Constants.AF_CURRENCY_EUR + AF_BrandEstimateRemote.currencyFormattedDecimal(totalA) : '';
+			String disptotalA = agSObj.AF_Estimate__c > 0 ? AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormattedDecimal(totalA) : '';
 			String dispLocalTotalA = agSObj.AF_EstimateLocal__c > 0 ? currCode + spacer + AF_BrandEstimateRemote.currencyFormattedDecimal(totalLocalA) : '';
 			String cmntImg =  '';
 			String crsBrdrImg =  agSObj.AF_IsCrossBorderImage__c != null ? agSObj.AF_IsCrossBorderImage__c : '';
@@ -164,7 +166,7 @@ global with sharing class AF_OopEstimateRemote {
 			rowDetailToReturn += ' l=\"' + dispLocalTotal + '\">';
 			if(total != 0) {
 				rowDetailToReturn += crsBrdrImg + '<br/>' + cmntImg;
-				rowDetailToReturn += '</div><div align=\"center\" class=\"agencyCOlcanter\">' + AF_Constants.AF_CURRENCY_EUR + AF_BrandEstimateRemote.currencyFormatted(total);
+				rowDetailToReturn += '</div><div align=\"center\" class=\"agencyCOlcanter\">' + AF_Constants.AF_CURRENCY_EUR1 + AF_BrandEstimateRemote.currencyFormatted(total);
 				rowDetailToReturn = totalA != totalLocalA ? rowDetailToReturn + lBreak + currCode + ' ' + AF_BrandEstimateRemote.currencyFormatted(totalLocal) : rowDetailToReturn;
 			} else if(totalWithoutRounding > 0 && totalWithoutRounding <= 499){
 				rowDetailToReturn += crsBrdrImg + '<br/>' + cmntImg;

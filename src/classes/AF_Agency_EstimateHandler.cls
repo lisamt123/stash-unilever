@@ -25,7 +25,7 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
     Decimal TradAmount =0.0;
     Decimal DigitalAmount =0.0;
     Decimal TDTotal =0.0;
-    Integer count=0;    
+    Integer trigger_count=0;    
     public void bulkBefore()
     {
         if(Trigger.isDelete){
@@ -78,9 +78,12 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
         AF_Agency_Estimate__c oldAgencyInstance = (AF_Agency_Estimate__c)oldSo;
         
         // AF_UpdateAgencyEstimate Trigger Logic Starts
-        if(agencyInstance.AF_Status__c !='Ready for PO' && oldAgencyInstance.AF_Status__c !='Ready for PO')
-        {
-            agencyEstimatesRecords.add(agencyInstance);
+        
+        if(agencyInstance.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO && oldAgencyInstance.AF_Status__c==AF_Constants.BASE_FEES_READYFORPO){
+        trigger_count++;
+        }
+        else{
+        agencyEstimatesRecords.add(agencyInstance);
         }
         // AF_UpdateAgencyEstimate Trigger Logic Ends
     }
@@ -147,16 +150,18 @@ public with sharing class AF_Agency_EstimateHandler implements ITrigger{
     {
         //derived as a part of trigger factory
     }
-    /**
-    * andFinally
-    *
-    * This method is called once all records have been processed by the trigger. Use this 
-    * method to accomplish any final operations such as creation or updates of other records.
-    */
+  /***********************************************************************************
+*  @Description: this method is used to check the values in the agency estiamte records
+*  @             are picking from the home page, updates the sub result when the values  
+*  @             in digital,traditional are updated
+*  @name : andFinally
+*  @param : none.
+*  @return: none.
+*************************************************************************************/
     public void andFinally()
     {   
         if(Trigger.isBefore && (Trigger.isInsert || Trigger.isUpdate)){
-            if(!agencyEstimatesRecords.isEmpty()){
+            if(!agencyEstimatesRecords.isEmpty() && !AF_brandEstimatehandlerHelper.testvar){
                 AF_UpdateAgencyEstimatesValues2.UpdateExchageRates(agencyEstimatesRecords);
             }
         }

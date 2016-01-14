@@ -26,7 +26,14 @@ global with sharing class AF_BrandEstimateRemote {
         listToReturn.addAll(strSet);
         return listToReturn;
     }
-    
+    /*****************************************************************************
+*  @Description: this method is to query the records from Agency estiamte 
+*  @ and arranges the unilerver and agency entities in base fees matrix cells
+*  @ also calculates the local values and display's on moseover 
+*  @name : getAgencyEstimateRecords
+*  @param : agencyId, brandEstimateId
+*  @return : none
+*************************************************************************/  
     @remoteAction
     global static Map<String, String> getAgencyEstimateRecords(String agencyId, String brandEstimateId) {
         
@@ -155,7 +162,14 @@ global with sharing class AF_BrandEstimateRemote {
         system.debug('** ulAgenciesMatrixMap : ' + ulAgenciesMatrixMap);
         return ulAgenciesMatrixMap;
     }
-    
+     /*****************************************************************************
+*  @Description: this method is to calculate the total of each row and column  
+*  @ and display's the row and column total on moseover, the total value
+*  @ will be rounded to it's nearest integer
+*  @name : processAgencyRow
+*  @param : Boolean, String
+*  @return : string
+*************************************************************************/  
     public static String processAgencyRow(Boolean isValue, AF_Agency_Estimate__c agSObj, 
                                         Map<String, AF_Agency_Estimate__c> agencyULRelationMap, 
                                         String aId, String uId, String bId) {
@@ -481,7 +495,13 @@ global with sharing class AF_BrandEstimateRemote {
         
         return unileverToReturn;
     }
-    
+    /*****************************************************************************
+*  @Description: this method is to add the entity to the object based 
+*  @ on their object API name and creates the estimates 
+*  @name : addAgencyEntityToEstimates
+*  @param : String
+*  @return : none.
+*************************************************************************/  
     @remoteAction
     global static void addAgencyEntityToEstimates(String sObjectId, String sobjectName, List<String> rowsArr, String agencyId) {
         
@@ -626,7 +646,13 @@ global with sharing class AF_BrandEstimateRemote {
             delete bonusMatrixToDelete;
         }
     }
-    
+      /*****************************************************************************
+*  @Description: this method is to add the unilerver entity to the object based 
+*  @ on their object API name and creates the estimates 
+*  @name : addUnileverEntityToEstimates
+*  @param : String
+*  @return : none.
+*************************************************************************/  
     @remoteAction
     global static void addUnileverEntityToEstimates(String sObjectId, String sObjectName, List<String> colsArr, String agencyId) {
         

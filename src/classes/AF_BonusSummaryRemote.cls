@@ -10,7 +10,9 @@
 global with sharing class AF_BonusSummaryRemote {
 	public AF_BonusSummaryRemote(ApexPages.StandardController stdController) {}
 	/***********************************************************************************
-*  @Description: this method is used to query and frame the row of Bonus Matrix records
+*  @Description: this method is used to query and frame the rows and columns of the 
+*  @             agency and unilerver entity of Bonus Matrix records and display's
+*  @             Total of the each entity and sub-total of the row and column
 *  @name : getBonusMatrixRecords
 *  @param : agencyId,bonusSummaryId
 *  @return: Map of <String,String>.
@@ -132,7 +134,8 @@ global with sharing class AF_BonusSummaryRemote {
 		return ulbonusMatrixMap ;
 	}
 	/***********************************************************************************
-*  @Description: this method is used to query and frame the column of Bonus Matrix records
+*  @Description: this method is used display the total of each row and column of the matrix
+*  @             and display's the localtotal, round the total value to it's nearest value.
 *  @name : processBonusRow
 *  @param : isValue,agSObj,aId,uId,bId
 *  @return: String.

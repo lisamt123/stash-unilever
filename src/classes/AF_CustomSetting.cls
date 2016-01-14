@@ -318,7 +318,18 @@ public with sharing class AF_CustomSetting{
 *  @return: none.
 *************************************************************************************/
         
-        public AgencyEmailAlertsProxy(AF_AgencyEmailAlerts__c AE,AF_TriggerDate__c TD,DummyUser__c DU,AF_OOPS_Settings__c oops,AF_Links__c link,AF_AnnualBonus_Qual__c qual,AF_AnnualBonus_Qual__c qual1,AF_Agency_Bonus_Access__c agencyBonus,AF_CMCO__c cmco,AF_CatFinanceThreshold__c catFin,AF_BonusQuarterly__c bquart,AF_BrandEstimate_TriggerDate__c triggerDate) {
+        public AgencyEmailAlertsProxy(AF_AgencyEmailAlerts__c AE,
+        							  AF_TriggerDate__c TD,
+        							  DummyUser__c DU,
+        							  AF_OOPS_Settings__c oops,
+        							  AF_Links__c link,
+        							  AF_AnnualBonus_Qual__c qual,
+        							  AF_AnnualBonus_Qual__c qual1,
+        							  AF_Agency_Bonus_Access__c agencyBonus,
+        							  AF_CMCO__c cmco,
+        							  AF_CatFinanceThreshold__c catFin,
+        							  AF_BonusQuarterly__c bquart,
+        							  AF_BrandEstimate_TriggerDate__c triggerDate) {
             this.AgencyEmailid = AE.id;
             this.AgencyEmailName = AE.Name;
             this.Q1 = dateConversionMethod(String.valueOf(AE.Q1__c));

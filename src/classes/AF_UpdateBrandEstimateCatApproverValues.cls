@@ -10,7 +10,8 @@
 public with sharing class AF_UpdateBrandEstimateCatApproverValues
 {
 	/**************************************************************************************
-*  @Description: this method is used to populate the cat finance approvers in BrandEstimate
+*  @Description: this method is used to query the cateogry finance users and populate them
+*  @             in cat finance approvers fields in the brandestimate
 *  @name : UpdateBrandingEstimates
 *  @param : BrandRecords
 *  @return: none.
@@ -198,7 +199,8 @@ public with sharing class AF_UpdateBrandEstimateCatApproverValues
 		}
 	}
 	/**************************************************************************************
-*  @Description: this method is used to populate the Agency Users in BrandEstimate
+*  @Description: this method is used to query the Agency users and populate them
+*  @             in Agency User fields in the brandestimate
 *  @name : UpdateOopsagency
 *  @param : BrandRecords
 *  @return: none.

@@ -440,7 +440,8 @@ global with sharing class AF_BrandEstimateController2
         return null;
     }
     /*****************************************************************************************
-*  @Description: this method is used to save bonusthresholds
+*  @Description: this method is used to save bonusthresholds and update, delete the records in
+*  @ bonus thershold based on the action, display's the error message based on criteria.
 *  @name : SaveBonusThresholds
 *  @param : none
 *  @return: none.
@@ -457,7 +458,6 @@ global with sharing class AF_BrandEstimateController2
         Try{
             if(BonusThresholds.size()>0){
                 For(wrapbonus bonus_thresolds:BonusThresholds){
-                    system.debug('bonus_thresolds.bonusthresholds.AF_country__c..'+bonus_thresolds.bonusthresholds.AF_country__c);
                     btInsertRecords  = new AF_Bonus_Threshold__c();
                     //03-09-2014 traditional or digital should be selected
                     if(!bonus_thresolds.bonusthresholds.AF_Digital__c && !bonus_thresolds.bonusthresholds.AF_Traditional__c){
@@ -487,7 +487,6 @@ global with sharing class AF_BrandEstimateController2
                             delBonusThresholdCountry.add(bt.AF_Country__c);
                         }
                     }
-                    system.debug('bonusInsertList.....'+bonusInsertList);
                     upsert bonusInsertList;
                     Map<String,String> bonusIdCountryMap = new Map<String,String>();
                     for(AF_Bonus_Threshold__c b:bonusInsertList){

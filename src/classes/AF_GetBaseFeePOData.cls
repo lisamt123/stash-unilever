@@ -319,8 +319,9 @@ global with sharing class AF_GetBaseFeePOData{
                
     } 
     
-    /***********************************************************************************
-*  @Description: this method will calculate the Basefees values in po report
+    /***************************************************************************************
+*  @Description: this method will creates records in Poreport Base fee based on the 
+*  @             quarter of agency estimate and calculate the Basefees values in po report 
 *  @name : calculateBaseOopsvalues
 *  @param : none.
 *  @return: none.

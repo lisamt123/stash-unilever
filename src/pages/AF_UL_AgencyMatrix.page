@@ -139,22 +139,6 @@
       <script type="text/javascript" src="{!URLFOR($Resource.AF_jQ_UI_multiselect_Lib,'AF_jQ_UI_multiselect_Lib/demos/assets/prettify.js')}"></script>
       <!-- <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.AF_UL_Resources,'AF_UL_Resources/javascript/loadBaseFeeMatrix.js')}"></script> -->
       <script>
-         function openAgentEstimateModel(url, title){
-              var pagetitle = title;
-              var $dialog = jQuery('<div style="display: block; width: 922px; min-height: 0px; max-height: none; height: 546.222222328186px;"></div>')
-              .html('<iframe style="border: 0px; " src="' + url + '" height="1000" width="890" scrolling="no"></iframe>')
-             <!-- outer -->
-              .dialog({
-                  autoOpen: false,
-                  modal: true,
-                  height: 900,
-                  width: 935,
-                  maxHeight: 1000,
-                  maxWidth: 1000,
-                  title: pagetitle
-              });
-              $dialog.dialog('open');           
-         }
          loadAgMatrix();
          $(document).ready(function() {
              $('#agCol').on( 'click', function (e) {

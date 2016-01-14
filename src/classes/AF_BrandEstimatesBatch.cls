@@ -29,7 +29,9 @@ global with sharing class AF_BrandEstimatesBatch implements Database.Batchable<s
         return Database.getQueryLocator(query);
     }
     /********************************************************************************************
-*  @Description: this method is execute method of the Batch class,which query the custom settings
+*  @Description: this method is execute method of the Batch class,which query the records
+*  @             from brandestimate and agency estimate and carry forward the specified records
+*  @             to the next fiscal year
 *  @name : execute
 *  @param : Database.BatchableContext
 *  @return: None.
