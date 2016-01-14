@@ -10398,6 +10398,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Reference Market Research to define the consumer need this idea is addressing. How prevalent and important is the need to consumers? How are consumers currently addressing the need today and how will this idea be better than what consumers have available today?</value>
     </labels>
     <labels>
+        <fullName>IPM_REGIONAL_ROLLOUT_ADD_HELP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_REGIONAL_ROLLOUT_ADD_HELP</shortDescription>
+        <value>If you wish to remove an MCO or country from the Rollout and the Local Rollout project has already been created, please contact an IPM Central Team member.</value>
+    </labels>
+    <labels>
         <fullName>IPM_REMOVE_MILESTONE</fullName>
         <language>en_US</language>
         <protected>false</protected>
