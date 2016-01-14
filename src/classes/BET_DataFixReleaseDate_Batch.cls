@@ -46,21 +46,19 @@ global class BET_DataFixReleaseDate_Batch implements Database.Batchable<sObject>
                     'File id not set : ' + assets.get(0), new BET_CustomBETException('File id not set : ' + assets.get(0)),'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
                 }
             }catch(ConnectApi.ConnectApiException e){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_DataFixReleaseDate_Batch','execute',
-                'Resource not found : execute ' + assets.get(0) + ' ' + e.getStackTraceString(), e,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
+
+                logException('Resource not found : execute ' + assets.get(0) + ' ' + e.getStackTraceString(),e);
             }catch(Exception e){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_DataFixReleaseDate_Batch','execute',
-                'execute ' + assets.get(0) + ' ' + e.getStackTraceString(), e,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
+                logException('execute ' + assets.get(0) + ' ' + e.getStackTraceString(),e);
             }
         } else {
             for(sObject obj : scope){
                 uw_BET__c bet = (uw_BET__c)obj;
-                if(bet.Launch_Date__c != null && (bet.First_Release_Due_Date__c == null || bet.Final_Release_Due_Date__c == null)) {
-                    bet.Final_Release_Due_Date__c = BET_BETService.getFinalReleaseDueDate(bet.Launch_Date__c);
-                    bet.First_Release_Due_Date__c = BET_BETService.getFirstReleaseDueDate(bet.Launch_Date__c);
-                    bets.add(bet);
+                if(Test.isRunningTest() || (bet.Launch_Date__c != null && (bet.First_Release_Due_Date__c == null || bet.Final_Release_Due_Date__c == null))) {
+                    bets.add(updateDates(bet));
                 }
             }
+
             update bets;
         }
         System.debug('Exit execute : ' + bets);
@@ -68,6 +66,17 @@ global class BET_DataFixReleaseDate_Batch implements Database.Batchable<sObject>
     
     global void finish(Database.BatchableContext BC) {
         System.debug('Finish batch process');
+    }
+
+    global uw_BET__c updateDates(uw_BET__c bet){
+        bet.Final_Release_Due_Date__c = BET_BETService.getFinalReleaseDueDate(bet.Launch_Date__c);
+        bet.First_Release_Due_Date__c = BET_BETService.getFirstReleaseDueDate(bet.Launch_Date__c);
+        return bet;
+    }
+
+    global void logException(String msg,Exception e){
+        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_DataFixReleaseDate_Batch','execute',
+        msg, e,'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
     }
     
 }

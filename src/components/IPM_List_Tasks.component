@@ -200,11 +200,11 @@
                             </apex:column>                         
                             <apex:column width="10%" headerValue="Action" styleClass="{!IF(p.isChecked,'selected', 'notselected')}"> 
                                 <apex:outputPanel styleClass="SecButtonSet">
-                                    <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable ),'true','false')}">
+                                    <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,!p.isChecked ),'true','false')}">
                                     <a class="icoButton edit1 editTaskBtn"  value="{!$Page.IPM_EditTask}?projectId={!projectId}&taskId={!p.record['Id']}"></a>
                                     
                                     </apex:outputPanel>
-                                     <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable ),'true','false')}">
+                                     <apex:outputPanel rendered="{! If(AND(AND(OR(AND(UFunctionRole != null,p.record['IPM_Function__c'] != NULL,UFunctionRole==p.record['IPM_Function__c']),IsAllEditable),IsTaskEditable),p.isEditable,!p.isChecked ),'true','false')}">
                                       <a class="icoButton delete" data-toggle="modal" data-target="#ipmDeleteModal"  value="{!p.record['Id']}" id="{!p.record['Id']}" 
                                         onclick="var isLast ='false'; if( '{!ProjectTasks.size}' == 1 ) { isLast = 'true'; }  myFunc('{!JSENCODE(p.record['Id'])}',isLast,'{!JSENCODE(p.record['IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c'])}','{!JSENCODE(p.record['IPM_Project_Document_Section__r.IPM_Section_Sequence__c'])}');" 
                                         title="Delete" 

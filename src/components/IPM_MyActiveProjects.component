@@ -19,12 +19,13 @@
                     
                 <div class="col-sm-7">                  
                       
-                      <apex:outputPanel rendered="{!AND(!p.projectObj.IPM_IsSaved__c,p.projectObj.IPM_Project_Job_Status__c='Not Applicable')}">
+                      <!-- <apex:outputPanel rendered="{!AND(!p.projectObj.IPM_IsSaved__c,p.projectObj.IPM_Project_Job_Status__c='Not Applicable')}">
                         <apex:commandLink styleClass="pull-left bcName" value="{!if((p.bosscardObj.IPM_BosscardName__c != null ),p.bosscardObj.IPM_BosscardName__c,p.projectObj.IPM_Project_Name__c)}" action="{!if((p.bosscardObj.IPM_BosscardName__c != null ),$Page.IPM_Bosscard+'?id='+p.bosscardObj.id,$Page.IPM_ProjectSetupView+'?Pid='+p.projectObj.Id)}"/>
+                      </apex:outputPanel> -->
+                      <apex:outputPanel >
+                        <apex:commandLink styleClass="pull-left bcName" value="{!if((p.bosscardObj.IPM_BosscardName__c != null ),p.bosscardObj.IPM_BosscardName__c,p.projectObj.IPM_Project_Name__c)}" action="{!if((p.bosscardObj.IPM_BosscardName__c != null ),$Page.IPM_Bosscard+'?id='+p.bosscardObj.id,if(p.projectObj.IPM_IsSaved__c , $Page.IPM_ProjectOverview+'?id='+p.projectObj.Id, $Page.IPM_ProjectSetupView+'?Pid='+p.projectObj.Id))}"/>
                       </apex:outputPanel>
-                      <apex:outputPanel rendered="{!p.projectObj.IPM_IsSaved__c}">
-                        <apex:commandLink styleClass="pull-left bcName" value="{!if((p.bosscardObj.IPM_BosscardName__c != null ),p.bosscardObj.IPM_BosscardName__c,p.projectObj.IPM_Project_Name__c)}" action="{!if((p.bosscardObj.IPM_BosscardName__c != null ),$Page.IPM_Bosscard+'?id='+p.bosscardObj.id,$Page.IPM_ProjectOverview+'?id='+p.projectObj.Id)}"/>
-                      </apex:outputPanel> 
+                       
                        <apex:outputPanel layout="block" styleClass="pull-left" rendered="{!p.projectObj.IPM_Project_Type__c='Original'}">
                             <span class="orgIcon"></span>
                        </apex:outputPanel>
@@ -53,7 +54,7 @@
                    <span class="homeActiveText"> {!$Label.IPM_CurrentStatus} <strong class="percentage">
                    <!--<apex:commandLink value="{!if(p.projectObj.IPM_Target_Launch_Dates__c = null,if(p.bosscardObj.IPM_Filled_In_Percent__c!=null,p.bosscardObj.IPM_Filled_In_Percent__c,0),if(p.projectObj.IPM_FilledIn_Percentage__c != null,p.projectObj.IPM_FilledIn_Percentage__c,0))}" action="{!if(p.projectObj.IPM_Target_Launch_Dates__c!= null,'/apex/IPM_GateDocument?id='+p.projectObj.Id,'/apex/IPM_Bosscard?id='+p.bosscardObj.id)}"/>%  </strong>{!FilledString}</span>-->
 
-                  <apex:commandLink value="{!if(p.projectObj.IPM_Target_Launch_Dates__c = null,if(p.bosscardObj.IPM_Filled_In_Percent__c!=null,p.bosscardObj.IPM_Filled_In_Percent__c,0),if(p.projectObj.IPM_FilledIn_Percentage__c != null,p.projectObj.IPM_FilledIn_Percentage__c,0))}" action="{!if(p.projectObj.IPM_Target_Launch_Dates__c!= null,$Page.IPM_GateDocument+'?id='+p.projectObj.Id,$Page.IPM_Bosscard+'?id='+p.bosscardObj.id)}">
+                  <apex:commandLink value="{!if(p.projectObj.IPM_Target_Launch_Dates__c = null,if(p.bosscardObj.IPM_Filled_In_Percent__c!=null,p.bosscardObj.IPM_Filled_In_Percent__c,0),if(p.projectObj.IPM_FilledIn_Percentage__c != null,p.projectObj.IPM_FilledIn_Percentage__c,0))}" action="{!if(p.projectObj.IPM_Target_Launch_Dates__c!= null,$Page.IPM_GateDocument+'?id='+p.projectObj.Id+'&printDoc='+p.currGate,$Page.IPM_Bosscard+'?id='+p.bosscardObj.id)}">
                   </apex:commandLink>
                    % </strong>{!FilledString}</span>
 

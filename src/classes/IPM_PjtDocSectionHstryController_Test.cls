@@ -9,7 +9,6 @@ public class IPM_PjtDocSectionHstryController_Test {
     public static IPM_Project_Document__c projDoc;
     public static User stdUserSecHistory;
     public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
-    private static List<user>userList=new List<user>();
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     public static List<SelectOption> secOpt=new List<SelectOption>();
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
@@ -86,7 +85,6 @@ public class IPM_PjtDocSectionHstryController_Test {
             pRef.getParameters().put('projDocSecId',docSec.Id);
             Test.setCurrentPage(pRef);
             projDocHistoryCont=new IPM_ProjDocumentSectionHstryController();
-            interCon=new IPM_ProjectIntermediateController();
         }
     }
      

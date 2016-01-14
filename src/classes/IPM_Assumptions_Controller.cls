@@ -12,7 +12,6 @@ public with sharing class IPM_Assumptions_Controller {
     public string gateDocType{get;set;}// used in corresponding component
     public string contentName{get; set;} //For saving comments 
     public string comments{get; set;} //For saving comments 
-    public Id assumptionId{get; set;} //For getting section content id
     public ID projDocSecId{ 
         get {
             return projDocSecId; // to get the project document section ID from the component used from Gate document page
@@ -65,29 +64,40 @@ public with sharing class IPM_Assumptions_Controller {
     */
     public void saveAssumptions(){
         try{
-            assumption=new IPM_Project_Document_Section_Content__c();
-            if(contentName==IPM_ConstantUtils.MARKET_SIZE)
+            getAssumptions();
+            if(contentName==IPM_ConstantUtils.MARKET_SIZE) {
                 assumption.IPM_Assumption_Market_Size__c=comments;
-            else if(contentName==IPM_ConstantUtils.AP)
+            }
+            else if(contentName==IPM_ConstantUtils.AP) {
                 assumption.IPM_Assumption_A_P__c=comments;
-            else if(contentName==IPM_ConstantUtils.CAPEX)
+            }
+            else if(contentName==IPM_ConstantUtils.CAPEX){
                 assumption.IPM_Assumption_CAPEX__c=comments;
-            else if(contentName==IPM_ConstantUtils.COUNTRIES)
+            }
+            else if(contentName==IPM_ConstantUtils.COUNTRIES){
                 assumption.IPM_Assumption_Countries__c=comments;
-            else if(contentName==IPM_ConstantUtils.GM)
-                assumption.IPM_Assumption_GM__c=comments;   
-            else if(contentName==IPM_ConstantUtils.VOLUME_ASSUMPTION)
+            }
+            else if(contentName==IPM_ConstantUtils.GM){
+                assumption.IPM_Assumption_GM__c=comments;
+            }       
+            else if(contentName==IPM_ConstantUtils.VOLUME_ASSUMPTION){
                 assumption.IPM_Assumption_Volume__c=comments;
-            else if(contentName==IPM_ConstantUtils.PRICING)
+            }
+            else if(contentName==IPM_ConstantUtils.PRICING){
                 assumption.IPM_Assumption_Pricing__c=comments;
-            else if(contentName==IPM_ConstantUtils.RESTAGES)
+            }
+            else if(contentName==IPM_ConstantUtils.RESTAGES){
                 assumption.IPM_Assumption_Restages__c=comments;
-            else if(contentName==IPM_ConstantUtils.CANNIBALIZATION)
+            }
+            else if(contentName==IPM_ConstantUtils.CANNIBALIZATION){
                 assumption.IPM_Assumption_T_O_Cannibalization__c=comments;
-            else if(contentName==IPM_ConstantUtils.VOLUME_YEAR_2)
+            }
+            else if(contentName==IPM_ConstantUtils.VOLUME_YEAR_2){
                 assumption.IPM_Assumption_Volume_Yr_2__c=comments;
-            else
+            }    
+            else {
                 assumption.IPM_Assumption_Yr_1_Trade_Promotion__c=comments;
+            }
             if(contentCount<1){
                 assumption.IPM_Gate_Type__c=gateDocType;
                 assumption.IPM_Content_Type__c=IPM_ConstantUtils.ASSUMPTIONS;
@@ -95,7 +105,6 @@ public with sharing class IPM_Assumptions_Controller {
                 insert assumption;
             }
             else{
-                assumption.Id=assumptionId;
                 update assumption;
             }
         }

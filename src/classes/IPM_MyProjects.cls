@@ -66,7 +66,7 @@ public with sharing class IPM_MyProjects{
                                             or IPM_Project_Gatekeeper__c = : UserInfo.getUserId() or IPM_Finance_Member__c = : UserInfo.getUserId() 
                                             or IPM_Bosscard__r.OwnerId = :UserInfo.getUserId() or Id IN : projectIds)  and Is_Archieved__c = false 
                                             and IPM_Project_Name__c != NULL and IPM_Phase__c != :IPM_ConstantUtils.PHASE_PLE 
-                                            Order By Upcoming_Milestone_Due_Date__c,IPM_Project_Name__c Limit 10000];
+                                            Order By Upcoming_Milestone_Due_Date__c,IPM_Project_Name__c Limit 1000];
                                                                             
                                             
           Id recordtypeid=Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.PROJECT_MILESTONES).getRecordTypeId();
@@ -103,18 +103,31 @@ public with sharing class IPM_MyProjects{
                       WHERE IPM_BosscardName__c!=null 
                       AND IPM_Bosscard_Status__c = :IPM_ConstantUtils.STATUS_IN_PROGRESS
                       AND OwnerId = :UserInfo.getUserId() AND IPM_isBosscardSkipped__c=False 
-                      order by IPM_BosscardName__c limit 10000];
+                      order by IPM_BosscardName__c limit 1000];
+             
         List<ProjectWrapper> projects=new List<ProjectWrapper>();
+        List<ProjectWrapper> projectsWithoutCurrentMilestoneDueDate=new List<ProjectWrapper>();
         
         for(IPM_Bosscard__c bCard:bosscardList){
             projects.add(new ProjectWrapper(new IPM_Project__c(), null,bCard));
             projectcount ++;
         }
         for(IPM_Project__c proj:lstProjects){
-            projects.add(new ProjectWrapper(proj, mapdocsDate.get(proj.Id),new IPM_Bosscard__c()));
+        	String d = mapdocsDate.get(proj.Id);
+        	if(d != null){
+                String[] datephase=d.split(IPM_ConstantUtils.COMMA);
+        	if( datephase[0] == 'null' ){
+        		projectsWithoutCurrentMilestoneDueDate.add(new ProjectWrapper(proj, mapdocsDate.get(proj.Id),new IPM_Bosscard__c()));
+        	}else{
+            	projects.add(new ProjectWrapper(proj, mapdocsDate.get(proj.Id),new IPM_Bosscard__c()));
+            } 
+          }else
+            projectsWithoutCurrentMilestoneDueDate.add(new ProjectWrapper(proj, null,new IPM_Bosscard__c()));
+            
             projectcount ++;
         }
-
+        projects.addAll(projectsWithoutCurrentMilestoneDueDate);
+        
         return projects;
     }
      
@@ -131,6 +144,8 @@ public with sharing class IPM_MyProjects{
         public String phaseValue{get;set;}
         //*@Description:Used to refer instance of IPM_Bosscard__c
         public IPM_Bosscard__c bosscardObj{get;set;}
+        //*@Description:Used to refer curernt gate name for each project
+        public String currGate{get;set;}
         
         
         /****************************************************************************
@@ -147,6 +162,7 @@ public with sharing class IPM_MyProjects{
                     projectDocumentDate = date.valueOf(datephase[0]).format();
                 }
                 phaseValue=datephase[1];
+                currGate = phaseValue.remove('Gate Approval').removeEnd(' ');
             }
         }
              

@@ -27,12 +27,7 @@ public with sharing class IPM_Global_Consolidated_Controller{
                          WHERE IPM_Project_Document__r.IPM_Project__r.IPM_Parent_Project__c=:projectId AND IPM_Master_Section_External_Id__c=:secExtId
                                AND IPM_Project_Document__r.IPM_GateDocuments__c=:gateDocument];
         }
-        catch(QueryException ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ConstantUtils.IPM_GLOBAL_CONSOLIDATED_CONTROLLER_STR ,
-                    IPM_ConstantUtils.GET_SUMMARY_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
-        }
-        catch(Exception ex){
+           catch(Exception ex){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ConstantUtils.IPM_GLOBAL_CONSOLIDATED_CONTROLLER_STR ,
                     IPM_ConstantUtils.GET_SUMMARY_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 

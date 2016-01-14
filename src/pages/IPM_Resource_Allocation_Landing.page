@@ -8,7 +8,7 @@
 *************************************************************************
 -->
 
-<apex:page controller="IPM_Resource_Allocation" showHeader="false" sidebar="false" id="IPM_ResourceTeamPage" extensions="IPM_GetHelpDoc">
+<apex:page controller="IPM_Resource_Allocation" showHeader="false" sidebar="false" id="IPM_ResourceTeamPage" >
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/jquery-ui.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.min.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Buttons.css')}"/>
@@ -20,11 +20,6 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'assets/font-awesome/css/font-awesome.min.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_HomePage.css')}"/>   
     <apex:form >
-    
-    <!-- To place the help symbol in the top right hand corner of page -->
-    <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
-        <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
-    </apex:outputPanel> 
     
         <apex:pageBlock id="pgb1">
             <apex:pagemessages id="pgmsg"/>

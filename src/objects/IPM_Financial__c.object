@@ -52,6 +52,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -224,20 +225,40 @@
     <fields>
         <fullName>Business_Impact_Global__c</fullName>
         <externalId>false</externalId>
-        <formula>IF(Year_3_iTO_Global__c &gt;= 50000, 
+        <formula>IF(AND( NOT(ISBLANK(Parent_Project__c)), ISPICKVAL(Parent_Project__r.IPM_Project_Type__c,&quot;Original&quot;), ISBLANK( Regional_Project__c ),ISBLANK( Local_Project__c ),ISPICKVAL(Parent_Project__r.IPM_Phase__c,&quot;Ideas&quot;)  ),
+ IF(Year_3_iTO_Global__c==0,&quot;&quot;, 
+     IF(Year_3_iTO_Global__c &gt;= 50000, 
 	&quot;Super&quot;, 
 	IF(AND(Year_3_iTO_Global__c &gt;=15000, Year_3_iTO_Global__c&lt;50000), 
 		&quot;Large&quot;, 
 		IF( AND(Year_3_iTO_Global__c &gt;=3000, Year_3_iTO_Global__c&lt;15000), 
-			&quot;Mid&quot;, 
-			IF( OR(Year_3_iTO_Global__c=0, ISNULL(Year_3_iTO_Global__c)), 
-				&quot;&quot;, 
-				&quot;Small&quot;
+			&quot;Medium&quot;, 
+			IF( OR(Year_3_iTO_Global__c &lt;3000,Year_3_iTO_Global__c&lt;0), 
+				&quot;Small&quot;, &quot;NA&quot;
 			)
 		)
-	)
-)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+	 )
+     )
+ ),
+IF(AND( NOT(ISBLANK(Parent_Project__c)), ISPICKVAL(Parent_Project__r.IPM_Project_Type__c,&quot;Original&quot;), ISBLANK( Regional_Project__c ),ISBLANK( Local_Project__c ),NOT(ISPICKVAL(Parent_Project__r.IPM_Phase__c,&quot;Ideas&quot;))  ),
+ IF(Year_3_iTO_Regional__c==0,&quot;&quot;, 
+     IF(Year_3_iTO_Regional__c &gt;= 50000, 
+	&quot;Super&quot;, 
+	IF(AND(Year_3_iTO_Regional__c &gt;=15000, Year_3_iTO_Regional__c&lt;50000), 
+		&quot;Large&quot;, 
+		IF( AND(Year_3_iTO_Regional__c &gt;=3000, Year_3_iTO_Regional__c&lt;15000), 
+			&quot;Medium&quot;, 
+			IF( OR(Year_3_iTO_Regional__c &lt;3000,Year_3_iTO_Regional__c&lt;0), 
+				&quot;Small&quot;, &quot;NA&quot;
+			)
+		)
+	 )
+     )
+ ),
+IF(NOT(ISBLANK(Parent_Project__c)),
+ Parent_Project__r.BI__c,&quot;&quot;  
+ )
+))</formula>
         <label>Business Impact Global</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -949,10 +970,10 @@
     <fields>
         <fullName>IPM_CPP_Local__c</fullName>
         <externalId>false</externalId>
-        <formula>IF( OR(ISBLANK(OpCo__c), OpCo__c=0),&quot;NA&quot;,
+        <formula>IF( OR(ISBLANK(OpCo__c), OpCo__c=0),&quot; NA&quot;,
 IF(AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (OpCo__c *0.005) ),
 &quot;Gold&quot;,
-IF(AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (OpCo__c *0.001), OpCo__c &lt; (Gross_Y1_Turnover_Local__c *0.005) ),
+IF(AND(Year_1_iTO_Local__c!=0,Year_1_iTO_Local__c &gt;= (OpCo__c *0.001), Gross_Y1_Turnover_Local__c &lt; (OpCo__c *0.005) ),
 &quot;Silver&quot;,
 IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
 &quot;Bronze&quot;,
@@ -993,6 +1014,19 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <trackTrending>false</trackTrending>
         <type>Html</type>
         <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>IPM_Inoplan_Fin_External_Id__c</fullName>
+        <description>IPM Inoplan Fin External Id - To be used by Data Migration</description>
+        <externalId>true</externalId>
+        <label>IPM_Inoplan_Fin_External_Id</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Project_Rollout__c</fullName>
@@ -1631,7 +1665,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
     <fields>
         <fullName>OpCo__c</fullName>
         <externalId>false</externalId>
-        <formula>Local_Project__r.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c</formula>
+        <formula>Local_Project__r.IPM_Company_Card__r.IPM_Total_OpCo_Turnover__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>OpCo</label>
         <precision>18</precision>
@@ -2425,7 +2459,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.Year_Type__c</field>
             <operation>equals</operation>
-            <value>Calendar</value>
+            <value>Innovation</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.PL_Type__c</field>

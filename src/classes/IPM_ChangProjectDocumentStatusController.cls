@@ -4,8 +4,8 @@
 @Author: Cognizant 
 @Referenced: ipmChangeCurrenDocumentStatus Page
 ******************************************************************/
-public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_ProjectIntermediateController{  
-    
+public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_ProjectIntermediateController
+{  
     // Variables Declaration
     public Id projectId{get; set;} //used to fetch current projectId 
     public IPM_Project_Document__c projectDoc {get; set;} //used to store query result from IPM_Project_Document__c object
@@ -19,12 +19,10 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public Integer rolloutCount; // used to store the count of IPM_Project_Rollout__c 
     public Integer rolloutFilledCount; //used to store the count of IPM_Project_Rollout__c and where regional PL is null or TLD is  equal to null   
     public List<IPM_Questionnaire__c> riskQuesList; //used to store query result from IPM_Questionnaire__c object
-    public List<IPM_Project_Document_Section_Content__c> cmiList; //used to store query result for CMI 
-    public List<IPM_Gate_CMI__c> gateCMIList; //used to store query result for CMI Validation
     public List<IPM_Milestone__c> milestoneList{get;set;}
     public IPM_Financial__c fin{get;set;}
     public IPM_Project__C ParentProject{get;set;} //used to fetch parent id of current project
-   
+    public string isCapability{get;set;} 
     public IPM_Project_Type__c associatedProjectType{get;set;}
     //upto here
     //To replace duplicate string literals
@@ -34,7 +32,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public static final String TARGET_STR = '" target="_top">';
     public static final String HREF_STR = '<a href="';
     //For Showing Validation Error Messages
-    public Boolean cmiError{get; set;}
     public Boolean milestoneError{get; set;}
     public Boolean riskError{get; set;}
     public Boolean financialError{get; set;}
@@ -43,8 +40,6 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public Boolean rolloutCountryPLFilledError{get; set;}
     public Boolean completedError{get; set;}
     public String riskSectionId{get; set;}
-    public String cmiSectionId{get; set;}
-    public Integer cmiCount;
     public Boolean showStop{get; set;}
     public Boolean showPostpone{get; set;}
     public Boolean showApprove{get; set;}
@@ -55,18 +50,24 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     public Boolean ecoDesignNoAssessmentError{get;set;}
     public String ecoDesignSectionId{get;set;}
     public string finExternalID{get;set;}
-    public static String REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId();
-    public static String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
+    public static final String REGIONAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId();
+    public static final String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
     public Boolean isRiskComplete{get;set;}//boolean to check if Risk section is complete
-    public Boolean isCmiComplete{get;set;}//boolean to check if CMI section is complete
+    public static final string ENVIRONMENTAL_IMPACT=IPM_ConstantUtils.IPM_ENVIRONMENTAL_IMPACT;
     
     /*****************************************************************
     @Description :Constructor Fetch the Page parameters and retrieve lists
     *****************************************************************/
-    public IPM_ChangProjectDocumentStatusController(){
+    public IPM_ChangProjectDocumentStatusController()
+    {
+        super();           
         isDefaultAvailable=false;
         isOperational=false;
         showSkipSections=false;
+        showStop=true;
+        showPostpone=true;
+        showApprove=true;
+        isCapability = IPM_ConstantUtils.PHASE_CAPABILITY;
         projectId=ApexPages.currentPage().getParameters().get('Id');
         
         if(projectId!=null)
@@ -85,10 +86,11 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 
                 Status=projectDoc.IPM_Document_Status__c;
                 
-                projSectionList=[SELECT Id,IPM_Section_Type__c,IPM_Default_Section__c,IPM_Negotiable__c,IPM_Section_Sequence__c,IPM_Section_Name__c,IPM_Gate_Document_Summary__c,IPM_Section__c,IPM_Section__r.External_ID__c
+                projSectionList=[SELECT Id,IPM_Section_Type__c,IPM_Default_Section__c,IPM_Negotiable__c,IPM_Section_Sequence__c,IPM_Section_Name__c,IPM_Gate_Document_Summary__c,IPM_Section__c,IPM_Section__r.External_ID__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c
                 FROM IPM_Project_Document_Section__c 
                 WHERE (Not IPM_Section_Sequence__c like :IPM_ConstantUtils.APPENDIX_HEADER_SEQUENCE_FOR_QUERY) AND IPM_Project_Document__c=:projectDoc.Id AND IPM_Section_Status__c=:IPM_ConstantUtils.STATUS_NOT_STARTED AND IPM_Default_Section__c=true AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER
-                AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER  ORDER BY IPM_Section_Sequence__c asc];
+                AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER 
+                AND ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c !=:IPM_ConstantUtils.BLG )) ORDER BY IPM_Section_Sequence__c asc];
                 
                 projSectionListUpdate=[SELECT Id,IPM_Default_Section__c,IPM_Negotiable__c,IPM_Section_Type__c,IPM_Section_Sequence__c,IPM_Section_Name__c,IPM_Gate_Document_Summary__c 
                 FROM IPM_Project_Document_Section__c 
@@ -98,21 +100,23 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 String milestoneQuery = IPM_Utils.prepareSOQLQuery('IPM_Milestone__c',false,null);
                 String milestoneWhereClause = ' WHERE IPM_Type_of_Milestone__c =:standardType AND  IPM_Project__c=:projectId AND IPM_Active__c = true LIMIT 50000';
                 milestoneQuery = milestoneQuery + milestoneWhereClause;
-                milestoneList = database.query(milestoneQuery);        		
+                milestoneList = database.query(milestoneQuery);            
                 if(projSectionList != NULL && !projSectionList.isEmpty()){
                     showSkipSections=true;
                     oldSize=projSectionList.size();
                 }
-                if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
+                if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL || (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL==project.IPMProject_Span__c) ){
                     isOperational=true;
                 }
                 
                 for(IPM_Project_Document_Section__c pds:projSectionList){
                     if(pds.IPM_Negotiable__c && pds.IPM_Default_Section__c){
                         isDefaultAvailable=true;                        
-                    }
-                    
-                }   
+                    }                   
+                }
+                
+                // Show all Validations on selecting Propose
+                showValidationMethod();               
             }
         }
     }
@@ -124,218 +128,40 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     @Referenced: ipmChangeCurrenDocumentStatus(Page)
     **********************************************************************/
     public void submit()
-    {
-        showErrorMsg=IPM_ConstantUtils.BLANK;
-        riskSectionId=IPM_ConstantUtils.BLANK;
-        //boolean value initialized
-        showValidation=true;
-        showStop=true;
-        showPostpone=true;
-        showApprove=true;
-        isRiskComplete=true;//boolean to check if Risk section is complete
-        isCmiComplete=true;//boolean to check if CMI section is complete
-       
-        
+    {   
         if(!String.isBlank(Status))
         {
             projectDoc.IPM_Document_Status__c=Status;//setting the project document status
         }
-        
-        //For Risk & CMI Section Id
-        for(IPM_Project_Document_Section__c pds:projSectionList)
-        {
-            if(pds.IPM_Section__r.External_ID__c==IPM_ConstantUtils.RISK_SECTION)
-            {
-                riskSectionId=pds.Id;
-            }
-            if(pds.IPM_Section__r.External_ID__c==IPM_ConstantUtils.CMI_SECTION)
-            {
-                cmiSectionId=pds.Id;
-            }
-            if(pds.IPM_Section__r.External_ID__c==IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_EXTERNAL_ID)
-            {
-                ecoDesignSectionId = pds.Id;
-            }
-        }
-        
         //functionality when Document status is STOPPED
         if(projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED)
-        {
-        	
-            if(!String.isBlank(projectDoc.IPM_Stopped_Comments__c))
-            {
-            	stopProject();                
-            }
-            else 
-            {
-                showStop=false;
-                showErrorMsg=system.label.IPM_Stopmsg;
-            }
-        }
-       
-        
+        {  
+              stopProject();
+            
+        }       
         //functionality when Document status is PROPOSED
         else if(projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED)
         {
             showStop=false;
             showPostpone=false;
             showValidation=true;
-            cmiCount=0;
             rolloutFilledCount=0;
             rolloutCount=0;
-            String errorMsg=IPM_ConstantUtils.BLANK;           
-            
             finExternalID=IPM_ConstantUtils.BLANK;
             riskQuesList=new List<IPM_Questionnaire__c >();//instantiate questionnaire List
-            cmiList=new List<IPM_Project_Document_Section_Content__c>();//instantiate CMI List
-            gateCMIList=new List<IPM_Gate_CMI__c>();
-            // Milestone Validation Check            
-            validateMilestone();
-           
-            if(projectId!=null){
-                 
-                // Rollouts and Financials Validation Check
-                   validateRolloutAndFin();
-                // Risk Question Validation Check
-                   validateRisk();
-                //For CMI Validation Check
-                    validateCMI();
-            }
-           
-            //All the validation Messages to be displayed on the UI. The below code base will be updated based on the NEW UI (after refactoring is over)
-            if(dueMilestones != NULL && !dueMilestones.isEmpty())
-            {
-                showValidation=false;
-                milestoneError=true;
-            }
-            
-            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
-            {
-                if(rolloutFilledCount>0)
-                {
-                    showValidation=false;
-                    rolloutRegionalPLFilledError=true;
-                }
-            
-                if(rolloutCount<1)
-                {
-                    showValidation=false;
-                    rolloutNotExistsError=true;
-                }
-                
-                if(fin.Year_3_iTO_Global__c==0.00)
-                {
-                    showValidation=false;
-                    financialError=true;
-                }   
-            }
-            
-            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
-            {
-                if(rolloutFilledCount>0)
-                {
-                    showValidation=false;
-                    rolloutCountryPLFilledError=true;
-                }
-            
-                if(fin.Year_3_iTO_Regional__c==0.00)
-                {
-                    showValidation=false;
-                    financialError=true;
-                }
-            }
-            
-            if(!isRiskComplete)
-            {
-                showValidation=false;
-                riskError=true;
-            }
-               
-            if(!isCmiComplete)
-            {
-                showValidation=false;
-                cmiError=true;
-            }
-                
-                    
-            if(!project.IPM_IsCompleted__c)
-            {
-                showValidation=false;
-                completedError=true;
-            }
-              if(String.isBlank(project.IPM_Project_Description__c))
-            {
-                showValidation=false;
-                discriptionError=true;
-            }
-           
-            if(showValidation)
-            {
-                for(IPM_Project_Document_Section__c pds:projSectionList)
-                {
-                    if(String.isBlank(pds.IPM_Gate_Document_Summary__c)) 
-                    {
-                        showValidation=false;
-                    }
-                }
-            
-                
-                if(showValidation)
-                {
-                    showValidation=true;
-                    project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
-                    project.IPM_Document_Update_Date__c = Date.today();
-                    
-                    System.savePoint updateSavePoint = Database.SetsavePoint();
-                    try
-                    {
-                        if(projectDoc!=null)
-                        {
-                           
-                            update project;
-                        }
-                        
-                        if(projSectionList != NULL && !projSectionList.isEmpty())
-                        { 
-                            update projSectionList;
-                        }
-                    }
-                    catch (DmlException ex)
-                    {
-                        
-                        Database.rollback(updateSavePoint);
-                        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
-                                SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
-                            
-                    }
-                    catch (Exception ex)
-                    {
-                        Database.rollback(updateSavePoint);
-                         ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
-                                SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
-                    }
-                }
-                else
-                {
-                    showValidation=false;
-                    apexpages.addmessage(new apexpages.message(apexpages.severity.error,system.label.IPM_GateStatus_msg));
-                }
-            }
-            else 
-            {
-                showValidation=false;
-                apexpages.addmessage(new apexpages.message(apexpages.severity.error,errorMsg));
-            }
-            ecoDesignAssessmentValidate();
+           			          
+          	showValidationMethod();
+            proposeProject();
         }
+         //functionality when Document status is POSTPONED
         else if(projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED)
         {   
-            // Postponed Comments and Postponed date is required. Posponed Date must be in future         
+           // Postponed Comments and Postponed date is required. Posponed Date must be in future         
             postponeProject();
         }
+        //functionality when Document status is Approved with Edits
         else if( projectDoc.IPM_Document_Status__c == IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS)
-        {
-            
+        {  
             approvedWithEditsProject();
                        
         }
@@ -344,8 +170,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         {
             approveProject();
         } 
-    }
-    
+    }    
    
     /*****************************************************************
     Function Summary :used for Rerendering on Selection (DO NOT REMOVE)
@@ -414,6 +239,13 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
         }
     }
     
+    /***********************************************************************
+    @Description :Validate Milestones     
+    @param: Not Applicable
+    @Author: Cognizant
+    @return: Void
+    @Referenced:showValidationMethod function
+    **********************************************************************/
     public void validateMilestone()
     {
         if(project!=null && !milestoneList.isEmpty())
@@ -448,6 +280,13 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     
     }
     
+    /***********************************************************************
+    @Description :Validate Rollouts and Financials      
+    @param: Not Applicable
+    @Author: Cognizant
+    @return: Void
+    @Referenced:showValidationMethod function
+    **********************************************************************/
     public void validateRolloutAndFin()
     {
         fin=new IPM_Financial__c();//instantiate financial object
@@ -459,9 +298,11 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null)];
                     
                     if(rolloutCount>0)
-                    fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
+                    {
+                        fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
+                    }
                 }
-                else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL &&    ((project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS)|| project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
+                else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL &&    (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
                 {
                     finExternalID=project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
                     //Check for Regional level
@@ -471,10 +312,24 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     {
                         fin=[SELECT Year_3_iTO_Regional__c,Year_3_iTO_Global__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
                     }
+                    
                 }
-                else
-                    finExternalID=project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_DEFAULT;
+                else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+                {
+                  
+                    finExternalID=project.IPM_Project_Name__c;
+                    fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
+                  
+                }
     }
+    
+    /***********************************************************************
+    @Description :Validate RMP comments      
+    @param: Not Applicable
+    @Author: Cognizant
+    @return: Void
+    @Referenced:showValidationMethod function
+    **********************************************************************/
     
     public void validateRisk()
     {
@@ -487,40 +342,198 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 if((projectDoc.IPM_GateDocuments__c==IPM_ConstantUtils.CHARTER_GATE && String.isBlank(risk.IPM_Charter_Comments__c) && risk.IPM_Charter_Score__c>=IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) || 
                     (projectDoc.IPM_GateDocuments__c==IPM_ConstantUtils.CONTRACT_GATE && String.isBlank(risk.IPM_Contract_Comments__c) && risk.IPM_Contract_Score__c>=IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE) ||
                     (projectDoc.IPM_GateDocuments__c==IPM_ConstantUtils.MARKET_READY_GATE && String.isBlank(risk.IPM_Market_Ready_Comments__c) && risk.IPM_Market_Ready_Score__c>=IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE)){
-						isRiskComplete=false;                
-				}       
+            	isRiskComplete=false;                
+        		}       
             }
     }
     
-    public void validateCMI()
-    {
-         gateCMIList=[SELECT Id,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c FROM IPM_Gate_CMI__c WHERE IPM_Project__c=:project.id];
-                if(String.isNotBlank(cmiSectionId)){
-                    cmiList=[SELECT Id,IPM_CMI_Result__c,IPM_CMI_Is_Free_Text__c FROM IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c=:cmiSectionId and IPM_CMI_Is_Free_Text__c=false];
-                    for(IPM_Project_Document_Section_Content__c cmi:cmiList)
-                    {
-                        if(String.isBlank(cmi.IPM_CMI_Result__c)){
-                            isCmiComplete=false;
-                        }    
-                    }
-                    for(IPM_Gate_CMI__c gate:gateCMIList)
-                    {
-                        if(gate.IPM_Skip_Test__c && String.isBlank(gate.IPM_Skip_Test_Reason__c)){
-                            isCmiComplete=false;
-                        }    
-                    }
+    /***********************************************************************
+    @Description :Used on page load and on submit of the Change Button      
+    @param: Not Applicable
+    @Author: Cognizant
+    @return: Void
+    @Referenced:submit function
+    **********************************************************************/
+    public void showValidationMethod(){
+    	showErrorMsg=IPM_ConstantUtils.BLANK;
+        riskSectionId=IPM_ConstantUtils.BLANK;
+        //boolean value initialized
+        showValidation=true;
+        showStop=true;
+        showPostpone=true;
+        showApprove=true;
+        isRiskComplete=true;//boolean to check if Risk section is complete 
+        for(IPM_Project_Document_Section__c pds:projSectionList){
+                if(pds.IPM_Negotiable__c && pds.IPM_Default_Section__c){
+                    isDefaultAvailable=true;                        
                 }
-    }
-    
-    
+                //For Risk & Eco-Design Section Id
+                if(pds.IPM_Section__r.External_ID__c==IPM_ConstantUtils.RISK_SECTION)
+        		{
+            		riskSectionId=pds.Id;
+        		}
+       			if(pds.IPM_Section__r.External_ID__c==IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_EXTERNAL_ID)
+       			{
+            		ecoDesignSectionId = pds.Id;
+        		}
+                
+           }   	
+    	 if(projectId!=null){
+                 // Milestone Validation Check            
+            	   validateMilestone();
+                // Rollouts and Financials Validation Check
+                   validateRolloutAndFin();
+                // Risk Question Validation Check
+                   validateRisk();
+                //ecoDesign validation check
+                   ecoDesignAssessmentValidate();   
+            }
+           
+     //All the validation Messages to be displayed on the UI. The below code base will be updated based on the NEW UI (after refactoring is over)
+            if(dueMilestones != NULL && !dueMilestones.isEmpty())
+            {
+                showValidation=false;
+                milestoneError=true;
+            }
+            
+            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+            {
+                if(rolloutFilledCount>0)
+                {
+                    showValidation=false;
+                    rolloutRegionalPLFilledError=true;
+                }
+            
+                if(rolloutCount<1)
+                {
+                    showValidation=false;
+                    rolloutNotExistsError=true;
+                }
+                
+                if(fin.Year_3_iTO_Global__c==0.00)
+                {
+                    showValidation=false;
+                    financialError=true;
+                }   
+            }
+            
+            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
+            {
+               if(rolloutCount<1 && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)
+                {
+                    showValidation=false;
+                    rolloutNotExistsError=true;
+                }
+               
+                if(rolloutFilledCount>0 && project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS)
+                {
+                    showValidation=false;
+                    rolloutCountryPLFilledError=true;
+                }
+                if(fin.Year_3_iTO_Regional__c==0.00 && project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS)
+                {
+                    showValidation=false;
+                    financialError=true;
+                }
+                
+                if(fin.Year_3_iTO_Global__c==0.00 && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)
+                {
+                    showValidation=false;
+                    financialError=true;
+                }
+                
+            }
+            
+            if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && fin.Year_3_iTO_Global__c==0.00)
+            {
+                showValidation=false;
+                financialError=true;
+            }
+            
+            if(!isRiskComplete)
+            {
+                showValidation=false;
+                riskError=true;
+            }
+               
+            if(!project.IPM_IsCompleted__c)
+            {
+                showValidation=false;
+                completedError=true;
+            }
+              if(String.isBlank(project.IPM_Project_Description__c))
+            {
+                showValidation=false;
+                discriptionError=true;
+            }
+            
+		}
+		
+		
+	/***********************************************************************
+    @Description :Used on click of the Change Button if Proposed     
+    @param: Not Applicable
+    @Author: Cognizant
+    @return: Void
+    @Referenced:submit function
+    **********************************************************************/
+		
+		public void proposeProject(){
+			// Used to Set Error Message information.
+            String errorMsg=IPM_ConstantUtils.BLANK;
+			if(showValidation)
+            {
+		 		showValidation=true;
+                    project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
+                    project.IPM_Document_Update_Date__c = Date.today();
+                    
+                    System.savePoint updateSavePoint = Database.SetsavePoint();
+                    try
+                    {
+                        if(projectDoc!=null)
+                        {
+                           
+                            update project;
+                        }
+                        
+                        if(projSectionList != NULL && !projSectionList.isEmpty())
+                        { 
+                            update projSectionList;
+                        }
+                    }
+                    catch (DmlException ex)
+                    {
+                        
+                        Database.rollback(updateSavePoint);
+                        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
+                                SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
+                            
+                    }
+                    catch (Exception ex)
+                    {
+                        Database.rollback(updateSavePoint);
+                         ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
+                                SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
+                    }
+            }
+            else 
+            {
+                showValidation=false;
+                apexpages.addmessage(new apexpages.message(apexpages.severity.error,errorMsg));
+            }
+		}
     /***********************************************************************
     @Description :Used on click of the Submit Button if Stopped     
     @param: Not Applicable
+    @Author: Cognizant
+    @return: Void
     @Referenced:submit function
     **********************************************************************/
     
     public void stopProject(){
-    			showStop=true;
+    	if(!String.isBlank(projectDoc.IPM_Stopped_Comments__c))
+            {
+          		showStop=true;
                 Date dt=date.parse(System.today().format());
                 projectDoc.IPM_Stopped_Date__c=dt;
                 projectDoc.IPM_Updated_User_By__c=UserInfo.getUserId();
@@ -535,30 +548,38 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     update project;
                 }
                 catch (DmlException ex)
-                {		
-                	   ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));                	
+                {    
+                     ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));                  
                         ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
                         SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
                         
                 }
                 catch (Exception ex)
                 {
-                	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+                  ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
                     ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
                         SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
                         
                 }
-    	
+            }
+            else 
+            {
+                showStop=false;
+                showErrorMsg=system.label.IPM_Stopmsg;
+            }
+      
     }
     
     /***********************************************************************
     @Description :Used on click of the Submit Button if postpone     
     @param: Not Applicable
+    @Author: Cognizant
+    @return: Void
     @Referenced:submit function
     **********************************************************************/
     public void postponeProject()
     {
-    	showPostpone = false;
+      showPostpone = false;
             showErrorMsg=IPM_ConstantUtils.BLANK; 
             System.SavePoint sp = Database.setSavePoint();
             IPM_Milestone__c currentPhaseMilestone = null;
@@ -569,7 +590,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             {
                 if(String.isBlank(projectDoc.IPM_Postponed_Comments__c) || projectDoc.IPM_Postponement_Date__c == null)
                 {
-                    showErrorMsg=system.label.IPM_Postpone_Msg;
+                    showErrorMsg=IPM_ConstantUtils.BLANK;
                 }
             
                 if(String.isBlank(showErrorMsg) && projectDoc.IPM_Postponement_Date__c!=null && projectDoc.IPM_Postponement_Date__c <= System.today())
@@ -645,10 +666,12 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     /***********************************************************************
     @Description :Used on click of the Submit Button if approve with Edits     
     @param: Not Applicable
+    @Author: Cognizant
+    @return: Void
     @Referenced:submit function
     **********************************************************************/
     public void approvedWithEditsProject(){
-    	 try
+       try
             {
                 project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
                 project.IPM_Document_Update_Date__c = Date.today();  
@@ -656,29 +679,31 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
             }
             catch (DmlException ex)
             {   
-            	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+              ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
                 SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
 
             }
             catch (Exception ex)
-            {	
-            	ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+            {  
+              ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
                  ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_CHANGEPROJDOCSTATUSCONT_STR,
                 SUBMIT_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
 
             }   
-    	
+      
     }
     
     /***********************************************************************
     @Description :Used on click of the Submit Button if Approved     
     @param: Not Applicable
+    @Author: Cognizant
+    @return: Void
     @Referenced:submit function
     **********************************************************************/
     
     public void approveProject(){
-    	showStop=false;
+      showStop=false;
             showPostpone=false;
             showValidation=false;
             Date dt=date.parse(System.today().format());

@@ -135,6 +135,17 @@ global class IPM_ProjectOwnerUpdate_Batch implements Database.Batchable<sObject>
                 }     
              }
             
+            //Update the ownerid of Document Section Content to Queueid i.e. ownerid of the project
+            List<IPM_Project_Document_Section_Content__c> updateDocSecConOwnerList=new List<IPM_Project_Document_Section_Content__c>(); 
+            for(IPM_Project_Document_Section_Content__c  DocSecCon:[SELECT id,ownerid,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.ownerid 
+                												    FROM IPM_Project_Document_Section_Content__c
+             														WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.id IN: projectowneridmap.keyset()]){
+            	if(DocSecCon.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.ownerid !=null){
+            		DocSecCon.ownerid = DocSecCon.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.ownerid;
+            		updateDocSecConOwnerList.add(DocSecCon);
+            	}             															
+            }
+
             if(updateFinanceOwnerList != null && !updateFinanceOwnerList.isEmpty()){
                 try{    
                     Update updateFinanceOwnerList;
@@ -149,18 +160,35 @@ global class IPM_ProjectOwnerUpdate_Batch implements Database.Batchable<sObject>
                 try{                 
                     Update updatebosscardOwnerList;
                 }catch(Exception ex)
-                {
-                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,executeMethod,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);
-                }                        
+				{
+					ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,executeMethod,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);
+				}                        
+           }
+          
+                      
+          if(!updateDocSecConOwnerList.isEmpty()){
+           	try{    
+               	Update updateDocSecConOwnerList;
+            }catch(Exception ex)
+			{
+			 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,executeMethod,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);
+			} 
           }          
     }
    } 
 
     //finish Mehtod
     global void finish(Database.BatchableContext BC)
-    {
-        //sends an email for job status, after the job is completed.
-        IPM_Utils.sendApexJobStatusMail(BC); 
+    {       
+       // Query the AsyncApexJob object to retrieve the current job's information.
+       AsyncApexJob apexJob = [SELECT Id, Status, NumberOfErrors, JobItemsProcessed,TotalJobItems, CreatedBy.Email
+                  			   FROM AsyncApexJob 
+                   			   WHERE Id =:bC.getJobId()];
+       
+       if(apexJob.NumberOfErrors>0){       
+       		//sends an email for job status, after the job is completed.
+       		IPM_Utils.sendApexJobStatusMail(BC);
+       } 
     }
 
 }

@@ -63,6 +63,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -394,23 +395,19 @@
     </listViews>
     <listViews>
         <fullName>All</fullName>
+        <columns>News_Publish_Date__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>OBJECT_ID</columns>
+        <columns>Site_Name__c</columns>
+        <columns>Site_Type__c</columns>
         <columns>NAME</columns>
         <columns>Title__c</columns>
         <columns>News_Article_Topics__c</columns>
-        <columns>Like_Count_RSF__c</columns>
-        <columns>Comment_Count__c</columns>
-        <columns>Sharepoint_URL__c</columns>
-        <columns>Socialise_Activity__c</columns>
-        <columns>Comment_GA_URL__c</columns>
-        <columns>Like_GA_URL__c</columns>
         <columns>Chatter_Groups__c</columns>
         <columns>Admin_Chatter_Group__c</columns>
-        <columns>CREATEDBY_USER</columns>
-        <columns>UPDATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>Bangladesh</fullName>
@@ -1165,6 +1162,12 @@
         <columns>CREATEDBY_USER</columns>
         <columns>CREATED_DATE</columns>
         <columns>UPDATEDBY_USER</columns>
+        <columns>Image_URL__c</columns>
+        <columns>Like_GA_URL__c</columns>
+        <columns>News_Article_Topics__c</columns>
+        <columns>News_Body__c</columns>
+        <columns>News_Publish_Date__c</columns>
+        <columns>Related_Links__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Site_Name__c</field>

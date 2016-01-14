@@ -35,6 +35,10 @@ public with sharing class IPM_ChatterUtils {
                         ConnectApi.MentionSegmentInput mentionSegmentInput = new ConnectApi.MentionSegmentInput();
                         mentionSegmentInput.id = mentionId;
                         messageBodyInput.messageSegments.add(mentionSegmentInput);
+                        
+                        ConnectApi.TextSegmentInput textSegmentInputComma = new ConnectApi.TextSegmentInput();
+                        textSegmentInputComma.text = IPM_ConstantUtils.COMMA + IPM_ConstantUtils.IPM_SPACE;
+                        messageBodyInput.messageSegments.add(textSegmentInputComma);
                 }
             }
             

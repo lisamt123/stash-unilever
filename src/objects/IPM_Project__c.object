@@ -53,6 +53,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -282,6 +283,18 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>BET_Last_BET__c</fullName>
+        <externalId>false</externalId>
+        <label>Last BET</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BET_Link_Requested__c</fullName>
         <externalId>false</externalId>
         <label>BET Link Requested</label>
@@ -388,6 +401,19 @@
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>BI__c</fullName>
+        <description>BI Value from IPM Finance record</description>
+        <externalId>false</externalId>
+        <label>BI</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Bulk_BET_Member_Request__c</fullName>
@@ -527,12 +553,28 @@
                 <fullName>Sample 1</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>--None--</fullName>
+                <default>true</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>IPMProjectBaseURL__c</fullName>
+        <externalId>false</externalId>
+        <formula>Left($Api.Enterprise_Server_URL_350,(find(&apos;/services&apos;,$Api.Enterprise_Server_URL_350))) + &apos;apex/IPM_ProjectOverview?id=&apos;+Id</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Project Base URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPMProject_Span__c</fullName>
@@ -1001,7 +1043,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <fullName>IPM_Clusters__c</fullName>
         <description>To fill this formula field from IPM Cluster</description>
         <externalId>false</externalId>
-        <formula>IF((ISPICKVAL(IPMProject_Span__c, &apos;Global&apos;) &amp;&amp; ISPICKVAL(IPM_Project_Type__c , &apos;Original&apos;)), IPM_Cluster__r.IPM_Cluster_Name__c,  IF((ISPICKVAL( IPMProject_Span__c, &apos;Regional&apos;) &amp;&amp; ISPICKVAL(IPM_Project_Type__c , &apos;Rollout&apos;)), IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c,  IF((ISPICKVAL( IPMProject_Span__c, &apos;Local&apos;) &amp;&amp; ISPICKVAL(IPM_Project_Type__c , &apos;Rollout&apos;)), IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c, &apos;&apos;) ) )</formula>
+        <formula>IF(AND(ISPICKVAL(IPM_SourceProjectType__c,&apos;Original&apos;), IPM_CompanyCardText__c=&apos;Global Company Card&apos;),IF(ISPICKVAL(IPMProject_Span__c, &apos;Global&apos;),IPM_Cluster__r.IPM_Cluster_Name__c,IF(ISPICKVAL(IPMProject_Span__c, &apos;Regional&apos;),IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c,IF(ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c,&apos;&apos;))),IF(AND(ISPICKVAL(IPM_SourceProjectType__c,&apos;Original&apos;), IPM_CompanyCardText__c=&apos;Regional Company Card&apos;),IF(ISPICKVAL(IPMProject_Span__c, &apos;Regional&apos;),IPM_Cluster__r.IPM_Cluster_Name__c,IF(ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),IPM_Parent_Project__r.IPM_Cluster__r.IPM_Cluster_Name__c,&apos;&apos; ) ),&apos;&apos; ))</formula>
         <label>IPM Project Clusters</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -1169,7 +1211,7 @@ IF(ISPICKVAL(IPM_Temporary_Phase__c, &quot;Market Ready&quot;),&quot;Market Depl
         <externalId>false</externalId>
         <label>Exists At Least One Assmnt Per EICountry</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -1347,8 +1389,7 @@ OwnerId))</formula>
     <fields>
         <fullName>IPM_Is_Finance_Member_Null__c</fullName>
         <externalId>false</externalId>
-        <formula>ISNULL(IPM_Finance_Member__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>ISBLANK(IPM_Finance_Member__c)</formula>
         <label>IPM Is Finance Member Null</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -1393,11 +1434,11 @@ OwnerId))</formula>
         <picklist>
             <picklistValues>
                 <fullName>Developed</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Developing &amp; Emerging</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -1437,6 +1478,18 @@ OwnerId))</formula>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Org_Base_URL__c</fullName>
+        <externalId>false</externalId>
+        <formula>LEFT($Api.Enterprise_Server_URL_300, FIND(&apos;/services&apos;,$Api.Enterprise_Server_URL_300))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Org Base URL</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1740,7 +1793,7 @@ OwnerId))</formula>
         <picklist>
             <picklistValues>
                 <fullName>Original</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Rollout</fullName>
@@ -1773,7 +1826,7 @@ OwnerId))</formula>
         <fullName>IPM_Region_Shr__c</fullName>
         <externalId>false</externalId>
         <label>Region</label>
-        <length>80</length>
+        <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1976,21 +2029,13 @@ OwnerId))</formula>
         <type>Text</type>
         <unique>false</unique>
     </fields>
-    <fields>
+   <fields>
         <fullName>IPM_Sub_sector__c</fullName>
         <externalId>false</externalId>
         <label>Sub sector</label>
         <picklist>
             <picklistValues>
-                <fullName>Machine Wash</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>MDW Machine Maintenance</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Machine Dishwash Adjustment</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -2187,16 +2232,6 @@ OwnerId))</formula>
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>IsFinanceMemberNull__c</fullName>
-        <externalId>false</externalId>
-        <formula>ISNULL(IPM_Finance_Member__c)</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
-        <label>IsFinanceMemberNull</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
         <fullName>Is_Archieved__c</fullName>
         <defaultValue>false</defaultValue>
         <description>TO indicate if the IPM NG Project Is Archieved</description>
@@ -2240,6 +2275,17 @@ OwnerId))</formula>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>MisAligned_Confirmed_By_Finance_Leader__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>MisAligned TLD Confirmed By Finance Leader</description>
+        <externalId>false</externalId>
+        <label>MisAligned Confirmed By Finance Leader</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Parent_Planned_Global_Contract_Date__c</fullName>
@@ -2442,6 +2488,11 @@ OwnerId))</formula>
             <operation>equals</operation>
             <value>False</value>
         </summaryFilterItems>
+	<summaryFilterItems>
+            <field>IPM_Milestone__c.IPM_Type_of_Milestone__c</field>
+            <operation>equals</operation>
+            <value>Standard</value>
+        </summaryFilterItems>
         <summaryForeignKey>IPM_Milestone__c.IPM_Project__c</summaryForeignKey>
         <summaryOperation>min</summaryOperation>
         <trackHistory>false</trackHistory>
@@ -2464,7 +2515,7 @@ OwnerId))</formula>
         <externalId>false</externalId>
         <label>Exists At Least One Assmnt Per EICountry</label>
         <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
+        <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -2602,12 +2653,7 @@ OwnerId))</formula>
             <field>RECORDTYPE</field>
             <operation>equals</operation>
             <value>IPM_Project__c.Clustering</value>
-        </filters>
-        <filters>
-            <field>CREATEDBY_USER</field>
-            <operation>equals</operation>
-            <value>Gautam Bhatia</value>
-        </filters>
+        </filters>       
         <label>Original Projects</label>
     </listViews>
     <nameField>
@@ -3014,16 +3060,8 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Sub_sector__c</picklist>
             <values>
-                <fullName>MDW Machine Maintenance</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
-            </values>
-            <values>
-                <fullName>Machine Dishwash Adjustment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Machine Wash</fullName>
-                <default>true</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3412,7 +3450,7 @@ OwnerId))</formula>
             </values>
             <values>
                 <fullName>Original</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Rollout</fullName>
@@ -3471,18 +3509,10 @@ OwnerId))</formula>
         <picklistValues>
             <picklist>IPM_Sub_sector__c</picklist>
             <values>
-                <fullName>MDW Machine Maintenance</fullName>
+                <fullName>None</fullName>
                 <default>false</default>
             </values>
-            <values>
-                <fullName>Machine Dishwash Adjustment</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Machine Wash</fullName>
-                <default>false</default>
-            </values>
-        </picklistValues>
+           </picklistValues>
         <picklistValues>
             <picklist>IPM_Temporary_Phase__c</picklist>
             <values>

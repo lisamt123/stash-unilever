@@ -70,19 +70,14 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     //private static final String CLASS_NAME = 'IPM_RolloutPlansAddController'; //Class Name for Exception Logging
     @TestVisible private static final String CLASS_NAME = IPM_RolloutPlansAddController.class.getName();
     @TestVisible private static final String SEARCH_ROLLOUT_COUNTRY = 'searchRolloutCountry'; //Method Name for Exception Logging
-    @TestVisible private static final String CHANGE_CLUSTER = 'changeCluster'; //Method Name for Exception Logging
     @TestVisible private static final String CHANGE_MCO = 'changeMCO'; //Method Name for Exception Logging
     @TestVisible private static final String GENERATE_ROLLOUTS = 'generateRollouts'; //Method Name for Exception Logging
     @TestVisible private static final String CANCEL = 'cancel'; //Method Name for Exception Logging    
     @TestVisible private static final String GET_UNILEVER_COUNTRIES = 'getUnileverCountries'; //Method Name for Exception Logging  
-    @TestVisible private static final String GENERATE_WRAPPERS = 'generateWrappers'; //Method Name for Exception Logging 
-    @TestVisible private static final String GENERATE_SUBWRAPPERS_FOR_SEARCH = 'generateSubWrappersForSearch'; //Method Name for Exception Logging
     @TestVisible private static final String GENERATE_SUBWRAPPERS = 'generateSubWrappers'; //Method Name for Exception Logging 
-    @TestVisible private static final String PROCESS_COUNTRY_CODE_LISTS = 'processCountryCodeLists'; //Method Name for Exception Logging 
     @TestVisible private static final String PROCESS_REGIONAL_NO_ROLLOUTS = 'processRegionalNoRollouts'; //Method Name for Exception Logging
     @TestVisible private static final String GET_REGIONAL_ROLLOUT_NAME = 'getRegionalRolloutName'; //Method Name for Exception Logging
     @TestVisible private static final String GET_KEY_MCO_ROLLOUT_NAME = 'getKeyMCORolloutName'; //Method Name for Exception Logging
-    @TestVisible private static final String SORT_WRAPPERS_BY_NAME = 'sortWrappersByName'; //Method Name for Exception Logging
     @TestVisible private static final String SelectQueryString ='Id,parent_L2__r.name,parent_L2__r.mdm_id__c,parent_L2__r.geography_type__c,parent_L2__r.parent_L2__c,parent_L2__r.parent_L2__r.Name,parent_L2__r.parent_L2__r.mdm_id__c,parent_L2__r.parent_L2__r.geography_type__c FROM MDO_Geography__c';
     public String searchCountry{get;set;}// Hold country name to search
     public Boolean isNoResult{get;set;}//checking for rollout search
@@ -113,7 +108,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         searchCountry=null;
         isNoResult=false;
         projectId = ApexPages.currentPage().getParameters().get(IPM_ConstantUtils.SF_ID);
-        System.debug(LoggingLevel.ERROR,'@@@ project id -->>'+projectId);
         if (projectId != null)
         {
             isEditable = IPM_Utils.getIPMRollOutUser(projectId);
@@ -126,10 +120,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             generateSubWrappers();
                
      }
-     
-     //System.debug(LoggingLevel.ERROR,'@@@ selectedMCO -->>'+selectedMCO);
-   
-     
   }  
     /**
     *  @Description Method to search Unilever Geographies countries for rollout
@@ -148,28 +138,32 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 String likePerStr='%';
                 String queryString = 'SELECT ';
                 //MDM Geography . //change-2
-                For (String field : Schema.SObjectType.MDO_Geography__c.fields.getMap().KeySet()){
+                for (String field : Schema.SObjectType.MDO_Geography__c.fields.getMap().KeySet())
+                {
                     if (field != IPM_ConstantUtils.SF_ID)
+                    {
                         queryString+= field + ', ';
+                    }
                 } // change-3  query changes required following bottom up approach like from country to cluster /country group (parent_L2__r.name) / cluster parent_L2__r.parent_L2__r.name
                 queryString+= SelectQueryString+' WHERE (Name LIKE \'' + String.escapeSingleQuotes(searchCountry) + likePerStr + '\' OR parent_L2__r.name LIKE \'' + String.escapeSingleQuotes(searchCountry) + likePerStr + '\') AND(Name!=null OR parent_L2__r.Name!=null OR parent_L2__r.parent_L2__r.Name!=null)';
                 queryString+= ' AND geography_type__c = \''+IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRY+'\' AND parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRYGROUP+'\' AND Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_UNILEVERCLUSTER+'\' ORDER BY parent_L2__r.parent_L2__r.name,parent_L2__r.name,Name';
                 queryString+= ' LIMIT 10000';
                 mapUnileverCountries = new Map<String, MDO_Geography__c>(); 
               
-                For(MDO_Geography__c geography : Database.query(queryString)){
-
-
-                    mapUnileverCountries.put(geography.ISO_3166_1_Code__c, geography);
-                
+                for(MDO_Geography__c geography : Database.query(queryString))
+                {
+					  mapUnileverCountries.put(geography.ISO_3166_1_Code__c, geography);
                 }
-                if(!mapUnileverCountries.isEmpty()){
+                if(!mapUnileverCountries.isEmpty())
+                {
                     generateWrappers();
                     generateSubWrappersForSearch(); 
                     changeCluster();
                     isNoResult=false;
                     
-                }else{
+                }
+                else
+                {
                     lstClusterWrappers.clear();
                     lstMCOWrappers.clear();
                     lstCountryWrappers.clear();
@@ -205,9 +199,12 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         //GET A LIST OF ALL IPM COUNTRIES
         String queryString = 'SELECT ';
         //MDM Geography  MDO
-        For (String field : Schema.SObjectType.MDO_Geography__c.fields.getMap().KeySet()){ //change-3
+        For (String field : Schema.SObjectType.MDO_Geography__c.fields.getMap().KeySet())
+        { //change-3
             if (field != IPM_ConstantUtils.SF_ID)
-                queryString+= field + ', ';
+            {
+            	queryString+= field + ', ';
+            }
         }
         queryString+= SelectQueryString; // change-13
         queryString+= ' WHERE geography_type__c = \''+IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRY+'\' AND parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_COUNTRYGROUP+'\' AND Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.Status__c ='+IPM_ConstantUtils.ACTIVE_STRING+' AND parent_L2__r.parent_L2__r.geography_type__c =\''+IPM_ConstantUtils.IPM_GEOGRAPHY_UNILEVERCLUSTER+'\' ORDER BY parent_L2__r.parent_L2__r.name,parent_L2__r.name,Name';
@@ -217,13 +214,10 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             
             mapUnileverCountries = new Map<String, MDO_Geography__c>(); //change-5
             
-            //System.debug(LoggingLevel.ERROR,'queryString-->>'+queryString);
-            
-            for(MDO_Geography__c geography : Database.query(queryString)) {
+            for(MDO_Geography__c geography : Database.query(queryString)) 
+            {
                  mapUnileverCountries.put(geography.ISO_3166_1_Code__c, geography);
             }
-            
-            System.debug(LoggingLevel.ERROR,'mapUnileverCountries-->>'+mapUnileverCountries);
         }
         catch(Exception ex)
         {
@@ -249,27 +243,33 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
        
             String queryString = 'SELECT ';
             //IPM Country
-            For (String field : Schema.SObjectType.IPM_Country__c.fields.getMap().KeySet()){
+            for (String field : Schema.SObjectType.IPM_Country__c.fields.getMap().KeySet())
+            {
                 if (field != IPM_ConstantUtils.SF_ID)
+                {
                     queryString+= field + ', ';
+                }
             }
             queryString+= 'Local_Rollout__r.KeyMCO__c, ';
             queryString+= 'Id FROM IPM_Country__c ';
             
             if(project.IPMProject_Span__c.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_REGIONAL))
+            {
                 queryString+= 'WHERE IPM_Regional_Project__c=:projectId LIMIT 50000';
+            }
             else 
+            {
                 queryString+= 'WHERE IPM_Project__c =: projectId LIMIT 50000';
+            }
            
             
             mapIPMCountries = new Map<String, IPM_Country__c>();
-            //System.debug(LoggingLevel.ERROR,'@@@ map ipm country from regional rollout '+queryString);
             
-            For(IPM_Country__c ipmCountry : Database.query(queryString)){
+            for(IPM_Country__c ipmCountry : Database.query(queryString))
+            {
                 mapIPMCountries.put(ipmCountry.Country_Code__c, ipmCountry);
             }
-            System.debug(LoggingLevel.ERROR,'@@@ map IPM country --->>>'+mapIPMCountries);
-            
+
             mapClusterWrappers = new Map<String, GeographyWrapper>();
             mapMCOWrappers = new Map<String, GeographyWrapper>();
             mapCountryWrappers = new Map<String, GeographyWrapper>();
@@ -281,25 +281,28 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             
             setCountryCodesGlobal = new Set<String>();
             
-            System.debug(LoggingLevel.ERROR,'mapUnileverCountries-->>'+mapUnileverCountries);
+            for (MDO_Geography__c country : mapUnileverCountries.values())
+            { //change-4
             
-            For (MDO_Geography__c country : mapUnileverCountries.values()){ //change-4
-            
-             if(country.parent_L2__r.parent_L2__r.mdm_id__c != null && country.parent_L2__r.parent_L2__r.name!= null){  
+             if(country.parent_L2__r.parent_L2__r.mdm_id__c != null && country.parent_L2__r.parent_L2__r.name!= null)
+             {  
                 if (country.parent_L2__r.parent_L2__r.mdm_id__c != NOT_ASSIGNED_CLUSTER_CODE)
                 { 
                     //cluster code 
                     //Cluster
                     GeographyWrapper clusterWrapper = new GeographyWrapper(country.parent_L2__r.parent_L2__r.mdm_id__c, country.parent_L2__r.parent_L2__r.name, IPM_ConstantUtils.EMPTY_STRING_INITIAL);
                     if (mapClusterWrappers.containsKey(country.parent_L2__r.parent_L2__r.mdm_id__c))
+                    {
                         clusterWrapper = mapClusterWrappers.get(country.parent_L2__r.parent_L2__r.mdm_id__c);
-                    
-                    
+                    }
+                   
                     //MCO Country_Group_Code__c --> L2 mdm id ,Country_Group_c L2 name
                     
                     GeographyWrapper mcoWrapper = new GeographyWrapper(country.parent_L2__r.mdm_id__c, country.parent_L2__r.name, country.parent_L2__r.parent_L2__r.mdm_id__c);
                     if (mapMCOWrappers.containsKey(country.parent_L2__r.mdm_id__c))
+                    {
                         mcoWrapper = mapMCOWrappers.get(country.parent_L2__r.mdm_id__c);
+                    }
                     
                     //Country
                     GeographyWrapper countryWrapper = new GeographyWrapper(country.ISO_3166_1_Code__c, country.Name, country.parent_L2__r.mdm_id__c);
@@ -315,13 +318,18 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                         
                         
                         //Existing Regional/Local Rollouts
-                        if(mapIPMCountries.get(country.ISO_3166_1_Code__c).IPM_Local_Project__c != null){
+                        if(mapIPMCountries.get(country.ISO_3166_1_Code__c).IPM_Local_Project__c != null)
+                        {
                             countryWrapper.noRolloutDisabled = true;
                             if(mapIPMCountries.get(country.ISO_3166_1_Code__c).IPM_Rollout_Status__c.equalsIgnoreCase(IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE))
+                            {
                                 countryWrapper.mcoDisabled = true;
+                            }
                             else if(mapIPMCountries.get(country.ISO_3166_1_Code__c).IPM_Rollout_Status__c.equalsIgnoreCase(IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO))
+                            {
                                 countryWrapper.countryDisabled = true;
-                        }else{System.debug(LoggingLevel.ERROR,'***Regional/Local Rollouts dont Exist');}
+                            }
+                        }
                         
                         //Existing Regional Rollouts for Global Projects
                         if(mapIPMCountries.get(country.ISO_3166_1_Code__c).IPM_Regional_Project__c != null && project.IPMProject_Span__c.equalsIgnoreCase(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL))
@@ -333,16 +341,21 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     if(IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c) && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c))
                     {
                         if(country.parent_L2__r.parent_L2__r.mdm_id__c.equalsIgnoreCase(project.Market_Cluster__c))
+                        {
                             mapClusterWrappers.put(country.parent_L2__r.parent_L2__r.mdm_id__c, clusterWrapper);
-                    } else
-                        mapClusterWrappers.put(country.parent_L2__r.parent_L2__r.mdm_id__c, clusterWrapper);
-                    
+                        }
+                    } 
+                    else
+                	{
+                    	mapClusterWrappers.put(country.parent_L2__r.parent_L2__r.mdm_id__c, clusterWrapper);
+                    }
+                
                     mapMCOWrappers.put(country.parent_L2__r.mdm_id__c, mcoWrapper);
                     mapCountryWrappers.put(country.ISO_3166_1_Code__c, countryWrapper);
                 }
               }// null check    
             }
-            System.debug(LoggingLevel.ERROR,'@@@ mapClusterWrappers'+mapClusterWrappers+'@@@ mapClusterWrappers'+mapMCOWrappers+'@@@ mapClusterWrappers'+mapCountryWrappers);
+            
            
              
             For(GeographyWrapper clusterWrapper : mapClusterWrappers.values())
@@ -353,7 +366,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     mapClusterWrappers.put(clusterWrapper.code, clusterWrapper);
                 }
             }
-            //System.debug(LoggingLevel.ERROR,'@@@ mapClusterWrappers2'+mapClusterWrappers);
             For(GeographyWrapper mcoWrapper : mapMCOWrappers.values())
             {
                 if(setDisabledClusterCodes.contains(mcoWrapper.parentCode))
@@ -363,7 +375,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     setDisabledMCOCodes.add(mcoWrapper.code);
                 }
             }
-            //System.debug(LoggingLevel.ERROR,'@@@ mapMCOWrappers2'+mapMCOWrappers);
             For (GeographyWrapper countryWrapper : mapCountryWrappers.values())
             {
                 if(setDisabledMCOCodes.contains(countryWrapper.parentCode))
@@ -372,7 +383,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     mapCountryWrappers.put(countryWrapper.code, countryWrapper);
                 }
             }
-            //System.debug(LoggingLevel.ERROR,'@@@ mapCountryWrappers2'+mapCountryWrappers);
             lstClusterWrappers = sortWrappersByName(mapClusterWrappers.values());
             
             //SELECT FIRST SELECTED CLUSTER
@@ -383,24 +393,26 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                                                           FROM IPM_Project_Rollout__c 
                                                           WHERE Regional_Project__c=:project.Id 
                                                           LIMIT 10000];
-                //System.debug(LoggingLevel.ERROR,'@@@ inside if lstRegionalRollout '+lstRegionalRollout );
-                if(lstRegionalRollout != null){   
-                                                       
-                    selectedCluster = lstRegionalRollout [0].Market_Cluster__c;
-                    //System.debug(LoggingLevel.ERROR,'@@@ selectedCluster '+selectedCluster );
+                if(lstRegionalRollout != null)
+                {
+                	selectedCluster = lstRegionalRollout [0].Market_Cluster__c;
                 }               
                 
-            } else {
+            } 
+            else 
+            {
                 
-                for(GeographyWrapper clusterWrapper : lstClusterWrappers){
-                    if (((selectedCluster == null) || (IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(selectedCluster)))&&(!clusterWrapper.clusterDisabled)){
+                for(GeographyWrapper clusterWrapper : lstClusterWrappers)
+                {
+                    if (((selectedCluster == null) || (IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(selectedCluster)))&&(!clusterWrapper.clusterDisabled))
+                    {
                         selectedCluster = clusterWrapper.code;
                     }
                 }                
-                if (((selectedCluster == NULL) || (IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(selectedCluster))) && (lstClusterWrappers!=null && !lstClusterWrappers.isEmpty() )){
+                if (((selectedCluster == NULL) || (IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(selectedCluster))) && (lstClusterWrappers!=null && !lstClusterWrappers.isEmpty() ))
+                {
                     selectedCluster = lstClusterWrappers[0].code;
                 }
-                //System.debug(LoggingLevel.ERROR,'@@@ inside else selectedCluster '+selectedCluster );
             }
          
     }
@@ -419,17 +431,21 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             
             //MCO SUB WRAPPERS
             
-            if(lstClusterWrappers != NULL && !lstClusterWrappers.isEmpty()){
+            if(lstClusterWrappers != NULL && !lstClusterWrappers.isEmpty())
+            {
                 selectedCluster = lstClusterWrappers[0].code;
             }
             
-            For(GeographyWrapper mcoWrapper : mapMCOWrappers.values()){
+            for(GeographyWrapper mcoWrapper : mapMCOWrappers.values())
+            {
                 lstMCOWrappers.add(mcoWrapper);
             }
-            if(!lstMCOWrappers.isEmpty()){
+            if(!lstMCOWrappers.isEmpty())
+            {
                 lstMCOWrappers = sortWrappersByName(lstMCOWrappers);
                 
-                if ((lstMCOWrappers[0].code != NULL) || (lstMCOWrappers[0].code !=IPM_ConstantUtils.EMPTY_STRING_INITIAL)){
+                if ((lstMCOWrappers[0].code != NULL) || (lstMCOWrappers[0].code !=IPM_ConstantUtils.EMPTY_STRING_INITIAL))
+                {
                     selectedMCO = lstMCOWrappers[0].code;
                     previouselectedMCO = lstMCOWrappers[0].code;
                 } 
@@ -437,10 +453,12 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             
             //COUNTRY SUB WRAPPERS
             
-            For(GeographyWrapper countryWrapper : mapCountryWrappers.values()){
-                
+            for(GeographyWrapper countryWrapper : mapCountryWrappers.values())
+            {
                 if(setCountryCodesGlobal.contains(countryWrapper.code))
+                {
                     countryWrapper.selected = true;
+                }
                 lstCountryWrappers.add(countryWrapper);
             }
 
@@ -464,13 +482,16 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             lstCountryWrappers = new List<GeographyWrapper>();
             
             //MCO SUB WRAPPERS
-            For(GeographyWrapper mcoWrapper : mapMCOWrappers.values()){
+            for(GeographyWrapper mcoWrapper : mapMCOWrappers.values()){
                 if(mcoWrapper.parentCode.equalsIgnoreCase(selectedCluster))
+                {
                     lstMCOWrappers.add(mcoWrapper);
+                }
             }
             lstMCOWrappers = sortWrappersByName(lstMCOWrappers);
             
-            if (!lstMCOWrappers.isEmpty() && (selectedMCO == NULL) || (IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(selectedMCO))){
+            if (!lstMCOWrappers.isEmpty() && (selectedMCO == NULL) || (IPM_ConstantUtils.EMPTY_STRING_INITIAL.equalsIgnoreCase(selectedMCO)))
+            {
                 selectedMCO = lstMCOWrappers[0].code;
                 
                 previouselectedMCO = lstMCOWrappers[0].code;
@@ -478,11 +499,15 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             }
             //COUNTRY SUB WRAPPERS
             
-            For(GeographyWrapper countryWrapper : mapCountryWrappers.values()){
+            for(GeographyWrapper countryWrapper : mapCountryWrappers.values())
+            {
                 
-                if(countryWrapper.parentCode.equalsIgnoreCase(selectedMCO)){
+                if(countryWrapper.parentCode.equalsIgnoreCase(selectedMCO))
+                {
                     if(setCountryCodesGlobal.contains(countryWrapper.code))
+                    {
                         countryWrapper.selected = true;
+                    }
                         
                     lstCountryWrappers.add(countryWrapper);
                     
@@ -491,17 +516,16 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             
             
             lstCountryWrappers = sortWrappersByName(lstCountryWrappers);
-                if(selectedMCO!=null)
-            selectedKey = mapMCOWrappers.get(selectedMCO).key; 
-            
+	        if(selectedMCO!=null)
+            {
+            	selectedKey = mapMCOWrappers.get(selectedMCO).key; 
+            }
             
             
         }
         catch(Exception ex)
         {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,GENERATE_SUBWRAPPERS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-            
-            System.debug(LoggingLevel.ERROR,'generateSubWrappers exception -->'+ex.getMessage());
             isError = TRUE;
             errorMessage = Label.IPM_PLEASE_CONTACT_ADMINISTRATOR;
         }           
@@ -516,11 +540,9 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     */
     public void changeCluster(){
       
-            if(project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
-
-                mapMCOWrappers.get(previouselectedMCO).key = selectedKey; 
-                  
-                
+            if(project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+            {
+				mapMCOWrappers.get(previouselectedMCO).key = selectedKey; 
             }
             selectedMCO = null;
             selectedKey = false;
@@ -538,13 +560,15 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     *  @throws Exception
     */
     public void changeMCO(){
-        try {
+        try 
+        {
             if(IPM_ConstantUtils.PROJECT_SPAN_GLOBAL.equalsIgnoreCase(project.IPMProject_Span__c) || (IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equalsIgnoreCase(project.IPM_Project_Type__c) && IPM_ConstantUtils.PROJECT_SPAN_REGIONAL.equalsIgnoreCase(project.IPMProject_Span__c)))
-                mapMCOWrappers.get(previouselectedMCO).key = selectedKey; 
+            {
+                mapMCOWrappers.get(previouselectedMCO).key = selectedKey;
+            } 
                selectedKey = false;
                processCountryCodeLists();
                generateSubWrappers();
-            
         } 
         catch (Exception ex) 
         {
@@ -566,10 +590,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     { 
         System.SavePoint rollOutSavepoint = Database.setSavePoint();
         try 
-        {
-            System.debug(LoggingLevel.ERROR,'previouselectedMCO-->>>'+previouselectedMCO+'previouselectedMCO-->>>'+mapMCOWrappers.get(previouselectedMCO)+'selectedKey-->>>'+selectedKey);
-           
-            
+        {   
             if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL || (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c!='Rollout'))
             {   
                 mapMCOWrappers.get(previouselectedMCO).key = selectedKey; 
@@ -588,7 +609,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,GENERATE_ROLLOUTS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
             
             Database.Rollback(rollOutSavepoint);
-            System.debug(LoggingLevel.ERROR,'generateRollouts exe'+ex.getMessage());
             isError = TRUE;
             errorMessage = Label.IPM_Generic_ErrorMessage;
         }
@@ -599,16 +619,14 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     * @param        NONE
     * @return       Page Reference
     */
-    public PageReference redirectPage(){
-        //System.debug(LoggingLevel.ERROR,'@@@redirectPage');
-
+    public PageReference redirectPage()
+    {
         try 
         {
             PageReference rolloutPlans = Page.IPM_RolloutPlans;
             rolloutPlans.getParameters().put(IPM_ConstantUtils.SF_ID, projectId); 
             rolloutPlans.getParameters().put(IPM_ConstantUtils.EDITMODE, IPM_ConstantUtils.EDITMODE_FALSE );               
             rolloutPlans.setRedirect(true);
-            System.debug(LoggingLevel.ERROR,'@@@redirecting...'+rolloutPlans);
             return rolloutPlans;
         } 
         catch (Exception ex) 
@@ -662,44 +680,60 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             //Global
             
             if(setCountryCodesGlobal == null)
+            {
                 setCountryCodesGlobal = new Set<String>();
+            }
             
             if(setCountryCodesGlobalUnselected == null)
+            {
                 setCountryCodesGlobalUnselected = new Set<String>();
+            }
             
             //REGIONAL - MCO
             if(setCountryCodesMCOs == null)
+            {
                 setCountryCodesMCOs = new Set<String>();
+            }
             
             if(setCountryCodesMCOsUnselected == null)
+            {
                 setCountryCodesMCOsUnselected = new Set<String>();
+            }
             
             //REGIONAL - Country
             if(setCountryCodes == null)
+            {
                 setCountryCodes = new Set<String>();
+            }
             
             if(setCountryCodesUnselected == null)
+            {
                 setCountryCodesUnselected = new Set<String>();
+            }
             
             //REGIONAL - No ROllouts
             if(setCountryNoRolls == null)
+            {
                 setCountryNoRolls = new Set<String>();
+            }
             
             if(setCountryNoRollsUnselected == null)
+            {
                 setCountryNoRollsUnselected = new Set<String>();
+            }
             
             
             //PROCESS GLOBAL - ADD the values to the existing list
-            if(globalCountries!=null && globalCountries!=IPM_ConstantUtils.EMPTY_STRING_INITIAL){
+            if(globalCountries!=null && globalCountries!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
+            {
                 List<String> lstTemp = globalCountries.split(IPM_ConstantUtils.COMMA); 
                 setCountryCodesGlobal.addAll(lstTemp);
-                
             }
             
-            if(globalUnselectedCountries!=null && globalUnselectedCountries!=IPM_ConstantUtils.EMPTY_STRING_INITIAL){
+            if(globalUnselectedCountries!=null && globalUnselectedCountries!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
+            {
                 List<String> lstTemp = globalUnselectedCountries.split(IPM_ConstantUtils.COMMA); 
                 setCountryCodesGlobalUnselected.addAll(lstTemp);
-                
             }
             
             setCountryCodesGlobal.removeAll(setCountryCodesGlobalUnselected);
@@ -711,8 +745,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             if(regionalMco!=null && regionalMco!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
             {
                 List<String> lstTemp = regionalMco.split(IPM_ConstantUtils.COMMA);   
-                setCountryCodesMCOs.addAll(lstTemp); 
-                //System.debug(LoggingLevel.ERROR,'@@@ setCountryCodesMCOs'+setCountryCodesMCOs); 
+                setCountryCodesMCOs.addAll(lstTemp);  
             }
             
             // Get non selected MCO Country Codes  
@@ -732,7 +765,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 setCountryCodes.addAll(lstTemp);
             }
             
-            if(regionalUselectedCountry!=null && regionalUselectedCountry!=IPM_ConstantUtils.EMPTY_STRING_INITIAL){
+            if(regionalUselectedCountry!=null && regionalUselectedCountry!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
+            {
                 List<String> lstTemp = regionalUselectedCountry.split(IPM_ConstantUtils.COMMA); 
                 setCountryCodesUnselected.addAll(lstTemp);
             }
@@ -741,16 +775,16 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             setCountryCodesUnselected.clear();
             
             // NO ROLLOUT LIST PROCESS 
-            if(regionalNoRoll!=null && regionalNoRoll!=IPM_ConstantUtils.EMPTY_STRING_INITIAL){
+            if(regionalNoRoll!=null && regionalNoRoll!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
+            {
                 List<String> lstTemp = regionalNoRoll.split(IPM_ConstantUtils.COMMA); 
                 setCountryNoRolls.addAll(lstTemp);
-                
             }
             
-            if(regionalUnselectedNoRoll!=null && regionalUnselectedNoRoll!=IPM_ConstantUtils.EMPTY_STRING_INITIAL){
+            if(regionalUnselectedNoRoll!=null && regionalUnselectedNoRoll!=IPM_ConstantUtils.EMPTY_STRING_INITIAL)
+            {
                 List<String> lstTemp = regionalUnselectedNoRoll.split(IPM_ConstantUtils.COMMA); 
                 setCountryNoRollsUnselected.addAll(lstTemp);
-                
             }
             
             setCountryNoRolls.removeAll(setCountryNoRollsUnselected);
@@ -830,28 +864,21 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 processRegionalNoRollouts();
         }
         
-        //System.debug(LoggingLevel.ERROR,'@@@mapUpsertRegionalRollouts:'+mapUpsertRollouts);
-        
         if(!mapUpsertRegionalRollouts.isEmpty())
         {
             upsert mapUpsertRegionalRollouts.values() IPM_Project_Rollout__c.IPM_Rollout_Project__c;
         }
-        
-        //System.debug(LoggingLevel.ERROR,'@@@mapUpsertRollouts:'+mapUpsertRollouts);
         
         if(!mapUpsertRollouts.isEmpty())
         {
             upsert mapUpsertRollouts.values() IPM_Project_Rollout__c.IPM_Rollout_Project__c;
         }
         
-        //System.debug(LoggingLevel.ERROR,'@@@lstUpsertCountries:'+lstUpsertCountries);
-        
         if(!lstUpsertCountries.isEmpty())
         {
             upsert lstUpsertCountries IPM_Country__c.Project_Country__c;
         }
-        
-        //System.debug(LoggingLevel.ERROR,'@@@deleteRolloutsMap:'+deleteRolloutsMap);
+
         if(!deleteRolloutsMap.isEmpty())
         {
             // Rollouts that might have deleted as part of Trigger Logic of updating Key Rollouts To Non Keys.
@@ -859,7 +886,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             delete rolloutListToDelete;
         }
         
-        //System.debug(LoggingLevel.ERROR,'@@@deleteCountriesMap:'+deleteCountriesMap);
         if(!deleteCountriesMap.isEmpty())
         {   
             // Before deleting Query the Countries again to validate whether certain countries got deleted as part of Rollout Deletion.
@@ -885,7 +911,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         for (String countryCodeGlobal : setCountryCodesGlobal)
         {
             MDO_Geography__c geography = mapUnileverCountries.get(countryCodeGlobal);
-            //System.debug(LoggingLevel.ERROR,'-->>>'+geography.parent_L2__r.mdm_id__c);
             
             String mcoRolloutName = getKeyMCORolloutName(countryCodeGlobal);
             String regionalRolloutName = getRegionalRolloutName(countryCodeGlobal);
@@ -922,8 +947,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     mapUpsertRegionalRollouts.put(regionalRolloutName, regionalRollout);
                }
             }
-            
-            System.debug(LoggingLevel.ERROR,'Rollout --->>>'+regionalRollout);
             
             if (mapExistingRollouts.containsKey(mcoRolloutName) || mapUpsertRollouts.containsKey(mcoRolloutName))
             {
@@ -962,13 +985,11 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     mcoRollout.Regional_Project__c = project.Id;
                 }                    
                 mcoRollout.IPM_Rollout_Project__c = mcoRolloutName;
-                //System.debug(LoggingLevel.ERROR,'-->>>'+mapMCOWrappers.get(geography.parent_L2__r.mdm_id__c));
-                System.debug(LoggingLevel.ERROR,'-->>>'+mapMCOWrappers.get(geography.parent_L2__r.mdm_id__c).key);
                 mcoRollout.KeyMCO__c = mapMCOWrappers.get(geography.parent_L2__r.mdm_id__c).key;
                 mapUpsertRollouts.put(mcoRolloutName, mcoRollout);
             }
             
-            //System.debug(LoggingLevel.ERROR,'Rollout --->>>'+mcoRollout);
+            
             
             if(mapExistingCountries.containsKey(countryCodeGlobal))
             {
@@ -998,9 +1019,7 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 {
                     ipmCountry.IPM_Regional_Project__c = project.Id;
                 }
-            }
-            
-            System.debug(LoggingLevel.ERROR,'Rollout --->>>'+mcoRollout);                
+            }                
         }
                         
         Set<String> setDeleteCountryCodes = new Set<String>();
@@ -1026,16 +1045,21 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         }
             
             //Check to delete MCO Rollout
-        for(IPM_Project_Rollout__c ipmRollout : mapExistingRollouts.values()){
-            if(IPM_ConstantUtils.ROLLOUT_TYPE_MCO.equalsIgnoreCase(ipmRollout.Type__c)){
+        for(IPM_Project_Rollout__c ipmRollout : mapExistingRollouts.values())
+        {
+            if(IPM_ConstantUtils.ROLLOUT_TYPE_MCO.equalsIgnoreCase(ipmRollout.Type__c))
+            {
                 Integer remainingCountryCount = 0;
-                For(IPM_Country__c ipmCountry : ipmRollout.IPM_Countries_Local__r){
-                    if(!setDeleteCountryCodes.contains(ipmCountry.Country_Code__c)){
+                for(IPM_Country__c ipmCountry : ipmRollout.IPM_Countries_Local__r)
+                {
+                    if(!setDeleteCountryCodes.contains(ipmCountry.Country_Code__c))
+                    {
                         remainingCountryCount++;
                     }
                 }
                 
-                if(remainingCountryCount == 0){
+                if(remainingCountryCount == 0)
+                {
                     deleteRolloutsMap.put(ipmRollout.Id,ipmRollout);
                 }
             }
@@ -1118,9 +1142,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             }
             lstUpsertCountries.add(ipmCountry);
         }
-        
-        System.debug(LoggingLevel.ERROR,'mapUpsertRollouts-->>>'+mapUpsertRollouts+'lstUpsertCountries-->>>'+lstUpsertCountries);
-        //System.debug(LoggingLevel.ERROR,'lstUpsertCountries-->>>'+lstUpsertCountries);
     }
     
     /**
@@ -1176,17 +1197,15 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 );
                 
                 if(project.IPM_Project_Type__c != IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+                {
                     ipmCountry.IPM_Project__c = project.IPM_Parent_Project__c;
+                }
             }
             
             ipmCountry.Local_Rollout__r = new IPM_Project_Rollout__c(IPM_Rollout_Project__c = countryRolloutName);
             ipmCountry.IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_SEPERATE;
             lstUpsertCountries.add(ipmCountry);
-        }
-        
-        //System.debug(LoggingLevel.ERROR,'mapUpsertRollouts-->>>'+mapUpsertRollouts);
-        //System.debug(LoggingLevel.ERROR,'lstUpsertCountries-->>>'+lstUpsertCountries);
-                 
+        }                 
     }
     
     /**
@@ -1259,9 +1278,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                     }
                 }
             }
-            
-            //System.debug(LoggingLevel.ERROR,'mapUpsertRollouts-->>>'+mapUpsertRollouts);
-            //System.debug(LoggingLevel.ERROR,'lstUpsertCountries-->>>'+lstUpsertCountries);
         }
         catch (Exception ex) 
         {
@@ -1293,15 +1309,12 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             else
             {
                 String shortName = IPM_Market_Cluster_Short_Names__c.getValues(geography.parent_L2__r.parent_L2__r.mdm_id__c).Short_Name__c;                
-                //System.debug(LoggingLevel.ERROR,'IPM_Market_Cluster_Short_Names__c short name -->'+shortName);
                 return project.IPM_Project_Name__c + IPM_ConstantUtils.UNDERSCORE + shortName;                
             }
         }
         catch (Exception ex) 
         {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,GET_REGIONAL_ROLLOUT_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-            
-            System.debug(LoggingLevel.ERROR,'getRegionalRolloutName'+ex.getMessage());
             isError = TRUE;
             errorMessage = Label.IPM_Generic_ErrorMessage; 
             return null;
@@ -1354,7 +1367,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     */
     private List<GeographyWrapper> sortWrappersByName(List<GeographyWrapper> wrappersToSort) {
       
-            if(wrappersToSort == null || wrappersToSort.size() <= 1){
+            if(wrappersToSort == null || wrappersToSort.size() <= 1)
+            {
                 return wrappersToSort;
             }
             
@@ -1367,11 +1381,16 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
             GeographyWrapper pivotWrapper = wrappersToSort[pivot];
             wrappersToSort.remove(pivot);
             
-            for(GeographyWrapper wrapper : wrappersToSort){
+            for(GeographyWrapper wrapper : wrappersToSort)
+            {
                 if(wrapper.name <= pivotWrapper.name)
-                    lessWrappers.add(wrapper);
+                {
+                	lessWrappers.add(wrapper);
+                }
                 else if(wrapper.name > pivotWrapper.name)
+                {
                     greaterWrappers.add(wrapper);
+                }
             }
             
             List<GeographyWrapper> sortedWrappers = new list<GeographyWrapper>(); 

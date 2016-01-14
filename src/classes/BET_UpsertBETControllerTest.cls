@@ -18,6 +18,12 @@ private class BET_UpsertBETControllerTest {
 		System.assert(controller.catName!='Missing','Category name should be set');
 		System.assert(controller.categoryGroupName!='Missing','Category group name should be set');
 		System.assert(controller.brandPositionName!='Missing','Brand position name should be set');
+
+		controller.categoryGroupName = 'TestName';
+		controller.catName = 'TestName';
+		controller.brandPositionName = 'TestName';
+		controller.betobject = new uw_BET__c();
+
 		Test.stopTest();
 	}
 
@@ -59,6 +65,13 @@ private class BET_UpsertBETControllerTest {
 		controller.brandPosition = position.id;
 
 		System.assertEquals(controller.getBrands().size(),2,'There should be 2 brands available');
+		Test.stopTest();
+	}
+
+	@isTest static void addErrorMessageTest(){
+		BET_UpsertBETController controller = new BET_UpsertBETController();
+		Test.startTest();
+		System.assert(controller.addErrorMessage('test messge') == null,'Page reference should be null');
 		Test.stopTest();
 	}
 	
