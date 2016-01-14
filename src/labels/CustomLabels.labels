@@ -4526,6 +4526,13 @@ Which Communications team do you represent? You must be associated to one Planne
         <value>At</value>
     </labels>
     <labels>
+        <fullName>IPM_AttentionMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_AttentionMsg</shortDescription>
+        <value>Attention</value>
+    </labels>
+    <labels>
         <fullName>IPM_BACK</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9800,7 +9807,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PROJECT_BACKGROUND_PROCESS</shortDescription>
-        <value>Your project is currently being created, so come back in a few minutes...</value>
+        <value>Your project is currently being created, so please come back in a few minutes... Please refresh the page to continue.</value>
     </labels>
     <labels>
         <fullName>IPM_PROJECT_DESCRIPTION</fullName>
@@ -11857,7 +11864,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Target Launch Date Msg</shortDescription>
-        <value>Attention @users, the Target Launch Date on</value>
+        <value>the Target Launch Date on</value>
     </labels>
     <labels>
         <fullName>IPM_Target_Launch_Date_on</fullName>
