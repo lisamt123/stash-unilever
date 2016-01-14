@@ -6203,6 +6203,13 @@ If approved your project will be linked after your Charter gate has been approve
         <shortDescription>IPM_Contract</shortDescription>
         <value>Contract</value>
     </labels>
+     <labels>
+        <fullName>IPM_CopyPastevolumevalid</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_CopyPastevolumevalid</shortDescription>
+        <value>Enter valid Volume units either in Total Tons or Total 000 Units.</value>
+    </labels>
     <labels>
         <fullName>IPM_Copy_Team_From_Other_Projects</fullName>
         <language>en_US</language>
