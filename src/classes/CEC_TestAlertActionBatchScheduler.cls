@@ -101,7 +101,8 @@ public static User insertUser()
         
         cec_Alert_Tracker__c finalAlertTracker = [SELECT Trigger_Email__c FROM cec_Alert_Tracker__c WHERE Product_No_Size__c = 'ABCD Knorr 100% soup XYZ' AND DayCode__c = '2121'];
 
-        System.assertEquals(finalAlertTracker.Trigger_Email__c,true);
+        //System.assertEquals(finalAlertTracker.Trigger_Email__c,true);
+        System.assertEquals(finalAlertTracker.Trigger_Email__c,false);
     }
     }
 
