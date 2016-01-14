@@ -358,7 +358,7 @@ public with sharing class Oblix_Utils {
         return mapSubCategOptionDefinition;
 
     }
-
+	@testVisible
     private static String getProjectedItems2(String projected){
         
         List<String> projectedSetRetVal = new List<String>();
@@ -379,7 +379,7 @@ public with sharing class Oblix_Utils {
         return String.join(projectedSetRetVal,',');
         
     }
-    
+    @testVisible
     private static String getCompletedItems2(String completed){
         
         List<String> completedSetRetVal = new List<String>();
