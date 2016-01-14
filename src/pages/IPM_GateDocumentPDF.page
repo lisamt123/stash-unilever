@@ -826,7 +826,7 @@
                     <c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!apxSec.Id}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact'}" />
                     <c:IPM_Customer_Channels gdpage="true" getProjectID="{!projectId}" getSecid="{!apxSec.Id}" CCEdit="false" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Customers_Channels'}"></c:IPM_Customer_Channels>
                     <c:IPM_Risk_QuestionnaireView getProjectId="{!projectId}" getProjectSectionId="{!apxSec.Id}" editSection="false" gateType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Risk'}"></c:IPM_Risk_QuestionnaireView>
-                    <c:IPM_Gate_RollOuts projId="{!projectId}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans'}"></c:IPM_Gate_RollOuts>
+                    <c:IPM_Gate_RollOuts span="{!project.IPMProject_Span__c}" projId="{!projectId}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans'}"></c:IPM_Gate_RollOuts>
                     <c:IPM_MilestoneList_PDF pId="{!projectId}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" gateDocStatus="{!projectDoc.IPM_Document_Status__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Milestones'}"></c:IPM_MilestoneList_PDF>
                     <c:IPM_Country_Feedback rendered="{!apxSec.IPM_Master_Section_External_Id__c='Country_Feedback_Requirements'}" > </c:IPM_Country_Feedback> 
                     <c:IPM_CMIGateSectionPDF projId="{!projectId}"  gate="{!projectDoc.IPM_GateDocuments__c}" secId="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Mix_Qualification_Plan_and_Action_Standards'}"></c:IPM_CMIGateSectionPDF>
