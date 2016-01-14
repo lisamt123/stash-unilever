@@ -546,7 +546,7 @@ public with sharing class IPM_GateCMIController{
                 }    
                 update secCon;
                 if(String.isNotBlank(secCon.IPM_CMI_Overall_Colour_Coding_Method__c) && secCon.IPM_CMI_Overall_Colour_Coding_Method__c=='System'){
-                    overallScoreColor(secCon.IPM_CMI_Country__c,secCon.IPM_Gate_CMI__c,isEditActionStandard);
+                    overallScoreColor(secCon.IPM_CMI_Country__c,secCon.IPM_Gate_CMI__c,isEditActionStandard,secCon.IPM_Project_Document_Section__c);
                 }
             }
         }
@@ -564,12 +564,12 @@ public with sharing class IPM_GateCMIController{
         }    
     }
     
-    public void overallScoreColor(String country,String gateCMIId,Boolean isActiveStandard){
+    public void overallScoreColor(String country,String gateCMIId,Boolean isActiveStandard,String secId){
         List<IPM_Project_Document_Section_Content__c> secColorList=new List<IPM_Project_Document_Section_Content__c>();
         String cmiInput='';
         secColorList=[SELECT Id,IPM_CMI_Overall_Colour_Achieved__c,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Color_Score_Achieved__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Score_Label__c,IPM_CMI_Result__c,IPM_CMI_Country__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Gate_Test__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
                       FROM IPM_Project_Document_Section_Content__c 
-                      WHERE IPM_Gate_CMI__c=:gateCMIId and IPM_CMI_Country__c=:country];
+                      WHERE IPM_Gate_CMI__c=:gateCMIId and IPM_Project_Document_Section__c=:secId and IPM_CMI_Country__c=:country];
         for(IPM_Project_Document_Section_Content__c ipdsc:secColorList){
             if(String.isBlank(cmiInput)){
                 if(gateType==IPM_ConstantUtils.CHARTER_GATE || !isEditActionStandard){
