@@ -287,19 +287,19 @@ public with sharing class AF_ApproveActualsCtrl {
 *  @return: none.
 **********************************************************************/
 	public void submit(){
-		Boolean isDoc = false;
+		//Boolean isDoc = false;
 		List<AF_OOPS_Actual__c> updateOopsActual = new List<AF_OOPS_Actual__c>();
 		Integer counter =0;
 		for(actualApproval oop:actualApprovalList){
 			if(oop.quarter == selectedQuarter){
-				AF_OOPS_Actual__c oopsActl = [SELECT Name, Quarter__c, AF_Status_Q1__c, AF_Status_Q2__c, AF_Status_Q3__c, AF_Status_Q4__c,
+				/*AF_OOPS_Actual__c oopsActl = [SELECT Name, Quarter__c, AF_Status_Q1__c, AF_Status_Q2__c, AF_Status_Q3__c, AF_Status_Q4__c,
 				AF_Q1__c, AF_Q2__c, AF_Q3__c, AF_Q4__c,AF_Q1_Backup__c,AF_Q2_Backup__c,AF_Q3_Backup__c,AF_Q4_Backup__c,
 				(SELECT ContentType FROM Attachments WHERE ContentType = :docQuarterMap.get(oop.quarter)) 
 				FROM AF_OOPS_Actual__c 
 				WHERE Id = :oop.oopsActual.Id];
 				if(oopsActl.Attachments.size() > 0 && !getActualUploadedValues(oopsActl, oop.quarter)){
 					isDoc = true;
-				}            
+				} */          
 				if(counter==0){
 					if(oop.quarter=='Q1'&& oop.actualInput != null && oop.actualInput !=0){
 						oop.oopsActual.AF_Q1__c = oop.actualInput;

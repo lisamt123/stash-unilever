@@ -586,7 +586,7 @@ public with sharing class AF_AgencyEstimateController
 *  @return: none.
 **********************************************************************/		
 	public void UpdateEntityEX(){
-		if( IsCentralHub = true){
+		if( IsCentralHub){
 			list<AF_Entity_Exception__c>getoldetityexc=[Select id,name,AF_Country__c,AF_Agency_Estimate__c,AF_Value__c,AF_Value_Euro__c from AF_Entity_Exception__c where AF_Agency_Estimate__c=:ParentId ];
 			list<AF_Entity_Exception__c>updatedenitytexception=new list<AF_Entity_Exception__c>();
 			if(getoldetityexc.size()>0){

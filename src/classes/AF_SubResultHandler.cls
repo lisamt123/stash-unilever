@@ -331,15 +331,15 @@ public with sharing class AF_SubResultHandler implements ITrigger{
             if(subResultInstance.AF_Stretching__c!=0 && subResultInstance.AF_Outstanding__c!=0){
                 if((subResultInstance.AF_Minimum__c >= subResultInstance.AF_Stretching__c || subResultInstance.AF_Minimum__c >= subResultInstance.AF_Outstanding__c ))
                 {
-                    subResultInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+                    subResultInstance.addError(AF_Constants.EXCEPTION_MSG_SUBRESULT);
                 }
                 else if((subResultInstance.AF_Stretching__c  >= subResultInstance.AF_Outstanding__c || subResultInstance.AF_Stretching__c <=subResultInstance.AF_Minimum__c ))
                 {
-                    subResultInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+                    subResultInstance.addError(AF_Constants.EXCEPTION_MSG_SUBRESULT);
                 }
                 else if((subResultInstance.AF_Outstanding__c  <= subResultInstance.AF_Minimum__c || subResultInstance.AF_Outstanding__c <=subResultInstance.AF_Stretching__c ))
                 {
-                    subResultInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+                    subResultInstance.addError(AF_Constants.EXCEPTION_MSG_SUBRESULT);
                 }
             }
         }
@@ -347,15 +347,15 @@ public with sharing class AF_SubResultHandler implements ITrigger{
         {
             if((subResultInstance.AF_Minimum__c >= subResultInstance.AF_Stretching__c || subResultInstance.AF_Minimum__c >= subResultInstance.AF_Outstanding__c ))
             {
-                subResultInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+                subResultInstance.addError(AF_Constants.EXCEPTION_MSG_SUBRESULT);
             }
             else if((subResultInstance.AF_Stretching__c  >= subResultInstance.AF_Outstanding__c || subResultInstance.AF_Stretching__c <=subResultInstance.AF_Minimum__c ))
             {
-                subResultInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+                subResultInstance.addError(AF_Constants.EXCEPTION_MSG_SUBRESULT);
             }
             else if((subResultInstance.AF_Outstanding__c  <= subResultInstance.AF_Minimum__c || subResultInstance.AF_Outstanding__c <=subResultInstance.AF_Stretching__c ))
             {
-                subResultInstance.addError('Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding');
+                subResultInstance.addError(AF_Constants.EXCEPTION_MSG_SUBRESULT);
             }
         }
     }

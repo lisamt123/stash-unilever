@@ -152,7 +152,6 @@ Global with sharing class AF_BonusRecordManager {
                 }               
             }
             Boolean result = false;
-            Boolean finalResult = true;
             set<string> CountryNames =  new set<string>(); 
             set<string> BonusThresholdCountryNames = new set<string>(); 
             set<string> ExceptionList = new set<string>(); 
@@ -188,24 +187,7 @@ Global with sharing class AF_BonusRecordManager {
                 }
                 
             
-                if(ExceptionList.size() > 0)
-                {
-                    finalResult = false;
-                }
-               /*                                                 
-                if(finalResult == false)
-                {
-                    MatrixErrorMessage = 'Cannot create bonus matrix due to insufficient Bonus Threshold records. ';
-                    string countries = '';
-                    for(string countryName : ExceptionList)
-                    {
-                        countries = countries + countryName + ' , ';
-                    }
-                    countries = countries.substring(0,countries.length()-2);
-                    MatrixErrorMessage = MatrixErrorMessage + ' Please add Bonus Thresholds for the following unilever entities:  ' +countries; 
-                    IsMatrixError = true;                   
-                }
-                */ 
+                
             }
         }
         
@@ -253,9 +235,10 @@ Global with sharing class AF_BonusRecordManager {
                 system.debug('BonusResultsCollection: ' + BonusResultsCollection.size());       
                system.debug('IsPilotModel:  ' + IsPilotModel);             
                 //if(BonusResultsCollection.size() > 0){BonusResults = BonusResultSingleFactory(pBrandEstimate);BonusResultsCollection.put(BonusResults.Id,BonusResults);}
-                for(AF_Bonus_Threshold__c bonusThreshold : BonusThresholdCollection) 
+                objCollection = new List<AF_Bonus_Matrix__c>();
+				for(AF_Bonus_Threshold__c bonusThreshold : BonusThresholdCollection) 
                 {   
-                    objCollection = new List<AF_Bonus_Matrix__c>();  
+                      
                                                 
                     if(!IsPilotModel)
                     {                                                   
@@ -291,11 +274,11 @@ Global with sharing class AF_BonusRecordManager {
                     {
                         objCollection = PilotModelBonusMatrixGenerator(pBrandEstimate,objCollection, GlobalBonusResults,bonusThreshold);                    
                     }               
-                    
+                      
                          
                     
                 } 
-                if(objCollection.size() > 0)
+				if(objCollection.size() > 0)
                     {
                         try
                         {                       
@@ -305,7 +288,8 @@ Global with sharing class AF_BonusRecordManager {
                         {
                             System.debug(ex);
                         }       
-                    }                                        
+                    }
+                                                      
             }
         }           
         return objCollection;   

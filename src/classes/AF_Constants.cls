@@ -135,6 +135,7 @@ public class AF_Constants
     /*Exception Messages*/
     public static final String EXCEPTION_FIELD_CUSTOM_VALIDATION_EXCEPTION = 'FIELD_CUSTOM_VALIDATION_EXCEPTION';
     public static final String EXCEPTION_ENTITY_IS_LOCKED = 'ENTITY_IS_LOCKED';
+    public static final String EXCEPTION_MSG_SUBRESULT='Please ensure the values entered in the target threshold fields are ascending from minimum to outstanding';
     
     /*Exceptions*/
     public static final String DML_EXCEPTION = 'DMLException';
