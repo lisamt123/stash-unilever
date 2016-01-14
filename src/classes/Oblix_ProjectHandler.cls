@@ -1,5 +1,6 @@
 public with sharing class Oblix_ProjectHandler implements ITrigger {
-     public Oblix_ProjectHandler() {    
+	
+    public Oblix_ProjectHandler() {  
     }
     @testVisible
     boolean triggerShouldExecute = true;
@@ -15,7 +16,6 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
     public void bulkBefore()
     {   
         System.debug('Entering Oblix_ProjectHandler.bulkBefore execution'); 
-        
         if(triggerShouldExecute){
             if(Trigger.isInsert) {
                 System.debug('Entering Trigger beforeInsert'); 

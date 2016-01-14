@@ -98,22 +98,22 @@ public with sharing class Oblix_Utils {
             lst.add(Label.Oblix_Lbl_UIUX_Audio_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory);
-        }
+        }else
         if (recType == Label.Oblix_Lbl_UIUX_Digital) {
             lst.add(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory);
-        }
+        }else
         if (recType == Label.Oblix_Lbl_UIUX_Experiential) {
             lst.add(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory);
-        }
+        }else
         if (recType == Label.Oblix_Lbl_UIUX_Static_Img) {
             lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory);
-        }
+        }else
         if (recType == Label.Oblix_Lbl_UIUX_Stimulus_Materials) {
             lst.add(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory);
         }

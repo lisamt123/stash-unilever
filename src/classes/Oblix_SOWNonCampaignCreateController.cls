@@ -6,7 +6,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
     public List<Oblix_NonCampaignWrapper> activitySelectionList { get; set; }
     public User userConnected {get;set;}
         
-    public  id MSid  {get;set;}
+    public  id sowId  {get;set;}
     public List<Marketing_Basics__c> newItems  {get;set;}
     public boolean errMsg  {get;set;}
     public boolean myMessages {get;set;}
@@ -66,6 +66,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         resource = new Oblix_NonCampaignWrapper();
         activitySelectionList = new List<Oblix_NonCampaignWrapper>();
         populateDummy();
+        //fillCountries();
         //resource.clear();
         selectResource = false;
         TitleEdit = false;
@@ -85,7 +86,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         activity.nonCampaignItem = new Marketing_Basics__c();
         activity.nonCampaignItem.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get(ActivityName);
         
-        MSid = ApexPAges.currentPage().getParameters().get('MSid');
+        sowId = ApexPAges.currentPage().getParameters().get('sowId');
         reRenderSOW();
     
         saveStatus = '';
@@ -114,7 +115,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
             TitleEdit = true;
             elemToEdit = 0;
             Marketing_Basics__c editItem = [select id, name, non_campaign_title__c, FTE__c, recordTypeId, OblixOtherItemFee__c, Agency_Department__c, Role_Title__c, Activities__c, Other_Activities__c, No_of_Hours_Required__c, OblixCountry__c, Oblix_SOWMarketing__c from Marketing_Basics__c where id = : EditId];
-            MSid = editItem.Oblix_SOWMarketing__c;
+            sowId = editItem.Oblix_SOWMarketing__c;
             reRenderSOW();
             newItems.add(editItem);
             fillData(editItem);
@@ -177,7 +178,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
             //g = [select id, name from MDO_Geography__c where id = : eeditItem.OblixCountry__c];
             List<MDO_Geography__c> lstGeoTmp = [select id, name from MDO_Geography__c where id = : eeditItem.OblixCountry__c];
             if(!lstGeoTmp.isEmpty()){
-                 activity.selectedCountry = lstGeoTmp[0].name;
+                 activity.selectedCountryName = lstGeoTmp[0].name;
             }
             // activity.selectedCountry =  g.name ;   //.toUpperCase(); //'FRANCE' ;
             fillAgencyDepartment();
@@ -211,7 +212,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
            // g = [select id, name from MDO_Geography__c where id = : eeditItem.OblixCountry__c];
              List<MDO_Geography__c> lstGeoTmp1 = [select id, name from MDO_Geography__c where id = : eeditItem.OblixCountry__c];
             if(!lstGeoTmp1.isEmpty()){
-                 resource.selectedCountry = lstGeoTmp1[0].name;
+                 resource.selectedCountryName = lstGeoTmp1[0].name;
             }
           //   resource.selectedCountry =   g.name ; //.toUpperCase(); //'FRANCE' ;
             fillAgencyDepartment1();
@@ -256,8 +257,8 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
      */
     public void reRenderSOW() {
     
-        if (MSid != null) {
-            Marketing_SOW = [select id, Financial_Year__c, currency__c, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.Name from Marketing_SOW__c where id = : MSid];
+        if (sowId != null) {
+            Marketing_SOW = [select id, Financial_Year__c, currency__c, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.Name from Marketing_SOW__c where id = : sowId];
             fYear = Marketing_SOW.Financial_Year__c;
             agency = Marketing_SOW.Oblix_AgencyEstimate__c;
             MScurrency = Marketing_SOW.currency__c;
@@ -499,7 +500,13 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         //activity.addVisible = false;
         List < Oblix_Calculator__c > RoleTitleNames = new List < Oblix_Calculator__c > ();
         //system.debug('===========newItem.OblixCountry__c'+newItem.OblixCountry__c);
+        System.DEBUG(' fYear ' + fYear);
+        System.DEBUG(' agency ' + agency);
+        System.DEBUG(' activity.selectedCountry ' + activity.selectedCountry);
+        System.DEBUG(' activity.selectedAgencyDepartment ' + activity.selectedAgencyDepartment);
+
         RoleTitleNames = [select Financial_Year__c, Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name, Agency_Department__c, Role_Title__c from Oblix_Calculator__c where Financial_Year__c = : fYear and Oblix_Agency__c = : agency and OblixCountry__c = :  activity.selectedCountry and Agency_Department__c = : activity.selectedAgencyDepartment];
+        System.DEBUG(' RoleTitleNames ' + RoleTitleNames);
         map < String, String > RoleTitleNamesMap = new map < String, String > ();
         for (Oblix_Calculator__c c: RoleTitleNames) {
             if (c.Role_Title__c != null)
@@ -507,7 +514,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         } 
         RoleTitles = new List < SelectOption > ();
         if (!RoleTitleNamesMap.keyset().isEmpty() ) {
-            //activity.roleVisible = true;
+            activity.roleVisible = true;
             // activity.selectedRole = null;
             for (String temp: RoleTitleNamesMap.keySet()) {
                 // if ( activity.selectedRole==null)  activity.selectedRole= temp; //remplir automatiquement par la premiere valeur
@@ -519,6 +526,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
              activity.selectedRole = '';
             //else add error (there is no rt to select)
         }
+        System.DEBUG(' RoleTitles ' + RoleTitles);
     }
  
     /*
@@ -570,7 +578,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
          activity.selectedRole = '';
     
        // activity.selectedCountry = Oblix_UTils.CountrryGetId( activity.selectedCountry);
-        //activity.selectedCountry =  activity.selectedCountry;            
+        activity.selectedCountry =  activity.selectedCountryName;            
         //activity.agencyVisible = false;
         //activity.roleVisible = false;
         //activity.rateVisible = false;
@@ -595,7 +603,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         }
         AgencyDepartments = new List < SelectOption > ();
         if (!Agency_DepartmentMap.keyset().isEmpty() ) {
-            //activity.agencyVisible = true;
+            activity.agencyVisible = true;
             activity.selectedAgencyDepartment = null;
             for (String temp: Agency_DepartmentMap.keySet()) {
                 if (activity.selectedAgencyDepartment == null) {activity.selectedAgencyDepartment = temp;}
@@ -728,7 +736,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         }
       countries = Oblix_Utils.selectOptionSortByLabel(countries);
       countries = Oblix_Utils.setFirstValue('-Country-', Oblix_Utils.selectOptionSortByLabel(countries ));
-
+      system.debug('###countries : '+countries);
         
         
     }
@@ -754,14 +762,14 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
      */
     public pagereference back() {
         Pagereference meNewPage = Page.Oblix_VF10_nonCampaignView;
-            meNewPage.getParameters().put('MSid', MSid);
+            meNewPage.getParameters().put('sowId', sowId);
             meNewPage.setRedirect(True);
         return meNewPage;
         return null;
     } 
     public pagereference backtoSow(){
      Pagereference meNewPage = Page.Oblix_VF06_SOWView;
-            meNewPage.getParameters().put('sowId', MSid);
+            meNewPage.getParameters().put('sowId', sowId);
             meNewPage.setRedirect(True);
        return meNewPage;
     
