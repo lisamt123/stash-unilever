@@ -54,28 +54,37 @@ global class BET_InoplanToIPMMigration_Batch implements Database.Batchable<sObje
             mIPMs.put(ipmProject.Project_External_ID__c, ipmProject);
          }
 
-         // Create follow request for each BET
+         // Update ipm links
          for (uw_BET__c bet : scope){
-            IPM_Project__c ipmProject = mIPMs.get(bet.Inoplan_Project__r.Project_Id__c);
-
-            if (ipmProject == null){
+         	IPM_Project__c ipmProject = mIPMs.get(bet.Inoplan_Project__r.Project_Id__c);
+         	if (ipmProject == null){
                 ipmProject = mIPMs.get(bet.Inoplan_Project__r.Project_Id__c + IPM_INOPLAN_SUFFIX);
             }
 
             if (ipmProject == null) {
                 logIPMProjectNotFound(bet);
             } else {
-                List<Id> managersIds = new List<Id>{ipmProject.IPM_Project_Leader__c};
-                if (ipmProject.Deputy_Project_Leader__c != null){
-                    managersIds.add(ipmProject.Deputy_Project_Leader__c);
-                }
-                BET_linkingService.Follow(ipmProject.Id, bet.Id, managersIds);
-                ipmProject.BET_Link_Requested__c = bet.Id;
-                ipmProject.IPM_BET_Toolkit__c = IPM_BET_TOOLKIT_VALUE;
-                projects.add(ipmProject);
-            }
+	         	ipmProject.BET_Link_Requested__c = bet.Id;
+	            ipmProject.IPM_BET_Toolkit__c = IPM_BET_TOOLKIT_VALUE;
+	            projects.add(ipmProject);
+        	}
+         }
+         update projects;
+
+         // Create follow request for each valid BET
+         for (uw_BET__c bet : scope){
+         	IPM_Project__c ipmProject = mIPMs.get(bet.Inoplan_Project__r.Project_Id__c);
+	         if (ipmProject == null){
+	            ipmProject = mIPMs.get(bet.Inoplan_Project__r.Project_Id__c + IPM_INOPLAN_SUFFIX);
+	         }
+	         if (ipmProject != null) {
+	         	List<Id> managersIds = new List<Id>{ipmProject.IPM_Project_Leader__c};
+	            if (ipmProject.Deputy_Project_Leader__c != null){
+	                managersIds.add(ipmProject.Deputy_Project_Leader__c);
+	            }
+	            BET_linkingService.Follow(ipmProject.Id, bet.Id, managersIds);
+           	}
         }       
-        update projects;
         System.debug('Exit BET_InoplanToIPMMigration_Batch.execute : ');
 
         
