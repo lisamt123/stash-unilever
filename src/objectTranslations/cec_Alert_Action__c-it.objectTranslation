@@ -65,10 +65,6 @@
         <name>Popup_Message_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Si prega di inserire il valore per l&apos;URL  Questionario</errorMessage>
-        <name>Questionnaire_URL_Validation</name>
-    </validationRules>
-    <validationRules>
         <errorMessage>Si prega di inserire il valore per il campo  &quot;A&quot;  come per le &quot;Email&quot;</errorMessage>
         <name>To_field_validation</name>
     </validationRules>

@@ -162,14 +162,6 @@
         <errorMessage>Please enter value for Popup message as the type is &apos;Popup&apos;</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Questionnaire_URL_Validation</fullName>
-        <active>true</active>
-        <description>Questionaire URL cannot be left blank when the type is &apos;Questionnaire&apos;</description>
-        <errorConditionFormula>AND(TEXT(Type__c) = &apos;Questionnaire&apos;, Questionnaire_URL__c= null )</errorConditionFormula>
-        <errorDisplayField>Questionnaire_URL__c</errorDisplayField>
-        <errorMessage>Please enter value for Questionnaire URL as the type is &apos;Questionnaire&apos;</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>To_field_validation</fullName>
         <active>true</active>
         <description>To field cannot be left blank, when the type is &apos;Email&apos;</description>

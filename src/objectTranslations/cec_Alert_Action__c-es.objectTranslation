@@ -64,10 +64,6 @@
         <name>Popup_Message_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Por favor, introduzca un valor para la URL  Questionnaire ya que el tipo es &quot;questionnaire&quot;</errorMessage>
-        <name>Questionnaire_URL_Validation</name>
-    </validationRules>
-    <validationRules>
         <errorMessage>Por favor, introduzca un valor para el campo &quot;&quot;Para&quot;&quot; (&quot;&quot;To&quot;&quot;) ya que el tipo es &quot;email&quot;</errorMessage>
         <name>To_field_validation</name>
     </validationRules>
