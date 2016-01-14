@@ -108,3 +108,5 @@
 	.buttonmarRightTen{margin-right:10px;}
 	.scoreDB {display:none;}
 	.ipmQuestTextarea {margin-top: 10px;width:51%;}
+	.proceedButton .ipmButton{margin-bottom:15px;}
+	.ipmButtonGroup .ipmButton{margin-bottom:15px;}

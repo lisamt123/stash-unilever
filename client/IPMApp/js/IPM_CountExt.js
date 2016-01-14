@@ -40,7 +40,10 @@ jq(document).ready(function() {
 					var objTextArea = this.document.$.body;
 					var strText = objTextArea.textContent;
 					/* If we reduce the number of conditional operators it will contradict with the other sonar issue 'Merge this if statement with the nested one' */
-					if ((e.data.domEvent.$.keyCode == 8) || (e.data.domEvent.$.keyCode == 46) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode == 36)) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode == 35)) || (e.data.domEvent.$.keyCode == 35) || (e.data.domEvent.$.keyCode == 36) || (e.data.domEvent.$.keyCode == 37) || (e.data.domEvent.$.keyCode == 38) || (e.data.domEvent.$.keyCode == 39) || (e.data.domEvent.$.keyCode == 40)) {
+					if ((e.data.domEvent.$.keyCode == 8) || (e.data.domEvent.$.keyCode == 46) || ((e.data.domEvent.$.shiftKey) 
+						&& (e.data.domEvent.$.keyCode == 36)) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode == 35)) 
+					    || (e.data.domEvent.$.keyCode == 35) || (e.data.domEvent.$.keyCode == 36) || (e.data.domEvent.$.keyCode == 37) 
+						|| (e.data.domEvent.$.keyCode == 38) || (e.data.domEvent.$.keyCode == 39) || (e.data.domEvent.$.keyCode == 40)) {
 						showCharacterCount();
 						e.cancelBubble = false;
 						e.returnValue = true;

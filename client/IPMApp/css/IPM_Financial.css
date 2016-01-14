@@ -231,7 +231,7 @@
 	.noMarginLeft {margin-left:0 !important;}
 	.finTabHeaderExt {text-align:right; margin-top:20px;}
 	.waitingSearchDiv {background-color: #fbfbfb; height: 100%;opacity:0.9;width:100%;}
-	.waitingHolder{top: 74.2px; width: 91px;}
+	.waitingHolder{top: 12% !important; width: 91px !important;}
 	.finTabletr {border-left: 2px #7FA29E solid !important;}
 	.ipmFinancialNavbar .navbar-nav>li a{font-size:0.9em !important;}
 	.currButton{margin-right: 10px;margin-bottom: 9px;}
@@ -256,4 +256,17 @@
 	.misAlignedTLD {background-repeat: no-repeat;text-indent: -2px;background-position: 10px;background-image: url('../images/alert_1b.png');color: #000;font-weight: normal;background-color: #FFFB42 !important;width: 100%;display: block;padding: 10px;float: left;margin-bottom: 10px;border-radius: 4px;padding-left: 43px;}
 	.marginB10{margin-bottom:10px}
 	.pull-right{float:right;}
+	.pull-left{float:left;}
 	.finPeriod{padding-left:5px;}
+	
+	/* New nav styles */
+	.financialYearNavDiv{width: 100px; height:50px;}      
+    .financialYearNavLeftDiv,.financialYearNavRightDiv{width:22px;color: #007dbb; font-size: 28px;} 
+	.wid40P{width:40% !important;}
+    .wid59P{width:59.6% !important;}
+	td.fincol1 select {font-size: 12px;}
+	
+	.marginT10P{margin-top:10px !important;}
+    .marginT5P{margin-top:5px !important;}
+    td.col2Curr{width:300px;}
+    td.col3Curr{width:500px;}

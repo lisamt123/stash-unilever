@@ -86,10 +86,14 @@ function resetCheckboxes(elem, selectedValues) {
         var val = jq(this).attr('value');
         if (jq.inArray(val, selectedValuesArr) != -1) {
             jq(this).prop('checked', true);
+			jq(this).prop('disabled', true);
             jq(this).next('label').addClass('selected');
+			jq(this).next('label').addClass('disabled');
         } else {
             jq(this).prop('checked', false);
             jq(this).next('label').removeClass('selected');
+			jq(this).prop('disabled', false);
+			jq(this).next('label').removeClass('disabled');
         }
     });
 }
@@ -149,10 +153,14 @@ function assortmentscript() {
             var val = jq(this).attr('value');
             if (jq.inArray(val, selectedValuesArr) != -1) {
                 jq(this).prop('checked', true);
+				jq(this).prop('disabled', true);
                 jq(this).next('label').addClass('selected');
+				jq(this).next('label').addClass('disabled');
             } else {
                 jq(this).prop('checked', false);
                 jq(this).next('label').removeClass('selected');
+				jq(this).next('label').removeClass('disabled');
+				jq(this).prop('disabled', false);
             }
         });
     });
@@ -185,10 +193,14 @@ function assortmentscript() {
             var val = jq(this).attr('value');
             if (jq.inArray(val, selectedValuesArr) != -1) {
                 jq(this).prop('checked', true);
+				jq(this).prop('disabled', true);
                 jq(this).next('label').addClass('selected');
+				jq(this).next('label').addClass('disabled');
             } else {
                 jq(this).prop('checked', false);
                 jq(this).next('label').removeClass('selected');
+				jq(this).next('label').removeClass('disabled');
+				jq(this).prop('disabled', false);
             }
         });
     });

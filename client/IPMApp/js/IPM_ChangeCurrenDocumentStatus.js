@@ -7,6 +7,7 @@ var jq = jQuery.noConflict();
 jq.browser = {};
 /* Below script is for the date picker Functionality */
 jq(document).ready(function() {
+	//jq(".proInitLoader").show().delay(1500).fadeOut();
     changeCurrentStatus(IPMApp.gateStatus);
     gkmComplete();
     var dateFormat = "dd/mm/yyyy";
@@ -17,7 +18,14 @@ jq(document).ready(function() {
         startDate: new Date(),
         startView: 0,
     });
-    jq('.ipmStatusTabs').find('li:first').addClass("active").find('label').addClass("selected");
+	jq('.ipmStatusTabs').find('li:first').addClass("active").find('label').addClass("selected");
+	jq('.ipmStatusTabs li').each(function(){
+		if(jq(this).children('span').hasClass('Postponed') && status == IPMApp.Postponed){
+			jq('.ipmStatusTabs li').removeClass('active').find('label').removeClass("selected");;
+			jq(this).addClass("active").find('label').addClass("selected");	
+		}
+	});
+		
     /* Below script is for the Approver with Edits Modal */
     jq(document).on('click', '.apprWithEdits', function(e) {
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
@@ -50,10 +58,11 @@ jq(document).ready(function() {
             slider4.find('input[value=' + IPMApp.Postponed + ']').prop("checked", true);
         }
     });
-    if (status == IPMApp.Postponed) {
+    /*if (status == IPMApp.Postponed) {
+		alert('inside1');
         slider4.find("label:first").off("click").css("cursor", "default");
         slider4.find('input[value=' + IPMApp.Postponed + ']').prop("checked", true);
-    }
+    }*/
     if (jq("label[for=statusRadioBtn_2]").text().indexOf(IPMApp.Stopped) != -1) {
         jq("label[for=statusRadioBtn_2]").css({
             'text-align': 'right',
@@ -84,7 +93,7 @@ jq(document).ready(function() {
         });
     }
 });
-/* Below script is validate the BOSSCARD status and navigate to respective pages */
+/* Below script is validate the status and navigate to respective pages */
 function goToParentPage() {
     if (window.location.search.indexOf('ipmProjectOverview') > -1) {
 		window.top.location.href = IPMApp.ProjectOverviewPage + '?id=' + IPMApp.projectId;
@@ -115,7 +124,7 @@ function gkmComplete() {
             'z-index': '999'
         });
     });
-    /* Below script is for the Tool tip for all BOSSCARD status */
+    /* Below script is for the Tool tip for all status */
     jq('.gkm input[type=radio]').each(function(e) {
         jq(this).click(function() {
             var redData = jq(this).attr("value").split(" ");
@@ -143,7 +152,7 @@ function gkmComplete() {
         jq("#" + rdData).show();
     });
 }
-/* Below script is to change the BOSSCARD status */
+/* Below script is to change the status */
 function changeCurrentStatus(changestatus) {
     jq("[id$=mlktp]").hide();
     jq('.date .dateInput .dateFormat').hide();

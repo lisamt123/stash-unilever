@@ -31,7 +31,7 @@ jq(document).ready(function() {
         }
     });
 });
-/* Since we have to reRender few scripts on Complete of an sales force action function we have put all the scripts necessary inside below function. Hence cannot split the function */
+/* As per the sonar comments script has been split to 3 separate functions brandMfilter,categoryMfilter,phaseMfilter */
 function completedFilter() {
     jq('.mytoProSearch').clearSearch();
     /* Below code is for the sorting functionality */
@@ -90,7 +90,12 @@ function completedFilter() {
     jq(document).on('show.bs.dropdown', '.projectFilter', function() {
         setProjectFilter(true);
     });
-    /* Below code is to show the brand filter drop down */
+    brandMfilter();
+    categoryMfilter();
+	phaseMfilter();    
+}
+function brandMfilter(){
+	/* Below code is to show the brand filter drop down */
     jq(document).on('show.bs.dropdown', '.brandFilter', function() {
         var selectedValues = IPMAppTD.brandName;
         var selectedValuesArr = selectedValues.split(',');
@@ -117,7 +122,10 @@ function completedFilter() {
             });
         }
     });
-    /* Below code is to show the category filter drop down */
+	
+}
+function categoryMfilter(){
+	/* Below code is to show the category filter drop down */
     jq(document).on('show.bs.dropdown', '.categoryFilter', function() {
         var selectedValues = IPMAppTD.categoryName;
         var selectedValuesArr = selectedValues.split(',');
@@ -143,8 +151,11 @@ function completedFilter() {
                 jq(this).next('label').removeClass('selected');
             });
         }
-    });
-    /* Below code is to show the phase filter drop down */
+    });	
+}
+
+function phaseMfilter(){
+	/* Below code is to show the phase filter drop down */
     jq(document).on('show.bs.dropdown', '.phaseFilter', function() {
         var selectedValues = IPMAppTD.phase;
         var selectedValuesArr = selectedValues.split(',');
@@ -171,6 +182,7 @@ function completedFilter() {
             });
         }
     });
+	
 }
 /* Below code is for the reset functionality */
 function fProjectReset() {

@@ -30,7 +30,8 @@ function resetqthree() {
 /* Below code is for the edit coreparameter modal */
 function checkCoreParam() {
     if (IPMProAppCP.coreParameter == 'true') {
-        window.parent.location.reload(true);
+        var pageURL = window.parent.location.href.replace('&BETOptions=1','');
+		window.parent.location.href = pageURL;
     }
 }
 function sliderCP(el) {
