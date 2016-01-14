@@ -45,6 +45,7 @@
                             
                             <div>
                                 <div class="searchBox"><label class="greytext"></label> <apex:inputtext value="{!searchCountry}" html-data-placeholder="{!$Label.IPM_Search_MCO_Country_Name}" styleclass="placeholder" /><img alt="Search" class="srchImage" src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();"/></div>
+                                <div class="rollRegInfo">{!$Label.IPM_REGIONAL_ROLLOUT_ADD_HELP}</div>
                             </div>
                             <apex:actionFunction action="{!searchRolloutCountry}" name="callsearch"/>
                             <apex:outputText value="{!$Label.IPM_Rollout_Search_Message}" rendered="{!isNoResult}" styleclass="finGreyBG"/>
