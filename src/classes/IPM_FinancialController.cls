@@ -1346,12 +1346,11 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         if (project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME && 
             (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
         {
-            String curFinExtId;
-            // check if it is a Regional Rollout Or Regional Orignal, Check if there are local Projects created. If yes, then only display misAlignment. 
-            if(currentFinancial != null)
-            {
-                curFinExtId  = currentFinancial.Financial_External_ID__c;
-            }
+            
+             // check if it is a Regional Rollout Or Regional Orignal, Check if there are local Projects created. If yes, then only display misAlignment. 
+            
+           
+            
             if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
             {
                 if(lstLocalProjects==null || lstLocalProjects.isEmpty())

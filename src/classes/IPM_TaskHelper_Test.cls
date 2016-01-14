@@ -328,15 +328,15 @@ public class IPM_TaskHelper_Test{
             
       for(IPM_Task__c task : taskList)
             {
-              if(task.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE)
-              {
-                system.assert(task.IPM_Active__c == true);
-                
-              }
-              if(task.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
-              {
-                system.assert(task.IPM_Completed__c == true);
-              }
+                if(task.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE)
+                {
+                    system.assert(task.IPM_Active__c);
+                    
+                }
+                if(task.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
+                {
+                    system.assert(task.IPM_Completed__c);
+                }
             }
         }  
      }

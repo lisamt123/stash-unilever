@@ -290,7 +290,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     
                     if(rolloutCount>0)
                     {
-                        fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
+                        fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c,Year_3_iTO_Local__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
                     }
                 }
                 else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL &&    (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
@@ -301,7 +301,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     rolloutFilledCount=[SELECT count() FROM IPM_Project_Rollout__c WHERE Regional_Project__c=:projectId AND RecordTypeId=:Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId() AND (IPM_Regional_PL__c=null OR Target_Launch_Date__c=null)];
                     if(rolloutCount>0)
                     {
-                        fin=[SELECT Year_3_iTO_Regional__c,Year_3_iTO_Global__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
+                        fin=[SELECT Year_3_iTO_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c  FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
                     }
                     
                 }
@@ -309,7 +309,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 {
                   
                     finExternalID=project.IPM_Project_Name__c;
-                    fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
+                    fin=[SELECT Year_3_iTO_Global__c,Year_3_iTO_Regional__c,Year_3_iTO_Local__c  FROM IPM_Financial__c WHERE Financial_External_ID__c=:finExternalID];
                   
                 }
     }
@@ -414,15 +414,15 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 milestoneError=true;
             }
             
-            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
             {
-                if(rolloutFilledCount>0)
+                if(rolloutFilledCount>0 && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
                 {
                     showValidation=false;
                     rolloutRegionalPLFilledError=true;
                 }
             
-                if(rolloutCount<1)
+                if(rolloutCount<1 && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
                 {
                     showValidation=false;
                     rolloutNotExistsError=true;
@@ -435,15 +435,15 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 }   
             }
             
-            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
+            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
             {
-               if(rolloutCount<1 && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)
+               if(rolloutCount<1 && project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
                 {
                     showValidation=false;
                     rolloutNotExistsError=true;
                 }
                
-                if(rolloutFilledCount>0 && project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS)
+                if(rolloutFilledCount>0 && project.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
                 {
                     showValidation=false;
                     rolloutCountryPLFilledError=true;
@@ -456,7 +456,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 
             }
             
-            if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && fin.Year_3_iTO_Global__c==0.00)
+            if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && fin.Year_3_iTO_Local__c==0.00)
             {
                 showValidation=false;
                 financialError=true;

@@ -11,9 +11,6 @@
 public without sharing class  IPM_ProcessRolloutStatusAndDates 
 {
     
-    private static final string PROCESS_REGIONAL_PROJECTS = 'processRegionalProjects';
-    private static final string CLASS_NAME = IPM_ProcessRolloutStatusAndDates.class.getName();
-    
     /*******************************************************************************************************
     * @description                          Method used to process updation of Rollout Status
     * @param setGlobalProjectIds            Set of Global Project Ids

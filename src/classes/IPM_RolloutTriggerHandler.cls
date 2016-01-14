@@ -198,8 +198,7 @@ public with sharing class IPM_RolloutTriggerHandler
             ///Regional Rollout. Validate consolidated financials is present or not. If no create one.
             if(projectRollout.RecordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
             {
-                IPM_Financial__c newFinancial;
-                
+               
                 String financialExternalId = projectRollout.IPM_Rollout_Project__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
                                
                 createRolloutFinancials(financialExternalId,CONSOLIDATED_FINANCIAL_RECORDTYPE,projectRollout,mapUpsertFinancials);

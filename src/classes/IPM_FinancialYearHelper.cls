@@ -17,9 +17,7 @@ public with sharing class IPM_FinancialYearHelper
             'Volume_Global__c','Volume_Regional__c','Volume_Local__c',
             'Volume_Tons_Global__c','Volume_Tons_Regional__c','Volume_Tons_Local__c'
         };
-        
-    private static final Set<String> VOLUME_METRICS = new Set<String>{'Volume_Unit_Global__c','Volume_Unit_Regional__c','Volume_Unit_Local__c'};    
-    
+
     private static String DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
     private static String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
      

@@ -8,7 +8,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 {   
     private Map<Id,IPM_Financial__c> financialDetailMap = new Map<Id,IPM_Financial__c>();
     
-    private static final String DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId(); //Recordtype Id for Default on IPM_Financial__c object
+    //removed DEFAULT_FINANCIAL_RECORDTYPE for SONAR Issue
     private static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
     
     private static Map<Id,IPM_Financial__c> deleteFinancialMap = new Map<Id,IPM_Financial__c>();

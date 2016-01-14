@@ -730,12 +730,7 @@ public with sharing class IPM_ProjectHelper
         
         for(IPM_Project__c project : incomingProjectMap.values())
         {
-            IPM_Project__c oldProject = null; 
-            if(oldProjectMap.containsKey(project.Id))
-            {
-                oldProject = oldProjectMap.get(project.Id);
-            }
-
+            
             if(project.IPM_Project_Rollout__c !=null)
             {
                 Id associatedRolloutId = project.IPM_Project_Rollout__c;
@@ -858,12 +853,6 @@ public with sharing class IPM_ProjectHelper
         {
             for(IPM_Project__c project : incomingProjectMap.values())
             {
-                IPM_Project__c oldProject = null;
-                if(oldProjectMap.containsKey(project.Id))
-                {
-                    oldProject = oldProjectMap.get(project.Id);
-                }
-            
                 Map<String,Set<String>> postFixToUniqueFinancialKeySet = new Map<String,Set<String>>();
                 
                 

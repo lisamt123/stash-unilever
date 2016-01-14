@@ -176,7 +176,7 @@ public with sharing class IPM_CountryHandler implements ITrigger{
                 }
                 
                 //find list of all countries that have been made inactive
-                if(coun.isActive__c != oldCountriesMap.get(coun.Id).isActive__c && coun.isActive__c == false ){
+                if(coun.isActive__c != oldCountriesMap.get(coun.Id).isActive__c && !coun.isActive__c ){
                 	countriesMadeInactive.add(coun);
                 }
             }
