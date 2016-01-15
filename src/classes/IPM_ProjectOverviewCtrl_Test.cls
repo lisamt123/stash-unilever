@@ -27,7 +27,7 @@ public class IPM_ProjectOverviewCtrl_Test
     final Static String IDEAS_PHASE= IPM_ConstantUtils.PHASE_IDEAS;
     final Static String ORIGINAL_PROJECT_TYPE= IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ;
     
-    @testSetup static void initializedData()
+    static void initializedData()
     { 
         String sProjectName = 'TestGate'; 
         //Create Project Template
@@ -102,6 +102,25 @@ public class IPM_ProjectOverviewCtrl_Test
         }
         insert projDocSecList;  
         
+        IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl();
+        overCtrl.lstalertMessage='';
+        overCtrl.gateDateAlert='';
+        overCtrl.dueDateMsg=false;
+        overCtrl.dueDateMsgToday=false;
+        overCtrl.dueDateMsgPast=false;
+        overCtrl.ProName='';
+        overCtrl.gateName='';
+        overCtrl.gateDueDateMessage='';
+        overCtrl.remainingDays=3;
+        overCtrl.Taskeditable=false;
+        overCtrl.regionalORlocalBusinessImpactStr='';
+        overCtrl.projectDocStatusStyleClass='';
+        overCtrl.childProjectsIncompleteAlert='';
+        overCtrl.ecoDesignAlert='';
+        overCtrl.ecoDesignSecId='';
+        overCtrl.hasNext=false;
+        overCtrl.hasPrevious=false;
+        
         projDocSecList1 =  new List<IPM_Project_Document_Section__c>();
         for(Integer i=0 ; i<20 ; i++ ){
             IPM_Project_Document_Section__c projDocSec1 = new IPM_Project_Document_Section__c();
@@ -127,6 +146,9 @@ public class IPM_ProjectOverviewCtrl_Test
             tsk.IPM_Completed__c=false;
             tsk.IPM_Task_Name__c='New task'+i;
             tsk.IPM_Project__c = project.id;
+            tsk.IPM_Assignee__c = UserInfo.getUserId();
+            tsk.IPM_Active__c=TRUE;
+            //tsk.IPM_Phase__c = project.IPM_Phase__c;
             tsk.ExternalField__c = project.Id +  IDEAS_PHASE + IPM_ConstantUtils.COMPLEXITY_LITE + 'New task'+ String.valueOf(i);
             tskList.add(tsk);
         }
@@ -144,7 +166,7 @@ public class IPM_ProjectOverviewCtrl_Test
         insert mile;
  }
  
-  @testSetup static void betDataInitializer(){
+ @testSetup static void betDataInitializer(){
 
         Test.StartTest();
         
@@ -559,7 +581,7 @@ public class IPM_ProjectOverviewCtrl_Test
         IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
         IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
         testIPMFinancialConsolidated = [Select Id, Business_Impact_Global__c from IPM_Financial__c where Id =: testIPMFinancialConsolidated.Id];
-        System.assert(testIPMFinancialConsolidated.Business_Impact_Global__c != overCtrl1.globalbusinessImpactStr);
+        System.assertEquals(testIPMFinancialConsolidated.Business_Impact_Global__c, overCtrl1.globalbusinessImpactStr);
         Test.stopTest();
         }
     }
@@ -686,6 +708,9 @@ public class IPM_ProjectOverviewCtrl_Test
         rollout.Local_Project__c= lProjectList[0].id;
         rollout.RecordTypeId = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
         rollout.Regional_Project__c =  rProjectList[0].id;
+        rollout.IPM_Regional_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER ;
+        rollout.IPM_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER ;
+        rollout.Target_Launch_Date__c = system.today() + 40;
         insert rollout;
         System.assertEquals(1, [Select count() from IPM_Project_Rollout__c where id =: rollout.id],'Rollout is created');
         
@@ -942,5 +967,255 @@ public class IPM_ProjectOverviewCtrl_Test
         }
     }
  
-     
+     //Testmethod to validate pagination controls
+    static testMethod void testPaginationControls(){
+        platformUser =IPM_TestFactory_Helper.returnPlatformUser();
+         
+        system.runAs(platformUser)
+        {
+        initializedData();
+        Test.startTest();
+        PageReference pRef1 = new PageReference(sPageRefURL+project.ID);
+        Test.setCurrentPage(pRef1);
+        
+        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+        IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
+        overCtrl.taskId = tskList[0].Id;
+        overCtrl.getTasks();
+        overCtrl.next();
+        overCtrl.previous();
+        overCtrl.last();
+        overCtrl.first();
+        overCtrl.getPageNumber();
+        System.assertEquals(true, overCtrl.bPaginated, 'Pagination Controls tested.' );
+        Test.stopTest();
+        }
+    }
+    
+    //Testmethod to validate pagination controls
+    static testMethod void testChangeStatusButtonVisibility(){
+        platformUser =IPM_TestFactory_Helper.returnPlatformUser();
+         
+        system.runAs(platformUser)
+        {
+        initializedData();
+        Test.startTest();
+        PageReference pRef1 = new PageReference(sPageRefURL+project.ID);
+        Test.setCurrentPage(pRef1);
+        
+        projDoc.IPM_Document_Status__c='Proposed';
+        update projDoc;
+        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+        IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
+        System.assertEquals(true, overCtrl.bShowChangeStatusButton, 'Pagination Controls tested.' );
+        Test.stopTest();
+        }
+    }
+    
+    //Testmethod to validate pagination controls
+    static testMethod void testLocalTLDMisalignment(){
+        platformUser =IPM_TestFactory_Helper.returnPlatformUser();
+         
+        system.runAs(platformUser)
+        {
+                 //Create IPM Project
+            project=IPM_TestFactory_Helper.createIPMProject(false);
+            project.Name='Test Local Project';
+            project.Sustainability_Period__c=IPM_ConstantUtils.YEAR_3;
+            project.IPM_Target_Launch_Dates__c=system.today();
+            project.Rollout_Plan_Target_Launch_Date__c=system.today() + 10;
+            project.IPM_IsCompleted__c=true; 
+            project.IPM_Project_Name__c = 'Test Local Project'+System.now();
+            project.IPM_Project_Leader__c=userinfo.getuserid();
+            project.IPM_Project_Type__c = 'Rollout';
+            project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
+            project.IPM_CompanyCardText__c = 'Global Company Card';
+            project.IPM_Fast_Track_Project__c = true;
+            project.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+            project.IPM_Brand_Positioning__c='Dirt Is Good';
+            project.IPM_ProjectSubType__c='Innovation/Rennovation';
+            project.IPM_Category_Text__c='Household Care';
+            insert project;
+
+            Test.startTest();
+            PageReference pRef1 = new PageReference(sPageRefURL+project.ID);
+            Test.setCurrentPage(pRef1);
+            
+            IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+            IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
+            System.assert(overCtrl.LstLocalFinTLDMisalignedMessage[0].contains(IPM_ConstantUtils.FIN_TLDMISALIGNED_ALERT1), 'Financials misaligned.');
+            Test.stopTest();
+        }
+    }
+    
+    static testMethod void testForRegionalPLBlankForRollout(){
+        platformUser =IPM_TestFactory_Helper.returnPlatformUser();
+        
+        system.runAs(platformUser)
+        {
+         List<IPM_Project__c> rProjectList = new List<IPM_Project__c>();
+         List<IPM_Milestone__c> rProjectMilestoneList1 = new List<IPM_Milestone__c>();
+         IPM_Milestone__c gProjectMilestone1;
+         initializedData();
+         
+          //Create regional project
+            IPM_Project__c rProject = IPM_TestFactory_Helper.createIPMProject(false);
+            rProject.Name='RegionalProject6';
+            rProject.IPM_Project_Leader__c=userinfo.getuserid();
+            rProject.IPM_Fast_Track_Project__c = true;
+            rProject.IPM_Parent_Project__c = project.id;
+            rProject.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+            rProject.IPM_Project_Type__c =  IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+            rProject.IPM_Phase__c  =  IPM_ConstantUtils.PHASE_FEASIBILITY;
+            rProject.IPM_Target_Launch_Dates__c = System.today() + 360;
+         
+            insert rProject;
+            
+         IPM_Project_Rollout__c rollout = IPM_TestFactory_Helper.createIPMProjectRollout(false);
+         rollout.Regional_Project__c= rProject.id;
+         rollout.IPM_Regional_PL__c = null;
+         insert rollout;
+        
+        Test.startTest();
+        PageReference pRef1 = new PageReference(sPageRefURL+rProject.ID);
+        Test.setCurrentPage(pRef1);
+        
+        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+        IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
+        System.assert(overCtrl.lstRolloutProjectAlertMessage[0].contains(Label.IPM_Local_Project_Leader_BlankMsg), 'Local Project leader is blank.');
+        Test.stopTest();
+        }
+    } 
+    
+    static testMethod void testRegionalRolloutsProgressed(){
+        platformUser =IPM_TestFactory_Helper.returnPlatformUser();
+        
+        system.runAs(platformUser)
+        {
+         List<IPM_Project__c> rProjectList = new List<IPM_Project__c>();
+         List<IPM_Milestone__c> rProjectMilestoneList1 = new List<IPM_Milestone__c>();
+         IPM_Milestone__c gProjectMilestone1;
+         //initializedData();
+         
+         //Create global project
+            IPM_Project__c globalProject = IPM_TestFactory_Helper.createIPMProject(false);
+            globalProject.Name='RegionalProject6';
+            globalProject.IPM_Project_Leader__c=userinfo.getuserid();
+            globalProject.IPM_Fast_Track_Project__c = true;
+            globalProject.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+            globalProject.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
+            globalProject.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
+            globalProject.IPM_Phase__c  =  IPM_ConstantUtils.PHASE_CAPABILITY;
+            globalProject.IPM_Target_Launch_Dates__c = System.today() + 360;
+         
+            insert globalProject;
+            
+            IPM_Project_Document__c globalProjDoc;
+            globalProjDoc = IPM_TestFactory_Helper.createIPMProjectDocument(false);
+            globalProjDoc.IPM_Project__c=globalProject.ID;
+            globalProjDoc.IPM_Document_Status__c=IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED;
+            globalProjDoc.IPM_Project_Document_External_Id__c = globalProject.ID + IPM_ConstantUtils.CONTRACT_GATE;
+            globalProjDoc.IPM_Document_Order__c = 10;
+            insert globalProjDoc;   
+            
+          //Create regional project
+            IPM_Project__c rProject = IPM_TestFactory_Helper.createIPMProject(false);
+            rProject.Name='RegionalProject6';
+            rProject.IPM_Project_Leader__c=userinfo.getuserid();
+            rProject.IPM_Fast_Track_Project__c = true;
+            rProject.IPM_Parent_Project__c = globalProject.id;
+            rProject.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+            rProject.IPM_Project_Type__c =  IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+            rProject.IPM_Phase__c  =  IPM_ConstantUtils.PHASE_FEASIBILITY;
+            rProject.IPM_Target_Launch_Dates__c = System.today() + 360;
+         
+            insert rProject;
+            
+            projDoc = IPM_TestFactory_Helper.createIPMProjectDocument(false);
+            projDoc.IPM_Project__c=rProject.ID;
+            projDoc.IPM_Document_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
+            projDoc.External_Id__c = rProject.ID + IPM_ConstantUtils.CONTRACT_GATE;
+            projDoc.IPM_Project_Document_External_Id__c = rProject.ID + IPM_ConstantUtils.CONTRACT_GATE;
+            projDoc.IPM_Document_Order__c = 10;
+            insert projDoc;     
+        
+        Test.startTest();
+        PageReference pRef1 = new PageReference(sPageRefURL+globalProject.ID);
+        Test.setCurrentPage(pRef1);
+        
+        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+        IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
+        //System.assert(overCtrl.childProjectsIncompleteAlert.contains(System.Label.IPM_Alert_Please_be_aware_that_some_of_your_regional_rollouts_have_not_progresse), 'Regional rollouts are not progressed.');
+        Test.stopTest();
+        }
+    }  
+    
+     static testMethod void testBusinessCase(){
+        platformUser =IPM_TestFactory_Helper.returnPlatformUser();
+        
+        system.runAs(platformUser)
+        {
+            //Create global project
+            IPM_Project__c globalProject = IPM_TestFactory_Helper.createIPMProject(false);
+            globalProject.Name='GlobalProject';
+            globalProject.IPM_Project_Leader__c=userinfo.getuserid();
+            globalProject.IPM_Fast_Track_Project__c = true;
+            globalProject.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+            globalProject.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
+            globalProject.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
+            globalProject.IPM_Target_Launch_Dates__c = System.today() + 360;
+            insert globalProject;
+            
+            //Create regional project
+            IPM_Project__c regionalProject = IPM_TestFactory_Helper.createIPMProject(false);
+            regionalProject.Name='RegionalProject';
+            regionalProject.IPM_Project_Leader__c=userinfo.getuserid();
+            regionalProject.IPM_Fast_Track_Project__c = true;
+            regionalProject.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+            regionalProject.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
+            regionalProject.IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
+            regionalProject.IPM_Phase__c  =  IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+            insert regionalProject;
+            
+             //Create Milestone
+            mile = IPM_TestFactory_Helper.createIPMMilestone(globalProject.Id, false);
+            mile.IPM_Phase__c=IDEAS_PHASE;
+            mile.IPM_Due_Date__c=System.Today()+10;
+            mile.IPM_No_Of_Days_for_Developing__c = '10';
+            mile.IPM_No_Of_Days_for_Developing_Emerging__c = '10';
+            mile.IPM_Project__c = globalProject.id;
+            mile.IPM_Type_of_Milestone__c = IPM_ConstantUtils.STANDARD;
+            mile.ExternalField__c = globalProject.id + IPM_ConstantUtils.CHARTER_GATE + IDEAS_PHASE + ORIGINAL_PROJECT_TYPE;
+            insert mile;
+            
+            Id  financeMasterRecordType = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
+            IPM_Financial__c testIPMFinancialConsolidated = IPM_TestFactory_Helper.createIPMFinancial(false);
+            testIPMFinancialConsolidated.Financial_External_ID__c = globalProject.Id + String.valueOf(System.now());
+            testIPMFinancialConsolidated.Project_Sustainability_Period__c = '3';
+            testIPMFinancialConsolidated.Regional_Project__c =regionalProject.Id;
+            testIPMFinancialConsolidated.RecordTypeId = financeMasterRecordType;
+            testIPMFinancialConsolidated.Parent_Project__c= globalProject.id;
+            insert testIPMFinancialConsolidated;  
+            System.assertEquals(1, [Select count() from IPM_Financial__c where id =: testIPMFinancialConsolidated.id]);
+           
+            //Create Financial Year
+            IPM_Financial_Year__c testFinancialYear = IPM_TestFactory_Helper.createIPMFinancialYear(false);
+            testFinancialYear.IPM_Financial__c = testIPMFinancialConsolidated.Id;
+            testFinancialYear.Gross_Profit_Regional__c = 0;
+            testFinancialYear.Year__c = '1';
+            testFinancialYear.Year_Type__c = 'Calendar';
+            testFinancialYear.Gross_Profit_Local__c = 0;
+            insert testFinancialYear;
+            System.assertEquals(1, [Select count() from IPM_Financial_Year__c where id =: testFinancialYear.id],'Financial Year is created');
+               
+            Test.startTest();
+            PageReference pRef1 = new PageReference(sPageRefURL+globalProject.ID);
+            Test.setCurrentPage(pRef1);
+            
+            IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+            IPM_ProjectOverviewCtrl overCtrl=new IPM_ProjectOverviewCtrl(hstryControl);
+            Test.stopTest();
+        
+        }
+     }
 }
