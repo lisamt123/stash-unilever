@@ -179,8 +179,7 @@ Global with sharing class IPM_BosscardController {
             return options;
         }
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
-                                                       IPM_ConstantUtils.IPM_BOSS_QUARTER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,IPM_ConstantUtils.IPM_BOSS_QUARTER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
             return null;
         }
     }
@@ -226,8 +225,7 @@ Global with sharing class IPM_BosscardController {
             return optns;
         }
         catch(Exception ex) {   
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
-                                                       IPM_ConstantUtils.IPM_BOSS_BRANDPOS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,IPM_ConstantUtils.IPM_BOSS_BRANDPOS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
             return null;
         }
     }
@@ -285,8 +283,7 @@ Global with sharing class IPM_BosscardController {
             return optns;
         }
         catch(Exception ex){ 
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
-                                                       IPM_ConstantUtils.IPM_BOSS_CATEGORY,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,IPM_ConstantUtils.IPM_BOSS_CATEGORY,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
             return null;
         }
         
@@ -315,8 +312,7 @@ Global with sharing class IPM_BosscardController {
         }
         
         Catch(Exception ex) {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
-                                                       IPM_ConstantUtils.IPM_BOSS_COMPANYC,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,IPM_ConstantUtils.IPM_BOSS_COMPANYC,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
         }
         if(!ipmcompanycard.isEmpty()){
             for(IPM_User_Profile__c pro:ipmcompanycard){
@@ -361,7 +357,7 @@ Global with sharing class IPM_BosscardController {
         Boolean validBossComp=false;
         Boolean validBossCat=false;
         Boolean isUniqueBosscard=false;
-        if(Pattern.matches(IPM_ConstantUtils.IPM_BOSSCARD_PATTERN,bosscard.IPM_BosscardName__c)){
+        if(bosscard.IPM_BosscardName__c!=null && Pattern.matches(IPM_ConstantUtils.IPM_BOSSCARD_PATTERN,bosscard.IPM_BosscardName__c)){
             validBossName_Booln=false;
         }else{
             validBossName_Booln=true;
@@ -474,8 +470,7 @@ Global with sharing class IPM_BosscardController {
             return ipmProject.id;
         }
         catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
-                                                       IPM_ConstantUtils.IPM_BOSS_DELETEBOSSC,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);                                   
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,IPM_ConstantUtils.IPM_BOSS_DELETEBOSSC,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);                                   
             return null;
         }
         
@@ -495,8 +490,7 @@ Global with sharing class IPM_BosscardController {
             }
             catch (Exception ex) {
                 
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
-                                                           IPM_ConstantUtils.IPM_BOSS_USERTYPE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,IPM_ConstantUtils.IPM_BOSS_USERTYPE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
             }
             if(lstBooslCreatedBy.isEmpty()){
                 isEditable=false;
@@ -566,8 +560,7 @@ Global with sharing class IPM_BosscardController {
                 update bossCard;
             }
             catch(Exception ex){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
-                                                           IPM_ConstantUtils.IPM_BOSS_SAVE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);    
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,IPM_ConstantUtils.IPM_BOSS_SAVE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);    
             }   
             category_Booln=false;
             company_Booln=false;
@@ -620,8 +613,7 @@ Global with sharing class IPM_BosscardController {
             isAddApprover=true;
         }
         catch(Exception ex) {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
-                                                       IPM_ConstantUtils.IPM_BOSS_REAMOVEAPPR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,IPM_ConstantUtils.IPM_BOSS_REAMOVEAPPR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
             
         }
         
@@ -641,8 +633,7 @@ Global with sharing class IPM_BosscardController {
             isClickToUpload=true;
         }
         catch(Exception ex) {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
-                                                       IPM_ConstantUtils.IPM_BOSS_REMOVELOGO,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,IPM_ConstantUtils.IPM_BOSS_REMOVELOGO,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
             
         }
         
@@ -661,8 +652,7 @@ Global with sharing class IPM_BosscardController {
                 return pg;
             }
             catch(Exception ex) {
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,
-                                   IPM_ConstantUtils.IPM_BOSS_CANCEL,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_BOSSCARDCONTROLLER_STR,IPM_ConstantUtils.IPM_BOSS_CANCEL,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, null);
                 return pg;
             }
         }

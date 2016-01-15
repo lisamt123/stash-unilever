@@ -422,13 +422,7 @@ public with sharing class IPM_Resource_Allocation {
         {
             insert lstnewResource;
         }
-        catch(DmlException ex)
-        {
-           ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
-                 ADD_MEMBER_TO_WRAPPER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-            
-        }
+        
         catch(Exception ex)
         {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
@@ -681,12 +675,7 @@ public with sharing class IPM_Resource_Allocation {
                 update iPMProjectList;
             }
         }
-        catch(DmlException ex)
-        {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
-                UPDATE_CORE_MEMBER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-        }
+        
         catch(Exception ex)
         {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
@@ -726,15 +715,7 @@ public with sharing class IPM_Resource_Allocation {
             {
                 insert lstnewResource;
             }
-            catch(DmlException ex)
-            {
-                if(!Trigger.isExecuting)
-                {
-                        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-                }
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
-                CREATE_FINANCE_MEMBER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null); 
-            }
+            
             catch(Exception ex)
             {
                 If(!Trigger.isExecuting)
@@ -766,13 +747,7 @@ public with sharing class IPM_Resource_Allocation {
                     delete lstnewResource;
                 }    
              }
-            catch(DmlException ex)
-            {
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-                
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
-                DELETE_FINANCE_MEMBER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-            }
+            
             catch(Exception ex)
             {
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
@@ -906,13 +881,7 @@ public with sharing class IPM_Resource_Allocation {
         {
             update inContextRollout;   
         }
-        catch(DmlException ex)
-        {
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_RESOURCEALLOCATION_STR,
-                ASSIGN_LEADER_MEMBER,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-               
-        }
+        
         catch(Exception ex)
         {
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));

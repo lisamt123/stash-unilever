@@ -85,10 +85,6 @@ public with sharing class IPM_UpdateGlobalProjectName {
             update updateRollList;
             update updateCountriesList;
         }
-        catch(DMLException ex) {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className_STR,IPM_ConstantUtils.IPM_UPDATEGLOBAL_PROJECT,ex.getMessage(),ex, IPM_ConstantUtils.IPM_UPDATEGLOBAL_PROJECT, null, null, null,null);
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
-        }
         catch(Exception ex) {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className_STR,IPM_ConstantUtils.IPM_UPDATEGLOBAL_PROJECT,ex.getMessage(),ex, IPM_ConstantUtils.IPM_UPDATEGLOBAL_PROJECT, null, null, null,null);
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
@@ -341,10 +337,6 @@ public with sharing class IPM_UpdateGlobalProjectName {
         if(!childProjectListToUpdate.isEmpty()){
             try{
                 update childProjectListToUpdate;
-            }
-            catch(DMLException ex) {
-               ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className_STR,IPM_ConstantUtils.IPM_UPDATECHILD_PROJECT,ex.getMessage(),ex, IPM_ConstantUtils.IPM_UPDATECHILD_PROJECT, null, null, null,null);
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
             }
             catch(Exception ex) {
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className_STR,IPM_ConstantUtils.IPM_UPDATECHILD_PROJECT,ex.getMessage(),ex, IPM_ConstantUtils.IPM_UPDATECHILD_PROJECT, null, null, null,null);
