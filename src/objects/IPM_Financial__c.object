@@ -2540,6 +2540,17 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Is_BC_Confirmed_Capability__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>To capture the Business Case Confirmation at Capability Phase</description>
+        <externalId>false</externalId>
+        <label>Is BC Confirmed Capability</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>isGateSubmissionDue__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>

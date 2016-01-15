@@ -36,10 +36,10 @@
                                     <span class="pageTitle">
                                         {!$Label.IPM_BUSINESS_CASE_CONFIRMATION}
                                     </span>   
-                                </div>
+                                </div>                                
                                 <div class="bccStatusContainer pull-right clearfix">                    
                                     <apex:outputPanel rendered="{!isEditable}">
-                                        <apex:outputPanel rendered="{!!finance.IPM_Business_Case_Confirmed__c }">
+                                        <apex:outputPanel rendered="{!showConfirmButton}">
                                             <div class="SecStatusUpdate pull-right updateBox" data-toggle="modal" data-target="#ipmModalConfirmBcc" data-backdrop="static" data-keyboard="false" >
                                                 <a class="ipmButton orangebg">{!$Label.IPM_CONFIRM_BUSINESS_CASE}</a>
                                             </div>
@@ -70,7 +70,7 @@
                     
                     <div class="col-sm-12 bosscardMtop">
                         <div class="pull-right noPadright txtAlignright">
-                            <apex:outputPanel rendered="{!isEditable}">
+                            <apex:outputPanel rendered="{!isFinanceUpdate}">
                                 <apex:commandLink value="Cancel" styleClass="ipmButton bosscardmright"/>
                                 <apex:commandLink value="Save" action="{!save}" styleClass="ipmButton primary">
                                 </apex:commandLink>
@@ -87,10 +87,10 @@
                                 <div class="ipmAcrdnExpand">
                                     <div>
                                         <span class="bcFielddesc">{!$Label.IPM_COPY_COUNTRY_INPUT_TO_SEC}</span>
-                                        <apex:outputPanel rendered="{!isEditable}">
+                                        <apex:outputPanel rendered="{!isFinanceUpdate}">
                                             <apex:inputField value="{!finance.IPM_Country_Feedback__c}"/>
                                         </apex:outputPanel>
-                                        <apex:outputPanel rendered="{!!isEditable}">
+                                        <apex:outputPanel rendered="{!!isFinanceUpdate}">
                                             <apex:outputField value="{!finance.IPM_Country_Feedback__c}"/>
                                         </apex:outputPanel>
                                         <div class="charCountbbc txtRight">{!$Label.IPM_CHAR_REMAINING}<strong>500</strong></div>
@@ -127,7 +127,7 @@
                                                         <apex:outputText value="{!finance.Local_Project__r.name}"/>
                                                     </td>
                                                     <td>
-                                                        <apex:outputText value="{!IF(finance.IPM_Business_Case_Confirmed__c,'Confirmed','Unconfirmed')}"></apex:outputText>
+                                                        <apex:outputText value="{!businessCaseConfirmed}"></apex:outputText>
                                                     </td>
                                                     <td>
                                                       <apex:outputText value="{!IF(finance.Misaligned__c,'Misaligned','Aligned')}"></apex:outputText>
@@ -139,7 +139,12 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <apex:inputField value="{!finance.IPM_BD_BB_Feedback__c}"/>
+                                    <apex:outputPanel rendered="{!isFinanceUpdate}">
+                                    	<apex:inputField value="{!finance.IPM_BD_BB_Feedback__c}"/>
+                                    </apex:outputPanel>
+                                    <apex:outputPanel rendered="{!!isFinanceUpdate}">
+                                    	<apex:outputField value="{!finance.IPM_BD_BB_Feedback__c}"/>
+                                    </apex:outputPanel>
                                 </div>
                             </div> 
                         </div>                                  
