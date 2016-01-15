@@ -365,7 +365,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
                              FROM IPM_Project__c 
                              WHERE Id =:projectId];
                             
-         if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && project.IPMProject_Span__c == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL )
+         if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && project.IPMProject_Span__c == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL && !project.IPM_Financials_Local__r.isEmpty())
             projectPriority = project.IPM_Financials_Local__r[0].ipm_cpp_local__c;
 
 

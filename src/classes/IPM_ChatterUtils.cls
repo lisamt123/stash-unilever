@@ -34,7 +34,7 @@ public with sharing class IPM_ChatterUtils {
             	
             	if(subjectIdMessageMap.get(subjectId).contains(System.Label.IPM_TLD_Misaligned)){
                 	ConnectApi.TextSegmentInput textSegmentInputTLDAttentionMsg = new ConnectApi.TextSegmentInput();
-                    textSegmentInputTLDAttentionMsg.text = Label.IPM_AttentionMsg;
+                    textSegmentInputTLDAttentionMsg.text = Label.IPM_AttentionMsg+IPM_ConstantUtils.IPM_SPACE;
                     messageBodyInput.messageSegments.add(textSegmentInputTLDAttentionMsg);
                 }
                 		
