@@ -56,7 +56,7 @@
                             <div class="gridInfo">
                                 <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG2}" rendered="{!flag}" />
                                 <apex:outputLabel value="{!$Label.IPM_FinancialGrid_MSG1}" />
-                            </div>
+                            </div> 
                         </apex:outputpanel> 
                       </div> 
     <apex:outputpanel id="grid">
