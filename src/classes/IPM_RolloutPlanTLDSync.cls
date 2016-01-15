@@ -14,12 +14,11 @@ public with sharing class IPM_RolloutPlanTLDSync {
     * @return       NONE
     */    
     public void syncTLDDates( Map<Id, IPM_Project__c> updatedRollouts,Map<Id, IPM_Project_Rollout__c> updatedLocalProjects ) {    
-        try{
-            List<IPM_Project_Rollout__c> listToUpdateRolloutProject = new List<IPM_Project_Rollout__c>{};
-            List<IPM_Project__c> listToUpdateLocalProject = new List<IPM_Project__c>{};
-            Map<Id,Id> projIdRolloutIdMapRegional = new Map<Id,Id>{};
-            Map<Id,Id> projIdRolloutIdMapGlobal = new Map<Id,Id>{};            
-            
+	        List<IPM_Project_Rollout__c> listToUpdateRolloutProject = new List<IPM_Project_Rollout__c>{};
+	        List<IPM_Project__c> listToUpdateLocalProject = new List<IPM_Project__c>{};
+	        Map<Id,Id> projIdRolloutIdMapRegional = new Map<Id,Id>{};
+	        Map<Id,Id> projIdRolloutIdMapGlobal = new Map<Id,Id>{};            
+	        List<IPM_Project__c> origProjectList = new List<IPM_Project__c> {};
             if(null != updatedRollouts){
                 for(IPM_Project_Rollout__c rolloutProj :[Select Id, Target_Launch_Date__c,Local_Project_Target_Launch_Date__c from IPM_Project_Rollout__c where Id = : updatedRollouts.keySet() And  isActive__c=true limit 50000]){
                     IPM_Project__c ipmProj = updatedRollouts.get(rolloutProj.Id);
@@ -35,6 +34,23 @@ public with sharing class IPM_RolloutPlanTLDSync {
                     if(isUpdated){
                         listToUpdateRolloutProject.add(rolloutProj);
                     }                    
+                }
+                Set<ID> globalProjIds = new Set<ID>();
+                Set<ID> regionalProjIds = new Set<ID>();
+                for (IPM_Project__c ipmProject: updatedRollouts.values()) {
+                	regionalProjIds.add(ipmProject.id);
+                	if(ipmProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
+			            globalProjIds.add(ipmProject.IPM_Parent_Project__c);
+	                }
+                }
+                if(!globalProjIds.isEmpty()) {
+                	Map<ID,IPM_Project__c> globalProjsMap = new Map<ID,IPM_Project__c>([Select ID, (Select ID, IPM_Target_Launch_Dates__c From IPM_Projects__r ORDER BY IPM_Target_Launch_Dates__c ASC NULLS LAST ) From IPM_Project__c where  id in :globalProjIds ]);
+                	for (IPM_Project__c ipmProject: globalProjsMap.values()) {
+                		if(!ipmProject.IPM_Projects__r.isEmpty() && regionalProjIds.contains(ipmProject.IPM_Projects__r[0].id)) {
+                			IPM_Project__c updateProj = new IPM_Project__c(ID=ipmProject.id,IPM_Target_Launch_Dates__c=ipmProject.IPM_Projects__r[0].IPM_Target_Launch_Dates__c);
+                			origProjectList.add(updateProj);
+                		}
+                	}
                 }
             } else if(null != updatedLocalProjects){
                 for(IPM_Project__c localRolloutProj :[Select Id, IPM_Project_Rollout__c, Rollout_Plan_Target_Launch_Date__c from IPM_Project__c where IPM_Project_Rollout__c = : updatedLocalProjects.keySet() limit 50000]){
@@ -53,7 +69,6 @@ public with sharing class IPM_RolloutPlanTLDSync {
                     }
                 }
             }
-            List<IPM_Project__c> origProjectList = new List<IPM_Project__c> {};
             if(!projIdRolloutIdMapRegional.isEmpty() || !projIdRolloutIdMapGlobal.isEmpty()){
                 Map<Id,Date> regionalProjRollOutMap = new Map<Id,Date> {};
                 Map<Id,Date> globalProjRollOutMap = new Map<Id,Date> {};                
@@ -122,10 +137,6 @@ public with sharing class IPM_RolloutPlanTLDSync {
             if(!origProjectList.isEmpty()){
                 update origProjectList;
             } 
-        }catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ROLLOUTPLANTLDSYNC_STR,'syncTLDDates',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
-        }      
     }
     /*******************************************************************************************************
     * @description  Method to update TLD on milestone
@@ -133,22 +144,18 @@ public with sharing class IPM_RolloutPlanTLDSync {
     * @return       NONE
     */
     public void updatedMilestoneTLD( List<IPM_Project__c> projects) {    
-        try{
-            Map<Id,IPM_Project__c> projIdProjectMap = new Map<Id,IPM_Project__c> {};
-            for(IPM_Project__c project :projects){
-                projIdProjectMap.put(project.id, project);
-            }
-            List<IPM_Milestone__c> updatedMilestoneList = new List<IPM_Milestone__c> {};
-            for(IPM_Milestone__c ipmMileStone :[Select Id, IPM_Due_Date__c, IPM_Planned_Date__c, IPM_Project__c from IPM_Milestone__c where IPM_Project__c =: projIdProjectMap.keyset() and (IPM_Name__c = :IPM_Utils.TargetLaunchDateShiptoTrade or IPM_Name__c = :IPM_ConstantUtils.SHIPTO_TRADE_TLD)]){
-                ipmMileStone.IPM_Planned_Date__c =projIdProjectMap.get(ipmMileStone.IPM_Project__c).IPM_Target_Launch_Dates__c;
-                updatedMilestoneList.add(ipmMileStone);
-            }
-            if(!updatedMilestoneList.isEmpty()){
-                update updatedMilestoneList;
-            }
-        }catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ROLLOUTPLANTLDSYNC_STR,'updatedMilestoneTLD',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+		// removed exception handling as any exceptions/Messages  would be handled at controller 
+        Map<Id,IPM_Project__c> projIdProjectMap = new Map<Id,IPM_Project__c> {};
+        for(IPM_Project__c project :projects){
+            projIdProjectMap.put(project.id, project);
+        }
+        List<IPM_Milestone__c> updatedMilestoneList = new List<IPM_Milestone__c> {};
+        for(IPM_Milestone__c ipmMileStone :[Select Id, IPM_Due_Date__c, IPM_Planned_Date__c, IPM_Project__c from IPM_Milestone__c where IPM_Project__c =: projIdProjectMap.keyset() and (IPM_Name__c = :IPM_Utils.TargetLaunchDateShiptoTrade or IPM_Name__c = :IPM_ConstantUtils.SHIPTO_TRADE_TLD)]){
+            ipmMileStone.IPM_Planned_Date__c =projIdProjectMap.get(ipmMileStone.IPM_Project__c).IPM_Target_Launch_Dates__c;
+            updatedMilestoneList.add(ipmMileStone);
+        }
+        if(!updatedMilestoneList.isEmpty()){
+            update updatedMilestoneList;
         }
     }      
     /*******************************************************************************************************
@@ -179,14 +186,9 @@ public with sharing class IPM_RolloutPlanTLDSync {
             emailOutNotification.Target_Launch_Date__c = globalProjIdRollout.get(projId).Target_Launch_Date__c.format();
             emailOut.add(emailOutNotification);       
         }
-        
-        try{
-            if(!emailOut.isEmpty()){
-                insert emailOut;
-            }
-        }catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_ROLLOUTPLANTLDSYNC_STR,'notifyGlobalProjectFinanceLeader',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        // removed exception handling as any exceptions/Messages  would be handled at controller 
+        if(!emailOut.isEmpty()){
+            insert emailOut;
         }
     }
 }
