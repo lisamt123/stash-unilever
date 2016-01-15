@@ -29,10 +29,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     */
     public void bulkBefore()
     {
-        if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
+       	skipTriggerExecution();
         
         IPM_RolloutTriggerHandler handler = new IPM_RolloutTriggerHandler();
         
@@ -57,10 +54,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         IPM_RolloutTriggerHandler handler = new IPM_RolloutTriggerHandler();
         
         
-        if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
+       	skipTriggerExecution();
         
         if(Trigger.isInsert)
         {
@@ -94,10 +88,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     */
     public void beforeInsert(SObject so){
         //This method has been included as the class implements the ITrigger interface
-        if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
+       skipTriggerExecution();
     }
     /**
     * @description:beforeUpdate
@@ -110,10 +101,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     {   
         //This method has been included as the class implements the ITrigger interface   
         
-        if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
+        skipTriggerExecution();
         
         IPM_Project_Rollout__c oldRollout = (IPM_Project_Rollout__c)oldSo; 
         IPM_Project_Rollout__c newRollout = (IPM_Project_Rollout__c)so;   
@@ -122,6 +110,12 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         {
             newRollout.MisAligned_Confirmed_By_Finance_Leader__c = false;     
             newRollout.Previous_Target_Launch_Date__c = oldRollout.Target_Launch_Date__c;                   
+        }
+        
+        if(!newRollout.isActive__c && oldRollout.isActive__c != newRollout.isActive__c)
+        {
+           	newRollout.IPM_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
+			newRollout.IPM_Regional_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;                       
         }               
     }
     
@@ -132,10 +126,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     */
     public void beforeDelete(SObject so)
     {
-        if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }      
+       skipTriggerExecution();      
         //This method has been included as the class implements the ITrigger interface
     }
     /**
@@ -148,10 +139,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     {
         IPM_Project_Rollout__c newRollout = (IPM_Project_Rollout__c)so;
         
-        if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
+        skipTriggerExecution();
         
         if(IPM_ConstantUtils.JOB_STATUS_ELIGIBLE == newRollout.IPM_Project_Job_Status__c && !IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED &&  
             IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC == newRollout.IPM_RolloutJobType__c)  
@@ -181,10 +169,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         IPM_Project_Rollout__c oldRollout = (IPM_Project_Rollout__c)oldSo; 
         IPM_Project_Rollout__c newRollout = (IPM_Project_Rollout__c)so; 
         
-        if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
+        skipTriggerExecution();
         
         if( oldRollout.IPM_Project_Job_Status__c != newRollout.IPM_Project_Job_Status__c && !IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED &&  
                 newRollout.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && 
@@ -216,14 +201,20 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     }
     /**
     * @description:afterDelete
-    * This method is called iteratively for each record to be delete during a AFTER
+    * This method is use for skip trigger execution
     * trigger.
     * @para:sobject record
     */
     public void afterDelete(SObject so)
     {
         //This method has been included as the class implements the ITrigger interface
-        if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
+       skipTriggerExecution();
+    
+    }
+    
+    public void skipTriggerExecution()
+    {
+    	if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
         {
             return;
         }
@@ -237,10 +228,7 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     public void andFinally()
     {
         //call method to insert all exception logs got while excecution of trigger
-        if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
+       	skipTriggerExecution();
         
         if( (Trigger.isInsert || Trigger.isUpdate) && Trigger.isAfter)
         {

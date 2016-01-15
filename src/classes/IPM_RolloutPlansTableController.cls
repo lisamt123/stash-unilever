@@ -116,6 +116,22 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     */
     private void initialise()
     {
+    	isPLAllocated = false; 
+        isEditMode = false;
+        isFLAllocated=false;
+       
+       	if(projectTolocalRolloutToCountryMap!=null)
+       	{
+       		projectTolocalRolloutToCountryMap.clear();
+       		rolloutTolocalRolloutToCountryMap.clear();
+       	}
+       	
+        projectTolocalRolloutToCountryMap = new Map<Id,Map<Id,List<IPM_Country__c>>>();
+        rolloutTolocalRolloutToCountryMap = new Map<Id,Map<Id,List<IPM_Country__c>>>();
+
+        lstcompleteProjects = new Map<Id,IPM_Project__c>();   
+        lstcompleteRollout = new Map<Id,IPM_Project_Rollout__c>();
+        
         try
         {
             String editMode='';
@@ -387,10 +403,10 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                     queryString+= field + ', ';
                 }
             }
-            queryString+= ' Id from IPM_Projects__r';
+            queryString+= ' Id from IPM_Projects__r  where Is_Archieved__c = false';
             queryString+= ' ORDER BY IPM_Project_Name__c) ';
           
-            queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: regionalSpan';
+            queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: regionalSpan AND Is_Archieved__c = false ';
             queryString+= ' ORDER BY IPM_Project_Name__c LIMIT 50000';
             
             associatedProjectMap = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>)Database.query(queryString) );
@@ -424,7 +440,7 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
             String localSpan = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;//used in the query below
             
             String queryString = ' SELECT Id, Name,IPM_Rollout_Status__c,IPM_RolloutStatus__c, IPM_Project_Name__c, IPM_Target_Launch_Dates__c, IPM_Project_Leader__c, IPM_Finance_Member__c,IPM_Project_Rollout__c,Rollout_Plan_Target_Launch_Date__c ';
-            queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: localSpan';
+            queryString+= ' FROM IPM_Project__c WHERE IPM_Parent_Project__c =: projectId AND IPMProject_Span__c =: localSpan AND Is_Archieved__c = FALSE';
             queryString+= ' ORDER BY IPM_Project_Name__c';
             
             associatedProjectMap = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>)Database.query(queryString));
@@ -849,10 +865,13 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
                 }              
                 if(String.isBlank(validationError))
                 {                         
-                    if(!updaterolloutsMap.isEmpty()){
-                        update updaterolloutsMap.values();
+                    if(!updaterolloutsMap.isEmpty())
+                    {
+                    	update updaterolloutsMap.values();
                     }
-                    if(!updateLocalProjTLDList.isEmpty()){
+                    
+                    if(!updateLocalProjTLDList.isEmpty())
+                    {
                         update updateLocalProjTLDList;
                     }
                     ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Info,Label.IPM_PROCESSING_REQUEST));

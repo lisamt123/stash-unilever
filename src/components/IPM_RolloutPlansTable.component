@@ -17,7 +17,7 @@
         </div>
     </apex:outputPanel>
     
-    <apex:outputPanel rendered="{!NOT(isError)}">
+    <apex:outputPanel id="ParentPanel" rendered="{!NOT(isError)}">
         <div class="row">
             <apex:outputPanel id="topButtonPanel">
                 <div class="col-sm-6 pull-left mSpacing">
@@ -382,18 +382,10 @@
                 <div class="col-sm-6 pull-right mSpacing">
                     <apex:outputPanel rendered="{!AND(isEditMode,projectType.IPM_CreateRegionalProjects__c ) }" layout="block"> 
                         <a class="ipmButton primary pull-right" data-toggle="modal" data-target="#ipmRegionalRollout" data-backdrop="static" data-keyboard="false">{!$Label.IPM_SAVE}</a>
-                        <apex:actionsupport event="onclick" action="{!saveRollout}">
-                            <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}" />
-                         </apex:actionsupport>
                      </apex:outputPanel>
-
-                    <apex:commandLink styleClass="ipmButton primary pull-right"
-                        value="{!$Label.IPM_SAVE}" action="{!saveRollout}"
-                        rendered="{!AND(isEditMode,NOT(projectType.IPM_CreateRegionalProjects__c))}"
-                        rerender="msg" onComplete="reRenderPanels();"
-                        status="loadingStatus">
-                        <apex:param name="p1" assignTo="{!isEditMode}"
-                            value="{!$Label.IPM_FALSE}" />
+                   
+                    <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_SAVE}" action="{!saveRollout}" rendered="{!AND(isEditMode,NOT(projectType.IPM_CreateRegionalProjects__c))}" onComplete="reRenderPanels();" status="loadingStatus">
+                        <apex:param name="p1" assignTo="{!isEditMode}" value="{!$Label.IPM_FALSE}"/>
                     </apex:commandLink>
                     
                     <apex:commandLink styleClass="ipmButton primary pull-right" value="{!$Label.IPM_EDIT}" action="{!editRollout}" rendered="{! if(AND(NOT(isEditMode),isEditable=true),true,false)}" onComplete="reRenderPanels();" status="loadingStatus">
@@ -406,7 +398,7 @@
                 </div>
             </apex:outputPanel>
         </div>
-        <apex:actionFunction name="reRenderPanels" reRender="topButtonPanel,rolloutPanel,bottomButtonPanel,hideUser,reRenderPanels,validationErrorMsg" status="loadingStatus"/>
+        <apex:actionFunction name="reRenderPanels" reRender="topButtonPanel,ParentPanel,bottomButtonPanel,hideUser,reRenderPanels,validationErrorMsg" status="loadingStatus"/>
      
     </apex:outputPanel>
     

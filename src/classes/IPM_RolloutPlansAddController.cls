@@ -1188,6 +1188,12 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 newMCORollout.Market_Cluster_Name__c = geography.parent_L2__r.parent_L2__r.name;
                 newMCORollout.Regional_Project__c = project.Id;
                 newMCORollout.Target_Launch_Date__c = project.IPM_Target_Launch_Dates__c;
+                
+                if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
+                {
+                	newMCORollout.IPM_Project__c = project.IPM_Parent_Project__c;
+                }
+                
                 if(deleteRolloutsMap.containsKey(newMCORollout.IPM_Rollout_Project__c) || !newMCORollout.isActive__c)
                 {
                     if(deleteRolloutsMap.containsKey(newMCORollout.IPM_Rollout_Project__c))
@@ -1306,6 +1312,11 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 newCountryRollout.Market_Cluster_Name__c = geography.parent_L2__r.parent_L2__r.name;
                 newCountryRollout.Regional_Project__c = project.Id;
                 newCountryRollout.Target_Launch_Date__c = project.IPM_Target_Launch_Dates__c;
+                
+                if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT) 
+                {
+                	newCountryRollout.IPM_Project__c = project.IPM_Parent_Project__c;
+                }
                 
             	if(!newCountryRollout.isActive__c || deleteRolloutsMap.containsKey(newCountryRollout.IPM_Rollout_Project__c))
                 {

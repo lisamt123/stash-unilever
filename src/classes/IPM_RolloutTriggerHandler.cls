@@ -1,6 +1,6 @@
 /**
 @Author Cognizant
-@Name IPM_RolloutPlansTableController
+@Name IPM_RolloutTriggerHandler
 @CreateDate 27/04/2015
 @Description This class is used for managing the trigger methods for IPM_Project_Rollout__c object 
 @Version 1.0
@@ -43,7 +43,7 @@ public with sharing class IPM_RolloutTriggerHandler
     
     /*****************************************************************************************************************************
     * @description                  Method to handle before delete Trigger context for 
-    *                               IPM_Project_Rollout__c object
+    *                               IPM_Project_Rollout__c objectprocessDelete
     * @param lstProjectRollouts     List of Trigger.old records 
     */
     public void processDelete(List<IPM_Project_Rollout__c> lstProjectRollouts)
@@ -53,6 +53,9 @@ public with sharing class IPM_RolloutTriggerHandler
         
         Set<String> setCurrentRolloutIds = new Set<String>();        
         Set<String> setInActiveFinancialExternalIds = new Set<String>();
+        
+        Set<Id> deletedLocalRolloutIds = new Set<Id>();
+        Set<Id> setTopLevelProjectIds = new Set<Id>();
         
         // Validate if there are any countries which are charter approved or inactive. Only charter Approved countries can be inactive.
         for(IPM_Project_Rollout__c projectRollout : lstProjectRollouts)
@@ -74,9 +77,18 @@ public with sharing class IPM_RolloutTriggerHandler
             } 
             else
             { 
+            	
+            	deletedLocalRolloutIds.add(projectRollout.Id);
+            	//PROCESS ROLLOUTS FOR THE ROLLOUT STATUS
+                if(projectRollout.IPM_Project__c != null)
+                {
+                    setTopLevelProjectIds.add(projectRollout.IPM_Project__c);
+                }
+                
                 if(projectRollout.Regional_Project__c!=null)
                 {
                     setRegionalProjectNames.add(projectRollout.Regional_Rollout_External_Id__c);
+                	setTopLevelProjectIds.add(projectRollout.Regional_Project__c);
                 }
                 else
                 {
@@ -159,7 +171,7 @@ public with sharing class IPM_RolloutTriggerHandler
             delete deleteRolloutMap.values();
         }
         
-        IPM_ProcessRolloutStatusAndDates.execute(new Set<Id>(), new Set<Id>(), setCurrentRolloutIds);  // deletion              
+        IPM_ProcessRolloutStatusAndDates.execute(setTopLevelProjectIds,deletedLocalRolloutIds);  // deletion              
     }
     
     /*****************************************************************************************************************************
@@ -169,9 +181,8 @@ public with sharing class IPM_RolloutTriggerHandler
     */
     public  void processInsert(List<IPM_Project_Rollout__c> lstProjectRollouts)
     {
-        Set<Id> setGlobalProjectIds = new Set<Id>();
-        Set<Id> setRegionalOriginalProjectIds = new Set<Id>();
-        
+        Set<Id> setTopLevelProjectIds = new Set<Id>();
+
         // Process financials only when Rollout has a parent project attached to it. 
         // For regional Rollouts it would be Global Project and For local Rollouts it would be parent Project plus regional project 
         
@@ -198,7 +209,8 @@ public with sharing class IPM_RolloutTriggerHandler
             ///Regional Rollout. Validate consolidated financials is present or not. If no create one.
             if(projectRollout.RecordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
             {
-               
+                IPM_Financial__c newFinancial;
+                
                 String financialExternalId = projectRollout.IPM_Rollout_Project__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
                                
                 createRolloutFinancials(financialExternalId,CONSOLIDATED_FINANCIAL_RECORDTYPE,projectRollout,mapUpsertFinancials);
@@ -213,7 +225,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 //PROCESS ROLLOUTS FOR THE ROLLOUT STATUS
                 if(projectRollout.IPM_Project__c != null)
                 {
-                    setGlobalProjectIds.add(projectRollout.IPM_Project__c);
+                    setTopLevelProjectIds.add(projectRollout.IPM_Project__c);
                 }
                 else if (projectRollout.Regional_Project__r.IPM_Parent_Project__c != null)
                 {
@@ -222,7 +234,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 
                 else if (projectRollout.Regional_Project__c != null)
                 {
-                    setRegionalOriginalProjectIds.add(projectRollout.Regional_Project__c);
+                    setTopLevelProjectIds.add(projectRollout.Regional_Project__c);
                 }
                 
             }
@@ -232,9 +244,9 @@ public with sharing class IPM_RolloutTriggerHandler
         {
                 upsert mapUpsertFinancials.values() IPM_Financial__c.Financial_External_Id__c ;
                 
-                if((setGlobalProjectIds != NULL && !setGlobalProjectIds.isEmpty()) || (setRegionalOriginalProjectIds != NULL && !setRegionalOriginalProjectIds.isEmpty()))
+                if(!setTopLevelProjectIds.isEmpty() )
                 {
-                    IPM_ProcessRolloutStatusAndDates.execute(setGlobalProjectIds, setRegionalOriginalProjectIds);// insertion
+                    IPM_ProcessRolloutStatusAndDates.execute(setTopLevelProjectIds,new Set<Id>());// insertion   
                 }
         }
     }
@@ -273,9 +285,10 @@ public with sharing class IPM_RolloutTriggerHandler
             }
         }
         
-        List<IPM_Project_Rollout__c> lstProjRegRollouts = [SELECT Id, IPM_Rollout_Project__c,IPM_Project__c,IPM_Regional_Rollout_Status__c,IPM_Project__r.IPM_Phase__c,isActive__c,Added_At_Stage__c,Regional_Project__c,Regional_Project__r.IPM_Phase__c,Target_Launch_Date__c,Calculated_Sustainability_Period__c,Regional_Rollout__c,IPM_Regional_Original_Project__c,Regional_Rollout_External_Id__c,
-                                                            (SELECT Id,IPM_Regional_Rollout_Status__c,IPM_Rollout_Project__c,isActive__c,IPM_Project__c,Added_At_Stage__c,KeyMCO__c,Regional_Project__c,Target_Launch_Date__c,Regional_Rollout__c,IPM_Regional_Original_Project__c,Calculated_Sustainability_Period__c,Regional_Rollout_External_Id__c,Regional_Rollout__r.IPM_Project__c,Regional_Project__r.IPM_Parent_Project__c FROM Local_Rollouts__r), 
-                                                            (SELECT Id,isActive__c,Added_At_Stage__c,Financial_External_Id__c FROM IPM_Financials__r) FROM IPM_Project_Rollout__c 
+       
+        List<IPM_Project_Rollout__c> lstProjRegRollouts = [SELECT Id, IPM_Rollout_Project__c,IPM_Project__c,IPM_Regional_Rollout_Status__c,IPM_Project__r.IPM_Phase__c,isActive__c,IPM_Status__c,Added_At_Stage__c,Regional_Project__c,Regional_Project__r.IPM_Phase__c,Target_Launch_Date__c,Calculated_Sustainability_Period__c,Regional_Rollout__c,IPM_Regional_Original_Project__c,Regional_Rollout_External_Id__c,
+                                                            (SELECT Id,IPM_Regional_Rollout_Status__c,IPM_Status__c,IPM_Rollout_Project__c,isActive__c,IPM_Project__c,Added_At_Stage__c,KeyMCO__c,Regional_Project__c,Target_Launch_Date__c,Regional_Rollout__c,IPM_Regional_Original_Project__c,Calculated_Sustainability_Period__c,Regional_Rollout_External_Id__c,Regional_Rollout__r.IPM_Project__c,Regional_Project__r.IPM_Parent_Project__c FROM Local_Rollouts__r), 
+                                                            (SELECT Id,isActive__c,Added_At_Stage__c,Financial_External_Id__c,IPM_Key_Financial__c FROM IPM_Financials__r) FROM IPM_Project_Rollout__c   
                                                             WHERE IPM_Rollout_Project__c IN: setRegionalRolloutNames Limit 50000];
                                                                                                   
         for(IPM_Project_Rollout__c regionalRollout : lstProjRegRollouts)
@@ -298,8 +311,8 @@ public with sharing class IPM_RolloutTriggerHandler
         }
 
         //For Rollout Status Updates
-        Set<Id> setGlobalProjectIds = new Set<Id>();
-        Set<Id> setRegionalOriginalProjectIds = new Set<Id>();
+        Set<Id> setTopLevelProjectIds = new Set<Id>();
+        
         
         for(IPM_Project_Rollout__c newRollout : mapNewProjectRollouts.values())
         {
@@ -310,22 +323,20 @@ public with sharing class IPM_RolloutTriggerHandler
                 IPM_Project_Rollout__c oldRollout = mapOldProjectRollouts.get(newRollout.Id);
                 
                 //Rollout Status
-                if(newRollout.Target_Launch_Date__c != oldRollout.Target_Launch_Date__c)
+                if(newRollout.Target_Launch_Date__c != oldRollout.Target_Launch_Date__c || newRollout.isActive__c != oldRollout.isActive__c || newRollout.Regional_Project__c != oldRollout.Regional_Project__c)
                 {
                     //PROCESS ROLLOUTS FOR THE ROLLOUT STATUS
+                    // Global Project
                     if(newRollout.IPM_Project__c != null)
                     {
-                        setGlobalProjectIds.add(newRollout.IPM_Project__c);
+                        setTopLevelProjectIds.add(newRollout.IPM_Project__c); 
                         
                     }
-                    else if (newRollout.Regional_Project__r.IPM_Parent_Project__c != null)
-                    {
-                        setGlobalProjectIds.add(newRollout.Regional_Project__r.IPM_Parent_Project__c);
-                       
-                    }
+                    // regional project
                     else if (newRollout.Regional_Project__c != null)
                     {
-                        setRegionalOriginalProjectIds.add(newRollout.Regional_Project__c);    
+                    	setTopLevelProjectIds.add(newRollout.Regional_Project__c);
+                    	
                     }
                 }
             }
@@ -344,10 +355,11 @@ public with sharing class IPM_RolloutTriggerHandler
             }
             upsert mapUpsertFinancials.values() IPM_Financial__c.Financial_External_Id__c; 
         }
-            
-        if((!setGlobalProjectIds.isEmpty()) || (setRegionalOriginalProjectIds != NULL && !setRegionalOriginalProjectIds.isEmpty()))
+        
+        // Whether it is Global or regional Original Project    
+        if( (!setTopLevelProjectIds.isEmpty() ) )
         {
-            IPM_ProcessRolloutStatusAndDates.execute(setGlobalProjectIds, setRegionalOriginalProjectIds); // updation
+            IPM_ProcessRolloutStatusAndDates.execute(setTopLevelProjectIds,new Set<Id>()); // updation
         }
     
             // EPIC172 implementation start 
@@ -794,7 +806,7 @@ public with sharing class IPM_RolloutTriggerHandler
         Map<Id,IPM_Financial__c> updateFinancialMap = new Map<Id,IPM_Financial__c>();
         Map<Id,IPM_Financial__c> deleteFinancialMap = new Map<Id,IPM_Financial__c>();
         
-        List<IPM_Financial__c> lstDeteleFinancials = [SELECT Id,Financial_External_ID__c,isActive__c,Added_At_Stage__c,Charter_Approved__c  FROM IPM_Financial__c WHERE Financial_External_Id__c IN: setDeleteFinancialExternalIds LIMIT 50000];
+        List<IPM_Financial__c> lstDeteleFinancials = [SELECT Id,Financial_External_ID__c,isActive__c,Added_At_Stage__c,Charter_Approved__c,IPM_Key_Financial__c  FROM IPM_Financial__c WHERE Financial_External_Id__c IN: setDeleteFinancialExternalIds LIMIT 50000];
         
         if(!lstDeteleFinancials.isEmpty())
         {
