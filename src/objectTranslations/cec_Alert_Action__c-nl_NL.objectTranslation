@@ -64,10 +64,6 @@
         <name>Popup_Message_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Gelieve een waarde toe te voegen voor de URL  vragenlijst,  omdat het  type is &apos;Vragenlijst&apos;</errorMessage>
-        <name>Questionnaire_URL_Validation</name>
-    </validationRules>
-    <validationRules>
         <errorMessage>Gelieve een waarde toe te voegen aan het &apos;Aan&apos; veld ,Type is &apos;Email&apos;</errorMessage>
         <name>To_field_validation</name>
     </validationRules>

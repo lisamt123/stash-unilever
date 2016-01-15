@@ -96,10 +96,6 @@
         <name>Popup_Message_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage><!-- Please enter value for Questionnaire URL as the type is &apos;Questionnaire&apos; --></errorMessage>
-        <name>Questionnaire_URL_Validation</name>
-    </validationRules>
-    <validationRules>
         <errorMessage>Bitte ein Wert für &quot;an&quot; eingeben, da der Typ E-Mail ist.</errorMessage>
         <name>To_field_validation</name>
     </validationRules>

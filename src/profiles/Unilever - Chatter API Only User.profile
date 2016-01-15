@@ -27932,6 +27932,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>true</editable>
+        <field>cec_Alert_Tracker_Item__c.Case_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>false</editable>
         <field>cec_Alert_Tracker__c.Alert_Threshold__c</field>
         <readable>false</readable>
@@ -32653,7 +32658,7 @@
         <recordType>aa_Agent_Report__c.Agent_Report</recordType>
     </layoutAssignments>
     <layoutAssignments>
-        <layout>aa_Agent_Report__c-Competitor Agent Report Layout</layout>
+        <layout>aa_Agent_Report__c-CI Manager Page Layout</layout>
         <recordType>aa_Agent_Report__c.CI_Manger_Record_type</recordType>
     </layoutAssignments>
     <layoutAssignments>

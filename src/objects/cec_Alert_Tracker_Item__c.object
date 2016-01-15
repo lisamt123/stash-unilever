@@ -71,16 +71,15 @@
     </fields>
     <fields>
         <fullName>Case_Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Case_Id</label>
         <referenceTo>Case</referenceTo>
         <relationshipLabel>Alert Tracker Item</relationshipLabel>
         <relationshipName>Alert_Tracker_Item</relationshipName>
-        <relationshipOrder>1</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <label>Alert Tracker Item</label>
     <nameField>
