@@ -7,6 +7,7 @@
  */
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
+	jq('.cust-overlay').hide();
 /* Below code is related to comments box */
     if (navigator.appVersion.match(/MSIE [\d.]+/)) {
         var placeholderText = 'Enter your action plan';
@@ -204,11 +205,13 @@ function getParameterByName(name) {
 }
 
 function hilightTaskScript(){
-	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }}); 
+	jq(".info").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});
+	jq(".deleteChannel").tooltip({ position: { my: 'center top', at: 'center bottom+10' }});	
+	jq(".arrow-left").tooltip({ position: { my: 'left top', at: 'center bottom+10' },tooltipClass:'ui-lefttip'}); 
 	jq(".aTabs").find("input[type=checkbox]:checked").closest(".aTabs").addClass("active");
 }
 
-function CallAttachDelete(attid) {
+function callAttachDelete(attid) {
     CallAttachId(attid);
 }
 

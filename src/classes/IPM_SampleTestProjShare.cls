@@ -42,7 +42,8 @@ private class IPM_SampleTestProjShare {
         List<IPM_Project__c> updatedprojectList;
         IPM_Project__c ProjectRec;
         
-        System.runAs(userobj){
+        System.runAs(userobj)
+        {
             Test.startTest();
             
             updatedprojectList = [Select Id,owner.type,ownerid,IPM_Project_Leader__c,IPM_Phase__c,Name,IPM_Complexity__c from IPM_Project__c where Name in:projectNameSet];
@@ -56,8 +57,12 @@ private class IPM_SampleTestProjShare {
         
         boolean memexists=false;
         list<GroupMember> memberList = new List<GroupMember>([SELECT Id, UserOrGroupId, GroupId FROM GroupMember WHERE GroupId =: ProjectRec.ownerid LIMIT 100]);  
-        for(GroupMember memid:memberList){
-            if(memid.UserOrGroupId == userobj.id) memexists =true;
+        for(GroupMember memid:memberList)
+        {
+            if(memid.UserOrGroupId == userobj.id) 
+            {
+            	memexists =true;
+            }
         }
         System.AssertEquals(true, memexists,'User is not a member of the queue');
     }

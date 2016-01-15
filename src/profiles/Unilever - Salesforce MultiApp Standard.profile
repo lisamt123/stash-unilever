@@ -15251,7 +15251,7 @@
         <editable>false</editable>
         <field>IPM_Assessment__c.Project_Phase__c</field>
         <readable>false</readable>
-    </fieldPermissions>
+    </fieldPermissions>    
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Bosscard__c.External_Id__c</field>
@@ -27824,11 +27824,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>cec_Alert_Action__c.Questionnaire_URL__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>cec_Alert_Action__c.To__c</field>
         <readable>false</readable>
     </fieldPermissions>
@@ -31620,6 +31615,14 @@
         <recordType>Account.Pitch_Agency</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Account-Primary Account</layout>
+        <recordType>Account.UID_Primary_Account</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Secondary Account</layout>
+        <recordType>Account.UID_Secondary_Account</recordType>
+    </layoutAssignments>    
+    <layoutAssignments>
         <layout>Agency_Fee_Field_History__c-Agency Fee - Field History Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -32535,6 +32538,14 @@
         <layout>Order-Order Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Order-Primary Sales</layout>
+        <recordType>Order.UID_Primary_Sales</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order-Secondary Sales</layout>
+        <recordType>Order.UID_Secondary_Sales</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>OrderItem-Order Product Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -32597,6 +32608,18 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>Third_Party_Survey__c-ThirdParty Survey Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>UID_Performance_Line_Item__c-IOP Detail Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>UID_Performance__c-IOP Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>UID_Stocked_Product_Summary__c-Stocked Product Summary Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>UID_Stocked_Product__c-Stocked Product Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
         <layout>User-User Layout</layout>

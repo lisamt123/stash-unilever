@@ -1,0 +1,1 @@
+Attention @users, the Target Launch Date on {!IPM_Project__c.IPM_Project_Name__c} was changed from {!IPM_Project__c.Previous_Target_Launch_Date__c} to {!IPM_Project__c.IPM_Target_Launch_Date__c} .

@@ -8,7 +8,6 @@ History
 VERSION  AUTHOR                DATE        DETAIL   Description
 1.0      m.bluj@polsource.com  03-08-2015  Initial
 *************************************************************************************/
-
 /* Service class uses without sharing due to it is used by external system*/
 public without sharing class BET_LinkingService {
 
@@ -78,10 +77,11 @@ public without sharing class BET_LinkingService {
 		IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(ProjectId);
 		BET_LinkingServiceValidator.validateFollowRequest(betRecords);
 		try{
+			Boolean setToAutoApprove = BET_Settings__c.getOrgDefaults().FollowRequestAutoApproved__c == null ? false : BET_Settings__c.getOrgDefaults().FollowRequestAutoApproved__c;
 			Boolean shouldBeAutoApproved = checkIfFollowRequestShouldBeAutoapproved(betRecords.get(0),managers);
 			BET_Follow_Request__c followRequest = createFollowRequest(project,betRecords.get(0),managers);
 			createRelatedMemberRequests(followRequest,betRecords.get(0),managers);
-			if(shouldBeAutoApproved) {
+			if(shouldBeAutoApproved || setToAutoApprove) {
 				followRequest.Status__c = FOLLOW_STATUS_APPROVED;
 				update followRequest;
 			} else {
@@ -238,6 +238,16 @@ public without sharing class BET_LinkingService {
 			throw new BET_CustomBETException(Label.BET_UnFollowExceptionMessage,e);
 		}
 		System.debug('Exit UnFollow');
+	}
+
+	/************************************************************
+		Purpose: Method returns all follow request records for given bet and ipm project
+		Parameters: Id betIdCtrl,Id projectIdCtrl
+		Returns: List of existing follow requests
+		Throws: -
+	*************************************************************/
+	public static List<BET_Follow_Request__c> getFollowRequestsForBetAndIpm(Id betIdCtrl,Id projectIdCtrl){
+		return [SELECT id from BET_Follow_Request__c WHERE Brand_Experience_Toolkit__c =: betIdCtrl and Project_Id__c =:projectIdCtrl];
 	}
 
 }

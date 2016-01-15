@@ -280,3 +280,8 @@ function selectTeam() {
 jq(window).on('resize', function() {
     setSlider(1);
 });
+jq(document).ready(function() {
+	if( jq('label').hasClass('fstchild active')){
+		jq('.helpDesc').prepend('<div>'+IPMProAppCP.select+'</div>');
+	}
+});

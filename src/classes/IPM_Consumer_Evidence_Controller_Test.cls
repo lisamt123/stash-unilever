@@ -61,7 +61,7 @@ private class IPM_Consumer_Evidence_Controller_Test {
     /*************************************************************************************************************************
     * @description Test Data
     */
-    @testSetup static void initializeTestMethodData(){
+    static void initializeTestMethodData(){
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 
@@ -208,6 +208,10 @@ private class IPM_Consumer_Evidence_Controller_Test {
             ipmConsumerEvidencon.deleteConcept();
             ipmConsumerEvidencon.projDocSecId=projectDocSecListObj[0].ID;
             ipmConsumerEvidencon.projDocSecConId=projDocSecCon.Id;
+            projectDocSecListObj[0].IPM_Selected_Consumer_Evidence_Countries__c='consume';
+            update projectDocSecListObj[0];
+            ipmConsumerEvidencon.deleteCountry='';
+            ipmConsumerEvidencon.deleteConcept();    
             ipmConsumerEvidencon.deleteCountry=CONSUMER_COUYNTRY;
             ipmConsumerEvidencon.deleteConcept();
             
@@ -248,6 +252,8 @@ private class IPM_Consumer_Evidence_Controller_Test {
             test.startTest();
             ipmConsumerEvidencon.deleteCountry ='';
             ipmConsumerEvidencon.projDocSecId=projectDocSecListObj[0].ID;
+            projectDocSecListObj[0].IPM_Selected_Consumer_Evidence_Countries__c='consume';
+            update projectDocSecListObj[0];
             ipmConsumerEvidencon.deleteSelectedCountry();
             ipmConsumerEvidencon.deleteCountry =CONSUMER_COUYNTRY;
             ipmConsumerEvidencon.deleteSelectedCountry();

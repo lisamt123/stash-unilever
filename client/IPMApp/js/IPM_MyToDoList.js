@@ -282,11 +282,12 @@ function setProjectFilter(bSearchTextBlank) {
             }
         });
     } else {
-        if (bSearchTextBlank)
+        if (bSearchTextBlank){
             jq('input[id*=srchTxt]').val('');
         jq('.projectFilter .dropdown-menu input[type="checkbox"]').each(function() {
             jq(this).prop('checked', false);
             jq(this).next('label').removeClass('selected');
-        });
+		});
+		}
     }
 }

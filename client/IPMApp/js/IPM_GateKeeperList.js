@@ -6,6 +6,7 @@
 *@Created Date: 06/01/2015  
 *********************************************************************************/
 var jq = jQuery.noConflict();
+jq.browser = {};
 jq(document).ready(function() {
     initSliderGk();
 });
@@ -37,24 +38,30 @@ function initSliderGk() {
                 'font-weight': 'bold'
             });
         }
-        if (answerGK == IPMAppGKC.partly) {
+        else if (answerGK == IPMAppGKC.partly) {
             jq(this).find("label[for=s2]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
         }
-        if (answerGK == IPMAppGKC.no) {
+        else if (answerGK == IPMAppGKC.no) {
             jq(this).find("label[for=s3]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
         }
-        if (answerGK == IPMAppGKC.na) {
+        else if (answerGK == IPMAppGKC.na) {
             jq(this).find("label[for=s4]").css({
                 'color': '#e98824',
                 'font-weight': 'bold'
             });
         }
+		else {
+			jq(this).find("label[for=s0]").css({
+                'color': '#e98824',
+                'font-weight': 'bold'
+            });		
+		}
 
     });
     jq(".legendSld label").on("click", function() {

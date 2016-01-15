@@ -12,7 +12,11 @@ function pageclose() {
     window.top.location.href = IPMAppComp.pageRefProSetupView + '?Pid=' + IPMAppComp.projectId + '&TodoId=todos';
 }
 /* Below script will refresh the current opened page */
-function pagecloseNewTask() {
-    var parentUrl = window.top.location.href;
-    window.top.location.href = parentUrl;
+function pagecloseNewTask(){ 
+	if (IPMAppComp.redirectToGateDocument == 'true') { 
+			window.top.location.href = IPMAppComp.pageRefProjDocSec + '?Id=' + IPMAppComp.projectId + '&' + IPMAppComp.redirectToGateDocumentUrl + '=' + IPMAppComp.docSecList; 
+	} else { 
+			window.top.location.href = IPMAppComp.TasklistPageRef + '?id=' + IPMAppComp.projectId; 
+	} 
 }
+

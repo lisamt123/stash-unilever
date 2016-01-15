@@ -36,7 +36,7 @@ public with sharing class IPM_EcoDesignSection {
     public Id ProjDocumentSecId;
     public String projDocName;
     public IPM_Project_Document_Section__c projDocSec;
-    public String projPhaseForCurrentDoc;
+    public String projPhaseForCurrentDoc = '';
     /*******************************************************************************************************
     * @description:initialise variables and get eco design data based on project document section id
     * @param:
@@ -65,9 +65,7 @@ public with sharing class IPM_EcoDesignSection {
 	        	projPhaseForCurrentDoc = IPM_ConstantUtils.PHASE_MARKET_READY;
 	        }
         }
-        else{
-        	projPhaseForCurrentDoc = project.IPM_Phase__c;
-        }
+
         countryAssessmentMap = new Map<String,List<IPM_Assessment__c>>();
         countryMap = new Map<String, IPM_Country__c>();
 		nonEICountryWithIdeasPhase = new Set<String>();
@@ -86,6 +84,9 @@ public with sharing class IPM_EcoDesignSection {
                                            Country_Name__c asc LIMIT 10000];     
         }
 
+		if(projPhaseForCurrentDoc.equalsIgnorecase(IPM_ConstantUtils.BLANK)){
+			projPhaseForCurrentDoc = project.IPM_Phase__c;
+		}
         projectType = IPM_Utils.retrieveProjectType(project);
         if(countriesList.isEmpty()) {
             noRolloutSubmittedYet = true;
@@ -106,10 +107,11 @@ public with sharing class IPM_EcoDesignSection {
                                                     IPM_Is_Lead_Assessment__c ,IPM_Country_Category_Avg_Waste_PCU__c,IPM_Country_Category_Avg_Water_PCU__c,
                                                     IPM_Country_Category_Avg_GHG_PCU__c,Project_Phase__c,IPM_Is_Category_Avg_Based__c,IPM_SKU_Name__c,
                                                     IPM_Comparison_Rep_GTU_Name__c From IPM_Assessment__c 
-                                                    Where IPM_Country__c IN:countriesList and Project_Phase__c =:projPhaseForCurrentDoc Order by IPM_SKU_Type__c asc LIMIT 50000]) {
+                                                    Where IPM_Country__c IN:countriesList and Project_Phase__c =:projPhaseForCurrentDoc 
+                                                    And IPM_Project__c =:projId Order by IPM_SKU_Type__c asc LIMIT 50000]) {
                 countryAssessmentMap.get(assessmentEle.IPM_Country__r.Country_Name__c).add(assessmentEle);                                          
             }
-            if(project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE){
+            if(project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE && project.IPM_GateKeepingModel__c == GKM4){
             	for(IPM_Assessment__c assessmentEle : [Select Id,IPM_SKU_Type__c,IPM_Country__r.Country_Name__c From IPM_Assessment__c 
                                                        Where IPM_Country__c IN:countriesList and Project_Phase__c =:IPM_ConstantUtils.PHASE_IDEAS Order by IPM_SKU_Type__c asc LIMIT 50000]) {
 				    nonEICountryWithIdeasPhase.add(assessmentEle.IPM_Country__r.Country_Name__c);
