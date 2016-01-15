@@ -617,13 +617,42 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                            {
                                currentPhaseMilestone = milestone;
                            }
-
-                           if(milestone.IPM_Due_Date__c < projectDoc.IPM_Postponement_Date__c)
-                           {
-                                String associatedGate = IPM_ConstantUtils.phaseGateDocumentMap.get(milestonePhase);
-                                showErrorMsg = String.format(Label.IPM_Milestone_Due_Date,new String[]{milestone.IPM_Name__c,associatedGate});
-                                break;
-                           }
+                        }
+                    }
+                    
+                    // get the set of previos phases
+                    Set<String> previousPhases = new Set<String>();
+                    for(String phase : IPM_ConstantUtils.phaseSequence.KeySet()){
+                        if(currentPhaseMilestone.IPM_Phase__c!= null && phase == currentPhaseMilestone.IPM_Phase__c)
+                        {
+                            break;
+                        }
+                        previousPhases.add(phase);      
+                    }
+                    
+                    for(IPM_Milestone__c milestone : milestoneList)
+                    {
+                        if(currentPhaseMilestone.IPM_Phase__c != null && milestone.IPM_Phase__c != currentPhaseMilestone.IPM_Phase__c)
+                        {   
+                            // Due date validation check with previous milestones 
+                            if(previousPhases.contains(milestone.IPM_Phase__c))
+                            {
+                                if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c > projectDoc.IPM_Postponement_Date__c)
+                                {
+                                    showErrorMsg = Label.IPM_Milestone_Due_Date;
+                                    break;
+                                }
+                                
+                            }
+                            else
+                            {
+                                // Due date validation check with next milestones 
+                                if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c < projectDoc.IPM_Postponement_Date__c)
+                                {
+                                    showErrorMsg = Label.IPM_Postponed_Future_Date_Validation;
+                                    break;
+                                }
+                            }
                         }
                     }
                 }
