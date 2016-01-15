@@ -18,6 +18,9 @@ public class IPM_MyList_Test{
     private static List<IPM_Project__c> projectDetailList;
     private static final String  GLOBAL_PL ='GLOBAL_PL';
     private static final String  GLOBAL_BD ='GLOBAL_BD';
+    private static Boolean message;
+    private static Boolean exceptn;
+    private static final String projectToSearch = 'TestComments1';
     /*
     @description For Initializing the data
     */ 
@@ -48,7 +51,7 @@ public class IPM_MyList_Test{
          IPM_TestFactory_Helper.shareMasterProject(new List<User>{platformUser}); 
          
          projectList = IPM_TestFactory_Helper.projectSetUp(8,platformUser);
-         
+         System.debug('platformUser==>'+platformUser.Id);
          System.runAs(platformUser)
          {
            insert projectList;
@@ -59,37 +62,37 @@ public class IPM_MyList_Test{
       
       private static list<IPM_Task__c> getTaskList()
      {
-     	list<IPM_Task__c> taskList;
+        list<IPM_Task__c> taskList;
         projIdSet =  new Set<Id>();
         projResourceList = new list<IPM_Project_Resource__c>();
         
         
-	        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8','TestComments9','TestComments10'};
-	        projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_PM_Approach__c,IPM_Complexity__c,(Select Id from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
-	                (Select Id,Name,IPM_Assignee__c,IPM_Due_Date1__c,IPM_Completed__c,IPM_Project__r.Is_Archieved__c,IPM_Task_Complexity__c,IPM_Project__c,IPM_Project_Document_Section__c,IPM_Function__c,IPM_Section__c from Tasks__r),(Select Id,Name from IPM_Milestones__r)
-	                from IPM_Project__c where Name in:projectNameSet];
-	                
-	        for(IPM_Project__c project: projectDetailList){
-	            projIdSet.add(project.id);
-	        }
-	        taskList = new list<IPM_Task__c>();
-	        
-	        for(IPM_Project__c project : projectDetailList)
-	        {
-	            for(IPM_Task__c task : project.Tasks__r)
-	            {
-	                system.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'task complexity matches with project complexity'); 
-	                taskList.add(task);       
-	            }
-	            
-	             IPM_Project_Resource__c projRes = IPM_TestFactory_Helper.createIPMProjectResource(project.Id,false); 
- 	             
-	            projRes.IPM_Role_Type__c ='BD';
-	            projResourceList.add(projRes);
-	        }
-	        insert projResourceList;
-	        
-	        system.assertEquals(8, taskList.size(),'task created');
+            Set<String> projectNameSet = new Set<String>{projectToSearch,'TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8','TestComments9','TestComments10'};
+            projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_PM_Approach__c,IPM_Complexity__c,(Select Id from Project_Documents__r),(Select Id from IPM_Financials_Consolidated__r ),
+                    (Select Id,Name,IPM_Assignee__c,IPM_Due_Date1__c,IPM_Completed__c,IPM_Project__r.Is_Archieved__c,IPM_Task_Complexity__c,IPM_Project__c,IPM_Project_Document_Section__c,IPM_Function__c,IPM_Section__c, IPM_Type_of_Gate__c from Tasks__r),(Select Id,Name from IPM_Milestones__r)
+                    from IPM_Project__c where Name in:projectNameSet];
+            System.debug('projectDetailList==>'+projectDetailList);        
+            for(IPM_Project__c project: projectDetailList){
+                projIdSet.add(project.id);
+            }
+            taskList = new list<IPM_Task__c>();
+            
+            for(IPM_Project__c project : projectDetailList)
+            {
+                for(IPM_Task__c task : project.Tasks__r)
+                {
+                    system.assertEquals(task.IPM_Task_Complexity__c,project.IPM_Complexity__c,'task complexity matches with project complexity'); 
+                    taskList.add(task);       
+                }
+                
+                 IPM_Project_Resource__c projRes = IPM_TestFactory_Helper.createIPMProjectResource(project.Id,false); 
+                 
+                projRes.IPM_Role_Type__c ='BD';
+                projResourceList.add(projRes);
+            }
+            insert projResourceList;
+            
+            system.assertEquals(8, taskList.size(),'task created');
         
         return taskList;
      }
@@ -154,6 +157,9 @@ public class IPM_MyList_Test{
             taskListTest.filteredProjectReset();
             taskListTest.filterCompleteTasksReset();
             
+            taskListTest.setTaskId('abc');
+            taskListTest.deleteTask();
+            
         }
         Test.stopTest();
     }
@@ -180,8 +186,8 @@ public class IPM_MyList_Test{
         
         system.RunAs(globalUser)
         {   
-        	Date todayDate = system.now().date();
-        	setDate =  new list<Date>{todayDate.addDays(-14),todayDate,todayDate.addDays(5),todayDate.addDays(14)};
+            Date todayDate = system.now().date();
+            setDate =  new list<Date>{todayDate.addDays(-14),todayDate,todayDate.addDays(5),todayDate.addDays(14)};
             insertTask = getTaskList();
             integer countTask = 0;
             for(integer i=0 ;i<4 ;i++){
@@ -239,13 +245,13 @@ public class IPM_MyList_Test{
             
             User globalUser = [Select Id,LastName from User where LastName=:GLOBAL_PL limit 1];
             
-        	// Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
-        	IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
+            // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
         
             system.RunAs(globalUser)
             {   
-            	setDate =  new list<Date>{system.Today().addDays(-14),system.Today(),system.Today().addDays(5),system.Today().addDays(14)};
-            	insertTask = getTaskList();
+                setDate =  new list<Date>{system.Today().addDays(-14),system.Today(),system.Today().addDays(5),system.Today().addDays(14)};
+                insertTask = getTaskList();
                 for(integer i=0 ;i<4 ;i++){
                     IPM_Task__c ipmTask= insertTask[i];
                     ipmTask.IPM_Due_Date1__c = setDate[i];
@@ -271,42 +277,55 @@ public class IPM_MyList_Test{
         
          
             list<IPM_Task__c> insertTask = new list<IPM_Task__c> ();
-            list<IPM_Task__c> updatedTaskTest11 = new list<IPM_Task__c> ();
-
+            map<Id, IPM_Task__c> updatedTaskMap = new map<Id, IPM_Task__c> ();
+            
             User globalUser = [Select Id,LastName from User where LastName=:GLOBAL_PL limit 1];
             
-        	// Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
-        	IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
-        
+            // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
+        	System.debug('globalUser==>'+globalUser.id+'==>');
             system.RunAs(globalUser)
             { 
-            	insertTask = getTaskList();
+                insertTask = getTaskList();
+                
                 system.assertEquals(insertTask.size()>0,true,'tasks inserted');
-         
-		        list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
-		                                FROM IPM_Project_Document_Section__c where IPM_Project_ID__c in:projIdSet];
-		        for(IPM_Task__c task: insertTask ){
-		            for(IPM_Project_Document_Section__c section :sectionList ){
-		                if(task.IPM_Project__c ==section.IPM_Project_ID__c && task.IPM_Type_of_Gate__c ==section.IPM_Gate_Document__c && task.IPM_Function__c ==section.IPM_FunctionalRole__c ){
-		                    task.IPM_Project_Document_Section__c =section.id;
-		                    task.IPM_Section__c =section.IPM_Section__c;
-		                    updatedTaskTest11.add(task);
-		                }
-		            }
-		
-		        }
-		        update updatedTaskTest11;
-		        IPM_MyList tskList = new IPM_MyList();
-		        tskList.searchedProject = 'TestComments1';
-            	tskList.filterProject();
+         		
+         			
+                list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
+                                        FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet];
+                for(IPM_Task__c task: insertTask ){
+                    for(IPM_Project_Document_Section__c section :sectionList ){
+                        if(task.IPM_Project__c ==section.IPM_Project_ID__c && task.IPM_Type_of_Gate__c ==section.IPM_Gate_Document__c && task.IPM_Function__c ==section.IPM_FunctionalRole__c ){
+                            task.IPM_Project_Document_Section__c =section.id;
+                            task.IPM_Section__c =section.IPM_Section__c;
+                             task.IPM_Due_Date1__c =System.today()+10;
+                             System.debug('task.IPM_Assignee__c before ==>'+task.IPM_Assignee__c);
+                             task.IPM_Assignee__c = UserInfo.getUserId() ;
+                             System.debug('task.IPM_Assignee__c after ==>'+task.IPM_Assignee__c);
+                             updatedTaskMap.put(task.Id, task);
+                        }
+                    }
+        
+                }
+                update updatedTaskMap.values();
+                IPM_MyList tskList = new IPM_MyList();
+                tskList.searchedProject = projectToSearch;
+                 tskList.isCompleteTasks = IPM_Utils.f;
+                tskList.filterProject();
+                tskList.HasPrevious=true;
+                tskList.HasNext=true;
+                tskList.projectsSet=new set<string>();
+                tskList.projectsSet.add('abcd');
+                tskList.searchedProject='abc';
+                tskList.filterProject();
             
-		     }
-		     
+             }
+             
         Test.startTest();  
         
-	        User globalBDUser = [Select Id,LastName from User where LastName=:GLOBAL_BD limit 1];	
-	        // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
-	        IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalBDUser}); 
+            User globalBDUser = [Select Id,LastName from User where LastName=:GLOBAL_BD limit 1];   
+            // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalBDUser}); 
         
             system.RunAs(globalBDUser)
             {
@@ -320,19 +339,20 @@ public class IPM_MyList_Test{
             }
         Test.stopTest();
     }   
+    
     /* task with project approch is external */
      private static testmethod void projectWithExternalApprochTest(){ 
         Test.startTest();
-            Boolean message = false; 
-            Boolean exceptn = false;   
+            message = false; 
+           exceptn = false;   
             User globalUser = [Select Id,LastName from User where LastName=:GLOBAL_PL limit 1];
             
             // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
-        	IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
         
             system.RunAs(globalUser)
             {   
-            	taskListTest = new IPM_MyList();
+                taskListTest = new IPM_MyList();
                 list<IPM_Task__c>  taskList = getTaskList();
                 
                 list<IPM_Project__c> projList = [SELECT Id,IPM_PM_Approach__c,Name FROM IPM_Project__c WHERE Id =: taskList[0].IPM_Project__c];
@@ -360,6 +380,141 @@ public class IPM_MyList_Test{
         Test.stopTest();
      }
      
-     
+     /*test cases for completed task*/
+     private static testmethod void taskCatchTest(){
+         
+            list<IPM_Task__c> insertTask = new list<IPM_Task__c> ();
+            map<Id, IPM_Task__c> updatedTaskMap = new map<Id, IPM_Task__c> ();
             
+            User globalUser = [Select Id,LastName from User where LastName=:GLOBAL_PL limit 1];
+            
+            // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
+            system.RunAs(globalUser)
+            { 
+                insertTask = getTaskList();
+                
+                system.assertEquals(insertTask.size()>0,true,'tasks inserted');
+         		
+                list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
+                                        FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet];
+                for(IPM_Task__c task: insertTask ){
+                    for(IPM_Project_Document_Section__c section :sectionList ){
+                        if(task.IPM_Project__c ==section.IPM_Project_ID__c && task.IPM_Type_of_Gate__c ==section.IPM_Gate_Document__c && task.IPM_Function__c ==section.IPM_FunctionalRole__c ){
+                            task.IPM_Project_Document_Section__c =section.id;
+                            task.IPM_Section__c =section.IPM_Section__c;
+                             task.IPM_Due_Date1__c =System.today()+10;
+                             task.IPM_Assignee__c = UserInfo.getUserId() ;
+                             updatedTaskMap.put(task.Id, task);
+                        }
+                    }
+        
+                }
+                update updatedTaskMap.values();
+                IPM_MyList tskList = new IPM_MyList();
+                tskList.toggleTask = IPM_Utils.truevalue;
+                tskList.setPhase('Idea');
+                tskList.setUser(GLOBAL_PL);
+                tskList.toggleRole = IPM_Utils.truevalue;
+                tskList.isCompleteTasks = IPM_Utils.t;
+                tskList.searchedProject = projectToSearch;
+                tskList.filterProject();
+                tskList.HasPrevious=true;
+                tskList.HasNext=true;
+                tskList.projectsSet=new set<string>();
+                tskList.projectsSet.add('abcd');
+                tskList.searchedProject='abc';
+                tskList.filterProject();
+             	tskList.loadTasks();
+             }
+             
+        Test.startTest();  
+        
+            User globalBDUser = [Select Id,LastName from User where LastName=:GLOBAL_BD limit 1];   
+            // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalBDUser}); 
+        
+            system.RunAs(globalBDUser)
+            {
+                PageReference pgRef = Page.IPM_MyToDoList;   
+                Test.setCurrentPage(pgRef);
+                
+                ApexPages.StandardSetController ssc = new ApexPages.StandardSetController(insertTask);
+                list<IPM_Task__c>updatedTaskTest = ssc.getRecords();
+                
+                system.assertEquals(updatedTaskTest.size(),8,'8 tasks are being updated'); 
+            }
+        Test.stopTest();
+     
+     }
+     
+     
+     private static testmethod void taskTestNegative(){
+         
+            list<IPM_Task__c> insertTask = new list<IPM_Task__c> ();
+            map<Id, IPM_Task__c> updatedTaskMap = new map<Id, IPM_Task__c> ();
+            
+            User globalUser = [Select Id,LastName from User where LastName=:GLOBAL_PL limit 1];
+            
+            // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalUser}); 
+            system.RunAs(globalUser)
+            { 
+                insertTask = getTaskList();
+                
+                system.assertEquals(insertTask.size()>0,true,'tasks inserted');
+         		
+                list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
+                                        FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet];
+                for(IPM_Task__c task: insertTask ){
+                    for(IPM_Project_Document_Section__c section :sectionList ){
+                        if(task.IPM_Project__c ==section.IPM_Project_ID__c && task.IPM_Type_of_Gate__c ==section.IPM_Gate_Document__c && task.IPM_Function__c ==section.IPM_FunctionalRole__c ){
+                            task.IPM_Project_Document_Section__c =section.id;
+                            task.IPM_Section__c =section.IPM_Section__c;
+                             task.IPM_Due_Date1__c =System.today()+10;
+                             task.IPM_Assignee__c = UserInfo.getUserId() ;
+                             updatedTaskMap.put(task.Id, task);
+                        }
+                    }
+        
+                }
+                update updatedTaskMap.values();
+                IPM_MyList tskList = new IPM_MyList();
+                tskList.toggleTask = IPM_Utils.truevalue;
+                tskList.setPhase('Idea');
+                tskList.setUser(GLOBAL_PL);
+                tskList.toggleRole = IPM_Utils.truevalue;
+                tskList.isCompleteTasks = IPM_Utils.f;
+                tskList.isAsc = true;
+                tskList.searchedProject = projectToSearch;
+                tskList.filterProject();
+                tskList.HasPrevious=true;
+                tskList.HasNext=true;
+                tskList.projectsSet=new set<string>();
+                tskList.projectsSet.add('abcd');
+                tskList.filterProject();
+             	tskList.loadTasks();
+             }
+             
+        Test.startTest();  
+        
+            User globalBDUser = [Select Id,LastName from User where LastName=:GLOBAL_BD limit 1];   
+            // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+            IPM_TestFactory_Helper.shareMasterProject(new List<User>{globalBDUser}); 
+        
+            system.RunAs(globalBDUser)
+            {
+                PageReference pgRef = Page.IPM_MyToDoList;   
+                Test.setCurrentPage(pgRef);
+                
+                ApexPages.StandardSetController ssc = new ApexPages.StandardSetController(insertTask);
+                list<IPM_Task__c>updatedTaskTest = ssc.getRecords();
+                
+                system.assertEquals(updatedTaskTest.size(),8,'8 tasks are being updated'); 
+            }
+        Test.stopTest();
+    
+     	
+     
+     }       
 }
