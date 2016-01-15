@@ -97,10 +97,6 @@
         <name>Popup_Message_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Παρακαλώ εισάγετε τιμή για Ερωτηματολόγιο URL ως ο τύπος είναι «Ερωτηματολόγιο»</errorMessage>
-        <name>Questionnaire_URL_Validation</name>
-    </validationRules>
-    <validationRules>
         <errorMessage>Παρακαλώ εισάγετε τιμή για «Προς» πεδίο, όπως ο τύπος είναι &quot;Email&quot;</errorMessage>
         <name>To_field_validation</name>
     </validationRules>

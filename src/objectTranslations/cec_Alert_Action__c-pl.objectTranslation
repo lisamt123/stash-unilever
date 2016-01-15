@@ -126,10 +126,6 @@
         <name>Popup_Message_Validation</name>
     </validationRules>
     <validationRules>
-        <errorMessage>Proszę wprowadź wartość dla kwestionariusza URL jako że typ ten jest &apos;Kwestionariuszem&apos;</errorMessage>
-        <name>Questionnaire_URL_Validation</name>
-    </validationRules>
-    <validationRules>
         <errorMessage>Proszę wprowadź wartość do pola &apos;Do&apos; jako że ten typ jest &apos;Emailem&apos;</errorMessage>
         <name>To_field_validation</name>
     </validationRules>

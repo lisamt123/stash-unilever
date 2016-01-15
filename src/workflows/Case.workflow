@@ -66,17 +66,6 @@
         <senderType>CurrentUser</senderType>
         <template>CEC_Unilever/cec_Default_Auto_Response</template>
     </alerts>
-    <alerts>
-        <fullName>close_Case_Survey</fullName>
-        <description>close Case Survey</description>
-        <protected>false</protected>
-        <recipients>
-            <field>ContactId</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Close_Case_Survey</template>
-    </alerts>
     <fieldUpdates>
         <fullName>CEC_Benelux_Market_Field_Update</fullName>
         <description>CEC: Set the Market field to the market value</description>
@@ -427,25 +416,6 @@
             <value>UK &amp; Ireland</value>
         </criteriaItems>
         <description>Auto Response Email on Case Creation for UK &amp; Ireland for Case Origin Web</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Close Case Survey</fullName>
-        <actions>
-            <name>close_Case_Survey</name>
-            <type>Alert</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Case.Status</field>
-            <operation>equals</operation>
-            <value>Closed</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Case.Reason</field>
-            <operation>notEqual</operation>
-            <value>Duplicate</value>
-        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
