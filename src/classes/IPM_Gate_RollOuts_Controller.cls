@@ -6,7 +6,8 @@
 @Version: 1.0
 @Reference: IPM_Gate_RollOuts component
 */
-public with sharing class IPM_Gate_RollOuts_Controller{
+public with sharing class IPM_Gate_RollOuts_Controller
+{
     //For exception handler
     private static final String IPM_GATE_ROLLOUTS_CONTROLLER_STR = IPM_Gate_RollOuts_Controller.class.getName();
     private static final String IPM_PREPAREWRAPPERS='prepareIPMLocalToCountryWrapper';
@@ -14,11 +15,14 @@ public with sharing class IPM_Gate_RollOuts_Controller{
     public transient List<RegionalRollOutWrapper> regionalRollOutWrapperList {get;set;} 
     public static  ID regionalRecordTypeId =  Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).RecordTypeId;//used for displaying Regional To Local To Country Mapping ;  
     public static  ID localRecordTypeId = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).RecordTypeId;//used for displaying Regional To Local To Country Mapping;
-    public Id proId{
-        get {
+    public Id proId
+    {
+        get 
+        { 
             return proId; // to get the project document section ID from the component used from Gate document page
         }
-        set {
+        set 
+        {
             proId= value;// setting the value of project document section
             prepareIPMLocalToCountryWrapper();
         }
@@ -34,21 +38,22 @@ public with sharing class IPM_Gate_RollOuts_Controller{
     }
     
     /************************************************************************************************************************
-    *  Description Getting rollouts to display
+    *  Description Based on the passed Project Span,Identifies the associated local and Regional Rollouts which need to be displayed on the Gate Document Appendix 
+                    section.
     *  @name prepareIPMLocalToCountryWrapper
     *  @param none
     *  @return void
     *  @throws query exception
     */
-    public void prepareIPMLocalToCountryWrapper(){
-        try{
-        
+    public void prepareIPMLocalToCountryWrapper()
+    {
+        try
+        {
             regionalRollOutWrapperList= new List<RegionalRollOutWrapper>();
            
             headers = new List<String> {Label.IPM_RegionalRollout,Label.IPM_Geography,Label.IPM_Status,Label.IPM_TARGET_LAUNCH_DATE,Label.IPM_LocalProjectName};
          
-            List<IPM_Project__c> projectList  = [SELECT Id,Name,IPMProject_Span__c FROM IPM_Project__c 
-                                                 WHERE Id =:proId LIMIT 1];
+            List<IPM_Project__c> projectList  = [SELECT Id,Name,IPMProject_Span__c FROM IPM_Project__c WHERE Id =:proId LIMIT 1];
                                                  
             if(projectList != null && !projectList.isEmpty()){
                 
@@ -126,10 +131,10 @@ public with sharing class IPM_Gate_RollOuts_Controller{
                 }
             }
         }
-        catch(QueryException ex){
+        catch(Exception ex)
+        {
+            // Invoked from Getter/Setter. Removing Exception Log insertion due to platform limitations.
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATE_ROLLOUTS_CONTROLLER_STR,
-                IPM_PREPAREWRAPPERS,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
         
     }

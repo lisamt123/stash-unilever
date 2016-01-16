@@ -2,7 +2,11 @@
 @Author Cognizant 
 @Name IPM_RolloutPlansAddController
 @CreateDate 27/04/2015
-@Description This class is used for adding new rollouts to the project
+@Description    This class is used for adding new rollouts to the project. It is used for displaying MDO Specific Geographies and Countries. 
+                User selects MCO and Countries from the Page and are send for rollout Processing.
+                Handles building of core Rollout Data, creating relationships between rollouts, countries and regional Rollouts.
+                Adds and removes Rollouts/Countries based on user selection.
+                Switching of rolloutType is handled in this class.
 @Version 1.0
 @reference IPM_RolloutPlansAdd VF page, IPM_RolloutPlansRegional VF page
 */
@@ -231,7 +235,8 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     }
     
     /**
-    *  @Description Method to generate various wrappers
+    *  @Description Method to Used for creating Wrapper which contains MCO related information and corresponding Countries. 
+        Used for displaying selected countries and Whether MCO needs to be enabled or disabled based on various conditions.
     *  @name generateWrappers
     *  @param NONE
     *  @return NONE
@@ -668,11 +673,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     }
     
     /**
-    *  @Description Method to process various country codes passed on from the visualforce page
+    *  @Description Method to process various country codes selected as part of User operation.
+         setCountryCodesGlobal - Contains information about selected MCO's at global level.
+         setCountryCodesMCOs - Contains selection of Countries selected by user in VF Page.
+         Eventually we will have the list which contains selections for MCO, Countries from User.
     *  @name processCountryCodeLists
     *  @param NONE
     *  @return NONE
-    *  @throws Exception
     */
     @TestVisible private void processCountryCodeLists()
     {
@@ -786,11 +793,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     }
     
     /**
-    *  @Description Method to generate and save rollout records
+    *  @Description Method to generate and save rollout records.
+        This method creates MCO and Country Specific rollouts based on User selection. 
+        Also it is responsible for Creating Core data for MCO and county specific rollouts like TLD's, key,Non Key, Rollout Name and relationships.
+        Also unselected MCO and Countries are evaluated whether there are corresponding MCO or country rollouts and performs deletion of such rollouts.
     *  @name processRollouts
     *  @param NONE
     *  @return NONE
-    *  @throws Exception
     */
     @TestVisible private void processRollouts()
     { 
@@ -939,11 +948,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     }
     
     /**
-    *  @Description Method to process Global MCO Rollouts
+    *  @Description Method to process Global MCO Rollouts. This specifies the Top Level Project MCO Selection where we process selected and unselected MCO List.
+        Creates regional Rollouts based on User Selected MCO's. Also local Rollouts are created based on User Selection. 
+        Neccessary data and relationships between rollout,country and Projects are created here.
+        Deletion of Unselected MCO and countries are performed as well.
     *  @name processGlobalMCORollouts
     *  @param NONE
     *  @return NONE
-    *  @throws Exception
     */
     @TestVisible private void processGlobalMCORollouts()
     {    
@@ -1130,11 +1141,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     }
     
     /**
-    *  @Description Method to process Regional MCO Rollouts
+    *  @Description Used for creating MCO rollouts at regional Level based on user selected and unselected MCO List.
+        Creates local Rollouts based on User Selected MCO's. Checks if there was a switch made between 'Country specific', 'No Rollout' to 'Part of MCO Rollout' 
+        Neccessary data and relationships between rollout,country and Projects are created here.
+        Deletion of Unselected MCO and countries are performed as well.
     *  @name processRegionalMCORollouts
     *  @param NONE
     *  @return NONE
-    *  @throws Exception
     */
     @TestVisible private void processRegionalMCORollouts()
     {
@@ -1256,11 +1269,13 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     }
     
     /**
-    *  @Description Method to process Regional Country Rollouts
+    *  @Description Used for creating Country specific rollouts at regional Level based on user selected and unselected Country List.
+        Creates local Rollouts based on User Selected Country. Invoked when user switches from 'Part of MCO' or 'No Rollout' to 'Country'. 
+        Neccessary data and relationships between rollout,country and Projects are created here.
+        Deletion of Unselected old Rollouts and countries are performed as well.
     *  @name processRegionalCountryRollouts
     *  @param NONE
     *  @return NONE
-    *  @throws Exception
     */
     @TestVisible private void processRegionalCountryRollouts()
     {
@@ -1390,7 +1405,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     *  @name getRegionalRolloutName
     *  @param countryCode    Country code for which the regional rollout name needs o be generated
     *  @return Regional Rollout Name
-    *  @throws Exception
     */
     
     @TestVisible private String getRegionalRolloutName(String countryCode)
@@ -1423,7 +1437,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     *  @name getKeyMCORolloutName
     *  @param countryCode    Country code for which the key MCO rollout name needs o be generated
     *  @return key MCO Rollout Name
-    *  @throws Exception
     */
     @TestVisible private String getKeyMCORolloutName(String countryCode)
     { 
@@ -1449,7 +1462,6 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
     *  @name getCountryExternalId
     *  @param countryCode    Country code for which the Country External Id needs o be generated
     *  @return Country External Id
-    *  @throws Exception
     */
     @TestVisible private String getCountryExternalId(String countryCode){        
         return getRegionalRolloutName(countryCode) + IPM_ConstantUtils.UNDERSCORE + countryCode;
@@ -1500,6 +1512,12 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
                 
     }
     
+    /**
+    *  @Description Method to deleted unselected Countries and Rollouts which earlier existed and now are removed as part of user selection.
+    *  @name sortWrappersByName
+    *  @param unselectedCountryCodes  unselected Country Codes which are used for create rollout specific names
+    *  @return rolloutType - Indicates what type of rollouts need to be checked for deletion.
+    */
     @TestVisible private void processUnSelectedCountries(Set<String> unselectedCountryCodes,String rolloutType)
     {
         Map<String,Set<String>> mcoRollNameToCountryCodeMap = new Map<String,Set<String>>();
@@ -1544,6 +1562,12 @@ public with sharing class IPM_RolloutPlansAddController extends IPM_ProjectInter
         }     
     }
     
+     /**
+    *  @Description This is a helper method which does the actual deletion of unselected MCO and Country specific rollouts.
+    *  @name sortWrappersByName
+    *  @param unselectedCountryCodes  unselected Country Codes which are used for create rollout specific names
+    *  @return rolloutType - Indicates what type of rollouts need to be checked for deletion.
+    */
     
     @TestVisible private void removeReferences(Map<String,Set<String>> rolloutToCountryMap,IPM_Project_Rollout__c ipmRollout)
     {

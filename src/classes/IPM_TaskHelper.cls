@@ -120,152 +120,24 @@ public with sharing class IPM_TaskHelper {
             }
     }
     
-    /*Commenting below 3 methods. We have requirement in Task module, 
-      which states that when user is made inactive, then corresponding tasks should be reassigned to line manager/PL.
-      But, as we need to remove triggers from User object, commenting below 3 methods which will be called from UserTrigger.trigger
-    */
-    /**************************************************************
-    * @description: future handler which gets called from the restrictive standard object User whenever he gets deactivated or deleted
-    * @param1 usersId : The set of users ids which are deactiveated or deleted
-    */
-    /*@future
-    public static void reAssign(Set<Id> usersId) {
         
-            IPM_Project_Resource__c[] newProResourcesList = new list<IPM_Project_Resource__c>();//new resources list to be processed
-            map<Id, IPM_Project_Resource__c> newProResourcesMap = new map<Id, IPM_Project_Resource__c>();//new lsit map of resources
-            Map<Id, IPM_Project_Resource__c> oldProResourcesMap;//old resources maps to store the records
             
-            for(IPM_Project_Resource__c eachNewPR : [SELECT IPM_User__c, IPM_Project__c, IPM_Project__r.IPM_Project_Leader__c, 
-                                                                        IPM_Project_Role_Owner__c 
-                                                                    FROM IPM_Project_Resource__c 
-                                                                    WHERE IPM_Project_Role_Owner__c = true AND
-                                                                            IPM_User__c IN :usersId]) {
-                IPM_Project_Resource__c prSobj = eachNewPR;
-                prSobj.IPM_User__c = null;
-                newProResourcesList.add(prSobj);
-                newProResourcesMap.put(eachNewPR.Id, prSobj);
-            }
-            oldProResourcesMap = new Map<Id, IPM_Project_Resource__c>
-                                                                    ([SELECT IPM_User__c, IPM_Project__c, IPM_Project__r.IPM_Project_Leader__c, 
-                                                                        IPM_Project_Role_Owner__c 
-                                                                    FROM IPM_Project_Resource__c 
-                                                                    WHERE IPM_Project_Role_Owner__c = true AND
-                                                                            IPM_User__c IN :usersId]);//old resources maps list after being updated
 
-            reAssignTasks(newProResourcesList, newProResourcesMap, oldProResourcesMap); 
          
-    }
-    */
-    /**************************************************************
-    * @description: this calls from the User trigger handler which means to perform some action for the removed users from the project team
-    * @param1 inActiveUsrsList : The list of users ids which are deactiveated or deleted
-    */
-   // @InvocableMethod 
-    /*public static void reAssignTasksForInActiveUsrs(list<User> inActiveUsrsList) {
-       Set<Id> usersId = new Set<Id>();
-       for(User eachUser : inActiveUsrsList) {
-            usersId.add(eachUser.id);
-       }
-      reAssign(usersId);//reuse the future handler now
-       //reAssignTaskToActiveUsers(usersId);
-    }*/
     
-    /**************************************************************
-    * @description: This method performs the actual processings for the task reassignments. There are usually following scenarios to be considered
-    *               1: Reassign those tasks for which the users are deleted/inactivated and assign back to their manager
-    *               2: Reassign those tasks for which their managers are also disabled or doesnt exist to the PL of that project
-    *               3: Finally notify it
-    * @param1 newProjectsResources : The new list of IPM_Project_Resource__c object
-    * @param2 newProjectResourcesMap : The new map of IPM_Project_Resource__c object
-    * @param3 oldProjectResourcesMap : The old map of IPM_Project_Resource__c object
-    */
-    /*public static void reAssignTasks(IPM_Project_Resource__c[] newProjectsResources, 
-                                        map<Id, IPM_Project_Resource__c> newProjectResourcesMap,
-                                        map<Id, IPM_Project_Resource__c> oldProjectResourcesMap) {
-            list<IPM_Task__c> tasksToUpdate = new list<IPM_Task__c>();//tasks to update
-            list<IPM_Project_Resource__c> projectResourcesToUpdate = new list<IPM_Project_Resource__c>();//pr records to update
-            IPM_Project_Resource__c oldProjectResource = new IPM_Project_Resource__c();
-            Set<Id> projectIds = new Set<Id>();//project id
-            Set<String> functionalRolesSet = new Set<String>();//functional wise maps
-            map<Id, Id> usersToReplaceMap = new map<Id, Id>(); // old user => new user
-            map<Id, IPM_Project_Resource__c> removedUsersMap = new map<Id, IPM_Project_Resource__c>();//removed users
-            map<Id, IPM_Project_Resource__c> replacedUsersMap = new map<Id, IPM_Project_Resource__c>();//replaced users
-            map<Id, Id> projectLeaderMap = new map<Id, Id>();//list of PLs for the available context of the projects
-            for(IPM_Project_Resource__c eachProject : newProjectsResources) {
-                functionalRolesSet.add(eachProject.IPM_Role_Type__c);
-                oldProjectResource = oldProjectResourcesMap.get(eachProject.Id);
-                //check for those users who are removed frm the owner's role, find out their ManagerIds and replace their tasks with them.
-                if(oldProjectResource.IPM_User__c != eachProject.IPM_User__c && eachProject.IPM_User__c == null &&
-                    eachProject.IPM_Project_Role_Owner__c) {
-                    removedUsersMap.put(oldProjectResource.IPM_User__c, oldProjectResource);
-                    projectIds.add(eachProject.IPM_Project__c);
-                }
-                //check for those users who are replaced by the system itself.
-                if(oldProjectResource.IPM_User__c != eachProject.IPM_User__c && eachProject.IPM_User__c != null &&
-                    eachProject.IPM_Project_Role_Owner__c) {
-                    replacedUsersMap.put(eachProject.IPM_User__c, eachProject);
-                    usersToReplaceMap.put(oldProjectResource.IPM_User__c, eachProject.IPM_User__c);
-                    projectIds.add(eachProject.IPM_Project__c);
-                }
-            }
 
 
         
-            for(IPM_Project_Resource__c eachPR :  [SELECT IPM_Project__r.IPM_Project_Leader__c, IPM_User__c 
-                                                                                    FROM IPM_Project_Resource__c
-                                                                                    WHERE Id IN: oldProjectResourcesMap.keySet()]) {
-                IPM_Project_Resource__c oldPR = oldProjectResourcesMap.get(eachPR.Id);
-                projectLeaderMap.put(oldPR.IPM_User__c, eachPR.IPM_Project__r.IPM_Project_Leader__c);
-            }
 
             
-            for(User eachUser :  [SELECT ManagerId, Manager.IsActive FROM User WHERE Id IN :removedUsersMap.keySet()]) {
-                if(eachUser.ManagerId != null && eachUser.Manager.IsActive) {
-                    usersToReplaceMap.put(eachUser.Id, eachUser.ManagerId);
-                }else {
-                    usersToReplaceMap.put(eachUser.Id, projectLeaderMap.get(removedUsersMap.get(eachUser.Id).IPM_User__c));
-                }
-            }
 
              
-            Set<Id> pResourceIdsToUpdate = new Set<Id>();
-            Set<Id> usersId = new Set<Id>();
-            Set<Id> presourceIds = new Set<Id>();//various PR ids
-            for(IPM_Project_Resource__c eachPR : removedUsersMap.values()) {
-                pResourceIdsToUpdate.add(removedUsersMap.get(eachPR.IPM_User__c).Id);
-            }
             
         
-            for(IPM_Project_Resource__c eachPR : [SELECT IPM_User__c, IPM_Project__c FROM IPM_Project_Resource__c WHERE Id IN :pResourceIdsToUpdate]) {
-                IPM_Project_Resource__c prObj = eachPR;
-                IPM_Project_Resource__c oldPR = oldProjectResourcesMap.get(eachPR.Id);
-                prObj.IPM_User__c = usersToReplaceMap.get(oldPR.IPM_User__c);
-                projectResourcesToUpdate.add(prObj);
-                usersId.add(prObj.IPM_User__c);
-                usersId.add(oldPR.IPM_User__c);
-            }
 
-            for(IPM_Task__c eachTask :  [SELECT IPM_Assignee__c,ExternalField__c FROM IPM_Task__c 
-                                                                WHERE IPM_Assignee__c IN :usersToReplaceMap.keySet()
-                                                                AND IPM_Project__c IN :projectIds]) {
-                IPM_Task__c tskObj = eachTask;
-                tskObj.IPM_Assignee__c = usersToReplaceMap.get(eachTask.IPM_Assignee__c);
-                tasksToUpdate.add(tskObj);
-            }
-            if(tasksToUpdate != null && !tasksToUpdate.isEmpty()){
-                update tasksToUpdate;
-            }
-            if(projectResourcesToUpdate != null && !projectResourcesToUpdate.isEmpty()){
-                update projectResourcesToUpdate;
-            }
             
-            for(IPM_Project_Resource__c eachPResource : projectResourcesToUpdate) {
-                presourceIds.add(eachPResource.Id);
-            }
         
-    }
    
-    */
      /**************************************************************
     * @description: used to create Tasks when project is created.
     * @param1 projectDocToSectionMap : newly Created project Document To Section Map

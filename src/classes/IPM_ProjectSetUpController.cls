@@ -662,7 +662,9 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     }
 
     /****************************************************************************
-    @Description : For Saving Project and Proceed to Next Step
+    @Description : For Saving Project and Proceed to Next Step. 
+    Performs necessary validations based on Mandatory fields present in Custom Settings.
+    Performs additional Business Validations like checking for Special Characters, Target Launch Date span specific validations
     @Return: Page Reference
     *****************************************************************************/
     //NPath Complexity- Business Logic requires complex validations to be enforced before project is saved
@@ -750,7 +752,10 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
         }
     } 
     /****************************************************************************
-    @Description : For Saving Project and Proceed to Next Step
+    @Description : Used for populating neccessary attributes for the associated Project Type based on 'ProjectMetadata' Custom Setting.
+    Attributes like Fast Track Applicable and White Space Applicable Features.
+    Appends region specific prefix to Project.
+    Initiates the background Transaction management Processing.
     @Return: null
     *****************************************************************************/
     //NPath Complexity-Business Logic requires complex validations to be enforced before project is saved.
@@ -1087,7 +1092,7 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
     /********************************************************************************
     *@Description : To make Target Launch Date editable
     *********************************************************************************/
-    private void setIsTLDFieldEditable(){
+   	@TestVisible private void setIsTLDFieldEditable(){
         if(project!= null && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL  && project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS){
             isTLDFieldEditable = false;
         } else if (project!= null && project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS){

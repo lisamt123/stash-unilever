@@ -6,7 +6,7 @@
 public with sharing class IPM_FinancialYearHelper
 {
     private static final String UPDATE_FINANCIAL_ACTION_STANDARD_STR='updateFinancialActionStandard';
-    private static final String CLASS_NAME = IPM_FinancialYearTriggerHandler.Class.getName(); //Class Name for Exception Logging
+    private static final String CLASS_NAME = IPM_FinancialYearHelper.Class.getName(); //Class Name for Exception Logging
     private static Boolean IS_RECURSSIVE = false;
       
     private static final Set<String> FIELDS_TO_CONSOLIDATE = new Set<String>{
@@ -48,7 +48,7 @@ public with sharing class IPM_FinancialYearHelper
                 oldFinancialYear = oldFinancialYearMap.get(newfinancialYear.Id);
             }
              
-            changedFinancialFieldSet.addAll(IPM_FinancialUtils.isConsolidationChanged(newFinancialYear.IPM_AssociatedFinancialRecordTypeId__c,newfinancialYear,oldFinancialYear,FIELDS_TO_CONSOLIDATE));
+            changedFinancialFieldSet.addAll(IPM_FinancialUtils.isConsolidationChanged(newFinancialYear.IPM_AssociatedFinancialRecordTypeId__c,newfinancialYear,oldFinancialYear,FIELDS_TO_CONSOLIDATE,'External_Id__c'));  
         }
         
         if(!changedFinancialFieldSet.isEmpty())
@@ -108,7 +108,26 @@ public with sharing class IPM_FinancialYearHelper
                 { 
                     Map<Id,sObject> relatedDefaultFinancialsYear = consolidatedToRelatedFinancialYearMap.get(consolidatedFinancialYearKey);
                     System.debug('relatedDefaultFinancialsYear-->>>'+relatedDefaultFinancialsYear);    
+                    if(!relatedDefaultFinancialsYear.isEmpty())
+                    {
                     IPM_FinancialUtils.processConsolidation('IPM_Financial_Year__c','External_Id__c',consolidatedFinancialYearKey,consolidatedFinancialYear,relatedDefaultFinancialsYear,upsertconsolidatedFinancialYearMap,changedFinancialFieldSet);    
+                    }
+                    else
+                    {
+                        for(String consolidatefieldAPI : changedFinancialFieldSet)
+	                    {
+	                        consolidatedFinancialYear.put(consolidatefieldAPI,0);
+	                    }
+	                    upsertconsolidatedFinancialYearMap.put(consolidatedFinancialYearKey,(IPM_Financial_Year__c)consolidatedFinancialYear);    
+                    }
+                }
+                else
+                {
+                    for(String consolidatefieldAPI : changedFinancialFieldSet)
+                    {
+                        consolidatedFinancialYear.put(consolidatefieldAPI,0);
+                    }
+                    upsertconsolidatedFinancialYearMap.put(consolidatedFinancialYearKey,(IPM_Financial_Year__c)consolidatedFinancialYear);
                 }
             }
         }

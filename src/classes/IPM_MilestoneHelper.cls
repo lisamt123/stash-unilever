@@ -48,7 +48,12 @@ public with sharing class IPM_MilestoneHelper
     
     /*@Method Name: manageMilestones
       @Date: 
-      @Description: This method will be called from IPM_ProjectHandler to Process Milestones for incoming Project.
+      @Description: This method will be called from IPM_ProjectHandler to Process Milestones for incoming Project. This method will process all the incoming projects and 
+                    prepare the standard milestones realted to incoming projects. It can be below possible ways:
+                    1) All standard milestones based on Master Milestone data will be created while creating the project
+                    2) All standard milestones based on Master Milestone data will be cretaed while creating the child projects(Regional and local) on phase changes
+                    3) Current Miletsone will be marked as completed while changing the project phase and its related project's current milestone will also be marked as completd
+                        based on which level is driving the flow of the project. 
       @Param1: incomingProjects from IPM_Project__c trigger
     */
     
@@ -58,19 +63,20 @@ public with sharing class IPM_MilestoneHelper
     */  
     public static void manageMilestones(Map<Id,IPM_Project__c> incomingProjects)
     {
-        List<IPM_Milestone__c> deleteProjectMilestones = new List<IPM_Milestone__c>();
-        Map<String,IPM_Milestone__c> upsertedProjectMilestones = new Map<String,IPM_Milestone__c>();
+        List<IPM_Milestone__c> deleteProjectMilestones = new List<IPM_Milestone__c>(); // List of milestones to be deleted 
+        Map<String,IPM_Milestone__c> upsertedProjectMilestones = new Map<String,IPM_Milestone__c>(); // Milestone map wwith external key and milestone records to be updated/inserted.
         
+        // Iterate the incoming projects and prepare the milestone related records to be processed
         for(IPM_project__c project : incomingProjects.values())
         {
-            Boolean existingMilestonesPresent = false;
+            Boolean existingMilestonesPresent = false; // Boolean to check if Miletsones are already there for the projects
             
-            IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(project);
+            IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(project); // Current project type custom setting data
             
-            List<IPM_Project_Type__c> previousPhasesList = IPM_Utils.getPreviousPhases(currentProjectType,false);
+            List<IPM_Project_Type__c> previousPhasesList = IPM_Utils.getPreviousPhases(currentProjectType,false); // Previous phase list with the help of IPM Project type custom setting
             
             
-            Set<String> previousPhases = new Set<String>();
+            Set<String> previousPhases = new Set<String>(); // Set of previous phases
             
             for(IPM_Project_Type__c projectType : previousPhasesList)
             {
@@ -132,6 +138,7 @@ public with sharing class IPM_MilestoneHelper
                     // Map to current Milestone to all milestones related to that project
 					Map<IPM_Milestone__c, List<IPM_Milestone__c>> currentMSToAllMilestonesMap  = new Map<IPM_Milestone__c, List<IPM_Milestone__c>>();
 					
+                    // process all the milestone related to the project and populate the Map with current Phase to all related milestone records
 					for(IPM_Milestone__c existingProjectMilestone : IPM_ProjectHelper.DBprojectSpecificMileStoneMap.get(project.Id))
 					{
 						if(existingProjectMilestone.IPM_Phase__c !=null && previousPhases.contains(existingProjectMilestone.IPM_Phase__c))
@@ -144,8 +151,10 @@ public with sharing class IPM_MilestoneHelper
 						}
 					}                 
 					
+                    // process all the milestones to store the snapshot due date of milestones at all standard milestones
 					if(!currentMSToAllMilestonesMap.isEmpty())
 					{
+                        // Map to store phase and corresponding Field Api Name which will store the Due date snap shot of milestone
 				    	Map<String,String> MILESTONE_PHASE_FIELDMAPPING = new Map<String,String>{
 				        IPM_ConstantUtils.PHASE_IDEAS => 'IPM_Due_Date_Idea__c',
 				        IPM_ConstantUtils.PHASE_FEASIBILITY  => 'IPM_Due_Date_Feasibility__c',
@@ -185,7 +194,7 @@ public with sharing class IPM_MilestoneHelper
 						/* Milestone snapshot due date changes ---- ends here */
 					}			
                 }
-                
+                // This part will clone the milestone records for the projects from its parent Project's Milestones
                 if(!existingMilestonesPresent)
                 {
                     if(project.IPM_Parent_Project__c != null && IPM_ProjectHelper.projectMasterMap.containsKey(project.IPM_Parent_Project__c) && 
@@ -252,6 +261,7 @@ public with sharing class IPM_MilestoneHelper
                                 newProjectMilestone.RecordTypeId = IPM_ProjectHelper.mileProjectRecordType;
                                 newProjectMilestone.ExternalField__c = project.IPM_Project_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newProjectMilestone.IPM_Name__c + IPM_ConstantUtils.HYPHEN_DELIMITER + newProjectMilestone.IPM_Phase__c + '-'+ newProjectMilestone.IPM_Project_Type__c;
                                 
+                                // Due date calculation of market ready gate and Market Deployement gate milestones
                                 Date myDate = date.newinstance(project.CreatedDate.year(), project.CreatedDate.month(), project.CreatedDate.day());
                                 
                                 if(newProjectMilestone.IPM_Type_of_gate__c == IPM_ConstantUtils.MARKET_READY_GATE){
@@ -288,11 +298,13 @@ public with sharing class IPM_MilestoneHelper
             }   
         } 
         
+        // Milestone list to be upserted if it is not null
         if(upsertedProjectMilestones!=null && !upsertedProjectMilestones.isEmpty())
         {
             upsert upsertedProjectMilestones.values() ExternalField__c;
         }
         
+        // Milestone list to be deleted if it is not null
         if(deleteProjectMilestones!=null && !deleteProjectMilestones.isEmpty())
         {
             delete deleteProjectMilestones;
@@ -303,6 +315,7 @@ public with sharing class IPM_MilestoneHelper
     /*@Method Name: CopyMilestones
       @Date: 8th sep 2015
       @Description: This method will be called from IPM_MilestoneHandler to Process Milestones and copy data on related milestones(of related Projects ).
+                    Milestone details will be copied to its related project's milestone while changing the due date of milestone  
       @param1 :Map of <Id of Project of incoming Milestone> 
       @param2 :Map of <Id of incoming Milestone and Milestone Record >.
     */
@@ -315,17 +328,17 @@ public with sharing class IPM_MilestoneHelper
     public static void CopyMilestones(Map<Id,IPM_Project__c> incomingProjectMap,Map<Id,IPM_Milestone__c> eligibleMilestoneMap)
     {
         
-        Set<Id> incomingProjectIds = new Set<Id>();   
-        Set<String> milestoneNameSet = new Set<String>();
-        Set<String> milestonePhaseSet = new Set<String>();
-        Set<Id> targetProjectIDs = new Set<Id>();
+        Set<Id> incomingProjectIds = new Set<Id>();  // Set of incoming project Ids
+        Set<String> milestoneNameSet = new Set<String>(); // Set of eligible Milestone name
+        Set<String> milestonePhaseSet = new Set<String>(); // Set of eligible Milestone Phase name
+        Set<Id> targetProjectIDs = new Set<Id>(); //Set of target project Ids which has related milestones to be updated
                 
-        Map<Id,Map<Id,IPM_Project__c>> sourceToTargetProjects = new Map<Id,Map<Id,IPM_Project__c>>();
-        Map<Id,IPM_Project__c> masterProjectDetailMap             = new Map<Id,IPM_Project__c>();
-        Map<Id,IPM_Project__c> projectToParentMapping             = new Map<Id,IPM_Project__c>();        
-        Map<Id,IPM_Project__c> projectToGrandParentMapping        = new Map<Id,IPM_Project__c>();
-        Map<Id,Map<Id,IPM_Project__c>> projectToChildMapping      = new Map<Id,Map<Id,IPM_Project__c>>();
-        Map<Id,Map<Id,IPM_Project__c>> projectToGrandChildMapping = new Map<Id,Map<Id,IPM_Project__c>>();
+        Map<Id,Map<Id,IPM_Project__c>> sourceToTargetProjects = new Map<Id,Map<Id,IPM_Project__c>>(); // Map to store incoming Project Ids to target projects 
+        Map<Id,IPM_Project__c> masterProjectDetailMap             = new Map<Id,IPM_Project__c>(); // Map to store incoming Project Id and incoming Project record
+        Map<Id,IPM_Project__c> projectToParentMapping             = new Map<Id,IPM_Project__c>(); // Map to store incoming project Ids and its parent Project record         
+        Map<Id,IPM_Project__c> projectToGrandParentMapping        = new Map<Id,IPM_Project__c>(); // Map to store incoming project Ids and its grand parent Project record
+        Map<Id,Map<Id,IPM_Project__c>> projectToChildMapping      = new Map<Id,Map<Id,IPM_Project__c>>(); // Map to store incoming project Ids and its child projects records in map
+        Map<Id,Map<Id,IPM_Project__c>> projectToGrandChildMapping = new Map<Id,Map<Id,IPM_Project__c>>(); // Map to store incoming project Ids and its grand child projects records in map
         
         //prepare all related mappings for Project 
         if(!incomingProjectMap.isEmpty())
@@ -341,13 +354,16 @@ public with sharing class IPM_MilestoneHelper
             projectToGrandChildMapping = IPM_Utils.prepareProjectToGrandChildMapping(projectToChildMapping,masterProjectDetailMap);
         }
         
+        // Populate the eligible milestone related data
         for(IPM_Milestone__c milestone: eligibleMilestoneMap.values()){
             milestoneNameSet.add(milestone.IPM_Name__c);
             milestonePhaseSet.add(milestone.IPM_Phase__c);
         }
         
+        // Empty check for incomingProjetMap
         if(!incomingProjectMap.isEmpty())
         {
+          // Iterate based on incoming project ids
           for(Id projectId : incomingProjectMap.KeySet())
           {
             IPM_Project__c incomingProjectDetail =  incomingProjectMap.get(projectId);
@@ -358,6 +374,7 @@ public with sharing class IPM_MilestoneHelper
                 /* Local Project Calculation Begins.*/
                 Map<Id,IPM_Project__c> targetProjectMap = new Map<Id,IPM_Project__c>();
                  
+                // Process the local projects based on project span 
                 if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
                   {
                       
@@ -379,6 +396,7 @@ public with sharing class IPM_MilestoneHelper
                   /* Local Project Calculation ends */
                   
                   /* Regional Project Calculation Begins */   
+                  // Process the regional projects based on project span    
                   if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL )
                   {
                       
@@ -400,6 +418,7 @@ public with sharing class IPM_MilestoneHelper
                   /* Regional Project Calculation ends */
                           
                   /* Global Project Calculation begins */    
+                  // Process the global projects based on project span     
                   if(incomingProjectDetail.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL )
                   {
                       if(currentProjectType.IPM_CopyMilestoneToRegional__c && projectToChildMapping.containsKey(projectId))
@@ -419,6 +438,7 @@ public with sharing class IPM_MilestoneHelper
                   }
                   
                   /* Global Project Calculation ends */
+                  // Empty check of targetProjectMap
                   if(!targetProjectMap.isEmpty())
                   {                   
                     targetProjectIDs.addAll(targetProjectMap.keySet());
@@ -428,11 +448,13 @@ public with sharing class IPM_MilestoneHelper
           }
         }
         
+        // Empty check of sourceToTargetProjects Map and process it if not empty 
         if(!sourceToTargetProjects.isEmpty())
         {
-            Map<Id,Map<Id,IPM_Milestone__c> > targetProjectIdToMilestoneMap = new Map<Id,Map<Id,IPM_Milestone__c> >();
-            Map<Id,IPM_Milestone__c> finalMilestoneMap = new Map<Id,IPM_Milestone__c>();
+            Map<Id,Map<Id,IPM_Milestone__c> > targetProjectIdToMilestoneMap = new Map<Id,Map<Id,IPM_Milestone__c> >(); // Map to store Targer Projectds and its related milestones
+            Map<Id,IPM_Milestone__c> finalMilestoneMap = new Map<Id,IPM_Milestone__c>(); // Final milestone map which are to be updated 
             
+            // Loop to iterate milestones and populate the milestone related data
             for (IPM_Milestone__c milestone : [select id,name ,IPM_Project__c,IPM_Project__r.IPMProject_Span__c,IPM_Phase__c,IPM_Name__c from IPM_Milestone__c where IPM_Project__c in :targetProjectIDs AND 
                  IPM_Name__c in:milestoneNameSet AND IPM_Phase__c in :milestonePhaseSet AND IPM_Completed__c = false ] )
             {
@@ -445,11 +467,12 @@ public with sharing class IPM_MilestoneHelper
                 targetProjectIdToMilestoneMap.put(milestone.IPM_Project__c,milestoneMap);
             }
                  
+            // loop to iterate eligibleMiletsones and prepare the final milestone map data which are to be updated.     
             for(IPM_Milestone__c eligiblemilestone : eligibleMilestoneMap.values())
             {
                 // Get source Project Id to identify target Project which need to be updated.
                 Id sourceProjectId = eligiblemilestone.IPM_Project__c;
-                String sourceKey = eligiblemilestone.IPM_Name__c  + eligiblemilestone.IPM_Phase__c;
+                String sourceKey = eligiblemilestone.IPM_Name__c  + eligiblemilestone.IPM_Phase__c; // Key to identify the milestone at different levels of projects
                 if(sourceToTargetProjects.containsKey(sourceProjectId))
                 {
                     Map<Id,IPM_Project__c> targetProjectIdMap = sourceToTargetProjects.get(sourceProjectId);
@@ -460,6 +483,7 @@ public with sharing class IPM_MilestoneHelper
                             for(IPM_Milestone__c targetMilestone : targetProjectIdToMilestoneMap.get(targetProject.Id).values())
                             {
                                 String targetKey = targetMilestone.IPM_Name__c  + targetMilestone.IPM_Phase__c;
+                                // Key check to identify the milestone from source to target projects
                                 if(sourceKey == targetKey)
                                 {
                                     //DEF3184 fix: Any update to Regional project's's milestone's Target Launch Date(Ship to Trade) should not update Local Project's milestone's Target Launch Date(Ship to Trade)
@@ -477,7 +501,7 @@ public with sharing class IPM_MilestoneHelper
                 
             }
             
-            //update the finalMilestoneMap
+            //update the finalMilestoneMap if it is not empty
             if(!finalMilestoneMap.isEmpty())
             {
                 update finalMilestoneMap.values();

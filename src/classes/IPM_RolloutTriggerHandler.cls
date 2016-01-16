@@ -1,6 +1,6 @@
 /**
 @Author Cognizant
-@Name IPM_RolloutTriggerHandler
+@Name IPM_RolloutPlansTableController
 @CreateDate 27/04/2015
 @Description This class is used for managing the trigger methods for IPM_Project_Rollout__c object 
 @Version 1.0
@@ -42,8 +42,10 @@ public with sharing class IPM_RolloutTriggerHandler
     }
     
     /*****************************************************************************************************************************
-    * @description                  Method to handle before delete Trigger context for 
-    *                               IPM_Project_Rollout__c objectprocessDelete
+    * @description  Method to handle before delete Trigger context for IPM_Project_Rollout__c. 
+                    This method is responsible for removing other associated components from Rollouts like associated financials and Countries
+                    which shouldnt exist with Rollouts. Also it checks if this is last local Rollout which is being deleted. 
+                    If yes it deletes the regional Rollout as well along with regional Consolidated financials.
     * @param lstProjectRollouts     List of Trigger.old records 
     */
     public void processDelete(List<IPM_Project_Rollout__c> lstProjectRollouts)
@@ -175,8 +177,10 @@ public with sharing class IPM_RolloutTriggerHandler
     }
     
     /*****************************************************************************************************************************
-    * @description                  Method to handle after insert Trigger context for 
-    *                               IPM_Project_Rollout__c object
+    * @description  This method is responsible for creating new financials based on incoming regional and local Rollouts.
+            If it is a regional Rollout creates Regional Consolidated financials.
+            If it is a local Rollout, creates corresponding financials based on whether it is key or non Key Rollout.
+            Also First and follower is invoked from here which based on TLD sets the first rollout and follower rollouts.
     * @param lstProjectRollouts     List of Trigger.new records
     */
     public  void processInsert(List<IPM_Project_Rollout__c> lstProjectRollouts)
@@ -227,10 +231,6 @@ public with sharing class IPM_RolloutTriggerHandler
                 {
                     setTopLevelProjectIds.add(projectRollout.IPM_Project__c);
                 }
-                else if (projectRollout.Regional_Project__r.IPM_Parent_Project__c != null)
-                {
-                    setGlobalProjectIds.add(projectRollout.Regional_Project__r.IPM_Parent_Project__c);
-                }
                 
                 else if (projectRollout.Regional_Project__c != null)
                 {
@@ -252,8 +252,10 @@ public with sharing class IPM_RolloutTriggerHandler
     }
 
     /*****************************************************************************************************************************
-    * @description                      Method to handle after update Trigger context for 
-    *                                   IPM_Project_Rollout__c object
+    * @description  This method is responsible for creating new financials based on incoming regional and local Rollouts.
+            If it is a local Rollout is updated with Key or non Key or is made active or inactive , operates on  corresponding financials.
+            Also in case of inactive rollouts corresponding financials and countries are made inactive.
+            Also First and follower is invoked from here which based on TLD sets the first rollout and follower rollouts.
     * @param mapNewProjectRollouts      List of Trigger.new records
     * @param mapOldProjectRollouts      List of Trigger.old records
     */
@@ -318,7 +320,7 @@ public with sharing class IPM_RolloutTriggerHandler
         {
             if(newRollout.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
             {
-                Id regionalRollout = newRollout.Regional_Rollout__c;
+                //Id regionalRollout = newRollout.Regional_Rollout__c;
                 
                 IPM_Project_Rollout__c oldRollout = mapOldProjectRollouts.get(newRollout.Id);
                 
@@ -432,6 +434,11 @@ public with sharing class IPM_RolloutTriggerHandler
         
     }
     
+     /**********************************************************************************************************************************
+    * @description                      Used for udpating job Id for corresponding Rollout when the background process of Rollout to Project Conversion happens. 
+    * @param phaseChangeRolloutSet      Rollouts which are being sent for background processing for Queueable interface.
+      @param JobId                      Associated Job Id.
+    */
     public static void udpateAsyncJobId(Set<Id>phaseChangeRolloutSet, Id JobId)
     {
         Map<Id,IPM_Project_Rollout__c> updateAsyncJobIdRolloutMap = new Map<Id,IPM_Project_Rollout__c>(); 
@@ -453,10 +460,11 @@ public with sharing class IPM_RolloutTriggerHandler
    
     
     /*******************************************************************************************************
-    * @description              Method to get Creating Financials.
-    * @param projectRollout     List of Trigger.old records
-    * @param projectRollout     Rollout whose local Rollouts would result in Financial/Country updates
-    * @param projectRollout     Project whose local Rollouts would result in Financial/Country updates
+    * @description  Method to get updating Financials and countries based on active/inactive flags on rollouts.
+                    Also key non Key changes related to rollouts are covered here and whether non key financials should be removed or retained.
+    * @param oldRolloutsMap     List of Trigger.old records
+    * @param regionalRollout    Associated Regional Rollout
+    * @param regionalProject    Associated Regional Project
     */
     
     public void updateRolloutAssociations(Map<Id, IPM_Project_Rollout__c> oldRolloutsMap,IPM_Project_Rollout__c regionalRollout,IPM_Project__c regionalProject)
@@ -561,6 +569,13 @@ public with sharing class IPM_RolloutTriggerHandler
             setDeleteFinancialExternalIds.add(financialNonKeyExternalId);
             }
         }
+    /*******************************************************************************************************
+    * @description   Method to get Creating Financials.
+    * @param financialExternalId  External Id for financials which needs to be created.
+    * @param financialRecordType  Associated financial Record Type.
+    * @param projectRollout       Associated Project Rollout.
+    * @param financialExistingMap Existing Financial Map containing existing Financials.
+    */
     
     // Generate financials for Rollouts based on Params 
     public IPM_Financial__c createRolloutFinancials(String financialExternalId,String financialRecordType, IPM_Project_Rollout__c projectRollout,Map<String,IPM_Financial__c> financialExistingMap)
@@ -623,7 +638,12 @@ public with sharing class IPM_RolloutTriggerHandler
                                                         
     
         
-        	
+    /*******************************************************************************************************
+    * @description              Used to remove rollout associations, like financials and country based on deleted rollouts.
+    * @param deleteRolloutIDset List of removed rollout 
+    * @param regionalRollout    Associated Regional Rollout
+    * @param regionalProject    Associated Regional Project
+    */                                                       
     
     public void removeRolloutAssociations(Set<String> deleteRolloutIDset,IPM_Project_Rollout__c regionalRollout,IPM_Project__c regionalProject)
     {
@@ -761,6 +781,11 @@ public with sharing class IPM_RolloutTriggerHandler
         }       
     }
     
+    /*******************************************************************************************************
+    * @description  Used to delete Countries when associated rollout is removed from System. 
+                    It validates whether it is charter Approved, If yes makes it as inactive else delete that specific country.  
+    * @param deleteCountrySet  Set of deleted Coutries.
+    */    
     private void deleteAssociatedCountries(Set<String> deleteCountrySet)
     {
         // Delete Country
@@ -768,7 +793,8 @@ public with sharing class IPM_RolloutTriggerHandler
         Map<Id,IPM_Country__c> updateCountryMap = new Map<Id,IPM_Country__c>();
         
         //Delete Countries associated with rollouts.Make sure that we dont delete Countries which are inactive or Charter Approved.
-        List<IPM_Project_Rollout__c> lstLocRollOuts = [SELECT Id,IPM_Status__c,IPM_Regional_Rollout_Status__c,IPM_Rollout_Project__c,IPM_CharterApproved__c,KeyMCO__c,Added_At_Stage__c,(SELECT Id,IPM_CharterApproved__c FROM IPM_Countries_Local__r where isActive__c = true)
+        List<IPM_Project_Rollout__c> lstLocRollOuts = [SELECT Id,IPM_Status__c,IPM_Regional_Rollout_Status__c,IPM_Rollout_Project__c,IPM_CharterApproved__c,KeyMCO__c,
+                                                            Added_At_Stage__c,(SELECT Id,IPM_CharterApproved__c FROM IPM_Countries_Local__r where isActive__c = true)
                             FROM IPM_Project_Rollout__c
                             WHERE IPM_Rollout_Project__c IN: localRolloutCountrySet Limit 50000];
                             
@@ -799,6 +825,10 @@ public with sharing class IPM_RolloutTriggerHandler
         }
     }
     
+     /*******************************************************************************************************
+    * @description  Used to delete Financials when associated rollout is removed from System. 
+                    It validates whether it is charter Approved, If yes makes it as inactive else delete that specific country.  
+    */  
     
     public void deleteAssociatedFinancials()
     {
