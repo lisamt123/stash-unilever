@@ -6,6 +6,10 @@
 *    assign technical project leader.
 Assign PL or FL for rollouts.
 * @reference:IPM_Resource_Allocation_PartRevamp page
+@Business Logic: This class is used to Allocate the Resources in a Project across various Roles eg: BD, FInancie,Guest etc.
+				This class also is used to Support the PL selection for the Rollouts. The user is selected based on the category, 
+				userprofile and company card information availavble. If a user foesnot belong to the company card for which it is selected. The Business logic suggest to dynamically create the same.
+
 */
 public with sharing class IPM_Resource_Allocation {   
     
@@ -14,6 +18,7 @@ public with sharing class IPM_Resource_Allocation {
     private static final String QUERY_FIELDS_STR = 'ipm_user__r.smallphotourl,';
     private static final String QUERY_WHERE_STR = 'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True ';
     private static final String QUERY_HOLDCATEGORY_STR = ' and IPM_HoldCategory__c like \'%';
+    private static final String QUERY_STRING_PROFILE='IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True AND ';
     public static final String IPM_RESOURCEALLOCATION_STR = IPM_Resource_Allocation.class.getName();
     private static final string ADD_MEMBER_TO_WRAPPER = 'AddMemberToWrapper';
     private static final string UPDATE_CORE_MEMBER = 'UpdateCoreMember';
@@ -126,7 +131,7 @@ public with sharing class IPM_Resource_Allocation {
         }
         
       
-        
+        // check if the Team Management is invoked or Member (PL and Finance) selection for Rollouts is invoked
        if(isInvokedFromRollouts!=null && isInvokedFromRollouts)
         {
             leaderUsers = new list<IPM_User_Profile__c>();
@@ -233,7 +238,7 @@ public with sharing class IPM_Resource_Allocation {
             UQuery=IPM_ConstantUtils.BLANK;
             UQuery = BEGIN_QUERY_TEAM;
             UQuery = UQuery+MID_QUERY_TEAM;
-            UQuery = UQuery+'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True AND ';
+            UQuery = UQuery+QUERY_STRING_PROFILE;
             UQuery = UQuery+' IPM_User_Category__c INCLUDES (:category)';
             
            
@@ -261,7 +266,7 @@ public with sharing class IPM_Resource_Allocation {
                 UQuery =IPM_ConstantUtils.BLANK;
                 UQuery = BEGIN_QUERY_TEAM;
                 UQuery = UQuery+MID_QUERY_TEAM;
-                UQuery = UQuery+'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True AND ';
+                UQuery = UQuery+QUERY_STRING_PROFILE;
                 UQuery = UQuery+' IPM_HoldCategory__c != null ';
                 if(String.IsNotBlank(String.valueOf(changeRoleType)))
                 {
@@ -911,7 +916,7 @@ public with sharing class IPM_Resource_Allocation {
                 UQuery=IPM_ConstantUtils.BLANK;
                 UQuery = BEGIN_QUERY_TEAM;
                 UQuery = UQuery+MID_QUERY_TEAM;
-                UQuery = UQuery+'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True and ';
+                UQuery = UQuery+QUERY_STRING_PROFILE;
                 UQuery = UQuery+' IPM_HoldCategory__c LIKE '+holdCategory;
                 UQuery= UQuery + '  ) AND IPM_User_Function__c = \''+project_Leader+'\''+QUERY_LIMIT;
                 
@@ -930,7 +935,7 @@ public with sharing class IPM_Resource_Allocation {
                 UQuery=IPM_ConstantUtils.BLANK;
                 UQuery = BEGIN_QUERY_TEAM;
                 UQuery = UQuery+MID_QUERY_TEAM;
-                UQuery = UQuery+'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True and ';
+                UQuery = UQuery+QUERY_STRING_PROFILE;
                 UQuery = UQuery+' IPM_HoldCategory__c LIKE '+holdCategory;
                 UQuery= UQuery + '  ) AND IPM_User_Function__c = \''+project_Leader+'\''+QUERY_LIMIT;
             }
@@ -943,7 +948,7 @@ public with sharing class IPM_Resource_Allocation {
                 UQuery=IPM_ConstantUtils.BLANK;
                 UQuery = BEGIN_QUERY_TEAM;
                 UQuery = UQuery+MID_QUERY_TEAM;
-                UQuery = UQuery+'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True and ';
+                UQuery = UQuery+QUERY_STRING_PROFILE;
                 UQuery = UQuery+' IPM_HoldCategory__c LIKE '+holdCategory;
                 UQuery= UQuery + '  ) AND IPM_User_Role__c = \''+function_Leader+'\''+QUERY_LIMIT;
                 
@@ -962,7 +967,7 @@ public with sharing class IPM_Resource_Allocation {
                 UQuery=IPM_ConstantUtils.BLANK;
                 UQuery = BEGIN_QUERY_TEAM;
                 UQuery = UQuery+MID_QUERY_TEAM;
-                UQuery = UQuery+'IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE  (IPM_User__r.IsActive=True and ';
+                UQuery = UQuery+QUERY_STRING_PROFILE;
                 UQuery = UQuery+' IPM_HoldCategory__c LIKE '+holdCategory;
                 UQuery= UQuery + '  ) AND IPM_User_Role__c =\''+function_Leader+'\''+QUERY_LIMIT;
             }
