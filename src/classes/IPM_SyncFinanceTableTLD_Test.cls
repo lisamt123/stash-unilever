@@ -31,7 +31,115 @@ private class IPM_SyncFinanceTableTLD_Test {
     private static final String NOT_STARTED='Not Started';
     
     
-    
+    static void setupOperationalProjects() {
+ 		Test.startTest();
+        Date targetLaunchDate = System.today().addYears(3);
+        //Creation test user
+        User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
+        globalUser.email = GLOBAL_USER;
+        
+         
+        User regionalUser = IPM_TestFactory_Helper.createUserAdmin(false);
+        regionalUser.email = REGIONAL_USER;
+        
+
+        User localUser = IPM_TestFactory_Helper.createUserAdmin(false);
+        localUser.email = LOCAL_USER;
+        
+        localUser.ManagerId = UserInfo.getUserId();
+        
+        List<User> userList = new List<User>{globalUser,regionalUser,localUser};
+        
+        
+        insert userList;
+        System.runAs(globalUser) {
+            // create project
+            List<IPM_Project__c> projList = new List<IPM_Project__c>();
+            IPM_Project__c projOpeGbl = IPM_TestFactory_Helper.createIPMProject(false);
+            projOpeGbl.Name='TESTPROJ_OPRL_GBL';
+            projOpeGbl.IPM_Project_Leader__c=globalUser.id;
+            projOpeGbl.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
+            projOpeGbl.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT; 
+            projOpeGbl.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
+            projOpeGbl.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
+            projOpeGbl.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
+            projOpeGbl.IPM_Temporary_Phase__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+            projOpeGbl.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
+            projOpeGbl.IPM_Target_Launch_Dates__c = targetLaunchDate;
+            projList.add(projOpeGbl);
+            
+            IPM_Project__c projOpeReg = IPM_TestFactory_Helper.createIPMProject(false);
+            projOpeReg.Name='TESTPROJ_OPRL_REG';
+            projOpeReg.IPM_Project_Leader__c=globalUser.id;
+            projOpeReg.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
+            projOpeReg.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT; 
+            projOpeReg.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
+            projOpeReg.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
+            projOpeReg.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
+            projOpeReg.IPM_Temporary_Phase__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+            projOpeReg.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
+            projOpeReg.IPM_Target_Launch_Dates__c = targetLaunchDate;
+			projList.add(projOpeReg);
+            
+            IPM_Project__c projOpeLcl = IPM_TestFactory_Helper.createIPMProject(false);
+            projOpeLcl.Name='TESTPROJ_OPRL_LCL';
+            projOpeLcl.IPM_Project_Leader__c=globalUser.id;
+            projOpeLcl.IPM_Project_Type__c=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL;
+            projOpeLcl.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT; 
+            projOpeLcl.IPMProject_Span__c=IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
+            projOpeLcl.IPM_Phase__c=IPM_ConstantUtils.PHASE_IDEAS;
+            projOpeLcl.IPM_CompanyCardText__c=IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_GLOBAL;
+            projOpeLcl.IPM_Temporary_Phase__c=IPM_ConstantUtils.EMPTY_STRING_INITIAL;
+            projOpeLcl.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
+            projOpeLcl.IPM_Target_Launch_Dates__c = targetLaunchDate;
+			projList.add(projOpeLcl);
+            
+            insert projList; 
+
+ 			List<IPM_Financial__c> fins = new List<IPM_Financial__c>();
+ 			
+            IPM_Financial__c fin1=new IPM_Financial__c();
+            String defaultRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Default'].Id;
+            fin1.RecordTypeId=defaultRecordTypeId;
+            fin1.Financial_External_ID__c='TESTPROJ_OPRL_GBL';
+            fin1.Parent_Project__c=projList[0].id;
+            fin1.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_5;
+            fin1.Target_Launch_Date__c = targetLaunchDate;
+            fin1.isActive__c=true;
+            fins.add(fin1);
+            
+            IPM_Financial__c fin2=new IPM_Financial__c();
+            fin2.RecordTypeId=defaultRecordTypeId;
+            fin2.Financial_External_ID__c='TESTPROJ_OPRL_REG';
+            fin2.Regional_Project__c=projList[1].id;
+            fin2.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_5;
+            fin2.Target_Launch_Date__c = targetLaunchDate;
+            fin2.isActive__c=true;
+            fins.add(fin2);
+            
+            IPM_Financial__c fin3=new IPM_Financial__c();
+            fin3.RecordTypeId=defaultRecordTypeId;
+            fin3.Financial_External_ID__c='TESTPROJ_OPRL_LCL';
+            fin3.Local_Project__c=projList[2].id;
+            fin3.Project_Sustainability_Period__c=IPM_ConstantUtils.YEAR_5;
+            fin3.Target_Launch_Date__c = targetLaunchDate;
+            fin3.isActive__c=true;
+            fins.add(fin3);
+            
+            insert fins;
+ 
+ 
+            Test.stopTest();
+            List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE name like 'TESTPROJ_OPRL_%' limit 5];
+            System.assertEquals(projlList.size(), 3,'The project size must be 3');
+            
+            List<IPM_Financial__c> finList=[SELECT Name,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c like 'TESTPROJ_OPRL_%' limit 5];
+            System.assertEquals(finList.size(), 3,'The financials size must be 3');
+            
+            
+            
+        }   	
+    }
  	static void setupRegionalOriginalIdeasPhaseData(){
         Test.startTest();
         Date targetLaunchDate = System.today().addYears(3);
@@ -927,6 +1035,138 @@ private class IPM_SyncFinanceTableTLD_Test {
             }
         }     
         
+    }
+    static testMethod void testSyncFinanceTableTLD_When_OperationalProjectsTLD_Updated() {
+        setupOperationalProjects();
+        
+        Date targetLanchDate1 = System.today().addYears(4);
+        String year11 = String.valueOf(targetLanchDate1.year());
+        String year12 = String.valueOf(targetLanchDate1.year()+1);
+        String year13 = String.valueOf(targetLanchDate1.year()+2);
+        User globalUser = [Select Id from User where Email =:GLOBAL_USER limit 1]; 
+        System.runAs(globalUser) {
+            List<IPM_Project__c> projlList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c,IPM_Target_Launch_Dates__c FROM IPM_Project__c WHERE name like 'TESTPROJ_OPRL_%' limit 5];
+            System.assertEquals(projlList.size(), 3,'The project size must be 3');
+            for(IPM_Project__c proj: projlList) {
+                proj.IPM_Target_Launch_Dates__c = targetLanchDate1;
+            }
+            update projlList;
+            
+            // Global operation project 
+            List<IPM_Financial__c> updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c='TESTPROJ_OPRL_GBL' limit 1];
+            System.assertEquals(updatedFinancialList.size(), 1,'The financials size must be 1');
+            System.assertEquals(targetLanchDate1,updatedFinancialList[0].Target_Launch_Date__c,TLD_MATCH_MSG);
+            
+            List<IPM_Financial__c> retrievedFinancialList = [Select id, Target_Launch_Date__c, 
+                                                                    (   Select 
+                                                                            Year__c,Year_Type__c,Name, External_Id__c,Target_Launch_Date__c, PL_Type__c 
+                                                                        From 
+                                                                            IPM_Financial_Years__r 
+                                                                        where 
+                                                                            Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR 
+                                                                            ) 
+                                                                 From 
+                                                                    IPM_Financial__c 
+                                                                        where id =: updatedFinancialList[0].id limit 5];
+            
+            for(IPM_Financial__c updatedFinancial:retrievedFinancialList) {
+                for(IPM_Financial_Year__c financialYear:updatedFinancial.IPM_Financial_Years__r) {
+                    if(financialYear.PL_Type__c==IPM_ConstantUtils.PL_TYPE_INCREMENTAL||financialYear.PL_Type__c==IPM_ConstantUtils.PL_TYPE_GROSS) {
+                        // year 1
+                        if( financialYear.Year__c==IPM_ConstantUtils.Y1_YEARINDEX) {
+                            System.assert(financialYear.External_Id__c.contains(year11),FIN_YEAR_EXT_ID_MSG);
+                            System.assertEquals(year11,financialYear.Name,FIN_YEAR_MSG);
+                        }
+                        //year 2
+                        if( financialYear.Year__c==IPM_ConstantUtils.Y2_YEARINDEX) {
+                            System.assert(financialYear.External_Id__c.contains(year12),FIN_YEAR_EXT_ID_MSG);
+                            System.assertEquals(year12,financialYear.Name,FIN_YEAR_MSG);
+                        }
+                        //year 3
+                        if( financialYear.Year__c==IPM_ConstantUtils.Y3_YEARINDEX) {
+                            System.assert(financialYear.External_Id__c.contains(year13),FIN_YEAR_EXT_ID_MSG);
+                            System.assertEquals(year13,financialYear.Name,FIN_YEAR_MSG);
+                        }
+                    }
+                }
+            }
+            // Regional operation project 
+            updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c='TESTPROJ_OPRL_REG' limit 1];
+            System.assertEquals(updatedFinancialList.size(), 1,'The financials size must be 1');
+            System.assertEquals(targetLanchDate1,updatedFinancialList[0].Target_Launch_Date__c,TLD_MATCH_MSG);
+            
+            retrievedFinancialList = [  Select id, Target_Launch_Date__c, 
+                                            (   Select 
+                                                    Year__c,Year_Type__c,Name, External_Id__c,Target_Launch_Date__c, PL_Type__c 
+                                                From 
+                                                    IPM_Financial_Years__r 
+                                                where 
+                                                    Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR 
+                                                    ) 
+                                         From 
+                                            IPM_Financial__c 
+                                                where id =: updatedFinancialList[0].id limit 5];
+            
+            for(IPM_Financial__c updatedFinancial:retrievedFinancialList) {
+                for(IPM_Financial_Year__c financialYear:updatedFinancial.IPM_Financial_Years__r) {
+                    if(financialYear.PL_Type__c==IPM_ConstantUtils.PL_TYPE_INCREMENTAL||financialYear.PL_Type__c==IPM_ConstantUtils.PL_TYPE_GROSS) {
+                        // year 1
+                        if( financialYear.Year__c==IPM_ConstantUtils.Y1_YEARINDEX) {
+                            System.assert(financialYear.External_Id__c.contains(year11),FIN_YEAR_EXT_ID_MSG);
+                            System.assertEquals(year11,financialYear.Name,FIN_YEAR_MSG);
+                        }
+                        //year 2
+                        if( financialYear.Year__c==IPM_ConstantUtils.Y2_YEARINDEX) {
+                            System.assert(financialYear.External_Id__c.contains(year12),FIN_YEAR_EXT_ID_MSG);
+                            System.assertEquals(year12,financialYear.Name,FIN_YEAR_MSG);
+                        }
+                        //year 3
+                        if( financialYear.Year__c==IPM_ConstantUtils.Y3_YEARINDEX) {
+                            System.assert(financialYear.External_Id__c.contains(year13),FIN_YEAR_EXT_ID_MSG);
+                            System.assertEquals(year13,financialYear.Name,FIN_YEAR_MSG);
+                        }
+                    }
+                }
+            }
+            // Local operation project 
+            updatedFinancialList = [SELECT ID, Target_Launch_Date__c,Financial_External_ID__c FROM IPM_Financial__c WHERE Financial_External_ID__c='TESTPROJ_OPRL_LCL' limit 1];
+            System.assertEquals(updatedFinancialList.size(), 1,'The financials size must be 1');
+            System.assertEquals(targetLanchDate1,updatedFinancialList[0].Target_Launch_Date__c,TLD_MATCH_MSG);
+            
+            retrievedFinancialList = [  Select id, Target_Launch_Date__c, 
+                                            (   Select 
+                                                    Year__c,Year_Type__c,Name, External_Id__c,Target_Launch_Date__c, PL_Type__c 
+                                                From 
+                                                    IPM_Financial_Years__r 
+                                                where 
+                                                    Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR 
+                                                    ) 
+                                         From 
+                                            IPM_Financial__c 
+                                                where id =: updatedFinancialList[0].id limit 5];
+            
+            for(IPM_Financial__c updatedFinancial:retrievedFinancialList) {
+                for(IPM_Financial_Year__c financialYear:updatedFinancial.IPM_Financial_Years__r) {
+                    if(financialYear.PL_Type__c==IPM_ConstantUtils.PL_TYPE_INCREMENTAL||financialYear.PL_Type__c==IPM_ConstantUtils.PL_TYPE_GROSS) {
+                        // year 1
+                        if( financialYear.Year__c==IPM_ConstantUtils.Y1_YEARINDEX) {
+                            System.assert(financialYear.External_Id__c.contains(year11),FIN_YEAR_EXT_ID_MSG);
+                            System.assertEquals(year11,financialYear.Name,FIN_YEAR_MSG);
+                        }
+                        //year 2
+                        if( financialYear.Year__c==IPM_ConstantUtils.Y2_YEARINDEX) {
+                            System.assert(financialYear.External_Id__c.contains(year12),FIN_YEAR_EXT_ID_MSG);
+                            System.assertEquals(year12,financialYear.Name,FIN_YEAR_MSG);
+                        }
+                        //year 3
+                        if( financialYear.Year__c==IPM_ConstantUtils.Y3_YEARINDEX) {
+                            System.assert(financialYear.External_Id__c.contains(year13),FIN_YEAR_EXT_ID_MSG);
+                            System.assertEquals(year13,financialYear.Name,FIN_YEAR_MSG);
+                        }
+                    }
+                }
+            }
+        }     
     }
 
 }

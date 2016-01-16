@@ -168,6 +168,28 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     private static final String CLASS_NAME = IPM_FinancialController.class.getName();//Class Name for Exception Logging
     private static String UPDATE_COUNTRY='updateCountry';
     
+    //DEF2676 fix Start
+    private Integer consolidatedYearCount = 0;
+    private Integer grossCount = 0;
+    private Integer incrementalCount = 0;
+    public Integer nextIndex=0;
+    public Integer previousIndex=0;
+    public Boolean isNavigation = false;
+    public Boolean showNext {  set;
+                                get {
+                                    Boolean flag;
+                                    flag = consolidatedYearCount>sustainabilityPeriod && nextIndex < consolidatedYearCount;
+                                    return flag;
+                                }
+    }
+    public Boolean showPrevious {  set;
+                                    get {
+                                        Boolean flag;
+                                        flag = consolidatedYearCount>sustainabilityPeriod && previousIndex > 1;
+                                        return flag;
+                                    }
+    }
+    //DEF2676 fix Start
     
     /*******************************************************************************************************
     * @description  Constructor
@@ -1170,16 +1192,39 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         if ((currentFinancialId == NULL) || (currentFinancialId == IPM_ConstantUtils.BLANK)){
             currentFinancialId = firstFinancialId;
         }
-
     }
 
-    /*******************************************************************************************************
+      //DEF2676 fix Start
+     public PageReference next() {
+         isNavigation = true;
+         nextIndex ++;
+         previousIndex ++;
+         getFinancials();
+         return null;
+     }
+     public PageReference previous() {
+         isNavigation = true;
+         nextIndex --;
+         previousIndex --;
+         getFinancials();
+         return null;
+     }
+     //DEF2676 fix end
+   /*******************************************************************************************************
     * @description  Used to get Financial Business Case for currently selected Financial
     * @param        NONE
     * @return       NONE
     */
     private void getFinancials()
     {
+        if(isNavigation) {
+            isNavigation = false;
+        } else {
+            nextIndex = 0;
+            previousIndex = 0;
+        }
+        grossCount = 0;
+        incrementalCount = 0;
         getRecordtypes();
         
         fieldSuffix = getFieldSuffix();
@@ -1200,7 +1245,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         }
         
       
-        queryString+= 'Id FROM IPM_Financial_Years__r ORDER BY Year__c)';
+        queryString+= 'Id FROM IPM_Financial_Years__r ORDER BY Name)';
         queryString+= 'FROM IPM_Financial__c WHERE Id =: currentFinancialId FOR UPDATE'; //Added For Update to obtain exclusive access to the record
         
         List<IPM_Financial__c> LstCurrentFinancial = new List<IPM_Financial__c>();
@@ -1214,10 +1259,22 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         {
             financialsInnovation = new IPM_FinancialWrapper();
             financialsCalendar = new IPM_FinancialWrapper();
-            
 
-           
-            For (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
+            // DEF2676 fix start
+            consolidatedYearCount = 0;
+            if(currentFinancial.RecordTypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE) {
+                 for (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
+                    if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR && finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_GROSS) {
+                        consolidatedYearCount ++;
+                    }
+                }
+                if( consolidatedYearCount>sustainabilityPeriod && nextIndex==0 && previousIndex==0 ) {
+                    previousIndex = 1;
+                    nextIndex = sustainabilityPeriod;
+                }
+            }
+           // DEF2676 fix end
+            for (IPM_Financial_Year__c finYear : currentFinancial.IPM_Financial_Years__r){
                 //Add to Map
                 mapFinancialYears.put(generateMapKey(finYear.Year_Type__c, finYear.Year__c, finYear.PL_Type__c), finYear);
                 
@@ -1228,7 +1285,24 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 }
                 //Calendar Years
                 else if (finYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR){
-                    generateFinancials(finYear, financialsCalendar);
+                    if(currentFinancial.RecordTypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE) {
+                        if(finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_GROSS) {
+                            grossCount++;
+                        } else if(finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_INCREMENTAL) {
+                            incrementalCount++;
+                        }  
+                    }
+                    
+                    if(currentFinancial.RecordTypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && consolidatedYearCount>sustainabilityPeriod ) { 
+                        if(finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_GROSS && grossCount>=previousIndex && grossCount<=nextIndex) {
+                            generateFinancials(finYear, financialsCalendar);
+                        } else if(finYear.PL_Type__c == IPM_ConstantUtils.PL_TYPE_INCREMENTAL && incrementalCount>=previousIndex && incrementalCount<=nextIndex) {
+                            generateFinancials(finYear, financialsCalendar);
+                        }
+                    } else {
+                        generateFinancials(finYear, financialsCalendar);
+                    }
+
                     
                }
             }

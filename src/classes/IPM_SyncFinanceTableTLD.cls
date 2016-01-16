@@ -1,4 +1,5 @@
 public with sharing class IPM_SyncFinanceTableTLD {
+    private String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
     Map<ID, IPM_Project_Rollout__c> localKeyRollouts;
     Map<ID, IPM_Project_Rollout__c> localNonkeyRollouts;
     Map<ID, IPM_Project_Rollout__c> regionalRolloutsMap;
@@ -6,18 +7,15 @@ public with sharing class IPM_SyncFinanceTableTLD {
     Map<ID, IPM_Financial_Year__c> financialsYearMap;  
     Set<String> fYearExternalIds;  
     Set<String> updatedfYearExternalIds;  
-    private static final String IPM_SYNCFINANCETABLETLD_STR = IPM_SyncFinanceTableTLD.class.getName();
     public void syncProjectRolloutFinancialTLD( Map<ID,IPM_Project_Rollout__c> updatedRollouts ) {
-        // Get the local record type id
-		String localRolloutRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Project_Rollout__c' and Name=:IPM_ConstantUtils.LOCAL_ROLLOUT_RT].Id;
-        
+         
         financialsMap = new Map<ID,IPM_Financial__c>();  
         localKeyRollouts = new Map<ID, IPM_Project_Rollout__c>();
         localNonkeyRollouts = new Map<ID, IPM_Project_Rollout__c>();
         
         for(ID rolloutId: updatedRollouts.keySet()) {
             IPM_Project_Rollout__c projectRollout = updatedRollouts.get(rolloutId);
-            if(projectRollout.RecordTypeId==localRolloutRecordTypeId) {
+            if(projectRollout.RecordTypeId==LOCAL_ROLLOUT_RECORDTYPE) {
             	if(projectRollout.KeyMCO__c) {
                 	localKeyRollouts.put(rolloutId,projectRollout);
                 } else {
@@ -126,7 +124,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	    		
 	    		for(IPM_Project__c parentProj: parentProjects.values()){
 	    			for(IPM_Financial__c ipmFinancial:parentProj.IPM_Financials_Regional__r) {
-	    				if( ipmFinancial.Financial_External_ID__c==(parentProj.name+'_CONSOLIDATED') || ipmFinancial.Financial_External_ID__c==(parentProj.name+'_NONKEY') ) {
+	    				if( ipmFinancial.Financial_External_ID__c==(parentProj.name+'_NONKEY') ) {
 	    					
 	    					for(IPM_Project__c proj:parentProj.IPM_Projects__r) {
 	    						if(projectIdsNotContainsFinancials.contains(proj.id)) {
@@ -173,7 +171,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	                                                                                                          ORDER BY Target_Launch_Date__c ASC NULLS LAST ), 
 	                                                                                                        ( Select Financial_External_ID__c 
 	                                                                                                          From IPM_Financials__r 
-	                                                                                                          where isActive__c=true AND (Financial_External_ID__c like '%NONKEY' or Financial_External_ID__c like '%CONSOLIDATED') ) 
+	                                                                                                          where isActive__c=true AND (Financial_External_ID__c like '%NONKEY') ) 
 	                                                                                                     From IPM_Project_Rollout__c  
 	                                                                                                     where id in : regionalRolloutIDs AND isActive__c=true]);
 	        if(!regionalRolloutsMap.isEmpty()) {
@@ -221,7 +219,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 			            // check to see the updated is earliest
 	                    if(localNonkeyRollouts.containsKey(earliestlocalRollout.id) && !regionalProject.IPM_Financials_Regional__r.isEmpty()) {
 			                for(IPM_Financial__c ipmFinancial: regionalProject.IPM_Financials_Regional__r) {
-			                    if(ipmFinancial.Financial_External_ID__c==regionalProject.name+'_NONKEY' || ipmFinancial.Financial_External_ID__c==regionalProject.name+'_CONSOLIDATED') {
+			                    if(ipmFinancial.Financial_External_ID__c==regionalProject.name+'_NONKEY') {
 				                    // update financial table's Target_Launch_Date__c
 				                    ipmFinancial.Target_Launch_Date__c = earliestTargetLaunchDate;
 				                    financialsMap.put(ipmFinancial.id, ipmFinancial);
@@ -341,105 +339,8 @@ public with sharing class IPM_SyncFinanceTableTLD {
     }
     private void updateFinancialTables() {
         if(!financialsMap.isEmpty()) {
-	        try {
-	            Database.update(financialsMap.values(),false);
-	        } catch (DMLException dmlException ){
-	            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-                ExceptionLoggingHelper.createErrorLog(	UserInfo.getUserId(),IPM_SYNCFINANCETABLETLD_STR,'handleLoalKeyRollouts',dmlException.getMessage(),dmlException,IPM_ConstantUtils.ERROR,null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION );
-	        }
-	        updateFinancialYearTables();
+           // removed exception handling as any exceptions/Messages  would be handled at controller 
+	        Database.update(financialsMap.values(),false);
         }
     }
-     /*
-    	This method retrieves local and regional financials and financial year records.
-    	Once retrieved the financial year's name & external id fields will be updated with financial's Target Launch Date. 
-    	The complexity is due to handling Map/List retrieved from SOQL
-    	This is required to minimise the number of SOQLs to avoid Too Many SOQL error 
-    	@param  None
-  		@return None
-    */
-    private void updateFinancialYearTables() {
-        financialsYearMap = new Map<ID,IPM_Financial_Year__c>();
-        fYearExternalIds = new Set<String>();
-        updatedfYearExternalIds = new Set<String>();
-        // retrieve financial year tabes of financial records
-        Map<ID, IPM_Financial__c> retrievedFinancialMap = new Map<ID, IPM_Financial__c>(
-                                                                    [Select id, Target_Launch_Date__c, Financial_External_ID__c,
-                                                                        (   Select 
-                                                                                Year__c,Year_Type__c,Name, External_Id__c,Target_Launch_Date__c, PL_Type__c 
-                                                                            From 
-                                                                                IPM_Financial_Years__r 
-                                                                            where 
-                                                                                Year_Type__c=:IPM_ConstantUtils.YEAR_TYPE_CALENDAR 
-                                                                                ) 
-                                                                    From 
-                                                                        IPM_Financial__c 
-                                                                            where id in : financialsMap.keySet() AND isActive__c=true] );
-        for(IPM_Financial__c ipmFinancial: retrievedFinancialMap.values()) {
-            for(IPM_Financial_Year__c ipmFinancialYear:ipmFinancial.IPM_Financial_Years__r) {
-                fYearExternalIds.add(ipmFinancialYear.External_Id__c);
-            }
-        }                                                                
-        for( IPM_Financial__c ipmFinancial: retrievedFinancialMap.values()){
-            Date tmpTLD = ipmFinancial.Target_Launch_Date__c;
-            Integer startYear = tmpTLD.year();
-            String yearName = '';
-            List<IPM_Financial_Year__c> financialYearList = ipmFinancial.IPM_Financial_Years__r;
-            if(!financialYearList.isEmpty()) {
-	            for(IPM_Financial_Year__c fYear: financialYearList) {
-	                if(fYear.PL_Type__c==IPM_ConstantUtils.PL_TYPE_INCREMENTAL||fYear.PL_Type__c==IPM_ConstantUtils.PL_TYPE_GROSS ) {
-            
-	                    // update year 1 and exteral id fields
-	                    if( fYear.Year__c==IPM_ConstantUtils.Y1_YEARINDEX) {
-	                        yearName = String.valueOf(startYear);
-	                        addYearToList(fYear, yearName);
-            			}
-	                    // update year 2 and exteral id fields
-	                    if( fYear.Year__c==IPM_ConstantUtils.Y2_YEARINDEX) {
-	                        yearName = String.valueOf(startYear+1);
-	                        addYearToList(fYear, yearName);
-            			}
-	                    // update year 3 and exteral id fields
-	                    if( fYear.Year__c==IPM_ConstantUtils.Y3_YEARINDEX) {
-	                        yearName = String.valueOf(startYear+2);
-	                        addYearToList(fYear, yearName);
-            			}
-	                    // update year 4 and exteral id fields
-	                    if( fYear.Year__c==IPM_ConstantUtils.Y4_YEARINDEX) {
-	                        yearName = String.valueOf(startYear+3);
-	                        addYearToList(fYear, yearName);
-            			}
-	                    // update year 5 and exteral id fields
-	                    if( fYear.Year__c==IPM_ConstantUtils.Y5_YEARINDEX) {
-	                        yearName = String.valueOf(startYear+4);
-	                        addYearToList(fYear, yearName);
-            			}
-	                    
-	                }
-	            }
-            }
-        } 
-        if(!financialsYearMap.isEmpty()) {
-            try {
-                Database.update(financialsYearMap.values(),false);
-            } catch (DMLException dmlException ){
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-                ExceptionLoggingHelper.createErrorLog(	UserInfo.getUserId(),IPM_SYNCFINANCETABLETLD_STR,'updateFinancialTables',dmlException.getMessage(),dmlException,IPM_ConstantUtils.ERROR,null, null,null,IPM_ConstantUtils.IPM_NG_APPLICATION );
-            }
-        }
-        
-    }
-    private void addYearToList( IPM_Financial_Year__c fYear, String yearName){
-        IPM_Financial_Year__c updateYear = new IPM_Financial_Year__c(ID=fYear.id);
-        String yearExtId = fYear.External_Id__c.replace(fYear.Name,yearName);
-        if(!updatedfYearExternalIds.contains(yearExtId)) {
-            updatedfYearExternalIds.add(yearExtId);
-            updateYear.External_Id__c = yearExtId;
-            updateYear.Name=yearName;
-            financialsYearMap.put(updateYear.id,updateYear);
-        }
-    }
-    public class SyncFinanceTableTLDException extends Exception {}
-    
-    
 }
