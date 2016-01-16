@@ -101,8 +101,11 @@ public with sharing class IPM_ProjectSectionContentHelper
     * @param1 projectDocToSectionMap : newly Created project Document To Section Map
     * @param2 projectToDocumentMap : project to Project Document Map 
     * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating Action Standards across all gate documnet which is a complex functionality. 
-    				   
+    * NPATHComplexity: This function is used for creating Action Standards across all gate documnet which is a complex functionality.
+    				   The table for the section Business Case vs Action Standard Section of Charter,Contract and Market Ready document is created at the Charter Document
+    				   based on the current Financials of the Project. The Action Standad Field Values are Editable at Charter Only, the user has the ability to save these values. 
+    				   Using this function the record for Financial Action Standard is created at IPM_Project_Document_Section_Content__c object.
+				   
     */
     public static void createFinancialActionStandard(Map<Id,List<IPM_Project_Document_Section__c>> projectDocToSectionMap,Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap, Map<Id,IPM_Project__c> projectMap)
     {
@@ -163,7 +166,10 @@ public with sharing class IPM_ProjectSectionContentHelper
     * @param1 projectDocToSectionMap : newly Created project Document To Section Map
     * @param2 projectToDocumentMap : project to Project Document Map 
     * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating/ copying CMI Sections across all gate documnet which is a complex functionality. 
+    * NPATHComplexity: This function is used for creating/ copying CMI Sections across Charter, Contract and Market Ready documents.
+    					The Test Added at Charter are across Regions and Countries, these Test Needs to be split across Region Level for the Contract Document
+    					The Results provided and the Over All calculated at Charter Level should be copied over to sht subsequent Gate Document. Similarly the 
+    					Action Standard Set and The Results Achieved get Copied over from Contract to Market Ready documentns.  
     *				   
     */
     public static void manageCMISections(Map<Id,List<IPM_Project_Document_Section__c>> projectDocToSectionMap,Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap, Map<Id,IPM_Project__c> projectMap)
@@ -213,7 +219,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                                 List<IPM_Project_Document_Section__c> associatedSectionList = projectDocToSectionMap.get(targetProjectDocument.Id);
                                 for(IPM_Project_Document_Section__c projectSection : associatedSectionList)
                                 {
-                                    if(projectSection.IPM_Master_Section_External_Id__c ==  'Mix_Qualification_Plan_and_Action_Standards' )
+                                    if(projectSection.IPM_Master_Section_External_Id__c ==  IPM_ConstantUtils.CMI_SECTION )
                                     {
                                           targetProjectDocumentSection = projectSection; 
                                           break;
@@ -612,7 +618,8 @@ public with sharing class IPM_ProjectSectionContentHelper
     * @param1 projectDocToSectionMap : newly Created project Document To Section Map
     * @param2 projectToDocumentMap : project to Project Document Map 
     * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating/ copying Consumer Evidence across all gate documnet which is a complex functionality. 
+    * NPATHComplexity: This function is used for creating/ copying Consumer Evidence across all gate documnet. Based on the Region/Country 
+    				   For which the test are created, the tests get split in the subsequent gate documents.	 
     *				   
     */
      ///carrying the Consumer Evidence Concepts 
@@ -823,11 +830,11 @@ public with sharing class IPM_ProjectSectionContentHelper
     }
     
      /**************************************************************
-    * @description: Used for Creating CMI Sections on Project Creation and Change.
+    * @description: Used for Creating Customer Channel Sections on Project Creation and Change.
     * @param1 projectDocToSectionMap : newly Created project Document To Section Map
     * @param2 projectToDocumentMap : project to Project Document Map 
     * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating/ copying Customer Channel across all gate documnet which is a complex functionality. 
+    * NPATHComplexity: This function is used for copying Customer Channel across all gate documnet for Charter/Contract and Market Ready documents. 
     *				  
     */
     ///Carrying the Customer Channel Section 
@@ -1019,12 +1026,15 @@ public with sharing class IPM_ProjectSectionContentHelper
     }
     
      /**************************************************************
-    * @description: Used for Creating CMI Sections on Project Creation and Change.
+    * @description: Used for Creating MAnageing Financial Action Standard on Project Creation and Change.
     * @param1 projectDocToSectionMap : newly Created project Document To Section Map
     * @param2 projectToDocumentMap : project to Project Document Map 
     * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for  copying Financial Action Standards across all gate documnet which is a complex functionality. 
-    *				   
+    * NPATHComplexity: This function is used for creating Action Standards across all gate documnet which is a complex functionality.
+    				   The table for the section Business Case vs Action Standard Section of Charter,Contract and Market Ready document is created at the Charter Document
+    				   based on the current Financials of the Project. The Action Standad Field Values are Editable at Charter Only, the user has the ability to save these values. 
+    				   Using this function the record for Financial Action Standard is created at IPM_Project_Document_Section_Content__c object.
+
     */
     ///Carrying Financial Action Atandards 
     public static void manageFinancialActionStandards(Map<Id,IPM_Project__c> projectMap,List<IPM_Project_Document__c> projectDocumentList,List<IPM_Project_Document_Section__c> projectSectionList)
@@ -1210,11 +1220,13 @@ public with sharing class IPM_ProjectSectionContentHelper
     }
     
      /**************************************************************
-    * @description: Used for Creating CMI Sections on Project Creation and Change.
+    * @description: Used for Managing CU on Project Creation and Change.
     * @param1 projectDocToSectionMap : newly Created project Document To Section Map
     * @param2 projectToDocumentMap : project to Project Document Map 
     * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating/ copying CU Sections across all gate documnet which is a complex functionality. 
+    * NPATHComplexity: This function is used for creating/ copying CU Sections across Charter, COntract and Market Ready Gate Documents.
+    					the user needs to provide a Charter CU affected answer, this gets carried over to subsequet Gates. Hence new Section Content Record is created for the
+    					Section in the current Active gate Document.  
     *				  
     */
      ///Carrying the Cu Complexity Section
@@ -1388,11 +1400,13 @@ public with sharing class IPM_ProjectSectionContentHelper
     }
     
      /**************************************************************
-    * @description: Used for Creating CMI Sections on Project Creation and Change.
+    * @description: Used for Assumptions Sections on Project Creation and Change.
     * @param1 projectDocToSectionMap : newly Created project Document To Section Map
     * @param2 projectToDocumentMap : project to Project Document Map 
     * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating/ copying Assumption Sections across all gate documnet which is a complex functionality. 
+    * NPATHComplexity: This function is used for creating/ copying Assumption Sections across Contract and Market Ready Gates.
+    				   The Section Content is created ate Contract level then as the gate is approved the corresponding values are 
+    				   copied over to the Market Ready Gate 
     *				   
     */
      ///Carrying the Assumptions Section

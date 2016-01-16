@@ -1,33 +1,35 @@
 /******************************************************************************************************************************
 * @author Cognizant 
 * @date 15/12/2014
-* @description Test Class for Gate Document Controller
+* @description Test Class for Chante Project Document Status Controller. This is when the Project Leader Approves a Document
+	Lots of valdations needs to be fullfilled hence there are many fields in this test class
 */
 @isTest
 public class  IPM_ChangProjectDocStatusController_Test {
-    public static PageReference  pRef;
-    public static IPM_Project__c project;// Project object initialization
-    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    private static PageReference  pRef;
+    private static IPM_Project__c project;// Project object initialization
+    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();// Project Documetn List
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
-    public static List<SelectOption> secOpt=new List<SelectOption>();
-    public static IPM_Project_Type__c proType;
+    private static List<SelectOption> secOpt=new List<SelectOption>();
+    private static IPM_Project_Type__c proType;
     private static final string TEST_COMMENTS_STR='TestComments1';
-    public static List<IPM_Milestone__c>mileListObj;
-    public static List<IPM_Project_Document__c>docStatus;
-    public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
-    public static User stdUserForChangStatus;
-    private static final string STATUS_MATCHED_STR='status matched';
-    private static final string STATUS_CHANGED_STR='status changed';
-    public static User globalUser;
+    private static List<IPM_Milestone__c>mileListObj;
+    private static List<IPM_Project_Document__c>docStatus;
+    private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
+    private static User stdUserForChangStatus;
+    private static final string STATUS_MATCHED_STR='status matched';// assert statements
+    private static final string STATUS_CHANGED_STR='status changed';// assert statements
+    private static User globalUser;
     private static string REGIONAL_STR='Regional';
-    public static IPM_Project__c regProject;// Project object initialization\
-    public static IPM_ChangProjectDocumentStatusController chngPro;
-    public static List<IPM_Project_Document__c>docListObj=new List<IPM_Project_Document__c>();
-    public static List<IPM_Project_Document__c>docList=new List<IPM_Project_Document__c>();
+    private static IPM_Project__c regProject;// Project object initialization\
+    private static IPM_ChangProjectDocumentStatusController chngPro;
+    private static List<IPM_Project_Document__c>docListObj=new List<IPM_Project_Document__c>();
+    private static List<IPM_Project_Document__c>docList=new List<IPM_Project_Document__c>();
     private static final string RESULT_STR='result';
-    public static IPM_Project_Document_Section_Content__c projectDocSecConListObj=new IPM_Project_Document_Section_Content__c();
-    public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
-    public static IPM_Gate_CMI__c gateCMICountry;
+    private static IPM_Project_Document_Section_Content__c projectDocSecConListObj=new IPM_Project_Document_Section_Content__c();
+    private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
+    private static IPM_Gate_CMI__c gateCMICountry;
+    private static final string INVALID_NAME='TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTes';
     /*************************************************************************************************************************
     * @description Test Data
     */
@@ -218,6 +220,9 @@ public class  IPM_ChangProjectDocStatusController_Test {
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
             System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED,STATUS_MATCHED_STR);
+            chngPro.project.Name=INVALID_NAME;
+            chngPro.projectDoc.IPM_Stopped_Comments__c='testcomments';
+            chngPro.stopProject();
             test.stopTest();
             
         }
@@ -236,6 +241,8 @@ public class  IPM_ChangProjectDocStatusController_Test {
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
             System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,STATUS_MATCHED_STR);
+            chngPro.project.Name=INVALID_NAME;
+            chngPro.approvedWithEditsProject();
             test.stopTest();
             
         }
@@ -261,6 +268,8 @@ public class  IPM_ChangProjectDocStatusController_Test {
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
             System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,STATUS_MATCHED_STR);
+            chngPro.project.Name=INVALID_NAME;
+            chngPro.postponeProject();
             test.stopTest();
             
         }
@@ -282,7 +291,10 @@ public class  IPM_ChangProjectDocStatusController_Test {
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
             System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED,STATUS_MATCHED_STR);
-            
+            chngPro.showValidation=true;
+            chngPro.proposeProject();
+            chngPro.project.Name=INVALID_NAME;
+            chngPro.proposeProject();
            test.stopTest();
             
         }
@@ -333,6 +345,8 @@ public class  IPM_ChangProjectDocStatusController_Test {
             docStatus=[select IPM_Document_Status__c from IPM_Project_Document__c 
             where Id=:projDocList[0].Id];
             System.assertEquals(docStatus[0].IPM_Document_Status__c,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED,STATUS_MATCHED_STR);
+            chngPro.project.Name=INVALID_NAME;
+            chngPro.approveProject();
             test.stopTest();
         }
     }
