@@ -135,7 +135,8 @@ public with sharing class Oblix_SOWMainDetailController {
                       Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate,Total_Campaigns_This_FY__c,
                       SOW_Status__c, BB_or_BD__c, Total_Campaign_Fee__c FROM Marketing_SOW__c WHERE Id = : sow_id];
         }
-        System.DEBUG('Init Called 1 !!!!');
+        
+        System.DEBUG('!!selected_sow:'+selected_sow);
         // retrieve required fields from db for Campaign if param passed in otherwise initialise a new object
         if (project_id == null){ 
             SelectedProject = new Oblix_SOW_Projects__c();
@@ -405,23 +406,25 @@ public with sharing class Oblix_SOWMainDetailController {
         // get related agency splits
         try{
 
-            List<Oblix_Marketing_SOW_Project_Splits__c> liso_campaign_splits_to_delete = [SELECT Id FROM Oblix_Marketing_SOW_Project_Splits__c WHERE Project_Splits__r.Financial_Year__c =:selected_sow.Id];
+            //List<Oblix_Marketing_SOW_Project_Splits__c> liso_campaign_splits_to_delete = [SELECT Id FROM Oblix_Marketing_SOW_Project_Splits__c WHERE Project_Splits__r.Financial_Year__c =:selected_sow.Id];
             
-            // try to delete the children records
-            List<Database.DeleteResult> delete_result_splits = Database.delete(liso_campaign_splits_to_delete, true);
+            //// try to delete the children records
+            //List<Database.DeleteResult> delete_result_splits = Database.delete(liso_campaign_splits_to_delete, true);
             
-            Boolean isSuccess = true;
-            for(Database.DeleteResult dr : delete_result_splits){
-                if(!dr.isSuccess()){
-                    isSuccess = false;
-                    break;
-                }
-            }
+            //Boolean isSuccess = true;
+            //for(Database.DeleteResult dr : delete_result_splits){
+            //    if(!dr.isSuccess()){
+            //        isSuccess = false;
+            //        break;
+            //    }
+            //}
             
-            // only try to delete SOW if we managed to delete it's children campaign splits records
-            if(isSuccess){
+            //// only try to delete SOW if we managed to delete it's children campaign splits records
+            //if(isSuccess){
+
+                // Campaign Splits and SWOP Campaigns have master-detail so the related records will be deleted also
                 Database.DeleteResult delete_result_main_campaign = Database.delete(selected_sow, true);
-            }
+            //}
 
         // not a DML exception
         } catch (Exception e){
@@ -694,6 +697,12 @@ public with sharing class Oblix_SOWMainDetailController {
         Pagereference campaignCreatePage = Page.Oblix_CampaignCreate;
                 campaignCreatePage.getParameters().put('sowId', selected_sow.Id);
         return campaignCreatePage;
+    }
+
+    public PageReference addNonCampaignProject() {
+        Pagereference nonCampaignCreatePage = Page.Oblix_SOWNonCampaignCreate;
+        nonCampaignCreatePage.getParameters().put('sowId', selected_sow.Id);
+        return nonCampaignCreatePage;
     }
 
     /*******************************************************************

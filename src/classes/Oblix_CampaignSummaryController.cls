@@ -10,9 +10,9 @@
 *    Shahin Movahedi            2016-01-06          Created
 
 ******************************************************************************************/
-public with sharing class Oblix_CampaignSummaryController {
+public with sharing class Oblix_CampaignSummaryController extends Oblix_SwopParentController {
     
-    public Oblix_CampaignStageLogic stage_identifier {get;set;}
+    public Oblix_CampaignStageLogic stage_identifier;
     public Map<String, String> mapTurnoverToSize {get;set;}
     public Id project_id{get;set;}
     public Oblix_SOW_Projects__c selected_project {get;set;}
@@ -67,10 +67,27 @@ public with sharing class Oblix_CampaignSummaryController {
             liso_attachments = [SELECT name FROM Attachment WHERE ParentId =: project_id];
 
         
+        try{
+
+            system.debug('## project_id: ' + project_id + ' ');
+
+            selected_sow = [SELECT Name FROM Marketing_SOW__c WHERE Id = :[SELECT Financial_Year__r.Id FROM Oblix_SOW_Projects__c WHERE Id = :project_id].Financial_Year__r.Id];
+        }
+        catch(Exception ex){
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid sow or project id was passed in to the page'));
+        }
+
 
         // depending on the string parameter initialise Oblix_CampaignStageLogic
         if (NULL != liso_campaign && !liso_campaign.isEmpty()){
             selected_project = liso_campaign[0];
+        }
+    }
+
+    public Oblix_CampaignStageLogic getStage_identifier(){
+
+        // depending on the string parameter initialise Oblix_CampaignStageLogic
+        if (NULL != selected_project){
             System.debug('###selected_project  : '+selected_project );
             stage_identifier = new Oblix_CampaignStageLogic(selected_project, true);
         }
@@ -80,6 +97,8 @@ public with sharing class Oblix_CampaignSummaryController {
             stage_identifier = new Oblix_CampaignStageLogic(sow_id);
         else
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'Inavlid campaign or sow passed in to the page'));
+
+        return stage_identifier;
     }
 
     public List<Oblix_Project_Assets__c> getLiso_assets(){
@@ -124,8 +143,8 @@ public with sharing class Oblix_CampaignSummaryController {
         return addAssetPage;
     }
 
-    public Pagereference exitSwop(){
-        return Oblix_Utils.exitSwop();
-    }
+    //public Pagereference exitSwop(){
+    //    return Oblix_Utils.exitSwop();
+    //}
 
 }

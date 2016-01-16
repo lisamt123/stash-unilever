@@ -56,10 +56,10 @@
             <div class="header_divider_vertical"></div>
             <div class="header_panel_text">
                 <h2>Hi {!$User.FirstName} {!$User.LastName}, Welcome to SWOP the Scope of Work Online Planner</h2>
-                <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">SOW name</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">Add new campaign</a>
+                <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;{!if(selected_sow.Name <> null, selected_sow.Name, 'Create New SOW')}
                 </p>
             </div>
-            <button type="button" class="btn btn-xs pull-right">DONE FOR TODAY? EXIT SWOP<img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/cross.png')}" width="14" height="14"></img>
+            <button type="button" class="btn btn-xs pull-right btn_cross btn_exit_swop">DONE FOR TODAY? EXIT SWOP
             </button>
 
         </header>
@@ -206,7 +206,7 @@
                             <div id="attachmentContainer">
                                 <apex:repeat value="{!liso_attachments}" var="eachAttachment">
                                     <div class="attachment_item" id="{!eachAttachment.Id}">
-                                        <a data-attachment-id="{!eachAttachment.Id}" onclick="removeAttachments(); return false;"><label>{!eachAttachment.Name}</label>
+                                        <a data-attachment-id="{!eachAttachment.Id}" onclick="removeAttachments(); return false;"><label target="_blank">{!eachAttachment.Name}</label>
                                         </a>
                                     </div>
                                     <br/>

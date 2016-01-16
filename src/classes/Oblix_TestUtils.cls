@@ -36,6 +36,7 @@ public with sharing class Oblix_TestUtils {
         marketingSow.OblixBrand__c = brandId;
         marketingSow.SmallProductCategory__c = createSmallProductCategory().id;
         marketingSow.BigOblixProductCategory__c = createBigProductCategory().id;
+        marketingSow.Financial_Year__c = 'FY2015';
         insert marketingSow;
         return marketingSow;
     }

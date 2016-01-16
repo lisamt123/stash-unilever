@@ -261,13 +261,12 @@
 
         <div class="Oblix_header_bkgd">
             <header class="Oblix_header_panel">
-                <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
+                <img alt="Unilever-Logo" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
                 <div class="header_divider_vertical"></div>
                 <div class="header_panel_text">
                     <h2>Hi {!userConnected.Name}, Welcome to SWOP the Scope of Work Online Planner</h2>
-                    <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">SOW name</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">Add new campaign</a>
-                    </p>
-                </div>
+                    <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;{!if(project.Name <> null,'Edit ' + project.Name,'Add new campaign')}
+                    </p>               </div>
                 <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
                 </apex:commandButton>
 
@@ -345,13 +344,14 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-8 status_completion_chevron_bar">
-                    <hr class="divider" />
-                    <div class="status_completion_chevron_bar_main_styling">
-                        <p class="create_SOW_form_titles" id="stagesLabel">Choose stages for this FY*</p>
-                        <p class="campaign_create_agency_hub_split_table_subtitle">Confirm which stages of the project will be completed in the current year.</p>
+                <div class="col-lg-8 status_completion_chevron_bar campaign_create_chevron">
+                    <div class="chevron_width_control">
+                        <div class="status_completion_chevron_bar_main_styling">
+                            <p class="create_SOW_form_titles" id="stagesLabel">Choose stages for this FY*</p>
+                            <p class="campaign_create_agency_hub_split_table_subtitle">Confirm which stages of the project will be completed in the current year.</p>
+                        </div>
+                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="false" />
                     </div>
-                    <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="false" />
                 </div>
             </div>
             <div class="row">
@@ -469,8 +469,8 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="campaign_create_buttons">
-                        <apex:commandButton value="Save Campaign" onclick="validateCountrySplit(); return false; " styleClass="btn btn-primary btn-sm pull-right save_button_spacer"/>
-                        <apex:commandButton value="Cancel" action="{!backAction}" title="Cancel" styleClass="btn btn-sm pull-right btn_cancel" immediate="true" html-formnovalidate="formnovalidate"/>
+                        <apex:commandButton value="SAVE CAMPAIGN" onclick="validateCountrySplit(); return false; " styleClass="btn btn-primary btn-sm pull-right btn_save_campaign btn_check"/>
+                        <apex:commandButton value="CANCEL" action="{!backAction}" title="Cancel" styleClass="btn btn-sm pull-right btn_cancel btn_cross" immediate="true" html-formnovalidate="formnovalidate"/>
                     </div>
                 </div>
             </div>

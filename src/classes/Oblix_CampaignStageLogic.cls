@@ -5,7 +5,7 @@
     Returns: an instance of StageIdentifier which contains css and boolean values for the 5 stages
     Throws [Exceptions]: none
 ********************************************************************/
-public class Oblix_CampaignStageLogic{
+public with sharing class Oblix_CampaignStageLogic{
 
     // final strings used for stage identifier CSS styling
     public static final String CSS_PROGRESS_NOT_STARTED = 'chevron_not_started';
@@ -246,7 +246,7 @@ public class Oblix_CampaignStageLogic{
         
         // also update the fees there is a formula field calculation. Have to replicate here to referesh without saving
         i_fees_for_this_financial_year = NULL!= i_percentage_of_fee_this_year && NULL!=sow_project_in_scope.Campaign_Total_Fees__c
-            ? Integer.valueOf(i_percentage_of_fee_this_year * sow_project_in_scope.Campaign_Total_Fees__c / 100)
+            ? Integer.valueOf((i_percentage_of_fee_this_year * sow_project_in_scope.Campaign_Total_Fees__c / 100).round(System.RoundingMode.Up))
             : 0;
 
     }

@@ -523,7 +523,7 @@ public with sharing class Oblix_Utils {
         temp = [select id from MDO_Geography__c where name = :Cname limit 1];
         // system.debug('===========Cname' + Cname);
         //system.debug('===========temp' + temp);
-        if (temp == null) { return temp[0].id; }
+        if (temp != null) { return temp[0].id; }
         else { return null; }
     }
 
@@ -589,6 +589,7 @@ public with sharing class Oblix_Utils {
         sortedSelectOptions.addAll(selectOptionSortByLabel(greaterSelectOption));
         return SortedSelectOptions;
     }
+    
     public static List<SelectOption> setFirstValue(String value, List<SelectOption> selectedList) {
         List<SelectOption> options = new List<SelectOption>();
         options.add(new SelectOption('', value));

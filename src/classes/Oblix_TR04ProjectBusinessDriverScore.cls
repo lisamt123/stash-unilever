@@ -286,9 +286,9 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
                    tmp_projectFee = TotalCalculatedFee(MapProjToFinancialYear.get(project.Id),Calculator_BoxRange,MapProjectToSplits.get(project.Id),lstCalculatorCountryRange);
                    System.debug('###tmp_projectFee : '+tmp_projectFee);
                 }
-                if(tmp_projectFee != 0){
+                //if(tmp_projectFee != 0){
                     project.Total_Fees_for_Project__c = tmp_projectFee; 
-                }
+                //}
             }
             
          }

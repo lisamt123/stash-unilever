@@ -87,7 +87,7 @@ public class Oblix_SOWCampaignCreateController {
     public List<String> mapAllCountries { get; set; }
 
     public String sowName { get; set; }
-
+    public Marketing_SOW__c selected_sow{get;set;}
     public Integer numberOFSelectedCountries { get; set; }
     
     public Oblix_SOWCampaignCreateController() {
@@ -287,11 +287,13 @@ public class Oblix_SOWCampaignCreateController {
         if (projectId == null) {
             project = new Oblix_SOW_Projects__c ();
             project.Financial_Year__c = ApexPAges.currentPage().getParameters().get('sowId');
-            sowName = [SELECT Name FROM Marketing_SOW__c WHERE Id =: project.Financial_Year__c].Name;
+            selected_sow = [SELECT Name FROM Marketing_SOW__c WHERE Id =: project.Financial_Year__c];
+            sowName = selected_sow.Name;
             lstSelectedRegionJSON = JSON.serialize(lstSelectedRegion);
         } else {
             project = [Select Id, Name, Innovation_Projects__c , ProjectTotalAssetscore__c, Jobs_to_be_Done__c , Campaign_Fees_Total__c, Completed_Stage__c, Financial_Year__r.currency__c, Projected_Stage__c, Financial_Year__r.Financial_Year__c,Financial_Year__r.Name, BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Status__c, Preview_Date__c, Start_of_TV_production__c, Final_release__c, Live_Date__c, Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c, Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, OblixCountries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id = :projectId];
             sowName = project.Financial_Year__r.Name;
+            selected_sow = [SELECT Name FROM Marketing_SOW__c WHERE Id =: project.Financial_Year__c];
             estimateCost = project.Campaign_Fees_Total__c;
             countAssetNumberForCampaign = [Select count() from Oblix_Project_Assets__c  where Agency_Projects__c =: project.id];
             getAssetCampaign();
@@ -627,7 +629,7 @@ public class Oblix_SOWCampaignCreateController {
                 delete splitToDelete;
                 update splitToUpdate;
                 insert splitToInsert;                
-                project = [Select Id, Name, Innovation_Projects__c , ProjectTotalAssetscore__c, Jobs_to_be_Done__c , Campaign_Fees_Total__c, Completed_Stage__c, Financial_Year__r.currency__c, Projected_Stage__c, Financial_Year__r.Financial_Year__c,Financial_Year__r.Name, BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Status__c, Preview_Date__c, Start_of_TV_production__c, Final_release__c, Live_Date__c, Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c, Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, OblixCountries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id = :projectId];         
+                //project = [Select Id, Name, Innovation_Projects__c , ProjectTotalAssetscore__c, Jobs_to_be_Done__c , Campaign_Fees_Total__c, Completed_Stage__c, Financial_Year__r.currency__c, Projected_Stage__c, Financial_Year__r.Financial_Year__c,Financial_Year__r.Name, BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Status__c, Preview_Date__c, Start_of_TV_production__c, Final_release__c, Live_Date__c, Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c, Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, OblixCountries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id = :projectId];         
                 //getAgencyHubFiveInsance();
             }catch (DMLException e) {
                 ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Could not save splits: ' + e.getMessage()));
@@ -659,6 +661,10 @@ public class Oblix_SOWCampaignCreateController {
     */
     public pageReference SaveProjectAction() {
         try {
+            // set b_initiated_from_vf_page on trigger to avoid setting Project_Scale_2__c value
+            Oblix_SplitHandler.b_initiated_from_vf_page = true;
+
+            system.debug('## SaveProjectAction started - Project_Scale_2__c: ' + project.Project_Scale_2__c + ' - Oblix_SplitHandler.b_initiated_from_vf_page: ' + Oblix_SplitHandler.b_initiated_from_vf_page);
             setInfoSplitHub();
             system.debug('###selectedBrandBrand : ' + selectedBrandBrand);
             system.debug('###selectedBrandInnov : ' + selectedBrandInnov);
@@ -677,7 +683,9 @@ public class Oblix_SOWCampaignCreateController {
             Project.Projected_Stage__c = stage_identifier.s_selected_projected_stage;
 
 
+
             if (projectId != null) {
+                system.debug('## SaveProjectAction ProjectId!=null - Project_Scale_2__c: ' + project.Project_Scale_2__c + ' - Oblix_SplitHandler.b_initiated_from_vf_page: ' + Oblix_SplitHandler.b_initiated_from_vf_page);
                 if (project.Name == null) {
                     ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'These fields are required : Name'));
                     return null;
@@ -689,6 +697,7 @@ public class Oblix_SOWCampaignCreateController {
                 }
 
             } else {
+                system.debug('## SaveProjectAction ProjectId=null - Project_Scale_2__c: ' + project.Project_Scale_2__c + ' - Oblix_SplitHandler.b_initiated_from_vf_page: ' + Oblix_SplitHandler.b_initiated_from_vf_page);
                 if (project.Name == null) {
                     ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'These fields are required : Name'));
                     return null;
@@ -939,8 +948,7 @@ public class Oblix_SOWCampaignCreateController {
     public void InitializeMapAssetNames(String projectId){
             lstWrapAssets = new List<WrapperAssetNameGroup>();
             Map<String, Integer> mapGroupingByAssetName = new Map<String, Integer>();
-            Schema.DescribeFieldResult fieldResult =
-             Oblix_Project_Assets__c.Asset_Picklist__c.getDescribe();
+            Schema.DescribeFieldResult fieldResult = Oblix_Project_Assets__c.Asset_Picklist__c.getDescribe();
                List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
                //Construct List of Names to loop over them in Page.
                List<String> pickValues = new List<String>();
@@ -950,12 +958,22 @@ public class Oblix_SOWCampaignCreateController {
                }   
                
                //Construct Map for each Asset Name number of Assets related to.  
-               for(Oblix_Project_Assets__c asset : [Select Id, Name, Asset_Picklist__c from Oblix_Project_Assets__c where Agency_Projects__c =: projectId]){
-                   if(mapGroupingByAssetName.containsKey(asset.Asset_Picklist__c)){
-                      mapGroupingByAssetName.put(asset.Asset_Picklist__c, mapGroupingByAssetName.get(asset.Asset_Picklist__c)+1); 
+               for(Oblix_Project_Assets__c asset : [Select Id, Name, Asset_Picklist__c, Location__c from Oblix_Project_Assets__c where Agency_Projects__c =: projectId]){
+                   if(asset.Asset_Picklist__c == 'Other'){
+                       if(mapGroupingByAssetName.containsKey(asset.Asset_Picklist__c+' : ' +asset.Location__c)){
+                          mapGroupingByAssetName.put(asset.Asset_Picklist__c+' : ' +asset.Location__c, mapGroupingByAssetName.get(asset.Asset_Picklist__c+' : ' +asset.Location__c)+1); 
+                       }else{
+                            mapGroupingByAssetName.put(asset.Asset_Picklist__c+' : ' +asset.Location__c, 1);
+                       }
+                       
                    }else{
-                        mapGroupingByAssetName.put(asset.Asset_Picklist__c, 1);
+                       if(mapGroupingByAssetName.containsKey(asset.Asset_Picklist__c)){
+                      mapGroupingByAssetName.put(asset.Asset_Picklist__c, mapGroupingByAssetName.get(asset.Asset_Picklist__c)+1); 
+                       }else{
+                            mapGroupingByAssetName.put(asset.Asset_Picklist__c, 1);
+                       }
                    }
+                   
                }
                system.debug('###mapGroupingByAssetName :'+mapGroupingByAssetName);
                if(!mapGroupingByAssetName.keySet().isEmpty()){
@@ -1042,8 +1060,8 @@ public class Oblix_SOWCampaignCreateController {
     public static void UpdateProjectAction(String assetId, Map<String, Object> details) {
         Oblix_Project_Assets__c asset = [SELECT Id, Asset_Title__c FROM Oblix_Project_Assets__c WHERE Id = : assetId];
         for (String key : details.keySet()) {
-            if (key.equalsIgnoreCase('actual_Delivery_Date')) {
-                asset.put(key + '__c', Date.valueOf(String.valueOf(details.get(key))));
+            if (key.equalsIgnoreCase('asset_Picklist')) {
+                asset.put(key + '__c', String.valueOf(details.get(key)));
             } else if (key.equalsIgnoreCase('quantity')) {
                 asset.put(key + '__c', Decimal.valueOf(String.valueOf(details.get(key))));
             } else {
@@ -1052,10 +1070,11 @@ public class Oblix_SOWCampaignCreateController {
         }
 
         asset.Asset_Title__c = asset.Quantity__c + crossX + asset.Asset_Title__c.split(crossX)[1];
-        System.debug(asset);
+        System.debug('###asset : '+asset);
         Savepoint sp = Database.setSavepoint();
         try {
             update asset;
+             System.debug('###asset after update : '+asset);
         } catch (DMLException e) {
             Database.rollback(sp);
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Could not update asset: ' + e.getMessage()));

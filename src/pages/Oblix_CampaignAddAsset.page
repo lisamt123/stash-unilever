@@ -6,6 +6,8 @@
     <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/css/unilever-style.css')}" />
     <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}"></script>
     <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
+    <script type="text/javascript" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/jquery.sticky-kit.min.js')}"></script>
+    <script type="text/javascript" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/jquery-sticky.js')}"></script>
     <script>
        $(function (){
                 if(window.location.search.indexOf('&') > -1){
@@ -21,7 +23,7 @@
                 alert('Asset name can\'t be null');
                 return false;
             }
-            console.dir('parent of parent : ' + x.parent().parent().find(".trDescribe").find(".descMend").val());
+            
             if (x.parent().parent().find("span").find("select").val() == 'Other' && x.parent().parent().find(".trDescribe").find(".descMend").val() == '') {
                 x.find(".error").css("display", "block");
                 alert('Please give description ');
@@ -34,6 +36,8 @@
         function showhideDetail(x) {
             if (x.val() == 'Other') {
                 x.parent().parent().find(".trDescribe").removeAttr("style");
+                x.parent().parent().parent().find(".quantselector").addClass("add_assets_other_box_spacing");
+               
             } else {
                 x.parent().parent().find(".trDescribe").css("display", "none");
             }
@@ -44,22 +48,26 @@
             blockme();
             var button = $(btn);
             var assetId = button.attr('data-asset-id');
-            var inputDate = $('#dialogMoreDetails table tr:first()').next().find('input').val();
-            var date = inputDate.split('-').reverse().toString().replace(new RegExp(',', 'g'), '-');
+            var options = button.parent().find('.subCatPicklist');
+            
+            var subCat ;
+            options.find('option').each(function (index, el) {
+                 if($(el).attr("selected") == 'selected') {
+                        subCat = $(el).val();
+                         console.dir(' subCat  '+subCat);
+                 }
+            });
             var details = {
-                quantity: button.siblings('input[type="text"]').val(),
-                location: button.closest('tbody').children().first().next().find('input').val(),
-                asset_Picklist: button.closest('tbody').children().first().find('input').val() //,
-                    //actual_Delivery_Date: date,
-                    //additional_Description: $('#dialogMoreDetails table tr:last()').find('textarea').val()
+                quantity: button.parent().find('.assetQuantity').val(),
+                location: button.parent().find('.descMend').val(),
+                asset_Picklist: button.parent().find('select').last().find('option:selected').text(),
+                additional_Description : button.parent().find('.assetNotes').val()
             }
-
+            
             Oblix_SOWCampaignCreateController.UpdateProjectAction(assetId, details, function(data, event) {
                 button.addClass('hide_button');
-                button.siblings('input[type="submit"]').removeClass('hide_button');
+                button.siblings('input[type="button"]').removeClass('hide_button');
                 refreshAsset();
-                //$('#dialogMoreDetails table tr:first()').next().find('input').val('');
-                //$('#dialogMoreDetails table tr:last()').find('textarea').val('');
             });
         }
         var removeAsset = function(assetName, projectId) {
@@ -85,8 +93,8 @@
                 var assetId = window.location.search.split('&')[1].split('=')[1];
                 var assetDetails = getAssetDetails(assetId);
                 assetDetails.then(function (data){
-                    if(data.status.status){
-                        var assetName = data.data.assetTitle;
+                 if(data.status.status){
+                  var assetName = data.data.assetTitle;
                   var properties = assetName.split(' X ');
                   var numberOfQuantity = properties[0];
                   var selectedAbreviation = properties[1].split('-');
@@ -94,7 +102,7 @@
                   var firstOption = null;
                   var secondOption = null;
                   var thirdOption = selectedAbreviation[2];
-                   console.dir('## selectedAbreviation[2] : '+selectedAbreviation[2]);
+                  console.dir('## selectedAbreviation[2] : '+selectedAbreviation[2]);
                   var firstElement = null;
                   var secondElement = null;
                   var thirdElement = null;
@@ -104,15 +112,14 @@
                     var currentAbraviation = allAbreviation[key];
                     if(currentAbraviation === selectedAbreviation[0] + '-' + selectedAbreviation[1]){
                       options = key.split('_');
-                      console.dir('## opt '+options);
+                      
                     }
                   })
                   firstOption = options[0];
                   secondOption = options[1];    
-                  console.dir('## firstOption  '+firstOption);
-                                     
+                  var sel1 ;                   
                   $('.panel-group').find('.panel-default').find('.panel-heading').each(function (index, el){
-                  
+                    
                     if($(el).text().search(firstOption) !== -1 ){
                       firstElement = $(el);
                       console.dir('### first elmnt une seul fois :'+firstElement.html());
@@ -121,55 +128,40 @@
                       secondSearchArray.find('a').each(function (index2, el) {
                           if($(el).text().search(secondOption) !== -1){
                             secondElement = $(el);
-                            console.dir('### index :'+index);
-                            console.dir('### el :'+el);
-                            console.dir('### secondElement :'+secondElement.text());
-                            var curentIndex = index + 1;
+                            var curentIndex = index2 + 1;
                             var selector1 = 'div[id*="_tabs-' + curentIndex + '"]';
                             var selector2 = 'a[href*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                            console.dir('### selector1 :'+selector1);
-                            console.dir('### selector2 :'+selector2);
+                            sel1 = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
                             thirdElement = secondSearchArray.find(selector2);
                             selectorDetailPanel = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                            console.dir('### draft:'+secondSearchArray.find(selector2));
                           }
                       });
                     }
                   });
                   
                   if(firstElement && ! firstElement.parent().find('.panel-collapse').hasClass('in')) firstElement.parent().find('.panel-collapse').addClass('in');
+                  
                   if(secondElement && secondElement.find('a').attr('tabindex') !== '0') secondElement.trigger('click');
-                  thirdElement.parent().parent().addClass('active');   
-                  console.dir('###parent of parent of third elt : '+ thirdElement.parent().html()); 
-                  console.dir('## thirdElement '+thirdElement.html());
-                  var detailPanel = thirdElement.closest('ul').siblings(selectorDetailPanel);
-                  console.dir('## third closest'+ thirdElement.closest('ul').html());    
-                            
-                  console.dir('## detailPanel '+ detailPanel.html());                  
-                  detailPanel.find('tab-pane').find('span select').val(data.data.assetName);
-                  detailPanel.find('tab-pane').find('input').val(data.data.location);
-                  detailPanel.find('tab-pane').find('input[type="text"]').val(data.data.quantity);
                   
-                  console.dir('## firstElement  '+firstElement.find('.panel-collapse').html());
+                  thirdElement.parent().parent().find('.active').removeClass('active');   
+                  thirdElement.parent().addClass(' active');
                   
                   
-                  
-                  if(thirdElement && !thirdElement.parent().hasClass('active')) {
-                    detailPanel.find('tr').first().next().next().find('input[type="submit"]').each(function(index, el) {
-                      var button = $(el);
-                      if(button.val() === 'Update'){
-                        button.removeClass('hide_button')
-                        .attr('data-asset-id', assetId)
-                      } else {
-                        button.addClass('hide_button');
-                      }
-                    });
-                    thirdElement.trigger('click');
-
-                  }
-                    }
+                  var detailPanel = thirdElement.closest('ul').parent().next().find(sel1);
+                  thirdElement.closest('ul').parent().next().find('.active').removeClass('active');   
+                  thirdElement.closest('ul').parent().next().find(sel1).addClass(' active');
+              
+                  detailPanel.find('span').find('.col-lg-6').find('select').val(data.data.assetName);
+                  detailPanel.find('span').find('.col-lg-6').find('.descMend').val(data.data.location);
+                  detailPanel.find('span').find('.col-lg-6').find('.assetQuantity').val(data.data.quantity);                 
+                  detailPanel.find('span').find('.col-lg-6').find('.assetNotes').val(data.data.additionalDescription);   
+                   
+                  detailPanel.find('span').find('.col-lg-6').find('input[type="submit"]').removeClass('hide_button').attr('data-asset-id', assetId);
+                  detailPanel.find('span').find('.col-lg-6').find('input[type="button"]').addClass('hide_button').attr('data-asset-id', assetId);
+                    
+                }
                 }, function (err){
-                console.log(err);
+                
               });
                   
               }   
@@ -182,6 +174,9 @@
                 });
               }      
         getAbreviationForCardAssets();
+
+        // Sticky basket
+        $("#sidebar").stick_in_parent();
     </script>
     <style>
         .removeAssetCss {
@@ -197,17 +192,24 @@
         .error {
             display: none;
         }
+        .hide_button{
+            display:none;
+        }
     </style>
     <apex:form >
 
         <div class="Oblix_header_bkgd">
             <header class="Oblix_header_panel">
-                <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
+                <img alt="Unilever Logo" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
                 <div class="header_divider_vertical"></div>
                 <div class="header_panel_text">
                     <h2>Hi {!userConnected.Name}, Welcome to SWOP the Scope of Work Online Planner</h2>
-                    <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">SOW name</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">Add new campaign</a>
-                    </p>
+                    <!-- <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">SOW name</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">Add new campaign</a>
+                    </p> -->
+
+                    <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_campaignsummary?projectId={!project.Id}">{!project.Name}</a>
+                    &nbsp;<span>&#9658;</span>&nbsp;Add campaign assets</p>
+
                 </div>
                 <button type="button" class="btn btn-xs pull-right btn_cross btn_exit_swop">DONE FOR TODAY? EXIT SWOP
                 </button>
@@ -218,8 +220,6 @@
             <div class="row">
                 <div class="col-lg-6">
                     <h1 class="SOW_header_title">{!project.Name} Added!</h1>
-                    <p class="SOW_body_option_links"><a href="">View all campaign details</a>
-                    </p>
                 </div>
                 <apex:outputPanel id="campaignFeeId">
                     <table class="SOW_header_value_summary">
@@ -250,12 +250,12 @@
             <hr class="divider" />
             <div class="row confirm_assets_welcome_message">
                 <div>
-                    <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-blue-down-left.png')}" width="96" height="77" />
+                    <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-blue-down-left.png')}" width="96" height="77" alt="Add assets arrow"/>
                     <h1>{!project.Name} was successfully created.<br/>Select assets from below to add them to your campaign basket.</h1>
-                    <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-green-down-right.png')}" width="96" height="77" />
+                    <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-green-down-right.png')}" width="96" height="77" alt="Basket arrow" />
                 </div>
             </div>
-            <div class="row">
+            <div class="row" data-sticky_parent="">
                 <div class="col-lg-9 confirm_assets_accordion">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                         <apex:variable var="accordianCounter" value="{!1}" />
@@ -263,7 +263,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading" role="tab" id="heading{!accordianCounter}">
                                     <h4 class="panel-title">
-                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{!accordianCounter}" aria-expanded="{!if(accordianCounter == 1,'true','false')}" aria-controls="collapse{!accordianCounter}"><apex:outputText value="{!recordType}" styleClass="recordTypeValue" /> {!mapRecordTypeDescription[recordType]}<img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/plus.png')}" width="14" height="14" class="pull-right"/></a>
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse{!accordianCounter}" aria-expanded="{!if(accordianCounter == 1,'true','false')}" aria-controls="collapse{!accordianCounter}"><apex:outputText value="{!recordType}" styleClass="recordTypeValue" /> {!mapRecordTypeDescription[recordType]}<img alt="Add" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/plus.png')}" width="14" height="14" class="pull-right"/></a>
                                 </h4>
                                 </div>
                                 <div id="collapse{!accordianCounter}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading{!accordianCounter}">
@@ -280,7 +280,7 @@
                                            
                                         </ul>
                                         <!-- tab body-->
-
+                                    <apex:outputPanel id="tab-contentPanel">
                                         <div id="my-tab-content" class="tab-content">
                                             <apex:variable var="count2" value="{!1}" />
                                             <apex:repeat value="{!mapRTSUBCat[recordType]}" var="subCat">
@@ -318,29 +318,30 @@
                                                                                         <div class="col-lg-4">
                                                                                             <p class="create_SOW_form_titles asset_panel_titles"></p>
                                                                                             <p class="create_SOW_form_titles asset_panel_titles">{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label}*</p>
-                                                                                            <p class="create_SOW_form_titles asset_panel_titles">{!$ObjectType.Oblix_Project_Assets__c.fields.Quantity__c.label}*
+                                                                                            <p class="create_SOW_form_titles asset_panel_titles quantselector">{!$ObjectType.Oblix_Project_Assets__c.fields.Quantity__c.label}*
                                                                                                 <br/><span class="form_bracket_text">(Numerics only)</span>
                                                                                             </p>
-                                                                                            <p class="create_SOW_form_titles asset_panel_titles">Description
+                                                                                            <p class="create_SOW_form_titles asset_panel_titles">Other info
                                                                                                 <br/><span class="form_bracket_text">(Optional)</span>
                                                                                             </p>
                                                                                         </div>
                                                                                         <div class="col-lg-6">
-                                                                                            <apex:inputField value="{!mapAssetsPerSubCat[subCat].Sub_Category__c}" style="display:none" styleClass="{!subCat}" />
+                                                                                            <apex:inputField value="{!mapAssetsPerSubCat[subCat].Sub_Category__c}" style="display:none" styleClass="{!subCat} subCatPicklist" />
                                                                                             <apex:inputField value="{!mapAssetsPerSubCat[subCat].Asset_Picklist__c}" onchange="showhideDetail($(this))" />
                                                                                             <span class="error">error</span>
-                                                                                            <div style="display:none" class="trDescribe">
-                                                                                                {!$Label.Oblix_lbl_UIUX_Please_describe} &nbsp;
+                                                                                            <div style="display:none" class="trDescribe"><p class="form_bracket_text">
+                                                                                                {!$Label.Oblix_lbl_UIUX_Please_describe} &nbsp;</p>
                                                                                                 <apex:inputField styleClass="input_init descMend" value="{!mapAssetsPerSubCat[subCat].Location__c}" />
                                                                                             </div>
                                                                                             <apex:inputField value="{!mapAssetsPerSubCat[subCat].Quantity__c}" styleClass="assetQuantity" />
 
                                                                                             <apex:inputField style="width:100%;min-height:100px" value="{!assetInstance.Additional_Description__c}" styleClass="assetNotes" />
-                                                                                            <apex:commandButton value="ADD" action="{!AddToProjectAction}" onclick="if(setMendatory($(this))) blockme();" oncomplete="$.unblockUI()" reRender="assetPart,campaignFeeId,Oblix_card" styleClass="btn btn-primary btn_plus btn_asset_add">
+                                                                                            <apex:commandButton value="ADD" action="{!AddToProjectAction}" onclick="if(setMendatory($(this))) blockme();" oncomplete="$.unblockUI()" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card" styleClass="btn btn-primary btn_plus btn_asset_add">
                                                                                                 <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
                                                                                                 <apex:param assignTo="{!subCat}" name="subCat" value="{!subCat}" />
                                                                                                 <apex:param assignTo="{!complexity}" name="complexity" value="{!opt}" />
                                                                                             </apex:commandButton>
+                                                                                            <input value="UPDATE" onclick="updateAsset(this); if(setMendatory($(this))) blockme(); return false;" class="btn btn-primary hide_button" style="width:70px" type="submit" /><!--return false;reRender="assetPart,campaignFeeId,estimateId,Oblix_card" -->
                                                                                         </div>
 
                                                                                     </apex:actionRegion>
@@ -356,13 +357,16 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                         
                                                 <!--                                    tab body end-->
                                                 <!--                                    tab body-->
 
                                                 <apex:variable var="count2" value="{!count2 + 1}" />
                                             </apex:repeat>
+                                           
                                             <!--apex:variable var="selectionCount" value="{!selectionCount + 1}" /-->
                                         </div>
+                                          </apex:outputPanel>
                                         <!--                                    tab body end-->
                                         <!--                                    panel body end-->
                                     </div>
@@ -372,7 +376,7 @@
                         </apex:repeat>
                     </div>
                 </div>
-                <div class="col-lg-3 asset_shopping_basket_margin">
+                <div class="col-lg-3 asset_shopping_basket_margin" id="sidebar" data-sticky_column="">
                     <apex:outputPanel id="Oblix_card">
                         <div class="asset_shopping_basket">
                             <div class="asset_shopping_basket_title_bar">

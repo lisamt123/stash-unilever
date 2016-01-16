@@ -7,13 +7,13 @@ public with sharing class Oblix_NonCampaignWrapper {
 	public String selectedCountryActivity { get; set; }
 	public String selectedAgencyDepartment { get; set; }
 	public String selectedRole { get; set; }
-	public String selectedHourlyRateResult { get; set; }
-	public String rate { get; set; }
+	public String hourlyRate { get; set; }
 	public String roundedRate { get; set; }
-	public Integer numberOFHoursRequired { get; set; }
+	public Integer hoursSelected { get; set; }
 	public String result { get;set; }
 	public String name { get; set; }
 	public String totalAmount { get; set; }
+	public Integer index { get; set; }
 
 
 	public Boolean agencyVisible { get;set; }
