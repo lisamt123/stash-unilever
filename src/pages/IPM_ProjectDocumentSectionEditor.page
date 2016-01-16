@@ -333,6 +333,7 @@
                                                                             <apex:outputPanel styleClass="col-sm-12 pull-right charcount textRight" rendered="{! If(AND(IsEditableSumm=true),'true','false')}">
                                                                                 <span id="lblCharCountGate">{!$Label.IPM_CHAR_REMAINING} </span> <strong id="charCountRemaining">{!remainingChar}</strong>
                                                                             </apex:outputPanel>
+                                                                            <div id="dummyCount">{!sectionCharLimit}</div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -549,6 +550,7 @@
                                                                             <div class="col-sm-5 pull-right charcount textRight">
                                                                                 <span>{!$Label.IPM_CHAR_REMAINING} </span> <strong id="lblCharCountGate2">{!remainingChar}</strong>
                                                                             </div>
+                                                                            <div id="secEditCount">{!sectionCharLimit}</div>
                                                                         </div>
                                                                         <!-- <apex:inputField value="{!projDocSec.IPM_Gate_Document_Summary__c}"/>-->
                                                                         <apex:inputField styleClass="countTarget" value="{!projDocSec.IPM_Gate_Document_Summary__c}" id="gate2"  rendered="{! If(AND(IsEditableSumm=true),'true','false')}" />

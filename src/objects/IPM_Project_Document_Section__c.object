@@ -855,6 +855,19 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Summary_Character_Remaining__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Summary Character Remaining</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_User_Id__c</fullName>
         <externalId>false</externalId>
         <formula>IPM_Project_Document__r.IPM_Project__r.IPM_Project_Leader__c</formula>

@@ -19,6 +19,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     public list<IPM_Project_Document_Section__c>projSectionList{get;set;} //Contains List of Project Document Sections
     public integer charCount{get;set;} //For Character Count
     public integer countLimit{get;set;} //For Character Count Limit
+    public Integer sectionCharLimit{get; set;}//For Character Count
     public integer remainingChar{get;set;} //For Remaining Character Count After Editing
     public integer countOfTask{get;set;}// Count of Number of Tasks Remaining
     public Integer countOfCountries{get; set;} //Number of Countries from Project
@@ -200,7 +201,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         }
         
         //Fetching Project Document Section
-        projDocSec=[SELECT Id,IPM_Project_Document__c,IPM_User_Id__c,Is_IPM_Global_Consolidated__c,IPM_Section_Sequence_Number__c,IPM_Project_L_eader_Email__c,IPM_DocSec_Project_Leader__c,IPM_Section_Sequence__c,IPM_GateHistory_Date__c,IPM_PDPHistoty_Date__c,IPM_GateHistory__c,IPM_PDPHistoty__c,
+        projDocSec=[SELECT Id,IPM_Summary_Character_Remaining__c,IPM_Project_Document__c,IPM_User_Id__c,Is_IPM_Global_Consolidated__c,IPM_Section_Sequence_Number__c,IPM_Project_L_eader_Email__c,IPM_DocSec_Project_Leader__c,IPM_Section_Sequence__c,IPM_GateHistory_Date__c,IPM_PDPHistoty_Date__c,IPM_GateHistory__c,IPM_PDPHistoty__c,
                     IPM_Section_Name__c,IPM_Section_Help_Text_Long__c,IPM_FunctionalRole__c,IPM_Negotiable__c,IPM_Notify_Team__c,LastModifiedBy.Name,LastModifiedDate,IPM_Section__r.External_ID__c,
                     IPM_PDP_Document_Summary__c,IPM_Gate_Document_Summary__c,IPM_Count_of_Comments__c ,IPM_Master_Section_External_Id__c,IPM_Section__r.IPM_Character_Limit__c
                     FROM IPM_Project_Document_Section__c WHERE Id=:String.escapeSingleQuotes(String.valueOf(projDocSecId)) LIMIT 1];
@@ -219,9 +220,10 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
             countOfCountries=[SELECT count() FROM IPM_Country__c WHERE isActive__c=true AND IPM_Regional_Project__c=:project.id];
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
             countOfCountries=0;
-          
-        countLimit=Integer.valueof(projDocSec.IPM_Section__r.IPM_Character_Limit__c);
-       
+        
+        sectionCharLimit=Integer.valueof(projDocSec.IPM_Section__r.IPM_Character_Limit__c);  
+        countLimit=Integer.valueof(projDocSec.IPM_Summary_Character_Remaining__c);
+           
         remainingChar=countLimit;
         
         /* Added for Eco Design */
