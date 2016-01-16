@@ -2228,7 +2228,11 @@ private Date getProjectMilestoneDate(){
     */
     public void updateMisalignmentByFinanceLeader() {
         try{
-            if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+            if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {
+            	project.MisAligned_Confirmed_By_Finance_Leader__c = true;
+            	update project;
+            	setMisalignedValue();
+            } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
                 localRolloutProject.MisAligned_Confirmed_By_Finance_Leader__c = true;
                 showMisalignedConfirmbtn = true;  
                 update localRolloutProject;
@@ -2306,7 +2310,11 @@ private Date getProjectMilestoneDate(){
                 validationErrorMessage = '';
             }          
             isTargetLaunchDateMisaligned =  flag;                               
-            if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) {
+            if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.Previous_Target_Launch_Date__c!=project.IPM_Target_Launch_Dates__c) {
+            	showMisalignedConfirmbtn = project.MisAligned_Confirmed_By_Finance_Leader__c;
+            	currentTargetLaunchDate = project.IPM_Target_Launch_Dates__c.format();
+            	previousTargetLaunchDate = project.Previous_Target_Launch_Date__c.format();
+            } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) {
                 if(currentFinancial != null){
                         IPM_Project__c proj = [Select (Select Name, Target_Launch_Date__c,Previous_Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Project_Rollout__r) From IPM_Project__c where id=:project.id];
                         if(proj.IPM_Project_Rollout__r.size()>0) {
