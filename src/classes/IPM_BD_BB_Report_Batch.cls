@@ -15,7 +15,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     global set<id> projectIdSet = new set<id>();
     global set<id> rolloutprojectIdSet = new set<id>();
     global map<Id,list<IPM_Project_Rollout__c>> projRolloutMap;
-    global map<string,list<IPM_Financial_Year__c>> rolloutFinancialYearmap;
+    global map<string,list<IPM_Financial_Year__c>> rolloutFinancialYearmap;  
     global map<id,list<IPM_Financial__c>> rolloutFinancialmap;
     global list<IPM_Analytics__c> analyticRecList;  
     public static final String BB_BD_REPORT_RUNDATE='BD BB Report'; //To fetch BB BD Report last run date from custom setting
@@ -46,9 +46,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             projectIdSet.add(p.Id);
             if(String.isNotBlank(p.IPM_Phase__c) && p.IPM_Phase__c.equalsignorecase(IPM_Utils.Ideas)){
                 rolloutprojectIdSet.add(p.Id);
-            }                
+            }
         }
-
+        
         //Delete existing analytics records so that the changes made to the existing projects will be recorded again
         try{  
         List<IPM_Analytics__c> analyticsRecDelList = new list<IPM_Analytics__c>([SELECT id
@@ -228,8 +228,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         }
         
         //Fetching rollout records for project in Ideas phase and creating map
-       	projRolloutMap = new map<id,list<IPM_Project_Rollout__c>>();
-       	set<id> regionalRolloutset = new set<id> ();
+         projRolloutMap = new map<id,list<IPM_Project_Rollout__c>>();
+         set<id> regionalRolloutset = new set<id> ();
         try{
             list<IPM_Project_Rollout__c> projRolloutList = new list<IPM_Project_Rollout__c>([SELECT id,
                                                                                                     name,
@@ -252,7 +252,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                             projRolloutMap.put(pr.IPM_Project__r.id, rolloutList);              
                     }
                     if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
-                    	regionalRolloutset.add(pr.Id);	
+                      regionalRolloutset.add(pr.Id);  
                     }
                 }    
             }
@@ -323,10 +323,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         }   
         catch(Exception ex){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR,null,null,null,null); 
-        }  
-        
-
-
+        } 
         //End of Map creation logic ***
 
         //Start - Analytics Object Record Insertion 
@@ -364,16 +361,15 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             a.IPM_Project_Start_Date__c = p.CreatedDate.date(); 
             a.IPM_Cluster_Project__c = p.IPM_Clusters__c;
             a.IPM_Phase__c = p.IPM_Phase__c;            
-            a.IPM_Exempt_from_Threshold__c = p.Exempt_from_Threshold__c;
+            a.IPM_Exempt_from_Threshold__c = p.Exempt_from_Threshold__c; 
+            a.IPM_Auto_Aligned_Fin_TLD__c = p.IPM_Misalligned__c; // Auto_Aligned will only be checked for local projects
 
 
             if(String.isNotBlank(p.IPMProject_Span__c) && (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) || p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional))){
                 a.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
             }else if(String.isNotBlank(p.IPMProject_Span__c) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
                 a.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
-                a.IPM_Market_Cluster__c = p.Market_Cluster_Name__c;
-                // *** Auto_Aligned will only be checked for local projects
-                a.IPM_Auto_Aligned_Fin_TLD__c = p.IPM_Misalligned__c; 
+                a.IPM_Market_Cluster__c = p.Market_Cluster_Name__c;                 
             }
 
             if(String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original)){
@@ -440,7 +436,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 
                     if(mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.BET_MS_FIRST_RELEASE)){
                         a.IPM_BET_First_Release_Due_Date__c = mile.IPM_Due_Date__c;
-                        a.IPM_BET_First_Released_On_Date__c = mile.IPM_Completed_on__c; 
+                        a.IPM_BET_First_Released_On_Date__c = mile.IPM_Completed_on__c;     
                     }
 
                     if(mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.BET_MS_FINAL_RELEASE)){
@@ -568,9 +564,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             }
             analyticreclist.add(a);  
             if(projRolloutMap.containskey(a.IPM_Project_Id__c)){
-            	List<IPM_Analytics__c> rollAnalyticlist = new List<IPM_Analytics__c> (addrolloutproject(a));
+              List<IPM_Analytics__c> rollAnalyticlist = new List<IPM_Analytics__c> (addrolloutproject(a));
                 if(!rollAnalyticlist.isEmpty()){
-                	analyticreclist.addall(rollAnalyticlist);                
+                  analyticreclist.addall(rollAnalyticlist);                
                 }               
             }  
 
@@ -650,7 +646,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         }
 
         return returnValue; 
-
     }  
     
     /*********************************************************************************************************************
@@ -663,7 +658,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         
        
         IPM_Analytics__c parent = parentanalyticrec;
-       	list<IPM_Analytics__c> returnList = new list<IPM_Analytics__c>();
+         list<IPM_Analytics__c> returnList = new list<IPM_Analytics__c>();
         id regionalrolloutid;             
          
              for(IPM_Project_Rollout__c pr:projRolloutMap.get(parent.IPM_Project_Id__c)){
