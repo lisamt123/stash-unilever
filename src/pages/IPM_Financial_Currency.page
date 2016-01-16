@@ -65,15 +65,9 @@
                                                              <ul class="docFilter accordionFilters">
                                                                     <apex:repeat value="{!rolloutWrapper.lstFinancials}" var="financial">  
                                                                         <li class="{!IF(financial.Status__c == $Label.IPM_SUBMITTED, $Label.IPM_SUBMIT_CODE, IF(financial.Status__c == $Label.IPM_IN_PROGRESS, $Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE))} {!IF(currentFinancialId == financial.Id, $Label.IPM_Selected, '')} finRecord">
-                                                                            <div class="incHeight" id="flagID">              
-                                                                                <span class="key wordwrap">
-                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!IF(AND(NOT(CONTAINS(financial.Financial_External_ID__c, '_NONKEY')), currentTab == 'myview'), TRUE, FALSE)}"/>
-                                                                                </span>
-                                                                            
-                                                                            <apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                            <i class="flag"></i><apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                                 <apex:param name="currentFinancialId" value="{!financial.Id}" assignTo="{!currentFinancialId}"/>
                                                                             </apex:commandLink>
-                                                                            </div>
                                                                         </li>           
                                                                    </apex:repeat>
                                                                 </ul>

@@ -121,7 +121,7 @@
                                                                     <td width="20%">
                                                                         <div class="ml25">
                                                                             <apex:outputPanel rendered="{!isEditable}">
-                                                                                <input type="radio" name="grp1{!country.code}" id="grp3{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'No Rollout'),'checked','')} {!IF(country.noRolloutDisabled == true,'disabled','')}" />
+                                                                                <input type="radio" name="grp1{!country.code}" id="grp3{!country.code}" value="{!country.code}" class="{!IF((country.selected == true && country.rolloutStatus == 'No Rollout'),'checked','')} {!IF(country.noRolloutDisabled == true,'disabled','')}"/>
                                                                                 <label for="grp3{!country.code}"> </label>
                                                                             </apex:outputPanel>
                                                                            <!-- <apex:outputPanel rendered="{!!isEditable}">
@@ -142,17 +142,12 @@
                                     <div class="col-sm-12 text-right">
                                         <apex:commandLink styleClass="ipmButton mr10" action="{!cancel}" value="{!$Label.IPM_CANCEL}" status="loadingStatus" rendered="{!isEditable}"/>
                                         
-                                        <apex:outputPanel rendered="{!isEditable}" >
-                                            <div class="ipmButton primary generateRolloutBtn" >{!$Label.IPM_GENERATE_ROLLOUTS}</div>
-                                        </apex:outputPanel>    
+                                        <apex:commandButton styleClass="ipmButton primary generateRolloutBtn" reRender="none" onclick="invokeRolloutGeneration();"  value="{!$Label.IPM_GENERATE_ROLLOUTS}" rendered="{!isEditable}" />
                                     </div>
                                 </div> 
                             </apex:outputPanel>    
                         </div>
-                    </apex:outputPanel>
-
-                   <c:IPM_ConfirmModal />
-                   
+                    </apex:outputPanel> 
                     <apex:actionFunction name="changeMCO" action="{!changeMCO}" reRender="mcoPanel,countryPanel,scriptPanel" status="loadingStatus" onComplete="regionalscriptpanel();">
                         <apex:param name="p1" assignTo="{!regionalMco}" value=""/>
                         <apex:param name="p2" assignTo="{!regionalUnselectedMco}" value=""/>
@@ -174,7 +169,16 @@
                     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_RolloutPlansRegional.js')}" type="text/javascript"></script>
                     <apex:outputPanel id="scriptPanel">
                         <script>
-                          var IPMregionalApp = {completed: '{!isCompleted}',url:'{!URLFOR($Page.IPM_RolloutPlans)}',proid:'{!projectId}',warningTitle:'{!$Label.IPM_RemoveCountryFromMCO}',warningMsg:'{!$Label.IPM_RemoveCountryMsg}',cancelBtnText:'{!$Label.IPM_CancelCountryRemoval}',acceptBtnText:'{!$Label.IPM_AgreeCountryRemoval}',baseUrl:'{!URLFOR($Page.IPM_RolloutPlansRegional)}'};
+                            alert('{!isCompleted}');
+                            alert('selectedMCOs-->>'+selectedMCOs);
+                            alert('unselectedMCOs -->>'+unselectedMCOs );
+                            alert('selectedCountries -->>'+selectedCountries );
+                            alert('unselectedCountries -->>'+unselectedCountries );
+                            alert('selectedNoRollouts -->>'+selectedNoRollouts );
+                            alert('unselectedNoRollouts -->>'+unselectedNoRollouts );
+                            
+                            
+                            var IPMregionalApp = {completed: '{!isCompleted}',url:'{!URLFOR($Page.IPM_RolloutPlans)}',proid:'{!projectId}'};
                         </script>
                     </apex:outputPanel>
             </apex:form>

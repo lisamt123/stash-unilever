@@ -30,12 +30,7 @@ public class IPM_Gate_Milestones_Test {
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
         
-        // Inserting Master Data whose OWD are set to readOnly/View All    
         IPM_TestFactory_Helper.getProjectMasterData();
-        
-        // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
-        IPM_TestFactory_Helper.shareMasterProject(new List<User>{stdUserForMilestone});
-        
         List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(1, stdUserForMilestone);
         System.runAs(stdUserForMilestone)
         {

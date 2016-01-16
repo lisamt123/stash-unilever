@@ -48,7 +48,7 @@
                                             </div> 
                                         </apex:outputPanel>
                                     </apex:outputPanel>
-                                    <apex:outputText rendered="{!!isEditable}"><div class="gkcStatus {!IF(gk.IPM_GK_Answers__c=='{!$Label.IPM_NO_APPLICABLE}','{!$Label.IPM_NO_APPLICABLE}',gk.IPM_GK_Answers__c)}">{!gk.IPM_GK_Answers__c}</div></apex:outputText>
+                                    <apex:outputText value="{!gk.IPM_GK_Answers__c}" rendered="{!!isEditable}"/>
                                 </td>
                             </tr>
                             <tr>

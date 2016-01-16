@@ -15,13 +15,13 @@ public class  IPM_BCCController_Test {
     public static IPM_Financial__c fin=new IPM_Financial__c();
     private static string LOCAL_STR='Local';
     private static string REGIONAL_STR='Regional';
-    private static String geoExternalId = '';
-    private static MDO_Geography__c mdo;
+	private static String geoExternalId = '';
+	private static MDO_Geography__c mdo;
     /*************************************************************************
     @Description : to Intialize(insert) the data for Project, 
         IPM_Project_Rollout__c, IPM_Financial__c objects
 ***************************************************************************/
-    public static void initializeData(){
+    public static testMethod void initializeData(){
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
         {
             // user has to be created as system admin 

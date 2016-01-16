@@ -36,7 +36,7 @@
                     <div class="col-xs-12 mitigationRow">
                         <div class="pull-left heading3 blue ipmPanelHeading"><apex:outputText value="{!$Label.IPM_RISK_MITIGATION_PLAN}" />
                     </div>
-                    <div class="pull-left SecStatusUpdate1 riskModal" modalTitle="{!If(projDocType=='Contract',$Label.IPM_REVIEW_RISK_QUICK_SCAN,$Label.IPM_RISK_MODAL_UPDATED_TITLE)}" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_PosQuestions}?id={!projectId}&projDocSecId={!projDocSecId}&gateType={!projDocType}&IsEditable={!IsEditable}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_REVIEW_POS_AND_RQS}">
+                    <div class="pull-left SecStatusUpdate1 riskModal" modalTitle="{!$Label.IPM_RISK_MODAL_UPDATED_TITLE}" data-toggle="modal" data-target="#ipmModal" value="{!$Page.IPM_PosQuestions}?id={!projectId}&projDocSecId={!projDocSecId}&gateType={!projDocType}&IsEditable={!IsEditable}" data-backdrop="static" data-keyboard="false" title="{!$Label.IPM_REVIEW_POS_AND_RQS}">
                         <span class="addLinkText">
                             <apex:outPutLabel rendered="{!If(projDocType='Charter',true,false)}">
                                 {!$Label.IPM_REVIEW_RISK_LINK}

@@ -258,20 +258,13 @@ public with sharing class BET_SuggestMembersController {
     *************************************************************/
     public void addNewMembers(){
         System.debug('Entering method addNewMembers following users will be added:'+newlyAddedUsers);
-        Set<Id> membersSet = new Set<Id>();
-        membersSet.addAll(suggested_MembersCtrl);
         if(newlyAddedUsers != null){
             for(String userToAdd : newlyAddedUsers.split(',')){
                 if(userToAdd != null && userToAdd.trim() != ''){
-                    if(!membersSet.contains(Id.valueOf(userToAdd))) {
-                        suggested_MembersCtrl.add(Id.valueOf(userToAdd));
-                    } 
+                    suggested_MembersCtrl.add(Id.valueOf(userToAdd)); 
                 }
             }
         }
-
-        System.debug('add new members ' + suggested_MembersCtrl);
-
         newlyAddedUsers = '';
         freeAddMembers = new List<User>();
         searchUserName = '';
@@ -286,7 +279,7 @@ public with sharing class BET_SuggestMembersController {
     *************************************************************/
     public void  searchUsers(){
         System.debug('Entering method searchUsers : ' + betIdCtrl);
-        Id betOwnerId = BET_CommonService.getOwnerIdOfGivenBet(betIdCtrl);
+        Id betOwnerId = [SELECT OwnerId FROM uw_BET__c WHERE Id =: betIdCtrl Limit 1].get(0).OwnerId;
         System.debug('Preparing searchUsers query : ' + searchUserName  +', ' + betOwnerId);
         String query = 'SELECT Id,Name,SmallPhotoUrl,Title from User where   name like \'%'+searchUserName+'%\'  '
          + ' and isActive = true {0} and Id !=: betOwnerId ' 
@@ -352,26 +345,22 @@ public with sharing class BET_SuggestMembersController {
         System.debug('Entering method addMembers for following user: '+suggested_MembersCtrl);
         List<BET_Follow_Request__c> betFollowRequest = new List<BET_Follow_Request__c>();
         if(betIdCtrl != null && projectIdCtrl != null){
-            betFollowRequest = BET_LinkingService.getFollowRequestsForBetAndIpm(betIdCtrl,projectIdCtrl);
+            betFollowRequest = [SELECT id from BET_Follow_Request__c WHERE Brand_Experience_Toolkit__c =: betIdCtrl and Project_Id__c =:projectIdCtrl]; 
         }
         Id betFollowRequestId = betFollowRequest.isEmpty() ? null : betFollowRequest.get(0).id;
-        Id betOwnerId = BET_CommonService.getOwnerIdOfGivenBet(betIdCtrl);
+        Id betOwnerId = [select ownerid from uw_BET__c where id=:betIdCtrl].ownerid;
 
 		insertMemberRequestsRecords(betFollowRequestId,betOwnerId);
 
         System.debug('Exiting method addMembers method processes with success');
         if(callbackCtrl != null){
-            return goToCallback(callbackCtrl);
+            PageReference pr = new PageReference(callbackCtrl);
+            pr.setRedirect(true);
+            return pr;
         }        
         
         return null;
 	}
-
-    public PageReference goToCallback(String callback){
-        PageReference pr = new PageReference(callback);
-        pr.setRedirect(true);
-        return pr;
-    }
 	
 	public void insertMemberRequestsRecords(Id betFollowRequestId,Id betOwnerId){
 		List<BET_Member_Request__c> betMembersToInsert = new List<BET_Member_Request__c>();
@@ -390,7 +379,7 @@ public with sharing class BET_SuggestMembersController {
         }
 
         if(!betMembersToInsert.isEmpty()){
-            BET_SuggestedMemberService.insertMemberRequests(betMembersToInsert);
+            insert betMembersToInsert;
             IPM_BETUpdateService.updateBETMemberRequest(new Set<Id> {projectIdCtrl});
         }
 	}

@@ -152,10 +152,10 @@ public with sharing class uw_BETWrapper {
                 if(startIdx > -1){
                     this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, startIdx+25);
                 }
-            } else if(this.assetDownloadLink != null){
+            } else if(this.assetDownloadLink != null && !this.assetDownloadLink.contains(validLinkPrefix)){
                 this.assetPreviewLink = this.assetDownloadLink;
             }
-
+            
         }
     }
 

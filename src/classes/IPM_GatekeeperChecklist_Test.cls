@@ -62,7 +62,7 @@ public class IPM_GatekeeperChecklist_Test{
     /*************************************************************************************************************************
     * @description Test Data
     */
-    static void initializeTestMethodData(){
+    @testSetup static void initializeTestMethodData(){
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
        globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1]; 

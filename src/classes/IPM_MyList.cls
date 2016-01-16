@@ -296,8 +296,12 @@ public with sharing class IPM_MyList{
             tasksToReturn = Database.query(soql);
             standardSetCon = new ApexPages.StandardSetController(Database.getQueryLocator(soql));
         }catch(Exception ex){
-            catchBlockContent(LOAD_TASKS,ex);
             
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    LOAD_TASKS,ex.getMessage(),ex, ERROR_STR, null, null, null,null);
         }        
         
         projectsSet =new Set<String>();
@@ -326,8 +330,11 @@ public with sharing class IPM_MyList{
                     IPM_Task__c[] tasksList = eachSection.Tasks__r;
                 }
             }catch(Exception ex){
-                catchBlockContent(LOAD_TASKS,ex);
+                ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+                ApexPages.addMessage(myMsg); 
             
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    LOAD_TASKS,ex.getMessage(),ex, ERROR_STR, null, null, null,null);
             }
         }
         
@@ -346,12 +353,18 @@ public with sharing class IPM_MyList{
     
     //Delete Tasks  
     public void deleteTask() {
-        try 
-        {
-            delete [SELECT Id FROM IPM_Task__c WHERE Id =:taskId];
+        try{
+            List<IPM_Task__c> tObj = [SELECT Id FROM IPM_Task__c WHERE Id =:taskId];
+            //To Check CRUD
+            if (tObj != null && !tObj.isEmpty() && IPM_Task__c.sObjectType.getDescribe().isDeletable()){
+                delete tObj;
+            }   
         }catch(Exception ex){
-            catchBlockContent('deleteTask',ex);
-
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'deleteTask',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
         }
     }
 
@@ -368,8 +381,11 @@ public with sharing class IPM_MyList{
             tObj.IPM_Completed_Date__c = isChecked == IPM_Utils.truevalue ? system.today() : null;
             update tObj;    
         }catch(Exception ex){
-            catchBlockContent('markComplete',ex);
-
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'markComplete',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
         }
         resetall();
     }    
@@ -429,8 +445,11 @@ public with sharing class IPM_MyList{
                     
                     totalpages= Integer.valueof(math.ceil((double)setCon.getResultSize()/(double)setCon.getPageSize()));
                 }catch(Exception ex){
-                    catchBlockContent('setCon',ex);
+                    ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+                    ApexPages.addMessage(myMsg); 
             
+                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'setCon',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
                 }
             }
             return setCon;
@@ -458,7 +477,11 @@ public with sharing class IPM_MyList{
             }
             return lstTasks;
         }catch(Exception ex){
-            catchBlockContent('getOverduetasksSample',ex);
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'getOverduetasksSample',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
             return null;
         }
     }
@@ -501,7 +524,11 @@ public with sharing class IPM_MyList{
                 }
                 return setControl;
             }catch(Exception ex){
-                catchBlockContent('setControl',ex);
+                ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+                ApexPages.addMessage(myMsg); 
+            
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'setControl',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
                 return null;
             }
         }set;
@@ -512,7 +539,11 @@ public with sharing class IPM_MyList{
             showtodaySize =setControl.getResultSize();
             setControl =null;
         }catch(Exception ex){
-            catchBlockContent('todayTasksize',ex);
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'todayTasksize',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
         }
     }
  
@@ -530,7 +561,11 @@ public with sharing class IPM_MyList{
             }
             return lstTasks;
         }catch(Exception ex){
-            catchBlockContent('getprojectTaskssample',ex);
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'getprojectTaskssample',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
             return null;
         }
         
@@ -573,7 +608,11 @@ public with sharing class IPM_MyList{
                 }
                 return setCont;
             }catch(Exception ex){
-                catchBlockContent('setCont',ex);
+                ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+                ApexPages.addMessage(myMsg); 
+                
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'setCont',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
                 return null;
             }
         }set;
@@ -584,7 +623,11 @@ public with sharing class IPM_MyList{
             nextSevensize =setCont.getResultSize();
             setCont=null;
         }catch(Exception ex) {
-            catchBlockContent('showAllNextSevenDays',ex);
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'showAllNextSevenDays',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
         }
     }
     
@@ -599,16 +642,16 @@ public with sharing class IPM_MyList{
             
             if(setCont !=null && isCompleteTasks != IPM_Utils.Yes){
                 for(IPM_Task__c a : (List<IPM_Task__c>)setCont.getRecords())
-                {
-                   lstTasks.add(a);
-                }   
+                    lstTasks.add(a);
                 return lstTasks;
             }else 
-            {
                 return null;
-            }
         }catch(Exception ex) {
-            catchBlockContent('getNextSevenTasks',ex);
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'getNextSevenTasks',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
             return null;
         }
     }    
@@ -650,7 +693,11 @@ public with sharing class IPM_MyList{
                 }
                 return setContr;
             }catch(Exception ex) {
-                catchBlockContent('setContr',ex);
+                ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+                ApexPages.addMessage(myMsg); 
+            
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'setContr',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
                 return null;
             }
         }set;
@@ -662,15 +709,17 @@ public with sharing class IPM_MyList{
             List<IPM_Task__c> lstTasks= new List<IPM_Task__c>();
             if(setContr != null && isCompleteTasks != IPM_Utils.Yes){
                 for(IPM_Task__c a : (List<IPM_Task__c>)setContr.getRecords())
-                {
                     lstTasks.add(a);
-                }    
                 return lstTasks;
             }else{
                 return null;
             }
         }catch(Exception ex) {
-            catchBlockContent('getLaterTasks',ex);
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'getLaterTasks',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
             return null;
         }
     }
@@ -680,7 +729,11 @@ public with sharing class IPM_MyList{
             laterSize =setContr.getResultSize();
             setContr=null;
         }catch(Exception ex) {
-            catchBlockContent('showAllLaterTasks',ex);
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'showAllLaterTasks',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
         }
     }
     
@@ -721,7 +774,11 @@ public with sharing class IPM_MyList{
                 }
                 return setController;
             }catch(Exception ex) {
-                catchBlockContent('setController',ex);
+                ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+                ApexPages.addMessage(myMsg); 
+            
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'setController',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
                 return null;
             }
         }set;
@@ -732,7 +789,11 @@ public with sharing class IPM_MyList{
             completedSize =setController.getResultSize();
             setController=null;
         }catch(Exception ex) {
-            catchBlockContent('showCompletedTasks',ex);
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'showCompletedTasks',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
         }
     }
     
@@ -749,15 +810,17 @@ public with sharing class IPM_MyList{
             List<IPM_Task__c> lstTasks= new List<IPM_Task__c>();
             if(setController != null && isCompleteTasks != IPM_Utils.No){
                 for(IPM_Task__c a : (List<IPM_Task__c>)setController.getRecords())
-                {
-                    lstTasks.add(a);
-                }            
+                    lstTasks.add(a);        
                 return lstTasks;
             }else{
                 return null;
             }
         }catch(Exception ex) {
-            catchBlockContent('getcompletedTasks',ex);
+            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);
+            ApexPages.addMessage(myMsg); 
+            
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,
+                    'getcompletedTasks',ex.getMessage(),ex, ERROR_STR, null, null, null,null);
             return null;
         }
     }    
@@ -927,24 +990,11 @@ public with sharing class IPM_MyList{
         projectlist =new List<String>();
         if(String.IsNotEmpty(searchedProject)){
             for(String sProjectName : projectsSet)
-            {
                 if(String.IsNotEmpty(sProjectName) && sProjectName.startsWithIgnoreCase(searchedProject))
-                {
                     projectlist.add(sProjectName);
-                }
-            }    
         }else{
             projectlist.addAll(projectsSet);
         }
         projectlist.sort();
-    }
-    /********************************************************************************
-    *@Description : To get content of catch block
-    *@Param: NA
-    *@return:This method will contain the content of catch block
-    *********************************************************************************/
-    public void catchBlockContent(string methodName,Exception ex){
-    	ApexPages.addMessage(new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage)); 
-        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_MYLIST_STR,methodName,ex.getMessage(),ex, ERROR_STR, null, null, null,null);
     }
 }

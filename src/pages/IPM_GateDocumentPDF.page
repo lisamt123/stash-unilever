@@ -1,6 +1,5 @@
 <apex:page controller="IPM_GateDocumentController" sidebar="false"  renderAs="PDF" standardStylesheets="false" applyHtmlTag="false" showHeader="false" applyBodyTag="false" readOnly="true" extensions="IPM_GetHelpDoc">
 <html>
-
 <head>   
     <style type="text/css" media="print">
     
@@ -44,7 +43,7 @@
                  background-position: 20px 40px;
              }
         }
-         body, table{font-family:Arial Unicode MS; font-size:14px;color: rgb(102, 102, 102);border-collapse:collapse}
+         body, table{font-family:Arial Unicode MS; font-size:14px;color: rgb(102, 102, 102);}
          table td {text-align:left; vertical-align:top;}
          .bold {font-weight: bold; font-family: sans-serif;}
          .header {margin-left:5mm!important; margin-right:5mm!important; margin-top:5mm!important; margin-bottom:5mm!important;}
@@ -65,9 +64,8 @@
         #wrapper {margin-left:5mm!important; margin-right:5mm!important;margin-top:10mm !important;float:left;}
         .headSecBlock {display:inline-block; padding-left:8px; text-transform:uppercase; padding-right:8px; margin-top:6px; color:#555!important; border-left:0.25pt solid #a8a8a8!important; }        
         .headSecBlock.smallText {font-size:9pt!important;font-weight:normal;} 
-        .headSecBlock.global{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/star_s.png')}'); background-repeat:no-repeat;background-position:10px 3px;} 
-        .headSecBlock.operational{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/hammer_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
-        .headSecBlock.local{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/location_s.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
+        .headSecBlock.global{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/globe.png')}'); background-repeat:no-repeat;background-position:10px 3px;} 
+        .headSecBlock.local{font-size:9pt!important; padding-left:30px!important; background-image:url('{!URLFOR($Resource.IPM_Resource, 'images/icoLocal.png')}'); background-repeat:no-repeat;background-position:10px 0px; } 
          h5 {font-size:13px!important;}        
         .projLogo{width:100%!important;}        
         .floatLeft{float:left;}
@@ -182,10 +180,10 @@
         .col-sm-1{width:10px;}
         .clearfix{clear:both !important;}
         
-        .Red{max-width:40px;background:#fe0000;color:#fff;text-align:center;font-size:10px;}
-        .Green{max-width:40px;color:#fff;text-align:center;font-size:10px; background: #81bf42;}
-        .Amber{max-width:40px;color:#fff;text-align:center;font-size:10px; background: #f1993e;}
-        .Not.Apllicable{max-width:60px;color:#fff;text-align:center;font-size:10px;background: orange;}
+        .Red{max-width:40px;background:#81bf42;color:#fff;text-align:center;font-size:10px;}
+        .Green{max-width:40px;background:#81bf42;color:#fff;text-align:center;font-size:10px; background: #81bf42;}
+        .Amber{max-width:40px;background:#81bf42;color:#fff;text-align:center;font-size:10px; background: #f1993e;}
+        .Not.Apllicable{max-width:60px;background:#81bf42;color:#fff;text-align:center;font-size:10px;background: orange;}
         .pageTitle{border-right:0px !important;}
         .colHeight{height:20px;}
         .noteimg .icoButton {display: inline-block;width: 15px;cursor: text;margin: 2px 6px -9px 0px; height: 30px;float:left; }
@@ -400,51 +398,6 @@
         .gateCmiInnerTable th{font-size:9pt !important;color: #3b516d;}
         .cmiGateSectionTable .gateCmiTitle{background: #f3ffe7 !important;border-top: 1px #9ab4b1 solid;padding:2px;font-size:9pt !important;}
                
-         td.bggray:first-child 
-        {
-           width:27.5%
-        } 
-        
-        td.bggray:first-child + td
-        {
-           width:16.5%
-        } 
-        td.bggray:first-child + td +td
-        {
-           width:55%
-        }
-        .riskCustBackground
-        {
-            background: #dceefa;
-            color: #3b516d;
-            font-weight: bold;
-            padding:8px 0;
-            border-top:#9ab4b1 solid 1px;
-            border-bottom:#9ab4b1 solid 3px;      
-        }
-        .ceContainer
-        {
-
-           clear:both !important;
-        }
-        .ipmFinancetable tbody tr td
-        {
-            font-size:10px
-        }
-        .htmlDetailElementTable
-        {
-           clear:both;
-        }
-        .ceCommentBox
-        {
-           width:78%;
-           float:right;
-        }
-         .consumerImgContainer
-        {
-           min-height:160px;
-           display:block;
-        }
     </style>
 </head>
 <body class="docBody">
@@ -469,8 +422,7 @@
                 </td>
                 <td align="center">        
                 <apex:outputText value="{!projectDoc.IPM_GateDocuments__c }" styleClass="headSecBlock bold"/>
-                <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock global" rendered="{!project.IPM_Project_Type__c='Original'}"/>
-                 <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock operational"  rendered="{!project.IPM_Project_Type__c='Operational'}"/>    
+                <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock global" rendered="{!project.IPM_Project_Type__c='Original'}"/>    
                 <apex:outputText value="{!project.IPMProject_Span__c }" styleClass="headSecBlock local"  rendered="{!project.IPM_Project_Type__c='Rollout'}"/>
                 <apex:outPutpanel rendered="{!IF(OR(projectDoc.IPM_Document_Status__c='Approved',projectDoc.IPM_Document_Status__c='Proposed'), 'true', 'false')}">
                     <div class="headSecBlock bold">{!projectDoc.IPM_Document_Status__c}</div>
@@ -568,7 +520,7 @@
 
                             <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">     
                     <td>
-                        <apex:outputText value="{!globalbusinessImpactStr}"/>
+                        <apex:outputText value="{!globalbusinessImpactStr}"/>}
                     </td>
                  
                     </apex:outputText>
@@ -769,7 +721,7 @@
                 <apex:outputText value="{!apxSec.IPM_Section_Name__c} [{!apxSec.IPM_FunctionalRole__c}]"  styleClass="heading4 bold" />
                     <c:IPM_FinInitialEstOfOppCharter projId="{!projectId}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity'}"></c:IPM_FinInitialEstOfOppCharter>
                     <c:IPM_Consumer_Evidence gate="{!projectDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" Editable="false" getSecid="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Consumer_Evidence_Concept'}"></c:IPM_Consumer_Evidence>
-                    <c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Environmental_Impact'}"></c:IPM_EcoDesignSection>
+                    <c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!apxSec.Id}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact'}" />
                     <c:IPM_Customer_Channels gdpage="true" getProjectID="{!projectId}" getSecid="{!apxSec.Id}" CCEdit="false" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Customers_Channels'}"></c:IPM_Customer_Channels>
                     <c:IPM_Risk_QuestionnaireView getProjectId="{!projectId}" getProjectSectionId="{!apxSec.Id}" editSection="false" gateType="{!projectDoc.IPM_GateDocuments__c}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Risk'}"></c:IPM_Risk_QuestionnaireView>
                     <c:IPM_Gate_RollOuts projId="{!projectId}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Rollout_Plans'}"></c:IPM_Gate_RollOuts>

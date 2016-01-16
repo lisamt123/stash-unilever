@@ -1,7 +1,5 @@
 <apex:component controller="BET_ApproveProjectsComponentController" allowDML="true" >
 
-    <apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
-
 	<apex:attribute name="betId" assignTo="{!betIdentifier}" description="Id of an related BET" required="true" type="Id" />
     <apex:attribute name="owner" assignTo="{!betOwner}" description="Current user is bet owner" required="true" type="Boolean" />
 
@@ -56,18 +54,18 @@
 
             <div class="betActionButtons">
                 <apex:actionRegion >
-                    <apex:commandButton value="{!$Label.BET_Deny}" styleClass="betBtnGray" 
+                    <apex:commandButton value="{!$Label.BET_Deny}" styleClass="btn-deny" 
                                         action="{!doDeny}" 
                                         rendered="{!betOwner}"
                                         rerender="approvpanel"
-                                        style="font-family:Rockwell;font-size:14px;">
+                                        style="font-family:Rockwell;">
                         <apex:param name="elementNo" value="{!preq.id}" assignTo="{!elementId}"/>
                     </apex:commandButton>
-                    <apex:commandButton value="{!$Label.BET_Approve}" styleClass="betBtnPink" 
+                    <apex:commandButton value="{!$Label.BET_Approve}" styleClass="btn-approve" 
                                         action="{!doApprove}" 
                                         rendered="{!betOwner}"
                                         rerender="approvpanel"
-                                        style="margin-left:20px;font-family:Rockwell;font-size:14px;">
+                                        style="margin-left:20px;font-family:Rockwell;">
                         <apex:param name="elementNo" value="{!preq.id}" assignTo="{!elementId}"/>
                     </apex:commandButton>
                 </apex:actionRegion>

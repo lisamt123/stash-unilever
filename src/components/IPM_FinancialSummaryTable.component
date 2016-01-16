@@ -27,7 +27,7 @@
                             <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
                                 <apex:param value="{!ipmFinancial.NPV_Global__c}" />
                             </apex:outputText>
-                            <apex:inputText value="{!ipmFinancial.NPV_Global__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.NPV_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -43,7 +43,7 @@
                             <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
                                 <apex:param value="{!ipmFinancial.NPV_Regional__c}" />
                             </apex:outputText>
-                            <apex:inputText value="{!ipmFinancial.NPV_Regional__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.NPV_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </apex:outputPanel>
 
                         <!-- Local Values -->
@@ -59,7 +59,7 @@
                             <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.NPV_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
                                 <apex:param value="{!ipmFinancial.NPV_Local__c}" />
                             </apex:outputText>
-                            <apex:inputText value="{!ipmFinancial.NPV_Local__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.NPV_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </apex:outputPanel>
                     </td>
                 </tr>
@@ -121,7 +121,7 @@
                             <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
                                 <apex:param value="{!ipmFinancial.Payback_Global__c}" />
                             </apex:outputText>
-                            <apex:inputText value="{!ipmFinancial.Payback_Global__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.Payback_Global__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </apex:outputPanel>
 
                         <!-- Regional Values -->
@@ -137,7 +137,7 @@
                             <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
                                 <apex:param value="{!ipmFinancial.Payback_Regional__c}" />
                             </apex:outputText>
-                            <apex:inputText value="{!ipmFinancial.Payback_Regional__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.Payback_Regional__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </apex:outputPanel>
 
                         <!-- Local Values -->
@@ -153,7 +153,7 @@
                             <apex:outputText value="{0, number, ###,###,###.##}" rendered="{!AND(OR(NOT(showMisalignment), ipmFinancial.Payback_Difference__c==0), OR(NOT(isEditMode), isConsolidated))}">
                                 <apex:param value="{!ipmFinancial.Payback_Local__c}" />
                             </apex:outputText>
-                            <apex:inputText value="{!ipmFinancial.Payback_Local__c}" size="3" rendered="{!AND(isEditMode)}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
+                            <apex:inputText value="{!ipmFinancial.Payback_Local__c}" size="3" rendered="{!AND(isEditMode, NOT(isConsolidated))}" onkeypress="if((event.keyCode < 48 && event.keyCode != 46) || (event.keyCode > 57 && event.keyCode != 190 && event.keyCode != 110)) return false;"/>
                         </apex:outputPanel>
                     </td>
                 </tr>

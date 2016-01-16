@@ -104,11 +104,14 @@ global without sharing class ExceptionLoggingHelper {
         }
         
         //skip log insertion if exception occured in constructor, as @future and DML operations are not allowed in constructor. 
-        if(exceptionOccured != null && className != methodName){
-        	exceptionlogList.add(createObjectData(runninguserId,className,methodName,exMsg,exceptionOccured.getTypeName(),exceptionOccured.getStackTraceString(),logCode,debugLevel,integrationPayload,referenceId,referenceInfo,timer,applicationName));
-        }
+        if(exceptionOccured != null && className != methodName)
+            exceptionlogList.add(createObjectData(runninguserId,className,methodName,exMsg,exceptionOccured.getTypeName(),exceptionOccured.getStackTraceString(),logCode,debugLevel,integrationPayload,referenceId,referenceInfo,timer,applicationName));
                 
-        if(Limits.getLimitDMLStatements() > 1)
+        if(Limits.getLimitDMLStatements() < 1)
+        {
+            System.debug('*********No Of DML Statement Limit Reached.********');        
+        }      
+        else
         {   
             if(!System.Test.isRunningTest())
             {
@@ -135,6 +138,7 @@ global without sharing class ExceptionLoggingHelper {
                 }
                 catch(exception ex)
                 {
+                    System.debug('*********Exception in Logger Class ********'+ex.getMessage());
                     insert exceptionlogList;
                 }  
             }

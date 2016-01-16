@@ -21,8 +21,7 @@ public with sharing class IPM_ProjectDocumentHelper
     {
         IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED => 'IPM_Approval_Date__c',
         IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED => 'IPM_Postponement_Date__c',
-        IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED => 'IPM_Stopped_Date__c',
-        IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED => 'IPM_Proposed_Date__c'
+        IPM_ConstantUtils.DOCUMENT_STATUS_STOPPED => 'IPM_Stopped_Date__c'
     };
     
     
@@ -113,7 +112,7 @@ public with sharing class IPM_ProjectDocumentHelper
     
     /**************************************************************
     * @description: Used for Updating Project Document Status as Approved.
-    * @param1 incomingProjectMap : Trigger.New projects Map    * 
+    * @param1 incomingProjectMap : Trigger.New projects Map
     */
     public static void updateProjectDocumentStatus(Map<Id,IPM_Project__c> incomingProjectMap)
     {
@@ -190,8 +189,6 @@ public with sharing class IPM_ProjectDocumentHelper
     * @description: Used for Creating project documents sections on Project Creation and Phase Change.
     * @param1 projectToDocumentMap : project to Project Document Map 
     * @param2 incomingProjects : Trigger.New projects Map
-    * @Business Logic:To the generate the sections based on the complexity and phase of the project. 
-    				  Also to handle section generation on the change in complexity of the project 
     */
     
     public static List<IPM_Project_Document_Section__c> manageProjectDocumentSections(Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap,Map<Id,IPM_Project__c> incomingProjects)
@@ -265,7 +262,16 @@ public with sharing class IPM_ProjectDocumentHelper
                                                 // If the sections are Same
                                                 if(section.External_ID__c !=null && existingProjectDocSec.IPM_Master_Section_External_Id__c !=null && 
                                                     existingProjectDocSec.IPM_Master_Section_External_Id__c == section.External_ID__c && 
-                                                    !matchedDocumentSectionsSet.contains(existingProjectDocSec.Id) && section.ProjectSpan__c.contains(project.IPMProject_Span__c) )
+                                                    !matchedDocumentSectionsSet.contains(existingProjectDocSec.Id) )
+                                                {
+                                                    matchedDocumentSectionsSet.add(existingProjectDocSec.Id);
+                                                    projDocSect.Id = existingProjectDocSec.Id;
+                                                    projDocSect.IPM_Gate_Document_Summary__c = existingProjectDocSec.IPM_Gate_Document_Summary__c;
+                                                    projDocSect.IPM_PDP_Document_Summary__c = existingProjectDocSec.IPM_PDP_Document_Summary__c;
+                                                    break;
+                                                }
+                                                else if(existingProjectDocSec.IPM_Section_Sequence_Number__c == section.IPM_Section_Sequence__c && 
+                                                        !matchedDocumentSectionsSet.contains(existingProjectDocSec.Id) )
                                                 {
                                                     matchedDocumentSectionsSet.add(existingProjectDocSec.Id);
                                                     projDocSect.Id = existingProjectDocSec.Id;
@@ -296,16 +302,12 @@ public with sharing class IPM_ProjectDocumentHelper
                                         else if(currentProject.IPM_Complexity__c == IPM_ConstantUtils.COMPLEXITY_LITE)
                                         {
                                             projDocSect.IPM_Default_Section__c= !section.IPM_Negotiable__c; 
-                                        } 
-                                        
+                                        }
                                         initiateCopyOverLogic(associatedGate,projDocSect,section.External_ID__c,currentProject,parentProject);
-                                        
-                                        String summary=projDocSect.IPM_Gate_Document_Summary__c; 
+                                        String summary=projDocSect.IPM_Gate_Document_Summary__c;
                                         if(String.isNotBlank(summary)){
                                             summary=summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,'');
-                                         }  
-                                         
-                                         // the below logic is required because from Bosscard RTF field data needs to be copied into RTF field of Section with Character Limit 
+                                         }   
                                          if(associatedGate==IPM_ConstantUtils.CHARTER_GATE && String.isNotBlank(projDocSect.IPM_Gate_Document_Summary__c) && summary.length()>(Integer)section.IPM_Character_Limit__c){
                                             projDocSect.IPM_Gate_Document_Summary__c=summary.subString(0,(Integer)section.IPM_Character_Limit__c);
                                         }
@@ -313,20 +315,18 @@ public with sharing class IPM_ProjectDocumentHelper
                                         if(section.IPM_Section_Type__c !=IPM_ConstantUtils.SECTION_TYPE_HEADER && 
                                             section.IPM_Section_Type__c!=IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
                                         {
-                                           // DEF2994 Restrict the copy over of Filled in logic 16/12/2015                                            
-                                            if(String.isBlank(projDocSect.IPM_PDP_Document_Summary__c))
+                                            if(String.isBlank(projDocSect.IPM_Gate_Document_Summary__c))
                                             {
-                                                projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
+                                                projDocSect.IPM_Section_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
                                             }
-                                            else if(String.isNotBlank(projDocSect.IPM_PDP_Document_Summary__c) && projDocSect.IPM_PDP_Document_Summary__c.length() >=15)
+                                            else
                                             {
-                                                projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_STARTED;
+                                                projDocSect.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
                                             }
                                         }
                                         else
                                         {
-                                            projDocSect.IPM_Section_Status__c = IPM_ConstantUtils.BLANK;
-                                            projDocSect.IPM_Functional_Input_Status__c = IPM_ConstantUtils.BLANK;
+                                            projDocSect.IPM_Section_Status__c = '';
                                         }
                                         
                                        if(!String.isBlank(section.ProjectSpan__c) && !String.isBlank(project.IPMProject_Span__c) && section.ProjectSpan__c.contains(project.IPMProject_Span__c)){
@@ -427,7 +427,7 @@ public with sharing class IPM_ProjectDocumentHelper
                             {
                                 if(targetProDocSection.IPM_Master_Section_External_Id__c == currentSectionExternalId)
                                 {
-                                    sourceObject = targetProDocSection;    
+                                    sourceObject = targetProDocSection;
                                     break;
                                 }
                             }
@@ -448,12 +448,11 @@ public with sharing class IPM_ProjectDocumentHelper
                         // Get the source Api Name from which to copy
                         String sourceField = sourceFieldAPIList.get(counter);
                         String targetField = targetFieldAPIList.get(counter);
-                        //NO SONAR for Unnecessary Boolean Comparison, since targetField is coming from Map where two fields are of typr Text and 1 is of Checkbox, we need to explicitly check for this condition in order for Business Logic to Work 
-                        if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && (incomingSection.get(targetField) == null || incomingSection.get(targetField)==false))
+                        if(sourceField!=null && !String.isBlank(sourceField) && targetField !=null && !String.isBlank(targetField) && incomingSection.get(targetField) == null)
                         {
                             if(currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)
                             {
-                                incomingSection.put(targetField,sourceObject.get(sourceField));        
+                                incomingSection.put(targetField,sourceObject.get(sourceField));    
                             }    
                             else 
                             {   if(targetProjectDocument !=null)

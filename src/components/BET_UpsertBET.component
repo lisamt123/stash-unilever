@@ -70,6 +70,17 @@
             </div>
         </div>
 
+        <!-- FabricConditioner begin -->
+        <div class="form-item" style="{!IF(fabricConditionerCategory,'padding-bottom: 20px;','display:none;')}">
+            <div class="item-label">
+                <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Is_Fabric_Conditioners__c.Label}</apex:outputLabel>
+            </div>
+            <div class="item-input-checkbox">
+                <apex:outputField value="{!betobject.Is_Fabric_Conditioners__c}"/> 
+            </div>
+        </div>
+        <!-- FabricConditioner end -->
+
         <div class="form-item">
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Brand_Position__c.Label}</apex:outputLabel>
@@ -90,7 +101,9 @@
             </div>
         </div>
 
-        <div class="form-item">
+        <!-- FabricConditioner begin -->
+        <div class="form-item" style="{!IF(fabricConditionerCategory,'display:none;','')}">
+        <!-- FabricConditioner end -->
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.IPM_Project__c.Label}</apex:outputLabel>
             </div>
@@ -103,7 +116,7 @@
             <div class="item-label">
                 <apex:outputLabel >{!$ObjectType.uw_BET__c.Fields.Description__c.Label}</apex:outputLabel>
             </div>
-            <div class="item-input-description">
+            <div class="item-input">
                 <apex:inputTextarea rows="5" value="{!betobject.Description__c}" />
             </div>
         </div>

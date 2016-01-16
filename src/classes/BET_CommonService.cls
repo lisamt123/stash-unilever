@@ -271,7 +271,7 @@ public static boolean hasPermissionSet(String permSetName){
         Boolean isadmin=BET_CommonService.hasAccess(false);
         /*T1-Begin*/
         Boolean ishubadmin=BET_CommonService.isHubAdmin();
-        if(Test.isRunningTest() || (isadmin&&ishubadmin||!isadmin)){
+        if(isadmin&&ishubadmin||!isadmin){
        // if (!BET_CommonService.hasAccess(false)) {
                /*T1-End*/
             try {
@@ -279,13 +279,13 @@ public static boolean hasPermissionSet(String permSetName){
                                     (SELECT Id,Team_Member__c FROM BET_Team_Members__r WHERE Team_Member__c =: userId) 
                                 FROM uw_BET__c
                                 WHERE Id = :betId ];
-                if (Test.isRunningTest() || (bet.Sharing__c == 'Public'  && (bet.BET_Team_Members__r == null || bet.BET_Team_Members__r.isEmpty()))) {
+                if (bet.Sharing__c == 'Public'  && (bet.BET_Team_Members__r == null || bet.BET_Team_Members__r.isEmpty())) {
                     BET_CommonServiceHelper.addUserToPublicBET(bet, userId);
                     
                 }
             } catch (Exception e){
                 throw new BetException('No BET found.',e);
-            }
+           }
         }
     }
 
@@ -303,16 +303,6 @@ public static boolean hasPermissionSet(String permSetName){
             bets = [select id from uw_Bet__c where name =: bet.name and id !=: bet.id];
         }
         return !bets.isEmpty();
-    }
-
-    /************************************************************
-        Purpose: Method gets owner of a given Bet
-        Parameters: Id betId
-        Returns: Id ownerId
-        Throws: -
-    *************************************************************/
-    public static Id getOwnerIdOfGivenBet(Id betId){
-        return [select ownerid from uw_BET__c where id =: betId].ownerid;
     }
     
 }

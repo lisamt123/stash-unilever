@@ -30,7 +30,6 @@ public class IPM_ConstantUtils {
     public static String STATUS_ALL = 'All';
     public static String STATUS_EXCLUDED = 'Excluded';
     public static String STATUS_NOT_STARTED = 'Not Started';
-    public static String STATUS_STARTED = 'Started';
     public static String STATUS_NOT_FILLED = 'Filled-in';
     public static String STATUS_APPROVED = 'Approved';
     public static String PD_STATUS_STOPPED = 'Stopped';
@@ -497,7 +496,7 @@ public class IPM_ConstantUtils {
      
      
       //Constant Declaration
-    public static String DATE_FORMAT='yyyy-MM-dd' ;
+    public static String DATE_FORMAT='YYYY-MM-dd';
     public static String PROJECT_MILESTONES='IPM Project Milestones';
     
     //Gate document various status
@@ -800,8 +799,8 @@ public class IPM_ConstantUtils {
     public static String BET_FINAL_RELEASE = 'Final Release';
     public static String BET_UNRELEASED = 'Unreleased';           
      // BET Milestones related constants
-    public final static string BET_MS_FIRST_RELEASE = 'BET First Release';
-    public final static string BET_MS_FINAL_RELEASE = 'BET Final Release';
+    public final static string BET_MS_FIRST_RELEASE = 'BETFirstRelease';
+    public final static string BET_MS_FINAL_RELEASE = 'BETFinalRelease';
     public final static string STRING_BET = 'BET';
     public final static string STRING_MS_BET_FIRSTRELEASE = 'Brand Experience Toolkit(BET) First Release';
     public final static string STRING_MS_BET_FINALRELEASE = 'Brand Experience Toolkit(BET) Final Release';
@@ -872,9 +871,6 @@ public class IPM_ConstantUtils {
    public static final String rowValue8 = '11';
    public static final String rowValue9 = '12';
    public static final String rowValue10 = '13';
-   public static final Integer rowValue19 = 19;
-   public static final Integer rowValue20 = 20;
-   public static final Integer rowValue21 = 21;
    public static final String rowValue28 = '28';
     public static final String rowValue29 = '29';
     public static final String rowValue30 = '30';
@@ -888,7 +884,6 @@ public class IPM_ConstantUtils {
    public static final String Colon = ':';
    public static final Integer intialVal = 0;
    public static final Integer MaxLimit = 49999;
-   public static final String smallBI = 'Small';
    //row
    public static final Integer row_seven = 7;
    public static final Integer row_twentyseven = 27;
@@ -1066,7 +1061,6 @@ public class IPM_ConstantUtils {
    public static final String IPM_FINANCEOBJECT='IPM_Financial__c';
    public static final String IPM_COUNTRYOBJECT='IPM_Country__c';
    public static final String IPM_ROLLOUTOBJECT='IPM_Project_Rollout__c';
-   public static final String IPM_DOCUMENTSECTIONCONTENT='IPM_Project_Document_Section_Content__c';
    
    //BET Search related Constants
    public final static string CATEGORY_TYPE ='Category';
@@ -1078,7 +1072,6 @@ public class IPM_ConstantUtils {
    public static final String IPM_CUTOMER_OPPORTUNITY='Customer Opportunities and Challenges';
    public static final String IPM_GATEKEEPE_CHECKLIST='Gate_Keeper_Checklist'; 
    public static final String IPM_PACK_GRAPHICS='Pack_Graphics';
-   public static final String KEY_ISSUES_NEEDING_FOCUS_IN_GATE_MEETING='Key_Issues_needing_focus_in_Gate_Meeting';
    
    //Ecodesign
    public static final String ECODESIGN_MARKET_PLACE_ACTIVITY_BLG = 'BLG';
@@ -1168,12 +1161,5 @@ public class IPM_ConstantUtils {
    public static final String TLD_UPDATED_FROM_ROLLOUT ='Rollout';
    public static final String TLD_UPDATED_FROM_PROJECT ='Project';
    
-   // local project notifications (REQ02445 & REQ02446)
-   public static final String EMAIL_NOTIFICATION_BODY ='Dear {Gate Keeper}, The Target Launch Date and/or Business Case for {Project Name} have been modified post-{Phase} gate.';
-   public static final String EMAIL_NOTIFICATION_SUBJECT ='Target Launch Date and/or Business Case updated';
-   //DEF2339 & DEF2344 fix
-   public static final String CHARTER_GATE_APPROVAL_MILESTONE = 'Charter Gate Approval';
-   public static final String CONTRACT_GATE_APPROVAL_MILESTONE = 'Contract Gate Approval';
-   public static final String MARKET_READY_GATE_APPROVAL_MILESTONE = 'Market Ready Gate Approval';
-   public static finaL String SHIPTO_TRADE_TLD='Ship To Trade (Target Launch Date)';
+   
 }

@@ -62,10 +62,6 @@ global with sharing class IPM_BosscardStatusController{
     public boolean isApprovedOtherPLSelected{get;set;}//checking for approved with select other user as PL
     public boolean isApprovedWithPLSelected{get;set;}//checking for approved with  PL
     public boolean isApprovedButNoPLSelected{get;set;}//checking for approved with select non PL
-    public string inProgressComments{get;set;}//hold bosscard comments
-    public string inApprovedComments{get;set;}//hold bosscard comments
-    public string inNotApprovedComments{get;set;}//hold bosscard comments
-    public string inDiscardComments{get;set;}//hold bosscard comments
     /***************************************************************
     *@Description :Constructor to fetch the details of the Bosscard
     ****************************************************************/
@@ -74,10 +70,6 @@ global with sharing class IPM_BosscardStatusController{
     public IPM_BosscardStatusController(){
         // call utility class to save having to do this multiple times in multiple places
         IPM_IECompatible.ieFix();
-        inProgressComments=IPM_ConstantUtils.BLANK;
-        inApprovedComments=IPM_ConstantUtils.BLANK;
-        inNotApprovedComments=IPM_ConstantUtils.BLANK;
-        inDiscardComments=IPM_ConstantUtils.BLANK;
         inProgress_STR=IPM_ConstantUtils.IPM_BOSS_INPROGRESS;
         approved_STR=IPM_ConstantUtils.IPM_BOSS_APPROVED;
         notApproved_STR=IPM_ConstantUtils.IPM_BOSS_NOT_APPROVED;
@@ -104,10 +96,7 @@ global with sharing class IPM_BosscardStatusController{
             if(!lstbosscard.isEmpty()){
                 bosscard=lstbosscard[0];
                 companycard_Str=lstbosscard[0].IPM_Company_Card__c; 
-                Statusvalue=lstbosscard[0].IPM_Bosscard_Status__c; 
-                if(Statusvalue.equals(IPM_ConstantUtils.STATUS_IN_PROGRESS)){
-                	inProgressComments=lstbosscard[0].IPM_Bosscard_Approver_Comments__c;
-                }
+                Statusvalue=lstbosscard[0].IPM_Bosscard_Status__c;     
             }
             string query_str=IPM_ConstantUtils.BLANK;
             string strCoreMem=IPM_ConstantUtils.BLANK;
@@ -128,7 +117,8 @@ global with sharing class IPM_BosscardStatusController{
             
         }
         catch(Exception ex){
-            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+                IPM_ConstantUtils.IPM_BOSS_BOSSCARD_CTRL,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     }
     
@@ -182,9 +172,9 @@ global with sharing class IPM_BosscardStatusController{
         catch(Exception ex){
             // Rollback to the previous  values
             Database.rollback(sp);
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
+                        ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
                 IPM_ConstantUtils.IPM_BOSS_CREATE_PROJECT,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+
             
         }
         return NewProject.id;
@@ -215,14 +205,6 @@ global with sharing class IPM_BosscardStatusController{
     *********************************************************************************/
     
     public void updateStatus(){
-        //save bosscard comments
-        if(Statusvalue.equals(IPM_ConstantUtils.STATUS_IN_PROGRESS)){
-        	bosscard.IPM_Bosscard_Approver_Comments__c=inProgressComments;
-        }else if(Statusvalue.equals(IPM_ConstantUtils.STATUS_NOT_APPROVED)){
-        	bosscard.IPM_Bosscard_Approver_Comments__c=inNotApprovedComments;
-        }else if(Statusvalue.equals(IPM_ConstantUtils.STATUS_DISCARD)){
-        	bosscard.IPM_Bosscard_Approver_Comments__c=inDiscardComments;
-        }
         
         if(Statusvalue.equals(IPM_ConstantUtils.STATUS_IN_PROGRESS) || Statusvalue.equals(IPM_ConstantUtils.STATUS_NOT_APPROVED)){
                 bosscard.IPM_Bosscard_Status__c=Statusvalue; 
@@ -238,7 +220,7 @@ global with sharing class IPM_BosscardStatusController{
         catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className,
                 IPM_ConstantUtils.IPM_BOSS_BOSSCARDUPDATE,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
-			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.error,system.label.IPM_System_Admin));
+
        }
     }
     
@@ -262,8 +244,6 @@ global with sharing class IPM_BosscardStatusController{
         
         if(Statusvalue.equals(approved_STR)){
             isNotApproved=false;
-        }else{
-            isNotApproved=true;
         }
         if(!isPLSelected_Booln && Statusvalue.equals(approved_STR) && searchPL_Bool){
             isApprovedOtherPLSelected=true;
@@ -300,9 +280,8 @@ global with sharing class IPM_BosscardStatusController{
         String queryString = 'SELECT ';
         //user profile fileds
         For (String field : Schema.SObjectType.IPM_User_Profile__c.fields.getMap().KeySet()){
-            if (field.equals(IPM_ConstantUtils.SF_ID)){
+            if (field.equals(IPM_ConstantUtils.SF_ID))
                 queryString+= field + ', ';
-            }
         }
         queryString+= 'Id,IPM_User__r.name,IPM_User__r.id,IPM_User__r.SmallPhotoUrl,IPM_User__r.email FROM IPM_User_Profile__c WHERE (IPM_User__r.name like \''+ likePerStr + String.escapeSingleQuotes(selectedPL) + likePerStr + '\' OR IPM_User__r.email Like \'' + likePerStr + String.escapeSingleQuotes(selectedPL) + likePerStr + '\')';
         queryString+=' AND IPM_User_Function__c=\''+ String.escapeSingleQuotes(strCoreMem) +'\' AND IPM_User__r.IsActive=True ';
@@ -324,7 +303,7 @@ global with sharing class IPM_BosscardStatusController{
                 }
             }
             projecLeaderlist=[SELECT IPM_User__r.id,IPM_User_Role__c,IPM_User__r.name,IPM_User__r.email,
-                              IPM_User__r.SmallPhotoUrl, 
+                              IPM_User__r.IPM_Category__c,IPM_User__r.SmallPhotoUrl, 
                               IPM_User__r.UserRole.Name FROM IPM_user_profile__c WHERE id IN:uniqueUserList.values() ORDER BY IPM_User__r.name limit 50000];
             
             IsNoMatchfound=false;

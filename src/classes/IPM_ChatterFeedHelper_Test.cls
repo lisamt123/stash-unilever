@@ -30,9 +30,8 @@ private class IPM_ChatterFeedHelper_Test {
     private static User PL;
     private static User deputyPL;
     private static User financeMember;
-    private static User technicalPL;
-    private static User gateKeeper; 
     private static List<User> userList;
+    private static Map<Id,IPM_Project__c> newProjectMap = new Map<Id,IPM_Project__c>();
     private static Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
     
     /**
@@ -72,11 +71,14 @@ private class IPM_ChatterFeedHelper_Test {
          deputyPL = IPM_TestFactory_Helper.createUser(False);
          deputyPL.managerid  = managerOfDeputyPL.Id;
          
-         technicalPL = IPM_TestFactory_Helper.createUser(False);
+         User technicalPL = IPM_TestFactory_Helper.createUser(False);
          
-         gateKeeper = IPM_TestFactory_Helper.createUser(False);
+           
+         User gateKeeper = IPM_TestFactory_Helper.createUser(False);
+         
          
          financeMember = IPM_TestFactory_Helper.createUser(False);
+         
          
          User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
          globalUser.email = 'globalUser@unilever.test.com';
@@ -96,6 +98,18 @@ private class IPM_ChatterFeedHelper_Test {
          userList.add(regionalUser); 
          userList.add(localUser);
          
+        //User data inserted with admin context
+        System.runAs(adminUser){                              
+            insert userList;
+        }
+        iDs.clear();
+        for(User eachUser : userList) {
+            iDs.add(eachUser.Id);
+        }
+        System.assertEquals(8, [Select count() from User where id in:iDs]);
+        
+        IPM_TestFactory_Helper.getProjectMasterData();
+        
         lstProjects = new List<IPM_Project__c>();
         
         System.runAs(platformUser){
@@ -106,12 +120,14 @@ private class IPM_ChatterFeedHelper_Test {
         globalprojects[0].IPM_Technical_Project_Leader__c = technicalPL.id;
         globalprojects[0].IPM_Project_Gatekeeper__c = gateKeeper.id;
         globalprojects[0].IPM_Finance_Member__c= financeMember.id;
-        globalprojects[0].IPM_Project_Leader__c= PL.id;
-           
-        IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = true;
-        IPM_ProjectOwnerChangeQueue.PROJECT_QUEUE_CONTEXT_STARTED = true;
         insert globalprojects;
         projectMap.put(globalprojects[0].Id,globalprojects[0]);
+        
+        iDs.clear();
+        for(IPM_Project__c eachProj : globalprojects) {
+            iDs.add(eachProj.Id);
+        }
+        System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs]);
         
         lstProjects.addAll(globalprojects);
         
@@ -137,12 +153,15 @@ private class IPM_ChatterFeedHelper_Test {
             project.IPM_Parent_Project__c = lstProjects[0].Id;
             lstRegionalProjects.add(project);
         }
-        
-        IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = true;
-        IPM_ProjectOwnerChangeQueue.PROJECT_QUEUE_CONTEXT_STARTED = true;
-        
         insert lstRegionalProjects;
-       
+        iDs.clear();
+        for(IPM_Project__c eachProj : lstRegionalProjects) {
+            iDs.add(eachProj.Id);
+        }
+        System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs]);
+        
+        newProjectMap.put(lstRegionalProjects[0].Id,lstRegionalProjects[0]);  
+        
         //Create local projects
         lstLocalProjects = new List<IPM_Project__c>();
         for(Integer i=0; i<5; i++){
@@ -165,31 +184,22 @@ private class IPM_ChatterFeedHelper_Test {
             project.IPM_Parent_Project__c = lstRegionalProjects[i].Id;
             lstLocalProjects.add(project);
         } 
-        
-        IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = true;
-        IPM_ProjectOwnerChangeQueue.PROJECT_QUEUE_CONTEXT_STARTED = true;
-        
         insert lstLocalProjects; 
-      
+        iDs.clear(); 
+        for(IPM_Project__c eachProj : lstLocalProjects) {
+            iDs.add(eachProj.Id);
+        }
+        System.assertEquals(5, [Select count() from IPM_Project__c where id in:iDs]);
+        
         lstProjects.addAll(lstRegionalProjects);
         lstProjects.addAll(lstLocalProjects);
-        
-        lstProjects =[Select Id,Name,IPM_Project_Name__c,IPM_Phase__c,IPM_Temporary_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c,
-            IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,IPM_Finance_Member__c,
-            IPM_Technical_Project_Leader__c,IPM_Project_Type__c,IPM_Company_Card__c,IPMProject_Span__c,
-            IPM_Target_Launch_Dates__c,IPM_Parent_Project__c from IPM_Project__c where id in:lstProjects];
-        
         System.assertEquals(15, lstProjects.size(),PROJECT_INSERTED_ASSERTION);
-        
         for(integer i=0;i<5;i++)
         { 
             integer j=i+1;
             System.assertEquals(PROJ_NAME+j,lstProjects[i].name);
         }   
-        
-        IPM_Milestone__c milestoneList =  IPM_TestFactory_Helper.createIPMMilestone(lstRegionalProjects[0].id,true);
-        System.assertEquals(1, [Select count() from IPM_Milestone__c where id =: milestoneList.id]);
-        
+         
          //Bulk insert of project resources
         IPM_Project_Resource__c projectResourceBDUser = IPM_TestFactory_Helper.createIPMProjectResource(globalprojects[0].Id,false); 
         IPM_Project_Resource__c projectResourceCDUser = IPM_TestFactory_Helper.createIPMProjectResource(globalprojects[0].Id,false);
@@ -249,7 +259,38 @@ private class IPM_ChatterFeedHelper_Test {
      }      
     
       
-   
+      /**
+    *  To test chatter when project user is inactive
+    *  @name :testPostChatterIfUserInactive
+    *  @param : nil
+    *  @return : nil
+    */
+    private static testmethod void testPostChatterIfUserInactive(){
+           
+           initializeData();
+             
+           test.startTest(); 
+    
+           IPM_TestFactory_Helper.makeUserInactive(deputyPL);
+           IPM_TestFactory_Helper.makeUserInactive(financeMember);  
+           IPM_TestFactory_Helper.makeUserInactive(PL); 
+           System.assertEquals(financeMember.IsActive,false,'financeMember is Checked');
+           List<User> inactiveUsers= new List<User>();
+           inactiveUsers.add(deputyPL);
+           inactiveUsers.add(financeMember);
+           inactiveUsers.add(PL);
+           
+           IPM_ChatterFeedHelper.postChatterIfUserInactive(inactiveUsers); 
+           System.runAs(platformUser) {         
+           for(IPM_Project__Feed projectFeed : [SELECT Body,ParentId,CreatedDate,CreatedById FROM IPM_Project__Feed limit 50000])
+            {   
+                if(projectFeed.Body.contains(System.label.IPM_No_Longer_Active_User)){
+                    System.assert(projectFeed.Body.contains(System.label.IPM_No_Longer_Active_User),FEED_UPDATED_ASSERT);
+                }
+            } 
+            test.stopTest();
+        }
+     }
      
        /**
     *  To test chatter when project is fast track
@@ -259,20 +300,11 @@ private class IPM_ChatterFeedHelper_Test {
     */
     private static testmethod void testNotifyLeadsProjectIsFasttrack (){
         
-
+            initializeData();
             test.startTest();
-            platformUser =IPM_TestFactory_Helper.returnPlatformUser(); 
             System.runAs(platformUser) {  
-            IPM_Project__c lstProject = IPM_TestFactory_Helper.createIPMProject(true);
-            lstProjects = new List<IPM_Project__c>();
-            lstProjects.add(lstProject);
-            lstProject.IPM_Fast_Track_Project__c = true;
-            update lstProject;
-
-            IPM_ChatterFeedHelper.notifyProjectIsFasttrack(lstProjects);
-            
-            lstProject.IPM_Fast_Track_Project__c = false;
-            update lstProject;
+            lstProjects[0].IPM_Fast_Track_Project__c = true;
+            update lstProjects[0];
             
             IPM_ChatterFeedHelper.notifyProjectIsFasttrack(lstProjects);
             
@@ -326,7 +358,6 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
     private static testMethod void testNotifyFinanceMemberAddedToRollout() {
-        
         initializeData();
         Test.startTest();
         System.runAs(platformUser) {
@@ -368,15 +399,13 @@ private class IPM_ChatterFeedHelper_Test {
     *  @return : nil
     */
    private static testMethod void testNotifyAssigneeTaskAssigned() {
+            initializeData();
             List<IPM_Task__c> listTask = new List<IPM_Task__c>();
-            platformUser =IPM_TestFactory_Helper.returnPlatformUser();
             System.runAs(platformUser) 
             {
-                IPM_Project__c lstProject = IPM_TestFactory_Helper.createIPMProject(true);
-                
               ID  projectTaskRecordType = Schema.SObjectType.IPM_Task__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectTasks).getRecordTypeId();
               //Need system admin to insert System Generated tasks for testing
-              IPM_Task__c newTask = IPM_TestFactory_Helper.createIPMTask(lstProject.id,false);
+              IPM_Task__c newTask = IPM_TestFactory_Helper.createIPMTask(lstProjects[0].id,false);
               newTask.IsSystemGenerated__c = true;
               newTask.RecordTypeId = projectTaskRecordType;
               insert newTask;
@@ -398,6 +427,31 @@ private class IPM_ChatterFeedHelper_Test {
          }
     
     
+      /**
+    *  To test chatter when resource is inactive
+    *  @name :testPostChatterIfResourceInactive
+    *  @param : nil
+    *  @return : nil
+    */
+    private static testMethod void testPostChatterIfResourceInactive() {
+             
+            platformUser =IPM_TestFactory_Helper.returnPlatformUser();
+            User prjResourceUser = IPM_TestFactory_Helper.createUser(true);
+            
+            Test.startTest();
+            System.runAs(platformUser) {
+                List<IPM_Project__c> testProjList=IPM_TestFactory_Helper.createIPMProjectList(true,3);
+                User inactiveResourceUser= IPM_TestFactory_Helper.makeResourceInactive(testProjList,prjResourceUser);
+                system.assertEquals(inactiveResourceUser.isActive,false,'inactiveResourceUser Is Not Checked');
+            Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
+            for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
+                if(projectFeed.Body.contains(Label.IPM_Inactive_Users_Text)){
+                    System.assert(projectFeed.Body.contains(Label.IPM_Inactive_Users_Text),FEED_UPDATED_ASSERT);
+                }
+            }
+           Test.stopTest();
+        }
+    } 
     
     
       /**
@@ -409,7 +463,6 @@ private class IPM_ChatterFeedHelper_Test {
     private static testMethod void testPostChatterIfLocalRegionalTLDMisaligned() {
         
             initializeData();
-            
             Test.startTest();
             System.runAs(platformUser) {
             lstRegionalProjects[0].IPM_Target_Launch_Dates__c = System.today() + 8;
@@ -418,23 +471,22 @@ private class IPM_ChatterFeedHelper_Test {
             IPM_ChatterFeedHelper.postChatterIfLocalRegionalTLDMisaligned(lstRegionalProjects);
             
             lstLocalProjects[0].IPM_Target_Launch_Dates__c = System.today() + 9;
-            lstLocalProjects[0].Rollout_Plan_Target_Launch_Date__c = System.today() + 11;
             update lstLocalProjects;
+            
+            IPM_Project_Rollout__c rollout = IPM_TestFactory_Helper.createIPMProjectRollout(false);
+            rollout.Local_Project__c= lstLocalProjects[0].id;
+            rollout.RecordTypeId = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
+            rollout.Regional_Project__c =  lstRegionalProjects[0].id;
+            insert rollout;
             
             IPM_ChatterFeedHelper.postChatterIfLocalRegionalTLDMisaligned(lstLocalProjects);
             
             Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-                if(projectFeed.Body.contains(System.label.IPM_TLD_Misaligned)){
                 System.assert(projectFeed.Body.contains(System.label.IPM_TLD_Misaligned),FEED_UPDATED_ASSERT);
-                }
             }
-             
+            Test.stopTest();
             }
-            
-            Test.stopTest(); 
-            
-
     }
     
      /**
@@ -446,7 +498,6 @@ private class IPM_ChatterFeedHelper_Test {
     private static testMethod void testPostChatterIfLocalRegionalMisaligned() {
         
             initializeData();
-        
             Test.startTest();  
             System.runAs(platformUser) {
             
@@ -463,11 +514,22 @@ private class IPM_ChatterFeedHelper_Test {
             IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(lstLocalProjects);
             IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(lstRegionalProjects);
             
+            IPM_Financial__c financial1 = IPM_TestFactory_Helper.createIPMFinancial(false);
+            financial1.Parent_Project__c = lstLocalProjects[0].Id;
+            financial1.Financial_External_ID__c = lstLocalProjects[0].Id;
+            financial1.Regional_Project__c =  lstRegionalProjects[0].id;
+            financial1.Local_Project__c = lstLocalProjects[0].id; 
+            financial1.Project_Sustainability_Period__c = '3';
+            financial1.RecordTypeId = financeMasterRecordType;
+            //financial1.Volume_Unit_Regional__c = 'Total \'000 Units';
+            insert financial1;
+            
+            IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(lstLocalProjects);
+            IPM_ChatterFeedHelper.postChatterIfLocalRegionalMisaligned(lstRegionalProjects);
+            
             Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-                if(projectFeed.Body.contains(FINANCIAL_ALIGN)){
                 System.assert(projectFeed.Body.contains(FINANCIAL_ALIGN),FEED_UPDATED_ASSERT);
-                }
             }
             Test.stopTest();
        }
@@ -482,7 +544,6 @@ private class IPM_ChatterFeedHelper_Test {
     private static testMethod void testPostChatterRegionalRolloutAddedToPlan() {
         
             initializeData();
-            
             Test.startTest();
             System.runAs(platformUser) {
             IPM_ChatterFeedHelper.postChatterRegionalRolloutAddedToPlan(lstRegionalRollouts);
@@ -505,7 +566,6 @@ private class IPM_ChatterFeedHelper_Test {
    private static testMethod void testPostChatterIfDocumentStatusChanged(){
         
         initializeData();
-        
         Test.startTest(); 
         System.runAs(platformUser) {
             
@@ -513,94 +573,26 @@ private class IPM_ChatterFeedHelper_Test {
             update currDocument;
             Map<Id, IPM_Project__c> mapProjects = new Map<Id, IPM_Project__c>([Select Id from IPM_Project__c limit 50000]);
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-                if(projectFeed.Body.contains(IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED))
-                {
-                    System.assert(projectFeed.Body.contains(IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED),FEED_UPDATED_ASSERT);
-                }
+                System.assert(projectFeed.Body.contains(IPM_ConstantUtils.DOCUMENT_STATUS_PROPOSED),FEED_UPDATED_ASSERT);
             }
             
             currDocument.IPM_Document_Status__c = IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED;
             update currDocument;
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-                if(projectFeed.Body.contains(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED))
-                {
-                    System.assert(projectFeed.Body.contains(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED),FEED_UPDATED_ASSERT);
-                }
+                System.assert(projectFeed.Body.contains(IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED),FEED_UPDATED_ASSERT);
             }
             
             currDocument.IPM_Document_Status__c = IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS;
             update currDocument;
-             
+            
             for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed where ParentId IN : mapProjects.keySet()]){
-                if(projectFeed.Body.contains(Label.IPM_Gate_Approved_With_Edits))
-                {
-                    System.assert(projectFeed.Body.contains(Label.IPM_Gate_Approved_With_Edits),FEED_UPDATED_ASSERT);
-                }    
+                System.assert(projectFeed.Body.contains(Label.IPM_Gate_Approved_With_Edits),FEED_UPDATED_ASSERT);
             }
             Test.stopTest();
         }
     }
     
-      /**
-    *  To test chatter when chatter posted to user
-    *  @name :testpostChatterUpdateToUser
-    *  @param : nil
-    *  @return : nil
-    */
-    private static testmethod void testpostChatterUpdateToUser (){
-    	Test.startTest();
-    	platformUser =IPM_TestFactory_Helper.returnPlatformUser();
-    	System.runAs(platformUser) {
-    	List<IPM_Project_Resource__c> projRescourceList = IPM_TestFactory_Helper.createIPMProjectResourceList(false, 3);
-    	IPM_Project__c proj= IPM_TestFactory_Helper.createIPMProject(true);
-    	Map<Id, IPM_Project__c> projectOwnerMap = new Map<Id, IPM_Project__c>();
-    	Map<Id, String> pResourceDetails = new Map<Id, String>();
-    	for(IPM_Project_Resource__c eachResource: projRescourceList)
-    	{
-    		projectOwnerMap.put(eachResource.id,proj);
-    		pResourceDetails.put(eachResource.id,'test');
-    	}
-    	IPM_ChatterFeedHelper.postChatterUpdateToUser(projectOwnerMap,pResourceDetails);
-    	for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed limit 50000]){
-        if(projectFeed.Body.contains(CREATED))
-            {
-                System.assert(projectFeed.Body.contains(CREATED),FEED_UPDATED_ASSERT);
-            }    
-        }
-    	}
-        Test.stopTest();
-    }    
     
-     /**
-    *  To test chatter when chatter posted to user
-    *  @name :testpostChatterUpdateToUser
-    *  @param : nil
-    *  @return : nil
-    */
-    private static testmethod void testManageChatterMembers (){
-    	initializeData();
-    	Map<Id,IPM_Project__c> newProjectMap= new Map<Id,IPM_Project__c>();
-    	Map<Id,IPM_Project__c> oldProjectMap= new Map<Id,IPM_Project__c>();
-    	for(IPM_Project__c proj:lstProjects)
-    	{
-    		newProjectMap.put(proj.id,proj);
-    	}	
-    	for(IPM_Project__c proj:lstRegionalProjects)
-    	{
-    		oldProjectMap.put(proj.id,proj);
-    	}	
-    	Test.startTest();
-    	platformUser =IPM_TestFactory_Helper.returnPlatformUser();
-    	System.runAs(platformUser) {
-    		IPM_ChatterFeedHelper.manageChatterFollowMembers(newProjectMap,oldProjectMap);
-    		for(IPM_Project__Feed projectFeed : [Select Id, Body from IPM_Project__Feed limit 50000])
-    		{
-    		 if(projectFeed.Body.contains(IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project))
-             {
-    		 	System.assert(projectFeed.Body.contains(IPM_ConstantUtils.IPM_SPACE+System.Label.IPM_Check_The_Project),FEED_UPDATED_ASSERT);
-             }
-    	    }	
-    	}	
-    }
+    
   
 }

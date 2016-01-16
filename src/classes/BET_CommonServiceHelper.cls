@@ -104,7 +104,7 @@ public class BET_CommonServiceHelper {
     ******************************************************************************************/
     public static void addUserToPublicBET(uw_BET__c bet, Id userId){
         
-        /*BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
+        BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues('BETManageMembersConfig');
         String ToolkitAccessLevel = BETManageMembersConfig.ToolkitAccessLevel__c;
         String InternalUserRecordType = BETManageMembersConfig.InternalUserRecordType__c;
         String BETMemberObjectName = BETManageMembersConfig.BET_Member_Object_Name__c;
@@ -120,16 +120,7 @@ public class BET_CommonServiceHelper {
         BETTeamMember.Team_Member__c = userId;
         BETTeamMember.BET__c = bet.Id;
         BETTeamMember.BETEnabled__c = true;
-        BETTeamMember.Access_Level__c = ToolkitAccessLevel;*/
-		
-		BET_Member_Request__c betMemberRequest = new BET_Member_Request__c();
-		betMemberRequest.UserId__c = userId;
-		betMemberRequest.Brand_Experience_Toolkit__c = bet.Id;
-        betMemberRequest.Status__c = BET_LinkingService.FOLLOW_STATUS_APPROVED;
-        betMemberRequest.Do_Not_Notify_Bet__c = true;
-        betMemberRequest.External_User_Request__c = false;
-        betMemberRequest.Do_Not_Notify_User__c = true;
-        betMemberRequest.Role__c = 'Member';
+        BETTeamMember.Access_Level__c = ToolkitAccessLevel;
 
         //  T0-Begin---------------------
         /*done by member trigger
@@ -160,8 +151,7 @@ public class BET_CommonServiceHelper {
       
         Savepoint sp = Database.setSavepoint();
         try {
-			insert betMemberRequest;
-            //insert BETTeamMember;
+            insert BETTeamMember;
             /*insert betShare; done by member trigger
             if (cgm!= null) {
                 insert cgm;

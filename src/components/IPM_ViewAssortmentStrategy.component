@@ -42,7 +42,7 @@
                         <td>{!assortPriorityMap[assort]}</td>
                         <td>{!assort}</td>
                         <apex:repeat value="{!assotmentMap[assort]}" var="strategy">
-                            <td>{!strategy.IPM_Assortment_Strategy_Priority__c}<apex:outputText value=" | " rendered="{!AND(strategy.IPM_Assortment_Strategy_Priority__c!='',strategy.IPM_Assortment_strategy_Target__c!='')}"/> {!strategy.IPM_Assortment_strategy_Target__c}</td>
+                            <td><apex:outputText value="{!strategy.IPM_Assortment_Strategy_Priority__c} | "/> <apex:outputText value="{!strategy.IPM_Assortment_strategy_Target__c}" /></td>
                         </apex:repeat>
                     </tr>
                 </apex:repeat>

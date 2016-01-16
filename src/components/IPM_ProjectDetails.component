@@ -9,7 +9,6 @@
 <apex:component > 
     <apex:attribute name="project" description="Project Object for displaying " type="IPM_Project__c" required="false" />
     <apex:attribute name="activeItem" description="Pass the Active Tab Name" type="String"/>
-    <apex:attribute name="phasechangeInProgress" description="Pass boolean to check if phase change is in progress or not" type="Boolean"/>
     <div class="row">
     <div class="ipmProjectDetails">
         <div class="panel">
@@ -23,15 +22,12 @@
                         <div class="pull-left">
                             <span class="ipmpanel-heading"><apex:outputText value="{!project.IPM_Project_Name__c}" /></span>
                         </div>             
-                        <div class="secNameHeader projDetails SecButtonSet">
+                        <div class="secNameHeader SecButtonSet">
                              <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Original'}">
-                                 <span class="orgIcon"></span>
-                             </apex:outputPanel>
-                             <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Operational'}">
-                                 <span class="oprtnIcon"></span>
+                                 <span class="headerglb"></span>
                              </apex:outputPanel>
                              <apex:outputPanel rendered="{!project.IPM_Project_Type__c='Rollout'}">
-                                 <span class="rollIcon"></span>
+                                 <span class="headerlocal"></span>
                              </apex:outputPanel>
                              <span class="grentxt">{!project.IPMProject_Span__c} {!project.IPM_Project_Type__c}</span> 
                         </div>
@@ -61,20 +57,18 @@
         </div>
     </div>
     </div>
-    <apex:outputPanel rendered="{!!phasechangeInProgress}">
-        <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c = 'Rollout' && project.IPM_Phase__c!='Market Ready' && project.IPM_Phase__c!='Market Deployment' && project.IPM_Phase__c!='PLE')}"> 
-            <c:IPM_NavMenuBCC activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projID="{!project.id}"></c:IPM_NavMenuBCC>                        
-        </apex:OutputPanel>
-        <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c!='Local' && OR(project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability',project.IPM_Phase__c!='Ideas',project.IPM_Phase__c!='Market Ready'))}" > 
-            <c:IPM_NavMenu activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projType="{!project.IPM_Project_Type__c}"
-                            projPhase="{!project.IPM_Phase__c}" projID="{!project.Id}" bosscardStatus="{!project.IPM_Bosscard_Status__c}" 
-                            bosscardId="{!project.IPM_Bosscard__c}" gkm="{!project.IPM_GateKeeping_Model__c}"/>
-        </apex:OutputPanel>
-        <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c='Local' && OR(project.IPM_Phase__c='PLE',project.IPM_Phase__c='Market Ready',project.IPM_Phase__c='Market Deployment', project.IPM_Project_Type__c = 'Operational'))}" > 
-                        <c:IPM_NavMenu activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projType="{!project.IPM_Project_Type__c}"
-                            projPhase="{!project.IPM_Phase__c}" projID="{!project.Id}" bosscardStatus="{!project.IPM_Bosscard_Status__c}" 
-                            bosscardId="{!project.IPM_Bosscard__c}" gkm="{!project.IPM_GateKeeping_Model__c}"/>
-    
-        </apex:OutputPanel>
-    </apex:outputPanel>
+    <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c='Local' && project.IPM_Project_Type__c = 'Rollout' && project.IPM_Phase__c!='Market Ready' && project.IPM_Phase__c!='Market Deployment' && project.IPM_Phase__c!='PLE')}"> 
+                    <c:IPM_NavMenuBCC activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projID="{!project.id}"></c:IPM_NavMenuBCC>                        
+                </apex:OutputPanel>
+                <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c!='Local' && OR(project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability',project.IPM_Phase__c!='Ideas',project.IPM_Phase__c!='Market Ready'))}" > 
+                     <c:IPM_NavMenu activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projType="{!project.IPM_Project_Type__c}"
+                        projPhase="{!project.IPM_Phase__c}" projID="{!project.Id}" bosscardStatus="{!project.IPM_Bosscard_Status__c}" 
+                        bosscardId="{!project.IPM_Bosscard__c}" gkm="{!project.IPM_GateKeeping_Model__c}"/>
+                </apex:OutputPanel>
+                <apex:OutputPanel layout="block" styleClass="row" rendered="{!AND(project.IPMProject_Span__c='Local' && OR(project.IPM_Phase__c='PLE',project.IPM_Phase__c='Market Ready',project.IPM_Phase__c='Market Deployment', project.IPM_Project_Type__c = 'Operational'))}" > 
+                    <c:IPM_NavMenu activeItem="{!activeItem}" projSpan="{!project.IPMProject_Span__c}" projType="{!project.IPM_Project_Type__c}"
+                        projPhase="{!project.IPM_Phase__c}" projID="{!project.Id}" bosscardStatus="{!project.IPM_Bosscard_Status__c}" 
+                        bosscardId="{!project.IPM_Bosscard__c}" gkm="{!project.IPM_GateKeeping_Model__c}"/>
+
+    </apex:OutputPanel>
 </apex:component>

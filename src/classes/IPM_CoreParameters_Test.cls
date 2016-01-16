@@ -4,11 +4,15 @@
  *@Description : To test IPM_CoreParameters class functionalities
  *********************************************/@isTest
 private with sharing class IPM_CoreParameters_Test {
-    //*@Description: Object Variable declaration 
-    private static IPM_Project__c projectWithOutBoss;
+    //*@Description: Object Variable decleration 
+   /* private static IPM_Project__c projectWithOutBoss;
     private static IPM_Project__c testProject;
     private static User userInitialize;
     private static IPM_CoreParameters sic;
+    private static List < IPM_CoreParameter_Configration__c > coreConfigList;
+    private static List < IPM_CoreParameter_Questions__c > allQuestionsList;
+    private static List < IPM_InnovationRenovation__c > innovationRenoList;
+    private static List < IPM_Category__c > cateList;
     private static mdm_Product_Category__c mdmCategory;
     private static mdm_Brand_Position__c mdmPosition;
     private static user u4;
@@ -36,13 +40,11 @@ private with sharing class IPM_CoreParameters_Test {
     private static string common_STR = 'answer values should be';
     private static string readAccess = 'Current logged in user should have read access';
     private static string editAccess = 'Current logged in user should have edit access';
-    private static string Laundry_STR = 'Laundry';
-    
+    private static string Laundry_STR = 'Laundry';*/
     /**************************************************
      * @description : Master data 
      ***************************************************/
-    
-    static void initializedData() {
+    /*static void initializedData() {
 
         //insert users
         List < User > userList = new List < User > ();
@@ -74,17 +76,16 @@ private with sharing class IPM_CoreParameters_Test {
         System.assertEquals(userAllList[0].LastName, userLastName, sameName); //positive test
         //we need to create project as admin because after inserting resource in project then we are using subscription
         system.runAs(newAdminUser){
-            
-            IPM_TestFactory_Helper.createIPMCoreParameterInnoReno();
-            IPM_TestFactory_Helper.createIPMCoreParameterAllQuestions();
+            innovationRenoList = IPM_TestFactory_Helper.createIPMCoreParameterInnoReno();
+            allQuestionsList = IPM_TestFactory_Helper.createIPMCoreParameterAllQuestions();
             mdmCategory = IPM_TestFactory_Helper.createMDMCategory(true);
             System.assertEquals(mdmCategory.Name, 'Test Brand P', 'name should be Test Brand P'); //positive test
            
             mdmPosition = IPM_TestFactory_Helper.createMDMBrandPosition(true);
             System.assertEquals(mdmPosition.Category_Name__c, Laundry_STR, 'category should be ' + space_STR + Laundry_STR); //positive test
-            IPM_TestFactory_Helper.createIPMCategory();
+            cateList = IPM_TestFactory_Helper.createIPMCategory();
             //get coreparameter configuration
-            IPM_TestFactory_Helper.createIPMCoreParameterConfig();
+            coreConfigList = IPM_TestFactory_Helper.createIPMCoreParameterConfig();
             //insert coreparameter help text
             List < IPM_CorePara_helps_example__c > corehelpsList = new List < IPM_CorePara_helps_example__c > ();
             IPM_CorePara_helps_example__c coreParamHelp = IPM_TestFactory_Helper.createCoreParamHelpExapmle(false);
@@ -187,11 +188,11 @@ private with sharing class IPM_CoreParameters_Test {
             sic = new IPM_CoreParameters();
         }
 
-    }
+    }*/
     /**************************************************************
      *@Description :executes the core logic and asserts for coreparameter.
      ***************************************************************/
-    static testmethod void testinitiateCoreParameter() {
+    /*static testmethod void testinitiateCoreParameter() {
         initializedData();
 
         system.RunAs(userInitialize) {
@@ -238,11 +239,11 @@ private with sharing class IPM_CoreParameters_Test {
 
         }
 
-    }
+    }*/
     /**************************************************************
      *@Description :executes the core logic and asserts for coreparameter.
      ***************************************************************/
-    static testmethod void testAnswerone() {
+    /*static testmethod void testAnswerone() {
         initializedData();
 
         system.RunAs(userInitialize) {
@@ -253,11 +254,11 @@ private with sharing class IPM_CoreParameters_Test {
             Test.stopTest();
         }
 
-    }
+    }*/
     /**************************************************************
      *@Description :executes the core logic and asserts for coreparameter.
      ***************************************************************/
-    static testmethod void testAnswerTwo() {
+    /*static testmethod void testAnswerTwo() {
         initializedData();
         system.RunAs(userInitialize) {
             Test.startTest();
@@ -267,11 +268,11 @@ private with sharing class IPM_CoreParameters_Test {
             Test.stopTest();
         }
 
-    }
+    }*/
     /**************************************************************
      *@Description :executes the core logic and asserts for coreparameter.
      ***************************************************************/
-    static testmethod void testAnswerThree() {
+    /*static testmethod void testAnswerThree() {
         initializedData();
         Test.startTest();
         system.RunAs(userInitialize) {
@@ -280,11 +281,11 @@ private with sharing class IPM_CoreParameters_Test {
             system.assertEquals(sic.answerthree_STR, Base, common_STR + space_STR + Base);
         }
         Test.stopTest();
-    }
+    }*/
     /**************************************************************
      *@Description :executes the core logic and asserts for coreparameter.
      ***************************************************************/
-    static testmethod void testanswerAnswer() {
+    /*static testmethod void testanswerAnswer() {
         initializedData();
         system.RunAs(userInitialize) {
             Test.startTest();
@@ -311,11 +312,11 @@ private with sharing class IPM_CoreParameters_Test {
             Test.stopTest();
         }
 
-    }
+    }*/
     /**************************************************************
      *@Description :executes the core logic and asserts for coreparameter.
      ***************************************************************/
-    static testmethod void testBetValue() {
+    /*static testmethod void testBetValue() {
         initializedData();
         system.RunAs(userInitialize) {
             Test.startTest();
@@ -327,11 +328,11 @@ private with sharing class IPM_CoreParameters_Test {
         }
 
     }
-       
+       */
     /******************************************** 
      *@Description :testmethod to get BET toolkit options
      *********************************************/
-    static testmethod void testGetBETToolkit() {
+    /*static testmethod void testGetBETToolkit() {
         initializedData();
         system.runAs(userInitialize) {
             Test.startTest();
@@ -339,12 +340,12 @@ private with sharing class IPM_CoreParameters_Test {
             system.assertNotEquals(betToolList[0], null, 'BET list should not be empty');//getting values from actual controller
             Test.stopTest();
         }
-    }
+    }*/
     /**************************************************************
     *@Description :testmethod to get logged in user type
     Pratyusha<10/01> Need to revamp this method
     */
-    static testmethod void testgetMilesTaskIpmuserType() {
+    /*static testmethod void testgetMilesTaskIpmuserType() {
         initializedData();
         test.startTest();
         system.runAs(u4) {
@@ -386,12 +387,11 @@ private with sharing class IPM_CoreParameters_Test {
 
         }
         Test.stopTest();
-    }
+    }*/
     /**************************************************************
      *@Description :To cover code for Search BET
      ***************************************************************/
-    
-    static testmethod void testSearchBET() {
+    /*static testmethod void testSearchBET() {
         initializedData();
         //Handled mix dml
         system.runAs(newAdminUser){
@@ -432,12 +432,12 @@ private with sharing class IPM_CoreParameters_Test {
             
             system.assertEquals(1, lstWrapper.size(), 'Wrapper size not as expected');
         }
-    }
+    }*/
 
     /**************************************************************
      *@Description :To cover code for Unlink BET
      ***************************************************************/
-    static testmethod  void testUnlinkBET() {
+    /*static testmethod  void testUnlinkBET() {
         initializedData();
         //handled mix dml
         system.runAs(newAdminUser){
@@ -494,8 +494,9 @@ private with sharing class IPM_CoreParameters_Test {
             testProject.bet__c = bet1.id;
 
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, testProject.id);
-            Test.startTest();
             sic.initialise();
+
+            Test.startTest();
             sic.Replace();
             ProjectWithOutBoss.BET_Link_Requested__c = '';
             //update ProjectWithOutBoss;
@@ -511,6 +512,6 @@ private with sharing class IPM_CoreParameters_Test {
             Test.stopTest();
             system.assertEquals(null, proBET, 'BET not unlinked from IPM Project!');
         }
-    }
+    }*/
 
 }

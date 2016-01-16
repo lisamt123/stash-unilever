@@ -1,8 +1,3 @@
-/***********************************************************************************************************************************************************
-* @author Cognizant
-* @date  15/12/2014
-* @description To create test data irrespective of user roles and sharing. Hence without sharing
-**************************************************************************************************/
 public without sharing class IPM_TestFactory_Helper {
     public static final String CHARTER_GATE_FULL = 'Charter Gate Full';
     public static final String IDEA_GRAPHIC= 'Idea / Graphic';
@@ -35,7 +30,7 @@ public without sharing class IPM_TestFactory_Helper {
     public static final string SUSTAINABILITY_PERIOD = 'Project_Sustainability_Period__c';
     public static final string IPM_SECTION_Name = 'ipm_section_name__c'; 
     public static final string PROJECT_LEADER = 'project leader';
-    public static final string TESTMANAGEDCATEGORY = 'Laundry'; 
+    public static final string TESTMANAGEDCATEGORY = 'testmanagedcategory'; 
     public static final string INDIA = 'India';
     public static final String IPM_DOCUMENT_TEMPLATE = 'IPM_Document_Template__c';
     
@@ -248,7 +243,7 @@ public without sharing class IPM_TestFactory_Helper {
                                         IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
                                         IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>C_GLOBAL, 
                                         IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => 'Global Company Card',
-                                        BRAND_POS => 'Ala','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
+                                        'IPM_Brand_Positioning__c' => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
                                         'IPM_ProjectSubType__c' => 'Innovation/Renovation',IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => ORIGINAL_PROJECTYPE,
                                         'Sustainability_Period__c' => '3','IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,true); 
@@ -395,41 +390,6 @@ public without sharing class IPM_TestFactory_Helper {
         
         return null;
     }
-    
-    
-     public static List<IPM_Project__c> projectPhaseChangeRegionalLocal(List<Id> listprojectId,User userObj)
-     {
-        IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED = false;
-        IPM_ProjectOwnerChangeQueue.PROJECT_QUEUE_CONTEXT_STARTED = false;
-        
-        System.runAs(userObj)
-        {
-            List<IPM_Project__c>  projectListLocal = [Select Id,Name,IPM_Phase__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Id in:listprojectId for update];
-        
-            List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
-            for(IPM_Project__c project : projectListLocal)
-            {
-                project.IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
-                
-                for(IPM_Project_Rollout__c rollout : project.IPM_Project_Rollout__r)
-                {
-                   if(rollout.recordTypeId == IPM_TestFactory_Helper.LOCAL_ROLLOUT_RECTYPE)
-                   {
-                       rollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
-                       rollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;
-                       projectRolloutList.add(rollout);
-                   }
-                }
-            }
-            
-            update projectRolloutList;
-            
-            return projectListLocal;
-        }
-        
-        return null;
-    }
-    
     
     // Method to initiate Phase change of Regional Original Project to generate the local roolouts
     public static List<IPM_Project__c> initiateRegionalProjectPhaseChange(List<Id> listprojectId,User userObj)
@@ -610,7 +570,7 @@ public without sharing class IPM_TestFactory_Helper {
                                         IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
                                         IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>'Regional', 
                                         IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => 'Regional Company Card',
-                                        BRAND_POS => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
+                                        'IPM_Brand_Positioning__c' => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
                                         'IPM_ProjectSubType__c' => 'Innovation/Renovation',IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => ORIGINAL_PROJECTYPE,
                                         'IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
@@ -634,7 +594,7 @@ public without sharing class IPM_TestFactory_Helper {
                                         IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
                                         IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>C_GLOBAL, 
                                         IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => 'Global Company Card',
-                                        BRAND_POS => 'Cif','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
+                                        'IPM_Brand_Positioning__c' => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
                                         'IPM_ProjectSubType__c' => 'Innovation/Renovation',IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => ORIGINAL_PROJECTYPE,
                                         'Sustainability_Period__c' => '3','IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
@@ -875,7 +835,7 @@ public without sharing class IPM_TestFactory_Helper {
                                                                     'IPM_Consumer_Need__c'=>TEST_CONTENT,'IPM_Deliverables__c'=>TEST_CONTENT,
                                                                     'IPM_Potential_Business_Opportunity__c'=>TEST_CONTENT,'IPM_Resources__c'=>TEST_CONTENT,
                                                                     'IPM_Scope__c'=>TEST_CONTENT,'IPM_IsSaved__c'=>true,
-                                                                    BRAND_POS=>'Lux','IPM_Target_Launch_Date__c'=>'20/10/2020',
+                                                                    'IPM_Brand_Positioning__c'=>'Dirt Is Good','IPM_Target_Launch_Date__c'=>'20/10/2020',
                                                                     'IPM_Is_Archived__c' => false};
             IPM_Bosscard__c ipmBosscard = (IPM_Bosscard__c)IPM_TestFactory.createSObject('IPM_Bosscard__c',bossCardMap,false);
             ipmBosscardTestList.add(ipmBosscard);
@@ -892,7 +852,7 @@ public without sharing class IPM_TestFactory_Helper {
                                                                 'IPM_Consumer_Need__c'=>TEST_CONTENT,'IPM_Deliverables__c'=>TEST_CONTENT,
                                                                 'IPM_Potential_Business_Opportunity__c'=>TEST_CONTENT,'IPM_Resources__c'=>TEST_CONTENT,
                                                                 'IPM_Scope__c'=>TEST_CONTENT,'IPM_IsSaved__c'=>true,
-                                                                BRAND_POS=>'Dove','IPM_Target_Launch_Date__c'=>'20/10/2020',
+                                                                'IPM_Brand_Positioning__c'=>'Dirt Is Good','IPM_Target_Launch_Date__c'=>'20/10/2020',
                                                                 'IPM_Is_Archived__c' => false};
         IPM_Bosscard__c ipmBosscard = (IPM_Bosscard__c)IPM_TestFactory.createSObject('IPM_Bosscard__c',bossCardMap,false);
         if(doInsert) { 
@@ -1859,13 +1819,6 @@ public without sharing class IPM_TestFactory_Helper {
         
      return listSecConShare;
     }
-    public static List<IPM_Gate_CMI_KPI_Inputs__c> loadCMIKPIInput(){
-    	return Test.loadData(IPM_Gate_CMI_KPI_Inputs__c.sObjectType, 'IPM_GateCMIKPIInputs');
-    }
-    public static List<IPM_CMI_Color_Mapping__c> loadCMIColorMapping(){
-    	return Test.loadData(IPM_CMI_Color_Mapping__c.sObjectType, 'IPM_CMIColorCodes');
-    }
-    
     
     public static final String FEASIBILITY = 'Feasibility';
     public static final String IPM_PHASE = 'IPM_Phase__c';
@@ -1980,5 +1933,4 @@ public without sharing class IPM_TestFactory_Helper {
     public static final String STANDARD = 'Standard';
     public static final String HOUSEHOLDCARE = 'Household Care';
     public static final String LAUNDRY = 'Laundry';  
-	public static final String BRAND_POS = 'IPM_Brand_Positioning__c';
 }

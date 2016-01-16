@@ -42,16 +42,20 @@ public without sharing class  IPM_ProjectShareJobQueue implements Queueable
                     projectIdsSet.add(projeectIds.id);
                     if(projeectIds.IPM_Parent_Project__c!=null){
                         projectIdsSet.add(projeectIds.IPM_Parent_Project__c);
+                        
                     }
                     if(projeectIds.IPM_Parent_Project__r.IPM_Parent_Project__c!=null){
                          projectIdsSet.add(projeectIds.IPM_Parent_Project__r.IPM_Parent_Project__c);   
                     }
+                    
+                        
                 }
                 Map<Id,IPM_Project__c> projectDetailMap = IPM_ProjectJobHelper.populateProjectDetails(projectIdsSet);
 
                 // At this point we need to start working on Projects.
                 if(projectDetailMap !=null && !projectDetailMap.isEmpty())
                 {
+                    
                     if ([SELECT count() FROM AsyncApexJob WHERE JobType=:IPM_ConstantUtils.IPM_BATCHAPEX AND (Status =:IPM_ConstantUtils.IPM_PROCESSING OR Status =:IPM_ConstantUtils.IPM_PREPARE OR Status = :IPM_ConstantUtils.IPM_QUEUED)] < IPM_ConstantUtils.IPM_BATCHLIMIT)
                     {      
                         Database.executeBatch(new IPM_ProjectOwnerUpdate_Batch(projectDetailMap.keyset()));
@@ -64,13 +68,17 @@ public without sharing class  IPM_ProjectShareJobQueue implements Queueable
                     IPM_ProjectTriggerHandler PThandler = new IPM_ProjectTriggerHandler();      
                     //@@Design Review - Data Sharing Change update the queue Members
                     PThandler.onBeforeUpdate(projectDetailMap.values());                
+                
                 }
             }  
         }
         catch(Exception ex)
         {
             Database.Rollback(phaseChangeSavePoint); 
+            
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME ,'execute',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null); 
         } 
     }
+    
+    
 }

@@ -5,9 +5,6 @@
 @Description Helper Class for Section Content Business Logic
 @Version 1.0
 @reference Project Document Section Content
-@Business Logic:This class is invoked when the a Project is created or phase is changed, supporting Project Document Section Content needs to be created
-				Based on teh requirement, these contents should flow into the Next Gate Documents available. Based on the Current or Child projects
-				these contents gets split hence the logic is complex since each section has separate flow.
 */
 
 public with sharing class IPM_ProjectSectionContentHelper 
@@ -31,9 +28,8 @@ public with sharing class IPM_ProjectSectionContentHelper
             if(associatedProjectType!=null)
             {
                 String projectGate = associatedProjectType.IPM_Gate_Document__c;
-                 
-                List<IPM_OTIF_Status__c> gateSpecificOTIFList = IPM_ProjectHelper.gateToOTIFCustomSetting.get(projectGate);
                 
+                List<IPM_OTIF_Status__c> gateSpecificOTIFList = IPM_ProjectHelper.gateToOTIFCustomSetting.get(projectGate);
               
                 if(projectToDocumentMap.containsKey(project.Id) && projectToDocumentMap.get(project.Id)!=null)
                 {
@@ -46,11 +42,11 @@ public with sharing class IPM_ProjectSectionContentHelper
                             List<IPM_Project_Document_Section__c> associatedSectionsList = projectDocToSectionMap.get(associatedProjectDocument.Id);
                             // To get the related sections for an otif question
                             Map<String,IPM_Project_Document_Section__c> sectionInformation=new Map<String,IPM_Project_Document_Section__c>();
-                            
+                            System.debug('********associatedSectionsList***'+associatedSectionsList);
                             for(IPM_Project_Document_Section__c ips:associatedSectionsList){ 
                                 sectionInformation.put(ips.IPM_Master_Section_External_Id__c,ips);
                             }
-                            
+                            System.debug('********sectionInformation***'+sectionInformation);
                            for(IPM_Project_Document_Section__c projectSection : associatedSectionsList)
                            {
                                if(projectSection.IPM_Section_Name__c==IPM_ConstantUtils.OTIF_STATUS || projectSection.IPM_Section_Name__c==IPM_ConstantUtils.OTIF)
@@ -74,7 +70,8 @@ public with sharing class IPM_ProjectSectionContentHelper
                                            projectDocSecContent.IPM_OTIF_HelpText_NA__c = os.OTIF_Help_Text__c;
                                            projectDocSecContent.IPM_OTIF_Sequence__c = os.OTIF_Sequence_Number__c; //sequence number for OTIF
                                            projectDocSecContent.Section_Content_Ext_Id__c=os.IPM_External_Id__c;
-                                           
+                                           System.debug('****os********'+os);
+                                           System.debug('****sectionInformation********'+sectionInformation);
                                            if(sectionInformation.get(os.IPM_External_Id__c)!=null){
                                                projectDocSecContent.IPM_Section_Id__c = sectionInformation.get(os.IPM_External_Id__c).Id;
                                                projectDocSecContent.IPM_Section_Name__c = sectionInformation.get(os.IPM_External_Id__c).IPM_Section_Name__c;
@@ -101,8 +98,6 @@ public with sharing class IPM_ProjectSectionContentHelper
     * @param1 projectDocToSectionMap : newly Created project Document To Section Map
     * @param2 projectToDocumentMap : project to Project Document Map 
     * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating Action Standards across all gate documnet which is a complex functionality. 
-    				   
     */
     public static void createFinancialActionStandard(Map<Id,List<IPM_Project_Document_Section__c>> projectDocToSectionMap,Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap, Map<Id,IPM_Project__c> projectMap)
     {
@@ -163,8 +158,6 @@ public with sharing class IPM_ProjectSectionContentHelper
     * @param1 projectDocToSectionMap : newly Created project Document To Section Map
     * @param2 projectToDocumentMap : project to Project Document Map 
     * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating/ copying CMI Sections across all gate documnet which is a complex functionality. 
-    *				   
     */
     public static void manageCMISections(Map<Id,List<IPM_Project_Document_Section__c>> projectDocToSectionMap,Map<Id,Map<String,IPM_Project_Document__c>> projectToDocumentMap, Map<Id,IPM_Project__c> projectMap)
     {
@@ -555,15 +548,12 @@ public with sharing class IPM_ProjectSectionContentHelper
                                 if(countryArrayString != null && !String.isEmpty(countryArrayString))
                                 {
                                     String[] countryArray = countryArrayString.split(IPM_ConstantUtils.SEMICOLON);
-                                    
                                     for(String country : countryArray)
                                     {
-                                    
                                         for(IPM_Project_Document_Section_Content__c docSectionContent : sourceSectionContentList)
                                         {
                                             if(cmiObj.Test__c == docSectionContent.IPM_CMI_Gate_Test__c && docSectionContent.IPM_CMI_Country__c == country)
                                             {
-                                                
                                                 IPM_Project_Document_Section_Content__c projDocSecCon = new IPM_Project_Document_Section_Content__c();
                                                 projDocSecCon.IPM_CMI_Country__c= country;
                                                 projDocSecCon.IPM_CMI_Input__c= docSectionContent.IPM_CMI_Input__c;
@@ -606,14 +596,6 @@ public with sharing class IPM_ProjectSectionContentHelper
         }
     }
     
-     /**************************************************************
-    * @description: Used for Creating CMI Sections on Project Creation and Change.
-    * @param1 projectDocToSectionMap : newly Created project Document To Section Map
-    * @param2 projectToDocumentMap : project to Project Document Map 
-    * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating/ copying Consumer Evidence across all gate documnet which is a complex functionality. 
-    *				   
-    */
      ///carrying the Consumer Evidence Concepts 
     public static void manageCustomerEvidenceConcepts(Map<Id,IPM_Project__c> projectMap,List<IPM_Project_Document__c> projectDocumentList,List<IPM_Project_Document_Section__c> projectSectionList)
     {
@@ -821,14 +803,6 @@ public with sharing class IPM_ProjectSectionContentHelper
         }           
     }
     
-     /**************************************************************
-    * @description: Used for Creating CMI Sections on Project Creation and Change.
-    * @param1 projectDocToSectionMap : newly Created project Document To Section Map
-    * @param2 projectToDocumentMap : project to Project Document Map 
-    * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating/ copying Customer Channel across all gate documnet which is a complex functionality. 
-    *				  
-    */
     ///Carrying the Customer Channel Section 
     public static void manageCustomerChannel(Map<Id,IPM_Project__c> projectMap,List<IPM_Project_Document__c> projectDocumentList,List<IPM_Project_Document_Section__c> projectSectionList)
     {
@@ -1017,14 +991,6 @@ public with sharing class IPM_ProjectSectionContentHelper
         }           
     }
     
-     /**************************************************************
-    * @description: Used for Creating CMI Sections on Project Creation and Change.
-    * @param1 projectDocToSectionMap : newly Created project Document To Section Map
-    * @param2 projectToDocumentMap : project to Project Document Map 
-    * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for  copying Financial Action Standards across all gate documnet which is a complex functionality. 
-    *				   
-    */
     ///Carrying Financial Action Atandards 
     public static void manageFinancialActionStandards(Map<Id,IPM_Project__c> projectMap,List<IPM_Project_Document__c> projectDocumentList,List<IPM_Project_Document_Section__c> projectSectionList)
     {
@@ -1208,14 +1174,6 @@ public with sharing class IPM_ProjectSectionContentHelper
         }           
     }
     
-     /**************************************************************
-    * @description: Used for Creating CMI Sections on Project Creation and Change.
-    * @param1 projectDocToSectionMap : newly Created project Document To Section Map
-    * @param2 projectToDocumentMap : project to Project Document Map 
-    * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating/ copying CU Sections across all gate documnet which is a complex functionality. 
-    *				  
-    */
      ///Carrying the Cu Complexity Section
     public static void manageCuComplexity(Map<Id,IPM_Project__c> projectMap,List<IPM_Project_Document__c> projectDocumentList,List<IPM_Project_Document_Section__c> projectSectionList)
     {
@@ -1252,6 +1210,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                 String sourceProjectGate = null;
                 IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
+                    
                 
                 if(associatedProjectType!=null)
                 {
@@ -1385,15 +1344,6 @@ public with sharing class IPM_ProjectSectionContentHelper
             insert insertedSectionContent;
         }           
     }
-    
-     /**************************************************************
-    * @description: Used for Creating CMI Sections on Project Creation and Change.
-    * @param1 projectDocToSectionMap : newly Created project Document To Section Map
-    * @param2 projectToDocumentMap : project to Project Document Map 
-    * @param3 projectMap : Trigger.New projects Map
-    * NPATHComplexity: This function is used for creating/ copying Assumption Sections across all gate documnet which is a complex functionality. 
-    *				   
-    */
      ///Carrying the Assumptions Section
     public static void manageAssumptions(Map<Id,IPM_Project__c> projectMap,List<IPM_Project_Document__c> projectDocumentList,List<IPM_Project_Document_Section__c> projectSectionList)
     {
@@ -1427,7 +1377,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                 IPM_Project_Document__c targetProjectDocument = null;
                 IPM_Project_Document_Section__c targetProjectDocumentSection = null;
                 
-                String sourceProjectGate = null;
+               String sourceProjectGate = null;
                 IPM_Project_Document__c sourceProjectDocument = null;
                 IPM_Project_Document_Section__c sourceProjectDocSection = null;
                     

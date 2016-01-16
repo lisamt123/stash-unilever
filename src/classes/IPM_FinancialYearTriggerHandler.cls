@@ -14,10 +14,7 @@ public with sharing class IPM_FinancialYearTriggerHandler{
 
     private static String DEFAULT_FINANCIAL_RECORDTYPE; //Recordtype Id for Default on IPM_Financial__c object
     private static String CONSOLIDATED_FINANCIAL_RECORDTYPE; //Recordtype Id for Consolidated on IPM_Financial__c object
-    private static final String UPDATE_FINANCIAL_ACTION_STANDARD_STR='updateFinancialActionStandard';
-    private static final String CLASS_NAME = IPM_FinancialYearTriggerHandler.Class.getName(); //Class Name for Exception Logging
-    private static Boolean IS_RECURSSIVE = false;
-    
+
     /*******************************************************************************************************
     * @description              Method to handle before delete Trigger context for IPM_Financial__c object
     * @param mapOldFinancials   Map of Trigger.old records
@@ -37,7 +34,11 @@ public with sharing class IPM_FinancialYearTriggerHandler{
     */
     public void onAfterUpdate(Map<Id, IPM_Financial_Year__c> mapNewFinancialYears, Map<Id, IPM_Financial_Year__c> mapOldFinancialYears)
     {
-        initialiseFYConsolidation(mapNewFinancialYears, mapOldFinancialYears);
+       // if (firstRun) {
+                //firstRun = false;
+                //system.debug(loggingLevel.Error,'RTDebug firstRun=========>>>>>>>>>'+firstRun);
+                initialiseFYConsolidation(mapNewFinancialYears, mapOldFinancialYears);
+      //  }
     }
     
     /*******************************************************************************************************
@@ -50,19 +51,18 @@ public with sharing class IPM_FinancialYearTriggerHandler{
         DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId();
         CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
         
-        if(DEFAULT_FINANCIAL_RECORDTYPE.length() > 15){
-        	DEFAULT_FINANCIAL_RECORDTYPE = DEFAULT_FINANCIAL_RECORDTYPE.subString(0,15);
-        }
+        if(DEFAULT_FINANCIAL_RECORDTYPE.length() > 15)
+            DEFAULT_FINANCIAL_RECORDTYPE = DEFAULT_FINANCIAL_RECORDTYPE.subString(0,15);
 
-        if(CONSOLIDATED_FINANCIAL_RECORDTYPE.length() > 15){
-        	CONSOLIDATED_FINANCIAL_RECORDTYPE = CONSOLIDATED_FINANCIAL_RECORDTYPE.subString(0,15);
-        }
+        if(CONSOLIDATED_FINANCIAL_RECORDTYPE.length() > 15)
+            CONSOLIDATED_FINANCIAL_RECORDTYPE = CONSOLIDATED_FINANCIAL_RECORDTYPE.subString(0,15);
 
         mapGlobalConsolidatedFY = new Map<String, String>();
         mapRegionalConsolidatedFY = new Map<String, String>();
 
         mapUpsertFY = new Map<String, IPM_Financial_Year__c>();
-        
+        //system.debug(loggingLevel.Error,'mapOldFinancialYears=========>>>>>>>>>'+mapOldFinancialYears);
+        //system.debug(loggingLevel.Error,'mapNewFinancialYears=========>>>>>>>>>'+mapNewFinancialYears);
         if(mapNewFinancialYears != null)
         {
             //Consolidate Financials
@@ -89,9 +89,9 @@ public with sharing class IPM_FinancialYearTriggerHandler{
             for(IPM_Financial_Year__c oldFinancialYear : mapOldFinancialYears.values()){
                 if(oldFinancialYear.Financial_RecordtypeId__c == DEFAULT_FINANCIAL_RECORDTYPE){
                     //Process Global Consolidation for Global Original Projects only
-                    if(oldFinancialYear.Global_External_Id__c != null && oldFinancialYear.Global_External_Id__c != ''){
-                    	consolidateFinancials(null, oldFinancialYear, IPM_ConstantUtils.PROJECT_SPAN_GLOBAL);
-                    }
+                    if(oldFinancialYear.Global_External_Id__c != null && oldFinancialYear.Global_External_Id__c != '')
+                        consolidateFinancials(null, oldFinancialYear, IPM_ConstantUtils.PROJECT_SPAN_GLOBAL);
+                    
                     consolidateFinancials(null, oldFinancialYear, IPM_ConstantUtils.PROJECT_SPAN_REGIONAL);
                 }
             }
@@ -99,7 +99,20 @@ public with sharing class IPM_FinancialYearTriggerHandler{
 
         if(mapUpsertFY != null && !mapUpsertFY.isEmpty()) {
             Database.upsert(mapUpsertFY.values(), IPM_Financial_Year__c.External_ID__c, false);
+                for(IPM_Financial_Year__c fYear:mapUpsertFY.values()) {
+                    //System.debug(loggingLevel.Error,'RTDebug initialiseFYConsolidation fYear.External_Id__c '+fYear.External_Id__c);
+                    //System.debug(loggingLevel.Error,'RTDebug initialiseFYConsolidation fYear.Financial_External_Id__c '+fYear.Financial_External_Id__c);
+                    //System.debug(loggingLevel.Error,'RTDebug initialiseFYConsolidation fYear.Volume_Local__c '+fYear.Volume_Local__c);
+                    //system.debug(loggingLevel.Error,'RTDebug initialiseFYConsolidation fYear.Volume_Tons_Local__c '+fYear.Volume_Tons_Local__c);
+                    //system.debug(loggingLevel.Error,'RTDebug initialiseFYConsolidation fYear.Turnover_Local__c '+fYear.Turnover_Local__c);
+                    //System.debug(loggingLevel.Error,'RTDebug initialiseFYConsolidation fYear.Gross_Profit_Local__c '+fYear.Gross_Profit_Local__c);
+                    //System.debug(loggingLevel.Error,'RTDebug initialiseFYConsolidation fYear.Advertising_Promotions_Local__c '+fYear.Advertising_Promotions_Local__c);
+                    //System.debug(loggingLevel.Error,'RTDebug initialiseFYConsolidation fYear.Profit_Before_Overheads_Local__c '+fYear.Profit_Before_Overheads_Local__c);
+                }
+                
         }
+
+        
     }
     
     /*******************************************************************************************************
@@ -110,6 +123,7 @@ public with sharing class IPM_FinancialYearTriggerHandler{
     private void getConsolidatedFinancialYears(List<IPM_Financial_Year__c> lstFinancialYears)
     {
         Set<String> setFinancialExternalIds = new Set<String>();
+        system.debug('@@@ getConsolidatedFinancialYears');
         
         for(IPM_Financial_Year__c financialYear : lstFinancialYears)
         {
@@ -127,15 +141,20 @@ public with sharing class IPM_FinancialYearTriggerHandler{
                 setFinancialExternalIds.add(regionalExternalId);
             }
         }
+        
+        //System.debug(LoggingLevel.Error,'mapGlobalConsolidatedFY-->>>'+mapGlobalConsolidatedFY);
+        //System.debug(LoggingLevel.Error,'mapRegionalConsolidatedFY-->>>'+mapRegionalConsolidatedFY);
+            
+        
     
         String queryString = 'SELECT ';
         //IPM Financial
         For (String field : Schema.SObjectType.IPM_Financial_Year__c.fields.getMap().KeySet()){
-            if (field != 'Id'){
-            	queryString+= field + ', ';
-            }
+            if (field != 'Id')
+                queryString+= field + ', ';
         }
         queryString+= 'Id FROM IPM_Financial_Year__c WHERE Financial_External_ID__c IN: setFinancialExternalIds';
+        //system.debug('@@@ query in getConsolidatedFinancialYears -->>>'+queryString);
         
         mapAllConsolidatedFinancialYears = new Map<String, IPM_Financial_Year__c>();
         list<IPM_Financial_Year__c> lstFin = new  list<IPM_Financial_Year__c>();
@@ -147,6 +166,8 @@ public with sharing class IPM_FinancialYearTriggerHandler{
         {
             mapAllConsolidatedFinancialYears.put(consollidatedFinancialYear.External_ID__c, consollidatedFinancialYear);
         }
+            
+        //System.debug(LoggingLevel.Error,'mapAllConsolidatedFinancialYears-->>>'+mapAllConsolidatedFinancialYears);    
 
     }
 
@@ -165,17 +186,23 @@ public with sharing class IPM_FinancialYearTriggerHandler{
             if(newFinancialYear != null)
             {
                 newConsolidatedFinExtId = mapGlobalConsolidatedFY.get(newFinancialYear.Id);
-                
+                //System.debug(LoggingLevel.Error,'newConsolidatedFinExtId-->>>'+newConsolidatedFinExtId);
             }
+            
             oldConsolidatedFinExtId = mapGlobalConsolidatedFY.get(oldFinancialYear.Id);
+            //System.debug(LoggingLevel.Error,'oldConsolidatedFinExtId-->>>'+oldConsolidatedFinExtId);
+            
         } 
         else if(consolidationType == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
         {
             if(newFinancialYear != null)
             {
                 newConsolidatedFinExtId = mapRegionalConsolidatedFY.get(newFinancialYear.Id);
+                //System.debug(LoggingLevel.Error,'newConsolidatedFinExtId-->>>'+newConsolidatedFinExtId);
             }
+            
             oldConsolidatedFinExtId = mapRegionalConsolidatedFY.get(oldFinancialYear.Id);
+            //System.debug(LoggingLevel.Error,'oldConsolidatedFinExtId-->>>'+oldConsolidatedFinExtId);
         }
 
         //New Consolidated Financial
@@ -184,31 +211,34 @@ public with sharing class IPM_FinancialYearTriggerHandler{
         if(newFinancialYear != null)
         {
             newConsolidatedFYExtId = getFinancialYearExternalId(newConsolidatedFinExtId, newFinancialYear.Name, newFinancialYear.Year_Type__c, newFinancialYear.PL_Type__c);
+            //System.debug(LoggingLevel.Error,'newConsolidatedFYExtId-->>>'+newConsolidatedFYExtId);
                 
             newConsolidatedFY = mapAllConsolidatedFinancialYears.get(newConsolidatedFYExtId);
+            
+            //System.debug(LoggingLevel.Error,'newConsolidatedFY-->>>'+newConsolidatedFY);
+            
             if(mapUpsertFY.containsKey(newConsolidatedFYExtId))
             {
                 newConsolidatedFY = mapUpsertFY.get(newConsolidatedFYExtId);
+                //System.debug(LoggingLevel.Error,'newConsolidatedFY-->>>'+newConsolidatedFY);
             }
         }
         
         //Old Consolidated Financial
         String oldConsolidatedFYExtId = getFinancialYearExternalId(oldConsolidatedFinExtId, oldFinancialYear.Name, oldFinancialYear.Year_Type__c, oldFinancialYear.PL_Type__c);
+        //System.debug(LoggingLevel.Error,'newConsolidatedFY-->>>'+newConsolidatedFY);
         
         IPM_Financial_Year__c oldConsolidatedFY = mapAllConsolidatedFinancialYears.get(oldConsolidatedFYExtId);
 
-        if(mapUpsertFY.containsKey(oldConsolidatedFYExtId)){
-        	oldConsolidatedFY = mapUpsertFY.get(oldConsolidatedFYExtId);
-        }
-       
+        if(mapUpsertFY.containsKey(oldConsolidatedFYExtId))
+            oldConsolidatedFY = mapUpsertFY.get(oldConsolidatedFYExtId);
+        
+        
+        
         if(newFinancialYear !=  null){
             if(newConsolidatedFY == null && newFinancialYear.Year_Type__c == IPM_ConstantUtils.YEAR_TYPE_CALENDAR){
                 //Create new Financial Year
-                Integer index;
-                if(newFinancialYear.NameYearPLtype__c != IPM_ConstantUtils.Y0Calendar){
-                	index = Integer.valueOf(newFinancialYear.Name) - oldFinancialYear.Target_Launch_Date__c.year() + 1;
-                }
-                  
+                Integer index = Integer.valueOf(newFinancialYear.Name) - oldFinancialYear.Target_Launch_Date__c.year() + 1;
                 newConsolidatedFY = new IPM_Financial_Year__c(
                     IPM_Financial__r = new IPM_Financial__c(Financial_External_ID__c = newConsolidatedFinExtId),
                     External_Id__c = newConsolidatedFYExtId,
@@ -232,9 +262,7 @@ public with sharing class IPM_FinancialYearTriggerHandler{
     * @return                       NONE
     */
     private void consolidateFinancialRecord(IPM_Financial_Year__c newFinancialYear, IPM_Financial_Year__c newConsolidatedFY, IPM_Financial_Year__c oldFinancialYear, IPM_Financial_Year__c oldConsolidatedFY){
-       // processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_VOLUME);
-       // processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS);
-       // processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_VALUE_MARKET_SHARE);
+        //system.debug('@@@ IPM_FinancialYearTriggerHandler: consolidateFinancialRecord ');
         processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_ADVERTISING_PROMOTIONS);
         processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_GROSS_PROFIT);
         processConsolidation(newFinancialYear, newConsolidatedFY, oldFinancialYear, oldConsolidatedFY, IPM_ConstantUtils.FIELD_LITERAL_TURNOVER);
@@ -256,7 +284,7 @@ public with sharing class IPM_FinancialYearTriggerHandler{
         IPM_Financial_Year__c oldConsFY = oldConsolidatedFY;
         Set<String> fieldSufixes = new Set<String>{IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, IPM_ConstantUtils.PROJECT_SPAN_REGIONAL, IPM_ConstantUtils.PROJECT_SPAN_LOCAL};
         Decimal value;
-        for(String suffix : fieldSufixes){
+        For(String suffix : fieldSufixes){
             Object newValueObject = null;
         	String newFieldName = fieldname + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX;
             //NEW Consolidated Financial Year
@@ -265,21 +293,19 @@ public with sharing class IPM_FinancialYearTriggerHandler{
                     newConsFY = mapUpsertFY.get(newConsFY.External_ID__c);
                     newValueObject = newConsFY.get(newFieldName);
                 }
-                if(newValueObject == null){
-            		value = (Decimal) newFinancialYear.get(newFieldName);
-                }
-                else{
-                	value = (Decimal) newConsFY.get(newFieldName) + (Decimal) newFinancialYear.get(newFieldName);
-                }
+                if(newValueObject == null)
+                    value = (Decimal) newFinancialYear.get(newFieldName);
+                else
+                    value = (Decimal) newConsFY.get(newFieldName) + (Decimal) newFinancialYear.get(newFieldName);
+    
                 newConsFY.put(newFieldName, value);
                 mapUpsertFY.put(newConsFY.External_ID__c, newConsFY);
             }
 
             //OLD Consolidated Financial Year
             if(oldConsFY!=null) {
-                 if(mapUpsertFY.containsKey(oldConsFY.External_ID__c)){
-             		oldConsFY = mapUpsertFY.get(oldConsFY.External_ID__c);
-                 }
+                 if(mapUpsertFY.containsKey(oldConsFY.External_ID__c))
+                    oldConsFY = mapUpsertFY.get(oldConsFY.External_ID__c);
                 value = (Decimal) oldConsFY.get(newFieldName) - (Decimal) oldFinancialYear.get(newFieldName);
                 oldConsFY.put(newFieldName, value);
                 
@@ -301,20 +327,16 @@ public with sharing class IPM_FinancialYearTriggerHandler{
         IPM_Financial_Year__c oldConsFY = oldConsolidatedFY;
         Set<String> fieldSufixes = new Set<String>{IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, IPM_ConstantUtils.PROJECT_SPAN_REGIONAL, IPM_ConstantUtils.PROJECT_SPAN_LOCAL};
         Decimal value;
-        for(String suffix : fieldSufixes){
+        For(String suffix : fieldSufixes){
             String newVolumeUnit;
-            if(newFinancialYear != null){
-            	newVolumeUnit = (String) newFinancialYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
-            }
-                
+            if(newFinancialYear != null)
+                newVolumeUnit = (String) newFinancialYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
             String oldVolumeUnit = (String) oldFinancialYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
 
             //NEW Consolidated Financial Year
             if(newFinancialYear != null && mapUpsertFY != null && newConsFY != null){
-                if(mapUpsertFY.containsKey(newConsFY.External_ID__c)){
-                	newConsFY = mapUpsertFY.get(newConsFY.External_ID__c);
-                }
-                    
+                if(mapUpsertFY.containsKey(newConsFY.External_ID__c))
+                    newConsFY = mapUpsertFY.get(newConsFY.External_ID__c);
                 Object newValueObject = newConsFY.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
                 if(newValueObject == null){
                     if((newVolumeUnit == IPM_ConstantUtils.VOLUME_UNIT_TONS) && (oldVolumeUnit == IPM_ConstantUtils.VOLUME_UNIT_TONS)){
@@ -332,7 +354,9 @@ public with sharing class IPM_FinancialYearTriggerHandler{
                     }else if((newVolumeUnit == IPM_ConstantUtils.VOLUME_UNIT_000_UNITS) && (oldVolumeUnit == IPM_ConstantUtils.VOLUME_UNIT_TONS)){
                         value = (Decimal) newFinancialYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
                         newConsFY.put(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, value);
+    
                     }
+                    
                 } else {
     
                     if((newVolumeUnit == IPM_ConstantUtils.VOLUME_UNIT_TONS) && (oldVolumeUnit == IPM_ConstantUtils.VOLUME_UNIT_TONS)){
@@ -350,17 +374,19 @@ public with sharing class IPM_FinancialYearTriggerHandler{
                     }else if((newVolumeUnit == IPM_ConstantUtils.VOLUME_UNIT_000_UNITS) && (oldVolumeUnit == IPM_ConstantUtils.VOLUME_UNIT_TONS)){
                         value = (Decimal) newConsFY.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) + (Decimal) newFinancialYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
                         newConsFY.put(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, value);
+    
                     }
+                    
                 }
+    
                 mapUpsertFY.put(newConsFY.External_ID__c, newConsFY);
             }
 
             //OLD Consolidated Financial Year
             if(oldConsFY!=null) {
-                if(mapUpsertFY.containsKey(oldConsFY.External_ID__c)){
-                	oldConsFY = mapUpsertFY.get(oldConsFY.External_ID__c);
-                }
-                    
+                if(mapUpsertFY.containsKey(oldConsFY.External_ID__c))
+                    oldConsFY = mapUpsertFY.get(oldConsFY.External_ID__c);
+    
                 if((newVolumeUnit == IPM_ConstantUtils.VOLUME_UNIT_TONS) && (oldVolumeUnit == IPM_ConstantUtils.VOLUME_UNIT_TONS)){
                     value = (Decimal) oldConsFY.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) - (Decimal) oldFinancialYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
                     oldConsFY.put(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, value);
@@ -376,6 +402,7 @@ public with sharing class IPM_FinancialYearTriggerHandler{
                 }else if((newVolumeUnit == IPM_ConstantUtils.VOLUME_UNIT_000_UNITS) && (oldVolumeUnit == IPM_ConstantUtils.VOLUME_UNIT_TONS)){
                     value = (Decimal) oldConsFY.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX) - (Decimal) oldFinancialYear.get(IPM_ConstantUtils.FIELD_LITERAL_VOLUME + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX);
                     oldConsFY.put(IPM_ConstantUtils.FIELD_LITERAL_VOLUME_TONS + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX, value);
+    
                 }
                 
                 mapUpsertFY.put(oldConsFY.External_ID__c, oldConsFY);
@@ -401,46 +428,40 @@ public with sharing class IPM_FinancialYearTriggerHandler{
     * @return                       NONE
     */
     public void updateFinancialActionStandard(Map<Id, IPM_Financial_Year__c> mapNewFinancialYears){
-        try{
-            List<IPM_Financial_Year__c> newFinYearList=new  List<IPM_Financial_Year__c>();
-            List<IPM_Project_Document_Section_Content__c> projDocSecConList=new List<IPM_Project_Document_Section_Content__c>();
-            Set<Id> projectIds=new Set<Id>();
-            for(IPM_Financial_Year__c newFinYear:mapNewFinancialYears.values()){
-                if(newFinYear.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c && (String.isBlank(newFinYear.Regional_External_Id__c) || (String.isBlank(newFinYear.Global_External_Id__c) && String.isNotBlank(newFinYear.Regional_External_Id__c)))){
-                    newFinYearList.add(newFinYear);
-                    projectIds.add(newFinYear.Global_Project_Id__c);
-                }
+        List<IPM_Financial_Year__c> newFinYearList=new  List<IPM_Financial_Year__c>();
+        List<IPM_Project_Document_Section_Content__c> projDocSecConList=new List<IPM_Project_Document_Section_Content__c>();
+        Set<Id> projectIds=new Set<Id>();
+        for(IPM_Financial_Year__c newFinYear:mapNewFinancialYears.values()){
+            if((newFinYear.NameYearPLtype__c=='Y1-Innovation-Incremental' || newFinYear.NameYearPLtype__c=='Y1-Innovation-Gross') && !newFinYear.Charter_Approved__c && String.isBlank(newFinYear.Regional_External_Id__c)){
+                newFinYearList.add(newFinYear);
+                projectIds.add(newFinYear.Global_Project_Id__c);
             }
-            if(projectIds!=null && !projectIds.isEmpty()){
-                projDocSecConList=[SELECT Id,IPM_iTo_Action_Standard_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_gTO_Action_Standard_Charter__c,IPM_GM_Action_Standards_Charter__c,
-                                   IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c,IPM_Content_Type__c,
-                                   IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c
-                                   FROM IPM_Project_Document_Section_Content__c
-                                   WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c In:projectIds AND IPM_Content_Type__c=:IPM_ConstantUtils.FINANCIAL_ACTION_STANDARDS AND 
-                                         IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c=:IPM_ConstantUtils.PHASE_IDEAS];  
-            }
-            for(IPM_Financial_Year__c finYear:newFinYearList){  
-                for(IPM_Project_Document_Section_Content__c secContent:projDocSecConList){  
-                    if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==finYear.Global_Project_Id__c){
-                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental){
-                            secContent.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
-                            secContent.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Global__c;
-                        }
-                        if(finYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross){
-                            secContent.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
-                            secContent.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Global__c;
-                            secContent.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Global__c;
-                        }
+        }
+        if(projectIds!=null && !projectIds.isEmpty()){
+            projDocSecConList=[SELECT Id,IPM_iTo_Action_Standard_Charter__c,IPM_Innov_Value_Share_Action_Charter__c,IPM_Inc_Value_Share_Action_Charter__c,IPM_gTO_Action_Standard_Charter__c,IPM_GM_Action_Standards_Charter__c,
+                               IPM_Project_Document_Section__c,IPM_Project_Document_Section__r.IPM_Project_Document__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c,IPM_Content_Type__c,
+                               IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c
+                               FROM IPM_Project_Document_Section_Content__c
+                               WHERE IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c In:projectIds AND IPM_Content_Type__c='Financial Action Standards' AND 
+                                     IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__r.IPM_Phase__c='Ideas'];
+        }
+        for(IPM_Financial_Year__c finYear:newFinYearList){
+            for(IPM_Project_Document_Section_Content__c secContent:projDocSecConList){
+                if(secContent.IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_Project__c==finYear.Global_Project_Id__c){
+                    if(finYear.NameYearPLtype__c=='Y1-Innovation-Incremental'){
+                        secContent.IPM_Inc_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
+                        secContent.IPM_iTo_Action_Standard_Charter__c=finYear.Turnover_Global__c;
+                    }
+                    if(finYear.NameYearPLtype__c=='Y1-Innovation-Gross'){
+                        secContent.IPM_Innov_Value_Share_Action_Charter__c=finYear.Value_Market_Share_Global__c;
+                        secContent.IPM_gTO_Action_Standard_Charter__c=finYear.Turnover_Global__c;
+                        secContent.IPM_GM_Action_Standards_Charter__c=finYear.GM_of_TO_Global__c;
                     }
                 }
             }
-            if(projDocSecConList!=null && !projDocSecConList.isEmpty()){
-                update projDocSecConList;
-            }
         }
-        catch(Exception ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-                UPDATE_FINANCIAL_ACTION_STANDARD_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION); 
-        }
+        if(projDocSecConList!=null && !projDocSecConList.isEmpty()){
+            update projDocSecConList;
+        }   
     }
 }

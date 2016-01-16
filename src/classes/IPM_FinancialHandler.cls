@@ -106,17 +106,20 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     {
         //This method has been included as the class implements the ITrigger interface
         IPM_Financial__c newfinancial = (IPM_Financial__c)so;
-       if(newfinancial.Regional_Project__c !=null && String.isNotBlank(newFinancial.Financial_External_ID__c)  )
+       if(newfinancial.Regional_Project__c !=null && newFinancial.RecordtypeID != CONSOLIDATED_FINANCIAL_RECORDTYPE 
+           && (String.isNotBlank(newFinancial.Financial_External_ID__c) && !newFinancial.Financial_External_ID__c.contains(IPM_ConstantUtils.FINANCIAL_NONKEY) )  )
         {
             Id regionalProjectId = newfinancial.Regional_Project__c;
             if(associatedProjectMap.containsKey(regionalProjectId))
             {
                 IPM_Project__c project = associatedProjectMap.get(regionalProjectId);
-              
-                if(newfinancial.Charter_Approved__c && ( (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && project.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.ROLLOUT_COPYOVER_ELIGIBLE_PHASE) || 
-                        project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL ) )
+                if(newfinancial.Charter_Approved__c)
                 {
-                	newfinancial.Copy_Global_to_Regional__c = true;
+                    if( (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && project.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.ROLLOUT_COPYOVER_ELIGIBLE_PHASE) || 
+                        project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL  )
+                    {
+                        newfinancial.Copy_Global_to_Regional__c = true;
+                    }
                 }
             }
         }
@@ -127,10 +130,13 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             if(associatedProjectMap.containsKey(localProjectId))
             {
                 IPM_Project__c project = associatedProjectMap.get(localProjectId);
-                if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT && ( project.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.ROLLOUT_COPYOVER_ELIGIBLE_PHASE || 
-                    project.IPM_CompanyCardText__c == IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL ) )
+                if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
                 {
-                    newfinancial.Copy_Regional_to_Local__c = true;
+                    if( project.IPM_Project_Rollout__r.Added_At_Stage__c == IPM_ConstantUtils.ROLLOUT_COPYOVER_ELIGIBLE_PHASE || 
+                    project.IPM_CompanyCardText__c == IPM_ConstantUtils.COMPANY_CARD_RECORD_TYPE_REGIONAL )
+                    {
+                        newfinancial.Copy_Regional_to_Local__c = true;
+                    }
                 }
             }
         }
@@ -149,9 +155,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         IPM_Financial__c newfinancial = (IPM_Financial__c)so;
         IPM_Financial__c oldfinancial = (IPM_Financial__c)oldSo;
         
-        if(newfinancial.Regional_Project__c !=null && String.isNotBlank(newFinancial.Financial_External_ID__c)   )
-          {
-        	Id regionalProjectId = newfinancial.Regional_Project__c;
+        if(newfinancial.Regional_Project__c !=null && newFinancial.RecordtypeID != CONSOLIDATED_FINANCIAL_RECORDTYPE 
+               && (String.isNotBlank(newFinancial.Financial_External_ID__c) && !newFinancial.Financial_External_ID__c.contains(IPM_ConstantUtils.FINANCIAL_NONKEY) ) )
+        {
+            Id regionalProjectId = newfinancial.Regional_Project__c;
             if(associatedProjectMap.containsKey(regionalProjectId))
             {
                 IPM_Project__c project = associatedProjectMap.get(regionalProjectId);
@@ -164,8 +171,6 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                         if(!oldfinancial.Copy_Global_to_Regional__c )
                         {
                             newfinancial.Copy_Global_to_Regional__c = true;
-                        }else{
-                            newfinancial.Copy_Global_to_Regional__c = false;
                         }
                     }
                 }
@@ -186,16 +191,12 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                     {
                         if(!oldfinancial.Copy_Global_to_Local__c)
                         {
-                            newfinancial.Copy_Global_to_Local__c = true;
-                        }else{
-                        	newfinancial.Copy_Global_to_Local__c = false;
+                            //newfinancial.Copy_Global_to_Local__c = true;
                         }
                         
                         if(!oldfinancial.Copy_Regional_to_Local__c)
                         {
-                            newfinancial.Copy_Regional_to_Local__c = true;
-                        }else{
-                        	newfinancial.Copy_Regional_to_Local__c = false;
+                            //newfinancial.Copy_Regional_to_Local__c = true;
                         }
                     }
                 }

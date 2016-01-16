@@ -206,8 +206,6 @@
         <!-- FabricConditioner begin -->
         <apex:outputPanel rendered="{!AND(categoryMigrated,bet.id != null,fabricConditioner == 'No')}">
         <!-- FabricConditioner end -->
-        <!-- should be replaced with -->
-        <!-- <apex:outputPanel rendered="{!AND(categoryMigrated,bet.id != null)}"> -->
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_ProjectName}</apex:outputLabel>
@@ -224,14 +222,10 @@
                     <apex:outputLabel >{!$Label.BET_LinkBetToIPMProject}</apex:outputLabel>
                 </div>
             </div>
-        <!-- FabricConditioner begin -->
         </apex:outputPanel>
-        <!-- FabricConditioner end -->
         <!-- FabricConditioner begin -->
         <apex:outputPanel rendered="{!AND(categoryNotMigrated,fabricConditioner == 'No')}">
         <!-- FabricConditioner end -->
-        <!-- should be replaced with -->
-        <!-- <apex:outputPanel rendered="{!categoryNotMigrated}">-->
             <div class="form-item" style="padding-top:20px;">
                 <div class="item-label">
                     <apex:outputLabel >{!$Label.BET_MandatoryStar}{!$Label.BET_InoplanProjectName}</apex:outputLabel>
@@ -244,9 +238,7 @@
                     </apex:actionRegion>
                 </div>
             </div>
-        <!-- FabricConditioner begin -->
         </apex:outputPanel>
-        <!-- FabricConditioner end -->
     </apex:outputPanel>
 
 </apex:component>

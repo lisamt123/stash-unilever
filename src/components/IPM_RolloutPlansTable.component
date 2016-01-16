@@ -9,8 +9,7 @@
 
 
 <apex:component controller="IPM_RolloutPlansTableController" allowDML="true"> 
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_EditProject.css')}"/>  
-
+   
     <apex:outputPanel rendered="{!isError}">
         <div class="finGreyBG">
             <apex:outputText value="{!errorMessage}" />
@@ -145,9 +144,9 @@
                         <!-------- Local Rollouts ------------------------>
                         <div class="ipmAcrdnExpand">
                             <apex:repeat value="{!projectTolocalRolloutToCountryMap[regionalProjectID]}" var="localRolloutId">
-                                <apex:variable var="localRollout" value="{!lstcompleteRollout[localRolloutId]}" />
-                                <apex:variable var="localProject" value="{!lstcompleteProjects[localRollout.Local_Project__c]}" rendered="{!NOT(ISNULL(localRollout.Local_Project__c))}"/>
-                                
+                            	<apex:variable var="localRollout" value="{!lstcompleteRollout[localRolloutId]}" />
+                            	<apex:variable var="localProject" value="{!lstcompleteProjects[localRollout.Local_Project__c]}" rendered="{!NOT(ISNULL(localRollout.Local_Project__c))}"/>
+                            	
                                 <div class="pt20">
                                     <table class="rollouttable editable">                                 
                                         <tr>
@@ -187,7 +186,7 @@
                                             <td scope="col" width="180px">
                                                 <apex:outputField value="{!localProject.IPM_Project_Leader__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>
-                                            <td scope="col" width="120px">
+                                            <td scope="col" width="125px">
                                                 <apex:outputField value="{!localProject.IPM_Finance_Member__c}" rendered="{!IF(localRollout.Local_Project__c != null, true, false)}"/>
                                             </td>                
                                         </tr>                                    
@@ -201,8 +200,8 @@
                                                     <strong>{!$Label.IPM_INCLUDED_COUNTRIES}: </strong>
                                                     <apex:variable var="countryString" value="" />
                                                     <apex:repeat value="{!projectTolocalRolloutToCountryMap[regionalProjectID][localRolloutId]}" var="country">
-                                                        <apex:variable var="countryString" value="{!countryString +','+country.Country_Name__c}" rendered="{!LEN(countryString) > 0}"/>
-                                                        <apex:variable var="countryString" value="{!country.Country_Name__c}" rendered="{!LEN(countryString) == 0}"/>
+                                                    	<apex:variable var="countryString" value="{!countryString +','+country.Country_Name__c}" rendered="{!LEN(countryString) > 0}"/>
+                                                    	<apex:variable var="countryString" value="{!country.Country_Name__c}" rendered="{!LEN(countryString) == 0}"/>
                                                     </apex:repeat>
                                                     <apex:outputText value="{!countryString}"/>
                                                 </div>
@@ -285,8 +284,8 @@
                         <!-- Local Rollouts -->
                         <div class="ipmAcrdnExpand">
                             <apex:repeat value="{!rolloutTolocalRolloutToCountryMap[regionalRolloutID]}" var="localRolloutId" >  
-                            <apex:variable var="localRollout" value="{!lstcompleteRollout[localRolloutId]}" />
-                                
+                           	<apex:variable var="localRollout" value="{!lstcompleteRollout[localRolloutId]}" />
+                            	
                                 <div class="pt20">
                                     <table class="rollouttable editable">                                 
                                         <tr>
@@ -313,7 +312,7 @@
                                             <td scope="col" width="190px">
                                                 <div class="incHeight">                                                    
                                                     <apex:outputField value="{!localRollout.Target_Launch_Date__c}" rendered="{!NOT(isEditMode)}"/>
-                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}" onchange="TLDDateCheck(this)"/> 
+                                                    <apex:inputField value="{!lstcompleteRollout[localRolloutId].Target_Launch_Date__c}" styleClass="dateInputBox calendar" rendered="{!isEditMode}"/>
                                                 </div>
                                             </td>
                                             <td scope="col" width="100px">
@@ -438,53 +437,4 @@
             </div>  
         </div>
     </div>
-<!-- Modal -->
-    <div id="tldWarningDialog" tabindex="-1" data-backdrop-limit="1" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <div class="modal-title">{!$Label.Business_Case_Update_Needed}</div>
-                </div>
-                <div class="modal-body">
-                    <div class="removeapprpopup">
-                        <span class="removeApprText">{!$Label.Business_Case_Update_Needed_Value}</span>
-                        <div class="remvButtonContainer pull-right">  
-                            <div class="pull-left buttonMarginRight noPadright">
-                                <input type="button" class="ipmButton" data-dismiss="modal" value="{!$Label.Cancel_and_Revert}" onClick="revertTLDValue();"/>
-                            </div>
-                            <div class="buttonMarginRight noPadright pull-left" >
-                                <!-- <span class="ipmButton primary" data-dismiss="modal" >Agree and Proceed</span> -->
-                    <apex:commandLink value="{!$Label.Agree_and_Proceed}"  rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  oncomplete="hideTldWarningDialog();" >
-                    </apex:commandLink>
-                        
-                            </div>
-                        </div>
-                    </div>        
-                </div>
-            </div>
-        </div>
-    </div>
-<script>
-    function TLDDateCheck(param){
-        var newTLDValue = param.value;
-        tldOrignalValue = param.defaultValue;
-        selectedDateField = param;
-        if(newTLDValue != tldOrignalValue){
-            jq('#tldWarningDialog').modal('show'); 
-            return false;
-        }
-        return true;
-    }
-    function revertTLDValue(){
-        selectedDateField.value = tldOrignalValue;
-    }
-    function hideTldWarningDialog(){
-        jq('#tldWarningDialog').modal('hide'); 
-    }
-    var tldOrignalValue = "";
-    var selectedDateField = "";
- 
-  
-</script>
 </apex:component>

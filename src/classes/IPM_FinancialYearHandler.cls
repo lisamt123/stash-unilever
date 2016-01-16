@@ -32,10 +32,35 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger{
         IPM_FinancialYearTriggerHandler handler = new IPM_FinancialYearTriggerHandler();
 
         if(System.Trigger.isUpdate){
+        	//if (firstRun) {
+				//firstRun = false;
+				//system.debug(loggingLevel.Error,'RTDebug firstRun=========>>>>>>>>>'+firstRun);
 				Map<Id,IPM_Financial_Year__c> oldFMap = (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap;
+        		for(IPM_Financial_Year__c fYear:oldFMap.values()) {
+					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.External_Id__c '+fYear.External_Id__c);
+					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Financial_External_Id__c '+fYear.Financial_External_Id__c);
+					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Volume_Local__c '+fYear.Volume_Local__c);
+					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Volume_Tons_Local__c '+fYear.Volume_Tons_Local__c);
+					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Turnover_Local__c '+fYear.Turnover_Local__c);
+					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Gross_Profit_Local__c '+fYear.Gross_Profit_Local__c);
+					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Advertising_Promotions_Local__c '+fYear.Advertising_Promotions_Local__c);
+					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Profit_Before_Overheads_Local__c '+fYear.Profit_Before_Overheads_Local__c);
+				}
 				Map<Id,IPM_Financial_Year__c> newFMap = (Map<Id,IPM_Financial_Year__c>) Trigger.newMap;
+				for(IPM_Financial_Year__c fYear:newFMap.values()) {
+					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.External_Id__c '+fYear.External_Id__c);
+					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Financial_External_Id__c '+fYear.Financial_External_Id__c);
+					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Volume_Local__c '+fYear.Volume_Local__c);
+					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Volume_Tons_Local__c '+fYear.Volume_Tons_Local__c);
+					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Turnover_Local__c '+fYear.Turnover_Local__c);
+					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Gross_Profit_Local__c '+fYear.Gross_Profit_Local__c);
+					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Advertising_Promotions_Local__c '+fYear.Advertising_Promotions_Local__c);
+					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Profit_Before_Overheads_Local__c '+fYear.Profit_Before_Overheads_Local__c);
+				}
         		handler.onAfterUpdate((Map<Id,IPM_Financial_Year__c>) Trigger.newMap, (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap);
             	handler.updateFinancialActionStandard((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
+           // }
+            
         }
     }
     /**

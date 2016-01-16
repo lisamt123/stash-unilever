@@ -92,7 +92,7 @@ public with sharing class IPM_ProjectTriggerHandler
                             
             for(IPM_Project__c proj:newProjects)
             {
-                projectidstr = proj.IPM_Global_Project_Id__c;
+                projectidstr = proj.IPM_Global_ProjectId__c;
                 projideset.add(projectidstr);
                 projideset.add(proj.id);  
             }

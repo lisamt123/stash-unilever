@@ -39,9 +39,9 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     */
     public void onBeforeDelete(IPM_Project_Resource__c[] oldProjectResources) {
         lstPrjResourceHisWrapper = new List<ProjectResourceHistoryWrapper>();
-        for(IPM_Project_Resource__c eachPResource : oldProjectResources){
-            lstPrjResourceHisWrapper.add(new ProjectResourceHistoryWrapper(eachPResource.IPM_Project__c, eachPResource.IPM_User__c, null, eachPResource.IPM_Role_Type__c));        
-        } 
+        for(IPM_Project_Resource__c eachPResource : oldProjectResources) 
+          lstPrjResourceHisWrapper.add(new ProjectResourceHistoryWrapper(eachPResource.IPM_Project__c, eachPResource.IPM_User__c, null, eachPResource.IPM_Role_Type__c));
+        
         trackProjectResourceAuditHistory(lstPrjResourceHisWrapper, IPM_ConstantUtils.HISTORY_DELETED);
     }
     
@@ -191,7 +191,8 @@ public with sharing class IPM_ProjectResourceTriggerHandler
   
     //List of all Project records which have been previously synced to EcoDesign
     prevSyncedProjList = [SELECT Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
-                             IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
+                             IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c FROM IPM_Project__c WHERE Id IN :projIdsSet 
+                             AND First_Sync_To_EcoDesign__c = TRUE LIMIT 50000];
     
     projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,OPTION_ALL);
     
@@ -214,9 +215,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     //Update The List
     if(!toUpdateProjList.isEmpty())
     {
-    	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
         update toUpdateProjList; // Not including try , catch as when the transaction is failed roll back is handled at other class
-        IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
       }
 
   }
@@ -237,7 +236,8 @@ public with sharing class IPM_ProjectResourceTriggerHandler
             projIdsSet.add(projResource.IPM_Project__c);
         }
         prevSyncedProjList = [SELECT Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
-                             IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
+                             IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c FROM IPM_Project__c WHERE Id IN :projIdsSet 
+                             AND First_Sync_To_EcoDesign__c = TRUE LIMIT 50000];
     
         projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,OPTION_ALL);
     
@@ -260,9 +260,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
         //Update The List
         if(!toUpdateProjList.isEmpty())
         {
-            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             update toUpdateProjList; // Not including try , catch as when the transaction is failed roll back is handled at other class  
-            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;  
         }
     }     
   /*******************************************************************************************************

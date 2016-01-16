@@ -12,8 +12,15 @@ private class IPM_AssesmentHandler_Helper_Test {
     public static User platformUser;
     public static List<IPM_Assessment__c> finalAssessmentList = new List<IPM_Assessment__c>();
     public static List<IPM_Company_Card__c> companyCardList; 
+    public static IPM_Project__c ipmProject ;
     public static List<IPM_Project__c> projectList;
+    public static List<IPM_Project_Document__c> projDocList;
+    public static IPM_Project_Document_Section__c projDocSec;
+    public static List<IPM_Customer_Channel_Priority_Order__c> customerChannelPriorityList;
+    public static User resourceAlloctionUser1;
+    public static final String AssessmentName = 'Assessment 1';
     public static List<Id> projIdList = new List<Id>();
+    public Static String IPM_ProjectType =  'IPM_ProjectType';
     /***********************************
       Description of the purpose of the method. 
       @name: insertAssessmentTest
@@ -43,6 +50,7 @@ private class IPM_AssesmentHandler_Helper_Test {
          System.runAs(platformUser)
          {
            for(IPM_Project__c proj : projectList){
+            proj.Synced_From_EcoDesign_TimeStamp__c = System.now().addMinutes(15);
             proj.First_Sync_To_EcoDesign__c = true;
             proj.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
             proj.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
@@ -177,7 +185,8 @@ private class IPM_AssesmentHandler_Helper_Test {
     ***********************************/
     static testMethod void testAssessmentWithWrongPhase() {
   
-
+        // At this point Async process kicks in and starts creating Related Object information.    
+        // Create Country specific information.
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1][0];
         List<IPM_Country__c> countryList= new List<IPM_Country__c>();
         System.runAs(globalUser)
@@ -196,6 +205,7 @@ private class IPM_AssesmentHandler_Helper_Test {
                   finalAssessmentList.add(assessment);
                   i++;
             }       
+            //insert finalAssessmentList;
             
             //To check if error is thrown when a project with different phase is inserted
             try{
@@ -213,6 +223,8 @@ private class IPM_AssesmentHandler_Helper_Test {
     
     static testMethod void testAssessmentWithWrongCountry() {
   
+        // At this point Async process kicks in and starts creating Related Object information.    
+        // Create Country specific information.
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1][0];
         List<IPM_Country__c> countryList= new List<IPM_Country__c>();
         System.runAs(globalUser)

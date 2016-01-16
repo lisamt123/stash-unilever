@@ -21,7 +21,7 @@ public with sharing class IPM_RolloutTriggerHandler
     private List<IPM_Financial__c> lstDeleteFinancials;
     private List<IPM_Project_Rollout__c> lstDeleteRollouts;
     
-    public static Boolean SKIP_TRIGGER_EXECUTION = false;
+    
     
     /*****************************************************************************************************************************
     * @description      Constructor
@@ -137,7 +137,7 @@ public with sharing class IPM_RolloutTriggerHandler
                     }
                     
                     //ALL Local Rollouts being deleted 
-                    if(setCurrentRolloutIds.containsAll(setLocalRolloutIds)  && !setCurrentRolloutIds.contains(regionalRollout.Id))
+                    if(setCurrentRolloutIds.containsAll(setLocalRolloutIds))
                     {
                         lstDeleteRollouts.add(regionalRollout);                 
                     }
@@ -247,7 +247,7 @@ public with sharing class IPM_RolloutTriggerHandler
         {
             Schema.DescribeFieldResult fieldDescribe = fieldTypeMap.get(fieldAPIName).getDescribe();
             
-            if(fieldDescribe.isCustom()  && fieldAPIName != 'Id')
+            if(fieldDescribe.isCustom() && fieldAPIName != 'Id')
             {
                 rolloutQuery += ' '+fieldAPIName+',';
             }
@@ -439,7 +439,7 @@ public with sharing class IPM_RolloutTriggerHandler
             }
             else
             {
-                if(!nonKeyFinancialExistingSet.contains(financialExternalId) && newNonKeyRollout!=null)
+                if(!nonKeyFinancialExistingSet.contains(financialExternalId))
                 {
                     IPM_Financial__c newFinancial = new IPM_Financial__c(
                             IPM_Project_Rollout__c = regionalRollout.Id,
@@ -497,7 +497,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 }
                 else
                 {
-                    if(!nonKeyFinancialExistingSet.contains(financialExternalId) && newNonKeyRollout!=null)
+                    if(!nonKeyFinancialExistingSet.contains(financialExternalId))
                     {
                         IPM_Financial__c newFinancial = new IPM_Financial__c(
                                 Regional_Project__c = regionalProject.Id,
@@ -604,19 +604,24 @@ public with sharing class IPM_RolloutTriggerHandler
             }
             
             // EPIC172 implementation start 
-            Map<ID,IPM_Project_Rollout__c> updatedRollouts = new Map<ID,IPM_Project_Rollout__c>();
-            for(IPM_Project_Rollout__c rollout: mapNewProjectRollouts.values()) 
-            {
-                if ( rollout.Target_Launch_Date__c != mapOldProjectRollouts.get(rollout.Id).Target_Launch_Date__c ) 
+            IPM_CustomPermission cpr = new IPM_CustomPermission();
+            Boolean syncTLD = cpr.hasPermission(IPM_ConstantUtils.IPM_SYNC_TLD);
+            
+            if(syncTLD) {
+                Map<ID,IPM_Project_Rollout__c> updatedRollouts = new Map<ID,IPM_Project_Rollout__c>();
+                for(IPM_Project_Rollout__c rollout: mapNewProjectRollouts.values()) 
                 {
-                    updatedRollouts.put(rollout.Id,rollout);
+                    if ( rollout.Target_Launch_Date__c != mapOldProjectRollouts.get(rollout.Id).Target_Launch_Date__c ) 
+                    {
+                        updatedRollouts.put(rollout.Id,rollout);
+                    }
                 }
-            }
-           
-            if(updatedRollouts.size()>0) 
-            {
-                IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
-                syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
+               
+               /* if(updatedRollouts.size()>0) 
+                {
+                    IPM_SyncFinanceTableTLD syncFinanceTableTLD = new IPM_SyncFinanceTableTLD();
+                    syncFinanceTableTLD.syncProjectRolloutFinancialTLD(updatedRollouts);
+                }*/
             }
           //  EPIC172 implementation end 
        
@@ -671,22 +676,5 @@ public with sharing class IPM_RolloutTriggerHandler
             
         }
         
-    }
-    
-    public static void udpateAsyncJobId(Set<Id>phaseChangeRolloutSet, Id JobId)
-    {
-        Map<Id,IPM_Project_Rollout__c> updateAsyncJobIdRolloutMap = new Map<Id,IPM_Project_Rollout__c>(); 
-        for(Id rolloutId : phaseChangeRolloutSet)
-        {
-            IPM_Project_Rollout__c projectRollout = new IPM_Project_Rollout__c(Id=rolloutId,IPM_PhaseChangeQueueJobId__c = JobId);
-            updateAsyncJobIdRolloutMap.put(rolloutId,projectRollout);
-        }
-        
-        if(updateAsyncJobIdRolloutMap.size() > 0)
-        {
-            SKIP_TRIGGER_EXECUTION = true;
-            update updateAsyncJobIdRolloutMap.values();
-            SKIP_TRIGGER_EXECUTION = false;
-        }
     }
 }

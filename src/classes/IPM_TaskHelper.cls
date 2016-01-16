@@ -47,7 +47,6 @@ public with sharing class IPM_TaskHelper {
 	          {
 	                newTaskObj.Name = taskName;
 	          }
-	         
           }
         }   
     }
@@ -431,15 +430,8 @@ public with sharing class IPM_TaskHelper {
                                     {
                                         newTask.IPM_Assignee__c = projectDetail.IPM_Project_Leader__c;
                                     }
-                                    if(((newTask.IPM_Section__c != null && newTask.IPM_Project_Document_Section__c != null) ||
-                                    	(newTask.IPM_Section__c == null && newTask.IPM_Project_Document_Section__c == null)) &&
-                                    	(
-                                    	  masterTask.IPM_Master_Section_Sequence__c != IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_SEQUENCE || 
-                                    	  (
-                                    	  	masterTask.IPM_Master_Section_Sequence__c.equalsIgnoreCase(IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_SEQUENCE) &&
-                                    	  	project.IPM_Answer_of_Q1__c !=IPM_ConstantUtils.BLG
-                                    	  )
-                                    	))
+                                    if((newTask.IPM_Section__c != null && newTask.IPM_Project_Document_Section__c != null) ||
+                                    	(newTask.IPM_Section__c == null && newTask.IPM_Project_Document_Section__c == null))
                                     {
                                     	newTaskList.add(newTask);
                                     }

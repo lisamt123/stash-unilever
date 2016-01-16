@@ -35,7 +35,7 @@
                                 <apex:outputPanel styleClass="row" layout="block" id="checkboxes">
                                     <apex:outputPanel layout="block" rendered="{!isEditable}">
                                         <div class="row noMargin">
-                                            <div class="col-sm-12 selectBackground noPaddingNbg">
+                                            <div class="col-sm-12 selectBackground noBGcolor">
                                                 <apex:outputPanel layout="block" styleClass="col-sm-7 dropdown cmiTestList ipmDropDown">
                                                     <apex:outputPanel html-data-toggle="dropdown" html-data-list="{!projDocSec.IPM_CMI_Selected_Test_Concepts__c}" layout="block" styleClass="clickCmiList">
                                                         <div class="ipmDropDownSelect">

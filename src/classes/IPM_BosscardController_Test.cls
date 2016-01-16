@@ -85,7 +85,7 @@ public class IPM_BosscardController_Test{
             insert bPosition;
             List<MDO_BrandPosition__c>mdoBrandPList=[SELECT Name,status__c from MDO_BrandPosition__c WHERE id=:bPosition.id LIMIT 1];
             system.assertEquals(mdoBrandPList[0].Name,bPosition.Name,'Category name is:'+mdoBrandPList[0].Name);
-            
+            system.assertEquals(mdoBrandPList[0].status__c,bPosition.status__c,'Status is:'+mdoBrandPList[0].status__c);
             
             
             //Insert Brand Positions

@@ -160,7 +160,45 @@ public class IPM_FinancialTriggerHandler_Test {
         insert financials;
         Test.stopTest();
    }
-       
+    
+    static testMethod void testFinancialsConsolidation() {
+        initializeData();
+        
+        List<IPM_Financial__c> financials = new List<IPM_Financial__c>();
+        
+        List<IPM_Project__c> projList=[SELECT Name,IPM_Phase__c, IPM_Project_Job_Status__c, IPM_Target_Launch_Dates__c, IPM_ProjectJobType__c, IPMProject_Span__c, IPM_Project_Type__c,IPM_Parent_Project__c, (Select id, name, Financial_External_ID__c, Target_Launch_Date__c From IPM_Financials_Regional__r)   FROM IPM_Project__c WHERE name=:TESTPROJECT limit 2];
+        System.assert(projList.size()>0);
+        
+        IPM_Financial__c ipmFinancials1 = [select id from IPM_Financial__c where Financial_External_ID__c='TestProject001_REG_CONSOLIDATED' limit 1];
+        ipmFinancials1.Regional_Project__c = projList[0].id;
+        System.assert(ipmFinancials1.id!=null);
+        financials.add(ipmFinancials1);
+        
+        List<IPM_Project_Rollout__c>  projRolloutList=[SELECT Name, Target_Launch_Date__c, IPM_Project_Job_Status__c, IPM_RolloutJobType__c, IPM_Rollout_Span__c, IPM_Rollout_Type__c,IPM_Project__c, RecordTypeId, (Select Name, Financial_External_ID__c, Target_Launch_Date__c From IPM_Financials__r)   FROM IPM_Project_Rollout__c WHERE name=:TESTPROJECT limit 2];
+        System.assert(projRolloutList.size()>0);
+        
+        IPM_Financial__c ipmFinancials2 = [select id from IPM_Financial__c where Financial_External_ID__c='TestProject001_REG_NONKEY' limit 1];
+        System.assert(ipmFinancials2.id!=null);
+        ipmFinancials2.Regional_Project__c = projList[0].id;
+        ipmFinancials2.IPM_Project_Rollout__c = projRolloutList[0].id;
+        
+        IPM_Financial__c ipmFinancials3 = [select id from IPM_Financial__c where Financial_External_ID__c=:TESTPROJECT_LOC limit 1];
+        System.assert(ipmFinancials3.id!=null);
+        ipmFinancials3.Charter_Approved__c=true;       
+        ipmFinancials3.Contract_Approved__c=true;       
+        ipmFinancials3.MR_Approved__c=true;       
+        ipmFinancials3.MD_Approved__c=true;       
+        ipmFinancials3.Copy_Global_to_Regional__c=true;       
+        ipmFinancials3.Copy_Global_to_Local__c=true;       
+        ipmFinancials3.Copy_Local_to_Regional__c=true;       
+        ipmFinancials3.Copy_Regional_to_Local__c=true;       
+        ipmFinancials3.Volume_Unit_Global__c='Total \'000 Units';       
+        ipmFinancials3.Volume_Unit_Regional__c='Total \'000 Units';       
+        ipmFinancials3.Volume_Unit_Local__c='Total \'000 Units';      
+        financials.add(ipmFinancials3);
+        
+        update financials;
+    }
     static testMethod void testOnBeforeDelete() {
         initializeData();
         IPM_Financial__c ipmFinancials3 = [select id from IPM_Financial__c where Financial_External_ID__c=:TESTPROJECT_LOC limit 1];

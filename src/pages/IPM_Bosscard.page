@@ -167,12 +167,10 @@
                                         <div class="required BosscardNameInputBoxDiv">
                                             <apex:outputLabel value="{!$Label.IPM_BOSSCARD_NAME}" styleClass="bsFieldLabel" />
                                             <span class="mandatorycolor">{!$Label.IPM_Bosscard_Mandatory}</span>
-                                            <apex:inputText value="{!bosscard.IPM_BosscardName__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox" onblur="hideSuggetion();" onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;};dupBosscard();"  maxlength="{!bossMaxLength}" disabled="{!isBosscardEdit}">
+                                            <apex:inputText value="{!bosscard.IPM_BosscardName__c}" id="proname"  styleClass="brandautocomplete BosscardNameInputBox"  onkeyup="var u=this.value.toUpperCase();if(this.value!=u){this.value=u;};dupBosscard();"  maxlength="{!bossMaxLength}" disabled="{!isBosscardEdit}">
                                             </apex:inputText>
                                         </div> 
                                         <apex:actionfunction name="dupBosscard" action="{!searchDuplicateBosscard}" rerender="refreshBosscardName"/>
-                                        <apex:actionfunction name="hideSuggetion" action="{!hideBosscardSuggetion}" rerender="refreshBosscardName"/>
-                                        
                                         <apex:outputpanel id="refreshBosscardName" >
                                             <apex:outputpanel layout="block" styleClass="autoContainer" rendered="{!!isBosscardNameBlank}">
                                                 <apex:repeat value="{!listofprojectname}" var="proList">          
@@ -341,7 +339,7 @@
                                                     </span>
                                                    
                                                     <apex:inputField value="{!bosscard.IPM_Sustainibility__c}" styleClass="countTarget"  rendered="{!!isBosscardEdit}"  />
-                                                    <apex:outputField value="{!bosscard.IPM_Sustainibility__c}" styleClass="countTarget"  rendered="{!isBosscardEdit}"  />
+                                                    <apex:outputField value="{!bosscard.IPM_Sustainibility__c}" styleClass="countTarget"  rendered="{!!isBosscardEdit}"  />
                                                     
                                                 </div>
                                             </div>
@@ -554,7 +552,7 @@
             var jq=jQuery.noConflict();                       
             var apexAccountList = [];
             <apex:repeat value="{!listofprojectname}" var="proList">          
-                   
+            <!--apexAccountList.push('{!proList.IPM_BosscardName__c}');-->         
             </apex:repeat> 
             function set() {               
                 jq("input.ui-quarterpicker-el").val('{!expectedTLD}').quarterpicker("refresh");

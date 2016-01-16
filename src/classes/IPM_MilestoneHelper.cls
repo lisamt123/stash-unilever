@@ -51,11 +51,6 @@ public with sharing class IPM_MilestoneHelper
       @Description: This method will be called from IPM_ProjectHandler to Process Milestones for incoming Project.
       @Param1: incomingProjects from IPM_Project__c trigger
     */
-    
-    /* @sonar 
-    This method is currently used for Creating Milestones, Copying Milestones, Marking Milestones as completed on Phase change and Preparing snapshots On Gate Document Change.
-    This results in checking Milestones at various levels, based on various Conditions. This results in increase in Complexity. 
-    */  
     public static void manageMilestones(Map<Id,IPM_Project__c> incomingProjects)
     {
         List<IPM_Milestone__c> deleteProjectMilestones = new List<IPM_Milestone__c>();
@@ -68,7 +63,6 @@ public with sharing class IPM_MilestoneHelper
             IPM_Project_Type__c currentProjectType = IPM_Utils.retrieveProjectType(project);
             
             List<IPM_Project_Type__c> previousPhasesList = IPM_Utils.getPreviousPhases(currentProjectType,false);
-            
             
             Set<String> previousPhases = new Set<String>();
             
@@ -99,7 +93,6 @@ public with sharing class IPM_MilestoneHelper
                 
                 if(existingDBProject!=null && IPM_ProjectHelper.DBprojectSpecificMileStoneMap.containsKey(project.Id) && IPM_ProjectHelper.DBprojectSpecificMileStoneMap.get(project.Id) !=null )
                 {
-                	
                     for(IPM_Milestone__c existingProjectMilestone : IPM_ProjectHelper.DBprojectSpecificMileStoneMap.get(project.Id))
                     {
                         
@@ -126,64 +119,6 @@ public with sharing class IPM_MilestoneHelper
                             deleteProjectMilestones.add(existingProjectMilestone);
                         }
                     }
-                    
-                    /* Milestone snapshot due date changes ---- starts here */
-                    
-                    // Map to current Milestone to all milestones related to that project
-					Map<IPM_Milestone__c, List<IPM_Milestone__c>> currentMSToAllMilestonesMap  = new Map<IPM_Milestone__c, List<IPM_Milestone__c>>();
-					
-					for(IPM_Milestone__c existingProjectMilestone : IPM_ProjectHelper.DBprojectSpecificMileStoneMap.get(project.Id))
-					{
-						if(existingProjectMilestone.IPM_Phase__c !=null && previousPhases.contains(existingProjectMilestone.IPM_Phase__c))
-						{
-							if(upsertedProjectMilestones != null && upsertedProjectMilestones.get(existingProjectMilestone.ExternalField__c) != null)
-							{
-								currentMSToAllMilestonesMap.put(upsertedProjectMilestones.get(existingProjectMilestone.ExternalField__c), IPM_ProjectHelper.DBprojectSpecificMileStoneMap.get(project.Id));
-								break;
-							}
-						}
-					}                 
-					
-					if(!currentMSToAllMilestonesMap.isEmpty())
-					{
-				    	Map<String,String> MILESTONE_PHASE_FIELDMAPPING = new Map<String,String>{
-				        IPM_ConstantUtils.PHASE_IDEAS => 'IPM_Due_Date_Idea__c',
-				        IPM_ConstantUtils.PHASE_FEASIBILITY  => 'IPM_Due_Date_Feasibility__c',
-				        IPM_ConstantUtils.PHASE_CAPABILITY => 'IPM_Due_Date_Capability__c',
-				        IPM_ConstantUtils.PHASE_MARKET_READY => 'IPM_Due_Date_Market_Ready__c',
-				        IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT => 'IPM_Due_Date_Market_Deployment__c',
-				        IPM_ConstantUtils.PHASE_POSTLAUNCHEVAL => 'IPM_Due_Date_Post_Launch_Evaluation__c'
-				    	};
-				    	
-				    	for(IPM_Milestone__c milestone : currentMSToAllMilestonesMap.keySet())
-				    	{
-				    		for(IPM_Milestone__c projectSpecificMilestone : currentMSToAllMilestonesMap.get(milestone))
-				    		{
-								if(milestone.IPM_Phase__c != null && MILESTONE_PHASE_FIELDMAPPING.containsKey(milestone.IPM_Phase__c))
-								{
-									String phaseFieldAPIName = MILESTONE_PHASE_FIELDMAPPING.get(milestone.IPM_Phase__c);
-									if(projectSpecificMilestone.IPM_Phase__c != null && milestone.IPM_Phase__c != projectSpecificMilestone.IPM_Phase__c)
-									{
-										if(projectSpecificMilestone.IPM_Due_Date__c != null)
-										{
-											projectSpecificMilestone.put(phaseFieldAPIName, projectSpecificMilestone.IPM_Due_Date__c);
-											upsertedProjectMilestones.put(projectSpecificMilestone.ExternalField__c,projectSpecificMilestone);
-										}
-									}
-									else if(milestone.IPM_Phase__c == projectSpecificMilestone.IPM_Phase__c) 
-									{
-										if(milestone.IPM_Due_Date__c != null)
-										{
-											milestone.put(phaseFieldAPIName, milestone.IPM_Due_Date__c);	
-											upsertedProjectMilestones.put(milestone.ExternalField__c,milestone);
-										}
-									}
-								}
-				    		}
-				    		break;
-				    	}
-						/* Milestone snapshot due date changes ---- ends here */
-					}			
                 }
                 
                 if(!existingMilestonesPresent)
@@ -306,12 +241,6 @@ public with sharing class IPM_MilestoneHelper
       @param1 :Map of <Id of Project of incoming Milestone> 
       @param2 :Map of <Id of incoming Milestone and Milestone Record >.
     */
-    
-    /* @sonar 
-    	This method is currently used for copying Over Due dates for Milestones at various levels.Once the due date is populated on a Milestone, System identifies its parent and child Milestones and based on certain conditions including scope and Project Type Parameters.
-    	Since it involves searching recursively across various Project Levels,it results in increasing complexity. 
-    */ 
-    
     public static void CopyMilestones(Map<Id,IPM_Project__c> incomingProjectMap,Map<Id,IPM_Milestone__c> eligibleMilestoneMap)
     {
         
