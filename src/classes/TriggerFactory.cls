@@ -158,10 +158,7 @@ public with sharing class TriggerFactory
          if (soType == IPM_Project_Document_Section_Content__c.sObjectType){
             return new IPM_ProjectDocumentSectionContentHandler();
         }        
-        if (soType == IPM_Questionnaire__c.sObjectType){
-            return new IPM_QuestionnaireHandler();
-        }
-        if (soType == IPM_Milestone__c.sObjectType){
+       if (soType == IPM_Milestone__c.sObjectType){
             return new IPM_MilestoneHandler();
         }
         if (soType == IPM_Task__c.sObjectType){
