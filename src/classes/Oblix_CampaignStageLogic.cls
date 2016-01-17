@@ -193,56 +193,16 @@ public with sharing class Oblix_CampaignStageLogic{
 
         for (Integer i=0; i < 5; i++){
 
-            // set projected css and boolean
-            if (i <= i_projection_level){
-                li_projected_stages[i].b_is_stage_selected = true;
-                li_completed_stages[i].b_is_stage_selectable = true;
-                //li_projected_stages[i].s_css_class_name = CSS_PROGRESS_STARTED;
 
-                lis_stage_css_class.add(new StageCSS(i,CSS_PROGRESS_STARTED));   
-                i_percentage_of_fee_this_year += mii_stage_percentage.get(i);
-     
-            }
-            else{
-                li_projected_stages[i].b_is_stage_selected = false;
-                //li_completed_stages[i].b_is_stage_selected = false;
-                lis_stage_css_class.add(new StageCSS(i,CSS_PROGRESS_NOT_STARTED));        
-                li_completed_stages[i].b_is_stage_selectable = false;
-
-                //li_projected_stages[i].s_css_class_name = CSS_PROGRESS_NOT_STARTED;
-            }
-
-            // set completion css and boolean
-            if (i <= i_completion_level){
-                li_completed_stages[i].b_is_stage_selected = true;
-                //li_completed_stages[i].s_css_class_name = CSS_PROGRESS_COMPLETED;
-
-                lis_stage_css_class[i].s_css_class_name = CSS_PROGRESS_COMPLETED;
-                i_agency_Percentage_of_fees_this_year += mii_stage_percentage.get(i);
-                //lib_is_stage_completed.add(true);         
-            }
-            else{   
-                li_completed_stages[i].b_is_stage_selected = false;
-
-                //lib_is_stage_completed.add(false);         
-            } 
-
-            // resetting the values if -1 is passed in
-            if (-1 == i_completion_level){
-                li_completed_stages[i].b_is_stage_selected = false;
-                li_projected_stages[i].b_is_stage_selected = false;
-                lis_stage_css_class[i].s_css_class_name = CSS_PROGRESS_NOT_STARTED;
-
-            }
-
+            setProjectedAttributes(i, i_projection_level);
+            setCompletionAttributes(i,i_completion_level);
+            
             // also set projection seletable value by checking b_is_projection_selectable
             li_projected_stages[i].b_is_stage_selectable = b_is_projection_selectable;
         }
 
         s_selected_projected_stage = sow_project_in_scope.Projected_Stage__c;
         s_selected_completed_stage = sow_project_in_scope.Completed_Stage__c;
-        //system.debug('##li_projected_stages: ' + li_projected_stages);
-        //system.debug('##li_completed_stages: ' + li_completed_stages);
         
         // also update the fees there is a formula field calculation. Have to replicate here to referesh without saving
         i_fees_for_this_financial_year = NULL!= i_percentage_of_fee_this_year && NULL!=sow_project_in_scope.Campaign_Total_Fees__c
@@ -251,6 +211,58 @@ public with sharing class Oblix_CampaignStageLogic{
 
     }
 
+    
+    /********************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-08
+    * @description  Depending on the item index set completion CSS and completed
+                    stages
+    *********************************************************************/
+    private void setCompletionAttributes(Integer index_to_check, Integer i_completion_level){
+           
+        // set completion css and boolean
+        if (index_to_check <= i_completion_level){
+            li_completed_stages[index_to_check].b_is_stage_selected = true;
+            lis_stage_css_class[index_to_check].s_css_class_name = CSS_PROGRESS_COMPLETED;
+            i_agency_Percentage_of_fees_this_year += mii_stage_percentage.get(index_to_check);
+        }
+        else{   
+            li_completed_stages[index_to_check].b_is_stage_selected = false;
+        } 
+
+        // resetting the values if -1 is passed in
+        if (-1 == i_completion_level){
+            li_completed_stages[index_to_check].b_is_stage_selected = false;
+            li_projected_stages[index_to_check].b_is_stage_selected = false;
+            lis_stage_css_class[index_to_check].s_css_class_name = CSS_PROGRESS_NOT_STARTED;
+
+        }
+
+
+    }
+    
+    /********************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-08
+    * @description  Depending on the item index set projected CSS and projected
+                    stages
+    *********************************************************************/
+    private void setProjectedAttributes(Integer index_to_check, Integer i_projection_level){
+
+        // set projected css and boolean
+        if (index_to_check <= i_projection_level){
+            li_projected_stages[index_to_check].b_is_stage_selected = true;
+            li_completed_stages[index_to_check].b_is_stage_selectable = true;
+            lis_stage_css_class.add(new StageCSS(index_to_check,CSS_PROGRESS_STARTED));   
+            i_percentage_of_fee_this_year += mii_stage_percentage.get(index_to_check);
+ 
+        }
+        else{
+            li_projected_stages[index_to_check].b_is_stage_selected = false;
+            lis_stage_css_class.add(new StageCSS(index_to_check,CSS_PROGRESS_NOT_STARTED));        
+            li_completed_stages[index_to_check].b_is_stage_selectable = false;
+        }
+    }
     
     /********************************************************************
     * @author       Shahin Movahedi

@@ -111,6 +111,9 @@ private class Oblix_SOWMainDetailController_Test {
             controller.uploadeAttachment();
 
             Test.stopTest();
+            
+            System.assert(controller != null);
+            System.assert(controller.liso_attachments != null);
 
      //       System.assert(!controller.liso_attachments.isEmpty() , 'Attachment should be uploaded');
         }

@@ -71,7 +71,7 @@ public with sharing class Oblix_SOWHandlerLogic {
                     + ' - so_to_adjust.SmallProductCategory__c: ' + so_to_adjust.SmallProductCategory__c);
               
                 so_to_adjust.BigOblixProductCategory__c = mids_campaign_id_category_brand.get(so_to_adjust.Id).Product_Category_Id__r.Parent_L2__c;
-                so_to_adjust.SmallProductCategory__c = so_to_adjust.SmallProductCategory__c = mids_campaign_id_category_brand.get(so_to_adjust.Id).Product_Category_Id__c;
+                so_to_adjust.SmallProductCategory__c = mids_campaign_id_category_brand.get(so_to_adjust.Id).Product_Category_Id__c;
             }
     	
     }

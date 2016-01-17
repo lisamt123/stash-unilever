@@ -35,13 +35,20 @@ private class Oblix_CampaignStageLogic_Test {
             
             Test.startTest();
 
-			Oblix_CampaignStageLogic ctrl = new Oblix_CampaignStageLogic(project.id, true);
-			ctrl.saveStage();
-			ctrl.setStageAttributes();
-			ctrl.setCompletionStage(Oblix_CampaignStageLogic.STAGE_PROJECT_EXECUTION, Oblix_CampaignStageLogic.STAGE_PROJECT_IDEATIOIN);
-			ctrl.setProjectedStage(Oblix_CampaignStageLogic.STAGE_PROJECT_EXECUTION, Oblix_CampaignStageLogic.STAGE_PROJECT_IDEATIOIN);
-			
+				Oblix_CampaignStageLogic ctrl = new Oblix_CampaignStageLogic(project.id, true);
+				ctrl.saveStage();
+				ctrl.setStageAttributes();
+				ctrl.setCompletionStage(Oblix_CampaignStageLogic.STAGE_PROJECT_EXECUTION, Oblix_CampaignStageLogic.STAGE_PROJECT_IDEATIOIN);
+				ctrl.setProjectedStage(Oblix_CampaignStageLogic.STAGE_PROJECT_EXECUTION, Oblix_CampaignStageLogic.STAGE_PROJECT_IDEATIOIN);
+				
 			Test.stopTest();
+
+
+		System.assert(ctrl != null);
+		System.assert(ctrl.li_projected_stages != null);
+		System.assert(ctrl.li_completed_stages != null);
+
+
         }
 	}
 	
