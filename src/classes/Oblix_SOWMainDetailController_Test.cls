@@ -1,8 +1,8 @@
 @isTest
 private class Oblix_SOWMainDetailController_Test {
 
-	private static final String TWO_ELEMENTS_MESSSAGE = 'There should be two elements';
-    private static final String NOT_NULL_MESSSAGE = 'Page reference should not be null';
+	//private static final String TWO_ELEMENTS_MESSSAGE = 'There should be two elements';
+    //private static final String NOT_NULL_MESSSAGE = 'Page reference should not be null';
     private static final String FINAL_TEST = 'test';
 
 @isTest static void getthousandBlocksTest() {

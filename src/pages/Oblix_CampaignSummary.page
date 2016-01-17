@@ -90,7 +90,7 @@
                             </table>
                             </div>
                             <div class="col-lg-6">
-                            <table class="campaign_summary_information">
+                            <table class="campaign_summary_information" id="assets_list">
                                 <tr>
                                     <td class="campaign_summary_information_titles">Platform</td>
                                     <td colspan="2">{!selected_project.Platform__c}</td>
@@ -210,6 +210,7 @@
                                                         </apex:outputText>
 
                                                         <apex:outputText value="{!asset[field_name]}" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double' && !contains(field_name.Label,'Name'))}" style="tableRow" styleClass="asset_description" />
+                                                        
                                                         <apex:outputLink value="{!$Page.Oblix_CampaignAddAsset}?projectId={!project_id}&assetId={!asset['Id']}" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double' && contains(field_name.Label,'Name'))}" style="tableRow" target="_blank" >{!asset[field_name]}</apex:outputLink>
                                                     </td>
                                                 </apex:repeat>
@@ -259,43 +260,51 @@
                 });
             </script>
             <script>
+                
                 // $ = jQuery.noConflict();
                 // $('.read_more').click(function() {
                 //     alert( "Handler for .click() called." );
                 //     return false;
                 // });
                 // $(document).ready(function() {
-                //     $('.asset_description').readmore({
-                //         moreLink: '<a href="#">Read more</a>',
-                //         lessLink: '<a href="#">Close</a>',
-                //         collapsedHeight: 20,
-                //         blockCSS: 'display: block; width: 100px;',
-                //         afterToggle: function(trigger, element, expanded) {
-                //             if( expanded) { // The "more" link was clicked
-                //                 $(this).width("width","100px");
-                //             }
-                //         }
-                //     });
-                //     // var table = $('#sowListTable').DataTable({
-                //     //     "dom": 'lrtip',
-                //     //     "pagingType": "full_numbers",
-                //     //     "bAutoWidth": false,
-                //     //     "aoColumns": [
-                //     //       { "sWidth": "0%" },
-                //     //       { "sWidth": "100px" },
-                //     //       { "sWidth": "50px" },
-                //     //       { "sWidth": "100px" },
-                //     //       { "sWidth": "50px" },
-                //     //       { "sWidth": "450px" },
-                //     //       { "sWidth": "50px" },
-                //     //       { "sWidth": "100px" }
-                //     //    ]
+                //     // $('.countriesSelected').readmore({
+                //     //     moreLink: '<a href="#">Read more</a>',
+                //     //     lessLink: '<a href="#">Close</a>',
+                //     //     collapsedHeight: 20,
+                //     //     blockCSS: 'display: block; width: 100px;',
+                //     //     afterToggle: function(trigger, element, expanded) {
+                //     //         if( expanded) { // The "more" link was clicked
+                //     //             $(this).width("width","100px");
+                //     //         }
+                //     //     }
                 //     // });
-                //     $('#sowListTable tbody').on('click', 'tr', function() {
-                //         //blockme();
-                //         $(this).toggleClass('selected');
-                //         $(this).addClass('bg_selected');
+                //     var table = $('#assets_list').DataTable({
+                //         "dom": 'lrtip',
+                //         "pagingType": "full_numbers",
+                //         "bAutoWidth": false,
+                //         "aoColumns": [
+                //           { "sWidth": "0%" },
+                //           { "sWidth": "100px" },
+                //           { "sWidth": "50px" },
+                //           { "sWidth": "100px" },
+                //           { "sWidth": "50px" },
+                //           { "sWidth": "450px" },
+                //           { "sWidth": "50px" },
+                //           { "sWidth": "100px" }
+                //        ]
                 //     });
+                //     $('#assets_list tbody').on('click', 'tr', function() {
+                //             blockme();
+                //             $(this).toggleClass('selected');
+                //             $(this).addClass('bg_selected');
+
+                //             var ids = $.map(table.rows('.selected').data(), function(item) {
+                //                 return item[0];
+                //             });
+                //             //alert(ids);
+                //             ViewProject(ids);
+                //     });
+
                 // });
             </script>
         </apex:define>

@@ -12,7 +12,7 @@
        Update History
     --------------
 */
-public with sharing class Oblix_SOWMainDetailController {
+public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparentController {
 
     public Marketing_SOW__c selected_sow {get; set;}
     public id sow_id {get; set;}
@@ -32,7 +32,7 @@ public with sharing class Oblix_SOWMainDetailController {
 
 
     public set<String> setRecordType  {get; set;}
-    public Oblix_SOW_Projects__c SelectedProject {get; set;}
+    public Oblix_SOW_Projects__c selectedProject {get; set;}
     public boolean isViewProject {get; set;}
     public List<Marketing_Basics__c> liso_other_non_campaign_items  {get; set;}
     public String seriesProject {get; set;}
@@ -41,7 +41,7 @@ public with sharing class Oblix_SOWMainDetailController {
     public note noteAsset {get; set;}
 
     //Thousand Block Part :
-    public  limitWrapper[] thousandBlocks {get; set;}
+    //public  limitWrapper[] thousandBlocks {get; set;}
     private final Integer listLimit;
     public String selectedProjectId {get; set;}
     public Integer countOfUpdatesFeed {get; set;}
@@ -85,13 +85,13 @@ public with sharing class Oblix_SOWMainDetailController {
 
         liso_notes = new list<Note>();
         noteAsset = new note();
-        thousandBlocks = new List<limitWrapper>();
+        //thousandBlocks = new List<limitWrapper>();
         liso_projects_for_sow = new List<Oblix_SOW_Projects__c>();
         liso_attachments = new List<Attachment>();
         liso_attachments_to_add = new List<Attachment>();
         seriesProject = '';
         midi_sow_id_overall_total = new map<id, Integer>();
-        if (project_id == null) {SelectedProject = new Oblix_SOW_Projects__c();}
+        if (project_id == null) {selectedProject = new Oblix_SOW_Projects__c();}
         isEdit = false;
         editMode = false;
         //Initialize
@@ -128,26 +128,24 @@ public with sharing class Oblix_SOWMainDetailController {
         // retrieve required fields from db for SOW if param passed in otherwise initialise a new object
         if (sow_id == null) {
             selected_sow = new Marketing_SOW__c ();
-        } else {
-            selected_sow = [SELECT Id, Agency_Contact__r.name, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.name, OblixTotalOtherItemsFees__c, OblixSOWOverallTotal__c, Unilever_Lead__r.name, CreatedById, CreatedBy.Name, Currency__c,
-                      BigOblixProductCategory__r.Name, OblixBrand__r.Name, SmallProductCategory__r.Name, Oblix_Current_FY_Total__c,
-                      LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c,
-                      Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate,Total_Campaigns_This_FY__c,
-                      SOW_Status__c, BB_or_BD__c, Total_Campaign_Fee__c FROM Marketing_SOW__c WHERE Id = : sow_id];
+        }
+        else {
+            selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
         }
         
-        System.DEBUG('!!selected_sow:'+selected_sow);
+        //System.DEBUG('!!selected_sow:'+selected_sow);
         // retrieve required fields from db for Campaign if param passed in otherwise initialise a new object
+        
         if (project_id == null){ 
-            SelectedProject = new Oblix_SOW_Projects__c();
+            selectedProject = new Oblix_SOW_Projects__c();
         }
         else{
-            SelectedProject = [SELECT Id, Name, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate
+            selectedProject = [SELECT Id, Name, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate
                 , OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, OblixCountries__c, First_Air_Date__c
                 , Production_Completion_Date__c, Financial_Year__c FROM Oblix_SOW_Projects__c WHERE id = :project_id];
         }
 
-        System.DEBUG('Init Called 2 !!!!');
+        //System.DEBUG('Init Called 2 !!!!');
     
         if (selected_sow != null && selected_sow.Id != null) {
             // retrieve the children sows for the given parent
@@ -231,10 +229,10 @@ public with sharing class Oblix_SOWMainDetailController {
             seriesProject = '[' + series.removeEnd(',') + ']';
             System.DEBUG('Init Called 9 !!!!');
         }
-        if (!li_campaign_and_non_campaign_items.isEmpty()) {
-            getthousandBlocks(li_campaign_and_non_campaign_items);
+        //if (!li_campaign_and_non_campaign_items.isEmpty()) {
+        //    getthousandBlocks(li_campaign_and_non_campaign_items);
 
-        }
+        //}
 
     }
     
@@ -281,9 +279,9 @@ public with sharing class Oblix_SOWMainDetailController {
 
     }
 
-    public Pagereference exitSwop(){
-        return Oblix_Utils.exitSwop();
-    }
+    //public Pagereference exitSwop(){
+    //    return Oblix_Utils.exitSwop();
+    //}
     /*
     public pageReference CreateProjectAction() {
         Pagereference meNewPage = Page.Oblix_VF07_ProjectNew;
@@ -354,7 +352,7 @@ public with sharing class Oblix_SOWMainDetailController {
         isEdit = null;
 
         setRecordType = null;
-        SelectedProject = null;
+        selectedProject = null;
         isViewProject = null;
         liso_other_non_campaign_items = null;
         seriesProject = null;
@@ -363,7 +361,7 @@ public with sharing class Oblix_SOWMainDetailController {
         noteAsset = null;
 
         //Thousand Block Part :
-        thousandBlocks = null;
+        //thousandBlocks = null;
         selectedProjectId = null;
         countOfUpdatesFeed = null;
         filesCountList = null;
@@ -434,6 +432,28 @@ public with sharing class Oblix_SOWMainDetailController {
         return sow_details_page;
     }
 
+    private String getRequiredFieldsErrorMessage(){
+        String errorRequired = '';
+        
+        if (String.isBlank(selected_sow.Name)) {
+            errorRequired += ' Name';
+        }
+        if (String.isBlank(selected_sow.BB_or_BD__c)) {
+            errorRequired = (errorRequired != '' ?  errorRequired + ', ' : '') + 'BB/BD';
+            // errorRequired += (errorRequired.contains('Name') ? errorRequired+', ' : 'The following fields are required : ') + 'BB/BD';
+        }
+        if (String.isBlank(selected_sow.Financial_Year__c)) {
+            errorRequired = (errorRequired != '' ?  errorRequired + ', ' : '') + 'Financial Year';
+            //errorRequired = ((errorRequired.contains('Name') || errorRequired.contains('BB')) ? errorRequired+', ' : 'The following fields are required : ') + 'Financial Year';
+        }
+        if (errorRequired != '') {
+            errorRequired = 'The following fields are required : ' + errorRequired;
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, errorRequired));
+        }
+        return errorRequired;
+
+    }
+
     /*******************************************************************
         Purpose: used to save a New SOW
         Parameters: none
@@ -441,81 +461,54 @@ public with sharing class Oblix_SOWMainDetailController {
         Throws [Exceptions]: none
     ********************************************************************/
     public PageReference saveSOW() {
-        String errorRequired = '';
+        
+        String errorRequired = getRequiredFieldsErrorMessage();
+
         System.DEBUG('In HERE!!! : ' + selected_sow);
         try {
 
             // set static variable on the trigger handler to avoid setting big/small category
             Oblix_SOWHandler.b_initiated_from_vf_page = true;
 
-            if (selected_sow.Name == null || selected_sow.Name == '') {
-                errorRequired += ' Name';
-            }
-            if (selected_sow.BB_or_BD__c == null || selected_sow.BB_or_BD__c == '') {
-                errorRequired = (errorRequired != '' ?  errorRequired + ', ' : '') + 'BB/BD';
-                // errorRequired += (errorRequired.contains('Name') ? errorRequired+', ' : 'The following fields are required : ') + 'BB/BD';
-            }
-            if (selected_sow.Financial_Year__c == null || selected_sow.Financial_Year__c == '') {
-                errorRequired = (errorRequired != '' ?  errorRequired + ', ' : '') + 'Financial Year';
-                //errorRequired = ((errorRequired.contains('Name') || errorRequired.contains('BB')) ? errorRequired+', ' : 'The following fields are required : ') + 'Financial Year';
-            }
-            if (errorRequired != '') {
-                errorRequired = 'The following fields are required : ' + errorRequired;
-                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, errorRequired));
-            } else {
-                if (selected_sow != null && selected_sow.Id == null) {
-                    insert selected_sow;
-                    selected_sow = [Select Id, Agency_Contact__r.name, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.name, OblixTotalOtherItemsFees__c, OblixSOWOverallTotal__c, Unilever_Lead__r.name, CreatedById, CreatedBy.Name, Currency__c,
-                              BigOblixProductCategory__r.Name, OblixBrand__r.Name, SmallProductCategory__r.Name, Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,
-                              LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c,
-                              Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate,
-                              SOW_Status__c, BB_or_BD__c   from Marketing_SOW__c where Id = : selected_sow.Id
-                             ];
+            if (String.isBlank(errorRequired)){
 
-                } else {
-                    update selected_sow;
-                    sow_id = selected_sow.Id;
-                    selected_sow = [Select Id, Agency_Contact__r.name, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.name, OblixTotalOtherItemsFees__c, OblixSOWOverallTotal__c, Unilever_Lead__r.name, CreatedById, CreatedBy.Name, Currency__c,
-                              BigOblixProductCategory__r.Name, OblixBrand__r.Name, SmallProductCategory__r.Name, Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,
-                              LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c,
-                              Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate,
-                              SOW_Status__c, BB_or_BD__c   from Marketing_SOW__c where Id = : selected_sow.Id
-                             ];
-                }
+                upsert selected_sow;
+                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
+
                 sow_id = selected_sow.Id;
-                list<Marketing_SOW__c> liso_children_sow = new list<Marketing_SOW__c>();
-                System.debug('###selected_sow.id : ' + selected_sow.id);
-                liso_children_sow = [select id, OblixSOWOverallTotal__c, Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,OblixTotalOtherItemsFees__c from Marketing_SOW__c where MarketingSOWParent__c = :selected_sow.id  and Type_of_SOW__c = 'Baseline'];
+                
+                List<Marketing_SOW__c> liso_children_sow = new List<Marketing_SOW__c>();
+
+                //System.debug('###selected_sow.id : ' + selected_sow.id);
+                liso_children_sow = [SELECT OblixSOWOverallTotal__c, Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,OblixTotalOtherItemsFees__c 
+                    FROM Marketing_SOW__c WHERE MarketingSOWParent__c = :selected_sow.id  AND Type_of_SOW__c = 'Baseline'];
+                
                 if (liso_children_sow != null && !liso_children_sow.isEmpty()) {
-                    System.debug('###liso_children_sow : ' + liso_children_sow );
+                    //System.debug('###liso_children_sow : ' + liso_children_sow );
                     midi_sow_id_overall_total.put(selected_sow.id, (Integer)liso_children_sow[0].OblixSOWOverallTotal__c);
+
                 } else {
                     midi_sow_id_overall_total.put(selected_sow.id, 0);
                 }
+
                 if (!liso_attachments_to_add.isEmpty()) {
                     for (Attachment att : liso_attachments_to_add) {
                         att.parentId = selected_sow.id;
                     }
                     insert liso_attachments_to_add;
                 }
-                if (noteAsset.body != null  && noteAsset.body.length() <= notesSize) {
-                    System.debug('###NoteBody size: ' + String.valueOf(noteAsset.body.length())); //&& noteAsset.id == null
-                    noteAsset.parentId =  selected_sow.id;
-                    noteAsset.title = 'NoteII';
-                    noteAsset.isPrivate = false;
-                    insert noteAsset;
-                    noteAsset = [select body from note where id = :noteAsset.id];
-                    //liso_notes.add(noteAsset);
-                    //noteAsset = new note();
-                } else if (noteAsset.body != null && noteAsset.id == null) {
-                    throw new Oblix_Utils.CustomException('TOO_LONG_NOTE');
-                }
-                PageReference newSOW = new PageReference('/apex/Oblix_SOWMainDetail?sowId='+
-                sow_id);
+
+                insertNotes();
+
+                PageReference newSOW = new PageReference('/apex/Oblix_SOWMainDetail?sowId='+ sow_id);
                 newSOW.setRedirect(true);
+
                 return newSOW;
             }
-            return null;
+            else{
+                return null;
+            }
+
         } catch (Exception le) {
 
             if (le.getMessage().contains('DUPLICATES_DETECTED')) {
@@ -529,54 +522,53 @@ public with sharing class Oblix_SOWMainDetailController {
 
             System.debug('The following exception has occurred: ' + le.getMessage());
         }
+
         isEdit = false;
         return null;
     }
 
+    private void insertNotes(){
+
+        if (noteAsset.body != null  && noteAsset.body.length() <= notesSize) {
+            System.debug('###NoteBody size: ' + String.valueOf(noteAsset.body.length())); //&& noteAsset.id == null
+            noteAsset.parentId =  selected_sow.id;
+            noteAsset.title = 'NoteII';
+            noteAsset.isPrivate = false;
+            insert noteAsset;
+            noteAsset = [select body from note where id = :noteAsset.id];
+            //liso_notes.add(noteAsset);
+            //noteAsset = new note();
+        } else if (noteAsset.body != null && noteAsset.id == null) {
+            throw new Oblix_Utils.CustomException('TOO_LONG_NOTE');
+        }
+    }
 
     public void softSaveCampaign(){
-        String errorRequired = '';
-        try {
-            
-            if (selected_sow.Name == null || selected_sow.Name == '') {
-                errorRequired += ' Name';
-            }
-            if (selected_sow.BB_or_BD__c == null || selected_sow.BB_or_BD__c == '') {
-                errorRequired = (errorRequired != '' ?  errorRequired + ', ' : '') + 'BB/BD';
-                // errorRequired += (errorRequired.contains('Name') ? errorRequired+', ' : 'The following fields are required : ') + 'BB/BD';
-            }
-            if (selected_sow.Financial_Year__c == null || selected_sow.Financial_Year__c == '') {
-                errorRequired = (errorRequired != '' ?  errorRequired + ', ' : '') + 'Financial Year';
-                //errorRequired = ((errorRequired.contains('Name') || errorRequired.contains('BB')) ? errorRequired+', ' : 'The following fields are required : ') + 'Financial Year';
-            }
-            if (errorRequired != '') {
-                errorRequired = 'The following fields are required : ' + errorRequired;
-                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, errorRequired));
-            } else {
-                if (selected_sow != null && selected_sow.Id == null) {
-                    insert selected_sow;
-                    selected_sow = [Select Id, Agency_Contact__r.name, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.name, OblixTotalOtherItemsFees__c, OblixSOWOverallTotal__c, Unilever_Lead__r.name, CreatedById, CreatedBy.Name, Currency__c,
-                              BigOblixProductCategory__r.Name, OblixBrand__r.Name, SmallProductCategory__r.Name, Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,
-                              LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c,
-                              Name, SmallProductCategory__c, OblixBrand__c, Marketing_Agency__c, LastModifiedDate, CreatedDate,
-                              SOW_Status__c, BB_or_BD__c   from Marketing_SOW__c where Id = : selected_sow.Id
-                             ];
+        String errorRequired = getRequiredFieldsErrorMessage();
+        
+        try{
 
-                }
+
+            if (String.isBlank(errorRequired) && selected_sow != null && selected_sow.Id == null){
+
+                insert selected_sow;
+                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
             }
+
             uploadeAttachment(); 
-            }catch(Exception le){
-                if (le.getMessage().contains('DUPLICATES_DETECTED')) {
-                    errorRequired += 'Duplicate Value Found with the same Name';
-                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, errorRequired));
-                }
-                if (le.getMessage().contains('TOO_LONG_NOTE')) {
-                    errorRequired += 'Your note is too long. Max length is 255 characters.';
-                    ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, errorRequired));
-                }
 
-                System.debug('The following exception has occurred: ' + le.getMessage());
+        }catch(Exception le){
+            if (le.getMessage().contains('DUPLICATES_DETECTED')) {
+                errorRequired += 'Duplicate Value Found with the same Name';
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, errorRequired));
             }
+            if (le.getMessage().contains('TOO_LONG_NOTE')) {
+                errorRequired += 'Your note is too long. Max length is 255 characters.';
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, errorRequired));
+            }
+
+            //System.debug('The following exception has occurred: ' + le.getMessage());
+        }
     }
 
     public void refreshAttachments(){
@@ -711,45 +703,45 @@ public with sharing class Oblix_SOWMainDetailController {
         Returns: List of Records by Block of Thousand 
         Throws [Exceptions]: none
     ********************************************************************/
-    public limitWrapper[] getThousandBlocks(List<CampaignNonCampaignItems> li_campaign_and_non_campaign_items) {
-        //declare it above
-        thousandBlocks = new List<limitWrapper>();
+    //public limitWrapper[] getThousandBlocks(List<CampaignNonCampaignItems> li_campaign_and_non_campaign_items) {
+    //    //declare it above
+    //    thousandBlocks = new List<limitWrapper>();
 
-        Integer counter = 0;
-        Integer loopCount = 0;
-        list<CampaignNonCampaignItems> tmpProject = new list<CampaignNonCampaignItems>();
-        for (Integer i = 0; i < li_campaign_and_non_campaign_items.size(); i++) {
-            if (counter < listLimit) {
+    //    Integer counter = 0;
+    //    Integer loopCount = 0;
+    //    list<CampaignNonCampaignItems> tmpProject = new list<CampaignNonCampaignItems>();
+    //    for (Integer i = 0; i < li_campaign_and_non_campaign_items.size(); i++) {
+    //        if (counter < listLimit) {
 
-                if (i != li_campaign_and_non_campaign_items.size() - 1) {
-                    tmpProject.add(li_campaign_and_non_campaign_items.get(i));
-                    counter++;
-                } else {
-                    tmpProject.add(li_campaign_and_non_campaign_items.get(i));
-                    counter++;
-                    loopCount++;
+    //            if (i != li_campaign_and_non_campaign_items.size() - 1) {
+    //                tmpProject.add(li_campaign_and_non_campaign_items.get(i));
+    //                counter++;
+    //            } else {
+    //                tmpProject.add(li_campaign_and_non_campaign_items.get(i));
+    //                counter++;
+    //                loopCount++;
 
-                    thousandBlocks.add(new limitWrapper(tmpProject, loopCount));
-                    return thousandBlocks;
-                }
+    //                thousandBlocks.add(new limitWrapper(tmpProject, loopCount));
+    //                return thousandBlocks;
+    //            }
 
-            } else {
-                loopCount++;
-                thousandBlocks.add(new limitWrapper(tmpProject, loopCount));
-                tmpProject = new List<CampaignNonCampaignItems>();
-                tmpProject.add(li_campaign_and_non_campaign_items.get(i));
-                counter = 0;
-            }
+    //        } else {
+    //            loopCount++;
+    //            thousandBlocks.add(new limitWrapper(tmpProject, loopCount));
+    //            tmpProject = new List<CampaignNonCampaignItems>();
+    //            tmpProject.add(li_campaign_and_non_campaign_items.get(i));
+    //            counter = 0;
+    //        }
 
-        }
+    //    }
 
-        if (thousandBlocks.size() == 0) {
-            loopCount++;
-            thousandBlocks.add(new limitWrapper(tmpProject, loopCount));
-        }
+    //    if (thousandBlocks.size() == 0) {
+    //        loopCount++;
+    //        thousandBlocks.add(new limitWrapper(tmpProject, loopCount));
+    //    }
 
-        return thousandBlocks;
-    }
+    //    return thousandBlocks;
+    //}
 
 
     /*******************************************************************

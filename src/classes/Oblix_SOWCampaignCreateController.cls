@@ -1,4 +1,4 @@
-public class Oblix_SOWCampaignCreateController {
+public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPparentController{
 
     public Oblix_CampaignStageLogic stage_identifier {get;set;}
         
@@ -247,51 +247,28 @@ public class Oblix_SOWCampaignCreateController {
         feePercentages = Oblix_Utils.getFeePercentages(lstStage);
 
 
-
-        List<String> lis_fields_to_query = Oblix_Utils.getAllFieldsInFieldsSet('Oblix_SOW_Projects__c', 'Oblix_Campaign_Summary');
-
-        // build SOQL for querying campaign fields
-        String s_query_string = 'SELECT ';
-        s_query_string += String.join(lis_fields_to_query,',');
-
-        // get related project splits
-        s_query_string += ', (SELECT OblixCountry__r.Name, Percentage__c FROM Marketing_SOW_Project_Splits__r)';
-
-        s_query_string += ' FROM Oblix_SOW_Projects__c';
-        s_query_string += ' WHERE Id = ' + '\'' + projectId + '\'';
-
-        List<Oblix_SOW_Projects__c> liso_campaign;
-        // query the campaign in scope
-        if (NULL!=projectId)
-            liso_campaign = Database.query(s_query_string);
-        
-        // depending on the string parameter initialise Oblix_CampaignStageLogic
-        if (NULL != liso_campaign && !liso_campaign.isEmpty()){
-            project = liso_campaign[0];
-            stage_identifier = new Oblix_CampaignStageLogic(project, true);
-        }
-        else if (NULL!=projectId){
-            stage_identifier = new Oblix_CampaignStageLogic(projectId,true);
-        }
-        else if (NULL!=sowId)
-            stage_identifier = new Oblix_CampaignStageLogic(sowId);
-        else
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'Inavlid campaign or sow passed in to the page'));
-
-
-
         for (string stage : lstStage) {
             mapStageIdCSS.put(stage, stage.replaceAll(' & ', '_').replaceAll(' ', '_'));
         }
         // end stage
         if (projectId == null) {
+            // get stage_identifier by project in scope or sowId if this is a new campaign
+            stage_identifier = new Oblix_CampaignStageLogic(sowId); 
+
             project = new Oblix_SOW_Projects__c ();
             project.Financial_Year__c = ApexPAges.currentPage().getParameters().get('sowId');
             selected_sow = [SELECT Name FROM Marketing_SOW__c WHERE Id =: project.Financial_Year__c];
             sowName = selected_sow.Name;
             lstSelectedRegionJSON = JSON.serialize(lstSelectedRegion);
         } else {
-            project = [Select Id, Name, Innovation_Projects__c , ProjectTotalAssetscore__c, Jobs_to_be_Done__c , Campaign_Fees_Total__c, Completed_Stage__c, Financial_Year__r.currency__c, Projected_Stage__c, Financial_Year__r.Financial_Year__c,Financial_Year__r.Name, BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Status__c, Preview_Date__c, Start_of_TV_production__c, Final_release__c, Live_Date__c, Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c, Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, OblixCountries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id = :projectId];
+
+            // query the project in scope from the super class
+            project = getCampaign(projectId, Oblix_Utils.getAllFieldsInFieldsSet('Oblix_SOW_Projects__c', 'Oblix_Campaign_Summary'), ', (SELECT OblixCountry__r.Name, Percentage__c FROM Marketing_SOW_Project_Splits__r)');
+
+            // get stage_identifier by project in scope or sowId if this is a new campaign
+            stage_identifier = new Oblix_CampaignStageLogic(project, true); 
+
+            //project = [Select Id, Name, Innovation_Projects__c , ProjectTotalAssetscore__c, Jobs_to_be_Done__c , Campaign_Fees_Total__c, Completed_Stage__c, Financial_Year__r.currency__c, Projected_Stage__c, Financial_Year__r.Financial_Year__c,Financial_Year__r.Name, BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Status__c, Preview_Date__c, Start_of_TV_production__c, Final_release__c, Live_Date__c, Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c, Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, OblixCountries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id = :projectId];
             sowName = project.Financial_Year__r.Name;
             selected_sow = [SELECT Name FROM Marketing_SOW__c WHERE Id =: project.Financial_Year__c];
             estimateCost = project.Campaign_Fees_Total__c;
@@ -341,10 +318,10 @@ public class Oblix_SOWCampaignCreateController {
             selectedBrandInnov = project.Brand_Led_Growth__c;
         }
     }
-    public Pagereference exitSwop(){
-        Pagereference exitSwopHome = new Pagereference('/');
-        return exitSwopHome.setRedirect(true);
-    }
+    //public Pagereference exitSwop(){
+    //    Pagereference exitSwopHome = new Pagereference('/');
+    //    return exitSwopHome.setRedirect(true);
+    //}
     @TestVisible
     private void getErrorClone() {
         String errorClone = '';
