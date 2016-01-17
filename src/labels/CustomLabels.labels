@@ -6162,6 +6162,20 @@ If approved your project will be linked after your Charter gate has been approve
         <value>Please confirm additional parameters</value>
     </labels>
     <labels>
+        <fullName>IPM_Consolidate_Show_Earlier_Years</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Consolidate_Show_Earlier_Years</shortDescription>
+        <value>Show Earlier Years</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Consolidate_Show_Later_Years</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Consolidate_Show_Later_Years</shortDescription>
+        <value>Show Later Years</value>
+    </labels>
+    <labels>
         <fullName>IPM_Consumer_Evidence</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11730,6 +11744,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
 	<labels>
         <fullName>IPM_TLD_Year_Misaligned</fullName>
         <value>Calendar Years are misaligned.</value>
+        <protected>false</protected>
         <language>en_GB</language>
         <shortDescription>IPM_TLD_Year_Misaligned</shortDescription>
     </labels>
@@ -11766,7 +11781,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TLD_VR_Misaligned</shortDescription>
-        <value>Target Launch Date for {0} is misaligned: Value at Regional = {1} value at Local = {2}</value>
+        <value>Target Launch Date for {0} is misaligned: Value at Regional = {1} value at Local = {2}. </value>
     </labels>
     <labels>
         <fullName>IPM_TLD_VR_Misaligned_Part_Msg</fullName>

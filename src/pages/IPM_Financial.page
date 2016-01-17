@@ -366,12 +366,12 @@
                                                                 />
                                                                   <!-- DEF2676 fix Start -->
                                                      			<apex:outputPanel id="financialYearNav" layout="block" styleClass="financialYearNavDiv pull-right">
-                                                                    <apex:outputPanel id="financialYearNavLeft" layout="block" styleClass="financialYearNavLeftDiv pull-left" rendered="{!showPrevious}">
+                                                                    <apex:outputPanel title="{!$Label.IPM_Consolidate_Show_Earlier_Years}" id="financialYearNavLeft" layout="block" styleClass="financialYearNavLeftDiv pull-left" rendered="{!showPrevious}">
                                                                         <apex:outputPanel id="financialYearNavLeftArrow">
                                                                            &#x21da; <apex:actionSupport event="onclick" action="{!previous}"  reRender="financialYearNav, financialYearCalendar"  status="loadingStatus" oncomplete="finScriptCallBack()" />
                                                                         </apex:outputPanel>
                                                                     </apex:outputPanel>
-                                                                    <apex:outputPanel id="financialYearNavRight" layout="block" styleClass="financialYearNavRightDiv pull-right"  rendered="{!showNext}">
+                                                                    <apex:outputPanel title="{!$Label.IPM_Consolidate_Show_Later_Years}" id="financialYearNavRight" layout="block" styleClass="financialYearNavRightDiv pull-right"  rendered="{!showNext}">
                                                                         <apex:outputPanel id="financialYearNavRightArrow">
                                                                            &#x21db; <apex:actionSupport event="onclick" action="{!next}" reRender="financialYearNav, financialYearCalendar"  status="loadingStatus" oncomplete="finScriptCallBack()" />
                                                                         </apex:outputPanel>
