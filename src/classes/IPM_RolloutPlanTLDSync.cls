@@ -18,7 +18,7 @@ public with sharing class IPM_RolloutPlanTLDSync {
 	        List<IPM_Project__c> listToUpdateLocalProject = new List<IPM_Project__c>{};
 	        Map<Id,Id> projIdRolloutIdMapRegional = new Map<Id,Id>{};
 	        Map<Id,Id> projIdRolloutIdMapGlobal = new Map<Id,Id>{};            
-	        List<IPM_Project__c> origProjectList = new List<IPM_Project__c> {};
+            Map<ID,IPM_Project__c> origProjectMap = new Map<ID,IPM_Project__c> {};
             if(null != updatedRollouts){
                 for(IPM_Project_Rollout__c rolloutProj :[Select Id, Target_Launch_Date__c,Local_Project_Target_Launch_Date__c from IPM_Project_Rollout__c where Id = : updatedRollouts.keySet() And  isActive__c=true limit 50000]){
                     IPM_Project__c ipmProj = updatedRollouts.get(rolloutProj.Id);
@@ -35,6 +35,8 @@ public with sharing class IPM_RolloutPlanTLDSync {
                         listToUpdateRolloutProject.add(rolloutProj);
                     }                    
                 }
+                //This is to calculate earliest Target Launch Date of the Regional projects to update Global project 
+                
                 Set<ID> globalProjIds = new Set<ID>();
                 Set<ID> regionalProjIds = new Set<ID>();
                 for (IPM_Project__c ipmProject: updatedRollouts.values()) {
@@ -46,9 +48,11 @@ public with sharing class IPM_RolloutPlanTLDSync {
                 if(!globalProjIds.isEmpty()) {
                 	Map<ID,IPM_Project__c> globalProjsMap = new Map<ID,IPM_Project__c>([Select ID, (Select ID, IPM_Target_Launch_Dates__c From IPM_Projects__r ORDER BY IPM_Target_Launch_Dates__c ASC NULLS LAST ) From IPM_Project__c where  id in :globalProjIds ]);
                 	for (IPM_Project__c ipmProject: globalProjsMap.values()) {
-                		if(!ipmProject.IPM_Projects__r.isEmpty() && regionalProjIds.contains(ipmProject.IPM_Projects__r[0].id)) {
+                		if(!ipmProject.IPM_Projects__r.isEmpty()) {
                 			IPM_Project__c updateProj = new IPM_Project__c(ID=ipmProject.id,IPM_Target_Launch_Dates__c=ipmProject.IPM_Projects__r[0].IPM_Target_Launch_Dates__c);
-                			origProjectList.add(updateProj);
+							if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(updateProj.id)){
+								origProjectMap.put(updateProj.id,updateProj);
+							} 
                 		}
                 	}
                 }
@@ -72,8 +76,9 @@ public with sharing class IPM_RolloutPlanTLDSync {
             if(!projIdRolloutIdMapRegional.isEmpty() || !projIdRolloutIdMapGlobal.isEmpty()){
                 Map<Id,Date> regionalProjRollOutMap = new Map<Id,Date> {};
                 Map<Id,Date> globalProjRollOutMap = new Map<Id,Date> {};                
-                
-                for(IPM_Project_Rollout__c rolloutGlobal : [Select Id, IPM_Project__c, Target_Launch_Date__c from IPM_Project_Rollout__c where IPM_Project__c =:projIdRolloutIdMapGlobal.KeySet() and  isActive__c=true limit 50000]){
+                List<IPM_Project_Rollout__c> regionalRollouts = new List<IPM_Project_Rollout__c>();
+                List<IPM_Project_Rollout__c> localRollouts = new List<IPM_Project_Rollout__c>();
+                for(IPM_Project_Rollout__c rolloutGlobal : [Select Id, IPM_Rollout_Span__c, Local_Project__c, IPM_Project__c, Target_Launch_Date__c from IPM_Project_Rollout__c where IPM_Project__c =:projIdRolloutIdMapGlobal.KeySet() and  isActive__c=true ORDER BY Target_Launch_Date__c ASC NULLS LAST limit 50000]){
                     if(!updatedLocalProjects.containskey(rolloutGlobal.Id)){
                         if(globalProjRollOutMap.containskey(rolloutGlobal.IPM_Project__c)){
                             if(globalProjRollOutMap.get(rolloutGlobal.IPM_Project__c) > rolloutGlobal.Target_Launch_Date__c){
@@ -85,8 +90,19 @@ public with sharing class IPM_RolloutPlanTLDSync {
                     }else{
                             globalProjRollOutMap.put(rolloutGlobal.IPM_Project__c, rolloutGlobal.Target_Launch_Date__c);
                     }
+                    if(rolloutGlobal.IPM_Rollout_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
+                    	regionalRollouts.add(rolloutGlobal);
+                    }
+                    
                 }
-                for(IPM_Project_Rollout__c rolloutRegional : [Select Id, IPM_Project__c,Regional_Project__c, Target_Launch_Date__c from IPM_Project_Rollout__c where Regional_Project__c =:projIdRolloutIdMapRegional.KeySet() and  isActive__c=true limit 50000]){
+				if(!regionalRollouts.isEmpty()) {
+       				IPM_Project__c updateProj = new IPM_Project__c(ID=regionalRollouts[0].IPM_Project__c,IPM_Target_Launch_Dates__c=regionalRollouts[0].Target_Launch_Date__c);
+					if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(updateProj.id)){
+						origProjectMap.put(updateProj.id,updateProj);
+					
+       				}
+                }
+                for(IPM_Project_Rollout__c rolloutRegional : [Select Id, IPM_Rollout_Span__c, IPM_Project__c,Regional_Project__c, Target_Launch_Date__c from IPM_Project_Rollout__c where Regional_Project__c =:projIdRolloutIdMapRegional.KeySet() and  isActive__c=true ORDER BY Target_Launch_Date__c ASC NULLS LAST limit 50000]){
                     if(!updatedLocalProjects.containskey(rolloutRegional.Id)){
                         if(regionalProjRollOutMap.containskey(rolloutRegional.Regional_Project__c)){
                             if(regionalProjRollOutMap.get(rolloutRegional.Regional_Project__c) > rolloutRegional.Target_Launch_Date__c){
@@ -98,7 +114,17 @@ public with sharing class IPM_RolloutPlanTLDSync {
                     } else {
                         regionalProjRollOutMap.put(rolloutRegional.Regional_Project__c, rolloutRegional.Target_Launch_Date__c);
                     }
+                    if(rolloutRegional.IPM_Rollout_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+                    	localRollouts.add(rolloutRegional);
+                    }
                 }  
+				            if(!localRollouts.isEmpty()) {
+       				IPM_Project__c updateProj = new IPM_Project__c(ID=localRollouts[0].Regional_Project__c,IPM_Target_Launch_Dates__c=localRollouts[0].Target_Launch_Date__c);
+					if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(updateProj.id)){
+						origProjectMap.put(updateProj.id,updateProj);
+					
+       				}
+                }
                 
                 for(IPM_Project__c ipmProject : [Select Id, IPM_Project_Type__c,IPMProject_Span__c, IPM_Phase__c,IPM_Target_Launch_Dates__c from IPM_Project__c where id = :projIdRolloutIdMapRegional.keyset() or id = :projIdRolloutIdMapGlobal.keyset() limit 50000]){
                     if(ipmProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
@@ -108,19 +134,30 @@ public with sharing class IPM_RolloutPlanTLDSync {
                             if(ipmProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && ipmProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS){ 
                                 if(newTLDDate < regionalProjRollOutMap.get(ipmProject.Id)){
                                     ipmProject.IPM_Target_Launch_Dates__c = newTLDDate;
-                                    origProjectList.add(ipmProject);
+       								if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(ipmProject.id)){
+										origProjectMap.put(ipmProject.id,ipmProject);
+       								}
                                 } else if(regionalProjRollOutMap.get(ipmProject.Id) != ipmProject.IPM_Target_Launch_Dates__c){
                                     ipmProject.IPM_Target_Launch_Dates__c = regionalProjRollOutMap.get(ipmProject.Id);
-                                    origProjectList.add(ipmProject);    
+       								if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(ipmProject.id)){
+										origProjectMap.put(ipmProject.id,ipmProject);
+       								
+       								}
                                 }
                                 
                             } else if((ipmProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT || ipmProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )&& ipmProject.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS){
                                 if(newTLDDate < regionalProjRollOutMap.get(ipmProject.Id)){
                                     ipmProject.IPM_Target_Launch_Dates__c = newTLDDate;
-                                    origProjectList.add(ipmProject);
+       								if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(ipmProject.id)){
+										origProjectMap.put(ipmProject.id,ipmProject);
+       								
+       								}
                                 } else if(regionalProjRollOutMap.get(ipmProject.Id) != ipmProject.IPM_Target_Launch_Dates__c){
                                     ipmProject.IPM_Target_Launch_Dates__c = regionalProjRollOutMap.get(ipmProject.Id);
-                                    origProjectList.add(ipmProject);    
+       								if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(ipmProject.id)){
+										origProjectMap.put(ipmProject.id,ipmProject);
+       								
+       								}
                                 }
                             }
                         }
@@ -134,8 +171,8 @@ public with sharing class IPM_RolloutPlanTLDSync {
             if (!listToUpdateLocalProject.isEmpty()){
                 update listToUpdateLocalProject;
             }
-            if(!origProjectList.isEmpty()){
-                update origProjectList;
+            if(!origProjectMap.isEmpty()){
+                update origProjectMap.values();
             } 
     }
     /*******************************************************************************************************

@@ -933,6 +933,10 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         IPM_Project__c oldProject = (IPM_Project__c) oldSo;
         IPM_Project__c newProject = (IPM_Project__c) so;
 
+         if(oldProject.IPM_Target_Launch_Dates__c != newProject.IPM_Target_Launch_Dates__c)
+        {
+            tldChangeProjListForMilestones.add(newProject);
+        }
         if(IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION)
         {
             return;
@@ -942,10 +946,6 @@ public with sharing class IPM_ProjectHandler implements ITrigger
         if((oldProject.Rollout_Plan_Target_Launch_Date__c != null && oldProject.Rollout_Plan_Target_Launch_Date__c!= newProject.Rollout_Plan_Target_Launch_Date__c) || (oldProject.IPM_Target_Launch_Dates__c != newProject.IPM_Target_Launch_Dates__c))
         {
             rolloutTLDChangedProjList.put(newProject.IPM_Project_Rollout__c,newProject);
-        }
-        if(oldProject.IPM_Target_Launch_Dates__c != newProject.IPM_Target_Launch_Dates__c)
-        {
-            tldChangeProjListForMilestones.add(newProject);
         }
         
     }
@@ -961,6 +961,10 @@ public with sharing class IPM_ProjectHandler implements ITrigger
     */    
     public void andFinally()
     {
+         if(!tldChangeProjListForMilestones.isEmpty()){
+            IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
+            rolloutPlanTLDSync.updatedMilestoneTLD(tldChangeProjListForMilestones);     
+        }
         if(IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION)
         {
             return;
@@ -989,10 +993,6 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             rolloutPlanTLDSync.syncTLDDates(rolloutTLDChangedProjList,null);
         }
         
-        if(!tldChangeProjListForMilestones.isEmpty()){
-            IPM_RolloutPlanTLDSync rolloutPlanTLDSync = new IPM_RolloutPlanTLDSync();
-            rolloutPlanTLDSync.updatedMilestoneTLD(tldChangeProjListForMilestones);     
-        }
         
         ExceptionLoggingHelper.insertLogRecordList();
     }
