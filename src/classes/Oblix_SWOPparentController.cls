@@ -11,7 +11,7 @@
 *    Shahin Movahedi            2016-01-14          Created
 
 ******************************************************************************************/
-public virtual class Oblix_SWOPparentController {
+public with sharing virtual class Oblix_SWOPparentController {
 
     public Marketing_SOW__c selected_sow {get; set;}
     public Oblix_SOW_Projects__c selected_project {get;set;}
