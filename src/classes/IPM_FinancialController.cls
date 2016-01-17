@@ -75,6 +75,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public String previousTargetLaunchDate {get;set;}     
     public String milestoneFinanceDataValidationMessage {get;set;}
     public boolean isITOgrtGTO{get; set;} //DEF2315
+    public String BI{get;set;}
     //variable to capture financial type
     public Boolean isConsolidatedOrNonkey {
         get {
@@ -218,7 +219,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         globalCharter = false;
         showKeyFinancial = false;
         isITOgrtGTO = false; 
-        
+        BI = project.BI__c;
+        if(BI != null || BI != '')
+        	BI = IPM_ConstantUtils.smallBI;
         validationErrorMessage = IPM_ConstantUtils.BLANK;
         localrollout = new IPM_Project_Rollout__c(); 
         associatedCountryList = new List<IPM_Country__c>();
@@ -1665,6 +1668,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isValidationFailed = false;
         //Validate Innovation Year cell data
         if(yearType == IPM_ConstantUtils.YEAR_TYPE_INNOVATION && !currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
+        	if(BI != IPM_ConstantUtils.smallBI){
                 validateY0Turnover(finWrapper.y0Turnover);
                 
                 //Validate Gross Turnover values 
@@ -1689,6 +1693,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 
                 //Validate Incremental PBO values
                 validateIncrementalPBO(finWrapper.lstIncrementalPLProfit);
+        	}
                 validateInnovationTurnOver(finWrapper.lstGrossPLTurnover,finWrapper.lstIncrementalPLTurnover);
                 
         }
@@ -1705,16 +1710,23 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isValidationFailed = false;
         //Validate Calendar Year cell data
         if(yearType == IPM_ConstantUtils.YEAR_TYPE_CALENDAR && !currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
-                
-                //Validate Gross Turnover values 
-                Boolean isValidateGrossTurnoverFailed = validateGrossTurnover(finWrapper.lstGrossPLTurnover);
-                
-                //validateForGateSubmission
-                Boolean isValidateIncrementalTurnoverFailed = validateIncrementalTurnover(finWrapper.lstIncrementalPLTurnover); 
-                Boolean isValidateGrossProfitFailed = validateGrossProfit(finWrapper.lstGrossPLGrossProfit);
-                Boolean isValidateIncrementalProfitFailed = validateIncrementalProfit(finWrapper.lstIncrementalPLGrossProfit);
-                Boolean isValidateGrossPBOFailed = validateGrossPBO(finWrapper.lstGrossPLProfit);
-                Boolean isValidateIncrementalPBOFailed = validateIncrementalPBO(finWrapper.lstIncrementalPLProfit);
+               Boolean isValidateIncrementalTurnoverFailed;
+               Boolean isValidateIncrementalProfitFailed ;
+               Boolean isValidateGrossProfitFailed;
+               Boolean isValidateGrossPBOFailed;
+               Boolean isValidateIncrementalPBOFailed ;
+               Boolean isValidateGrossTurnoverFailed;
+                if(BI != IPM_ConstantUtils.smallBI){
+	                //Validate Gross Turnover values 
+	                isValidateGrossTurnoverFailed = validateGrossTurnover(finWrapper.lstGrossPLTurnover);
+	                
+	                //validateForGateSubmission
+	                isValidateIncrementalTurnoverFailed = validateIncrementalTurnover(finWrapper.lstIncrementalPLTurnover); 
+	                isValidateGrossProfitFailed = validateGrossProfit(finWrapper.lstGrossPLGrossProfit);
+	                isValidateIncrementalProfitFailed = validateIncrementalProfit(finWrapper.lstIncrementalPLGrossProfit);
+	                isValidateGrossPBOFailed = validateGrossPBO(finWrapper.lstGrossPLProfit);
+	                isValidateIncrementalPBOFailed = validateIncrementalPBO(finWrapper.lstIncrementalPLProfit);
+                }
                 Boolean isValidateCalendarTurnOverFailed=validateCalendarTurnOver(finWrapper.lstGrossPLTurnover,finWrapper.lstIncrementalPLTurnover);
                 if(isValidateCalendarTurnOverFailed && isValidateIncrementalTurnoverFailed && isValidateGrossProfitFailed && isValidateIncrementalProfitFailed && isValidateGrossPBOFailed && isValidateIncrementalPBOFailed){
                         currentFinancial.isGateSubmissionDue__c = true;
