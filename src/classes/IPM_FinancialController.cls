@@ -1710,12 +1710,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isValidationFailed = false;
         //Validate Calendar Year cell data
         if(yearType == IPM_ConstantUtils.YEAR_TYPE_CALENDAR && !currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)){
-               Boolean isValidateIncrementalTurnoverFailed;
-               Boolean isValidateIncrementalProfitFailed ;
-               Boolean isValidateGrossProfitFailed;
-               Boolean isValidateGrossPBOFailed;
-               Boolean isValidateIncrementalPBOFailed ;
-               Boolean isValidateGrossTurnoverFailed;
+               Boolean isValidateIncrementalTurnoverFailed= false;
+               Boolean isValidateIncrementalProfitFailed= false; 
+               Boolean isValidateGrossProfitFailed= false;
+               Boolean isValidateGrossPBOFailed= false;
+               Boolean isValidateIncrementalPBOFailed= false ;
+               Boolean isValidateGrossTurnoverFailed= false;
                 if(BI != IPM_ConstantUtils.smallBI){
 	                //Validate Gross Turnover values 
 	                isValidateGrossTurnoverFailed = validateGrossTurnover(finWrapper.lstGrossPLTurnover);
@@ -2399,7 +2399,8 @@ private Date getProjectMilestoneDate(){
             if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.Previous_Target_Launch_Date__c!=project.IPM_Target_Launch_Dates__c) {
             	showMisalignedConfirmbtn = project.MisAligned_Confirmed_By_Finance_Leader__c;
             	currentTargetLaunchDate = project.IPM_Target_Launch_Dates__c.format();
-            	previousTargetLaunchDate = project.Previous_Target_Launch_Date__c.format();
+            	if(project.Previous_Target_Launch_Date__c!=null)
+            	  previousTargetLaunchDate = project.Previous_Target_Launch_Date__c.format();
             } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) {
                 if(currentFinancial != null){
                         IPM_Project__c proj = [Select (Select Name, Target_Launch_Date__c,Previous_Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Project_Rollout__r) From IPM_Project__c where id=:project.id];
