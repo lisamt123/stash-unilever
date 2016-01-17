@@ -75,6 +75,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public String previousTargetLaunchDate {get;set;}     
     public String milestoneFinanceDataValidationMessage {get;set;}
     public boolean isITOgrtGTO{get; set;} //DEF2315
+    public boolean isITOgrtGTOCal{get; set;} //DEF2315
     public String BI{get;set;}
     //variable to capture financial type
     public Boolean isConsolidatedOrNonkey {
@@ -219,8 +220,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         globalCharter = false;
         showKeyFinancial = false;
         isITOgrtGTO = false; 
+        isITOgrtGTOCal = false;
         BI = project.BI__c;
-        if(BI != null || BI != '')
+        if(BI == null || BI == '')
         	BI = IPM_ConstantUtils.smallBI;
         validationErrorMessage = IPM_ConstantUtils.BLANK;
         localrollout = new IPM_Project_Rollout__c(); 
@@ -1623,6 +1625,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             isy0GrossProfitInvalid = false;
             isValidationFailed = false;
             isITOgrtGTO = false;
+            isITOgrtGTOCal = false;
             isCalendarValidationFailed = validateCalendarFinancialRecords(financialsCalendar, IPM_ConstantUtils.YEAR_TYPE_CALENDAR);
             isInnovationValidationFailed = validateInnovationFinancialRecords(financialsInnovation, IPM_ConstantUtils.YEAR_TYPE_INNOVATION);
             if(isCalendarValidationFailed || isInnovationValidationFailed){
@@ -1835,7 +1838,7 @@ private Date getProjectMilestoneDate(){
             isInvalid = false;
             if(valueWrapper.value == IPM_ConstantUtils.INVALID_VALUE){                
                 valueWrapper.isValueInvalid = true;
-                //isValidationFailed = true;
+                isValidationFailed = true;
                 isInvalid = true;
             }            
         }
@@ -2155,20 +2158,19 @@ private Date getProjectMilestoneDate(){
     
     public boolean validateCalendarTurnOver(List<IPM_FinancialValueWrapper> lstGrossPLTurnover,List<IPM_FinancialValueWrapper> lstIncrementalPLTurnover){
                 //Validate Turnover values.
-        //isValidationFailed=false;
         Boolean isValidWrapperFailed=false;
-        isITOgrtGTO = false;
+        isITOgrtGTOCal = false;
         
         for(IPM_FinancialValueWrapper valueWrapperGross: lstGrossPLTurnover){
             for(IPM_FinancialValueWrapper valueWrapperIncremental: lstIncrementalPLTurnover){
                valueWrapperGross.isValueInvalid = false;
                valueWrapperIncremental.isValueInvalid = false;
             
-               if(valueWrapperGross.index==valueWrapperIncremental.index && valueWrapperGross.Value<valueWrapperIncremental.Value){
+               if(valueWrapperGross.index==valueWrapperIncremental.index && valueWrapperGross.Value < valueWrapperIncremental.Value){
                                isValidWrapperFailed=true;
-                               isITOgrtGTO = true; 
+                               isITOgrtGTOCal = true; 
      
-                                    }
+               }
                  if(isValidWrapperFailed){
                   valueWrapperGross.isValueInvalid = true;
                     valueWrapperIncremental.isValueInvalid = true;
@@ -2184,8 +2186,7 @@ private Date getProjectMilestoneDate(){
     
       public boolean validateInnovationTurnOver(List<IPM_FinancialValueWrapper> lstGrossPLTurnover,List<IPM_FinancialValueWrapper> lstIncrementalPLTurnover){
                 //Validate Turnover values.
-        //isValidationFailed=false;
-        Boolean isValidWrapperFailed=false;
+       Boolean isValidWrapperFailed=false;
         isITOgrtGTO = false;
         
         for(IPM_FinancialValueWrapper valueWrapperGross: lstGrossPLTurnover){

@@ -354,9 +354,12 @@
                                                                     isy0GrossProfitInvalid="{!isy0GrossProfitInvalid}"
                                                                     isy0ProfitInvalid="{!isy0ProfitInvalid}"
                                                                     
+                                                                    isEditable="{!isEditable}"
                                                                     showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
                                                                     project="{!project}"
                                                                     isTLDYearMisaligned="{!isTLDYearMisaligned}"
+                                                                    isITOgrtGTO="{!isITOgrtGTO}"
+                                                                    isITOgrtGTOCal="{!isITOgrtGTOCal}" 
                                                                 />
                                                         
                                                                 <c:IPM_FinancialSummaryTable ipmFinancial="{!currentFinancial}"
@@ -392,9 +395,12 @@
                                                                     validationErrorMessage="{!validationErrorMessage}"
                                                                     isy0GrossProfitInvalid="{!isy0GrossProfitInvalid}"
                                                                     isy0ProfitInvalid="{!isy0ProfitInvalid}"
-                                                                    showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
+                                                                        isEditable="{!isEditable}"
+                                                                        showMisalignedConfirmbtn="{!showMisalignedConfirmbtn}"
                                                                     project="{!project}"
                                                                     isTLDYearMisaligned="{!isTLDYearMisaligned}"
+                                                                        isITOgrtGTO="{!isITOgrtGTO}"
+                                                                        isITOgrtGTOCal="{!isITOgrtGTOCal}"
                                                                 />
                                                                 </apex:outputPanel>
                                                         </div>

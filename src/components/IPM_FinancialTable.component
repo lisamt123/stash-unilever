@@ -20,14 +20,14 @@
     <apex:attribute name="project" type="IPM_Project__c" description="Current Project"/>      
     <apex:attribute name="isTLDYearMisaligned" type="Boolean" description="Flag to check the target launch date year misalignment"/>      
     <apex:attribute name="isITOgrtGTO" type="Boolean" description="Flag to check if iTO greater than GTO"/>
-    
+    <apex:attribute name="isITOgrtGTOCal" type="Boolean" description="Flag to check if iTO greater than GTO for Calendar year"/>
     <!-- Validation Message -->
     <apex:outputPanel id="errorPanel" rendered="{!AND(isValidationError, isInnovation)}">
         <div class="finAlertBox">
             <div class="col-sm-1"><img class="alertimg" alt="Alert" src="{!URLFOR($Resource.IPM_Resource, 'images/alert_1a.png')}"/></div>
             <div class="col-sm-11 finalerttext">
                 <p><apex:outputText value="{!validationErrorMessage}"/></p>
-               
+                <p><apex:outputText value="{!$Label.IPM_ITO_GTO_Validation_Common_message}" rendered="{!OR(isITOgrtGTO, isITOgrtGTOCal)}"/></p>
             </div>
             
         </div>
