@@ -628,12 +628,6 @@ private class IPM_EcoDesignSection_Test {
 			}
 			insert countryList;
 			/******************************** Initiate Phase Change and Regional Project Creation  ****************************************/
-			// Set GateKeeping Model as RCLT and start with Regional Project Creation.
-			for(IPM_Project__c project : proList)
-			{
-				project.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT;
-			}  
-			update proList;
 			for(IPM_Project__c project : proList)
 			{
 				globalProjectIdList.add(project.Id);    
@@ -669,20 +663,21 @@ private class IPM_EcoDesignSection_Test {
 			}
 			insert mdo_geoList;    
 			List<IPM_Country__c> countryListReg = new List<IPM_Country__c>();   
+			List<IPM_Project__c> regnlProjList = [Select Id from IPM_Project__c Where IPMProject_Span__c =: IPM_ConstantUtils.PROJECT_SPAN_REGIONAL and IPM_Parent_Project__c =:projectListPhaseChange[0].id  ];
 			for(integer i=0; i<10 ; i++) 
 			{
 				if(i < 7) 
 				{
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Project__c = projectListPhaseChange[0].id,IPM_Rollout_Status__c = WITH_MCO,
-					IS_EI_Country__c = true,isActive__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
+					IS_EI_Country__c = true,isActive__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now(), IPM_Regional_Project__c =regnlProjList[0].id );    
 					countryListReg.add(tempCountry);
 				}
 				else 
 				{
 					IPM_Country__c tempCountry = new  IPM_Country__c(MDO_Geography__c = mdo_geoList[i].Id,
 					IPM_Project__c = projectListPhaseChange[0].id,IPM_Rollout_Status__c = WITH_MCO,
-					IS_EI_Country__c = false,isActive__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now());    
+					IS_EI_Country__c = false,isActive__c = true,IPM_Regional_Proj_Association_Timestamp__c =System.now(),  IPM_Regional_Project__c =regnlProjList[0].id);    
 					countryListReg.add(tempCountry);
 				}
 			}
@@ -693,6 +688,7 @@ private class IPM_EcoDesignSection_Test {
 				if((cnt < 3 && countryEle.IS_EI_Country__c) || (cnt > 6 && !countryEle.IS_EI_Country__c)) 
 				{
 					IPM_Assessment__c assessment = IPM_TestFactory_Helper.createAssessments(false, projectListPhaseChange[0].id, countryEle.id,IPM_ConstantUtils.FEASIBILITY_PHASE );
+					IPM_Assessment__c assessmentRegional = IPM_TestFactory_Helper.createAssessments(false, regnlProjList[0].id, countryEle.id,IPM_ConstantUtils.FEASIBILITY_PHASE );
 					if(cnt == 1 || cnt == 9) 
 					{
 						assessment.IPM_Is_Lead_Assessment__c = true;
@@ -702,6 +698,7 @@ private class IPM_EcoDesignSection_Test {
 						assessment.IPM_Is_Lead_Assessment__c = false;
 					}
 					finalAssessmentList.add(assessment);
+					finalAssessmentList.add(assessmentRegional);
 				}
 				cnt++;
 			}    
