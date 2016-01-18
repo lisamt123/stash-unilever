@@ -339,10 +339,11 @@ private class IPM_EcoDesignSection_Test {
 	}
 	/**
 	* @Description:  Used for testing Global, Regional and Local Project creation and associated Assessment to the Regional Projects. Check whether 
-	  Assessments attached to Regional Project or not in controller. 
+	* Assessments attached to Regional Project or not in controller. 
 	*  @name createRegional
-	* @Sonar Issue Comment : Can not reduce the NPath Complexity here as logic requires creation of Global, Regional and Local projects and
-	their associated data.  
+	* @Sonar Issue Comment : As logic requires creation of Global, Regional and Local projects and
+	* their associated data. Associate Country and  Assessment to the Global, Regional and Local Projects. 
+	* Show Assessments for Regional Projects on the Page 'IPM_ProjectDocumentSectionEditor'   
 	*/	
 	public static testmethod void createRegional()
 	{
@@ -544,10 +545,11 @@ private class IPM_EcoDesignSection_Test {
 	}
 	/**
 	* @Description : Used for testing Global, Regional and Local Project creation and associated Assessment to the Global Project. Check whether consolidated 
-	view is set in controller or not. 
+	* view is set in controller or not. 
 	* @name :  createGlobalConsolidatedLogic
-	* @Sonar Issue Comment : Can not reduce the NPath Complexity here as logic requires creation of Global, Regional and Local projects and
-	their associated data.  
+	* @Sonar Issue Comment : As logic requires creation of Global, Regional and Local projects. 
+	* Associate Country and  Assessment to the Global, Regional and Local Projects. Show consolidated view of Assessments for the Global and Regional Projects 
+	* on the Page 'IPM_ProjectDocumentSectionEditor' 
 	*/	
 	public static testmethod void createGlobalConsolidatedLogic()
 	{
