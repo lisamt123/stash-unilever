@@ -798,16 +798,16 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
            }
            /*Case: When project is Regional Original*/
             else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-	       		string projid;
-	       		if(project.id!=null){
-	       			projid = string.valueof(project.id).substring(0,15);
-	       		}
-	       		list<IPM_Financial__c> liFinRegOrig = [select Business_Impact_Regional__c from IPM_Financial__c where (regional_external_id__c=:projid OR global_project_id__c=:projid) and regional_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL limit 1];
-	        	globalbusinessImpactStr += liFinRegOrig;
-	            if (liFinRegOrig!=null && liFinRegOrig.size()>0){
-	                globalbusinessImpactStr = liFinRegOrig[0].Business_Impact_Regional__c;
-	            }
-	        }
+                        string projid=IPM_ConstantUtils.BLANK;//NO SONAR used in line 806
+                        if(project.id!=null){
+                                projid = string.valueof(project.id).substring(0,15);
+                        }
+                        list<IPM_Financial__c> liFinRegOrig = [select Business_Impact_Regional__c from IPM_Financial__c where (regional_external_id__c=:projid OR global_project_id__c=:projid) and regional_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL limit 1];
+                        globalbusinessImpactStr += liFinRegOrig;
+                    if (liFinRegOrig!=null && liFinRegOrig.size()>0){
+                        globalbusinessImpactStr = liFinRegOrig[0].Business_Impact_Regional__c;
+                    }
+                }
            else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
            {
                list<IPM_Financial__c> liFinParentLoc = [select Business_Impact_Global__c from IPM_Financial__c where global_project_id__c=:project.IPM_Global_Project_Id__c and parent_Project__c=:project.IPM_Global_Project_Id__c limit 1];
