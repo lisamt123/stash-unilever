@@ -156,6 +156,7 @@ public class IPM_TestFactory_Helper {
     public static final String HOUSEHOLDCARE = 'Household Care';
     public static final String LAUNDRY = 'Laundry';  
     public static final String BRAND_POS = 'IPM_Brand_Positioning__c';
+    public static final String DIRT_IS_GOOD='Dirt Is Good';
     
     public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     public static List<IPM_Financial__c> finList = new List<IPM_Financial__c>();
@@ -413,7 +414,7 @@ public class IPM_TestFactory_Helper {
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
                 IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>C_GLOBAL, 
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => 'Global Company Card',
-                BRAND_POS => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
+                BRAND_POS => DIRT_IS_GOOD,'IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
                 'IPM_ProjectSubType__c' => 'Innovation/Renovation',IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => ORIGINAL_PROJECTYPE,
                 'Sustainability_Period__c' => '3','IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,true); 
@@ -686,9 +687,9 @@ public class IPM_TestFactory_Helper {
         for(IPM_Project__c project : globalProjectMap.values())
         {
             // Regional Rollous should be converted to Regional Projects at this point.
-            // System.assertEquals(project.IPM_Project_Rollout__r.size(),project.IPM_Projects__r.size());
+             ///System.assertEquals(project.IPM_Project_Rollout__r.size(),project.IPM_Projects__r.size()); SS 
             
-            //System.assertEquals(project.IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY);
+             ///System.assertEquals(project.IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY); SS
             // Document count should become 2. Charter and Contract.
             if(project.IPM_Gatekeeping_model__c == GCLT_RCLT)
             {
@@ -696,7 +697,7 @@ public class IPM_TestFactory_Helper {
             }
             else
             {
-                System.assertEquals(project.Project_Documents__r.size(),1);
+                System.assertEquals(project.Project_Documents__r.size(),1); 
             }
             
             // For GCLT & RCLT Model,Contract document Would be available  at Regional Level.   
@@ -834,7 +835,7 @@ public class IPM_TestFactory_Helper {
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => 'RCLT',
                 IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>scope , 
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => scope +' Company Card',
-                BRAND_POS => 'Dirt is Good','IPM_Project_Type__c' => OPERATIONAL_PROJECTYPE,
+                BRAND_POS => DIRT_IS_GOOD,'IPM_Project_Type__c' => OPERATIONAL_PROJECTYPE,
                 'IPM_ProjectSubType__c' => OPERATIONAL_PROJECTYPE,IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => OPERATIONAL_PROJECTYPE,
                 'IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
@@ -857,10 +858,10 @@ public class IPM_TestFactory_Helper {
         List<IPM_Project__c> testIPMProjList = new List<IPM_Project__c>();
         for(Integer i = 1; i <= listSize; i++){
             Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_REG_COMMENTS + i,IPM_PROJECT_NAME=>TEST_REG_COMMENTS + i,
-                IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
+                IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => 'RCLT',
                 IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>'Regional', 
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => 'Regional Company Card',
-                BRAND_POS => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
+                BRAND_POS => DIRT_IS_GOOD,'IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
                 'IPM_ProjectSubType__c' => 'Innovation/Renovation',IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => ORIGINAL_PROJECTYPE,
                 'IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
@@ -886,7 +887,7 @@ public class IPM_TestFactory_Helper {
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
                 IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>C_GLOBAL, 
                 IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => 'Global Company Card',
-                BRAND_POS => 'Dirt is Good','IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
+                BRAND_POS => DIRT_IS_GOOD,'IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
                 'IPM_ProjectSubType__c' => 'Innovation/Renovation',IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => ORIGINAL_PROJECTYPE,
                 'Sustainability_Period__c' => '3','IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
@@ -1040,6 +1041,51 @@ public class IPM_TestFactory_Helper {
         return localRolloutList;
     }   
     
+     /************************************************************************************************************************************************************
+    * @description To create local rollout list
+    **************************************************************************************************/
+    public static List<IPM_Project_Rollout__c> createLocalRolloutsOriginalList(Boolean doInsert,List<IPM_Project__c> regionalProjectSet,List<User> projectLeaders)
+    {
+        
+        Map<String,List<Object>> localRolloutMap = new Map<String,List<Object>>
+        {
+            IPM_ROLLOUT_PROJECT => new List<String>(),MARKET_CLUSTER => new List<String>(),
+            MARKET_CLUSTER_NAME => new List<String>(),TARGET_LAUNCH_DATE => new List<Object>(),IPM_ROLLOUT_PLAN => new List<String>(),
+            IPM_ROLLOUT_TYPE => new List<String>(),'IPM_Regional_PL_Text__c' => new List<String>(),'IPM_Regional_PL__c' => new List<Id>(),
+            'Type__c' => new List<String>(),'MCO_Name__c' => new List<String>(),
+            'IPM_Status__c' => new List<String>(),'MCO__c' => new List<String>(),RECORD_TYPE_ID => new List<ID>(),'isActive__c' => new List<object>(),
+            'Regional_Project__c' => new List<Object>()
+        };
+        
+        Id localRecordType = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).RecordTypeId;
+        
+        
+        for(IPM_Project__c regionalProject : regionalProjectSet)
+        {
+            localRolloutMap.get(IPM_ROLLOUT_PROJECT).add(regionalProject.IPM_Project_Name__c+'_UMCA');
+            localRolloutMap.get('MCO__c').add('LV4_GEO0085');
+            localRolloutMap.get('MCO_Name__c').add(AFRICA);
+            localRolloutMap.get(MARKET_CLUSTER_NAME).add('Africa Emerging Markets');
+            localRolloutMap.get(RECORD_TYPE_ID).add(localRecordType);
+            localRolloutMap.get(MARKET_CLUSTER).add(AFRICA); 
+            localRolloutMap.get(IPM_ROLLOUT_TYPE).add('Rollout');
+            localRolloutMap.get(TARGET_LAUNCH_DATE).add(System.today() + 300);
+            localRolloutMap.get(IPM_ROLLOUT_PLAN).add('Local');
+            localRolloutMap.get('isActive__c').add(true);
+            localRolloutMap.get('Type__c').add('MCO');
+            localRolloutMap.get('IPM_Status__c').add('Leader');
+            localRolloutMap.get('Regional_Project__c').add(regionalProject.Id);
+        }
+        
+        List<IPM_Project_Rollout__c> localRolloutList = (List<IPM_Project_Rollout__c>)IPM_TestFactory.createSObjectList('IPM_Project_Rollout__c',localRolloutMap,false);
+        
+        if(doInsert) {
+            insert localRolloutList;
+        }
+        return localRolloutList;
+    }   
+     
+    
     /***********************************************************************************************************************************************************
 	* @description Sample IPMProjectDocument list Data
 	**************************************************************************************************/
@@ -1160,7 +1206,7 @@ public class IPM_TestFactory_Helper {
                 'IPM_Consumer_Need__c'=>TEST_CONTENT,'IPM_Deliverables__c'=>TEST_CONTENT,
                 'IPM_Potential_Business_Opportunity__c'=>TEST_CONTENT,'IPM_Resources__c'=>TEST_CONTENT,
                 'IPM_Scope__c'=>TEST_CONTENT,'IPM_IsSaved__c'=>true,
-                BRAND_POS=>'Dirt Is Good','IPM_Target_Launch_Date__c'=>'20/10/2020',
+                BRAND_POS=>DIRT_IS_GOOD,'IPM_Target_Launch_Date__c'=>'20/10/2020',
                 'IPM_Is_Archived__c' => false};
             IPM_Bosscard__c ipmBosscard = (IPM_Bosscard__c)IPM_TestFactory.createSObject('IPM_Bosscard__c',bossCardMap,false);
             ipmBosscardTestList.add(ipmBosscard);
@@ -1180,7 +1226,7 @@ public class IPM_TestFactory_Helper {
             'IPM_Consumer_Need__c'=>TEST_CONTENT,'IPM_Deliverables__c'=>TEST_CONTENT,
             'IPM_Potential_Business_Opportunity__c'=>TEST_CONTENT,'IPM_Resources__c'=>TEST_CONTENT,
             'IPM_Scope__c'=>TEST_CONTENT,'IPM_IsSaved__c'=>true,
-            BRAND_POS=>'Dirt Is Good','IPM_Target_Launch_Date__c'=>'20/10/2020',
+            BRAND_POS=>DIRT_IS_GOOD,'IPM_Target_Launch_Date__c'=>'20/10/2020',
             'IPM_Is_Archived__c' => false};
         IPM_Bosscard__c ipmBosscard = (IPM_Bosscard__c)IPM_TestFactory.createSObject('IPM_Bosscard__c',bossCardMap,false);
         if(doInsert) { 
