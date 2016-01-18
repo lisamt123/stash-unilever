@@ -1,4 +1,4 @@
-public class Amr_JobSheetPageController {
+public with sharing class Amr_JobSheetPageController {
 
     public id selectedrap { get;set; }
     public boolean cancel{get;set;}

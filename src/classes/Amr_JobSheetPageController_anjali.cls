@@ -1,4 +1,4 @@
-public class Amr_JobSheetPageController_anjali {
+public with sharing class Amr_JobSheetPageController_anjali {
 
     public String docUploaded{get;set;}
     public String adManagerNumber{get;set;}
@@ -11,6 +11,7 @@ public class Amr_JobSheetPageController_anjali {
     public String quoteJobId{get;set;}
     public List<SelectOption> shootLocation{get;set;}
     public List<String> selectedCountry{get;set;}
+    public String IdDeleted{get;set;}
     public  Document document {
         get {
           if (document == null)
@@ -28,12 +29,14 @@ public class Amr_JobSheetPageController_anjali {
                 return lstQuoteToaddRow;
         }set;
     }
+    public string userId{get;set;}
     
     public Amr_JobSheetPageController_anjali(){
    
        try{
             isSave = false;
             isEdit = false;
+            display = true;
             jobId = ApexPages.currentPage().getParameters().get('id');
             displayLink = true;
             selectedCountry = new List<String> {'Test'};
@@ -45,12 +48,34 @@ public class Amr_JobSheetPageController_anjali {
             
             system.debug('========>jobId'+jobId);
                         system.debug('========>selectedCountry '+selectedCountry );
-
-            if(jobId != null){
-                quoteList = [select Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,
-                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c 
+             userId = userinfo.getuserid();
+            List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='CAP' order by Assignee.name];
+            boolean flag = false;
+            for(PermissionSetAssignment permissionObj:PermissionSetAssignmentList){
+                 if(userId == permissionObj.Assignee.id){
+                   
+                    flag = true;
+                    system.debug('inside cap User===>');
+                    break;
+                 }
+             }
+           /* List<Amr_Saving__c> test = [select Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
+                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById
                                from Amr_Saving__c where Job_Details__r.id = :jobId];
                                
+             system.debug('test==>'+test );*/
+            if(jobId != null){
+                 if(flag == true){
+                      quoteList = [select Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
+                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
+                               Average_Total_Opening_Quotes__c,Percentage_Saving_Average_of_Quote__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c from Amr_Saving__c where Job_Details__r.id = :jobId];
+                      system.debug('inside Cap List========>'+quoteList );
+                 }else{
+                   quoteList = [select Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
+                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
+                               Average_Total_Opening_Quotes__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quote__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c from Amr_Saving__c where Job_Details__r.id = :jobId AND (CreatedById = :userId OR LastModifiedById = :userId )];
+                      system.debug('inside Rap List========>'+quoteList );
+                 }            
                                //
                 quoteJobId = jobId;
                 if(quoteList.size()>0){
@@ -71,10 +96,13 @@ public class Amr_JobSheetPageController_anjali {
     
      
     public void SaveUpdatedData(){
+    
+    system.debug('inside IdValue==>'+IdValue);
+        system.debug('inside onee==>'+Apexpages.currentPage().getParameters().get('one'));
         if(IdValue!=null){
-            display = true;   
+            display = false;
             isEdit  = false;
-           isSave = true;
+            isSave = true;
         }      
     }
    
@@ -115,7 +143,7 @@ public class Amr_JobSheetPageController_anjali {
         system.debug('------selected Country---'+selectedCountry);
     system.debug('===lstQuoteToaddRow===========>'+lstQuoteToaddRow);
             if(validate(lstQuoteToaddRow,document)){
-                
+                String Interests = '';
                 if(lstQuoteToaddRow.size()>0 ){
                     for(String str : selectedCountry){
                         if(lstQuoteToaddRow[0].Shoot_Location__c == null){
@@ -124,8 +152,10 @@ public class Amr_JobSheetPageController_anjali {
                          lstQuoteToaddRow[0].Shoot_Location__c += ','+str ;
                         
                         }
+                        
+                        Interests = Interests + ';' + Str;
                     }
-                    
+                    lstQuoteToaddRow[0].Shoot_Location_Multiselect__c = Interests ;
                     insert lstQuoteToaddRow;
                      
                      if(!uploadDocument(lstQuoteToaddRow)){
@@ -136,16 +166,55 @@ public class Amr_JobSheetPageController_anjali {
                 }
                 
                 list<String> insertedQuoteIdsList =  new list<String>();
+                 List<Id> lstJobId = new List<Id>();
                 for(Amr_Saving__c qoute:lstQuoteToaddRow){
                     
                     insertedQuoteIdsList.add(qoute.id);
+                    
+                    lstJobId.add(qoute.Job_Details__c);
+                    
+                     
+                } 
+                List<Amr_Job_Allocation__c> lstJobAllocation = new List<Amr_Job_Allocation__c>();
+                List<Amr_Job_Allocation__c> lstJobAllocationUpdate = new List<Amr_Job_Allocation__c>();
+                lstJobAllocation = [Select Id, Job_Allocated__c,Reported__c,Reported_Image__c from Amr_Job_Allocation__c where AM_Job_Detail__c IN : lstJobId ] ;
+                
+                for(Amr_Job_Allocation__c objJobAllocation : lstJobAllocation){
+                    
+                    objJobAllocation.Reported__c = 'Yes';
+                    lstJobAllocationUpdate.add(objJobAllocation);
                 }
                 
-                lstQuoteToaddRow = [select id,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Production_Type__c,Duration_of_Additional_Films__c,
-                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Job_Details__r.AdManagerText__c 
+                update lstJobAllocationUpdate;
+                
+                
+                List<PermissionSetAssignment> PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name ='CAP' order by Assignee.name];
+            boolean flag = false;
+            for(PermissionSetAssignment permissionObj:PermissionSetAssignmentList){
+                 if(userId == permissionObj.Assignee.id){
+                   
+                    flag = true;
+                    system.debug('inside cap User===>');
+                    break;
+                 }
+             }
+             if(flag == true){
+                      lstQuoteToaddRow = [select id,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Production_Type__c,Duration_of_Additional_Films__c,
+                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Job_Details__r.AdManagerText__c,
+                                Number_Of_Quotes__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quote__c,Average_Total_Opening_Quotes__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c
                                from Amr_Saving__c where id in : insertedQuoteIdsList];
+                 }else{
+                   lstQuoteToaddRow = [select id,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Production_Type__c,Duration_of_Additional_Films__c,
+                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Job_Details__r.AdManagerText__c,
+                                Number_Of_Quotes__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quote__c,Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c
+                               from Amr_Saving__c where id in : insertedQuoteIdsList AND (CreatedById = :userId OR LastModifiedById = :userId )];
+                 }  
+                /*lstQuoteToaddRow = [select id,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Production_Type__c,Duration_of_Additional_Films__c,
+                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Job_Details__r.AdManagerText__c,
+                                Number_Of_Quotes__c,Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c
+                               from Amr_Saving__c where id in : insertedQuoteIdsList];*/
                 system.debug('ids inserted===>'+insertedQuoteIdsList);
-                //
+               
                 
                 for(Amr_Saving__c QuoteObj:lstQuoteToaddRow){
                     
@@ -175,7 +244,7 @@ public class Amr_JobSheetPageController_anjali {
                
                 flag = true;
             }else{
-               ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,'Please enter at least one value and one file to upload'));
+               ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.Amr_Error_FileUpload));
                document.body = null;
                return false;
            }   
@@ -204,7 +273,9 @@ public class Amr_JobSheetPageController_anjali {
               FI.ParentId = parentId;
               FI.Body = 'Attachment added';
               FI.ContentData = document.body;
-              FI.ContentFileName = document.Name;
+             
+              FI.ContentFileName = document.Name +'*'+idsList[0].Folder_Name__c;
+              system.debug('--->file Name'+FI.ContentFileName);
               insert FI;
   
               document = new document();
@@ -222,6 +293,29 @@ public class Amr_JobSheetPageController_anjali {
         redirectPage.setRedirect(true);
         redirectPage.getParameters().put('id',jobId);
         return redirectPage;
+    }
+    
+    public void deleteQuote(){
+      
+       List<Amr_Saving__c> quoteToBeDeleted = new List<Amr_Saving__c>();
+        
+       integer index=0;
+       integer indexNeedToRemove = 0;
+       
+       for(Amr_Saving__c quoteObj:quoteList ){
+            index = index+1;
+            if(quoteObj.id == IdDeleted){
+               system.debug('===?'+index+'==index');
+               system.debug('==index'+quoteList.get(index-1));
+               indexNeedToRemove = index-1;
+               quoteToBeDeleted.add(quoteObj);
+            }
+          
+        }
+        
+        quoteList.remove(indexNeedToRemove);
+        delete quoteToBeDeleted;
+        
     }
     
 }

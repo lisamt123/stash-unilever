@@ -10,9 +10,13 @@
                
         function Calculate() {                  
             var selectedValue   = $('.selectedIdClass').val();
-            var localValue      = $('.inputIdClass').val();         
-            $('.outputIdClass').val(localValue/selectedValue);
-            
+            var localValue      = $('.inputIdClass').val(); 
+            if(localValue!==null && localValue !=="") {  
+                localValue      = parseInt(localValue); 
+            var finalValue =localValue/selectedValue;
+                finalValue=finalValue.toFixed(2);  
+            $('.outputIdClass').val(finalValue);
+            }
         }
         function isNumber(evt) {
             evt = (evt) ? evt : window.event;
@@ -21,6 +25,11 @@
             return false;
         }
         return true;
+        }
+        
+        function test(id){
+        
+            alert('========>'+id);
         }
       </script>
       
@@ -351,10 +360,13 @@ border:0px none;
                    <div class="box_content filteralert">
                       <div class="subbox" style="height:64px;">
                         <div class="subbox-first" style="float:left;width:221px;" >
-                            <apex:selectList label="Select the user Name" multiselect="true" size="2" value="{!selectusernamelst}" >
+                           
+                             
+                              <apex:selectList label="Select the user Name"  size="1" value="{!selectedRAPUser}"  onchange="alert('Hell -> ' + {!selectedRAPUser});">
 
-                             <apex:selectOptions value="{!usernam}"></apex:selectOptions>
+                             <apex:selectOptions value="{!selectUsername}"></apex:selectOptions>
                              </apex:selectList>
+                             
                         </div>                  
                         <div class="subbox-second" style="float:left;margin-top:14px;font-size: 15px;">
                             <apex:commandButton styleClass="allocationbtn" value="Allocate" action="{!Reallocate}"  reRender="msgs"/>
@@ -379,7 +391,7 @@ border:0px none;
           <apex:pageBlock >
            <table class = "alloc_table" width = "100%" style="text-align:center">
                <tr>
-                    <td>
+                    <td style="display:{!IF(jobStatus == 'Accepted' , 'None', '')}">
                         <apex:outputPanel >
                             <apex:outputLabel value="Accept" style="font-weight:bold;"/> <br/><br/><br/><br/><br/><br/>
                             <apex:commandButton styleClass="allocationbtn" value="Accept" action="{!acceptJob}" />
@@ -389,18 +401,18 @@ border:0px none;
                         <apex:outputPanel >
                             <apex:outputLabel value="Re - Allocate" style="font-weight:bold;"/><br/><br/>
 
-                            <apex:selectList label="Select the user Name" multiselect="true" size="2" value="{!selectedRapName}" >
-                                <apex:selectOptions value="{!usernam}"></apex:selectOptions>
+                            <apex:selectList label="Select the user Name"  size="1" value="{!selectedRapName}" >
+                                <apex:selectOptions value="{!selectUsername}"></apex:selectOptions>
                             </apex:selectList> <br/>
-                <apex:commandButton value="Change owner" styleClass="allocationbtn" action="{!reallocateRAP}" reRender="pgbt,msgs"/> 
+                <apex:commandButton value="Re Allocate" styleClass="allocationbtn" action="{!reallocateRAP}" reRender="pgbt,msgs"/> 
                         </apex:outputPanel>
                    </td> 
                       <td  style="display:{!IF(jobStatus != 'Accepted' , 'None', '')}">  <!-- display:{!IF(jobStatus != 'Accepted' , 'None', '')} -->
                        <apex:outputPanel >
                           <apex:outputLabel value="Record Share" style="font-weight:bold;"/><br/>
                           
-                            <apex:selectList id="sel1" value="{!leftselected}" multiselect="true" style="width:150px" size="3">
-                                <apex:selectOptions value="{!usernam}"/>
+                            <apex:selectList id="sel1" value="{!listOfRAPSelected}" multiselect="true" style="width:150px" size="1">
+                                <apex:selectOptions value="{!Selectusername}"/>
                             </apex:selectList> <br/>
                      
                           <apex:commandButton action="{!recordShare}" value="Share" styleClass="allocationbtn"  reRender="msgs" /> 
@@ -418,6 +430,7 @@ border:0px none;
                             <apex:outputLabel value="Priority" style="font-weight:bold;"/><br/>
                             <apex:selectRadio layout="pageDirection" styleClass="radio_pick" value="{!priority}">
                                 <apex:selectOption itemLabel="Priority" itemValue="Priority"   />
+                                <apex:selectOption itemLabel="Pending" itemValue="Pending" />
                                 <apex:selectOption itemLabel="Live" itemValue="Live" />
                                 <apex:selectOption itemLabel="Dormant" itemValue="Dormant" />
                             </apex:selectRadio> 
@@ -475,7 +488,7 @@ border:0px none;
                         <div class="form-group">
                            <label>Location of Unilever project leader </label><span class="starimg"></span>
                            <br/>                                                      
-                           <apex:inputField value="{!joblist.Project_Leader_Cluster__c}" />&nbsp;&nbsp;&nbsp;&nbsp;
+                           <apex:inputField value="{!joblist.Project_Leader_Cluster__c}"/>&nbsp;&nbsp;&nbsp;&nbsp;
                            <apex:inputField value="{!joblist.Project_Leader_Country__c}" />                                                                          
                         </div>
                         <div class="form-group"> 
@@ -852,12 +865,8 @@ border:0px none;
         </apex:tabPanel>
         
       </div>
-     
-     
-     
-     
-  
     
+     
       </apex:form>
    </body>
 </apex:page>

@@ -1,50 +1,11 @@
 <apex:page controller="Amr_MultipleDocumentController" >
  <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
- <script type="text/javascript">
-   function passNewValues(IdVal,body,Content){
-       alert('---'+IdVal);
-       alert('==='+body);
-       alert('----'+ Content);
-       Update(IdVal,body,Content);
-      
-   }
- </script>
+
   <apex:pageMessages />
   
-  <apex:form >
   
-  <apex:actionFunction name="Update" action="{!updateDocument}" ReRender="none">
-            <apex:param name="one" value="" assignTo="{!IdValue}"/>
-            <apex:param name="two" value="" assignTo="{!bodyUpdated}"/>
-            <apex:param name="three" value="" assignTo="{!ContentUpdated}"/>
-         </apex:actionFunction>
-  </apex:form>
    <apex:form >  
-        
-        
-            
-        
-   <apex:pageBlock >
-   <apex:actionRegion >
-    <apex:pageBlockSection title="All Files" >  
-               
-                <apex:pageBlockTable value="{!attachedListToDisplay}" var="AFL">
-                  <apex:column headervalue="Link To downLoad">
-                    <apex:outputLink value="/sfc/servlet.shepherd/version/download/{!AFL.RelatedRecordId}" target="_document">{!AFL.ContentFileName}</apex:outputLink>
-                    </apex:column>
-                    <apex:column headervalue="replace File">
-                     <apex:inputFile value="{!AFL.body}"  filename="{!AFL.ContentFileName}"></apex:inputFile>
-                       <apex:commandButton onclick="passNewValues('{!AFL.id}','{!AFL.body}','{!AFL.ContentFileName}')" value="Upload New Document"/>
-                    </apex:column>
-                    
-                    
-                </apex:pageBlockTable>
-                 
-               
-            </apex:pageBlockSection>
-            </apex:actionRegion>
-      </apex:pageBlock>
-       <!--<apex:pageBlock title="Upload Multiple Attachment to Object">  
+       <apex:pageBlock title="Upload Multiple Attachment to Object">  
 
        <apex:actionFunction name="ChangeCount" action="{!ChangeCount}"/>
               
@@ -62,21 +23,21 @@
            <apex:actionRegion >
              <apex:pageBlockSection title="Select Files" rendered="{!IF(FileCount != null && FileCount != '', true , false)}">  
                
-                <apex:dataTable value="{!allFileList}" var="AFL">
-                    <apex:column >
-                           
-                             <apex:inputfile value="{!AFL.body}" filename="{!AFL.Name}" /> 
-                        </apex:column>
-                <apex:column >
+                <apex:dataTable value="{!allFileList}" var="AFL" cellspacing="5">
+                    <apex:column headervalue="File">
+                             <apex:inputField value="{!AFL.savingObj.Folder_Name__c}"/> 
                             
-                             <apex:commandButton value="Upload" action="{!SaveAttachments}"/>   <br/>
+                            
                         </apex:column>
+                   <apex:column headervalue="Folder">
+                      <apex:inputfile value="{!AFL.document.body}" filename="{!AFL.document.Name}" /> 
+                   </apex:column>
                 </apex:dataTable> 
                  
-               
+                <apex:commandButton value="Upload" action="{!SaveAttachments}" />   <br/>
             </apex:pageBlockSection>
              </apex:actionRegion>
             
-              </apex:pageBlock>-->
+              </apex:pageBlock>
    </apex:form>  
 </apex:page>

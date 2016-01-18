@@ -50,7 +50,7 @@
             </picklistValues>
             <picklistValues>
                 <fullName>No</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -155,5 +155,5 @@
     </nameField>
     <pluralLabel>Amr Job Allocations</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>

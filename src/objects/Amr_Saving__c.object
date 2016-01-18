@@ -5,6 +5,15 @@
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
     <fields>
+        <fullName>Average_Total_Opening_Quotes__c</fullName>
+        <formula>Sum_Of_Total_Cost__c / Number_Of_Quotes__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Average Total Opening Quotes</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
         <fullName>CA_Only_Currency__c</fullName>
         <label>CA Only (Currency)</label>
         <picklist>
@@ -95,22 +104,69 @@
         <type>Number</type>
     </fields>
     <fields>
+        <fullName>Cost_Per_Master__c</fullName>
+        <formula>Total_Accepted_FinalCost__c  /  No_of_Masters__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cost Per Master</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Cost_per_master_per_shoot_day__c</fullName>
+        <formula>(Total_Accepted_FinalCost__c  /  No_of_Masters__c ) /  No_of_shoot_days__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cost per master per shoot day</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
         <fullName>Duration_of_Additional_Films__c</fullName>
         <label>Duration of Additional Films</label>
-        <length>255</length>
-        <type>Text</type>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
     </fields>
     <fields>
         <fullName>Duration_of_Masters__c</fullName>
         <label>Duration of Masters</label>
-        <length>255</length>
-        <type>Text</type>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
     </fields>
     <fields>
         <fullName>Edirors_Name__c</fullName>
         <label>Edirors Name</label>
         <length>100</length>
         <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Euro_Saving_Average_of_Quotes__c</fullName>
+        <label>€ Saving - Average of Quotes</label>
+        <precision>16</precision>
+        <scale>4</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Folder_Name__c</fullName>
+        <label>Folder Name</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Brief</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Opening Quote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Closing Quote</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Job_Details__c</fullName>
@@ -196,6 +252,13 @@
         <precision>18</precision>
         <scale>0</scale>
         <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Number_Of_Quotes__c</fullName>
+        <label>Number Of Quotes</label>
+        <summaryForeignKey>Amr_Quote__c.Saving__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>PC_Only_Currency__c</fullName>
@@ -378,6 +441,29 @@
         <type>Number</type>
     </fields>
     <fields>
+        <fullName>Percentage_Saving_Accepted_Quote__c</fullName>
+        <label>% Saving - Accepted Quote</label>
+        <precision>18</precision>
+        <scale>3</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_Saving_Average_of_Quote__c</fullName>
+        <label>% Saving - Average of Quote</label>
+        <precision>16</precision>
+        <scale>4</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Percentage_Saving_Average_of_Quotes__c</fullName>
+        <formula>Saving_Average_of_Quotes__c  /  Average_Total_Opening_Quotes__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>% Saving - Average of Quotes</label>
+        <precision>18</precision>
+        <scale>2</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
         <fullName>Production_Type__c</fullName>
         <label>Production Type</label>
         <picklist>
@@ -419,6 +505,22 @@
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
+        <fullName>Saving_Accepted_Quote_Euro__c</fullName>
+        <label>€ Saving - Accepted Quote</label>
+        <precision>18</precision>
+        <scale>3</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
+        <fullName>Saving_Average_of_Quotes__c</fullName>
+        <formula>Average_Total_Opening_Quotes__c - Total_Accepted_FinalCost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>€ Saving - Average of Quotes</label>
+        <precision>18</precision>
+        <scale>4</scale>
+        <type>Number</type>
+    </fields>
+    <fields>
         <fullName>Scope_re_brief__c</fullName>
         <label>Scope re-brief</label>
         <picklist>
@@ -439,6 +541,19 @@
         <label>Script Title</label>
         <length>255</length>
         <type>Text</type>
+    </fields>
+    <fields>
+        <fullName>Shoot_Location_Multiselect__c</fullName>
+        <label>Shoot Location Multiselect</label>
+        <picklist>
+            <picklistValues>
+                <fullName>None</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Shoot_Location__c</fullName>
@@ -482,6 +597,22 @@
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Sum_Of_Total_Cost__c</fullName>
+        <label>Sum Of Total Cost</label>
+        <summarizedField>Amr_Quote__c.Total_Cost__c</summarizedField>
+        <summaryForeignKey>Amr_Quote__c.Saving__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Accepted_FinalCost__c</fullName>
+        <label>Total Accepted FinalCost</label>
+        <summarizedField>Amr_Quote__c.Total_Accepted_Final_Cost_CA_PC_PPC_Eu__c</summarizedField>
+        <summaryForeignKey>Amr_Quote__c.Saving__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Total_Editing_Cost__c</fullName>
@@ -541,6 +672,14 @@
         <type>Number</type>
     </fields>
     <label>Amr Saving</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Sum_Of_Total_Cost__c</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <label>AM_Saving Name</label>
         <type>Text</type>

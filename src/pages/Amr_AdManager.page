@@ -1,190 +1,203 @@
-<apex:page controller="Amr_LoggingFormController" title="AdManager" sidebar="false">
+<apex:page controller="Amr_LoggingFormController" title="AdManager" sidebar="false" action="{!Redirect}">
 	<apex:pageMessages id="showmsg"></apex:pageMessages>
 	<head>
 		<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"/>
-		<script type="text/javascript">
-			var Masterflag = true;
-			var SubMasterflag = true; 
-			var idName;
-			var agencyFlag = true;
-			var projectFlag = true;
+		<script type="text/javascript">						
+			var agencyFlag      = true;
+			var projectFlag 	= true;			
 			
 			$ = jQuery.noConflict();
-			       
+			
+			function transferValue(projName)
+			{			
+			  if(projName!=="--None--") {  
+					$('.projecttextProjDetail').val(projName);			
+				}
+			}
+			
+			function callActionFunctionProjectName(projectName) {		
+				callContrlProjectName(projectName);
+			}  
+			
+			
 			function Calculate() {                  
 			    var selectedValue   = $('.selectedIdClass').val();
-			    var localValue      = $('.inputIdClass').val();         
-			    $('.outputIdClass').val(localValue*selectedValue);
+			    var localValue      = $('.inputIdClass').val();   
+			  
 			    
+				    if(localValue!==null && localValue !=="") {  
+				        if(selectedValue  !=='--None--'){
+				    localValue = parseInt(localValue);    
+				    var finalValue =localValue/selectedValue;
+				    finalValue=finalValue.toFixed(2);   
+				    $('.outputIdClass').val(finalValue);
+				    }
+			   	}			    
 			}
+			
 			function isNumber(evt) {
 			    evt = (evt) ? evt : window.event;
 			    var charCode = (evt.which) ? evt.which : evt.keyCode;
 			    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-			    return false;
-			}
+			    	return false;
+				}
 			    return true;
 			}
-			function enableText(){  
-			            
-			    $('.outputIdClass').removeAttr('disabled');
-			    
+			
+			function enableText() {  			            
+			    $('.outputIdClass').removeAttr('disabled');			    
 			    $('.defaultTv').removeAttr('disabled');
 			    $('.defaultCinema').removeAttr('disabled');
 			    $('.defaultRadio').removeAttr('disabled');
 			    $('.defaultPrint').removeAttr('disabled');
-			    $('.defaultInternalVideo').removeAttr('disabled');
-			   
-			  
+			    $('.defaultInternalVideo').removeAttr('disabled');     			                 
 			}
 			
+			$(document).ready(function() {
+			    
+			    //transferValue();
+			    		    
+			    $('.defaultTv').attr('disabled','disabled');
+			    $('.defaultCinema').attr('disabled','disabled');
+			    $('.defaultRadio').attr('disabled','disabled');
+			    $('.defaultPrint').attr('disabled','disabled');
+			    $('.defaultInternalVideo').attr('disabled','disabled');
+			              
 			
-			$(document).ready(function(){
-			    
+			
+			
+			    //Default popup for your email address                
 			    $('.your_email_address').val( $('.your_email_address').attr('default-value') );
-			    //$(this).attr('default-value')
-			    $('.defaultTv').attr('disabled', 'disabled');
-			    $('.defaultCinema').attr('disabled', 'disabled');
-			    $('.defaultRadio').attr('disabled', 'disabled');
-			    $('.defaultPrint').attr('disabled', 'disabled');
-			    $('.defaultInternalVideo').attr('disabled', 'disabled');
 			    
-			    
+			    //Auto calculation                                                
 			    $('.outputIdClass').attr('disabled', 'disabled');
 			    $('.outputIdClass').css('background', '#EFEFEF');
 			    
-			    $('input.sub-master').click(function() {
-			    SubMasterflag = true;
-			    $('input.sub-master').each(function() {
-			    if(this.checked) {
-			    SubMasterflag = false;      
-			    }
-			    });
-			    if(true == SubMasterflag ) {
-			    $('.sub-master-detail').addClass('hide');
-			    $('.submasterdetaildiv').addClass('hide2');
-			    $('.additional').prop('checked', false);
-			    $('.submasterdetaildiv input:checkbox').prop('checked', false);
+			    // Agency logic
+			    			    
+			    if($('.agencytext').val().length>0) {
+				      $('.agencytext').show();
+				      $('.agencypick').hide();
+				      $('.agencypick option').prop('selected', false);
+				      $('.agencyother').text('Cancel');
+				      agencyFlag = false;
 			    } else {
-			    $('.sub-master-detail').removeClass('hide'); 
+			     $('.agencytext').val('');
+			     $('.agencytext').hide();
 			    }
-			    });
-			    $('input.original_master').click(function() {
-			    if (this.checked) {
-			    $('input.other_master').prop('checked', false);
-			    $('.master-detail').removeClass('hide');
-			    $('.additional').prop('checked', false);
-			    $('.additional2').prop('checked', false);
-			    $('.additional3').prop('checked', false);
-			    $('.additional4').prop('checked', false);
-			    $('.submasterdetaildiv input:checkbox').prop('checked', false);
-			    } else {
-			    $('input.other_master').prop('checked', false);
-			    $('.master-detail').addClass('hide');
-			    $('.sub-master-detail').addClass('hide');
-			    $('.submasterdetaildiv').addClass('hide2');
-			    }
-			    });
-			    $('input.other_master').click(function() {
-			    Masterflag = true;
-			    if (this.checked) {
-			    $('input.original_master').prop('checked', false);
-			    $('.master-detail').removeClass('hide');
-			    $('.additional').prop('checked', false);
-			    $('.submasterdetaildiv input:checkbox').prop('checked', false);
-			    } else {
-			    $('input.other_master').each(function() {
-			    if (this.checked) {
-			    Masterflag = false;
-			    $('.master-detail').removeClass('hide');
-			    }
-			    });
-			    if( true == Masterflag ) {
-			    //$('input.original_master').removeAttr('disabled','disabled');
-			    $('.master-detail').addClass('hide');
-			    $('.sub-master-detail').addClass('hide');
-			    $('.submasterdetaildiv').addClass('hide2');
-			    }
-			    }
-			    });
-			    $('.additional').click(function() {
-			    idName = $(this).attr('data-id');
-			    if(this.checked) {    
-			    $('.'+idName).prop('checked', true);
-			    $('.'+idName).parent().removeClass('hide2');
-			    } else {
-			    $('.'+idName).prop('checked', false);
-			    $('.'+idName).parent().addClass('hide2');
-			    }
-			    });
-			    
-			    
-			    $('.additional2').click(function() {
-			        if(this.checked) {    
-			        $('.subadditional2').removeClass('hide2');
-			        } else {
-			        $('.subadditional2').addClass('hide2');;
-			        }
-			    });
-			    
-			    $('.additional3').click(function() {
-			        if(this.checked) {    
-			        $('.subadditional3').removeClass('hide2');
-			        } else {
-			        $('.subadditional3').addClass('hide2');;
-			        }
-			    });
-			    
-			    $('.additional4').click(function() {
-			        if(this.checked) {    
-			        $('.subadditional4').removeClass('hide2');
-			        } else {
-			        $('.subadditional4').addClass('hide2');;
-			        }
-			    });
-			                            
-			    
-			    
-			    $('.agencytext').hide();
 			                
 			    $('.agencyother').click(function(e) {
-			    e.preventDefault();
-			    if(agencyFlag == true){
-			    $('.agencypick').hide();
-			    $('.agencypick option').prop('selected', false);
-			    $('.agencytext').show();
-			    $('.agencyother').text('Cancel');
-			    agencyFlag = false;
-			    }else{
-			    $('.agencytext').val('');
-			    $('.agencytext').hide();
-			    $('.agencypick').show(); 
-			    $('.agencyother').text('Other');
-			    agencyFlag = true;
-			    }
+			        e.preventDefault();
+				     if(agencyFlag == true){
+				      $('.agencypick').hide();
+				      $('.agencypick option').prop('selected', false);
+				      $('.agencytext').show();
+				      $('.agencyother').text('Cancel');
+				      agencyFlag = false;
+			     } else {
+				      $('.agencytext').val('');
+				      $('.agencytext').hide();
+				      $('.agencypick').show(); 
+				      $('.agencyother').text('Other');
+				      agencyFlag = true;
+			     }
 			    });  
 			    
+			    if( $('.projecttextProjDetail').val().length>0){
+			        var projDeatVal =$('.projecttextProjDetail').val();
+			         $('.projectpick').val(projDeatVal);
+			    } 
 			    
-			    $('.projecttext').hide();
-			    
-			    $('.projectotherClass').click(function(e) {
-			    e.preventDefault();
-			    //alert('1');
-			    if(projectFlag == true){
-			    //alert('2');
-			    $('.projectpick').hide();
-			    $('.projectpick option').prop('selected', false);
-			    $('.projecttext').show();
-			    $('.projectotherClass').text('Cancel');
-			    projectFlag = false;
-			    }else{
-			    $('.projecttext').val('');
-			    $('.projecttext').hide();
-			    $('.projectpick').show(); 
-			    $('.projectotherClass').text('Other');
-			    projectFlag = true;
+			    // Project info logic
+			    if($('.projecttext').val().length>0) {
+			     $('.projecttext').show();
+			     $('.projectpick').hide();
+			     $('.projectpick option').prop('selected', false);
+			     $('.projectotherClass').text('Cancel');
+			     projectFlag = false;
+			    } else { 
+			    	$('.projecttext').val('');
+			    	$('.projecttext').hide();
+			    	$('.projectpick').show(); 
+			      	$('.projectotherClass').text('Other');
+			      	projectFlag = true;   
 			    }
+			  
+			    $('.projectotherClass').click(function(e) {
+			     e.preventDefault();                    
+			     if(projectFlag == true) {                   
+				      $('.projectpick').hide();
+				      $('.projectpick option').prop('selected', false);
+				      $('.projecttext').show();
+				      $('.projectotherClass').text('Cancel');
+				      projectFlag = false;
+			     } else {
+				      $('.projecttext').val('');
+				      $('.projecttext').hide();
+				      $('.projectpick').show(); 
+				      $('.projectotherClass').text('Other');
+				      projectFlag = true;
+			     }
 			    });
+			    
+			    // production activity logic 
+			    //1. if none selected, dont show anything and only one master can be selected
+			    
+			    var masterselection = true;
+			    $('.master').click(function() {
+			    	if(this.checked) {
+			    		$('.amr-media-channel-master').show();
+			    		$('.amr-media-master').show();
+			    		masterselection = true;
+			    		
+			    		//disable master or other-master
+			    		if($(this).hasClass('original_master')) {
+			    			$('.other_master').attr('disabled', 'disabled');
+			    		} else {
+			    			$('.original_master').attr('disabled', 'disabled');
+			    		}
+			    		
+			    	} else {
+			    	
+			    		$('.original_master').removeAttr('disabled');
+			    		$('.other_master').removeAttr('disabled');
+			    		
+			    		masterselection = false;
+			    		$('.master').each(function() {			    						    			
+			    			if(this.checked) {
+	                    		masterselection = true;    	
+                    		}
+			    		});
+			    		
+			    		if( masterselection == false ) {
+			    			$('.amr-media-channel-master').hide();
+			    			$('.amr-media-master').hide();
+			    			
+			    			/* not working */
+			    			
+			    			$('.mediamasterdiv input:checkbox').each( function() {
+			    				$(this).prop('checked', false);
+			    			});
+			    			
+			    			$('.submediamasterdiv input:checkbox').each( function() {
+			    				$(this).prop('checked', false);
+			    			});			    			
+			    		}			    					    		
+			    	}
+			    });
+			    
+			    
+			    // 2. default value selected
+			    
+			    $('.additional').click(function() {
+	                selectedDefault = $(this).attr('data-id');
+	                if(this.checked) {                    
+	                    $('.'+selectedDefault).prop('checked', true);                   
+	                } else {                
+	                    $('.'+selectedDefault).prop('checked', false);
+	                }
+            	});			    
+			    			    
 			});
 			
 		</script>
@@ -205,10 +218,12 @@
 			font-family: 'dinOffPro-Ita';
 			src: url("{!URLFOR($Resource.Ad_Manager, 'Ad-Manager/fonts/UnileverDINOffcPro-Ita.ttf')}"); /* IE9 Compat Modes */
 			}
-			body{background:#fff;font-family: 'dinOffPro', Verdana,'Open Sans', sans-serif !important;margin:0 auto;}
+			body{background:#fff;margin:0 auto;}
 			body{background:#fff;margin:0 auto;font-size: 12px;}
 			/* Ad Main section CSS */
-			.container{width:1170px; margin: 0 auto;}
+			.container{            	 
+			margin: 0 auto;
+			}
 			.navbar-header{background:#F6F6F6;}
 			.navbar-header img{float:left;}
 			.clear{clear:both;}
@@ -245,7 +260,11 @@
 			padding: 0 0 30px;
 			position: relative;
 			}
-			div.form-field {padding:10px;float:left;}
+			div.form-field a {
+			font-size:12px;
+			font-family:"dinOffPro",Verdana,"Open Sans",sans-serif !important;
+			}
+			div.form-field {padding:5px 10px;float:left;}
 			.form-field label {clear: left;
 			color:#0B2F4D;
 			display: inline;
@@ -277,13 +296,16 @@
 			top: 2px;
 			width: 15px;}
 			section h2{
-			font-size: 1.083em;
+			font-size: 14px;
 			font-weight: bold;
 			text-decoration: none;  
 			background: none repeat scroll 0 0 #0085CA;
 			color: #fff;
 			display: block;
 			padding: 8px 10px 8px 20px;
+			border-radius:8px;
+			margin-bottom:20px;
+			font-family: 'dinOffPro', Verdana,'Open Sans', sans-serif !important;
 			}
 			.form-field  input[type="text"], input[type="password"] {
 			margin: 1px 0px;
@@ -294,9 +316,10 @@
 			box-sizing: border-box;
 			color: #0b2f4d;
 			width: 244px;
-			padding: 10px 2px 10px 4px;
+			padding: 0px 2px 0px 4px;
 			border-radius: 5px;
 			border: 1px solid #dcdcdc;
+			height:30px;
 			}
 			.project-description{
 			height: 90px;
@@ -351,7 +374,8 @@
 			}
 			footer a{text-decoration:none;color: #0B2F4D;}
 			footer  p{font-size:12px;text-align: right;left: 30px;
-			position: relative; color: #0B2F4D;}
+			position: relative; color: #95A4B6;}
+			footer  span{color: #95A4B6 !important;}
 			.form-field label input[type=checkbox]{color:#0B2F4D;border-radius:5px;}
 			.checkedtext{color: #0B2F4D;}
 			.radio-label{color: #0B2F4D;}
@@ -363,26 +387,34 @@
 			font-family: Verdana,Arial,sans-serif;
 			font-size: 11px;
 			}
+			footer {
+			font-family:"dinOffPro",Verdana,"Open Sans",sans-serif !important;
+			}
 			.production-activity-type-sub{
 			background: #73c0d9 none repeat scroll 0 0;
 			color: #fff;
-			font-size: 13px;
+			font-size: 15px;
 			font-weight: bold;
 			margin-bottom: 21px;
 			padding: 10px;
-			width: 127px;
+			width: 242px;
+			border-radius:8px;
+			height:25px;
 			}
 			.before-start h1{
 			font-family: 'dinOffPro', Verdana,'Open Sans', sans-serif !important;
 			}
 			p, label {
 			font-family: 'dinOffPro', Verdana,'Open Sans', sans-serif !important;
-			font-size:14px !important;
+			font-size:12px !important;
 			}
 			.before-start ul li {
 			font-family: 'dinOffPro', Verdana,'Open Sans', sans-serif !important;
-			font-size:14px !important;
+			font-size:12px !important;
 			}
+			/*#AllTab_Tab{
+			display:none;
+			}*/
 		</style>
 		<style type="text/css">
 			.form-radio label {
@@ -421,25 +453,44 @@
 			float:left;
 			width:400px;
 			height:430px;
-			border-left:1px solid #1796BE;
+			//border-left:1px solid #1796BE;
 			padding-left:20px;
 			}
-			.masterdetaildiv {
+			/*
+			.mediamasterdiv {
 			height:50px;
 			line-height:50px;
 			width: 122px;             
 			}
-			.submasterdetaildiv {
-			height:50px;
-			// line-height:50px;
-			width: 300px;         
+			*/
+			.mediamasterdiv {               
+			height: 35px;
+			/*line-height: 50px;*/
+			padding-left: 20px;
+			padding-top: 10px;
+			width: 230px;
+			margin-top:4px;
+			}
+			.mediamasterdiv-selected {
+			background-color: #73c0d9;
+			border: 1px solid #fff;     
+			border-radius:8px;   
+			}
+			.mediamasterdiv-selected label{             
+			color: #FFFFFF !important;              
+			font-family: "dinOffPro-Bold",Verdana,"Open Sans",sans-serif !important;
+			border-radius: 10px;
+			}
+			.submediamasterdiv {
+			height:50px;            
+			width: 420px;         
 			}                 
-			.masterdetaildiv label {
+			.mediamasterdiv label {
 			float:none !important;
 			padding:0px !important;
 			width:auto !important;
 			}
-			.submasterdetaildiv label {
+			.submediamasterdiv label {
 			float:none !important;
 			padding: 0px !important;
 			width:auto !important;
@@ -448,14 +499,11 @@
 			float:none !important;
 			}
 			.other_master_parent{
-			height:30px;
+			height:60px;
 			}
 			.form-production-activity-type {
 			margin-left:38px;
-			}
-			footer {
-			margin-left: 383px;
-			}
+			}            
 			.projectotherClass, a.agencyother {
 			font-family:verdana;
 			font-size:12px;
@@ -463,6 +511,25 @@
 			.form-production-activity-type label{
 			padding:0px !important;
 			}
+			.media-master{
+			float:left;
+			width:300px;            
+			}
+			.medium-master {
+			float:left;
+			width:330px;
+			border-left: 1px solid #1796be;
+			}
+			.media-master label{
+			cursor:pointer;
+			}
+			.sub-master-detail{
+			display:none;
+			}
+			.production-activity-detail {
+			display:none;
+			}
+			#home_Tab{display:none;}
 		</style>
 	</head>
 	<body>
@@ -476,6 +543,7 @@
 					<p class="checkedtext">
 						<apex:outputLabel >
 							Have you checked with CMI if there is an existing asset in the Millward Brown TV Ad Vitality Bank that could be utilised for this JTBD?
+							<span style="color: red; font-size: 12px;">*</span>
 						</apex:outputLabel>
 					</p>
 					<div class="float-left width252 radio-label">
@@ -497,7 +565,7 @@
 					<h2>Unilever Information </h2>
 					<div class="form-field">
 						<apex:outputLabel >
-							Your Email Address
+							Your email address
 							<strong></strong>                    
 							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Your_Email_Address__c.inlineHelpText}"></div>
 						</apex:outputLabel>
@@ -514,7 +582,8 @@
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
-						<apex:inputField value="{!jobDetails.Unilever_Project_Leader_Email__c}" html-placeholder="Email Address" />
+						<apex:inputField value="{!jobDetails.Unilever_Project_Leader_Email__c}"  />
+						<!-- html-placeholder="Email Address" -->
 					</div>
 					<div class="clear">                  
 					</div>
@@ -535,13 +604,14 @@
 					</div>
 					<div class="form-field">
 						<apex:outputLabel >
-							Unilever Finance Member Email
+							Unilever finance member email
 							<strong></strong>
 							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Unilever_Finance_Member_Email__c.inlineHelpText}"></div>
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
-						<apex:inputField value="{!jobDetails.Unilever_Finance_Member_Email__c}" html-placeholder="Email Address" />
+						<apex:inputField value="{!jobDetails.Unilever_Finance_Member_Email__c}"  />
+						<!-- html-placeholder="Email Address" -->
 					</div>
 					<div class="clear">                  
 					</div>
@@ -553,7 +623,8 @@
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
-						<apex:inputField value="{!jobDetails.Final_Approver_Of_Material_Email__c}" html-placeholder="Email Address" />
+						<apex:inputField value="{!jobDetails.Final_Approver_Of_Material_Email__c}" />
+						<!-- html-placeholder="Email Address"  -->
 					</div>
 					<div class="clear">                  
 					</div>
@@ -594,7 +665,7 @@
 						</apex:selectList>
 					</div>
 					<div class="form-field">
-						<apex:inputField value="{!jobDetails.Budget_Allocated_Input_Value__c}" id="inputId" onkeypress="return isNumber(event)" onkeyup="Calculate()" styleClass="inputIdClass" html-placeholder="Local Currency" />
+						<apex:inputField value="{!jobDetails.Budget_Allocated_Input_Value__c}" id="inputId" onkeypress="return isNumber(event)" onkeyup="Calculate()" styleClass="inputIdClass" html-placeholder="Local Currency" html-autocomplete="off" />
 					</div>
 					<div class="form-field">
 						<apex:inputField value="{!jobDetails.Allocated_Budget_euro__c}" id="outputId" styleClass="outputIdClass" html-placeholder="Auto Calc to Euros" />
@@ -656,7 +727,7 @@
 					<h2>Agency Information </h2>
 					<div class="form-field">
 						<apex:outputLabel >
-							Lead Agency Name
+							Lead agency name
 							<strong></strong>
 							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Lead_Creative_Agency_name__c.inlineHelpText}"></div>
 						</apex:outputLabel>
@@ -665,16 +736,16 @@
 						<apex:inputField value="{!jobDetails.Lead_Creative_Agency_name__c}" styleClass="agencypick" />
 						<apex:inputField value="{!jobDetails.Lead_Agency_Name_Other__c}" styleClass="agencytext" html-placeholder="New Agency" />
 					</div>
-					<div class="form-field">
+					<div class="form-field" style="margin-top:13px;">
 						<a class="agencyother" href="#"> Other </a>
 					</div>
 					<div class='clear'>
 					</div>
 					<div class="form-field">
 						<apex:outputLabel >
-							Lead Agency Location
+							Lead agency location
 							<strong></strong>
-							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Lead_Creative_Agency_name__c.inlineHelpText}"></div>
+							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Lead_Agency_Location_Cluster__c.inlineHelpText}"></div>
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
@@ -693,31 +764,32 @@
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
-						<apex:inputField value="{!jobDetails.Agency_Contact_Account_Director_Email__c}" html-placeholder="Email Address" />
+						<apex:inputField value="{!jobDetails.Agency_Contact_Account_Director_Email__c}"  />
+						<!-- html-placeholder="Email Address" -->
 					</div>
 					<div class='clear'>
 					</div>
 					<div class="form-field">
 						<apex:outputLabel >
-							Digital Agency Name (if applicable)
-							<strong></strong>
+							Digital agency name (if applicable)                            
 							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Digital_Agency_Name__c.inlineHelpText}"></div>
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
-						<apex:inputField value="{!jobDetails.Digital_Agency_Name__c}" html-placeholder="Digital Agency" />
+						<apex:inputField value="{!jobDetails.Digital_Agency_Name__c}"  />
+						<!-- html-placeholder="Digital Agency" -->
 					</div>
 					<div class='clear'>
 					</div>
 					<div class="form-field">
 						<apex:outputLabel >
-							Any other agencies involved?
-							<strong></strong>
-							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Digital_Agency_Name__c.inlineHelpText}"></div>
+							Any other agencies involved?                            
+							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Any_other_agencies_involved__c.inlineHelpText}"></div>
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
-						<apex:inputField value="{!jobDetails.Any_other_agencies_involved__c}" html-placeholder="Other Agency" />
+						<apex:inputField value="{!jobDetails.Any_other_agencies_involved__c}" />
+						<!-- html-placeholder="Other Agency"  -->
 					</div>
 					<div class='clear'>
 					</div>
@@ -728,18 +800,21 @@
 						<apex:outputLabel >
 							Project name (e.g. Apollo)    
 							<strong></strong>
-							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Name__c.inlineHelpText}"></div>
+							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Details__c.inlineHelpText}"></div>
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
+						<!--select tag-->
+						<select id="projectList" size="1" style="width: 300px;" onchange="transferValue(this.value)" class="projectpick"></select>
 						<apex:actionRegion >
-							<apex:selectList value="{!projectName}" size="1" html-data-id="projectpick" styleClass="projectpick" >
+							<!-- <apex:selectList value="{!projectName}" size="1" html-data-id="projectpick" styleClass="projectpick" >
 								<apex:selectOptions value="{!listOfProjectName }" />
-							</apex:selectList>
-							<apex:inputField value="{!jobDetails.Project_Name_Other__c}" styleClass="projecttext" html-data-id="projecttext" />
+								</apex:selectList>-->
+							<apex:inputField value="{!jobDetails.Project_Details__c}" id="projDetailId" styleClass="projecttextProjDetail hide"/>
+							<apex:inputField value="{!jobDetails.Project_Name_Other__c}" id="projDetailIdOther" styleClass="projecttext" html-data-id="projecttext" />
 						</apex:actionRegion>
 					</div>
-					<div class="form-field">
+					<div class="form-field" style="margin-top:13px;">
 						<a href = "#" id="projectother" class="projectotherClass"> Other </a>
 					</div>
 					<div class="clear">
@@ -761,7 +836,7 @@
 					</div>
 					<div class="form-field">
 						<apex:outputLabel >
-							Broadcast Market
+							Broadcast market
 							<strong></strong>
 							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Brodcast_Market__c.inlineHelpText}"></div>
 						</apex:outputLabel>
@@ -785,13 +860,14 @@
 					</div>
 					<div class="form-field">
 						<apex:outputLabel >
-							Project Description
+							Project description
 							<strong></strong>
 							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Project_Description__c.inlineHelpText}"></div>
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
-						<apex:inputtextarea value="{!jobDetails.Project_Description__c}" html-placeholder="Description" />
+						<apex:inputtextarea value="{!jobDetails.Project_Description__c}" />
+						<!-- html-placeholder="Description"  -->
 					</div>
 					<div class="clear">
 					</div>
@@ -803,7 +879,8 @@
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
-						<apex:inputField value="{!jobDetails.Campaign_Name__c}" html-placeholder="Campaign Name" />
+						<apex:inputField value="{!jobDetails.Campaign_Name__c}"  />
+						<!-- html-placeholder="Campaign Name" -->
 					</div>
 					<div class="clear">
 					</div>
@@ -815,7 +892,8 @@
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
-						<apex:inputField value="{!jobDetails.Execution_Name__c}" html-placeholder="Execution Name" />
+						<apex:inputField value="{!jobDetails.Execution_Name__c}"  />
+						<!-- html-placeholder="Execution Name" -->
 					</div>
 					<div class="clear">
 					</div>
@@ -827,7 +905,8 @@
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
-						<apex:inputField value="{!jobDetails.Target_Air_Date__c}" html-placeholder="Select Date" />
+						<apex:inputField value="{!jobDetails.Target_Air_Date__c}" />
+						<!-- html-placeholder="Select Date"  -->
 					</div>
 					<div class="clear">
 					</div>
@@ -839,153 +918,137 @@
 							<label>
 								Production activity type (select one or more)
 								<strong></strong>
-								<div></div>
+								<div title="Please select one or more options based on the scope of the project/activity.  Please note your selection should be based on this registration only and should be based on one shoot/creation date as outlined above."></div>
 							</label>
 						</div>
 					</div>
-					<div class="clear">
-					</div>
-					<div class="form-field form-production-activity-type" style="text-align:left !important;">
-						<div style="float:left;width:350px;margin-left:58px;">
+					<div class="amr_production_activity_parent">
+						<div style="float:left; width:300px;">
 							<div class="production-activity-type-sub">Production Activity</div>
-							<div style="height:100px;line-height:100px;">
-								<div>
-									<apex:inputfield styleClass="master original_master" value="{!jobDetails.New_Original_Master__c}"/>
-									<apex:outputLabel > New Original Master</apex:outputLabel>
+							<div style="height:115px;">
+								<div class="new_original_master_parent">
+									<apex:inputfield styleClass="master original_master" value="{!jobDetails.NewOriginalMaster__c}"/>
+									<apex:outputLabel > New Original Master<br/><span style="font-size:12px;">(incl. multiple executions/cutdowns within project)</span></apex:outputLabel>
 								</div>
 							</div>
-							<div style="height:160px;">
+							<div style="height:258px;">
 								<div class="other_master_parent">
-									<apex:inputfield styleClass="master other_master"  value="{!jobDetails.Language_Adaptation_Of_Master__c}"/>
-									<apex:outputLabel > Language Adaptation of Master</apex:outputLabel>
+									<apex:inputfield styleClass="master other_master"  value="{!jobDetails.LanguageAdaptionMaster__c}"/>
+									<apex:outputLabel > Language Adaptation of Master<br/><span style="font-size:12px;">(non-UniAdapt Model)</span></apex:outputLabel>
 								</div>
 								<div class="other_master_parent">
 									<apex:inputfield styleClass="master other_master"  value="{!jobDetails.Create_Additional_Material__c}"/>
-									<apex:outputLabel >Additional Supplementary New Material</apex:outputLabel>
+									<apex:outputLabel >Additional Supplementary New Material<br/><span style="font-size:12px;">(create additional material eg tag-on, pack, modify message)</span></apex:outputLabel>
 								</div>
 								<div class="other_master_parent">
-									<apex:inputfield styleClass="master other_master"  value="{!jobDetails.Rework_Exisiting_Material__c}"/>
-									<apex:outputLabel >Rework Exisiting Material</apex:outputLabel>
+									<apex:inputfield styleClass="master other_master"  value="{!jobDetails.ReworkExistingMaterial__c}"/>
+									<apex:outputLabel >Rework Exisiting Material<br/><span style="font-size:12px;">(create different length/size version or simple re-edit)</span></apex:outputLabel>
 								</div>
 								<div class="other_master_parent">
-									<apex:inputfield styleClass="master other_master"  value="{!jobDetails.Buyouts_Talent__c}"/>
-									<apex:outputLabel >Buyouts - Talent</apex:outputLabel>
+									<apex:inputfield styleClass="master other_master"  value="{!jobDetails.BuyoutsTalent__c}"/>
+									<apex:outputLabel >Buyouts - Talent<br/><span style="font-size:12px;">(includes key talent &amp; celebrity)</span></apex:outputLabel>
 								</div>
 								<div class="other_master_parent">
-									<apex:inputfield styleClass="master other_master"  value="{!jobDetails.Buyouts_Music__c}"/>
+									<apex:inputfield styleClass="master other_master"  value="{!jobDetails.BuyoutsMusic__c}"/>
 									<apex:outputLabel >Buyouts - Music</apex:outputLabel>
 								</div>
 							</div>
 						</div>
-						<div class='master-detail hide'>
-							<div style="">
-								<div class="production-activity-type-sub">Media Channel</div>
-								<div class="masterdetaildiv">
-									<apex:inputfield styleClass="sub-master additional" html-data-id="defaultTv"  value="{!jobDetails.Tv__c}"/>
-									<apex:outputLabel >Tv</apex:outputLabel>
-								</div>
-								<div class="masterdetaildiv">
-									<apex:inputfield styleClass="sub-master additional" html-data-id="defaultCinema"  value="{!jobDetails.Cinema__c}" style="margin-top: -16px;"/>
-									<apex:outputLabel >Cinema</apex:outputLabel>
-								</div>
-								<div class="masterdetaildiv">
-									<apex:inputfield styleClass="sub-master additional" html-data-id="defaultRadio"  value="{!jobDetails.Radio__c}"    style=""/>
-									<apex:outputLabel >Radio</apex:outputLabel>
-								</div>
-								<div class="masterdetaildiv">
-									<apex:inputfield styleClass="sub-master additional" html-data-id="defaultPrint"  value="{!jobDetails.Print__c}" style=""/>
-									<apex:outputLabel >Print</apex:outputLabel>
-								</div>
-								<div class="masterdetaildiv">
-									<apex:inputfield styleClass="sub-master additional2" value="{!jobDetails.Out_Of_Home__c}"   style=""/>
-									<apex:outputLabel > Out of home</apex:outputLabel>
-								</div>
-								<div class="masterdetaildiv">
-									<apex:inputfield styleClass="sub-master additional3" value="{!jobDetails.In_Store__c}" style=""/>
-									<apex:outputLabel > In Store</apex:outputLabel>
-								</div>
-								<div class="masterdetaildiv">
-									<apex:inputfield styleClass="sub-master additional4" value="{!jobDetails.Digital__c}"/>
-									<apex:outputLabel > Digital </apex:outputLabel>
-								</div>
-								<div class="masterdetaildiv">
-									<apex:inputfield styleClass="sub-master additional" html-data-id="defaultInternalVideo" value="{!jobDetails.Internal_Video__c}" />
-									<apex:outputLabel > Internal Video </apex:outputLabel>
-								</div>
+						<div class="amr-media-channel-master" style="float:left;width:300px;display:none;">
+							<div class="production-activity-type-sub">Media Channel</div>
+							<div class="mediamasterdiv">
+								<apex:inputfield styleClass="sub-master additional" html-data-id="defaultTv" html-media="Tv" value="{!jobDetails.Tv__c}"/>
+								<apex:outputLabel >Tv</apex:outputLabel>
+							</div>
+							<div class="mediamasterdiv">
+								<apex:inputfield styleClass="sub-master additional" html-data-id="defaultCinema" html-media="Cinema" value="{!jobDetails.Cinema__c}" style="margin-top: -16px;"/>
+								<apex:outputLabel >Cinema</apex:outputLabel>
+							</div>
+							<div class="mediamasterdiv">
+								<apex:inputfield styleClass="sub-master additional" html-data-id="defaultRadio" html-media="Radio" value="{!jobDetails.Radio__c}"    style=""/>
+								<apex:outputLabel >Radio</apex:outputLabel>
+							</div>
+							<div class="mediamasterdiv">
+								<apex:inputfield styleClass="sub-master additional" html-data-id="defaultPrint" html-media="Print" value="{!jobDetails.Print__c}" style=""/>
+								<apex:outputLabel >Print</apex:outputLabel>
+							</div>
+							<div class="mediamasterdiv">
+								<apex:inputfield styleClass="sub-master additional2" value="{!jobDetails.Out_Of_Home__c}" html-media="Out_of_home"  style=""/>
+								<apex:outputLabel > Out of Home</apex:outputLabel>
+							</div>
+							<div class="mediamasterdiv">
+								<apex:inputfield styleClass="sub-master additional3" value="{!jobDetails.In_Store__c}" html-media="In_store" style=""/>
+								<apex:outputLabel > In Store</apex:outputLabel>
+							</div>
+							<div class="mediamasterdiv">
+								<apex:inputfield styleClass="sub-master additional4" value="{!jobDetails.Digital__c}" html-media="Digital" />
+								<apex:outputLabel > Digital </apex:outputLabel>
+							</div>
+							<div class="mediamasterdiv" style="height:41px;">
+								<apex:inputfield styleClass="sub-master additional" html-data-id="defaultInternalVideo" value="{!jobDetails.Internal_Video__c}" html-media="Internal_video" />
+								<apex:outputLabel > Internal Video <br/> <span style="font-size:12px;">(internal comms videos and guides)</span> </apex:outputLabel>
 							</div>
 						</div>
-						<div style="float:left;width:400px;" class="sub-master-detail hide" >
-							<div style="">
-								<div class="production-activity-type-sub">Media</div>
-								<div class="submasterdetaildiv hide2" >
-									<apex:inputfield styleClass="defaultTv" value="{!jobDetails.Tv_Moving_Image__c}" />
-									<apex:outputLabel >Moving Image</apex:outputLabel>
-								</div>
-								<div class="submasterdetaildiv hide2" >
-									<apex:inputfield styleClass="defaultCinema" value="{!jobDetails.Cinema_Moving_Image__c}"/>
-									<apex:outputLabel >Moving Image</apex:outputLabel>
-								</div>
-								<div class="submasterdetaildiv hide2" >
-									<apex:inputfield styleClass="defaultRadio" value="{!jobDetails.Radio_Audio__c}"/>
-									<apex:outputLabel >Audio</apex:outputLabel>
-								</div>
-								<div class="submasterdetaildiv hide2" >
-									<apex:inputfield styleClass="defaultPrint" value="{!jobDetails.Print_Still_Image__c}"/>
-									<apex:outputLabel >Still Image</apex:outputLabel>
-								</div>
-								<div class="submasterdetaildiv hide2 subadditional2">
-									<apex:inputfield value="{!jobDetails.Out_Of_Home_Moving_Image__c}"/>
-									&nbsp;
-									<apex:outputLabel >Moving Image</apex:outputLabel>
-									&nbsp;&nbsp;
-									<apex:inputfield value="{!jobDetails.Out_Of_Home_Still_Image__c}"/>
-									&nbsp;
-									<apex:outputLabel >Still Image</apex:outputLabel>
-									&nbsp;&nbsp;
-									<apex:inputfield value="{!jobDetails.Out_Of_Home_Audio__c}"/>
-									&nbsp;
-									<apex:outputLabel >Audio</apex:outputLabel>
-								</div>
-								<div class="submasterdetaildiv hide2 subadditional3">
-									<apex:inputfield value="{!jobDetails.In_Store_Moving_Image__c}"/>
-									&nbsp;
-									<apex:outputLabel >Moving Image</apex:outputLabel>
-									&nbsp;&nbsp;
-									<apex:inputfield value="{!jobDetails.In_Store_Still_Image__c}"/>
-									&nbsp;
-									<apex:outputLabel >Still Image</apex:outputLabel>
-									&nbsp;&nbsp;
-									<apex:inputfield value="{!jobDetails.In_Store_Audio__c}"/>
-									&nbsp;
-									<apex:outputLabel >Audio</apex:outputLabel>
-								</div>
-								<div class="submasterdetaildiv hide2 subadditional4">
-									<apex:inputfield value="{!jobDetails.Digital_Moving_Image__c}"/>
-									&nbsp;
-									<apex:outputLabel >Moving Image</apex:outputLabel>
-									&nbsp;&nbsp;
-									<apex:inputfield value="{!jobDetails.Digital_Still_Image__c}"/>
-									&nbsp;
-									<apex:outputLabel >Still Image</apex:outputLabel>
-									&nbsp;&nbsp;
-									<apex:inputfield value="{!jobDetails.Digital_Audio__c}"/>
-									&nbsp;
-									<apex:outputLabel >Audio</apex:outputLabel>
-								</div>
-								<div class="submasterdetaildiv hide2" >
-									<apex:inputfield styleClass="defaultInternalVideo" value="{!jobDetails.Internal_Video_Moving_Image__c}"/>
-									<apex:outputLabel >Moving Image</apex:outputLabel>
-								</div>
+						<div class="amr-media-master" style="float:left;display:none;">
+							<div class="production-activity-type-sub">Media</div>
+							<div class="submediamasterdiv">
+								<apex:inputfield styleClass="defaultTv" value="{!jobDetails.Tv_Moving_Image__c}" />
+								<apex:outputLabel >Moving Image</apex:outputLabel>
 							</div>
+							<div class="submediamasterdiv">
+								<apex:inputfield styleClass="defaultCinema" value="{!jobDetails.Cinema_Moving_Image__c}" />
+								<apex:outputLabel >Moving Image</apex:outputLabel>
+							</div>
+							<div class="submediamasterdiv">
+								<apex:inputfield styleClass="defaultRadio" value="{!jobDetails.Radio_Audio__c}" />
+								<apex:outputLabel >Audio </apex:outputLabel>
+							</div>
+							<div class="submediamasterdiv">
+								<apex:inputfield styleClass="defaultPrint" value="{!jobDetails.Print_Still_Image__c}" />
+								<apex:outputLabel >Still Image </apex:outputLabel>
+							</div>
+							<div class="submediamasterdiv">
+								<apex:inputfield value="{!jobDetails.Out_Of_Home_Moving_Image__c}" />
+								<apex:outputLabel >Moving Image </apex:outputLabel>
+								<apex:inputfield value="{!jobDetails.Out_Of_Home_Audio__c}" />
+								<apex:outputLabel >Audio </apex:outputLabel>
+								<apex:inputfield value="{!jobDetails.Out_Of_Home_Still_Image__c}" />
+								<apex:outputLabel >Still Image </apex:outputLabel>
+							</div>
+							<div class="submediamasterdiv">
+								<apex:inputfield value="{!jobDetails.In_Store_Moving_Image__c}" />
+								<apex:outputLabel >Moving Image </apex:outputLabel>
+								<apex:inputfield value="{!jobDetails.In_Store_Audio__c}" />
+								<apex:outputLabel >Audio </apex:outputLabel>
+								<apex:inputfield value="{!jobDetails.In_Store_Still_Image__c}" />
+								<apex:outputLabel >Still Image</apex:outputLabel>
+							</div>
+							<div class="submediamasterdiv">
+								<apex:inputfield value="{!jobDetails.Digital_Moving_Image__c}" />
+								<apex:outputLabel >Moving Image</apex:outputLabel>
+								<apex:inputfield value="{!jobDetails.Digital_Audio__c}" />
+								<apex:outputLabel >Audio</apex:outputLabel>
+								<apex:inputfield value="{!jobDetails.Digital_Still_Image__c}" />
+								<apex:outputLabel >Still Image </apex:outputLabel>
+								<apex:inputfield value="{!jobDetails.Digital_Editorial__c}" />
+								<apex:outputLabel >Editorial</apex:outputLabel>
+							</div>
+							<div class="submediamasterdiv">
+								<apex:inputfield styleClass="defaultInternalVideo" value="{!jobDetails.Internal_Video_Moving_Image__c}" />
+								<apex:outputLabel >Moving Image</apex:outputLabel>
+							</div>
+						</div>
+						<div class="clear">
 						</div>
 					</div>
-					<div class="clear">
+					<div style="height:100px;">
+						&nbsp;
 					</div>
 					<div class="form-field">
 						<apex:outputLabel >
 							Do you anticipate that your production will require Music?                     
 							<strong></strong>
-							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Require_Music__c.inlineHelpText}"></div>
+							<!-- <div title="{!$ObjectType.Amr_Job_Details__c.fields.Require_Music__c.inlineHelpText}"></div>-->
 						</apex:outputLabel>
 					</div>
 					<div  class="form-radio" style="margin-top:5px;">
@@ -998,9 +1061,9 @@
 					</div>
 					<div class="form-field">
 						<apex:outputLabel >
-							Do you anticipate that your production will require Celebrity Talents?               
+							Do you anticipate that your production will require Celebrity Talent?               
 							<strong></strong>
-							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Require_Celebrity_Talent__c.inlineHelpText}"></div>
+							<!-- <div title="{!$ObjectType.Amr_Job_Details__c.fields.Require_Celebrity_Talent__c.inlineHelpText}"></div>-->
 						</apex:outputLabel>
 					</div>
 					<div  class="form-radio" style="margin-top:5px;">
@@ -1015,7 +1078,8 @@
 						<apex:outputLabel >
 							Current stage of your production activity                     
 							<strong></strong>
-							<div title="{!$ObjectType.Amr_Job_Details__c.fields.Stage_of_Production_Activity__c.inlineHelpText}"></div>
+							<!-- <div title="{!$ObjectType.Amr_Job_Details__c.fields.Stage_of_Production_Activity__c.inlineHelpText}"></div>-->
+							<div title="If your registation is across multiple Production Activity types then please select based on the timing of the 1st activity.  If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cutdown, Re-edit) your timing selection is based on the individual activity NOT based on if the master has been previously aired."></div>
 						</apex:outputLabel>
 					</div>
 					<div class="form-field">
@@ -1026,13 +1090,29 @@
 				</section>
 				<section>
 					<div class="submit_button">
-						<apex:commandButton value="Submit" action="{!SubmitForm}" id="submit" onclick="enableText()" styleClass="sbutton" />
+						<apex:commandButton value="Submit" action="{!getSubmitForm}" id="submit" onclick="enableText()" styleClass="sbutton" />
 					</div>
 				</section>
 				<footer>
-					<apex:outputText value="{!r.Footer__c}" escape="false" />
+					<apex:outputText value="{!r.Footer__c}" escape="false" style="color: #95A4B6 !important;"/>
 				</footer>
 			</div>
+			<!--action function for project name-->
+			<apex:actionFunction action="{!getSubmitForm}" name="callContrlProjectName" reRender="listRefresh1">
+				<apex:param name="param" value="" id="y" assignTo="{!projectNameFromPage}" />
+			</apex:actionFunction>
 		</apex:form>
 	</body>
+	<script>
+		var stringArray = JSON.parse('{!MethodToPassProjectNames}');
+		// alert(stringArray.length);
+		for(var i=0;i<stringArray.length;i++){
+		console.log(stringArray);
+		     var newOption = $('<option value="'+stringArray[i]+'">'+stringArray[i]+'</option>');
+		    // alert(newOption);
+		     $('#projectList').append(newOption);
+		}
+		console.log('options'+newOption );
+		     
+	</script>
 </apex:page>

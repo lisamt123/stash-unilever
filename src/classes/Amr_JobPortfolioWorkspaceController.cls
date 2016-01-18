@@ -1,4 +1,4 @@
-public class Amr_JobPortfolioWorkspaceController{
+public with sharing class Amr_JobPortfolioWorkspaceController{
     
     public Amr_Alert__c alertobj {get;set;}
     public Amr_Comments__c commentObj {get;set;}
@@ -39,6 +39,13 @@ public class Amr_JobPortfolioWorkspaceController{
              ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'JobId not found'));
              return null;
         }else{
+        if((alertobj.Alert_Message__c == null || alertobj.Alert_Message__c == '')|| alertobj.New_Alert__c == null){
+            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please Enter Alert message and Date'));
+            return null;
+        }
+        
+       
+        
         Amr_Alert__c addAlertObj = new Amr_Alert__c();
         addAlertObj.New_Alert__c= alertobj.New_Alert__c;
         addAlertObj.Alert_Message__c= alertobj.Alert_Message__c;
@@ -66,6 +73,24 @@ public class Amr_JobPortfolioWorkspaceController{
         
         commentRecordList =[select id,new_Comment__c,CreatedDate from Amr_Comments__c where AM_Job_Detail__r.Id=:jobIdFromPage];
         system.debug('commentRecordList ********** '+commentRecordList);
+       
+    }
+    
+    
+     public void getCommentUdpateList(){
+        
+        commentRecordList =[select id,new_Comment__c,CreatedDate from Amr_Comments__c where AM_Job_Detail__r.Id=:jobIdFromPage];
+        system.debug('commentRecordList ********** '+commentRecordList);
+        if(!commentRecordList.isEmpty()){
+             List<Amr_Job_Allocation__c> lstJobAllocationUpdate = new List<Amr_Job_Allocation__c>();
+             List<Amr_Job_Allocation__c> lstJobAllocation = [Select id,Started__c From Amr_Job_Allocation__c WHERE AM_Job_Detail__c = : jobIdFromPage];
+             for(Amr_Job_Allocation__c objJobAllocation : lstJobAllocation){
+                objJobAllocation.Started__c = 'Yes';
+                lstJobAllocationUpdate.add(objJobAllocation);
+             }
+             if(!lstJobAllocationUpdate.isEmpty())
+                update lstJobAllocationUpdate;
+        }
     }
     
        public PageReference addNewComment(){
@@ -79,7 +104,9 @@ public class Amr_JobPortfolioWorkspaceController{
         addCommentObj.CreatedDate = commentObj.createdDate;
         addCommentObj.AM_Job_Detail__c = jobIdFromPage;
         insert addCommentObj;
+        
         getCommentList();
+        getCommentUdpateList();
         commentObj.new_Comment__c='';
         
             return null;

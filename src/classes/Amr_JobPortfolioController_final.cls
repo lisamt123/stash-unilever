@@ -1,4 +1,4 @@
-public class Amr_JobPortfolioController_final{
+public with sharing class Amr_JobPortfolioController_final{
 
 public Amr_Job_Details__c jobDetails {get;set;}
 public list<Amr_Job_Details__c> jobDetailList{get;set;} 

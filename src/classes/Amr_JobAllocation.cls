@@ -1,4 +1,4 @@
-Public Class Amr_JobAllocation{
+Public with sharing Class Amr_JobAllocation{
    
     public string selectedOptionValue {get;set;}
     public List<selectOption> lstUser {get;set;}
@@ -6,8 +6,7 @@ Public Class Amr_JobAllocation{
         
         
         lstUser  = getlstUser();
-    
-    
+        
     }
     
      public List<selectOption> getlstUser() 

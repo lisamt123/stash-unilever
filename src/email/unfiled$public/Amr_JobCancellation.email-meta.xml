@@ -2,11 +2,14 @@
 <EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
     <available>true</available>
     <encodingKey>ISO-8859-1</encodingKey>
-    <name>Amr_CAPNotification</name>
+    <name>Amr_JobCancellation</name>
     <style>none</style>
-    <subject>New Job Created – &quot;{!Amr_Job_Details__c.AdManagerText__c}&quot;</subject>
-    <textOnly>A new Production Project has been created, with the following details:
+    <subject>Job Cancelled – {!Amr_Job_Details__c.AdManagerText__c}</subject>
+    <textOnly>--  This is a confirmation email, no action required ---
 
+As the GBVP you have received this email to notify you that an activity has been logged with a budget allocated higher than the threshold you have agreed to.
+
+The brand team will receive a notification of the RAP (Regional Advertising Producer) has been allocated to the project and will be contacted by them shortly afterwards as a way of introduction and to discuss next steps..
 
 Project details:
 
@@ -19,9 +22,8 @@ Unilever finance member email   {!Amr_Job_Details__c.Unilever_Finance_Member_Ema
 Final approver of material email   {!Amr_Job_Details__c.Final_Approver_Of_Material_Email__c}
 Which function are you part of (BD/BB/Other)   {!Amr_Job_Details__c.Function_You_Are_Part__c}
 Budget responsibility (BD, BB, Other)  {!Amr_Job_Details__c.Budget_Responsibility__c}
-Budget allocated for this activity (enter all digits)   {!Amr_Job_Details__c.Allocated_Budget_euro__c}
 Category &gt; Brand Positioning &gt; Brand   {!Amr_Job_Details__c.Category__c} --  {!Amr_Job_Details__c.Brand_Positioning__c} --  {!Amr_Job_Details__c.Brand__c}
-Lead  agency name   {!Amr_Job_Details__c.Lead_Creative_Agency_name__c} {!Amr_Job_Details__c.Lead_Agency_Name_Other__c}
+Lead agency name   {!Amr_Job_Details__c.Lead_Creative_Agency_name__c} {!Amr_Job_Details__c.Lead_Agency_Name_Other__c}
 Lead agency location   {!Amr_Job_Details__c.Lead_Agency_Location_Cluster__c}   {!Amr_Job_Details__c.Lead_Agency_Location_Country__c}
 Agency contact or account director email   {!Amr_Job_Details__c.Agency_Contact_Account_Director_Email__c}
 Digital Agency Name (if applicable)   {!Amr_Job_Details__c.Digital_Agency_Name__c}
@@ -40,6 +42,7 @@ Do you anticipate that your production will require Celebrity Talent?   {!Amr_Jo
 Current stage of your production activity   {!Amr_Job_Details__c.Stage_of_Production_Activity__c}
 
 
-Job Details : https://unilever--chazwa--c.cs14.visual.force.com/apex/AM_JobAllocations_bhupendra?id={!Amr_Job_Details__c.Id}</textOnly>
+
+Please contact Advertising.Production@unilever.com if you require any further assistance or visit http://adproduction.unilever.com/ for supporting documentation.</textOnly>
     <type>custom</type>
 </EmailTemplate>

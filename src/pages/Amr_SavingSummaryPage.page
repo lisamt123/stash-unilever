@@ -64,10 +64,10 @@ select{width:16%;padding:5px 6px 5px 6px;}
     position: relative;
     vertical-align: middle;}    
   </style>
-<!---Ad Main section---->
+
  
  <div class="container">
- <!---ad savings section --->
+ 
         <div class="savingsection">
            <h1>Saving Summary</h1></div>
            

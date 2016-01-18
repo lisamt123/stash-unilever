@@ -39,7 +39,7 @@
     </fields>
     <fields>
         <fullName>AdManagerText__c</fullName>
-        <label>AdManagerText</label>
+        <label>AdManager Number</label>
         <length>20</length>
         <type>Text</type>
     </fields>
@@ -110,7 +110,6 @@
         <fullName>Agency_Contact_Account_Director_Email__c</fullName>
         <inlineHelpText>The Agency person managing this project/activity</inlineHelpText>
         <label>Agency Contact Account Director Email</label>
-        <required>true</required>
         <type>Email</type>
     </fields>
     <fields>
@@ -118,7 +117,7 @@
         <inlineHelpText>The money set aside in your budget for completing this project/activity</inlineHelpText>
         <label>Allocated Budget (euro )</label>
         <precision>18</precision>
-        <scale>0</scale>
+        <scale>2</scale>
         <type>Currency</type>
     </fields>
     <fields>
@@ -237,7 +236,8 @@
     </fields>
     <fields>
         <fullName>Brodcast_Market__c</fullName>
-        <label>Brodcast Market</label>
+        <inlineHelpText>The Market Clusters that this ad will be broadcast to</inlineHelpText>
+        <label>Brodcast market</label>
         <picklist>
             <picklistValues>
                 <fullName>Africa</fullName>
@@ -280,7 +280,6 @@
         <inlineHelpText>The money set aside in your budget for completing this project/activity</inlineHelpText>
         <label>Budget Allocated Input Value</label>
         <precision>18</precision>
-        <required>true</required>
         <scale>2</scale>
         <type>Number</type>
     </fields>
@@ -706,7 +705,6 @@
         <inlineHelpText>Campaign name and/or creative idea created by the agency (e.g. Nothing beats an astronaut)</inlineHelpText>
         <label>Campaign Name</label>
         <length>255</length>
-        <required>true</required>
         <type>Text</type>
     </fields>
     <fields>
@@ -736,6 +734,7 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
     </fields>
     <fields>
         <fullName>Category__c</fullName>
+        <inlineHelpText>Unilever PCAT Category or Non Category Specific, please select the Standard Unilever PCAT Brand hierarchy</inlineHelpText>
         <label>Category</label>
         <referenceTo>Amr_Category__c</referenceTo>
         <relationshipLabel>Amr Job Details</relationshipLabel>
@@ -820,6 +819,12 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Digital_Editorial__c</fullName>
+        <defaultValue>false</defaultValue>
+        <label>Digital Editorial</label>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Digital_Moving_Image__c</fullName>
         <defaultValue>false</defaultValue>
         <label>Digital Moving Image</label>
@@ -838,6 +843,11 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>End_Date__c</fullName>
+        <label>End date</label>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Execution_Name__c</fullName>
         <inlineHelpText>Name of the individual executions (e.g. Lifeguard or Fireman)</inlineHelpText>
         <label>Execution Name</label>
@@ -848,7 +858,6 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
         <fullName>Final_Approver_Of_Material_Email__c</fullName>
         <inlineHelpText>The senior manager who has overall responsibility for this material</inlineHelpText>
         <label>Final Approver Of Material Email</label>
-        <required>true</required>
         <type>Email</type>
     </fields>
     <fields>
@@ -871,6 +880,11 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>GBVM_Email__c</fullName>
+        <label>GBVM_Email</label>
+        <type>Email</type>
     </fields>
     <fields>
         <fullName>In_Store_Audio__c</fullName>
@@ -913,6 +927,16 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
         <defaultValue>false</defaultValue>
         <label>Is Submitted</label>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>JobAllocated_Email__c</fullName>
+        <label>JobAllocated_Email</label>
+        <type>Email</type>
+    </fields>
+    <fields>
+        <fullName>Job_Accepted_Email__c</fullName>
+        <label>Job Accepted Email</label>
+        <type>Email</type>
     </fields>
     <fields>
         <fullName>Job_Accepted__c</fullName>
@@ -988,10 +1012,6 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
         <fullName>Job_Status__c</fullName>
         <label>Job Status</label>
         <picklist>
-            <picklistValues>
-                <fullName>Pending</fullName>
-                <default>false</default>
-            </picklistValues>
             <picklistValues>
                 <fullName>Priority</fullName>
                 <default>false</default>
@@ -2500,7 +2520,7 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
     <fields>
         <fullName>Lead_Creative_Agency_name__c</fullName>
         <inlineHelpText>The name of the Agency managing this project/activity</inlineHelpText>
-        <label>Lead Agency name</label>
+        <label>Lead agency name</label>
         <picklist>
             <picklistValues>
                 <fullName>BBH</fullName>
@@ -2526,7 +2546,7 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
                 <fullName>Ogilvy</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
     </fields>
@@ -2788,6 +2808,7 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
     </fields>
     <fields>
         <fullName>Production_Activity_Type__c</fullName>
+        <inlineHelpText>For more information visit the IPM team site</inlineHelpText>
         <label>Production Activity Type for support</label>
         <picklist>
             <picklistValues>
@@ -2806,7 +2827,7 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
                 <fullName>Promotion</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
     </fields>
@@ -2852,15 +2873,17 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
     </fields>
     <fields>
         <fullName>Project_Details__c</fullName>
-        <label>Project Details</label>
+        <inlineHelpText>Select your IPM project name from the drop down list.  If it&apos;s not related to an IPM project please select &quot;Other&quot; and enter a project name</inlineHelpText>
+        <label>Project Name</label>
         <referenceTo>Amr_Project_Details__c</referenceTo>
+        <relationshipLabel>Amr Job Details</relationshipLabel>
         <relationshipName>AM_Job_Details</relationshipName>
         <type>Lookup</type>
     </fields>
     <fields>
         <fullName>Project_Leader_Cluster__c</fullName>
         <inlineHelpText>The location of the person managing this project/activity</inlineHelpText>
-        <label>Project Leader Cluster</label>
+        <label>Project leader cluster</label>
         <picklist>
             <picklistValues>
                 <fullName>Africa</fullName>
@@ -2894,13 +2917,13 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
                 <fullName>South Asia</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Project_Leader_Country__c</fullName>
-        <label>Project Leader Country</label>
+        <label>Project leader country</label>
         <picklist>
             <controllingField>Project_Leader_Cluster__c</controllingField>
             <picklistValues>
@@ -4108,14 +4131,14 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
                 <controllingFieldValues>Africa</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Project_Location_Cluster__c</fullName>
         <inlineHelpText>The location of project</inlineHelpText>
-        <label>Project Location Cluster</label>
+        <label>Project location cluster</label>
         <picklist>
             <picklistValues>
                 <fullName>Africa</fullName>
@@ -4149,13 +4172,13 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
                 <fullName>South Asia</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Project_Location_Country__c</fullName>
-        <label>Project Location Country</label>
+        <label>Project location country</label>
         <picklist>
             <controllingField>Project_Location_Cluster__c</controllingField>
             <picklistValues>
@@ -5391,7 +5414,7 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
                 <controllingFieldValues>Africa</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>
     </fields>
@@ -5673,9 +5696,8 @@ The Standard Unilever PCAT Brand hierarchy</inlineHelpText>
     </fields>
     <fields>
         <fullName>Stage_of_Production_Activity__c</fullName>
-        <inlineHelpText>If your registration is across multiple Production Activity types then please select based on the timing of the 1st activity
-If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cutdown, Re-edit) your timing selection is based on</inlineHelpText>
-        <label>Stage of Production Activity</label>
+        <inlineHelpText>If your registation is across multiple Production Activity types then please select based on the timing of the 1st activity.  If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cutdown, Re-edit) your timing selection is based on</inlineHelpText>
+        <label>Stage of production activity</label>
         <picklist>
             <picklistValues>
                 <fullName>Before briefing the agency</fullName>
@@ -5706,6 +5728,11 @@ If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cu
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Start_Date__c</fullName>
+        <label>Start date</label>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Status__c</fullName>
         <defaultValue>false</defaultValue>
         <label>Status</label>
@@ -5715,7 +5742,6 @@ If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cu
         <fullName>Target_Air_Date__c</fullName>
         <inlineHelpText>The date when the material will first be put to use</inlineHelpText>
         <label>Target Air Date</label>
-        <required>true</required>
         <type>Date</type>
     </fields>
     <fields>
@@ -5723,6 +5749,13 @@ If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cu
         <defaultValue>false</defaultValue>
         <label>TestCheck</label>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Threshold_Amount__c</fullName>
+        <label>Threshold_Amount</label>
+        <precision>12</precision>
+        <scale>2</scale>
+        <type>Currency</type>
     </fields>
     <fields>
         <fullName>Tv_Moving_Image__c</fullName>
@@ -5739,21 +5772,19 @@ If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cu
     <fields>
         <fullName>Unilever_Finance_Member_Email__c</fullName>
         <inlineHelpText>The person who has financial approval on this project/activity</inlineHelpText>
-        <label>Unilever Finance Member Email</label>
-        <required>true</required>
+        <label>Unilever finance member email</label>
         <type>Email</type>
     </fields>
     <fields>
         <fullName>Unilever_Project_Leader_Email__c</fullName>
         <inlineHelpText>The person managing this project/activity</inlineHelpText>
-        <label>Unilever Project Leader Email</label>
+        <label>Unilever project leader email</label>
         <type>Email</type>
     </fields>
     <fields>
         <fullName>Your_Email_Address__c</fullName>
         <inlineHelpText>The person completing this registration</inlineHelpText>
         <label>Your Email Address</label>
-        <required>true</required>
         <type>Email</type>
     </fields>
     <label>Amr Job Details</label>
@@ -5768,10 +5799,11 @@ If you are logging a Production Activity outside of a Master shoot (ie Adapt, Cu
         <columns>Category__c</columns>
         <columns>Project_Leader_Cluster__c</columns>
         <columns>Lead_Creative_Agency_name__c</columns>
-        <columns>Broadcast_Market__c</columns>
         <columns>Unilever_Project_Leader_Email__c</columns>
         <columns>CREATED_DATE</columns>
         <columns>Currency_Conversion_Country_List__c</columns>
+        <columns>Brodcast_Market__c</columns>
+        <columns>OWNER.LAST_NAME</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

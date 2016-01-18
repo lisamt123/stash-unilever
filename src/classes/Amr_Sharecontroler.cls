@@ -1,4 +1,4 @@
-public class Amr_Sharecontroler
+public with sharing class Amr_Sharecontroler
 {
     public list<User> userStr = new list<User>();
     public list<string> leftselected{get;set;}
@@ -9,7 +9,7 @@ public class Amr_Sharecontroler
         leftselected = new list<string>();
         selectoptions = new list<selectOption>();
         
-        userStr = [Select Id ,name,isActive,ProfileId, Profile.Name From User where isActive = True and profile.name='RAP'];
+        userStr = [Select Id ,name,isActive,ProfileId, Profile.Name From User where isActive = True and profile.name='RAP'order by name];
         For(User u:userStr)
         {
             selectoptions.add(new SelectOption(u.name,u.name));
@@ -18,7 +18,7 @@ public class Amr_Sharecontroler
     }
     public pagereference recordShare()
     {
-       List<User> user=[Select Id,name,isActive,ProfileId, Profile.Name From User where isActive = True and profile.name='RAP' and Name IN :leftselected];
+       List<User> user=[Select Id,name,isActive,ProfileId, Profile.Name From User where isActive = True and profile.name='RAP' and Name IN :leftselected ];
        
       
        ApexPages.addMessage(new ApexPages.Message( ApexPages.Severity.INFO,'Notification has been successfully completed'));

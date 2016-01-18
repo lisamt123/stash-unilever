@@ -1,7 +1,8 @@
-public class Amr_JobPortfolioController{
+public with sharing class Amr_JobPortfolioController{
 
+public List<Amr_Alert__c> alert  {get; set;}
 public Amr_Job_Details__c jobDetails {get;set;}
-public list<Amr_Job_Details__c> jobDetailList{get;set;} 
+public list<Amr_Job_Allocation__c> jobDetailList{get;set;} 
 public String projLeaderCluster{get;set; }
 public String projLeaderCountry{get;set; }
 public String agencyName{get;set;}
@@ -16,7 +17,7 @@ public String jobReported{get;set;}
 public String jobShared{get;set;}
 public String addNumber{get;set;}
 public String projEmail{get;set;}
-public String projName{get;set;}
+public String projectName{get;set;}
 public String startDate{get;set;}
 public String endDate{get;set;} 
 public Id chosenId {get; set;}
@@ -29,37 +30,54 @@ public Boolean showPageButtonForDormant{get;set;}
 
 //Navigation variables
     public Integer counterForPriorityJobs = 0;//TO track the number of records parsed
-    public Integer limitSizeForPriorityJobs = 5;//Number of records to be displayed
+    public Integer limitSizeForPriorityJobs = Integer.valueOf(System.Label.Amr_LimitValue);//Number of records to be displayed
     public Integer totalSizeForPriorityJobs =0; //To Store the total number of records available
     public Integer counterForPendingJobs = 0;
-    public Integer limitSizeForPendingJobs = 5;
+    public Integer limitSizeForPendingJobs = Integer.valueOf(System.Label.Amr_LimitValue);
     public Integer totalSizeForPendingJobs =0;
     public Integer counterForDormantJobs = 0;
-    public Integer limitSizeForDormantJobs = 5;
+    public Integer limitSizeForDormantJobs = Integer.valueOf(System.Label.Amr_LimitValue);
     public Integer totalSizeForDormantJobs =0;
     public Integer counterForLiveJobs = 0;
-    public Integer limitSizeForLiveJobs = 5;
+    public Integer limitSizeForLiveJobs = Integer.valueOf(System.Label.Amr_LimitValue);
     public Integer totalSizeForLiveJobs =0;
+    public Integer TotalJobs {get; set;}
+    public Integer TotalPendingJobs {get; set;}
+    public Integer TotalLiveJobs {get; set;}
+    public Integer TotalPriorityJobs {get; set;}
+    public Integer TotalDormantJobs  {get; set;}
+    public Integer TotalSavingsJobs  {get; set;}
     
-    public list<Amr_Job_Details__c>priorityJobsToShow{get;set;}
-    public list<Amr_Job_Details__c>pendingJobsToShow{get;set;}
-    public list<Amr_Job_Details__c>dormantJobsToShow{get;set;}
-    public list<Amr_Job_Details__c>liveJobsToShow{get;set;}
+    public list<Amr_Job_Allocation__c>priorityJobsToShow{get;set;}
+    public list<Amr_Job_Allocation__c>pendingJobsToShow{get;set;}
+    public list<Amr_Job_Allocation__c>dormantJobsToShow{get;set;}
+    public list<Amr_Job_Allocation__c>liveJobsToShow{get;set;}
     
-    public list<Amr_Job_Details__c>priorityJobList{get;set;}
-    public list<Amr_Job_Details__c>pendingJobList{get;set;}
-    public list<Amr_Job_Details__c>dormantJobList{get;set;}
-    public list<Amr_Job_Details__c>liveJobList{get;set;}
+   /* public list<Amr_Job_Allocation__c> priorityJobAllocationList{get;set;}
+    public list<Amr_Job_Allocation__c>liveJobAllocationList{get;set;}
+    public list<Amr_Job_Allocation__c>dormantJobAllocationList{get;set;}
+    public list<Amr_Job_Allocation__c>pendingJobAllocationList{get;set;}*/
+    
+    public list<Amr_Job_Allocation__c>priorityJobList{get;set;}
+    public list<Amr_Job_Allocation__c>pendingJobList{get;set;}
+    public list<Amr_Job_Allocation__c>dormantJobList{get;set;}
+    public list<Amr_Job_Allocation__c>liveJobList{get;set;}
 
     public List<SelectOption> listOfCategory{get;set;} 
     public List<SelectOption> listOfBrandPosition{get;set;}
     public  List<SelectOption> listOfBrand{get;set;}
-     public  List<SelectOption> listOfSortOptions{get;set;}
+    public  List<SelectOption> listOfSortOptions{get;set;}
+    public  List<SelectOption> listOfProjectName{get;set;}
+    public List<Amr_Project_Details__c> projNameList {get;set;}
+    public  String[]  listString{get;set;}
     
     public List<Amr_Alert__c> alertList{get;set;}
+    public List<Amr_Alert__c> alertListForUnhide{get;set;}
     public String jobIdFromPage{get;set;}
     public Id chosenAlertId{get;set;}
+    public Id chosenUnHideAlertId{get;set;}
     public Amr_Alert__c hideAlertObj{get;set;}
+    public Amr_Alert__c hideAlertObjNew{get;set;}
     public List<Amr_Alert__c>unHideAlertList{get;set;}
     public boolean showUnhideRecords{get;set;}
     public boolean flagForButtons{get;set;}
@@ -68,6 +86,7 @@ public Boolean showPageButtonForDormant{get;set;}
     public String selectedSortPendingOption{get;set;}
     public String selectedSortDormantOption{get;set;}
     public String selectedSortliveOption{get;set;}
+    public String selectedAlert {get;set;}
 
 public Amr_JobPortfolioController(){
     
@@ -75,21 +94,55 @@ public Amr_JobPortfolioController(){
     jobDetails  = new Amr_Job_Details__c();
    // startDate= '';
     alertList = new List<Amr_Alert__c>();
+    alertListForUnhide= new List<Amr_Alert__c>();
     hideAlertObj = new Amr_Alert__c();
+    hideAlertObjNew= new Amr_Alert__c();
     unHideAlertList = new List<Amr_Alert__c>();
+    projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
+     listString= new list<string>();
+         listString.add('--None--');
+        For(Amr_Project_Details__c i : projNameList){
+                listString.add(i.name);
+        }
+        system.debug('listString!!'+listString);
+        
     jobIdFromPage = ApexPages.currentPage().getParameters().get('id');
     getJobDetailSearch();
     getAlertRecords();
     showUnhideRecords = false;
     flagForButtons = false;
+    getTotalJobs();
+    alert = [SELECT Alert_Message__c,job_Id__r.AdManagerText__c FROM Amr_Alert__c where createdDate = today and hide__c = false order by New_Alert__c desc ];
    // selectedSortPriorityOption ='AdManagerText__c';
     system.debug('loggedInUserId !!'+loggedInUserId);
    
 }
-
+    
+    public void getTotalJobs() {
+        TotalJobs = [SELECT count()  FROM  Amr_Job_Details__c where ownerId =:loggedInUserId];
+        
+        system.debug('Value is !!'+TotalJobs); 
+        
+        
+        TotalPendingJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where (AM_Job_Detail__r.ownerId =:loggedInUserId OR User__c = :loggedInUserId) AND (AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Priority OR AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Live) AND  Job_Status__c != 'Cancelled'];
+        TotalLiveJobs     = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Live AND  Job_Status__c != 'Cancelled' ];
+        TotalPriorityJobs = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Priority AND  Job_Status__c != 'Cancelled'];
+        TotalDormantJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId AND User__c = :loggedInUserId) OR User__c = :loggedInUserId) AND AM_Job_Detail__r.Job_Status__c = :Label.Amr_Status_Dormant AND  Job_Status__c != 'Cancelled'];
+        TotalSavingsJobs  = 0;
+    }
+    
+   
+    
+    public String getMethodToPassProjNames(){
+        system.debug('serialize!!'+JSON.serialize(listString));
+        return JSON.serialize(listString);
+    }
+    
     public void getAlertRecords(){
         alertList = [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:false];
         system.debug('alertList !!'+alertList);
+        alertListForUnhide= [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:true];
+          system.debug('alertList !!'+alertListForUnhide);
     }
     
     public PageReference hideAlert(){
@@ -111,7 +164,7 @@ public Amr_JobPortfolioController(){
         return null;
     }
     
-    public PageReference unHideAlertShow(){
+     public PageReference unHideAlertShow(){
        
         unHideAlertList = [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where ownerId =:loggedInUserId AND Hide__c =:true];
         if(unHideAlertList.size()>0){
@@ -122,6 +175,28 @@ public Amr_JobPortfolioController(){
         
         return null;
     }
+    
+    public PageReference unhideAlert(){ 
+    
+    showUnhideRecords = true;
+    flagForButtons = false;
+    
+         system.debug('chosenAlertId !!'+chosenAlertId);
+        hideAlertObjNew = [select Id,New_Alert__c,Alert_Message__c from Amr_Alert__c where Id=:chosenUnHideAlertId limit 1];
+         system.debug('chosenAlertId!!'+chosenAlertId);
+         For(Amr_Alert__c alert:unHideAlertList){
+             if(alert.Id == hideAlertObjNew.Id){
+                 alert.Hide__c = false;
+             }
+         }
+         update unHideAlertList;
+         getAlertRecords();
+         unHideAlertShow();
+         system.debug('alertList inside  new unhide alrert!!'+alertList);
+        return null;
+    }
+    
+   
     
      
     public PageReference unHideAlertHide(){
@@ -164,34 +239,43 @@ public Amr_JobPortfolioController(){
          return listOfBrand;
      }
      
+      public List<SelectOption> getProjectNameList(){      
+         listOfProjectName = new List<SelectOption>();
+         List<Amr_Project_Details__c> ProjectNameList= [Select id,Name from Amr_Project_Details__c];
+         listOfProjectName .add(new selectOption('--None--','--None--'));
+         for(Amr_Project_Details__c cat : ProjectNameList)
+             listOfProjectName.add(new selectOption(cat.Id,cat.Name));
+         return listOfProjectName ;
+     }
+     
      //Method to get list in sort options
     public List<SelectOption> getSortOptions(){  
          
          listOfSortOptions = new List<SelectOption>();
           listOfSortOptions.add(new selectOption('--None--','--None--'));
-         listOfSortOptions.add(new selectOption('AdManagerText__c','ADManager Number'));
-         listOfSortOptions.add(new selectOption('CreatedDate','Date Logged'));
-         listOfSortOptions.add(new selectOption('Stage_of_Production_Activity__c','Stage Of production Activity'));
-         listOfSortOptions.add(new selectOption('Unilever_Project_Leader_Email__c','Project Leader Email'));
-         listOfSortOptions.add(new selectOption('Project_Leader_Country__c','Location of Unilever Project Leader (Country)'));
-         listOfSortOptions.add(new selectOption('AMCategory__c','Category'));
-         listOfSortOptions.add(new selectOption('Am_Brand__c','Brand Name'));
-         listOfSortOptions.add(new selectOption('Project_Name__c','Project Name'));
-         listOfSortOptions.add(new selectOption('Lead_Creative_Agency_name__c','Lead/Creative Agency Name'));
-         listOfSortOptions.add(new selectOption('Allocated_Budget_euro__c','Allocated Budget (Euro)'));
-         listOfSortOptions.add(new selectOption('Broadcast_Market__c','Broadcast market'));
-         listOfSortOptions.add(new selectOption('Production_Activity__c','Production Activity Type'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.AdManagerText__c','AdManager Number'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.CreatedDate','Date Logged'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Stage_of_Production_Activity__c','Stage of production activity'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Unilever_Project_Leader_Email__c','Project Leader Email'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Project_Leader_Country__c','Location of Unilever Project Leader (Country)'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Category__r.Name','Category'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brand__r.Name','Brand name'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Project_Details__c','Project name'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Lead_Creative_Agency_name__c','Lead agency name'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Allocated_Budget_euro__c','Allocated budget (euro)'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Brodcast_Market__c','Broadcast market'));
+         listOfSortOptions.add(new selectOption('AM_Job_Detail__r.Production_Activity_Type__c','Production activity Type'));
          listOfSortOptions.add(new selectOption('Job_Shared__c','Job Shared'));
-         listOfSortOptions.add(new selectOption('Job_Accepted__c','Accepted And Email Sent'));
-         listOfSortOptions.add(new selectOption('Job_Started__c','Started'));
-         listOfSortOptions.add(new selectOption('Job_Reported__c','Reported'));
+         listOfSortOptions.add(new selectOption('Job_Status__c','Accepted and email sent'));
+         listOfSortOptions.add(new selectOption('Started__c','Started'));
+         listOfSortOptions.add(new selectOption('Reported__c','Reported'));
          return listOfSortOptions;
      }
 
 public PageReference getJobDetailSearch() {
    
      
-   // brodMarket = jobDetails.Broadcast_Market__c;
+    brodMarket = jobDetails.Brodcast_Market__c;
    projLeaderCluster = jobDetails.Project_Leader_Cluster__c;
     projLeaderCountry = jobDetails.Project_Leader_Country__c;
     agencyName = jobDetails.Lead_Creative_Agency_name__c;
@@ -202,22 +286,23 @@ public PageReference getJobDetailSearch() {
     jobAccepted = jobDetails.Job_Accepted__c;
     addNumber = jobDetails.AdManagerText__c;
     projEmail = jobDetails.Unilever_Project_Leader_Email__c;
-    projName = jobDetails.Project_Name__c;
+    projectName = jobDetails.Project_Details__c;
     
-    jobDetailList = new list<Amr_Job_Details__c>();
+    jobDetailList = new list<Amr_Job_Allocation__c>();
     system.debug('projLeaderCluster!!!'+projLeaderCluster+'!!projLeaderCountry!!'+projLeaderCountry+'!!agencyName!!'+agencyName+'!!testing !!'+testing );
     system.debug('category!!'+categoryName+'!!brandPos!!!'+brandPos+'!!brandName!!'+brandName);
-    system.debug('start date!!'+startDate+'!!end date!!'+endDate +'!!jobDetails!!'+jobDetails);
+   // system.debug('start date!!'+startDate+'!!end date!!'+jobDetails.End_Date__c +'!!jobDetails!!'+jobDetails);
          
-    string soql = 'select Project_Name__c,Production_Activity__c,Allocated_Budget_euro__c,Broadcast_Market__c,Job_Status__c ,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,Category__r.Name,Brand_Positioning__r.Name,Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c,id from Amr_Job_Details__c where Name !=null ';
+   /* string soql = 'select Project_Details__c,Production_Activity__c,Allocated_Budget_euro__c,Broadcast_Market__c,Job_Status__c ,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,Category__r.Name,Brand_Positioning__r.Name,Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c,id from Amr_Job_Details__c where Name !=null ';*/
     
+    string soql = 'select User__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.Category__c,AM_Job_Detail__r.Brand_Positioning__c,AM_Job_Detail__r.Brand__c,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,Job_Shared__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where Name!=null and AM_Job_Detail__r.Job_Cancelled__c = false';
     if(String.isNotBlank(loggedInUserId)){
     
-    soql += ' and OwnerId = \''+loggedInUserId+'\'';
+    soql += ' and (AM_Job_Detail__r.OwnerId = \''+loggedInUserId+'\' or  User__c = \''+loggedInUserId+'\')';
            system.debug('soql loggedInUserId'+soql);
     }
     
-    if (String.isNotBlank(startDate)){
+   /* if (String.isNotBlank(startDate)){
    //start date creation
    String[] startDateSplitQuote = startDate.split(' ');
    String[] startDateSplitSlash = startDateSplitQuote[0].split('/');
@@ -226,7 +311,7 @@ public PageReference getJobDetailSearch() {
    Integer myIntYear = integer.valueOf(startDateSplitSlash[2]);
    Date d = Date.newInstance(myIntYear, myIntMonth, myIntDate);
    DateTime startDateFinal = DateTime.newInstance(d.year(), d.month(), d.day(), 0, 0, 0);
-     
+     system.debug('start date!!-----------'+startDateFinal);
            soql += ' and createdDate'+  ' >= '+ startDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'') ;
            system.debug('soql0'+soql);
     }
@@ -243,43 +328,59 @@ public PageReference getJobDetailSearch() {
            soql += ' and createdDate ' +  ' < '+ endDateDateFinal.formatGMT('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
            system.debug('soql01'+soql);
     }
+    */
+    if (String.isNotBlank(String.valueOf(jobDetails.Start_Date__c))){
+        Datetime startdate = jobDetails.Start_Date__c;
+        String dateTimeFormat = startdate.format('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
+        
+         soql += ' and AM_Job_Detail__r.createdDate'+  ' >= '+ dateTimeFormat ;
+           system.debug('soql0'+soql);
+    }
+    
+    if (String.isNotBlank(String.valueOf(jobDetails.End_Date__c))){ 
+        Datetime endate  = jobDetails.End_Date__c;
+         String dateTimeFormat1 = endate.format('yyyy-MM-dd\'T\'hh:mm:ss\'Z\'');
+        
+          soql += ' and AM_Job_Detail__r.createdDate ' +  ' < '+ dateTimeFormat1 ;
+           system.debug('soql0'+soql);
+    }
     
      if (String.isNotBlank(jobDetails.Project_Leader_Cluster__c)){
      
-           soql += ' and Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(projLeaderCluster)+'\'';
+           soql += ' and AM_Job_Detail__r.Project_Leader_Cluster__c = \''+String.escapeSingleQuotes(projLeaderCluster)+'\'';
            system.debug('soql1'+soql);
     }
     
      if(String.isNotBlank(projLeaderCountry)){
-    soql += ' and Project_Leader_Country__c = \''+String.escapeSingleQuotes(projLeaderCountry)+'\'';
+    soql += ' and AM_Job_Detail__r.Project_Leader_Country__c = \''+String.escapeSingleQuotes(projLeaderCountry)+'\'';
            system.debug('soql2'+soql);
     }
     
      if(String.isNotBlank(agencyName)){
-    soql += ' and Lead_Creative_Agency_name__c = \''+String.escapeSingleQuotes(agencyName)+'\'';
+    soql += ' and AM_Job_Detail__r.Lead_Creative_Agency_name__c = \''+String.escapeSingleQuotes(agencyName)+'\'';
            system.debug('soql3'+soql);
      
      }
       if(String.isNotBlank(brodMarket)){
-    soql += ' and Broadcast_Market__c LIKE \''+String.escapeSingleQuotes(brodMarket)+'%\'';
+    soql += ' and AM_Job_Detail__r.Brodcast_Market__c LIKE \''+String.escapeSingleQuotes(brodMarket)+'%\'';
            system.debug('soql3'+soql);
      }
       if(String.isNotBlank(categoryName) && categoryName != '--None--'){
       
-    soql += ' and Category__r.Id = \''+String.escapeSingleQuotes(categoryName)+'\'';
+    soql += ' and AM_Job_Detail__r.Category__r.Id = \''+String.escapeSingleQuotes(categoryName)+'\'';
            system.debug('soql4'+soql);
      }
       if(String.isNotBlank(brandPos) && brandPos != '--None--'){
       
-    soql += ' and Brand_Positioning__r.Id = \''+String.escapeSingleQuotes(brandPos)+'\'';
+    soql += ' and AM_Job_Detail__r.Brand_Positioning__r.Id = \''+String.escapeSingleQuotes(brandPos)+'\'';
            system.debug('soql5'+soql);
      }
       if(String.isNotBlank(brandName) && brandName != '--None--'){
-    soql += ' and Brand__r.Id = \''+String.escapeSingleQuotes(brandName)+'\'';
+    soql += ' and AM_Job_Detail__r.Brand__r.Id = \''+String.escapeSingleQuotes(brandName)+'\'';
            system.debug('soql6'+soql);
      }
      if(String.isNotBlank(stageLogged)){
-    soql += ' and Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(stageLogged)+'\'';
+    soql += ' and AM_Job_Detail__r.Stage_of_Production_Activity__c = \''+String.escapeSingleQuotes(stageLogged)+'\'';
            system.debug('soql7'+soql);
      }
      if(String.isNotBlank(jobAccepted)){
@@ -299,15 +400,15 @@ public PageReference getJobDetailSearch() {
            system.debug('soql11'+soql);
      }
      if(String.isNotBlank(addNumber)){
-    soql += ' and AdManagerText__c LIKE \''+String.escapeSingleQuotes(addNumber)+'%\'';
+    soql += ' and AM_Job_Detail__r.AdManagerText__c LIKE \''+String.escapeSingleQuotes(addNumber)+'%\'';
            system.debug('soql12'+soql);
      }
      if(String.isNotBlank(projEmail)){
-    soql += ' and Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+'%\'';
+    soql += ' and AM_Job_Detail__r.Unilever_Project_Leader_Email__c LIKE \''+String.escapeSingleQuotes(projEmail)+'%\'';
            system.debug('soql13'+soql);
      }
-     if(String.isNotBlank(projName)){
-    soql += ' and Project_Name__c = \''+String.escapeSingleQuotes(projName)+'\'';
+     if(String.isNotBlank(projectName)){
+    soql += ' and AM_Job_Detail__r.Project_Details__c = \''+String.escapeSingleQuotes(projectName)+'\'';
            system.debug('soql14'+soql);
      }
      jobDetailList = Database.query(soql);
@@ -324,28 +425,54 @@ public PageReference getJobDetailSearch() {
    }
    
    public Void getPriorityJobs(){
-       priorityJobList = new List<Amr_Job_Details__c>();
+       priorityJobList = new List<Amr_Job_Allocation__c>();
        Set<Id>priorityJobIds = new Set<Id>();
-       for(Amr_Job_Details__c jobId:jobDetailList){
-           if(jobId.Job_Status__c =='Priority'){
-               priorityJobIds.add(jobId.Id);
+       Set<String> priorityStrings = new Set<String>();
+       for(Amr_Job_Allocation__c jobId:jobDetailList){
+           if(jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Priority){
+               priorityJobIds.add(jobId.AM_Job_Detail__r.Id);
+               priorityStrings.add(jobId.AM_Job_Detail__r.AdManagerText__c);
            }
        }
-       system.debug('jobListToDisplay!!'+jobDetailList+'!!priorityJobIds'+priorityJobIds);
+       system.debug('priorityStrings!!'+priorityStrings+'!!priorityJobIds'+priorityJobIds);
         
-      String prioritySoql = 'select Id,Project_Name__c,Production_Activity__c,Broadcast_Market__c,Allocated_Budget_euro__c,Job_Status__c,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,Category__r.Name,Brand_Positioning__r.Name,Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c from Amr_Job_Details__c where Id IN:priorityJobIds'; 
+      //String prioritySoql = 'select Id,Project_Details__c,Production_Activity__c,Broadcast_Market__c,Allocated_Budget_euro__c,Job_Status__c,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,Category__r.Name,Brand_Positioning__r.Name,Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c from Amr_Job_Details__c where Id IN:priorityJobIds'; 
+      String prioritySoql = 'select User__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.Category__r.Name,AM_Job_Detail__r.Brand_Positioning__r.Name,AM_Job_Detail__r.Brand__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,Job_Shared__c,AM_Job_Detail__r.Job_Reported__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:priorityJobIds';
       system.debug('prioritySoql !!!'+prioritySoql );
       if(String.isNotBlank(selectedSortPriorityOption) && selectedSortPriorityOption !='--None--'){
            prioritySoql += ' ORDER BY '+String.escapeSingleQuotes(selectedSortPriorityOption)+' ASC';
-           
+      
      }
-       system.debug('prioritySoql01 !!!'+prioritySoql );
-      priorityJobList = Database.query(prioritySoql + ' limit 150');
-    //  priorityJobList = [select Id,Project_Name__c,Production_Activity__c,Broadcast_Market__c,Allocated_Budget_euro__c,Job_Status__c,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,AMCategory__r.Name,Am_Brand_Positioning__r.Name,Am_Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c from Amr_Job_Details__c where Id IN:priorityJobIds ];
-      system.debug('priorityJobList !!!'+priorityJobList);
      
+       system.debug('prioritySoql01 !!!'+prioritySoql );
+       priorityJobList = Database.query(prioritySoql );
+           
+      //  priorityJobList = [select Id,Project_Name__c,Production_Activity__c,Broadcast_Market__c,Allocated_Budget_euro__c,Job_Status__c,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,AMCategory__r.Name,Am_Brand_Positioning__r.Name,Am_Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c from Amr_Job_Details__c where Id IN:priorityJobIds ];
+      system.debug('priorityJobList !!!'+priorityJobList);
+     /* priorityJobAllocationList = new List<Amr_Job_Allocation__c>();
+      priorityJobAllocationList = getJobAllocation(priorityJobIds);*/
       paginationMethodForPriorityJobs(priorityJobList);
       
+    }
+    
+    public List<Amr_Job_Allocation__c> getJobAllocation(Set<Id> JobIds){
+        
+        return [Select User__c, Started_Image__c, 
+                                Job_Allocated_Image__c,
+                                AM_Job_Detail__r.Project_Details__c,
+                                AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,
+                                AM_Job_Detail__r.Allocated_Budget_euro__c,Job_Status__c,createdDate,
+                                AM_Job_Detail__r.AdManagerText__c,
+                                AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,
+                                AM_Job_Detail__r.Project_Leader_Country__c,
+                                
+                                AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.Category__r.Name,
+                                AM_Job_Detail__r.Brand_Positioning__r.Name,AM_Job_Detail__r.Brand__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,
+                                AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,
+                                Job_Status_Image__c,Reported_Image__c,Job_Shared__c,
+                                AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  
+                                From Amr_Job_Allocation__c where AM_Job_Detail__c IN:JobIds and AM_Job_Detail__r.OwnerId =:loggedInUserId ];
+        
     }
     
     //method to get sort priority list
@@ -358,14 +485,15 @@ public PageReference getJobDetailSearch() {
    
    
    public void getPendingJobs(){
-       pendingJobList = new List<Amr_Job_Details__c>();
+       pendingJobList = new List<Amr_Job_Allocation__c>();
        Set<Id>pendingJobIds = new Set<Id>();
-       for(Amr_Job_Details__c jobId:jobDetailList){
-           if(jobId.Job_Status__c =='Pending'){
-               pendingJobIds.add(jobId.Id);
+       for(Amr_Job_Allocation__c jobId:jobDetailList){
+           if(jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Priority || jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Live){
+               pendingJobIds.add(jobId.AM_Job_Detail__r.Id);
            }
        }
-      String pendingSoql = 'select Id,Project_Name__c,Production_Activity__c,Broadcast_Market__c,Allocated_Budget_euro__c,Job_Status__c,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,Category__r.Name,Brand_Positioning__r.Name,Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c from Amr_Job_Details__c where Id IN:pendingJobIds';
+     // String pendingSoql = 'select Id,Project_Details__c,Production_Activity__c,Broadcast_Market__c,Allocated_Budget_euro__c,Job_Status__c,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,Category__r.Name,Brand_Positioning__r.Name,Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c from Amr_Job_Details__c where Id IN:pendingJobIds';
+      String pendingSoql = 'select User__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.Category__r.Name,AM_Job_Detail__r.Brand_Positioning__r.Name,AM_Job_Detail__r.Brand__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,Job_Shared__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:pendingJobIds';
       system.debug('pendingSoql !!!'+pendingSoql );
       
       if(String.isNotBlank(selectedSortPendingOption) && selectedSortPendingOption !='--None--'){
@@ -373,9 +501,11 @@ public PageReference getJobDetailSearch() {
            
      }
        system.debug('pendingSoql 01!!!'+pendingSoql );
-      pendingJobList = Database.query(pendingSoql + ' limit 150');
-      
+      pendingJobList = Database.query(pendingSoql);
+     /* pendingJobAllocationList = new List<Amr_Job_Allocation__c>();
+      pendingJobAllocationList = getJobAllocation(pendingJobIds);*/
       paginationMethodForPendingJobs(pendingJobList);
+      
    }
    
    //method to get sort pending list
@@ -386,14 +516,15 @@ public PageReference getJobDetailSearch() {
     }
    
    public void getDormantJobs(){
-       dormantJobList = new List<Amr_Job_Details__c>();
+       dormantJobList = new List<Amr_Job_Allocation__c>();
        Set<Id>dormantJobIds = new Set<Id>();
-       for(Amr_Job_Details__c jobId:jobDetailList){
-           if(jobId.Job_Status__c =='Dormant'){
-               dormantJobIds.add(jobId.Id);
+       for(Amr_Job_Allocation__c jobId:jobDetailList){
+           if(jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Dormant){
+               dormantJobIds.add(jobId.AM_Job_Detail__r.Id);
            }
        }
-      String dormantSoql= 'select Id,Project_Name__c,Production_Activity__c,Broadcast_Market__c,Allocated_Budget_euro__c,Job_Status__c,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,Category__r.Name,Brand_Positioning__r.Name,Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c from Amr_Job_Details__c where Id IN:dormantJobIds';
+     // String dormantSoql= 'select Id,Project_Details__c,Production_Activity__c,Broadcast_Market__c,Allocated_Budget_euro__c,Job_Status__c,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,Category__r.Name,Brand_Positioning__r.Name,Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c from Amr_Job_Details__c where Id IN:dormantJobIds';
+       String dormantSoql = 'select User__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.Category__r.Name,AM_Job_Detail__r.Brand_Positioning__r.Name,AM_Job_Detail__r.Brand__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,Job_Shared__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:dormantJobIds';
        system.debug('dormantSoql!!!'+dormantSoql);
       
       if(String.isNotBlank(selectedSortDormantOption) && selectedSortDormantOption !='--None--'){
@@ -401,10 +532,13 @@ public PageReference getJobDetailSearch() {
            
      }
        system.debug('dormantSoql01!!!'+dormantSoql);
-      dormantJobList = Database.query(dormantSoql+ ' limit 150');
-      
+      dormantJobList = Database.query(dormantSoql);
+     /* dormantJobAllocationList = new List<Amr_Job_Allocation__c>();
+      dormantJobAllocationList = getJobAllocation(dormantJobIds);*/
       system.debug('dormantJobList !!!'+dormantJobList);
       paginationMethodForDormantJobs(dormantJobList);
+      
+      //removeduplicateDormant(dormantJobList);
    }
    
    //method to get sort dormant list
@@ -416,15 +550,17 @@ public PageReference getJobDetailSearch() {
     
    
    public void getLiveJobs(){
-       liveJobList = new List<Amr_Job_Details__c>();
+       liveJobList = new List<Amr_Job_Allocation__c>();
        Set<Id>liveJobIds = new Set<Id>();
-       for(Amr_Job_Details__c jobId:jobDetailList){
-           if(jobId.Job_Status__c =='Live'){
-               liveJobIds.add(jobId.Id);
+       for(Amr_Job_Allocation__c jobId:jobDetailList){
+           if(jobId.AM_Job_Detail__r.Job_Status__c == Label.Amr_Status_Live){
+               liveJobIds.add(jobId.AM_Job_Detail__r.Id);
            }
        }
-      String liveSoql= 'select Id,Project_Name__c,Production_Activity__c,Allocated_Budget_euro__c,Broadcast_Market__c,Job_Status__c,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,Category__r.Name,Brand_Positioning__r.Name,Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c from Amr_Job_Details__c where Id IN:liveJobIds';
-     
+       String str= Label.Amr_Status_Live;
+      //String liveSoql= 'select Id,Project_Details__c,Production_Activity__c,Allocated_Budget_euro__c,Broadcast_Market__c,Job_Status__c,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,Category__r.Name,Brand_Positioning__r.Name,Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c from Amr_Job_Details__c where Id IN:liveJobIds';
+     // String liveSoql= 'select Id,Project_Details__c,Production_Activity__c,Allocated_Budget_euro__c,Broadcast_Market__c,Job_Status__c,createdDate,AdManagerText__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Lead_Creative_Agency_name__c,Category__r.Name,Brand_Positioning__r.Name,Brand__r.Name,Stage_of_Production_Activity__c,Job_Accepted__c,Job_Started__c,Job_Reported__c,Job_Shared__c from Amr_Job_Details__c where Job_Status__c =: str';
+      String liveSoql = 'select User__c,Started_Image__c,Job_Allocated_Image__c,AM_Job_Detail__r.Project_Details__c,AM_Job_Detail__r.Production_Activity_Type__c,AM_Job_Detail__r.Brodcast_Market__c,AM_Job_Detail__r.Allocated_Budget_euro__c,AM_Job_Detail__r.Job_Status__c,AM_Job_Detail__r.createdDate,AM_Job_Detail__r.AdManagerText__c,AM_Job_Detail__r.Unilever_Project_Leader_Email__c,AM_Job_Detail__r.Project_Leader_Cluster__c,AM_Job_Detail__r.Project_Leader_Country__c,AM_Job_Detail__r.Lead_Creative_Agency_name__c,AM_Job_Detail__r.Category__r.Name,AM_Job_Detail__r.Brand_Positioning__r.Name,AM_Job_Detail__r.Project_Details__r.Name,AM_Job_Detail__r.Brand__r.Name,AM_Job_Detail__r.Stage_of_Production_Activity__c,AM_Job_Detail__r.Job_Accepted__c,AM_Job_Detail__r.Job_Started__c,Job_Status_Image__c,Reported_Image__c,Job_Shared__c,AM_Job_Detail__r.Job_Reported__c,AM_Job_Detail__r.job_Shared__c  From Amr_Job_Allocation__c where AM_Job_Detail__r.Id IN:liveJobIds';
       system.debug('liveSoql!!!'+liveSoql);
       
       if(String.isNotBlank(selectedSortLiveOption) && selectedSortLiveOption !='--None--'){
@@ -432,8 +568,17 @@ public PageReference getJobDetailSearch() {
            
      }
        system.debug('liveSoql01!!!'+liveSoql);
-      liveJobList = Database.query(liveSoql+ ' limit 150');
+      liveJobList = Database.query(liveSoql);
+     /*  for(Amr_Job_Details__c jobId:liveJobList){
+           if(jobId.Job_Status__c == Label.Amr_Status_Live){
+               liveJobIds.add(jobId.Id);
+           }
+       }
       system.debug('liveJobList !!!'+liveJobList );
+      liveJobAllocationList = new List<Amr_Job_Allocation__c>();
+      liveJobAllocationList = getJobAllocation(liveJobIds);
+      
+      system.debug('liveJobAllocationList !!!'+liveJobAllocationList );*/
       paginationMethodForLiveJobs(liveJobList);  
    }
    
@@ -445,8 +590,8 @@ public PageReference getJobDetailSearch() {
     }
     
     //pagination for priority jobs starts here
-   public void paginationMethodForPriorityJobs(List<Amr_Job_Details__c> jobListToDisplay){
-       priorityJobsToShow = new list<Amr_Job_Details__c>();
+   public void paginationMethodForPriorityJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
+       priorityJobsToShow = new list<Amr_Job_Allocation__c>();
        totalSizeForPriorityJobs = jobListToDisplay.size();
        if(limitSizeForPriorityJobs < totalSizeForPriorityJobs){
        showPageButtonForPriority = true;
@@ -464,6 +609,16 @@ public PageReference getJobDetailSearch() {
                 priorityJobsToShow.add(jobListToDisplay.get(i));
             }
         }
+        
+        if(!priorityJobsToShow.isEmpty()){
+          List<Amr_Job_Allocation__c> lstPriorityNew = new List<Amr_Job_Allocation__c>();
+          system.debug('******priorityJobsToShow11'+priorityJobsToShow);    
+          lstPriorityNew = priorityJobsToShow;
+          priorityJobsToShow = new List<Amr_Job_Allocation__c>();
+          removeduplicate(lstPriorityNew);
+        }
+         
+         system.debug('******priorityJobsToShow'+priorityJobsToShow);
       }
         
     public void beginningForPriorityJobs(){
@@ -480,6 +635,111 @@ public PageReference getJobDetailSearch() {
         }
     }
    
+    public void removeduplicate(List<Amr_Job_Allocation__c> lstPriorityJobsToShow){
+         List<Amr_Job_Allocation__c> lstremoveduplicate = new  List<Amr_Job_Allocation__c>();
+         lstremoveduplicate = lstPriorityJobsToShow;
+          system.debug('******lstremoveduplicate'+lstremoveduplicate);
+           system.debug('******lstPriorityJobsToShow'+lstPriorityJobsToShow);
+         lstPriorityJobsToShow = new  List<Amr_Job_Allocation__c>();
+         Set<String>jobAllocIds = new Set<String>();
+         
+        
+           system.debug('****1111**lstPriorityJobsToShow'+lstPriorityJobsToShow);
+           
+          system.debug('*****222*lstremoveduplicate'+lstremoveduplicate);
+          for(Amr_Job_Allocation__c job:lstremoveduplicate){
+            
+             system.debug('******ob.AM_Job_Detail__r.Id'+Job.AM_Job_Detail__r.Id);
+               system.debug('******jobAllocIds'+jobAllocIds);
+            if(!jobAllocIds.contains(job.AM_Job_Detail__r.Id )){
+                jobAllocIds.add(job.AM_Job_Detail__r.Id);
+                lstPriorityJobsToShow.add(job);
+                priorityJobsToShow.add(job);
+            }
+           system.debug('******priorityJobsToShow'+priorityJobsToShow);
+         }
+        
+    }
+    
+    
+     public void removeduplicatePending(List<Amr_Job_Allocation__c> lstPriorityJobsToShow){
+         List<Amr_Job_Allocation__c> lstremoveduplicate = new  List<Amr_Job_Allocation__c>();
+         lstremoveduplicate = lstPriorityJobsToShow;
+          system.debug('******lstremoveduplicate'+lstremoveduplicate);
+           system.debug('******lstPriorityJobsToShow'+lstPriorityJobsToShow);
+         lstPriorityJobsToShow = new  List<Amr_Job_Allocation__c>();
+         Set<String>jobAllocIds = new Set<String>();
+         
+        
+           system.debug('****1111**lstPriorityJobsToShow'+lstPriorityJobsToShow);
+           
+          system.debug('*****222*lstremoveduplicate'+lstremoveduplicate);
+          for(Amr_Job_Allocation__c job:lstremoveduplicate){
+            
+             system.debug('******ob.AM_Job_Detail__r.Id'+Job.AM_Job_Detail__r.Id);
+               system.debug('******jobAllocIds'+jobAllocIds);
+            if(!jobAllocIds.contains(job.AM_Job_Detail__r.Id )){
+                jobAllocIds.add(job.AM_Job_Detail__r.Id);
+                lstPriorityJobsToShow.add(job);
+                pendingJobsToShow.add(job);
+            }
+           system.debug('******priorityJobsToShow'+priorityJobsToShow);
+         }
+        
+    }
+    
+    
+     public void removeduplicateDormant(List<Amr_Job_Allocation__c> lstPriorityJobsToShow){
+         List<Amr_Job_Allocation__c> lstremoveduplicate = new  List<Amr_Job_Allocation__c>();
+         lstremoveduplicate = lstPriorityJobsToShow;
+          system.debug('******lstremoveduplicate'+lstremoveduplicate);
+           system.debug('******lstPriorityJobsToShow'+lstPriorityJobsToShow);
+         lstPriorityJobsToShow = new  List<Amr_Job_Allocation__c>();
+         Set<String>jobAllocIds = new Set<String>();
+         
+        
+           system.debug('****1111**lstPriorityJobsToShow'+lstPriorityJobsToShow);
+           
+          system.debug('*****222*lstremoveduplicate'+lstremoveduplicate);
+          for(Amr_Job_Allocation__c job:lstremoveduplicate){
+            
+             system.debug('******ob.AM_Job_Detail__r.Id'+Job.AM_Job_Detail__r.Id);
+               system.debug('******jobAllocIds'+jobAllocIds);
+            if(!jobAllocIds.contains(job.AM_Job_Detail__r.Id )){
+                jobAllocIds.add(job.AM_Job_Detail__r.Id);
+                lstPriorityJobsToShow.add(job);
+                dormantJobsToShow.add(job);
+            }
+           system.debug('******priorityJobsToShow'+priorityJobsToShow);
+         }
+        
+    }
+    
+     public void removeduplicateLive(List<Amr_Job_Allocation__c> lstPriorityJobsToShow){
+         List<Amr_Job_Allocation__c> lstremoveduplicate = new  List<Amr_Job_Allocation__c>();
+         lstremoveduplicate = lstPriorityJobsToShow;
+          system.debug('******lstremoveduplicate'+lstremoveduplicate);
+           system.debug('******lstPriorityJobsToShow'+lstPriorityJobsToShow);
+         lstPriorityJobsToShow = new  List<Amr_Job_Allocation__c>();
+         Set<String>jobAllocIds = new Set<String>();
+         
+        
+           system.debug('****1111**lstPriorityJobsToShow'+lstPriorityJobsToShow);
+           
+          system.debug('*****222*lstremoveduplicate'+lstremoveduplicate);
+          for(Amr_Job_Allocation__c job:lstremoveduplicate){
+            
+             system.debug('******ob.AM_Job_Detail__r.Id'+Job.AM_Job_Detail__r.Id);
+               system.debug('******jobAllocIds'+jobAllocIds);
+            if(!jobAllocIds.contains(job.AM_Job_Detail__r.Id )){
+                jobAllocIds.add(job.AM_Job_Detail__r.Id);
+                lstPriorityJobsToShow.add(job);
+                liveJobsToShow.add(job);
+            }
+           system.debug('******priorityJobsToShow'+priorityJobsToShow);
+         }
+        
+    }
     public void nextForPriorityJobs(){
         priorityJobsToShow.clear();
         counterForPriorityJobs=counterForPriorityJobs+limitSizeForPriorityJobs;
@@ -531,8 +791,8 @@ public PageReference getJobDetailSearch() {
     
     
        //pagination for pending jobs starts here
-   public void paginationMethodForPendingJobs(List<Amr_Job_Details__c> jobListToDisplay){
-       pendingJobsToShow = new list<Amr_Job_Details__c>();
+   public void paginationMethodForPendingJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
+       pendingJobsToShow = new list<Amr_Job_Allocation__c>();
        totalSizeForPendingJobs = jobListToDisplay.size();
        if(limitSizeForPendingJobs < totalSizeForPendingJobs){
        showPageButtonForPending = true;
@@ -550,11 +810,21 @@ public PageReference getJobDetailSearch() {
                 pendingJobsToShow.add(jobListToDisplay.get(i));
             }
         }
+        
+          
+        if(!pendingJobsToShow.isEmpty()){
+          List<Amr_Job_Allocation__c> lstPriorityNew = new List<Amr_Job_Allocation__c>();
+            
+          lstPriorityNew = pendingJobsToShow;
+          pendingJobsToShow = new List<Amr_Job_Allocation__c>();
+          removeduplicatePending(lstPriorityNew);
+        }
+         
       }
         
     public void beginningForPendingJobs(){
-    	
-    	system.debug('limitSizeForPendingJobs!!'+limitSizeForPendingJobs+'totalSizeForPendingJobs!!'+totalSizeForPendingJobs);
+        
+        system.debug('limitSizeForPendingJobs!!'+limitSizeForPendingJobs+'totalSizeForPendingJobs!!'+totalSizeForPendingJobs);
         pendingJobsToShow.clear();
         counterForPendingJobs=0;
         if((counterForPendingJobs + limitSizeForPendingJobs) <= totalSizeForPendingJobs){
@@ -618,8 +888,8 @@ public PageReference getJobDetailSearch() {
     //pagination for pending jobs ends here
     
     //pagination for dormant jobs starts here
-   public void paginationMethodForDormantJobs(List<Amr_Job_Details__c> jobListToDisplay){
-       dormantJobsToShow = new list<Amr_Job_Details__c>();
+   public void paginationMethodForDormantJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
+       dormantJobsToShow = new list<Amr_Job_Allocation__c>();
        totalSizeForDormantJobs = jobListToDisplay.size();
        if(limitSizeForDormantJobs < totalSizeForDormantJobs){
        showPageButtonForDormant = true;
@@ -637,6 +907,15 @@ public PageReference getJobDetailSearch() {
                 dormantJobsToShow.add(jobListToDisplay.get(i));
             }
         }
+        
+        if(!dormantJobsToShow.isEmpty()){
+          List<Amr_Job_Allocation__c> lstPriorityNew = new List<Amr_Job_Allocation__c>();
+            
+          lstPriorityNew = dormantJobsToShow;
+          dormantJobsToShow = new List<Amr_Job_Allocation__c>();
+          removeduplicateDormant(lstPriorityNew);
+        }
+         
       }
         
     public void beginningForDormantJobs(){
@@ -703,8 +982,8 @@ public PageReference getJobDetailSearch() {
     //pagination for dormant jobs ends here
     
         //pagination for live jobs starts here
-   public void paginationMethodForLiveJobs(List<Amr_Job_Details__c> jobListToDisplay){
-       liveJobsToShow = new list<Amr_Job_Details__c>();
+   public void paginationMethodForLiveJobs(List<Amr_Job_Allocation__c> jobListToDisplay){
+       liveJobsToShow = new list<Amr_Job_Allocation__c>();
        totalSizeForLiveJobs = jobListToDisplay.size();
        if(limitSizeForLiveJobs < totalSizeForLiveJobs){
        showPageButtonForLive = true;
@@ -722,6 +1001,15 @@ public PageReference getJobDetailSearch() {
                 liveJobsToShow.add(jobListToDisplay.get(i));
             }
         }
+        
+         if(!liveJobsToShow.isEmpty()){
+          List<Amr_Job_Allocation__c> lstPriorityNew = new List<Amr_Job_Allocation__c>();
+            
+          lstPriorityNew = liveJobsToShow;
+          liveJobsToShow = new List<Amr_Job_Allocation__c>();
+          removeduplicateLive(lstPriorityNew);
+        }
+        
       }
         
     public void beginningForLiveJobs(){
@@ -756,7 +1044,7 @@ public PageReference getJobDetailSearch() {
         liveJobsToShow.clear();
         counterForLiveJobs=counterForLiveJobs-limitSizeForLiveJobs;       
             for(Integer i=counterForLiveJobs;i<(counterForLiveJobs+limitSizeForLiveJobs); i++){
-            	system.debug('i!!'+i);
+                system.debug('i!!'+i);
             liveJobsToShow.add(liveJobList.get(i));
         }
     }
@@ -765,7 +1053,7 @@ public PageReference getJobDetailSearch() {
         liveJobsToShow.clear();
         if(math.mod(totalSizeForLiveJobs , limitSizeForLiveJobs) == 0){
             counterForLiveJobs = limitSizeForLiveJobs * ((totalSizeForLiveJobs/limitSizeForLiveJobs)-1);
-        } else if (math.mod(totalSizeForDormantJobs , limitSizeForLiveJobs) != 0){
+        } else if (math.mod(totalSizeForLiveJobs , limitSizeForLiveJobs) != 0){
             counterForLiveJobs = limitSizeForLiveJobs * ((totalSizeForLiveJobs/limitSizeForLiveJobs));
         }
         for(Integer i=counterForLiveJobs-1;i<totalSizeForLiveJobs-1;i++){
@@ -790,11 +1078,25 @@ public PageReference getJobDetailSearch() {
 
  public PageReference jobSheetPageTransfer(){
       
-       PageReference pageRef = new PageReference('/apex/Amr_JobSheetPage_Final');
+       PageReference pageRef = new PageReference('/apex/AM_JobAllocations_bhupendra');
        pageRef.getParameters().put('id',chosenId);
        pageRef.setRedirect(true);
        return pageRef;
    }
 
+    public void alertHide(){
+        
+        System.debug('Alert Id -> ' + selectedAlert);
+        
+        List<Amr_Alert__c> alertHideList = new List<Amr_Alert__c>();
+        alertHideList = [SELECT Alert_Message__c,Hide__c FROM Amr_Alert__c where id = :selectedAlert];
+       if(!alertHideList.isEmpty()){
+        
+        for(Amr_Alert__c alertObj : alertHideList){
+            alertObj .Hide__c = TRUE;
+        }
+        update alertHideList;
+       }
+    }
 
 }

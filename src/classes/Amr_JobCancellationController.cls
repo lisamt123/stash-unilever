@@ -1,4 +1,4 @@
-public class Amr_JobCancellationController {
+public with sharing class Amr_JobCancellationController {
 
    Public List<wrapperClass> WrapperList{get;set;}
     Public Integer noOfRecords{get; set;}

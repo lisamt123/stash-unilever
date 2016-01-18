@@ -3,6 +3,38 @@
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This will contain logging form setting for AD manager</description>
     <fields>
+        <fullName>Allocation__c</fullName>
+        <label>Allocation</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Manual</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Automatic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Automatic_Allocation_On__c</fullName>
+        <label>Automatic Allocation On</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Location</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Product Brand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Footer__c</fullName>
         <description>This will be footer text for the logging form.</description>
         <label>Footer</label>

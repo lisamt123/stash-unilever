@@ -161,12 +161,12 @@ line-height: 24px;
    <apex:pageBlock id="pbAlertId">
    <apex:outputPanel styleClass="custom1">
            <apex:pageBlockSection title="Job Alerts" id="pbSectionAlertId" >
-           <apex:pageBlockTable value="{!alertList}" var="alert" styleClass="box_content jobalerts" style="width:100%" rendered="{!alertList.size>0}">
-               <apex:column value="{!alert.New_Alert__c}" headerValue="Date"/>
-                <apex:column value="{!alert.Alert_Message__c}" headerValue="Alert Message"/>
+           <apex:pageBlockTable value="{!alertList}" var="alert1" styleClass="box_content jobalerts" style="width:100%" rendered="{!alertList.size>0}">
+               <apex:column value="{!alert1.New_Alert__c}" headerValue="Date"/>
+                <apex:column value="{!alert1.Alert_Message__c}" headerValue="Alert Message"/>
                 <apex:column headerValue="Hide">
                     <apex:commandLink value="Hide"  action="{!hideAlert}" reRender="pbSectionAlertId,showUnhideRecords1" >
-                    <apex:param name="recordId"  assignTo="{!chosenAlertId}" value="{!alert.id}"/>
+                    <apex:param name="recordId"  assignTo="{!chosenAlertId}" value="{!alert1.id}"/>
                     </apex:commandLink>
                     </apex:column>
            </apex:pageBlockTable>
@@ -279,7 +279,7 @@ line-height: 24px;
    
   
     
-    <apex:inputField value="{!jobDetails.Project_Name__c}" />
+    <apex:inputField value="{!jobDetails.Project_Details__c}" />
     
    <apex:commandButton value="Apply" action="{!getJobDetailSearch}" reRender="listRefresh">
       
@@ -354,7 +354,7 @@ line-height: 24px;
                <apex:column value="{!job.Project_Leader_Country__c}" headerValue="Location of Unilever Project Leader (Country)"/> 
                <apex:column value="{!job.Category__c}" headerValue="Category"/>
                <apex:column value="{!job.Brand__c}" headerValue="Brand Name"/>
-               <apex:column value="{!job.Project_Name__c}" headerValue="Project Name"/>
+               <apex:column value="{!job.Project_Details__c}" headerValue="Project Name"/>
                <apex:column value="{!job.Lead_Creative_Agency_name__c}" headerValue="Lead/Creative Agency Name"/>
                <apex:column value="{!job.Allocated_Budget_euro__c}" headerValue="Allocated Budget (Euro)"/>
                <apex:column value="{!job.Broadcast_Market__c}" headerValue="Broadcast market"/>
@@ -404,7 +404,7 @@ line-height: 24px;
                <apex:column value="{!job.Project_Leader_Country__c}" headerValue="Location of Unilever Project Leader (Country)"/>
                <apex:column value="{!job.Category__c}" headerValue="Category"/>
                <apex:column value="{!job.Brand__c}" headerValue="Brand Name"/>
-               <apex:column value="{!job.Project_Name__c}" headerValue="Project Name"/>
+               <apex:column value="{!job.Project_Details__c}" headerValue="Project Name"/>
                <apex:column value="{!job.Lead_Creative_Agency_name__c}" headerValue="Lead/Creative Agency Name"/>
                <apex:column value="{!job.Allocated_Budget_euro__c}" headerValue="Allocated Budget (Euro)"/>
                <apex:column value="{!job.Broadcast_Market__c}" headerValue="Broadcast market"/>
@@ -453,7 +453,7 @@ line-height: 24px;
                <apex:column value="{!job.Project_Leader_Country__c}" headerValue="Location of Unilever Project Leader (Country)"/>
                <apex:column value="{!job.Category__c}" headerValue="Category"/>
                <apex:column value="{!job.Brand__c}" headerValue="Brand Name"/>  
-               <apex:column value="{!job.Project_Name__c}" headerValue="Project Name"/>
+               <apex:column value="{!job.Project_Details__c}" headerValue="Project Name"/>
                <apex:column value="{!job.Lead_Creative_Agency_name__c}" headerValue="Lead/Creative Agency Name"/>
                <apex:column value="{!job.Allocated_Budget_euro__c}" headerValue="Allocated Budget (Euro)"/>
                <apex:column value="{!job.Broadcast_Market__c}" headerValue="Broadcast market"/>
@@ -504,7 +504,7 @@ line-height: 24px;
                <apex:column value="{!job.Project_Leader_Country__c}" headerValue="Location of Unilever Project Leader (Country)"/>  
                <apex:column value="{!job.Category__c}" headerValue="Category"/>
                <apex:column value="{!job.Brand__c}" headerValue="Brand Name"/>
-               <apex:column value="{!job.Project_Name__c}" headerValue="Project Name"/>
+               <apex:column value="{!job.Project_Details__c}" headerValue="Project Name"/>
                <apex:column value="{!job.Lead_Creative_Agency_name__c}" headerValue="Lead/Creative Agency Name"/>
                <apex:column value="{!job.Allocated_Budget_euro__c}" headerValue="Allocated Budget (Euro)"/>
                <apex:column value="{!job.Broadcast_Market__c}" headerValue="Broadcast market"/>

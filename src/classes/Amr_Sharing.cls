@@ -1,4 +1,4 @@
-public class Amr_Sharing {
+public with sharing class Amr_Sharing {
 
 
 public PageReference Reallocate() {

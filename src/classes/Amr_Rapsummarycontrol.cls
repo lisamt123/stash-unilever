@@ -1,4 +1,4 @@
-public class Amr_Rapsummarycontrol{ 
+public with sharing class Amr_Rapsummarycontrol{ 
 public List<Amr_Job_Details__c> Records {get; set;} 
 public Amr_Rapsummarycontrol(){ 
 Records = 

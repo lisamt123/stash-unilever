@@ -1,13 +1,15 @@
-public class Amr_LoggingFormController{
+public with sharing class Amr_LoggingFormController{
 
     public Amr_Job_Details__c jobDetails{get;set;}
     public Amr_Logging_Form_Setting__c r  {get; set;}
     public List<Amr_CurrencyConversionRate__c> currencyConversion {get;set;}
     public String selectedCountry {get;set;}
+    public String projectNameFromPage{get;set;}
+   
     public List<selectOption> currencyRecords {
     get {
       List<selectOption> options = new List<selectOption>();
-      
+      options.add(new SelectOption('--None--','--None--'));
       List<Amr_CurrencyConversionRate__c> lstcov = Amr_CurrencyConversionRate__c.getAll().values();
       //lstcov.sort();
       for (Amr_CurrencyConversionRate__c cc: lstcov)
@@ -24,22 +26,42 @@ public class Amr_LoggingFormController{
   public String brandNameFromPage{get;set;} 
   public List<SelectOption> listOfCategory{get;set;} 
   public List<SelectOption> listOfBrandPosition{get;set;}
-  public  List<SelectOption> listOfBrand{get;set;}
+  public List<SelectOption> listOfBrand{get;set;}
   public  List<SelectOption> listOfProjectName {get;set;}
+  public List<Amr_Project_Details__c> projNameList {get;set;}
+  public  String[]  listString{get;set;}
+    public String UserLoginId{get;set;}
+    public List<PermissionSetAssignment> PermissionSetAssignmentList{get;set;}
+    public boolean flag{get;set;}
+    public boolean display{get;set;}
+    public boolean displayRap{get;set;}
   
 
     public Amr_LoggingFormController(){
         jobDetails = new Amr_Job_Details__c();
-        r = [SELECT Introduction__c, Header__c, Footer__c FROM Amr_Logging_Form_Setting__c LIMIT 1];
-       
+        r = [SELECT Introduction__c, Header__c, Footer__c, Allocation__c, Automatic_Allocation_On__c FROM Amr_Logging_Form_Setting__c LIMIT 1];
+        projNameList= [Select Name from Amr_Project_Details__c ORDER BY Name ASC limit 10000];
+         listString= new list<string>();
+         listString.add('--None--');
+        For(Amr_Project_Details__c i : projNameList){
+                listString.add(i.name);
+        }
+        system.debug('listString!!'+listString);
          getProjectNameList();
-           
+       
    }
+   
+   public void updateSetting(){
+        update r;       
+   }
+   
+ 
    
    public List<SelectOption> getCategoryList(){      
          listOfCategory = new List<SelectOption>();
          List<Amr_Category__c> categoryList= [Select id,Name from Amr_Category__c];
-         listOfCategory.add(new selectOption('Select','Select'));
+         listOfCategory.add(new selectOption('--None--','--None--'));
+         system.debug('****'+listOfCategory);
          for(Amr_Category__c cat : categoryList)
              listOfCategory.add(new selectOption(cat.Id,cat.Name));
          return listOfCategory;
@@ -48,17 +70,22 @@ public class Amr_LoggingFormController{
      public List<SelectOption> getProjectNameList(){      
          listOfProjectName = new List<SelectOption>();
          List<Amr_Project_Details__c> ProjectNameList= [Select id,Name from Amr_Project_Details__c limit 500];
-         listOfProjectName .add(new selectOption('Select','Select'));
+         listOfProjectName .add(new selectOption('--None--','--None--'));
          for(Amr_Project_Details__c cat : ProjectNameList)
              listOfProjectName.add(new selectOption(cat.Id,cat.Name));
          return listOfProjectName ;
      }
      
+     public String getMethodToPassProjectNames(){
+        system.debug('serialize!!'+JSON.serialize(listString));
+        return JSON.serialize(listString);
+    }
+     
        public List<SelectOption> getBrandPositioningList(){    
        System.debug('BBBBBBRANDDD ->'+ categoryName);  
     listOfBrandPosition = new List<SelectOption>();
          List<Amr_Brand_Positioning__c> brandPosList= [Select id,Name from Amr_Brand_Positioning__c where Category__c =: categoryName];
-         listOfBrandPosition.add(new selectOption('Select','Select'));
+         listOfBrandPosition.add(new selectOption('--None--','--None--'));
          for(Amr_Brand_Positioning__c bps : brandPosList)
              listOfBrandPosition.add(new selectOption(bps.Id,bps.Name));
         System.debug('BBBBBBRANDDDLSIT ->'+ brandPosList);  
@@ -67,106 +94,208 @@ public class Amr_LoggingFormController{
      }
      
       public List<SelectOption> getBrandList(){      
-    listOfBrand = new List<SelectOption>();
+    	 listOfBrand = new List<SelectOption>();
+    	 system.debug('========>'+brandPosName);
          List<Amr_Brand__c> brandList= [Select id,Name from Amr_Brand__c where Brand_Positioning__c=: brandPosName];
-         listOfBrand.add(new selectOption('Select','Select'));
-         for(Amr_Brand__c bp : brandList)
-             listOfBrand.add(new selectOption(bp.Id,bp.Name));
+         listOfBrand.add(new selectOption('--None--','--None--'));
+        /* list<SelectOption> listOfBrandNew =  new List<SelectOption>();
+         system.debug('=====listSize'+listOfBrandNew);
+         for(Amr_Brand__c bp : brandList){
+         	 if(listOfBrandNew.size()<=0){
+         	       	 listOfBrandNew.add(new selectOption(bp.Id,bp.Name));
+         	 }
+         	for(selectOption obj:listOfBrandNew){
+         			
+         	       
+	         		if(obj.getLabel() != bp.Name){
+	         			system.debug('===>'+listOfBrand);
+	             		listOfBrandNew.add(new selectOption(bp.Id,bp.Name));
+	             		
+	         		}
+         		
+         	}
+         }
+         system.debug('===>FinalList'+listOfBrandNew);
+         listOfBrand.addAll(listOfBrandNew);*/
+          for(Amr_Brand__c bps : brandList)
+             listOfBrand.add(new selectOption(bps.Id,bps.Name));
+        //listOfBrand.add(new selectOption('--None--','--None--'));
          return listOfBrand;
      }
    
  
  
-    public Pagereference SubmitForm(){
+    public Pagereference getSubmitForm(){
+    
+       Boolean okayToSave = true;
         
         system.debug('hii!!'+categoryName+'!!'+brandPosName+'!!'+brandNameFromPage);
          system.debug('job detail checkboxes=======>'+jobDetails.Project_Details__c  );
-          system.debug('jprojectName=======>'+projectName  );
-        if(categoryName == 'Select'){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter category'));
-        return null;
-        }else if(brandPosName == 'Select'){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter Brand Position'));
-        return null;
-        }else if(brandNameFromPage == 'Select'){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter Brand Name'));
-        return null;
-        }
+          system.debug('projectNameFromPage=======>'+projectNameFromPage);
+       //----   
         system.debug('jobDetails.Check_With_CMI__c!!'+jobDetails.Check_With_CMI__c);
         if(jobDetails.Check_With_CMI__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please select CMI from Before you Start Section'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Have you checked with CMI if there is an existing asset in the Millward Brown TV Ad Vitality Bank that could be utilised for this JTBD? : a radio button must be selected'));
+        okayToSave =false;
+        
         }
+        
+         if(jobDetails.Your_Email_Address__c == null){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Your email address : must follow the standard format of an email address, e.g. txt@txt.com'));
+       okayToSave =false;
+        } 
+        if(jobDetails.Unilever_Finance_Member_Email__c == null){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Unilever finance member email : must follow the standard format of an email address, e.g. txt@txt.com'));
+        okayToSave =false;
+        }
+        if(jobDetails.Final_Approver_Of_Material_Email__c== null){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Final approver of material email : must follow the standard format of an email address, e.g. txt@txt.com'));
+       okayToSave =false;
+        }
+        if((String.isBlank(selectedCountry)|| selectedCountry == '--None--')){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget allocated for this activity(enter all digits): option must be selected from drop down'));
+       okayToSave =false;
+        }
+        
+        if(jobDetails.Budget_Allocated_Input_Value__c == null){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget allocated for this activity(enter all digits) : number must be entered'));
+       okayToSave =false;
+        }
+        
+         if(categoryName == '--None--'){
+         system.debug('inside category'+categoryName);
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
+        okayToSave =false;
+        }
+         if(brandPosName == '--None--'){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
+        okayToSave =false;
+        }
+         if(brandNameFromPage == '--None--'){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Category > Brand Positioning > Brand : option must be selected from all drop downs - Category, Brand Position & Brand Name'));
+        okayToSave =false;
+        }
+        
+        if(jobDetails.Agency_Contact_Account_Director_Email__c == null){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Agency contact or account director email : must follow the standard format of an email address, e.g. txt@txt.com'));
+       okayToSave =false;
+        }
+        if(jobDetails.Project_Description__c == null){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project description : text must be entered'));
+       okayToSave =false;
+        }
+        if(jobDetails.Campaign_Name__c == null){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Campaign name : text must be entered'));
+       okayToSave =false;
+        }
+        if(jobDetails.Target_Air_Date__c == null){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Target air date : a date must be selected from the calendar'));
+       okayToSave =false;
+        }
+     //----     
+       
+       
         if(jobDetails.Project_Leader_Cluster__c == null || jobDetails.Project_Leader_Country__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please Enter Project Leader Location'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Location of Unilever project leader : option must be selected from both market cluster and country drop downs'));
+        okayToSave =false;
         }
         
         if(jobDetails.Function_You_Are_Part__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please Enter Function you are part'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Which function are you part of (BD/BB/Other) : option must be selected from drop down'));
+       okayToSave =false;
         }
         
         if(jobDetails.Budget_Responsibility__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please Enter Budget Responsibility'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Budget responsibility (BD, BB, Other) : option must be selected from drop down'));
+        okayToSave =false;
         }
         if(jobDetails.Lead_Creative_Agency_name__c == null && jobDetails.Lead_Agency_Name_Other__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please Enter Lead creative Agency Name'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Lead agency name : option must be selected from the drop down menu OR a name must be entered in the "Other" text box'));
+       okayToSave =false;
         }
         if(jobDetails.Lead_Agency_Location_Cluster__c == null || jobDetails.Lead_Agency_Location_Country__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please Enter Lead Location'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Lead agency location : option must be selected from both market cluster and country drop downs'));
+       okayToSave =false;
         }
-      if( (projectName == NULL || projectName == 'Select') && jobDetails.Project_Name_Other__c == null ){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please Enter Project Name'));
-        return null;
+       if(jobDetails.Project_Details__c == NULL  && jobDetails.Project_Name_Other__c == null){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project name (e.g. Apollo) : option must be selected from the drop down menu OR a name must be entered in the "Other" text box'));
+      okayToSave =false;
         }
         if(jobDetails.Project_Location_Cluster__c == null || jobDetails.Project_Location_Country__c==null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please Enter Project Location'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project location : option must be selected from both market cluster and country drop downs'));
+       okayToSave =false;
         }
         if(jobDetails.Production_Activity_Type__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please Enter activity for production support'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'What type of activity will this production support? : one option must be selected from the drop down menu'));
+       okayToSave =false;
         }
            // system.debug('jobDetails.Project_Description__c!!'+jobDetails.Project_Description__c+'jobDetails.Execution_Name__c!!'+jobDetails.Execution_Name__c);  
         
         if(String.isBlank(jobDetails.Project_Description__c)){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter Project Description'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Project description : text must be entered'));
+       okayToSave =false;
         }
         
         if(String.isBlank(jobDetails.Execution_Name__c)){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter Execution Name'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Execution name  : text must be entered'));
+      okayToSave =false;
+        }
+         if(String.isBlank(jobDetails.Brodcast_Market__c)){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Broadcast market  : text must be entered'));
+      okayToSave =false;
         }
         
+        
         if(jobDetails.Require_Music__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter Require Music'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Do you anticipate that your production will require Music? : a radio button must be selected'));
+       okayToSave =false;
         }
         
         if(jobDetails.Require_Celebrity_Talent__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter Celebrity Talent'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Do you anticipate that your production will require Celebrity Talent? : a radio button must be selected'));
+       okayToSave =false;
         }
         if(jobDetails.Stage_of_Production_Activity__c == null){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter stage of production activity'));
-        return null;
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Current stage of your production activity : option must be selected from drop down'));
+       okayToSave =false;
         }
         
-        if(jobDetails.New_Original_Master__c == false && jobDetails.Language_Adaptation_Of_Master__c == false && jobDetails.Create_Additional_Material__c==false && jobDetails.Rework_Exisiting_Material__c==false && jobDetails.Buyouts_Talent__c==false && jobDetails.Buyouts_Music__c==false){
-        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Please enter Production activity Type'));
+        if(jobDetails.Tv__c == false && jobDetails.Cinema__c == false && jobDetails.Radio__c==false && jobDetails.Print__c==false && jobDetails.Out_Of_Home__c==false && jobDetails.In_Store__c==false && jobDetails.Digital__c==false &&jobDetails.Internal_Video__c==false ){
+        ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : at least one option must be selected'));
+       okayToSave =false;
+        }
+        
+        if(jobDetails.Out_Of_Home__c == true){
+       	 if(jobDetails.Out_Of_Home_Moving_Image__c == false && jobDetails.Out_Of_Home_Audio__c==false && jobDetails.Out_Of_Home_Still_Image__c==false){
+        		system.debug('inside!!!');
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : select at least one media for selected media channel'));
+        	 okayToSave =false;
+        	}
+        }
+        if(jobDetails.In_Store__c==true){
+        if(jobDetails.In_Store_Moving_Image__c == false && jobDetails.In_Store_Audio__c==false && jobDetails.In_Store_Still_Image__c==false){
+        	system.debug('inside!!!');
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : select at least one media for selected media channel'));
+        	 okayToSave =false;
+        	}
+        }
+          if(jobDetails.Digital__c==true){
+       	 if(jobDetails.Digital_Moving_Image__c == false && jobDetails.Digital_Audio__c == false && jobDetails.Digital_Still_Image__c==false && jobDetails.Digital_Editorial__c == false){
+        		system.debug('inside!!!');
+        	ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Production activity types : select at least one media for selected media channel'));
+        	 okayToSave =false;
+        	}
+        }
+        
+        if( !okayToSave ) {
         return null;
         }
         
          system.debug('job detail checkboxes=======>'+jobDetails.Project_Details__c  );
           system.debug('jprojectName=======>'+projectName  );
         
-        if(projectName != null && projectName != '' && projectName != 'Select')
-            jobDetails.Project_Details__c= projectName;
+       /*if(projectName != null && projectName != '' && projectName != 'Select')
+            jobDetails.Project_Details__c= projectName;*/
             
             
       
@@ -184,26 +313,34 @@ public class Amr_LoggingFormController{
         adManagerNumberCreation();
         
         jobDetails.Is_Submitt__c = true;
-        system.debug('jobDetails=id=======>'+jobDetails.id);
-        insert jobDetails;
 
-         system.debug('jobDetails=id=======>'+jobDetails.id);
-        
          
-         compareThresold(jobDetails.id);
+         compareThresold(jobDetails, categoryName,brandPosName,brandNameFromPage);
          userNotificationSendEmail();
          agencyNotificationSendEmail();
          capEmailNotification();
+         jobDetails.GBVM_Email__c = gbvmEmail;
+         jobDetails.Threshold_Amount__c = thresholdValue ;
+         
+         System.debug('HELLO ->' + jobDetails.GBVM_Email__c);   
+         insert jobDetails;
+        
+          getCategoryList();
          InnerJobDetail innerClassObj = new InnerJobDetail(jobDetails.Project_Leader_Cluster__c,jobDetails.Project_Leader_Country__c,jobDetails.id,jobDetails.AdManagerText__c);
         
          String obj = JSON.serialize(innerClassObj);
          automaticJobAllocation(obj);
          
          jobDetails = new Amr_Job_Details__c();
+         selectedCountry ='--None--';
+         categoryName ='--None--';
+         brandPosName ='--None--';
+         brandNameFromPage ='--None--';
          
          PageReference pageRef = new PageReference('/apex/Amr_AdManager');
-         ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,'Thank you for submitting the job successfully, Shortly you will receive the email confirmation'));
-         
+           
+         ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,'Thank you for submitting the job successfully, shortly you will receive the email confirmation'));
+         listOfBrand = new List<SelectOption>();
          pageRef.setRedirect(false);
          return pageRef;
     
@@ -217,7 +354,12 @@ public class Amr_LoggingFormController{
         jobAlloc.AM_Job_Detail__c = jobId;
         jobAlloc.Is_Primary__c = TRUE ; 
         jobAlloc.User__c = userId;
+        jobAlloc.Job_Allocated__c = 'Yes';
         insert jobAlloc;
+        
+        
+        Amr_Job_Details__c jobDetails = new Amr_Job_Details__c(Id= jobId , ownerId = userId);
+        update jobDetails; 
     
     }
     
@@ -242,17 +384,22 @@ public class Amr_LoggingFormController{
                         
                     }
                  }
-                 Profile profile =  [SELECT Id FROM Profile where name = 'RAP'];
-                 List<User> userList = [select id,name,ProfileId from User where Email in :emailIds AND ProfileId  = :profile.id];
-                 system.debug('===========>'+userList+'==jobId'+jobDetailsNew.JobId);
+                 system.debug('EEEMMMAAAAIIILLL  -> ' + emailIds);
+                 List<PermissionSetAssignment> userList =  [SELECT Id,Assignee.Name,Assignee.id,Assignee.Email FROM PermissionSetAssignment where PermissionSet.Name ='RAP' AND Assignee.Email = :emailIds ];
+               //  List<User> userList = [select id,name,ProfileId from User where Email in :emailIds AND PermissionId  = :profile.id];
+                 system.debug('===========>'+userList[0].Assignee.Email +'==jobId'+jobDetailsNew.JobId);
+                  system.debug('===========>'+userList[0].Assignee.id +'==jobId'+jobDetailsNew.JobId);
                  if(userList.size()>0){
+                 
+                // Amr_Job_Details__c objamrjobdetails = new Amr_Job_Details__c(Id=jobDetailsNew.JobId, ownerId = userList[0].Assignee.id );
+                 //update objamrjobdetails ;
                  Amr_Job_Details__Share jobShareObj  = new Amr_Job_Details__Share();
                  jobShareObj.ParentId = jobDetailsNew.JobId;
-                 jobShareObj.UserOrGroupId = userList[0].id;               
+                 jobShareObj.UserOrGroupId = userList[0].Assignee.id;               
                jobShareObj.AccessLevel = 'Edit';
-                 insert jobShareObj;
+                     insert jobShareObj;
                  
-                 insertJobAllocationData(jobDetailsNew.JobId,userList[0].id);
+                 insertJobAllocationData(jobDetailsNew.JobId,userList[0].Assignee.id);
                  /*if(jobShareObj.id !=null){
                         system.debug('inside job share---');
                         sendNotificationToRap(jobDetailsNew.AdManagerText,jobDetailsNew.JobId,emailIds[0]);
@@ -300,22 +447,24 @@ public class Amr_LoggingFormController{
     }
     
     
-public String Brand{get;set;}
-public String Categorty{get;set;}
-public String BrandPostion{get;set;}
+//public String Brand{get;set;}
+//public String Categorty{get;set;}
+//public String BrandPostion{get;set;}
 public double amountEntered{get;set;}
 public String ToUserEmailId{get;set;}
+public String gbvmEmail  {get;set;}
+public Double thresholdValue  {get;set;}
 
 // For Thresold Reach
-public void compareThresold(String jobDetailId){
+public void compareThresold(Amr_Job_Details__c jobDetailObj, String Categorty ,String BrandPostion , String Brand ){
     
-    Amr_Job_Details__c jobDetailObj = [select Allocated_Budget_euro__c,Category__r.name,Brand_Positioning__r.name,Brand__r.name from Amr_Job_Details__c where id =:jobDetailId];
-    Brand = jobDetailObj.Brand__r.name;
-    Categorty = jobDetailObj.Category__r.name;
-    BrandPostion = jobDetailObj.Brand_Positioning__r.name;
+  //  Amr_Job_Details__c jobDetailObj = [select Allocated_Budget_euro__c,Category__r.name,Brand_Positioning__r.name,Brand__r.name from Amr_Job_Details__c where id =:jobDetailId];
+ //   Brand = jobDetailObj.Brand__r.name;
+  //  Categorty = jobDetailObj.Category__r.name;
+  //  BrandPostion = jobDetailObj.Brand_Positioning__r.name;
     amountEntered = jobDetailObj.Allocated_Budget_euro__c;
     system.debug(Brand +'==='+Categorty+'===='+BrandPostion+'===='+amountEntered);
-    List<Amr_JobBudgetThreshold__c> jobBudgetThresoldList = [select id,Am_Brand_Positioning__r.name,Am_Brand__r.name,
+    List<Amr_JobBudgetThreshold__c> jobBudgetThresoldList = [select id,Am_Brand_Positioning__r.name,Am_Brand__r.name, Am_Brand__r.Id, Am_Category__r.Id,Am_Brand_Positioning__r.Id,
                                                                       BrandCategoryPosition__c,Budget_Limit__c,Am_Category__r.name,
                                                                       UserEmailId__c from Amr_JobBudgetThreshold__c];
     String brandCategoryPosition = BrandPostion+Brand+Categorty;
@@ -323,15 +472,22 @@ public void compareThresold(String jobDetailId){
     
     for(Amr_JobBudgetThreshold__c jobBudgetThresoldObj:jobBudgetThresoldList){
          system.debug('=======>'+jobBudgetThresoldObj.BrandCategoryPosition__c);  
-         
-         if(jobBudgetThresoldObj.BrandCategoryPosition__c == brandCategoryPosition){ 
+         String thresholdCompareId = jobBudgetThresoldObj.Am_Brand_Positioning__r.Id +''+ jobBudgetThresoldObj.Am_Brand__r.Id + jobBudgetThresoldObj.Am_Category__r.Id ;
+        System.debug('Thre ->' + thresholdCompareId);
+         if(thresholdCompareId == brandCategoryPosition){ 
             
+              System.debug('Threshold -> ' + jobBudgetThresoldObj.Budget_Limit__c + 'Entered Ampunt -> ' + amountEntered);
+          
             if(jobBudgetThresoldObj.Budget_Limit__c < amountEntered){
                 
                 ToUserEmailId = jobBudgetThresoldObj.UserEmailId__c;
                 system.debug('to email Addresss====>'+ToUserEmailId);
                 ToUserEmailId = String.valueOf(ToUserEmailId);
-                sendEmailOnThresoldReached(ToUserEmailId);
+                gbvmEmail  = ToUserEmailId;
+                thresholdValue  = jobBudgetThresoldObj.Budget_Limit__c;
+                
+                System.debug('HELLO ->' + jobDetails.GBVM_Email__c);
+            //    sendEmailOnThresoldReached(ToUserEmailId);
             }
          }
     }
@@ -340,7 +496,7 @@ public void compareThresold(String jobDetailId){
 
  public void sendEmailOnThresoldReached(String toEmailId){
     
-        Contact con = new Contact();
+    /*    Contact con = new Contact();
         con.LastName = 'CAP';
         con.email = 'advertising.production@testunilever.com';
         insert con;
@@ -357,12 +513,7 @@ public void compareThresold(String jobDetailId){
         mail.setWhatId(jobDetails.id);
         mail.setTreatTargetObjectAsRecipient(false);
         //mail.setTreatTargetObjectAsRecipient = false;
-        String[] toAddresses = new String[] {};
-        toAddresses.add(toEmailId); 
-        
-        if(jobDetails.Unilever_Project_Leader_Email__c !=null){  
-        toAddresses.add(jobDetails.Unilever_Project_Leader_Email__c);
-        }
+       
 
              
         system.debug('job toAddresses!!'+toAddresses);
@@ -370,9 +521,14 @@ public void compareThresold(String jobDetailId){
         Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});
         System.debug('Mail Sent'+mail); 
         delete con;
-        System.debug('Id ->' + eTemp);
+        System.debug('Id ->' + eTemp); */
+         String[] toAddresses = new String[] {};
+        toAddresses.add(toEmailId);  
         
-  
+        if(jobDetails.Unilever_Project_Leader_Email__c !=null){  
+        toAddresses.add(jobDetails.Unilever_Project_Leader_Email__c);
+        }
+        Amr_EmailSendingClass.emailSending(jobDetails.id,toAddresses, Label.Amr_Email_ThresholdNotification ,new List<Id>());
   }
   
   //---------------------------- anjali End Section------------------------------------
@@ -388,6 +544,7 @@ public void compareThresold(String jobDetailId){
         
         String whatid;
      
+       
         mail.setTargetObjectId(con.id);
         mail.setTemplateId(eTemp);
         mail.setSaveAsActivity(false);
@@ -473,28 +630,28 @@ public List<SelectOption> getProductionActivityValues()
     
     public void userNotificationSendEmail(){
     
-        Contact con = new Contact();
+   /*     Contact con = new Contact();
         con.LastName = 'CAP';
         con.email = 'test@unilever.com';
         insert con;
         
         Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
-        Id eTemp = [select id from EmailTemplate where developername = 'Amr_UserNotification'].Id;
+        Id eTemp = [select id from EmailTemplate where developername = 'Amr_UserNotification'].Id;  */
         
         String whatid;
         
         List<String> attachment= new List<String>();
-        attachment.add('Talent Executive Summary');
-        attachment.add('Animatics Executive Summary');
-        attachment.add('Music Executive Summary');
-        attachment.add('General Executive Summary');
+        attachment.add(Label.Amr_Attachment_Talent_Executive);
+        attachment.add(Label.Amr_Attachment_Animatics_Executive);
+        attachment.add(Label.Amr_Attachment_Music_Executive);
+        attachment.add(Label.Amr_Attachment_Executive_Summary);
         
         List<Document> doc = [select id, name, body, contenttype, developername, type from Document where name IN :attachment];
         
         List<Id> attachId = new List<Id>();
         
         for(Document docObj : doc){
-            if(docObj.name == 'General Executive Summary'){
+            if(docObj.name == Label.Amr_Attachment_Executive_Summary){
                 system.debug('inside General Executive Summary');
                attachId.add(docObj.id);
             }
@@ -502,7 +659,7 @@ public List<SelectOption> getProductionActivityValues()
         
         if(jobDetails.New_Original_Master__c == true &&(jobDetails.Tv__c == true || jobDetails.Cinema__c == true)){
             for(Document docObj : doc){
-                if(docObj.name == 'Animatics Executive Summary'){
+                if(docObj.name == Label.Amr_Attachment_Animatics_Executive){
                     system.debug('inside Animatics Executive Summary');
                     attachId.add(docObj.id);
                 }
@@ -512,7 +669,7 @@ public List<SelectOption> getProductionActivityValues()
         
         if(jobDetails.Require_Music__c == 'Yes' ){
             for(Document docObj : doc){
-                if(docObj.name == 'Music Executive Summary'){
+                if(docObj.name == Label.Amr_Attachment_Music_Executive){
                     system.debug('inside Music Executive Summary');
                     attachId.add(docObj.id);
                 }
@@ -521,22 +678,25 @@ public List<SelectOption> getProductionActivityValues()
         
         if(jobDetails.Require_Celebrity_Talent__c == 'No' ){
             for(Document docObj : doc){
-                if(docObj.name == 'Talent Executive Summary'){
+                if(docObj.name == Label.Amr_Attachment_Talent_Executive){
                     system.debug('inside Talent Executive Summary');
                     attachId.add(docObj.id);
                 }
             }
         }
         
-        system.debug('=========>'+attachId);
+        String[] toAddresses = new String[] {};
+        toAddresses.add(jobDetails.Agency_Contact_Account_Director_Email__c);   
+        
+        Amr_EmailSendingClass.emailSending(jobDetails.id,toAddresses, Label.Amr_Email_UserNotification ,attachId);
+        
+    /*    system.debug('=========>'+attachId);
         mail.setDocumentAttachments(attachId);
         mail.setTargetObjectId(con.id);
         mail.setTemplateId(eTemp);
         mail.setSaveAsActivity(false);
         mail.setWhatId(jobDetails.id);
         mail.setTreatTargetObjectAsRecipient(false);
-        String[] toAddresses = new String[] {};
-        toAddresses.add(jobDetails.Your_Email_Address__c);
         
         if(jobDetails.Unilever_Project_Leader_Email__c !=null){  
         toAddresses.add(jobDetails.Unilever_Project_Leader_Email__c);
@@ -550,13 +710,13 @@ public List<SelectOption> getProductionActivityValues()
         delete con;
         System.debug('Id ->' + eTemp);
         
-        
+     */   
         
     
     }
     
     public void agencyNotificationSendEmail(){
-        Contact con = new Contact();
+    /*    Contact con = new Contact();
         con.LastName = 'CAP';
         con.email = 'advertising.production@testunilever.com';
         insert con;
@@ -565,19 +725,19 @@ public List<SelectOption> getProductionActivityValues()
         Id eTemp = [select id from EmailTemplate where developername = 'Amr_AgencyNotification'].Id;
         
         String whatid;
-        
+    */    
         List<String> attachment= new List<String>();
-        attachment.add('Talent Executive Summary');
-        attachment.add('Animatics Executive Summary');
-        attachment.add('Music Executive Summary');
-        attachment.add('General Executive Summary');
+        attachment.add(Label.Amr_Attachment_Talent_Executive);
+        attachment.add(Label.Amr_Attachment_Animatics_Executive);
+        attachment.add(Label.Amr_Attachment_Music_Executive);
+        attachment.add(Label.Amr_Attachment_Executive_Summary);
         
         List<Document> doc = [select id, name, body, contenttype, developername, type from Document where name IN :attachment];
         
         List<Id> attachId = new List<Id>();
         
         for(Document docObj : doc){
-            if(docObj.name == 'General Executive Summary'){
+            if(docObj.name == Label.Amr_Attachment_Executive_Summary){
                 system.debug('inside General Executive Summary');
                attachId.add(docObj.id);
             }
@@ -585,7 +745,7 @@ public List<SelectOption> getProductionActivityValues()
         
         if(jobDetails.New_Original_Master__c == true &&(jobDetails.Tv__c == true || jobDetails.Cinema__c == true)){
             for(Document docObj : doc){
-                if(docObj.name == 'Animatics Executive Summary'){
+                if(docObj.name == Label.Amr_Attachment_Animatics_Executive){
                     system.debug('inside Animatics Executive Summary');
                     attachId.add(docObj.id);
                 }
@@ -595,7 +755,7 @@ public List<SelectOption> getProductionActivityValues()
         system.debug('talent----------'+jobDetails.Require_Music__c);
         if(jobDetails.Require_Music__c == 'Yes' ){
             for(Document docObj : doc){
-                if(docObj.name == 'Music Executive Summary'){
+                if(docObj.name == Label.Amr_Attachment_Music_Executive){
                     system.debug('inside Music Executive Summary');
                     attachId.add(docObj.id);
                 }
@@ -604,31 +764,86 @@ public List<SelectOption> getProductionActivityValues()
         system.debug('talent----------'+jobDetails.Require_Celebrity_Talent__c);
         if(jobDetails.Require_Celebrity_Talent__c == 'Yes' ){
             for(Document docObj : doc){
-                if(docObj.name == 'Talent Executive Summary'){
+                if(docObj.name == Label.Amr_Attachment_Talent_Executive){
                     system.debug('inside Talent Executive Summary');
                     attachId.add(docObj.id);
                 }
             }
         }
         
-        system.debug('=========>'+attachId);
+        String[] toAddresses = new String[] {};
+        toAddresses.add(jobDetails.Agency_Contact_Account_Director_Email__c);   
+        
+        Amr_EmailSendingClass.emailSending(jobDetails.id,toAddresses, Label.Amr_Email_AgencyNotification,attachId);
+    /*    system.debug('=========>'+attachId);
         mail.setDocumentAttachments(attachId);
         mail.setTargetObjectId(con.id);
         mail.setTemplateId(eTemp);
         mail.setSaveAsActivity(false);
         mail.setWhatId(jobDetails.id);
         mail.setTreatTargetObjectAsRecipient(false);
-        String[] toAddresses = new String[] {};
-        toAddresses.add(jobDetails.Agency_Contact_Account_Director_Email__c);   
+        
         system.debug('job toAddresses!!'+toAddresses);
         mail.setToAddresses( toAddresses );
         Messaging.sendEmail(new Messaging.SingleEmailMessage[] {mail});
         System.debug('Mail Sent'+mail); 
         delete con;
         System.debug('Id ->' + eTemp);
-        
+       */ 
     
     }
-
+    
+    public PageReference Redirect(){
+         String sessionIdVal = userinfo.getSessionId();
+         UserLoginId = userinfo.getuserid();  
+         User userObj = [select id,SessionId__c from User where id = :UserLoginId];
+       // PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id from PermissionSetAssignment where PermissionSet.Name = :Label.Amr_CAP order by Assignee.name];
+        PermissionSetAssignmentList = [select id,Assignee.Name,Assignee.id,PermissionSet.Name from PermissionSetAssignment where (PermissionSet.Name = :Label.Amr_CAP OR PermissionSet.Name = 'RAP' OR PermissionSet.Name = 'AdManager') order by Assignee.name];
+        system.debug('------>PermissionSetAssignmentList=='+PermissionSetAssignmentList );
+        PageReference pageRef ;
+        flag = false;
+        display = false;
+        displayRap = false;
+       system.debug(userObj.SessionId__c +'======'+sessionIdVal);
+        for(PermissionSetAssignment permissionObject:PermissionSetAssignmentList ){
+               system.debug('=======>'+permissionObject.PermissionSet.Name);
+               if(permissionObject.PermissionSet.Name == Label.Amr_CAP && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
+                   system.debug('inside cap==>');
+                   pageRef = new PageReference('/apex/Am_CAPJobportfolio');
+                   pageRef.setRedirect(true);
+                   userObj.SessionId__c = sessionIdVal;
+                  // update userObj;
+                   
+                  
+                   
+               } 
+               if(permissionObject.PermissionSet.Name == 'RAP' && permissionObject.Assignee.id == UserLoginId && (userObj.SessionId__c == null || userObj.SessionId__c != sessionIdVal)){
+                  system.debug('inside RAP==>');
+                    pageRef = new PageReference('/apex/Am_JobPortfolio');
+                    pageRef.setRedirect(true);
+                    userObj.SessionId__c = sessionIdVal;
+                    
+                   
+                  
+                   
+               }
+               
+               /*if(permissionObject.PermissionSet.Name == 'AdManager' && permissionObject.Assignee.id == UserLoginId  && userObj.SessionId__c == null){
+                   system.debug('inside AdManager==>');
+                   PageReference pageRef = new PageReference('/apex/Amr_AdManager');
+                   pageRef.setRedirect(true);
+                   return null;
+                       
+               }*/
+            
+        }
+        update userObj;
+        if(pageRef != null){
+            return pageRef;
+        }
+        PageReference pageRef1 = new PageReference('/apex/Amr_AdManager');
+        pageRef1.setRedirect(true);
+        return null;
+    }
 
 }

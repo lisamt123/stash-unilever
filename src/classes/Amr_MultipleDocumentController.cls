@@ -2,107 +2,108 @@ public with sharing class Amr_MultipleDocumentController {
     
      public List<SelectOption> filesCountList {get; set;}  
      public String FileCount {get; set;}  
-     public List<Document> allFileList {get; set;}  
+     public   List<MultipleDocumentInner> allFileList {get; set;}  
      public transient List<Document> dataList =  new List<Document>();
      private transient List<Document> allFileListFinal; 
-     public List<FeedItem> attachedListToDisplay{get;set;}
+     private  transient  List<FeedItem> attachedListToDisplay{get;set;}
      public String IdValue{get;set;}
      public String ContentUpdated{get;set;}
      public String bodyUpdated{get;set;}
+     public String SavingObjId {get;set;}
+   
 
      public Amr_MultipleDocumentController()  {  
        
-       String SavingObjId = ApexPages.currentPage().getParameters().get('id');
+       SavingObjId = ApexPages.currentPage().getParameters().get('id');
        String userId = UserInfo.getUserId();
        
        system.debug('userId====='+userId );
        
-       List<FeedItem> attachedList = [select id,CreatedById,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,LastEditById FROM FeedItem where ParentId =:SavingObjId];
-       System.debug('--->'+attachedList[0].LinkUrl);
-       attachedListToDisplay =  new List<FeedItem>();
-       
-       for(FeedItem FeedItemObj:attachedList ){
-           if(FeedItemObj.LastEditById == null && FeedItemObj.CreatedById == userId){
-               system.debug('=====linkurl'+FeedItemObj);
-               attachedListToDisplay.add(FeedItemObj);
-           }
-           if(FeedItemObj.LastEditById == userId){
-             system.debug('======feedLink'+FeedItemObj.LinkUrl);
-             attachedListToDisplay.add(FeedItemObj);
-           }
-       }
-        //file upload
-       /* allFileListFinal = new List<Document>();
+       //file upload
+        allFileListFinal = new List<Document>();
         filesCountList = new List<SelectOption>() ;  
-        allFileList = new List<Document>() ;  
+        allFileList = new List<MultipleDocumentInner>(); 
+       // allFileList.add(new MultipleDocumentInner());
+        attachedListToDisplay = new List<FeedItem>();
         system.debug('===fileCount'+FileCount);
         FileCount = ''; 
          
         for(Integer i = 1 ; i < 5 ; i++) { 
             filesCountList.add(new SelectOption(''+i , ''+i)) ;  
-        }*/
+        }
      }
      
-    /* public PageReference ChangeCount()  {  
+     public PageReference ChangeCount()  {  
       
-        if(allFileList.size()>0){
-                allFileList.clear() ;  
-        }
+        allFileList = new List<MultipleDocumentInner>();  
+       
         system.debug('xx=====');
         
         //Adding multiple attachments instance  
-        for(Integer i = 1 ; i <= Integer.valueOf(FileCount) ; i++)  
-            allFileList.add(new Document()) ;  
-        
+        if(FileCount != null ){
+        for(Integer i = 1 ; i <= Integer.valueOf(FileCount) ; i++)  {
+            allFileList.add(new MultipleDocumentInner()) ;  
+            }
+        }
         return null;  
     }  
+    
     
     public void SaveAttachments()  
     {  
        
         system.debug('---file List---'+allFileList);
         system.debug('---file count---'+FileCount );
-        if(allFileListFinal == null){
-            allFileListFinal = new List<Document>();
+        if(attachedListToDisplay == null){
+            attachedListToDisplay = new List<FeedItem>();
         }
         if(allFileList.size()>0){
-            allFileListFinal.add(allFileList[0]);
-            test(allFileListFinal);
-            allFileListFinal.remove(0);
-            allFileList.remove(0);
+            FeedItem FeedItemObj;
+            for(MultipleDocumentInner obj : allFileList){
+                if(obj.document.body !=null){
+                    FeedItemObj = new FeedItem();
+                    FeedItemObj.body = 'Attachment added';
+                    FeedItemObj.ContentData = obj.document.body;
+                    FeedItemObj.ParentId = SavingObjId;
+                    FeedItemObj.ContentFileName = obj.document.name+'*'+obj.savingObj.Folder_Name__c;
+                    attachedListToDisplay.add(FeedItemObj);
+                }
+                //obj.folderid = UserInfo.getUserId(); 
+               // obj.IsPublic = true;
+                //allFileListFinal.add(obj);
+               
+            }
+            insert  attachedListToDisplay;
+           
+            //allFileListFinal = new  List<Document>();
+           // allFileList =  new List<Document>();
+            attachedListToDisplay = new List<FeedItem>();
+            allFileList = new List<MultipleDocumentInner>();  
+            
+            
         }
         
         system.debug('============final'+allFileListFinal+'list---'+allFileList.size());
-        if(allFileList.size()== 0 ){
+        if(allFileList.size() == 0 ){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.Severity.Confirm,' file(s) are uploaded successfully'));  
        
         }
-        //allFileList = null;
-        if(FileCount == null || FileCount == '')  {
+       
+        /*if(FileCount == null || FileCount == '')  {
             ApexPages.addmessage(new ApexPages.message(ApexPages.Severity.ERROR,'Please select how many files you want to upload.'));  
             
-        } 
+        } */
         
     }  
+     
+     public class MultipleDocumentInner{
+        public Document document{get;set;}
+        public Amr_Saving__c savingObj{get;set;}
+        public MultipleDocumentInner(){
+            document = new document();
+            savingObj = new Amr_Saving__c();
+        }
+     } 
       
-       private void test(List<Document> lst){
-          dataList.addAll(lst); 
-       }*/
-       
-       public void updateDocument(){
-          try{
-          system.debug('id====='+IdValue);
-          system.debug('id====='+bodyUpdated);
-          Blob body =  Blob.valueOf(bodyUpdated);
-          system.debug('id====='+ContentUpdated);
-          FeedItem FeedItemObj =  [select id,CreatedById,ContentData,Body,ContentFileName,LinkUrl,RelatedRecordId,ParentId,Title,LastEditById FROM FeedItem where id =:IdValue];
-          FeedItemObj.ContentData = body;
-          FeedItemObj.ContentFileName = ContentUpdated;
-          update FeedItemObj;
-       }catch(Exception e){
-           system.debug('--------'+e);
-       }
-       }
-       
        
  }

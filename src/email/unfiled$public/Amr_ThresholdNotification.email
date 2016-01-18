@@ -1,13 +1,18 @@
-A new Production Project has been created, with the following details:
- <br/>
- <br/><br/>
+<span style="color:red">A new Production Project has been created, with the following details: </span> <br/><br/><br/>
+
+	
+As the GBVP you have received this email to notify you that an activity has been logged with a budget allocated higher than the threshold you have agreed to. 
+<br/><br/>
+
+The brand team will receive a notification of the RAP (Regional Advertising Producer) has been allocated to the project and will be contacted by them shortly afterwards as a way of introduction and to discuss next steps.
+<br/><br/>
+
  <span style="font-weight:bold;">Project details: </span>
  <br/>  <br/>
 <table>
 <tr>
 <td>Have you checked with CMI </td><td>{!Amr_Job_Details__c.Check_With_CMI__c}</td>
-</tr>
- <tr>
+</tr> <tr>
 <td>AdManager Number </td><td> {!Amr_Job_Details__c.AdManagerText__c}</td> </tr> 
 <tr>
 <td>Your email address </td><td> {!Amr_Job_Details__c.Your_Email_Address__c} </td> </tr>
@@ -28,8 +33,8 @@ A new Production Project has been created, with the following details:
 <tr>
 <td>Category > Brand Positioning > Brand </td><td> {!Amr_Job_Details__c.Category__c} --  {!Amr_Job_Details__c.Brand_Positioning__c} --  {!Amr_Job_Details__c.Brand__c}</td> </tr>
 <tr>
-<td>Lead  agency name </td><td> {!Amr_Job_Details__c.Lead_Creative_Agency_name__c}
-{!Amr_Job_Details__c.Lead_Agency_Name_Other__c} </td> </tr>
+<td>Lead agency name </td><td> {!Amr_Job_Details__c.Lead_Creative_Agency_name__c} 
+{!Amr_Job_Details__c.Lead_Agency_Name_Other__c}</td> </tr>
 <tr>
 <td>Lead agency location	</td><td> {!Amr_Job_Details__c.Lead_Agency_Location_Cluster__c}   {!Amr_Job_Details__c.Lead_Agency_Location_Country__c}</td> </tr>
 <tr>
@@ -39,8 +44,7 @@ A new Production Project has been created, with the following details:
 <tr>
 <td>Any other agencies involved?</td><td> {!Amr_Job_Details__c.Any_other_agencies_involved__c}</td> </tr>
 <tr>
-<td>Project name </td><td>
-{!Amr_Job_Details__c.Project_Details__c} {!Amr_Job_Details__c.Project_Name_Other__c} </td> </tr>
+<td>Project name </td><td>{!Amr_Job_Details__c.Project_Details__c} {!Amr_Job_Details__c.Project_Name_Other__c} </td> </tr>
 <tr>
 <td>Project location </td><td> {!Amr_Job_Details__c.Project_Location_Cluster__c}   {!Amr_Job_Details__c.Project_Location_Country__c}</td> </tr>
 <tr>
@@ -61,7 +65,8 @@ A new Production Project has been created, with the following details:
 <td>Do you anticipate that your production will require Music?</td><td> {!Amr_Job_Details__c.Require_Music__c }</td> </tr>
 <tr>
 <td>Do you anticipate that your production will require Celebrity Talent? </td><td>  {!Amr_Job_Details__c.Require_Celebrity_Talent__c }</td> </tr>
+<tr>
 <td>Current stage of your production activity	</td><td> {!Amr_Job_Details__c.Stage_of_Production_Activity__c} </td> </tr>
 </table>
 <br/>
-Job Details :</br> https://unilever--chazwa--c.cs14.visual.force.com/apex/AM_JobAllocations_bhupendra?id={!Amr_Job_Details__c.Id}
+Please contact Advertising.Production@unilever.com if you require any further assistance or visit http://adproduction.unilever.com/ for supporting documentation.

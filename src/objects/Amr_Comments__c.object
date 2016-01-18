@@ -11,7 +11,9 @@
     <fields>
         <fullName>new_Comment__c</fullName>
         <label>New Comment</label>
-        <type>TextArea</type>
+        <length>131072</length>
+        <type>LongTextArea</type>
+        <visibleLines>5</visibleLines>
     </fields>
     <label>Amr Comments</label>
     <nameField>

@@ -33,6 +33,12 @@
         <columns>New_Alert__c</columns>
         <columns>Alert_Message__c</columns>
         <columns>OBJECT_ID</columns>
+        <columns>Hide__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+    <listViews>
+        <fullName>All1</fullName>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

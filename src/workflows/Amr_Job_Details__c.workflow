@@ -2,8 +2,7 @@
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
         <fullName>AMR_CAPNotificationAlert</fullName>
-        <ccEmails>swarup.swarup@gmail.com</ccEmails>
-        <ccEmails>chaitu.salesforce@gmail.com</ccEmails>
+        <ccEmails>maheshsankapal@gmail.com</ccEmails>
         <protected>false</protected>
         <recipients>
             <recipient>chaitanya.reddy@mindtree.com.chazwa</recipient>
@@ -26,8 +25,313 @@
             <type>user</type>
         </recipients>
         <recipients>
+            <recipient>utkarsh.goswami@mindtree.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
             <recipient>utkarsh.goswami@mindtree.com.chazwa</recipient>
             <type>user</type>
+        </recipients>
+        <template>unfiled$public/Amr_CAPNotification</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_Agency_NoneSelected</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Agency_Contact_Account_Director_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_Agency_NoneSelected</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_Agency_RequireAll</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Agency_Contact_Account_Director_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_Agency_RequireAll</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_Agency_RequireMusic</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Agency_Contact_Account_Director_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_Agency_RequireMusic</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_Agency_RequireTalent</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Agency_Contact_Account_Director_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_Agency_RequireTalent</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_Agency_TalentAndMusic</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Agency_Contact_Account_Director_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_Agency_TalentAndMusic</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_Agency_TvAndMusic</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Agency_Contact_Account_Director_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_Agency_TvAndMusic</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_Agency_TvAndTalent</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Agency_Contact_Account_Director_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_Agency_TvAndTalent</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_Agency_TvOrCinema</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Agency_Contact_Account_Director_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_Agency_TvOrCinema</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_JobAccepted</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Job_Accepted_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_RAPAcceptedJob</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_JobCancellation</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Agency_Contact_Account_Director_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Final_Approver_Of_Material_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Finance_Member_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Your_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_JobCancellation</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_JobReAllocation</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>JobAllocated_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_RAPAllocatedJob</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_Threshold</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>GBVM_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_ThresholdNotification</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_User_MusicAndTalent</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Final_Approver_Of_Material_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Finance_Member_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Your_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_User_MusicAndTalent</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_User_NoSelection</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Final_Approver_Of_Material_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Finance_Member_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Your_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_User_NoSelectection</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_User_RequireAll</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Final_Approver_Of_Material_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Finance_Member_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Your_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_User_RequireAll</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_User_RequireMusic</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Final_Approver_Of_Material_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Finance_Member_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Your_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_User_RequireMusic</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_User_RequireTalent</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Final_Approver_Of_Material_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Finance_Member_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Your_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_User_RequireTalent</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_User_TvAndMusic</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Final_Approver_Of_Material_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Finance_Member_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Your_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_User_TvAndMusic</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_User_TvAndTalent</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Final_Approver_Of_Material_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Finance_Member_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Your_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_User_TvAndTalent</template>
+    </alerts>
+    <alerts>
+        <fullName>Amr_User_TvOrCinema</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Final_Approver_Of_Material_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Finance_Member_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Unilever_Project_Leader_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Your_Email_Address__c</field>
+            <type>email</type>
+        </recipients>
+        <template>unfiled$public/Amr_User_TvOrCinema</template>
+    </alerts>
+    <alerts>
+        <fullName>test</fullName>
+        <protected>false</protected>
+        <recipients>
+            <field>Agency_Contact_Account_Director_Email__c</field>
+            <type>email</type>
         </recipients>
         <template>unfiled$public/Amr_CAPNotification</template>
     </alerts>
@@ -38,7 +342,219 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>true</formula>
+        <formula>IF(Is_Submitt__c, True, False)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_Agency_NoneSelected</fullName>
+        <actions>
+            <name>Amr_Agency_NoneSelected</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(!Tv__c &amp;&amp; !Cinema__c &amp;&amp; ISPICKVAL(Require_Music__c, &apos;No&apos;)&amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;), TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_Agency_RequireAll</fullName>
+        <actions>
+            <name>Amr_Agency_RequireAll</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
+&amp;&amp; (Tv__c || Cinema__c), TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_Agency_RequireMusic</fullName>
+        <actions>
+            <name>Amr_Agency_RequireMusic</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) 
+&amp;&amp; !Tv__c &amp;&amp; !Cinema__c, TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_Agency_RequireTalent</fullName>
+        <actions>
+            <name>Amr_Agency_RequireTalent</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
+&amp;&amp; !Tv__c &amp;&amp; !Cinema__c, TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_Agency_TalentAndMusic</fullName>
+        <actions>
+            <name>Amr_Agency_TalentAndMusic</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
+&amp;&amp; !Tv__c &amp;&amp; !Cinema__c, TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_Agency_TvAndMusic</fullName>
+        <actions>
+            <name>Amr_Agency_TvAndMusic</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) 
+&amp;&amp; (Tv__c || Cinema__c), TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_Agency_TvAndTalent</fullName>
+        <actions>
+            <name>Amr_Agency_TvAndTalent</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
+&amp;&amp; (Tv__c || Cinema__c), TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_Agency_TvOrCinema</fullName>
+        <actions>
+            <name>Amr_Agency_TvOrCinema</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if((Cinema__c || Tv__c) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Music__c , &apos;No&apos;), TRUE, FALSE )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_JobAccepted</fullName>
+        <actions>
+            <name>Amr_JobAccepted</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISBLANK(Job_Accepted_Email__c), False, True)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_JobCancell</fullName>
+        <actions>
+            <name>Amr_JobCancellation</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(Job_Cancelled__c, True, False)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_JobReAllocate</fullName>
+        <actions>
+            <name>Amr_JobReAllocation</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if( !ISBLANK(JobAllocated_Email__c), True, False )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_Threshold</fullName>
+        <actions>
+            <name>Amr_Threshold</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(!ISBLANK(Threshold_Amount__c ) &amp;&amp; !ISBLANK(GBVM_Email__c), TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_User_NoneSelected</fullName>
+        <actions>
+            <name>Amr_User_NoSelection</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(!Tv__c &amp;&amp; !Cinema__c &amp;&amp; ISPICKVAL(Require_Music__c, &apos;No&apos;)&amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;), TRUE, FALSE)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_User_RequireAll</fullName>
+        <actions>
+            <name>Amr_User_RequireAll</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
+&amp;&amp; (Tv__c || Cinema__c), TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_User_RequireMusic</fullName>
+        <actions>
+            <name>Amr_User_RequireMusic</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;)
+&amp;&amp; !Tv__c &amp;&amp; !Cinema__c, TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_User_RequireTalent</fullName>
+        <actions>
+            <name>Amr_User_RequireTalent</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
+&amp;&amp; !Tv__c &amp;&amp; !Cinema__c, TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_User_TalentAndMusic</fullName>
+        <actions>
+            <name>Amr_User_MusicAndTalent</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
+&amp;&amp; !Tv__c &amp;&amp; !Cinema__c, TRUE, FALSE)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_User_TvAndMusic</fullName>
+        <actions>
+            <name>Amr_User_TvAndMusic</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;Yes&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) 
+&amp;&amp; (Tv__c || Cinema__c), TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_User_TvAndTalent</fullName>
+        <actions>
+            <name>Amr_User_TvAndTalent</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if(ISPICKVAL(Require_Music__c , &apos;No&apos;) &amp;&amp; ISPICKVAL(Require_Celebrity_Talent__c , &apos;Yes&apos;) 
+&amp;&amp; (Tv__c || Cinema__c), TRUE, FALSE)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Amr_User_TvOrCinema</fullName>
+        <actions>
+            <name>Amr_User_TvOrCinema</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>if((Cinema__c || Tv__c) &amp;&amp;  ISPICKVAL(Require_Celebrity_Talent__c , &apos;No&apos;) &amp;&amp;  ISPICKVAL(Require_Music__c , &apos;No&apos;), TRUE, FALSE )</formula>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
 </Workflow>

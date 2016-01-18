@@ -1,18 +1,22 @@
-A new Production Project has been created, with the following details:
- <br/>
- <br/><br/>
- <span style="font-weight:bold;">Project details: </span>
- <br/>  <br/>
-<table>
+<span style="color:red">{!Amr_Job_Details__c.OwnerFullName}  has been allocated to the following project :  </span> <br/><br/>
+
+	
+AdManager Number : {!Amr_Job_Details__c.AdManagerText__c}
+<br/><br/>
+
+He/she has chosen to accept the project.
+<br/><br/>
+
+<table> 
 <tr>
 <td>Have you checked with CMI </td><td>{!Amr_Job_Details__c.Check_With_CMI__c}</td>
 </tr>
- <tr>
-<td>AdManager Number </td><td> {!Amr_Job_Details__c.AdManagerText__c}</td> </tr> 
 <tr>
 <td>Your email address </td><td> {!Amr_Job_Details__c.Your_Email_Address__c} </td> </tr>
 <tr>
-<td>Unilever project leader email </td><td> {!Amr_Job_Details__c.Unilever_Project_Leader_Email__c} </td> </tr>
+<td>Unilever project leader email </td><td> {!Amr_Job_Details__c.Unilever_Project_Leader_Email__c} 
+
+</td> </tr>
 <tr>
 <td>Location of Unilever project leader </td><td>{!Amr_Job_Details__c.Project_Leader_Cluster__c}    {!Amr_Job_Details__c.Project_Leader_Country__c}</td> </tr>
 <tr>
@@ -28,8 +32,8 @@ A new Production Project has been created, with the following details:
 <tr>
 <td>Category > Brand Positioning > Brand </td><td> {!Amr_Job_Details__c.Category__c} --  {!Amr_Job_Details__c.Brand_Positioning__c} --  {!Amr_Job_Details__c.Brand__c}</td> </tr>
 <tr>
-<td>Lead  agency name </td><td> {!Amr_Job_Details__c.Lead_Creative_Agency_name__c}
-{!Amr_Job_Details__c.Lead_Agency_Name_Other__c} </td> </tr>
+<td>Lead agency name </td><td> {!Amr_Job_Details__c.Lead_Creative_Agency_name__c}  
+{!Amr_Job_Details__c.Lead_Agency_Name_Other__c}</td> </tr>
 <tr>
 <td>Lead agency location	</td><td> {!Amr_Job_Details__c.Lead_Agency_Location_Cluster__c}   {!Amr_Job_Details__c.Lead_Agency_Location_Country__c}</td> </tr>
 <tr>
@@ -61,7 +65,6 @@ A new Production Project has been created, with the following details:
 <td>Do you anticipate that your production will require Music?</td><td> {!Amr_Job_Details__c.Require_Music__c }</td> </tr>
 <tr>
 <td>Do you anticipate that your production will require Celebrity Talent? </td><td>  {!Amr_Job_Details__c.Require_Celebrity_Talent__c }</td> </tr>
+<tr>
 <td>Current stage of your production activity	</td><td> {!Amr_Job_Details__c.Stage_of_Production_Activity__c} </td> </tr>
 </table>
-<br/>
-Job Details :</br> https://unilever--chazwa--c.cs14.visual.force.com/apex/AM_JobAllocations_bhupendra?id={!Amr_Job_Details__c.Id}
