@@ -78,9 +78,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     public boolean isError {get; set;}
     private static string crossX = ' X ';
     
-    //Var Used for Campaign Cart
-    public List<WrapperAssetNameGroup> lstWrapAssets {get;set;}
-
+    
 
     public String mapRelatedCntriesJSON { get; set; }
     public String mapRelatedCntriesJSONMap { get; set; }
@@ -97,9 +95,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         v3 = false;
         v4 = false;
         v5 = false;
-        //Initialise Wrapper Related to Asset Names.
-        lstWrapAssets = new List<WrapperAssetNameGroup>();
-        
+       
         Id idUser = UserInfo.getUserId();
         userConnected = [Select Name from User where Id = : idUser ];
         lstStage = new list<string>();
@@ -307,7 +303,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             /*
             *    This part is used to call method to fill Wrap Asset Lst to be shown in the Cart.
             */
-            InitializeMapAssetNames(project.Id);
+           // InitializeMapAssetNames(project.Id);
             
         }
         if (project.Brand_Led_Growth__c != null && project.Brand_Led_Growth__c.contains('€')) {
@@ -656,9 +652,9 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             }
             system.debug('### project.Brand_Led_Growth__c : ' +  project.Brand_Led_Growth__c);
             // also update project stage chevron
-            Project.Completed_Stage__c = stage_identifier.s_selected_completed_stage;
-            Project.Projected_Stage__c = stage_identifier.s_selected_projected_stage;
-
+            project.Completed_Stage__c = stage_identifier.s_selected_completed_stage;
+            project.Projected_Stage__c = stage_identifier.s_selected_projected_stage;
+            project.Percentage_of_Fee_for_this_FY__c = stage_identifier.sow_project_in_scope.Percentage_of_Fee_for_this_FY__c;
 
 
             if (projectId != null) {
@@ -814,6 +810,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         system.debug('### assetInstance.Actual_Delivery_Date__c ' + assetInstance.Actual_Delivery_Date__c);
         system.debug('### subCatc ' + subCat);
         system.debug('### mapAssetsPerSubCat ' + mapAssetsPerSubCat);
+        
         mapAssetsPerSubCat.get(subCat).Actual_Delivery_Date__c = assetInstance.Actual_Delivery_Date__c;
         mapAssetsPerSubCat.get(subCat).Additional_Description__c = assetInstance.Additional_Description__c;
 
@@ -854,18 +851,25 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         if (assetInstance.Id != null) {
             assetInstance.Id = NULL;
         }
-        insert assetInstance;
-
-        Oblix_Project_Assets__c getAssetName = [select Name, Quantity__c, Sub_Category__c, Asset_Type__c, Asset_Title__c  from Oblix_Project_Assets__c where id = :assetInstance.id];
-        lstAssetsForCard.add(getAssetName);
-        system.debug('### project.Campaign_Fees_Total__c : ' + project.Campaign_Fees_Total__c);
+        List<Oblix_Project_Assets__c  > tmpAssets = [select Name, Quantity__c, Sub_Category__c, Asset_Type__c, Asset_Title__c,Asset_Picklist__c   from Oblix_Project_Assets__c where Asset_Picklist__c = :assetInstance.Asset_Picklist__c and Agency_Projects__c =: project.Id];
+        if(!tmpAssets.isempty()){
+          Oblix_Project_Assets__c tmpAsset =   tmpAssets[0];
+          assetInstance.Id = tmpAssets[0].Id; 
+          assetInstance.Quantity__c = assetInstance.Quantity__c  + tmpAssets[0].Quantity__c ;
+          update assetInstance;
+        }else{
+            insert assetInstance;
+        }
+        
+        lstAssetsForCard= [select Id, Name, Quantity__c, Sub_Category__c, Asset_Type__c, Asset_Title__c, Asset_Picklist__c   from Oblix_Project_Assets__c where Agency_Projects__c =: project.Id];
+         
         project = [Select Id, Name, Innovation_Projects__c , ProjectTotalAssetscore__c, Jobs_to_be_Done__c , Campaign_Fees_Total__c, Completed_Stage__c, Financial_Year__r.currency__c, Projected_Stage__c, Financial_Year__r.Financial_Year__c, Financial_Year__r.Name,BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Status__c, Preview_Date__c, Start_of_TV_production__c, Final_release__c, Live_Date__c, Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c, Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, OblixCountries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id = :projectId];
         estimateCost =  project.Campaign_Fees_Total__c;
         countAssetNumberForCampaign = [Select count() from Oblix_Project_Assets__c  where Agency_Projects__c =: project.id];
          /*
         *    This part is used to call method to fill Wrap Asset Lst to be shown in the Cart.
         */
-        InitializeMapAssetNames(project.Id);
+        //InitializeMapAssetNames(project.Id);
         assetInstance = new Oblix_Project_Assets__c ();
         assetInstance.clear();
         mapAssetsPerSubCat.put(subCat, new Oblix_Project_Assets__c(Sub_Category__c = subCat, Quantity__c = 1, recordTypeId = mapRTforSubCat.get(subCat)));
@@ -917,62 +921,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         }
 
     }
-    /*
-    *    @Description : This Method is used to construct a  wrapper List with Asset Name and number of record.
-    *    @param :  projectId.
-    *    @return : void, fill "lstWrapAssets" .
-    */
-    public void InitializeMapAssetNames(String projectId){
-            lstWrapAssets = new List<WrapperAssetNameGroup>();
-            Map<String, Integer> mapGroupingByAssetName = new Map<String, Integer>();
-            Schema.DescribeFieldResult fieldResult = Oblix_Project_Assets__c.Asset_Picklist__c.getDescribe();
-               List<Schema.PicklistEntry> ple = fieldResult.getPicklistValues();
-               //Construct List of Names to loop over them in Page.
-               List<String> pickValues = new List<String>();
-               for( Schema.PicklistEntry f : ple)
-               {
-                  pickValues.add( f.getValue());
-               }   
-               
-               //Construct Map for each Asset Name number of Assets related to.  
-               for(Oblix_Project_Assets__c asset : [Select Id, Name, Asset_Picklist__c, Location__c from Oblix_Project_Assets__c where Agency_Projects__c =: projectId]){
-                   if(asset.Asset_Picklist__c == 'Other'){
-                       if(mapGroupingByAssetName.containsKey(asset.Asset_Picklist__c+' : ' +asset.Location__c)){
-                          mapGroupingByAssetName.put(asset.Asset_Picklist__c+' : ' +asset.Location__c, mapGroupingByAssetName.get(asset.Asset_Picklist__c+' : ' +asset.Location__c)+1); 
-                       }else{
-                            mapGroupingByAssetName.put(asset.Asset_Picklist__c+' : ' +asset.Location__c, 1);
-                       }
-                       
-                   }else{
-                       if(mapGroupingByAssetName.containsKey(asset.Asset_Picklist__c)){
-                      mapGroupingByAssetName.put(asset.Asset_Picklist__c, mapGroupingByAssetName.get(asset.Asset_Picklist__c)+1); 
-                       }else{
-                            mapGroupingByAssetName.put(asset.Asset_Picklist__c, 1);
-                       }
-                   }
-                   
-               }
-               system.debug('###mapGroupingByAssetName :'+mapGroupingByAssetName);
-               if(!mapGroupingByAssetName.keySet().isEmpty()){
-                   for(String assetNam : mapGroupingByAssetName.keySet()){
-                       WrapperAssetNameGroup wrapInstance = new WrapperAssetNameGroup();
-                           wrapInstance.assetName = assetNam ;
-                           wrapInstance.numberAsset = mapGroupingByAssetName.get(assetNam);
-                           
-                           lstWrapAssets.add(wrapInstance);
-                   }
-               }
-                          
-   }
-    
-    public Class WrapperAssetNameGroup{
-        public String assetName {get;set;}
-        public Integer numberAsset {get;set;}
-        
-        public WrapperAssetNameGroup (){
-        
-        }
-    }
+   
     
     /*
     Description:Remote Action to remove asset by id
@@ -1009,7 +958,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         /*
         *    This part is used to call method to fill Wrap Asset Lst to be shown in the Cart.
         */
-        InitializeMapAssetNames(project.Id);
+        //InitializeMapAssetNames(project.Id);
     }
     
     /*
@@ -1025,6 +974,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     */
     @RemoteAction
     public static Oblix_Utils.AssetDetailWrapper getAssetDetails(String assetId) {
+        system.debug('###assetId  : '+assetId );
         return new Oblix_Utils.AssetDetailWrapper([SELECT Id, Quantity__c, Additional_Description__c,
                 Actual_Delivery_Date__c, Asset_Picklist__c, Location__c, Asset_Title__c 
                 FROM Oblix_Project_Assets__c WHERE Id = : assetId LIMIT 1]);
@@ -1035,18 +985,27 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     */
     @RemoteAction
     public static void UpdateProjectAction(String assetId, Map<String, Object> details) {
-        Oblix_Project_Assets__c asset = [SELECT Id, Asset_Title__c FROM Oblix_Project_Assets__c WHERE Id = : assetId];
+        Oblix_Project_Assets__c asset = [SELECT Id, Asset_Title__c, Asset_Picklist__c,Agency_Projects__c,Quantity__c   FROM Oblix_Project_Assets__c WHERE Id = : assetId];
         for (String key : details.keySet()) {
             if (key.equalsIgnoreCase('asset_Picklist')) {
                 asset.put(key + '__c', String.valueOf(details.get(key)));
             } else if (key.equalsIgnoreCase('quantity')) {
-                asset.put(key + '__c', Decimal.valueOf(String.valueOf(details.get(key))));
+                System.debug('###asset.Quantity__c: '+asset.Quantity__c);
+                System.debug('###Decimal.valueOf(String.valueOf(details.get(key))): '+Decimal.valueOf(String.valueOf(details.get(key))));
+                
+                asset.put(key + '__c', Decimal.valueOf(String.valueOf(details.get(key))) + asset.Quantity__c );
             } else {
                 asset.put(key + '__c', String.valueOf(details.get(key)));
             }
         }
 
         asset.Asset_Title__c = asset.Quantity__c + crossX + asset.Asset_Title__c.split(crossX)[1];
+        
+        
+        
+        
+        
+        
         System.debug('###asset : '+asset);
         Savepoint sp = Database.setSavepoint();
         try {

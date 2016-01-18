@@ -2,9 +2,9 @@
 private class Oblix_SOWMainDetailController_Test {
 
 	//private static final String TWO_ELEMENTS_MESSSAGE = 'There should be two elements';
-    //private static final String NOT_NULL_MESSSAGE = 'Page reference should not be null';
+    private static final String NOT_NULL_MESSSAGE = 'Page reference should not be null';
     private static final String FINAL_TEST = 'test';
-
+/*
 @isTest static void getthousandBlocksTest() {
 
         User u = Oblix_TestUtils.createTestUser();
@@ -28,7 +28,7 @@ private class Oblix_SOWMainDetailController_Test {
         }
     }
 
-
+*/
     @isTest static void actionsTest() {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
@@ -74,11 +74,13 @@ private class Oblix_SOWMainDetailController_Test {
             controller.Cancel();
 			System.assert(controller.deleteAction() != null);
         //    System.assert(controller.CreateSOWAction() != null, NOT_NULL_MESSSAGE);
-     /*       System.assert(controller.ViewAction() != null, NOT_NULL_MESSSAGE);
-            System.assert(controller.ViewSow() != null, NOT_NULL_MESSSAGE);
-            System.assert(controller.selSow.id != null, 'Record should be selected');
-            System.assert(!controller.lstAttachements.isEmpty(), 'List should not be empty');
-*/
+            System.assert(controller.viewNonCampaign() != null, NOT_NULL_MESSSAGE);
+            System.assert(controller.addNonCampaignProject() != null, NOT_NULL_MESSSAGE);
+            System.assert(Oblix_SOWMainDetailController.reportFolderURL != null, NOT_NULL_MESSSAGE);
+            controller.FileCount = '5';
+            System.assertEquals(null, controller.changeCount());
+            controller.getCategoryBrand();
+
         }
     }
     @isTest static void removeAttachments_Test() {

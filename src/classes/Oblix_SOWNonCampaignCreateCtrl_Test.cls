@@ -1,6 +1,8 @@
 @isTest
 private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
+	static Marketing_Basics__c globalAct; 
+
  private static  id createMaketingSow (){
       
          Account myAccount = new Account();
@@ -35,18 +37,22 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
               insert roleRate; 
           String marKObjName = 'Marketing_Basics__c';
           Marketing_Basics__c basicParent = new Marketing_Basics__c();
+            basicParent.Non_Campaign_Key__c = '123';
             basicParent.Oblix_SOWMarketing__c = marketingSow.Id;
             basicParent.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Resource');
             basicParent.OblixCountry__c = geographyCountry.Id;
             basicParent.OblixOtherItemFee__c  = 33;
+            basicParent.No_of_Hours_Required__c = 5;
             insert basicParent;
             
       Marketing_Basics__c basicParent1 = new Marketing_Basics__c();
+      		basicParent1.Non_Campaign_Key__c = '124';
             basicParent1.Oblix_SOWMarketing__c = marketingSow.Id;
             basicParent1.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Resource');
             basicParent1.FTE__c = 50;
             basicParent1.OblixCountry__c = geographyCountry.Id;
             basicParent1.OblixOtherItemFee__c  = 33;
+            basicParent1.No_of_Hours_Required__c = 5;
             insert basicParent1;
           
             
@@ -54,15 +60,21 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             basicParentActivity.Oblix_SOWMarketing__c = marketingSow.Id;
             basicParentActivity.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Activity');
             basicParentActivity.OblixCountry__c = geographyCountry.Id;
+            basicParentActivity.Non_Campaign_Key__c = '125';
+            basicParentActivity.No_of_Hours_Required__c = 5;
           Marketing_Basics__c basicParentActivity1 = new Marketing_Basics__c();
             basicParentActivity1.Oblix_SOWMarketing__c = marketingSow.Id;
             basicParentActivity1.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Activity');  
             //basicParentActivity1.FTE__c = 50;
             basicParentActivity1.No_of_Hours_Required__c = 10;
             basicParentActivity1.OblixCountry__c = geographyCountry.Id;
+            basicParentActivity1.Non_Campaign_Key__c = '126';
+            basicParentActivity1.No_of_Hours_Required__c = 5;
+            basicParentActivity1.OblixOtherItemFee__c = 10;
+            basicParentActivity1.name = 'preselected';
             insert basicParentActivity1;
-            
-            return basicParent.id; 
+            globalAct = basicParentActivity1;
+            return marketingSow.id; 
         
     }
  
@@ -71,74 +83,37 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
         User u = Oblix_TestUtils.createTestUser(); 
          
         System.runAs(u){
-            Marketing_SOW__c marketingSow = new Marketing_SOW__c();
-                marketingSow.Active__c = true;
-                marketingSow.Name = 'Marketinf Sow Approval Test';
-                marketingSow.SOW_Status__c = 'Open';
-                marketingSow.Financial_Year__c = 'FY2015';
-                insert marketingSow;
-                
-           
-                
-           
-                Test.startTest();
-                    PageReference pageref = Page.Oblix_VF09_nonCampaignEdit; 
-                       Test.setCurrentPage(pageref) ;
-                        pageRef.getParameters().put('itm', createMaketingSow() );
-                  Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
-                 //   System.assertEquals(controller.asset.Id, asset.Id); // assert that the controller take the ID from params
-                 //controller.addnewItems();
-                 controller.back();
-                 controller.backtoSow();
-                 controller.getsomme();
-                 controller.saveList();
+   
+	        Test.startTest();
+            ApexPages.currentPage().getParameters().put('preSelectedName', 'preselected' );
+            ApexPages.currentPage().getParameters().put('sowId', createMaketingSow() );
+            Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
                  
-                 //test insert activity
-        controller.activity.name='istest';
-        controller.activity.selectedCountryname ='France' ;
-        controller.fillAgencyDepartment();
-        controller.activity.selectedAgencyDepartment= 'Account Management';
-        controller.fillRoleTitle();
-        controller.fillRate();
-        controller.calculResult();
-        
-        controller.addToNew();
-               
-               
-                 //test insert ressource
-        
-      
-        controller.resource.selectedCountryname ='France' ;
-        controller.fillAgencyDepartment1();
-        controller.resource.selectedAgencyDepartment= 'Account Management';
-        controller.fillRoleTitle1();
-        controller.fillRate1();
-        controller.calculResult1();
-        
-        controller.addToNew1();
-        
-        
-         controller.resource.name='istest';
-        controller.resource.selectedCountryname ='France' ;
-        controller.fillAgencyDepartment1();
-        controller.resource.selectedAgencyDepartment= 'Account Management';
-        controller.fillRoleTitle1();
-        controller.fillRate1();
-        controller.calculResult1();  
-        controller.addToNew1();
-                 
-                 
-            controller.ElemToEdit  =0;
-            controller.editItem();     
-                 
-            controller.ElemToEdit  =1;
-            controller.editItem(); 
-            
-            controller.ElemToDel = 0; 
-            controller.delElm();    
-            System.assertEquals(controller.newItems.size(),2);
-            
-            
+            controller.seletedActivity = JSON.serialize(globalAct);
+            //test insert activity
+            controller.selectedTab = 'activity';
+    	    controller.activity.name='istest';
+        	controller.activity.selectedCountryname ='France' ;
+        	controller.fillAgencyDepartment();
+        	controller.activity.selectedAgencyDepartment= 'Account Management';
+	        controller.fillRoleTitle();
+    	    controller.fillRate();
+
+	        controller.resource.name='istest';
+        	controller.resource.selectedCountryname ='France' ;
+        	controller.resource.selectedAgencyDepartment= 'Account Management';
+			controller.getSelectedActivitiesByName();
+       		controller.addToActivitySelectionMap();
+       		controller.insertSelectedActivitiesAndRefreshBasket();
+       		controller.removeFromSelectionMap();
+       		controller.removeItemFromBasketList();
+       		controller.insertSelectedResourceAndRefreshBasket();
+       		controller.clearActivitySelectionMap();
+       		List<SelectOption> roleTitle = new List<SelectOption>{new SelectOption('1','1')};
+       		Map<String,String> roleTitlesNameMap = new  Map<String,String>();
+       		roleTitlesNameMap.put('1','1');
+       		List<SelectOption> result = controller.populateRoleTitleList(roleTitle,roleTitlesNameMap);
+       		controller.exitSwop();
             Test.stopTest();
                
          }

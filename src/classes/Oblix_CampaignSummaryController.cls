@@ -133,4 +133,35 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         return addAssetPage;
     }
 
+
+    /*******************************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-09
+    * @description  delete campaign and redirect to sow main page
+    ********************************************************************************/
+    public pageReference deleteCampaign() {
+        // delete the seleted campaign
+        try{
+            if (NULL!=selected_project){
+                
+                delete selected_project;
+
+                Pagereference sow_page = Page.Oblix_SOWMainDetail;
+                sow_page.getParameters().put('sowId', selected_sow.Id);
+                sow_page.setRedirect(true);
+                return sow_page;
+            }
+            else{
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'Failed to delete campaign'));
+                return null;
+            }
+        }
+        catch (Exception ex){
+            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR, 'Failed to delete campaign'));
+            return null;
+        }
+
+    }
+
+
 }

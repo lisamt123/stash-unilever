@@ -176,7 +176,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             
             // retrieve non campaign items
             liso_other_non_campaign_items = [SELECT  m.Role_Title__c, m.RecordTypeId, m.Other_Activities__c, m.Oblix_SOWMarketing__c, m.OblixOtherItemFee__c, m.OblixCountry__c
-                , m.No_of_Hours_Required__c, m.Name, m.LastModifiedById, m.Id, m.Financial_Year_old__c
+                , m.No_of_Hours_Required__c, m.Name, m.LastModifiedById, m.Id, m.Financial_Year_old__c, OblixCountry__r.Name
                 , m.Financial_Year__c, m.FTE__c, m.Description__c, m.CreatedDate, m.CreatedById, m.Agency__c, m.Agency_Department__c, m.Activities__c 
                 FROM Marketing_Basics__c m WHERE Oblix_SOWMarketing__c = : selected_sow.Id LIMIT 500]; // m.Discipline__c,
 
@@ -662,6 +662,18 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                 meNewPage = Page.Oblix_CampaignSummary;
                 meNewPage.getParameters().put('projectId', selectedProjectId);
         } else return null;
+        meNewPage.setRedirect(True);
+        return meNewPage;
+    }
+
+    public PageReference viewNonCampaign() {
+
+        PageReference meNewPage ;
+
+        meNewPage = Page.Oblix_sownoncampaigncreate;
+        meNewPage.getParameters().put('sowId', sow_id);
+        meNewPage.getParameters().put('preSelectedName', selectedProjectId);
+        System.DEBUG('preSelectedName : ' + selectedProjectId);
         meNewPage.setRedirect(True);
         return meNewPage;
     }

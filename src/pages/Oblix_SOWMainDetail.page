@@ -12,10 +12,8 @@
         <apex:define name="top_option_links">
             <apex:commandLink value="Edit SOW" action="{!editActionPage}"></apex:commandLink>&nbsp;&nbsp;|
             <a href="" disabled="disabled">Clone SOW</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+            <!-- <apex:commandLink value="Delete SOW" action="{!deleteAction}"></apex:commandLink> -->
             <a href="#" onclick="if (confirm('are you sure you want to delete this asset?')){deleteSOW();blockme();}">Delete SOW</a>
-            <!-- <apex:outputLink value="/apex/oblix_sowmain" title="Delete SOW" onclick="if (confirm('are you sure you want to delete this asset?')){blockme();deleteSOW();}else{return false;}"  target="_self" >Delete SOW</apex:outputLink> -->
-            <!-- <a href=""></a>
-            <apex:commandLink onclick="if (confirm('are you sure you want to delete this asset?')){deleteSOW();blockme();}" action="" >Delete SOW</apex:commandLink> -->
         </apex:define>
 
         <apex:define name="top_right_panel">
@@ -106,7 +104,7 @@
 
             
             <div class="row">
-                <ul id="tabs" class="sow_tab_style nav nav-tabs sow_tab_align" data-tabs="tabs">
+                <ul id="tabs" class="sow_tab_style nav nav-tabs sow_tab_align " data-tabs="tabs">
                     <li class="active"><a href="#red" data-toggle="tab">Related SOW items</a>
                     </li>
                     <li><a href="#orange" data-toggle="tab">Related SOW Conversation</a>
@@ -165,27 +163,27 @@
                                                             <p>{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'Project Cancelled','')}</p>
                                                             <ul>
                                                                 <li>
-                                                                    <div title="Briefing" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[0].s_css_class_name}">
+                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[0].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Strategy & Planning" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[1].s_css_class_name}">
+                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[1].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Creative Ideation" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[2].s_css_class_name}">
+                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[2].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Creative Execution" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[3].s_css_class_name}">
+                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[3].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div title="Production" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[4].s_css_class_name}">
+                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[4].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
@@ -210,7 +208,7 @@
                                                     <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
                                                     <td></td>
-                                                    <td></td>
+                                                    <td>{!campaign_and_non_campaign.dynamic_object['OblixCountry__r.Name']}</td>
                                                     <td></td>
                                                     <td></td>
                                                     <td>€&nbsp;
@@ -248,15 +246,19 @@
             <apex:actionFunction name="ViewProject" action="{!ViewProject}" rerender="accountTable, pageMessages">
                 <apex:param value="{!selectedProjectId}" assignTo="{!selectedProjectId}" name="ids" />
             </apex:actionFunction>
+            <apex:actionFunction name="viewNonCampaign" action="{!viewNonCampaign}" rerender="accountTable, pageMessages">
+                <apex:param value="{!selectedProjectId}" assignTo="{!selectedProjectId}" name="ids" />
+            </apex:actionFunction>
             <apex:actionFunction name="deleteSOW" action="{!DeleteAction}" oncomplete="unblockUI();"/>
             <apex:actionFunction name="getCategoryBrandRec" action="{!getCategoryBrand}" rerender="sowNewId" oncomplete="unblockUI();">
                 <apex:param value="{!selected_sow.OblixBrand__c}" name="brandId" />
             </apex:actionFunction>
         </apex:define>
-        <div id="dialog-confirm" title="Confirm Delete" style="display:none;">
+<!--         <div id="dialog-confirm" title="Confirm Delete" style="display:none;">
             <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This SOW will be deleted, together with its campaign and other related items. Are you sure?</p>
-        </div>
+        </div> -->
         <apex:define name="page_scripts">
+        <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_SOWMainDetail.js')}" />
             <script>
                 var redirectToAttachment = function(attachmentId) {
                     'use strict';
@@ -276,7 +278,7 @@
                 });
             </script>
 
-            <script>
+            <!--<script>
 
                 $ = jQuery.noConflict();
                 $('.read_more').click(function() {
@@ -326,17 +328,13 @@
                             //alert(ids);
                             ViewProject(ids);
                         } else {
-                            alert('This is a non campaign, pleas select a campaign');
+                            blockme();
+                            viewNonCampaign();
                         }
                     });
 
                 });
-            </script>
-            <script>
-                $(function() {
-                    $( document ).tooltip();
-                  });
-            </script>
+            </script>-->
         </apex:define>
     </apex:composition>
 </apex:page>

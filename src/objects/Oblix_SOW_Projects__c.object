@@ -66,6 +66,26 @@
         <fullName>Oblix_Campaign_Summary</fullName>
         <description>Campaign summary page</description>
         <displayedFields>
+            <field>OblixRegion__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Timescale_Notes__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Financial_Year__r.Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Financial_Year__r.Financial_Year__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>Project_Scale_2__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>

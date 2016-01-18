@@ -135,6 +135,7 @@ public with sharing class Oblix_CampaignStageLogic{
         // S.M. all projected stages should be set to true by default DE218
         sow_project_in_scope.Projected_Stage__c = STAGE_PROJECT_PRODUCTION;
         setStageAndCSS(sow_project_in_scope.Projected_Stage__c, sow_project_in_scope.Completed_Stage__c);
+        calculateFeesForThisYear();
 
     }
 
@@ -166,6 +167,7 @@ public with sharing class Oblix_CampaignStageLogic{
         b_is_projection_selectable = is_projection_selectable;
         sow_project_in_scope = sow_project;
         setStageAndCSS(sow_project.Projected_Stage__c, sow_project.Completed_Stage__c);
+        calculateFeesForThisYear();
 
     }
 
@@ -203,14 +205,28 @@ public with sharing class Oblix_CampaignStageLogic{
 
         s_selected_projected_stage = sow_project_in_scope.Projected_Stage__c;
         s_selected_completed_stage = sow_project_in_scope.Completed_Stage__c;
-        
-        // also update the fees there is a formula field calculation. Have to replicate here to referesh without saving
-        i_fees_for_this_financial_year = NULL!= i_percentage_of_fee_this_year && NULL!=sow_project_in_scope.Campaign_Total_Fees__c
-            ? Integer.valueOf((i_percentage_of_fee_this_year * sow_project_in_scope.Campaign_Total_Fees__c / 100).round(System.RoundingMode.Up))
-            : 0;
+ 
 
     }
 
+    /*******************************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-09
+    * @description  depending on the percentage of fee this year and total fees to be paid
+    ********************************************************************************/
+    private void calculateFeesForThisYear(){
+
+        if (NULL != i_percentage_of_fee_this_year && NULL != sow_project_in_scope.Campaign_Total_Fees__c && i_percentage_of_fee_this_year == 100 ){
+            i_fees_for_this_financial_year = Integer.valueOf(sow_project_in_scope.Campaign_Total_Fees__c);
+        }
+        else if (NULL != i_percentage_of_fee_this_year && NULL != sow_project_in_scope.Campaign_Total_Fees__c ){
+            i_fees_for_this_financial_year = Integer.valueOf((i_percentage_of_fee_this_year * sow_project_in_scope.Campaign_Total_Fees__c / 100).round(System.RoundingMode.Up));
+        }
+        else{
+            i_fees_for_this_financial_year = 0;
+        }
+
+    }
     
     /********************************************************************
     * @author       Shahin Movahedi
@@ -290,6 +306,7 @@ public with sharing class Oblix_CampaignStageLogic{
 
         // workout the stage by the attributes
         setStageAndCSS(sow_project_in_scope.Projected_Stage__c, sow_project_in_scope.Completed_Stage__c);
+        calculateFeesForThisYear();
 
         // set percentage projection and completion
         sow_project_in_scope.Agency_Percentage_of_Fees_to_this_FY__c = i_agency_Percentage_of_fees_this_year;

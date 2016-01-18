@@ -15,7 +15,7 @@
     Update History
     --------------    
 */ 
-public without sharing class Oblix_TR01SOWMarkingSharing {
+public with sharing class Oblix_TR01SOWMarkingSharing {
     //list of MArketingShare to Delete First
     public static List<Marketing_SOW__Share> retrieveMarketingShare(List<Marketing_SOW__c> lstMarketingSow, set<Id> setOWnerdsIds){
         return [Select Id, ParentId from  Marketing_SOW__Share where ParentId in :lstMarketingSow and UserOrGroupId Not IN : setOWnerdsIds];

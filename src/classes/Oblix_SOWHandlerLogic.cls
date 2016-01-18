@@ -48,7 +48,7 @@ public with sharing class Oblix_SOWHandlerLogic {
 			mids_campaign_id_category_brand.put(midid_brand_to_sow_ids.get(so_category_brand.Brand_Id__c), so_category_brand);
 		}
 	
-		system.debug('## liso_sows_in_scope: ' + liso_sows_in_scope  + ' - mids_campaign_id_category_brand: ' + mids_campaign_id_category_brand + '\n\n idid_brand_to_sow_ids: ' + midid_brand_to_sow_ids + '\n\n midso_old_sows_in_scope: ' + midso_old_sows_in_scope + '\n\n liso_sows_in_scope: ' + liso_sows_in_scope);
+	//	system.debug('## liso_sows_in_scope: ' + liso_sows_in_scope  + ' - mids_campaign_id_category_brand: ' + mids_campaign_id_category_brand + '\n\n idid_brand_to_sow_ids: ' + midid_brand_to_sow_ids + '\n\n midso_old_sows_in_scope: ' + midso_old_sows_in_scope + '\n\n liso_sows_in_scope: ' + liso_sows_in_scope);
 
         return mids_campaign_id_category_brand;
     }

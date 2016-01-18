@@ -12,8 +12,9 @@ public with sharing class Oblix_NonCampaignWrapper {
 	public Integer hoursSelected { get; set; }
 	public String result { get;set; }
 	public String name { get; set; }
-	public String totalAmount { get; set; }
-	public Integer index { get; set; }
+	public Double totalAmount { get; set; }
+	public String key { get; set; }
+	public Id activityId { get; set; }
 
 
 	public Boolean agencyVisible { get;set; }
