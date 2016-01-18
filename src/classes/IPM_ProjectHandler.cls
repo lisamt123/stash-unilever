@@ -673,19 +673,14 @@ public with sharing class IPM_ProjectHandler implements ITrigger
 	                    if(string.isNotBlank(p.Deputy_Project_Leader__c) && proj.Deputy_Project_Leader__c != p.Deputy_Project_Leader__c){
 	                        lstBETaccessIds.add(p.Deputy_Project_Leader__c);    
 	                    }
-	                }
-	                boolean ischanged=false;
-           
-	                if(p.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+	                }	                 
+	                 //Call BET access service for access request for new PL/DPL
+	                if(!lstBETaccessIds.isEmpty())
 	                {
-	                    ischanged=true;
-	                }           
+	                    IPM_BETHelper.sendBETAccessRequest(lstBETaccessIds, p.BET__c, p.id);
+	                }         
             	}
-                //Call BET access service for access request for new PL/DPL
-                if(!lstBETaccessIds.isEmpty())
-                {
-                    IPM_BETHelper.sendBETAccessRequest(lstBETaccessIds, p.BET__c, p.id);
-                }
+               
                  // Fast Track Global Original Project 
                 if(!ipmFastTrackProjectMap.isEmpty())
                 {
