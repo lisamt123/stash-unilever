@@ -8,9 +8,7 @@
 */
 public with sharing class IPM_Gate_RollOuts_Controller
 {
-    //For exception handler
-    private static final String IPM_GATE_ROLLOUTS_CONTROLLER_STR = IPM_Gate_RollOuts_Controller.class.getName();
-    private static final String IPM_PREPAREWRAPPERS='prepareIPMLocalToCountryWrapper';
+    
     public String[] headers {get;set;} //Containd table headers
     public transient List<RegionalRollOutWrapper> regionalRollOutWrapperList {get;set;} 
     public static  ID regionalRecordTypeId =  Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.REGIONAL_ROLLOUT_RT).RecordTypeId;//used for displaying Regional To Local To Country Mapping ;  

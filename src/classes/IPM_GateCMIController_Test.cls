@@ -5,17 +5,14 @@
 */
 @isTest
 public class IPM_GateCMIController_Test{    
-    private static IPM_Project__c project;// Project object initialization
-    private static IPM_Project_Document__c projDoc;
+    private static IPM_Project__c project;// Project object initialization    
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static User stdUserForGateCMI;
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
-    private static PageReference  pRef;
     private static IPM_GateCMIController ipmCmiControl;
     private static final string TEST_COMMENTS_STR='TestComments1';
-    private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
-    private static List<IPM_Project__c> projlList=new List<IPM_Project__c>();
+    private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();    
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static User globalUser;
     private static string LOCAL_STR='Local';
@@ -25,8 +22,7 @@ public class IPM_GateCMIController_Test{
     private static IPM_Gate_CMI__c gateCMICountry;
     private static IPM_Project_Document_Section_Content__c projectDocSecConListObj=new IPM_Project_Document_Section_Content__c();
     private static final string COUNTRY_NAME_STR='contry name';
-    private static final string RESULT_STR='Idea Screener - Nielsen';
-    private static mdo_Geography__c mdoGeo=new mdo_Geography__c();
+    private static final string RESULT_STR='Idea Screener - Nielsen';    
     private static final string INDIA_STR='IND'; 
     private static List<IPM_Country__c>countryList=new List<IPM_Country__c>();
     private static List<MDO_Geography__c> mdoGeoList=new List<MDO_Geography__c>();
@@ -434,6 +430,7 @@ public class IPM_GateCMIController_Test{
             System.assertEquals(secColorList.size(),0,'country deleted');
             Test.stopTest();
         }
+        
     }
     /*************************************************************************************************************************
     * @description Running Test Script

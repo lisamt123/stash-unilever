@@ -9,8 +9,7 @@
 
 public with sharing class IPM_ProjectDocumentHelper   
 {
-    private transient static final String BOSSCARD = 'Bosscard'; 
-    private transient static final String SECTION_SEQUENCE ='7.2.'; 
+    private transient static final String BOSSCARD = 'Bosscard';    
     public static final Map<String,String> DOC_COMMENT_FIELDMAPPING = new Map<String,String>{
         IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED => 'IPM_Approved_Comments__c',
         IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED  => 'IPM_Postponed_Comments__c',
