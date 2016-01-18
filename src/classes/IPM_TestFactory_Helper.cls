@@ -4,7 +4,8 @@
 * @description: This class will be used across IPM_NG application test classes to create test data. 
 **************************************************************************************************/
 @isTest
-public class IPM_TestFactory_Helper {
+public class IPM_TestFactory_Helper 
+{
     public static final String CHARTER_GATE_FULL = 'Charter Gate Full';
     public static final String IDEA_GRAPHIC= 'Idea / Graphic';
     public static final String IDEAS = 'Ideas';
@@ -36,10 +37,11 @@ public class IPM_TestFactory_Helper {
     public static final string SUSTAINABILITY_PERIOD = 'Project_Sustainability_Period__c';
     public static final string IPM_SECTION_Name = 'ipm_section_name__c'; 
     public static final string PROJECT_LEADER = 'project leader';
-    public static final string TESTMANAGEDCATEGORY = 'Laundry'; 
     public static final string INDIA = 'India';
     public static final String IPM_DOCUMENT_TEMPLATE = 'IPM_Document_Template__c';
-    
+    public static final String DIRT_IS_GOOD = 'Dirt is Good';
+    public static final String SOUTH_ASIA = 'South Asia';
+    public static final String BLANK_SPACE = ' ';
     
     public static final String FEASIBILITY = 'Feasibility';
     public static final String IPM_PHASE = 'IPM_Phase__c';
@@ -51,7 +53,6 @@ public class IPM_TestFactory_Helper {
     public static final String THREE = '3';
     public static final String RECORD_TYPE_ID = 'RecordTypeId';
     public static final String TARGET_LAUNCH_DATE = 'Target_Launch_Date__c';
-    public static final String IPM_Status ='IPM_Status__c';
     public static final String INNOVATION = 'Innovation';
     public static final String NAME = 'Name';
     public static final String TEST_COMMENTS = 'TestComments';
@@ -61,6 +62,11 @@ public class IPM_TestFactory_Helper {
     public static final String IPM_GATEKEEPING_MODEL = 'IPM_Gatekeeping_model__c';
     public static final String IPM_ROLLOUT_PROJECT = 'IPM_Rollout_Project__c';
     public static final String MARKET_CLUSTER = 'Market_cluster__c'; 
+    public static final String REGIONAL = 'Regional';
+    public static final String IS_ACTIVE = 'isActive__c';
+    public static final String IPM_STATUS = 'IPM_Status__c';
+    public static final String MCO_NAME = 'MCO_Name__c';
+    public static final String S_MCO = 'MCO__c'; 
     
     public static final String IPM_ROLLOUT_PLAN = 'IPM_Rollout_Span__c';
     public static final String MARKET_CLUSTER_NAME = 'Market_Cluster_Name__c';
@@ -78,6 +84,13 @@ public class IPM_TestFactory_Helper {
     public static final String IPM_COMPANY_CARD = 'IPM_Company_Card__c';
     public static final String IPM_MANAGED_CATEGORY = 'IPM_Managed_category__c';
     public static final String IPM_COMPANY_TYPE = 'IPM_Company_Type__c';
+    public static final String IPM_PROJECT_SPAN = 'IPMProject_Span__c'; 
+    public static final String IPM_COMPANYCARDTEXT = 'IPM_CompanyCardText__c';
+    public static final String IPM_PROJECT_TYPE =  'IPM_Project_Type__c';
+    public static final String IPM_PROJECT_SUB_TYPE = 'IPM_ProjectSubType__c';
+    public static final String IPM_SOURCEPROJECT_TYPE = 'IPM_SourceProjectType__c';
+    public static final String IPM_CATEGORY_TEXT = 'IPM_Category_Text__c';
+    public static final String IPM_CHILD_COMPLEXITY = 'IPM_Child_Complexity__c';
     
     public static final String STRINGVALUE_1 = '1';
     public static final String AFRICA = 'Africa';
@@ -88,6 +101,9 @@ public class IPM_TestFactory_Helper {
     public static final String FINANCE = 'Finance';
     public static final String R_D = 'R&D';
     public static final String SC = 'SC';
+    public static final String IPM_CENTRAL_TEAM = 'IPM_Central_Team__c';
+    public static final String IPM_USER_ROLE = 'IPM_User_Role__c';
+    public static final String IPM_WORK_LEVEL = 'IPM_Work_Level__c';
     public static final String NEGOTIABLE = 'Negotiable';
     public static final String NON_NEGOTIABLE = 'Non-Negotiable';
     public static final String STRINGVALUE_2 = '2';
@@ -156,7 +172,6 @@ public class IPM_TestFactory_Helper {
     public static final String HOUSEHOLDCARE = 'Household Care';
     public static final String LAUNDRY = 'Laundry';  
     public static final String BRAND_POS = 'IPM_Brand_Positioning__c';
-    public static final String DIRT_IS_GOOD='Dirt Is Good';
     
     public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
     public static List<IPM_Financial__c> finList = new List<IPM_Financial__c>();
@@ -297,7 +312,7 @@ public class IPM_TestFactory_Helper {
         //Creation test user
         User platformUser;
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
-            platformUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            platformUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(EMPTY_STRING);
             System.assertEquals('PLATFORM_USER', platformUser.LastName); 
         }
         return platformUser;
@@ -357,7 +372,7 @@ public class IPM_TestFactory_Helper {
 	**************************************************************************************************/
     public static String getUniqueUsername() {
         String orgId = UserInfo.getOrganizationId();
-        String dateString = String.valueof(Datetime.now()).replace(' ',EMPTY_STRING).replace(':',EMPTY_STRING).replace('-',EMPTY_STRING);
+        String dateString = String.valueof(Datetime.now()).replace(BLANK_SPACE,EMPTY_STRING).replace(':',EMPTY_STRING).replace('-',EMPTY_STRING);
         Integer randomInt = Integer.valueOf(math.rint(math.random()*1000000));
         String uniqueName = orgId + dateString + randomInt;
         
@@ -412,10 +427,10 @@ public class IPM_TestFactory_Helper {
         {
             Map<String,Object> projMap =  new Map<String,Object>{NAME => 'test'+ i,IPM_PROJECT_NAME=>'test' + i,
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
-                IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>C_GLOBAL, 
-                IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => 'Global Company Card',
-                BRAND_POS => DIRT_IS_GOOD,'IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
-                'IPM_ProjectSubType__c' => 'Innovation/Renovation',IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => ORIGINAL_PROJECTYPE,
+                IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),IPM_PROJECT_SPAN=>C_GLOBAL, 
+                IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => 'Global Company Card',
+                BRAND_POS => DIRT_IS_GOOD,IPM_PROJECT_TYPE => ORIGINAL_PROJECTYPE,
+                IPM_PROJECT_SUB_TYPE => 'Innovation/Renovation',IPM_PHASE=> IDEAS,IPM_SOURCEPROJECT_TYPE => ORIGINAL_PROJECTYPE,
                 'Sustainability_Period__c' => '3','IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,true); 
             projectList.add(projectRecord);
@@ -424,7 +439,7 @@ public class IPM_TestFactory_Helper {
         insert projectList;
         
         projectList[0].IPMProject_Span__c = C_GLOBAL;
-        projectList[1].IPMProject_Span__c = 'Regional';
+        projectList[1].IPMProject_Span__c = REGIONAL;
         projectList[1].IPM_Parent_Project__c = projectList[0].id;
         projectList[2].IPMProject_Span__c = 'Local';
         projectList[2].IPM_Parent_Project__c =  projectList[0].id;
@@ -464,14 +479,14 @@ public class IPM_TestFactory_Helper {
         Map<String,List<Object>> IPMUserProfileMap =  new Map<String,List<Object>>{
             'IPM_Business_Partner__c' => new List<Object>{false,false,false},
             'IPM_Category__c' => new List<Object>{HOUSEHOLDCARE,HOUSEHOLDCARE,HOUSEHOLDCARE},
-            'IPM_Central_Team__c' => new List<Object>{false,false,false},
+            IPM_CENTRAL_TEAM => new List<Object>{false,false,false},
             'IPM_Finance_Member__c' => new List<Object>{false,false,false},
             'IPM_GateKeeper__c' => new List<Object>{false,false,false},
             'IPM_Project_Leader__c' => new List<Object>{false,false,false},
             'IPM_User_Category__c' => new List<Object>{IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT,IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT,IPM_ConstantUtils.HOUSEHOLDCARE_CONSTANT},
             'IPM_User_Function__c' => new List<Object>{PROJECT_LEADER,PROJECT_LEADER,PROJECT_LEADER},
-            'IPM_User_Role__c' => new List<Object>{'MO','MO','MO'},
-            'IPM_Work_Level__c' => new List<Object>{'WL1','WL1','WL1'},
+            IPM_USER_ROLE => new List<Object>{'MO','MO','MO'},
+            IPM_WORK_LEVEL => new List<Object>{'WL1','WL1','WL1'},
             'IPM_Company_Card__c' => new List<Object>{companyCardList[0],companyCardList[1],companyCardList[2]},
             'IPM_User__c' => new List<Object>{userList[0].Id,userList[1].Id,userList[2].Id}
         };
@@ -687,9 +702,9 @@ public class IPM_TestFactory_Helper {
         for(IPM_Project__c project : globalProjectMap.values())
         {
             // Regional Rollous should be converted to Regional Projects at this point.
-             ///System.assertEquals(project.IPM_Project_Rollout__r.size(),project.IPM_Projects__r.size()); SS 
+             System.assertEquals(project.IPM_Project_Rollout__r.size(),project.IPM_Projects__r.size());
             
-             ///System.assertEquals(project.IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY); SS
+             System.assertEquals(project.IPM_Phase__c,IPM_ConstantUtils.PHASE_FEASIBILITY);
             // Document count should become 2. Charter and Contract.
             if(project.IPM_Gatekeeping_model__c == GCLT_RCLT)
             {
@@ -833,11 +848,11 @@ public class IPM_TestFactory_Helper {
         for(Integer i = 1; i <= listSize; i++){ 
             Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_OP_COMMENTS + scope + i,IPM_PROJECT_NAME=>TEST_REG_COMMENTS + scope + i,
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => 'RCLT',
-                IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>scope , 
-                IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => scope +' Company Card',
-                BRAND_POS => DIRT_IS_GOOD,'IPM_Project_Type__c' => OPERATIONAL_PROJECTYPE,
-                'IPM_ProjectSubType__c' => OPERATIONAL_PROJECTYPE,IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => OPERATIONAL_PROJECTYPE,
-                'IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
+                IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),IPM_PROJECT_SPAN=>scope , 
+                IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => scope +' Company Card',
+                BRAND_POS => DIRT_IS_GOOD,IPM_PROJECT_TYPE => OPERATIONAL_PROJECTYPE,
+                IPM_PROJECT_SUB_TYPE => OPERATIONAL_PROJECTYPE,IPM_PHASE=> IDEAS,IPM_SOURCEPROJECT_TYPE => OPERATIONAL_PROJECTYPE,
+                IPM_CATEGORY_TEXT => HOUSEHOLDCARE,IPM_CHILD_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
             testIPMProjList.add(projectRecord);
         }
@@ -859,11 +874,11 @@ public class IPM_TestFactory_Helper {
         for(Integer i = 1; i <= listSize; i++){
             Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_REG_COMMENTS + i,IPM_PROJECT_NAME=>TEST_REG_COMMENTS + i,
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => 'RCLT',
-                IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>'Regional', 
-                IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => 'Regional Company Card',
-                BRAND_POS => DIRT_IS_GOOD,'IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
-                'IPM_ProjectSubType__c' => 'Innovation/Renovation',IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => ORIGINAL_PROJECTYPE,
-                'IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
+                IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),IPM_PROJECT_SPAN=>REGIONAL, 
+                IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => 'Regional Company Card',
+                BRAND_POS => DIRT_IS_GOOD,IPM_PROJECT_TYPE => ORIGINAL_PROJECTYPE,
+                IPM_PROJECT_SUB_TYPE => 'Innovation/Renovation',IPM_PHASE=> IDEAS,IPM_SOURCEPROJECT_TYPE => ORIGINAL_PROJECTYPE,
+                IPM_CATEGORY_TEXT => HOUSEHOLDCARE,IPM_CHILD_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
             testIPMProjList.add(projectRecord);
         }
@@ -885,10 +900,10 @@ public class IPM_TestFactory_Helper {
         for(Integer i = 1; i <= listSize; i++){
             Map<String,Object> projMap =  new Map<String,Object>{NAME => TEST_COMMENTS + i,IPM_PROJECT_NAME=>TEST_COMMENTS + i,
                 IPM_COMPLEXITY =>IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL => GCLT_RCLT,
-                IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),'IPMProject_Span__c'=>C_GLOBAL, 
-                IPM_PROJECT_LEADER => UserInfo.getUserId(),'IPM_CompanyCardText__c' => 'Global Company Card',
-                BRAND_POS => DIRT_IS_GOOD,'IPM_Project_Type__c' => ORIGINAL_PROJECTYPE,
-                'IPM_ProjectSubType__c' => 'Innovation/Renovation',IPM_PHASE=> IDEAS,'IPM_SourceProjectType__c' => ORIGINAL_PROJECTYPE,
+                IPM_TARGET_LAUNCH_DATES => System.today().addMonths(6),IPM_PROJECT_SPAN=>C_GLOBAL, 
+                IPM_PROJECT_LEADER => UserInfo.getUserId(),IPM_COMPANYCARDTEXT => 'Global Company Card',
+                BRAND_POS => DIRT_IS_GOOD,IPM_PROJECT_TYPE => ORIGINAL_PROJECTYPE,
+                IPM_PROJECT_SUB_TYPE => 'Innovation/Renovation',IPM_PHASE=> IDEAS,IPM_SOURCEPROJECT_TYPE => ORIGINAL_PROJECTYPE,
                 'Sustainability_Period__c' => '3','IPM_Category_Text__c' => HOUSEHOLDCARE,'IPM_Child_Complexity__c' =>IPM_ConstantUtils.COMPLEXITY_FULL};
             IPM_Project__c projectRecord = (IPM_Project__c)IPM_TestFactory.createSObject(IPM_PROJECT,projMap,TRUE);
             testIPMProjList.add(projectRecord);
@@ -938,7 +953,7 @@ public class IPM_TestFactory_Helper {
             IPM_ROLLOUT_PROJECT => new List<String>(),RECORD_TYPE_ID => new List<object>(),MARKET_CLUSTER => new List<String>(),
             MARKET_CLUSTER_NAME => new List<String>(),TARGET_LAUNCH_DATE => new List<object>(),IPM_ROLLOUT_PLAN => new List<object>(),
             IPM_ROLLOUT_TYPE => new List<object>(),'IPM_Regional_PL_Text__c' => new List<object>(),'IPM_Regional_PL__c' => new List<Id>(),
-            IPM_PROJECT => new List<Id>(),'isActive__c' => new List<object>()
+            IPM_PROJECT => new List<Id>(),IS_ACTIVE => new List<object>()
         };
         
         Date sixMonthsLater = date.today().addMonths(6);
@@ -958,7 +973,7 @@ public class IPM_TestFactory_Helper {
             
             regionalRolloutMap.get(TARGET_LAUNCH_DATE).addAll(new List<Object>{sixMonthsLater,sixMonthsLater});
             
-            regionalRolloutMap.get(IPM_ROLLOUT_PLAN).addAll(new List<Object>{'Regional','Regional'});
+            regionalRolloutMap.get(IPM_ROLLOUT_PLAN).addAll(new List<Object>{REGIONAL,REGIONAL});
             
             regionalRolloutMap.get(IPM_ROLLOUT_TYPE).addAll(new List<Object>{'Rollout','Rollout'});
             
@@ -970,7 +985,7 @@ public class IPM_TestFactory_Helper {
             
             regionalRolloutMap.get(IPM_PROJECT).addAll(new List<Object>{pProjectList[counter].Id,pProjectList[counter].Id});
             
-            regionalRolloutMap.get('isActive__c').addAll(new List<Object>{true,true});
+            regionalRolloutMap.get(IS_ACTIVE).addAll(new List<Object>{true,true});
         }
         
         List<IPM_Project_Rollout__c> regionalRolloutList = (List<IPM_Project_Rollout__c>)IPM_TestFactory.createSObjectList('IPM_Project_Rollout__c',regionalRolloutMap,false);
@@ -994,7 +1009,7 @@ public class IPM_TestFactory_Helper {
             MARKET_CLUSTER_NAME => new List<String>(),TARGET_LAUNCH_DATE => new List<Object>(),IPM_ROLLOUT_PLAN => new List<String>(),
             IPM_ROLLOUT_TYPE => new List<String>(),'IPM_Regional_PL_Text__c' => new List<String>(),'IPM_Regional_PL__c' => new List<Id>(),
             IPM_PROJECT => new List<Id>(),'Type__c' => new List<String>(),'Regional_Rollout__c' => new List<Id>(),'MCO_Name__c' => new List<String>(),
-            'IPM_Status__c' => new List<String>(),'MCO__c' => new List<String>(),RECORD_TYPE_ID => new List<ID>(),'isActive__c' => new List<object>()
+            IPM_STATUS => new List<String>(),S_MCO => new List<String>(),RECORD_TYPE_ID => new List<ID>(),IS_ACTIVE => new List<object>()
         };
         
         Id localRecordType = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).RecordTypeId;
@@ -1006,15 +1021,15 @@ public class IPM_TestFactory_Helper {
                 if(projectRollout.IPM_Rollout_Project__c.contains('AFR'))
                 {
                     localRolloutMap.get(IPM_ROLLOUT_PROJECT).add(projectRollout.IPM_Rollout_Project__c+'_UMCA');
-                    localRolloutMap.get('MCO__c').add('LV4_GEO0085');
-                    localRolloutMap.get('MCO_Name__c').add(AFRICA);
+                    localRolloutMap.get(S_MCO).add('LV4_GEO0085');
+                    localRolloutMap.get(MCO_NAME).add(AFRICA);
                     localRolloutMap.get(MARKET_CLUSTER_NAME).add('Africa Emerging Markets');
                 }
                 else if(projectRollout.IPM_Rollout_Project__c.contains('LA'))
                 {
                     localRolloutMap.get(IPM_ROLLOUT_PROJECT).add(projectRollout.IPM_Rollout_Project__c+'_BR'); 
-                    localRolloutMap.get('MCO__c').add('LV4_BR');
-                    localRolloutMap.get('MCO_Name__c').add('Brazil');
+                    localRolloutMap.get(S_MCO).add('LV4_BR');
+                    localRolloutMap.get(MCO_NAME).add('Brazil');
                     localRolloutMap.get(MARKET_CLUSTER_NAME).add('Latin America');
                 }
                 
@@ -1025,9 +1040,9 @@ public class IPM_TestFactory_Helper {
                 localRolloutMap.get(IPM_ROLLOUT_TYPE).add(projectRollout.IPM_Rollout_Type__c);
                 localRolloutMap.get(TARGET_LAUNCH_DATE).add(projectRollout.Target_Launch_Date__c);
                 localRolloutMap.get(IPM_ROLLOUT_PLAN).add('Local');
-                localRolloutMap.get('isActive__c').add(true);
+                localRolloutMap.get(IS_ACTIVE).add(true);
                 localRolloutMap.get('Type__c').add('MCO');
-                localRolloutMap.get('IPM_Status__c').add('Leader');
+                localRolloutMap.get(IPM_STATUS).add('Leader');
                 localRolloutMap.get('Regional_Rollout__c').add(projectRollout.Id);
                 localRolloutMap.get(IPM_PROJECT).add(projectId);
             }
@@ -1053,7 +1068,7 @@ public class IPM_TestFactory_Helper {
             MARKET_CLUSTER_NAME => new List<String>(),TARGET_LAUNCH_DATE => new List<Object>(),IPM_ROLLOUT_PLAN => new List<String>(),
             IPM_ROLLOUT_TYPE => new List<String>(),'IPM_Regional_PL_Text__c' => new List<String>(),'IPM_Regional_PL__c' => new List<Id>(),
             'Type__c' => new List<String>(),'MCO_Name__c' => new List<String>(),
-            'IPM_Status__c' => new List<String>(),'MCO__c' => new List<String>(),RECORD_TYPE_ID => new List<ID>(),'isActive__c' => new List<object>(),
+            IPM_STATUS => new List<String>(),S_MCO => new List<String>(),RECORD_TYPE_ID => new List<ID>(),IS_ACTIVE => new List<object>(),
             'Regional_Project__c' => new List<Object>()
         };
         
@@ -1063,17 +1078,17 @@ public class IPM_TestFactory_Helper {
         for(IPM_Project__c regionalProject : regionalProjectSet)
         {
             localRolloutMap.get(IPM_ROLLOUT_PROJECT).add(regionalProject.IPM_Project_Name__c+'_UMCA');
-            localRolloutMap.get('MCO__c').add('LV4_GEO0085');
-            localRolloutMap.get('MCO_Name__c').add(AFRICA);
+            localRolloutMap.get(S_MCO).add('LV4_GEO0085');
+            localRolloutMap.get(MCO_NAME).add(AFRICA);
             localRolloutMap.get(MARKET_CLUSTER_NAME).add('Africa Emerging Markets');
             localRolloutMap.get(RECORD_TYPE_ID).add(localRecordType);
             localRolloutMap.get(MARKET_CLUSTER).add(AFRICA); 
             localRolloutMap.get(IPM_ROLLOUT_TYPE).add('Rollout');
             localRolloutMap.get(TARGET_LAUNCH_DATE).add(System.today() + 300);
             localRolloutMap.get(IPM_ROLLOUT_PLAN).add('Local');
-            localRolloutMap.get('isActive__c').add(true);
+            localRolloutMap.get(IS_ACTIVE).add(true);
             localRolloutMap.get('Type__c').add('MCO');
-            localRolloutMap.get('IPM_Status__c').add('Leader');
+            localRolloutMap.get(IPM_STATUS).add('Leader');
             localRolloutMap.get('Regional_Project__c').add(regionalProject.Id);
         }
         
@@ -1368,7 +1383,7 @@ public class IPM_TestFactory_Helper {
 	**************************************************************************************************/
     public static IPM_User_Profile__c createUserProfile(Boolean doInsert) {
         Map<String,Object> userProfMap =  new Map<String,Object>{NAME=>'Test User Profile',IPM_USER_FUNCTION=>PROJECT_LEADER,
-            'IPM_User_Role__c'=>BD,IPM_USER_FUNCTION=>C_TRUE,'IPM_Central_Team__c'=>C_TRUE,
+            IPM_USER_ROLE=>BD,IPM_USER_FUNCTION=>C_TRUE,IPM_CENTRAL_TEAM=>C_TRUE,
             'Export_Porfolio_Data__c'=>C_TRUE,'IPM_Work_Level__c'=>'WL2+'};
         IPM_User_Profile__c userProf  = (IPM_User_Profile__c)IPM_TestFactory.createSObject('IPM_User_Profile__c',userProfMap,false);    
         if(doInsert) { 
@@ -1384,8 +1399,8 @@ public class IPM_TestFactory_Helper {
     {
         Map<String,List<Object>> userProfMap =  new Map<String,List<Object>>{
             NAME=> new List<String>(),IPM_USER_FUNCTION=> new List<String>(),
-            'IPM_User_Role__c'=>new List<String>(),IPM_COMPANY_CARD=>new List<Id>(),
-            'IPM_Central_Team__c'=> new List<Boolean>(),'IPM_Work_Level__c'=> new List<String>(),
+            IPM_USER_ROLE=>new List<String>(),IPM_COMPANY_CARD=>new List<Id>(),
+            IPM_CENTRAL_TEAM=> new List<Boolean>(),IPM_WORK_LEVEL=> new List<String>(),
             'IPM_User_Category__c' => new List<String>(),'IPM_User__c' => new List<Id>()};
         
         for(Integer counter=0;counter < userIdList.size();counter++)
@@ -1394,9 +1409,9 @@ public class IPM_TestFactory_Helper {
             userProfMap.get('IPM_User__c').add(userIdList.get(counter));
             userProfMap.get(IPM_COMPANY_CARD).add(companyCardList.get(counter).Id);    
             userProfMap.get(IPM_USER_FUNCTION).add(PROJECT_LEADER);
-            userProfMap.get('IPM_User_Role__c').add(BD);
-            userProfMap.get('IPM_Central_Team__c').add(true);
-            userProfMap.get('IPM_Work_Level__c').add('WL2+');
+            userProfMap.get(IPM_USER_ROLE).add(BD);
+            userProfMap.get(IPM_CENTRAL_TEAM).add(true);
+            userProfMap.get(IPM_WORK_LEVEL).add('WL2+');
             userProfMap.get('IPM_User_Category__c').add(TESTMANAGEDCATEGORY);
             
         }                                        
@@ -1938,7 +1953,7 @@ public class IPM_TestFactory_Helper {
         { 'IPM_Category__c'=> new List<String>{HOUSEHOLDCARE,'Laundry'},
             'IPM_Template_Complexity__c' => new List<String>{FULL,LITE},
             'IPM_Template_Name__c' => new List<String>{'HHC-FULL','HHC-Lite'},
-            'IPM_Project_Type__c' => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE}
+            IPM_PROJECT_TYPE => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE}
         };
         
         projectTemplateList = (List<IPM_Project_Template__c>)IPM_TestFactory.createSObjectList(IPM_PROJECT_TEMPLATE,projectTemplateMap,false);  
@@ -2107,7 +2122,7 @@ public class IPM_TestFactory_Helper {
             IPM_PHASE=> new List<String>{IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY,MARKET_DEPLOYMENT,IDEAS,FEASIBILITY,CAPABILITY,MARKET_READY},
             'IPM_Type_of_gate__c' => new List<String>{CHARTER,CONTRACT,MARKET_READY,MARKET_DEPLOYMENT,'',CHARTER,CONTRACT,MARKET_READY,''},
             'IPM_Type_of_Milestone__c' => new List<String>{STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD,STANDARD},
-            'IPM_Project_Type__c' => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE},
+            IPM_PROJECT_TYPE => new List<String>{ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,ORIGINAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE,OPERATIONAL_PROJECTYPE},
             IPM_PROJECT => new List<Id>{masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id,masterProjectList[0].Id},
             RECORD_TYPE_ID => new List<Id>{SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE,SYSTEM_MILESTONE_RECTYPE} 
         };

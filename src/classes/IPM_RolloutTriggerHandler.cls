@@ -29,8 +29,8 @@ public with sharing class IPM_RolloutTriggerHandler
     /*****************************************************************************************************************************
     * @description      Constructor
     */
-    public IPM_RolloutTriggerHandler(){
-
+    public IPM_RolloutTriggerHandler()
+    { 
         mapUpsertFinancials = new Map<String, IPM_Financial__c>();
                 
         deleteRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
@@ -213,7 +213,6 @@ public with sharing class IPM_RolloutTriggerHandler
             ///Regional Rollout. Validate consolidated financials is present or not. If no create one.
             if(projectRollout.RecordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
             {
-                IPM_Financial__c newFinancial;
                 
                 String financialExternalId = projectRollout.IPM_Rollout_Project__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
                                
@@ -639,7 +638,12 @@ public with sharing class IPM_RolloutTriggerHandler
     
         
     /*******************************************************************************************************
-    * @description              Used to remove rollout associations, like financials and country based on deleted rollouts.
+    * @description  Used to remove rollout associations, like financials and country based on deleted rollouts.
+                    Various Criteria for checking and removing of Rollouts based on whether it is a Key Rollout,Non Key Rollout or Created before or after charter.
+                    If it is a key Rollout, deletes asscociated Financials.
+                    If it is a non Key Rollout, Checks if there is any other non Key rollout, if no, then deletes the Non Key financials.
+                    Checks if there are no local rollouts under regional Rollout, deletes the associated Regional Rollout.
+                    Checks if local Rollout is charter approved, then makes it as inactive.             
     * @param deleteRolloutIDset List of removed rollout 
     * @param regionalRollout    Associated Regional Rollout
     * @param regionalProject    Associated Regional Project

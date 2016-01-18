@@ -91,7 +91,6 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 					if(financial.isActive__c && financial.recordTypeId == DEFAULT_FINANCIAL_RECORDTYPE && 
 						financial.Target_Launch_Date__c!=null && financial.Target_Launch_Date__c.year()  != oldFinancial.Target_Launch_Date__c.year() )
 					{
-					    System.debug('targetLaunchChangedDateMap-->>'+targetLaunchChangedDateMap);
 					    targetLaunchChangedDateMap.put(financial.Id,financial); 
 					    changedFinancialSet.add(financial.Id);
 					}

@@ -1,18 +1,21 @@
+/****************************************************************************************************************************
+@Author Cognizant
+@name IPM_ProjectRolloutHandler_Test
+@CreateDate 20/08/2015
+@Description Test Class for apex class-IPM_RolloutTriggerHandler
+@Version 1.0
+@Business Logic:This class invokes various test methods to validate Rollout related flows including Insert/Update/Delete of Regional/Local Rollouts.
+*/
 @isTest
 public class IPM_ProjectRolloutHandler_Test
 {
 
-    public  static Set<String> USER_LIST= new Set<string>{'GLOBAL_PL','REGIONAL_PL','LOCAL_PL','FINANCE_PL_SECOND','FINANCE_PL'};
-    private static string GLOBAL_LASTNAME='GLOBAL_PL';
-    private static string REGIONAL_LASTNAME='REGIONAL_PL';
-    private static string LOCAL_LASTNAME='LOCAL_PL';
-    private static string FINANCE1_LASTNAME='FINANCE_PL';
-    private static string FINANCE2_LASTNAME='FINANCE_PL_SECOND';
-    private static string WITH_MCO='With MCO';
     
-    public static Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
-    /**
-    
+
+    /**************************************************************
+    * @description: Used for Creating IPM Project data for Rollout flow test
+    * NPATHComplexity: This function is used for creating/setting up IPM Company Card, IPM Project data, IPM Project Master data along with Sharing 
+    * for validating Rollout flows.            
     */
     @testSetup static void testRolloutSetup() 
     {
@@ -30,11 +33,11 @@ public class IPM_ProjectRolloutHandler_Test
             User financeLeader  =IPM_TestFactory_Helper.createIPMPlatformProfileUser(''); 
             User financeLeaderSecond =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');  
             // Update LastNames to match functionalRoles
-            globalProjectLeader.lastname = GLOBAL_LASTNAME;
-            regionalProjectLeader.lastname = REGIONAL_LASTNAME;
-            localProjectLeader.lastname = LOCAL_LASTNAME; 
-            financeLeader.lastname = FINANCE1_LASTNAME;
-            financeLeaderSecond.lastname = FINANCE2_LASTNAME;
+            globalProjectLeader.lastname = 'GLOBAL_PL';
+            regionalProjectLeader.lastname = 'REGIONAL_PL';
+            localProjectLeader.lastname = 'LOCAL_PL'; 
+            financeLeader.lastname = 'FINANCE_PL';
+            financeLeaderSecond.lastname = 'FINANCE_PL_SECOND';
             
             List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader,financeLeader,financeLeaderSecond};
             update userList;
@@ -65,9 +68,15 @@ public class IPM_ProjectRolloutHandler_Test
         
     }
     
+    /**************************************************************
+    * @description: Used for Creating IPM Project data
+    * NPATHComplexity: This function is used for creating/updating IPM Project, Milestone, IPM Country, Rollout data for checking Rollout flows. As the method validates flows for multi-layered
+    * flows/processes for Global/Regional/Local Projects/Rollouts, NPATH complexity is high.                
+    */
     public static testmethod void createProject()
     {
         // Get the newly created Projects from Database.        
+        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
         List<Id> globalProjectIdList = new List<Id>();
         Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
         
@@ -77,26 +86,26 @@ public class IPM_ProjectRolloutHandler_Test
         User financeLeaderSecond = null;
         Test.startTest();
         // Get the list of user's for project leaders.
-        List<User> userList = [Select Id,Name,lastName from User where LastName in:USER_LIST];
+        List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL','FINANCE_PL_SECOND','FINANCE_PL','FINANCE_PL_SECOND')];
         
         // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(userList); 
         
         for(User lUser  :userList)
         {
-            if(lUser.lastName == GLOBAL_LASTNAME)
+            if(lUser.lastName == 'GLOBAL_PL')
             {
                 globalProjectLeader = lUser;
             }
-            if(lUser.lastName == REGIONAL_LASTNAME)
+            if(lUser.lastName == 'REGIONAL_PL')
             {
                 regionalProjectLeader = lUser;
             }
-            if(lUser.lastName == FINANCE1_LASTNAME)
+            if(lUser.lastName == 'FINANCE_PL')
             {
                 financeLeader = lUser;
             }
-            if(lUser.lastName == FINANCE2_LASTNAME)
+            if(lUser.lastName == 'FINANCE_PL_SECOND')
             {
                 financeLeaderSecond = lUser; 
             }
@@ -192,7 +201,7 @@ public class IPM_ProjectRolloutHandler_Test
                 }
                 
                 IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = WITH_MCO,isActive__c = true);    
+                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);    
                 
                 countryList.add(tempCountry);
             }
@@ -284,11 +293,16 @@ public class IPM_ProjectRolloutHandler_Test
         }
     }
     
+    /**************************************************************
+    * @description: Used for testing flow for updating Regional Rollout TLD
+    * NPATHComplexity: This function is used for checking the flow for Regional Rollout data update including multiple Rollouts. This method also checks for
+    * data validation for IPM Project Milestones, IPM Tasks, IPM Country etc. 
+    */
     public static testmethod void updateRegionalRolloutTLD()
     {
         
         // Get the newly created Projects from Database. 
-        
+        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
         List<Id> globalProjectIdList = new List<Id>();
         Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
         
@@ -298,26 +312,26 @@ public class IPM_ProjectRolloutHandler_Test
         User financeLeaderSecond = null;
         Test.startTest();
         // Get the list of user's for project leaders.
-        List<User> userList = [Select Id,Name,lastName from User where LastName in:USER_LIST];
+        List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL','FINANCE_PL','FINANCE_PL_SECOND')];
         
         // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(userList); 
         
         for(User lUser  :userList)
         {
-            if(lUser.lastName == GLOBAL_LASTNAME)
+            if(lUser.lastName == 'GLOBAL_PL')
             {
                 globalProjectLeader = lUser;
             }
-            if(lUser.lastName == REGIONAL_LASTNAME)
+            if(lUser.lastName == 'REGIONAL_PL')
             {
                 regionalProjectLeader = lUser;
             }
-            if(lUser.lastName == FINANCE1_LASTNAME)
+            if(lUser.lastName == 'FINANCE_PL')
             {
                 financeLeader = lUser;
             }
-            if(lUser.lastName == FINANCE2_LASTNAME)
+            if(lUser.lastName == 'FINANCE_PL_SECOND')
             {
                 financeLeaderSecond = lUser;
             }
@@ -408,7 +422,7 @@ public class IPM_ProjectRolloutHandler_Test
                 }
                 
                 IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = WITH_MCO,isActive__c = true);    
+                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);    
                 
                 countryList.add(tempCountry);
             }
@@ -433,11 +447,16 @@ public class IPM_ProjectRolloutHandler_Test
         
     }
     
+    /**************************************************************
+    * @description: Used for testing flow for updating Local Rollout TLD
+    * NPATHComplexity: This function is used for checking the flow for Regional Rollout data update including multiple Rollouts. This method also checks for
+    * data validation for IPM Project Milestones, IPM Tasks, IPM Country etc. 
+    */
     public static testmethod void updateLocalRolloutTLD()
     {
         
         // Get the newly created Projects from Database. 
-        
+        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
         List<Id> globalProjectIdList = new List<Id>();
         Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
         
@@ -447,26 +466,26 @@ public class IPM_ProjectRolloutHandler_Test
         User financeLeaderSecond = null; 
         Test.startTest();
         // Get the list of user's for project leaders.
-        List<User> userList = [Select Id,Name,lastName from User where LastName in:USER_LIST];
+        List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL','FINANCE_PL','FINANCE_PL_SECOND')];
         
         // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(userList); 
         
         for(User lUser  :userList)
         {
-            if(lUser.lastName == GLOBAL_LASTNAME)
+            if(lUser.lastName == 'GLOBAL_PL')
             {
                 globalProjectLeader = lUser;
             }
-            if(lUser.lastName == REGIONAL_LASTNAME)
+            if(lUser.lastName == 'REGIONAL_PL')
             {
                 regionalProjectLeader = lUser;
             }
-            if(lUser.lastName == FINANCE1_LASTNAME)
+            if(lUser.lastName == 'FINANCE_PL')
             {
                 financeLeader = lUser;
             }
-            if(lUser.lastName == FINANCE2_LASTNAME)
+            if(lUser.lastName == 'FINANCE_PL_SECOND')
             {
                 financeLeaderSecond = lUser;
             }
@@ -566,7 +585,7 @@ public class IPM_ProjectRolloutHandler_Test
                 }
                 
                 IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = WITH_MCO,isActive__c = true);    
+                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);    
                 
                 countryList.add(tempCountry);
                 
@@ -593,11 +612,16 @@ public class IPM_ProjectRolloutHandler_Test
         }
         
     }
+    /**************************************************************
+    * @description: Used for testing flow for deleting Rollouts
+    * NPATHComplexity: This function is used for checking the flow for deleting Rollouts data for Regional as well as Local levels. This includes validating flows for deleting tasks, Milestones as well. 
+    * This method creates data for Regional/Local Rollouts, IPM Country for the Rollouts.
+    */ 
     public static testmethod void deleteRollout()
     {
         
         // Get the newly created Projects from Database. 
-
+        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
         List<Id> globalProjectIdList = new List<Id>();
         Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
         
@@ -606,22 +630,22 @@ public class IPM_ProjectRolloutHandler_Test
         user financeLeader= null;
         Test.startTest();
         // Get the list of user's for project leaders.
-        List<User> userList = [Select Id,Name,lastName from User where LastName in:USER_LIST];
+        List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL','FINANCE_PL')];
         
         // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(userList); 
         
         for(User lUser  :userList)
         {
-            if(lUser.lastName == GLOBAL_LASTNAME)
+            if(lUser.lastName == 'GLOBAL_PL')
             {
                 globalProjectLeader = lUser;
             }
-            if(lUser.lastName == REGIONAL_LASTNAME)
+            if(lUser.lastName == 'REGIONAL_PL')
             {
                 regionalProjectLeader = lUser;
             }
-            if(lUser.lastName == FINANCE1_LASTNAME)
+            if(lUser.lastName == 'FINANCE_PL')
             {
                 financeLeader = lUser;
             }
@@ -723,7 +747,7 @@ public class IPM_ProjectRolloutHandler_Test
                 }
                 
                 IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = WITH_MCO,isActive__c = true);    
+                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);    
                 
                 countryList.add(tempCountry);
                 
@@ -758,11 +782,16 @@ public class IPM_ProjectRolloutHandler_Test
         }
     }
     
+    /**************************************************************
+    * @description: Used for testing flow for deleting Rollouts
+    * NPATHComplexity: This function is used for checking the flow for deleting Rollouts data for Regional as well as Local levels for Key Rollouts. This includes validating flows for deleting tasks, Milestones as well. 
+    * This method creates data for Regional/Local Rollouts, IPM Country for the Rollouts.
+    */ 
     public static testmethod void deleteRollout_KeyRollout()
     {
         
         // Get the newly created Projects from Database. 
-
+        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
         List<Id> globalProjectIdList = new List<Id>();
         Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
         
@@ -771,22 +800,22 @@ public class IPM_ProjectRolloutHandler_Test
         user financeLeader= null;
         Test.startTest();
         // Get the list of user's for project leaders.
-        List<User> userList = [Select Id,Name,lastName from User where LastName in:USER_LIST];
+        List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL','FINANCE_PL')];
         
         // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(userList); 
         
         for(User lUser  :userList)
         {
-            if(lUser.lastName == GLOBAL_LASTNAME)
+            if(lUser.lastName == 'GLOBAL_PL')
             {
                 globalProjectLeader = lUser;
             }
-            if(lUser.lastName == REGIONAL_LASTNAME)
+            if(lUser.lastName == 'REGIONAL_PL')
             {
                 regionalProjectLeader = lUser;
             }
-            if(lUser.lastName == FINANCE1_LASTNAME)
+            if(lUser.lastName == 'FINANCE_PL')
             {
                 financeLeader = lUser;
             }
@@ -892,7 +921,7 @@ public class IPM_ProjectRolloutHandler_Test
                 }
                 
                 IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = WITH_MCO,isActive__c = true);    
+                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);    
                 
                 countryList.add(tempCountry);
                 
@@ -937,11 +966,16 @@ public class IPM_ProjectRolloutHandler_Test
             Test.stopTest();
         }
     }
+    /**************************************************************
+    * @description: Used for testing flow for deleting Key Rollouts
+    * NPATHComplexity: This function is used for checking the flow for deleting Key (individual) Rollouts. 
+    * This methods creates data for Local/Regional Rollouts along with IPM Country data.
+    */
     public static testmethod void deleteRollout_KeyRolloutWithParentProj()
     {
         
         // Get the newly created Projects from Database. 
-        
+        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
         List<Id> globalProjectIdList = new List<Id>();
         Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
         
@@ -950,22 +984,22 @@ public class IPM_ProjectRolloutHandler_Test
         user financeLeader= null;
         Test.startTest();
         // Get the list of user's for project leaders.
-        List<User> userList = [Select Id,Name,lastName from User where LastName in:USER_LIST];
+        List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL','FINANCE_PL')];
         
         // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(userList); 
         
         for(User lUser  :userList)
         {
-            if(lUser.lastName == GLOBAL_LASTNAME)
+            if(lUser.lastName == 'GLOBAL_PL')
             {
                 globalProjectLeader = lUser;
             }
-            if(lUser.lastName == REGIONAL_LASTNAME)
+            if(lUser.lastName == 'REGIONAL_PL')
             {
                 regionalProjectLeader = lUser;
             }
-            if(lUser.lastName == FINANCE1_LASTNAME)
+            if(lUser.lastName == 'FINANCE_PL')
             {
                 financeLeader = lUser;
             }
@@ -1081,7 +1115,7 @@ public class IPM_ProjectRolloutHandler_Test
                 }
                 
                 IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = WITH_MCO,isActive__c = true);    
+                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);    
                 
                 countryList.add(tempCountry);
                 
@@ -1127,11 +1161,16 @@ public class IPM_ProjectRolloutHandler_Test
         }
     }
     
+    /**************************************************************
+    * @description: Used for testing flow for deleting Non-key Rollouts
+    * NPATHComplexity: This function is used for checking the flow for deleting Non-Key (grouped) Rollouts. 
+    * This methods creates data for Local/Regional Rollouts along with IPM Country data.
+    */
     public static testmethod void deleteRollout_NonKeyRollout()
     {
         
         // Get the newly created Projects from Database. 
-        
+        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
         List<Id> globalProjectIdList = new List<Id>();
         Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
         
@@ -1140,22 +1179,22 @@ public class IPM_ProjectRolloutHandler_Test
         user financeLeader= null;
         Test.startTest();
         // Get the list of user's for project leaders.
-        List<User> userList = [Select Id,Name,lastName from User where LastName in:USER_LIST];
+        List<User> userList = [Select Id,Name,lastName from User where LastName in('GLOBAL_PL','REGIONAL_PL','LOCAL_PL','FINANCE_PL')];
         
         // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
         IPM_TestFactory_Helper.shareMasterProject(userList); 
         
         for(User lUser  :userList)
         {
-            if(lUser.lastName == GLOBAL_LASTNAME)
+            if(lUser.lastName == 'GLOBAL_PL')
             {
                 globalProjectLeader = lUser;
             }
-            if(lUser.lastName == REGIONAL_LASTNAME)
+            if(lUser.lastName == 'REGIONAL_PL')
             {
                 regionalProjectLeader = lUser;
             }
-            if(lUser.lastName == FINANCE1_LASTNAME)
+            if(lUser.lastName == 'FINANCE_PL')
             {
                 financeLeader = lUser;
             }
@@ -1271,7 +1310,7 @@ public class IPM_ProjectRolloutHandler_Test
                 }
                 
                 IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = new MDO_Geography__c(ISO_3166_1_Code__c = geoExternalId).Id,
-                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = WITH_MCO,isActive__c = true);    
+                IPM_Project__c = localRollout.IPM_Project__c,local_Rollout__c = localRollout.Id,IPM_Rollout_Status__c = 'With MCO',isActive__c = true);    
                 
                 countryList.add(tempCountry);
                 

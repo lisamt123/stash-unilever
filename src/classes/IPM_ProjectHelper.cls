@@ -1322,7 +1322,12 @@ public with sharing class IPM_ProjectHelper
     }
     
     /**************************************************************
-    * @description: Refresh Country Project Mapping once References have been updated.  
+    * @description: Once the Regional,Local Projects are created,This method updates the following
+        References of Regional and local Project on local Rollouts.
+        References of Regional and local Project on Country.
+        Used for Udpating Charter Approved flag which indicates whether specific rollout or country was created before charter or not.
+    * @param1 projectPhaseChange    : projects for which phase change is initiated.
+    * @param2 oldProjectMap         : Old Projects for incontext Projects.
     */
 
     public static void refreshProjectRolloutCountryMapping(Map<Id,IPM_Project__c> projectPhaseChange,Map<Id,IPM_Project__c> oldProjectMap) 
@@ -1425,7 +1430,6 @@ public with sharing class IPM_ProjectHelper
                     }
                 }
                 
-                System.debug(LoggingLevel.ERROR,'updateProjectRollout-->>>'+updateProjectRollout); 
                 if(!updateProjectRollout.isEmpty())
                 {
                     IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
@@ -1468,7 +1472,6 @@ public with sharing class IPM_ProjectHelper
                     }        
                 }
                 
-                System.debug(LoggingLevel.ERROR,'updateProjectCountry-->>>'+updateProjectCountry);
                 if(!updateProjectCountry.isEmpty())
                 { 
                     IPM_CountryHandler.SKIP_TRIGGER_EXECUTION = true;
@@ -1541,8 +1544,15 @@ public with sharing class IPM_ProjectHelper
     }
     
     /**************************************************************
-    * @description: Process Delete all invalid data when isCreatedInError field is updated 
-    * @param1projectIdSetToBeDeleted : project id's to be deleted.
+    * @description: Used for Deleting Projects and its associated Components. 
+            Once 'isCreatedInError' field is marked as true, System identifies the associated Components:
+            1) Bosscard
+            2) Child Projects
+            3) Associated Rollouts
+            4) Associated Financials
+            5) Associated Countries
+            The system based on specific sequence performs DML's to delete these records.  
+    * @ : project id's to be deleted.
     */
     public static void deleteProject(Set<Id> projectIdSetToBeDeleted)
     {    
