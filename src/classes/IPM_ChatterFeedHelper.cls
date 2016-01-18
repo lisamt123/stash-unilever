@@ -3,7 +3,7 @@
     Author: Cognizant Technology
     @Date: Dec 2014
 **/
-public with sharing class IPM_ChatterFeedHelper {
+public without sharing class IPM_ChatterFeedHelper {
     
     /* The constant variables which helps in contextual messagings of the chatter message.
      * The names are pretty much self-explanatory, needs no further elucidations.
@@ -38,7 +38,10 @@ public with sharing class IPM_ChatterFeedHelper {
     */
     public static Map<String, Boolean> getSubscribedUser(Set<Id> parentIds) {
         
+        parentIds.remove(null);
         Map<String, Boolean> parentSubscriberMapToReturn = new Map<String, Boolean>(); //var to return
+        if(!parentIds.isEmpty())
+        {
         EntitySubscription[] subscriptionList = [SELECT 
                                                    ParentId, SubscriberId FROM EntitySubscription
                                                    WHERE ParentId IN :parentIds ORDER BY CreatedDate DESC LIMIT 499];
@@ -49,6 +52,7 @@ public with sharing class IPM_ChatterFeedHelper {
                     parentSubscriberMapToReturn.put(key, true);
                 }
             }
+        }
         }
         
         return parentSubscriberMapToReturn;
