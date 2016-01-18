@@ -70,6 +70,8 @@ public class IPM_ProjectOverviewCtrol_Test {
      /**
         *  Used for Testing home page alerts
         *  @name projectSetUp
+        In this method for Global project, regional rollouts are created, after phase changes regional rollouts gets converted to regional project.
+        this whole logic need to be in the same method to test child project's status alert.
      */
      public static testmethod void testChildProjectsIncompleteAlert()
      {
@@ -157,7 +159,7 @@ public class IPM_ProjectOverviewCtrol_Test {
             
             Map<Id,IPM_Milestone__c>  mileStoneMap = new Map<Id,IPM_Milestone__c>([Select IPM_Project__r.BET_MS_First_Release_Date__c,RecordTypeId,Id,Name,IPM_Type_of_Milestone__c from IPM_Milestone__c limit 1000] );
             
-            Id recordtypeid;
+            Id recordtypeid= null;
             if(Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId() != null){
                 recordtypeid=Schema.Sobjecttype.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMProjectMilestones).getRecordTypeId();
             }

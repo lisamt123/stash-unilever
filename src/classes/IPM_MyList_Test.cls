@@ -344,7 +344,8 @@ public class IPM_MyList_Test{
      private static testmethod void projectWithExternalApprochTest(){ 
         Test.startTest();
             message = false; 
-           exceptn = false;   
+           	exceptn = false;   
+           	Exception ex = null;
             User globalUser = [Select Id,LastName from User where LastName=:GLOBAL_PL limit 1];
             
             // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
@@ -368,7 +369,7 @@ public class IPM_MyList_Test{
                 }
                 system.assertEquals(message  ,true,'page messages are added');
                 
-                Exception ex;
+                
                  try{
                     ipm.catchBlockContent('test class',ex);
                  }catch(Exception exp){
