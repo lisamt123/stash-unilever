@@ -378,61 +378,7 @@ public without sharing class IPM_Utils {
         String strToReturn = firstLetterRemovedStr.substring(firstLetterRemovedStr.indexOf(delim)+1, firstLetterRemovedStr.length());
         return strToReturn;
     }
-    /**********************************************************************
-    * @description: 18 character conversion from an algorithm generally available
-    * @param1 : id of the 15 char length
-    * @return : 18 char id
-    */
-    public static String convertTo18CharId(String passedId){
-        
-        if(String.isNotBlank(passedId) && passedId.length() == 15 ){      
-            List <String> lstTriplets = new List<String> { passedId.Substring(0, 5), passedId.Substring(5, 5), passedId.Substring(10, 5) };
-            Map<String, String> mapCharacters = new Map<String, String>{
-                '00000' => 'A',
-                '00001' => 'B',
-                '00010' => 'C',
-                '00011' => 'D',
-                '00100' => 'E',
-                '00101' => 'F',
-                '00110' => 'G',
-                '00111' => 'H',
-                '01000' => 'I',
-                '01001' => 'J',
-                '01010' => 'K',
-                '01011' => 'L',
-                '01100' => 'M',
-                '01101' => 'N',
-                '01110' => 'O',
-                '01111' => 'P',
-                '10000' => 'Q',
-                '10001' => 'R',
-                '10010' => 'S',
-                '10011' => 'T',
-                '10100' => 'U',
-                '10101' => 'V',
-                '10110' => 'W',
-                '10111' => 'X',
-                '11000' => 'Y',
-                '11001' => 'Z',
-                '11010' => '0',
-                '11011' => '1',
-                '11100' => '2',
-                '11101' => '3',
-                '11110' => '4',
-                '11111' => '5'
-            };
-            String suffix = '';
-            for(String value : lstTriplets){
-                String reverse = value.Reverse();
-                reverse.replaceall('[a-z0-9]','0');
-                reverse.replaceall('[A-Z]','1');
-
-                suffix+= mapCharacters.get(reverse);
-            }
-            return passedId + suffix;
-        }
-        return passedId;
-    }
+    
    
    /**********************************************************************
     * @description: Get project details to add them in the map
@@ -1101,7 +1047,7 @@ public without sharing class IPM_Utils {
     {
         Set<Id> projectIds = new Set<Id>();
 
-        String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
+        String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery(IPM_Project,false,null,true);
         String ProjectDetailWhereClause = 'Id in :incomingProjectIds';
         
         projectDetailSelectQuery = ProjectDetailSelectQuery  + ' WHERE ' + ProjectDetailWhereClause + LIMIT_STRING +  FORUPDATE_STRING ;
@@ -1131,7 +1077,7 @@ public without sharing class IPM_Utils {
     {
         Set<Id> projectIds = new Set<Id>();
 
-        String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
+        String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery(IPM_Project,false,null,true);
         String ProjectDetailWhereClause = 'IPM_Parent_Project__c in :incomingProjectIds';
         
         ProjectDetailSelectQuery = ProjectDetailSelectQuery  + ' WHERE ' + ProjectDetailWhereClause + LIMIT_STRING ;
@@ -1368,70 +1314,8 @@ public without sharing class IPM_Utils {
 	    else
 	    {
                 return projectRollout.IPM_Rollout_Project__c;
-	    }
-	}
-    } 
- 	
-	/**************************************************************
-    * @description: Helper method to dynamically add fields for provided Sobject Name.Can additionally provide Child Object API Names.
-                    Used for Project back Ground Process.
-      @param1 SObjectName : sObject  whose Data is to be fetched.
-      @param2 addChild : whether child records are to be fetched.
-      @param2 addChild : Child SObject which needs to be fetched.
-    */
-    
-    public static String prepareSOQLQuery(String SObjectName ,Boolean addChild,Set<String> includededChildObjects) 
-    {
-        Set<String> systemFields = new set<String>{'lastmodifiedbyid','isdeleted','lastvieweddate', 'lastreferenceddate','lastmodifieddate','isdeleted'};
-        Set<String> skippedChildObject = new Set<String>{'IPM_Project__c'};
-        Map<String,Map<String,String>> orderByMap = new Map<String,Map<String,String>>{};
-       
-        String queryStr = ' Select ';
-
-        for(String fieldAPIName :  Schema.getGlobalDescribe().get(SObjectName).getDescribe().fields.getMap().keySet())
-        {    
-            if(fieldAPIName != 'Id' && !systemFields.contains(fieldAPIName))
-            {
-                queryStr += ' '+fieldAPIName+',';
             }
+            
         }
-        
-        if(addChild)
-        {
-            // Get Child Relationships
-            for(Schema.ChildRelationship cr : Schema.getGlobalDescribe().get(SObjectName).getDescribe().getChildRelationships())
-            {
-                // Get Child Relationship Name
-                String childRelationShipName = cr.getRelationshipName();
-                
-                // Get Child Object Reference
-                Schema.SObjectType childObjectSchema = cr.getChildSObject();
-                Schema.DescribeSObjectResult childObjectDescibe = childObjectSchema.getDescribe();
-                String childObjectAPIName = childObjectDescibe.getName();
-                 
-                if(childObjectDescibe.isCustom() && childRelationshipName!=null && includededChildObjects.contains(childObjectAPIName))
-                {
-                    Map<String,Schema.SObjectField> childFieldTypeMap = childObjectDescibe.fields.getMap();
-                
-                    queryStr += ' ( Select ';
-                    for(String childFieldAPIName : childFieldTypeMap.keySet())
-                    {
-                        if(childFieldAPIName != 'Id' &&  !systemFields.contains(childFieldAPIName))
-                        {
-                            queryStr += ' '+childFieldAPIName+',';
-                        }
-                    }
-                    queryStr += 'Id from '+childRelationshipName;
-                    
-                    queryStr = queryStr.removeEnd(IPM_ConstantUtils.COMMA);
-                    
-                    queryStr += '  ),'; 
-                }
-            }   
-        }
-        
-        queryStr += 'Id from '+SObjectName+' ';
-
-        return queryStr;
-    }   
+    }
 }
