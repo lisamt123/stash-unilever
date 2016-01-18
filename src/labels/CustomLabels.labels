@@ -4217,6 +4217,13 @@ Which Communications team do you represent? You must be associated to one Planne
         <shortDescription>About Project</shortDescription>
         <value>About Project</value>
     </labels>
+     <labels>
+        <fullName>IPM_About_To_Postpone_Comments</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM About To Postpone Comments</shortDescription>
+        <value>Clicking on &quot;Save&quot; would postpone the current gate for this project to the revised date. Please ensure you revise the successive milestones if needed based on this change.</value>
+    </labels>
     <labels>
         <fullName>IPM_AccessBET</fullName>
         <language>en_US</language>
@@ -10116,6 +10123,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Postponed Future Date Validation</shortDescription>
         <value>The postponed date for this project must be after the due date for the previous gate&apos;s milestone.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Postponing_Project_Gate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Postponing Project Gate</shortDescription>
+        <value>CONFIRMATION: POSTPONING PROJECT GATE</value>
     </labels>
     <labels>
         <fullName>IPM_Priority_Dist_target</fullName>

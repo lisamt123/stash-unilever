@@ -1324,6 +1324,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Consumer_Evidence_Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Consumer Evidence Priority</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Consumer_Unit__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>To store the lookup to the consumer Unit</description>

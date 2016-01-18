@@ -221,11 +221,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
             countOfCountries=0;
         
-        sectionCharLimit=Integer.valueof(projDocSec.IPM_Section__r.IPM_Character_Limit__c);  
-        countLimit=Integer.valueof(projDocSec.IPM_Summary_Character_Remaining__c);
-           
-        remainingChar=countLimit;
-        
+        charcterCount();
         /* Added for Eco Design */
         projectType = IPM_Utils.retrieveProjectType(project);
         if(projectType != null && String.isNotBlank(projectType.IPM_EcoDesign_Document_Name__c)) {
@@ -497,8 +493,14 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         if(projDocSec.IPM_Gate_Document_Summary__c!=null){
             summary=projDocSec.IPM_Gate_Document_Summary__c;
             summary=summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,'');
-        }
-          
+            projDocSec.IPM_Summary_Character_Remaining__c=projDocSec.IPM_Section__r.IPM_Character_Limit__c-summary.length();        
+         }
+         else{
+            projDocSec.IPM_Summary_Character_Remaining__c=projDocSec.IPM_Section__r.IPM_Character_Limit__c;
+         }
+         charcterCount();
+         
+        
         //Fetching List of Questions to Check Filled-In or Not
         checkGKCFilled();
         checkOTIFFilled(); 
@@ -929,5 +931,11 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         url.getParameters().put(PROJ_DOC_SEC_ID,projDocSecId); 
         url.setRedirect(true);
         return url;
+    }
+    
+    public void charcterCount(){
+        sectionCharLimit=Integer.valueof(projDocSec.IPM_Section__r.IPM_Character_Limit__c);  
+        countLimit=Integer.valueof(projDocSec.IPM_Summary_Character_Remaining__c);
+        remainingChar=countLimit;
     }    
 }

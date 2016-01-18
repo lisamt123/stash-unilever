@@ -35,7 +35,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
     public string addCountryConcept{get; set;}//For adding concept to country
     public Boolean isEditable{get;set;}//for security
     public string gateType{get; set;} //For cureent project gate
-    
+    public Integer priorityNumber{get; set;} //For getting deleted concept priority number
     private static string IPM_CONSUMER_EVIDENCE_CONTROLLER_STR=IPM_Consumer_Evidence_Controller.class.getName();
     /************************************************************************************************************************
     *  Description For showing the countries in picklist
@@ -71,7 +71,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
                             countryName=couyName[i];    
                         }
                     }
-                    consumerEvidenceList=[SELECT IPM_Consumer_Evidence_Concept_Name__c,IPM_Consumer_Evidence_Gate__c,IPM_Consumer_Evidence_Country__c,IPM_Project_Document_Section__c,
+                    consumerEvidenceList=[SELECT IPM_Consumer_Evidence_Priority__c,IPM_Consumer_Evidence_Concept_Name__c,IPM_Consumer_Evidence_Gate__c,IPM_Consumer_Evidence_Country__c,IPM_Project_Document_Section__c,
                                                  IPM_Consumer_Evidence_Comments__c,IPM_Consumer_Evidence_Image__c,IPM_Consumer_Evidence_Logo_Id__c 
                                           FROM IPM_Project_Document_Section_Content__c
                                           WHERE IPM_Project_Document_Section__c=:projDocSec.Id];  
@@ -101,7 +101,8 @@ public with sharing class IPM_Consumer_Evidence_Controller{
             if((!String.isBlank(projDocSec.IPM_Selected_Consumer_Evidence_Countries__c) && !projDocSec.IPM_Selected_Consumer_Evidence_Countries__c.contains(couyName[i])) || String.isBlank(projDocSec.IPM_Selected_Consumer_Evidence_Countries__c)){
                 //Creating defaut concept records
                 IPM_Project_Document_Section_Content__c pdsc=new IPM_Project_Document_Section_Content__c();
-                pdsc.IPM_Consumer_Evidence_Concept_Name__c=IPM_ConstantUtils.CONCEPT_TEST_ONE;
+                pdsc.IPM_Consumer_Evidence_Concept_Name__c=IPM_ConstantUtils.CONCEPT_TEST;
+                pdsc.IPM_Consumer_Evidence_Priority__c=1;
                 pdsc.IPM_Consumer_Evidence_Country__c=couyName[i];
                 pdsc.IPM_Project_Document_Section__c=projDocSec.Id;
                 pdsc.IPM_Content_Type__c = IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE;
@@ -109,7 +110,8 @@ public with sharing class IPM_Consumer_Evidence_Controller{
                 insertCountriesConceptList.add(pdsc);
                 
                 IPM_Project_Document_Section_Content__c pdsco=new IPM_Project_Document_Section_Content__c();
-                pdsco.IPM_Consumer_Evidence_Concept_Name__c=IPM_ConstantUtils.CONCEPT_TEST_TWO;
+                pdsco.IPM_Consumer_Evidence_Concept_Name__c=IPM_ConstantUtils.CONCEPT_TEST;
+                pdsco.IPM_Consumer_Evidence_Priority__c=2;
                 pdsco.IPM_Consumer_Evidence_Country__c=couyName[i];
                 pdsco.IPM_Project_Document_Section__c=projDocSec.Id;
                 pdsco.IPM_Content_Type__c = IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE;
@@ -178,7 +180,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
         String availableCountries=IPM_ConstantUtils.BLANK;
         try{
             if(!String.isBlank(deleteCountry) && !String.isBlank(projDocSecId)){
-                projDocSecContentsList=[SELECT Id,IPM_Consumer_Evidence_Country__c,IPM_Project_Document_Section__c 
+                projDocSecContentsList=[SELECT Id,IPM_Consumer_Evidence_Priority__c,IPM_Consumer_Evidence_Country__c,IPM_Project_Document_Section__c 
                                         FROM IPM_Project_Document_Section_Content__c 
                                         WHERE IPM_Consumer_Evidence_Country__c=:deleteCountry AND IPM_Project_Document_Section__c=:projDocSecId];
                 projDocSec=[SELECT Id,IPM_Selected_Consumer_Evidence_Countries__c 
@@ -221,7 +223,8 @@ public with sharing class IPM_Consumer_Evidence_Controller{
         if(!String.isBlank(addCountryConcept) && !String.isBlank(projDocSecId)){
             conceptCount=[SELECT count() FROM IPM_Project_Document_Section_Content__c WHERE IPM_Project_Document_Section__c=:projDocSecId and IPM_Consumer_Evidence_Country__c=:addCountryConcept];
             IPM_Project_Document_Section_Content__c pdsc=new IPM_Project_Document_Section_Content__c();
-            pdsc.IPM_Consumer_Evidence_Concept_Name__c=IPM_ConstantUtils.CONCEPT_TEST+(conceptCount+1);
+            pdsc.IPM_Consumer_Evidence_Concept_Name__c=IPM_ConstantUtils.CONCEPT_TEST;
+            pdsc.IPM_Consumer_Evidence_Priority__c=conceptCount+1;
             pdsc.IPM_Consumer_Evidence_Country__c=addCountryConcept;
             pdsc.IPM_Content_Type__c = IPM_ConstantUtils.EVIDENCE_CONTENT_TYPE;
             pdsc.IPM_Project_Document_Section__c=projDocSecId;
@@ -282,6 +285,7 @@ public with sharing class IPM_Consumer_Evidence_Controller{
         //Deleting concept
         Integer conceptCount=0;
         String availableCountries=IPM_ConstantUtils.BLANK;
+        List<IPM_Project_Document_Section_Content__c> priorityList=new List<IPM_Project_Document_Section_Content__c>();
         try{
             if(!String.isBlank(projDocSecConId)){
                 IPM_Project_Document_Section_Content__c pdsc=new IPM_Project_Document_Section_Content__c();
@@ -300,6 +304,16 @@ public with sharing class IPM_Consumer_Evidence_Controller{
                     }
                     projDocSec.IPM_Selected_Consumer_Evidence_Countries__c=availableCountries;
                     update projDocSec;  
+                }
+                else{
+                    priorityList=[SELECT Id,IPM_Consumer_Evidence_Priority__c FROM IPM_Project_Document_Section_Content__c
+                                  WHERE IPM_Consumer_Evidence_Country__c=:deleteCountry AND IPM_Project_Document_Section__c=:projDocSecId AND IPM_Consumer_Evidence_Priority__c >: priorityNumber];
+                    for(IPM_Project_Document_Section_Content__c priorityContent:priorityList){
+                        priorityContent.IPM_Consumer_Evidence_Priority__c=priorityContent.IPM_Consumer_Evidence_Priority__c-1;
+                    }
+                    if(priorityList!=null && !priorityList.isEmpty()){
+                        update priorityList;
+                    }
                 }
             }
             showCountryList();

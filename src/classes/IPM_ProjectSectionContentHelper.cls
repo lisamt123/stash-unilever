@@ -791,6 +791,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                                 newSectionContent.IPM_Consumer_Evidence_Image__c = sectionContent.IPM_Consumer_Evidence_Image__c;
                                 newSectionContent.IPM_Consumer_Evidence_Comments__c = sectionContent.IPM_Consumer_Evidence_Comments__c;   
                                 newSectionContent.IPM_Consumer_Evidence_Concept_Name__c = sectionContent.IPM_Consumer_Evidence_Concept_Name__c;
+                                newSectionContent.IPM_Consumer_Evidence_Priority__c = sectionContent.IPM_Consumer_Evidence_Priority__c;
                                 newSectionContent.IPM_Consumer_Evidence_Country__c = sectionContent.IPM_Consumer_Evidence_Country__c;
                                 newSectionContent.IPM_Consumer_Evidence_Logo_Id__c = sectionContent.IPM_Consumer_Evidence_Logo_Id__c;
                                 newSectionContent.IPM_Project_Document_Section__c = targetProjectDocumentSection.Id;
@@ -807,6 +808,7 @@ public with sharing class IPM_ProjectSectionContentHelper
                                    newSectionContent.IPM_Consumer_Evidence_Image__c = sectionContent.IPM_Consumer_Evidence_Image__c;
                                    newSectionContent.IPM_Consumer_Evidence_Comments__c = sectionContent.IPM_Consumer_Evidence_Comments__c;   
                                    newSectionContent.IPM_Consumer_Evidence_Concept_Name__c = sectionContent.IPM_Consumer_Evidence_Concept_Name__c;
+                                   newSectionContent.IPM_Consumer_Evidence_Priority__c = sectionContent.IPM_Consumer_Evidence_Priority__c;
                                    newSectionContent.IPM_Consumer_Evidence_Country__c = sectionContent.IPM_Consumer_Evidence_Country__c;
                                    newSectionContent.IPM_Consumer_Evidence_Logo_Id__c = sectionContent.IPM_Consumer_Evidence_Logo_Id__c;
                                    newSectionContent.IPM_Project_Document_Section__c = targetProjectDocumentSection.Id;

@@ -578,6 +578,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
     {
       showPostpone = false;
             showErrorMsg=IPM_ConstantUtils.BLANK; 
+            Boolean validPostpone=true;
             System.SavePoint sp = Database.setSavePoint();
             IPM_Milestone__c currentPhaseMilestone = null;
             String currentPhase = project.IPM_Phase__c;
@@ -588,6 +589,7 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                 if(String.isBlank(projectDoc.IPM_Postponed_Comments__c) || projectDoc.IPM_Postponement_Date__c == null)
                 {
                     showErrorMsg=IPM_ConstantUtils.BLANK;
+                    validPostpone=false;
                 }
             
                 if(String.isBlank(showErrorMsg) && projectDoc.IPM_Postponement_Date__c!=null && projectDoc.IPM_Postponement_Date__c <= System.today())
@@ -657,9 +659,9 @@ public with sharing class IPM_ChangProjectDocumentStatusController extends IPM_P
                     }
                 }
                 
-                if(String.isBlank(showErrorMsg) && currentPhaseMilestone !=null )
+                if(String.isBlank(showErrorMsg) && currentPhaseMilestone !=null && validPostpone)
                 {
-                   
+                    validPostpone=true;
                     project.IPM_Current_Document_Status__c = projectDoc.IPM_Document_Status__c;
                     project.IPM_Document_Update_Comments__c = projectDoc.IPM_Postponed_Comments__c;  
                     project.IPM_Document_Update_Date__c = projectDoc.IPM_Postponement_Date__c;
