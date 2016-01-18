@@ -1214,12 +1214,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
          getFinancials();
          return null;
      }
-     //DEF2676 fix end
+     
    /*******************************************************************************************************
-    * @description  Used to get Financial Business Case for currently selected Financial
+    * @description  Used to get data related to MCO selected, queryies for the financial and finanical years 
+    *               records to be displayed on the financial page. This generates data based on span and 
+    *               type of financial to be displayed default/consolidated 
     * @param        NONE
     * @return       NONE
-    */
+    ******************************************************************************************************/
     private void getFinancials()
     {
         if(isNavigation) {
@@ -2337,12 +2339,14 @@ private Date getProjectMilestoneDate(){
             errorMessage = String.valueOf(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
         }
     }   
-    /*******************************************************************************************************
-    * @description  Used to set misaligned date values for rollout and project
-    * NPath Complexities is high because this method is finding and setting up misaligned TLD date across different project span and phases   
+    /****************************************************************************************************************************************
+    * @description  Used to set misaligned date values for TLD, when the Financial data is loaded, it checks for the current TLD and Previous
+    				TLD to generate page message to let user know the need for Business Case update, or if the TLD dates are not aligned 
+    				between regional and local rollouts.
+    *   
     * @param        NONE
     * @return       NONE
-    */
+    *******************************************************************************************************************************************/
     private void setMisalignedValue(){
             isTLDYearMisaligned = false;
             Integer localProjectTLDYear = 0;
