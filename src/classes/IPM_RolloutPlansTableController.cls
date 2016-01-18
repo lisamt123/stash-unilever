@@ -69,15 +69,8 @@ public with sharing class IPM_RolloutPlansTableController extends IPM_ProjectInt
     public IPM_RolloutPlansTableController()
     {
         IPM_IECompatible.ieFix();//Added for compatibility fix
-        isPLAllocated = false; 
-        isEditMode = false;
-        isFLAllocated=false;
        
-        projectTolocalRolloutToCountryMap = new Map<Id,Map<Id,List<IPM_Country__c>>>();
-        rolloutTolocalRolloutToCountryMap = new Map<Id,Map<Id,List<IPM_Country__c>>>();
 
-        lstcompleteProjects = new Map<Id,IPM_Project__c>();   
-        lstcompleteRollout = new Map<Id,IPM_Project_Rollout__c>();
         initialise();
         
     }

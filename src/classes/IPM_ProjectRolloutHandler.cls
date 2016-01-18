@@ -29,7 +29,10 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     */
     public void bulkBefore()
     {
-       	skipTriggerExecution();
+       	if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
         
         IPM_RolloutTriggerHandler handler = new IPM_RolloutTriggerHandler();
         
@@ -54,7 +57,10 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         IPM_RolloutTriggerHandler handler = new IPM_RolloutTriggerHandler();
         
         
-       	skipTriggerExecution();
+       	if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
         
         if(Trigger.isInsert)
         {
@@ -88,7 +94,10 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     */
     public void beforeInsert(SObject so){
         //This method has been included as the class implements the ITrigger interface
-       skipTriggerExecution();
+       if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
     }
     /**
     * @description:beforeUpdate
@@ -101,7 +110,10 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     {   
         //This method has been included as the class implements the ITrigger interface   
         
-        skipTriggerExecution();
+        if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
         
         IPM_Project_Rollout__c oldRollout = (IPM_Project_Rollout__c)oldSo; 
         IPM_Project_Rollout__c newRollout = (IPM_Project_Rollout__c)so;   
@@ -126,7 +138,10 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     */
     public void beforeDelete(SObject so)
     {
-       skipTriggerExecution();      
+       if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }      
         //This method has been included as the class implements the ITrigger interface
     }
     /**
@@ -139,7 +154,10 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     {
         IPM_Project_Rollout__c newRollout = (IPM_Project_Rollout__c)so;
         
-        skipTriggerExecution();
+        if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
         
         if(IPM_ConstantUtils.JOB_STATUS_ELIGIBLE == newRollout.IPM_Project_Job_Status__c && !IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED &&  
             IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_ADHOC == newRollout.IPM_RolloutJobType__c)  
@@ -169,7 +187,10 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
         IPM_Project_Rollout__c oldRollout = (IPM_Project_Rollout__c)oldSo; 
         IPM_Project_Rollout__c newRollout = (IPM_Project_Rollout__c)so; 
         
-        skipTriggerExecution();
+        if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
         
         if( oldRollout.IPM_Project_Job_Status__c != newRollout.IPM_Project_Job_Status__c && !IPM_ProjectJob_Queue.PROJECT_QUEUE_CONTEXT_STARTED &&  
                 newRollout.IPM_Project_Job_Status__c == IPM_ConstantUtils.JOB_STATUS_ELIGIBLE && 
@@ -208,12 +229,8 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     public void afterDelete(SObject so)
     {
         //This method has been included as the class implements the ITrigger interface
-       skipTriggerExecution();
     
-    }
     
-    public void skipTriggerExecution()
-    {
     	if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
         {
             return;
@@ -228,7 +245,10 @@ public with sharing class IPM_ProjectRolloutHandler implements ITrigger{
     public void andFinally()
     {
         //call method to insert all exception logs got while excecution of trigger
-       	skipTriggerExecution();
+       	if(IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION)
+        {
+            return;
+        }
         
         if( (Trigger.isInsert || Trigger.isUpdate) && Trigger.isAfter)
         {
