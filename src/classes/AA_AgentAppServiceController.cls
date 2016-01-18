@@ -309,7 +309,7 @@ public with sharing class AA_AgentAppServiceController {
      * @modifiedby  -   
      */
     public static List<aa_Agent_App_Competitor_Brand__c> getUnileverListValues(){
-        List<aa_Agent_App_Competitor_Brand__c > agentUnileverBrandList = fetchValuesByRecordType('aa_Agent_App_Competitor_Brand__c',ID_NAME,'Unilever Brand');     
+        List<aa_Agent_App_Competitor_Brand__c > agentUnileverBrandList = fetchValuesByRecordType('aa_Agent_App_Competitor_Brand__c',AA_Constants.ID_NAME,'Unilever Brand');     
         return agentUnileverBrandList;
         
     }
@@ -335,7 +335,7 @@ public with sharing class AA_AgentAppServiceController {
      * @modifiedby  -   
      */
     public List<aa_Agent_Retailer__c>  getRetailerListValues(){
-        List<aa_Agent_Retailer__c> agentRetailerList = fetchValues('aa_Agent_Retailer__c',ID_NAME);  
+        List<aa_Agent_Retailer__c> agentRetailerList = fetchValues('aa_Agent_Retailer__c',AA_Constants.ID_NAME);  
         return agentRetailerList;
     }
     
@@ -359,7 +359,7 @@ public with sharing class AA_AgentAppServiceController {
      * @modifiedby  -   
      */
     public List<aa_Cluster__c> getClusterValues(){
-        List<aa_Cluster__c> ClusterNameList = fetchValues('aa_Cluster__c',ID_NAME);
+        List<aa_Cluster__c> ClusterNameList = fetchValues('aa_Cluster__c',AA_Constants.ID_NAME);
         return ClusterNameList;
     }
     
@@ -374,7 +374,7 @@ public with sharing class AA_AgentAppServiceController {
      * @modifiedby  -   
      */
     public static List<Sobject> fetchValues(String SobjectApiName,String commaSepratedFields){
-         List<Sobject> result=new List<Sobject>();
+         List<Sobject> result=new list<Sobject>();
          String query;
          if(!Utility.isEmpty(SobjectApiName) && !Utility.isEmpty(commaSepratedFields)){
             system.debug(SobjectApiName +'==='+commaSepratedFields);
@@ -437,15 +437,15 @@ public with sharing class AA_AgentAppServiceController {
     }
     
     public List<aa_Agent_App_Competitor_Brand__c>  getCompetitorBrandListValues(){
-        List<aa_Agent_App_Competitor_Brand__c> agentCompetitorBrandList = fetchValuesByRecordType('aa_Agent_App_Competitor_Brand__c',ID_NAME,'Competitor Brand');  
+        List<aa_Agent_App_Competitor_Brand__c> agentCompetitorBrandList = fetchValuesByRecordType('aa_Agent_App_Competitor_Brand__c',AA_Constants.ID_NAME,'Competitor Brand');  
         return agentCompetitorBrandList;
     }
     public List<aa_Agent_Competitor__c>  getCompetitorNameListValues(){
-        List<aa_Agent_Competitor__c> agentCompetitorNameList = fetchValues('aa_Agent_Competitor__c',ID_NAME);  
+        List<aa_Agent_Competitor__c> agentCompetitorNameList = fetchValues('aa_Agent_Competitor__c',AA_Constants.ID_NAME);  
         return agentCompetitorNameList;
     }
     public List<aa_Agent_App_Category__c>  getCompetitorCategoryListValues(){
-        List<aa_Agent_App_Category__c> agentCompetitorCategoryList = fetchValues('aa_Agent_App_Category__c',ID_NAME);  
+        List<aa_Agent_App_Category__c> agentCompetitorCategoryList = fetchValues('aa_Agent_App_Category__c',AA_Constants.ID_NAME);  
         return agentCompetitorCategoryList;
     }
     
