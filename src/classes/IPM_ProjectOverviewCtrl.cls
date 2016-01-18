@@ -5,6 +5,9 @@
                   Nitish: Added format() to Date/DateTime at line 506 and line 520 to display date as per user's locale
     @Author: Cognizant Technology
     @Date: Jan 2015
+    Sonar issue : (Avoid really long classes.)
+    comment :This controller class handles the complex logic of showing alerts and notifications in header, project summary, all the sections and To-do's
+    associated to logged-in user's functional role, BET code, project's history and chatter posta in Recent Activiites column, due to which class size has been increased. 
 */
 public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediateController {
 
