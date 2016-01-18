@@ -93,15 +93,17 @@ private class IPM_AssesmentHandler_Helper_Test {
             IPM_TestFactory_Helper.createAssessments(true, projectList[0].id, countryList[0].id,IPM_ConstantUtils.PHASE_IDEAS );
            
             
-            Id assmntId = [Select Id,IPM_Country__c from IPM_Assessment__c Where Project_Phase__c = 'Ideas'][0].IPM_Country__c;
+            Id assmntId = [Select Id,IPM_Country__c from IPM_Assessment__c Where Project_Phase__c = 'Ideas' limit 1][0].IPM_Country__c;
             
             IPM_Country__c countryToDelete  =  [Select Id, name from IPM_Country__c where Id =:assmntId limit 1][0];
            
             
             //to implement deletion of assessment on deletion of country
             delete countryToDelete;
-            IPM_Country__c countryToDeactivate  =  [Select Id, name from IPM_Country__c][0];
+            
+            IPM_Country__c countryToDeactivate  =  [Select Id, name from IPM_Country__c limit 1][0];
             countryToDeactivate.isActive__c = false;
+            
             update countryToDeactivate;
             
             List<IPM_Assessment__c> assmntsOfDeletedCountry = [Select Id from IPM_Assessment__c where IPM_Country__c =:countryToDelete.Id limit 1000];
@@ -170,7 +172,7 @@ private class IPM_AssesmentHandler_Helper_Test {
     }
     
     
-        /***********************************
+   /***********************************
       Description of the purpose of the method. 
       @name: copyOverAssmntTest
       @Description: To test copyOverAssessments method
@@ -180,7 +182,6 @@ private class IPM_AssesmentHandler_Helper_Test {
     ***********************************/
     static testMethod void testAssessmentWithWrongPhase() {
   
-
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1][0];
         List<IPM_Country__c> countryList= new List<IPM_Country__c>();
         System.runAs(globalUser)

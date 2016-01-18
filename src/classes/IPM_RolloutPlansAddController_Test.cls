@@ -36,6 +36,7 @@ public class IPM_RolloutPlansAddController_Test{
     public static string Congo = 'Congo';
     public static string CHAD = 'Chad';
     public static string ASIA = 'ASIA';
+    public static string FRANCE = 'France';
     public static string EUROPE = 'EUROPE';
     public static string SOUTH_AFRICA = 'South Africa';
     public static string OTHER_SOUTH_ASIA = 'Other South Asia'; 
@@ -64,6 +65,7 @@ public class IPM_RolloutPlansAddController_Test{
     public static string TestComments2 = 'TestComments2';
     public static string TestComments3 = 'TestComments3';
     public static string ID = 'id';
+    public static string TEST_STR = 'test';
     
      @testSetup static void projectSetUp() 
      {
@@ -417,10 +419,10 @@ public class IPM_RolloutPlansAddController_Test{
           geoWrp.noRolloutDisabled=true;
           
           
-          MDO_Geography__c geo1 = new MDO_Geography__c(name = 'France',ISO_3166_1_code__c = BR);
+          MDO_Geography__c geo1 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = BR);
           insert geo1;
           
-          MDO_Geography__c geo2 = new MDO_Geography__c(name = 'France',ISO_3166_1_code__c = FR);
+          MDO_Geography__c geo2 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = FR);
           insert geo2;
           
           MDO_Geography__c geo3 = new MDO_Geography__c(name = SOUTH_AFRICA,ISO_3166_1_code__c = SA);
@@ -564,7 +566,7 @@ public class IPM_RolloutPlansAddController_Test{
           irp3.lstMCOWrappers = mcoWrapLst;
           irp3.lstCountryWrappers = countryWrapLst;
           
-          irp3.searchCountry='test';
+          irp3.searchCountry=TEST_STR;
 
           irp3.searchRolloutCountry();
 
@@ -609,7 +611,7 @@ public class IPM_RolloutPlansAddController_Test{
           irp4.lstMCOWrappers = mcoWrapLst4;
           
           //keeping lstCountryWrappers as null so that exception block is tested
-          irp4.searchCountry='test';
+          irp4.searchCountry=TEST_STR;
           try{
               irp4.searchRolloutCountry();
           }
@@ -1081,7 +1083,7 @@ public class IPM_RolloutPlansAddController_Test{
          
          
           geoWrp.code=LV4_GEO0085;
-          geoWrp.name='Africa Emerging Markets';
+          geoWrp.name=AFRICA_EMERGING_MARKETS;
           geoWrp.parentCode=GEO0060;
           geoWrp.rolloutStatus=With_MCO;
           geoWrp.key=true;
@@ -1092,10 +1094,10 @@ public class IPM_RolloutPlansAddController_Test{
           geoWrp.noRolloutDisabled=true;
           
           
-          MDO_Geography__c geo1 = new MDO_Geography__c(name = 'France',ISO_3166_1_code__c = BR);
+          MDO_Geography__c geo1 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = BR);
           insert geo1;
           
-          MDO_Geography__c geo2 = new MDO_Geography__c(name = 'France',ISO_3166_1_code__c = FR);
+          MDO_Geography__c geo2 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = FR);
           insert geo2;
           
           MDO_Geography__c geo3 = new MDO_Geography__c(name = SOUTH_AFRICA,ISO_3166_1_code__c = SA);
@@ -1139,7 +1141,7 @@ public class IPM_RolloutPlansAddController_Test{
           mcoMap.put(rollouLst[0].IPM_Rollout_Project__c,irp.setCountryCodesMCOs);
           
           irp.removeReferences(mcoMap,rollouLst[0]);
-          irp.setCountryCodesMCOs =  new Set<string>{'Africa Emerging Markets',OTHER_SOUTH_ASIA}; // regionalMco is put into this     
+          irp.setCountryCodesMCOs =  new Set<string>{AFRICA_EMERGING_MARKETS,OTHER_SOUTH_ASIA}; // regionalMco is put into this     
           irp.generateRollouts();
           
           irp.setCountryCodes = new Set<String>{BR}; //regionalCountry put into this 
@@ -1175,7 +1177,7 @@ public class IPM_RolloutPlansAddController_Test{
          
          
           geoWrp.code=LV4_GEO0085;
-          geoWrp.name='Africa Emerging Markets';
+          geoWrp.name=AFRICA_EMERGING_MARKETS;
           geoWrp.parentCode=GEO0060;
           geoWrp.rolloutStatus=With_MCO;
           geoWrp.key=true;
@@ -1240,7 +1242,7 @@ public class IPM_RolloutPlansAddController_Test{
           irp3.lstMCOWrappers = mcoWrapLst;
           irp3.lstCountryWrappers = countryWrapLst;
           
-          irp3.searchCountry='test';
+          irp3.searchCountry=TEST_STR;
 
           irp3.searchRolloutCountry();
 
@@ -1286,7 +1288,7 @@ public class IPM_RolloutPlansAddController_Test{
           irp4.lstMCOWrappers = mcoWrapLst4;
           irp4.lstCountryWrappers = countryWrapLst4;
           
-          irp4.searchCountry='test';
+          irp4.searchCountry=TEST_STR;
 
           irp4.searchRolloutCountry();
 
@@ -1597,10 +1599,10 @@ public class IPM_RolloutPlansAddController_Test{
           geoWrp.noRolloutDisabled=true;
           
           
-          MDO_Geography__c geo1 = new MDO_Geography__c(name = 'France',ISO_3166_1_code__c = BR);
+          MDO_Geography__c geo1 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = BR);
           insert geo1;
           
-          MDO_Geography__c geo2 = new MDO_Geography__c(name = 'France',ISO_3166_1_code__c = FR);
+          MDO_Geography__c geo2 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = FR);
           insert geo2;
           
           MDO_Geography__c geo3 = new MDO_Geography__c(name = SOUTH_AFRICA,ISO_3166_1_code__c = SA);
@@ -1939,10 +1941,10 @@ public class IPM_RolloutPlansAddController_Test{
           geoWrp.noRolloutDisabled=true;
           
           
-          MDO_Geography__c geo1 = new MDO_Geography__c(name = 'France',ISO_3166_1_code__c = BR);
+          MDO_Geography__c geo1 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = BR);
           insert geo1;
           
-          MDO_Geography__c geo2 = new MDO_Geography__c(name = 'France',ISO_3166_1_code__c = FR);
+          MDO_Geography__c geo2 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = FR);
           insert geo2;
           
           MDO_Geography__c geo3 = new MDO_Geography__c(name = SOUTH_AFRICA,ISO_3166_1_code__c = SA);
@@ -2284,10 +2286,10 @@ public class IPM_RolloutPlansAddController_Test{
           geoWrp.noRolloutDisabled=true;
           
           
-          MDO_Geography__c geo1 = new MDO_Geography__c(name = 'France',ISO_3166_1_code__c = BR);
+          MDO_Geography__c geo1 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = BR);
           insert geo1;
           
-          MDO_Geography__c geo2 = new MDO_Geography__c(name = 'France',ISO_3166_1_code__c = FR);
+          MDO_Geography__c geo2 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = FR);
           insert geo2;
           
           MDO_Geography__c geo3 = new MDO_Geography__c(name = SOUTH_AFRICA,ISO_3166_1_code__c = SA);
