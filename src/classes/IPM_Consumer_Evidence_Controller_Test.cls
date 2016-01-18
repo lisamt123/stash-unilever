@@ -20,6 +20,7 @@ private class IPM_Consumer_Evidence_Controller_Test {
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
     public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static final String CONSUMER_COUYNTRY='IND';
+    private static String str='';
     /*************************************************************************
     *@Description : to Intialize(insert) the data for Project, Project Document
                     project Document section, project Document section content
@@ -175,7 +176,7 @@ private class IPM_Consumer_Evidence_Controller_Test {
             ipmConsumerEvidencon.saveConcept();
             List<IPM_Project_Document_Section_Content__c>conList=[select IPM_Consumer_Evidence_Comments__c from IPM_Project_Document_Section_Content__c where IPM_Project_Document_Section__c=:ipmConsumerEvidencon.projDocSec.Id];
             System.assertEquals(conList[0].IPM_Consumer_Evidence_Comments__c,COMMENTS_STR,'save successfully');
-            String str;
+            
             for(Integer i=0;i<32770;i++){
             str+='a';
             }
