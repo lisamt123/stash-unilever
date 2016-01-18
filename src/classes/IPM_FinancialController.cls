@@ -1619,7 +1619,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             milestoneFinanceDataValidationMessage = '';
             Boolean isCalendarValidationFailed = false;
             Boolean isInnovationValidationFailed = false;
-            
+             BI = [Select BI__c from IPM_Project__c where Id=: project.Id].BI__c;
+             if(BI == null || BI == '')
+        		BI = IPM_ConstantUtils.smallBI;
             isValidationError = false;
             isEditMode = false;
             isy0TurnoverInvalid = false;
