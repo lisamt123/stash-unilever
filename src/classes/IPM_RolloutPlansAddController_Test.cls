@@ -1,6 +1,18 @@
+/**
+@Author Cognizant 
+@Name IPM_RolloutPlansAddController_Test
+@CreateDate 15/01/2016
+@Description    This class is used for testing functionality of adding new rollouts to the project. (It is used for displaying MDO Specific Geographies and Countries. 
+                User selects MCO and Countries from the Page and are send for rollout Processing.
+                Handles building of core Rollout Data, creating relationships between rollouts, countries and regional Rollouts.
+                Adds and removes Rollouts/Countries based on user selection.
+                Switching of rolloutType is tested in this class.)
+@Version 1.0
+@reference IPM_RolloutPlansAdd VF page, IPM_RolloutPlansRegional VF page
+*/
 @isTest
 public class IPM_RolloutPlansAddController_Test{
-    //public static IPM_Project__c project;
+
     public static list<IPM_Project_Rollout__c> regionalRolloutList;
     public static list<IPM_Project_Rollout__c> localRolloutList;
     public static  String projectId;
@@ -67,6 +79,9 @@ public class IPM_RolloutPlansAddController_Test{
     public static string ID = 'id';
     public static string TEST_STR = 'test';
     
+    /**************************************************************
+    * @description: Used for Creating IPM Project data for Rollout flow test          
+    */
      @testSetup static void projectSetUp() 
      {
          // Create an instance of admin user.
@@ -107,7 +122,6 @@ public class IPM_RolloutPlansAddController_Test{
               
             goegraphiesMCO = new MDO_Geography__c();
             goegraphiesMCO.Name = AFRICA_EMERGING_MARKETS;
-            //goegraphiesMCO.mdm_id__c=goegraphiesCluster.Id;
             goegraphiesMCO.parent_L2__c =goegraphiesCluster.id;
             goegraphiesMCO.geography_type__c = 'Country Group';
             goegraphiesMCO.mdm_id__c=LV4_GEO0085;
@@ -150,7 +164,12 @@ public class IPM_RolloutPlansAddController_Test{
       }
      }
   
-  public static testmethod void createProject()
+    /*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects
+	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
+	* @name :  testGlobalProjRolloutAdd
+	***************************************************************************************/
+    public static testmethod void testGlobalProjRolloutAdd()
   {
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
        IPM_RolloutPlansAddController irp2= new IPM_RolloutPlansAddController();
@@ -191,9 +210,6 @@ public class IPM_RolloutPlansAddController_Test{
                 projectMap.put(proj.Id,proj);
             }
            
-             //Test.startTest();    
-            // Create Regional Rollouts for Created Global project.
-            
             
             regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
             insert regionalRolloutList;
@@ -228,15 +244,12 @@ public class IPM_RolloutPlansAddController_Test{
             List<MDO_Geography__c> mdoCountryList = [select id,ISO_3166_1_Code__c,Name,parent_L2__c,geography_type__c,mdm_id__c,Status__c from MDO_Geography__c where Name in (:AFRICA,:ANGOLA) ];
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
             {
-                //String geoExternalId = '';
                 if(localRollout.IPM_Rollout_Project__c.contains(AF))
                 {
-                    //geoExternalId = 'AG'; //object its declare as 2 length
                     geoExternal= true;
                 }
                 else if(localRollout.IPM_Rollout_Project__c.contains(LA))
                 {
-                    //geoExternalId = BR;
                     geoExternal= false;
                 }
                
@@ -334,10 +347,10 @@ public class IPM_RolloutPlansAddController_Test{
                IPM_Project__c parentGlobalProject = projectMap.get(parentGlobalProjectId);
                 
                // Only Contract document Available at Regional Level.
-               System.assertEquals(regionalProject.Project_Documents__r.size(),1);
+               System.assertEquals(regionalProject.Project_Documents__r.size(),1,'Project documents not generated');
    
                // MileStones would Copy from Parent Project. 
-               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size());
+               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size(),'Regional project milestones are not same as parent project milestones');
             }
             
             
@@ -355,21 +368,21 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0);
+                System.assert(regionalProject.Tasks__r.size()>0,'Tasks not created');
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c);     
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Task complexity does not match regional project complexity');     
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0);
+                System.assert(regionalProject.IPM_Milestones__r.size()>0, 'Milestones not crerated');
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3); // One for Global consolidated Financials and 2 for individual Rollouts
+                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'Financial not created'); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,'Project phase is not feasibility'); // Phase would be feasibility for Regional Projects.
                 
             }
         }
@@ -442,7 +455,6 @@ public class IPM_RolloutPlansAddController_Test{
                 		tmpCountry.MDO_Geography__c = geo2.Id;
                 	}
                 	if(i==2){
-                			//tmpCountry.isActive__c = false;
                 			tmpCountry.MDO_Geography__c = geo3.Id;
                 	}
                     countryList.add(tmpCountry);
@@ -517,7 +529,7 @@ public class IPM_RolloutPlansAddController_Test{
 
           //******************************************************************
           
-          //********************************************************************************
+          //********************************All the wrappers are populated************************************************
           irp3.project=projectList[0];
           irp3.globalCountries=GLOBAL_COUNTRIES;
           irp3.regionalMco=REGIONAL_MCO;
@@ -552,7 +564,6 @@ public class IPM_RolloutPlansAddController_Test{
           geoWrp.countryDisabled =true;
           geoWrp.noRolloutDisabled=true;
           
-          //irp3.GeographyWrapper geoWrp3=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
           IPM_RolloutPlansAddController.GeographyWrapper geoWrp3=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
           
           List<IPM_RolloutPlansAddController.GeographyWrapper> clusterWrapLst =  new List<IPM_RolloutPlansAddController.GeographyWrapper>();
@@ -574,7 +585,7 @@ public class IPM_RolloutPlansAddController_Test{
           //******************************************************************
           
           
-          //********************************************************************************
+          //***********************************lstCountryWrappers is not populated so that exception part is covered*********************************************
           irp4.project=projectList[0];
           irp4.globalCountries=GLOBAL_COUNTRIES;
           irp4.regionalMco=REGIONAL_MCO;
@@ -628,7 +639,6 @@ public class IPM_RolloutPlansAddController_Test{
           }
           
           
-          //irp.generateRollouts();
           dmlLimit = Limits.getDMLStatements();
           
           
@@ -636,7 +646,7 @@ public class IPM_RolloutPlansAddController_Test{
           PageReference rolloutPlansActual = irp.redirectPage();
           irp.cancel();
           
-          System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()));
+          System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()),'Url is not as expected');
         
         ApexPages.currentPage().getParameters().put(ID,null);
           //PageReference pRefGlobal = new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+null);
@@ -657,16 +667,20 @@ public class IPM_RolloutPlansAddController_Test{
        
       } 
 
- //****************************************************************************
  
  
 
-   public static testmethod void regionalRolloutProject()
+   /*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation for regional project
+	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
+	* Parameters are set to null
+	* @name :  testRegionalProjRolloutAddNullValues
+	***************************************************************************************/
+   public static testmethod void testRegionalProjRolloutAddNullValues()
    {  
         IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
         IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
       
-        //User globalProjectLeader = null;
         User regionalProjectLeader = null;  
         
         List<User> userList = [Select Id,Name,lastName from User where LastName in(:GLOBAL_PL,:REGIONAL_PL,:LOCAL_PL)];
@@ -674,10 +688,7 @@ public class IPM_RolloutPlansAddController_Test{
         
         for(User lUser  :userList)
         {
-            //if(lUser.lastName == GLOBAL_PL)
-            //{
-                //globalProjectLeader = lUser; 
-            //}
+
             if(lUser.lastName == REGIONAL_PL)
             {
                 regionalProjectLeader = lUser;
@@ -687,14 +698,12 @@ public class IPM_RolloutPlansAddController_Test{
         List<IPM_Country__c> countryList= new List<IPM_Country__c>(); 
         regionalProjects= IPM_TestFactory_Helper.projectSetUpRegional(2,regionalProjectLeader); 
         insert regionalProjects;
-        // public static List<IPM_Project__c> initiateRegionalProjectPhaseChange(List<Id> listprojectId,User userObj)
         
         List<id> regionalProjId = new List<Id>();
         for(IPM_Project__c regionalProject : regionalProjects)
         {
           regionalProjId.add(regionalProject.id);
         }
-        //regional to local phase change
        
         
       List<MDO_Geography__c> mdoCountryList = [select id,ISO_3166_1_Code__c,Name,parent_L2__c,geography_type__c,mdm_id__c,Status__c from MDO_Geography__c where Name in (:AFRICA,:ANGOLA) ];
@@ -739,7 +748,7 @@ public class IPM_RolloutPlansAddController_Test{
           
           irp.errorMessage=ERROR_MESSAGE;
           irp.isEditable=true;
-          irp.disableMCO = true; //changed bhoopesh
+          irp.disableMCO = true; 
           irp.selectedCountry = 'Australia';
          
          
@@ -815,8 +824,7 @@ public class IPM_RolloutPlansAddController_Test{
           
           test.StopTest();
           pageMessages = ApexPages.getMessages();
-          System.assertEquals(0, pageMessages.size());
-          //Boolean messageFound = false; 
+          System.assertEquals(0, pageMessages.size(),'Error messages generated');
            
         }
         
@@ -824,8 +832,12 @@ public class IPM_RolloutPlansAddController_Test{
         
     }
     
-    
-      public static testmethod void createProject2()
+     /*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects and removal of rollouts
+	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
+	* @name :  testGlobalProjRolloutAdd2
+	***************************************************************************************/
+     public static testmethod void testGlobalProjRolloutAdd2()
   	 {
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
        IPM_RolloutPlansAddController irp2= new IPM_RolloutPlansAddController();
@@ -866,8 +878,6 @@ public class IPM_RolloutPlansAddController_Test{
                 projectMap.put(proj.Id,proj);
             }
            
-             //Test.startTest();    
-            // Create Regional Rollouts for Created Global project.
             
             
             regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
@@ -903,15 +913,12 @@ public class IPM_RolloutPlansAddController_Test{
             List<MDO_Geography__c> mdoCountryList = [select id,ISO_3166_1_Code__c,Name,parent_L2__c,geography_type__c,mdm_id__c,Status__c from MDO_Geography__c where Name in (:AFRICA,:ANGOLA) ];
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
             {
-                //String geoExternalId = '';
                 if(localRollout.IPM_Rollout_Project__c.contains(AF))
                 {
-                    //geoExternalId = 'AG'; //object its declare as 2 length
                     geoExternal= true;
                 }
                 else if(localRollout.IPM_Rollout_Project__c.contains(LA))
                 {
-                    //geoExternalId = BR;
                     geoExternal= false;
                 }
                
@@ -1009,10 +1016,10 @@ public class IPM_RolloutPlansAddController_Test{
                IPM_Project__c parentGlobalProject = projectMap.get(parentGlobalProjectId);
                 
                // Only Contract document Available at Regional Level.
-               System.assertEquals(regionalProject.Project_Documents__r.size(),1);
+               System.assertEquals(regionalProject.Project_Documents__r.size(),1,'Project documents not created');
    
                // MileStones would Copy from Parent Project. 
-               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size());
+               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size(),'Regional project milestones are not same as parent project milestones');
             }
             
             
@@ -1030,21 +1037,21 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0);
+                System.assert(regionalProject.Tasks__r.size()>0,'Tasks not created');
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c);     
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Task complexity does not match regional project complexity');     
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0);
+                System.assert(regionalProject.IPM_Milestones__r.size()>0,'Milestones not crerated');
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3); // One for Global consolidated Financials and 2 for individual Rollouts
+                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'Financial not created'); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,'Project phase is not feasibility'); // Phase would be feasibility for Regional Projects.
                 
             }
         }
@@ -1093,7 +1100,7 @@ public class IPM_RolloutPlansAddController_Test{
           geoWrp.countryDisabled =true;
           geoWrp.noRolloutDisabled=true;
           
-          
+          //In this scenario all the countries are made inactive
           MDO_Geography__c geo1 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = BR);
           insert geo1;
           
@@ -1302,7 +1309,6 @@ public class IPM_RolloutPlansAddController_Test{
           }
           
           
-          //irp.generateRollouts();
           dmlLimit = Limits.getDMLStatements();
           
           
@@ -1313,7 +1319,6 @@ public class IPM_RolloutPlansAddController_Test{
           System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()));
         
         ApexPages.currentPage().getParameters().put(ID,null);
-          //PageReference pRefGlobal = new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+null);
           Test.setCurrentPageReference(new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+null));
            irp.cancel();
            irp.redirectPage();
@@ -1331,7 +1336,12 @@ public class IPM_RolloutPlansAddController_Test{
        
    }
    
-    public static testmethod void createProject3()
+    /*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects and removal of rollouts
+	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
+	* @name :  testGlobalProjRolloutAdd3
+	***************************************************************************************/
+    public static testmethod void testGlobalProjRolloutAdd3()
   	{
   		
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
@@ -1371,8 +1381,6 @@ public class IPM_RolloutPlansAddController_Test{
                 projectMap.put(proj.Id,proj);
             }
            
-             //Test.startTest();    
-            // Create Regional Rollouts for Created Global project.
             
             
             regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
@@ -1408,15 +1416,12 @@ public class IPM_RolloutPlansAddController_Test{
             List<MDO_Geography__c> mdoCountryList = [select id,ISO_3166_1_Code__c,Name,parent_L2__c,geography_type__c,mdm_id__c,Status__c from MDO_Geography__c where Name in (:AFRICA,:ANGOLA) ];
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
             {
-                //String geoExternalId = '';
                 if(localRollout.IPM_Rollout_Project__c.contains(AF))
                 {
-                    //geoExternalId = 'AG'; //object its declare as 2 length
                     geoExternal= true;
                 }
                 else if(localRollout.IPM_Rollout_Project__c.contains(LA))
                 {
-                    //geoExternalId = BR;
                     geoExternal= false;
                 }
                
@@ -1514,10 +1519,10 @@ public class IPM_RolloutPlansAddController_Test{
                IPM_Project__c parentGlobalProject = projectMap.get(parentGlobalProjectId);
                 
                // Only Contract document Available at Regional Level.
-               System.assertEquals(regionalProject.Project_Documents__r.size(),1);
+               System.assertEquals(regionalProject.Project_Documents__r.size(),1,'Project documents not created');
    
                // MileStones would Copy from Parent Project. 
-               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size());
+               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size(),'Regional project milestones are not same as parent project milestones');
             }
             
             
@@ -1535,21 +1540,21 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0);
+                System.assert(regionalProject.Tasks__r.size()>0,'Tasks not created');
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c);     
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Task complexity does not match regional project complexity');     
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0);
+                System.assert(regionalProject.IPM_Milestones__r.size()>0,'Milestones not crerated');
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3); // One for Global consolidated Financials and 2 for individual Rollouts
+                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'Financial not created'); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,'Project phase is not feasibility'); // Phase would be feasibility for Regional Projects.
                 
             }
         }
@@ -1598,15 +1603,10 @@ public class IPM_RolloutPlansAddController_Test{
           geoWrp.countryDisabled =true;
           geoWrp.noRolloutDisabled=true;
           
-          
+          // all there countries are associated with the same MDO_Geography__c object
           MDO_Geography__c geo1 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = BR);
           insert geo1;
           
-          MDO_Geography__c geo2 = new MDO_Geography__c(name = FRANCE,ISO_3166_1_code__c = FR);
-          insert geo2;
-          
-          MDO_Geography__c geo3 = new MDO_Geography__c(name = SOUTH_AFRICA,ISO_3166_1_code__c = SA);
-          insert geo3;  
           
           List<IPM_Country__c> countryList = new List<IPM_Country__c>();
                 for(integer i=0; i<3 ; i++) {
@@ -1675,8 +1675,12 @@ public class IPM_RolloutPlansAddController_Test{
    
   	}
   	
-  	
-  	public static testmethod void regionalProject2()
+  	/*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation,and removal of rollouts
+	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
+	* @name :  testRegionalProjRolloutAdd2
+	***************************************************************************************/
+  	public static testmethod void testRegionalProjRolloutAdd2()
   	{
   		
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
@@ -1750,15 +1754,12 @@ public class IPM_RolloutPlansAddController_Test{
             List<MDO_Geography__c> mdoCountryList = [select id,ISO_3166_1_Code__c,Name,parent_L2__c,geography_type__c,mdm_id__c,Status__c from MDO_Geography__c where Name in (:AFRICA,:ANGOLA) ];
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
             {
-                //String geoExternalId = '';
                 if(localRollout.IPM_Rollout_Project__c.contains(AF))
                 {
-                    //geoExternalId = 'AG'; //object its declare as 2 length
                     geoExternal= true;
                 }
                 else if(localRollout.IPM_Rollout_Project__c.contains(LA))
                 {
-                    //geoExternalId = BR;
                     geoExternal= false;
                 }
                
@@ -1831,41 +1832,7 @@ public class IPM_RolloutPlansAddController_Test{
         
         regionalProjects = new List<IPM_Project__c>();
         
-        System.RunAs(globalProjectLeader)
-        {
-            Map<Id,List<IPM_Project__c>> globalToRegionalMap = IPM_TestFactory_Helper.getRegionalProjects(globalProjectIdList);
-      
-      
-      
-            for(Id gbProjectId : globalToRegionalMap.keySet())
-            {
-               regionalProjects.addAll(globalToRegionalMap.get(gbProjectId)); 
-             
-            }
-            
-            
-            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c,(Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];  
-            
-            dmlLimit = Limits.getDMLStatements();
-            
-               
-            for(IPM_Project__c regionalProject : DBRegionalProjects) 
-            {
-               Id parentGlobalProjectId = regionalProject.IPM_Parent_Project__c;
-                
-               IPM_Project__c parentGlobalProject = projectMap.get(parentGlobalProjectId);
-                
-               // Only Contract document Available at Regional Level.
-               System.assertEquals(regionalProject.Project_Documents__r.size(),1);
-   
-               // MileStones would Copy from Parent Project. 
-               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size());
-            }
-            
-            
-        }
-        
-        dmlLimit = Limits.getDMLStatements();
+
         
         
         //******************************** Regional Project Leader View for Regional Projects  ****************************************
@@ -1877,21 +1844,21 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0);
+                System.assert(regionalProject.Tasks__r.size()>0,'Tasks not created');
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c);     
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Task complexity does not match regional project complexity');     
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0);
+                System.assert(regionalProject.IPM_Milestones__r.size()>0,'Milestones not crerated');
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3); // One for Global consolidated Financials and 2 for individual Rollouts
+                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'Financial not created'); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,'Project phase is not feasibility'); // Phase would be feasibility for Regional Projects.
                 
             }
         }
@@ -2018,13 +1985,17 @@ public class IPM_RolloutPlansAddController_Test{
    
   	}
   	
-  	public static testmethod void regionalProject3()
+  	/*************************************************************************************
+	* @Description : Used for testing  regional and local rollouts creation,and removal of rollouts
+	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
+	* @name :  testRegionalProjRolloutAdd3
+	***************************************************************************************/
+  	public static testmethod void testRegionalProjRolloutAdd3()
   	{
   		
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
 
        IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
-        //Set<String> projectNameSet = new Set<String>{TestComments1,TestComments2,TestComments3};
         List<Id> globalProjectIdList = new List<Id>();
         Map<Id,IPM_Project__c> projectMap = new Map<Id,IPM_Project__c>();
         User globalProjectLeader = null;
@@ -2058,8 +2029,6 @@ public class IPM_RolloutPlansAddController_Test{
             projectMap.put(proj.Id,proj);
           }
            
-             //Test.startTest();    
-            // Create Regional Rollouts for Created Global project.
             
             
             regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{regionalProjectLeader,regionalProjectLeader,regionalProjectLeader});
@@ -2095,15 +2064,12 @@ public class IPM_RolloutPlansAddController_Test{
             List<MDO_Geography__c> mdoCountryList = [select id,ISO_3166_1_Code__c,Name,parent_L2__c,geography_type__c,mdm_id__c,Status__c from MDO_Geography__c where Name in (:AFRICA,:ANGOLA) ];
             for(IPM_Project_Rollout__c localRollout : localRolloutList)
             {
-                //String geoExternalId = '';
                 if(localRollout.IPM_Rollout_Project__c.contains(AF))
                 {
-                    //geoExternalId = 'AG'; //object its declare as 2 length
                     geoExternal= true;
                 }
                 else if(localRollout.IPM_Rollout_Project__c.contains(LA))
                 {
-                    //geoExternalId = BR;
                     geoExternal= false;
                 }
                
@@ -2176,41 +2142,22 @@ public class IPM_RolloutPlansAddController_Test{
         
         regionalProjects = new List<IPM_Project__c>();
         
-        System.RunAs(globalProjectLeader)
-        {
-            Map<Id,List<IPM_Project__c>> globalToRegionalMap = IPM_TestFactory_Helper.getRegionalProjects(globalProjectIdList);
+
       
       
       
-            for(Id gbProjectId : globalToRegionalMap.keySet())
-            {
-               regionalProjects.addAll(globalToRegionalMap.get(gbProjectId)); 
              
-            }
             
             
-            List<IPM_Project__c> DBRegionalProjects = [Select Id,Name,IPM_Phase__c,IPM_Parent_Project__c,(Select Id from Project_Documents__r),(Select Id,Name,IPM_Task_Complexity__c from Tasks__r),(Select Id,Name from IPM_Milestones__r) from IPM_Project__c where ID in :regionalProjects];  
             
-            dmlLimit = Limits.getDMLStatements();
             
                
-            for(IPM_Project__c regionalProject : DBRegionalProjects) 
-            {
-               Id parentGlobalProjectId = regionalProject.IPM_Parent_Project__c;
                 
-               IPM_Project__c parentGlobalProject = projectMap.get(parentGlobalProjectId);
                 
-               // Only Contract document Available at Regional Level.
-               System.assertEquals(regionalProject.Project_Documents__r.size(),1);
    
-               // MileStones would Copy from Parent Project. 
-               System.assertEquals(regionalProject.IPM_Milestones__r.size(),parentGlobalProject.IPM_Milestones__r.size());
-            }
             
             
-        }
         
-        dmlLimit = Limits.getDMLStatements();
         
         
         //******************************** Regional Project Leader View for Regional Projects  ****************************************
@@ -2222,21 +2169,21 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0);
+                System.assert(regionalProject.Tasks__r.size()>0,'Tasks not created');
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c);     
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Task complexity does not match regional project complexity');     
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0);
+                System.assert(regionalProject.IPM_Milestones__r.size()>0,'Milestones not crerated');
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3); // One for Global consolidated Financials and 2 for individual Rollouts
+                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'Financial not created'); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,'Project phase is not feasibility'); // Phase would be feasibility for Regional Projects.
                 
             }
         }
@@ -2336,7 +2283,6 @@ public class IPM_RolloutPlansAddController_Test{
           }
           
           
-          //irp.generateRollouts();
           dmlLimit = Limits.getDMLStatements();
           
           
@@ -2347,7 +2293,6 @@ public class IPM_RolloutPlansAddController_Test{
           System.assert(rolloutPlansActual.getURL().contains(rolloutPlansExpected.getURL()));
         
         ApexPages.currentPage().getParameters().put(ID,null);
-          //PageReference pRefGlobal = new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+null);
           Test.setCurrentPageReference(new PageReference(IPMROLLOUTPLANSADD_PAGE_URL+null));
           irp.cancel();
           irp.redirectPage();
