@@ -324,7 +324,7 @@ public class IPM_RolloutPlansAddController_Test{
                 System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,'Feasibility'); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE); // Phase would be feasibility for Regional Projects.
                 
             }
         }
@@ -522,12 +522,9 @@ public class IPM_RolloutPlansAddController_Test{
           irp3.lstCountryWrappers = countryWrapLst;
           
           irp3.searchCountry='test';
-          try{
-              irp3.searchRolloutCountry();
-          }
-          catch(Exception e){
-          
-          }
+
+          irp3.searchRolloutCountry();
+
           
           //******************************************************************
           
@@ -570,12 +567,13 @@ public class IPM_RolloutPlansAddController_Test{
           irp4.lstMCOWrappers = mcoWrapLst4;
           //irp3.lstCountryWrappers = countryWrapLst4;
           
+          //keeping lstCountryWrappers as null so that exception block is tested
           irp4.searchCountry='test';
           try{
               irp4.searchRolloutCountry();
           }
           catch(Exception e){
-          
+          	  System.assert(e.getMessage() != null,'Null record referenced lstCountryWrappers');
           }
           
           
@@ -1205,13 +1203,9 @@ public class IPM_RolloutPlansAddController_Test{
           irp3.lstCountryWrappers = countryWrapLst;
           
           irp3.searchCountry='test';
-          try{
+
               irp3.searchRolloutCountry();
-          }
-          catch(Exception e){
-          
-          }
-          
+
           //******************************************************************
           
           
@@ -1246,20 +1240,17 @@ public class IPM_RolloutPlansAddController_Test{
           clusterWrapLst.add(geoWrp4);            
           List<IPM_RolloutPlansAddController.GeographyWrapper> mcoWrapLst4 =  new List<IPM_RolloutPlansAddController.GeographyWrapper>();
           mcoWrapLst.add(geoWrp4);
-          //List<IPM_RolloutPlansAddController.GeographyWrapper> countryWrapLst4 =  new List<IPM_RolloutPlansAddController.GeographyWrapper>();
-          countryWrapLst.add(geoWrp4);
+          List<IPM_RolloutPlansAddController.GeographyWrapper> countryWrapLst4 =  new List<IPM_RolloutPlansAddController.GeographyWrapper>();
+          countryWrapLst4.add(geoWrp4);
           
           irp4.lstClusterWrappers = clusterWrapLst4;
           irp4.lstMCOWrappers = mcoWrapLst4;
-          //irp3.lstCountryWrappers = countryWrapLst4;
+          irp3.lstCountryWrappers = countryWrapLst4;
           
           irp4.searchCountry='test';
-          try{
-              irp4.searchRolloutCountry();
-          }
-          catch(Exception e){
-          
-          }
+
+          irp4.searchRolloutCountry();
+
           
           //******************************************************************
           
