@@ -38,8 +38,7 @@ private class IPM_ProjectOwnerUpdatescheduler_Test {
         String jobId5 = System.schedule('Test5', CRON_EXP, ownerUpdateScheduler); 
         String jobId6 = System.schedule('Test6', CRON_EXP, ownerUpdateScheduler);
         
-        List<AsyncApexJob> jobList=[SELECT id FROM AsyncApexJob WHERE JobType=:IPM_ConstantUtils.IPM_BATCHAPEX and id=:jobId];
-         
+		system.Assert(string.IsNotBlank(jobId), 'job created');         
         Test.stopTest();
         
         

@@ -268,7 +268,7 @@ private with sharing class IPM_CoreParameters_Test {
              
              sic.IPM_Coreparameter.IPM_ProjectSubType__c = IPM_ConstantUtils.IPM_BLG;
              sic.getCoreStrategicIntent();
-      
+            system.assertEquals(sic.IPM_Coreparameter.IPM_ProjectSubType__c,IPM_ConstantUtils.IPM_BLG,'Load Strategic Intent For BLG Project'); 
          }
     }
         
