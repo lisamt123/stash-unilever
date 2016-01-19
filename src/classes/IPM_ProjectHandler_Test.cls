@@ -27,28 +27,19 @@ private class IPM_ProjectHandler_Test {
     Static String Rollout = IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT;
     Static String REGIONAL = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
     Static String LOCAL = IPM_ConstantUtils.PROJECT_SPAN_LOCAL;
-    
-    private static List < IPM_Project__c > ipmProjectList;
-    private static List < IPM_Country__c > ipmCountryList;
-    private static List < IPM_Project_Resource__c > projectResList;
     private static User adminUser;
     private static User standardUser;
-    private static MDO_Geography__c geography, geography1;
-    private static mdm_Geography__c mdm, mdm1;
-    private static IPM_Project__c ipmProject;
     private static List < IPM_Company_Card__c > companyCardList;
-    private static List < User > userList;
-    private static List < MDO_Geography__c > mdo_geoList;
     private static User platformUser;
     
     /***********************************
-	Description of the purpose of the method. 
-	@name: initializeData
-	@Description: Test Data Creation
-	@param: none
-	@return: none
-	@throws: none
-	***********************************/
+    Description of the purpose of the method. 
+    @name: initializeData
+    @Description: Test Data Creation
+    @param: none
+    @return: none
+    @throws: none
+    ***********************************/
     
     static void initializeData(){        
         
@@ -114,6 +105,10 @@ private class IPM_ProjectHandler_Test {
         project.IPM_Project_Gatekeeper__c = gatekeeperUser.Id; 
         update project;
     }
+    
+    /***********************************************************
+     This method creates test data to be used in test methods.
+    ************************************************************/
     
     @testSetup static void setUpData() {
         Test.startTest();
@@ -194,9 +189,14 @@ private class IPM_ProjectHandler_Test {
             Test.stopTest();
         }
     }
+    
+   
+    /**************************************************************************
+     This method creates BET specific test data to be used in bet test methods.
+    ***************************************************************************/
     static void betInitializeData() {
-        bet1 = [Select Id, name, Status__c, FinalReleaseDate__c, Launch_Date__c from uw_BET__c where name = 'testBet0'];
-        bet2 = [Select Id, name, Status__c, FinalReleaseDate__c, Launch_Date__c from uw_BET__c where name = : 'testBet'];
+        bet1 = [Select Id, name, Status__c, FinalReleaseDate__c, Launch_Date__c from uw_BET__c where name = 'testBet0' limit 1000];
+        bet2 = [Select Id, name, Status__c, FinalReleaseDate__c, Launch_Date__c from uw_BET__c where name = : 'testBet' limit 1000];
         betProjectList[0].name = 'testPrj1';
         betProjectList[0].IPM_Project_Type__c = Rollout;
         betProjectList[0].IPMProject_Span__c = REGIONAL;
@@ -263,13 +263,13 @@ private class IPM_ProjectHandler_Test {
         betProjectList[8].IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_COMPLETED;
     }
     /***********************************
-	Description of the purpose of the method. 
-	@name: testProjectHandlerInstantiation
-	@Description: 
-	@param: none
-	@return: none
-	@throws: none
-	***********************************/
+    Description of the purpose of the method. 
+    @name: testProjectHandlerInstantiation
+    @Description: 
+    @param: none
+    @return: none
+    @throws: none
+    ***********************************/
     static testMethod void testProjectHandlerInstantiation(){ 
         
         initializeData();
@@ -286,6 +286,13 @@ private class IPM_ProjectHandler_Test {
         
     }
     
+    /*Description of the purpose of the method. 
+    @name: testTrackHistoryChanges
+    @Description: Test creation of project history record on update of a project
+    @param: none
+    @return: none
+    @throws: none
+    ***********************************/
     static testMethod void testTrackHistoryChanges(){  
         
         initializeData();
@@ -299,21 +306,24 @@ private class IPM_ProjectHandler_Test {
             Test.StartTest();
             update project;
             Test.StopTest();
-            List<IPM_Project_Resource_History__c> lstPrjResourceHistory = [Select Id from IPM_Project_Resource_History__c where IPM_Project__c =: project.Id];
+            List<IPM_Project_Resource_History__c> lstPrjResourceHistory = [Select Id from IPM_Project_Resource_History__c where IPM_Project__c =: project.Id limit 100];
             System.assert(lstPrjResourceHistory.size() >= 1, 'Project resource history inserted');
             
         }   
         
     }
     
+     /***************************************************************************************************
+     This is to test  BetAccessOnInsert method , this checks if member requests  were created for the BET . 
+    *****************************************************************************************************/
     static testmethod void testBetAccessOnInsert(){
         
         User testRunningUser = [Select Id, LastName from User where LastName = : USER_LAST_NAME limit 1];
         
         system.runAs(testRunningUser) {
-
+            
             betInitializeData();
-
+            
             Test.Starttest();
             insert new List < IPM_Project__c > {
                 betProjectList[8],
@@ -328,15 +338,19 @@ private class IPM_ProjectHandler_Test {
         }
     } 
     
+    /**************************************************************************************
+     This checks if member requests  were created for the BET on project update . 
+    ****************************************************************************************/
+    
     static testmethod void testBetUpdates(){
         
         User testRunningUser = [Select Id, LastName from User where LastName = : USER_LAST_NAME limit 1];
-        User financeuser = [Select Id, LastName from User where LastName = 'financeUser'];
+        User financeuser = [Select Id, LastName from User where LastName = 'financeUser' limit 100];
         
         system.runAs(testRunningUser) {
-
+           
             betInitializeData();
-
+            
             insert new List < IPM_Project__c > {
                 betProjectList[8],
                     betProjectList[7],
@@ -347,7 +361,7 @@ private class IPM_ProjectHandler_Test {
                     
                     };
                         
-                        betProjectList[5].IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
+            betProjectList[5].IPM_Project_Type__c = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
             betProjectList[5].IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
             betProjectList[5].IPM_Fast_Track_Project__c = true;
             
