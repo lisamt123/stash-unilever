@@ -934,8 +934,12 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     }
     
     public void charcterCount(){
-        sectionCharLimit=Integer.valueof(projDocSec.IPM_Section__r.IPM_Character_Limit__c);  
-        countLimit=Integer.valueof(projDocSec.IPM_Summary_Character_Remaining__c);
-        remainingChar=countLimit;
+    	if(projDocSec.IPM_Section__r.IPM_Character_Limit__c!=null){
+        	sectionCharLimit=Integer.valueof(projDocSec.IPM_Section__r.IPM_Character_Limit__c);  
+    	}
+    	if(projDocSec.IPM_Summary_Character_Remaining__c!=null){
+	        countLimit=Integer.valueof(projDocSec.IPM_Summary_Character_Remaining__c);
+	        remainingChar=countLimit;
+    	}
     }    
 }
