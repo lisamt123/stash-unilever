@@ -40,7 +40,7 @@ public without sharing class IPM_ChatterFeedHelper {
         
         parentIds.remove(null);
         Map<String, Boolean> parentSubscriberMapToReturn = new Map<String, Boolean>(); //var to return
-        if(!parentIds.isEmpty())
+        if(parentIds != null && !parentIds.isEmpty())
         {
         EntitySubscription[] subscriptionList = [SELECT 
                                                    ParentId, SubscriberId FROM EntitySubscription
