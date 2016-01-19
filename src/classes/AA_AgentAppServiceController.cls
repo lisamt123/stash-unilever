@@ -95,37 +95,36 @@ public with sharing class AA_AgentAppServiceController {
         if(!Utility.isEmpty(objAgentApp.ReportDesc)){
             newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
         }
-        if(!Utility.isEmpty(objAgentApp.Retailer)){
+       if(!Utility.isEmpty(objAgentApp.Retailer)){
             newObjToBeInserted.Retailer__c  = objAgentApp.Retailer;
-        }
-        if(!Utility.isEmpty(objAgentApp.ReportingOn)){
+       }
+       if(!Utility.isEmpty(objAgentApp.ReportingOn)){
             newObjToBeInserted.Reporting_on__c = objAgentApp.ReportingOn;
-        }
-        if(!Utility.isEmpty(objAgentApp.CountryId)){
+       }
+       if(!Utility.isEmpty(objAgentApp.CountryId)){
             newObjToBeInserted.Country__c = objAgentApp.CountryId;
-        }
-        if(!Utility.isEmpty(objAgentApp.ReportName )){
+       }
+       if(!Utility.isEmpty(objAgentApp.ReportName )){
             newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
-        }
-        
-        if(!Utility.isEmpty(objAgentApp.Town)){
+       }
+       if(!Utility.isEmpty(objAgentApp.Town)){
             newObjToBeInserted.Town__c = objAgentApp.Town;
-        }
-        if(!Utility.isEmpty(objAgentApp.Longitude)){
+       }
+       if(!Utility.isEmpty(objAgentApp.Longitude)){
             newObjToBeInserted.longitude__c = objAgentApp.Longitude;
-        }
-        if(!Utility.isEmpty(objAgentApp.Latitude)){
+       }
+       if(!Utility.isEmpty(objAgentApp.Latitude)){
             newObjToBeInserted.latitude__c = objAgentApp.Latitude;
-        }
-        if(!Utility.isEmpty(objAgentApp.CategoryId )){
+       }
+       if(!Utility.isEmpty(objAgentApp.CategoryId )){
             newObjToBeInserted.Category__c = objAgentApp.CategoryId ;
-        }
-        if(!Utility.isEmpty(objAgentApp.CompetitorId )){
+       }
+       if(!Utility.isEmpty(objAgentApp.CompetitorId )){
             newObjToBeInserted.Competitor_Name__c = objAgentApp.CompetitorId ;
-        }
-        if(!Utility.isEmpty(objAgentApp.CompetitorBrandId )){
+       }
+       if(!Utility.isEmpty(objAgentApp.CompetitorBrandId )){
             newObjToBeInserted.Competitor_Brand__c = objAgentApp.CompetitorBrandId ;
-        }
+       }
         /* if(!Utility.isEmpty(objAgentApp.ClusterId)){
             newObjToBeInserted.Country__r.Cluster_Id__c = objAgentApp.ClusterId ;
         }*/
@@ -180,16 +179,16 @@ public with sharing class AA_AgentAppServiceController {
         if(!Utility.isEmpty(objAgentApp.CountryId)){
             newObjToBeInserted.Country__c = objAgentApp.CountryId;
         }
-        if(!Utility.isEmpty(objAgentApp.Town)){
+       if(!Utility.isEmpty(objAgentApp.Town)){
             newObjToBeInserted.Town__c = objAgentApp.Town;
-        }
-        if(!Utility.isEmpty(objAgentApp.Longitude)){
+       }
+       if(!Utility.isEmpty(objAgentApp.Longitude)){
             newObjToBeInserted.longitude__c = objAgentApp.Longitude;
-        }
-        if(!Utility.isEmpty(objAgentApp.Latitude)){
+       }
+       if(!Utility.isEmpty(objAgentApp.Latitude)){
             newObjToBeInserted.latitude__c = objAgentApp.Latitude;
-        }
-        if(!Utility.isEmpty(objAgentApp.CodeOfConduct)){
+       }
+       if(!Utility.isEmpty(objAgentApp.CodeOfConduct)){
             if(objAgentApp.CodeOfConduct == 'true'){
                 newObjToBeInserted.Is_Accepted_Code_of_Conduct__c = true;    
             }else if(objAgentApp.CodeOfConduct == 'false'){
@@ -613,9 +612,9 @@ public with sharing class AA_AgentAppServiceController {
         
         if(appWrapperObj.objAgentAppDataRequest!=null)
         {
-        if(appWrapperObj.objAgentAppDataRequest.FilterType==null ||  appWrapperObj.objAgentAppDataRequest.FilterType=='AllReports'){
+      //  if(appWrapperObj.objAgentAppDataRequest.FilterType==null ||  appWrapperObj.objAgentAppDataRequest.FilterType=='AllReports'){
             
-        }
+       // }
         
         if(appWrapperObj.objAgentAppDataRequest.FilterType=='myReport')
         {
@@ -648,48 +647,48 @@ public with sharing class AA_AgentAppServiceController {
                                                                 
              if(UserPref.Country__c != NULL )
                 {
-                   soqlquery +='AND Country__c =\''+UserPref.Country__c+'\' ';    
+                   soqlquery +='AND Country__c ='+AA_Constants.Escapechar+UserPref.Country__c+AA_Constants.Escapechar;    
                 }
                 
                 if(UserPref.Agent_App_Unilever_Brand__c!=NULL)
                 {
-                  soqlquery +='AND Agent_App_Unilever_Brand__c =\''+UserPref.Agent_App_Unilever_Brand__c+'\' ';
+                  soqlquery +='AND Agent_App_Unilever_Brand__c ='+AA_Constants.Escapechar+UserPref.Agent_App_Unilever_Brand__c+AA_Constants.Escapechar;
                 }
                 
                 if(UserPref.Competitor_Name__c !=NULL)
                 {
-                  soqlquery +='AND Competitor_Name__c=\''+UserPref.Competitor_Name__c+'\' ';
+                  soqlquery +='AND Competitor_Name__c='+AA_Constants.Escapechar+UserPref.Competitor_Name__c+AA_Constants.Escapechar;
                 }
                 
                 if(UserPref.Competitor_Brand__c !=NULL)
                  {
-                   soqlquery +='AND Competitor_Brand__c =\''+UserPref.Competitor_Brand__c+'\' ';
+                   soqlquery +='AND Competitor_Brand__c ='+AA_Constants.Escapechar+UserPref.Competitor_Brand__c+AA_Constants.Escapechar;
                  }
                 
                 if(UserPref.Retailer__c !=NULL)
                 {
-                   soqlquery +='AND Retailer__c =\''+UserPref.Retailer__c+'\' ';
+                   soqlquery +='AND Retailer__c ='+AA_Constants.Escapechar+UserPref.Retailer__c+AA_Constants.Escapechar;
                 }
                 
                 if(UserPref.Category__c !=NULL)
                 {
-                   soqlquery +='AND Category__c =\''+UserPref.Category__c+'\' ';
+                   soqlquery +='AND Category__c ='+AA_Constants.Escapechar+UserPref.Category__c+AA_Constants.Escapechar;
                 }  
                  if(UserPref.Cluster__c !=NULL)
                 {
-                   soqlquery +='AND Country__r.Cluster_Id__c =\''+UserPref.Cluster__c+'\' ';
+                   soqlquery +='AND Country__r.Cluster_Id__c ='+AA_Constants.Escapechar+UserPref.Cluster__c+AA_Constants.Escapechar;
                 }   
                 if(UserPref.RecordTypeId__c!=NULL)
                 {
-                soqlquery +='AND RecordTypeId  = \''+UserPref.RecordTypeId__c+'\' ';    
+                soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+UserPref.RecordTypeId__c+AA_Constants.Escapechar;    
                 }       
                 if(UserPref.Topic__c!=NULL)
                 {
-                    soqlquery +='AND Topic__c = \''+UserPref.Topic__c+'\' ';
+                    soqlquery +='AND Topic__c ='+AA_Constants.Escapechar+UserPref.Topic__c+AA_Constants.Escapechar;
                 }
                 if(UserPref.ReportingOn__c!=NULL)
                 {
-                    soqlquery +='AND Reporting_on__c = \''+UserPref.ReportingOn__c+'\' ';
+                    soqlquery +='AND Reporting_on__c = '+AA_Constants.Escapechar+UserPref.ReportingOn__c+AA_Constants.Escapechar;
                 }
                   
 
@@ -700,45 +699,45 @@ public with sharing class AA_AgentAppServiceController {
                 
                 if(requestAgentDataObj.country__c != NULL )
                 {
-                   soqlquery +='AND Country__c =\''+requestAgentDataObj.country__c+'\' ';    
+                   soqlquery +='AND Country__c ='+AA_Constants.Escapechar+requestAgentDataObj.country__c+AA_Constants.Escapechar;    
                 }
                 
                 if(requestAgentDataObj.Agent_App_Unilever_Brand__c !=NULL)
                 {
-                  soqlquery +='AND Agent_App_Unilever_Brand__c = \''+requestAgentDataObj.Agent_App_Unilever_Brand__c +'\' ';
+                  soqlquery +='AND Agent_App_Unilever_Brand__c ='+AA_Constants.Escapechar+requestAgentDataObj.Agent_App_Unilever_Brand__c +AA_Constants.Escapechar;
                 }
                 
                 if(requestAgentDataObj.Competitor_Name__c !=NULL)
                 {
-                  soqlquery +='AND Competitor_Name__c= \''+requestAgentDataObj.Competitor_Name__c +'\' ';
+                  soqlquery +='AND Competitor_Name__c= '+AA_Constants.Escapechar+requestAgentDataObj.Competitor_Name__c +AA_Constants.Escapechar;
                 }
                 
                 if(requestAgentDataObj.Competitor_Brand__c !=NULL)
                  {
-                   soqlquery +='AND Competitor_Brand__c =  \''+ requestAgentDataObj.Competitor_Brand__c+'\' ';
+                   soqlquery +='AND Competitor_Brand__c = '+AA_Constants.Escapechar+ requestAgentDataObj.Competitor_Brand__c+AA_Constants.Escapechar;
                  }
                 
                 if(requestAgentDataObj.Retailer__c !=NULL)
                 {
-                   soqlquery +='AND Retailer__c = \''+requestAgentDataObj.Retailer__c+'\' ';
+                   soqlquery +='AND Retailer__c = '+AA_Constants.Escapechar+requestAgentDataObj.Retailer__c+AA_Constants.Escapechar;
                 }
                 
                 if(requestAgentDataObj.Category__c !=NULL)
                 {
-                   soqlquery +='AND Category__c = \''+requestAgentDataObj.Category__c+'\' ';
+                   soqlquery +='AND Category__c = '+AA_Constants.Escapechar+requestAgentDataObj.Category__c+AA_Constants.Escapechar;
                 }
                 
                 if(appWrapperObj.objAgentAppDataRequest.ClusterId!=NULL)
                 {
-                   soqlquery +='AND Country__r.Cluster_Id__c = \''+appWrapperObj.objAgentAppDataRequest.ClusterId+'\' ';
+                   soqlquery +='AND Country__r.Cluster_Id__c ='+AA_Constants.Escapechar+appWrapperObj.objAgentAppDataRequest.ClusterId+AA_Constants.Escapechar;
                 }
                 if(appWrapperObj.objAgentAppDataRequest.TopicId!=NULL)
                 {
-                    soqlquery +='AND Topic__c = \''+appWrapperObj.objAgentAppDataRequest.TopicId+'\' ';
+                    soqlquery +='AND Topic__c ='+AA_Constants.Escapechar+appWrapperObj.objAgentAppDataRequest.TopicId+AA_Constants.Escapechar;
                 }
                 if(appWrapperObj.objAgentAppDataRequest.ReportingOn!=NULL)
                 {
-                    soqlquery +='AND Reporting_on__c = \''+appWrapperObj.objAgentAppDataRequest.ReportingOn+'\' ';
+                    soqlquery +='AND Reporting_on__c ='+AA_Constants.Escapechar+appWrapperObj.objAgentAppDataRequest.ReportingOn+AA_Constants.Escapechar;
                 }
                 String recTypeId='';
                 if(appWrapperObj.objAgentAppDataRequest.RecordType=='Unilever')
@@ -749,7 +748,7 @@ public with sharing class AA_AgentAppServiceController {
                     recTypeId = (RT.get('Unilever Agent Published Report')).getRecordTypeId();
                     //newObjToBeInserted.RecordTypeId = recTypeId;
                     system.debug('Record Type Id==>'+recTypeId);
-                    soqlquery +='AND RecordTypeId  = \''+recTypeId+'\' ';
+                    soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+recTypeId+AA_Constants.Escapechar;
                 }                   
             
                if(appWrapperObj.objAgentAppDataRequest.RecordType=='Competitor')
@@ -758,7 +757,7 @@ public with sharing class AA_AgentAppServiceController {
                     Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
                     Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
                     recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
-                    soqlquery +='AND RecordTypeId  = \''+recTypeId+'\' ';
+                    soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+recTypeId+AA_Constants.Escapechar;
                 }  
             
             aa_Agent_App_User_Preference__c userPref = [SELECT Id,UserId__c 
@@ -1215,7 +1214,7 @@ public with sharing class AA_AgentAppServiceController {
          if(UserPref[0].Is_Accepted_Terms_Condition__c == null || UserPref[0].Is_Accepted_Terms_Condition__c == false){
             appWrapperObj.isAcceptedTermsCondition = false;
          }
-         else if (UserPref[0].Is_Accepted_Terms_Condition__c == true){
+         else{
             appWrapperObj.isAcceptedTermsCondition = UserPref[0].Is_Accepted_Terms_Condition__c;
             UserPref[0].User_Last_Login__c = System.now(); 
             update UserPref; 

@@ -21,4 +21,5 @@ public with sharing class AA_Constants {
     public static final String SVC_AGENT_APP_COUNTRY_CLUSTER='getCounrtyCluster';
     public static final String SVC_AGENT_APP_UNLIKE_UPDATE='UpdateUnlikeCount';
     public static final String ID_NAME ='id,name';
+    public static final String Escapechar='\''; 
 }
