@@ -88,16 +88,21 @@
             </table>
             <div class="form-group sow_main_attachments " id="UnileverAttachment">
                 <p>Attachment</p>
-                <div id="attachmentContainer">
-                    <apex:repeat value="{!liso_attachments}" var="eachAttachment">
-                        <div class="attachment_item" id="{!eachAttachment.Id}">
-                            <a data-attachment-id="{!eachAttachment.Id}" onclick="removeAttachments(); return false;"><label target="_blank">{!eachAttachment.Name}</label>
-                            </a>
-                        </div>
-                        <br/>
-                    </apex:repeat>
-                    <br/> 
-                </div>
+                 <apex:actionRegion >
+
+                    <div>
+                        <apex:repeat value="{!liso_attachments}" var="eachAttachment">
+                            <div id="{!eachAttachment.Id}">
+                                <div id="attachmentContainer">
+                                    <a class="attachment_item" href="#" data-attachment-id="{!eachAttachment.Id}" onclick="removeAttachments('{!eachAttachment.Id}'); return false;"></a>
+                                   &nbsp;
+                                    <a href="/servlet/servlet.FileDownload?file={!eachAttachment.Id}" target="_blank"> {!eachAttachment.Name}</a>
+                                 </div>
+                            </div>
+                        </apex:repeat>
+                    </div>
+                 </apex:actionRegion>
+
             </div>
             <!-- Page: -->
             
@@ -157,33 +162,33 @@
                                                     <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
                                                     <td>{!campaign_and_non_campaign.dynamic_object['OblixRegion__c']}</td>
-                                                    <td ><div class="countriesSelected"> {!campaign_and_non_campaign.dynamic_object['OblixCountries__c']}</div></td>
+                                                    <td ><div class="countriesSelected"> {!campaign_and_non_campaign.dynamic_object['Campaign_Countries__c']}</div></td>
                                                     <td class="table_progress_bar_styling">
                                                         <div id="crumbs">
                                                             <p>{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'Project Cancelled','')}</p>
                                                             <ul>
                                                                 <li>
-                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[0].s_css_class_name}">
+                                                                    <div title="Briefing" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[0].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[1].s_css_class_name}">
+                                                                    <div title="Strategy & Planning" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[1].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[2].s_css_class_name}">
+                                                                    <div title="Creative Ideation" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[2].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[3].s_css_class_name}">
+                                                                    <div title="Creative Execution" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[3].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
                                                                 <li>
-                                                                    <div class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[4].s_css_class_name}">
+                                                                    <div title="Production" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[4].s_css_class_name}">
                                                                         <a></a>
                                                                     </div>
                                                                 </li>
@@ -253,88 +258,24 @@
             <apex:actionFunction name="getCategoryBrandRec" action="{!getCategoryBrand}" rerender="sowNewId" oncomplete="unblockUI();">
                 <apex:param value="{!selected_sow.OblixBrand__c}" name="brandId" />
             </apex:actionFunction>
+            <apex:actionFunction name="removeAttachmentsBack" action="{!refreshAttachments}" reRender="attachmentContainer" />
         </apex:define>
 <!--         <div id="dialog-confirm" title="Confirm Delete" style="display:none;">
             <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This SOW will be deleted, together with its campaign and other related items. Are you sure?</p>
         </div> -->
         <apex:define name="page_scripts">
-        <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_SOWMainDetail.js')}" />
+            <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_SOWMainDetail.js')}"/>
+
             <script>
-                var redirectToAttachment = function(attachmentId) {
-                    'use strict';
-                    window.open('/servlet/servlet.FileDownload?file=' + attachmentId);
-                }
-                $(document).ready(function() {
-                    //preparePH();
-                    $.unblockUI();
-                    $("link.user").each(function(index, value) {
-                        //console.log( index + ": " + value.href );
-                        if (value.href.indexOf("extended") > 0) {
-                            console.log('pass');
-                            $(this).attr("disabled", "disabled");
-                            this;
-                        }
-                    });
-                });
+            // Tooltip
+            $(function() {
+                $('#crumbs').tooltip();
+                //$( document ).tooltip();
+              });
             </script>
-
-            <!--<script>
-
-                $ = jQuery.noConflict();
-                $('.read_more').click(function() {
-                    alert( "Handler for .click() called." );
-                    return false;
-                });
-                $(document).ready(function() {
-                    $('.countriesSelected').readmore({
-                        moreLink: '<a href="#">Read more</a>',
-                        lessLink: '<a href="#">Close</a>',
-                        collapsedHeight: 20,
-                        blockCSS: 'display: block; width: 100px;',
-                        afterToggle: function(trigger, element, expanded) {
-                            if( expanded) { // The "more" link was clicked
-                                $(this).width("width","100px");
-                            }
-                        }
-                    });
-                    var table = $('#sowListTable').DataTable({
-                        "dom": 'lrtip',
-                        "pagingType": "full_numbers",
-                        "bAutoWidth": false,
-                        "aoColumns": [
-                          { "sWidth": "0%" },
-                          { "sWidth": "100px" },
-                          { "sWidth": "50px" },
-                          { "sWidth": "100px" },
-                          { "sWidth": "50px" },
-                          { "sWidth": "450px" },
-                          { "sWidth": "50px" },
-                          { "sWidth": "100px" }
-                       ]
-                    });
-                    $('#searchBox').on('keyup', function() {
-                        table.search(this.value).draw();
-
-                    });
-                    $('#sowListTable tbody').on('click', 'tr', function() {
-                        if ($(this).hasClass("camp")) {
-                            blockme();
-                            $(this).toggleClass('selected');
-                            $(this).addClass('bg_selected');
-
-                            var ids = $.map(table.rows('.selected').data(), function(item) {
-                                return item[0];
-                            });
-                            //alert(ids);
-                            ViewProject(ids);
-                        } else {
-                            blockme();
-                            viewNonCampaign();
-                        }
-                    });
-
-                });
-            </script>-->
         </apex:define>
     </apex:composition>
+    
+            
+            
 </apex:page>

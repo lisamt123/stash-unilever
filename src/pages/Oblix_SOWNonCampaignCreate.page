@@ -209,6 +209,12 @@
                                 </div>
                             </div>
                             <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="non_campaign_other">Please describe "other"</p>
+                                    <apex:inputField styleClass="resource_name_box_align" value="{!resource.nonCampaignItem.name}" id="dedicatedResourceOther"  />
+                                </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-lg-4 non_camp_dropdown_spacing">
                                     <p class="create_SOW_form_titles">Role*</p>
                                     <apex:selectList size="1" value="{!activity.selectedRole}" id="selectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(activity.roleVisible==false,true,false)}" onchange="Rateupdate('activity');blockme();">
@@ -299,7 +305,7 @@
                                 <div class="col-lg-8 non-campaign_hourly_rate_section yearly_rate_form_align">
                                     <p>Yearly rate €&nbsp;&nbsp;
                                         <apex:outputLabel value="{!resource.hourlyRate}" id="dedicatedRate" />
-                                        <!--apex:input type="number" styleClass="hourly_rate_box" html-min="0" value="{!resource.hoursSelected}" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}" disabled="{!IF(resource.valVisible==false,false,false)}" id="dedicatedHoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" /-->
+                                        <!--apex:input type="number" styleClass="hourly_rate_box" html-min="0" value="{!resource.hoursSelected}" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}" disabled="{!IF(resource.valVisible==false,false,false)}" id="dedicatedHoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" /-->&nbsp;&nbsp;
                                         <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" value="{!resource.hoursSelected}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(Math.round($(this).val()/100*parseFloat($('.rateclass1').text()).toFixed(2))); formatNumber ($('.rslt1'));}" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " />
                                         <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->%
                                         <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
@@ -314,12 +320,12 @@
                     <apex:outputPanel id="shoppingBasketPanel">
                         <div class="asset_shopping_basket">
                             <div class="asset_shopping_basket_title_bar">
-                                <h2>Campaign Basket ({!campaignBasketList.size})</h2>
+                                <h2>Non Campaign Basket ({!campaignBasketList.size})</h2>
                             </div>
                                 
                             <apex:repeat value="{!campaignBasketList}" var="eachItem">
                                 <div class="asset_shopping_basket_item">
-                                    <div class="campaign_create_agency_hub_split_table_subtitle">
+                                    <div class="campaign_create_agency_hub_split_table_subtitle padding_bottom0">
                                         <a href="#" id="basketRemoveRow_{!eachItem.activityName}" value="{!eachItem.activityName}" onclick="basketRemoveRow('{!eachItem.activityName}');"><img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" class="attachement_redcross" height="12" width="12" /></a>
                                         <a href="#" id="basketItem_{!eachItem.activityName}" onclick="getSelectedActivitiesByName('{!eachItem.activityName}')">{!eachItem.activityName} - €<apex:outputText value="{0, number,###,###,##0}"> <apex:param value="{!eachItem.totalAmount}"/></apex:outputText>
                                         </a>
@@ -327,15 +333,6 @@
                                 </div>    
                             </apex:repeat>
                                 
-<!--                             <div class="asset_shopping_basket_item">
-                                <apex:repeat value="{!campaignBasketList}" var="eachItem">
-                                    <div class="campaign_create_agency_hub_split_table_subtitle">
-                                        <a href="#" id="basketRemoveRow_{!eachItem.activityName}" value="{!eachItem.activityName}" onclick="basketRemoveRow('{!eachItem.activityName}');"><img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" class="attachement_redcross" height="12" width="12" /></a>
-                                        <a href="#" id="basketItem_{!eachItem.activityName}" onclick="getSelectedActivitiesByName('{!eachItem.activityName}')">{!eachItem.activityName} - €{!eachItem.totalAmount}
-                                        </a>
-                                    </div>
-                                </apex:repeat>
-                            </div> -->
                             <div class="asset_shopping_basket_total">
                                 <div class="row">
                                     <div class="col-lg-8">

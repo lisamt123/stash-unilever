@@ -65,12 +65,17 @@ public with sharing class Oblix_ProjectHandlerLogic {
         Map<Id, String> mids_campaign_id_asset_deliverables_text = new Map<Id, String>();
 
         for (Oblix_SOW_Projects__c so_to_adjust: [SELECT Name, Asset_Deliverables__c
-            , (SELECT Name, Asset_name__c, Quantity__c, Sub_Category__c FROM Agency_Project_Assets__r) 
+            , (SELECT Location__c, Asset_Picklist__c, Asset_name__c, Quantity__c, Sub_Category__c FROM Agency_Project_Assets__r) 
             FROM Oblix_SOW_Projects__c WHERE Id =:liso_campaigns_in_scope]){
 
             String s_asset_deliverables = '';
-            for (Oblix_Project_Assets__c project_asset : so_to_adjust.Agency_Project_Assets__r)
-                s_asset_deliverables += ', ' + project_asset.Quantity__c + ' / ' + project_asset.Name + ' / ' + project_asset.Sub_Category__c;
+            for (Oblix_Project_Assets__c project_asset : so_to_adjust.Agency_Project_Assets__r){
+
+                s_asset_deliverables +=  String.isNotBlank(project_asset.Location__c) 
+                    ? ', ' + project_asset.Quantity__c + ' / ' + project_asset.Asset_Picklist__c + ' / ' + project_asset.Location__c + ' / ' + project_asset.Sub_Category__c
+                    : ', ' + project_asset.Quantity__c + ' / ' + project_asset.Asset_Picklist__c + ' / ' + project_asset.Sub_Category__c;
+            }
+
             // remove the first comma and add to the map to be adjusted later
             mids_campaign_id_asset_deliverables_text.put(so_to_adjust.Id, s_asset_deliverables.substringAfter(','));      
         }

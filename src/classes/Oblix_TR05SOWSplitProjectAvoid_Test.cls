@@ -17,7 +17,7 @@ private class Oblix_TR05SOWSplitProjectAvoid_Test {
                 insert geography;
             Oblix_SOW_Projects__c project = new Oblix_SOW_Projects__c();
                 project.Name = 'Project #2';
-                project.OblixCountries__c = 'France';
+                project.Campaign_Countries__c = 'France';
                 project.Financial_Year__c = marketingSow.Id;
                 insert project;     
  				

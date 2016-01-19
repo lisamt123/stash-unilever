@@ -31,11 +31,6 @@
     </columns>
     <description>US179</description>
     <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Marketing_SOW__c$MarketingSOWParent__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
     <name>SWOP % Non Campaign Fee</name>
     <params>
         <name>co</name>
@@ -45,7 +40,7 @@
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>Marketing_SOW__c$Agency_Approval_Date__c</dateColumn>
-        <interval>INTERVAL_CURFY</interval>
+        <dateColumn>Marketing_SOW__c$CreatedDate</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>

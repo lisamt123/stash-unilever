@@ -364,7 +364,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>OblixCountries__c</field>
+            <field>Campaign_Countries__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>
         <columns>

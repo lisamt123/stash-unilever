@@ -22,7 +22,7 @@
                 <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;{!if(selected_sow.Name <> null, selected_sow.Name, 'Create New SOW')}
                 </p>
             </div>
-            <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
+            <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP" immediate="true">
             </apex:commandButton>
 
         </header>
@@ -119,16 +119,15 @@
                             </apex:actionRegion>
                             <apex:commandButton styleClass="btn btn-primary btn_plus btn_asset_add" action="{!softSaveCampaign}" value="ADD" onclick="return validateFormEntries();" immediate="false" />
                             <br/>
-                            <div id="attachmentContainer">
-                                <apex:repeat value="{!liso_attachments}" var="eachAttachment">
-                                    <div class="attachment_item" id="{!eachAttachment.Id}">
-                                        <a href="#" data-attachment-id="{!eachAttachment.Id}" onclick="removeAttachments(); return false;"><label target="_blank">{!eachAttachment.Name}</label>
-                                        </a>
-                                    </div>
-                                    <br/>
-                                </apex:repeat>
-                                <br/> 
-                            </div>
+                            <br/>
+                            <apex:repeat value="{!liso_attachments}" var="eachAttachment">
+                                <div id="{!eachAttachment.Id}">
+                                	<div id="attachmentContainer">
+                                        <a  class="attachment_item"  href="#" data-attachment-id="{!eachAttachment.Id}" onclick="removeAttachments('{!eachAttachment.Id}'); return false;"></a>&nbsp;
+                                        <a href="/servlet/servlet.FileDownload?file={!eachAttachment.Id}" target="_blank"> {!eachAttachment.Name}</a>
+                                	</div>
+                                </div>
+                            </apex:repeat>
                         </div>
 	                    <div class="SOW_create_buttons">
 	                        <apex:commandButton value="SAVE SOW"   action="{!SaveSOW}" title="{!$Label.Oblix_lbl_UIUX_Save_Sow}" onclick="return validateFormEntries();" styleClass="btn btn-primary btn-sm pull-right btn_check btn_save_sow" immediate="false"/>

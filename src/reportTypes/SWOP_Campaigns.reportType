@@ -102,7 +102,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>OblixCountries__c</field>
+            <field>Campaign_Countries__c</field>
             <table>Oblix_SOW_Projects__c</table>
         </columns>
         <columns>

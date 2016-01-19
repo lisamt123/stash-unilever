@@ -43,7 +43,7 @@ private class Oblix_TR04ProjectBusDriverScore_Test {
             
             Oblix_SOW_Projects__c project = new Oblix_SOW_Projects__c();
                 project.Name = 'Project #2';
-                project.OblixCountries__c = 'France';
+                project.Campaign_Countries__c = 'France';
                 project.Financial_Year__c = marketingSow.Id;
                 project.Innovation_Projects__c = Oblix_Constants.Innovation_Projects_Innovation;
                 project.Brand_Led_Growth__c    = Oblix_Constants.BrandLedGrowth_IncremTurnoverLess10;

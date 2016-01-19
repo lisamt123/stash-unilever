@@ -76,9 +76,6 @@
         <field>Marketing_SOW__c.Marketing_Projects__r$Project_Scale_1__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$OblixCountries__c</field>
-    </columns>
-    <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Project_Scale_2__c</field>
     </columns>
     <columns>

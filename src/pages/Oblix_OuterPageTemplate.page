@@ -1,4 +1,4 @@
-<apex:page sidebar="false" controller="Oblix_OuterPageTemplateController" docType="html-5.0" showHeader="false" standardStylesheets="true">
+<apex:page sidebar="false" controller="Oblix_OuterPageTemplateController" docType="html-5.0" showHeader="false" standardStylesheets="false">
     <apex:form id="jqueryId">
         <div class="Oblix_header_bkgd">
             <header class="Oblix_header_panel">
@@ -49,7 +49,6 @@
         <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}"></script>
         <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
         <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/readmore.min.js')}" />
-        
         <apex:insert name="page_scripts"/>                                                        
 
     <!-- 

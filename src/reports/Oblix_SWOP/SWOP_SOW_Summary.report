@@ -25,7 +25,7 @@
         <field>Oblix_SOW_Projects__c.OblixRegion__c</field>
     </columns>
     <columns>
-        <field>Oblix_SOW_Projects__c.OblixCountries__c</field>
+        <field>Oblix_SOW_Projects__c.Campaign_Countries__c</field>
     </columns>
     <columns>
         <field>Oblix_SOW_Projects__c.Campaign_Hub_Summary__c</field>

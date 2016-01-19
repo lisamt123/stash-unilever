@@ -68,7 +68,7 @@
                                 </tr>
                                 <tr>
                                     <td class="campaign_summary_information_titles">Countries / Regions</td>
-                                    <td colspan="2">{!selected_project.OblixCountries__c}</td>
+                                    <td colspan="2">{!selected_project.Campaign_Countries__c}</td>
                                 </tr>
                                 <tr>
                                     <td class="campaign_summary_information_titles">Investment Priority</td>
@@ -214,16 +214,9 @@
                                                     </td>
                                                 </apex:repeat>
                                                 <td>
-                                                    <!-- <apex:commandButton action="{!removeAsset}" onclick="blockme();" oncomplete="$.unblockUI()" value="delete" image="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" rerender="assets_panel,swop_top_panel" >
-                                                        <apex:param name="selected_asset_id" assignTo="{!selected_asset_id}" value="{!asset['Id']}" />
-                                                    </apex:commandButton> -->
                                                     <a href="#" id="delete_button" onclick="if (confirm('are you sure you want to delete this asset?')){removeAsset('{!asset.Id}');blockme();}"> <apex:image onclick="" url="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" alt="Delete"/>
                                                     </a>
 
-                                                    <!-- <img src="images/redcross.png" width="12" height="12">
-                                                        <apex:actionSupport event="onclick" rerender="sowListTable"  action="{!removeAsset}">
-                                                        </apex:actionSupport>
-                                                    </img> -->
 
                                                 </td>
                                             </tr>
@@ -246,21 +239,13 @@
         <apex:define name="page_scripts">
             <script type="text/javascript">
                 $(document).ready(function() { 
-                    /*var table = $('#swopTable').DataTable({"dom": 'rt6'});
-                    $('#searchBox').on( 'keyup', function () {
-                        table.search( this.value ).draw();
-                    } );*/
                     var table = $('#sowListTable').DataTable({
                         "dom": 'lrtip',
                         'pagingType': 'full_numbers'
                     });
-                    // var historyTable = $('#historyListTable').DataTable({
-
-                    //     "dom": 'rt6'
-                    // });
                 });
             </script>
-            <script>
+            <!--<script>
                 
                 // $ = jQuery.noConflict();
                 // $('.read_more').click(function() {
@@ -307,7 +292,7 @@
                 //     });
 
                 // });
-            </script>
+            </script>-->
         </apex:define>
     </apex:composition>
 </apex:page>

@@ -26,7 +26,7 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
     *    @return : List<Oblix_SOW_Projects__c>
     */
     public static List<Oblix_SOW_Projects__c> retrieveProject(List<Oblix_SOW_Projects__c> lstProjTrig){
-        return [Select o.Total_Value_Driver__c, o.ProjectTotalAssetScore__c, o.Innovation_Projects__c, o.Brand_Led_Growth__c, o.Total_Project_Score__c, o.Total_Fees_for_Project__c, o.Project_Stage__c, o.Project_Scale_2__c, o.Project_Scale_1__c, o.Oblix_ProjectBoxNumber__c, o.OblixCountries__c, o.Name, o.Id, o.Campaign_Total_Fees__c, o.Campaign_Total_Adjustment__c, o.Campaign_Status__c, o.Campaign_Idea__c, o.Campaign_Fees_Total__c From Oblix_SOW_Projects__c o  where id in :lstProjTrig];
+        return [Select o.Total_Value_Driver__c, o.ProjectTotalAssetScore__c, o.Innovation_Projects__c, o.Brand_Led_Growth__c, o.Total_Project_Score__c, o.Total_Fees_for_Project__c, o.Project_Stage__c, o.Project_Scale_2__c, o.Project_Scale_1__c, o.Oblix_ProjectBoxNumber__c, o.Campaign_Countries__c, o.Name, o.Id, o.Campaign_Total_Fees__c, o.Campaign_Total_Adjustment__c, o.Campaign_Status__c, o.Campaign_Idea__c, o.Campaign_Fees_Total__c From Oblix_SOW_Projects__c o  where id in :lstProjTrig];
     }
     
    

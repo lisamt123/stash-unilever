@@ -66,6 +66,11 @@
         <fullName>Oblix_Campaign_Summary</fullName>
         <description>Campaign summary page</description>
         <displayedFields>
+            <field>Campaign_Countries__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
             <field>OblixRegion__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
@@ -182,11 +187,6 @@
         </displayedFields>
         <displayedFields>
             <field>Campaign_Idea__c</field>
-            <isFieldManaged>false</isFieldManaged>
-            <isRequired>false</isRequired>
-        </displayedFields>
-        <displayedFields>
-            <field>OblixCountries__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
@@ -402,6 +402,17 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Campaign_Countries__c</fullName>
+        <description>List of countries selected for this campaign</description>
+        <externalId>false</externalId>
+        <label>Campaign Countries</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>Campaign_Fees_Total__c</fullName>
@@ -831,15 +842,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>OblixCountries__c</fullName>
-        <externalId>false</externalId>
-        <label>Countries</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>OblixProjectSplitPercentage_Comment__c</fullName>

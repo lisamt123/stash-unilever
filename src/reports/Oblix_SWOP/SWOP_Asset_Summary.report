@@ -16,9 +16,6 @@
         <field>Marketing_SOW__c.Marketing_Projects__r$OblixRegion__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$OblixCountries__c</field>
-    </columns>
-    <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Hub_Summary__c</field>
     </columns>
     <columns>

@@ -79,7 +79,7 @@
         <field>Marketing_SOW__c.Marketing_Projects__r$Timescale_Notes__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$OblixCountries__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Countries__c</field>
     </columns>
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Region__c</field>

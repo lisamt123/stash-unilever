@@ -141,7 +141,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         }
         else{
             selectedProject = [SELECT Id, Name, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate
-                , OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, OblixCountries__c, First_Air_Date__c
+                , OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, Campaign_Countries__c, First_Air_Date__c
                 , Production_Completion_Date__c, Financial_Year__c FROM Oblix_SOW_Projects__c WHERE id = :project_id];
         }
 
@@ -171,7 +171,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             // retrieve campaign items
             liso_projects_for_sow = [SELECT Name, Project_Finish_Date__c, Campaign_Status__c, Platform__c, Project_Stage__c, Projected_Stage__c, Completed_Stage__c
                 , CreatedById, Total_Fees_for_Project__c, Value_to_be_paid_in_Current_FY__c, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c
-                , Project_Completion_Date__c, Description__c, OblixCountries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c, Campaign_Total_Fees__c
+                , Project_Completion_Date__c, Description__c, Campaign_Countries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c, Campaign_Total_Fees__c
                 FROM Oblix_SOW_Projects__c WHERE Financial_Year__c = : selected_sow.Id LIMIT 500];
             
             // retrieve non campaign items
