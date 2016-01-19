@@ -75,7 +75,7 @@
         <active>true</active>
         <description>To support Data migration a composite field needs to be updated</description>
         <formula>NOT( ISNULL(IPM_Project_Document__r.External_Id__c) )</formula>
-        <triggerType>onAllChanges</triggerType>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>IPM Make Default Section Mandatory</fullName>
