@@ -62,6 +62,7 @@ public with sharing class Oblix_ProjectHandlerLogic {
     ********************************************************************************/
     public static Map<Id, String> retrieveAssetDeliverables(List<Oblix_SOW_Projects__c> liso_campaigns_in_scope){
 
+        String asset_separator = ' / ';
         Map<Id, String> mids_campaign_id_asset_deliverables_text = new Map<Id, String>();
 
         for (Oblix_SOW_Projects__c so_to_adjust: [SELECT Name, Asset_Deliverables__c
@@ -72,8 +73,8 @@ public with sharing class Oblix_ProjectHandlerLogic {
             for (Oblix_Project_Assets__c project_asset : so_to_adjust.Agency_Project_Assets__r){
 
                 s_asset_deliverables +=  String.isNotBlank(project_asset.Location__c) 
-                    ? ', ' + project_asset.Quantity__c + ' / ' + project_asset.Asset_Picklist__c + ' / ' + project_asset.Location__c + ' / ' + project_asset.Sub_Category__c
-                    : ', ' + project_asset.Quantity__c + ' / ' + project_asset.Asset_Picklist__c + ' / ' + project_asset.Sub_Category__c;
+                    ? ', ' + project_asset.Quantity__c + asset_separator + project_asset.Asset_Picklist__c + asset_separator + project_asset.Location__c + asset_separator + project_asset.Sub_Category__c
+                    : ', ' + project_asset.Quantity__c + asset_separator + project_asset.Asset_Picklist__c + asset_separator + project_asset.Sub_Category__c;
             }
 
             // remove the first comma and add to the map to be adjusted later

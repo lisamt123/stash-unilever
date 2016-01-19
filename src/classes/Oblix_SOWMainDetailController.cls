@@ -52,6 +52,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     public List<Attachment> allFileList {get; set;}
 
     private static final Integer notesSize = 255;
+    private static final String sow_param_name = 'sowId';
+
     //achraf
     public Attachment attachment {
         get {
@@ -117,7 +119,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     public void init() {
         System.DEBUG('Init Called!!!!');
         // get SOW and Campaign IDs from page parameters
-        sow_id = ApexPAges.currentPage().getParameters().get('sowId');
+        sow_id = ApexPAges.currentPage().getParameters().get(sow_param_name);
         project_id = ApexPAges.currentPage().getParameters().get('projectId');
 
         if(sow_Id == null){
@@ -385,7 +387,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     public Pagereference editActionPage(){
         Pagereference editPageSOW = Page.oblix_sowcreate;
-        editPageSOW.getParameters().put('sowId', selected_sow.Id);
+        editPageSOW.getParameters().put(sow_param_name, selected_sow.Id);
         editPageSOW.setRedirect(True);
         return editPageSOW;
     }
@@ -671,7 +673,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         PageReference meNewPage ;
 
         meNewPage = Page.Oblix_sownoncampaigncreate;
-        meNewPage.getParameters().put('sowId', sow_id);
+        meNewPage.getParameters().put(sow_param_name, sow_id);
         meNewPage.getParameters().put('preSelectedName', selectedProjectId);
         System.DEBUG('preSelectedName : ' + selectedProjectId);
         meNewPage.setRedirect(True);
@@ -699,13 +701,13 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     ********************************************************************/
     public PageReference addProject() {
         Pagereference campaignCreatePage = Page.Oblix_CampaignCreate;
-                campaignCreatePage.getParameters().put('sowId', selected_sow.Id);
+                campaignCreatePage.getParameters().put(sow_param_name, selected_sow.Id);
         return campaignCreatePage;
     }
 
     public PageReference addNonCampaignProject() {
         Pagereference nonCampaignCreatePage = Page.Oblix_SOWNonCampaignCreate;
-        nonCampaignCreatePage.getParameters().put('sowId', selected_sow.Id);
+        nonCampaignCreatePage.getParameters().put(sow_param_name, selected_sow.Id);
         return nonCampaignCreatePage;
     }
 

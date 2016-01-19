@@ -15,7 +15,7 @@
         <apex:define name="top_right_panel">
                     <table class="SOW_header_value_summary">
                         <tr>
-                            <td rowspan="2"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_chevron btn_adjust">ADJUST %</button></td>
+                            <td rowspan="2"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_chevron btn_adjust" data-toggle="modal" data-target="#adjustFeeModal">ADJUST %</button>  </td>
                             <td class="SOW_header_value_title">Campaign Fees Total</td>
                             <td class="SOW_header_value">
                                 <h2>€
@@ -37,6 +37,44 @@
         </apex:define>
 
         <apex:define name="body_content">
+  
+   <!--            Adjust fee modal-->
+            <div class="modal fade adjust_fee_modal" tabindex="-1" role="dialog" aria-labelledby="adjustFee" id="adjustFeeModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">Adjust Fee</h1>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-lg-8 col-lg-offset-2">
+                                    <div class="row">
+                                        <div class="col-lg-8">
+                                            <p class="modal_current_text green_text">Current % allocation of total<br/>campaign fee to be paid this FY</p>
+                                        </div>
+                                        <h1 class="green_text">80 %</h1>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-7">
+                                            <p class="modal_adjust_text">Adjust % allocation for this FY to</p>
+                                        </div>
+                                        <h1><input type="number" class="adjust_allocation_box"/>%</h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="modal_button_align">
+                                <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
+                                <button type="button" class="btn btn-primary btn_check btn_save_changes">SAVE CHANGES</button>
+                            </div>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+<!--            Adjust fee modal finish-->
+
              <hr class="divider" />    
             <div class="row">
                 <div class="col-lg-9 confirm_assets_accordion">

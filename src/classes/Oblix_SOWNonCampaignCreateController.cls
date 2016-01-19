@@ -45,7 +45,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         seletedActivity = '';
     
     
-        Id idUser = UserInfo.getUserId();
+        //Id idUser = UserInfo.getUserId();
         activity.nonCampaignItem = new Marketing_Basics__c();
         activity.nonCampaignItem.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get(ActivityName);
         rtActivity = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get(ActivityName).getRecordTypeId();
@@ -304,13 +304,15 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         //System.DEBUG(' resource.selectedAgencyDepartment ' + resource.selectedAgencyDepartment);
         //System.DEBUG(' resource.selectedRole ' + resource.selectedRole);
         //system.debug('===========newItem.OblixCountry__c'+newItem.OblixCountry__c);
-        if (selectedTab.equalsIgnoreCase('activity')) {
+        String campaignType = 'activity';
+        
+        if (selectedTab.equalsIgnoreCase(campaignType)) {
             Rates = [select Financial_Year__c, Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name, Agency_Department__c, Role_Title__c, Role_Daily_Rate_EUR__c from Oblix_Calculator__c where Financial_Year__c = : fYear and Oblix_Agency__c = : agency and OblixCountry__c = :  activity.selectedCountry and Agency_Department__c = : activity.selectedAgencyDepartment and Role_Title__c = :  activity.selectedRole];
         }else{
             Rates = [select Financial_Year__c, Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name, FTE__c, Agency_Department__c, Role_Title__c, Role_Daily_Rate_EUR__c from Oblix_Calculator__c where Financial_Year__c = : fYear and Oblix_Agency__c = : agency and OblixCountry__c = :  resource.selectedCountry and Agency_Department__c = : resource.selectedAgencyDepartment and Role_Title__c = :  resource.selectedRole];
         }
         if (Rates.size() >= 1) {
-            if(selectedTab.equalsIgnoreCase('activity')){
+            if(selectedTab.equalsIgnoreCase(campaignType)){
                 activity.hourlyRate = String.valueOf((Rates[0].Role_Daily_Rate_EUR__c));//Math.round
                 activity.roundedRate = String.valueOf(Math.round(Rates[0].Role_Daily_Rate_EUR__c));//
             }else{
@@ -353,11 +355,11 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
             // activity.selectedRole = null;
             if (selectedTab.equalsIgnoreCase('activity')) {
                 agencyRoleTitle = new List < SelectOption>();
-                agencyRoleTitle = populateRoleTitleList(agencyRoleTitle, roleTitlesNameMap);
+                agencyRoleTitle = populateRoleTitleList(roleTitlesNameMap);
                 activity.roleVisible = true;
             } else {
                 resourceRoleTitle = new List <SelectOption>();
-                resourceRoleTitle = populateRoleTitleList(resourceRoleTitle, roleTitlesNameMap);
+                resourceRoleTitle = populateRoleTitleList(roleTitlesNameMap);
                 resource.roleVisible = true;
             }
 
@@ -366,16 +368,18 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         System.DEBUG(' resourceRoleTitle ' + resourceRoleTitle);
     }
 
-    public List < SelectOption > populateRoleTitleList(List<SelectOption> roleTitle, Map<String,String> roleTitlesNameMap) {
+    public List<SelectOption> populateRoleTitleList(Map<String,String> roleTitlesNameMap) {
+        List<SelectOption> roleTitlesToReturn = new List<SelectOption>();
+
         for (String temp: roleTitlesNameMap.keySet()) {
             // if ( activity.selectedRole==null)  activity.selectedRole= temp; //remplir automatiquement par la premiere valeur
-            roleTitle.add(new SelectOption(temp, roleTitlesNameMap.get(temp)));
+            roleTitlesToReturn.add(new SelectOption(temp, roleTitlesNameMap.get(temp)));
         }
-        roleTitle = Oblix_Utils.selectOptionSortByLabel(roleTitle);
+        roleTitlesToReturn = Oblix_Utils.selectOptionSortByLabel(roleTitlesToReturn);
         // agencyRoleTitle.add(new SelectOption('', noRole));
-        roleTitle = Oblix_Utils.setFirstValue(noRole, Oblix_Utils.selectOptionSortByLabel(roleTitle));
+        roleTitlesToReturn = Oblix_Utils.setFirstValue(noRole, Oblix_Utils.selectOptionSortByLabel(roleTitlesToReturn));
         //activity.selectedRole = '';
-        return roleTitle;
+        return roleTitlesToReturn;
         //else add error (there is no rt to select)
     }
  
@@ -415,11 +419,11 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         system.debug('agencyDepartmentMap : ' + agencyDepartmentMap);
         if (selectedTab.equalsIgnoreCase('activity')) {
             agencyDepartments = new List <SelectOption>();
-            agencyDepartments = populateAgencyDepartmentList(agencyDepartments, agencyDepartmentMap);
+            agencyDepartments = populateAgencyDepartmentList(agencyDepartmentMap);
             activity.agencyVisible = true;  
         } else {
             resourceAgencyDepartment = new List <SelectOption>();
-            resourceAgencyDepartment = populateAgencyDepartmentList(resourceAgencyDepartment, agencyDepartmentMap);
+            resourceAgencyDepartment = populateAgencyDepartmentList(agencyDepartmentMap);
             resource.agencyVisible = true;
         }
         System.DEBUG('resourceAgencyDepartment : ' + resourceAgencyDepartment);
@@ -427,15 +431,17 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
 
     }
 
-    public List<SelectOption> populateAgencyDepartmentList(List<SelectOption> departments, Map <String, String> agencyDepartmentMap){
+    public List<SelectOption> populateAgencyDepartmentList(Map <String, String> agencyDepartmentMap){
+        List<SelectOption> departmentsToReturn = new List<SelectOption>();
+
         if (!agencyDepartmentMap.keyset().isEmpty()) {
             for (String temp: agencyDepartmentMap.keySet()) {
-                departments.add(new SelectOption(temp, agencyDepartmentMap.get(temp)));
+                departmentsToReturn.add(new SelectOption(temp, agencyDepartmentMap.get(temp)));
             }
-            List<SelectOption> sortedCountries = Oblix_Utils.selectOptionSortByLabel(departments);
-            departments = Oblix_Utils.setFirstValue('-Agency Department-', Oblix_Utils.selectOptionSortByLabel(sortedCountries));
+            departmentsToReturn = Oblix_Utils.selectOptionSortByLabel(departmentsToReturn);
+            departmentsToReturn = Oblix_Utils.setFirstValue('-Agency Department-', Oblix_Utils.selectOptionSortByLabel(departmentsToReturn));
         }
-        return departments;
+        return departmentsToReturn;
     }
     
     
