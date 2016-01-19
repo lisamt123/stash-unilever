@@ -3,7 +3,7 @@
 * @date:06/05/2015
 * @description:Trigger Handler for the IPM_Project_Document_Section__c SObject. This class implements the ITrigger
 * interface to help ensure the trigger code is bulkified and all in one place.
-*/ 
+*/
 public with sharing class IPM_FinancialYearHandler implements ITrigger
 {    
     public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();

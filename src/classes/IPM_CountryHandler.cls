@@ -8,27 +8,31 @@
   */
 public with sharing class IPM_CountryHandler implements ITrigger{   
     
-    private static final String INSERT_EVENT = 'Insert';
-    private static final String DELETE_EVENT = 'Delete';
-    private static final String UPDATE_EVENT = 'Update';
-    public static Boolean SKIP_TRIGGER_EXECUTION  = false; 
+    @TestVisible  private static final String INSERT_EVENT = 'Insert';
+    @TestVisible  private static final String DELETE_EVENT = 'Delete';
+    @TestVisible  private static final String UPDATE_EVENT = 'Update';  
+
+    /***********************************************************************************************************************************
+    * Constructor
+    *
+    * This constructor will insert the record in the Exception log if error occoured.
+    * 
+    */
     
-    // Constructor
-    public IPM_CountryHandler() {       
+    public IPM_CountryHandler() 
+    {       
         ExceptionLoggingHelper.initializeExceptionLog(); 
     }
+    
     /***********************************************************************************************************************************
     * bulkBefore
     *
     * This method is called prior to execution of a BEFORE trigger. Use this to cache
     * any data required into maps prior execution of the trigger.
+    * In this we are updating owner id, IPM_Category_Text__c.
     */
     public void bulkBefore()
     {
-        if(SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
         Set<Id> localRolloutIdSet = new Set<Id>();
         Map<Id,IPM_Project_Rollout__c> localRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
         
@@ -46,16 +50,21 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         {
             map<id,id>ownerProjectIdMap=new map<id,id>();
             map<id,string>projectCategoryMap=new map<id,string>();
-            for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New){ 
+            for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New)
+            { 
                 
-                if(c.IPM_Project__c != null){
+                if(c.IPM_Project__c != null)
+                {
                     ownerProjectIdMap.put(c.IPM_Project__c,c.IPM_Project__r.ownerid);
                     projectCategoryMap.put(c.IPM_Project__c,c.IPM_Project__r.IPM_Category_Text__c);
-                }else if(c.IPM_Regional_Project__c != null){
+                }
+                else if(c.IPM_Regional_Project__c != null)
+                {
                     ownerProjectIdMap.put(c.IPM_Regional_Project__c,c.IPM_Regional_Project__r.ownerid);
                     projectCategoryMap.put(c.IPM_Regional_Project__c,c.IPM_Regional_Project__r.IPM_Category_Text__c);
                 }
-                else if(c.IPM_Local_Project__c != null){
+                else if(c.IPM_Local_Project__c != null)
+                {
                     ownerProjectIdMap.put(c.IPM_Local_Project__c,c.IPM_Local_Project__r.ownerid);
                     projectCategoryMap.put(c.IPM_Local_Project__c,c.IPM_Local_Project__r.IPM_Category_Text__c);
                 }
@@ -64,10 +73,12 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             {
                      for(IPM_Project__c proj: [SELECT id, ownerid, IPM_Category_Text__c FROM IPM_Project__c WHERE id IN:ownerProjectIdMap.Keyset()])
                      {
-                        for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New){
+                        for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New)
+                        {
                             if((c.IPM_Project__c!=null && c.IPM_Project__c==proj.id) || 
                                 (c.IPM_Regional_Project__c!=null && c.IPM_Regional_Project__c==proj.id) || 
-                                (c.IPM_Local_Project__c!=null && c.IPM_Local_Project__c==proj.id)){
+                                (c.IPM_Local_Project__c!=null && c.IPM_Local_Project__c==proj.id))
+                                {
                                 c.ownerid = proj.ownerid;
                                 c.IPM_Small_C_shr__c = proj.IPM_Category_Text__c; 
                             }
@@ -83,7 +94,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             IPM_ProjectCountryDetails.setProjAssociationTimestamp((List<IPM_Country__c>) trigger.New,null,INSERT_EVENT);
         }
         
-        if(trigger.isUpdate){
+        if(trigger.isUpdate)
+        {
             //check if the inserted country is an EI country by refering the master sata stored in custom setting IPM_USLP_Countries
             IPM_ProjectCountryDetails.checkIsEICountry((List<IPM_Country__c>) trigger.New);
             
@@ -97,13 +109,13 @@ public with sharing class IPM_CountryHandler implements ITrigger{
     * bulkAfter
     *
     * This method is called prior to execution of a AFTER trigger. Use this to cache
-    * any data required into maps prior execution of the trigger.
+    * any data required into maps after execution of the trigger.
+    * In this method we update the MarketType field of project from Countries.
+    * update sync flag on regional/Local projects populated on the country records
+    * delete assessments of all the countries made inactive. 
     */
-    public void bulkAfter(){
-    	if(SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
+    public void bulkAfter()
+    {
         List<IPM_Country__c> countryForProjList=new List<IPM_Country__c>();  //List of Countries Added in Rollouts
         Set<Id> countryListIds=new Set<Id>(); //Country Id's
         Set<Id> projectIdSet =new Set<Id>(); //Country Id's
@@ -112,16 +124,21 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         List<IPM_Country__c> countriesMadeInactive = new List<IPM_Country__c>();
         Map<Id, IPM_Country__c> oldCountriesMap = new Map<Id, IPM_Country__c>(); 
         
-        if(trigger.isInsert){
-            for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New){
+        if(trigger.isInsert)
+        {
+            for(IPM_Country__c c:(List<IPM_Country__c>)Trigger.New)
+            {
                 countryListIds.add(c.Id);
-                if(c.IPM_Project__c != null){
+                if(c.IPM_Project__c != null)
+                {
                     projectIdSet.add(c.IPM_Project__c);
                 }
-                if(c.IPM_Regional_Project__c != null){
+                if(c.IPM_Regional_Project__c != null)
+                {
                     projectIdSet.add(c.IPM_Regional_Project__c);
                 }
-                if(c.IPM_Local_Project__c != null){
+                if(c.IPM_Local_Project__c != null)
+                {
                     projectIdSet.add(c.IPM_Local_Project__c);
                 }
                
@@ -133,7 +150,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
                                 FROM IPM_Country__c 
                                 WHERE Id in:countryListIds LIMIT 50000];
             
-            if(countryForProjList!=null && !countryForProjList.isEmpty()){
+            if(countryForProjList!=null && !countryForProjList.isEmpty())
+            {
                 //For Updating the MarketType field of project from Countries 
                 IPM_ProjectCountryDetails.updateProjectMarketType(countryForProjList, false);
 
@@ -148,7 +166,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             
 
             //check if there is atleast one assessment per EI country of the project and check the flag existsAtLeastOneAssmntPerEICountry if yes
-            if(projectIdSet != null && !projectIdSet.isEmpty()){
+            if(projectIdSet != null && !projectIdSet.isEmpty())
+            {
                 IPM_ProjectCountryDetails.checkAtLeastOneAssmntPerEICountry(projectIdSet);
             }
 
@@ -162,21 +181,26 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             projectIdSet.clear();
             for(IPM_Country__c coun:(List<IPM_Country__c>)Trigger.New)
             {
-                if(!String.isBlank(coun.IPM_Regional_Project__c)){
+                if(!String.isBlank(coun.IPM_Regional_Project__c))
+                {
                     countryListIds.add(coun.Id);
                 }
-                if(coun.IPM_Project__c != null){
+                if(coun.IPM_Project__c != null)
+                {
                     projectIdSet.add(coun.IPM_Project__c);
                 }
-                if(coun.IPM_Regional_Project__c != null){
+                if(coun.IPM_Regional_Project__c != null)
+                {
                     projectIdSet.add(coun.IPM_Regional_Project__c);
                 }
-                if(coun.IPM_Local_Project__c != null){
+                if(coun.IPM_Local_Project__c != null)
+                {
                     projectIdSet.add(coun.IPM_Local_Project__c);
                 }
                 
                 //find list of all countries that have been made inactive
-                if(coun.isActive__c != oldCountriesMap.get(coun.Id).isActive__c && !coun.isActive__c ){
+                if(coun.isActive__c != oldCountriesMap.get(coun.Id).isActive__c && coun.isActive__c == false )
+                {
                 	countriesMadeInactive.add(coun);
                 }
             }
@@ -196,7 +220,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
                 WHERE Id in:countryListIds LIMIT 50000];
                 
             //For Updating the MarketType field of project from Countries         
-            if(countryForProjList!=null && !countryForProjList.isEmpty()){
+            if(countryForProjList!=null && !countryForProjList.isEmpty())
+            {
                 IPM_ProjectCountryDetails.updateProjectMarketType(countryForProjList, false);
             } 
             
@@ -204,12 +229,14 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             //When countries get Updated, Normally Regional & Local field should get populated on them.
             IPM_ProjectCountryDetails.setSyncProjAftUpdate((Map<Id,IPM_Country__c>)Trigger.oldMap,(List<IPM_Country__c>)Trigger.New); 
             //check if there is atleast one assessment per EI country of the project and check the flag existsAtLeastOneAssmntPerEICountry if yes
-            if(projectIdSet != null && !projectIdSet.isEmpty()){
+            if(projectIdSet != null && !projectIdSet.isEmpty())
+            {
                 IPM_ProjectCountryDetails.checkAtLeastOneAssmntPerEICountry(projectIdSet);
             }
             
             //delete assessments of all the countries made inactive. Bcoz being made inactive is as good as the country being deleted
-            if(countriesMadeInactive != null && !countriesMadeInactive.isEmpty()){
+            if(countriesMadeInactive != null && !countriesMadeInactive.isEmpty())
+            {
             	IPM_AssesmentHandler_Helper.deleteAssociatedAssesments(countriesMadeInactive);
             }
         }
@@ -242,7 +269,8 @@ public with sharing class IPM_CountryHandler implements ITrigger{
             IPM_ProjectCountryDetails.notifyLeadRnD((List<IPM_Country__c>) trigger.old,DELETE_EVENT);
             
             //check if there is atleast one assessment per EI country of the project and check the flag existsAtLeastOneAssmntPerEICountry if yes
-            if(projectIdSet != null && !projectIdSet.isEmpty()){
+            if(projectIdSet != null && !projectIdSet.isEmpty())
+            {
                 IPM_ProjectCountryDetails.checkAtLeastOneAssmntPerEICountry(projectIdSet);
             } 
         }
@@ -267,6 +295,7 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         {
             Map<Id,IPM_Project_Rollout__c> finalDeleteRollout = new Map<Id,IPM_Project_Rollout__c>();
             Map<Id,IPM_Project_Rollout__c> finalUpdateRollout = new Map<Id,IPM_Project_Rollout__c>();
+             
             List<IPM_Project_Rollout__c> deleteRolloutList = [Select Id from IPM_Project_Rollout__c where Id in :deleteRolloutMap.keySet() AND isActive__c = true];
             for(IPM_Project_Rollout__c deleteRollout : deleteRolloutList)
             {
@@ -280,10 +309,12 @@ public with sharing class IPM_CountryHandler implements ITrigger{
                     finalDeleteRollout.put(deleteRollout.Id,deleteRollout);
                 }    
             }
+            
             if(!finalUpdateRollout.isEmpty())
             {
                 update finalUpdateRollout.values();
             }
+            
             if(!finalDeleteRollout.isEmpty())
             {
                 delete finalDeleteRollout.values();
@@ -291,19 +322,27 @@ public with sharing class IPM_CountryHandler implements ITrigger{
         }
     }
     
+     /***********************************************************************************************************************************
+    * bulkBefore
+    *
+    * This method is called prior to execution of a BEFORE trigger. Use this to cache
+    * any data required into maps prior execution of the trigger.
+    */
+    
     public void beforeInsert(SObject so)
     {
-    	if(SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
+    	//This method has been included as the class implements the ITrigger interface
     }
     
-    public void beforeUpdate(SObject oldSo, SObject so){
-    	if(SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }   
+    /***********************************************************************************************************************************
+    * bulkUpdate
+    *
+    * This method is called prior to execution of a BEFORE trigger. Use this to cache
+    * any data required into maps prior execution of the trigger.
+    */
+    
+    public void beforeUpdate(SObject oldSo, SObject so)
+    {  
         //This method has been included as the class implements the ITrigger interface
     }
     
@@ -313,51 +352,57 @@ public with sharing class IPM_CountryHandler implements ITrigger{
     * This method is called iteratively for each record to be deleted during a BEFORE
     * trigger.
     */
-    public void beforeDelete(SObject so){ 
-    	if(SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }     
+    public void beforeDelete(SObject so)
+    { 
         //This method has been included as the class implements the ITrigger interface
     }
     
-    public void afterInsert(SObject so){
-    	if(SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
+    /**
+    * after insert
+    *
+    * This method is called iteratively for each record after deletion 
+    * trigger.
+    */
+    
+    public void afterInsert(SObject so)
+    {
         //This method has been included as the class implements the ITrigger interface
     }
     
-    public void afterUpdate(SObject oldSo, SObject so){
-    	if(SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }    
+     
+    /**
+    * after update
+    *
+    * This method is called iteratively for each record after deletion 
+    * trigger.
+    */
+    
+    public void afterUpdate(SObject oldSo, SObject so)
+    {
         //This method has been included as the class implements the ITrigger interface
     }
     
-    public void afterDelete(SObject so){
-    	if(SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
+     
+    /**
+    * after delete
+    *
+    * This method is called iteratively for each record after deletion 
+    * trigger.
+    */
+    
+    public void afterDelete(SObject so)
+    {
         //This method has been included as the class implements the ITrigger interface
     }
-    
-    
-    
+
     /**
     * andFinally
     *
     * This method is called once all records have been processed by the trigger. Use this 
     * method to accomplish any final operations such as creation or updates of other records.
     */
-    public void andFinally(){
-    	if(SKIP_TRIGGER_EXECUTION)
-        {
-            return;
-        }
+    public void andFinally()
+    {
         //Added by Devendra - call method to insert all exception logs got while excecution of trigger
         ExceptionLoggingHelper.insertLogRecordList();
     }

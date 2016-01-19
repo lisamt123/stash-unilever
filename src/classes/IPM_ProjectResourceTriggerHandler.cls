@@ -12,7 +12,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
     private transient static final String NEW_ROLE = ' New Role : ';
     private transient static final String OPTION_ALL = 'All'; 
     
-    
+     
     public IPM_ProjectResourceTriggerHandler(){ //constructor
     }
     
@@ -203,8 +203,9 @@ public with sharing class IPM_ProjectResourceTriggerHandler
             {
                 //set status as ready only when the rollout is created and countires are there for the project
             	if(String.isNotBlank(prevSyncedProject.Project_Countries__c)){
-                prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
+            		prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
             	}
+            
                 if(projMembersMap != null && !projMembersMap.isEmpty() && projMembersMap.get(prevSyncedProject.id) != null && !projMembersMap.get(prevSyncedProject.id).isEmpty())
                 {
                     prevSyncedProject.Project_Members__c = IPM_ProjectCountryDetails.getProjectMembersNames(projMembersMap.get(prevSyncedProject.id));
@@ -252,8 +253,9 @@ public with sharing class IPM_ProjectResourceTriggerHandler
                 {
                 	//set status as ready only when the rollout is created and countires are there for the project
                 	if(String.isNotBlank(prevSyncedProject.Project_Countries__c)){
-                    prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
+                		prevSyncedProject.EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY;
                 	}
+                    
                     if(projMembersMap!=null && !projMembersMap.isEmpty() && projMembersMap.get(prevSyncedProject.id)!=null && !projMembersMap.get(prevSyncedProject.id).isEmpty())
                     {
                         prevSyncedProject.Project_Members__c = IPM_ProjectCountryDetails.getProjectMembersNames(projMembersMap.get(prevSyncedProject.id));
@@ -267,7 +269,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
         if(!toUpdateProjList.isEmpty())
         {
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
-            update toUpdateProjList; // Not including try , catch as when the transaction is failed roll back is handled at other class  
+            update toUpdateProjList; // Not including try , catch as when the transaction is failed roll back is handled at other class
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;  
         }
     }     

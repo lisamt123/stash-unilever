@@ -9,7 +9,8 @@
 
 public with sharing class IPM_ProjectDocumentHelper   
 {
-    private transient static final String BOSSCARD = 'Bosscard';    
+    private transient static final String BOSSCARD = 'Bosscard';  
+    public static Boolean SKIP_TRIGGER_EXECUTION = false;  
     public static final Map<String,String> DOC_COMMENT_FIELDMAPPING = new Map<String,String>{
         IPM_ConstantUtils.DOCUMENT_STATUS_APPROVED => 'IPM_Approved_Comments__c',
         IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED  => 'IPM_Postponed_Comments__c',
@@ -112,7 +113,7 @@ public with sharing class IPM_ProjectDocumentHelper
     
     /**************************************************************
     * @description: Used for Updating Project Document Status as Approved.
-    * @param1 incomingProjectMap : Trigger.New projects Map    * 
+    * @param1 incomingProjectMap : Trigger.New projects Map
     */
     public static void updateProjectDocumentStatus(Map<Id,IPM_Project__c> incomingProjectMap)
     {
@@ -257,6 +258,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                         IPM_Project_Document_Section__c projDocSect = new IPM_Project_Document_Section__c();
                                         // If there is an existing Product document Template associated,we assume sections are already associated with them.
                                         // In that case we need to update references to those project document section to point to proper master sec.
+                                        
                                         if(existingProjectDocument!=null && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id) 
                                         && IPM_ProjectHelper.DBProjectdocumentSpecificSectionMap.containsKey(existingProjectDocument.Id)  )
                                         {
@@ -321,7 +323,7 @@ public with sharing class IPM_ProjectDocumentHelper
                                         if(section.IPM_Section_Type__c !=IPM_ConstantUtils.SECTION_TYPE_HEADER && 
                                             section.IPM_Section_Type__c!=IPM_ConstantUtils.SECTION_TYPE_SUBHEADER)
                                         {
-                                           // DEF2994 Restrict the copy over of Filled in logic 16/12/2015                                            
+                                           // DEF2994 Restrict the copy over of Filled in logic 16/12/2015
                                             if(String.isBlank(projDocSect.IPM_PDP_Document_Summary__c))
                                             {
                                                 projDocSect.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
@@ -448,7 +450,8 @@ public with sharing class IPM_ProjectDocumentHelper
                             sourceObject = IPM_ProjectHelper.bossCardMap.get(associatedBosscard);
                         }
                     } 
-                } 
+                }
+                
                 if(sourceObject!=null)
                 {
                     for(Integer counter =0;counter<sourceFieldAPIList.size();counter++)
@@ -456,7 +459,8 @@ public with sharing class IPM_ProjectDocumentHelper
                         // Get the source Api Name from which to copy
                         String sourceField = sourceFieldAPIList.get(counter);
                         String targetField = targetFieldAPIList.get(counter);
-                        //NO SONAR for Unnecessary Boolean Comparison, since targetField is coming from Map where two fields are of typr Text and 1 is of Checkbox, we need to explicitly check for this condition in order for Business Logic to Work 
+                        //NO SONAR for Unnecessary Boolean Comparison, since targetField is coming from Map where two fields are of typr Text and 1 is of Checkbox, we need to explicitly check for this condition in order for Business Logic to Work
+                        //While copying over sections data 3 fields pulled from the custom settings "IPM_Section_CopyMapping" needs to be copied Gate Summary, Functional Summary (which are text fields) and isDefault which is a boolean  
                         if(String.isNotBlank(sourceField) && String.isNotBlank(targetField) && (incomingSection.get(targetField) == null || incomingSection.get(targetField)==false))
                         {
                             if(copyFromGate.equals(BOSSCARD) || currentSectionExternalId != IPM_ConstantUtils.FEEDBACK_FROM_LAST_GATE)

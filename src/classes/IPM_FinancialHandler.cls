@@ -36,8 +36,9 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             IPM_FinancialHelper.updateFinanceCategory((List<IPM_Financial__c>) Trigger.new); 
         }  
         
+        
         if(Trigger.isDelete)
-        {
+        { 
             for(IPM_Financial__c deleteFinancial : (List<IPM_Financial__c>) Trigger.old)
             {
                 deleteFinancialIDSet.add(deleteFinancial.Id);
@@ -56,6 +57,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>( (List<IPM_Financial_Year__c>) database.query(deletefinancialYearQuery));
         }  
     }
+    
     /**
     * @description: This method checks for TLD Change and inserts/updates Consolidated Financial Years. 
                     Used for Copy over logic for default Financial Years.
@@ -63,6 +65,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                     Handles copy over logic when regional and local Projects are created.
                     Flags are moved from Financial To Financial Year Records.
     */
+    
     public void bulkAfter()
     {
         Map<String,IPM_Financial_Year__c> upsertFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
@@ -76,17 +79,21 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             
             if(Trigger.isInsert)
             {
-               IPM_FinancialHelper.insertFinancialYears(newFinancialList,upsertFinancialYearMap);    
+                IPM_FinancialHelper.insertFinancialYears(newFinancialList,upsertFinancialYearMap);    
             }   
                 
             if(Trigger.isUpdate) 
             { 
             	Map<Id,IPM_Financial__c> targetLaunchChangedDateMap = new Map<Id,IPM_Financial__c>();
+            	
             	Map<Id,IPM_Financial__c> oldFinancialMap = (Map<Id,IPM_Financial__c>)Trigger.OldMap;
+            	
             	Set<Id> changedFinancialSet = new Set<Id>();
+            	
             	for(IPM_Financial__c financial : newFinancialList)
 	            {
 	                IPM_Financial__c oldFinancial = oldFinancialMap.get(financial.Id); 
+	            	
 	            	// Only add Financial Years For Consolidated Financials.
 					if(financial.isActive__c && financial.recordTypeId == DEFAULT_FINANCIAL_RECORDTYPE && 
 						financial.Target_Launch_Date__c!=null && financial.Target_Launch_Date__c.year()  != oldFinancial.Target_Launch_Date__c.year() )
@@ -95,16 +102,20 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 					    changedFinancialSet.add(financial.Id);
 					}
 	            }
+					
 				//Insert new Financial Years to Consolidated Financials when TLD is changed for any default Financial.
 				if(!targetLaunchChangedDateMap.isEmpty())
 				{ 
 					// Stores the List of Consolidated Financial Records which are to be inserted.
 					Map<String,IPM_Financial_Year__c> upsertConsolidatedFinancialYearMap = new Map<String,IPM_Financial_Year__c>(); 
+					
 					Map<Id,IPM_Financial_Year__c> updateFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
+					
 					String financialQuery = IPM_Utils.prepareSOQLQuery('IPM_Financial__c',true,new Set<String>{'IPM_Financial_Year__c'},false);
 	                String financialWhereClause = ' WHERE Id in :changedFinancialSet LIMIT 50000';
 	                financialQuery = financialQuery + financialWhereClause;
 	                Map<Id,IPM_Financial__c> financialDetailMap = new Map<Id,IPM_Financial__c>( (List<IPM_Financial__c>) database.query(financialQuery));    
+	                    
 	                if(!financialDetailMap.isEmpty())
 	                {
 	              		IPM_FinancialHelper.manageFinancialYears(targetLaunchChangedDateMap,financialDetailMap,upsertConsolidatedFinancialYearMap);	
@@ -115,7 +126,8 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 	                }
 	                if(!targetLaunchChangedDateMap.isEmpty())
 		            { 
-		                IPM_FinancialHelper.updateFinancialYearTables(targetLaunchChangedDateMap,financialDetailMap,updateFinancialYearMap);   
+		                IPM_FinancialHelper.updateFinancialYearTables(targetLaunchChangedDateMap,financialDetailMap,updateFinancialYearMap);
+
 		            	if(!updateFinancialYearMap.isEmpty())
 		            	{
 		            		update updateFinancialYearMap.values();
@@ -135,8 +147,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                 Map<Id,Set<String>> financialTocopyOverChangedFieldMap = new Map<Id,Set<String>>(); 
                 Map<Id,Set<String>> financialToactiveChangedFieldMap = new Map<Id,Set<String>>();
                 Map<Id,Set<String>> financialToaddtChangedFieldMap = new Map<Id,Set<String>>();
-                
-                
+
                 // Check for Financial Action Standard Update For Sections 
                 IPM_FinancialHelper.updateFinancialActionStandard((Map<Id,IPM_Financial__c>) Trigger.newMap);
                  
@@ -221,6 +232,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                         {
                             additionalFieldChangedFinancialMap.put(financial.Id,financial);
                             changedFinancialSet.add(financial.Id);
+                             
                             Set<String> changedFieldSet = new Set<String>(); 
                             if(financialToaddtChangedFieldMap.containsKey(financial.Id))
                             {
@@ -230,7 +242,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                             financialToaddtChangedFieldMap.put(financial.Id,changedFieldSet);
                         }
                     }
-                    
+                        
                     // Active Field Changes
                     Boolean oldActiveValue = (Boolean )oldFinancial.get(IPM_FinancialHelper.ACTIVE_FIELD);
                     Boolean newActiveValue = (Boolean )financial.get(IPM_FinancialHelper.ACTIVE_FIELD);
@@ -268,7 +280,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
 	                    {
 	                        IPM_FinancialHelper.processSustainabilityPeriod(susChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap);
 	                    }
-	                 
+	                    
 	                    // Update Financial Volume Type to Child Financial Years.
 	                    if(!volumeTypeChangedFinancialMap.isEmpty())
 	                    {
@@ -285,19 +297,20 @@ public with sharing class IPM_FinancialHandler implements ITrigger
                         {
                         	IPM_FinancialHelper.copyOverFinancialFields(activeChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToactiveChangedFieldMap);
                         }
+                        
                         // Additional Field Copy Over from Financial To Financial Years
                         if(!additionalFieldChangedFinancialMap.isEmpty()) 
                         {
                         	IPM_FinancialHelper.copyOverFinancialFields(additionalFieldChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialToaddtChangedFieldMap);
                         }
                         
+                        
                         // Update Copy Over values to Financial Years
                         if(!copyOverChangedFinancialMap.isEmpty())
                         {
                             IPM_FinancialHelper.copyOverFinancialFields(copyOverChangedFinancialMap,oldFinancialMap,financialDetailMap,upsertFinancialYearMap,financialTocopyOverChangedFieldMap);
                         }
-	                     
-	                    
+	
 	                    if(!consolidationChangedFinancialList.isEmpty())
 			            {   
 			                IPM_FinancialHelper.initializeConsolidation(consolidationChangedFinancialList,oldFinancialMap,financialDetailMap,upsertConsolidatedFinancialMap,changedFinancialFieldSet); 
@@ -307,10 +320,10 @@ public with sharing class IPM_FinancialHandler implements ITrigger
             } 
             
             if(!upsertFinancialYearMap.isEmpty())  
-            {
+	        {
 	            //Insert new Financial Years to Consolidated Financials.
-                upsert upsertFinancialYearMap.values() External_ID__c;  
-            }
+	            upsert upsertFinancialYearMap.values() External_ID__c;  
+	        }
         }
         else
         {
@@ -354,6 +367,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
         //This method has been included as the class implements the ITrigger interface && newFinancial.RecordtypeID != CONSOLIDATED_FINANCIAL_RECORDTYPE && !newFinancial.Financial_External_ID__c.contains(IPM_ConstantUtils.FINANCIAL_NONKEY) 
         IPM_Financial__c newfinancial = (IPM_Financial__c)so;
     }
+    
     /**
     * @description :    This method is called iteratively for each record to be update during a BEFORE. 
                         Used for setting Copy Over Flags when regional and Local Projects are created.
@@ -361,6 +375,7 @@ public with sharing class IPM_FinancialHandler implements ITrigger
     * @param1   :       old sobject record
     * @param2   :       new sobject record
     */
+    
     public void beforeUpdate(SObject oldSo, SObject so)
     {   
         //This method has been included as the class implements the ITrigger interface 

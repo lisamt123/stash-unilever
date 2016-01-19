@@ -46,6 +46,7 @@ public with sharing class IPM_RolloutTriggerHandler
                     This method is responsible for removing other associated components from Rollouts like associated financials and Countries
                     which shouldnt exist with Rollouts. Also it checks if this is last local Rollout which is being deleted. 
                     If yes it deletes the regional Rollout as well along with regional Consolidated financials.
+                    
     * @param lstProjectRollouts     List of Trigger.old records 
     */
     public void processDelete(List<IPM_Project_Rollout__c> lstProjectRollouts)
@@ -79,7 +80,6 @@ public with sharing class IPM_RolloutTriggerHandler
             } 
             else
             { 
-            	
             	deletedLocalRolloutIds.add(projectRollout.Id);
             	//PROCESS ROLLOUTS FOR THE ROLLOUT STATUS
                 if(projectRollout.IPM_Project__c != null)
@@ -181,8 +181,10 @@ public with sharing class IPM_RolloutTriggerHandler
             If it is a regional Rollout creates Regional Consolidated financials.
             If it is a local Rollout, creates corresponding financials based on whether it is key or non Key Rollout.
             Also First and follower is invoked from here which based on TLD sets the first rollout and follower rollouts.
+            
     * @param lstProjectRollouts     List of Trigger.new records
     */
+    
     public  void processInsert(List<IPM_Project_Rollout__c> lstProjectRollouts)
     {
         Set<Id> setTopLevelProjectIds = new Set<Id>();
@@ -213,16 +215,14 @@ public with sharing class IPM_RolloutTriggerHandler
             ///Regional Rollout. Validate consolidated financials is present or not. If no create one.
             if(projectRollout.RecordTypeId == REGIONAL_ROLLOUT_RECORDTYPE)
             {
-                
                 String financialExternalId = projectRollout.IPM_Rollout_Project__c + IPM_ConstantUtils.FINANCIAL_CONSOLIDATE;
-                               
-                createRolloutFinancials(financialExternalId,CONSOLIDATED_FINANCIAL_RECORDTYPE,projectRollout,mapUpsertFinancials);
                 
+                createRolloutFinancials(financialExternalId,CONSOLIDATED_FINANCIAL_RECORDTYPE,projectRollout,mapUpsertFinancials);
             }             
             else 
             {
                 String financialExternalId = IPM_Utils.getFinancialExternalId(projectRollout); 
-				
+
                 createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,projectRollout,mapUpsertFinancials);
                 
                 //PROCESS ROLLOUTS FOR THE ROLLOUT STATUS
@@ -230,7 +230,6 @@ public with sharing class IPM_RolloutTriggerHandler
                 {
                     setTopLevelProjectIds.add(projectRollout.IPM_Project__c);
                 }
-                
                 else if (projectRollout.Regional_Project__c != null)
                 {
                     setTopLevelProjectIds.add(projectRollout.Regional_Project__c);
@@ -255,6 +254,7 @@ public with sharing class IPM_RolloutTriggerHandler
             If it is a local Rollout is updated with Key or non Key or is made active or inactive , operates on  corresponding financials.
             Also in case of inactive rollouts corresponding financials and countries are made inactive.
             Also First and follower is invoked from here which based on TLD sets the first rollout and follower rollouts.
+            
     * @param mapNewProjectRollouts      List of Trigger.new records
     * @param mapOldProjectRollouts      List of Trigger.old records
     */
@@ -265,13 +265,12 @@ public with sharing class IPM_RolloutTriggerHandler
         Set<String> setRegionalRolloutNames = new Set<String>();
         Set<String> setRegionalProjectNames = new Set<String>();
         
-      
+        
         for(IPM_Project_Rollout__c projectRollout : mapNewProjectRollouts.values())
         {   
             if(projectRollout.RecordTypeId == REGIONAL_ROLLOUT_RECORDTYPE && projectRollout.IPM_Project__c !=null)
             {
                 setRegionalRolloutNames.add(projectRollout.IPM_Rollout_Project__c);
-                
             }
             else if(projectRollout.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
             {
@@ -286,7 +285,6 @@ public with sharing class IPM_RolloutTriggerHandler
             }
         }
         
-       
         List<IPM_Project_Rollout__c> lstProjRegRollouts = [SELECT Id, IPM_Rollout_Project__c,IPM_Project__c,IPM_Regional_Rollout_Status__c,IPM_Project__r.IPM_Phase__c,isActive__c,IPM_Status__c,Added_At_Stage__c,Regional_Project__c,Regional_Project__r.IPM_Phase__c,Target_Launch_Date__c,Calculated_Sustainability_Period__c,Regional_Rollout__c,IPM_Regional_Original_Project__c,Regional_Rollout_External_Id__c,
                                                             (SELECT Id,IPM_Regional_Rollout_Status__c,IPM_Status__c,IPM_Rollout_Project__c,isActive__c,IPM_Project__c,Added_At_Stage__c,KeyMCO__c,Regional_Project__c,Target_Launch_Date__c,Regional_Rollout__c,IPM_Regional_Original_Project__c,Calculated_Sustainability_Period__c,Regional_Rollout_External_Id__c,Regional_Rollout__r.IPM_Project__c,Regional_Project__r.IPM_Parent_Project__c FROM Local_Rollouts__r), 
                                                             (SELECT Id,isActive__c,Added_At_Stage__c,Financial_External_Id__c,IPM_Key_Financial__c FROM IPM_Financials__r) FROM IPM_Project_Rollout__c   
@@ -296,7 +294,7 @@ public with sharing class IPM_RolloutTriggerHandler
         {
             updateRolloutAssociations(mapOldProjectRollouts,regionalRollout,null);
         }
-        
+
         if(!setRegionalProjectNames.isEmpty()) 
         { 
             List<IPM_Project__c> lstRegionalProjects = [SELECT Id,IPM_Project_Name__c,IPM_Target_Launch_Dates__c,Sustainability_Period__c,IPM_Phase__c,
@@ -310,11 +308,10 @@ public with sharing class IPM_RolloutTriggerHandler
                 updateRolloutAssociations(mapOldProjectRollouts,null,regionalProject);
             }
         }
-
+        
         //For Rollout Status Updates
         Set<Id> setTopLevelProjectIds = new Set<Id>();
-        
-        
+ 
         for(IPM_Project_Rollout__c newRollout : mapNewProjectRollouts.values())
         {
             if(newRollout.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE)
@@ -326,23 +323,23 @@ public with sharing class IPM_RolloutTriggerHandler
                 //Rollout Status
                 if(newRollout.Target_Launch_Date__c != oldRollout.Target_Launch_Date__c || newRollout.isActive__c != oldRollout.isActive__c || newRollout.Regional_Project__c != oldRollout.Regional_Project__c)
                 {
+                	
                     //PROCESS ROLLOUTS FOR THE ROLLOUT STATUS
                     // Global Project
                     if(newRollout.IPM_Project__c != null)
                     {
                         setTopLevelProjectIds.add(newRollout.IPM_Project__c); 
-                        
                     }
                     // regional project
                     else if (newRollout.Regional_Project__c != null)
                     {
                     	setTopLevelProjectIds.add(newRollout.Regional_Project__c);
-                    	
                     }
                 }
             }
         }
-
+        
+        
         deleteAssociatedFinancials();
         
         deleteAssociatedCountries(localRolloutCountrySet);
@@ -433,11 +430,13 @@ public with sharing class IPM_RolloutTriggerHandler
         
     }
     
+    
      /**********************************************************************************************************************************
     * @description                      Used for udpating job Id for corresponding Rollout when the background process of Rollout to Project Conversion happens. 
     * @param phaseChangeRolloutSet      Rollouts which are being sent for background processing for Queueable interface.
       @param JobId                      Associated Job Id.
     */
+    
     public static void udpateAsyncJobId(Set<Id>phaseChangeRolloutSet, Id JobId)
     {
         Map<Id,IPM_Project_Rollout__c> updateAsyncJobIdRolloutMap = new Map<Id,IPM_Project_Rollout__c>(); 
@@ -456,11 +455,12 @@ public with sharing class IPM_RolloutTriggerHandler
     }
     
     
-   
+    
     
     /*******************************************************************************************************
     * @description  Method to get updating Financials and countries based on active/inactive flags on rollouts.
                     Also key non Key changes related to rollouts are covered here and whether non key financials should be removed or retained.
+                    
     * @param oldRolloutsMap     List of Trigger.old records
     * @param regionalRollout    Associated Regional Rollout
     * @param regionalProject    Associated Regional Project
@@ -475,7 +475,7 @@ public with sharing class IPM_RolloutTriggerHandler
         
         List<IPM_Financial__c> associatedfinancials = new List<IPM_Financial__c>();
         List<IPM_Project_Rollout__c> associatedlocalRollouts = new List<IPM_Project_Rollout__c>();
-        
+         
         if(regionalProject!=null)
         {
             financialNonKeyExternalId = regionalProject.IPM_Project_Name__c + IPM_ConstantUtils.FINANCIAL_NONKEY;
@@ -501,11 +501,10 @@ public with sharing class IPM_RolloutTriggerHandler
         
         // Check if non Key Should be retained/Created based on whether there are non Key MCO's present. 
         Boolean  nonkeyActiveRolloutExists = false;
-        
+
         for(IPM_Project_Rollout__c localRollout : associatedlocalRollouts)
         {
-            String financialExternalId = IPM_Utils.getFinancialExternalId(localRollout); 
-            
+            String financialExternalId = IPM_Utils.getFinancialExternalId(localRollout);             
             IPM_Project_Rollout__c oldProjectRollout = oldRolloutsMap.get(localRollout.Id);
             
             if(!localRollout.KeyMCO__c && localRollout.isActive__c)
@@ -514,60 +513,58 @@ public with sharing class IPM_RolloutTriggerHandler
             }
                            
             if(oldProjectRollout != null)
-            {
+            { 
                 if(localRollout.isActive__c)
                 {
                     if(localRollout.KeyMCO__c)
-                {
+                    { 
                         // If Rollout is a key Rollout,We need to generate Corresponding Key Financials.
                         if(localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c || localRollout.isActive__c != oldProjectRollout.isActive__c)
-                    {
-                        
-                        createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
-                    } 
-                    
-                }
+                        {
+                            createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
+                        }
+                    }
                     else
-                { 
+                    {
                         // If rollout was a Key Rollout before, remove Key Financials for corresponding Rollout 
                         if(localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c ||  localRollout.isActive__c != oldProjectRollout.isActive__c) 
-                    {
+                        {    
                             // In case there is a corresponding financial specific business case 
                             if(localRollout.KeyMCO__c != oldProjectRollout.KeyMCO__c)
-                        {
+                            {
                                 setDeleteFinancialExternalIds.add(oldProjectRollout.IPM_Rollout_Project__c); 
                             }
                             // Create Non Key financial for the corresponding Non Key Rollout
                             createRolloutFinancials(financialExternalId,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
-                    
+                            
                             //If it is a non Key and Phase is not ideas, We need to add Financials Corresponding to rollouts.   
                             if(associatedPhase != IPM_ConstantUtils.PHASE_IDEAS)
                             {
                                 createRolloutFinancials(localRollout.IPM_Rollout_Project__c,DEFAULT_FINANCIAL_RECORDTYPE,localRollout,financialExistingMap);
-            }        
-        }
-        
-            
+                            }
+                        }       
+                    }    
+                }
 
-        }
-    }
                 else
-    
-    {
+                {
                     // If old rollout was active, we need to inactive Financials or delete financials.
-        if(localRollout.isActive__c != oldProjectRollout.isActive__c)
-        {
+                    if(localRollout.isActive__c != oldProjectRollout.isActive__c)
+                    {
                         setDeleteFinancialExternalIds.add(oldProjectRollout.IPM_Rollout_Project__c); 
                         localRolloutCountrySet.add(localRollout.IPM_Rollout_Project__c);
                     }
                 }
-            }
+            }        
         }
+            
         if(!nonkeyActiveRolloutExists)
-            {
+        {
             setDeleteFinancialExternalIds.add(financialNonKeyExternalId);
-            }
         }
+    }
+    
+    
     /*******************************************************************************************************
     * @description   Method to get Creating Financials.
     * @param financialExternalId  External Id for financials which needs to be created.
@@ -584,11 +581,13 @@ public with sharing class IPM_RolloutTriggerHandler
         if(financialExistingMap!=null && financialExistingMap.containsKey(financialExternalId))
         {
            projectFinancials =  financialExistingMap.get(financialExternalId);
+           
            if(projectFinancials.IPM_Key_Financial__c != projectRollout.KeyMCO__c)
            {
                 projectFinancials.IPM_Key_Financial__c = projectRollout.KeyMCO__c;
                 mapUpsertFinancials.put(financialExternalId, projectFinancials);     
            }
+           
            if(!projectFinancials.isActive__c)
            {
                projectFinancials.isActive__c = true;
@@ -612,8 +611,6 @@ public with sharing class IPM_RolloutTriggerHandler
         
         
         //Checks for Regional Original & Regional Rollout Projects
-        
-        
         if(financialRecordType == CONSOLIDATED_FINANCIAL_RECORDTYPE && projectRollout.IPM_Project__c !=null)
         {
             projectFinancials.Parent_Project__c = projectRollout.IPM_Project__c;
@@ -626,17 +623,16 @@ public with sharing class IPM_RolloutTriggerHandler
             {
                 projectFinancials.Regional_Project__c = projectRollout.Regional_Project__c;
             }
-                
             else if(projectRollout.Regional_Rollout__c !=null) 
             {
                 projectFinancials.IPM_Project_Rollout__c = projectRollout.Regional_Rollout__c;
             }
         }
+        
         return projectFinancials;
     } 
-                                                        
     
-        
+    
     /*******************************************************************************************************
     * @description  Used to remove rollout associations, like financials and country based on deleted rollouts.
                     Various Criteria for checking and removing of Rollouts based on whether it is a Key Rollout,Non Key Rollout or Created before or after charter.
@@ -673,6 +669,7 @@ public with sharing class IPM_RolloutTriggerHandler
             localRolloutList = regionalRollout.Local_Rollouts__r; 
         }
         
+        
         Map<Id,IPM_Project_Rollout__c> completelocalRolloutMap = new Map<Id,IPM_Project_Rollout__c>((List<IPM_Project_Rollout__c>)localRolloutList);
                     
         for (IPM_Project_Rollout__c localRollout : localRolloutList)
@@ -701,9 +698,7 @@ public with sharing class IPM_RolloutTriggerHandler
                 }
             }
         }
-        
-        
-        
+
         Set<Id> completeNonKeyRolloutSet = completeNonKeyRolloutMap.KeySet();
         Set<Id> deletedNonKeyRolloutSet = deletedNonKeyRolloutMap.KeySet();
         
@@ -785,11 +780,13 @@ public with sharing class IPM_RolloutTriggerHandler
         }       
     }
     
+    
     /*******************************************************************************************************
     * @description  Used to delete Countries when associated rollout is removed from System. 
                     It validates whether it is charter Approved, If yes makes it as inactive else delete that specific country.  
     * @param deleteCountrySet  Set of deleted Coutries.
     */    
+    
     private void deleteAssociatedCountries(Set<String> deleteCountrySet)
     {
         // Delete Country
@@ -799,8 +796,8 @@ public with sharing class IPM_RolloutTriggerHandler
         //Delete Countries associated with rollouts.Make sure that we dont delete Countries which are inactive or Charter Approved.
         List<IPM_Project_Rollout__c> lstLocRollOuts = [SELECT Id,IPM_Status__c,IPM_Regional_Rollout_Status__c,IPM_Rollout_Project__c,IPM_CharterApproved__c,KeyMCO__c,
                                                             Added_At_Stage__c,(SELECT Id,IPM_CharterApproved__c FROM IPM_Countries_Local__r where isActive__c = true)
-                            FROM IPM_Project_Rollout__c
-                            WHERE IPM_Rollout_Project__c IN: localRolloutCountrySet Limit 50000];
+							                            FROM IPM_Project_Rollout__c
+							                            WHERE IPM_Rollout_Project__c IN: localRolloutCountrySet Limit 50000];
                             
         for(IPM_Project_Rollout__c localRollout : LstLocRollOuts)
         {
@@ -839,7 +836,7 @@ public with sharing class IPM_RolloutTriggerHandler
         //Delete Financials
         Map<Id,IPM_Financial__c> updateFinancialMap = new Map<Id,IPM_Financial__c>();
         Map<Id,IPM_Financial__c> deleteFinancialMap = new Map<Id,IPM_Financial__c>();
-        
+
         List<IPM_Financial__c> lstDeteleFinancials = [SELECT Id,Financial_External_ID__c,isActive__c,Added_At_Stage__c,Charter_Approved__c,IPM_Key_Financial__c  FROM IPM_Financial__c WHERE Financial_External_Id__c IN: setDeleteFinancialExternalIds LIMIT 50000];
         
         if(!lstDeteleFinancials.isEmpty())
@@ -856,12 +853,12 @@ public with sharing class IPM_RolloutTriggerHandler
                     updateFinancialMap.put(financial.Id,financial);
                 }
             }
-			
+            
             if(!deleteFinancialMap.isEmpty())
             {
                 delete deleteFinancialMap.values();
             }
-            
+             
             if(!updateFinancialMap.isEmpty())
             {
                 update updateFinancialMap.values();

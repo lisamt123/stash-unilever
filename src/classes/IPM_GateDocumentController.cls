@@ -3,7 +3,7 @@
 * @date  15/12/2014
 * @description To Display Gate Document Sections
 */
-public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermediateController {
+public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermediateController { 
 
     public List<IPM_Milestone__c> lstMstn;
     //String to replace duplicate string literals
@@ -404,7 +404,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         getProjectDocumentSection();
         
         //For Getting Sub-Header Sections
-        String Query='SELECT Id,IPM_Master_Section_External_Id__c,IPM_Count_of_Comments__c,IPM_Default_Section__c,IPM_FunctionalRole__c,IPM_GateHistory_Date__c,IPM_GateHistory__c,IPM_Gate_Document_Summary__c,IPM_Is_Excluded__c,IPM_Negotiable__c,IPM_PDPHistoty_Date__c,IPM_PDPHistoty__c,IPM_PDP_Document_Summary__c,IPM_Project_Document__c,IPM_Project_ID__c,IPM_Project_Section__c,IPM_Section_Help_Text_Long__c,IPM_Section_Help_Text__c,IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Sequence_Number__c,IPM_Section_Sequence__c,IPM_Section_Status__c,IPM_Section_Type__c,IPM_Section__c,Name,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Section__r.IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, IPM_Has_Appendix__c FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c=\'' + projectDoc.Id + '\''+' and IPM_Section__r.IPM_Parent_Section__c !=null and IPM_Default_Section__c=true';
+        String Query='SELECT Id,IPM_Master_Section_External_Id__c,IPM_Count_of_Comments__c,IPM_Default_Section__c,IPM_FunctionalRole__c,IPM_GateHistory_Date__c,IPM_GateHistory__c,IPM_Gate_Document_Summary__c,IPM_Is_Excluded__c,IPM_Negotiable__c,IPM_PDPHistoty_Date__c,IPM_PDPHistoty__c,IPM_PDP_Document_Summary__c,IPM_Project_Document__c,IPM_Project_ID__c,IPM_Project_Section__c,IPM_Section_Help_Text_Long__c,IPM_Section_Help_Text__c,IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Sequence_Number__c,IPM_Section_Sequence__c,IPM_Section_Status__c,IPM_Section_Type__c,IPM_Section__c,Name,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Section__r.IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, IPM_Has_Appendix__c FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c= \'' + projectDoc.Id + '\''+' and IPM_Section__r.IPM_Parent_Section__c !=null and IPM_Default_Section__c=true';
         String filterValue='';
         Integer roleCount=0;
         
@@ -552,13 +552,13 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             List<IPM_Project_Document_Section__c> requiredSubHeadersProDocSectionList;
             if(proSubSectionParentsSequenceList1 != null && !proSubSectionParentsSequenceList1.isEmpty()){
                 requiredSubHeadersProDocSectionList = [Select Id,IPM_Count_of_Comments__c,IPM_Default_Section__c,IPM_FunctionalRole__c,IPM_GateHistory_Date__c,
-                	IPM_GateHistory__c,IPM_Gate_Document_Summary__c,IPM_Is_Excluded__c,IPM_Negotiable__c,IPM_PDPHistoty_Date__c,IPM_PDPHistoty__c,
-                	IPM_PDP_Document_Summary__c,IPM_Project_Document__c,IPM_Project_ID__c,IPM_Project_Section__c,IPM_Section_Help_Text_Long__c,IPM_Section_Help_Text__c,
-                	IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Sequence_Number__c,IPM_Section_Sequence__c,IPM_Section_Status__c,IPM_Section_Type__c,
-                	IPM_Section__c,Name,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Section__r.IPM_Section_Type__c,
-                	IPM_Section__r.IPM_Section_Sequence__c,IPM_Section__r.IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c, 
-                	IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_type__c FROM IPM_Project_Document_Section__c 
-                	where IPM_Project_Document__c =: projectDoc.Id and IPM_Section__c in : proSubSectionParentsSequenceList1];
+                        IPM_GateHistory__c,IPM_Gate_Document_Summary__c,IPM_Is_Excluded__c,IPM_Negotiable__c,IPM_PDPHistoty_Date__c,IPM_PDPHistoty__c,
+                        IPM_PDP_Document_Summary__c,IPM_Project_Document__c,IPM_Project_ID__c,IPM_Project_Section__c,IPM_Section_Help_Text_Long__c,IPM_Section_Help_Text__c,
+                        IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Sequence_Number__c,IPM_Section_Sequence__c,IPM_Section_Status__c,IPM_Section_Type__c,
+                        IPM_Section__c,Name,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Section__r.IPM_Section_Type__c,
+                        IPM_Section__r.IPM_Section_Sequence__c,IPM_Section__r.IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c, 
+                        IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_type__c FROM IPM_Project_Document_Section__c 
+                        where IPM_Project_Document__c =: projectDoc.Id and IPM_Section__c in : proSubSectionParentsSequenceList1];
             }
             
             if(requiredSubHeadersProDocSectionList != null && !requiredSubHeadersProDocSectionList.isEmpty()){
@@ -583,7 +583,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                     + 'IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c' 
                                     + ' FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c= \''+ projectDoc.Id + '\'' +' AND IPM_Section__r.IPM_Parent_Section__r.ID in:sectionsIds AND IPM_Default_Section__c=true';
                                     
-            	queryForSubLevel = queryForSubLevel + filterValue + ' order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000'; 
+                queryForSubLevel = queryForSubLevel + filterValue + ' order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000'; 
                 
                 projSubLevelSectionList = Database.query(queryForSubLevel);   
                 //END - DEF2770                  
@@ -750,12 +750,11 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     /****************************************************
     @description For Exporting Gate Document Data in PDF
     @param Project Id
-    @ Business Rule: This functions is used to Display the data in for the Gate Documetn PDF, i which data needs to be pulled from Various entities, hence it is complex.
     */
     void gateDocumentData(Final Id pId){
         //For Generating PDF Retrieving Project Rollouts,Finance and Project Document Sections
         try{
-            String nam=project.IPM_Project_Name__c;
+            String nam=project.IPM_Project_Name__c; 
             globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
             country=new IPM_Country__c();
             rollOut=new list<IPM_Project_Rollout__c>();
@@ -766,6 +765,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                      WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
                      
              }
+             
+             
              /*DEF 2248*/
             finProjectPriority = new IPM_Financial__c();
             if (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL){
@@ -774,15 +775,15 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             }    
             
              //DEF2103-30/12/15-Reopen for BI not calculated on Global projects-Gate document
-	        /*Analysis-IPM_Financials_Consolidated__r is not returning value may be because of recent change in BIG query above or change in formula field.
-	        New query is introduced now to fetch BI from IPM financial for global projects.
-	        */
-	        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
-	        	list<IPM_Financial__c> liFinGlobal = [SELECT Business_Impact_Global__c FROM IPM_Financial__c WHERE parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL and parent_project__c=:project.id and regional_external_id__c=null limit 1];
-	            if (liFinGlobal!=null && liFinGlobal.size()>0){
-	                globalbusinessImpactStr = liFinGlobal[0].Business_Impact_Global__c;
-	            }
-	        }
+                /*Analysis-IPM_Financials_Consolidated__r is not returning value may be because of recent change in BIG query above or change in formula field.
+                New query is introduced now to fetch BI from IPM financial for global projects.
+                */
+                if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
+                        list<IPM_Financial__c> liFinGlobal = [SELECT Business_Impact_Global__c FROM IPM_Financial__c WHERE parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL and parent_project__c=:project.id and regional_external_id__c=null limit 1];
+                    if (liFinGlobal!=null && liFinGlobal.size()>0){
+                        globalbusinessImpactStr = liFinGlobal[0].Business_Impact_Global__c;
+                    }
+                }
             //DEF2450 - BI copy to child projects ?? or it should be 2103 where BI to be displayed on gate document
             //Note: If project is regional or Local fin.Business_Impact_Global__c will not be relevant as BI should be coming from global project
             //Regional and Local Financial records have their own calculated Business Impact Global which should NOT be used.

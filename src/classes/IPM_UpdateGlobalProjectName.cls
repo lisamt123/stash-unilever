@@ -11,16 +11,24 @@ public with sharing class IPM_UpdateGlobalProjectName {
     *@return:null
     *********************************************************************************/
     Public static string className_STR=IPM_UpdateGlobalProjectName.class.getName();
-    @Future
+    
     public static void updateProjectName(Map<id,String>updatedProNameMap,Map<Id,String>oldprojectnameMap){
         List<IPM_Project__c>projectList=new List<IPM_Project__c>();
+        
         List<IPM_Milestone__c>updateMilesList=new List<IPM_Milestone__c>();//list of all milestones to be updated with Project name
+        
         List<IPM_Task__c>updateTaskList=new List<IPM_Task__c>();//List of all task to be updated with Project name
+        
         List<IPM_Project_Document__c>updateProDocList=new List<IPM_Project_Document__c>();//list of all project document to be updated with project name
+        
         List<IPM_Financial__c>updateFinList=new List<IPM_Financial__c>();//list of all project finance to be updated with project name
+        
         List<IPM_Project_Rollout__c>updateRolloutList=new List<IPM_Project_Rollout__c>();//list of all project rollout to be updated with project name
+        
         List<IPM_Country__c>updateCountryList=new List<IPM_Country__c>();//list of all project rollout to be updated with project name
+        
         set<id>rolloutId=new set<id>();//set of rollout id
+        
         projectList=[SELECT IPM_Project_Type__c,
                             (SELECT Name,IPM_Rollout_Project__c,IPM_Project__c,Regional_Project__c FROM IPM_Project_Rollout__r),
 							(SELECT Project_Country__c,IPM_Project__c FROM IPM_Countries__r),
@@ -65,32 +73,30 @@ public with sharing class IPM_UpdateGlobalProjectName {
             }
         
         } 
-        try{
-	        List<IPM_Project_Document__c>ProDocUpdateList=new List<IPM_Project_Document__c>();
-	        ProDocUpdateList=updateDocNSecName(updatedProNameMap,updateProDocList,oldprojectnameMap);
-	        List<IPM_Task__c>taskUpdateList=new List<IPM_Task__c>();
-	        taskUpdateList=updateTaskName(updatedProNameMap,updateTaskList,oldprojectnameMap);//get list of all tasks, those values have been updated
-	        List<IPM_Milestone__c>milestoneUpdateList=new List<IPM_Milestone__c>();
-	        milestoneUpdateList=updateMilesName(updatedProNameMap,updateMilesList,oldprojectnameMap);//get list of all milestones, those values have been updated
-	        List<IPM_Financial__c>updateFinanceList=new List<IPM_Financial__c>();
-	        updateFinanceList=updateFinName(updatedProNameMap,updateFinList,oldprojectnameMap);//get list of all finance, those values have been updated
-	        List<IPM_Project_Rollout__c>updateRollList=new List<IPM_Project_Rollout__c>();
-	        updateRollList=updateRollOut(updatedProNameMap,updateRolloutList,oldprojectnameMap,rolloutId);//get list of all rollout, those values have been updated
-	        List<IPM_Country__c>updateCountriesList=new List<IPM_Country__c>();
-	        updateCountriesList=updateCountryName(updatedProNameMap,updateCountryList,oldprojectnameMap);
-     		update ProDocUpdateList;
-            update taskUpdateList;
-            update milestoneUpdateList;
-            update updateFinanceList;
-            update updateRollList;
-            update updateCountriesList;
-        }
-        catch(Exception ex) {
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className_STR,IPM_ConstantUtils.IPM_UPDATEGLOBAL_PROJECT,ex.getMessage(),ex, IPM_ConstantUtils.IPM_UPDATEGLOBAL_PROJECT, null, null, null,null);
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
-        }
+        	
+    	skipTiggerExecution(true);
+        List<IPM_Project_Document__c>ProDocUpdateList=new List<IPM_Project_Document__c>();
+        ProDocUpdateList=updateDocNSecName(updatedProNameMap,updateProDocList,oldprojectnameMap);
+        List<IPM_Task__c>taskUpdateList=new List<IPM_Task__c>();
+        taskUpdateList=updateTaskName(updatedProNameMap,updateTaskList,oldprojectnameMap);//get list of all tasks, those values have been updated
+        List<IPM_Milestone__c>milestoneUpdateList=new List<IPM_Milestone__c>();
+        milestoneUpdateList=updateMilesName(updatedProNameMap,updateMilesList,oldprojectnameMap);//get list of all milestones, those values have been updated
+        List<IPM_Financial__c>updateFinanceList=new List<IPM_Financial__c>();
+        updateFinanceList=updateFinName(updatedProNameMap,updateFinList,oldprojectnameMap);//get list of all finance, those values have been updated
+        List<IPM_Project_Rollout__c>updateRollList=new List<IPM_Project_Rollout__c>();
+        updateRollList=updateRollOut(updatedProNameMap,updateRolloutList,oldprojectnameMap,rolloutId);//get list of all rollout, those values have been updated
+        List<IPM_Country__c>updateCountriesList=new List<IPM_Country__c>();
+        updateCountriesList=updateCountryName(updatedProNameMap,updateCountryList,oldprojectnameMap);
+ 		update ProDocUpdateList;
+        update taskUpdateList;
+        update milestoneUpdateList;
+        update updateFinanceList;
+        update updateRollList;
+        update updateCountriesList;
+        skipTiggerExecution(false);
         
     }
+    
     /********************************************************************************
     *@Description :Update ipm document and document section name
     *@Param: map of project id's and Project Name and list of ipm tasks
@@ -207,7 +213,7 @@ public with sharing class IPM_UpdateGlobalProjectName {
 		List<IPM_Financial_Year__c>finYearList=new List<IPM_Financial_Year__c>();
 		List<IPM_Financial_Year__c>finList=new List<IPM_Financial_Year__c>();
 		finYearList=[SELECT External_Id__c,IPM_Financial__c FROM IPM_Financial_Year__c WHERE IPM_Financial__c IN:updatedProNameMap.KeySet() LIMIT 50000];
-		if(finYearList.isEmpty()){
+		if(!finYearList.isEmpty()){
 			for(IPM_Financial_Year__c fin:finYearList){
 				IPM_Financial_Year__c finUpdate=new IPM_Financial_Year__c();//Initialise ipm finance object
 				finUpdate.id=fin.id;//assign finance id to be update
@@ -305,10 +311,10 @@ public with sharing class IPM_UpdateGlobalProjectName {
     * @param: ipmProjectMap : current project(IPM_Project__c) record.
     */ 
     
-    public static void updateChildProjects(Map<Id, String> updatedProNameMap,Map<Id, String> oldprojectnameMap){
+    public static List<IPM_Project__c> updateChildProjects(Map<Id, String> updatedProNameMap,Map<Id, String> oldprojectnameMap){
         
         List<IPM_Project__c> childProjectListToUpdate = new List<IPM_Project__c>(); // List of child IPMProjects to be updated
-        for(IPM_Project__c childProject :    [SELECT Id, 
+        for(IPM_Project__c childProject :    [SELECT Id,Name,
                                                      IPM_Project_Name__c, 
                                                      IPM_Parent_Project__c, 
                                                      IPM_Parent_Project__r.IPM_Parent_Project__c,
@@ -329,21 +335,41 @@ public with sharing class IPM_UpdateGlobalProjectName {
                 else if(childProject.IPM_Parent_Project__c!=null && oldprojectnameMap.get(childProject.IPM_Parent_Project__c)!=null ){
                     childProject.IPM_Project_Name__c = childProject.IPM_Project_Name__c.replace(oldprojectnameMap.get(childProject.IPM_Parent_Project__c),updatedProNameMap.get(childProject.IPM_Parent_Project__c));//get rollout name after '-' as string
                    }   
+            childProject.Name=childProject.IPM_Project_Name__c;
             }
             childProjectListToUpdate.add(childProject);                                   
           
         }
         
-        if(!childProjectListToUpdate.isEmpty()){
-            try{
-                update childProjectListToUpdate;
-            }
-            catch(Exception ex) {
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),className_STR,IPM_ConstantUtils.IPM_UPDATECHILD_PROJECT,ex.getMessage(),ex, IPM_ConstantUtils.IPM_UPDATECHILD_PROJECT, null, null, null,null);
-                ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));
-            }
-           
+        if(!childProjectListToUpdate.isEmpty())
+        {
+        	System.debug(LoggingLevel.ERROR,'Skip Trigger----->>>'+IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION);
+        	
+        	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION=true;    
+            update childProjectListToUpdate;
+         	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION=false;  
+        	
+        	System.debug(LoggingLevel.ERROR,'Skip Trigger----->>>'+IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION);
         }
         
+        return childProjectListToUpdate;
+    }
+    
+    /**************************************************************
+    * @description: To set flags to skip triggers on Name Update  
+    * @param: isTrue : is Boolean to set the value of True and False.
+    */
+    public static void skipTiggerExecution(Boolean isTrue)
+    {
+    	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION=isTrue;
+		IPM_FinancialHelper.SKIP_TRIGGER_EXECUTION=isTrue;
+		IPM_ProjectDocumentHelper.SKIP_TRIGGER_EXECUTION=isTrue;
+		IPM_FinancialYearHelper.SKIP_TRIGGER_EXECUTION=isTrue;
+		IPM_MilestoneHelper.SKIP_TRIGGER_EXECUTION=isTrue;
+		IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION=isTrue;
+		IPM_ProjectSectionContentHelper.SKIP_TRIGGER_EXECUTION=isTrue;
+		IPM_ProjectCountryDetails.SKIP_TRIGGER_EXECUTION=isTrue;
+		IPM_TaskHelper.SKIP_TRIGGER_EXECUTION=isTrue;
+		IPM_AssesmentHandler_Helper.SKIP_TRIGGER_EXECUTION=isTrue;	
     }   
 }

@@ -470,15 +470,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
         isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
         if(isCentralTeam || isBPUser){
-            IsEditableOutC=true;
-	    isEditGateCMI=true;
-	    IsCRRTEditable=true;
-	    isAssortEdit=true;
-	    isEcodesignEdit=true;
-	    isTaskeditable=true;   
-            IsEditableSumm=true;
-	    markTaskAccess=true;
-	    isCreateTask=true;
+            IsEditableOutC=true;isEditGateCMI=true;IsCRRTEditable=true;isAssortEdit=true;isEcodesignEdit=true;isTaskeditable=true;   
+            IsEditableSumm=true;markTaskAccess=true;isCreateTask=true;
             
         }   
     }
@@ -486,13 +479,14 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     * @description Saving project document section
     * @return: null  
     */
-    public pageReference save(){
+    public pageReference save(){ 
         showmsg=true;
         summary='';
         status=true;
         if(projDocSec.IPM_Gate_Document_Summary__c!=null && projDocSec.IPM_Section__r.IPM_Character_Limit__c!=null){
             summary=projDocSec.IPM_Gate_Document_Summary__c;
             summary=summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,'');
+            
             projDocSec.IPM_Summary_Character_Remaining__c=projDocSec.IPM_Section__r.IPM_Character_Limit__c-summary.length();        
          }
          else{
@@ -523,14 +517,14 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         }
         try{
             if(!status){
-                if(String.IsNotBlank(projDocSec.IPM_Gate_Document_Summary__c) && projDocSec.IPM_Negotiable__c){
+                if(String.IsNotBlank(projDocSec.IPM_Gate_Document_Summary__c) && projDocSec.IPM_Negotiable__c && IsEditableSumm){
                     projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
                 }
                 else {
                     projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.STATUS_NOT_STARTED;
                 }
             }
-            if(status){
+            if(status && IsEditableSumm){
                 if(String.IsNotBlank(projDocSec.IPM_Gate_Document_Summary__c) && projDocSec.IPM_Negotiable__c){
                     projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
                     showmsg=false;
@@ -544,6 +538,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 projDocSec.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_STARTED;
             
             update projDocSec;
+            IPM_Project_Document_Section__c testSection1 = [Select id, IPM_Gate_Document_Summary__c from IPM_Project_Document_Section__c where id =: projDocSec.Id];
+            
             
             if(projDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_NOT_STARTED || projDoc.IPM_Document_Status__c==IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED){
                 projDoc.IPM_Document_Status__c=IPM_ConstantUtils.STATUS_IN_PROGRESS;
@@ -586,6 +582,8 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 if(!lstupdatedResource.isEmpty()){
                     update lstupdatedResource;
                     
+                    IPM_Project_Document_Section__c testSection = [Select id, IPM_Gate_Document_Summary__c from IPM_Project_Document_Section__c where id =: projDocSec.Id];
+                    
                     lstupdatedResource.clear();
                 }
             }
@@ -607,7 +605,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
             if(showmsg){
                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.WARNING,System.Label.IPM_Section_Not_Filled));
             }
-           
+           // return redirectBack();
             return null;
         }
         catch(Exception ex){
@@ -685,7 +683,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         try{
             update lsttask;
         }
-        catch(Exception ex){
+        catch(Exception ex){    
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_PROJECT_DOCUMENT_SECTION_CONTROLLER,
                'UpdateTask',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);    
@@ -829,7 +827,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 }
                 else if(projDocSec.IPM_Gate_Document_Summary__c!=null && projDocSec.IPM_Gate_Document_Summary__c!='' && projDocSec.IPM_Negotiable__c){
                     projDocSec.IPM_Section_Status__c=IPM_ConstantUtils.SECTION_STATUS_FILLED;
-                    System.debug(ipmQuestionaire+'ipmQuestionaire');
+                    
                     showmsg=false;
                 }
                 else{
@@ -905,9 +903,9 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                     for(IPM_Project_Document_Section_Content__c cmi:cmiList)
                     {
                         if((IPM_ConstantUtils.CHARTER_GATE==projDoc.IPM_GateDocuments__c && String.isBlank(cmi.IPM_CMI_Result__c)) ||
-							(IPM_ConstantUtils.CONTRACT_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.CONTRACT_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Results_Acheived__c)) || 
-							(IPM_ConstantUtils.CONTRACT_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.MARKET_READY_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Result__c)) || 
-							(IPM_ConstantUtils.MARKET_READY_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.MARKET_READY_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Results_Acheived__c))){
+                                                        (IPM_ConstantUtils.CONTRACT_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.CONTRACT_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Results_Acheived__c)) || 
+                                                        (IPM_ConstantUtils.CONTRACT_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.MARKET_READY_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Result__c)) || 
+                                                        (IPM_ConstantUtils.MARKET_READY_GATE==projDoc.IPM_GateDocuments__c && IPM_ConstantUtils.MARKET_READY_GATE==cmi.IPM_Gate_CMI__r.Gate__c && String.isBlank(cmi.IPM_CMI_Results_Acheived__c))){
                             showmsg=true;
                             status=false;
                         }    
@@ -925,11 +923,14 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     
     public PageReference redirectBack(){
         PageReference url=Page.IPM_ProjectDocumentSectionEditor;
+        
         projectId=ApexPages.currentPage().getParameters().get('Id');
         projDocSecId=ApexPages.currentPage().getParameters().get(PROJ_DOC_SEC_ID);
+        
         url.getParameters().put('id',projectId); 
         url.getParameters().put(PROJ_DOC_SEC_ID,projDocSecId); 
         url.setRedirect(true);
+        
         return url;
     }
     

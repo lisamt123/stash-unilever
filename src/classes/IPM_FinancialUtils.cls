@@ -10,19 +10,22 @@
 */
 
 public with sharing class IPM_FinancialUtils 
-{
+{ 
     
     private static final String DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId(); //Recordtype Id for Default on IPM_Financial__c object
     private static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
     
+    
     /*****************************************************************************************************************************
     * @description  Method to check if consolidation specific fields were changed. Used for doing selective Consolidation.
+                     
     * @param incomingRecordTypeId   incoming SObject Record Type
     * @param newfinancialsObject    Changed/deleted/inserted Financial record
     * @param oldfinancialsObject    Old Financial record
     * @param fieldsToConsolidate    Fields for which consolidation happens.
     * @param finExternalId          Financial External Id field.
     */
+      
     public static Set<String> isConsolidationChanged(String incomingRecordTypeId,sObject newfinancialsObject,sObject oldfinancialsObject,Set<String> fieldsToConsolidate,String finExternalId)
     {
         Set<String> changedFinancialFields = new Set<String>();
@@ -39,9 +42,9 @@ public with sharing class IPM_FinancialUtils
 	        		return fieldsToConsolidate; 
 	        	}
                 else if(newfinancialsObject.get(finExternalId) != oldfinancialsObject.get(finExternalId)) 
-	        	{
-	        		return fieldsToConsolidate; 
-	        	}
+                {
+                    return fieldsToConsolidate; 
+                }
 	        	else
 	        	{
 		            for(String fieldAPI : fieldsToConsolidate)
@@ -57,8 +60,10 @@ public with sharing class IPM_FinancialUtils
         }
         return changedFinancialFields;
     }
+    
     /*****************************************************************************************************************************
     * @description  Used for Creating a mapping between Consolidated and related Records which gets consolidated. Works for both Financial and Financial Years.
+                     
     * @param sObjectName                            Sobject Name
     * @param externalId                             Financial External Id field.
     * @param incontextfinancial                     Changed/deleted/inserted Financial record
@@ -96,6 +101,7 @@ public with sharing class IPM_FinancialUtils
     
     /*****************************************************************************************************************************
     * @description  Does the actual Consolidation based on relationship between consolidated and associated related records.
+                     
     * @param sObjectName                    Sobject Name
     * @param externalId                     Financial External Id field.
     * @param consolidatedUniqueKey          Consolidated Financial Record Unique Key.
@@ -104,6 +110,7 @@ public with sharing class IPM_FinancialUtils
     * @param upsertConsolidatedFinancial    Map for Storing target Financial Consolidation.
     * @param fieldsToConsolidate            Set of fields to consolidate
     */
+    
     public static void processConsolidation(String sObjectName,String externalId, String consolidatedUniqueKey,sobject consolidatefinancial,Map<Id,sObject> relatedFinancialMap,Map<String,sObject> upsertConsolidatedFinancial,Set<String> fieldsToConsolidate)
     {
         // Get External Id for Consolidated Financial Year
@@ -126,13 +133,16 @@ public with sharing class IPM_FinancialUtils
 		upsertConsolidatedFinancial.put(consolidatedUniqueKey,consolidatefinancial);
         System.debug(LoggingLevel.ERROR,'upsertConsolidatedFinancial-->>'+upsertConsolidatedFinancial);
     }
-     
+    
+    
     /*****************************************************************************************************************************
     * @description  Forms the unique Key for Consolidated Record External Id.
+                     
     * @param sObjectName        Sobject Name
     * @param rolloutName        Associated Rollout Name
     * @param relatedFinancial   Financial Record 
     */
+    
     private static String getUniqueFinancialKey(String sObjectName,String rolloutName ,sObject relatedFinancial)
     {
         if(sObjectName == 'IPM_Financial_Year__c')
@@ -145,14 +155,17 @@ public with sharing class IPM_FinancialUtils
         }
         return null; 
     }
-      
+    
+    
     /*****************************************************************************************************************************
     * @description  Used for Updating volume Information from Fiancial to Financial Records.
+                     
     * @param financialDetail        Financial Record
     * @param newVolumeType          changed Volume Type
     * @param suffix                 suffix - Global,Regional,Local
     * @param upsertFinancialYearMap Target Financial Year Map to be upserted.  
     */
+    
     public static void updateVolumeStatistics(IPM_Financial__c financialDetail,String newVolumeType, String suffix,Map<String,IPM_Financial_Year__c>  upsertFinancialYearMap)
     {
         String volumeTypeAPIName = IPM_ConstantUtils.FIELD_LITERAL_VOLUME_UNIT + suffix + IPM_ConstantUtils.CUSTOM_FIELD_SUFFIX;

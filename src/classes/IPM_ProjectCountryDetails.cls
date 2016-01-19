@@ -20,6 +20,7 @@ public with sharing class IPM_ProjectCountryDetails{
     public static boolean isDevelopingPresent = false;
     public static Map<Id, Boolean> isDevelopedPresentMap = new Map<Id, Boolean>();
     public static Map<Id, Boolean> isDevelopingPresentMap = new Map<Id, Boolean>();
+    public static Boolean SKIP_TRIGGER_EXECUTION = false;
     
     /****************************************************************************
     @Description : Rollouts - Update the MarketType field of project from Countries
@@ -451,7 +452,7 @@ public with sharing class IPM_ProjectCountryDetails{
             //Update The List
             if(!toUpdateProjList.isEmpty()){
                 IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
-                update toUpdateProjList;                
+                update toUpdateProjList;
                 IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;                
             }
         }        
@@ -490,9 +491,11 @@ public with sharing class IPM_ProjectCountryDetails{
         if(projIdSet!=null && !projIdSet.isEmpty()){
             for(String projId : projIdSet){
                 if(projectIdToSyncMap.get(projId)){
+                    
                     if(projCountryCodesMap != null && !projCountryCodesMap.isEmpty() && projCountryCodesMap.get(projId) != null){
-                        toUpdateProjList.add( new IPM_Project__c(Id = projId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(projId) ));
-                    }                    
+                        toUpdateProjList.add( new IPM_Project__c(Id = projId, EcoDesign_Sync_Status__c = IPM_ConstantUtils.ECODESIGN_SYNC_STATUS_READY, Project_Countries__c =  projCountryCodesMap.get(projId)));
+                    }
+                    
                 }
                 
             }
@@ -601,7 +604,7 @@ public with sharing class IPM_ProjectCountryDetails{
         //Map of projectId and set of it's EI Countries
         for (IPM_Country__c country : [select id,Name, IPM_Project__c,IPM_Regional_Project__c, IPM_Local_Project__c,Country_Name__c,Country_Code__c,IS_EI_Country__c from IPM_Country__c 
                                         where (IPM_Project__c in:projIdSet or IPM_Regional_Project__c in:projIdSet OR IPM_Local_Project__c in:projIdSet) And IS_EI_Country__c = true AND isActive__c = true LIMIT 50000 ]){
-            if(country.IPM_Project__c != null){
+            if(country.IPM_Project__c != null){ 
                 if(!mapProjCountries.isEmpty() && mapProjCountries.containsKey(country.IPM_Project__c)){
                     mapProjCountries.get(country.IPM_Project__c).add(country.Country_Name__c);
                 }
@@ -673,7 +676,7 @@ public with sharing class IPM_ProjectCountryDetails{
         
         //update the project with appropriate value of IPM_Exists_AtLeast_OneAssmntPerEICountry__c flag
         if(toUpdateProjList != null && !toUpdateProjList.isEmpty()){
-	    IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
+			IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = true;
             Update toUpdateProjList;
             IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION = false;
         }

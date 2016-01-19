@@ -5,7 +5,6 @@
 * interface to help ensure the trigger code is bulkified and all in one place.
 */
 public with sharing class IPM_ProjectResourceHandler implements ITrigger{   
-   
      
     //Select list which should contain only the owners in the team
     private list<IPM_Project_Resource__c> newPRListWithOwners = new list<IPM_Project_Resource__c>();
