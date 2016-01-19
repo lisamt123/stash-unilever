@@ -837,7 +837,9 @@ public with sharing class IPM_ProjectSectionContentHelper
     * @param2 projectToDocumentMap : project to Project Document Map 
     * @param3 projectMap : Trigger.New projects Map
     * NPATHComplexity: This function is used for copying Customer Channel across all gate documnet for Charter/Contract and Market Ready documents. 
-    *				  
+    				   Customer Channel created at the Previous gate should be copied over the the Next gate document. The below fucntion enbles the copy of the
+    				   Project Document Section Content record related to customer channel from Previous gate document to the current gate document
+    *                 
     */
     ///Carrying the Customer Channel Section 
     public static void manageCustomerChannel(Map<Id,IPM_Project__c> projectMap,List<IPM_Project_Document__c> projectDocumentList,List<IPM_Project_Document_Section__c> projectSectionList)

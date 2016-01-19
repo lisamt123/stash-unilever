@@ -140,6 +140,7 @@ global with sharing class IPM_BosscardStatusController{
     @remoteaction
     global static id createProject(ID BOSSID,ID PLId,string bossFeedback_STR){
         List<IPM_Bosscard__c> lstbosscard=new List<IPM_Bosscard__c>();
+        string bosscardFeedBackParameter=bossFeedback_STR;
         IPM_Bosscard__c BOSSCARD_Record=new IPM_Bosscard__c();
         lstbosscard=[SELECT Id,IPM_BosscardName__c,IPM_Bosscard_Approver_Comments__c,IPM_Category__c,IPM_Bosscard_Status__c,IPM_Company_Card__c,
                          IPM_Bosscard_Logo_Id__c,IPM_Project_Leader__c,IPM_Region_Shr__c,IPM_Target_Launch_Date__c,IPM_Bosscard_Logo__c,IPM_Gate_Keeper__c,IPMBosscard_Span__c,
@@ -148,15 +149,16 @@ global with sharing class IPM_BosscardStatusController{
         IPM_Project__c NewProject=new IPM_Project__c();
         Savepoint sp = Database.setSavepoint();//setting the save point
         if(!lstbosscard.isEmpty()){
-                if(bossFeedback_STR.length()>255){
-                    bossFeedback_STR=bossFeedback_STR.substring(0,255);
+        	
+                if(bosscardFeedBackParameter.length()>255){
+                    bosscardFeedBackParameter=bosscardFeedBackParameter.substring(0,255);
                 }
                 BOSSCARD_Record=lstbosscard[0];
                 BOSSCARD_Record.IPM_Is_Draft__c = false;
                 BOSSCARD_Record.IPM_Is_Accepted__c=true;
                 BOSSCARD_Record.IPM_Is_Archived__c=false;
                 BOSSCARD_Record.IPM_Bosscard_Status__c=IPM_ConstantUtils.STATUS_APPROVED;
-                BOSSCARD_Record.IPM_Bosscard_Approver_Comments__c=bossFeedback_STR;
+                BOSSCARD_Record.IPM_Bosscard_Approver_Comments__c=bosscardFeedBackParameter;
                 BOSSCARD_Record.IPM_Project_Leader__c=PLId;
                 NewProject.IPM_Project_Name__c=BOSSCARD_Record.IPM_BosscardName__c;
                 NewProject.IPM_Brand__c=BOSSCARD_Record.IPM_Brand__c;
