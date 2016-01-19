@@ -1358,13 +1358,13 @@ public with sharing class IPM_ProjectHelper
                     }
                 }
             }
-        
+        	// Prepare the SOQL to get the Country records related to IPM Projects
             String countryQuery = IPM_Utils.prepareSOQLQuery('IPM_Country__c',false,null,true);
             String countryWhereClause = ' WHERE IPM_Project__c in :incomingProjectIds OR IPM_Regional_Project__c in :incomingProjectIds OR IPM_Local_Project__c in:incomingProjectIds '+LIMIT_CLAUSE_STR;
             countryQuery = countryQuery + countryWhereClause;
-        
+        	// get the country list related to Project
             List<IPM_Country__c> countryList = database.query(countryQuery);
-            
+            // prepare the country related data 
             for(IPM_Country__c country : countryList)
             {
             	Id globalProjectID = country.IPM_Project__c;
@@ -1400,6 +1400,7 @@ public with sharing class IPM_ProjectHelper
             Map<Id,IPM_Project_Rollout__c> updateProjectRollout = new Map<Id,IPM_Project_Rollout__c>();
             Map<Id,IPM_Country__c> updateProjectCountry = new Map<Id,IPM_Country__c>();
             
+            // prepartion of Project Rollout map data which are to be updated
             if(!projectToRolloutMap.isEmpty())
             {
                 for(Id projectId : projectToRolloutMap.keySet())
@@ -1429,7 +1430,7 @@ public with sharing class IPM_ProjectHelper
                         }
                     }
                 }
-                
+                // Empty check of Project rollout map 
                 if(!updateProjectRollout.isEmpty())
                 {
                     IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;
@@ -1471,7 +1472,7 @@ public with sharing class IPM_ProjectHelper
 	                    }
                     }        
                 }
-                
+                // Null check of country map
                 if(!updateProjectCountry.isEmpty())
                 { 
                     IPM_CountryHandler.SKIP_TRIGGER_EXECUTION = true;

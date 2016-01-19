@@ -567,6 +567,10 @@ public with sharing class IPM_Resource_Allocation {
     }
     /*************************************************************************************************************
     * @description:Filter core members FROM user profiles(PL,DPL,TPL,Gatekeeper users)
+    * This method is used to query the core team member name and role and email id in case of task and milestones team updation.
+    * user selection is based on the company card of the project and fucntion.
+    * Resource allocation window will enlist these user for further selection of team.
+    * return none
     */
     public void filterCoreMember()
     {

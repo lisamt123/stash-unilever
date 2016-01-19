@@ -67,36 +67,6 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
            
            update updatedProjMap.values();
     	}     
-    	
-    	//This is not the right way of performing everything in the bulkified method. Will comment it for now.
-        
-    /*    IPM_ProjectResourceTriggerHandler handler = new IPM_ProjectResourceTriggerHandler();
-        IPM_ProjectResourceShare shareHandler=new IPM_ProjectResourceShare();
-        IPM_ProjectShare projectShareHandler=new IPM_ProjectShare();
-        if(Trigger.isDelete ){
-            map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;
-            handler.OnAfterDelete((List<IPM_Project_Resource__c>)Trigger.old);
-            shareHandler.deleteProjectResource(oldResourceMap);
-            projectShareHandler.DeleteshareLocalMember(oldResourceMap);
-
-            handler.setSyncResourceAftInsertDelete(oldResourceMap.values());
-        }else if(Trigger.isInsert){
-            map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
-            handler.onAfterInsert((List<IPM_Project_Resource__c>)Trigger.new);
-            shareHandler.insertProjectResource((List<IPM_Project_Resource__c>)Trigger.new);
-            projectShareHandler.ShareWithLocalMember(newResourceMap);
-
-            handler.setSyncResourceAftInsertDelete(newResourceMap.values());
-        }else if(Trigger.isUnDelete ){
-            handler.onAfterUnDelete((List<IPM_Project_Resource__c>)Trigger.new);
-        }else if(Trigger.isUpdate){
-            map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
-            map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;            
-            handler.OnAfterUpdate((List<IPM_Project_Resource__c>)Trigger.new, newResourceMap, oldResourceMap);
-
-            handler.setSyncResourceAftUpdate(oldResourceMap,newResourceMap);
-        }*/
-        
         
         //IPM EcoDesign Related Changes
         IPM_ProjectResourceTriggerHandler handler = new IPM_ProjectResourceTriggerHandler();
@@ -132,7 +102,6 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
                 IPM_BETHelper.sendRolloutMemberBETAccessRequest(mapProjResources);  
             }
         }
-        //IPM_ProjectResourceTriggerHandler handler = new IPM_ProjectResourceTriggerHandler();
         if(Trigger.isInsert){
             handler.onAfterInsert((List<IPM_Project_Resource__c>)Trigger.new);
        }
@@ -142,11 +111,6 @@ public with sharing class IPM_ProjectResourceHandler implements ITrigger{
             handler.OnAfterDelete((List<IPM_Project_Resource__c>)Trigger.old);
        }
        //@@Data Sharing
-       /*if(Trigger.isUpdate){
-       		map<id,IPM_Project_Resource__c>newResourceMap=(map<id,IPM_Project_Resource__c>)trigger.newmap;
-            map<id,IPM_Project_Resource__c>oldResourceMap=(map<id,IPM_Project_Resource__c>)trigger.oldmap;
-       		handler.OnAfterUpdate((List<IPM_Project_Resource__c>)Trigger.new, newResourceMap, oldResourceMap);	
-       }*/
     }
     /**
     * @description:beforeInsert
