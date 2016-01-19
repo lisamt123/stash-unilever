@@ -294,15 +294,15 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         system.debug('============+=+=+=+=+=+=+=+=+= fillrate =+=+=+=+=+=+=+=+=+============================');
     
         List < Oblix_Calculator__c > Rates = new List < Oblix_Calculator__c > ();
-        System.DEBUG(' fYear ' + fYear);
-        System.DEBUG(' agency ' + agency);
-        System.DEBUG(' activity.selectedCountry ' + activity.selectedCountry);
-        System.DEBUG(' activity.selectedAgencyDepartment ' + activity.selectedAgencyDepartment);
-        System.DEBUG(' activity.selectedRole ' + activity.selectedRole);
+        //System.DEBUG(' fYear ' + fYear);
+        //System.DEBUG(' agency ' + agency);
+        //System.DEBUG(' activity.selectedCountry ' + activity.selectedCountry);
+        //System.DEBUG(' activity.selectedAgencyDepartment ' + activity.selectedAgencyDepartment);
+        //System.DEBUG(' activity.selectedRole ' + activity.selectedRole);
 
-        System.DEBUG(' resource.selectedCountry ' + resource.selectedCountry);
-        System.DEBUG(' resource.selectedAgencyDepartment ' + resource.selectedAgencyDepartment);
-        System.DEBUG(' resource.selectedRole ' + resource.selectedRole);
+        //System.DEBUG(' resource.selectedCountry ' + resource.selectedCountry);
+        //System.DEBUG(' resource.selectedAgencyDepartment ' + resource.selectedAgencyDepartment);
+        //System.DEBUG(' resource.selectedRole ' + resource.selectedRole);
         //system.debug('===========newItem.OblixCountry__c'+newItem.OblixCountry__c);
         if (selectedTab.equalsIgnoreCase('activity')) {
             Rates = [select Financial_Year__c, Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name, Agency_Department__c, Role_Title__c, Role_Daily_Rate_EUR__c from Oblix_Calculator__c where Financial_Year__c = : fYear and Oblix_Agency__c = : agency and OblixCountry__c = :  activity.selectedCountry and Agency_Department__c = : activity.selectedAgencyDepartment and Role_Title__c = :  activity.selectedRole];
@@ -432,8 +432,8 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
             for (String temp: agencyDepartmentMap.keySet()) {
                 departments.add(new SelectOption(temp, agencyDepartmentMap.get(temp)));
             }
-            departments = Oblix_Utils.selectOptionSortByLabel(departments);
-            departments = Oblix_Utils.setFirstValue('-Agency Department-', Oblix_Utils.selectOptionSortByLabel(departments));
+            List<SelectOption> sortedCountries = Oblix_Utils.selectOptionSortByLabel(departments);
+            departments = Oblix_Utils.setFirstValue('-Agency Department-', Oblix_Utils.selectOptionSortByLabel(sortedCountries));
         }
         return departments;
     }

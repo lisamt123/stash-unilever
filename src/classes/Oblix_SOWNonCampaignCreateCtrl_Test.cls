@@ -113,7 +113,8 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
        		Map<String,String> roleTitlesNameMap = new  Map<String,String>();
        		roleTitlesNameMap.put('1','1');
        		List<SelectOption> result = controller.populateRoleTitleList(roleTitle,roleTitlesNameMap);
-       		controller.exitSwop();
+       		System.assert(result != null);
+       		System.assert(controller.exitSwop() != null);
             Test.stopTest();
                
          }

@@ -44,11 +44,6 @@
     </columns>
     <description>US180</description>
     <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Marketing_SOW__c$MarketingSOWParent__c</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
     <name>SWOP Calculator Campaigns by Box</name>
     <params>
         <name>co</name>
