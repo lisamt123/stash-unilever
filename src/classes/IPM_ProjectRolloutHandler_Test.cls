@@ -678,7 +678,7 @@ public class IPM_ProjectRolloutHandler_Test
             for(IPM_Project__c project : projectList)
             {
                 // Once project is created Charter document would be available.
-                System.assertEquals(project.Project_Documents__r.size(),1);
+                System.assertEquals(project.Project_Documents__r.size(),1,'Project Document not generated');
                 
                 // Once project is created, Project associated tasks would be based on Selected Complexity.
                 for(IPM_Task__c task : project.Tasks__r)
