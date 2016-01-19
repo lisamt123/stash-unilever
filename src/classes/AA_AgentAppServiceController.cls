@@ -388,7 +388,7 @@ public with sharing class AA_AgentAppServiceController {
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get(recType)).getRecordTypeId();*/
         
-        List<Sobject> result;
+        List<Sobject> result=new List<Sobject>();
         String query;
          if(!Utility.isEmpty(SobjectApiName) && !Utility.isEmpty(commaSepratedFields)){
             system.debug(SobjectApiName +'==='+commaSepratedFields);

@@ -22,4 +22,11 @@ public with sharing class AA_Constants {
     public static final String SVC_AGENT_APP_UNLIKE_UPDATE='UpdateUnlikeCount';
     public static final String ID_NAME ='id,name';
     public static final String Escapechar='\''; 
+    public static final String CompetitorSampleBrand='Dove';
+    public static final String RetailerSample='7-Eleven';
+    public static final String ClusterSample='south asia';
+    public static final String CountrySample='india';
+    public static final String ReportNameSample='unilever report 1';
+    public static final String LatSample='18.5203° n';
+    public static final String LongSample='73.8567° e';
 }
