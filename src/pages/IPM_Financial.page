@@ -182,6 +182,9 @@
                                                 </div>
                                                 </apex:outputText> 
                                                 <apex:actionFunction name="updateVolumeType" action="{!updateVolumeType}" rerender="tabContentPanel" status="loadingStatus"/>
+                                                <apex:actionFunction name="next" action="{!next}" rerender="tabContentPanel" status="loadingStatus"/>
+                                                <apex:actionFunction name="previous" action="{!previous}" rerender="tabContentPanel" status="loadingStatus"/>
+                                                
                                                 <apex:actionFunction name="changeTabs" action="{!changeTabs}" reRender="rolloutPanel,tabContentPanel,headerPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                     <apex:param name="currentTab" value="" assignTo="{!currentTab}"/>
                                                 </apex:actionFunction>
@@ -428,6 +431,8 @@
                                                                 colSpan="{!colSpan}"
                                                                 sustainabilityPeriod="{!sustainabilityPeriod}"
                                                                 fieldSuffix="{!fieldSuffix}"
+                                                                showNext="{!showNext}"
+                                                                showPrevious="{!showPrevious}"
                                                             />
                                                          
                                                         </div>
@@ -440,6 +445,8 @@
                                                                 colSpan="{!colSpan}"
                                                                 sustainabilityPeriod="{!sustainabilityPeriod}"
                                                                 fieldSuffix="{!fieldSuffix}"
+                                                                showNext="{!showNext}"
+                                                                showPrevious="{!showPrevious}"
                                                             />
                                                         </div>                            
                                                     </div>
