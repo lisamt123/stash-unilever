@@ -22,14 +22,10 @@ private class IPM_UpdateGlobalProjectName_Test {
     private static string REGIONAL_STR='Regional';
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static User globalUser;
-    private static final String TEST_TESTING='Test,Testing';
     public static IPM_Project_Document_Section_Content__c projDocSecCon;
-    private static final string HYPERMARKET_STR='HyperMarket';
-    private static final string INCUMBENT_STR='CU CIF BANO REP ECON DOYP 450ML DOM';
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
     private static string projectName='ProjectCreation';
-    private static string proUpdatedName= 'ProjectUpdation';
-    private static string inValidProject_STR='ProjectCreation_project namw with long string project namw with long string project namw with long stringproject namw with long stringproject namw with long stringproject namw with long string';
+    private static string projUpdateName='ProjectUpdate';
     public static String CONSOLIDATED_FINANCIAL_RECORDTYPE;
     /*****************************************************************************
     * @description Test Data
@@ -66,14 +62,14 @@ private class IPM_UpdateGlobalProjectName_Test {
             System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
             
             //create geography related test data
-        	geographyList = new list<MDO_Geography__c>();
-        	for(string name:countryNameList)
-        	{
-            	MDO_Geography__c geography = IPM_TestFactory_Helper.createMDOGeography(false);
-            	geography.Name = name;
-            	geographyList.add(geography);
-        	}   
-        	insert geographyList;
+          geographyList = new list<MDO_Geography__c>();
+          for(string name:countryNameList)
+          {
+              MDO_Geography__c geography = IPM_TestFactory_Helper.createMDOGeography(false);
+              geography.Name = name;
+              geographyList.add(geography);
+          }   
+          insert geographyList;
             
             List<IPM_Project_Rollout__c> regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForAssort,stdUserForAssort,stdUserForAssort});
             insert regionalRolloutList;
@@ -81,7 +77,7 @@ private class IPM_UpdateGlobalProjectName_Test {
             System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
             projRoll=regionalRolloutList[0];
             
-			
+      
             
         }
     }
@@ -109,8 +105,8 @@ private class IPM_UpdateGlobalProjectName_Test {
             insert childProjs;
             
             geographyDetailList = [SELECT id,Name FROM MDO_Geography__c WHERE Name IN: countryNameList];
-        	system.assertEquals(geographyDetailList.size(),2);
-        	
+          system.assertEquals(geographyDetailList.size(),2);
+          
             for(IPM_Project__c projectObj : projectListObj) {
                 projDocList = projectObj.Project_Documents__r;
                 System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
@@ -121,46 +117,46 @@ private class IPM_UpdateGlobalProjectName_Test {
             system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id);
             
             //create country test data
-	        for(integer i=0 ;i<10 ;i++){
-	            IPM_Country__c insertCountry = IPM_TestFactory_Helper.createIPMCountry(false);
-	            if(i!=7){
-	                insertCountry.IPM_Project__c = projectListObj[0].Id;
-	                insertCountry.IPM_Regional_Project__c = projectListObj[1].Id;
-	                
-	            }
-	            insertCountry.IPM_Local_Project__c = projectListObj[2].Id;
-	            insertCountry.MDO_Geography__c=geographyDetailList[0].id;
-	            insertCountry.isActive__c = true;
-	            countryTest.add(insertCountry);
-	        }
-	        insert countryTest;
-	        
-	        list<IPM_Country__c> countryList = [SELECT Id,IPM_Project__c,MDO_Geography__c,IPM_Local_Project__c,MDO_Geography__r.Name FROM IPM_Country__c WHERE                  MDO_Geography__r.Name IN:countryNameList];
-	        for(IPM_Country__c country :countryList)
-	        {
-	            system.assertEquals(country.IPM_Local_Project__c,projectListObj[2].Id);
-	        }
-	        
-	        for(IPM_Project__c projectObj : projectListObj) {
+          for(integer i=0 ;i<10 ;i++){
+              IPM_Country__c insertCountry = IPM_TestFactory_Helper.createIPMCountry(false);
+              if(i!=7){
+                  insertCountry.IPM_Project__c = projectListObj[0].Id;
+                  insertCountry.IPM_Regional_Project__c = projectListObj[1].Id;
+                  
+              }
+              insertCountry.IPM_Local_Project__c = projectListObj[2].Id;
+              insertCountry.MDO_Geography__c=geographyDetailList[0].id;
+              insertCountry.isActive__c = true;
+              countryTest.add(insertCountry);
+          }
+          insert countryTest;
+          
+          list<IPM_Country__c> countryList = [SELECT Id,IPM_Project__c,MDO_Geography__c,IPM_Local_Project__c,MDO_Geography__r.Name FROM IPM_Country__c WHERE                  MDO_Geography__r.Name IN:countryNameList];
+          for(IPM_Country__c country :countryList)
+          {
+              system.assertEquals(country.IPM_Local_Project__c,projectListObj[2].Id);
+          }
+          
+          for(IPM_Project__c projectObj : projectListObj) {
                 finList = projectObj.IPM_Financials_Consolidated__r;
                 //System.assertEquals(finList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
             }
             
-	        String strRecordTypeId1=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
-	        CONSOLIDATED_FINANCIAL_RECORDTYPE=strRecordTypeId1;
-	        finYear = IPM_TestFactory_Helper.createIPMFinancialYear(FALSE);
-	        finYear.IPM_Financial__c=finList[0].Id;
-	        finYear.Charter_Approved__c=true;
-	        finYear.Contract_Approved__c=true;
-	        finYear.MD_Approved__c=true;
-	        finYear.MD_Approved__c=true;
-	        finYear.Copy_Global_to_Local__c=true;
-	        finYear.Copy_Global_to_Regional__c=true;
-	        finYear.Copy_Local_to_Regional__c=true;
-	        finYear.Copy_Regional_to_Local__c=true;       
-	        
-	        insert finYear;        
-	        system.assertNotEquals(finYear.id, null);  
+          String strRecordTypeId1=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
+          CONSOLIDATED_FINANCIAL_RECORDTYPE=strRecordTypeId1;
+          finYear = IPM_TestFactory_Helper.createIPMFinancialYear(FALSE);
+          finYear.IPM_Financial__c=finList[0].Id;
+          finYear.Charter_Approved__c=true;
+          finYear.Contract_Approved__c=true;
+          finYear.MD_Approved__c=true;
+          finYear.MD_Approved__c=true;
+          finYear.Copy_Global_to_Local__c=true;
+          finYear.Copy_Global_to_Regional__c=true;
+          finYear.Copy_Local_to_Regional__c=true;
+          finYear.Copy_Regional_to_Local__c=true;       
+          
+          insert finYear;        
+          system.assertNotEquals(finYear.id, null);  
         }
     }
     
@@ -175,7 +171,7 @@ private class IPM_UpdateGlobalProjectName_Test {
             map<id,string>projectOldname=new map<id,string>();
             map<id,string>updatedname=new map<id,string>();
             projectOldname.put(Project.id, projectName);
-            updatedname.put(Project.id, inValidProject_STR); 
+            updatedname.put(Project.id, projUpdateName); 
             //call a method which will update project name to entire project related records
             IPM_UpdateGlobalProjectName.updateProjectName(updatedname,projectOldname);//call to update rollout name
             project.IPM_Project_Name__c=projectName;

@@ -77,7 +77,11 @@ public class IPM_RolloutPlansAddController_Test{
     public static string TestComments3 = 'TestComments3';
     public static string ID = 'id';
     public static string TEST_STR = 'test';
-    
+    private static string TASK_NOT_CREATED='tasks not created';
+    private static string TASK_COMPLEXITY_DOESNOT_MATCH='task complexity does not match regional project complexity';
+    private static string MILESTONES_NOT_CREATED='milestones not crerated';
+    private static string FINANCIAL_NOT_CREATED='financial not created';
+    private static string PHASE_NOT_FEASIBILITY='project phase is not feasibility';
     
     /**************************************************************
     * @description: Used for Creating IPM Project data for Rollout flow test          
@@ -166,10 +170,10 @@ public class IPM_RolloutPlansAddController_Test{
      }
   
     /*************************************************************************************
-	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects
-	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
-	* @name :  testGlobalProjRolloutAdd
-	***************************************************************************************/
+  * @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects
+  * Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
+  * @name :  testGlobalProjRolloutAdd
+  ***************************************************************************************/
     public static testmethod void testGlobalProjRolloutAdd()
     {
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
@@ -326,7 +330,7 @@ public class IPM_RolloutPlansAddController_Test{
         {
             
             Map<Id,List<IPM_Project__c>> globalToRegionalMap = IPM_TestFactory_Helper.getRegionalProjects(globalProjectIdList);
-      	
+        
       
       
             for(Id gbProjectId : globalToRegionalMap.keySet())
@@ -369,21 +373,21 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0,'Tasks not created');
+                System.assert(regionalProject.Tasks__r.size()>0,TASK_NOT_CREATED);
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Task complexity does not match regional project complexity');     
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,TASK_COMPLEXITY_DOESNOT_MATCH);     
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0, 'Milestones not crerated');
+                System.assert(regionalProject.IPM_Milestones__r.size()>0, MILESTONES_NOT_CREATED);
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'Financial not created'); // One for Global consolidated Financials and 2 for individual Rollouts
+                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,FINANCIAL_NOT_CREATED); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,'Project phase is not feasibility'); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,PHASE_NOT_FEASIBILITY); // Phase would be feasibility for Regional Projects.
                 
             }
         }
@@ -447,17 +451,17 @@ public class IPM_RolloutPlansAddController_Test{
                     IPM_Country__c tmpCountry = new  IPM_Country__c(
                     IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
                     IS_EI_Country__c = true,Local_Rollout__c = regionalRolloutList[0].id, Local_Rollout_Charter__c = regionalRolloutList[0].id );    
-                	if(i==0){
-                		tmpCountry.MDO_Geography__c = geo1.Id;
-                		
-                	}
-                	else if(i==1){
-                		
-                		tmpCountry.MDO_Geography__c = geo2.Id;
-                	}
-                	if(i==2){
-                			tmpCountry.MDO_Geography__c = geo3.Id;
-                	}
+                  if(i==0){
+                    tmpCountry.MDO_Geography__c = geo1.Id;
+                    
+                  }
+                  else if(i==1){
+                    
+                    tmpCountry.MDO_Geography__c = geo2.Id;
+                  }
+                  if(i==2){
+                      tmpCountry.MDO_Geography__c = geo3.Id;
+                  }
                     countryList.add(tmpCountry);
           }
           
@@ -628,7 +632,7 @@ public class IPM_RolloutPlansAddController_Test{
               irp4.searchRolloutCountry();
           }
           catch(Exception e){
-          	  System.assert(e.getMessage() != null,'Null record referenced lstCountryWrappers');
+              System.assert(e.getMessage() != null,'Null record referenced lstCountryWrappers');
           }
           
           //******************************************************************
@@ -665,11 +669,11 @@ public class IPM_RolloutPlansAddController_Test{
  
 
    /*************************************************************************************
-	* @Description : Used for testing  regional and local rollouts creation for regional project
-	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
-	* Parameters are set to null
-	* @name :  testRegionalProjRolloutAddNullValues
-	***************************************************************************************/
+  * @Description : Used for testing  regional and local rollouts creation for regional project
+  * Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts)
+  * Parameters are set to null
+  * @name :  testRegionalProjRolloutAddNullValues
+  ***************************************************************************************/
    public static testmethod void testRegionalProjRolloutAddNullValues()
    {  
         IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
@@ -817,12 +821,12 @@ public class IPM_RolloutPlansAddController_Test{
     }
     
      /*************************************************************************************
-	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects and removal of rollouts
-	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
-	* @name :  testGlobalProjRolloutAdd2
-	***************************************************************************************/
+  * @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects and removal of rollouts
+  * Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
+  * @name :  testGlobalProjRolloutAdd2
+  ***************************************************************************************/
      public static testmethod void testGlobalProjRolloutAdd2()
-  	 {
+     {
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
        IPM_RolloutPlansAddController irp2= new IPM_RolloutPlansAddController();
        IPM_RolloutPlansAddController irp3= new IPM_RolloutPlansAddController();
@@ -1019,21 +1023,21 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0,'Tasks not created');
+                System.assert(regionalProject.Tasks__r.size()>0,TASK_NOT_CREATED);
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Task complexity does not match regional project complexity');     
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,TASK_COMPLEXITY_DOESNOT_MATCH);     
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0,'Milestones not crerated');
+                System.assert(regionalProject.IPM_Milestones__r.size()>0,MILESTONES_NOT_CREATED);
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'Financial not created'); // One for Global consolidated Financials and 2 for individual Rollouts
+                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,FINANCIAL_NOT_CREATED); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,'Project phase is not feasibility'); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,PHASE_NOT_FEASIBILITY); // Phase would be feasibility for Regional Projects.
                 
             }
         }
@@ -1097,17 +1101,17 @@ public class IPM_RolloutPlansAddController_Test{
                     IPM_Country__c tmpCountry = new  IPM_Country__c(
                     IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
                     IS_EI_Country__c = true,Local_Rollout__c = regionalRolloutList[0].id, Local_Rollout_Charter__c = regionalRolloutList[0].id, isActive__c = false );    
-                	if(i==0){
-                		tmpCountry.MDO_Geography__c = geo1.Id;
-                		
-                	}
-                	else if(i==1){
-                		
-                		tmpCountry.MDO_Geography__c = geo2.Id;
-                	}
-                	if(i==2){
-                			tmpCountry.MDO_Geography__c = geo3.Id;
-                	}
+                  if(i==0){
+                    tmpCountry.MDO_Geography__c = geo1.Id;
+                    
+                  }
+                  else if(i==1){
+                    
+                    tmpCountry.MDO_Geography__c = geo2.Id;
+                  }
+                  if(i==2){
+                      tmpCountry.MDO_Geography__c = geo3.Id;
+                  }
                     countryList.add(tmpCountry);
           }
           
@@ -1312,13 +1316,13 @@ public class IPM_RolloutPlansAddController_Test{
    }
    
     /*************************************************************************************
-	* @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects and removal of rollouts
-	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
-	* @name :  testGlobalProjRolloutAdd3
-	***************************************************************************************/
+  * @Description : Used for testing  regional and local rollouts creation, change of project phase and subsequent creation of regional Projects and removal of rollouts
+  * Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
+  * @name :  testGlobalProjRolloutAdd3
+  ***************************************************************************************/
     public static testmethod void testGlobalProjRolloutAdd3()
-  	{
-  		
+    {
+      
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
 
        
@@ -1513,21 +1517,21 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0,'Tasks not created');
+                System.assert(regionalProject.Tasks__r.size()>0,TASK_NOT_CREATED);
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Task complexity does not match regional project complexity');     
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,TASK_COMPLEXITY_DOESNOT_MATCH);     
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0,'Milestones not crerated');
+                System.assert(regionalProject.IPM_Milestones__r.size()>0,MILESTONES_NOT_CREATED);
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'Financial not created'); // One for Global consolidated Financials and 2 for individual Rollouts
+                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,FINANCIAL_NOT_CREATED); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,'Project phase is not feasibility'); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,PHASE_NOT_FEASIBILITY); // Phase would be feasibility for Regional Projects.
                 
             }
         }
@@ -1585,7 +1589,7 @@ public class IPM_RolloutPlansAddController_Test{
                     IPM_Country__c tmpCountry = new  IPM_Country__c(MDO_Geography__c = geo1.Id,
                     IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
                     IS_EI_Country__c = true,Local_Rollout__c = regionalRolloutList[0].id, Local_Rollout_Charter__c = regionalRolloutList[0].id);    
-                	
+                  
                     countryList.add(tmpCountry);
           }
           
@@ -1642,16 +1646,16 @@ public class IPM_RolloutPlansAddController_Test{
 
       } 
    
-  	}
-  	
-  	/*************************************************************************************
-	* @Description : Used for testing  regional and local rollouts creation,and removal of rollouts
-	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
-	* @name :  testRegionalProjRolloutAdd2
-	***************************************************************************************/
-  	public static testmethod void testRegionalProjRolloutAdd2()
-  	{
-  		
+    }
+    
+    /*************************************************************************************
+  * @Description : Used for testing  regional and local rollouts creation,and removal of rollouts
+  * Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
+  * @name :  testRegionalProjRolloutAdd2
+  ***************************************************************************************/
+    public static testmethod void testRegionalProjRolloutAdd2()
+    {
+      
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
        
        IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
@@ -1806,21 +1810,21 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0,'Tasks not created');
+                System.assert(regionalProject.Tasks__r.size()>0,TASK_NOT_CREATED);
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Task complexity does not match regional project complexity');     
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,TASK_COMPLEXITY_DOESNOT_MATCH);     
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0,'Milestones not crerated');
+                System.assert(regionalProject.IPM_Milestones__r.size()>0,MILESTONES_NOT_CREATED);
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'Financial not created'); // One for Global consolidated Financials and 2 for individual Rollouts
+                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,FINANCIAL_NOT_CREATED); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,'Project phase is not feasibility'); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,PHASE_NOT_FEASIBILITY); // Phase would be feasibility for Regional Projects.
                 
             }
         }
@@ -1884,7 +1888,7 @@ public class IPM_RolloutPlansAddController_Test{
                     IPM_Country__c tmpCountry = new  IPM_Country__c(MDO_Geography__c = geo1.Id,
                     IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
                     IS_EI_Country__c = true,Local_Rollout__c = regionalRolloutList[0].id, Local_Rollout_Charter__c = regionalRolloutList[0].id);    
-                	
+                  
                     countryList.add(tmpCountry);
           }
           
@@ -1914,8 +1918,8 @@ public class IPM_RolloutPlansAddController_Test{
           irp.setCountryCodes = new Set<String>{AF}; //regionalCountry put into this 
           
           dmlLimit = Limits.getDMLStatements();
-		
-		  if(regionalProjects.size()>0){
+    
+      if(regionalProjects.size()>0){
             PageReference pRefRegional = new PageReference(IPMROLLOUTPLANSREGIONAL_PAGE_URL+regionalProjects[0].Id);
             Test.setCurrentPageReference(pRefRegional); 
           }
@@ -1939,17 +1943,17 @@ public class IPM_RolloutPlansAddController_Test{
 
       } 
    
-  	}
-  	
-  	
-  	/*************************************************************************************
-	* @Description : Used for testing  regional and local rollouts creation,and removal of rollouts
-	* Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
-	* @name :  testRegionalProjRolloutAdd3
-	***************************************************************************************/
-  	public static testmethod void testRegionalProjRolloutAdd3()
-  	{
-  		
+    }
+    
+    
+    /*************************************************************************************
+  * @Description : Used for testing  regional and local rollouts creation,and removal of rollouts
+  * Constructor logic for the controller is tested for a global original project (Searching rollouts, Adding rollouts, Processing rollouts, removing rollouts)
+  * @name :  testRegionalProjRolloutAdd3
+  ***************************************************************************************/
+    public static testmethod void testRegionalProjRolloutAdd3()
+    {
+      
        IPM_RolloutPlansAddController irp= new IPM_RolloutPlansAddController();
 
        IPM_RolloutPlansAddController.GeographyWrapper geoWrp=new IPM_RolloutPlansAddController.GeographyWrapper(AF,AFRICAN,LV4_GEO0085);
@@ -1978,7 +1982,7 @@ public class IPM_RolloutPlansAddController_Test{
           Test.startTest();
           projectList = IPM_TestFactory_Helper.projectSetUpRegional(2,regionalProjectLeader);
           for(IPM_Project__c proj : projectList ){
-          	proj.IPM_phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
+            proj.IPM_phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
           } 
           insert projectList;
           for(IPM_Project__c proj : projectList)
@@ -2107,21 +2111,21 @@ public class IPM_RolloutPlansAddController_Test{
             for(IPM_Project__c regionalProject : regionalProjectsFR)
             {
                 // Validate there is atleast one Task associated with Regional Project
-                System.assert(regionalProject.Tasks__r.size()>0,'Tasks not created');
+                System.assert(regionalProject.Tasks__r.size()>0,TASK_NOT_CREATED);
                 
                 for(IPM_Task__c task : regionalProject.Tasks__r)
                 {
-                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,'Task complexity does not match regional project complexity');     
+                    System.assertEquals(task.IPM_Task_Complexity__c,regionalProject.IPM_Complexity__c,TASK_COMPLEXITY_DOESNOT_MATCH);     
                 }
                 
                 // Once project is created, associated Milestones should be same as Master milestones.
-                System.assert(regionalProject.IPM_Milestones__r.size()>0,'Milestones not crerated');
+                System.assert(regionalProject.IPM_Milestones__r.size()>0,MILESTONES_NOT_CREATED);
                 
                 // Once project is created , Consolidated financials are getting generated.
-                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,'Financial not created'); // One for Global consolidated Financials and 2 for individual Rollouts
+                System.assertEquals(regionalProject.IPM_Financials_Consolidated__r.size(),3,FINANCIAL_NOT_CREATED); // One for Global consolidated Financials and 2 for individual Rollouts
                 
                 // Project default phase would always be set as feasibility.
-                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,'Project phase is not feasibility'); // Phase would be feasibility for Regional Projects.
+                System.assertEquals(regionalProject.IPM_Phase__c,IPM_ConstantUtils.FEASIBILITY_PHASE,PHASE_NOT_FEASIBILITY); // Phase would be feasibility for Regional Projects.
                 
             }
         }
@@ -2185,7 +2189,7 @@ public class IPM_RolloutPlansAddController_Test{
                     IPM_Country__c tmpCountry = new  IPM_Country__c(MDO_Geography__c = geo1.Id,
                     IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_STATUS_WITH_MCO,
                     IS_EI_Country__c = true,Local_Rollout__c = regionalRolloutList[0].id, Local_Rollout_Charter__c = regionalRolloutList[0].id);    
-                	
+                  
                     countryList.add(tmpCountry);
           }
           
@@ -2239,5 +2243,5 @@ public class IPM_RolloutPlansAddController_Test{
           irp.cancel();
           irp.redirectPage();    
       } 
-  	}
+    }
 }

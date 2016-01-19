@@ -36,7 +36,10 @@ private class IPM_ProjectOwnerUpdatescheduler_Test {
         String jobId3 = System.schedule('Test3', CRON_EXP, ownerUpdateScheduler); 
         String jobId4 = System.schedule('Test4', CRON_EXP, ownerUpdateScheduler); 
         String jobId5 = System.schedule('Test5', CRON_EXP, ownerUpdateScheduler); 
-        String jobId6 = System.schedule('Test6', CRON_EXP, ownerUpdateScheduler); 
+        String jobId6 = System.schedule('Test6', CRON_EXP, ownerUpdateScheduler);
+        
+        List<AsyncApexJob> jobList=[SELECT id FROM AsyncApexJob WHERE JobType=:IPM_ConstantUtils.IPM_BATCHAPEX and id=:jobId];
+         
         Test.stopTest();
         
         

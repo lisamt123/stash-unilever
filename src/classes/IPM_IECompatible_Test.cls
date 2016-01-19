@@ -21,7 +21,8 @@ public with sharing class IPM_IECompatible_Test {
         Test.startTest();
         Test.setCurrentPage(Page.IPM_ProjectSearchPage);
         ApexPages.currentPage().getHeaders().put(USER_AGENT , MSIE);
-        IPM_IECompatible.ieFix();   
+        IPM_IECompatible.ieFix();
+        system.AssertEquals(Apexpages.currentPage().getHeaders().get(USER_AGENT),MSIE,'Browser Mode IE');   
         Test.stopTest();
     }
 
