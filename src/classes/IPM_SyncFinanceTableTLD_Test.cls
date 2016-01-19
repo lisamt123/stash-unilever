@@ -1,3 +1,9 @@
+/*************************************************************************************************************
+* @author:Cognizant
+* @date: 19/01/2016
+* @description: The Test class to test functionality in IPM_SyncFinanceTableTLD. 
+	IPM_SyncFinanceTableTLD has Methods to update relative financial records when enver there is updates in Rollouts and Projects TLDs
+*/
 @isTest(SeeAllData=false)
 private class IPM_SyncFinanceTableTLD_Test {
     public static IPM_Project_Rollout__c proRoll1=new IPM_Project_Rollout__c();
@@ -29,6 +35,7 @@ private class IPM_SyncFinanceTableTLD_Test {
     private static final String ROLLOUT_MSG='Rollout should be present';
     private static final String TESTPROJECT001_CONSOLIDATED='TestProject001_CONSOLIDATED';
     private static final String NOT_STARTED='Not Started';
+    private static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
     
     
     static void setupOperationalProjects() {
@@ -775,11 +782,6 @@ private class IPM_SyncFinanceTableTLD_Test {
             List<ID> updatedFinancialIDList = new List<ID>();
             
             for(IPM_Financial__c updatedFinancial: updatedFinancialList) {
-                if(updatedFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)) {
-                    // CONSOLIDATED financial record TLD should be the earliast of local rollouts targetLanchDate1
-                    System.assertEquals(targetLanchDate1,updatedFinancial.Target_Launch_Date__c,TLD_MATCH_MSG);
-                    updatedFinancialIDList.add(updatedFinancial.id);
-                }
                 if(updatedFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)) {
                     // NONKEY financial record TLD should be the earliast of local rollouts, which is targetLanchDate1
                     System.assertEquals(targetLanchDate1,updatedFinancial.Target_Launch_Date__c,TLD_MATCH_MSG);
@@ -796,7 +798,7 @@ private class IPM_SyncFinanceTableTLD_Test {
                                                                                     ) 
                                                                          From 
                                                                             IPM_Financial__c 
-                                                                                where id in : updatedFinancialIDList limit 5];
+                                                                                where id in : updatedFinancialIDList and RecordTypeId != :CONSOLIDATED_FINANCIAL_RECORDTYPE limit 5];
             
             for(IPM_Financial__c updatedFinancial:retrievedFinancialList) {
                 for(IPM_Financial_Year__c financialYear:updatedFinancial.IPM_Financial_Years__r) {
@@ -850,11 +852,6 @@ private class IPM_SyncFinanceTableTLD_Test {
             List<ID> updatedFinancialIDList = new List<ID>();
             
             for(IPM_Financial__c updatedFinancial: updatedFinancialList) {
-                if(updatedFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)) {
-                    // CONSOLIDATED financial record TLD should be the earliast of local rollouts targetLanchDate1
-                    System.assertEquals(targetLanchDate1,updatedFinancial.Target_Launch_Date__c,TLD_MATCH_MSG);
-                    updatedFinancialIDList.add(updatedFinancial.id);
-                }
                 if(updatedFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)) {
                     // NONKEY financial record TLD should be the earliast of local rollouts, which is targetLanchDate1
                     System.assertEquals(targetLanchDate1,updatedFinancial.Target_Launch_Date__c,TLD_MATCH_MSG);
@@ -871,7 +868,7 @@ private class IPM_SyncFinanceTableTLD_Test {
                                                                                     ) 
                                                                          From 
                                                                             IPM_Financial__c 
-                                                                                where id in : updatedFinancialIDList limit 5];
+                                                                                where id in : updatedFinancialIDList  and RecordTypeId != :CONSOLIDATED_FINANCIAL_RECORDTYPE  limit 5];
             
             for(IPM_Financial__c updatedFinancial:retrievedFinancialList) {
                 for(IPM_Financial_Year__c financialYear:updatedFinancial.IPM_Financial_Years__r) {
@@ -927,11 +924,6 @@ private class IPM_SyncFinanceTableTLD_Test {
             for(IPM_Financial__c updatedFinancial: updatedFinancialList) {
                 
                 
-                if(updatedFinancial.Financial_External_ID__c==regionalProject[0].name+'_CONSOLIDATED') {
-                    // CONSOLIDATED financial record TLD should be the earliast of local rollouts targetLanchDate1
-                    System.assertEquals(targetLanchDate1,updatedFinancial.Target_Launch_Date__c,TLD_MATCH_MSG);
-                    updatedFinancialIDList.add(updatedFinancial.id);
-                }
                 if(updatedFinancial.Financial_External_ID__c==regionalProject[0].name+'_NONKEY') {
                     // NONKEY financial record TLD should be the earliast of local rollouts, which is targetLanchDate1
                     System.assertEquals(targetLanchDate1,updatedFinancial.Target_Launch_Date__c,TLD_MATCH_MSG);
@@ -948,7 +940,7 @@ private class IPM_SyncFinanceTableTLD_Test {
                                                                                     ) 
                                                                          From 
                                                                             IPM_Financial__c 
-                                                                                where id in : updatedFinancialIDList limit 5];
+                                                                                where id in : updatedFinancialIDList  and RecordTypeId != :CONSOLIDATED_FINANCIAL_RECORDTYPE limit 5];
             
             for(IPM_Financial__c updatedFinancial:retrievedFinancialList) {
                 for(IPM_Financial_Year__c financialYear:updatedFinancial.IPM_Financial_Years__r) {

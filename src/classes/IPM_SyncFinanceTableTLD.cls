@@ -1,3 +1,10 @@
+/*************************************************************************************************************
+* @author:Cognizant
+* @date: 19/01/2016
+* @description: The methods in the class updates relative financial records when enver there is updates in Rollouts and Projects TLDs
+
+*/
+
 public with sharing class IPM_SyncFinanceTableTLD {
     private String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
     Map<ID, IPM_Project_Rollout__c> localKeyRollouts;
@@ -15,10 +22,13 @@ public with sharing class IPM_SyncFinanceTableTLD {
         
         for(ID rolloutId: updatedRollouts.keySet()) {
             IPM_Project_Rollout__c projectRollout = updatedRollouts.get(rolloutId);
+            // Collec only local rollouts. Non-local rollouts will be handled via local rollouts
             if(projectRollout.RecordTypeId==LOCAL_ROLLOUT_RECORDTYPE) {
             	if(projectRollout.KeyMCO__c) {
+                	// collect KEY Rollouts
                 	localKeyRollouts.put(rolloutId,projectRollout);
                 } else {
+                	// collect NONKEY tollouts
                 	localNonkeyRollouts.put(rolloutId,projectRollout);
                 }
             }
@@ -68,17 +78,20 @@ public with sharing class IPM_SyncFinanceTableTLD {
 		if(!operationalProjects.isEmpty()) {
     		for(IPM_Project__c operationalProject: operationalProjects.values()){
     			if(operationalProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) {
+         			// Update Global operational projects's financials with projects' TLD
          			for(IPM_Financial__c ipmFinancial:operationalProject.IPM_Financials_Consolidated__r) {
     					ipmFinancial.Target_Launch_Date__c = operationalProject.IPM_Target_Launch_Dates__c;
     			        financialsMap.put(ipmFinancial.id, ipmFinancial);
         			}
     			} else if(operationalProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
-        			for(IPM_Financial__c ipmFinancial:operationalProject.IPM_Financials_Regional__r) {
+        			// Update Regional operational projects's financials with projects' TLD
+         			for(IPM_Financial__c ipmFinancial:operationalProject.IPM_Financials_Regional__r) {
     					ipmFinancial.Target_Launch_Date__c = operationalProject.IPM_Target_Launch_Dates__c;
     			        financialsMap.put(ipmFinancial.id, ipmFinancial);
         			}
     			} else if(operationalProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
-        			for(IPM_Financial__c ipmFinancial:operationalProject.IPM_Financials_Local__r) {
+        			// Update Local operational projects's financials with projects' TLD
+         			for(IPM_Financial__c ipmFinancial:operationalProject.IPM_Financials_Local__r) {
     					ipmFinancial.Target_Launch_Date__c = operationalProject.IPM_Target_Launch_Dates__c;
     			        financialsMap.put(ipmFinancial.id, ipmFinancial);
         			}
@@ -87,14 +100,16 @@ public with sharing class IPM_SyncFinanceTableTLD {
 		}
 		
 		if(!localProjects.isEmpty()) {
-	    	// collect projects which has associated financial records
 	    	Set<ID> projectIdsContainsFinancials = new Set<ID>();
 	    	Set<ID> projectIdsNotContainsFinancials = new Set<ID>();
 	    	Set<ID> parentProjectIds = new Set<ID>();
 	    	for(IPM_Project__c project: localProjects.values()) {
+	    		// collect local financials of local projects
 	    		if(!project.IPM_Financials_Local__r.isEmpty()) {
 	    			projectIdsContainsFinancials.add(project.id);
-	    		} else if(project.IPM_Parent_Project__c!=null) {
+	    		} 
+	    		// if the local project doesnt have financial, get it from parent project
+	    		else if(project.IPM_Parent_Project__c!=null) {
 	    			parentProjectIds.add(project.IPM_Parent_Project__c);
 	    			projectIdsNotContainsFinancials.add(project.id);
 	    		}
@@ -102,7 +117,8 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	    	if(!projectIdsContainsFinancials.isEmpty()) {
 	    		for(ID projId: projectIdsContainsFinancials){
 	    			IPM_Project__c project = localProjects.get(projId);
-	    			for(IPM_Financial__c ipmFinancial:project.IPM_Financials_Local__r) {
+	    			// Update Local projects's financials with projects' TLD
+         			for(IPM_Financial__c ipmFinancial:project.IPM_Financials_Local__r) {
 	    				if(ipmFinancial.Financial_External_ID__c==project.name) {
 	    					ipmFinancial.Target_Launch_Date__c = project.IPM_Target_Launch_Dates__c;
 					        financialsMap.put(ipmFinancial.id, ipmFinancial);
@@ -125,7 +141,7 @@ public with sharing class IPM_SyncFinanceTableTLD {
 	    		for(IPM_Project__c parentProj: parentProjects.values()){
 	    			for(IPM_Financial__c ipmFinancial:parentProj.IPM_Financials_Regional__r) {
 	    				if( ipmFinancial.Financial_External_ID__c==(parentProj.name+'_NONKEY') ) {
-	    					
+	    					// Update Local projects's NONKEY financials with projects' TLD
 	    					for(IPM_Project__c proj:parentProj.IPM_Projects__r) {
 	    						if(projectIdsNotContainsFinancials.contains(proj.id)) {
 			     					ipmFinancial.Target_Launch_Date__c = proj.IPM_Target_Launch_Dates__c;

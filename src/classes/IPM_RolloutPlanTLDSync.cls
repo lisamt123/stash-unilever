@@ -20,13 +20,16 @@ public with sharing class IPM_RolloutPlanTLDSync {
 	        Map<Id,Id> projIdRolloutIdMapGlobal = new Map<Id,Id>{};            
             Map<ID,IPM_Project__c> origProjectMap = new Map<ID,IPM_Project__c> {};
             if(null != updatedRollouts){
+                // Get Rollouts of updated project
                 for(IPM_Project_Rollout__c rolloutProj :[Select Id, Target_Launch_Date__c,Local_Project_Target_Launch_Date__c from IPM_Project_Rollout__c where Id = : updatedRollouts.keySet() And  isActive__c=true limit 50000]){
                     IPM_Project__c ipmProj = updatedRollouts.get(rolloutProj.Id);
                     Boolean isUpdated = false;
+                    // Handle accept from local
                     if(rolloutProj.Target_Launch_Date__c != ipmProj.Rollout_Plan_Target_Launch_Date__c){
                         rolloutProj.Target_Launch_Date__c = ipmProj.Rollout_Plan_Target_Launch_Date__c;
                         isUpdated = true;
                     }
+                    // Handle accept from regional
                     if(rolloutProj.Local_Project_Target_Launch_Date__c != ipmProj.IPM_Target_Launch_Dates__c){
                         rolloutProj.Local_Project_Target_Launch_Date__c = ipmProj.IPM_Target_Launch_Dates__c;
                         isUpdated = true;
@@ -39,6 +42,7 @@ public with sharing class IPM_RolloutPlanTLDSync {
                 
                 Set<ID> globalProjIds = new Set<ID>();
                 Set<ID> regionalProjIds = new Set<ID>();
+                // Filter regional project's global projects
                 for (IPM_Project__c ipmProject: updatedRollouts.values()) {
                 	regionalProjIds.add(ipmProject.id);
                 	if(ipmProject.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
@@ -46,10 +50,13 @@ public with sharing class IPM_RolloutPlanTLDSync {
 	                }
                 }
                 if(!globalProjIds.isEmpty()) {
+                	// Get all regional projects of global project order by TLD. 
+                	// This is required to update Global project's TLD with earliest regional project.
                 	Map<ID,IPM_Project__c> globalProjsMap = new Map<ID,IPM_Project__c>([Select ID, (Select ID, IPM_Target_Launch_Dates__c From IPM_Projects__r ORDER BY IPM_Target_Launch_Dates__c ASC NULLS LAST ) From IPM_Project__c where  id in :globalProjIds ]);
                 	for (IPM_Project__c ipmProject: globalProjsMap.values()) {
                 		if(!ipmProject.IPM_Projects__r.isEmpty()) {
                 			IPM_Project__c updateProj = new IPM_Project__c(ID=ipmProject.id,IPM_Target_Launch_Dates__c=ipmProject.IPM_Projects__r[0].IPM_Target_Launch_Dates__c);
+							// collect the project which need update on TLD
 							if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(updateProj.id)){
 								origProjectMap.put(updateProj.id,updateProj);
 							} 
@@ -57,17 +64,21 @@ public with sharing class IPM_RolloutPlanTLDSync {
                 	}
                 }
             } else if(null != updatedLocalProjects){
+                //Get all the projects related to updated rollouts
                 for(IPM_Project__c localRolloutProj :[Select Id, IPM_Project_Rollout__c, Rollout_Plan_Target_Launch_Date__c from IPM_Project__c where IPM_Project_Rollout__c = : updatedLocalProjects.keySet() limit 50000]){
                     IPM_Project_Rollout__c rollOutProj = updatedLocalProjects.get(localRolloutProj.IPM_Project_Rollout__c);
+                    // Handle accept from local
                     if(rolloutProj.Target_Launch_Date__c != localRolloutProj.Rollout_Plan_Target_Launch_Date__c){
                         localRolloutProj.Rollout_Plan_Target_Launch_Date__c = rolloutProj.Target_Launch_Date__c;
                         listToUpdateLocalProject.add(localRolloutProj);
                     }
                 }
                 for(IPM_Project_Rollout__c rollOutProject: updatedLocalProjects.values()){                                                           
+                    // collect regional project ids
                     if(rollOutProject.Regional_Project__c != null){
                         projIdRolloutIdMapRegional.put(rollOutProject.Regional_Project__c,rollOutProject.Id);
                     }
+                    // collect global project ids
                     if(rollOutProject.IPM_Project__c != null){
                         projIdRolloutIdMapGlobal.put(rollOutProject.IPM_Project__c,rollOutProject.Id);
                     }
@@ -78,6 +89,8 @@ public with sharing class IPM_RolloutPlanTLDSync {
                 Map<Id,Date> globalProjRollOutMap = new Map<Id,Date> {};                
                 List<IPM_Project_Rollout__c> regionalRollouts = new List<IPM_Project_Rollout__c>();
                 List<IPM_Project_Rollout__c> localRollouts = new List<IPM_Project_Rollout__c>();
+                // Get all rollouts of global projects order by TLD. 
+                // This is required to update Global project's TLD with earliest regional rollout.
                 for(IPM_Project_Rollout__c rolloutGlobal : [Select Id, IPM_Rollout_Span__c, Local_Project__c, IPM_Project__c, Target_Launch_Date__c from IPM_Project_Rollout__c where IPM_Project__c =:projIdRolloutIdMapGlobal.KeySet() and  isActive__c=true ORDER BY Target_Launch_Date__c ASC NULLS LAST limit 50000]){
                     if(!updatedLocalProjects.containskey(rolloutGlobal.Id)){
                         if(globalProjRollOutMap.containskey(rolloutGlobal.IPM_Project__c)){
@@ -90,6 +103,7 @@ public with sharing class IPM_RolloutPlanTLDSync {
                     }else{
                             globalProjRollOutMap.put(rolloutGlobal.IPM_Project__c, rolloutGlobal.Target_Launch_Date__c);
                     }
+                    // collect retional projects
                     if(rolloutGlobal.IPM_Rollout_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
                     	regionalRollouts.add(rolloutGlobal);
                     }
@@ -97,11 +111,14 @@ public with sharing class IPM_RolloutPlanTLDSync {
                 }
 				if(!regionalRollouts.isEmpty()) {
        				IPM_Project__c updateProj = new IPM_Project__c(ID=regionalRollouts[0].IPM_Project__c,IPM_Target_Launch_Dates__c=regionalRollouts[0].Target_Launch_Date__c);
+					// collect the project which need update on TLD
 					if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(updateProj.id)){
 						origProjectMap.put(updateProj.id,updateProj);
 					
        				}
                 }
+                // Get all rollouts of retional projects order by TLD. 
+                // This is required to update regional project's TLD with earliest regional rollout.
                 for(IPM_Project_Rollout__c rolloutRegional : [Select Id, IPM_Rollout_Span__c, IPM_Project__c,Regional_Project__c, Target_Launch_Date__c from IPM_Project_Rollout__c where Regional_Project__c =:projIdRolloutIdMapRegional.KeySet() and  isActive__c=true ORDER BY Target_Launch_Date__c ASC NULLS LAST limit 50000]){
                     if(!updatedLocalProjects.containskey(rolloutRegional.Id)){
                         if(regionalProjRollOutMap.containskey(rolloutRegional.Regional_Project__c)){
@@ -114,47 +131,56 @@ public with sharing class IPM_RolloutPlanTLDSync {
                     } else {
                         regionalProjRollOutMap.put(rolloutRegional.Regional_Project__c, rolloutRegional.Target_Launch_Date__c);
                     }
-                    if(rolloutRegional.IPM_Rollout_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+                    // collect retional projects
+                   	if(rolloutRegional.IPM_Rollout_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
                     	localRollouts.add(rolloutRegional);
                     }
                 }  
 				            if(!localRollouts.isEmpty()) {
        				IPM_Project__c updateProj = new IPM_Project__c(ID=localRollouts[0].Regional_Project__c,IPM_Target_Launch_Dates__c=localRollouts[0].Target_Launch_Date__c);
+					// collect the project which need update on TLD
 					if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(updateProj.id)){
 						origProjectMap.put(updateProj.id,updateProj);
 					
        				}
                 }
-                
+                // Get all regional and global projects
                 for(IPM_Project__c ipmProject : [Select Id, IPM_Project_Type__c,IPMProject_Span__c, IPM_Phase__c,IPM_Target_Launch_Dates__c from IPM_Project__c where id = :projIdRolloutIdMapRegional.keyset() or id = :projIdRolloutIdMapGlobal.keyset() limit 50000]){
+                    // hendle for retional projects only
                     if(ipmProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
                         if(updatedLocalProjects.get(projIdRolloutIdMapRegional.get(ipmProject.Id)) != null) {
                             Date newTLDDate = updatedLocalProjects.get(projIdRolloutIdMapRegional.get(ipmProject.Id)).Target_Launch_Date__c;
-
+							// handle Ideas Orininal project
                             if(ipmProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && ipmProject.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS){ 
                                 if(newTLDDate < regionalProjRollOutMap.get(ipmProject.Id)){
                                     ipmProject.IPM_Target_Launch_Dates__c = newTLDDate;
-       								if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(ipmProject.id)){
+       								// collect the project which need update on TLD
+									if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(ipmProject.id)){
 										origProjectMap.put(ipmProject.id,ipmProject);
        								}
                                 } else if(regionalProjRollOutMap.get(ipmProject.Id) != ipmProject.IPM_Target_Launch_Dates__c){
                                     ipmProject.IPM_Target_Launch_Dates__c = regionalProjRollOutMap.get(ipmProject.Id);
-       								if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(ipmProject.id)){
+       								// collect the project which need update on TLD
+									if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(ipmProject.id)){
 										origProjectMap.put(ipmProject.id,ipmProject);
        								
        								}
                                 }
                                 
-                            } else if((ipmProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT || ipmProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )&& ipmProject.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS){
+                            } 
+                            // handle Original Non-Ideas or Rollout Non-Ideas projects
+                            else if((ipmProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT || ipmProject.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL )&& ipmProject.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS){
                                 if(newTLDDate < regionalProjRollOutMap.get(ipmProject.Id)){
                                     ipmProject.IPM_Target_Launch_Dates__c = newTLDDate;
-       								if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(ipmProject.id)){
+       								// collect the project which need update on TLD
+									if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(ipmProject.id)){
 										origProjectMap.put(ipmProject.id,ipmProject);
        								
        								}
                                 } else if(regionalProjRollOutMap.get(ipmProject.Id) != ipmProject.IPM_Target_Launch_Dates__c){
                                     ipmProject.IPM_Target_Launch_Dates__c = regionalProjRollOutMap.get(ipmProject.Id);
-       								if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(ipmProject.id)){
+       								// collect the project which need update on TLD
+									if(origProjectMap.isEmpty() || !origProjectMap.keySet().contains(ipmProject.id)){
 										origProjectMap.put(ipmProject.id,ipmProject);
        								
        								}
@@ -164,13 +190,15 @@ public with sharing class IPM_RolloutPlanTLDSync {
                     }               
                 }
             }
-            
+            // update rollouts
             if(!listToUpdateRolloutProject.isEmpty()){
                 update listToUpdateRolloutProject;
-            } 
+            }
+            // update local projects
             if (!listToUpdateLocalProject.isEmpty()){
                 update listToUpdateLocalProject;
             }
+            // update non-local projects
             if(!origProjectMap.isEmpty()){
                 update origProjectMap.values();
             } 
