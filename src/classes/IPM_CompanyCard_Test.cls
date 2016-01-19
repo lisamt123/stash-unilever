@@ -287,6 +287,7 @@ private class  IPM_CompanyCard_Test {
                 oldGlobalCard.IPM_TxtGeographical_Scope__c=GLOBAL_STR;
                 oldGlobalCard.IPM_Business_Partner__c=userBP.id;
                 oldGlobalCard.id=cCardUpdate.id;
+                oldGlobalCard.RecordTypeId=IPM_TestFactory_Helper.regionalCompanyCardRecId;
                 oldCCList.add(oldGlobalCard);   
                 i++; 
                     
@@ -295,6 +296,7 @@ private class  IPM_CompanyCard_Test {
             string cQuery=bulkUpdateCompanyCardName+'%';
             list<IPM_Company_Card__c>bulkCCardList=[SELECT Name FROM IPM_Company_Card__c WHERE Name like:cQuery LIMIT 200];
             system.assertEquals(bulkCCardList.size(),oldCCList.size(),'Total comapany card updated count is:'+bulkCCardList.size());//positive test
+            delete oldCCList;
       }  
       Test.StopTest();  
     }

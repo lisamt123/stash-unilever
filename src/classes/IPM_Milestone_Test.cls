@@ -98,6 +98,9 @@ public class IPM_Milestone_Test
         
         System.runAs(globalUser){
             
+            proj.IPM_PM_Approach__c = IPM_ConstantUtils.IPM_APPROACH_INTERNAL;
+            update proj;
+            
             IPM_Milestone__c milestoneobj1 = IPM_TestFactory_Helper.createIPMMilestone(proj.id, false);
             milestoneobj1.RecordTypeId = mileStoneRecordType;
             milestoneobj1.name= 'Test-New2';
@@ -129,6 +132,7 @@ public class IPM_Milestone_Test
             IPM_Milestone milesCtrl1 = new IPM_Milestone(new ApexPages.StandardController(milestoneobj1));
             milesCtrl1.validateMilestone();
             
+            
             List<IPM_Milestone__c> msStdList = [Select Id, Name, IPM_Name__c, IPM_Phase__c, IPM_Project__c from IPM_Milestone__c WHERE IPM_Project__c =: proj.Id AND IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD];
             
             list<IPM_Milestone__c> listmilestone =new list<IPM_Milestone__c>();
@@ -153,7 +157,7 @@ public class IPM_Milestone_Test
             ipmMSCtrl.createMileStones();
             
             // Checking for the Test Method
-            IPM2 = (IPM_Milestone__c)IPM_TestFactory.createSObject('IPM_Milestone__c', new Map<string,object> {'IPM_Project__c'=>proj.id,'name'=>IPM_Utils.MarketReadyGateApproval,'IPM_BET__c'=>true,'IPM_Type_of_Milestone__c'=>IPM_ConstantUtils.STANDARD,'IPM_Name__c'=>IPM_Utils.BETFirstRelease} , true);
+            IPM2 = (IPM_Milestone__c)IPM_TestFactory.createSObject('IPM_Milestone__c', new Map<string,object> {'IPM_Project__c'=>proj.id,'name'=>IPM_Utils.MarketReadyGateApproval,'IPM_BET__c'=>true,'IPM_Type_of_Milestone__c'=>IPM_ConstantUtils.STANDARD,'IPM_Name__c'=>IPM_Utils.BETFirstRelease, 'IPM_Phase__c' => IPM_ConstantUtils.PHASE_IDEAS} , true);
             IPM_Milestone milestoneCtrl = new IPM_Milestone(new ApexPages.StandardController(IPM2));
             
             for (IPM_Milestone.MilestoneWrapper msWrap : milestoneCtrl.milestones) {
@@ -272,7 +276,7 @@ public class IPM_Milestone_Test
             mile1.IPM_Phase__c = null;
             mile1.IPM_Name__c = IPM_Utils.MarketReadyGateApproval; 
             mile1.IPM_Due_Date__c = system.today();
-            mile1.IPM_Project__c = project.Id;
+           mile1.IPM_Project__c = project.Id;
             insert mile1;
             IPM_Milestone milestoneCtrlnew2 = new IPM_Milestone(new ApexPages.StandardController(mile1));
             milestoneCtrlnew2.validateMilestone();
@@ -287,8 +291,8 @@ public class IPM_Milestone_Test
             miles.IPM_Name__c = IPM_Utils.MarketReadyGateApproval;
             miles.IPM_Due_Date__c = system.today();
             miles.IPM_Type_of_Milestone__c = null;
-            miles.IPM_Project__c = project.Id;
-            insert miles;
+            //miles.IPM_Project__c = project.Id;
+            //insert miles;
             
             IPM_Milestone milestoneCtrl1new = new IPM_Milestone(new ApexPages.StandardController(miles));
             milestoneCtrl1new.saveMilestones();
@@ -303,7 +307,27 @@ public class IPM_Milestone_Test
             IPM_Milestone milestoneCtrlvalidate1 = new IPM_Milestone(new ApexPages.StandardController(msList[2]));
             milestoneCtrlvalidate1.validateMilestone();
             System.Assertequals(milestoneCtrlvalidate1.validateMilestone(), false, 'Milestone Validation Error');
+            
+            
+            IPM_Milestone__c adhocMilestone = new IPM_Milestone__c();
+            adhocMilestone.RecordTypeId = mileStoneRecordType;
+            adhocMilestone.name = 'Test-Adhoc-Milestone-6';
+            adhocMilestone.IPM_Due_Date__c = system.today().adddays(-2);
+            adhocMilestone.IPM_Type_of_Milestone__c = IPM_ConstantUtils.Adhoc;
+            adhocMilestone.IPM_Milestone__c = msList[1].id;
+            adhocMilestone.IPM_Name__c = IPM_Utils.ContractGateApproval;
+            adhocMilestone.IPM_Phase__c = IPM_ConstantUtils.PHASE_CAPABILITY;
+            adhocMilestone.IPM_Project_Type__c = 'Original';
+            adhocMilestone.ExternalField__c = 'gfgfgas';
+            adhocMilestone.IPM_Project__c = project.Id;
+            insert adhocMilestone;
+            apexpages.currentpage().getparameters().put(PROJECTID_STRING,project.id);
+            apexpages.currentpage().getparameters().put('taskId',adhocMilestone.id);
+            IPM_Milestone adhocMilestoneCtrlvalidate = new IPM_Milestone(new ApexPages.StandardController(adhocMilestone));
+            System.Assertequals(adhocMilestoneCtrlvalidate.validateMilestone() ,true,'Milestone Validation Failed');
+            
         }  
+        
         Test.stopTest();
     }
 }

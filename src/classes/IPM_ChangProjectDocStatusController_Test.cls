@@ -10,7 +10,7 @@ public class  IPM_ChangProjectDocStatusController_Test {
     private static IPM_Project__c project;// Project object initialization
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();// Project Documetn List
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
-    public  List<SelectOption> secOpt=new List<SelectOption>();
+    public static List<SelectOption> secOpt=new List<SelectOption>();
     private static IPM_Project_Type__c proType;
     private static final string TEST_COMMENTS_STR='TestComments1';
     private static List<IPM_Milestone__c>mileListObj;

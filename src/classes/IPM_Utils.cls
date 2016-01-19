@@ -451,7 +451,7 @@ public without sharing class IPM_Utils {
         list<IPM_Project__c> lstProjectUser =[SELECT IPM_Project_Type__c, IPM_Project_Name__c ,IPM_Phase__c,IPMProject_Span__c,IPM_Project_Leader__c,Deputy_Project_Leader__c 
                                                FROM IPM_Project__c 
                                                WHERE (IPM_Project_Leader__c =: UserInfo.getUserId() or Deputy_Project_Leader__c =: UserInfo.getUserId()) 
-                                                     AND  id =: projectId AND Is_Archieved__c=false LIMIT 1];
+                                                     AND  id =: projectId AND Is_Archieved__c=false  LIMIT 1];
         if(lstProjectUser!=null && !lstProjectUser.isEmpty())
         {
              if(!IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(lstProjectUser[0].IPMProject_Span__c)){
@@ -469,19 +469,7 @@ public without sharing class IPM_Utils {
         }  
         return false;  
     } 
-    /**********************************************************************
-    * @description: to get the master brand data
-    * @return : list of strings
-    */
-    public static Set<String> getMasterBrandData(){
-        
-        set<String> lstToReturn = new set<String>();
-        mdm_Brand_Position__c[] brandPositions = [SELECT Brand_Position_Name__c FROM mdm_Brand_Position__c LIMIT 9999];
-        for(mdm_Brand_Position__c eachbrandPos : brandPositions) {
-            lstToReturn.add(eachbrandPos.Brand_Position_Name__c);
-        }
-        return lstToReturn;
-    }
+    
     
     public static Boolean checkDataValid(String data) {
         return Pattern.matches('/^0*('+'\\'+'.0+)$?/',data);
@@ -1212,10 +1200,11 @@ public without sharing class IPM_Utils {
         }else{ // If project type is not operational, It can be Original or Rollout of Original
             strProjectType = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
         }
-        
+        system.debug('IPM_ProjectMetadata__c:::'+IPM_ProjectMetadata__c.getAll().values());
         // Get the source Project Type and Source Company card to identify the Phase Sequence.
         for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
         {
+        	
             if(projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c && projectMetadata.IPM_Project_Type__c == strProjectType)
             {
                 selectedProjectMetadata = projectMetadata;
@@ -1308,11 +1297,11 @@ public without sharing class IPM_Utils {
         else
         { 
             if(projectRollout.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS)
-	    {
+            {
                 return projectRollout.Regional_Rollout_External_Id__c + IPM_ConstantUtils.FINANCIAL_NONKEY;
             }
-	    else
-	    {
+            else
+            {
                 return projectRollout.IPM_Rollout_Project__c;
             }
             
