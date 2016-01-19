@@ -490,7 +490,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         showmsg=true;
         summary='';
         status=true;
-        if(projDocSec.IPM_Gate_Document_Summary__c!=null){
+        if(projDocSec.IPM_Gate_Document_Summary__c!=null && projDocSec.IPM_Section__r.IPM_Character_Limit__c!=null){
             summary=projDocSec.IPM_Gate_Document_Summary__c;
             summary=summary.replaceAll(IPM_ConstantUtils.SPECIAL_CHARACTERS,'');
             projDocSec.IPM_Summary_Character_Remaining__c=projDocSec.IPM_Section__r.IPM_Character_Limit__c-summary.length();        
