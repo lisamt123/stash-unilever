@@ -1215,13 +1215,15 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
          return null;
      }
      
-   /*******************************************************************************************************
-    * @description  Used to get data related to MCO selected, queryies for the financial and finanical years 
-    *               records to be displayed on the financial page. This generates data based on span and 
-    *               type of financial to be displayed default/consolidated 
+   /****************************************************************************************************************
+    * @description  		Used to get data related to MCO selected, queryies for the financial and finanical years 
+    *              		    records to be displayed on the financial page. This generates data based on span and 
+    *               		type of financial to be displayed default/consolidated 
+    * @NPath Complexity:        due to complex functionality explained in the description we cannot avoid 
+    					    NPathComplexity on this method.    
     * @param        NONE
     * @return       NONE
-    ******************************************************************************************************/
+    ****************************************************************************************************************/
     private void getFinancials()
     {
         if(isNavigation) {
@@ -2342,10 +2344,11 @@ private Date getProjectMilestoneDate(){
         }
     }   
     /****************************************************************************************************************************************
-    * @description  Used to set misaligned date values for TLD, when the Financial data is loaded, it checks for the current TLD and Previous
-    				TLD to generate page message to let user know the need for Business Case update, or if the TLD dates are not aligned 
-    				between regional and local rollouts.
-    *   
+    * @description          Used to set misaligned date values for TLD, when the Financial data is loaded it checks for the current TLD and Previous
+	    				    TLD to generate page message to let user know the need for Business Case update, or if the TLD dates are not aligned 
+	    				    between regional and local rollouts.
+    * @NPath Complexity:    due to complex functionality explained in the description we cannot avoid 
+    					    NPathComplexity on this method.    
     * @param        NONE
     * @return       NONE
     *******************************************************************************************************************************************/
