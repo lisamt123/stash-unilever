@@ -63,7 +63,7 @@ public with sharing class IPM_Milestone {
             projectId = ApexPages.currentPage().getParameters().get(IPM_Utils.IPM_NewTaskprojectId);
             sObjName = projectId.getSObjectType().getDescribe().getName();
             
-            String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null);
+            String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
             String projectWhereClause = ' WHERE Id =: projectId limit 1';
             projectQuery = projectQuery + projectWhereClause;
             
