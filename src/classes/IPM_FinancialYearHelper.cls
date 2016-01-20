@@ -136,6 +136,9 @@ public with sharing class IPM_FinancialYearHelper
     *								financial year details based on project ID, content type and phase of the project.
     * @param newFinancialYear       New Financial Year record
     * @return                       NONE
+    * Business Logic: At Charter section 6.1 Business Case V/S Action Standard needs to be populated with IRR,ValueShare,ITO,GTO values from First Full Year of financials.
+                             The Below code updates those values from the Financial object into the Project DocumetnSection Content object when the Gate document IS Charter.
+                             From Contract Document Onwards, only the Results set at contract gets populated.Similary the logic extends till Market Ready Gate
     ***********************************************************************************************************************************/
     public static void updateFinancialActionStandard(Map<Id, IPM_Financial_Year__c> mapNewFinancialYears){
         try{

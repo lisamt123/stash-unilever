@@ -340,6 +340,9 @@ public with sharing class IPM_FinancialHelper
     									will add new financial or update consolidate financials
     * @param mapNewFinancials           New Consolidated Financial record
     * @return                           NONE
+    * Business Logic: At Charter section 6.1 Business Case V/S Action Standard needs to be populated with IRR,ValueShare,ITO,GTO values from First Full Year of financials.
+    				  The Below code updates those values from the Financial object into the Project DocumetnSection Content object when the Gate document IS Charter.
+    				  From Contract Document Onwards, only the Results set at contract gets populated.Similary the logic extends till Market Ready Gate	
     **********************************************************************************************************************/
     public static void updateFinancialActionStandard(Map<Id, IPM_Financial__c> mapNewFinancials)
     {
