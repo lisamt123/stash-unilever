@@ -66,18 +66,8 @@ public with sharing class EA_Utils{
             feedItemInput.body = messageBodyInput;
             feedItemInput.feedElementType = ConnectApi.FeedElementType.FeedItem;
             
-			if(Test.isRunningTest()){
-				 
-					User userObj = [SELECT id, Name FROM User WHERE Name =: 'Chatter Support'];
-					feedItemInput.subjectId = userObj.id;
-			}
-			else{
-			
-				feedItemInput.subjectId = EA_ReportingGA__c.getInstance('EA_System_User_ID').Text_Value__c;
-			}
-			
-            //feedItemInput.createdBy = Label.EA_System_User_ID;
-            
+			feedItemInput.subjectId = participantId;
+			            
             ConnectApi.FeedElement feedElement = ConnectApi.ChatterFeeds.postFeedElement(null, feedItemInput, null);
             
             
@@ -139,20 +129,7 @@ public with sharing class EA_Utils{
             result = (avgRating.intValue());
         }       
         return result;
-    } 
-    
-    
-    public static boolean isEmpty2( String str ){
-        if(string.isNotBlank(str)){
-            return true;
-        }
-        return false;
     }
-    public static boolean isEmpty3( String str ){
-        if(string.isNotBlank(str)){
-            return true;
-        }
-        return false;
-    }
+   
    
 }

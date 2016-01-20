@@ -612,12 +612,12 @@
             <translation><!-- 2C --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>3B</masterLabel>
-            <translation><!-- 3B --></translation>
+            <masterLabel>3A</masterLabel>
+            <translation><!-- 3A --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>3C</masterLabel>
-            <translation><!-- 3C --></translation>
+            <masterLabel>3B</masterLabel>
+            <translation><!-- 3B --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>4A</masterLabel>
@@ -917,7 +917,7 @@
         <name>Influence_in_Decision_Making_Score__c</name>
     </fields>
     <fields>
-        <label><!-- Influence in Decison Making Process --></label>
+        <label><!-- Influence in Decision Making Process --></label>
         <name>Influence_in_Decison_Making_Process_Comm__c</name>
     </fields>
     <fields>

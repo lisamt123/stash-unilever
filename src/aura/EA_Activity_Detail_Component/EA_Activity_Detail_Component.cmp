@@ -1,13 +1,14 @@
 <aura:component controller="EA_ControllerClass" >
-    <ltng:require styles="/resource/EA_StaticResource/css/bootstrap.3.3.css" />
     <ltng:require styles="/resource/EA_StaticResource/slick/slick.css,/resource/EA_StaticResource/slick/slick-theme.css"	
-                  scripts="/resource/EA_StaticResource/jquery/jquery.js,/resource/EA_StaticResource/slick/slick.min.js"/>
+                  scripts="/resource/EA_StaticResource/jquery/jquery.js,/resource/EA_StaticResource/slick/slick.min.js" afterScriptsLoaded="{!c.doInit}"/>
     <ltng:require styles="/resource/EA_StaticResource/assets/styles/salesforce-lightning-design-system-vf.css" />
+
     <aura:attribute name="EAactivityid" type="String"/>
     <aura:attribute name="check_image" type="Boolean" default="false"/>
     <aura:attribute name="activity" type="Everyday_Activity__c"/>
-    <aura:attribute name="showcontent" type="boolean" default="true"></aura:attribute> 
-    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="showcontent" type="boolean" default="true"></aura:attribute>
+    <aura:attribute name="index" type="Integer" />
+    <aura:attribute name="pageIndex" type="Integer" />
     <aura:attribute name="themeColors" type="Map"/>
     <aura:attribute name="themecolor" type="String" />
     <aura:attribute name="themerecordtype" type="String" default="{!v.activity.RecordType.Name}"/>
@@ -19,7 +20,10 @@
     <aura:attribute name="showtodoactpage" type="boolean" default="false"></aura:attribute>
     <aura:attribute name="themeName" type="boolean" default="true"></aura:attribute> 
     <aura:attribute name="showswipecard" type="boolean" default="true"></aura:attribute>
-     <aura:attribute name="detailPage" type="boolean" default="false"></aura:attribute>
+    <aura:attribute name="detailPage" type="boolean" default="false"></aura:attribute>
+    <aura:attribute name="ActivityDesc" type="string" default=""/>
+    <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}" />-->
+    
     <style>
         .spacer-pull-to-load-more{
         height:100% !important;
@@ -49,6 +53,9 @@
   			width: 70%;
   			margin-left: 5%;
 		}
+        .filter-container {
+            margin-bottom: 0 !important;
+        }
         @media only screen and (min-device-width: 375px) and (max-device-width: 568px) 
  		{ 
         .min-sec{
@@ -59,19 +66,12 @@
    		 height: 50%;
 			}
         }
+        
     </style>
     <div class="slds">
-        <div  style="margin-top:20px;">
-         <!--   <aura:if isTrue="{!v.showcontent}">
-                <span>
-                    <img  onclick="{!c.showsummaryCard}" class="back_image" src="/resource/EA_StaticResource/assets/images/Back_img.svg" alt="back" />
-                </span>
-            </aura:if>-->
-        <div class="outer_sec"  onclick="{!c.callShowDetailCard}">
-        
-            <aura:if isTrue="{!v.showdetail}">
-                
-                <div class="activity-sec" style="{!'background:'+ v.themecolor +';'}">
+        <div  style="margin-top:12px;">
+        <div class="outer_sec">
+            <div class="activity-sec" style="{!'background:'+ v.themecolor +';'}">
                     <div class="a-title"><p><ui:outputText value="{!v.activity.RecordType.Name}"/></p></div>
                     <div class="t-title"><h4><ui:outputText value="{!v.activity.Name}"/></h4></div>
                     
@@ -101,15 +101,15 @@
                             </aura:iteration>
                         </aura:if>
                     </div>
-                    <!--</div>-->
                 </div>
                 <div class="section"><br/>
                     <div style="margin-left:5px;">
-                        <p class="desc"><ui:outputText value="{!v.activity.Description__c}"/></p>
+                        <p class="desc" ><ui:outputText value="{!v.ActivityDesc}"/></p>
+                         <span class="see_more" onclick="{!c.callShowDetailCard}" >See more...</span>
                     </div>
                     
                    
-                    <div style="margin-left:5px;">
+                    <div style="margin-left:5px;height:72px">
                         <p class="recent">Recently completed by</p>
                         <div>
                             
@@ -117,32 +117,21 @@
                         </div>
                     </div>
                     <div class="min-sec">
-                        <table class="min-table"><tr>
-                            <td> <img class="img_icon_size" src="/resource/EA_StaticResource/assets/images/clock.svg" alt="tick" /></td>
+                       <table class="min-table"><tr>
+                            <td class="td_img_icon"> <img class="img_icon_size" src="/resource/EA_StaticResource/assets/images/clock.svg" alt="tick" /></td>
                             <td class="tdFont"><ui:outputText value="{!v.activity.Minutes_to_Complete_Action__c}"/>   min  </td>
-                            <td><img class="img_icon_size" src="/resource/EA_StaticResource/assets/images/user.svg" alt="tick" /></td>
+                            <td class="td_img_icon"><img class="img_icon_size" src="/resource/EA_StaticResource/assets/images/user.svg" alt="tick" /></td>
                             <td class="tdFont"><ui:outputText value="{!v.activity.Participants_Required__c}"/>  people</td>
-                            <td><img class="img_icon_size" src="/resource/EA_StaticResource/assets/images/badge.svg" alt="tick" /></td>
+                            <td class="td_img_icon"><img class="img_icon_size" src="/resource/EA_StaticResource/assets/images/badge.svg" alt="tick" /></td>
                             <td class="tdFont"><ui:outputText value="{!v.activity.Activity_Points__c}"/>  points</td>
                             </tr>
                         </table>
-                        
-                        
-                        <aura:if isTrue="{!v.showcontent}">
-                            <div class="divider"></div>
-                            <div>
-                                <p class="topTip"> TOP TIP :</p><br/>
-                            </div>
-                            <div>
-                                <p class="topTip_para"> <ui:outputText value="{!v.activity.Top_Tip__c}"/></p>
-                            </div>
-                            
-                        </aura:if>
                     </div>
-                    <aura:if isTrue="{!v.showcontent}">
+                   <!-- <span class="see_more" onclick="{!c.callShowDetailCard}" >see activity details...</span> -->
+                   <!-- <aura:if isTrue="{!v.showcontent}">
                         <c:EverydayAction_Faturedcontent_component EAactivityid="{!v.activity.Id}"/>
-                    </aura:if>
-                    <div class="slds-tabs--default">
+                    </aura:if> -->
+                    <div class="slds-tabs--default chat_icon">
                         <ul class="slds-tabs--default__nav" role="tablist">
                             <li class="slds-tabs--default__item"  role="presentation"><div class="share_img"> <img class="right_arrow" src="/resource/EA_StaticResource/assets/images/comment_90px.svg" alt="tick" onclick="{!c.callfeedback}"/></div></li>
                             <li class="slds-tabs--default__item" role="presentation"><div class="share_img"> <img class="right_arrow" src="/resource/EA_StaticResource/assets/images/share_90px.svg" alt="tick" onclick="{!c.commentspage2}"/></div></li>
@@ -151,7 +140,7 @@
                     </div>
                     
                 </div>      
-            </aura:if>
+            
         </div>
         
         

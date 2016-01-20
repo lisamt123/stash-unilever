@@ -1,77 +1,63 @@
 ({
-	getRecentItem : function(cmp){
-       var action = cmp.get("c.getRecentlyWorkedWithUsers");
-        console.log("Before calling action");
-        action.setCallback(this, function(response) {
-            var state = response.getState();
-            if(state === 'SUCCESS'){
-                console.log("Success");
-                if(response.getReturnValue()!=''){
-            		var items = response.getReturnValue();
-                    console.log("Items"+items);
-                    cmp.set('v.recentItem',items);
-                }
-            }
-        });
-          $A.enqueueAction(action);
-    },
     getToDoTimeline : function (cmp){
-        console.log("test");
-      var action = cmp.get("c.getToDoTimeline");
+        var action = cmp.get("c.getToDoTimeline");
         action.setCallback(this, function(response) {
             var state = response.getState();
-            if(state === 'SUCCESS'){
-                console.log("Success");
-                if(response.getReturnValue()!=''){
-            		var items = response.getReturnValue();
-                    console.log("Items"+items);
-                    cmp.set('v.todoTime',items);
-                     console.log(cmp.get('v.todoTime'));
-                   
-                }
+            if(state === 'SUCCESS' && response.getReturnValue() !==''){
+                var items = response.getReturnValue();
+                cmp.set('v.todoTime',items);
             }
         });
-          $A.enqueueAction(action);
+        $A.enqueueAction(action);
     },
     callToDoSubmitAction : function (cmp,event){
-    
+        
+    	cmp.set("v.showLoading",true);
         var actTimeField = cmp.find('activityTime').getElement();
         var selUserCmp = $A.util.json.encode(cmp.get("v.selectedUsers"));
         var act = cmp.get("v.activity");
-         
+         console.log("# Called callToDoSubmitAction")
         var action = cmp.get("c.callSubmitToDoAction");
         action.setParams({"activityId" : act[0].Id,"json" : selUserCmp,"activityTime":actTimeField.value});
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!==''){
-                                  console.log("callToDoSubmitAction Success");
-         
-                    cmp.set("v.detailpage",true);
-                    var act = cmp.get("v.activity");
-                    var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
-                    detailpageEvent.setParams({"actvityid":act[0].Id});
-                    detailpageEvent.fire();
-                            }
+             	cmp.set("v.showLoading",false);
+               
+                var act = cmp.get("v.activity");
+                 var pagename=cmp.get("v.pagename");
+        var index=cmp.get("v.index");
+        console.log("todo"+pagename);
+        if(pagename ==='swipe'){
+        var detailpageEvent=$A.get("e.c:EA_Back_Event");
+        detailpageEvent.setParams({"pagename":pagename,"index":index});
+    	detailpageEvent.fire();
+         }
+            if(pagename ==='MyAction' || pagename ==='swipeDetailcard'){
+            var actvity=cmp.get("v.activityId");
+            //var id=actvity.Id;
+           
+            var pagename=cmp.get("v.pagename");
+            var index=cmp.get("v.index");
+            var detailpageEvent=$A.get("e.c:EA_Detailpage_Event");
+            detailpageEvent.setParams({"actvityid":actvity,"showcontent":true,"index":index,"pagename":pagename});
+    	    detailpageEvent.fire();
+             };
+            }
         });
         $A.enqueueAction(action);
 	},
     getPrticipantCount : function(cmp){
         var act = cmp.get("v.activity");
   		var action = cmp.get("c.getActivityParticipantCount"); 
-        console.log("Activity ID=>"+ act[0].Id);
         action.setParams({"Activityid" : act[0].Id});
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS" && response.getReturnValue()!==''){
-                                    console.log("getParticipantCount Success"+response.getReturnValue());
-                console.log("Participant:"+response.getReturnValue());
-                    cmp.set("v.participantCount",response.getReturnValue());
-                
+                console.log("#ToDoHelper:participantCount:"+ response.getReturnValue());
+                cmp.set("v.participantCount",response.getReturnValue());
             }
         });
-        $A.enqueueAction(action);      
-        
+        $A.enqueueAction(action);
     }
-    
-    
 })

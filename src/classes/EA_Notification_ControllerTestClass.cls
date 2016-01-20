@@ -133,7 +133,7 @@ public class EA_Notification_ControllerTestClass{
             team1.Feedback_Comments__c='testTeam';      
             update team1;
             
-            // EA_Notification_Controller.sendFeedbackReminder(event.id, team.Invited_By__c, team.Participant__c);
+             EA_Notification_Controller.sendFeedbackReminder(event.id, team.Invited_By__c, team.Participant__c);
            //  EA_Notification_Controller.updateParticipantResponse('event.id',' team.Participant__c','Decline');
             
            // 

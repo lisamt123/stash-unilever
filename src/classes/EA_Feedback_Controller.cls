@@ -82,54 +82,5 @@ public with sharing class EA_Feedback_Controller {
         activtyList.add(objActivity);
         return activtyList;
     }      
-    public static void sendFeedbackReminder(List<EA_Team_Member__c> tmList){    
-        if(tmList != null && tmList.size()>0){          
-            ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();           
-            Map<ID,String> actIdTOName = new Map<ID,String>();
-            List<Everyday_Activity__c> acts = new List<Everyday_Activity__c>();
-            Set<ID> actIDs = new Set<ID>();                     
-            for(EA_Team_Member__c tmObj : tmList){               
-                actIDs.add(tmObj.Everyday_Activity__c);
-            }           
-            acts = [SELECT id, Name FROM Everyday_Activity__c WHERE ID IN: actIDs];           
-            for(Everyday_Activity__c  eaObj : acts){           
-                actIdTOName.put(eaObj.id,eaObj.Name);
-            }
-            
-            List<FeedItem> feedList = new List<FeedItem>(); 
-            
-			String chatterSupportUserID = '';
-             if(Test.isRunningTest()){
-				 
-					User userObj = [SELECT id, Name FROM User WHERE Name =: 'Chatter Support'];
-					chatterSupportUserID = userObj.id;
-			}
-			else{
-					
-					chatterSupportUserID = EA_ReportingGA__c.getInstance('EA_System_User_ID').Text_Value__c;
-				}
-			
-            for(EA_Team_Member__c tmObj : tmList){            
-                if(tmObj.Invitation_Status__c == EA_Constants.INVITATION_STATUS_SELF){                   
-                    string appUrl=URL.getSalesforceBaseUrl().toExternalForm() + '/' +'c/EverydayAction_App.app';
-                    string actName = actIdTOName.get(tmObj.Everyday_Activity__c);
-                    string userid= tmObj.Participant__c;                   
-                    FeedItem newFeed=new FeedItem();
-                    newFeed.CreatedById = chatterSupportUserID;
-                    newFeed.Body = System.Label.EA_Feedback_Message+'-'+ actName + ' ' + 'Your feedback help others. Please go to Everyday Actions on SF1 app to take action.';
-                    newFeed.ParentId =userid ;
-                    newFeed.Type = 'TextPost';
-                    feedList.add(newFeed);                    
-                }
-                
-            }
-            
-            if(feedList != null && feedList.size()>0){
-            	
-            	insert feedList;
-            }
-        }
-        
-    }
-    
+       
 }
