@@ -70,6 +70,7 @@ public with sharing class Oblix_TestUtils {
         Oblix_SOW_Projects__c project = new Oblix_SOW_Projects__c();
         project.Name = name;
         project.Financial_Year__c = marketingSowId;
+        project.Campaign_Countries__c = 'France, UK, Germany';
         insert project;
         return project;
     }

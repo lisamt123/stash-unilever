@@ -310,6 +310,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         public Double totalAmount;
         public String key;
         public String activityId;
+        public String otherName;
     }
    
 	public Pagereference exitSwop(){
