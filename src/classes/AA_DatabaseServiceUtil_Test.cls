@@ -11,12 +11,12 @@ private class AA_DatabaseServiceUtil_Test {
         List<String> res3 = AA_DatabaseServiceUtil.upsertOperation(retailerData);
         
         //invalid obj
-        sObject tst;
+        sObject tst=new aa_Agent_Retailer__c(Name='test');
         //insert tst;
         List<String> res1 = AA_DatabaseServiceUtil.upsertOperation(tst);        
         
         //invalid lst
-        List<sobject> lst;
+        List<sobject> lst =new List<sObject>();
         List<String> res2 = AA_DatabaseServiceUtil.upsertOperation(lst);
         
         Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
@@ -63,7 +63,7 @@ private class AA_DatabaseServiceUtil_Test {
         
         List<String> res1 = AA_DatabaseServiceUtil.deleteOperation(retailerData);
         
-        sObject tst;
+        sObject tst=new aa_Agent_Retailer__c(Name='test');
         List<String> res2 = AA_DatabaseServiceUtil.deleteOperation(tst);
         system.assert(res.size()>0);
         
@@ -80,8 +80,10 @@ private class AA_DatabaseServiceUtil_Test {
         system.assert(obj!=null);  
     }
     static testMethod void validateId() {
-        Boolean res = AA_DatabaseServiceUtil.validateId('012c00000008rxM');
-        system.debug('validate id'+AA_DatabaseServiceUtil.validateId('012c00000008rxM'));
+    	aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '78-Eleven');
+        insert retailerData;
+        Boolean res = AA_DatabaseServiceUtil.validateId(retailerData.id);
+      //  system.debug('validate id'+AA_DatabaseServiceUtil.validateId('012c00000008rxM'));
         system.assertEquals(res,true);
     }
     

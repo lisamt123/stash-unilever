@@ -10,7 +10,7 @@ private class AA_ApplicationWrapperObj_Test {
         obj.objAgentAppDataRequest=datarequest;
         AA_WrapperUtility.AgentAppDataResponse dataresponse=new AA_WrapperUtility.AgentAppDataResponse();
         obj.objGetAgentDataResponse=dataresponse;
-        List<AA_WrapperUtility.agentReportDetail> lstDatarequest;        
+        List<AA_WrapperUtility.agentReportDetail> lstDatarequest=new List<AA_WrapperUtility.agentReportDetail>();        
         obj.objPassAgentReportsToNG=lstDatarequest;
         obj.requestType='post';
         obj.serviceJSONObjectasString='test';

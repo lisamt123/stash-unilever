@@ -29,4 +29,14 @@ public with sharing class AA_Constants {
     public static final String ReportNameSample='unilever report 1';
     public static final String LatSample='18.5203° n';
     public static final String LongSample='73.8567° e';
+    public static final String ReportingOnSample='look-a-like';
+    public static final String StringException='Exception';
+    public static final String CompNameSample='Amul';
+    public static final String CategorySample='Skin care';
+    public static final String Topicsample='campaign';
+    public static final String SubtopicSample='marketing is a subtopic of campaign';
+    public static final String CompReportTitle='competitor report 3';
+    public static final String StringAmerica='America';
+    public static final String testString='test';
+    
 }

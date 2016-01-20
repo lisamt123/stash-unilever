@@ -136,15 +136,15 @@ global class AA_BaseApplicationServices implements AA_IBaseAppicationServices {
 
     }
     /* Uses out error codes/messages from exception object and updates the same to BaseApplicationWrapperObj which is sent as response for the service call */
-    private static AA_BaseApplicationWrapperObj constructResponseBody(AA_BaseApplicationWrapperObj responseObj, Object exceptionObj ){
+ /*   private static AA_BaseApplicationWrapperObj constructResponseBody(AA_BaseApplicationWrapperObj responseObj, Object exceptionObj ){
         if(Utility.isEmpty(responseObj)) responseObj = new AA_ApplicationWrapperObj();
         /*if( exceptionObj instanceOf BaseServiceException || exceptionObj instanceOf Exception) {
             responseObj.message   = AppConstants.ERROR_MSG_UNEXPECTED_ERROR_OCCURED;
             responseObj.errorCode = AppConstants.RESPONSE_FAILURE_ERROR_CODE;
 
         }*/
-        return (AA_BaseApplicationWrapperObj)responseObj;
-    }
+       // return (AA_BaseApplicationWrapperObj)responseObj;
+  //  }
 
     /* Updates error code and error message for invalid service name cases */
     private static AA_BaseApplicationWrapperObj handleInvalidSvcNameReq(AA_BaseApplicationWrapperObj responseObj){

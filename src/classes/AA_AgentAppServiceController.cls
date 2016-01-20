@@ -89,40 +89,40 @@ public with sharing class AA_AgentAppServiceController {
      */
     public aa_Agent_Report__c convertRequestAgentReport(AA_WrapperUtility.AgentAppDataRequest objAgentApp){
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
-        if(!Utility.isEmpty(objAgentApp.UnileverBrandId)){
+        if(!String.isEmpty(objAgentApp.UnileverBrandId)){
             newObjToBeInserted.Agent_App_Unilever_Brand__c  = objAgentApp.UnileverBrandId;
         }
-        if(!Utility.isEmpty(objAgentApp.ReportDesc)){
+        if(!String.isEmpty(objAgentApp.ReportDesc)){
             newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
         }
-       if(!Utility.isEmpty(objAgentApp.Retailer)){
+       if(!String.isEmpty(objAgentApp.Retailer)){
             newObjToBeInserted.Retailer__c  = objAgentApp.Retailer;
        }
-       if(!Utility.isEmpty(objAgentApp.ReportingOn)){
+       if(!String.isEmpty(objAgentApp.ReportingOn)){
             newObjToBeInserted.Reporting_on__c = objAgentApp.ReportingOn;
        }
-       if(!Utility.isEmpty(objAgentApp.CountryId)){
+       if(!String.isEmpty(objAgentApp.CountryId)){
             newObjToBeInserted.Country__c = objAgentApp.CountryId;
        }
-       if(!Utility.isEmpty(objAgentApp.ReportName )){
+       if(!String.isEmpty(objAgentApp.ReportName )){
             newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
        }
-       if(!Utility.isEmpty(objAgentApp.Town)){
+       if(!String.isEmpty(objAgentApp.Town)){
             newObjToBeInserted.Town__c = objAgentApp.Town;
        }
-       if(!Utility.isEmpty(objAgentApp.Longitude)){
+       if(!String.isEmpty(objAgentApp.Longitude)){
             newObjToBeInserted.longitude__c = objAgentApp.Longitude;
        }
-       if(!Utility.isEmpty(objAgentApp.Latitude)){
+       if(!String.isEmpty(objAgentApp.Latitude)){
             newObjToBeInserted.latitude__c = objAgentApp.Latitude;
        }
-       if(!Utility.isEmpty(objAgentApp.CategoryId )){
+       if(!String.isEmpty(objAgentApp.CategoryId )){
             newObjToBeInserted.Category__c = objAgentApp.CategoryId ;
        }
-       if(!Utility.isEmpty(objAgentApp.CompetitorId )){
+       if(!String.isEmpty(objAgentApp.CompetitorId )){
             newObjToBeInserted.Competitor_Name__c = objAgentApp.CompetitorId ;
        }
-       if(!Utility.isEmpty(objAgentApp.CompetitorBrandId )){
+       if(!String.isEmpty(objAgentApp.CompetitorBrandId )){
             newObjToBeInserted.Competitor_Brand__c = objAgentApp.CompetitorBrandId ;
        }
         /* if(!Utility.isEmpty(objAgentApp.ClusterId)){
@@ -148,47 +148,47 @@ public with sharing class AA_AgentAppServiceController {
     public aa_Agent_Report__c convertRequestAgentReport_Competitor(AA_WrapperUtility.AgentAppDataRequest objAgentApp){
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
         
-        if(!Utility.isEmpty(objAgentApp.ReportName )){
+        if(!String.isEmpty(objAgentApp.ReportName )){
             newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
         }
-        if(!Utility.isEmpty(objAgentApp.ReportDesc)){
+        if(!String.isEmpty(objAgentApp.ReportDesc)){
             newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
         }
-        if(!Utility.isEmpty(objAgentApp.Source)){
+        if(!String.isEmpty(objAgentApp.Source)){
             newObjToBeInserted.Source__c  = objAgentApp.Source;
         }
-        if(!Utility.isEmpty(objAgentApp.Retailer)){
+        if(!String.isEmpty(objAgentApp.Retailer)){
             newObjToBeInserted.Retailer__c  = objAgentApp.Retailer;
         }
-        if(!Utility.isEmpty(objAgentApp.CompetitorBrandId)){
+        if(!String.isEmpty(objAgentApp.CompetitorBrandId)){
             newObjToBeInserted.Competitor_Brand__c  = objAgentApp.CompetitorBrandId;
         }
-        if(!Utility.isEmpty(objAgentApp.CompetitorId)){
+        if(!String.isEmpty(objAgentApp.CompetitorId)){
             newObjToBeInserted.Competitor_Name__c  = objAgentApp.CompetitorId;
         }
-        if(!Utility.isEmpty(objAgentApp.CategoryId)){
+        if(!String.isEmpty(objAgentApp.CategoryId)){
             newObjToBeInserted.Category__c  = objAgentApp.CategoryId;
         }
-        if(!Utility.isEmpty(objAgentApp.TopicId)){
+        if(!String.isEmpty(objAgentApp.TopicId)){
             newObjToBeInserted.Topic__c  = objAgentApp.TopicId;
-            if(!Utility.isEmpty(objAgentApp.SubTopic)){
+            if(!String.isEmpty(objAgentApp.SubTopic)){
                 newObjToBeInserted.Sub_Topics__c  = objAgentApp.SubTopic;    
             }
             
         }
-        if(!Utility.isEmpty(objAgentApp.CountryId)){
+        if(!String.isEmpty(objAgentApp.CountryId)){
             newObjToBeInserted.Country__c = objAgentApp.CountryId;
         }
-       if(!Utility.isEmpty(objAgentApp.Town)){
+       if(!String.isEmpty(objAgentApp.Town)){
             newObjToBeInserted.Town__c = objAgentApp.Town;
        }
-       if(!Utility.isEmpty(objAgentApp.Longitude)){
+       if(!String.isEmpty(objAgentApp.Longitude)){
             newObjToBeInserted.longitude__c = objAgentApp.Longitude;
        }
-       if(!Utility.isEmpty(objAgentApp.Latitude)){
+       if(!String.isEmpty(objAgentApp.Latitude)){
             newObjToBeInserted.latitude__c = objAgentApp.Latitude;
        }
-       if(!Utility.isEmpty(objAgentApp.CodeOfConduct)){
+       if(!String.isEmpty(objAgentApp.CodeOfConduct)){
             if(objAgentApp.CodeOfConduct == 'true'){
                 newObjToBeInserted.Is_Accepted_Code_of_Conduct__c = true;    
             }else if(objAgentApp.CodeOfConduct == 'false'){
@@ -1211,7 +1211,7 @@ public with sharing class AA_AgentAppServiceController {
      public AA_ApplicationWrapperObj isAcceptedTermsAndCondition(AA_ApplicationWrapperObj appWrapperObj){
         List<aa_Agent_App_User_Preference__c> UserPref = [SELECT Id,User_Last_Login__c,UserId__c,Is_Accepted_Terms_Condition__c,T_C_AcceptedDate__c FROM aa_Agent_App_User_Preference__c where UserId__c =: UserInfo.getUserId() LIMIT 1];
          if(UserPref.size() >= 1){
-         if(UserPref[0].Is_Accepted_Terms_Condition__c == null || UserPref[0].Is_Accepted_Terms_Condition__c == false){
+         if(UserPref[0].Is_Accepted_Terms_Condition__c == false){
             appWrapperObj.isAcceptedTermsCondition = false;
          }
          else{

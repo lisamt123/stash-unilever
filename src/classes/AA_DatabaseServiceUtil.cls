@@ -15,11 +15,11 @@ public with sharing class AA_DatabaseServiceUtil {
         }
         catch(DMLException dmlEx){ 
           //  throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);         
-           System.debug('Exception:' + dmlEx);   
+           System.debug(AA_Constants.StringException + dmlEx);   
         }
         catch(Exception genEx){ 
           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', genEx);  
-             System.debug('Exception:' + genEx);
+             System.debug(AA_Constants.StringException + genEx);
         }  
         return idList;
     }
@@ -39,11 +39,11 @@ public with sharing class AA_DatabaseServiceUtil {
             }
         }catch(DMLException dmlEx){ 
            // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);         
-          System.debug('Exception:' + dmlEx); 
+          System.debug(AA_Constants.StringException + dmlEx); 
         }
         catch(Exception genEx){ 
            // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', genEx); 
-           System.debug('Exception:' + genEx); 
+           System.debug(AA_Constants.StringException + genEx); 
         }  
         return idList;
     } 
@@ -76,11 +76,11 @@ public with sharing class AA_DatabaseServiceUtil {
             idList.add(varAgentReportId);
         }catch(DMLException dmlEx){ 
            // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', dmlEx);     
-           System.debug('Exception:' + dmlEx);       
+           System.debug(AA_Constants.StringException + dmlEx);       
         }
         catch(Exception genEx){ 
            // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : upsertOperation method ', genEx);  
-           System.debug('Exception:' + genEx);
+           System.debug(AA_Constants.StringException + genEx);
         }  
      
         return idList;
@@ -102,10 +102,10 @@ public with sharing class AA_DatabaseServiceUtil {
             }
        }catch(DMLException dmlEx){ 
            // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', dmlEx);   
-           System.debug('Exception:' + dmlEx);         
+           System.debug(AA_Constants.StringException + dmlEx);         
        }catch(Exception genEx){ 
           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', genEx);  
-        System.debug('Exception:' + genEx);  
+        System.debug(AA_Constants.StringException+ genEx);  
        }  
        return idList;
     }
@@ -123,11 +123,11 @@ public with sharing class AA_DatabaseServiceUtil {
             }
         }catch(DMLException dmlEx){ 
            // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', dmlEx);  
-           System.debug('Exception:' + dmlEx);           
+           System.debug(AA_Constants.StringException+ dmlEx);           
         }
         catch(Exception genEx){ 
           // throw new BaseServiceException('Exception occured: DatabaseServiceUtil : deleteOperation method ', genEx);  
-            System.debug('Exception:' + genEx); 
+            System.debug(AA_Constants.StringException + genEx); 
         }  
         return idList;
     }  
@@ -147,7 +147,7 @@ public with sharing class AA_DatabaseServiceUtil {
             rtId = recordTypeInfo.get(RecordTypeLabel).getRecordTypeId();//particular RecordId by  Name
         }catch(Exception ex){ 
           //  throw new BaseServiceException('Exception occured: Utility : getRecordTypeId method ',ex);
-          System.debug('Exception:' + ex);
+          System.debug(AA_Constants.StringException + ex);
         }
         
         return rtId;
@@ -173,7 +173,7 @@ public with sharing class AA_DatabaseServiceUtil {
             }
         }catch(Exception ex){ 
            // throw new BaseServiceException('Exception occured: Utility : getPickListValues method ',ex);
-           System.debug('Exception:' + ex);
+           System.debug(AA_Constants.StringException + ex);
         }  
         return pickListValues;
     }
