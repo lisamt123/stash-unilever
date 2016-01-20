@@ -3058,11 +3058,11 @@ Activity Description: &apos;</value>
         <value>€ &apos;000</value>
     </labels>
     <labels>
-        <fullName>IPM_TaskNameErrorMsg</fullName>
+    	<fullName>IPM_TaskNameErrorMsg</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TaskNameErrorMsg</shortDescription>
-    <value>Enter Task Name.</value>
+	<value>Enter Task Name.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_IN_PROGRESS_STATE</fullName>
