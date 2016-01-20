@@ -1,7 +1,7 @@
 /*************************************************************
 *@Author:Cognizant
 *@Date:October 2014
-*@Description : To test IPM_BCCController class 
+*@Description : To test IPM_BCCController class for Local Projects
 *************************************************************/
 
 @isTest
@@ -114,6 +114,7 @@ public class  IPM_BCCController_Test {
             fin.Parent_Project__c=project.Id;
             fin.Project_Sustainability_Period__c = '3';
             fin.Local_Project__c=project.Id;
+            fin.isActive__c=true;
             insert fin;
             
             List<IPM_Financial__c> finListObj=[SELECT Local_Project__c,ID,Project_Sustainability_Period__c,RecordTypeId,IPM_Project_Rollout__c,Parent_Project__c from IPM_Financial__c WHERE ID=:fin.ID LIMIT 1];
@@ -123,7 +124,7 @@ public class  IPM_BCCController_Test {
             pRef.getParameters().put('Id',project.Id);
             Test.setCurrentPage(pRef);
             ipmBcc=new IPM_BCCController();
-            
+            ipmBcc.isPDFDownload=true;
             
         }
     }
@@ -142,6 +143,11 @@ public class  IPM_BCCController_Test {
             ipmBcc.save();
             List<IPM_Financial__c> finConList=[select Local_Project__c from IPM_Financial__c where id=:ipmBcc.finance.Id ];
             system.assertEquals(finConList[0].Local_Project__c ,fin.Local_Project__c,'save successfully');
+            ipmBcc.finance.IPM_Business_Case_Confirmed__c=null;
+            ipmBcc.save();
+            List<IPM_Financial__c> finConLists=[select IPM_Business_Case_Confirmed__c from IPM_Financial__c where id=:ipmBcc.finance.Id ];
+            system.assertNotEquals(finConLists[0].IPM_Business_Case_Confirmed__c,true,'status should not be changed');//negative test
+           
             Test.stopTest();
         }
     }
@@ -153,6 +159,7 @@ public class  IPM_BCCController_Test {
         initializeData();
         Test.startTest();
         system.RunAs(testUser){
+        	
             ipmBcc.finance=fin;
             ipmBcc.projList=new List<IPM_Project__c>();
             ipmBcc.projList=projectList;
@@ -160,6 +167,11 @@ public class  IPM_BCCController_Test {
             ipmBcc.hideSaveMsg();
             List<IPM_Financial__c> finConList=[select IPM_Business_Case_Confirmed__c from IPM_Financial__c where id=:ipmBcc.finance.Id ];
             system.assert(finConList[0].IPM_Business_Case_Confirmed__c,'status changed');
+            ipmBcc.finance.id=null;
+            ipmBcc.changeStatus();
+            List<IPM_Financial__c> finConLists=[select IPM_Business_Case_Confirmed__c from IPM_Financial__c where id=:fin.Id ];
+            system.assertNotEquals(finConLists.size()>0,true,'status should not be changed for financial');//negative test
+           
             Test.stopTest();
         }
     }
