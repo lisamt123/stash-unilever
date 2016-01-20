@@ -149,7 +149,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
     }
 
     private void checkAndSetActivityAttributes(){
-        Oblix_NonCampaignWrapper non_campaign_to_pre_select;
+        Oblix_NonCampaignWrapper non_campaign_to_pre_select = new Oblix_NonCampaignWrapper();
 
         if (NULL!=activitySelectionMap && !activitySelectionMap.values().isEmpty()){
 
@@ -180,7 +180,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
             }
         }
         else{
-            if (NULL != non_campaign_to_pre_select && rtActivity == non_campaign_to_pre_select.nonCampaignItem.RecordTypeId){
+            if (NULL != non_campaign_to_pre_select.name && rtActivity == non_campaign_to_pre_select.nonCampaignItem.RecordTypeId){
                 // this must be a activity set to blank
                 setActivityAttributes(null , null, null, null, null, null);   
             }
