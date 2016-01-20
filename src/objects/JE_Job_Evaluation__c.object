@@ -900,11 +900,11 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;,CASE( Advertising_Promotion__c 
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>3B</fullName>
+                <fullName>3A</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>3C</fullName>
+                <fullName>3B</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1528,7 +1528,7 @@ CASE( RecordTypeId , &quot;012E0000000654N&quot;, CASE( Geographic_Scope__c , &q
     <fields>
         <fullName>Influence_in_Decison_Making_Process_Comm__c</fullName>
         <externalId>false</externalId>
-        <label>Influence in Decison Making Process</label>
+        <label>Influence in Decision Making Process</label>
         <length>32768</length>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -4993,11 +4993,11 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
             <values>
-                <fullName>3B</fullName>
+                <fullName>3A</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>3C</fullName>
+                <fullName>3B</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6385,11 +6385,11 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
             <values>
-                <fullName>3B</fullName>
+                <fullName>3A</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>3C</fullName>
+                <fullName>3B</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -6604,6 +6604,10 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
             </values>
             <values>
                 <fullName>4B</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>5A</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -7769,11 +7773,11 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
             <values>
-                <fullName>3B</fullName>
+                <fullName>3A</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>3C</fullName>
+                <fullName>3B</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -9165,11 +9169,11 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
             <values>
-                <fullName>3B</fullName>
+                <fullName>3A</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>3C</fullName>
+                <fullName>3B</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -10561,11 +10565,11 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
             <values>
-                <fullName>3B</fullName>
+                <fullName>3A</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>3C</fullName>
+                <fullName>3B</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -11965,11 +11969,11 @@ CASE( RecordTypeId , &quot;012E0000000654R&quot;,CASE(WL_of_Line_Manager__c , &q
                 <default>false</default>
             </values>
             <values>
-                <fullName>3B</fullName>
+                <fullName>3A</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>3C</fullName>
+                <fullName>3B</fullName>
                 <default>false</default>
             </values>
             <values>

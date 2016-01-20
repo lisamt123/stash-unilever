@@ -63,6 +63,11 @@ public class EA_UtilsTestClass{
              EA_Team_Member__c team1=new  EA_Team_Member__c();
              List<SObject>  lstActivity =new List<SObject>();
              lstActivity.add(team);
+             EA_ReportingGA__c report=new EA_ReportingGA__c();
+             report.Name='EAreport';
+             report.Text_value__c='dummyvalue';
+             insert report;
+             
                   Test.startTest();
             
             EA_Utils EAnote=new EA_Utils();
@@ -72,16 +77,13 @@ public class EA_UtilsTestClass{
              
              boolean temp3=EA_Utils.isEmpty('true');
              boolean temp4=EA_Utils.isEmpty('');
-             boolean temp32=EA_Utils.isEmpty2('true2');
-             boolean temp42=EA_Utils.isEmpty2('');
-             boolean temp37=EA_Utils.isEmpty3('true3');
-             boolean temp43=EA_Utils.isEmpty3('');
+            
              
             Everyday_Activity__c ea=EA_Utils.getActivitydetails(event.id);
-           // try{
-           //EA_Utils.postCommentAtUserFeed('test','test','test','test');
+           try{
+           EA_Utils.postCommentAtUserFeed('team.id','team2.Invited_By__c','team2.Participant__c','postcomment');
           // EA_Utils.postCommentAtUserFeed(null,null,null,null);
-          // }catch(exception e){ System.debug('Exception caught: ' + e.getMessage());}
+           }catch(exception e){ System.debug('Exception caught: ' + e.getMessage());}
             List<EA_Team_Member__c> temp33=EA_Utils.getTeamMebersForActivity(event.id);
             Integer t1=EA_Utils.getactivityRating(10.2);
             Integer t11=EA_Utils.getactivityRating(10.7);
