@@ -83,20 +83,20 @@ public with sharing class Oblix_CampaignStageLogic{
     * @description  instance list to hold projected stages containing stage object
     ********************************************************************************/
     public List<Stage> li_projected_stages {
-    	get{
-    		if (null==li_projected_stages){
-    			li_projected_stages = new List<Stage>();
-    			Integer stage_number = 0;
+        get{
+            if (null==li_projected_stages){
+                li_projected_stages = new List<Stage>();
+                Integer stage_number = 0;
 
-    			for (String stage: Oblix_Utils.getStageList()){
-    				li_projected_stages.add(new Stage(false, stage, stage_number, false));
-    				stage_number ++;
-    			}
-    		}
-		return li_projected_stages;
+                for (String stage: Oblix_Utils.getStageList()){
+                    li_projected_stages.add(new Stage(false, stage, stage_number, false));
+                    stage_number ++;
+                }
+            }
+        return li_projected_stages;
 
-    	}
-    	set;
+        }
+        set;
     }
 
     /*******************************************************************************
@@ -105,22 +105,31 @@ public with sharing class Oblix_CampaignStageLogic{
     * @description  instance list to hold completed stages containing stage object
     ********************************************************************************/
     public List<Stage> li_completed_stages {
-    	get{
-    		if (null==li_completed_stages){
-    			li_completed_stages = new List<Stage>();
-    			Integer stage_number = 0;
+        get{
+            if (null==li_completed_stages){
+                li_completed_stages = new List<Stage>();
+                Integer stage_number = 0;
 
-    			for (String stage: Oblix_Utils.getStageList()){
-    				li_completed_stages.add(new Stage(false, stage,stage_number, true));
-    				stage_number ++;
-    			}
-    		}
-		return li_completed_stages;
+                for (String stage: Oblix_Utils.getStageList()){
+                    li_completed_stages.add(new Stage(false, stage,stage_number, true));
+                    stage_number ++;
+                }
+            }
+        return li_completed_stages;
 
-    	}
-    	set;
+        }
+        set;
     }
-
+    
+    
+     public Oblix_CampaignStageLogic(Oblix_SOW_Projects__c sow_project, Integer percentageValue){
+              sow_project_in_scope = sow_project;
+             i_percentage_of_fee_this_year = percentageValue;
+             system.debug('###i_percentage_of_fee_this_year : '+i_percentage_of_fee_this_year);
+             calculateFeesForThisYear();
+             
+     }
+    
     /*******************************************************************************
     * @author       Shahin Movahedi
     * @date         2016-01-09
@@ -202,7 +211,11 @@ public with sharing class Oblix_CampaignStageLogic{
             // also set projection seletable value by checking b_is_projection_selectable
             li_projected_stages[i].b_is_stage_selectable = b_is_projection_selectable;
         }
-
+         if(sow_project_in_scope.Value_To_BePaid_Manual_Override__c){
+                i_percentage_of_fee_this_year = Integer.valueOf(sow_project_in_scope.Percentage_of_Fee_for_this_FY__c);
+                i_fees_for_this_financial_year = Integer.valueOf(sow_project_in_scope.Value_to_be_paid_in_Current_FY__c);
+                system.debug('###i_fees_for_this_financial_year : '+i_fees_for_this_financial_year);
+          }
         s_selected_projected_stage = sow_project_in_scope.Projected_Stage__c;
         s_selected_completed_stage = sow_project_in_scope.Completed_Stage__c;
  
@@ -215,7 +228,9 @@ public with sharing class Oblix_CampaignStageLogic{
     * @description  depending on the percentage of fee this year and total fees to be paid
     ********************************************************************************/
     private void calculateFeesForThisYear(){
-
+        system.debug('###is i_percentage_of_fee_this_year : '+i_percentage_of_fee_this_year);
+        system.debug('###is sow_project_in_scope.Campaign_Total_Fees__c : '+sow_project_in_scope.Campaign_Total_Fees__c);
+        
         if (NULL != i_percentage_of_fee_this_year && NULL != sow_project_in_scope.Campaign_Total_Fees__c && i_percentage_of_fee_this_year == 100 ){
             i_fees_for_this_financial_year = Integer.valueOf(sow_project_in_scope.Campaign_Total_Fees__c);
         }
@@ -225,7 +240,7 @@ public with sharing class Oblix_CampaignStageLogic{
         else{
             i_fees_for_this_financial_year = 0;
         }
-
+        system.debug('###i_fees_for_this_financial_year : '+i_fees_for_this_financial_year);
     }
     
     /********************************************************************
@@ -346,6 +361,7 @@ public with sharing class Oblix_CampaignStageLogic{
                     deselect the stages if not in the correct sequence
     ********************************************************************************/
     public void setCompletionStage(String new_val, String old_val){
+        sow_project_in_scope.Value_To_BePaid_Manual_Override__c = false;
         sow_project_in_scope.Completed_Stage__c = getStageNameByValues(new_val, old_val);
         setStageAttributes();
     }
@@ -358,6 +374,7 @@ public with sharing class Oblix_CampaignStageLogic{
                     deselect the stages if not in the correct sequence
     ********************************************************************************/
     public void setProjectedStage(String new_val, String old_val){
+        sow_project_in_scope.Value_To_BePaid_Manual_Override__c = false;
         sow_project_in_scope.Projected_Stage__c = getStageNameByValues(new_val, old_val);
         setStageAttributes();
     }
@@ -368,20 +385,20 @@ public with sharing class Oblix_CampaignStageLogic{
     * @description  wrapper class to hold the stage attributes
     ********************************************************************************/
     public class Stage{
-    	public boolean b_is_stage_selected {get;set;}
-    	public String s_stage_name {get;set;}
-    	public Integer i_stage_number {get;set;}
+        public boolean b_is_stage_selected {get;set;}
+        public String s_stage_name {get;set;}
+        public Integer i_stage_number {get;set;}
         public boolean b_is_stage_selectable {get;set;}
         //public Integer i_stage_percentage {get;set;}
 
-    	public Stage(boolean is_complete, String stage_name, Integer stage_number, Boolean is_selectable ){
-    		b_is_stage_selected = is_complete;
-    		s_stage_name = stage_name;
-    		i_stage_number = stage_number;
+        public Stage(boolean is_complete, String stage_name, Integer stage_number, Boolean is_selectable ){
+            b_is_stage_selected = is_complete;
+            s_stage_name = stage_name;
+            i_stage_number = stage_number;
             b_is_stage_selectable = is_selectable;
             //i_stage_percentage = stage_percentage;
 
-    	}
+        }
     }
 
     /*******************************************************************************

@@ -74,6 +74,7 @@
                 return false;
             }
             if(true){
+                blockme();
                 insertSelectedResource();
             }
             return true;
@@ -108,7 +109,7 @@
             <title>SWOP : {!marketing_SOW.Name}</title>
         </head>
 
-        <apex:actionFunction action="{!fillAgencyDepartment}" oncomplete="$.unblockUI()" name="adupdate" reRender="agencyDepartment,dedicatedAgencyDepartment,selectedRole,rate,rater,result,add,errMsg" >
+        <apex:actionFunction action="{!fillAgencyDepartment}" oncomplete="$.unblockUI()" name="adupdate" reRender="agencyDepartment,dedicatedAgencyDepartment,selectedRole,rate,rater,result,add,errMsg,other_pane" >
             <apex:param name="selectedTab" assignTo="{!selectedTab}" value="" />
         </apex:actionFunction>
 
@@ -121,21 +122,35 @@
         </apex:actionFunction>       
 
 
-        <apex:actionFunction action="{!getSelectedActivitiesByName}" oncomplete="$.unblockUI()" name="getSelectedActivitiesByName" reRender="selectionTable">
+        <apex:actionFunction action="{!getAndSetActivitiesByName}" oncomplete="$.unblockUI()" name="getAndSetActivitiesByName" reRender="selectionTable,activity_input_field_panel,resource_input_fields,activity_tabs">
             <apex:param name="campaignItem" assignTo="{!selectedName}" value="" />
         </apex:actionFunction>
-        <apex:actionFunction action="{!addToActivitySelectionMap}" oncomplete="$.unblockUI()" name="addToActivitySelectionMap" reRender="selectionTable">
+        <apex:actionFunction action="{!addToActivitySelectionMap}" oncomplete="$.unblockUI()" name="addToActivitySelectionMap" reRender="selectionTable,activity_input_field_panel">
             <apex:param name="campaignItem" assignTo="{!seletedActivity}" value="" />
+            <!-- <apex:param name="is_selection_for_edit_mode" assignTo="{!is_selection_for_edit_mode}" value="false" /> -->
         </apex:actionFunction>
-        <apex:actionFunction action="{!removeFromSelectionMap}" oncomplete="$.unblockUI()" name="removeFromSelectionMap" reRender="selectionTable,shoppingBasketPanel,campaignTotalPanel,shoppingBasketPanel">
+        <apex:actionFunction action="{!removeFromSelectionMap}" oncomplete="$.unblockUI()" name="removeFromSelectionMap" reRender="selectionTable,shoppingBasketPanel,campaignTotalPanel,shoppingBasketPanel,activity_input_field_panel">
             <apex:param name="selectedkey" assignTo="{!selectedkey}" value="" />
+            <!-- <apex:param name="is_selection_for_edit_mode" assignTo="{!is_selection_for_edit_mode}" value="false" /> -->
         </apex:actionFunction>
         <apex:actionFunction action="{!removeItemFromBasketList}" oncomplete="$.unblockUI()" name="removeItemFromBasketList" reRender="shoppingBasketPanel,campaignTotalPanel,shoppingBasketPanel">
             <apex:param name="basketItemToRemove" assignTo="{!basketItemToRemove}" value="" />
         </apex:actionFunction>
-        <apex:actionFunction action="{!insertSelectedActivitiesAndRefreshBasket}" oncomplete="$.unblockUI()" name="insertSelectedActivities" reRender="shoppingBasketPanel,selectionTable,campaignTotalPanel,shoppingBasketPanel" />
-        <apex:actionFunction action="{!insertSelectedResourceAndRefreshBasket}" oncomplete="$.unblockUI()" name="insertSelectedResource" reRender="shoppingBasketPanel,selectionTable,campaignTotalPanel,shoppingBasketPanel" />
+        <apex:actionFunction action="{!insertSelectedActivitiesAndRefreshBasket}" oncomplete="$.unblockUI()" name="insertSelectedActivities" reRender="shoppingBasketPanel,selectionTable,campaignTotalPanel,shoppingBasketPanel" >
+            <!-- <apex:param name="is_selection_for_edit_mode" assignTo="{!is_selection_for_edit_mode}" value="false" /> -->
+        </apex:actionFunction>
+        <apex:actionFunction action="{!upsertSelectedResourceAndRefreshBasket}" oncomplete="$.unblockUI()" name="insertSelectedResource" reRender="shoppingBasketPanel,selectionTable,campaignTotalPanel,shoppingBasketPanel" />    
 
+        <apex:actionFunction action="{!setActivityInputFieldsForSelectedItem}" oncomplete="$.unblockUI()" name="setActivityInputFieldsForSelectedItem" reRender="activity_input_field_panel">
+            <apex:param name="selected_activity" assignTo="{!selected_activity}" value="" />
+            <apex:param name="selected_country" assignTo="{!selected_country}"  value=""/>
+            <apex:param name="selected_agent_department" assignTo="{!selected_agent_department}"  value=""/>
+            <apex:param name="selected_other" assignTo="{!selected_other}" value="" />
+            <apex:param name="selected_role" assignTo="{!selected_role}" value="" />
+            <apex:param name="selected_hours" assignTo="{!selected_hours}" value="" />
+            <apex:param name="selected_hourly_rate" assignTo="{!selected_hourly_rate}" value="" />
+            <!-- <apex:param name="is_selection_for_edit_mode" assignTo="{!is_selection_for_edit_mode}" value="true" /> -->
+        </apex:actionFunction>
 
         <div class="Oblix_header_bkgd">
             <header class="Oblix_header_panel">
@@ -179,21 +194,33 @@
             </apex:outputPanel>
             <div class="row">
                 <div class="col-lg-9">
+                    <apex:outputPanel id="activity_tabs">
+
                     <div class="row">
+<!--                         <ul class="sow_tab_style nav nav-tabs sow_tab_align" data-tabs="tabs">
+                            <li role="presentation" class="non_camp_tab_line_align {!if(selectedTab<>'dedicated resource','active','')}"><a href="#activity" data-toggle="tab">Add activity</a>
+                            </li>
+                            <li role="presentation" class="non_camp_tab_line_align {!if(selectedTab=='dedicated resource','active','')}"><a href="#resource" data-toggle="tab">Add dedicated resource</a>
+                            </li>
+                        </ul> -->
                         <ul class="sow_tab_style nav nav-tabs sow_tab_align" data-tabs="tabs">
-                            <li role="presentation" class="active non_camp_tab_line_align"><a href="#activity" data-toggle="tab">Add activity</a>
+                            <li role="presentation" class="non_camp_tab_line_align active"><a href="#activity" data-toggle="tab">Add activity</a>
                             </li>
                             <li role="presentation" class="non_camp_tab_line_align"><a href="#resource" data-toggle="tab">Add dedicated resource</a>
                             </li>
                         </ul>
                     </div>
+                    </apex:outputPanel>
 
                     <div id="my-tab-content" class="tab-content">
                         <div class="tab-pane active" id="activity">
+                    <apex:outputPanel id="activity_input_field_panel">
+
                             <div class="row">
                                 <div class="col-lg-4">
                                     <p class="create_SOW_form_titles">Activity*</p>
-                                    <apex:inputField value="{!activity.nonCampaignItem.Activities__c}" styleclass="investment_project_dropdowns_right" id="activityId" onchange="if ($(this).val()=='Other'){ $('.otherr').prop('disabled', false);}else{ $('.otherr').prop('disabled', true);}" />
+                                    <apex:inputField value="{!activity.nonCampaignItem.Activities__c}" styleclass="investment_project_dropdowns_right" id="activityId" onchange="adupdate('activity');blockme();" />
+                                    <!-- <apex:inputField value="{!activity.nonCampaignItem.Activities__c}" styleclass="investment_project_dropdowns_right" id="activityId" onchange="if ($(this).val()=='Other'){ $('.otherr').prop('disabled', false);}else{ $('.otherr').prop('disabled', true);}" /> -->
                                 </div>
                                 <div class="col-lg-4">
                                     <p class="create_SOW_form_titles">Country*</p>
@@ -208,12 +235,14 @@
                                     </apex:selectList>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <p class="non_campaign_other">Please describe "other"</p>
-                                    <apex:inputField styleClass="resource_name_box_align" value="{!resource.nonCampaignItem.name}" id="dedicatedResourceOther"  />
+                            <apex:outputPanel id="other_pane" rendered="{!if(activity.nonCampaignItem.Activities__c == 'Other',true,false)}">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="non_campaign_other">Please describe "other"</p>
+                                        <apex:inputField styleClass="resource_name_box_align" value="{!activity.nonCampaignItem.name}" id="dedicatedResourceOther"  />
+                                    </div>
                                 </div>
-                            </div>
+                            </apex:outputPanel>
                             <div class="row">
                                 <div class="col-lg-4 non_camp_dropdown_spacing">
                                     <p class="create_SOW_form_titles">Role*</p>
@@ -231,6 +260,7 @@
                                     </p>
                                 </div>
                             </div>
+                        </apex:outputPanel>
                             <apex:outputPanel id="selectionTable"  >
                                 <apex:outputPanel rendered="{!IF(selectedActivitiesSize > 0, true, false)}">
                                     <table class="table table-striped" id="swopTable">
@@ -250,7 +280,7 @@
                                         </thead>
                                         <tbody>
                                             <apex:repeat value="{!activitySelectionMap}" var="eachActivity">
-                                                <tr>
+                                                <tr onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">
                                                     <th style="display:none;" id="idColumn_{!activitySelectionMap[eachActivity].key}">{!activitySelectionMap[eachActivity].key}</th>
                                                     <th style="display:none;" id="idColumn_{!activitySelectionMap[eachActivity].activityId}">{!activitySelectionMap[eachActivity].activityId}</th>
                                                     <td>{!activitySelectionMap[eachActivity].selectedActivity}</td>
@@ -276,44 +306,46 @@
                                 </apex:outputPanel>
                             </apex:outputPanel>
                         </div>
-                        <div class="tab-pane" id="resource">
-                            <div class="row">
-                                <div class="col-lg-4">
-                                    <p class="create_SOW_form_titles">Resource Name*</p>
-                                    <apex:inputField styleClass="resource_name_box_align" value="{!resource.nonCampaignItem.name}" id="dedicatedResourceName"  />
+                            <div class="tab-pane" id="resource">
+                                <apex:outputPanel id="resource_input_fields">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <p class="create_SOW_form_titles">Resource Name*</p>
+                                        <apex:inputField styleClass="resource_name_box_align" value="{!resource.nonCampaignItem.name}" id="dedicatedResourceName"  />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <p class="create_SOW_form_titles">Country*</p>
+                                        <apex:selectList size="1" value="{!resource.selectedCountryname}" onchange="adupdate('resource');blockme();" styleclass="investment_project_dropdowns_right" id="dedicatedCountry">
+                                            <apex:selectOptions value="{!countries}" />
+                                        </apex:selectList>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <p class="create_SOW_form_titles">Agency department*</p>
+                                        <apex:selectList size="1" value="{!resource.selectedAgencyDepartment}" styleclass="picklist_init" id="dedicatedAgencyDepartment" onchange="RTupdate('resource');blockme();" disabled="{!IF(resource.agencyVisible==false,true,false)}" style="min-width:100%;">
+                                            <apex:selectOptions value="{!resourceAgencyDepartment}" />
+                                        </apex:selectList>
+                                    </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <p class="create_SOW_form_titles">Country*</p>
-                                    <apex:selectList size="1" value="{!resource.selectedCountryname}" onchange="adupdate('resource');blockme();" styleclass="investment_project_dropdowns_right" id="dedicatedCountry">
-                                        <apex:selectOptions value="{!countries}" />
-                                    </apex:selectList>
+                                <div class="row">
+                                    <div class="col-lg-4 non_camp_dropdown_spacing">
+                                        <p class="create_SOW_form_titles">Role*</p>
+                                        <apex:selectList size="1" value="{!resource.selectedRole}" id="dedicatedSelectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(resource.roleVisible==false,true,false)}" onchange="Rateupdate('resource');blockme();">
+                                            <apex:selectOptions value="{!resourceRoleTitle}" />
+                                        </apex:selectList>
+                                    </div>
+                                    <div class="col-lg-8 non-campaign_hourly_rate_section yearly_rate_form_align">
+                                        <p>Yearly rate €&nbsp;&nbsp;
+                                            <apex:outputLabel value="{!resource.hourlyRate}" id="dedicatedRate" />
+                                            <!--apex:input type="number" styleClass="hourly_rate_box" html-min="0" value="{!resource.hoursSelected}" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}" disabled="{!IF(resource.valVisible==false,false,false)}" id="dedicatedHoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" /-->&nbsp;&nbsp;
+                                            <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" value="{!resource.hoursSelected}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(Math.round($(this).val()/100*parseFloat($('.rateclass1').text()).toFixed(2))); formatNumber ($('.rslt1'));}" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " />
+                                            <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->%
+                                            <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
+                                            <apex:commandButton value="ADD" styleClass="btn btn-primary btn_plus btn_asset_add" onclick="validateResourceSelection(); return false;" />
+                                        </p>
+                                    </div>
                                 </div>
-                                <div class="col-lg-4">
-                                    <p class="create_SOW_form_titles">Agency department*</p>
-                                    <apex:selectList size="1" value="{!resource.selectedAgencyDepartment}" styleclass="picklist_init" id="dedicatedAgencyDepartment" onchange="RTupdate('resource');blockme();" disabled="{!IF(resource.agencyVisible==false,true,false)}" style="min-width:100%;">
-                                        <apex:selectOptions value="{!resourceAgencyDepartment}" />
-                                    </apex:selectList>
-                                </div>
+                                </apex:outputPanel>
                             </div>
-                            <div class="row">
-                                <div class="col-lg-4 non_camp_dropdown_spacing">
-                                    <p class="create_SOW_form_titles">Role*</p>
-                                    <apex:selectList size="1" value="{!resource.selectedRole}" id="dedicatedSelectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(resource.roleVisible==false,true,false)}" onchange="Rateupdate('resource');blockme();">
-                                        <apex:selectOptions value="{!resourceRoleTitle}" />
-                                    </apex:selectList>
-                                </div>
-                                <div class="col-lg-8 non-campaign_hourly_rate_section yearly_rate_form_align">
-                                    <p>Yearly rate €&nbsp;&nbsp;
-                                        <apex:outputLabel value="{!resource.hourlyRate}" id="dedicatedRate" />
-                                        <!--apex:input type="number" styleClass="hourly_rate_box" html-min="0" value="{!resource.hoursSelected}" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}" disabled="{!IF(resource.valVisible==false,false,false)}" id="dedicatedHoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" /-->&nbsp;&nbsp;
-                                        <apex:input type="number" styleclass="prcentt input_init" html-min="0" html-max="100" value="{!resource.hoursSelected}"  style="width:40px;" onchange="if(!isNaN(parseInt($('.rateclass1').text()))){ $('.rslt1').text(Math.round($(this).val()/100*parseFloat($('.rateclass1').text()).toFixed(2))); formatNumber ($('.rslt1'));}" id="prcent"   onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);  if($(this).val()>100)  $(this).val(100);  " />
-                                        <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->%
-                                        <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
-                                        <apex:commandButton value="ADD" styleClass="btn btn-primary btn_plus btn_asset_add" onclick="validateResourceSelection(); return false;" />
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 asset_shopping_basket_margin">
@@ -327,7 +359,7 @@
                                 <div class="asset_shopping_basket_item">
                                     <div class="campaign_create_agency_hub_split_table_subtitle padding_bottom0">
                                         <a href="#" id="basketRemoveRow_{!eachItem.activityName}" value="{!eachItem.activityName}" onclick="basketRemoveRow('{!eachItem.activityName}');"><img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" class="attachement_redcross" height="12" width="12" /></a>
-                                        <a href="#" id="basketItem_{!eachItem.activityName}" onclick="getSelectedActivitiesByName('{!eachItem.activityName}')">{!eachItem.activityName} - €<apex:outputText value="{0, number,###,###,##0}"> <apex:param value="{!eachItem.totalAmount}"/></apex:outputText>
+                                        <a href="#" id="basketItem_{!eachItem.activityName}" onclick="getAndSetActivitiesByName('{!eachItem.activityName}');blockme();">{!eachItem.activityName} - €<apex:outputText value="{0, number,###,###,##0}"> <apex:param value="{!eachItem.totalAmount}"/></apex:outputText>
                                         </a>
                                     </div>
                                 </div>    

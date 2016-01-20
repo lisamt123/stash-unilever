@@ -21,13 +21,15 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     public List<Oblix_Project_Assets__c> liso_assets;
 
     public Id selected_asset_id {get;set;}
-
+    public Decimal PercentToAdjust {get;set;}
+    public Boolean is_enable_Adjust {get;set;}
     /*******************************************************************************
     * @author       Shahin Movahedi
     * @date         2016-01-09
     * @description  Oblix_CampaignSummaryController constructor
     ********************************************************************************/
     public Oblix_CampaignSummaryController() {
+        is_enable_Adjust = false;
         
         // get SOW and Campaign IDs from page parameters
         project_id = ApexPAges.currentPage().getParameters().get('projectId');
@@ -36,11 +38,15 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
         selected_project = getCampaign(project_id, Oblix_Utils.getAllFieldsInFieldsSet('Oblix_SOW_Projects__c','Oblix_Campaign_Summary'), ', (SELECT OblixCountry__r.Name, Percentage__c FROM Marketing_SOW_Project_Splits__r)');
         
         // query the selected sow in scope
-        selected_sow = getSOW(selected_project.Financial_Year__c,new List<String>{'Name'}, null);
+        selected_sow = getSOW(selected_project.Financial_Year__c,new List<String>{'Name','OwnerId'}, null);
 
         // get related stage identifier for the given selected project Id
         stage_identifier = new Oblix_CampaignStageLogic(selected_project, true);
-
+        
+        //Check if the Connected user is the Owner of the Campaign, if So, then Enable AdjustFee Button.
+        if(selected_sow.OwnerId == UserInfo.getUserId()){
+            is_enable_Adjust = true;
+        }
     }
 
     /*******************************************************************************
@@ -163,5 +169,25 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
 
     }
 
-
+     /*******************************************************************************
+    * @author       Jamal Rida
+    * @date         2016-01-19
+    * @description  AdjustFee
+    ********************************************************************************/
+    public PageReference AdjustFee(){
+        selected_project.Percentage_of_Fee_for_this_FY__c = PercentToAdjust;
+        selected_project.Value_To_BePaid_Manual_Override__c = true;
+        system.debug('###PercentToAdjust : '+PercentToAdjust);
+        system.debug('###selected_project.Percentage_of_Fee_for_this_FY__c : '+selected_project.Percentage_of_Fee_for_this_FY__c);
+        update selected_project;
+        // query the selected_project in scope from the super class
+        selected_project = getCampaign(project_id, Oblix_Utils.getAllFieldsInFieldsSet('Oblix_SOW_Projects__c','Oblix_Campaign_Summary'), ', (SELECT OblixCountry__r.Name, Percentage__c FROM Marketing_SOW_Project_Splits__r)');
+        system.debug('###selected_project.Value_to_be_paid_in_Current_FY__c : '+selected_project.Value_to_be_paid_in_Current_FY__c);
+        stage_identifier = new Oblix_CampaignStageLogic(selected_project,Integer.valueof(PercentToAdjust));
+        
+        PageReference meNewPage = Page.oblix_campaignsummary;
+                 meNewPage.getParameters().put('projectId', selected_project.Id);
+                 meNewPage.setRedirect(True);
+           return meNewPage;
+    }
 }

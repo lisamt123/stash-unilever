@@ -1,7 +1,7 @@
 @isTest
 private class Oblix_SOWNonCampaignCreateCtrl_Test {
 
-	static Marketing_Basics__c globalAct; 
+    static Marketing_Basics__c globalAct; 
 
  private static  id createMaketingSow (){
       
@@ -46,7 +46,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             insert basicParent;
             
       Marketing_Basics__c basicParent1 = new Marketing_Basics__c();
-      		basicParent1.Non_Campaign_Key__c = '124';
+            basicParent1.Non_Campaign_Key__c = '124';
             basicParent1.Oblix_SOWMarketing__c = marketingSow.Id;
             basicParent1.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get('Resource');
             basicParent1.FTE__c = 50;
@@ -84,7 +84,7 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
          
         System.runAs(u){
    
-	        Test.startTest();
+            Test.startTest();
             ApexPages.currentPage().getParameters().put('preSelectedName', 'preselected' );
             ApexPages.currentPage().getParameters().put('sowId', createMaketingSow() );
             Oblix_SOWNonCampaignCreateController controller = new Oblix_SOWNonCampaignCreateController();
@@ -92,29 +92,29 @@ private class Oblix_SOWNonCampaignCreateCtrl_Test {
             controller.seletedActivity = JSON.serialize(globalAct);
             //test insert activity
             controller.selectedTab = 'activity';
-    	    controller.activity.name='istest';
-        	controller.activity.selectedCountryname ='France' ;
-        	controller.fillAgencyDepartment();
-        	controller.activity.selectedAgencyDepartment= 'Account Management';
-	        controller.fillRoleTitle();
-    	    controller.fillRate();
+            controller.activity.name='istest';
+            controller.activity.selectedCountryname ='France' ;
+            controller.fillAgencyDepartment();
+            controller.activity.selectedAgencyDepartment= 'Account Management';
+            controller.fillRoleTitle();
+            controller.fillRate();
 
-	        controller.resource.name='istest';
-        	controller.resource.selectedCountryname ='France' ;
-        	controller.resource.selectedAgencyDepartment= 'Account Management';
-			controller.getSelectedActivitiesByName();
-       		controller.addToActivitySelectionMap();
-       		controller.insertSelectedActivitiesAndRefreshBasket();
-       		controller.removeFromSelectionMap();
-       		controller.removeItemFromBasketList();
-       		controller.insertSelectedResourceAndRefreshBasket();
-       		controller.clearActivitySelectionMap();
-       		List<SelectOption> roleTitle = new List<SelectOption>{new SelectOption('1','1')};
-       		Map<String,String> roleTitlesNameMap = new  Map<String,String>();
-       		roleTitlesNameMap.put('1','1');
-       		List<SelectOption> result = controller.populateRoleTitleList(roleTitle,roleTitlesNameMap);
-       		System.assert(result != null);
-       		System.assert(controller.exitSwop() != null);
+            controller.resource.name='istest';
+            controller.resource.selectedCountryname ='France' ;
+            controller.resource.selectedAgencyDepartment= 'Account Management';
+            controller.getSelectedActivitiesByName();
+            controller.addToActivitySelectionMap();
+            controller.insertSelectedActivitiesAndRefreshBasket();
+            controller.removeFromSelectionMap();
+            controller.removeItemFromBasketList();
+            controller.upsertSelectedResourceAndRefreshBasket();
+            controller.clearActivitySelectionMap();
+            List<SelectOption> roleTitle = new List<SelectOption>{new SelectOption('1','1')};
+            Map<String,String> roleTitlesNameMap = new  Map<String,String>();
+            roleTitlesNameMap.put('1','1');
+            List<SelectOption> result = controller.populateRoleTitleList(roleTitlesNameMap);
+            System.assert(result != null);
+            System.assert(controller.exitSwop() != null);
             Test.stopTest();
                
          }

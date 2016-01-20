@@ -30,7 +30,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
 
     public integer mynumber {get; set;}
     public list<string> lstStage {get; set;}
-    public Map<String, list<String>> mapRelatedCntries {get; set;}
+    public Map<String, Set<String>> mapRelatedCntries {get; set;}
     public Map<String, String> mapRegionCntries {get; set;}
     public Oblix_Project_Assets__c  assetInstance  {get; set;}
     public String lstAjaxCountries {get; set;}
@@ -38,7 +38,8 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     public map<string, ID> mapIdCSSCountryRegion {get; set;}
     public string lstIdCSSSelected {get; set;}
     public List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplitHubs {get; set;}
-    private list<string> lstSelectedRegion ;
+    private list<string> lstSelectedCountry ;
+    public String lstSelectedCountryJSON { get; set; }
     public String lstSelectedRegionJSON { get; set; }
     public Oblix_Marketing_SOW_Project_Splits__c agencySplitInstanceJS {get; set;}
     public map<string, integer> feePercentages {get; set;}
@@ -72,6 +73,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
 
     //Can Adjust Boolean
     public Boolean canAdjust {get; set;}
+    public Boolean isGlobalCampaign { get; set; }
 
     public String selectedBrandInnov {get; set;}
     public String selectedBrandBrand {get; set;}
@@ -96,6 +98,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         v3 = false;
         v4 = false;
         v5 = false;
+        isGlobalCampaign = false;
         isFirst = true;
         Id idUser = UserInfo.getUserId();
         userConnected = [Select Name from User where Id = : idUser ];
@@ -125,13 +128,14 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         splitToDelete = new list<Oblix_Marketing_SOW_Project_Splits__c>();    
         split = new Oblix_Marketing_SOW_Project_Splits__c();
         lstNameCountries = new set<string>();
-        lstSelectedRegion = new list<string>();
+        lstSelectedCountry = new list<string>();
+        lstSelectedCountryJSON = '';
         lstSelectedRegionJSON = '';
         mapScoreDesc = new map<string, string>();
         agencySplitInstanceJS = new Oblix_Marketing_SOW_Project_Splits__c();
         feePercentages = new map<string, integer>();
         mapIdCSSCountryRegion = new map<string, ID>();
-        mapRelatedCntries = new Map<String, list<String>>();
+        mapRelatedCntries = new Map<String, Set<String>>();
         lstRecordType = new list<string>();
         //lstAES = new list<Decimal>();
         lstAssetsForCard = new list<Oblix_Project_Assets__c>();
@@ -256,7 +260,6 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             project.Financial_Year__c = ApexPAges.currentPage().getParameters().get('sowId');
             selected_sow = [SELECT Name FROM Marketing_SOW__c WHERE Id =: project.Financial_Year__c];
             sowName = selected_sow.Name;
-            lstSelectedRegionJSON = JSON.serialize(lstSelectedRegion);
         } else {
 
             // query the project in scope from the super class
@@ -273,16 +276,26 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             getAssetCampaign();
             getRecordTypesInfo();
             if (project.Campaign_Countries__c != null) {
-                lstSelectedRegion = project.Campaign_Countries__c.split(',');
-                lstSelectedRegionJSON = JSON.serialize(lstSelectedRegion);
+                List<String> regionSeperatedList = new List<String>();
+                regionSeperatedList = project.Campaign_Countries__c.split('-');
+                if(regionSeperatedList != null && regionSeperatedList.size() > 1){
+                    lstSelectedCountry = regionSeperatedList[1].split(',');
+                }
+                lstSelectedCountryJSON = JSON.serialize(lstSelectedCountry);
+            }
+            if(project.OblixRegion__c != null && project.OblixRegion__c.startsWith('Global')){
+                isGlobalCampaign = true;
+                
+            }else if(project.OblixRegion__c != null){
+                lstSelectedRegionJSON = JSON.serialize(project.OblixRegion__c.split(','));
             }
             /*if (project.OblixRegion__c != null) {
-                lstSelectedRegion.addAll(project.OblixRegion__c.split(','));
+                lstSelectedCountry.addAll(project.OblixRegion__c.split(','));
             }*/
 
             system.debug('### mapIdCSSCountryRegion :' + mapIdCSSCountryRegion);
 
-            for (string slctedRegionOrCountry : lstSelectedRegion) {
+            for (string slctedRegionOrCountry : lstSelectedCountry) {
                 lstIdCSSSelected = lstIdCSSSelected + mapIdCSSCountryRegion.get(slctedRegionOrCountry) + ',';
             }
             if (project.Innovation_Projects__c != null) {
@@ -414,34 +427,38 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
 
     @TestVisible
     private void getMapCountries() {
-        list<MDO_Geography__c> lstCountries = [Select m.parent_L6__c, m.parent_L5__c, m.parent_L4__c, m.parent_L3__c, m.parent_L2__c,
-                                               m.parent_L1__c, m.geography_type__c, m.Name, m.Id, parent_L5__r.Name From MDO_Geography__c m where geography_type__c Like 'Country%' order by name
-                                              ];
+        list<MDO_Geography__c> lstCountries = [Select parent_L4__c, geography_type__c, Name, Id, parent_L4__r.Name, parent_L4__r.geography_type__c From MDO_Geography__c where geography_type__c Like 'Country%' order by name];
         mapRelatedCntriesJSON = '';
         mapAllCountries = new List<String>();
+        Set<String> lstGeography = new Set<String>();
         for (MDO_Geography__c country : lstCountries) {
-            lstRegion.add(country.parent_L5__r.Name);
+            if(country.parent_L4__r.geography_type__c != null && country.parent_L4__r.geography_type__c.equalsIgnoreCase('Unilever Cluster')){
+                lstRegion.add(country.parent_L4__r.Name);
+            }
+            lstGeography.add(country.parent_L4__r.geography_type__c);
             mapIdCountries.put(country.name.toUpperCase(), country.id);
             if(!lstAjaxCountries.contains(country.name)){ 
                 lstAjaxCountries+=(country.name+',');
             }
-            if (country.parent_L5__c != null) {
-                if (!mapRelatedCntries.containsKey(country.parent_L5__r.Name)) {
-                    mapRelatedCntries.put(country.parent_L5__r.Name, new list<string>());
+            if (country.parent_L4__c != null 
+                && country.parent_L4__r.geography_type__c != null 
+                && country.parent_L4__r.geography_type__c.equalsIgnoreCase('Unilever Cluster')) {
+                if (!mapRelatedCntries.containsKey(country.parent_L4__r.Name)) {
+                    mapRelatedCntries.put(country.parent_L4__r.Name, new Set<string>());
                 } else {
-                    mapRelatedCntries.get(country.parent_L5__r.Name).add(country.Name);
+                    mapRelatedCntries.get(country.parent_L4__r.Name).add(country.Name);
                 }
                 mapIdCSSCountryRegion.put(country.name, country.id);
-                if (mapIdCSSCountryRegion.get(country.parent_L5__r.Name) == null) {
-                    mapIdCSSCountryRegion.put(country.parent_L5__r.Name, country.parent_L5__r.id);
-                    mapRegionCntries.put(country.name, country.parent_L5__r.id);
+                if (mapIdCSSCountryRegion.get(country.parent_L4__r.Name) == null) {
+                    mapIdCSSCountryRegion.put(country.parent_L4__r.Name, country.parent_L4__r.id);
+                    mapRegionCntries.put(country.name, country.parent_L4__r.id);
                     lstNameCountries.add(country.name);
                 }
             }
         }
-
+        System.DEBUG('List Geography : ' + lstGeography);
         
-        for(List<String> region : mapRelatedCntries.values()){
+        for(Set<String> region : mapRelatedCntries.values()){
             mapAllCountries.addAll(region);
         }
         mapRelatedCntriesJSON = JSON.serialize(mapAllCountries);
@@ -462,6 +479,13 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     public void setInfoCountries() {       
         System.DEBUG('Set Countries : ' + project.Campaign_Countries__c);
         System.DEBUG('Set Regions : ' + project.OblixRegion__c);
+        if(project.Campaign_Countries__c.length()>0){
+            project.Campaign_Countries__c = project.OblixRegion__c + '-' + project.Campaign_Countries__c;
+        }else{
+            project.Campaign_Countries__c = project.OblixRegion__c;
+        }
+        System.DEBUG('Set Changes Countries : ' + project.Campaign_Countries__c);
+        System.DEBUG('Set Changes Region : ' + project.OblixRegion__c);
         if(!isFirst ){
             if (project.Campaign_Countries__c != null) {
                 ValueDriversProject(project.Campaign_Countries__c);

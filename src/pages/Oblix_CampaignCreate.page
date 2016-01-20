@@ -13,13 +13,17 @@
 
     <script>
         var mapCountriesRegion = {!mapRelatedCntriesJSONMap};
-        var preSelectedCountries = {!lstSelectedRegionJSON}; 
+        var preSelectedCountries = {!if(lstSelectedCountryJSON <> null,lstSelectedCountryJSON,'[]')};
+        var preSelectedRegions = {!if(lstSelectedRegionJSON <> null,lstSelectedRegionJSON,'[]')};
+        var unileverRegions = "{!lstRegion}";
+        var isGlobalCampaign = {!isGlobalCampaign};
         var counter = {!counterAsset}; 
         var bimap = new BiMap;
         bimap.push(mapCountriesRegion);
         var selectedCountries = [];
         var selectedRegions = [];
-        var currentUnion = [];  
+        var currentUnion = []; 
+        console.log(unileverRegions); 
     </script>
     <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignCreate.js')}" type="text/javascript"></script>
     <apex:form >
@@ -149,7 +153,7 @@
                         </div>
                         <div class="campaign_create_agency_hub_split_table_subtitle" id="global_region_picklist_container">
                             <apex:repeat value="{!lstRegion}" var="region">
-                                <input type="radio" name="global_region_picklist" class="region_margin_left30" id="{!region}">{!region}</input>
+                                <input type="radio" name="global_region_picklist" class="region_margin_left30" id="{!region}" onclick="addToRegionSelection();">{!region}</input>
                             </apex:repeat>
                         </div>
                         <div id="clearAllCountries">

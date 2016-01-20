@@ -15,7 +15,7 @@
         <apex:define name="top_right_panel">
                     <table class="SOW_header_value_summary">
                         <tr>
-                            <td rowspan="2"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_chevron btn_adjust" data-toggle="modal" data-target="#adjustFeeModal">ADJUST %</button>  </td>
+                            <td rowspan="2"><apex:outputPanel rendered="{!is_enable_Adjust}">  <button type="button" class="btn btn-danger btn-xs create_SOW_button btn_chevron btn_adjust" data-toggle="modal" data-target="#adjustFeeModal">ADJUST %</button>  </apex:outputPanel>  </td>
                             <td class="SOW_header_value_title">Campaign Fees Total</td>
                             <td class="SOW_header_value">
                                 <h2>€
@@ -53,13 +53,16 @@
                                         <div class="col-lg-8">
                                             <p class="modal_current_text green_text">Current % allocation of total<br/>campaign fee to be paid this FY</p>
                                         </div>
-                                        <h1 class="green_text">80 %</h1>
+                                        <h1 class="green_text"><apex:outputField value="{!selected_project.Percentage_of_Fee_for_this_FY__c}" rendered="{!AND(selected_project.Percentage_of_Fee_for_this_FY__c<>0,selected_project.Percentage_of_Fee_for_this_FY__c<>null)}"></apex:outputField> </h1>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-7">
                                             <p class="modal_adjust_text">Adjust % allocation for this FY to</p>
                                         </div>
-                                        <h1><input type="number" class="adjust_allocation_box"/>%</h1>
+                                        <h1>
+                                        <apex:input type="number" id="AdjustPercentage" styleClass="adjust_allocation_box"  value="{!PercentToAdjust}"/>
+                                        
+                                        %</h1>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +70,8 @@
                         <div class="modal-footer">
                             <div class="modal_button_align">
                                 <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <button type="button" class="btn btn-primary btn_check btn_save_changes">SAVE CHANGES</button>
+                                <!--<button type="button" class="btn btn-primary btn_check btn_save_changes">SAVE CHANGES</button>-->
+                                <apex:commandButton action="{!AdjustFee}" styleClass="btn btn-primary btn_check btn_save_changes" value="SAVE CHANGES" />
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
@@ -98,7 +102,7 @@
                                             {!hub_splits.OblixCountry__r.Name}<br/>
                                         </apex:repeat>
                                     </td>
-                                    <td>
+                                    <td>    
                                         <apex:repeat value="{!selected_project.Marketing_SOW_Project_Splits__r}" var="hub_splits" >
                                             {!hub_splits.Percentage__c}%<br/>
                                         </apex:repeat>
@@ -106,7 +110,7 @@
                                 </tr>
                                 <tr>
                                     <td class="campaign_summary_information_titles">Countries / Regions</td>
-                                    <td colspan="2">{!selected_project.Campaign_Countries__c}</td>
+                                    <td colspan="2" class="countriesSelected">{!selected_project.Campaign_Countries__c}</td>
                                 </tr>
                                 <tr>
                                     <td class="campaign_summary_information_titles">Investment Priority</td>
