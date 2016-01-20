@@ -334,22 +334,22 @@ public with sharing class IPM_UpdateGlobalProjectName {
                    }
                 else if(childProject.IPM_Parent_Project__c!=null && oldprojectnameMap.get(childProject.IPM_Parent_Project__c)!=null ){
                     childProject.IPM_Project_Name__c = childProject.IPM_Project_Name__c.replace(oldprojectnameMap.get(childProject.IPM_Parent_Project__c),updatedProNameMap.get(childProject.IPM_Parent_Project__c));//get rollout name after '-' as string
-                   }   
-            childProject.Name=childProject.IPM_Project_Name__c;
+                   }
             }
+            childProject.Name=childProject.IPM_Project_Name__c;
             childProjectListToUpdate.add(childProject);                                   
           
         }
         
         if(!childProjectListToUpdate.isEmpty())
         {
-        	System.debug(LoggingLevel.ERROR,'Skip Trigger----->>>'+IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION);
-        	
-        	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION=true;    
+            
+            
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION=true;    
             update childProjectListToUpdate;
-         	IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION=false;  
-        	
-        	System.debug(LoggingLevel.ERROR,'Skip Trigger----->>>'+IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION);
+            IPM_ProjectHelper.SKIP_TRIGGER_EXECUTION=false;  
+            
+            
         }
         
         return childProjectListToUpdate;

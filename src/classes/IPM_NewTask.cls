@@ -61,7 +61,7 @@ public with sharing class IPM_NewTask {
                try
                 { 
                     Set<String> childList = new Set<String> {'IPM_Project_Resource__c','IPM_Milestone__c'};
-                    string query = IPM_Utils.prepareSOQLQuery(sObjName ,true,childList)+' where id =: projectId ';
+                    string query = IPM_Utils.prepareSOQLQuery(sObjName ,true,childList,true)+' where id =: projectId ';
                     projectObject  = Database.query(query);
                    
                     
@@ -128,7 +128,7 @@ public with sharing class IPM_NewTask {
                 try
                 {
                     sObjName = taskId.getSObjectType().getDescribe().getName();
-                    String query=IPM_Utils.prepareSOQLQuery(sObjName ,false,null)+' where id =: taskId ';
+                    String query=IPM_Utils.prepareSOQLQuery(sObjName ,false,null,true)+' where id =: taskId ';
                     taskObject= Database.query(query);
                     
                     tasks = (IPM_Task__c)taskObject;
