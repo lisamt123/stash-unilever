@@ -1,14 +1,17 @@
-/**
-* @author       Cognizant (Vipul)
+/**********************************************************************************************************************
+* @author       Cognizant 
 * @date         27/04/2015
-* @description  This class is used for managing the trigger methods for IPM_Financial_Year__c object 
-*/
+* @description  This class is used for managing the trigger methods for IPM_Financial_Year__c object this contains 
+*               initialiseFYConsolidation: contains Financial Year Consolidation Logic
+			    updateFinancialActionStandard: updates IPM_Project_Document_Section_Content__c
+			    and getFinancialYearQuery: Query for the financial year records required for processing.
+*************************************************************************************************************************/
 public with sharing class IPM_FinancialYearHelper
 {
-    private static final String UPDATE_FINANCIAL_ACTION_STANDARD_STR='updateFinancialActionStandard';
+    private static final String UPDATE_FINANCIAL_ACTION_STANDARD_STR = 'updateFinancialActionStandard';
     private static final String CLASS_NAME = IPM_FinancialYearHelper.Class.getName(); //Class Name for Exception Logging
     private static Boolean IS_RECURSSIVE = false;
-      
+    // Field set used for consolidation  
     private static final Set<String> FIELDS_TO_CONSOLIDATE = new Set<String>{
             'Advertising_Promotions_Global__c','Advertising_Promotions_Local__c','Advertising_Promotions_Regional__c',
             'Profit_Before_Overheads_Global__c','Profit_Before_Overheads_Local__c','Profit_Before_Overheads_Regional__c',
@@ -23,16 +26,16 @@ public with sharing class IPM_FinancialYearHelper
     
     public static Boolean SKIP_TRIGGER_EXECUTION = false;
     
-    /*******************************************************************************************************
-    * @description                      Method to initialise consolidation of financial year records.In this method we quiried existing financial record based on the project type
-
+    /*******************************************************************************************************************
+    * @description                      Method to initialise consolidation of financial year records. In this method we 
+    									query existing financial record based on the project type
     *									and update consildated record for active financial records.
     * @param newFinancialYearList       Map of Trigger.new records
     * @param oldFinancialYearMap        Map of Trigger.old records
     * @param financialYearDetailMap	    Queried List of Financial Records from DB 		
     * @param upsertconsolidatedFinancialYearMap udapted financial record to be upsert.
     * @return                           NONE
-    */
+    *********************************************************************************************************************/
     public static void initialiseFYConsolidation(List<IPM_Financial_Year__c> newFinancialYearList, Map<Id, IPM_Financial_Year__c> oldFinancialYearMap,Map<Id,IPM_Financial_Year__c> financialYearDetailMap,Map<String,IPM_Financial_Year__c> upsertconsolidatedFinancialYearMap )
     {
         Set<String> globalProjectIdSet = new Set<String>();
@@ -128,11 +131,12 @@ public with sharing class IPM_FinancialYearHelper
         }
     }
     
-    /*******************************************************************************************************
-    * @description                  Method to update Financial Action Standards
+    /**********************************************************************************************************************************
+    * @description                  Method to update Financial Action Standards, updates project documentation section content with 
+    *								financial year details based on project ID, content type and phase of the project.
     * @param newFinancialYear       New Financial Year record
     * @return                       NONE
-    */
+    ***********************************************************************************************************************************/
     public static void updateFinancialActionStandard(Map<Id, IPM_Financial_Year__c> mapNewFinancialYears){
         try{
             List<IPM_Financial_Year__c> newFinYearList=new  List<IPM_Financial_Year__c>();
@@ -235,7 +239,13 @@ public with sharing class IPM_FinancialYearHelper
         }
     }
     
-    
+    /**********************************************************************************************************************************
+    * @description                  This method queries for all the financial year record required for consolidation and updating the  
+    *								the document section.
+    * @param newFinancialYear       New Financial Year record
+    * @return                       NONE
+    ***********************************************************************************************************************************/
+     
     public static String getFinancialYearQuery()
     {
         Map<String,Schema.SObjectField> financialYearFieldMap = Schema.SObjectType.IPM_Financial_Year__c.fields.getMap();

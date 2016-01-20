@@ -1,19 +1,18 @@
-/**
+/******************************************************************************************************
 * @Author Cognizant
 * @Name IPM_FinancialHelper
-* @CreateDate 05/01/2016
-* @Description This class is a Helper Class used by Financial Handler to perform operations like 
-*   checking if consolidated fields changed
-*   Doing the actual consolidation.
-*   Creating new Consolidated Financial Years based on Change in TLD
-*   Create new Financial Years based on Sustainability Period.  
-*   Creation relationship maps between Consolidated and associated Financials.
+* @CreateDate :  05/01/2016
+* @Description:  This class is a Helper Class used by Financial Handler to perform operations like 
+*   			 checking if consolidated fields changed,  Doing the actual consolidation.
+*  				 Creating new Consolidated Financial Years based on Change in TLD
+* 				 Create new Financial Years based on Sustainability Period.  
+*   			 Creation relationship maps between Consolidated and associated Financials.
 * @Version 1.0
-*/
+******************************************************************************************************/
+
 public with sharing class IPM_FinancialHelper 
 {
     private static final Set<String> FIELD_SUFFIX = new Set<String>{IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, IPM_ConstantUtils.PROJECT_SPAN_REGIONAL, IPM_ConstantUtils.PROJECT_SPAN_LOCAL};
-
     
     private static final String DEFAULT_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.DEFAULT_FINANCIAL_RT).getRecordTypeId(); //Recordtype Id for Default on IPM_Financial__c object
     private static final String CONSOLIDATED_FINANCIAL_RECORDTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT).getRecordTypeId();
@@ -52,7 +51,7 @@ public with sharing class IPM_FinancialHelper
     * @param1 newFinancials  List of Trigger.new records
     * @param2 newFinancials  List of Trigger.new records
     * @return               NONE
-    */
+    ********************************************************************************************************/
     public static void insertFinancialYears(List<IPM_Financial__c> newFinancials,Map<String,IPM_Financial_Year__c>  upsertFinancialYearMap)     
     {
         for(IPM_Financial__c financial : newFinancials)
@@ -61,14 +60,14 @@ public with sharing class IPM_FinancialHelper
         }  
     }
     
-      /*******************************************************************************************************
+      /******************************************************************************************************************
     * @description                                  Used for Creating Consolidated Calendar Years whenever TLD is changed. 
     * @param1 targetLaunchChangedDateMap            Changed TLD Financial Map
     * @param2 financialDetailMap                    Queried List of Financial Records from DB    
     * @param3 targetLaunchChangedDateMap            Changed TLD Financial Map
     * @param4 upsertConsolidatedFinancialYearMap    Target Consolidated Financial Year Map.
     * @return               NONE
-    */ 
+    *********************************************************************************************************************/ 
     
     public static void manageFinancialYears(Map<Id,IPM_Financial__c> targetLaunchChangedDateMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertConsolidatedFinancialYearMap)
     {
@@ -113,12 +112,13 @@ public with sharing class IPM_FinancialHelper
             } 
         }
     }
-    /*******************************************************************************************************
-    * @description          Method to process individual Financial Record and create Financial Year Records
+    /***************************************************************************************************************
+    * @description                  Method to process individual Financial Record and create Financial Year Records
+    *								based on the TLD change.
     * @param1 ipmFinancial               Passed IPM_Financial__c record
     * @param2 upsertFinancialYearMap     Target Financial Year Map to be udpated.
     * @return               NONE
-    */
+    ***************************************************************************************************************/
     private static void processIPMFinancialYears(IPM_Financial__c ipmFinancial,Map<String,IPM_Financial_Year__c>  upsertFinancialYearMap)
     {
         String externalId = ipmFinancial.Financial_External_ID__c;
@@ -164,7 +164,7 @@ public with sharing class IPM_FinancialHelper
     * @param yearType               Year Type
     * @param plType                 P&L Type
     * @return                       IPM_Financial_Year__c record for the passed Financial record
-    */
+    ********************************************************************************************************/
     private static IPM_Financial_Year__c processFinancialYear(String financialExternalId, String yearName, String index, String yearType, String plType,Id finRecordTypeId){
         IPM_Financial_Year__c financialYear = new IPM_Financial_Year__c(
             IPM_Financial__r = new IPM_Financial__c(Financial_External_ID__c = financialExternalId),
@@ -179,18 +179,17 @@ public with sharing class IPM_FinancialHelper
         return financialYear;
     }
     
-    /*******************************************************************************************************
-    * @description                  Starts the Consolidation Logic starting with 
-            Comparing the fields which count against consolidation whether any of those fields changed.
-            Creating a Map which contains Consolidated Record to associated Financial Record Mapping
-            Invoking the actual Consolidation.
+    /************************************************************************************************************************* 
+    * @description                  Starts the Consolidation Logic starting with comparing the fields which count against 
+    								consolidation whether any of those fields changed. Creating a Map which contains 
+    								Consolidated Record to associated Financial Record Mapping Invoking the Consolidation logic.
             
     * @param1 consolidationChangedFinancialList      Changed Financials in trigger Context 
     * @param2 oldFinancialMap                        Trigger.old financial Map         
     * @param3 financialDetailMap                     Contains Financial Records retrieved from DB for incoming Financials.               
     * @param4 upsertConsolidatedFinancialMap         Target Upsert Consolidated Map
     * @param5 fieldsToConsolidate                    Fields for which Condolidation Matters
-    */
+    ***************************************************************************************************************************/
     
     public static void initializeConsolidation(List<IPM_Financial__c> consolidationChangedFinancialList,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial__c> upsertConsolidatedFinancialMap,Set<String> fieldsToConsolidate) 
     {
@@ -242,13 +241,13 @@ public with sharing class IPM_FinancialHelper
         }
     }
     
-    /*******************************************************************************************************
+    /***********************************************************************************************************
     * @description                      		Method used to calculate financial based on the volume selection
     * @param volumeTypeChangedFinancialMap   	volume selection for Financial record
     * @param oldFinancial               		Old Financial records
     * @param financialDetailMap   				 Queried List of Financial Records from DB 
     * @return                           NONE
-    */
+    *************************************************************************************************************/
         
     public static void updateFinancialYearVolumeType(Map<Id,IPM_Financial__c> volumeTypeChangedFinancialMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap)
     {
@@ -277,13 +276,13 @@ public with sharing class IPM_FinancialHelper
         }
     }
    
-    /*******************************************************************************************************
+    /***********************************************************************************************************
     * @description                      Method to process change in sustainability period for the financials
     * @param newFinancial               New Financial record
     * @param oldFinancial               Old Financial records
     * @param lstExistingFinancialYears  List of Existing Financial Year records
     * @return                           NONE
-    */
+    ************************************************************************************************************/
     public static void processSustainabilityPeriod(Map<Id,IPM_Financial__c> changedSustainabilityMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap)
     {
         for(IPM_Financial__c financial : changedSustainabilityMap.values())
@@ -336,11 +335,12 @@ public with sharing class IPM_FinancialHelper
         }
     }
     
-    /*******************************************************************************************************
-    * @description                      Method to update Financial Action Standards at Charter based on project type it will add new financial or update consolidate financials
+    /*********************************************************************************************************************
+    * @description                      Method to update Financial Action Standards at Charter based on project type it 
+    									will add new financial or update consolidate financials
     * @param mapNewFinancials           New Consolidated Financial record
     * @return                           NONE
-    */
+    **********************************************************************************************************************/
     public static void updateFinancialActionStandard(Map<Id, IPM_Financial__c> mapNewFinancials)
     {
         List<IPM_Financial__c> newFinList=new List<IPM_Financial__c>();
@@ -462,7 +462,7 @@ public with sharing class IPM_FinancialHelper
     * @description                  Posts to Chatter if Financials are Misaligned. 
     * @param1 newFinancialList      incoming Trigger Context Financials    
     * @param2 financialDetailMap    DB specific Financial Values.             
-    */
+    ********************************************************************************************************/
     
     public static void checkIfMisAligned(List<IPM_Financial__c> newFinancialList,Map<Id,IPM_Financial__c> financialDetailMap)
     {
@@ -508,7 +508,7 @@ public with sharing class IPM_FinancialHelper
     * @description          Method to handle before insert Trigger context for IPM_Financial__c object
     * @param newFinancials  List of Trigger.new records
     * @return               NONE
-    */
+    ********************************************************************************************************/
     public static void updateFinanceCategory(List<IPM_Financial__c> newFinancials)
     {
         //@@Design Review - Data Sharing - To update the ownerid of financial to project owner id
@@ -570,15 +570,17 @@ public with sharing class IPM_FinancialHelper
         } 
     }
     
-    /*******************************************************************************************************
+    /***************************************************************************************************************
         *  @description     This method retrieves local and regional financials and financial year records.
-                            Once retrieved the financial year's name & external id fields will be updated with financial's Target Launch Date.  
+                            Once retrieved the financial year's name & external id fields will be updated with 
+                            financial's Target Launch Date.  
+                            
            @param1     changedFinancialMap      :    Financial Changed Map 
            @param2     oldFinancialMap          :    Trigger.Old Context Map
            @paramm3    financialDetailMap       :    DB Specific Financial Data
            @paramm4    upsertFinancialYearMap   :    Target Financial Year Map to be upserted.
            @paramm5    financialToChangedFeilds :    List of Financial Fields which changed.
-    */
+    ***************************************************************************************************************/
     public static void copyOverFinancialFields(Map<Id,IPM_Financial__c> changedFinancialMap,Map<Id,IPM_Financial__c> oldFinancialMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<String,IPM_Financial_Year__c> upsertFinancialYearMap,Map<Id,Set<String>> financialToChangedFeilds)
     {
         for(Id financialID : changedFinancialMap.KeySet()) 
@@ -600,13 +602,15 @@ public with sharing class IPM_FinancialHelper
                    
     }
     
-    /*******************************************************************************************************
+    /***********************************************************************************************************
 	    *  @description     This method retrieves local and regional financials and financial year records.
-						    Once retrieved the financial year's name & external id fields will be updated with financial's Target Launch Date.  
+						    Once retrieved the financial year's name & external id fields will be updated with 
+						    financial's Target Launch Date.
+						      
 	       @param1     targetLaunchChangedDateMap :    Target Launch date Changed Map 
 	       @param2     financialDetailMap :            Financial Db Map
 	       @paramm3    updateFinancialYearMap :        Target Udpate Financial Map
-	*/
+	*************************************************************************************************************/
 	
     public static void updateFinancialYearTables(Map<Id,IPM_Financial__c> targetLaunchChangedDateMap,Map<Id,IPM_Financial__c> financialDetailMap,Map<Id,IPM_Financial_Year__c> updateFinancialYearMap) 
     {
@@ -689,7 +693,7 @@ public with sharing class IPM_FinancialHelper
     * @param updatedfYearExternalIds    financial year external id
     * @param updateFinancialYearMap   	financial year map
     * @return                           NONE
-    */    
+    ********************************************************************************************************/    
     
     private static void addYearToList( IPM_Financial_Year__c fYear, String yearName,Set<String>  updatedfYearExternalIds, Map<ID,IPM_Financial_Year__c> updateFinancialYearMap)
     {
@@ -711,7 +715,7 @@ public with sharing class IPM_FinancialHelper
     * @param newConsolidatedFinancial   New Consolidated Financial record 
     * @param oldConsolidatedFinancial   Old Consolidated Financial record
     * @return                           NONE
-    */
+    ********************************************************************************************************/
     public static void processLastSaved(IPM_Financial__c newConsolidatedFinancial)
     {
         Set<String> fieldSufixes = new Set<String>{IPM_ConstantUtils.PROJECT_SPAN_GLOBAL, IPM_ConstantUtils.PROJECT_SPAN_REGIONAL, IPM_ConstantUtils.PROJECT_SPAN_LOCAL};
@@ -729,7 +733,7 @@ public with sharing class IPM_FinancialHelper
     * @param yearType               Year Type
     * @param plType                 P&L Type
     * @return                       Financial Year External Id
-    */
+    ********************************************************************************************************/
     private static String getFinancialYearExternalId(String financialExternalId,  String yearName, String yearType, String plType){
         return financialExternalId + '_' + yearName + '_' + yearType + '_' + plType;
     }
