@@ -140,7 +140,7 @@ public with sharing class IPM_FinancialYearHelper
             Set<Id> projectIds=new Set<Id>();
             for(IPM_Financial_Year__c newFinYear:mapNewFinancialYears.values())
             {
-                if(newFinYear.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c)
+                if(newFinYear.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && (String.isBlank(newFinYear.Regional_External_Id__c) || String.isBlank(newFinYear.Global_External_Id__c)) && (newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationIncremental || newFinYear.NameYearPLtype__c==IPM_ConstantUtils.Y1InnovationGross) && !newFinYear.Charter_Approved__c)
                 {
                     newFinYearList.add(newFinYear);
                     projectIds.add(newFinYear.Global_Project_Id__c);
