@@ -23778,11 +23778,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Oblix_Marketing_SOW_Project_Splits__c.Project_Splits__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Oblix_Project_Assets__c.Actual_Delivery_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
