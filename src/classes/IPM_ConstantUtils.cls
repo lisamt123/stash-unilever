@@ -898,7 +898,7 @@ public class IPM_ConstantUtils {
    public static final String Local = 'Local';
    public static final String Volume = 'Volume';
    public static final String TotalTons = 'Total Tons';
-   public static final String TotalTons0 = 'Total \'000 Units';
+   public static final String TotalTons0 = 'Total 000 Units';
    public static final String Y0Innovation = 'Y0-Innovation-';                                                                 
    public static final String Y0Calendar = 'Y0-Calendar-';
    public static final String Y1InnovationGross = 'Y1-Innovation-Gross';
