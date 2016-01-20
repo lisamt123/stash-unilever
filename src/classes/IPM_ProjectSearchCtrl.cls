@@ -17,8 +17,7 @@ public with sharing class IPM_ProjectSearchCtrl{
     public Integer operationalProjects{get;set;} // Number of operational projects
     public Integer activeProjects{get;set;} //Number of active projects
     public Integer stoppedProjects{get;set;} // Number of stopped projects
-    //public String bPending{get;set;} // Checked bosscard project sent from page to controller
-    public set<String> masterBrandArr{get;set;} //Brings out the master data from the brand
+    //public String bPending{get;set;} // Checked bosscard project sent from page to controller    
     public list<IPM_Country__c> allCountries{get;set;}
     public String bPositionings{get;set;} //Array of selected brand positionings to be selected for a project.
     
@@ -74,8 +73,7 @@ public with sharing class IPM_ProjectSearchCtrl{
         }
 
         List<IPM_Country__c> lstCountires = new List<IPM_Country__c>();
-        //Initialising variables
-        masterBrandArr = IPM_Utils.getMasterBrandData();
+        //Initialising variables       
         str_Hyphen = '-';
         bPositionings = IPM_ConstantUtils.BLANK;
         noRecords = false;
@@ -335,7 +333,7 @@ public with sharing class IPM_ProjectSearchCtrl{
       *******************************************************/ 
        //Active = True , Stopped=True means All=true so ingore filter in SOQL
        //Active = False , Stopped=False
-       if(selectedActiveProject == FALSE_STR && !selectedStoppedProject){  	
+       if(selectedActiveProject == FALSE_STR && !selectedStoppedProject){   
             noRecords = true;
        }
         //Active = True , Stopped=False
