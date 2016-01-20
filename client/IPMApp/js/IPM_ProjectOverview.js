@@ -65,7 +65,7 @@
 	jq('#initiateProjectBKPanel .modal-dialog').css({'margin-top':'2%','z-index':'999'});     
 });	
 
-if(IPMApp.showSuggestedMembers && window.location.href.indexOf("showMembers") > -1){
+if(IPMApp.showSuggestedMembers == true && window.location.href.indexOf("showMembers") > -1){
 	   document.getElementById("suggestedMembersButton").click();
    }else if (window.location.href.indexOf("createBET") > -1){
 		document.getElementById("createBETButton").click();

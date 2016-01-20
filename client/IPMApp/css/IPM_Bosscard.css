@@ -8,6 +8,7 @@
 /* upload Image */
     .uploadImage {cursor:pointer;}
     .uploadImage img,.custUploadImage{max-width:100%;}
+	.uploadImage .sfdc_richtext img{max-height:160px;}
 /* page title bar styles */
     .H30{height:30px;}
     .pageHeadToolbar { border-bottom:1px solid #ddd; margin:0 15px; }
@@ -23,6 +24,7 @@
     .skipButton{margin-left:4px;position:relative;bottom:4px;}
     .mandatorycolor{color:#CF1721;}
 	.icoButton.question{bottom:8px;}
+	.hiddenBossname{display:none;}
      
 /* content styles */
     .pageHeadToolbar .SecButtonSet{margin: 17px 10px 10px 10px;}

@@ -108,3 +108,8 @@
 	td.noSidebarCell .createNewBrandExp #ipmGetStartedTab .ipmStartedTabs li {
 		top: 2px;
 	}
+	.hideOwner select{
+        visibility: hidden !important;
+        display: block !important;
+        height: 0px !important;
+    }

@@ -35,7 +35,11 @@ function initSlider() {
             var pointer = ui.value - 1;
             jq('#s' + ui.value).prop('checked', true);
             score = itemsProposed[pointer];
-        }
+        },
+		slide: function( event, ui ) {
+			jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+			jq(this).find(".legendSld label").eq(ui.value -1).click();
+		}
     });
 
     jq(".legendSld label").on("click", function() {
@@ -99,11 +103,14 @@ function initSlider1() {
             max: itemsProposed.length,
             animate: 'slow',
             stop: function(event, ui) {
-
                 var pointer = ui.value - 1;
                 jq('#s' + ui.value).prop('checked', true);
                 quest = itemsProposed[pointer];
-            }
+            },
+			slide: function( event, ui ) {
+				jq(this).find(".legendSld label").css({color: "#555", fontWeight: "normal"}).eq(ui.value -1).css({color: "#E98824", fontWeight: "bold"});
+				jq(this).find(".legendSld label").eq(ui.value -1).click();
+			}
         });
 
         jq(".legendSld label").on("click", function() {
@@ -150,9 +157,9 @@ function initSlider1() {
                     'color': '#e98824',
                     'font-weight': 'bold'
                 });
-            } else if (quest == "4") {
+            } else if (quest == "5") {
                 $this.next(".sliderStat1").find(".ui-slider-handle").css("left", "100%");
-                $this.next(".sliderStat1").find("label[for=s8]").css({
+                $this.next(".sliderStat1").find("label[for=s9]").css({
                     'color': '#e98824',
                     'font-weight': 'bold'
                 });
@@ -180,7 +187,7 @@ function changeScore(id,score)
 	}
 	
 /* Below code is redirect to a page */
-	function GotoParentPage()
+	function goToParentPage()
 	{            
 		window.top.location.href = IPMApp.pageName+'?id='+IPMApp.projectId+'&projDocSecId='+IPMApp.projDocSecId;
 	}    

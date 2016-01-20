@@ -5,6 +5,7 @@
 *****************************************************************************/
 var jq = jQuery.noConflict();
 /* Below code is related to delete task modal */
+/* As per the sonar comments script has been split to separate function phaseMfilter */
 function callbackLoadAction() {
     jq(document).on('click', '#ipmDeleteModal .removeTask', function() {
         var taskId = '';
@@ -14,27 +15,7 @@ function callbackLoadAction() {
             jq("#ipmDeleteModal").modal('hide');
         }
     });
-    /* Below code is for the phase filter drop down functionality*/
-    jq(document).on('show.bs.dropdown', '.phaseFilter', function() {
-        if (jq('.phaseFilter ul.phase').length == 0) {
-            var dropDownList = jq('#phaseFilterDiv').html();
-            jq(this).append(dropDownList);
-        }
-        var selectedValues = IPMAppComp.selectedValues;
-        var selectedValuesArr = selectedValues.split(',');
-        jq('.phaseFilter .dropdown-toggle .icoButton').removeClass('filter');
-        jq('.phaseFilter .dropdown-toggle .icoButton').addClass('filter-selected');
-        if (selectedValuesArr.length != 0) {
-            jq('.phaseFilter .dropdown-menu input[type="checkbox"]').each(function() {
-                var val = jq(this).attr('value');
-                if (jq.inArray(val, selectedValuesArr) != -1) {
-                    jq(this).prop('checked', true);
-                } else {
-                    jq(this).prop('checked', false);
-                }
-            });
-        }
-    });
+    phaseMfilter();
     /* Below code is for the user filter drop down functionality*/
     jq(document).on('show.bs.dropdown', '.userFilter', function() {
         if (jq('.userFilter ul.user').length == 0) {
@@ -107,6 +88,29 @@ function callbackLoadAction() {
     });
     jq('#sortAssignees').on('click', function() {
         toggleSortAssignees();
+    });
+}
+function phaseMfilter(){
+/* Below code is for the phase filter drop down functionality*/
+    jq(document).on('show.bs.dropdown', '.phaseFilter', function() {
+        if (jq('.phaseFilter ul.phase').length == 0) {
+            var dropDownList = jq('#phaseFilterDiv').html();
+            jq(this).append(dropDownList);
+        }
+        var selectedValues = IPMAppComp.selectedValues;
+        var selectedValuesArr = selectedValues.split(',');
+        jq('.phaseFilter .dropdown-toggle .icoButton').removeClass('filter');
+        jq('.phaseFilter .dropdown-toggle .icoButton').addClass('filter-selected');
+        if (selectedValuesArr.length != 0) {
+            jq('.phaseFilter .dropdown-menu input[type="checkbox"]').each(function() {
+                var val = jq(this).attr('value');
+                if (jq.inArray(val, selectedValuesArr) != -1) {
+                    jq(this).prop('checked', true);
+                } else {
+                    jq(this).prop('checked', false);
+                }
+            });
+        }
     });
 }
 callbackLoadAction();

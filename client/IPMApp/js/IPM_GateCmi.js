@@ -55,7 +55,6 @@ jq(document).on('click', '.CMICountryList input[type="checkbox"], .CMICountryLis
 jq(document).ready(function() {
     jq(".ipmAcrdnExpand").hide();
     jq(".ipmAcrdnExpand:first").not(':empty').show();
-    jq(".ipmAcrdnExpandDiv").find(".ipmAcrdnExpand:first").not(':empty').show();
     jq(document).on("click", ".ipmAccordian .expico", function() {
         if (jq(this).closest(".aHead").next(".ipmAcrdnExpand").is(":visible") && jq(this).closest(".aHead").next(".ipmAcrdnExpand").not(':empty')) {
             jq(this).closest(".aHead").next(".ipmAcrdnExpand").slideUp("fast");
@@ -69,10 +68,10 @@ jq(document).ready(function() {
     });
     jq(".ipmAccordianDiv").find(".aHead span.expico").removeClass("fa-minus");
     jq(".ipmAccordianDiv").find(".aHead span.expico").addClass("fa-plus");
-    jq(".contentWrapper").find(".aHead:first span.expico").removeClass("fa-plus");
-    jq(".contentWrapper").find(".aHead:first span.expico").addClass("fa-minus");
-    jq(".ipmAcrdnExpandDiv").find(".ipmAcrdnHeader:first span.expico").removeClass("fa-plus");
-    jq(".ipmAcrdnExpandDiv").find(".ipmAcrdnHeader:first span.expico").addClass("fa-minus");
+	jq(".CMIGateDoc .ipmAccordianDiv:first").find(".aHead:first span.expico").removeClass("fa-plus");
+    jq(".CMIGateDoc .ipmAccordianDiv:first").find(".aHead:first span.expico").addClass("fa-minus");
+	jq(".cmiListcont .subCmi").find(".aHead span.expico").removeClass("fa-minus");
+	jq(".cmiListcont .subCmi").find(".aHead span.expico").addClass("fa-plus");
     skipTestrender();
 });
 /* Below code is for adding the CMI and Country values */

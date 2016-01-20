@@ -38,4 +38,12 @@
 	.errorM3 ul{margin-left: 25px !important;}
 	.buttonmarRight{margin-right:15px;}
 	.dateFormat {display:none!important;}
-	.buttonMarginRight{margin-right:15px;}	
+	.buttonMarginRight{margin-right:15px;}
+	.marginL100P {margin-left:100%;} 
+       
+@media only screen and (min-device-width:768px) and (max-device-width:1024px) { 
+   .marginL100P { 
+		margin-left:72%; 
+    } 
+}
+	
