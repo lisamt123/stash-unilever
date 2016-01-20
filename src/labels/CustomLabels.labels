@@ -8,6 +8,13 @@
         <value>Select the Quarter(s) you wish to adjust and press continue</value>
     </labels>
     <labels>
+        <fullName>AF_AgencyChatter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>AF_AgencyChatter</shortDescription>
+        <value>https://unilever.my.salesforce.com/0F9E00000009IuP?fromEmail=1</value>
+    </labels>
+    <labels>
         <fullName>AF_AgencyEstimateSuccess</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -613,6 +620,20 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <value>General Information</value>
     </labels>
     <labels>
+        <fullName>Accept_from_Local</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Accept from Local</shortDescription>
+        <value>Accept Local TLD</value>
+    </labels>
+    <labels>
+        <fullName>Accept_from_Regional</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Accept from Regional</shortDescription>
+        <value>Accept Regional TLD</value>
+    </labels>
+    <labels>
         <fullName>Agency_Email_Alerts</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -626,6 +647,13 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <shortDescription>Agency Fee Title</shortDescription>
         <value>Agency Fees Online</value>
     </labels>
+    <labels>
+        <fullName>Agree_and_Proceed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agree and Proceed</shortDescription>
+        <value>Agree and Proceed</value>
+    </labels>    
     <labels>
         <fullName>BETManagerRole</fullName>
         <language>en_US</language>
@@ -1299,7 +1327,7 @@ entity or to a value that is not linked to a “% of base fees”.</value>
         <shortDescription>BET_Name</shortDescription>
         <value>Name</value>
     </labels>
-    <labels>
+      <labels>
         <fullName>BET_NameExists</fullName>
         <categories>BET</categories>
         <language>en_US</language>
@@ -1755,12 +1783,34 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Bonus Annual</value>
     </labels>
     <labels>
+        <fullName>Business_Case_Update_Needed</fullName>
+       <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Business Case Update Needed</shortDescription>
+        <value>Business Case Update Needed</value>
+    </labels>
+    <labels>
+        <fullName>Business_Case_Update_Needed_Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Business Case Update Needed Value</shortDescription>
+        <value>You have just changed the Target Launch Date (TLD) of the project. Changes to the TLD of the project influences the Business Case and impacts calculations like the Funnel Value - please ensure that your Finance team member updates the Business Case to reflect the change in TLD.</value>
+    </labels>   
+        <labels>
         <fullName>CEC_AlertActionSchedulerName</fullName>
         <categories>CEC: Label</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_AlertActionSchedulerName</shortDescription>
         <value>CEC AlertAction Scheduler</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Brand</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Brand</shortDescription>
+        <value>Brand</value>
     </labels>
     <labels>
         <fullName>CEC_CBM_NotificationBodyFooter</fullName>
@@ -1785,7 +1835,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_CBM_NotificationSubject</shortDescription>
         <value>CEC Alert : Missing CaseBrandMapping value</value>
-    </labels>
+    </labels> 
     <labels>
         <fullName>CEC_CaseAccountMissing</fullName>
         <categories>CEC:Case_Error</categories>
@@ -1832,6 +1882,30 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_Category</shortDescription>
         <value>Category</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ChequeBook_DetailsMissing</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChequeBook_DetailsMissing</shortDescription>
+        <value>No active cheque book details present for this Brand &amp; Product Category</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ChequeBook_MaxLimt_reached</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChequeBook_MaxLimt_reached</shortDescription>
+        <value>Cheque Book max limit has been reached.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ChequeBook_input_fields_missing</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChequeBook_Input_Fields_Missing</shortDescription>
+        <value>Either Brand, Country or Product Category information is missing.</value>
     </labels>
     <labels>
         <fullName>CEC_Console_Message1</fullName>
@@ -2181,6 +2255,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Product</value>
     </labels>
     <labels>
+        <fullName>CEC_ProductCategory</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ProductCategory</shortDescription>
+        <value>Product Category</value>
+    </labels>
+    <labels>
         <fullName>CEC_Product_Hierarchy</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -2219,6 +2301,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_Reason_Hierarchy</shortDescription>
         <value>Reason Hierarchy</value>
+    </labels>
+    <labels>
+        <fullName>CEC_RecommendedProducts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_RecommendedProducts</shortDescription>
+        <value>Recommended Products</value>
     </labels>
     <labels>
         <fullName>CEC_RelatedCases</fullName>
@@ -2308,6 +2397,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Is Variant Known?</value>
     </labels>
     <labels>
+        <fullName>Cancel_and_Revert</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel and Revert</shortDescription>
+        <value>Cancel and Revert</value>
+    </labels>    
+    <labels>
         <fullName>Core_NT_App_Url</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -2327,6 +2423,147 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>Core NT Network Library Id</shortDescription>
         <value>058E00000009Xk5IAE</value>
+    </labels>
+    <labels>
+        <fullName>EA_Activity_Accepted</fullName>
+        <categories>EA Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Activity_Accepted</shortDescription>
+        <value>Accepted</value>
+    </labels>
+    <labels>
+        <fullName>EA_Activity_Declined</fullName>
+        <categories>EA Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Activity_Declined</shortDescription>
+        <value>Declined</value>
+    </labels>
+    <labels>
+        <fullName>EA_Chatter1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Chatter1</shortDescription>
+        <value>Hey - try out &apos;</value>
+    </labels>
+    <labels>
+        <fullName>EA_Chatter2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Chatter2</shortDescription>
+        <value>&apos; activity on the Everyday Actions app, I think you might find it interesting! 
+Activity Description: &apos;</value>
+    </labels>
+    <labels>
+        <fullName>EA_Chatter3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Chatter3</shortDescription>
+        <value>&apos; You can access the activity on your Salesforce 
+1 mobile app, please go to Everyday Actions on SF1 app to take action.</value>
+    </labels>
+    <labels>
+        <fullName>EA_Chatter4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Chatter4</shortDescription>
+        <value>Note: Everyday Actions app is available on Salesforce1 mobile app. More information can be found here https://apps.unilever.com/global/CollaborationHub/SitePages/DE%20Mobile.aspx</value>
+    </labels>
+    <labels>
+        <fullName>EA_Feedback_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Feedback_Message</shortDescription>
+        <value>Please provide feedback for your completed Activity</value>
+    </labels>
+    <labels>
+        <fullName>EA_Feedback_Reminder</fullName>
+        <categories>EA Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Feedback_Reminder</shortDescription>
+        <value>Your feedback help others. Please provide feedback for this Activity  -</value>
+    </labels>
+    <labels>
+        <fullName>EA_Invite_Message</fullName>
+        <categories>EA Notification</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_Invite_Message</shortDescription>
+        <value>Please join me in doing this Activity .</value>
+    </labels>
+    <labels>
+        <fullName>EA_MyActionsTab_Title</fullName>
+        <categories>EA_Appearance</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_MyActionsTab_Title</shortDescription>
+        <value>My Actions</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail1</shortDescription>
+        <value>Try out</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail2</shortDescription>
+        <value>activity on the Everyday Actions app, I think you might find it interesting!</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail3</shortDescription>
+        <value>Hey - try out</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail4</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail4</shortDescription>
+        <value>activity on the Everyday Actions app, I think you might find it interesting!</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail5</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail5</shortDescription>
+        <value>You can access the activity on your Salesforce 1 mobile app, Please go to Everyday Actions on SF1 app to take action.</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail6</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail6</shortDescription>
+        <value>Note: Everyday Actions app is available on Salesforce1 mobile app. More information can be found here https://apps.unilever.com/global/CollaborationHub/SitePages/DE%20Mobile.aspx</value>
+    </labels>
+    <labels>
+        <fullName>EA_ShareEmail7</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ShareEmail7</shortDescription>
+        <value>Activity Description:</value>
+    </labels>
+    <labels>
+        <fullName>EA_System_User_ID</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_System_User_ID</shortDescription>
+        <value>005c0000002NPnI</value>
+    </labels>
+    <labels>
+        <fullName>EA_ThemeTab_Title</fullName>
+        <categories>EA_Appearance</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EA_ThemeTab_Title</shortDescription>
+        <value>All Themes</value>
     </labels>
     <labels>
         <fullName>ERROR_generic_request_failure</fullName>
@@ -2813,12 +3050,19 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <shortDescription>HideTermsOfUseLabel</shortDescription>
         <value>I Accept</value>
     </labels>
-    <labels>
+     <labels>
         <fullName>IPM_000</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_€ &apos;000</shortDescription>
         <value>€ &apos;000</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TaskNameErrorMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TaskNameErrorMsg</shortDescription>
+    <value>Enter Task Name.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_IN_PROGRESS_STATE</fullName>
@@ -3318,6 +3562,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Advertising &amp; Promotions Cannot Be Zero or Null, Please Paste(ctrl + V) correct Data!!</value>
     </labels>
     <labels>
+        <fullName>IPM_AgreeCountryRemoval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agree and Remove</shortDescription>
+        <value>Agree and Remove</value>
+    </labels>
+    <labels>
         <fullName>IPM_AlertMsgOutsideOTIF</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -3525,7 +3776,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BACKGROUNDPROCESS_INPROGRESS</shortDescription>
-        <value>Your project is currently under processing.You would be notified once processing is complete via Email.</value>
+        <value>Your project is currently being created, so come back in a few minutes...</value>
     </labels>
     <labels>
         <fullName>IPM_BB</fullName>
@@ -3574,7 +3825,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Used in IPM BCC controller</shortDescription>
-        <value>Business Case Confirmation Saved Successfully</value>
+        <value>Business case confirmation document saved successfully</value>
     </labels>
     <labels>
         <fullName>IPM_BD</fullName>
@@ -3714,7 +3965,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BETFirstReleaseOn</shortDescription>
-        <value>First Release on:</value>
+        <value>First Release On:</value>
     </labels>
     <labels>
         <fullName>IPM_BETFunctionalTeams</fullName>
@@ -3742,7 +3993,7 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BETLinkFunctionalMsg</shortDescription>
-        <value>Your Project Leader has requested the BET {0} to link with your project.
+        <value>Your Project Leader has selected the BET {0} to link with your project.
 &lt;br/&gt;&lt;br/&gt;
 If approved your project will be linked after your Charter gate has been approved.</value>
     </labels>
@@ -3870,7 +4121,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BETUnlinkingMessage</shortDescription>
-        <value>This will unlike your IPM project from {0}. Be aware that unlinking could result in the BET having no associated IPM project. Any mini-milestones associated with the linked BET will be removed within the IPM project. Are you sure want to continue?</value>
+        <value>This will unlink your IPM project from {0} BET. Be aware that unlinking could result in the BET having no associated IPM project. Any mini-milestones associated with the linked BET will be removed within the IPM project. Are you sure you want to continue?</value>
     </labels>
     <labels>
         <fullName>IPM_BET_BETUpdate_failure_ErrMsg</fullName>
@@ -3969,6 +4220,13 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM BET No BET Message</shortDescription>
         <value>All projects require a Brand Experience Toolkit (BET) unless agreed otherwise with the Leadership Team.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_BET_No_Result_Found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No result found</shortDescription>
+        <value>No result found.</value>
     </labels>
     <labels>
         <fullName>IPM_BET_SEARCH_RESULT</fullName>
@@ -4127,6 +4385,13 @@ If approved your project will be linked after your Charter gate has been approve
         <value>Skip BOSSCARD</value>
     </labels>
     <labels>
+        <fullName>IPM_BRAND_BUILDING_FINANCE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_BRAND_BUILDING_FINANCE</shortDescription>
+        <value>Brand Building Finance</value>
+    </labels>
+    <labels>
         <fullName>IPM_BRAND_POSITIONING</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -4145,7 +4410,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_BUSINESS_CASE_CONFIRMATION</shortDescription>
-        <value>Business Case Confirmation Document (Contract)</value>
+        <value>Business Case Confirmation Document</value>
     </labels>
     <labels>
         <fullName>IPM_B_CORPORATE_RISK</fullName>
@@ -4721,6 +4986,13 @@ If approved your project will be linked after your Charter gate has been approve
         <shortDescription>IPM_CONCEPT</shortDescription>
         <value>Concept</value>
     </labels>
+     <labels>
+        <fullName>IPM_CONCEPT_REMOVE_NOTE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_CONCEPT_REMOVE_NOTE</shortDescription>
+        <value>Note: You can always add it back by using the Add Concept test button.</value>
+    </labels>
     <labels>
         <fullName>IPM_CONFIDENTIAL_INFO</fullName>
         <language>en_US</language>
@@ -4789,7 +5061,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_COPY_COUNTRY_INPUT_TO_SEC</shortDescription>
-        <value>Country input below will be automatically copied into the Brand development document section 7.2</value>
+        <value>Country input below will be automatically copied into the Brand Development document section 7.2</value>
     </labels>
     <labels>
         <fullName>IPM_CORE_PARAMETERS</fullName>
@@ -4923,6 +5195,13 @@ If approved your project will be linked after your Charter gate has been approve
         <protected>false</protected>
         <shortDescription>IPM_Calendar</shortDescription>
         <value>Calendar</value>
+    </labels>
+    <labels>
+        <fullName>IPM_CancelCountryRemoval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel and Revert</shortDescription>
+        <value>Cancel and Revert</value>
     </labels>
     <labels>
         <fullName>IPM_CategoryNameNotNull</fullName>
@@ -5174,7 +5453,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CoreParameter CPV</shortDescription>
-        <value>2.2 Consumers Perceived Value</value>
+        <value>2.2 Consumer Value Perception</value>
     </labels>
     <labels>
         <fullName>IPM_CoreParameter_ET</fullName>
@@ -5188,7 +5467,7 @@ If approved your project will be linked after your Charter gate has been approve
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CoreParameter Help Guide</shortDescription>
-        <value>&quot;Core Parameters&quot; define the key attributes for a project and are mandatory. Complete the following five steps
+        <value>&quot;Project Parameters&quot; define the key attributes for a project and are mandatory. Complete the following steps
 as best as you can, using the help text as a guide. (You may come back and make changes later.)</value>
     </labels>
     <labels>
@@ -5239,6 +5518,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM_CreateNewBETTitle</shortDescription>
         <value>Create New Brand Experience Toolkit (BET)</value>
+    </labels>
+     <labels>
+        <fullName>IPM_Create_Assotment_Strategy</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Create Assotment Strategy</shortDescription>
+        <value>Please select data to create Assortment strategy</value>
     </labels>
     <labels>
         <fullName>IPM_Create_Regional_Rollouts</fullName>
@@ -6251,6 +6537,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Filters</value>
     </labels>
     <labels>
+        <fullName>IPM_Finacial_Data_Missing</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Finacial key data missing message</shortDescription>
+        <value>Key Financial Data is missing. Please update your business case.</value>
+    </labels>
+    <labels>
         <fullName>IPM_FINANACE_LEADER</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -6354,6 +6647,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>IPM FastTrackProject</shortDescription>
         <value>Fast Track project</value>
+    </labels>
+    <labels>
+        <fullName>IPM_FastTrack_HelpText</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FastTrack HelpText</shortDescription>
+        <value>Fast Track projects are not expected to meet On Time requirements of 6 months between Market Ready Approval and Launch.</value>
     </labels>
     <labels>
         <fullName>IPM_File_Uploaded_Successfully</fullName>
@@ -6752,7 +7052,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_GENERATE_MITIGATION_PLAN</shortDescription>
-        <value>generate Mitigation plan.</value>
+        <value>generate Management plan.</value>
     </labels>
     <labels>
         <fullName>IPM_GENERATE_ROLLOUTS</fullName>
@@ -6927,7 +7227,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_Generate_Mitigation_Button</shortDescription>
-        <value>Generate Mitigation Plan</value>
+        <value>Generate Management Plan</value>
     </labels>
     <labels>
         <fullName>IPM_Generic_ErrorMessage</fullName>
@@ -6984,6 +7284,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <protected>false</protected>
         <shortDescription>GlobalProject</shortDescription>
         <value>Original</value>
+    </labels>
+    <labels>
+        <fullName>IPM_Go_back_to_gate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Go_back_to_gate</shortDescription>
+        <value>Go back to Gate Document Overview</value>
     </labels>
     <labels>
         <fullName>IPM_GotoIPMPortal</fullName>
@@ -7060,7 +7367,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>true</protected>
         <shortDescription>IPM_IDEA</shortDescription>
-        <value>Idea</value>
+        <value>Ideas</value>
     </labels>
     <labels>
         <fullName>IPM_IE_9</fullName>
@@ -7196,6 +7503,20 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Innovation Year ITO Cannot be greater than GTO, Please Paste(ctrl + V) correct Data!!</value>
     </labels>
     <labels>
+        <fullName>IPM_ITO_GTO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ITO_GTO_CALENDAR</shortDescription>
+        <value>Calendar Year ITO Cannot be greater than GTO.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_ITO_GTO_INNOVATION</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_ITO_GTO_INNOVATION</shortDescription>
+        <value>Innovation Year ITO Cannot be greater than GTO.</value>
+    </labels>
+    <labels>
         <fullName>IPM_IdsApprovalNotNullMSg</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7291,7 +7612,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Inactive Users Text</shortDescription>
-        <value>&amp;nbsp; is no longer an active user in IPM Navigator. You may need to find another person to fill this role on your project.</value>
+        <value>is no longer an active user in IPM Navigator. You may need to find another person to fill this role on your project.</value>
     </labels>
     <labels>
         <fullName>IPM_Included_In</fullName>
@@ -7406,6 +7727,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>Local Project:</value>
     </labels>
     <labels>
+        <fullName>IPM_Label_for_Financial_Edit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Label for Financial Edit</shortDescription>
+        <value>Any edits to be done to financials business case must be in EURO&apos;s only.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Later</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7445,7 +7773,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_LinkBETPLMsg</shortDescription>
-        <value>You have requested to link your project to this BET: &lt;b&gt;{0}&lt;/b&gt;. &lt;br/&gt;&lt;br/&gt; If this request is approved the BET will be linked within 72 hours of the link request.</value>
+        <value>You have selected the BET &lt;b&gt;{0}&lt;/b&gt; to link with your project. &lt;br/&gt;&lt;br/&gt; If this request is approved the BET will be linked within 72 hours of the link request.</value>
     </labels>
     <labels>
         <fullName>IPM_LinkBETPLMsgIdeas</fullName>
@@ -7792,6 +8120,13 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <value>Due Date of this milestone should not exceed its Gate&apos;s Due Date.</value>
     </labels>
     <labels>
+        <fullName>IPM_Milestone_FutureDueDate_Validation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Milestone_FutureDueDate_Validation</shortDescription>
+        <value>The due date for this milestone must be before the due date for the next gate&apos;s milestone.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Milestone_Standard</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -7957,7 +8292,7 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_NO_RISK_PLAN_GENERATED</shortDescription>
-        <value>No Mitigation plan has been generated.Click to</value>
+        <value>No Management plan has been generated.Click to</value>
     </labels>
     <labels>
         <fullName>IPM_NO_ROLLOUT</fullName>
@@ -8696,7 +9031,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PROJECT</shortDescription>
-        <value>project</value>
+        <value>Project</value>
     </labels>
     <labels>
         <fullName>IPM_PROJECTCREATION_INPROGRESS</fullName>
@@ -8717,7 +9052,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PROJECT_BACKGROUND_PROCESS</shortDescription>
-        <value>Your project request has successfully been sent for Processing. You would be notified once processing is complete via Email.</value>
+        <value>Your project is currently being created, so come back in a few minutes...</value>
     </labels>
     <labels>
         <fullName>IPM_PROJECT_DESCRIPTION</fullName>
@@ -8906,7 +9241,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning</shortDescription>
-        <value>Clicking on Save would submit your Request for Phase Change.Once Processing is complete,you would be notified via Email.</value>
+        <value>Clicking on Save would submit your request for phase change. Once processing is complete, you would be notified via email.</value>
     </labels>
     <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning_Local</fullName>
@@ -8921,6 +9256,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning_Regional</shortDescription>
         <value>Clicking on save would submit your request for creation of regional project as soon as the regional project leader is assigned.A Regional Rollout project, once projected, cannot be deleted by the project leader and will have to be done via regional project leader through stop project. Once Processing is complete,you would be notified via Email.</value>
+    </labels>
+    <labels>
+        <fullName>IPM_PhaseChangeInProgressMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_PhaseChangeInProgressMsg</shortDescription>
+        <value>Your project is currently being processed, so please come back in a few minutes...</value>
     </labels>
     <labels>
         <fullName>IPM_PhaseLabel</fullName>
@@ -8951,6 +9293,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Planned {Next Gate} :</value>
     </labels>
     <labels>
+        <fullName>IPM_Please_complete_the_Risk_mitigation_plan_before_proposing_gate_document</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Please complete the Risk management plan before proposing gate document</shortDescription>
+        <value>Please complete the Risk management plan before proposing gate document in</value>
+    </labels>
+    <labels>
         <fullName>IPM_Please_Fill</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -8969,7 +9318,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PojectSetupUrl</shortDescription>
-        <value>/apex/IPM_Projectsetup</value>
+        <value>/apex/IPM_ProjectSetUpView</value>
     </labels>
     <labels>
         <fullName>IPM_PostponeDate_Validation</fullName>
@@ -9130,7 +9479,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ProjectTypeAndCompany_ReadOnlyWarning</shortDescription>
-        <value>Your selections for Type of Project and Company will be permanent once you hit save and continue. Only proceed with project creation when you are certain which indicators to choose.</value>
+        <value>Your selections for Type of Project and Company will be permanent once you hit Submit for Project Creation. Only proceed with project creation when you are certain which indicators to choose.</value>
     </labels>
     <labels>
         <fullName>IPM_Project_Classified</fullName>
@@ -9364,6 +9713,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Review Risk Quick Scan</value>
     </labels>
     <labels>
+        <fullName>IPM_REVIEW_RISK_QUICK_SCAN</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_REVIEW_RISK_QUICK_SCAN</shortDescription>
+        <value>Review Risk Quick Scan</value>
+    </labels>
+    <labels>
         <fullName>IPM_RISKY</fullName>
         <language>en_US</language>
         <protected>true</protected>
@@ -9375,7 +9731,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_RISK_MITIGATION_PLAN</shortDescription>
-        <value>Risk Mitigation Plan</value>
+        <value>Risk Management Plan</value>
     </labels>
     <labels>
         <fullName>IPM_RISK_MODAL_TITLE</fullName>
@@ -9424,7 +9780,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ROLLOUTS_PROPOSAL</shortDescription>
-        <value>rollouts</value>
+        <value>Rollouts</value>
     </labels>
     <labels>
         <fullName>IPM_ROLLOUT_IN</fullName>
@@ -9452,7 +9808,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM R&amp;D FEASIBILITY QUESTIONS</shortDescription>
-        <value>R &amp; D FEASIBILITY Questions:</value>
+        <value>R&amp;D FEASIBILITY Questions:</value>
     </labels>
     <labels>
         <fullName>IPM_R_D_QUESTIONS</fullName>
@@ -9567,6 +9923,20 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Remove</value>
     </labels>
     <labels>
+        <fullName>IPM_RemoveCountryFromMCO</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Country From MCO</shortDescription>
+        <value>Remove Country From MCO</value>
+    </labels>
+    <labels>
+        <fullName>IPM_RemoveCountryMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remove Country Warning Message</shortDescription>
+        <value>You have chosen to remove one or more countries from this MCO rollout. This will have no automatic impact on the financial data for this MCO at Regional or Local level. Please consider whether the business case will need updating.</value>
+    </labels>
+    <labels>
         <fullName>IPM_RemoveTask</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -9614,6 +9984,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_Remove_Country</shortDescription>
         <value>Are you sure you want to remove this Country?</value>
+    </labels>
+     <labels>
+        <fullName>IPM_Remove_Customer_Channel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Remove_Customer_Channel</shortDescription>
+        <value>Remove Customer Channel</value>
     </labels>
     <labels>
         <fullName>IPM_Remove_Member</fullName>
@@ -10050,6 +10427,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Some considerations: What is the size of the segment? Is it a new segment for Unilever? Is it growing? What is the estimated share of the segment? What size of business can we create and how incremental would it be? What kind of margins might we expect? How competitive is the segment and what type of investment would be required? Would we have any competitive advantages in the segment? Does this segment have strategic importance to key customers?</value>
     </labels>
     <labels>
+        <fullName>IPM_STARTED</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM Started</shortDescription>
+        <value>Started</value>
+    </labels>
+    <labels>
         <fullName>IPM_START_ADD_ROLLOUT</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10083,6 +10467,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_SUMMARY</shortDescription>
         <value>Summary</value>
+    </labels>
+    <labels>
+        <fullName>IPM_SUMMARY_TEXT_MINIMUM_LIMIT</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_SUMMARY_TEXT_MINIMUM_LIMIT</shortDescription>
+        <value>A minimum of 15 characters is required to be entered to be considered as filled in.</value>
     </labels>
     <labels>
         <fullName>IPM_SUPPLY_CHAIN_QUESTIONS</fullName>
@@ -10180,7 +10571,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Section Not Filled</shortDescription>
-        <value>Error:This Section will be considered as not filled in</value>
+        <value>Note: This section will not be considered filled in until the Summary or functional sections have been completed by the respective users.</value>
     </labels>
     <labels>
         <fullName>IPM_SelectBrandPosition</fullName>
@@ -10309,6 +10700,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Select Sustainability Period</value>
     </labels>
     <labels>
+        <fullName>IPM_Select_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_Select Text</shortDescription>
+        <value>Please select one of the values.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Select_existing_Toolkit</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10411,7 +10809,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Strategic Help</shortDescription>
-        <value>&quot;Below is how your project plots in the Consumer/Technology Matrix (CTM) and its assigned Strategic Intent i.e. Innovation, Renovation, BLG or Operational. The strategic intent is based on your prior selections for Type of Project, Consumer Value Perception and Enabling Technology. This information will roll up to portfolio-level CTM views to illustrate the actual spread of multiple projects and collective implications on risk, growth, resources, investment, and ability to deliver strategic targets. Because portfolio decisions are made based on the CTM, it is essential that your Type of Project, CVP and ET be accurate  please consult CMI and R&amp;D partners for input. Unlike Type of Project which is fixed now, CVP and ET may be edited as the project progresses, until Market Ready Gate is approved.&quot;</value>
+        <value>Below is how your project plots in the Consumer/Technology Matrix (CTM) and its assigned Strategic Intent i.e. Innovation, Renovation, BLG or Operational. The strategic intent is based on your prior selections for Type of Project, Consumer Value Perception and Enabling Technology. This information will roll up to portfolio-level CTM views to illustrate the actual spread of multiple projects and collective implications on risk, growth, resources, investment, and ability to deliver strategic targets. Because portfolio decisions are made based on the CTM, it is essential that your Type of Project, CVP and ET be accurate. Please consult CMI and R&amp;D partners for input. Unlike Type of Project which is fixed now, CVP and ET may be edited as the project progresses, until Market Ready Gate is approved.</value>
     </labels>
     <labels>
         <fullName>IPM_Strategic_Intent</fullName>
@@ -10575,6 +10973,20 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Please select TLD more than current date</value>
     </labels>
     <labels>
+        <fullName>IPM_TLD_VR_Misaligned</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLD_VR_Misaligned</shortDescription>
+        <value>Target Launch Date for {0} is misaligned: Value at Regional = {1} value at Local = {2}</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLD_VR_Misaligned_Part_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLD_VR_Misaligned_Part_Msg</shortDescription>
+        <value>is misaligned: Value at Regional</value>
+    </labels>
+    <labels>
         <fullName>IPM_TOPPING_UP_ON_THINGS</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10642,7 +11054,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_TRADEMARK_QUESTIONS</shortDescription>
-        <value>TradeMark Questions:</value>
+        <value>TradeMark Question:</value>
     </labels>
     <labels>
         <fullName>IPM_TRAINING_OR_TECHNICAL</fullName>
@@ -10719,7 +11131,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Task Assign Text1</shortDescription>
-        <value>- You have been assigned some tasks for &amp;nbsp;</value>
+        <value>- You have been assigned some tasks for</value>
     </labels>
     <labels>
         <fullName>IPM_Task_Assign_Text2</fullName>
@@ -10733,7 +11145,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM Task Completion Text</shortDescription>
-        <value>&amp;nbsp; Task is completed!</value>
+        <value>Task is completed!</value>
     </labels>
     <labels>
         <fullName>IPM_Task_Error</fullName>
@@ -10992,7 +11404,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM User Changed Roles</shortDescription>
-        <value>&amp;nbsp; is no longing performing the same role, according to the Unilever Active Directory. You may need to find another person to fill this role on your project &amp;nbsp;</value>
+        <value>is no longing performing the same role, according to the Unilever Active Directory. You may need to find another person to fill this role on your project</value>
     </labels>
     <labels>
         <fullName>IPM_User_License</fullName>
@@ -11083,7 +11495,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_WELCOME_TO_IDEA_PHASE</shortDescription>
-        <value>Welcome to the Idea phase of your project, where you&apos;ll be working on the draft Charter.</value>
+        <value>Welcome to the Ideas phase of your project, where you&apos;ll be working on the draft Charter.</value>
     </labels>
     <labels>
         <fullName>IPM_WHAT_WE_CANT_CHANGE</fullName>
@@ -11251,16 +11663,25 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_welcomeToFeasibility</shortDescription>
-        <value>Welcome to Feasibility!</value>
+        <value>We just need you to confirm a few details and then we can create the new BET for your project. Any changes you make here will not affect your IPM project.</value>
     </labels>
-    <labels>
+   <labels>
+        <fullName>TLD_After_Charter_Contract_and_Market_Ready_Milestone_Dates</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>TLD After Charter Contract and Market Ready Milestone Dates</shortDescription>
+        <value>Target Launch Date must be after Charter, Contract and Market Ready mandatory milestones.</value>
+    </labels>  
+     
+
+ <labels>
         <fullName>LAUNCH_PINNOVATE_CMD</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>UW_LAUNCH_PINNOVATE_CMD</shortDescription>
         <value>#launchthewall</value>
     </labels>
-    <labels>
+   <labels>
         <fullName>MLST_OBJ_NAME</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -11274,13 +11695,29 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>Matrix Currency Desc</shortDescription>
         <value>All figures in thousands of Euro unless another currency is specified.</value>
     </labels>
-    <labels>
+   <labels>
+    <fullName>OV_MobileApplicationInfo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OV_MobileApplicationInfo</shortDescription>
+        <value>OneView Next Generation is not yet available on mobile devices but development is underway. Look on our Chatter group to find out more about plans for 2016.</value>
+    </labels>
+   <labels>
+        <fullName>OV_NewLine</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OV_NewLine</shortDescription>
+        <value>&lt;
+
+&gt;</value>
+    </labels>
+<labels>
         <fullName>Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40</fullName>
         <categories>Oblix Calculator</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_LblBrandLedGrowth_IncremTurnoverLessAbove40</shortDescription>
-        <value>Incremental Turn Over &gt;40M</value>
+        <value>Total Turnover &gt;40M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_Activity</fullName>
@@ -11303,7 +11740,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_100_200</shortDescription>
-        <value>Total turnover €100-€200m</value>
+        <value>€100-€200m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnover1020</fullName>
@@ -11311,7 +11748,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnover1020</shortDescription>
-        <value>Incremental Turn Over 10M - 20M</value>
+        <value>Total Turnover 10M - 20M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnover200_300</fullName>
@@ -11319,7 +11756,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnover200_300</shortDescription>
-        <value>Total turnover €200-€300m</value>
+        <value>€200-€300m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess10</fullName>
@@ -11327,7 +11764,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess10</shortDescription>
-        <value>Incremental Turn Over &lt;10M</value>
+        <value>Total Turnover &lt;10M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess2030</fullName>
@@ -11335,7 +11772,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess2030</shortDescription>
-        <value>Incremental Turn Over 20M - 30M</value>
+        <value>Total Turnover 20M - 30M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess300_400</fullName>
@@ -11343,7 +11780,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess300_400</shortDescription>
-        <value>Total turnover €300-€400m</value>
+        <value>€300-€400m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess3040</fullName>
@@ -11351,7 +11788,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLess3040</shortDescription>
-        <value>Incremental Turn Over 30M - 40M</value>
+        <value>Total Turnover 30M - 40M</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLessAbove400</fullName>
@@ -11359,7 +11796,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_BrandLedGrowth_IncremTurnoverLessAbove400</shortDescription>
-        <value>Total turnover &gt;€400m</value>
+        <value>&gt;€400m</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_BrandLedGrowth_Less100</fullName>
@@ -11503,7 +11940,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_Oblix_Lbl_Innovation_Projects_Market5</shortDescription>
-        <value>Global campaign/s suitable for &gt;15 number of markets</value>
+        <value>Global campaign/s suitable for  &gt;15 number of markets</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_Role</fullName>
@@ -11643,7 +12080,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
-        <value>&amp;nbsp;</value>
+        <value>Production of a new film master, with creative development work already complete. Requires agency in casting and oversight of production. Ie/ reshoot of an existing script</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score3</fullName>
@@ -11651,7 +12088,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Audio / Visual ORIGINATION – FULL</shortDescription>
-        <value>&amp;nbsp;</value>
+        <value>Creative development of a new master only. No production. Assumes several new scripts created for testing.</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score4</fullName>
@@ -12020,7 +12457,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Cut downs &amp; Tag</shortDescription>
-        <value>Cut Downs and Tags</value>
+        <value>Cut downs and Tags</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Data_Ana_Rep_Dash</fullName>
@@ -12108,7 +12545,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>Static or Flash banner adaptation or Adaptation of Social Media Content (eg/ facebook post, simple imafes for e-commerce, youtube masthead)</value>
+        <value>Banner or landing page adaptations (complex)</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score2</fullName>
@@ -12116,7 +12553,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>Adaptation of Landing Pages, Page Take-overs etc</value>
+        <value>Digital strategy adaptation / refresh. Eg/ mobile or UX strategy</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score3</fullName>
@@ -12124,7 +12561,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>Low - Adaptation of up to 5 digital items (eg/ banners, webpage updates, social media content/posts)</value>
+        <value>EDM/eNewsletters - Adapt copy, design &amp; layout.</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score4</fullName>
@@ -12132,7 +12569,8 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>Medium - Adaptation of up to 10 digital items (eg/ banners, webpage updates, social media content/posts) or Adaptation of simple social media app (eg/ FB contest)</value>
+        <value>Micro site adaptation for language or localised creative concept
+8 Page / 10 Sections</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Score5</fullName>
@@ -12140,7 +12578,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital adaptation requirements</shortDescription>
-        <value>High - Adaptation of up to 15 items (eg/ banners, webpage updates, social media content/posts) or Micro site adaptation for language or localised creative concept 8 Page / 10 Sections</value>
+        <value>Complex website revamp or localisation. Eg/ Inclusion of registration module, Mobile App adaptation, interactive game adaptation.</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory</fullName>
@@ -12188,7 +12626,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Digital Campaign Assets</value>
+        <value>Digital campaign assets</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score1</fullName>
@@ -12196,7 +12634,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Static and Flash Banners, Social media content (eg/ facebook post, simple images for e-commerce, youtube masthead)</value>
+        <value>Banner, landing page, page take over, youtube uploads (includes writing the copy for you tube clips etc).</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score2</fullName>
@@ -12204,7 +12642,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Landing Pages, Page Take-overs</value>
+        <value>EDM/eNewsletters (Standard) - Originate copy, design &amp; layout</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score3</fullName>
@@ -12212,7 +12650,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Low - Digital bundle of assets up to 5 items (eg/ banners, webpage updates, social media content/posts)</value>
+        <value>EDM/eNewsletters (Complex) - Originate copy, design &amp; layout</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score4</fullName>
@@ -12220,7 +12658,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>Medium - Digital bundle of assets up to 10 items (eg/ banners, webpage updates, social media content/posts) or Simple app for social media eg/ facebook contest</value>
+        <value>Simple app for social media eg/ facebook contest</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Digital_campaign_assets_score5</fullName>
@@ -12228,7 +12666,8 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Digital campaign assets</shortDescription>
-        <value>High - Digital bundle of assets up to 15 items (eg/ banners, webpage updates, social media content/posts) or Micro site creation (Complex) 8 Page / 10 Sections</value>
+        <value>Micro site creation (Complex)
+8 Page / 10 Sections</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Experiential</fullName>
@@ -12671,7 +13110,7 @@ the campaign covers more than 15 countries</value>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Stimulus requirements</shortDescription>
-        <value>Stimulus Requirements</value>
+        <value>Stimulus requirements</value>
     </labels>
     <labels>
         <fullName>Oblix_Lbl_UIUX_Stimulus</fullName>
@@ -14257,11 +14696,11 @@ For Unilever Internal users, use the links below to open the toolkit, brand &amp
         <value>Toolkit</value>
     </labels>
     <labels>
-        <fullName>WP_In_Store_Executions_Mode</fullName>
+        <fullName>IPM_FunctionalRoleErrorMsg</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>WP In Store Executions Mode</shortDescription>
-        <value>In Store Execution</value>
+        <shortDescription>IPM_FunctionalRoleErrorMsg</shortDescription>
+        <value>Enter Functional Role.</value>
     </labels>
     <labels>
         <fullName>WP_In_Store_Executions_Page</fullName>
@@ -14929,14 +15368,6 @@ Which Communications team do you represent? You must be associated to one Planne
         <protected>true</protected>
         <shortDescription>Refresh</shortDescription>
         <value>Refresh</value>
-    </labels>
-    <labels>
-        <fullName>secondsOblix_Lbl_UIUX_Audio_Score4</fullName>
-        <categories>Oblix_VF08_ProjectEdit</categories>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Audio</shortDescription>
-        <value>Full creative development and production of audio content, 30-60</value>
     </labels>
     <labels>
         <fullName>toolbar_app_top_nav_lbl_title_text</fullName>
