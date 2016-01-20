@@ -159,8 +159,8 @@
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
-                    <div class="col-sm-7">{!$Label.ipmFinSummaryNPV}</div>i
-                    <div class="col-sm-5">€ 000</div>
+                    <div class="col-sm-7">{!$Label.ipmFinSummaryNPV}</div>
+                    <div class="col-sm-5">€ '000</div>
                 </td>
                 <td class="fintlewhitebg">
                     <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
