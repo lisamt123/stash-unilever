@@ -2,6 +2,8 @@
     Purpose: Business logic resides in this class Chatter Notification class to fire notifications.
     Author: Cognizant Technology
     @Date: Dec 2014
+    Justification:Devops approved Without Sharing. This resolves issue while running test classes in preprod on the Entity Subscription object (more than 100000 rows) 
+    			  and getting non selective query error
 **/
 public without sharing class IPM_ChatterFeedHelper {
     
