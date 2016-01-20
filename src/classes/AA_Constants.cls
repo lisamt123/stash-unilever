@@ -38,5 +38,6 @@ public with sharing class AA_Constants {
     public static final String CompReportTitle='competitor report 3';
     public static final String StringAmerica='America';
     public static final String testString='test';
+    public static final String TownSample='pune';
     
 }

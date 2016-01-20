@@ -1211,7 +1211,7 @@ public with sharing class AA_AgentAppServiceController {
      public AA_ApplicationWrapperObj isAcceptedTermsAndCondition(AA_ApplicationWrapperObj appWrapperObj){
         List<aa_Agent_App_User_Preference__c> UserPref = [SELECT Id,User_Last_Login__c,UserId__c,Is_Accepted_Terms_Condition__c,T_C_AcceptedDate__c FROM aa_Agent_App_User_Preference__c where UserId__c =: UserInfo.getUserId() LIMIT 1];
          if(UserPref.size() >= 1){
-         if(UserPref[0].Is_Accepted_Terms_Condition__c == false){
+         if(!UserPref[0].Is_Accepted_Terms_Condition__c){
             appWrapperObj.isAcceptedTermsCondition = false;
          }
          else{

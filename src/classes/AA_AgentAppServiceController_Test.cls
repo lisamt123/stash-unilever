@@ -25,7 +25,7 @@ private class AA_AgentAppServiceController_Test {
        insert clusterData;
        aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Report_Description__c = 'This is a test description',Country__c = countryData.id,Reporting_on__c = AA_Constants.ReportingOnSample,Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
+       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Report_Description__c = 'This is a test description',Country__c = countryData.id,Reporting_on__c = AA_Constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
        insert unileverReport;
        
        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
@@ -35,7 +35,7 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.ReportDesc = unileverReport.Report_Description__c;
        objAgentApp.Retailer = retailerData.Id;
        objAgentApp.ReportingOn = AA_constants.ReportingOnSample;
-       objAgentApp.Town = 'Pune';
+       objAgentApp.Town = AA_Constants.TownSample;
        objAgentApp.Latitude = AA_Constants.LatSample;
        objAgentApp.Longitude = AA_Constants.LongSample;
        objAgentApp.RecordTypeId = recTypeId;
@@ -79,7 +79,7 @@ private class AA_AgentAppServiceController_Test {
        insert clusterData;
        aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+       aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
        insert competitorReport;
        
        aa_Topic__c newtopic=new aa_Topic__c(Name='topic name');
@@ -95,7 +95,7 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.Retailer = retailerData.Id;
        objAgentApp.ReportingOn = AA_constants.ReportingOnSample;
        objAgentApp.CountryId = countryData.id;
-       objAgentApp.Town = 'Pune';
+       objAgentApp.Town = AA_Constants.TownSample;
        objAgentApp.Latitude = AA_Constants.LatSample;
        objAgentApp.Longitude = AA_Constants.LongSample;
        objAgentApp.RecordTypeId = recTypeId;
@@ -202,7 +202,7 @@ private class AA_AgentAppServiceController_Test {
        insert clusterData;
        aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
+       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
        insert unileverReport;
         AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
         objAgentApp.UnileverBrandId = uniBrand.id;
@@ -210,7 +210,7 @@ private class AA_AgentAppServiceController_Test {
         objAgentApp.ReportName = unileverReport.Report_Title__c;
         objAgentApp.Retailer = retailerData.Id;
         objAgentApp.ReportingOn = AA_constants.ReportingOnSample;
-        objAgentApp.Town = 'Pune';
+        objAgentApp.Town = AA_Constants.TownSample;
         objAgentApp.Latitude = AA_Constants.LatSample;
         objAgentApp.Longitude = AA_Constants.LongSample;
         objAgentApp.RecordTypeId = recTypeId;
@@ -266,9 +266,9 @@ private class AA_AgentAppServiceController_Test {
         insert clusterData;
         aa_Country__c countryData = new aa_Country__c(Name =AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
         insert countryData;
-        aa_Agent_Report__c unileverReport1 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id,Status__c = 'Published (Public)');
+        aa_Agent_Report__c unileverReport1 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id,Status__c = 'Published (Public)');
         insert unileverReport1;
-        aa_Agent_Report__c unileverReport2 = new aa_Agent_Report__c(Report_Title__c =AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id,Status__c = 'Published (Public)');
+        aa_Agent_Report__c unileverReport2 = new aa_Agent_Report__c(Report_Title__c =AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id,Status__c = 'Published (Public)');
         insert unileverReport2;
         
         List<aa_Agent_Report__c> unileverReport = new List<aa_Agent_Report__c>();
@@ -284,7 +284,7 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.ReportDesc = unileverReport1.Report_Description__c;
        objAgentApp.Retailer = retailerData.Id;
        objAgentApp.ReportingOn = AA_constants.ReportingOnSample;
-       objAgentApp.Town = 'Pune';
+       objAgentApp.Town = AA_Constants.TownSample;
        objAgentApp.Latitude = AA_Constants.LatSample;
        objAgentApp.Longitude = AA_Constants.LongSample;
        objAgentApp.RecordTypeId = recTypeId;
@@ -344,9 +344,9 @@ private class AA_AgentAppServiceController_Test {
        insert clusterData;
        aa_Country__c countryData = new aa_Country__c(Name =AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+       aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
        insert competitorReport1;
-        aa_Agent_Report__c competitorReport2 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport2 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
        insert competitorReport2;
        aa_Agent_Report__Feed agentFeed = new aa_Agent_Report__Feed();
       
@@ -362,7 +362,7 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.Retailer = retailerData.Id;
        objAgentApp.ReportingOn = AA_constants.ReportingOnSample;
        objAgentApp.CountryId = countryData.id;
-       objAgentApp.Town = 'Pune';
+       objAgentApp.Town =AA_Constants.TownSample;
        objAgentApp.Latitude = AA_Constants.LatSample;
        objAgentApp.Longitude = AA_Constants.LongSample;
        objAgentApp.RecordTypeId = recTypeId;
@@ -424,7 +424,7 @@ private class AA_AgentAppServiceController_Test {
        aa_Country__c countryData = new aa_Country__c(Name =AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
         
-       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
+       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
        insert unileverReport;
                 
        FeedItem fi2 = new FeedItem();
@@ -511,7 +511,7 @@ private class AA_AgentAppServiceController_Test {
        aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
         
-       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
+       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
        insert unileverReport;
        list<String> agentAPPIDInserted=new List<String>();
        agentAPPIDInserted.add(unileverReport.ID);

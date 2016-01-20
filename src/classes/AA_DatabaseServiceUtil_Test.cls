@@ -11,7 +11,7 @@ private class AA_DatabaseServiceUtil_Test {
         List<String> res3 = AA_DatabaseServiceUtil.upsertOperation(retailerData);
         
         //invalid obj
-        sObject tst=new aa_Agent_Retailer__c(Name='test');
+        sObject tst=new aa_Agent_Retailer__c(Name=AA_Constants.testString);
         //insert tst;
         List<String> res1 = AA_DatabaseServiceUtil.upsertOperation(tst);        
         
@@ -29,7 +29,7 @@ private class AA_DatabaseServiceUtil_Test {
        insert clusterData;
        aa_Country__c countryData = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = 'Unilever Report 1',Country__c = clusterData.id,Reporting_on__c = 'test',Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
+       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = 'Unilever Report 1',Country__c = clusterData.id,Reporting_on__c = AA_Constants.testString,Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
        //insert unileverReport;         
         
         
@@ -63,7 +63,7 @@ private class AA_DatabaseServiceUtil_Test {
         
         List<String> res1 = AA_DatabaseServiceUtil.deleteOperation(retailerData);
         
-        sObject tst=new aa_Agent_Retailer__c(Name='test');
+        sObject tst=new aa_Agent_Retailer__c(Name=AA_Constants.testString);
         List<String> res2 = AA_DatabaseServiceUtil.deleteOperation(tst);
         system.assert(res.size()>0);
         
@@ -109,10 +109,10 @@ private class AA_DatabaseServiceUtil_Test {
         
         ContentVersion contentVersionObj = new ContentVersion();
         contentVersionObj.ContentURL='http://www.google.com/';
-        contentVersionObj.Title = 'test';           
+        contentVersionObj.Title = AA_Constants.testString;           
         insert contentVersionObj;
         List<String> res1 = AA_DatabaseServiceUtil.insertOperation(unileverReport.id,contentVersionObj.id);
-        List<String> res2 = AA_DatabaseServiceUtil.insertOperation(unileverReport.id,'test');
+        List<String> res2 = AA_DatabaseServiceUtil.insertOperation(unileverReport.id,AA_Constants.testString);
         //commented as part of 10 Nov 2015 deployment 
         system.assert(res1.size()>0);
     }
