@@ -1,7 +1,7 @@
 /*************************************************************************************
 Name : BET_AccessService
 
-Purpose : Access service class
+Purpose : BET Access service class
 
 History
 
