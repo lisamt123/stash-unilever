@@ -14,6 +14,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
   <apex:includeScript value="{!$Resource.BET}/scripts/BETManageMembersJS.js" />
 <!-- Test commit from IDC -->
   <script>
+  console.log("Test change from IDC")
     function updateRoleOnMember(memId, role, idx){
       Visualforce.remoting.Manager.invokeAction(
         '{!$RemoteAction.BET_ManageMembersController.updateMemberRole}',
