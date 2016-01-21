@@ -28,7 +28,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
         insert countryData;
        
-        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport;
         
         
@@ -38,7 +38,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData1 = new aa_Country__c(Name = 'South Africa',Cluster_Id__c = clusterData1.id);
         insert countryData1;
        
-        aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 2',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData1.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 2',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData1.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport1;
         
         
@@ -48,7 +48,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData2 = new aa_Country__c(Name = 'Test Europe',Cluster_Id__c = clusterData2.id);
         insert countryData2;
        
-        aa_Agent_Report__c competitorReport2 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData2.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport2 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData2.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport2;
         
          aa_Cluster__c clusterData3 = new aa_Cluster__c(Name = 'Europe');
@@ -57,7 +57,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData3 = new aa_Country__c(Name = 'Test Europe',Cluster_Id__c = clusterData3.id);
         insert countryData3;
        
-        aa_Agent_Report__c competitorReport3 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData3.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport3 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData3.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport3;
         
         aa_Cluster__c clusterData4 = new aa_Cluster__c(Name = 'Latin America');
@@ -66,7 +66,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData4 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData4.id);
         insert countryData4;
        
-        aa_Agent_Report__c competitorReport4 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 4',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData4.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport4 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 4',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData4.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport4;
        
         AA_ExecuteApprovalProcess.executeApproval(competitorReport1.id);
@@ -82,7 +82,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData5 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData5.id);
         insert countryData5;
        
-        aa_Agent_Report__c competitorReport5 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 5',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData5.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport5 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 5',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData5.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport5;
         
          AA_ExecuteApprovalProcess.executeApproval(competitorReport5.id);
@@ -93,7 +93,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData6 = new aa_Country__c(Name =AA_Constants.StringAmerica,Cluster_Id__c = clusterData6.id);
         insert countryData6;
        
-        aa_Agent_Report__c competitorReport6 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 6',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData6.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport6 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 6',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData6.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport6;
          AA_ExecuteApprovalProcess.executeApproval(competitorReport6.id);
          
@@ -103,7 +103,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData7 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData7.id);
         insert countryData7;
        
-        aa_Agent_Report__c competitorReport7= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 7',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c =AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData7.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport7= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 7',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c =AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData7.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport7;
          AA_ExecuteApprovalProcess.executeApproval(competitorReport7.id);
          
@@ -113,7 +113,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData8 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData8.id);
         insert countryData8;
        
-        aa_Agent_Report__c competitorReport8= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 8',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData8.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport8= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 8',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData8.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport8;
          AA_ExecuteApprovalProcess.executeApproval(competitorReport8.id);
          
@@ -124,7 +124,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData9 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData9.id);
         insert countryData9;
        
-        aa_Agent_Report__c competitorReport9= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 9',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData9.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport9= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 9',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData9.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport9;
          AA_ExecuteApprovalProcess.executeApproval(competitorReport9.id);
         
@@ -228,7 +228,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
         insert countryData;
        
-        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 2',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 2',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport;
                                    
       
@@ -239,7 +239,7 @@ public class AA_ExecuteApprovalProcess_tst {
         controller.AgentReportObjNew.Comments__c=AA_Constants.testString;
         controller.executeApprovalfromMobile();
         
-         aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(status__c='Approve',Report_Title__c = 'Competitor Report 2',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+         aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(status__c='Approve',Report_Title__c = 'Competitor Report 2',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c =AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport1;
          ApexPages.currentPage().getParameters().put('id',competitorReport1.id);
         //ApexPages.StandardController stdController = new ApexPages.StandardController(competitorReport);
@@ -255,7 +255,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData2 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData2.id);
         insert countryData2;
        
-        aa_Agent_Report__c competitorReport2= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 2',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData2.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport2= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 2',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData2.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport2;
         ApexPages.currentPage().getParameters().put('id',competitorReport2.id);
         AA_ExecuteApprovalProcess controller2 = new AA_ExecuteApprovalProcess();
@@ -269,7 +269,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData3 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData3.id);
         insert countryData3;
        
-        aa_Agent_Report__c competitorReport3= new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData3.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport3= new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData3.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport3;
         ApexPages.currentPage().getParameters().put('id',competitorReport3.id);
         AA_ExecuteApprovalProcess controller3 = new AA_ExecuteApprovalProcess();
@@ -282,7 +282,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData4 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData4.id);
         insert countryData4;
        
-        aa_Agent_Report__c competitorReport4= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 4',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData4.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport4= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 4',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData4.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport4;
         ApexPages.currentPage().getParameters().put('id',competitorReport4.id);
         AA_ExecuteApprovalProcess controller4 = new AA_ExecuteApprovalProcess();
@@ -295,7 +295,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData5 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData5.id);
         insert countryData5;
        
-        aa_Agent_Report__c competitorReport5= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 5',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData5.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport5= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 5',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData5.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport5;
         ApexPages.currentPage().getParameters().put('id',competitorReport5.id);
         
@@ -309,7 +309,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData6 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData6.id);
         insert countryData6;
        
-        aa_Agent_Report__c competitorReport6= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 6',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData6.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport6= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 6',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData6.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport6;
         ApexPages.currentPage().getParameters().put('id',competitorReport6.id);
         AA_ExecuteApprovalProcess controller6 = new AA_ExecuteApprovalProcess();
@@ -323,7 +323,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData7 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData7.id);
         insert countryData7;
        
-        aa_Agent_Report__c competitorReport7= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 7',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData7.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport7= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 7',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData7.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport7;
         ApexPages.currentPage().getParameters().put('id',competitorReport7.id);
         AA_ExecuteApprovalProcess controller7 = new AA_ExecuteApprovalProcess();
@@ -336,14 +336,14 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData8 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData8.id);
         insert countryData8;
        
-        aa_Agent_Report__c competitorReport8= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 8',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData8.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport8= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 8',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData8.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport8;
         ApexPages.currentPage().getParameters().put('id',competitorReport8.id);
         AA_ExecuteApprovalProcess controller8 = new AA_ExecuteApprovalProcess();
          controller8.AgentReportObjNew.Comments__c=AA_Constants.testString;
         controller8.executeApprovalfromMobile();
         
-         aa_Agent_Report__c competitorReport9= new aa_Agent_Report__c(status__c='Approve',Report_Title__c = 'Competitor Report 8',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData8.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+         aa_Agent_Report__c competitorReport9= new aa_Agent_Report__c(status__c='Approve',Report_Title__c = 'Competitor Report 8',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData8.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport9;
         ApexPages.currentPage().getParameters().put('id',competitorReport9.id);
         AA_ExecuteApprovalProcess controller9 = new AA_ExecuteApprovalProcess();
@@ -357,7 +357,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData10 = new aa_Country__c(Name = AA_Constants.StringAmerica,Cluster_Id__c = clusterData10.id);
         insert countryData10;
        
-        aa_Agent_Report__c competitorReport10= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 10',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData10.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport10= new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 10',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData10.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport10;
         ApexPages.currentPage().getParameters().put('id',competitorReport10.id);
         AA_ExecuteApprovalProcess controller10 = new AA_ExecuteApprovalProcess();
@@ -393,7 +393,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
         insert countryData;
        
-        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
         insert competitorReport;
                                    
         
@@ -432,7 +432,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
         insert countryData;
        
-        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id,Status__c ='ETS Approval Pending');
+        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Status__c ='ETS Approval Pending');
         insert competitorReport;
                                    
        
@@ -442,7 +442,7 @@ public class AA_ExecuteApprovalProcess_tst {
         AA_ExecuteApprovalProcess controller = new AA_ExecuteApprovalProcess();
         controller.reportApproved();
         
-        aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id,Status__c ='CI Manager Approval Pending');
+        aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Status__c ='CI Manager Approval Pending');
         insert competitorReport1;
                                    
        ApexPages.currentPage().getParameters().put('id',competitorReport1.id);
@@ -479,7 +479,7 @@ public class AA_ExecuteApprovalProcess_tst {
         aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
         insert countryData;
        
-        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(status__c='ETS Approval Pending',Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id ,Comments__c=AA_Constants.testString);
+        aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(status__c='ETS Approval Pending',Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id ,Comments__c=AA_Constants.testString);
         insert competitorReport;
                                    
        
@@ -489,7 +489,7 @@ public class AA_ExecuteApprovalProcess_tst {
         controller.AgentReportObjNew.Comments__c='test';
         controller.reportRejected();
         
-         aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(status__c='CI Manager Approval Pending',Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id,Comments__c=AA_Constants.testString);
+         aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(status__c='CI Manager Approval Pending',Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Comments__c=AA_Constants.testString);
          insert competitorReport1;
         
          ApexPages.currentPage().getParameters().put('id',competitorReport1.id);
@@ -497,7 +497,7 @@ public class AA_ExecuteApprovalProcess_tst {
          controller1.AgentReportObjNew.Comments__c=AA_Constants.testString;
          controller1.reportRejected();
          
-         aa_Agent_Report__c competitorReport2 = new aa_Agent_Report__c(status__c='Reject',Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c =AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id,Comments__c=AA_Constants.testString);
+         aa_Agent_Report__c competitorReport2 = new aa_Agent_Report__c(status__c='Reject',Report_Title__c = AA_Constants.CompReportTitle,Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c =AA_Constants.SubtopicSample,Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Comments__c=AA_Constants.testString);
          insert competitorReport2;
          ApexPages.currentPage().getParameters().put('id',competitorReport2.id);
          AA_ExecuteApprovalProcess controller2 = new AA_ExecuteApprovalProcess();
