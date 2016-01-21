@@ -303,6 +303,7 @@ private class Oblix_Ctrl07ProjectEdit_CC_Test {
             Test.startTest();
             ctrl.refresh();
             Test.stopTest();
+            System.assertNotEquals(ctrl, NULL);
             
         }
     }
