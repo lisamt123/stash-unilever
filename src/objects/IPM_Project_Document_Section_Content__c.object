@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>This is used in IPM to hold section contents</description>
@@ -52,6 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -397,7 +399,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>IPM_CMI_Input__c</fullName>
+         <fullName>IPM_CMI_Input__c</fullName>
         <externalId>false</externalId>
         <label>IPM CMI Input</label>
         <picklist>
@@ -463,6 +465,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>CVM (Concept Viability Measure)</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Endurance</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -562,7 +568,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>IPM_CMI_Overall_Score_Achieved__c</fullName>
+       <fullName>IPM_CMI_Overall_Score_Achieved__c</fullName>
         <externalId>false</externalId>
         <label>IPM CMI Overall Score Achieved</label>
         <picklist>
@@ -572,6 +578,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -581,6 +588,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -590,6 +598,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -599,6 +608,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -626,29 +636,20 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -677,7 +678,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
-                <controllingFieldValues>package communication</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -714,7 +714,7 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>IPM_CMI_Overall_Score__c</fullName>
+         <fullName>IPM_CMI_Overall_Score__c</fullName>
         <externalId>false</externalId>
         <label>IPM CMI Overall Score</label>
         <picklist>
@@ -724,6 +724,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -733,6 +734,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -742,6 +744,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -751,6 +754,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -778,29 +782,20 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -829,7 +824,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
-                <controllingFieldValues>package communication</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -874,6 +868,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -883,6 +878,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -892,6 +888,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -901,6 +898,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -970,7 +968,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
-                <controllingFieldValues>package communication</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1007,6 +1004,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -1016,6 +1014,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -1025,6 +1024,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -1034,6 +1034,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -1103,7 +1104,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
-                <controllingFieldValues>package communication</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>

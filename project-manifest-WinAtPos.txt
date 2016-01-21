@@ -16,6 +16,10 @@ src/classes/WINatPOSRemoteActionWrapper.cls
 src/classes/WINatPOSRemoteActionWrapper.cls-meta.xml
 src/classes/WINatPOSUserAdminController.cls
 src/classes/WINatPOSUserAdminController.cls-meta.xml
+src/classes/WINatPOSPrimaryImagesViewAllBatchable.cls
+src/classes/WINatPOSPrimaryImagesViewAllBatchable.cls-meta.xml
+src/classes/WINatPOSPrimaryViewAllBatchableTest.cls
+src/classes/WINatPOSPrimaryViewAllBatchableTest.cls-meta.xml
 src/classes/WINatPOSUtil.cls
 src/classes/WINatPOSUtil.cls-meta.xml
 src/classes/WINatPOSUtilRemoteActions.cls
@@ -95,3 +99,5 @@ src/staticresources/winatposapp.resource-meta.xml
 src/triggers/WINatPOS_AssetTrigger.trigger
 src/triggers/WINatPOS_AssetTrigger.trigger-meta.xml
 src/workflows/Asset__c.workflow
+src/classes/FA_Test_Trigger_CouFacilitator.cls
+src/classes/FA_Test_Trigger_CouFacilitator.cls-meta.xml

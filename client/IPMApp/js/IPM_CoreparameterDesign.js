@@ -14,7 +14,8 @@ jq(document).ready(function() {
     }
 });
 function updateAdditional() {
-    window.parent.location.reload(true);
+	var pageURL = window.parent.location.href.replace('&BETOptions=1','');
+	window.parent.location.href = pageURL;
 }
 /* Below code is for the reset functionality in edit coreparameter */
 function resetqone() {
@@ -41,6 +42,9 @@ function sliderCP(el) {
     var lblWidth = totalwidth / lblCount;
     elm.find('label').css('width', lblWidth);
     setSlider(s);
+	if( jq('label').hasClass('fstchild active')){
+		jq('.helpDesc').prepend('<div>'+IPMProAppCP.select+'</div>');
+	}
 }
 function cpredirect() {
     window.parent.location.reload(true);

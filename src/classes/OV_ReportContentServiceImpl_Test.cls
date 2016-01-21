@@ -16,13 +16,13 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 **********************************************************************/
 @isTest
 private class OV_ReportContentServiceImpl_Test {
-	public static final String SAMPLE_ID       	= '001xa000003DIlo';
-	public static final String TEST_NAME       	= 'test';
-	public static final String PERMISSION_EXC_MSG 	= 'You do not have permission to update One View Reports';
-	public static final String ENUSLOCALE            = 'en_US';
+    public static final String SAMPLE_ID        = '001xa000003DIlo';
+    public static final String TEST_NAME        = 'test';
+    public static final String PERMISSION_EXC_MSG   = 'You do not have permission to update One View Reports';
+    public static final String ENUSLOCALE            = 'en_US';
 
 
-	@isTest static void testDesktop() {
+    @isTest static void testDesktop() {
         Id currentUserId = UserInfo.getUserId();
 
         OV_Category__c category1 = OV_TestingHelper.initCategory('Category 1', true);
@@ -45,208 +45,231 @@ private class OV_ReportContentServiceImpl_Test {
         
         OV_DynamicShellController controller = new OV_DynamicShellController(sc);
         System.assertEquals(controller.srcUrl, report1.Desktop_Content_Proxy__r.Url__c);
-	}	
+    }   
 
-	@isTest(SeeAllData=true) 
-	static void testListContentLibraries() {
-		// difficult to do in unit tests
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
-		List<OV_ContentLibrary> result;
+    @isTest(SeeAllData=true) 
+    static void testListContentLibraries() {
+        // difficult to do in unit tests
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
+        List<OV_ContentLibrary> result;
 
-		Test.startTest();
-			result = service.listContentLibraries();
-		Test.stopTest();
+        Test.startTest();
+            result = service.listContentLibraries();
+        Test.stopTest();
 
-		System.assert(result != null);
-		System.assert(result.size() > 0);
-	}
+        System.assert(result != null);
+        System.assert(result.size() > 0);
+    }
 
-	@isTest static void testFindContentVersionById() {
-		ContentVersion contentVersion1 = OV_TestingHelper.initContentVersion('test1', null, true);
-		ContentVersion contentVersion2 = OV_TestingHelper.initContentVersion('test2', null, true);
-		Id parentId = contentVersion1.ContentDocumentId;
-		ContentVersion contentVersion3 = OV_TestingHelper.initContentVersion('test3', parentId, true);
+    @isTest static void testFindContentVersionById() {
+        ContentVersion contentVersion1 = OV_TestingHelper.initContentVersion('test1', null, true);
+        ContentVersion contentVersion2 = OV_TestingHelper.initContentVersion('test2', null, true);
+        Id parentId = contentVersion1.ContentDocumentId;
+        ContentVersion contentVersion3 = OV_TestingHelper.initContentVersion('test3', parentId, true);
 
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-		Test.startTest();
-		ContentVersion actual = service.findContentVersionById(contentVersion3.Id);
-		Test.stopTest();
+        Test.startTest();
+        ContentVersion actual = service.findContentVersionById(contentVersion3.Id);
+        Test.stopTest();
 
-		System.assertEquals(actual.Id, contentVersion3.Id);
-		System.assertEquals(actual.ContentDocumentId, contentVersion3.ContentDocumentId);
-		System.assertEquals(actual.PathOnClient, contentVersion3.PathOnClient);
-	}
+        System.assertEquals(actual.Id, contentVersion3.Id);
+        System.assertEquals(actual.ContentDocumentId, contentVersion3.ContentDocumentId);
+        System.assertEquals(actual.PathOnClient, contentVersion3.PathOnClient);
+    }
 
+    @isTest static void testFindContentVersionByIdError() {
+        ContentVersion contentVersion1 = OV_TestingHelper.initContentVersion('test1', null, true);
+        ContentVersion contentVersion2 = OV_TestingHelper.initContentVersion('test2', null, true);
+        Id parentId = contentVersion1.ContentDocumentId;
+        ContentVersion contentVersion3 = OV_TestingHelper.initContentVersion('test3', parentId, true);
 
-	@isTest static void testFindContentVersionByIdNull() {
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
+        //delete contentVersion3;
+        
+        String prefix = ContentVersion.sObjectType.getDescribe().getKeyPrefix();
+        Id wrongId = prefix + 'e000000XRIb0';
+                
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-		Exception expectedException;
-		String expectedMessage = 'IncorrectValueException: Expected value not found for id, expectednot nullbut was null';
+        Test.startTest();
+        Boolean isException = false;
+        try{
+            ContentVersion actual = service.findContentVersionById(SAMPLE_ID);
+        } catch (Exception e){
+            isException = true;
+        }
+        system.assertEquals(true, isException);
+        Test.stopTest();
+    }
 
-		Test.startTest();
-		try
-		{
-			ContentVersion actual = service.findContentVersionById(null);
-		}
-		catch(Exception e)
-		{
-			expectedException = e;
-		}
-		Test.stopTest();
+    @isTest static void testFindContentVersionByIdNull() {
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-		System.assertNotEquals(null, expectedException);
-		System.assertEquals(expectedException.getMessage(), expectedMessage);
-	}
+        Exception expectedException;
+        String expectedMessage = 'IncorrectValueException: Expected value not found for id, expectednot nullbut was null';
 
-	@isTest static void testFindContentVersionByIdIncorrect() {
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
-		Id incorrectId = Id.valueOf(SAMPLE_ID);
+        Test.startTest();
+        try
+        {
+            ContentVersion actual = service.findContentVersionById(null);
+        }
+        catch(Exception e)
+        {
+            expectedException = e;
+        }
+        Test.stopTest();
 
-		Exception expectedException;
-		String expectedMessage = 'Could not find a ContentVersion with Id';
+        System.assertNotEquals(null, expectedException);
+        System.assertEquals(expectedException.getMessage(), expectedMessage);
+    }
 
+    @isTest static void testFindContentVersionByIdIncorrect() {
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
+        Id incorrectId = Id.valueOf(SAMPLE_ID);
 
-		Test.startTest();
-		try
-		{
-			ContentVersion actual = service.findContentVersionById(incorrectId);
-		}
-		catch(Exception e)
-		{
-			expectedException = e;
-		}
-		Test.stopTest();
-
-		System.assertNotEquals(null, expectedException);
-		System.assert(expectedException.getMessage().startsWith(expectedMessage));
-	}
-
-	@isTest static void testFindContentVersionForContentDocumentId() {
-		ContentVersion contentVersion1 = OV_TestingHelper.initContentVersion('test1', null, true);
-		ContentVersion contentVersion2 = OV_TestingHelper.initContentVersion('test2', null, true);
-		Id parentId = contentVersion1.ContentDocumentId;
-		ContentVersion contentVersion3 = OV_TestingHelper.initContentVersion('test3', parentId, true);
-
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
-
-		Test.startTest();
-		ContentVersion actual = service.findContentVersionForContentDocumentId(contentVersion3.ContentDocumentId);
-		Test.stopTest();
-
-		System.assertEquals(contentVersion3.Id, actual.Id);
-		System.assertEquals(contentVersion3.ContentDocumentId, actual.ContentDocumentId);
-		System.assertEquals(contentVersion3.PathOnClient, actual.PathOnClient);
-	}
+        Exception expectedException;
+        String expectedMessage = 'Could not find a ContentVersion with Id';
 
 
-	@isTest static void testFindContentVersionForContentDocumentIdNull() {
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
+        Test.startTest();
+        try
+        {
+            ContentVersion actual = service.findContentVersionById(incorrectId);
+        }
+        catch(Exception e)
+        {
+            expectedException = e;
+        }
+        Test.stopTest();
 
-		Exception expectedException;
-		String expectedMessage = 'IncorrectValueException: Expected value not found for contentDocumentId, expectednot nullbut was null';
+        System.assertNotEquals(null, expectedException);
+        System.assert(expectedException.getMessage().startsWith(expectedMessage));
+    }
 
-		Test.startTest();
-		try
-		{
-			ContentVersion actual = service.findContentVersionForContentDocumentId(null);
-		}
-		catch(Exception e)
-		{
-			expectedException = e;
-		}
-		Test.stopTest();
+    @isTest static void testFindContentVersionForContentDocumentId() {
+        ContentVersion contentVersion1 = OV_TestingHelper.initContentVersion('test1', null, true);
+        ContentVersion contentVersion2 = OV_TestingHelper.initContentVersion('test2', null, true);
+        Id parentId = contentVersion1.ContentDocumentId;
+        ContentVersion contentVersion3 = OV_TestingHelper.initContentVersion('test3', parentId, true);
 
-		System.assertNotEquals(null, expectedException);
-		System.assertEquals(expectedException.getMessage(), expectedMessage);
-	}
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-	@isTest static void testFindContentVersionForContentDocumentIdWrong() {
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
+        Test.startTest();
+        ContentVersion actual = service.findContentVersionForContentDocumentId(contentVersion3.ContentDocumentId);
+        Test.stopTest();
 
-		Id incorrectId = Id.valueOf(SAMPLE_ID);
+        System.assertEquals(contentVersion3.Id, actual.Id);
+        System.assertEquals(contentVersion3.ContentDocumentId, actual.ContentDocumentId);
+        System.assertEquals(contentVersion3.PathOnClient, actual.PathOnClient);
+    }
 
-		Exception expectedException;
-		String expectedMessage = 'Could not find a ContentVersion with Id';
 
-		Test.startTest();
-		try
-		{
-			ContentVersion actual = service.findContentVersionForContentDocumentId(incorrectId);
-		}
-		catch(Exception e)
-		{
-			expectedException = e;
-		}
-		Test.stopTest();
+    @isTest static void testFindContentVersionForContentDocumentIdNull() {
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-		System.assertNotEquals(null, expectedException);
-		System.assert(expectedException.getMessage().startsWith(expectedMessage));
-	}
+        Exception expectedException;
+        String expectedMessage = 'IncorrectValueException: Expected value not found for contentDocumentId, expectednot nullbut was null';
 
-	@isTest static void testCreateContentVersion() {
-		ContentVersion contentVersion = OV_TestingHelper.initContentVersion(TEST_NAME, null, false);
+        Test.startTest();
+        try
+        {
+            ContentVersion actual = service.findContentVersionForContentDocumentId(null);
+        }
+        catch(Exception e)
+        {
+            expectedException = e;
+        }
+        Test.stopTest();
 
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
+        System.assertNotEquals(null, expectedException);
+        System.assertEquals(expectedException.getMessage(), expectedMessage);
+    }
 
-		Test.startTest();
-		ContentVersion actual = service.createContentVersion(contentVersion);
-		Test.stopTest();
+    @isTest static void testFindContentVersionForContentDocumentIdWrong() {
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-		System.assertEquals(actual.Title, TEST_NAME);
-	}
+        Id incorrectId = Id.valueOf(SAMPLE_ID);
 
-	@isTest static void testCreateContentVersionNull() {
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
-		Exception expectedException;
+        Exception expectedException;
+        String expectedMessage = 'Could not find a ContentVersion with Id';
 
-		Test.startTest();
+        Test.startTest();
+        try
+        {
+            ContentVersion actual = service.findContentVersionForContentDocumentId(incorrectId);
+        }
+        catch(Exception e)
+        {
+            expectedException = e;
+        }
+        Test.stopTest();
 
-		try
-		{
-			ContentVersion actual = service.createContentVersion(null);
-		}
-		catch(Exception e)
-		{
-			expectedException = e;
-		}
+        System.assertNotEquals(null, expectedException);
+        System.assert(expectedException.getMessage().startsWith(expectedMessage));
+    }
 
-		Test.stopTest();
+    @isTest static void testCreateContentVersion() {
+        ContentVersion contentVersion = OV_TestingHelper.initContentVersion(TEST_NAME, null, false);
 
-		System.assertNotEquals(null, expectedException);
-		System.assertEquals(expectedException.getMessage(), 'IncorrectValueException: Expected value not found for candidate, expectednot nullbut was null');
-	}
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-	@isTest static void testCreateContentVersionOtherException() {
+        Test.startTest();
+        ContentVersion actual = service.createContentVersion(contentVersion);
+        Test.stopTest();
 
-		ContentVersion contentVersion = OV_TestingHelper.initContentVersion(TEST_NAME, null, false);
-		contentVersion.Title = null;
-		contentVersion.PathOnClient = null;
-		contentVersion.versionData = null;
+        System.assertEquals(actual.Title, TEST_NAME);
+    }
 
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
-		Exception expectedException;
+    @isTest static void testCreateContentVersionNull() {
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
+        Exception expectedException;
 
-		Test.startTest();
+        Test.startTest();
 
-		try
-		{
-			ContentVersion actual = service.createContentVersion(contentVersion);
-		}
-		catch(Exception e)
-		{
-			expectedException = e;
-		}
+        try
+        {
+            ContentVersion actual = service.createContentVersion(null);
+        }
+        catch(Exception e)
+        {
+            expectedException = e;
+        }
 
-		Test.stopTest();
+        Test.stopTest();
 
-		System.assertNotEquals(null, expectedException);
-		System.assertEquals(expectedException.getMessage(), 'There was a problem creating the ContentVersionContentVersion:{Title=null, PathOnClient=null, VersionData=null}');
-	}
+        System.assertNotEquals(null, expectedException);
+        System.assertEquals(expectedException.getMessage(), 'IncorrectValueException: Expected value not found for candidate, expectednot nullbut was null');
+    }
 
-	//@isTest static void testUpdateReportWithContentProxyId() {
-	//	OV_Category__c category1 = OV_TestingHelper.initCategory('Category 1', true);
+    @isTest static void testCreateContentVersionOtherException() {
+
+        ContentVersion contentVersion = OV_TestingHelper.initContentVersion(TEST_NAME, null, false);
+        contentVersion.Title = null;
+        contentVersion.PathOnClient = null;
+        contentVersion.versionData = null;
+
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
+        Exception expectedException;
+
+        Test.startTest();
+
+        try
+        {
+            ContentVersion actual = service.createContentVersion(contentVersion);
+        }
+        catch(Exception e)
+        {
+            expectedException = e;
+        }
+
+        Test.stopTest();
+
+        System.assertNotEquals(null, expectedException);
+        System.assertEquals(expectedException.getMessage(), 'There was a problem creating the ContentVersionContentVersion:{Title=null, PathOnClient=null, VersionData=null}');
+    }
+
+    //@isTest static void testUpdateReportWithContentProxyId() {
+    //  OV_Category__c category1 = OV_TestingHelper.initCategory('Category 1', true);
 
  //       OV_Geography__c geography1 = OV_TestingHelper.initGeography('Geography 1', true);
 
@@ -257,365 +280,365 @@ private class OV_ReportContentServiceImpl_Test {
 
  //       OV_Report__c reportFixture = OV_TestingHelper.initReport('Report 1', category1, function1, geography1, 'Desktop', contentVersion.Id, true);
 
- //     	Id expectedContentDocumentId = contentVersion.ContentDocumentId;
+ //         Id expectedContentDocumentId = contentVersion.ContentDocumentId;
 
- //     	OV_ReportContentService service = new OV_ReportContentServiceImpl();
+ //         OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-	//	Test.startTest();
- //     	OV_Report__c updatedReport = service.updateReportWithContentProxyId(reportFixture, expectedContentDocumentId, OV_DeviceType.DESKTOP);
-	//	Test.stopTest();
+    //  Test.startTest();
+ //         OV_Report__c updatedReport = service.updateReportWithContentProxyId(reportFixture, expectedContentDocumentId, OV_DeviceType.DESKTOP);
+    //  Test.stopTest();
 
-	//	OV_Report__c requeriedReport = [SELECT Id, Desktop_Content_Proxy__r.ContentDocumentId__c FROM OV_Report__c where Id = :reportFixture.Id];
+    //  OV_Report__c requeriedReport = [SELECT Id, Desktop_Content_Proxy__r.ContentDocumentId__c FROM OV_Report__c where Id = :reportFixture.Id];
 
-	//	System.assertEquals(expectedContentDocumentId, updatedReport.Desktop_Content_Proxy__r.ContentDocumentId__c);
-	//	System.assertEquals(expectedContentDocumentId, requeriedReport.Desktop_Content_Proxy__r.ContentDocumentId__c);
-	//}
-
-
-	//@isTest static void testUpdateReportWithContentDocumentIdTablet() {
-
-	//	ContentVersion contentVersion = OV_TestingHelper.initContentVersion(TEST_NAME, null, true);
-
-	//	String reportNameFixture = 'report name fixture';
-	//	OV_Report__c reportFixture = insertReport(reportNameFixture);
-
- //     	Id expectedContentDocumentId = contentVersion.ContentDocumentId;
+    //  System.assertEquals(expectedContentDocumentId, updatedReport.Desktop_Content_Proxy__r.ContentDocumentId__c);
+    //  System.assertEquals(expectedContentDocumentId, requeriedReport.Desktop_Content_Proxy__r.ContentDocumentId__c);
+    //}
 
 
- //     	OV_ReportContentService service = new OV_ReportContentServiceImpl();
+    //@isTest static void testUpdateReportWithContentDocumentIdTablet() {
 
-	//	Test.startTest();
- //     	OV_Report__c updatedReport = service.updateReportWithContentDocumentId(reportFixture, expectedContentDocumentId, OV_DeviceType.TABLET);
-	//	Test.stopTest();
+    //  ContentVersion contentVersion = OV_TestingHelper.initContentVersion(TEST_NAME, null, true);
 
-	//	OV_Report__c requeriedReport = [SELECT Id, ContentDocumentTablet__c FROM OV_Report__c where Id = :reportFixture.Id];
+    //  String reportNameFixture = 'report name fixture';
+    //  OV_Report__c reportFixture = insertReport(reportNameFixture);
 
-	//	System.assertEquals(expectedContentDocumentId, updatedReport.ContentDocumentTablet__c);
-	//	System.assertEquals(expectedContentDocumentId, requeriedReport.ContentDocumentTablet__c);
-	//	System.assertEquals(reportNameFixture, reportFixture.Name);
-	//	System.assertEquals(reportNameFixture, updatedReport.Name);
-
-	//}
-
-	//@isTest static void testUpdateReportWithContentDocumentIdMobile() {
-
-	//	ContentVersion contentVersion = OV_TestingHelper.initContentVersion(TEST_NAME, null, true);
-
-	//	String reportNameFixture = 'report name fixture';
-	//	OV_Report__c reportFixture = insertReport(reportNameFixture);
-
- //     	Id expectedContentDocumentId = contentVersion.ContentDocumentId;
+ //         Id expectedContentDocumentId = contentVersion.ContentDocumentId;
 
 
- //     	OV_ReportContentService service = new OV_ReportContentServiceImpl();
+ //         OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-	//	Test.startTest();
- //     	OV_Report__c updatedReport = service.updateReportWithContentDocumentId(reportFixture, expectedContentDocumentId, OV_DeviceType.MOBILE);
-	//	Test.stopTest();
+    //  Test.startTest();
+ //         OV_Report__c updatedReport = service.updateReportWithContentDocumentId(reportFixture, expectedContentDocumentId, OV_DeviceType.TABLET);
+    //  Test.stopTest();
 
-	//	OV_Report__c requeriedReport = [SELECT Id, ContentDocumentMobile__c, ContentDocumentTablet__c FROM OV_Report__c where Id = :reportFixture.Id];
+    //  OV_Report__c requeriedReport = [SELECT Id, ContentDocumentTablet__c FROM OV_Report__c where Id = :reportFixture.Id];
 
-	//	System.assertEquals(expectedContentDocumentId, updatedReport.ContentDocumentMobile__c);
-	//	System.assertEquals(expectedContentDocumentId, requeriedReport.ContentDocumentMobile__c);
-	//	System.assertEquals(reportNameFixture, reportFixture.Name);
-	//	System.assertEquals(reportNameFixture, updatedReport.Name);
-	//}
+    //  System.assertEquals(expectedContentDocumentId, updatedReport.ContentDocumentTablet__c);
+    //  System.assertEquals(expectedContentDocumentId, requeriedReport.ContentDocumentTablet__c);
+    //  System.assertEquals(reportNameFixture, reportFixture.Name);
+    //  System.assertEquals(reportNameFixture, updatedReport.Name);
 
-	//@isTest static void testUpdateReportWithContentDocumentIdWrongId()
-	//{
-	//	ContentVersion contentVersion = OV_TestingHelper.initContentVersion(TEST_NAME, null, true);
+    //}
 
-	//	String reportNameFixture = 'report name fixture';
-	//	OV_Report__c reportFixture = insertReport(reportNameFixture);
+    //@isTest static void testUpdateReportWithContentDocumentIdMobile() {
 
- //     	Id incorrectId = Id.valueOf(SAMPLE_ID);
+    //  ContentVersion contentVersion = OV_TestingHelper.initContentVersion(TEST_NAME, null, true);
 
-	//	Exception expectedException;
-	//	String expectedMessage = 'is not a valid ContentDocumentId';
+    //  String reportNameFixture = 'report name fixture';
+    //  OV_Report__c reportFixture = insertReport(reportNameFixture);
 
- //     	OV_ReportContentService service = new OV_ReportContentServiceImpl();
-
-	//	Test.startTest();
- //     	try
-	//	{
-	//		OV_Report__c updatedReport = service.updateReportWithContentDocumentId(reportFixture, incorrectId, OV_DeviceType.DESKTOP);
-	//	}
-	//	catch(Exception e)
-	//	{
-	//		expectedException = e;
-	//	}
-	//	Test.stopTest();
-
-	//	System.assertNotEquals(null, expectedException);
-	//	System.assert(expectedException.getMessage().endsWith(expectedMessage), 'Received message: ' + expectedException.getMessage() + ' Expected: ' + expectedMessage);
-	//}
+ //         Id expectedContentDocumentId = contentVersion.ContentDocumentId;
 
 
-	@isTest static void testUpdateReportWithContentDocumentIdNull()
-	{
-      	OV_ReportContentService service = new OV_ReportContentServiceImpl();
+ //         OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-		Exception expectedException;
-		String expectedMessage = 'IncorrectValueException: Expected value not found for contentDocumentId or report, expectednot nullbut was null';
+    //  Test.startTest();
+ //         OV_Report__c updatedReport = service.updateReportWithContentDocumentId(reportFixture, expectedContentDocumentId, OV_DeviceType.MOBILE);
+    //  Test.stopTest();
 
-		Test.startTest();
-      	try
-		{
-			OV_Report__c updatedReport = service.updateReportWithContentProxyId(null, null, OV_DeviceType.DESKTOP);
-		}
-		catch(Exception e)
-		{
-			expectedException = e;
-		}
-		Test.stopTest();
+    //  OV_Report__c requeriedReport = [SELECT Id, ContentDocumentMobile__c, ContentDocumentTablet__c FROM OV_Report__c where Id = :reportFixture.Id];
 
-		System.assertNotEquals(null, expectedException);
-		System.assert(expectedException.getMessage().endsWith(expectedMessage));
-	}
+    //  System.assertEquals(expectedContentDocumentId, updatedReport.ContentDocumentMobile__c);
+    //  System.assertEquals(expectedContentDocumentId, requeriedReport.ContentDocumentMobile__c);
+    //  System.assertEquals(reportNameFixture, reportFixture.Name);
+    //  System.assertEquals(reportNameFixture, updatedReport.Name);
+    //}
+
+    //@isTest static void testUpdateReportWithContentDocumentIdWrongId()
+    //{
+    //  ContentVersion contentVersion = OV_TestingHelper.initContentVersion(TEST_NAME, null, true);
+
+    //  String reportNameFixture = 'report name fixture';
+    //  OV_Report__c reportFixture = insertReport(reportNameFixture);
+
+ //         Id incorrectId = Id.valueOf(SAMPLE_ID);
+
+    //  Exception expectedException;
+    //  String expectedMessage = 'is not a valid ContentDocumentId';
+
+ //         OV_ReportContentService service = new OV_ReportContentServiceImpl();
+
+    //  Test.startTest();
+ //         try
+    //  {
+    //      OV_Report__c updatedReport = service.updateReportWithContentDocumentId(reportFixture, incorrectId, OV_DeviceType.DESKTOP);
+    //  }
+    //  catch(Exception e)
+    //  {
+    //      expectedException = e;
+    //  }
+    //  Test.stopTest();
+
+    //  System.assertNotEquals(null, expectedException);
+    //  System.assert(expectedException.getMessage().endsWith(expectedMessage), 'Received message: ' + expectedException.getMessage() + ' Expected: ' + expectedMessage);
+    //}
 
 
-	@isTest static void testFindReportById()
-	{
-		String reportNameFixture = 'report name fixture';
-		OV_Report__c reportFixture = insertReport(reportNameFixture);
+    @isTest static void testUpdateReportWithContentDocumentIdNull()
+    {
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
+
+        Exception expectedException;
+        String expectedMessage = 'IncorrectValueException: Expected value not found for contentDocumentId or report, expectednot nullbut was null';
+
+        Test.startTest();
+        try
+        {
+            OV_Report__c updatedReport = service.updateReportWithContentProxyId(null, null, OV_DeviceType.DESKTOP);
+        }
+        catch(Exception e)
+        {
+            expectedException = e;
+        }
+        Test.stopTest();
+
+        System.assertNotEquals(null, expectedException);
+        System.assert(expectedException.getMessage().endsWith(expectedMessage));
+    }
+
+
+    @isTest static void testFindReportById()
+    {
+        String reportNameFixture = 'report name fixture';
+        OV_Report__c reportFixture = insertReport(reportNameFixture);
 
         OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-		Test.startTest();
-		OV_Report__c actual = service.findReportById(reportFixture.Id);
-		Test.stopTest();
+        Test.startTest();
+        OV_Report__c actual = service.findReportById(reportFixture.Id);
+        Test.stopTest();
 
-		System.assertEquals(reportFixture.Id, actual.Id);
-		System.assertEquals(reportFixture.Name, actual.Name);
-	}
-
-
-	@isTest static void testFindReportByNull()
-	{
-		Exception expectedException;
-		String expectedMessage = 'IncorrectValueException: Expected value not found for reportId, expectednot nullbut was null';
-
-        OV_ReportContentService service = new OV_ReportContentServiceImpl();
-
-		Test.startTest();
-		try
-		{
-			OV_Report__c actual = service.findReportById(null);
-		}
-		catch(Exception e)
-		{
-			expectedException = e;
-		}
-		Test.stopTest();
-
-		System.assertNotEquals(null, expectedException);
-		System.assertEquals(expectedException.getMessage(), expectedMessage);
-	}
+        System.assertEquals(reportFixture.Id, actual.Id);
+        System.assertEquals(reportFixture.Name, actual.Name);
+    }
 
 
-	@isTest static void testFindReportByWrongId()
-	{
-		Exception expectedException;
-		String expectedMessage = 'Could not find an OV_Report__c with Id';
-		Id wrongId = Id.valueOf(SAMPLE_ID);
+    @isTest static void testFindReportByNull()
+    {
+        Exception expectedException;
+        String expectedMessage = 'IncorrectValueException: Expected value not found for reportId, expectednot nullbut was null';
 
         OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-		Test.startTest();
-		try
-		{
-			OV_Report__c actual = service.findReportById(wrongId);
-		}
-		catch(Exception e)
-		{
-			expectedException = e;
-		}
-		Test.stopTest();
+        Test.startTest();
+        try
+        {
+            OV_Report__c actual = service.findReportById(null);
+        }
+        catch(Exception e)
+        {
+            expectedException = e;
+        }
+        Test.stopTest();
 
-		System.assertNotEquals(null, expectedException);
-		System.assert(expectedException.getMessage().startsWith(expectedMessage));
-	}
-
-
- 	@isTest static void testUpdateReportWithContentDocumentIdPermissionForDesktop()
- 	{
-		OV_Report__c report = insertReport(TEST_NAME);
-		Id insignificantId = Id.valueOf(SAMPLE_ID);
-
-		String expectedMessage = PERMISSION_EXC_MSG;
-		Exception expectedException;
-		User user = createBadUser();
-
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
-
-		Test.startTest();
-		System.runAs(user) {
-			try
-			{
-				service.updateReportWithContentProxyId(report, insignificantId, OV_DeviceType.DESKTOP);
-
-			}
-			catch(Exception e)
-			{
-				expectedException = e;
-			}
-		}
-
-		Test.stopTest();
-
-		System.assertNotEquals(null, expectedException);
-		System.assertEquals(expectedException.getMessage(), expectedMessage);
-	}
-
-	@isTest static void testUpdateReportWithContentDocumentIdPermissionForMobile()
- 	{
-		OV_Report__c report = insertReport(TEST_NAME);
-		Id insignificantId = Id.valueOf(SAMPLE_ID);
-
-		String expectedMessage = PERMISSION_EXC_MSG;
-		Exception expectedException;
-		User user = createBadUser();
-
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
+        System.assertNotEquals(null, expectedException);
+        System.assertEquals(expectedException.getMessage(), expectedMessage);
+    }
 
 
-		Test.startTest();
-		System.runAs(user) {
-			try
-			{
-				service.updateReportWithContentProxyId(report, insignificantId, OV_DeviceType.MOBILE);
-			}
-			catch(Exception e)
-			{
-				expectedException = e;
-			}
-		}
+    @isTest static void testFindReportByWrongId()
+    {
+        Exception expectedException;
+        String expectedMessage = 'Could not find an OV_Report__c with Id';
+        Id wrongId = Id.valueOf(SAMPLE_ID);
 
-		Test.stopTest();
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-		System.assertNotEquals(null, expectedException);
-		System.assertEquals(expectedException.getMessage(), expectedMessage);
-	}
+        Test.startTest();
+        try
+        {
+            OV_Report__c actual = service.findReportById(wrongId);
+        }
+        catch(Exception e)
+        {
+            expectedException = e;
+        }
+        Test.stopTest();
 
-	@isTest static void testUpdateReportWithContentDocumentIdPermissionForTablet()
- 	{
-		OV_Report__c report = insertReport(TEST_NAME);
-		Id insignificantId = Id.valueOf(SAMPLE_ID);
-
-		String expectedMessage = PERMISSION_EXC_MSG;
-		Exception expectedException;
-		User user = createBadUser();
-
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
+        System.assertNotEquals(null, expectedException);
+        System.assert(expectedException.getMessage().startsWith(expectedMessage));
+    }
 
 
-		Test.startTest();
-		System.runAs(user) {
-			try
-			{
-				service.updateReportWithContentProxyId(report, insignificantId, OV_DeviceType.TABLET);
-			}
-			catch(Exception e)
-			{
-				expectedException = e;
-			}
-		}
+    @isTest static void testUpdateReportWithContentDocumentIdPermissionForDesktop()
+    {
+        OV_Report__c report = insertReport(TEST_NAME);
+        Id insignificantId = Id.valueOf(SAMPLE_ID);
 
-		Test.stopTest();
+        String expectedMessage = PERMISSION_EXC_MSG;
+        Exception expectedException;
+        User user = createBadUser();
 
-		System.assertNotEquals(null, expectedException);
-		System.assertEquals(expectedException.getMessage(), expectedMessage);
-	}
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-	@isTest static void testUpdateReportWithContentDocumentIdWithSysAdmin()
- 	{
-		OV_Report__c report = insertReport(TEST_NAME);
-		ContentVersion contentVersion1 = OV_TestingHelper.initContentVersion('Test 1', true);
+        Test.startTest();
+        System.runAs(user) {
+            try
+            {
+                service.updateReportWithContentProxyId(report, insignificantId, OV_DeviceType.DESKTOP);
+
+            }
+            catch(Exception e)
+            {
+                expectedException = e;
+            }
+        }
+
+        Test.stopTest();
+
+        System.assertNotEquals(null, expectedException);
+        System.assertEquals(expectedException.getMessage(), expectedMessage);
+    }
+
+    @isTest static void testUpdateReportWithContentDocumentIdPermissionForMobile()
+    {
+        OV_Report__c report = insertReport(TEST_NAME);
+        Id insignificantId = Id.valueOf(SAMPLE_ID);
+
+        String expectedMessage = PERMISSION_EXC_MSG;
+        Exception expectedException;
+        User user = createBadUser();
+
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
+
+
+        Test.startTest();
+        System.runAs(user) {
+            try
+            {
+                service.updateReportWithContentProxyId(report, insignificantId, OV_DeviceType.MOBILE);
+            }
+            catch(Exception e)
+            {
+                expectedException = e;
+            }
+        }
+
+        Test.stopTest();
+
+        System.assertNotEquals(null, expectedException);
+        System.assertEquals(expectedException.getMessage(), expectedMessage);
+    }
+
+    @isTest static void testUpdateReportWithContentDocumentIdPermissionForTablet()
+    {
+        OV_Report__c report = insertReport(TEST_NAME);
+        Id insignificantId = Id.valueOf(SAMPLE_ID);
+
+        String expectedMessage = PERMISSION_EXC_MSG;
+        Exception expectedException;
+        User user = createBadUser();
+
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
+
+
+        Test.startTest();
+        System.runAs(user) {
+            try
+            {
+                service.updateReportWithContentProxyId(report, insignificantId, OV_DeviceType.TABLET);
+            }
+            catch(Exception e)
+            {
+                expectedException = e;
+            }
+        }
+
+        Test.stopTest();
+
+        System.assertNotEquals(null, expectedException);
+        System.assertEquals(expectedException.getMessage(), expectedMessage);
+    }
+
+    @isTest static void testUpdateReportWithContentDocumentIdWithSysAdmin()
+    {
+        OV_Report__c report = insertReport(TEST_NAME);
+        ContentVersion contentVersion1 = OV_TestingHelper.initContentVersion('Test 1', true);
         ContentDocument document1 = [select Id from ContentDocument where Id = :contentVersion1.ContentDocumentId limit 1][0];
         
         OV_ContentProxy__c proxy = OV_TestingHelper.initContentProxy(document1.Id, 'proxy test title', contentVersion1.Id, 'www.google.com', true);
         System.debug('document1: ' + document1);
         System.debug('proxy: ' + proxy);
 
-		String expectedMessage = PERMISSION_EXC_MSG;
-		Exception expectedException;
-		User user = createSystemAdministratorUser();
+        String expectedMessage = PERMISSION_EXC_MSG;
+        Exception expectedException;
+        User user = createSystemAdministratorUser();
 
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
-		OV_Report__c resultDesktop;
-		OV_Report__c resultMobile;
-		OV_Report__c resultTablet;
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
+        OV_Report__c resultDesktop;
+        OV_Report__c resultMobile;
+        OV_Report__c resultTablet;
 
-		Test.startTest();
-		System.runAs(user) {
-			try
-			{
-				resultDesktop = service.updateReportWithContentProxyId(report, document1.Id, OV_DeviceType.DESKTOP);
-				resultMobile = service.updateReportWithContentProxyId(report, document1.Id, OV_DeviceType.MOBILE);
-				resultTablet = service.updateReportWithContentProxyId(report, document1.Id, OV_DeviceType.TABLET);
-			}
-			catch(Exception e)
-			{
-				expectedException = e;
-			}
-		}
+        Test.startTest();
+        System.runAs(user) {
+            try
+            {
+                resultDesktop = service.updateReportWithContentProxyId(report, document1.Id, OV_DeviceType.DESKTOP);
+                resultMobile = service.updateReportWithContentProxyId(report, document1.Id, OV_DeviceType.MOBILE);
+                resultTablet = service.updateReportWithContentProxyId(report, document1.Id, OV_DeviceType.TABLET);
+            }
+            catch(Exception e)
+            {
+                expectedException = e;
+            }
+        }
 
-		Test.stopTest();
+        Test.stopTest();
 
-		System.assertEquals(null, expectedException);
-		System.assertEquals(resultDesktop.Desktop_Content_Proxy__c, proxy.Id);
-		System.assertEquals(resultMobile.Mobile_Content_Proxy__c, proxy.Id);
-		System.assertEquals(resultTablet.Tablet_Content_Proxy__c, proxy.Id);
-	}
-
-
-	@isTest static void testFindReportByIdPermission()
-	{
-		Id insignificantId = Id.valueOf(SAMPLE_ID);
-
-		String expectedMessage = 'You do not have permission to access One View Reports';
-		Exception expectedException;
-		User user = createBadUser();
-
-		OV_ReportContentService service = new OV_ReportContentServiceImpl();
-
-		Test.startTest();
-		System.runAs(user) {
-			try
-			{
-				service.findReportById(insignificantId);
-			}
-			catch(Exception e)
-			{
-				expectedException = e;
-			}
-		}
-
-		Test.stopTest();
-
-		System.assertNotEquals(null, expectedException);
-		System.assertEquals(expectedException.getMessage(), expectedMessage);
-	}
+        System.assertEquals(null, expectedException);
+        System.assertEquals(resultDesktop.Desktop_Content_Proxy__c, proxy.Id);
+        System.assertEquals(resultMobile.Mobile_Content_Proxy__c, proxy.Id);
+        System.assertEquals(resultTablet.Tablet_Content_Proxy__c, proxy.Id);
+    }
 
 
-	//=== Candidate methods for extracting to OV_TestingHelper.cls
+    @isTest static void testFindReportByIdPermission()
+    {
+        Id insignificantId = Id.valueOf(SAMPLE_ID);
 
-	private static OV_Report__c insertReport(String reportName)
-	{
-		return initReport(reportName, true);
-	}
+        String expectedMessage = 'You do not have permission to access One View Reports';
+        Exception expectedException;
+        User user = createBadUser();
 
-	private static OV_Report__c initReport(String reportName, Boolean insertFlag)
-	{
-		OV_Category__c categoryFixture = OV_TestingHelper.initCategory('Category 1', true);
-	    OV_Function__c functionFixture = OV_TestingHelper.initFunction('Function 1', true);
-	    OV_Geography__c geographyFixture = OV_TestingHelper.initGeography('Geography 1', true);
-		return OV_TestingHelper.initReport(reportName, categoryFixture, functionFixture, geographyFixture, 'Desktop', insertFlag);
-	}
+        OV_ReportContentService service = new OV_ReportContentServiceImpl();
 
-	private static User createBadUser()
-	{
-		Profile profile = [SELECT Id FROM Profile WHERE Name='Chatter Free User' LIMIT 1];
+        Test.startTest();
+        System.runAs(user) {
+            try
+            {
+                service.findReportById(insignificantId);
+            }
+            catch(Exception e)
+            {
+                expectedException = e;
+            }
+        }
+
+        Test.stopTest();
+
+        System.assertNotEquals(null, expectedException);
+        System.assertEquals(expectedException.getMessage(), expectedMessage);
+    }
+
+
+    //=== Candidate methods for extracting to OV_TestingHelper.cls
+
+    private static OV_Report__c insertReport(String reportName)
+    {
+        return initReport(reportName, true);
+    }
+
+    private static OV_Report__c initReport(String reportName, Boolean insertFlag)
+    {
+        OV_Category__c categoryFixture = OV_TestingHelper.initCategory('Category 1', true);
+        OV_Function__c functionFixture = OV_TestingHelper.initFunction('Function 1', true);
+        OV_Geography__c geographyFixture = OV_TestingHelper.initGeography('Geography 1', true);
+        return OV_TestingHelper.initReport(reportName, categoryFixture, functionFixture, geographyFixture, 'Desktop', insertFlag);
+    }
+
+    private static User createBadUser()
+    {
+        Profile profile = [SELECT Id FROM Profile WHERE Name='Chatter Free User' LIMIT 1];
         User u = new User(
             alias = TEST_NAME,
             email = 'a@b.com',
@@ -631,11 +654,11 @@ private class OV_ReportContentServiceImpl_Test {
         u.UserPermissionsSFContentUser = null;
         insert u;
         return u;
-	}
+    }
 
-	private static User createSystemAdministratorUser()
-	{
-		Profile profile = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1];
+    private static User createSystemAdministratorUser()
+    {
+        Profile profile = [SELECT Id FROM Profile WHERE Name = 'System Administrator' LIMIT 1];
         User u = new User(
             alias = TEST_NAME,
             email = 'a@b.com',
@@ -651,5 +674,5 @@ private class OV_ReportContentServiceImpl_Test {
         u.UserPermissionsSFContentUser = null;
         insert u;
         return u;
-	}
+    }
 }

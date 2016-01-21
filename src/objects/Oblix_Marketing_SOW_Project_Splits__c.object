@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Project Oblix - Project splits</description>
@@ -54,7 +55,20 @@
     <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fields>
+        <fullName>Enforce_Trigger_Update__c</fullName>
+        <description>In order to enforce trigger on SWOP Campaign, there is a rollup summary field created to aggregate this field. This ensure before trigger on SWOP Campaign collects information about the children and update accordingly.</description>
+        <externalId>false</externalId>
+        <label>Enforce Trigger Update</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
     <fields>
         <fullName>OblixCountry__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -82,15 +96,17 @@
     </fields>
     <fields>
         <fullName>Project_Splits__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Project Splits</label>
         <referenceTo>Oblix_SOW_Projects__c</referenceTo>
+        <relationshipLabel>SWOP Campaign Splits</relationshipLabel>
         <relationshipName>Marketing_SOW_Project_Splits</relationshipName>
-        <required>false</required>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Lookup</type>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
     </fields>
     <label>SWOP Campaign Splits</label>
     <listViews>
@@ -106,5 +122,5 @@
     </nameField>
     <pluralLabel>SWOP Campaign Splits</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

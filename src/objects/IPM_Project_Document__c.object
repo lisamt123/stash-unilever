@@ -44,6 +44,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>THis is used in IPM to store Project documents</description>
@@ -52,6 +53,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -424,10 +426,11 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     </listViews>
     <nameField>
         <label>Project Document Id</label>
-        <trackFeedHistory>true</trackFeedHistory>
+        <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
     <pluralLabel>IPM Project Documents</pluralLabel>
+    <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

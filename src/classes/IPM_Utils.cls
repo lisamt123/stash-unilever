@@ -2,6 +2,7 @@
     @Description: General utility class to store frequently used variables and values.
     @Author: Cognizant Technology
     @Date: Sep 2014
+    Generic class used to access IPM specific custom setting data, hence kept as Without Sharing.
 */
 public without sharing class IPM_Utils {
 
@@ -94,6 +95,10 @@ public without sharing class IPM_Utils {
     public static String Finance = 'Finance';
     public static String IPM_Central_Team = 'IPM_Central_Team';
     public static String IPM_Business_Partners = 'IPM_Business_Partners';
+    public static String IPM_MarketReadyGate = 'Market Ready Gate';
+    public static String IPM_MarketDeploymentGate = 'Market Deployment Gate';
+    public static String IPM_Stopped = 'Stopped';
+    public static String IPM_PLE = 'PLE';
 
     //IPM_Milestone
     public static Set<String> mileNames=new Set<String>{'Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval',
@@ -146,6 +151,7 @@ public without sharing class IPM_Utils {
     public static String milePMRecordType ='IPM Project Milestones';
     public static String mileMRecordType ='IPM Milestones';
     public static String DevelopingIPM_Market_Type ='Developed';
+    public static String mileSnapRecordType ='IPM_Snapshot';
     public static String EmergingIPM_Market_Type ='Developing & Emerging';
     public static String IPM_Type_of_Milestone ='Standard';
     public static String recordTypeName ='IPM Project Tasks';
@@ -169,7 +175,7 @@ public without sharing class IPM_Utils {
     //All the phases & their respective Gates
     public static Map<String, String> phaseGateDocumentMap = new Map<String, String>{Ideas => Charter, Feasibility => Contract,
                                                                                       Capability => MarketReady, MarketReady => MarketDeployment,
-                                                                                      MarketDeployment => notapplicable,'PLE' => notapplicable,'Stopped' => notapplicable};
+                                                                                      MarketDeployment => notapplicable,IPM_PLE => notapplicable,IPM_Stopped => notapplicable};
     
     public static final String FORUPDATE_STRING = ' FOR UPDATE ';
     public static final String LIMIT_STRING = ' LIMIT 50000 ';
@@ -904,6 +910,7 @@ public without sharing class IPM_Utils {
             {
                 companyCardSet.add(project.IPM_Company_Card__c);  
             }
+            
         }
 
         if(!companyCardSet.isEmpty())
@@ -947,11 +954,11 @@ public without sharing class IPM_Utils {
     {
         IPM_ProjectMetadata__c selectedProjectMetadata = null;
         
-        if(project.IPM_Project_Type__c !=null && project.IPM_CompanyCardText__c !=null)
+        if(project.IPM_SourceProjectType__c !=null && project.IPM_CompanyCardText__c !=null)
         {
             for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
             {
-                if(projectMetadata.IPM_Project_Type__c == project.IPM_Project_Type__c && projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
+                if(projectMetadata.IPM_Project_Type__c == project.IPM_SourceProjectType__c && projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
                 {
                     selectedProjectMetadata = projectMetadata;
                     break;
@@ -1010,15 +1017,23 @@ public without sharing class IPM_Utils {
         
         //query financial year and financial deatils
         IPM_Financial_Year__c[] finYearDetails = [SELECT Turnover_Global__c, Turnover_Regional__c,Turnover_Local__c ,IPM_Financial__r.Parent_Project__c,IPM_Financial__r.Regional_Project__c,IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c,IPM_Financial__r.Local_Project__c,IPM_Financial__r.IPM_Project_Rollout__c,
-                                                        IPM_Financial__r.RecordTypeId,IPM_Financial__r.Business_Impact_Global__c,IPM_Financial__r.name,IPM_Financial__r.Local_Project__r.IPM_Project_Type__c
+                                                        IPM_Financial__r.RecordTypeId,IPM_Financial__r.Business_Impact_Global__c,IPM_Financial__r.name,IPM_Financial__r.Local_Project__r.IPM_Project_Type__c,IPM_Financial__r.Parent_Project__r.IPM_Phase__c //SS change
                                                   FROM IPM_Financial_Year__c
                                                   WHERE Year__c = '3' AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_INCREMENTAL    
                                                   LIMIT 50000];
         if(!finYearDetails.isEmpty()){
             for(IPM_Financial_Year__c finYr :finYearDetails){
                 System.debug('===>'+finYr.IPM_Financial__r.name);
-                //Global Financial : RT = CONSOLIDATED + Regional Project = null + Local Project = null
+                //additional condition - Global Project and not Ideas phase then Y3iTO should be from Market Cluster and not from Top Down
                 if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT) 
+                    && finYr.IPM_Financial__r.IPM_Project_Rollout__c == null && finYr.IPM_Financial__r.Regional_Project__c == null && finYr.IPM_Financial__r.Local_Project__c == null
+                    && finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null && finYr.IPM_Financial__r.Parent_Project__r.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS) 
+                {
+                    iTOValue = (finYr.Turnover_Regional__c)/1000; 
+                    projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
+                }
+                //Global Financial : RT = CONSOLIDATED + Regional Project = null + Local Project = null
+                else if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT) 
                     && finYr.IPM_Financial__r.IPM_Project_Rollout__c == null && finYr.IPM_Financial__r.Regional_Project__c == null && finYr.IPM_Financial__r.Local_Project__c == null
                     && finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null) 
                 {
@@ -1044,14 +1059,15 @@ public without sharing class IPM_Utils {
                 }
                 //Regional Original
                 else if(finYr.IPM_Financial__r.Regional_Project__c != null && finYr.IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                	iTOValue = (finYr.Turnover_Global__c)/1000;
+                    iTOValue = (finYr.Turnover_Global__c)/1000;
                     projIdiTOMap.put(finYr.IPM_Financial__r.Regional_Project__c,iTOValue);
                 }
                  //Local Original
                 else if(finYr.IPM_Financial__r.Local_Project__c != null && finYr.IPM_Financial__r.Local_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                	iTOValue = (finYr.Turnover_Global__c)/1000;
+                    iTOValue = (finYr.Turnover_Global__c)/1000;
                     projIdiTOMap.put(finYr.IPM_Financial__r.Local_Project__c,iTOValue);
                 }
+                
             }
         }
         return projIdiTOMap;
@@ -1261,7 +1277,10 @@ public without sharing class IPM_Utils {
      mail.setToAddresses(toAddresses);
      mail.setSubject(emailSubject + apexJob.Status);
      mail.setPlainTextBody(emailBody1 + apexJob.TotalJobItems + emailBody2 + apexJob.NumberOfErrors + emailBody3);
-     Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+     // If running as a unit test don't try to send the email
+     if (!Test.isRunningTest()) {
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+     }
     }
     
     /**************************************************************
@@ -1269,12 +1288,47 @@ public without sharing class IPM_Utils {
     * @param1 proj : project record
     */
     public static Boolean isProjectToBeSyncedToEcoDesign(IPM_Project__c proj){
-		if( retrieveProjectType(proj).IPM_Dont_Sync_Proj_To_EcoDesign__c || proj.IPM_Answer_of_Q1__c == IPM_ConstantUtils.ECODESIGN_MARKET_PLACE_ACTIVITY_BLG
-		){
-			return false;
-		}
-		else{
-			return true;
-		}
-	}
+        if( retrieveProjectType(proj).IPM_Dont_Sync_Proj_To_EcoDesign__c || proj.IPM_Answer_of_Q1__c == IPM_ConstantUtils.ECODESIGN_MARKET_PLACE_ACTIVITY_BLG
+        ){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    
+    public static Boolean validateTriggerSkip()
+    {
+        if(Trigger.isExecuting)
+        {
+	        string CSkey=IPM_ConstantUtils.BLANK;
+	        List<sObject> sobjectList = Trigger.New;
+	        if(Trigger.isInsert)
+	        {
+	            if(Trigger.New!=null && !Trigger.New.isEmpty())
+	            {
+	                sobjectList = Trigger.New;
+	                CSkey = sobjectList[0].getSObjectType().getDescribe().name.replace('__c','')+'Trigger';
+	            }   
+	        }
+	        else
+	        {
+	            if(Trigger.old != null && !Trigger.old.isEmpty())
+	            {
+	                sobjectList = Trigger.Old;
+	                CSkey = sobjectList[0].getSObjectType().getDescribe().name.replace('__c','')+'Trigger';
+	            }
+	        }
+	        
+	        if(String.isNotBlank(CSkey))
+	        {
+	            IPM_Trigger_Router__c triggerRouter = IPM_Trigger_Router__c.getInstance(CSkey); 
+	            if(triggerRouter!=null && triggerRouter.is_Disabled__c)
+	            {
+	                return true;
+	            }
+	        }  
+        } 
+        return false;
+    } 
 }

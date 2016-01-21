@@ -1,5 +1,4 @@
 ({
-    STAGE_COMPONENT_NAME   : 'one:centerStage',
     DEFAULT_COMPONENT_NAME : 'markup://c:OV_Home',
     COMPONENT_NAME         : 'c:OV_Navigation',
     /**
@@ -82,6 +81,92 @@
         window.history.replaceState({"hash":hash}, null, "#" + hash);
     },
 
+    getQueryVariable: function(variable) {
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] === variable){
+                return decodeURIComponent(pair[1]);
+            }
+        }
+        return(false);
+    },
+
+    removeParam: function(keys, searchPath) {
+        var result = '';
+        if (searchPath === '' || searchPath.indexOf('?') === -1) {
+            return result;
+        }
+
+        var queryString = searchPath.split('?')[1];
+        var params_arr, param;
+
+        if (queryString !== '') {
+            params_arr = queryString.split('&');
+            for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+                param = params_arr[i].split('=')[0];
+                if (keys.indexOf(param) !== -1) {
+                    params_arr.splice(i, 1);
+                }
+            }
+            result = result + '?' + params_arr.join('&');
+        }
+        return result;
+    },
+
+    redirect: function(component) {
+        // redirectByUrlParams will return true in case window.location.href is called to avoid executing other logic
+
+        if (this.redirectByUrlParams(component) === false) {
+            this.redirectByToken(component);
+        }
+    },
+
+    redirectByUrlParams: function(component) {
+        var recordType = this.getQueryVariable('recordType');
+        var recordId   = this.getQueryVariable('recordId');
+
+        if (recordType !== false && recordId !== false && recordType === 'Report') {
+            // prepare attributes object
+            var componentDef        = 'c:OV_ComponentWrapper';
+            var componentAttributes =  {
+                renderBackArrow : true,
+                wrappedObject   : {
+                    componentDef        : 'c:OV_ReportDesktop',
+                    componentAttributes : {
+                        reportId    : recordId,
+                        shelfColour : this.getQueryVariable('shelfColour') || '#0E5DB8',
+                        shelfIcon   : this.getQueryVariable('shelfIcon')   || 'Custom68',
+                        shelfTileId : this.getQueryVariable('shelfTileId') || null
+                    }
+                }
+            };
+
+            // prepare state object
+            var state = {
+                timestamp    : Date.now(),
+                componentDef : 'one:auraContainer',
+                attributes   : {
+                    values : {
+                        tag                 : this.COMPONENT_NAME,
+                        componentDef        : componentDef,
+                        componentAttributes : componentAttributes,
+                        // need to copy componentAttributes to attributes
+                        // as aura checks for attributes or values.attributes properties only :(
+                        attributes          : componentAttributes
+                    }
+                }
+            };
+
+            var hash      = this.getToken().encodeToken(state);
+            var targetUrl = window.location.origin + window.location.pathname + this.removeParam(['recordType', 'recordId', 'shelfColour', 'shelfIcon', 'shelfTileId'], window.location.search) + '#' + hash;
+            window.history.replaceState({"hash":hash}, null, targetUrl);
+            return false;
+        }
+        return false;
+    },
+
     replaceShelfHistoryEntry: function(component, shelfTileId) {
         var currentHash  = window.history.state ? window.history.state.hash : false;
 
@@ -102,15 +187,18 @@
 
         decodedToken.attributes.values.componentAttributes.activeShelfTileId  = shelfTileId;
         decodedToken.attributes.values.attributes.activeShelfTileId           = shelfTileId;
+
         // reset folder entry
         decodedToken.attributes.values.componentAttributes.activeFolderTileId = null;
         decodedToken.attributes.values.attributes.activeFolderTileId          = null;
+        decodedToken.attributes.values.componentAttributes.activeFolderName   = null;
+        decodedToken.attributes.values.attributes.activeFolderName            = null;
 
         var hash = this.getToken().encodeToken(decodedToken);
         window.history.replaceState({"hash":hash}, null, "#" + hash);
     },
 
-    replaceShelfFolderHistoryEntry: function(component, shelfTileFolderId) {
+    replaceShelfFolderHistoryEntry: function(component, shelfTileFolderId, folderName) {
         var currentHash  = window.history.state ? window.history.state.hash : false;
 
         if ($A.util.isEmpty(currentHash) === true) {
@@ -124,12 +212,15 @@
             return;
         }
 
-        if (decodedToken.attributes.values.componentAttributes.activeFolderTileId === shelfTileFolderId) {
+        if (decodedToken.attributes.values.componentAttributes.activeFolderTileId === shelfTileFolderId && decodedToken.attributes.values.componentAttributes.activeFolderName === folderName) {
             return;
         }
 
         decodedToken.attributes.values.componentAttributes.activeFolderTileId = shelfTileFolderId;
         decodedToken.attributes.values.attributes.activeFolderTileId          = shelfTileFolderId;
+
+        decodedToken.attributes.values.componentAttributes.activeFolderName   = folderName;
+        decodedToken.attributes.values.attributes.activeFolderName            = folderName;
 
         var hash = this.getToken().encodeToken(decodedToken);
         window.history.replaceState({"hash":hash}, null, "#" + hash);
@@ -153,7 +244,7 @@
      * @param Object Component Current component
      */
     redirectByToken: function(component) {
-        var hash                = window.history.state ? window.history.state.hash : false;
+        var hash                = window.history.state ? window.history.state.hash : (window.location.hash ? window.location.hash.replace('#', '') : null);
         var componentDef        = this.DEFAULT_COMPONENT_NAME;
         var componentAttributes = {};
 
@@ -235,6 +326,7 @@
 
         //dh
         action.setExclusive();
+
 
         $A.enqueueAction(action);
     }

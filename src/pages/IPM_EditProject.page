@@ -14,10 +14,9 @@
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/bootstrap.min.css')}"/>
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Checkbox.css')}"/> 
     <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_RadioButton.css')}"/>
-    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_editproject.css')}"/>       
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}" type="text/javascript"></script>    
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.min.js')}" type="text/javascript"></script>      
-    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_EditProject.css')}"/> 
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_ProjectSetupDesign.css')}"/>
+    
     <div class="container-fluid">
         <apex:form >   
             <div class="col-sm-12 editProTop">
@@ -70,13 +69,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-10">
-                            <div class="col-sm-10 noPadleft">
-                            
-                            <!-- To place the help symbol in the top right hand corner of page -->
-                            <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
-                                <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
-                            </apex:outputPanel> 
+                        <div class="col-sm-9">
+                            <div class="col-sm-11 noPadleft">                            
                             
                                 <apex:outputPanel id="ProjectNamePanel" styleClass="inputField oneCol">
                                     <apex:outputPanel layout="block"  styleClass="required proNameContainer">
@@ -124,11 +118,13 @@
                                             <label class="ipmSelect">
                                                 <apex:actionRegion >
                                                     <apex:outputPanel >
-                                                        <apex:selectList size="1" value="{!project.IPM_Company_Card__c}" styleClass="selCompany" disabled="{!OR(ISBLANK(project.Id),project.IPM_IsSaved__c,NOT(isEditable))}">  
-                                                            <apex:actionSupport event="onchange" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript" status="refreshCategory" />
+                                                        <apex:selectList size="1" value="{!project.IPM_Company_Card__c}" onchange="callCompanyCard();" styleClass="selCompany" disabled="{!OR(ISBLANK(project.Id),project.IPM_IsSaved__c,NOT(isEditable))}">  
                                                             <apex:selectOptions value="{!Allcompanycard}" />
                                                         </apex:selectList>
                                                     </apex:outputPanel>
+                                                    <apex:actionfunction name="callCompanyCard" onComplete="callBrandPos();" action="{!populateCategory}" reRender="ProjectSubTypePanel,WhiteSpaceFastTrackPanel,fastTrackPanel,whiteSpacePanel,gateKeepingPanel,questionCharter,categoryPanel,BrandPositionPanel,pos,selectNextTabScript,multiBPositions" status="refreshCategory" />
+                                                    <apex:actionfunction name="callBrandPos" action="{!none}" reRender="BrandPositionPanel,multiBPositions" status="refreshCategory" />
+                                                                                
                                                 </apex:actionRegion>
                                             </label>
                                             <apex:outputPanel layout="block" id="CompanyMsg">
@@ -187,13 +183,20 @@
                                             <apex:actionStatus startText="" id="refreshPos" startStyleClass="proInit"/>    
                                             <apex:outputPanel id="SingleBrandPanel" rendered="{!NOT(projectMetadata.IPM_MultipleBrandPosApplicable__c)}">
                                                 <label class="ipmSelect custSelectWidth">
-                                                    <apex:selectList value="{!project.IPM_Brand_Positioning__c}" multiselect="false" size="1" styleClass="selBrandPos" >
+                                                    <apex:selectList value="{!project.IPM_Brand_Positioning__c}" multiselect="false" size="1" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),true,false)}"  styleClass="selBrandPos" >
                                                         <apex:selectOptions value="{!brandPos}"></apex:selectOptions>
                                                     </apex:selectList>
                                                 </label>
                                             </apex:outputPanel>
                                             <apex:outputPanel layout="block" rendered="{!AND(projectMetadata.IPM_MultipleBrandPosApplicable__c)}" styleClass="noPadright noPadleft dropdown brandposListContainer ipmDropDown" >    
-                                                <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clickCmiList" >
+                                                
+                        <apex:outputPanel rendered="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),true,false)}"  >
+                            <apex:OutputText value="{!project.IPM_Brand_Positioning__c}" id="brandPosDisableField"/>
+                        </apex:outputPanel>
+                        
+                        <apex:outputpanel rendered="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c !=null)),false,true)}">
+                        
+                        <apex:outputPanel html-data-toggle="dropdown" layout="block" styleClass="clickCmiList" >
                                                     <div class="ipmDropDownSelect">
                                                         <span class='brandSelValues'>Select</span>
                                                         <a class="listArrow"></a>    
@@ -218,8 +221,10 @@
                                                             </div>
                                                         </li>
                                                     </apex:outputPanel>
-                                                </apex:outputPanel>      
-                                            </apex:outputPanel>              
+                                                </apex:outputPanel>  
+                        </apex:outputPanel>
+                                            </apex:outputPanel>
+                        
                                             <apex:outputPanel layout="block">
                                                 <apex:outputText value="{!$Label.IPM_SELECT_BRAND_POSITIONING}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Brand_Positioning__c'))}" styleClass="brandErrMsg"/>
                                             </apex:outputPanel>
@@ -228,8 +233,8 @@
                                     <div class="col-sm-6 rightColumn">
                                         <apex:outputPanel layout="block" id="TargetDatePanel" styleClass="inputField launchPeriod" >
                                             <div class="tldLabel"><apex:outputLabel value="{!$Label.IPM_TARGET_LAUNCH_DATE}" styleClass="bsFieldLabel" /><span class="mandatorycolor"> *</span></div>
-                                            <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar" rendered="{!isEditable}" onfocus="DatePicker.pickDate(true, this , false);"/>                                                              
-                                            <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" rendered="{!!isEditable}"/>
+                                            <apex:inputField value="{!project.IPM_Target_Launch_Dates__c}" styleClass="dateInputBox tldBox calendar" rendered="{!And(isEditable,isTLDFieldEditable)}" onfocus="DatePicker.pickDate(true, this , false);" onchange="TLDDateCheck()"/>                                                              
+                                            <apex:outputField value="{!project.IPM_Target_Launch_Dates__c}" rendered="{!OR(!isEditable,!isTLDFieldEditable)}"/>
                                             <apex:outputLabel value="{!project.IPM_Target_Launch_Date__c} [In Bosscard]" styleClass="tldQ" rendered="{!IF(project.IPM_Target_Launch_Date__c !='','true','false')}"/>
                                             <apex:outputPanel id="TLDPMsg">
                                                 <apex:outputText value="{!$Label.IPM_SELECT_TLD}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Target_Launch_Dates__c'))}" styleClass="TldErrMsg"/>
@@ -295,25 +300,36 @@
                                 <div class="row">
                                     <div class="col-sm-12"> 
                                         <apex:outputPanel id="WhiteSpaceFastTrackPanel">
-                                            <apex:outputPanel rendered="{!OR(projectMetadata.IPM_FastTrackApplicable__c,projectMetadata.IPM_WhiteSpaceApplicable__c)}"> 
-                                                <div class="col-sm-12 yellowBox noPadleft">
-                                                    <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox" rendered="{!projectMetadata.IPM_FastTrackApplicable__c}" > 
-                                                        <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability')),true,false)}"/>
-                                                        <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
-                                                    </apex:outputPanel>
-                                                    <apex:outputPanel id="whiteSpacePanel" styleClass="whiteSpaceBox" rendered="{!projectMetadata.IPM_WhiteSpaceApplicable__c}" >
-                                                        <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_White_Space_Project__c}" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c)),true,false)}"/>
-                                                        <apex:actionSupport event="onchange" reRender="WhiteSpaceHelpTextpanel"  />
-                                                        <span class="projectraLabel">{!$Label.IPM_White_Space}</span>
-                                                    </apex:outputPanel>
-                                                </div>
-                                                <apex:outputPanel id="WhiteSpaceHelpTextpanel">
-                                                    <apex:outputPanel styleClass="col-sm-12 yellowBox" layout="block" rendered="{!AND(project.IPM_White_Space_Project__c,isEditable)}" >
-                                                        <apex:outputText value="{!$Label.IPM_WhiteSpace_HelpText}" />
-                                                    </apex:outputPanel>
+                                        <apex:outputPanel rendered="{!OR(projectMetadata.IPM_FastTrackApplicable__c,projectMetadata.IPM_WhiteSpaceApplicable__c)}"> 
+                                        <div class="col-sm-12 yellowBox noPadleft">
+                                            <apex:outputPanel id="fastTrackPanel" styleClass="fastTrackBox" >
+                                                <apex:outputPanel rendered="{!projectMetadata.IPM_FastTrackApplicable__c}" > 
+                                                    <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_Fast_Track_Project__c }" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c,project.IPM_Phase__c!='Feasibility',project.IPM_Phase__c!='Capability')),true,false)}"/>
+                                                    <span class="projectraLabel">{!$Label.IPM_FAST_TRACK}</span>
+                                                    <apex:actionSupport event="onchange" reRender="FastTrackHelpTextpanel"  />
                                                 </apex:outputPanel>
                                             </apex:outputPanel>
+                                            <apex:outputPanel id="whiteSpacePanel" styleClass="whiteSpaceBox" >
+                                                 <apex:outputPanel rendered="{!projectMetadata.IPM_WhiteSpaceApplicable__c}" >
+                                                    <apex:inputCheckbox styleClass="fastTrackcheck" value="{!project.IPM_White_Space_Project__c}" disabled="{!IF(OR(!isEditable,AND(isEditable,project.IPM_Phase__c!=projectMetadata.IPM_DefaultPhase__c)),true,false)}"/>
+                                                    <apex:actionSupport event="onchange" reRender="WhiteSpaceHelpTextpanel"  />
+                                                    <span class="projectraLabel">{!$Label.IPM_White_Space}</span>
+                                                    <apex:actionSupport event="onchange" reRender="WhiteSpaceHelpTextpanel"  />
+                                                </apex:outputPanel>
+                                            </apex:outputPanel>
+                                        </div>
+                                        <apex:outputPanel id="FastTrackHelpTextpanel">
+                                            <apex:outputPanel styleClass="col-sm-12 toolTipMsg radioTooltip10 marginT20" layout="block" rendered="{!AND(project.IPM_Fast_Track_Project__c,isEditable)}" >
+                                                <apex:outputText value="{!$Label.IPM_FastTrack_HelpText}" />
+                                             </apex:outputPanel>
                                         </apex:outputPanel>
+                                        <apex:outputPanel id="WhiteSpaceHelpTextpanel">
+                                            <apex:outputPanel styleClass="col-sm-12 yellowBox" layout="block" rendered="{!AND(project.IPM_White_Space_Project__c,isEditable)}" >
+                                            <apex:outputText value="{!$Label.IPM_WhiteSpace_HelpText}" />
+                                            </apex:outputPanel>
+                                        </apex:outputPanel>
+                                        </apex:outputPanel>
+                                    </apex:outputPanel>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 noPadleft">
@@ -321,6 +337,14 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- To place the help symbol in the top right hand corner of page -->
+                        <div class="col-sm-1">
+                            <div class="row">
+                            <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
+                                <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
+                            </apex:outputPanel> 
+                            </div>
+                        </div>                      
                     </div>
                 </div> 
                
@@ -374,6 +398,39 @@
             </div>
         </div>
     </div>  
+
+<!-- Modal -->
+    <div id="tldWarningDialog" tabindex="-1" data-backdrop-limit="1" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <div class="modal-title">{!$Label.Business_Case_Update_Needed}</div>
+                </div>
+                <div class="modal-body">
+                    <div class="removeapprpopup">
+                        <span class="removeApprText">{!$Label.Business_Case_Update_Needed_Value}</span>
+                        <div class="remvButtonContainer pull-right">  
+                            <div class="pull-left buttonMarginRight noPadright">
+                                <input type="button" class="ipmButton" data-dismiss="modal" value="{!$Label.Cancel_and_Revert}" onClick="revertTLDValue();"/>
+                            </div>
+                            <div class="buttonMarginRight noPadright pull-left" >
+                                <!-- <span class="ipmButton primary" data-dismiss="modal" >Agree and Proceed</span> 
+                    <apex:commandLink value="{!$Label.Agree_and_Proceed}"  rendered="{!AND(isEditable,project.IPM_Phase__c!=null)}" styleClass="coreparameters custMarginbottom ipmButton primary"  oncomplete="hideTldWarningDialog();" >
+                    </apex:commandLink> -->
+                    <a class="coreparameters custMarginbottom ipmButton primary" onClick="hideTldWarningDialog()">{!$Label.Agree_and_Proceed}</a>
+                        
+                            </div>
+                        </div>
+                    </div>        
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}" type="text/javascript"></script>    
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.min.js')}" type="text/javascript"></script>      
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery-ui.min.js')}" type="text/javascript"></script> 
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_Limiter.js')}" type="text/javascript"></script>
     <apex:outputPanel id="editProjectAction">               
@@ -438,8 +495,23 @@
                jq(this).show(); 
            }
        });
-    });                         
+    }); 
+    function TLDDateCheck(){
+        var newTLDValue = jq('.dateInputBox').val();
+        if(newTLDValue != tldOrignalValue){
+            jq('#tldWarningDialog').modal('show'); 
+            return false;
+        }
+        return true;
+    }
+    function revertTLDValue(){
+        jq('.dateInputBox').val(tldOrignalValue);
+    }
+    function hideTldWarningDialog(){
+        jq('#tldWarningDialog').modal('hide'); 
+    }
+    const tldOrignalValue = jq('.dateInputBox').prop("defaultValue");   
     </script>
     </apex:outputPanel>
-     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_editproject.js')}" type="text/javascript"></script>
+     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_EditProject.js')}" type="text/javascript"></script>
 </apex:page>

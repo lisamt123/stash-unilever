@@ -12,18 +12,21 @@
     <aura:attribute name="panelIds" type="String[]" />
     <aura:attribute name="subData" type="OV_Wrapper.ShelfWrapper[]" />
     <aura:attribute name="momData" type="OV_Wrapper.ShelfWrapper[]" />
+
     <aura:attribute name="activeShelfTileId" type="String" default="" />
     <aura:attribute name="activeFolderTileId" type="String" default="" />
+    <aura:attribute name="activeFolderName" type="String" default="" />
 
     <div class="tab-content">
         <aura:iteration items="{!v.panelIds}" var="panel">
             <div role="tabpanel" data-panelId="{!panel}" class="{!(v.currentView == panel) ? 'tab-pane active' : 'tab-pane'}">
                 <aura:if isTrue="{!(panel == 'SUBJECTS' || panel == 'MOMENTS')}">
                     <aura:iteration items="{!(panel == 'SUBJECTS') ? v.subData : v.momData}" var="shelf">
-                        <c:OV_Shelf shelfItem="{!shelf}"
+                    <c:OV_Shelf shelfItem="{!shelf}"
                             filters="{!(panel == 'SUBJECTS') ? v.filters1 : v.filters2}"
                             activeShelfTileId="{!v.activeShelfTileId}"
                             activeFolderTileId="{!v.activeFolderTileId}"
+                            activeFolderName="{!v.activeFolderName}"
                             />
                     </aura:iteration>
                     <aura:set attribute="else">

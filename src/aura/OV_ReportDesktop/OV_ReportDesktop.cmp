@@ -3,6 +3,7 @@
 
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler name="destroy" value="{!this}" action="{!c.handleDestroy}" />
+    <aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/>
 
     <aura:attribute name="reportIsFavourite" type="Boolean" default="false" />
     <aura:attribute name="reportId" type="String"/>
@@ -16,6 +17,7 @@
     <aura:attribute name="defaultReportMenuItem" type="String" default="DETAILS"/>
     <aura:attribute name="reportContentVersions" type="Object[]"/>
     <aura:attribute name="reportPreviewLink" type="String" default='' />
+    <aura:attribute name="reportPreviewLink__old" type="String" default='' />
     <aura:attribute name="viewReportLink" type="String" default='' />
 
     <aura:attribute name="latestVersionId" type="String" default='' />
@@ -74,8 +76,9 @@
                 <!-- test only &amp;&amp; (v.reportData.reportDocument.reportDocumentIsPreview == true) -->
                 <aura:renderIf isTrue="{! (!!v.reportData.reportDocument &amp;&amp; v.reportData.reportIsStatic) }">
                     <div class="col-xs-12">
-                        <div class="report-preview" id="rep-preview">
-                            <iframe width="100%" height="400" id="previewIframe" src="{!v.reportPreviewLink + '&amp;showDownloadLink=false'}" />
+                        <div class="report-preview" id="rep-preview" aura:id="iframeArea">
+                            <!--  # instead of ! to render it only for the first time -->
+                            <!-- <iframe width="100%" height="400" id="previewIframe" src="{!v.reportPreviewLink + '&amp;showDownloadLink=false'}" /> -->
                         </div>
                     </div>
                 </aura:renderIf>

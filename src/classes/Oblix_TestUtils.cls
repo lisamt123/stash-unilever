@@ -17,7 +17,7 @@ public with sharing class Oblix_TestUtils {
           LocaleSidKey = 'en_US', ProfileId = profile.Id,firstname = 'sf test one', 
           TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
           UserName = 'testuser@test123321.com');
-        insert user;
+        insert user; 
 
         return user;
     }
@@ -36,6 +36,7 @@ public with sharing class Oblix_TestUtils {
         marketingSow.OblixBrand__c = brandId;
         marketingSow.SmallProductCategory__c = createSmallProductCategory().id;
         marketingSow.BigOblixProductCategory__c = createBigProductCategory().id;
+        marketingSow.Financial_Year__c = 'FY2015';
         insert marketingSow;
         return marketingSow;
     }
@@ -46,10 +47,22 @@ public with sharing class Oblix_TestUtils {
         return category;
     }
 
+    public static MDO_Category__c createSmallProductCategory(Id parentBigCategoryId){
+        MDO_Category__c category = new MDO_Category__c(name = DEFAULT_SMALL_PROD_CAT_NAME, parent_L2__c = parentBigCategoryId);
+        insert category;
+        return category;
+    }
+
     public static MDO_Category__c createBigProductCategory(){
         MDO_Category__c category = new MDO_Category__c(name = DEFAULT_BIG_PROD_CAT_NAME);
         insert category;
         return category;
+    }
+
+    public static MDO_CategoryBrands__c createCategoryBrand(MDO_Category__c category, MDO_Brand__c brand){
+        MDO_CategoryBrands__c categoryBrand = new MDO_CategoryBrands__c(product_Category_Id__c = category.Id, brand_id__c = brand.Id);
+        insert categoryBrand;
+        return categoryBrand;
     }
 
 
@@ -57,6 +70,7 @@ public with sharing class Oblix_TestUtils {
         Oblix_SOW_Projects__c project = new Oblix_SOW_Projects__c();
         project.Name = name;
         project.Financial_Year__c = marketingSowId;
+        project.Campaign_Countries__c = 'France, UK, Germany';
         insert project;
         return project;
     }

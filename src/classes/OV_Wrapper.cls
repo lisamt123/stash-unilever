@@ -616,4 +616,25 @@ public with sharing class OV_Wrapper {
             this.folderMembersMap.put(cMember.reportId, cMember);
         }
     }
+
+    public class KpiFavouriteTransactionWrapper{
+        @AuraEnabled
+        public Id kpiTransactionId;
+        @AuraEnabled
+        public Boolean shouldBeNotified;
+        @AuraEnabled
+        public Id reportId;
+
+        public KpiFavouriteTransactionWrapper(Id kpiTransactionId, Boolean shouldBeNotified, Id reportId){
+            this.kpiTransactionId = kpiTransactionId;
+            this.shouldBeNotified = shouldBeNotified;
+            this.reportId = reportId;
+        }
+
+        public KpiFavouriteTransactionWrapper(OV_KPI_Transaction_Favorite__c obj){
+            this.kpiTransactionId = obj.KPI_Transaction__c;
+            this.shouldBeNotified = obj.Wants_Notifications__c;
+            this.reportId = obj.Report__c;
+        }
+    }
 }

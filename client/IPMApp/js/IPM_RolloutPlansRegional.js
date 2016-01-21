@@ -9,6 +9,7 @@ var jq=jQuery.noConflict();
 	var selectedMCOs=[], unselectedMCOs=[], selectedCountries=[], unselectedCountries=[], selectedNoRollouts=[], unselectedNoRollouts=[];                        
 	jq(document).ready(function(){
 		regionalscriptpanel();
+		populateRolloutData();
 	});
 	
 /* Below code is to check or disable the checkboxes */
@@ -71,6 +72,22 @@ var jq=jQuery.noConflict();
 }
 	function invokeRolloutGeneration()
 	{
+		populateRolloutData();
+		generateRollouts(selectedMCOs.toString(),unselectedMCOs.toString(),selectedCountries.toString(),unselectedCountries.toString(),selectedNoRollouts.toString(),unselectedNoRollouts.toString());
+	}
+	
+/* Below code is to redirect to regional page */
+	function setRedirect()
+	{
+		if(IPMregionalApp.completed)
+		{
+			window.top.location = IPMregionalApp.url+'?Id='+IPMregionalApp.proid+'&EditMode=false';
+		}
+	}
+	
+	function populateRolloutData()
+	{
+		selectedMCOs=[], unselectedMCOs=[], selectedCountries=[], unselectedCountries=[], selectedNoRollouts=[], unselectedNoRollouts=[];                        
 		jq('input:radio[name ^=grp]').each(function()
 		{
 			var $radio = jq(this);  
@@ -97,15 +114,52 @@ var jq=jQuery.noConflict();
 				
 			}
 		});
-		 
-		generateRollouts(selectedMCOs.toString(),unselectedMCOs.toString(),selectedCountries.toString(),unselectedCountries.toString(),selectedNoRollouts.toString(),unselectedNoRollouts.toString());
 	}
 	
-/* Below code is to redirect to regional page */
-	function setRedirect()
+	function validateIfWarningRequired() 
+        { 
+			var intialSelectedNoRollouts = selectedNoRollouts; 
+			
+			// Populate with Latest Changes 
+			populateRolloutData(); 
+			
+			var issameNoRollout = (intialSelectedNoRollouts.length == selectedNoRollouts.length) && intialSelectedNoRollouts.every(function(element, index)  
+
+			{ 
+					return element === selectedNoRollouts[index]; 
+			}); 
+			
+			if(issameNoRollout) 
+			{ 
+					return true; 
+			} 
+			return false; 
+        }
+	
+	jq(".generateRolloutBtn").on("click",function(e)
 	{
-		if(IPMregionalApp.completed)
+		e.stopPropagation();
+		var checkIfSame = validateIfWarningRequired();
+		if(checkIfSame)
 		{
-			window.top.location = IPMregionalApp.url+'?Id='+IPMregionalApp.proid+'&EditMode=false';
+			invokeRolloutGeneration();
 		}
-	}
+		else
+		{
+			jq('#ipmDeleteModal').modal('show');
+			jq('#ipmDeleteModal .modal-title').text(IPMregionalApp.warningTitle);
+			jq('#ipmDeleteModal .confirmMsg').text(IPMregionalApp.warningMsg);
+			jq('#ipmDeleteModal .cancelAction').text(IPMregionalApp.cancelBtnText);
+			jq('#ipmDeleteModal .confirmAction').text(IPMregionalApp.acceptBtnText);
+			
+			jq('#ipmDeleteModal .modal-body').css({
+			"height": "120px",
+			"margin-right": "15px"
+			});
+			
+			jq('#ipmDeleteModal .confirmAction').on("click",function(){invokeRolloutGeneration();});
+			jq('#ipmDeleteModal .cancelAction').on("click",function(){
+				window.top.location = IPMregionalApp.baseUrl+'?Id='+IPMregionalApp.proid;
+			});
+		}
+	});

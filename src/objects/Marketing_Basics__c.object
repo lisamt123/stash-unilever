@@ -48,6 +48,7 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>Project Oblix - SECTION 2: BASICS (WORK WITHOUT CREATIVE DELIVERABLES)
@@ -134,6 +135,7 @@ Renamed to Other SOW items in reviews</description>
     </fields>
     <fields>
         <fullName>Agency_Department__c</fullName>
+        <description>New &apos;Digital&apos; picklist value added 17/12/15</description>
         <externalId>false</externalId>
         <label>Agency Department</label>
         <picklist>
@@ -143,6 +145,10 @@ Renamed to Other SOW items in reviews</description>
             </picklistValues>
             <picklistValues>
                 <fullName>Creative</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Digital</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -295,6 +301,18 @@ Renamed to Other SOW items in reviews</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Non_Campaign_Key__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>true</externalId>
+        <label>Non Campaign Key</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
         <fullName>OblixCountry__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -310,6 +328,36 @@ Renamed to Other SOW items in reviews</description>
         <fullName>OblixOtherItemFee__c</fullName>
         <externalId>false</externalId>
         <label>Other Item Fee</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Oblix_FTE_Real_Price__c</fullName>
+        <externalId>false</externalId>
+        <formula>FTE__c *  OblixOtherItemFee__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>FTE Real Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Oblix_Hourly_Rate__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(
+    No_of_Hours_Required__c = 0, 
+    0, 
+    OblixOtherItemFee__c /  No_of_Hours_Required__c
+)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Hourly Rate</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -856,7 +904,7 @@ Renamed to Other SOW items in reviews</description>
         <fullName>non_campaign_title__c</fullName>
         <externalId>false</externalId>
         <label>non campaign title</label>
-        <length>36</length>
+        <length>100</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -952,6 +1000,10 @@ Renamed to Other SOW items in reviews</description>
             </values>
             <values>
                 <fullName>Creative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -1546,6 +1598,10 @@ Renamed to Other SOW items in reviews</description>
             </values>
             <values>
                 <fullName>Creative</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Digital</fullName>
                 <default>false</default>
             </values>
             <values>

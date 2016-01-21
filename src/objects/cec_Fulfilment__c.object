@@ -54,6 +54,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -145,11 +146,37 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>CaseBrand__c</fullName>
+        <description>CEC- This field is will have Brand information</description>
+        <externalId>false</externalId>
+        <formula>Case__r.Case_Brand__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case Brand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Case_Market__c</fullName>
         <description>CEC: Assigned with Case&apos;s Case_Market__c if it is not blank , else it is assigned with Case&apos;s Market</description>
         <externalId>false</externalId>
         <formula>IF(NOT(ISBLANK( Case__r.Case_Market__c )),Case__r.Case_Market__c, Text(Case__r.Market__c))</formula>
         <label>Case Market</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Case_Product_Category__c</fullName>
+        <description>CEC: This is used while querying the data from cheque Book</description>
+        <externalId>false</externalId>
+        <formula>Case__r.CEC_Product__r.Global_CPG_Code__r.L2_Product_Category__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Case Product Category</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -168,6 +195,38 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Cheque_Number__c</fullName>
+        <description>CEC : To capture the cheque number</description>
+        <externalId>false</externalId>
+        <label>Cheque Number</label>
+        <length>18</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Cheque_Sent__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: To indicate if the Cheque is Sent or not</description>
+        <externalId>false</externalId>
+        <label>Cheque Sent</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Cheque_Voided__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: To Indicate if Cheque is voided or not</description>
+        <externalId>false</externalId>
+        <label>Cheque Voided</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>Country_BrandLogo__c</fullName>
@@ -200,6 +259,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Bulgaria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canada</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -271,6 +334,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Mlodova, Republic of</fullName>
                 <default>false</default>
             </picklistValues>
@@ -326,7 +393,11 @@
                 <fullName>United Kingdom</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
+            <picklistValues>
+                <fullName>United States</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -338,6 +409,18 @@
         <formula>if( isApproved__c ==True, &quot;&quot; ,&quot;The document cannot be generated until it has been approved&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Document Approval</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Enclosure1_Notes__c</fullName>
+        <description>CEC: To capture Enclosure1 related notes</description>
+        <externalId>false</externalId>
+        <label>Enclosure1 Notes</label>
+        <length>60</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -372,6 +455,18 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Enclosure2_Notes__c</fullName>
+        <description>CEC: To capture Enclosure2 related notes</description>
+        <externalId>false</externalId>
+        <label>Enclosure2 Notes</label>
+        <length>60</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Enclosure2__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -397,6 +492,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Enclosure3_Notes__c</fullName>
+        <description>CEC: To capture Enclosure3 related notes</description>
+        <externalId>false</externalId>
+        <label>Enclosure3 Notes</label>
+        <length>60</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Enclosure3__c</fullName>
@@ -426,6 +533,18 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Enclosure4_Notes__c</fullName>
+        <description>CEC: To capture Enclosure4 related notes</description>
+        <externalId>false</externalId>
+        <label>Enclosure4 Notes</label>
+        <length>60</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Enclosure4__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
@@ -451,6 +570,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Enclosure5_Notes__c</fullName>
+        <description>CEC: To capture Enclosure5 related notes</description>
+        <externalId>false</externalId>
+        <label>Enclosure5 Notes</label>
+        <length>60</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Enclosure5__c</fullName>
@@ -566,6 +697,18 @@
         <visibleLines>20</visibleLines>
     </fields>
     <fields>
+        <fullName>Payable_To__c</fullName>
+        <description>CEC: To capture the Account Information(Title + Account First Name + Account Last Name)</description>
+        <externalId>false</externalId>
+        <label>Payable To</label>
+        <length>100</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>PostOption__c</fullName>
         <externalId>false</externalId>
         <formula>IF(OR(Case__r.Reason_Code__r.L1_Desc__c=&apos;Complaints&apos;,Case__r.Reason_Code__r.L1_Desc__c=&apos;Complaint&apos;), $Label.CEC_Fulfilment_PostOption_Complaints, $Label.CEC_Fulfilment_PostOption_otherwise)</formula>
@@ -585,6 +728,31 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Refund_Currency__c</fullName>
+        <description>CEC: To capture the refund value for an customer</description>
+        <externalId>false</externalId>
+        <label>Refund Currency</label>
+        <length>3</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Refund_Value__c</fullName>
+        <description>CEC: To capture the refund amount any advisor can give to an Customer</description>
+        <externalId>false</externalId>
+        <label>Refund Value</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Salutation__c</fullName>
@@ -1105,6 +1273,53 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_North_America_Quality_Check_cec_Fulfilment</fullName>
+        <columns>NAME</columns>
+        <columns>Advisor_Name__c</columns>
+        <columns>isApproved__c</columns>
+        <columns>Fullname__c</columns>
+        <columns>Enclosure1__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>IsPrintedLocally__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>QA_flag__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>isApproved__c</field>
+            <operation>equals</operation>
+            <value>0</value>
+        </filters>
+        <filters>
+            <field>isSubmitted__c</field>
+            <operation>equals</operation>
+            <value>1</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>equals</operation>
+            <value>North America</value>
+        </filters>
+        <label>CEC North America Quality Check</label>
+        <language>en_US</language>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+            <role>CEC_Manager_North_America</role>
+            <role>CEC_User_North_America</role>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_Queue_cec_Fulfilment</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC North America Queue</label>
+        <queue>CEC_North_America_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Poland_Quality_Check_cec_Fulfilment</fullName>
         <columns>NAME</columns>
         <columns>isApproved__c</columns>
@@ -1320,6 +1535,42 @@ ISBLANK(Case__r.Account.PersonMailingStreet)
         <errorMessage>Unable to create Fulfilment with empty &apos;Type&apos; information. Select appropriate &apos;Country&apos; value to proceed.</errorMessage>
     </validationRules>
     <webLinks>
+        <fullName>Add_Cheque_Details</fullName>
+        <availability>online</availability>
+        <description>CEC_Custom Add Cheque_Details button.</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Add Cheque Details</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
+
+sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;; 
+
+var fulfilment = new sforce.SObject(&quot;cec_fulfilment__c&quot;); 
+fulfilment.Id = &apos;{!cec_Fulfilment__c.Id}&apos;; 
+fulfilment.Brand__c = &apos;{!JSENCODE(cec_Fulfilment__c.CaseBrand__c)}&apos;; 
+fulfilment.Case_Product_Category__c = &apos;{!JSENCODE(cec_Fulfilment__c.Case_Product_Category__c)}&apos;;
+
+fulfilment.Country__c = &apos;{!cec_Fulfilment__c.Country__c}&apos;; 
+ 
+//alert(&apos;my alert===&apos;+fulfilment.Id + &apos; &apos; + fulfilment.Brand__c + &apos; &apos; +fulfilment.Country__c + &apos; &apos;+ fulfilment.Case_Product_Category__c); 
+
+if (fulfilment.Id ==&apos;&apos; || fulfilment.Brand__c== &apos;&apos; || fulfilment.Country__c == &apos;&apos; || fulfilment.Case_Product_Category__c == &apos;&apos;){
+	alert(&apos;{!$Label.CEC_ChequeBook_input_fields_missing}&apos;);
+} else  {
+	var result =sforce.apex.execute(&quot;CEC_ChequeProcess&quot;,&quot;generateChequeNumber&quot;,{fulfilmentId:fulfilment.Id});
+//alert (&apos;my result===&apos;+result);
+	if (result[0].status == &apos;S&apos;) { 
+		window.location.reload(); 
+	} else if (result[0].status == &apos;E&apos;) { 
+		alert(result[0].message);
+	} 
+}</url>
+    </webLinks>
+    <webLinks>
         <fullName>New_Fulfilment</fullName>
         <availability>online</availability>
         <description>CEC_Custom New fulfilment button</description>
@@ -1331,9 +1582,10 @@ ISBLANK(Case__r.Account.PersonMailingStreet)
         <requireRowSelection>true</requireRowSelection>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)}
 {!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/30.0/apex.js&quot;)}
 
 sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
-var caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonMailingCountry, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet From Case Where Id = &apos;{!Case.Id}&apos;&quot;); 
+var caseQuery = sforce.connection.query(&quot;Select Id,AccountId,Account.PersonMailingCity,Account.PersonMailingCountry,Case_Brand__c, Account.PersonMailingPostalCode, Account.PersonMailingState, Account.PersonMailingStreet,Account.Salutation, Account.Name From Case Where Id = &apos;{!Case.Id}&apos;&quot;); 
 
 var fulfilmentId;
 var fulfilmentName;
@@ -1350,6 +1602,26 @@ caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.Perso
 	var newFulfilment = new sforce.SObject(&quot;cec_Fulfilment__c&quot;);
 	newFulfilment.Case__c = caseRecord.Id;
 	newFulfilment.Country__c = caseRecord.Account.PersonMailingCountry;
+        //var result =sforce.apex.execute(&quot;CEC_ChequeProcess&quot;,&quot;checkFieldAccess&quot;,{sObjectName:&apos;cec_fulfilment__c&apos;,sFieldName:&apos;Payable_TO__c&apos;}); 
+
+        var objFulfilment= sforce.connection.describeSObject(&quot;cec_fulfilment__c&quot;); 
+        var result = &apos;false&apos;; 
+        var field = &apos;&apos;;
+        for (var i=0; i&lt;objFulfilment.fields.length; i++) { 
+            field = objFulfilment.fields[i]; 
+            if(field.name == &apos;Payable_To__c&apos;) { 
+                result= &apos;true&apos;; 
+                break;
+            } 
+        }
+
+
+        if (result == &apos;true&apos; &amp;&amp; caseRecord.Account.Salutation != null){
+	        newFulfilment.Payable_To__c = caseRecord.Account.Salutation + &quot; &quot;+ caseRecord.Account.Name;
+	} else if(result == &apos;true&apos;){
+		newFulfilment.Payable_To__c = caseRecord.Account.Name;
+	}
+	
 	sforce.connection.create([newFulfilment], success);
 }
 

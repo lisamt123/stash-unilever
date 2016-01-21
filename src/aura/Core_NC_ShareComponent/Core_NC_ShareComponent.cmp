@@ -1,19 +1,19 @@
-<aura:component >
-<aura:attribute name="newsId" type="String"/>
-<aura:attribute name="NewsDetail" type="Core_NC_NewsDetailWrapperClass"/>
-<aura:attribute name="NewsType" type="String"/>
-<aura:attribute name="MailToBody" type="String"/>
-<aura:attribute name="MailSubject" type="String"/>
-<ltng:require styles="/resource/lightningBootstrapMin"/>
-<ltng:require styles="/resource/lightningBootStrap"/>
+<aura:component >    
+    <!--Calling init method to get the default information on page load-->
+	<aura:handler name="init" value="{!this}" action="{!c.init}" />
     
-<aura:handler name="init" value="{!this}" action="{!c.init}" />
+    <!--Creating attributes-->
+    <aura:attribute name="newsId" type="String"/>
+    <aura:attribute name="NewsDetail" type="Core_NC_NewsDetailWrapperClass"/>
+    <aura:attribute name="NewsType" type="String"/>
+    <aura:attribute name="MailToBody" type="String"/>
+    <aura:attribute name="MailSubject" type="String"/>
+    
+    <!--add bootstrap style class to give space in the both left and right side of the display pannel-->
     <div class="container">
         <div class="row">
-            <!--<div class="topBarStyle">
-                <img src="/resource/NewsCenterIcons/back.svg" height="20" width="20" onclick="{!c.CancelButton}"></img>                            
-            </div>-->
-            <div style="padding-top:100px;">
+            <!--Share Component page with three buttons-->
+            <div class="largeSpaceing">
                  <div class="loadMoreBar" >    
                      <div class="loadMoreButton" onclick="{!c.getChatterComponent}">Chatter</div> 
                  </div>
@@ -23,7 +23,7 @@
                      </a>
                 </div>
             </div>	
-            <div style="padding-top:50px;">
+            <div class="smallSpaceing">
                  <div class="loadMoreBar" >    
                      <div class="loadMoreButton" onclick="{!c.CancelButton}">Cancel</div> 
                  </div>

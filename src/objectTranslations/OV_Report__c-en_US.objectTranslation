@@ -82,12 +82,24 @@
             <translation><!-- BI-Weekly --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Daily</masterLabel>
+            <translation><!-- Daily --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Dynamic</masterLabel>
             <translation><!-- Dynamic --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Monthly</masterLabel>
             <translation><!-- Monthly --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Other</masterLabel>
+            <translation><!-- Other --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Period</masterLabel>
+            <translation><!-- Period --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Quarterly</masterLabel>
@@ -486,11 +498,12 @@
     </fields>
     <fields>
         <help><!-- Input the Numeric Value relevant to the Frequency:
-Yearly = &lt;YYYY&gt; e.g. 2015,
-Quarterly = &lt;QYYYY&gt;   e.g. 42015
-Monthly   =  &lt;MM&gt;  e.g. 03
-BI-Weekly = &lt;WW&gt; e.g. 50
-Weekly      = &lt;WW&gt; e.g. 16 --></help>
+Period    = YYYYPP e.g 201501
+Yearly     = YYYY    e.g. 2015,
+Quarterly = QYYYY e.g. 42015
+Monthly   =  MM  e.g. 03
+BI-Weekly / Weekly  = WW  e.g. 50
+Daily / Other = YYYYMMDD e.g.20151118 --></help>
         <label><!-- Value --></label>
         <name>Value__c</name>
     </fields>
@@ -500,10 +513,6 @@ Weekly      = &lt;WW&gt; e.g. 16 --></help>
     </fields>
     <layouts>
         <layout>Report Layout</layout>
-        <sections>
-            <label><!-- Chatter Message --></label>
-            <section>Chatter Message</section>
-        </sections>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
@@ -541,18 +550,23 @@ Weekly      = &lt;WW&gt; e.g. 16 --></help>
             <section>Tablet Files</section>
         </sections>
     </layouts>
-    <recordTypes>
-        <label><!-- Admin View --></label>
-        <name>Admin_View</name>
-    </recordTypes>
     <startsWith>Consonant</startsWith>
     <validationRules>
         <errorMessage><!-- Frequency is Dynamic. Please remove Value --></errorMessage>
         <name>Frequency_is_Dynamic</name>
     </validationRules>
     <validationRules>
+        <errorMessage><!-- Frequency is Daily or Other. Please enter an 8 digit Date in the following format YYYYMMDD e.g. 20151118 = 2015-11-18
+Values: Month 01  - 12 , Day 01 -31 --></errorMessage>
+        <name>Value_is_a_Day_Other</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Frequency is Monthly. Please enter a 2 digit Month value between 1 and 12 --></errorMessage>
         <name>Value_is_a_Month</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Frequency is Period. Please enter a 4 digit Year and 2 digit Period e.g. 201513. --></errorMessage>
+        <name>Value_is_a_Period</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- Frequency is Quarterly. Please enter a 1 digit value for Quarter between 1 and 4, and 4 digit value for Year. --></errorMessage>

@@ -108,6 +108,8 @@ global without sharing class  IPM_GroupManagement {
                     queueList.add(mappingObject_Country);
                     QueueSobject mappingObject_Rollout = new QueueSobject(QueueId = grp.Id, SobjectType = IPM_ConstantUtils.IPM_ROLLOUTOBJECT);
                     queueList.add(mappingObject_Rollout);
+                    QueueSobject mappingObject_SectionContent = new QueueSobject(QueueId = grp.Id, SobjectType = IPM_ConstantUtils.IPM_DOCUMENTSECTIONCONTENT);
+                    queueList.add(mappingObject_SectionContent);                      
                     
                     if(QueueMemberIdMap.containskey(grp.Name)){
                         for(string memid:QueueMemberIdMap.get(grp.Name)){
@@ -217,7 +219,7 @@ global without sharing class  IPM_GroupManagement {
         List<IPM_Project__c> projList=new List<IPM_Project__c>([SELECT Id,IPM_Project_Name__c, IPMProject_Span__c, OwnerId,IPM_Global_Project_Id__c, IPM_Golbal_Project_OwnerId__c, IPM_Technical_Project_Leader__r.id, 
                                             IPM_Project_Gatekeeper__r.id, IPM_Project_Leader__r.id, Deputy_Project_Leader__r.id, 
                                             (Select name, id, IPM_User__r.id from IPM_Project_Resources__r ) FROM 
-                                            IPM_Project__c WHERE id in:projidset LIMIT 50000]);
+                                            IPM_Project__c WHERE id IN:projidset or IPM_Parent_Project__c IN:projidset or IPM_Parent_Project__r.IPM_Parent_Project__c IN:projidset LIMIT 50000]);
             
             if(projList!=null && !projList.isEmpty()){  
                 for(IPM_Project__c p:projList){

@@ -20,16 +20,21 @@
                     <div class="col-xs-12">
                         <div class="">
                         
-                            <!-- To place the help symbol in the top right hand corner of page -->
+                            <div>
                             <apex:outputPanel layout="block" styleClass="SecButtonSet delete pull-right" >
                                 <apex:outputLink value="{!URL}" id="theLink" styleClass="icoButton question" target="_blank" title="{!$Label.IPM_Help}">?</apex:outputLink>
                             </apex:outputPanel>                        
+                        </div>
+                    	<div>
+	                    	<apex:outputPanel id="errMassage2" styleClass="errorBlock" layout="block" >
+	                                    <div><span ><apex:pagemessages ></apex:pagemessages></span></div>
+	                        </apex:outputPanel>
+                        </div>                        
                         
                             <apex:outputLabel value="To-do" styleClass="fieldLabel fieldFont" id="todoLabel"/>
                         </div>
                         <div class="inputField">
-                            <apex:inputField value="{!tasks.IPM_Task_Name__c}"
-                                styleClass="fieldFont" required="true" id="taskName"/>
+                            <apex:inputField value="{!tasks.IPM_Task_Name__c}" styleClass="fieldFont" id="taskName"/>
                         </div>
                     </div>
                     <div class="col-xs-12 middlePanel">
@@ -84,16 +89,14 @@
                         <div class="inputField">
                             <apex:inputField value="{!tasks.IPM_Due_Date1__c}" styleClass="dateInputBox calendar" id="dueDate1">
                             </apex:inputField>   
-                            <apex:outputPanel id="errMassage" styleClass="errorBlock" layout="block" rendered="{!displayError}">
-                                <div><span ><apex:pagemessages id="thePagemessages"></apex:pagemessages></span></div>
-                            </apex:outputPanel>            
+           
                         </div>
                     </div>
                     </apex:outputPanel>
                     </div>
                     
                     <div class="buttonmarRight ipmButtonGroup pull-right">                
-                        <apex:commandLink id="addLink" action="{!doSaveTasks}" value="Add" styleClass="ipmButton green" rendered="{!if(taskId == null,true,false)}" reRender="form, scriptToRerender" onComplete="{!if(AND(validate,!displayError),'pageclose()','')};"/>
+                        <apex:commandLink id="addLink" action="{!doSaveTasks}" value="Add" styleClass="ipmButton green" rendered="{!if(taskId == null,true,false)}" reRender="form, scriptToRerender" onComplete="{!if(validate,'pageclose()','')};"/>
                          <apex:commandLink id="saveLink" action="{!doSaveTasks}" value="Save" styleClass="ipmButton green" rendered="{!if(taskId != null,true,false)}" onComplete="pageclose();"/></div>
             
                 <apex:outputPanel id="popup">

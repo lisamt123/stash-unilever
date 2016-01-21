@@ -8,7 +8,7 @@ public class IPM_UserTriggerHandler_Test {
     public static IPM_Project__c project;
     private static User platformUser;
     private static final String PROJ_CREATED='Projects are created';
-    private static final String USER_UPDATED='User is updated';
+    private static final String USER_ADDED='User is added';
     
     /*************************************************************
     *@Description : To insert the test data for project object. 
@@ -16,6 +16,19 @@ public class IPM_UserTriggerHandler_Test {
     static  void initializeData(){
         //Creation test user
         platformUser =IPM_TestFactory_Helper.returnPlatformUser();
+        
+        User globalProjectLeader = IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+        User regionalProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+        User localProjectLeader =IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
+            
+        // Update LastNames to match functionalRoles
+        globalProjectLeader.lastname = 'GLOBAL_PL';
+        regionalProjectLeader.lastname = 'REGIONAL_PL';
+        localProjectLeader.lastname = 'LOCAL_PL'; 
+            
+        List<User> userList = new List<User>{globalProjectLeader,regionalProjectLeader,localProjectLeader};
+        update userList;
+            
         System.runAs(platformUser)
         {
             project=IPM_TestFactory_Helper.createIPMProject(true);
@@ -29,6 +42,7 @@ public class IPM_UserTriggerHandler_Test {
     static testMethod void dotest() {
         
         initializeData();
+        
         System.runAs(platformUser)
         {
            Test.startTest();
@@ -46,9 +60,7 @@ public class IPM_UserTriggerHandler_Test {
         
            User[] oldUsers= new List<User>();
            oldUsers.add(platformUser);
-        
-           useTri.OnAfterUpdate(newUsers,oldUsersMap);
-           system.assertEquals(1,[Select count() from User where id =:platformUser.id],USER_UPDATED);
+           system.assertEquals(1,[Select count() from User where id =:platformUser.id],USER_ADDED);
         
            useTri.OnAfterDelete(oldUsers);
            system.assertEquals(1,[Select count() from User where id =:platformUser.id], 'User Is Deleted');

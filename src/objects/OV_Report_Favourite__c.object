@@ -52,14 +52,19 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
         <fullName>Chatter_Delete_Message__c</fullName>
+        <description>Message triggered when a Report has been deleted</description>
         <externalId>false</externalId>
-        <formula>&apos;Report has been deleted&apos;</formula>
+        <formula>&quot;Shelf Tile: &quot;  &amp;  Favourite_From_Shelf_Tile__r.Name  &amp;  &quot; Report Tile: &quot;  &amp;  Report__r.Name  &amp;  &apos; - has been deleted&apos;
+&amp; MID($Label.OV_NewLine,2,2) &amp; MID($Label.OV_NewLine,2,2)&amp;
+&quot;Please disregard the view/comment button and do not reply if viewing in email. This functionality is not applicable in OneView Next Generation at this time.&quot;</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <inlineHelpText>Message triggered when a Report has been deleted</inlineHelpText>
         <label>Chatter Delete Message</label>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -68,9 +73,22 @@
     </fields>
     <fields>
         <fullName>Chatter_Update_Message__c</fullName>
+        <description>Chatter message sent when a new version of a report has been uploaded.</description>
         <externalId>false</externalId>
-        <formula>&apos;New version has been uploaded&apos;</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <formula>&quot;A new version of the following report has been uploaded:  &quot;
+&amp;
+Report__r.Name
+&amp;
+&quot;.&quot;
+&amp;
+MID($Label.OV_NewLine,2,2) 
+&amp;
+MID($Label.OV_NewLine,2,2)
+&amp;
+&quot;Please click on the link below to go to the report details page in OneView Next Generation.&quot;
+&amp; MID($Label.OV_NewLine,2,2) &amp; MID($Label.OV_NewLine,2,2)&amp;
+&quot;Please disregard the view/comment button and do not reply if viewing in email. This functionality is not applicable in OneView Next Generation at this time.&quot;</formula>
+        <inlineHelpText>Chatter message sent when a new version of a report has been uploaded.</inlineHelpText>
         <label>Chatter Update Message</label>
         <required>false</required>
         <trackTrending>false</trackTrending>

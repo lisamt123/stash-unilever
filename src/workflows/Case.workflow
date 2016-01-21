@@ -278,7 +278,7 @@
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
-            <value>Email UK,Email India,Email Nordic,Email France,Email Benelux,Email DACH,Email Cyprus,Email Czech Republic,Email Greece,Email Hungary,Email Italy,Email Poland,Email Portugal,Email Spain,Email Baltics,Email TO France,Email Sri Lanka</value>
+            <value>Email UK,Email India,Email Nordic,Email France,Email Benelux,Email DACH,Email Cyprus,Email Czech Republic,Email Greece,Email Hungary,Email Italy,Email Poland,Email Portugal,Email Spain,Email Baltics,Email TO France,Email Sri Lanka,Email North America</value>
         </criteriaItems>
         <criteriaItems>
             <field>Case.Country_Name__c</field>

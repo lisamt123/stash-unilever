@@ -76,7 +76,7 @@
                             <ul>
                                 <aura:iteration items="{!level1.functionChilds}" var="level2">
                                     <li>
-                                        <a href="" data-type="function" data-value="{!level2.functionId}" class="{!level3.functionId == v.selectedFilters.functionId ? 'selected' : ''}">{!level2.functionName}</a>
+                                        <a href="" data-type="function" data-value="{!level2.functionId}" class="{!level2.functionId == v.selectedFilters.functionId ? 'selected' : ''}">{!level2.functionName}</a>
                                         <aura:renderIf isTrue="{!empty(level2.functionChilds) == false}">
                                             <ul>
                                                 <aura:iteration items="{!level2.functionChilds}" var="level3">

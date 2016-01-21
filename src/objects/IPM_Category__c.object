@@ -19,4 +19,5 @@
         <type>Checkbox</type>
     </fields>
     <label>IPM Category</label>
+    <visibility>Public</visibility>
 </CustomObject>

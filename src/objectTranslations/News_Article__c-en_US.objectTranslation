@@ -46,6 +46,18 @@
         <name>Like_GA_URL__c</name>
     </fields>
     <fields>
+        <label><!-- News Article Topics --></label>
+        <name>News_Article_Topics__c</name>
+    </fields>
+    <fields>
+        <label><!-- News Body --></label>
+        <name>News_Body__c</name>
+    </fields>
+    <fields>
+        <label><!-- News Publish Date --></label>
+        <name>News_Publish_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Post GA URL --></label>
         <name>Post_GA_URL__c</name>
     </fields>
@@ -53,6 +65,18 @@
         <help><!-- Socialise this News Article to Chatter Groups --></help>
         <label><!-- Post to NewsCentre --></label>
         <name>Post_to_NewsCentre__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related Links --></label>
+        <name>Related_Links__c</name>
+    </fields>
+    <fields>
+        <label><!-- Related News Article --></label>
+        <name>Related_News_Article__c</name>
+    </fields>
+    <fields>
+        <label><!-- Share Count --></label>
+        <name>Share_Count__c</name>
     </fields>
     <fields>
         <label><!-- Sharepoint URL --></label>
@@ -82,6 +106,10 @@
     <fields>
         <label><!-- News Article Title --></label>
         <name>Title__c</name>
+    </fields>
+    <fields>
+        <label><!-- View Count --></label>
+        <name>View_Count__c</name>
     </fields>
     <layouts>
         <layout>News Article Layout</layout>
