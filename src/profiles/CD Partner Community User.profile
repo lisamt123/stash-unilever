@@ -987,11 +987,7 @@
         <editable>true</editable>
         <field>UID_Stocked_Product__c.UID_Stocked_Product_External_ID__c</field>
         <readable>true</readable>
-    </fieldPermissions> 
-    <tabVisibilities>
-        <tab>UID_Stocked_Product__c</tab>
-        <visibility>DefaultOff</visibility>
-    </tabVisibilities>
+    </fieldPermissions>
     <userLicense>Partner Community</userLicense>
     <userPermissions>
         <enabled>true</enabled>

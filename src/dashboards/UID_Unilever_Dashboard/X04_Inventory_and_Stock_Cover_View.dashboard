@@ -389,7 +389,7 @@
             <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Brand__c</groupingColumn>
             <header>Brand-wise Stock Levels (Cases)</header>
             <legendPosition>Bottom</legendPosition>
-            <report>UID_Inventory_and_Stock_Cover_View/Stock_Analysis</report>
+            <report>UID_Inventory_and_Stock_Cover_View/Stock_Analysis_Final</report>
             <showPercentage>false</showPercentage>
             <showValues>false</showValues>
             <sortBy>RowLabelAscending</sortBy>
