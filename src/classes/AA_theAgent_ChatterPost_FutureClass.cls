@@ -1,6 +1,20 @@
 Public with sharing class AA_theAgent_ChatterPost_FutureClass{    
    
+       
     @future 
+    Public static void CallSendToChatter(Map<String,String> lsttriggerList)
+    {
+        for ( String objOnfeedID : lsttriggerList.keySet() ){
+
+                 aa_Agent_Report__c report = (aa_Agent_Report__c) JSON.deserialize(lsttriggerList.get(objOnfeedID), aa_Agent_Report__c.class);
+                 System.debug('Map key'+objOnfeedID+'================='+'object..report'+report);
+                 AA_theAgent_ChatterPost_FutureClass.sendToChatter(Id.valueof(objOnfeedID), report.CreatedById, report.Report_Title__c, report.id,report.Country__c);
+             
+     
+                }
+
+    }
+    
     public static void sendToChatter(Id objectId, ID userToMentionId, String postText, Id reportId,string Country) {    
         
         String reportCreatorName = [SELECT Name FROM User where Id=:userToMentionId].Name;
