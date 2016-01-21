@@ -220,6 +220,11 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
             ];
     }
     
+    /*
+    *    @Description : This method returns the list of calculator records used for campaign total fees
+    *    @Param : --
+    *    @return : the list of calculator records with record type of Box_Range - List<Oblix_Calculator__c>
+    */
     public static List<Oblix_Calculator__c> getCalculatorBoxRange(){
         return [Select Id, Name, Points_Low__c, Points_HigH__c, Box_Range__c, Financial_Year__c,
                      Box_9__c, Box_8__c, Box_7__c, Box_6__c, Box_5__c, Box_4__c, Box_3__c, Box_2__c, Box_20__c, Box_1__c, Box_19__c, Box_18__c, Box_17__c, Box_16__c, Box_15__c, Box_14__c, Box_13__c, Box_12__c, Box_11__c, Box_10__c 
