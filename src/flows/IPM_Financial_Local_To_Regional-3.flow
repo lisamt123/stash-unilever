@@ -124,7 +124,7 @@
         </rules>
     </decisions>
     <description>Financial Local To Regional</description>
-    <interviewLabel>IPM_Financial_Local_To_Regional-2_IPM_Financial__c</interviewLabel>
+    <interviewLabel>IPM_Financial_Local_To_Regional-3_IPM_Financial__c</interviewLabel>
     <label>IPM Financial Local To Regional</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -313,7 +313,7 @@
             </processMetadataValues>
             <field>NPV_Regional__c</field>
             <value>
-                <elementReference>myVariable_current.NPV_Regional__c</elementReference>
+                <elementReference>myVariable_current.NPV_Local__c</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
@@ -343,7 +343,7 @@
             </processMetadataValues>
             <field>Payback_Regional__c</field>
             <value>
-                <elementReference>myVariable_current.Payback_Regional__c</elementReference>
+                <elementReference>myVariable_current.Payback_Local__c</elementReference>
             </value>
         </inputAssignments>
         <object>IPM_Financial__c</object>

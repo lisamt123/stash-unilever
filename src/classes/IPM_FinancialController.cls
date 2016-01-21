@@ -1427,6 +1427,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     {
         showMisalignment = FALSE;
         
+        List<IPM_Project__c> lstLocalProjects = new List<IPM_Project__c>();
+        
         if (project.IPMProject_Span__c != IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME && 
             (project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT))
         {
@@ -1437,7 +1439,19 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             
             if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
             {
-                if(lstLocalProjects==null || lstLocalProjects.isEmpty())
+                
+                String financialExternalId = null; 
+                
+                if(currentFinancial!=null && currentFinancial.Financial_External_ID__c!=null && currentFinancial.recordTypeId != CONSOLIDATED_FINANCIAL_RECORDTYPE && !currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) )
+                {
+                    financialExternalId = currentFinancial.Financial_External_ID__c;
+                }
+                      
+                if(financialExternalId !=null) 
+                {
+                   lstLocalProjects = [Select Id from IPM_Project__c WHERE IPM_Parent_Project__c = :project.Id AND IPM_Project_Name__c =:financialExternalId AND IPMProject_Span__c = :IPM_ConstantUtils.PROJECT_SPAN_LOCAL];
+                }
+                else
                 {
                     lstLocalProjects = [Select Id from IPM_Project__c WHERE IPM_Parent_Project__c = :project.Id AND IPMProject_Span__c = :IPM_ConstantUtils.PROJECT_SPAN_LOCAL];       
                 }
@@ -1449,15 +1463,16 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
             else
             {
-                showMisalignment = true;
-            }    
-            if(currentFinancial!=null && currentFinancial.recordTypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE)
+                showMisalignment = true; 
+            }
+            
+            if(currentFinancial!=null && currentFinancial.Financial_External_ID__c!=null && (currentFinancial.recordTypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE || currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) ) )
             {
                  showMisalignment = false;       
+            }
         }
     }
-    }
-    
+
     
     /*******************************************************************************************************
     * @description  Used to redirect user to the download template page
