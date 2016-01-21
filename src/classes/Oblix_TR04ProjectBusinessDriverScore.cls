@@ -161,19 +161,20 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
     *   @param  : List<Oblix_Marketing_SOW_Project_Splits__c>
     *   @return : Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>
     */    
-    private Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> getProjectToSplits(List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplits_Loc){
-        Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> mapProjectToSplits_Loc = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
-        if(!lstProjectSplits_Loc.isEmpty()){
-                for(Oblix_Marketing_SOW_Project_Splits__c projSplit : lstProjectSplits_Loc){
-                    if(!mapProjectToSplits_Loc.containsKey(projSplit.Project_Splits__c)){
-                        mapProjectToSplits_Loc.put(projSplit.Project_Splits__c, new List<Oblix_Marketing_SOW_Project_Splits__c>());
-                    }
-                    mapProjectToSplits_Loc.get(projSplit.Project_Splits__c).add(projSplit);
-                }
-        }
-        return mapProjectToSplits_Loc;
-    }
+    //private Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> getProjectToSplits(List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplits_Loc){
+    //    Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> mapProjectToSplits_Loc = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
+    //    if(!lstProjectSplits_Loc.isEmpty()){
+    //            for(Oblix_Marketing_SOW_Project_Splits__c projSplit : lstProjectSplits_Loc){
+    //                if(!mapProjectToSplits_Loc.containsKey(projSplit.Project_Splits__c)){
+    //                    mapProjectToSplits_Loc.put(projSplit.Project_Splits__c, new List<Oblix_Marketing_SOW_Project_Splits__c>());
+    //                }
+    //                mapProjectToSplits_Loc.get(projSplit.Project_Splits__c).add(projSplit);
+    //            }
+    //    }
+    //    return mapProjectToSplits_Loc;
+    //}
     
+
     /*
     *   @Description : Method used to get set of Countries 
     *   @param  : List<Oblix_Marketing_SOW_Project_Splits__c>
@@ -231,24 +232,56 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
                      from Oblix_Calculator__c where RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Box_Range')];
     }
 
+    
+     /*
+    *   @Description : Get a map of Project Id and the related project split records
+    *   @param  : List<Oblix_SOW_Projects__c>
+    *   @return : Map<Id, List<Oblix_Marketing_SOW_Project_Splits__c>>
+    */    
+    public static Map<Id, List<Oblix_Marketing_SOW_Project_Splits__c>> getProjectAndTheRelatedProjectSplits(List<Oblix_SOW_Projects__c> li_projects){
+        
+        Set<Id> sid_project_ids = new Set<Id>();
+
+        // get the project ids in scope
+        for (Oblix_SOW_Projects__c project: li_projects){
+            sid_project_ids.add(project.Id);
+        }
+
+        // build a map of project id and the related project splits
+        Map<Id,List<Oblix_Marketing_SOW_Project_Splits__c>> mid_liso_projects_ids_with_related_project_splits = new Map<Id,List<Oblix_Marketing_SOW_Project_Splits__c>>();
+        
+        for (Oblix_Marketing_SOW_Project_Splits__c project_splits: [Select Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c 
+            FROM Oblix_Marketing_SOW_Project_Splits__c WHERE Project_Splits__c in : sid_project_ids AND Project_Splits__c != NULL]){
+
+            if (!mid_liso_projects_ids_with_related_project_splits.containsKey(project_splits.Project_Splits__c)){
+                mid_liso_projects_ids_with_related_project_splits.put(project_splits.Project_Splits__c, new List<Oblix_Marketing_SOW_Project_Splits__c>());
+            }
+
+            mid_liso_projects_ids_with_related_project_splits.get(project_splits.Project_Splits__c).add(project_splits);
+        }
+
+        return mid_liso_projects_ids_with_related_project_splits;
+    }
+
     /*
     *    @Description : This method is used to calculate : Total Calculated Fee in a campaign
     *    @Param : projectTrig, lstProjTrig from Trigger
     *    @return : void
     */
     public static void updateProjectCalculatorFees(Oblix_SOW_Projects__c projectTrig, List<Oblix_SOW_Projects__c> lstProjectTrigger, List<Oblix_SOW_Projects__c> lstProjectsQueried
-        , List<Oblix_Calculator__c> lstCalculatorCountryRange, List<Oblix_Calculator__c> lstCalculatorBoxRange ){
+        , List<Oblix_Calculator__c> lstCalculatorCountryRange, List<Oblix_Calculator__c> lstCalculatorBoxRange, Map<Id, List<Oblix_Marketing_SOW_Project_Splits__c>> mapProjectToSplits ){
              //List of Oblix Calculator
         Oblix_TR04ProjectBusinessDriverScore instanceTR04 = new Oblix_TR04ProjectBusinessDriverScore();
 
         Set<Id> setProjectIds = getProjectIds(lstProjectTrigger, projectTrig);
 
-        List<Oblix_Marketing_SOW_Project_Splits__c>  lstProjectSplits = [Select Id, Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c in : setProjectIds and Project_Splits__c != null];
-        Map<Id,List<Oblix_Marketing_SOW_Project_Splits__c>> mapProjectToSplits = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
+        // S.M. 20160121 - commenting out below lines as is causing too many soql query error!
+        //List<Oblix_Marketing_SOW_Project_Splits__c>  lstProjectSplits = [Select Id, Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c in : setProjectIds and Project_Splits__c != null];
+        //Map<Id,List<Oblix_Marketing_SOW_Project_Splits__c>> mapProjectToSplits = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
         
        // Set<String> setCountries = instanceTR04.getSetCountriesNames(lstProjectSplits);
 
-        mapProjectToSplits = instanceTR04.getProjectToSplits(lstProjectSplits);
+        //mapProjectToSplits = instanceTR04.getProjectToSplits(lstProjectSplits);
         
         //system.Debug('###setCountries : '+setCountries);
         

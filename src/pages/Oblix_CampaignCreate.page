@@ -1,4 +1,5 @@
 <apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_SOWCampaignCreateController" standardStylesheets="false" action="{!init}">
+
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css" />
@@ -37,6 +38,11 @@
         <apex:actionFunction name="setAgencyHub" action="{!SaveProjectAction}" rerender="false">
             <apex:param name="splitId" assignTo="{!listItems}" value="" />
         </apex:actionFunction>
+
+        <apex:actionFunction name="setCampaignScaleOne" action="{!setCampaignScaleOne}" rerender="investmentPriority" immediate="true">
+            <apex:param name="selectedRegion" assignTo="{!selectedRegion}" value="" />
+        </apex:actionFunction>
+
         <apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}"  reRender="false">
             <apex:param name="innovation" assignTo="{!project.Innovation_Projects__c}" value="" />
             <apex:param name="innov" assignTo="{!selectedBrandInnov}" value="{!selectedBrandInnov}"/>
@@ -59,6 +65,8 @@
                     </p>               </div>
                 <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
                 </apex:commandButton>
+                <apex:commandLink styleClass="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" action="{!goToReportsHome}" value="REPORTS" target="_blank">
+                </apex:commandLink>
 
             </header>
         </div>
@@ -149,7 +157,7 @@
                     <div class="campaign_region_picklist" id="countriesLabel">
                         <p class="create_SOW_form_titles" >Countries / regions*</p>
                         <div class="campaign_create_agency_hub_split_table_subtitle global_region_picklist">
-                            <input type="checkbox" name="global_region_picklist" id="global_region_picklist" />&nbsp;Set as global (only for campaigns covering 15 countries or more)
+                            <input type="checkbox" name="global_region_picklist" id="global_region_picklist" />&nbsp;Set as global
                         </div>
                         <div class="campaign_create_agency_hub_split_table_subtitle" id="global_region_picklist_container">
                             <apex:repeat value="{!lstRegion}" var="region">

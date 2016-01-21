@@ -362,7 +362,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             Test.stopTest();
             
             Oblix_Project_Assets__c result = [select quantity__c from Oblix_Project_Assets__c where id =: asset.Id];
-            System.assertEquals(52, Integer.valueOf(result.quantity__c));
+            System.assertEquals(50, Integer.valueOf(result.quantity__c));
         }
     }      
     

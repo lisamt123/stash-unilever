@@ -12,6 +12,8 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
     public Integer selectedActivitiesSize { get; set; }
     public String selectedTab { get; set; }
     public String selectedName { get; set; }
+    public boolean setUpdateButton { get; set; }
+    public boolean setResourceUpdateButton { get; set; }
     //public CampaignBasket selectedActivity { get; set; }
 
 
@@ -57,8 +59,8 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         
         selectedActivitiesSize = 0;
         seletedActivity = '';
-    
-    
+        setUpdateButton = false;
+        setResourceUpdateButton = false;
         //Id idUser = UserInfo.getUserId();
         activity.nonCampaignItem = new Marketing_Basics__c();
         activity.nonCampaignItem.RecordTypeId = Oblix_Utils.MapRecordType(marKObjName).get(ActivityName);
@@ -165,13 +167,13 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
             if (rtActivity == non_campaign_to_pre_select.nonCampaignItem.RecordTypeId){
                 // this must be a activity prepopulate
                 setActivityAttributes(non_campaign_to_pre_select.selectedActivity, non_campaign_to_pre_select.selectedCountryname
-                , non_campaign_to_pre_select.selectedAgencyDepartment, 'other', non_campaign_to_pre_select.selectedRole
-                , non_campaign_to_pre_select.hoursSelected);   
+                , non_campaign_to_pre_select.selectedAgencyDepartment, non_campaign_to_pre_select.name, non_campaign_to_pre_select.selectedRole
+                , non_campaign_to_pre_select.hoursSelected, true);   
             }
             else{
                 // this must be a resource pre populate
                 setResourceAttributes(non_campaign_to_pre_select.name, non_campaign_to_pre_select.selectedCountryname
-                , non_campaign_to_pre_select.selectedAgencyDepartment, non_campaign_to_pre_select.selectedRole, non_campaign_to_pre_select.hoursSelected);
+                , non_campaign_to_pre_select.selectedAgencyDepartment, non_campaign_to_pre_select.selectedRole, non_campaign_to_pre_select.hoursSelected, true);
                 
                 // don't show activities table
                 selectedActivitiesSize = 0;
@@ -182,7 +184,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         else{
             if (NULL != non_campaign_to_pre_select.name && rtActivity == non_campaign_to_pre_select.nonCampaignItem.RecordTypeId){
                 // this must be a activity set to blank
-                setActivityAttributes(null , null, null, null, null, null);   
+                setActivityAttributes(null , null, null, null, null, null, false);   
             }
         }
     }
@@ -193,13 +195,16 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         NonCampaignJSONWrapper activityJSONWrapper = new NonCampaignJSONWrapper();
         Oblix_NonCampaignWrapper selectedNonCampaignWrapper = new Oblix_NonCampaignWrapper();
         activityJSONWrapper = (NonCampaignJSONWrapper) JSON.deserialize(seletedActivity, NonCampaignJSONWrapper.class);
+        System.DEBUG('activityJSONWrapper :  ' + activityJSONWrapper);
         selectedNonCampaignWrapper.selectedActivity = activityJSONWrapper.selectedActivity;
         selectedNonCampaignWrapper.selectedCountryname = activityJSONWrapper.selectedCountry;
         List<Oblix_Calculator__c> calc = [select OblixCountry__c from Oblix_Calculator__c where RecordTypeId = : rtCountry and Financial_Year__c = : fYear and Oblix_Agency__c = : agency and OblixCountry__r.name =:  activityJSONWrapper.selectedCountry];
         if(!calc.isEmpty()){
         	selectedNonCampaignWrapper.selectedCountry = calc[0].OblixCountry__c;
         }
-
+        if(NULL != activityJSONWrapper && NULL != activityJSONWrapper.otherName && !activityJSONWrapper.otherName.equalsIgnoreCase('')){
+            selectedNonCampaignWrapper.name = activityJSONWrapper.otherName;
+        }
         selectedNonCampaignWrapper.nonCampaignItem = new Marketing_Basics__c();
         selectedNonCampaignWrapper.selectedAgencyDepartment = activityJSONWrapper.selectedAgencyDepartment;
         selectedNonCampaignWrapper.selectedRole = activityJSONWrapper.selectedRole;
@@ -259,16 +264,17 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         
         setActivityAttributes(selected_activity, selected_country
         , selected_agent_department, selected_other
-        , selected_role, selected_hours);
+        , selected_role, selected_hours, true);
 
     }
 
     public void setActivityAttributes(String selected_activity, String selected_country
         , String selected_agent_department, String selected_other
-        , String selected_role, Integer selected_hours){
+        , String selected_role, Integer selected_hours, Boolean setUpdateButton){
 
         selectedTab = NON_CAMPAIGN_ACTIVITY_TYPE;
 
+        this.setUpdateButton = setUpdateButton;
         activity.nonCampaignItem.Activities__c = selected_activity;
         activity.selectedCountryName = selected_country;
         fillAgencyDepartment();
@@ -280,14 +286,14 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         activity.selectedRole = selected_role;
         fillRate();
         activity.hoursSelected  = selected_hours;
-
     }
 
     public void setResourceAttributes(String resource_name, String resource_country
-        , String resource_agent_department, String selected_role, Integer resource_hours){
+        , String resource_agent_department, String selected_role, Integer resource_hours, Boolean setResourceUpdateButton){
 
         selectedTab = NON_CAMPAIGN_RESOURCE_TYPE;
 
+        this.setResourceUpdateButton = true;
         resource.nonCampaignItem.name = resource_name;
         resource.selectedCountryName = resource_country;
         fillAgencyDepartment();
@@ -337,7 +343,11 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
 
             marketingBasicRecord.Activities__c = eachNonCampaignWrapper.selectedActivity;
             marketingBasicRecord.Non_campaign_title__c = eachNonCampaignWrapper.selectedActivity;
-            marketingBasicRecord.Name = eachNonCampaignWrapper.selectedActivity;
+            if(eachNonCampaignWrapper.name != null && !eachNonCampaignWrapper.name.equalsIgnoreCase('')){
+                marketingBasicRecord.Name = eachNonCampaignWrapper.name;
+            }else{
+                marketingBasicRecord.Name = eachNonCampaignWrapper.selectedActivity;
+            }
             marketingBasicRecord.OblixCountry__c = eachNonCampaignWrapper.selectedCountry;
             marketingBasicRecord.Role_Title__c = eachNonCampaignWrapper.selectedRole;
             marketingBasicRecord.Agency_Department__c = eachNonCampaignWrapper.selectedAgencyDepartment;
@@ -351,6 +361,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         refreshBasket();
         clearActivitySelectionMap();
         selectedActivitiesSize = activitySelectionMap.values().size();
+        activity = new Oblix_NonCampaignWrapper();
     }
 
     public void upsertSelectedResourceAndRefreshBasket(){
@@ -379,12 +390,16 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         marketingBasicRecordToInsert.Role_Title__c = resource.selectedRole;
         marketingBasicRecordToInsert.FTE__c = resource.hoursSelected;
         marketingBasicRecordToInsert.non_campaign_title__c = resource.nonCampaignItem.name;
-        marketingBasicRecordToInsert.OblixCountry__c =  resource.selectedCountry;
+        marketingBasicRecordToInsert.OblixCountry__c =  Oblix_Utils.CountrryGetId(resource.selectedCountryName);
         
         system.debug('##2 marketingBasicRecordToInsert: ' + marketingBasicRecordToInsert + ' - isUpsert' + isUpsert + ' - activitySelectionMap: ' + activitySelectionMap + ' - resource: '+ resource);
         
-        upsert marketingBasicRecordToInsert;
+        upsert marketingBasicRecordToInsert ;
         refreshBasket();
+        activitySelectionMap.clear();
+        resource = new Oblix_NonCampaignWrapper();
+        selectedTab = NON_CAMPAIGN_RESOURCE_TYPE;
+        setResourceUpdateButton = false;
 
     }
 
@@ -469,8 +484,11 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
             }else{
                 resource.hourlyRate = String.valueOf((Rates[0].FTE__c));
                 resource.roundedRate = String.valueOf(Math.round(Rates[0].FTE__c));//
+                //this.setResourceUpdateButton = false;
             }
         }
+        checkIFButtonISUpdateORAdd();
+
     }
     
      /*
@@ -492,7 +510,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         if (selectedTab.equalsIgnoreCase(NON_CAMPAIGN_ACTIVITY_TYPE)) {
             RoleTitleNames = [select Financial_Year__c, Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name, Agency_Department__c, Role_Title__c from Oblix_Calculator__c where Financial_Year__c = : fYear and Oblix_Agency__c = : agency and OblixCountry__c = : activity.selectedCountry and Agency_Department__c = : activity.selectedAgencyDepartment];
         }else{
-            resource.selectedCountry = Oblix_Utils.CountrryGetId(resource.selectedCountry);
+            resource.selectedCountry = Oblix_Utils.CountrryGetId(resource.selectedCountryName);
             RoleTitleNames = [select Financial_Year__c, Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name, Agency_Department__c, Role_Title__c from Oblix_Calculator__c where Financial_Year__c = : fYear and Oblix_Agency__c = : agency and OblixCountry__c = : resource.selectedCountry and Agency_Department__c = : resource.selectedAgencyDepartment];
         }
         System.DEBUG(' RoleTitleNames ' + RoleTitleNames);
@@ -512,11 +530,13 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
                 resourceRoleTitle = new List <SelectOption>();
                 resourceRoleTitle = populateRoleTitleList(roleTitlesNameMap);
                 resource.roleVisible = true;
+                //this.setResourceUpdateButton = false;
             }
 
         }
         System.DEBUG(' agencyRoleTitle ' + agencyRoleTitle);
         System.DEBUG(' resourceRoleTitle ' + resourceRoleTitle);
+        checkIFButtonISUpdateORAdd();
     }
 
     public List<SelectOption> populateRoleTitleList(Map<String,String> roleTitlesNameMap) {
@@ -534,7 +554,6 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
         //else add error (there is no rt to select)
     }
  
-    
     
     /*
     Description : Method used to update Agency departements options in Activities form 
@@ -576,9 +595,11 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
             resourceAgencyDepartment = new List <SelectOption>();
             resourceAgencyDepartment = populateAgencyDepartmentList(agencyDepartmentMap);
             resource.agencyVisible = true;
+            //this.setResourceUpdateButton = false;
         }
         System.DEBUG('resourceAgencyDepartment : ' + resourceAgencyDepartment);
         System.DEBUG('agencyDepartments : ' + agencyDepartments);
+        checkIFButtonISUpdateORAdd();
 
     }
 
@@ -624,9 +645,24 @@ public with sharing class Oblix_SOWNonCampaignCreateController {
       countries = Oblix_Utils.selectOptionSortByLabel(countries);
       countries = Oblix_Utils.setFirstValue('-Country-', Oblix_Utils.selectOptionSortByLabel(countries ));
       system.debug('###countries : '+countries);
-        
+      checkIFButtonISUpdateORAdd();
         
     }
     
+    public static Pagereference goToReportsHome(){
+        Pagereference goToReportsHome = new Pagereference('/00O/o');
+        return goToReportsHome.setRedirect(true);
+    }
+
+    public void checkIFButtonISUpdateORAdd(){
+        String keyToSearch = marketing_SOW.Id + activity.nonCampaignItem.Activities__c + activity.selectedCountryname + activity.selectedAgencyDepartment + activity.selectedRole;
+        System.DEBUG(' keyToSearch: '+ keyToSearch);
+        System.DEBUG(' activitySelectionMap: '+ activitySelectionMap);
+        if(activitySelectionMap.containsKey(keyToSearch)){
+            setUpdateButton = true;
+        }else{
+            setUpdateButton = false;
+        }
+    }
     
 }
