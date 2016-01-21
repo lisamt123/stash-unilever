@@ -149,7 +149,7 @@
             <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
             <header>Monthly Stock Cover (Days)</header>
             <legendPosition>Bottom</legendPosition>
-            <report>UID_01_Home_View/Monthly_Stock_Cover_Day</report>
+            <report>UID_01_Home_View/Monthly_Stock_Cover_Days_PRD</report>
             <showPercentage>false</showPercentage>
             <showValues>true</showValues>
             <sortBy>RowLabelAscending</sortBy>
