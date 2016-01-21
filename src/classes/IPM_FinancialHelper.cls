@@ -352,16 +352,11 @@ public with sharing class IPM_FinancialHelper
         
         for(IPM_Financial__c newFin:mapNewFinancials.values())
         {
-            if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c)
-            {
+        	if(newFin.Financial_External_Id__c.contains(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) && (String.isBlank(newFin.Regional_External_Id__c) || String.isBlank(newFin.Global_External_Id__c))  && !newFin.Charter_Approved__c)
+            {            
                 newFinList.add(newFin);
                 projectIds.add(newFin.Parent_Project__c);
-            }
-            else if(newFin.RecordtypeId == CONSOLIDATED_FINANCIAL_RECORDTYPE && newFin.Parent_Project__c==null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c)
-            {
-                newFinList.add(newFin);
-                projectIds.add(newFin.Regional_Project__c);
-            }
+            }            
             else if(newFin.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL && newFin.RecordtypeId == DEFAULT_FINANCIAL_RECORDTYPE && newFin.Regional_Project__c==null && newFin.Local_Project__c==null && !newFin.Charter_Approved__c){
                 newFinList.add(newFin);
                 projectIds.add(newFin.Parent_Project__c);
