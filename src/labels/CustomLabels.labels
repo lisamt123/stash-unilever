@@ -10031,7 +10031,8 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning_Local</shortDescription>
-        <value>Clicking on Save would submit your Request for creation of Local Project as soon as the local project leader is assigned.A local rollout project, once projected, cannot be deleted by the project leader and will have to be done via local project leader through stop project. Once Processing is complete,you would be notified via Email.</value>
+        <value>If you have assigned your Country Leader/s, clicking Save here will begin creation of your Local Rollout Project/s. You will receive a notification via Email once the process is complete.&lt;br/&gt;
+Please note, once a Local Rollout Project is created you will need IPM Central Team assistance to delete it.</value>
     </labels>
     <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning_Regional</fullName>
@@ -11803,6 +11804,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_TLD_VR_Misaligned_Part_Msg</shortDescription>
         <value>is misaligned: Value at Regional</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLD_Year_Misaligned</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLD_Year_Misaligned</shortDescription>
+        <value>Calendar Years are misaligned.</value>
     </labels>
     <labels>
         <fullName>IPM_TOPPING_UP_ON_THINGS</fullName>

@@ -474,12 +474,10 @@
                                                     <span class="coreParam noBetMsg">
                                                         {!$Label.IPM_BET_No_BET_Message} </span>
                                                 </apex:outputPanel>
-                                                <apex:outputPanel rendered="{! if(IPM_Coreparameter.IPM_BET_Toolkit__c!=$Label.IPM_BET_NoBET,true,false)}">
 
                                                     <apex:outputPanel rendered="{!IPM_Coreparameter.IPM_BET_Toolkit__c==$Label.IPM_BET_Link_Existing}">
                                                         <span class="coreParam noBetMsg">
                                                             {!$Label.IPM_BET_DifferentReleaseDate_HelpText} </span>
-                                                    </apex:outputPanel>
                                                     <div class="col-sm-12 toolkitContainer noPadleft">
                                                         <apex:outputPanel id="xyz">
                                                             <apex:outputPanel rendered="{!bLinkBET}">

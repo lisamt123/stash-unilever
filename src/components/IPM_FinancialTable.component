@@ -177,6 +177,9 @@
 		        					</apex:selectList>
 		                        </apex:outputPanel>
 	                    	</apex:outputText>
+                            <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">
+                                <apex:outputField value="{!ipmFinancial.Volume_Unit_Charter__c}" rendered="{!NOT(isEditMode) }"/>
+                            </apex:outputPanel>
 	                    <apex:outputText rendered="{!isConsolidated}">
 	                        {!$Label.IPM_Fin_Units}
 	                    </apex:outputText>
@@ -272,6 +275,9 @@
                                         </apex:selectList>
                                     </apex:outputPanel>
                                 </apex:outputText>
+                                <apex:outputPanel rendered="{!IF(fieldSuffix=='Charter',TRUE,FALSE)}">
+                                        <apex:outputField value="{!ipmFinancial.Volume_Unit_Charter__c}" rendered="{!NOT(isEditMode) }"/>
+                                </apex:outputPanel>  
                                 <apex:outputText rendered="{!isConsolidated}">
                                     {!$Label.IPM_Fin_Tons}
                                 </apex:outputText>      

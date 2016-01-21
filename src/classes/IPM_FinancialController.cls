@@ -2407,7 +2407,7 @@ private Date getProjectMilestoneDate(){
                 validationErrorMessage = '';
             }          
             isTargetLaunchDateMisaligned =  flag;                               
-            if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.Previous_Target_Launch_Date__c!=project.IPM_Target_Launch_Dates__c) {
+            if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.Previous_Target_Launch_Date__c!=null && project.Previous_Target_Launch_Date__c!=project.IPM_Target_Launch_Dates__c) {
             	showMisalignedConfirmbtn = project.MisAligned_Confirmed_By_Finance_Leader__c;
             	currentTargetLaunchDate = project.IPM_Target_Launch_Dates__c.format();
             	if(project.Previous_Target_Launch_Date__c!=null)
