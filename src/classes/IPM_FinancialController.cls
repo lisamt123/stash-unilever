@@ -39,6 +39,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public Boolean showRollupTab {get; set;} //Boolean variable to decide when to show the Rollup tab
     public Boolean showKeyFinancial {get;set;} 
     public Boolean globalCharter {get;set;}
+    public Boolean topDown {get;set;}
     public IPM_FinancialWrapper financialsInnovation {get; set;} //Wrapper to store the financial values for the Innovation Years for the currentFinancial
     public IPM_FinancialWrapper financialsCalendar {get; set;} //Wrapper to store the financial values for the Calendar Years for the currentFinancial
 
@@ -78,12 +79,14 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
     public boolean isITOgrtGTOCal{get; set;} //DEF2315
     public String BI{get;set;}
     //variable to capture financial type
-    public Boolean isConsolidatedOrNonkey {
-        get {
+    public Boolean isConsolidatedOrNonkey 
+    {
+        get 
+        {
             Boolean flag = false;
             
-            if(currentFinancial!=null && (currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE))) {
-                
+            if(currentFinancial!=null && (currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) || currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY))) 
+            {    
                 flag = true;
             }
             return flag;
@@ -218,6 +221,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isValidationError = false;
         isConsolidatedOrNonkey=false;
         globalCharter = false;
+        topDown = false;
         showKeyFinancial = false;
         isITOgrtGTO = false; 
         isITOgrtGTOCal = false;
@@ -263,7 +267,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             }
        }
        
-       if(currentFinancial == null)
+       if(currentFinancial == null && project!=null) /// && added as throws error if class is initialised from outside
        {  
             if(project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL || project.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
             {
@@ -283,28 +287,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         { 
             String financialExtID = currentFinancial.Financial_External_ID__c;
                          
-           	if(currentFinancial.RecordTypeId == DEFAULT_FINANCIAL_RECORDTYPE && String.isNotBlank(financialExtID) )
-            { 
-                if (project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS) 
-                {
                     if(globalCharter)
                     {
                         associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c,Local_Rollout_Charter__c,Local_Rollout__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID LIMIT 50000];    
                     }
-                    else
-                    {
-                        List<IPM_Country__c> countryList =  [Select Id,Country_Name__c,Calculation_Index__c,Local_Rollout_Charter__c,Local_Rollout__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID AND isActive__c = true LIMIT 50000];
+            else if(topDown)
                         
-                        for(IPM_Country__c country : countryList)
-	                    {
-	                        if(country.Local_Rollout_Charter__c == country.Local_Rollout__c )
-	                        {
-	                            associatedCountryList.add(country);
-	                        }
-	                    }
-                    }             
-                }
-                else
                 { 
                     if(!financialExtID.contains(IPM_ConstantUtils.FINANCIAL_NONKEY))
                     {
@@ -317,6 +305,12 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     }
                     else 
                     {
+                    if(project.IPM_Phase__c != IPM_ConstantUtils.PHASE_IDEAS)
+                    {
+                        associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c,Local_Rollout_Charter__c,Local_Rollout__c from IPM_Country__c where IPM_FinancialAtCharter__r.Financial_External_ID__c = :financialExtID AND isActive__c = true LIMIT 50000];    
+                    }
+                    else
+                    {
                         // Update financials External Id if it is a non Key.
                         financialExtID = currentFinancial.Regional_External_Id__c;
                         ipmProjectList =  [SELECT Id,
@@ -326,6 +320,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                                                    WHERE RecordTypeId = :LOCAL_ROLLOUT_RECORDTYPE AND IPM_Rollout_Project__c = :financialExtID AND isActive__c = true)           
                                             FROM IPM_Project__c WHERE Id =:Project.Id];
                     } 
+                } 
                     
                     if(!ipmProjectList.isEmpty())
                     {
@@ -345,7 +340,6 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                        {
                           associatedCountryList =  [Select Id,Country_Name__c,Calculation_Index__c from IPM_Country__c where Local_Rollout__c in :localRolloutList AND isActive__c = true];  
                        }
-                    }
                 }
             } 
         }
@@ -534,6 +528,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
          getRecordtypes();
          showKeyFinancial = false;
          globalCharter = false;
+         topDown = false;
          if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS)
          {
              showKeyFinancial = true;
@@ -549,6 +544,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 {
                     if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME)
                     {
+                        topDown = true;
                         getGlobalMyViewWrappers();
                     } 
                     else if (currentTab == IPM_ConstantUtils.TAB_ROLLUP_NAME)
@@ -563,6 +559,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     {
                         if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME)
                         {
+                            topDown = true;
                             getRegionalMyViewWrappers();
                         } 
                         else if (currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME)
@@ -580,6 +577,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                     {
                         if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME)
                         {
+                            topDown = true;
                             getRegionalOriginalMyViewWrappers();
                         } 
                         else if (currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME)
@@ -597,7 +595,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                 // If Project is Local Rollout Project
                 else if (project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
                 {
-                    if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME) {
+                    if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME) 
+                    {
+                        topDown = true;
                         getLocalMyViewWrappers();
                     }
                     else if (currentTab == IPM_ConstantUtils.TAB_TOPDOWN_NAME) {
@@ -610,7 +610,8 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         { 
             mapDefaultFinancials = new Map<String, IPM_Financial__c> (); 
             
-            if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME) {
+            if (currentTab == IPM_ConstantUtils.TAB_MYVIEW_NAME) 
+            {
                 getOperationalMyViewWrappers(); 
             }
         }

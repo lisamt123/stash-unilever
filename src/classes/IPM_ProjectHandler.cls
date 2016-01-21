@@ -595,7 +595,6 @@ public with sharing class IPM_ProjectHandler implements ITrigger
             Map<Id,String>updateNewProNameMap=new Map<Id,String>();//Map of Project id to Project Name
             Map<Id,String>oldprojectnameMap=new Map<Id,String>();//Map project id with old project name
             List<IPM_Project__c> changedNameProjectList = new List<IPM_Project__c>();
-            List<IPM_Project__c> changedOriginalNameProjectList = new List<IPM_Project__c>();
             //IPM BET related changes
             set<id> setBETProjects = new set<id>(); //Set of IPM Project Id's for which all BET Milestones should be deleted
             list<IPM_Milestone__c> lstBETMilestones = new list<IPM_Milestone__c>(); //List of BET related IPM Milestones which should be upserted.
@@ -628,7 +627,7 @@ public with sharing class IPM_ProjectHandler implements ITrigger
                     {
                         updateNewProNameMap.put(p.id,p.IPM_Project_Name__c);
                         oldprojectnameMap.put(p.id,Proj.IPM_Project_Name__c);
-                        changedOriginalNameProjectList.add(p);
+                        changedNameProjectList.add(p);
                     }
                     //BET related changes
                     // Set of IPM Project Id's for which list of BET Milestones should be deleted.
@@ -671,8 +670,6 @@ public with sharing class IPM_ProjectHandler implements ITrigger
            //call update project name in all objects records
             if(!updateNewProNameMap.IsEmpty()){
                 IPM_UpdateGlobalProjectName.updateProjectName(updateNewProNameMap,oldprojectnameMap);
-                changedNameProjectList= IPM_UpdateGlobalProjectName.updateChildProjects(updateNewProNameMap,oldprojectnameMap);
-                changedNameProjectList.addAll(changedOriginalNameProjectList);
                 IPM_ChatterFeedHelper.notifyProjectNameChange(changedNameProjectList);
             }
             //For create finance user for local rollout project resource

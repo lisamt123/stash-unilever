@@ -8885,8 +8885,8 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <fullName>IPM_Milestone_Due_Date</fullName>
         <language>en_US</language>
         <protected>false</protected>
-        <shortDescription>Milestone Due Date</shortDescription>
-        <value>The postponed date for this project must be before the due date for the next gate&apos;s milestone.</value>
+        <shortDescription>Postponed Past Date Validation</shortDescription>
+        <value>The postponed date for this project must be after the due date for the previous gate&apos;s milestone.</value>
     </labels>
     <labels>
         <fullName>IPM_Milestone_Due_Date_Error</fullName>
@@ -10122,7 +10122,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Postponed Future Date Validation</shortDescription>
-        <value>The postponed date for this project must be after the due date for the previous gate&apos;s milestone.</value>
+        <value>The postponed date for this project must be before the due date for the next gate&apos;s milestone.</value>
     </labels>
     <labels>
         <fullName>IPM_Postponing_Project_Gate</fullName>

@@ -86,11 +86,14 @@ public with sharing class IPM_RolloutTriggerHandler
                 {
                     setTopLevelProjectIds.add(projectRollout.IPM_Project__c);
                 }
+                else if(projectRollout.Regional_Project__c!=null)
+                {
+                    setTopLevelProjectIds.add(projectRollout.Regional_Project__c);
+                }
                 
                 if(projectRollout.Regional_Project__c!=null)
                 {
                     setRegionalProjectNames.add(projectRollout.Regional_Rollout_External_Id__c);
-                	setTopLevelProjectIds.add(projectRollout.Regional_Project__c);
                 }
                 else
                 {
