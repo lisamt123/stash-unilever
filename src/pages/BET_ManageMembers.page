@@ -12,7 +12,7 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
   <apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
   <apex:stylesheet value="{!$Resource.BET}/css/BETManageMembersStyles.css" />
   <apex:includeScript value="{!$Resource.BET}/scripts/BETManageMembersJS.js" />
-
+<!-- Test commit from IDC -->
   <script>
     function updateRoleOnMember(memId, role, idx){
       Visualforce.remoting.Manager.invokeAction(
