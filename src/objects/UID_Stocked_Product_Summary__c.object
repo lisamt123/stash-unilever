@@ -200,6 +200,29 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>UID_Material_Brand__c</fullName>
+        <externalId>false</externalId>
+        <formula>TEXT(UID_Material__r.UID_Brand__c)</formula>
+        <label>Material Brand</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UID_Material_Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>Text(UID_Material__r.UID_Category__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Material Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>UID_Material_Id__c</fullName>
         <externalId>false</externalId>
         <formula>UID_Material__r.UID_Material_ID__c</formula>
@@ -270,6 +293,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>UID_Product_Name__c</fullName>
+        <externalId>false</externalId>
+        <formula>UID_Material__r.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Product Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>

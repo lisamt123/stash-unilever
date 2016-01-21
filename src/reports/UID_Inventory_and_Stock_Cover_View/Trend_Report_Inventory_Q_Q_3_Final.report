@@ -9,11 +9,10 @@
             <axisBinding>y</axisBinding>
             <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
         </chartSummaries>
-        <chartType>Donut</chartType>
+        <chartType>HorizontalBar</chartType>
         <enableHoverLabels>true</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</groupingColumn>
-        <legendPosition>Right</legendPosition>
+        <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Category__c</groupingColumn>
         <location>CHART_TOP</location>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
@@ -52,7 +51,7 @@
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</field>
+        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Category__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Trend Report - Inventory (Q) (Q)3</name>
