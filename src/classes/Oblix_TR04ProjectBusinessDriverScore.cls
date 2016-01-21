@@ -220,19 +220,22 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
             ];
     }
     
+    public static List<Oblix_Calculator__c> getCalculatorBoxRange(){
+        return [Select Id, Name, Points_Low__c, Points_HigH__c, Box_Range__c, Financial_Year__c,
+                     Box_9__c, Box_8__c, Box_7__c, Box_6__c, Box_5__c, Box_4__c, Box_3__c, Box_2__c, Box_20__c, Box_1__c, Box_19__c, Box_18__c, Box_17__c, Box_16__c, Box_15__c, Box_14__c, Box_13__c, Box_12__c, Box_11__c, Box_10__c 
+                     from Oblix_Calculator__c where RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Box_Range')];
+    }
+
     /*
     *    @Description : This method is used to calculate : Total Calculated Fee in a campaign
     *    @Param : projectTrig, lstProjTrig from Trigger
     *    @return : void
     */
-    public static void updateProjectCalculatorFees(Oblix_SOW_Projects__c projectTrig, List<Oblix_SOW_Projects__c> lstProjectTrigger, List<Oblix_SOW_Projects__c> lstProjectsQueried, List<Oblix_Calculator__c> lstCalculatorCountryRange ){
+    public static void updateProjectCalculatorFees(Oblix_SOW_Projects__c projectTrig, List<Oblix_SOW_Projects__c> lstProjectTrigger, List<Oblix_SOW_Projects__c> lstProjectsQueried
+        , List<Oblix_Calculator__c> lstCalculatorCountryRange, List<Oblix_Calculator__c> lstCalculatorBoxRange ){
              //List of Oblix Calculator
         Oblix_TR04ProjectBusinessDriverScore instanceTR04 = new Oblix_TR04ProjectBusinessDriverScore();
 
-        List<Oblix_Calculator__c> lstCalculatorBoxRange = [Select Id, Name, Points_Low__c, Points_HigH__c, Box_Range__c, Financial_Year__c,
-                     Box_9__c, Box_8__c, Box_7__c, Box_6__c, Box_5__c, Box_4__c, Box_3__c, Box_2__c, Box_20__c, Box_1__c, Box_19__c, Box_18__c, Box_17__c, Box_16__c, Box_15__c, Box_14__c, Box_13__c, Box_12__c, Box_11__c, Box_10__c 
-                     from Oblix_Calculator__c where RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Box_Range')];
-  
         Set<Id> setProjectIds = getProjectIds(lstProjectTrigger, projectTrig);
 
         List<Oblix_Marketing_SOW_Project_Splits__c>  lstProjectSplits = [Select Id, Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c in : setProjectIds and Project_Splits__c != null];
