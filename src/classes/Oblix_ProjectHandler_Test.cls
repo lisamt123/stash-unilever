@@ -23,7 +23,7 @@ public with sharing class Oblix_ProjectHandler_Test {
             
             project.name = 'change';
             update project;
-            handler.triggerShouldExecute = false;
+            Oblix_ProjectHandler.triggerShouldExecute = false;
             Test.stopTest();
         }
 	}
