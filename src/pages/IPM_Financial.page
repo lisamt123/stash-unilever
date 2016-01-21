@@ -287,10 +287,14 @@
                                                                     <div class="countryCheckList clearfix">
                                                                         <apex:variable value="{!1}" var="rowNum"/>
                                                                         <apex:repeat value="{!associatedCountryList}" var="clist" rendered="{!associatedCountryList.size >0}" >
-                                                                            <div class="cntryContainer pull-left">
-                                                                                <apex:inputCheckbox value="{!clist.Calculation_Index__c}" onchange="updateCheckbox('{!clist.ID}',this.checked )" disabled="{!Or(project.IPM_Phase__c <> 'Ideas',!isEditable)}"/>
+                                                                        
+                                                                            <apex:outputPanel styleClass="cntryContainer pull-left" rendered="{!OR(project.IPM_Phase__c =='Ideas',globalCharter)}">
+                                                                                <apex:inputCheckbox value="{!clist.Calculation_Index__c}" onchange="updateCheckbox('{!clist.ID}',this.checked )" disabled="{!Or(globalCharter,project.IPM_Phase__c <> 'Ideas',!isEditable)}"/>
                                                                                 <label>{!clist.Country_Name__c}</label>                                                                                                                          
-                                                                            </div>
+                                                                            </apex:outputPanel>
+                                                                            <apex:outputPanel styleClass="cntryContainer pull-left" rendered="{!AND(project.IPM_Phase__c !='Ideas',topDown)}">
+                                                                                <label>{!clist.Country_Name__c}</label>
+                                                                            </apex:outputPanel>
                                                                         <apex:variable var="rowNum" value="{!rowNum + 1}"/>
                                                                     </apex:repeat>
                                                               </div>

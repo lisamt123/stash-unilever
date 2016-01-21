@@ -291,7 +291,7 @@ This componet used for regional rollout project
                                         <td class="text-right" width="26%">
                                             <div class="mr15 inlineBlk">
                                                 <div class="SecButtonSet">
-                                                    <apex:commandLink styleClass="icoButton delete" action="{!deleteMCORollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();">
+                                                    <apex:commandLink styleClass="icoButton delete" action="{!deleteMCORollout}" rendered="{!isEditMode}" onComplete="reRenderPanels();" status="loadingStatus">
                                                         <apex:param name="p1" assignTo="{!selectedMCORollout}" value="{!localRollout.Id}"/>
                                                     </apex:commandLink>
                                                 </div>
