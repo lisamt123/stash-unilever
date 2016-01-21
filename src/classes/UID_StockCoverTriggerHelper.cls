@@ -45,9 +45,9 @@ public with sharing class UID_StockCoverTriggerHelper {
     //public static void calculateStockCover() { 
         //Variable Declations    
         Map <String, List <UID_Stocked_Product_Summary__c>> openingStockMap = new Map <String, List<UID_Stocked_Product_Summary__c >>();
-        Map <String, List <OrderItem>> last3MonthMap = new Map <String, List <OrderItem>>();
-        Map <String, List <OrderItem>> primarySalesMap = new Map <String, List <OrderItem>>();
-        Map <String, List <OrderItem>> secondarySalesMap = new Map <String, List <OrderItem>>();
+        Map <String, List <UID_Order_Product__c>> last3MonthMap = new Map <String, List <UID_Order_Product__c>>();
+        Map <String, List <UID_Order_Product__c>> primarySalesMap = new Map <String, List <UID_Order_Product__c>>();
+        Map <String, List <UID_Order_Product__c>> secondarySalesMap = new Map <String, List <UID_Order_Product__c>>();
         
         //Fetch All Stocked Product Details
         List <UID_Stocked_Product_Summary__c> stockDetails = new List <UID_Stocked_Product_Summary__c>();
@@ -178,18 +178,18 @@ public with sharing class UID_StockCoverTriggerHelper {
         return openingStockMap;
     }
     
-    public static Map <String, List <OrderItem>> getSales(Set <String> materialID, Set <Id> accountID, Set <String> currentMonth, String name) {
+    public static Map <String, List <UID_Order_Product__c>> getSales(Set <String> materialID, Set <Id> accountID, Set <String> currentMonth, String name) {
         
-        Map <String, List <OrderItem>> salesMap = new Map <String, List <OrderItem>>();
-        for(OrderItem orderSale : [Select UID_Material_ID__c, UID_Order_Quantity__c, Order.UID_Distributor__c, UID_Sales_Date__c, Order.UID_Report_Date__c
-        From OrderItem WHERE UID_Material_ID__c IN : materialID AND Order.UID_Distributor__r.Id IN : accountID AND UID_Sales_Date__c IN : currentMonth AND order.RecordType.Name =: name])
+        Map <String, List <UID_Order_Product__c>> salesMap = new Map <String, List <UID_Order_Product__c>>();
+        for(UID_Order_Product__c orderSale : [Select UID_Material_ID__c, UID_Order_Quantity__c, UID_Order__r.UID_Distributor__c, UID_Sales_Date__c, UID_Order__r.UID_Report_Date__c
+        From UID_Order_Product__c WHERE UID_Material_ID__c IN : materialID AND UID_Order__r.UID_Distributor__r.Id IN : accountID AND UID_Sales_Date__c IN : currentMonth AND UID_Order__r.RecordType.Name =: name])
         {
-        	String mapID = orderSale.UID_Material_ID__c + orderSale.Order.UID_Distributor__c + orderSale.UID_Sales_Date__c;
-        	if(salesMap.containsKey(mapID)) {
-        		salesMap.get(mapID).add(orderSale);
-        	}
-        	else {
-        		List <OrderItem> orderList= new List <OrderItem>();
+            String mapID = orderSale.UID_Material_ID__c + orderSale.UID_Order__r.UID_Distributor__c + orderSale.UID_Sales_Date__c;
+            if(salesMap.containsKey(mapID)) {
+                salesMap.get(mapID).add(orderSale);
+            }
+            else {
+                List <UID_Order_Product__c> orderList= new List <UID_Order_Product__c>();
                 orderList.add(orderSale);
                 salesMap.put(mapID, orderList);
         	}
@@ -197,19 +197,19 @@ public with sharing class UID_StockCoverTriggerHelper {
         return salesMap;
     }
     
-    public static Map <String, List <OrderItem>> getLast3Month(Set <String> materialID, Set <Id> accountID, Set <String> last3Months) {
-        Map <String, List <OrderItem>> last3MonthMap = new Map <String, List <OrderItem>>();
+    public static Map <String, List <UID_Order_Product__c>> getLast3Month(Set <String> materialID, Set <Id> accountID, Set <String> last3Months) {
+        Map <String, List <UID_Order_Product__c>> last3MonthMap = new Map <String, List <UID_Order_Product__c>>();
         
         //Store Per Material Total Quantity for the Last 3 Months in Map. MaterialID + Account + Report Date
-        for (OrderItem lm : [Select UID_Material_ID__c, UID_Order_Quantity__c, Order.UID_Distributor__c, UID_Sales_Date__c, Order.UID_Report_Date__c
-                             From OrderItem WHERE UID_Material_ID__c IN : materialID AND Order.UID_Distributor__c IN : accountID AND UID_Sales_Date__c IN : last3Months AND order.RecordType.Name =: SECONDARY_SALES_RECORDTYPE_NAME])
+        for (UID_Order_Product__c lm : [Select UID_Material_ID__c, UID_Order_Quantity__c, UID_Order__r.UID_Distributor__c, UID_Sales_Date__c, UID_Order__r.UID_Report_Date__c
+                             From UID_Order_Product__c WHERE UID_Material_ID__c IN : materialID AND UID_Order__r.UID_Distributor__c IN : accountID AND UID_Sales_Date__c IN : last3Months AND UID_Order__r.RecordType.Name =: SECONDARY_SALES_RECORDTYPE_NAME])
         {
-            String last3MapID = lm.UID_Material_ID__c + lm.Order.UID_Distributor__c + lm.UID_Sales_Date__c;
+            String last3MapID = lm.UID_Material_ID__c + lm.UID_Order__r.UID_Distributor__c + lm.UID_Sales_Date__c;
             if(last3MonthMap.containsKey(last3MapID )) {
                 last3MonthMap.get(last3MapID).add(lm);
             }
             else{
-                List <OrderItem> last3List= new List <OrderItem>();
+                List <UID_Order_Product__c> last3List= new List <UID_Order_Product__c>();
                 last3List.add(lm);
                 last3MonthMap.put(last3MapID, last3List);
             }     
@@ -224,24 +224,24 @@ public with sharing class UID_StockCoverTriggerHelper {
                     totalOpening = totalOpening + ci.UID_Avail_Quantity__c;                    
                 }
             }
-		return totalOpening;
-	}
-	
-	public static Decimal setTotal(String salesMapKey, Map <String, List<OrderItem>> salesMap) {
-		Decimal totalPrimary = 0;
-		if(salesMap.get(salesMapKey) != NULL) {
-        	for(OrderItem ordItem : salesMap.get(salesMapKey)){
-            	totalPrimary = totalPrimary + ordItem.UID_Order_Quantity__c;                    
-        	}
+        return totalOpening;
+    }
+    
+    public static Decimal setTotal(String salesMapKey, Map <String, List<UID_Order_Product__c>> salesMap) {
+        Decimal totalPrimary = 0;
+        if(salesMap.get(salesMapKey) != NULL) {
+            for(UID_Order_Product__c ordItem : salesMap.get(salesMapKey)){
+                totalPrimary = totalPrimary + ordItem.UID_Order_Quantity__c;                    
+            }
         }
-		return totalPrimary;
-		
-	}
-	
-	public static Decimal setMonth(String last3MonthMapKey, Map <String, List <OrderItem>> last3MonthMap) {
-		Decimal month = 0;
-		if(last3MonthMap.get(last3MonthMapKey) != NULL) {
-                for(OrderItem ordItem: last3MonthMap.get(last3MonthMapKey)){
+        return totalPrimary;
+        
+    }
+    
+    public static Decimal setMonth(String last3MonthMapKey, Map <String, List <UID_Order_Product__c>> last3MonthMap) {
+        Decimal month = 0;
+        if(last3MonthMap.get(last3MonthMapKey) != NULL) {
+                for(UID_Order_Product__c ordItem: last3MonthMap.get(last3MonthMapKey)){
                     month = month  + ordItem.UID_Order_Quantity__c;                    
                 }
             }

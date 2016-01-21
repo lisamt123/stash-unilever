@@ -503,6 +503,16 @@ UID_IOP__r.UID_Dec_IOP__c)</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>UID_Order_RecordType__c</fullName>
+        <externalId>false</externalId>
+        <label>Order RecordType</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>UID_Quarter__c</fullName>
         <description>Quarter of transaction</description>
         <externalId>false</externalId>
@@ -560,6 +570,7 @@ UID_IOP__r.UID_Dec_IOP__c)</formula>
         <fullName>AllOrders</fullName>
         <columns>ORDERS.ORDER_NUMBER</columns>
         <columns>UID_Invoice_Number__c</columns>
+        <columns>UID_Order_RecordType__c</columns>
         <columns>ORDERS.EFFECTIVE_DATE</columns>
         <columns>UID_Bill__c</columns>
         <columns>UID_Incoterm__c</columns>

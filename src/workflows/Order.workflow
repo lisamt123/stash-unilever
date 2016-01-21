@@ -9,6 +9,28 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>UID_populate_recordType</fullName>
+        <field>UID_Order_RecordType__c</field>
+        <formula>RecordType.Name</formula>
+        <name>UID populate recordType</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>UID Populate Order RecordType</fullName>
+        <actions>
+            <name>UID_populate_recordType</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Order.RecordTypeId</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
     <rules>
         <fullName>UID_UpdateOrderReportDate</fullName>
         <actions>
