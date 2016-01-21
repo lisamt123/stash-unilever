@@ -9,6 +9,8 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
     private List<Oblix_SOW_Projects__c> lstCampaignsWithQueryField = new List<Oblix_SOW_Projects__c>();
     private List<Oblix_Calculator__c> lstCountryBoxNumberCalculator = new List<Oblix_Calculator__c>();
     private List<Oblix_Marketing_SOW_Project_Splits__c> lstSplitProject = new List<Oblix_Marketing_SOW_Project_Splits__c>();
+    private List<Oblix_Calculator__c> lstCalculatorBoxRange = new List<Oblix_Calculator__c>();
+
     /**
      * bulkBefore
      *
@@ -26,6 +28,8 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
                 lstCampaignsWithQueryField = Oblix_TR04ProjectBusinessDriverScore.getCampaignsByIds(Trigger.New);
                 lstSplitProject = Oblix_TR04ProjectBusinessDriverScore.getSplitsByProjects(Trigger.New);
                 lstCountryBoxNumberCalculator  = Oblix_TR04ProjectBusinessDriverScore.getOblixCalculators(Trigger.New, lstSplitProject);
+                lstCalculatorBoxRange = Oblix_TR04ProjectBusinessDriverScore.getCalculatorBoxRange();
+
             }
         }
         
@@ -37,6 +41,7 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
                 lstCampaignsWithQueryField = Oblix_TR04ProjectBusinessDriverScore.getCampaignsByIds(Trigger.New);
                 lstSplitProject = Oblix_TR04ProjectBusinessDriverScore.getSplitsByProjects(Trigger.New);
                 lstCountryBoxNumberCalculator  = Oblix_TR04ProjectBusinessDriverScore.getOblixCalculators(Trigger.New, lstSplitProject);
+                lstCalculatorBoxRange = Oblix_TR04ProjectBusinessDriverScore.getCalculatorBoxRange();
             }
         }
     }
@@ -52,7 +57,7 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
         Oblix_ProjectHandlerLogic.adjustAssetDeliverables((Oblix_SOW_Projects__c) so , mids_campaign_id_asset_deliverables_text);
 
         // temp shahin deactivating this
-        Oblix_TR04ProjectBusinessDriverScore.updateProjectCalculatorFees((Oblix_SOW_Projects__c) so, Trigger.New, lstCampaignsWithQueryField, lstCountryBoxNumberCalculator   );
+        Oblix_TR04ProjectBusinessDriverScore.updateProjectCalculatorFees((Oblix_SOW_Projects__c) so, Trigger.New, lstCampaignsWithQueryField, lstCountryBoxNumberCalculator,lstCalculatorBoxRange   );
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)
@@ -61,7 +66,7 @@ public with sharing class Oblix_ProjectHandler implements ITrigger {
         Oblix_ProjectHandlerLogic.adjustAssetDeliverables((Oblix_SOW_Projects__c) so , mids_campaign_id_asset_deliverables_text);
         
         // temp shahin deactivating this
-        Oblix_TR04ProjectBusinessDriverScore.updateProjectCalculatorFees((Oblix_SOW_Projects__c) so, Trigger.New, lstCampaignsWithQueryField, lstCountryBoxNumberCalculator);
+        Oblix_TR04ProjectBusinessDriverScore.updateProjectCalculatorFees((Oblix_SOW_Projects__c) so, Trigger.New, lstCampaignsWithQueryField, lstCountryBoxNumberCalculator,lstCalculatorBoxRange);
     }
      
 
