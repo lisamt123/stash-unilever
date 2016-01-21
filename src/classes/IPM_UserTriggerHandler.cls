@@ -33,7 +33,7 @@ public with sharing class IPM_UserTriggerHandler {
                 changeRoleIds.add(eachUser.Id);
             }*/
         }
-        IPM_TaskHelper.reAssignTasksForInActiveUsrs(newUsrs);//reassign their current tasks
+        //IPM_TaskHelper.reAssignTasksForInActiveUsrs(newUsrs);//reassign their current tasks
         IPM_ProjectResourceTriggerHandler.notifyRoleChangeToPLs(changeRoleIds);
         
        }  
