@@ -118,6 +118,7 @@ public without sharing class BET_Team_MemberHandlerCls {
     *************************************************************/
 	public static void addEntitySubscriptions(List<uw_BET_Team_Member__c> newList){
 		System.debug('Entering addEntitySubscriptions : ' + newList);
+        String externalRole = BET_Team_MemberHandlerClsHelper.getExternalUserRoleName();
 		List<EntitySubscription> eSubscriptions = new List<EntitySubscription>();
 
 		Map<Id,Set<Id>> betMembersSubscrMap = new Map<Id,Set<Id>>();
@@ -135,7 +136,7 @@ public without sharing class BET_Team_MemberHandlerCls {
 		}
 
 		for(uw_BET_Team_Member__c teamMember : newList){
-			if(teamMember.Team_Member__c != null && betMembersSubscrMap.get(teamMember.Bet__c) != null && !betMembersSubscrMap.get(teamMember.Bet__c).contains(teamMember.Team_Member__c)){
+			if(teamMember.Team_Member__c != null && betMembersSubscrMap.get(teamMember.Bet__c) != null && !betMembersSubscrMap.get(teamMember.Bet__c).contains(teamMember.Team_Member__c) && teamMember.Role__c != externalRole){
         		eSubscriptions.add(BET_Team_MemberHandlerClsHelper.addEntitiySubscriptionByTeamMember(teamMember));
         	}
         	
