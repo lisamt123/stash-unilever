@@ -381,16 +381,11 @@ private class IPM_ProjectCountryDetails_Test {
             IPM_ProjectCountryDetails.updateCountriesToFinancials(countryList,false);
           
          
-           List<IPM_Project__c> regionalProjectList = IPM_TestFactory_Helper.projectSetUpRegional(1,globalUser);
          
-           System.runAs(globalUser)
-           {
-            insert regionalProjectList;
-           }
            
-           List<IPM_Project__c> updatedprojlst = [Select Id,EcoDesign_Sync_Status__c,IPM_Strategic_Intent__c,IPM_Project_Name__c from IPM_Project__c where IPM_Project_Type__c =:IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL limit 3];
-           List<IPM_Project_Rollout__c> projRollOutList = [Select Id from IPM_Project_Rollout__c where IPM_Project__c =:updatedprojlst[0].id or IPM_Project__c =:updatedprojlst[1].id or IPM_Project__c =:updatedprojlst[2].id  limit 1000];
-           System.assertEquals(8,projRollOutList.size());
+           List<IPM_Project_Rollout__c> projRollOutList = [Select Id from IPM_Project_Rollout__c where IPM_Project__c in :projectList limit 1000];
+           System.debug(LoggingLevel.Error,'projRollOutListprojRollOutListprojRollOutList::'+projRollOutList);
+           System.assertEquals(12,projRollOutList.size()); 
            test.stopTest();
          }
     }
