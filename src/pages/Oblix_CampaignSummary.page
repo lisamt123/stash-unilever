@@ -39,6 +39,7 @@
         <apex:define name="body_content">
   
    <!--            Adjust fee modal-->
+           <apex:outputPanel Id="adjustFeeModalId">
             <div class="modal fade adjust_fee_modal" tabindex="-1" role="dialog" aria-labelledby="adjustFee" id="adjustFeeModal">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -53,7 +54,10 @@
                                         <div class="col-lg-8">
                                             <p class="modal_current_text green_text">Current % allocation of total<br/>campaign fee to be paid this FY</p>
                                         </div>
-                                        <h1 class="green_text"><apex:outputField value="{!selected_project.Percentage_of_Fee_for_this_FY__c}" rendered="{!AND(selected_project.Percentage_of_Fee_for_this_FY__c<>0,selected_project.Percentage_of_Fee_for_this_FY__c<>null)}"></apex:outputField> </h1>
+                                        <h1 class="green_text">
+                                                <apex:outputText value="{!stage_identifier.i_percentage_of_fee_this_year}" ></apex:outputText> 
+                                                <apex:outputLabel rendered="{!stage_identifier.i_percentage_of_fee_this_year <> null}"> %</apex:outputLabel>       
+                                         </h1>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-7">
@@ -77,6 +81,7 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
+          </apex:outputPanel>
 <!--            Adjust fee modal finish-->
 
              <hr class="divider" />    
@@ -229,10 +234,13 @@
                                     <thead>
                                         <tr>
                                             <apex:repeat value="{!$ObjectType.Oblix_Project_Assets__c.FieldSets.Oblix_Campaign_Summary}" var="field_name">
+                                               <!-- <apex:outputPanel rendered="{!!contains(field_name.Label,'Location')}">-->
                                                 <th>
                                                     <apex:outputLabel value="{!field_name.label}"/>
                                                 </th>
+                                              <!--   </apex:outputPanel>-->
                                             </apex:repeat>
+                                           
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -245,14 +253,14 @@
                                                         <apex:outputText value="{0, number, ###,###.##}" rendered="{!(asset[field_name] != null && field_name.Type =='double')}">
                                                             <apex:param value="{!asset[field_name]}" />
                                                         </apex:outputText> 
-
+                                                        
                                                         <apex:outputText value="{0,date,E','dd MMM yyyy}" rendered="{!(asset[field_name] != null && field_name.Type =='dateTime')}" style="tableRow">
                                                             <apex:param value="{!asset[field_name]}" />
                                                         </apex:outputText>
 
                                                         <apex:outputText value="{!asset[field_name]}" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double' && !contains(field_name.Label,'Name'))}" style="tableRow" styleClass="asset_description" />
                                                         
-                                                        <apex:outputLink value="{!$Page.Oblix_CampaignAddAsset}?projectId={!project_id}&assetId={!asset['Id']}" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double' && contains(field_name.Label,'Name'))}" style="tableRow" target="_blank" >{!asset[field_name]}</apex:outputLink>
+                                                        <apex:outputLink value="{!$Page.Oblix_CampaignAddAsset}?projectId={!project_id}&assetId={!asset['Id']}" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double' && contains(field_name.Label,'Name'))}" style="tableRow" target="_self" >{!asset[field_name]}  </apex:outputLink>
                                                     </td>
                                                 </apex:repeat>
                                                 <td>

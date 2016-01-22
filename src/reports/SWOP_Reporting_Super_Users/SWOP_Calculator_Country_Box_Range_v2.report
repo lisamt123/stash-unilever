@@ -72,12 +72,17 @@
     <columns>
         <field>Oblix_Calculator__c.Box_20__c</field>
     </columns>
-    <description>US226 (No 17) Super User Export</description>
     <filter>
+        <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <column>CUST_RECORDTYPE</column>
             <operator>equals</operator>
             <value>Oblix_Calculator__c.Country_Box_Number</value>
+        </criteriaItems>
+        <criteriaItems>
+            <column>Oblix_Calculator__c.Financial_Year__c</column>
+            <operator>equals</operator>
+            <value>FY2016,FY2017</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>

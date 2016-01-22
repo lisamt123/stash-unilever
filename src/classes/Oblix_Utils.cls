@@ -644,4 +644,9 @@ public with sharing class Oblix_Utils {
         return exitSwopHome.setRedirect(true);
     }
 
+    public static Pagereference goToReportsHome(){
+        Pagereference goToReportsHome = new Pagereference('/00O/o');
+        return goToReportsHome.setRedirect(true);
+    }
+
 }

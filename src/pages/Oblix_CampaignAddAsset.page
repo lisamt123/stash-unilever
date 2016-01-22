@@ -8,7 +8,213 @@
     <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
     <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignAddAsset.js')}" />
     <script type="text/javascript" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/jquery.sticky.js')}"></script>
-    <!--<script>
+   <!--
+    <script>
+        var updateAsset1 = function(btn, selectioncounter) {
+            blockme();
+            var button = $(btn);
+            var assetId = button.attr('data-asset-id');
+            var options = button.parent().find('.subCatPicklist');
+            
+            var subCat ;
+            options.find('option').each(function (index, el) {
+                 if($(el).attr("selected") == 'selected') {
+                        subCat = $(el).val();
+                         console.dir(' subCat  '+subCat);
+                 }
+            });
+            var details = {
+                quantity: button.parent().find('.assetQuantity').val(),
+                location: button.parent().find('.descMend').val(),
+                asset_Picklist: button.parent().find('select').last().find('option:selected').text(),
+                additional_Description : button.parent().find('.assetNotes').val(),
+                option_Name : '{!$Label.Oblix_lbl_UIUX_Option}' + selectioncounter
+            }
+            console.dir('###selectioncounter :'+'{!$Label.Oblix_lbl_UIUX_Option}');
+            Oblix_SOWCampaignCreateController.UpdateProjectAction(assetId, details, function(data, event) {
+                button.addClass('hide_button');
+                button.siblings('input[type="button"]').removeClass('hide_button');
+                refreshAsset();
+            });
+        }
+        
+        
+           
+           var openAsset = function (){
+                var assetId = window.location.search.split('&')[1].split('=')[1];
+                var assetDetails = getAssetDetails(assetId);
+                assetDetails.then(function (data){
+                 if(data.status.status){
+                  var assetName = data.data.assetTitle;
+                  var properties = assetName.split(' X ');
+                  var numberOfQuantity = properties[0];
+                  var selectedAbreviation = properties[1].split('-');
+                  var allAbreviation = JSON.parse(sessionStorage.getItem('assestAbreviations'));                
+                  var firstOption = null;
+                  var secondOption = null;
+                  var thirdOption = selectedAbreviation[2];
+                  console.dir('## selectedAbreviation[2] : '+selectedAbreviation[2]);
+                  var firstElement = null;
+                  var secondElement = null;
+                  var thirdElement = null;
+                  var selectorDetailPanel = null;
+                  var options = null;
+                  Object.keys(allAbreviation).forEach(function (key){
+                    var currentAbraviation = allAbreviation[key];
+                    if(currentAbraviation === selectedAbreviation[0] + '-' + selectedAbreviation[1]){
+                      options = key.split('_');
+                      
+                    }
+                  })
+                  firstOption = options[0];
+                  secondOption = options[1];    
+                  var sel1 ;                   
+                  $('.panel-group').find('.panel-default').find('.panel-heading').each(function (index, el){
+                    
+                    if($(el).text().search(firstOption) !== -1 ){
+                      firstElement = $(el);
+                      console.dir('### first elmnt une seul fois :'+firstElement.html());
+                      var secondSearchArray = firstElement.next().first().find('div[id*="_tabs"]').children('ul');
+                      console.dir('### secondSearchArray :'+secondSearchArray.html());
+                      secondSearchArray.find('a').each(function (index2, el) {
+                          if($(el).text().search(secondOption) !== -1){
+                            secondElement = $(el);
+                            var curentIndex = index2 + 1;
+                            var selector1 = 'div[id*="_tabs-' + curentIndex + '"]';
+                            var selector2 = 'a[href*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
+                            sel1 = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
+                            thirdElement = secondSearchArray.find(selector2);
+                            selectorDetailPanel = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
+                          }
+                      });
+                    }
+                  });
+                  
+                  if(firstElement && ! firstElement.parent().find('.panel-collapse').hasClass('in')) firstElement.parent().find('.panel-collapse').addClass('in');
+                  
+                  if(secondElement && secondElement.find('a').attr('tabindex') !== '0') secondElement.trigger('click');
+                  
+                  thirdElement.parent().parent().find('.active').removeClass('active');   
+                  thirdElement.parent().addClass(' active');
+                 
+                  
+                  var detailPanel = thirdElement.closest('ul').parent().next().find(sel1);
+                  thirdElement.closest('ul').parent().next().find('.active').removeClass('active');   
+                  thirdElement.closest('ul').parent().next().find(sel1).addClass(' active');
+              
+                  detailPanel.find('span').find('.col-lg-6').find('select').val(data.data.assetName);
+                  detailPanel.find('span').find('.col-lg-6').find('.descMend').val(data.data.location);
+                  detailPanel.find('span').find('.col-lg-6').find('.assetQuantity').val(data.data.quantity);                 
+                  detailPanel.find('span').find('.col-lg-6').find('.assetNotes').val(data.data.additionalDescription);   
+                   
+                  detailPanel.find('span').find('.col-lg-6').find('input[type="submit"]').removeClass('hide_button').attr('data-asset-id', assetId);
+                  detailPanel.find('span').find('.col-lg-6').find('input[type="button"]').addClass('hide_button').attr('data-asset-id', assetId);
+                  
+                  if(data.data.assetName == "Other"){
+                      detailPanel.find('span').find('.col-lg-6').find('.trDescribe').css({"display":"block"});
+                  }
+                  
+                 
+                }
+                }, function (err){
+                
+              });
+                  
+              }  
+            
+      <script>
+              //Edit Asset : 
+          
+              var editAsset1 = function (el, assetId){
+                //debugger;
+                  var assetDetails = getAssetDetails(assetId);
+                   assetDetails.then(function (data){
+                     if(data.status.status){
+                   
+                      var assetName = data.data.assetTitle;
+                      var properties = assetName.split(' X ');
+                      var numberOfQuantity = properties[0];
+                      var selectedAbreviation = properties[1].split('-');
+                      var allAbreviation = JSON.parse(sessionStorage.getItem('assestAbreviations'));
+
+                      var firstOption = null;
+                      var secondOption = null;
+                      var thirdOption = selectedAbreviation[2];
+                      var firstElement = null;
+                      var secondElement = null;
+                      var thirdElement = null;
+                      var selectorDetailPanel = null;
+                      var options = null;
+                      Object.keys(allAbreviation).forEach(function (key){
+                        var currentAbraviation = allAbreviation[key];
+                        //debugger;
+                        if(currentAbraviation === selectedAbreviation[0] + '-' + selectedAbreviation[1]){
+                            //debugger;
+                          options = key.split('_');
+                        } /*else if(currentAbraviation === selectedAbreviation[1]){
+                          secondOption = key;
+                        }*/
+                      })
+
+                  firstOption = options[0];
+                  secondOption = options[1];
+                 var sel1 ;                   
+                  $('.panel-group').find('.panel-default').find('.panel-heading').each(function (index, el){
+                    $(el).parent().find('.panel-collapse').removeClass('in');
+                    if($(el).text().search(firstOption) !== -1 ){
+                      firstElement = $(el);
+                     
+                      console.dir('### first elmnt une seul fois :'+firstElement.html());
+                      var secondSearchArray = firstElement.next().first().find('div[id*="_tabs"]').children('ul');
+                      console.dir('### secondSearchArray :'+secondSearchArray.html());
+                      secondSearchArray.find('a').each(function (index2, el) {
+                          if($(el).text().search(secondOption) !== -1){
+                            secondElement = $(el);
+                            var curentIndex = index2 + 1;
+                            var selector1 = 'div[id*="_tabs-' + curentIndex + '"]';
+                            var selector2 = 'a[href*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
+                            sel1 = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
+                            thirdElement = secondSearchArray.find(selector2);
+                            selectorDetailPanel = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
+                          }
+                      });
+                    }
+                  });
+                  
+                  if(firstElement && ! firstElement.parent().find('.panel-collapse').hasClass('in')) firstElement.parent().find('.panel-collapse').addClass('in');
+                  
+                  if(secondElement && secondElement.find('a').attr('tabindex') !== '0') secondElement.trigger('click');
+                  
+                  thirdElement.parent().parent().find('.active').removeClass('active');   
+                  thirdElement.parent().addClass(' active');
+                  
+                  
+                  var detailPanel = thirdElement.closest('ul').parent().next().find(sel1);
+                  thirdElement.closest('ul').parent().next().find('.active').removeClass('active');   
+                  thirdElement.closest('ul').parent().next().find(sel1).addClass(' active');
+              
+                  detailPanel.find('span').find('.col-lg-6').find('select').val(data.data.assetName);
+                  detailPanel.find('span').find('.col-lg-6').find('.descMend').val(data.data.location);
+                  detailPanel.find('span').find('.col-lg-6').find('.assetQuantity').val(data.data.quantity);                 
+                  detailPanel.find('span').find('.col-lg-6').find('.assetNotes').val(data.data.additionalDescription);   
+                   
+                  detailPanel.find('span').find('.col-lg-6').find('input[type="submit"]').removeClass('hide_button').attr('data-asset-id', assetId);
+                  detailPanel.find('span').find('.col-lg-6').find('input[type="button"]').addClass('hide_button').attr('data-asset-id', assetId);
+                  
+                  if(data.data.assetName == "Other"){
+                      detailPanel.find('span').find('.col-lg-6').find('.trDescribe').css({"display":"block"});
+                  }  
+                }
+                }, function (err){
+                
+              });  
+                 
+                  
+              }   
+    </script>
+    
+    
+    <script>
        $(function (){
                 if(window.location.search.indexOf('&') > -1){
                     if(window.location.search.split('&')[1].split('=')[0] === 'assetId'){
@@ -163,7 +369,10 @@
                    
                   detailPanel.find('span').find('.col-lg-6').find('input[type="submit"]').removeClass('hide_button').attr('data-asset-id', assetId);
                   detailPanel.find('span').find('.col-lg-6').find('input[type="button"]').addClass('hide_button').attr('data-asset-id', assetId);
-                    
+                  
+                  if(data.data.assetName == "Other"){
+                      detailPanel.find('span').find('.col-lg-6').find('.trDescribe').css({"display":"block"});
+                  }  
                 }
                 }, function (err){
                 
@@ -296,9 +505,11 @@
                     &nbsp;<span>&#9658;</span>&nbsp;Add campaign assets</p>
 
                 </div>
-                <button type="button" class="btn btn-xs pull-right btn_cross btn_exit_swop">DONE FOR TODAY? EXIT SWOP
-                </button>
-
+               <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
+                </apex:commandButton>
+                <apex:commandLink styleClass="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" action="{!goToReportsHome}" value="REPORTS" target="_blank">
+                </apex:commandLink>
+               
             </header>
         </div>
         <div class="container SOW_body">
@@ -425,8 +636,9 @@
                                                                                                 <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
                                                                                                 <apex:param assignTo="{!subCat}" name="subCat" value="{!subCat}" />
                                                                                                 <apex:param assignTo="{!complexity}" name="complexity" value="{!opt}" />
+                                                                                                <apex:param assignTo="{!selectionCountvar}" name="selectionCountvar" value="{!selectionCount}" />
                                                                                             </apex:commandButton>
-                                                                                            <input value="UPDATE" onclick="updateAsset(this); if(setMendatory($(this))) blockme(); return false;" class="btn btn-primary hide_button" style="width:70px" type="submit" /><!--return false;reRender="assetPart,campaignFeeId,estimateId,Oblix_card" -->
+                                                                                            <input value="UPDATE" onclick="updateAsset(this, {!selectionCount}); if(setMendatory($(this))) blockme(); return false;" class="btn btn-primary hide_button" style="width:70px" type="submit" /><!--return false;reRender="assetPart,campaignFeeId,estimateId,Oblix_card" -->
                                                                                         </div>
 
                                                                                     </apex:actionRegion>
@@ -491,7 +703,16 @@
                                         <div class="Oblix_card_elmt asset_shopping_basket_item">
                                             <div>
                                                 <div class="Oblix_button_table_align">
-                                                    <apex:commandButton styleClass="removeAssetCss" style="width:12px;height:12px" onclick="removeAsset('{!wrapAsset.Asset_Picklist__c}', '{!project.Id}'); return false" /> <span><apex:commandLink value="{!wrapAsset.Asset_Picklist__c} ( Quantity {!wrapAsset.Quantity__c} )" onclick="editAsset(this, '{!wrapAsset.Id}'); return false;" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card"/> </span>
+                                                    <apex:commandButton styleClass="removeAssetCss" style="width:12px;height:12px" onclick="removeAsset('{!wrapAsset.Asset_Picklist__c}', '{!project.Id}'); return false" /> 
+                                                            <span>
+                                                                <apex:commandLink onclick="editAsset(this, '{!wrapAsset.Id}'); return false;" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card">
+                                                                    {!wrapAsset.Asset_Picklist__c}
+                                                                    <apex:outputText rendered="{!wrapAsset.Asset_Picklist__c=='Other'}">  {!wrapAsset.Location__c}    </apex:outputText>
+                                                                     {!wrapAsset.Option_Name__c}
+                                                                    ( Quantity {!wrapAsset.Quantity__c} )
+                                                                   
+                                                                </apex:commandLink>
+                                                            </span>
                                                 </div>
                                             </div>
                                         </div>

@@ -13,6 +13,12 @@
         <field>Marketing_SOW__c$Oblix_AgencyEstimate__c</field>
     </columns>
     <columns>
+        <field>Marketing_SOW__c$Name</field>
+    </columns>
+    <columns>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Name</field>
+    </columns>
+    <columns>
         <field>Marketing_SOW__c$Financial_Year__c</field>
     </columns>
     <columns>
@@ -48,18 +54,15 @@
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r$Quantity__c</field>
     </columns>
-    <description>US181</description>
+    <filter>
+        <criteriaItems>
+            <column>Marketing_SOW__c$Financial_Year__c</column>
+            <operator>equals</operator>
+            <value>FY2016,FY2017</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Summary</format>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Marketing_SOW__c$Name</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
-    <groupingsDown>
-        <dateGranularity>Day</dateGranularity>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Name</field>
-        <sortOrder>Asc</sortOrder>
-    </groupingsDown>
     <name>SWOP Calculator Asset Points &amp; Box Detai</name>
     <params>
         <name>co</name>
@@ -68,7 +71,7 @@
     <reportType>Oblix_SWOP_SOW__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
-    <sortColumn>Marketing_SOW__c.Marketing_Projects__r$Oblix_ProjectBoxNumber__c</sortColumn>
+    <sortColumn>Marketing_SOW__c$Name</sortColumn>
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Marketing_SOW__c$CreatedDate</dateColumn>

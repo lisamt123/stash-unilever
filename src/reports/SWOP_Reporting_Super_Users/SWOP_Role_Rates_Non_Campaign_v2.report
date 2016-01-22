@@ -21,7 +21,14 @@
     <columns>
         <field>Oblix_Calculator__c.Financial_Year__c</field>
     </columns>
-    <description>US225 (No.15) Super User Export</description>
+    <filter>
+        <criteriaItems>
+            <column>Oblix_Calculator__c.Financial_Year__c</column>
+            <operator>equals</operator>
+            <value>FY2016,FY2017</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Tabular</format>
     <name>SWOP Role Rates - Non Campaign</name>
     <params>

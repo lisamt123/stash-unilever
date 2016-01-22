@@ -18,7 +18,6 @@
     <columns>
         <field>Asset_Scoring__c$Description__c</field>
     </columns>
-    <description>US228 (No.18) Super User Export</description>
     <format>Tabular</format>
     <name>SWOP Asset Descriptions and Scoring</name>
     <params>

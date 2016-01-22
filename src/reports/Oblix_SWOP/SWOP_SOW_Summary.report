@@ -45,7 +45,14 @@
     <columns>
         <field>Marketing_SOW__c.Financial_Year__c</field>
     </columns>
-    <description>US172</description>
+    <filter>
+        <criteriaItems>
+            <column>Marketing_SOW__c.Financial_Year__c</column>
+            <operator>equals</operator>
+            <value>FY2016,FY2017</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Summary</format>
     <name>SWOP SOW Summary</name>
     <params>
@@ -59,6 +66,6 @@
     <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>CUST_CREATED_DATE</dateColumn>
-        <interval>INTERVAL_CURFY</interval>
+        <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>

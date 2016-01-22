@@ -81,7 +81,14 @@
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Total_Value_Driver__c</field>
     </columns>
-    <description>US217</description>
+    <filter>
+        <criteriaItems>
+            <column>Marketing_SOW__c$Financial_Year__c</column>
+            <operator>equals</operator>
+            <value>FY2016,FY2017</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Tabular</format>
     <name>SWOP Campaign Report - Full Detail</name>
     <params>

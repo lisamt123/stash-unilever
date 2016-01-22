@@ -60,7 +60,14 @@
     <columns>
         <field>Marketing_SOW__c$CreatedBy</field>
     </columns>
-    <description>US216</description>
+    <filter>
+        <criteriaItems>
+            <column>Marketing_SOW__c$Financial_Year__c</column>
+            <operator>equals</operator>
+            <value>FY2016,FY2017</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Tabular</format>
     <name>SWOP SOW Report - Full Detail</name>
     <params>

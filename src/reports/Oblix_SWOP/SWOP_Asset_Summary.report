@@ -24,12 +24,11 @@
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Asset_Deliverables__c</field>
     </columns>
-    <description>US171</description>
     <filter>
         <criteriaItems>
-            <column>Marketing_SOW__c$OblixBrand__c</column>
+            <column>Marketing_SOW__c$Financial_Year__c</column>
             <operator>equals</operator>
-            <value>Ambrosia</value>
+            <value>FY2016,FY2017</value>
         </criteriaItems>
         <language>en_US</language>
     </filter>
@@ -59,6 +58,6 @@
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r$CreatedDate</dateColumn>
-        <interval>INTERVAL_CURNEXTFY</interval>
+        <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>

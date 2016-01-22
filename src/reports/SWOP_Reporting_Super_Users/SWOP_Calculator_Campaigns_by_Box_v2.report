@@ -31,9 +31,6 @@
         <field>Marketing_SOW__c.Marketing_Projects__r$Value_to_be_paid_in_Current_FY__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Region__c</field>
-    </columns>
-    <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$OblixRegion__c</field>
     </columns>
     <columns>
@@ -42,7 +39,14 @@
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Hub_Summary__c</field>
     </columns>
-    <description>US180</description>
+    <filter>
+        <criteriaItems>
+            <column>Marketing_SOW__c$Financial_Year__c</column>
+            <operator>equals</operator>
+            <value>FY2016,FY2017</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Summary</format>
     <name>SWOP Calculator Campaigns by Box</name>
     <params>
@@ -54,6 +58,6 @@
     <showDetails>true</showDetails>
     <timeFrameFilter>
         <dateColumn>Marketing_SOW__c$CreatedDate</dateColumn>
-        <interval>INTERVAL_CURFY</interval>
+        <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>

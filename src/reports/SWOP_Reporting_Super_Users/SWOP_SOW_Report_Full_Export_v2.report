@@ -114,7 +114,14 @@
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Asset_Deliverables__c</field>
     </columns>
-    <description>US174</description>
+    <filter>
+        <criteriaItems>
+            <column>Marketing_SOW__c$Financial_Year__c</column>
+            <operator>equals</operator>
+            <value>FY2016,FY2017</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Summary</format>
     <name>SWOP SOW Report- Full Export</name>
     <params>

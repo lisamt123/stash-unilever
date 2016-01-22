@@ -33,7 +33,14 @@
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Preview_Date__c</field>
     </columns>
-    <description>US219</description>
+    <filter>
+        <criteriaItems>
+            <column>Marketing_SOW__c$Financial_Year__c</column>
+            <operator>equals</operator>
+            <value>FY2016,FY2017</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
     <format>Tabular</format>
     <name>SWOP Timeline Report</name>
     <params>
@@ -43,6 +50,8 @@
     <reportType>Oblix_SWOP_SOW__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
+    <sortColumn>Marketing_SOW__c$Name</sortColumn>
+    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Marketing_SOW__c$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

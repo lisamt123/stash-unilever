@@ -56,7 +56,7 @@
                                         <th>{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label}</th>
                                         <th>{!$Label.Oblix_Lbl_UIUX_Last_updated}</th>
                                         <th>{!$ObjectType.Marketing_SOW__c.fields.SOW_Status__c.label}</th>
-                                        <th>{!$Label.Oblix_Lbl_UIUX_05_Current}</th>
+                                        <th>Current SOW Total</th>
 
                                     </tr>
                                 </thead>

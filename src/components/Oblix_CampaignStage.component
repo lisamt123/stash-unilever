@@ -14,7 +14,7 @@
 					    	<div  class="campaign_create_agency_hub_split_table_subtitle chevron_top_picklist" >
 						        <apex:repeat value="{!stage_identifier.li_projected_stages}"  var="projected_stage">
 						        	<apex:inputCheckbox value="{!projected_stage.b_is_stage_selected}" styleClass="chevron_top_picklist{!projected_stage.i_stage_number + 1}"  title="{!projected_stage.s_stage_name}" disabled="{!NOT(projected_stage.b_is_stage_selectable)}">
-						        		<apex:actionSupport event="onclick" rerender="panel_project_stage,capmaign_fee_container,swop_top_panel"  action="{!setProjectedStageIdentifier}">
+						        		<apex:actionSupport event="onclick" rerender="panel_project_stage,capmaign_fee_container,swop_top_panel,adjustFeeModalId"  action="{!setProjectedStageIdentifier}">
 						        			<apex:param name="projection_stage" assignTo="{!s_projection_stage}" value="{!projected_stage.s_stage_name}" />
 						        			<apex:param name="projection_checked" assignTo="{!b_projected_checked}" value="{!projected_stage.b_is_stage_selected}" />
 						        		</apex:actionSupport> 

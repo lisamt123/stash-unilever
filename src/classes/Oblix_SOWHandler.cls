@@ -108,15 +108,15 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
     public void andFinally()
     {
         System.debug('Entering FAU_ProgramHandler.andFinally');
-        if(triggerShouldExecute && Trigger.isAfter){
-                delete lstMarketingShareToDelete;
-                insert lstMarketingShare;
-                for(Approval.ProcessSubmitRequest req : lstApprovalReq){
-                    Approval.ProcessResult result = Approval.process(req);
-                    // display if the reqeust was successful
-                    System.debug('Submitted for approval successfully: '+result.isSuccess());
-                }
-        }
+        //if(triggerShouldExecute && Trigger.isAfter){
+                //delete lstMarketingShareToDelete;
+                //insert lstMarketingShare;
+                //for(Approval.ProcessSubmitRequest req : lstApprovalReq){
+                //    Approval.ProcessResult result = Approval.process(req);
+                //    // display if the reqeust was successful
+                    //System.debug('Submitted for approval successfully: '+result.isSuccess());
+                //}
+        //}
         System.debug('Exiting Oblix_ProjectHandler.andFinally');
     }
 }

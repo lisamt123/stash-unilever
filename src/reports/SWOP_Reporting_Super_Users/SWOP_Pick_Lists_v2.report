@@ -9,7 +9,6 @@
     <columns>
         <field>Asset_Scoring__c$Description__c</field>
     </columns>
-    <description>US229 (No.19) Super User Export</description>
     <format>Tabular</format>
     <name>SWOP Pick Lists</name>
     <params>

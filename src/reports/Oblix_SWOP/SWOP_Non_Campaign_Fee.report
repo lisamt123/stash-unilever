@@ -29,7 +29,6 @@
     <columns>
         <field>Marketing_SOW__c$Percentage_of_Total_Fee_Non_Campaign__c</field>
     </columns>
-    <description>US179</description>
     <format>Summary</format>
     <name>SWOP % Non Campaign Fee</name>
     <params>

@@ -30,6 +30,14 @@ public with sharing virtual class Oblix_SWOPparentController {
         return Oblix_Utils.exitSwop();
     }
 
+    /*******************************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-17
+    * @description  top link on the page goes to ReportsHome
+    ********************************************************************************/
+    public Pagereference goToReportsHome(){
+        return Oblix_Utils.goToReportsHome();
+    }
 
     /*******************************************************************************
     * @author       Shahin Movahedi
