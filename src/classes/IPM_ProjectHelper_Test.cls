@@ -278,8 +278,6 @@ public with sharing class IPM_ProjectHelper_Test
      {
         List<User> users = [Select Id,Email from User where LastName = 'GLOBAL_PL' limit 1];        
         User globalUser = null;
-        user newuserTpl=null;
-        newuserTpl=IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
         globalUser = users[0];
                
         // Create Regional Projects.

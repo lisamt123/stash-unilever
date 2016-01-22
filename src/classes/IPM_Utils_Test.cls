@@ -5,25 +5,25 @@
 @isTest
 private class IPM_Utils_Test {
     
-    public static IPM_Project__c project;// Project object initialization
-    public static list<MDO_Geography__c> geographyList;
-    public static list<MDO_Geography__c> geographyDetailList;
+    private static IPM_Project__c project;// Project object initialization
+    private static list<MDO_Geography__c> geographyList;
+    private static list<MDO_Geography__c> geographyDetailList;
     private static list<String> countryNameList =  new list<String>{'Chile','New Zealand'};
-    public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
-    public static List<IPM_Financial__c> finList=new List<IPM_Financial__c>();
-    public static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
-    public static IPM_Project_Rollout__c projRoll;
-    public static List<IPM_Country__c> countryTest = new List<IPM_Country__c>();
-    public static User stdUserForAssort;
-    public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
-    public static IPM_Financial_Year__c finYear=new IPM_Financial_Year__c();
+    private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
+    private static List<IPM_Financial__c> finList=new List<IPM_Financial__c>();
+    private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
+    private static IPM_Project_Rollout__c projRoll;
+    private static List<IPM_Country__c> countryTest = new List<IPM_Country__c>();
+    private static User stdUserForAssort;
+    private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
+    private static IPM_Financial_Year__c finYear=new IPM_Financial_Year__c();
     private static final string TEST_COMMENTS_STR='TestComments1';
     private static string LOCAL_STR='Local';
     private static string REGIONAL_STR='Regional';
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static User globalUser;
-    public static IPM_Project_Document_Section_Content__c projDocSecCon;
-    public static String CONSOLIDATED_FINANCIAL_RECORDTYPE;
+    private static IPM_Project_Document_Section_Content__c projDocSecCon;
+    private static String CONSOLIDATED_FINANCIAL_RECORDTYPE;
     private static IPM_Company_Card__c globalCompanyCard=new IPM_Company_Card__c();
     private static Map<Id,IPM_Project__c> childProjMap=new Map<Id,IPM_Project__c>();
     private static Map<Id,Map<Id,IPM_Project__c>> projectToChildMap=new Map<Id,Map<Id,IPM_Project__c>>();
@@ -150,7 +150,7 @@ private class IPM_Utils_Test {
               system.assertEquals(country.IPM_Local_Project__c,projectListObj[2].Id);
           }
           
-          for(IPM_Project__c projectObj : projectListObj) {
+          for(IPM_Project__c projectObj : projectListObj) { 
                 finList = projectObj.IPM_Financials_Consolidated__r;
           }
             
