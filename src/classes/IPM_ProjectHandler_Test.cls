@@ -69,6 +69,7 @@ private class IPM_ProjectHandler_Test {
         project.IPM_Target_Launch_Dates__c = System.today()+10;
         project.IPM_Category_Text__c = 'Laundry';
         project.IPM_Current_Document_Status__c = IPM_ConstantUtils.STATUS_NOT_STARTED;
+        project.Sustainability_Period__c = '3';
         insert project;
         system.assert(project.Name!=null);
         
@@ -78,6 +79,7 @@ private class IPM_ProjectHandler_Test {
         milestone.IPM_Name__c = STRING_MS_BET_FirstRelease;
         milestone.IPM_Type_of_Milestone__c = STRING_BET;
         milestone.IPM_Due_Date__c = project.IPM_Target_Launch_Dates__c;
+        milestone.ExternalField__c = project.Name+ STRING_MS_BET_FirstRelease;
         insert milestone;
         
         project.Name = 'TestCommentsUpdated';
@@ -283,7 +285,29 @@ private class IPM_ProjectHandler_Test {
             System.assert(projectHandler != null);
             Test.stopTest();              
         }
+    }
+    /***********************************
+      Description of the purpose of the method. 
+      @name: testProjectUpdation
+      @Description: test updation of project
+      @param: none
+      @return: none
+      @throws: none
+    ***********************************/
+    static testMethod void testProjectUpdation(){ 
         
+        User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];
+        System.runAs(globalUser){
+            projectList = [SELECT Id, Name, IPM_Project_Name__c FROM IPM_Project__c Limit 1000];
+            Test.startTest();
+                for(IPM_Project__c proj : projectList){
+                    proj.IPM_Strategic_Intent__c = 'testNew';
+                }
+                update projectList;
+            IPM_Project__c updatedProj= [Select id,EcoDesign_Sync_Status__c,IPM_Strategic_Intent__c from IPM_Project__c Limit 1][0];
+            System.assertEquals('testNew',updatedProj.IPM_Strategic_Intent__c );  
+            Test.stopTest();              
+        }
     }
     
     /*Description of the purpose of the method. 
