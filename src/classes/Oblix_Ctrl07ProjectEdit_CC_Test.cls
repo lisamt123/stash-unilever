@@ -1,7 +1,7 @@
 @isTest
 private class Oblix_Ctrl07ProjectEdit_CC_Test {
 
-    private static final String NOT_NULL_MESSAGE = 'Page Reference should not be null';
+    //private static final String NOT_NULL_MESSAGE = 'Page Reference should not be null';
     private static final String PROJECT_TXT = 'Project';
     private static final String PROJECTID_TXT = 'projectId';
 

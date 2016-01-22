@@ -8,11 +8,12 @@
     <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
     <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignAddAsset.js')}" />
     <script type="text/javascript" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/jquery.sticky.js')}"></script>
-   <!--
+   <!--  
     <script>
         var updateAsset1 = function(btn, selectioncounter) {
             blockme();
             var button = $(btn);
+            console.dir('###button : '+button.html());
             var assetId = button.attr('data-asset-id');
             var options = button.parent().find('.subCatPicklist');
             
@@ -37,8 +38,8 @@
                 refreshAsset();
             });
         }
-        
-        
+        </script>
+      
            
            var openAsset = function (){
                 var assetId = window.location.search.split('&')[1].split('=')[1];
@@ -121,7 +122,7 @@
               });
                   
               }  
-            
+           
       <script>
               //Edit Asset : 
           
@@ -211,7 +212,7 @@
                  
                   
               }   
-    </script>
+   
     
     
     <script>
@@ -551,6 +552,7 @@
                     <img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-green-down-right.png')}" width="96" height="77" alt="Basket arrow" />
                 </div>
             </div>
+            <apex:outputPanel id="rowID">
             <div class="row">
                 <div class="col-lg-9 confirm_assets_accordion">
                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -588,7 +590,7 @@
                                                             <ul class="nav nav-pills nav-stacked">
                                                                 <apex:variable var="count_opt" value="{!1}" />
                                                                 <apex:repeat value="{!mapSubCategOption[subCat]}" var="opt">
-                                                                    <li class="accordion_body_options {!if(count_opt == 1,'active','')}"><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}" title="Score {!opt}" onclick="if($('.hideOptionAsset').is(':visible')) ReInitializeInstanceAF('{!subCat}');" data-toggle="tab"><strong> {!$Label.Oblix_lbl_UIUX_Option} {!count_opt} : </strong> {!mapSubCategOptionDescription[subCat+opt]}</a> </li>
+                                                                    <li class="accordion_body_options {!if(count_opt == 1,'active','')}" id="option {!count_opt}"><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}" title="Score {!opt}" onclick="if($('.hideOptionAsset').is(':visible')) ReInitializeInstanceAF('{!subCat}');" data-toggle="tab"><strong> {!$Label.Oblix_lbl_UIUX_Option} {!count_opt} : </strong> {!mapSubCategOptionDescription[subCat+opt]}</a> </li>
                                                                     <apex:variable var="count_opt" value="{!count_opt + 1}" />
                                                                 </apex:repeat>
                                                             </ul>
@@ -638,7 +640,8 @@
                                                                                                 <apex:param assignTo="{!complexity}" name="complexity" value="{!opt}" />
                                                                                                 <apex:param assignTo="{!selectionCountvar}" name="selectionCountvar" value="{!selectionCount}" />
                                                                                             </apex:commandButton>
-                                                                                            <input value="UPDATE" onclick="updateAsset(this, {!selectionCount}); if(setMendatory($(this))) blockme(); return false;" class="btn btn-primary hide_button" style="width:70px" type="submit" /><!--return false;reRender="assetPart,campaignFeeId,estimateId,Oblix_card" -->
+                                                                                           <!-- <apex:commandButton value="UPDATE" onclick="updateAsset(this, {!selectionCount}); if(setMendatory($(this))) blockme(); return false;" styleclass="btn btn-primary hide_button" style="width:70px" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card"/>-->
+                                                                                            <input value="UPDATE" onclick="updateAsset(this, {!selectionCount}); if(setMendatory($(this))) blockme(); return false;" class="btn btn-primary hide_button" style="width:70px" type="submit"  />  <!--return false;reRender="assetPart,campaignFeeId,estimateId,Oblix_card" -->
                                                                                         </div>
 
                                                                                     </apex:actionRegion>
@@ -663,7 +666,7 @@
                                            
                                             <!--apex:variable var="selectionCount" value="{!selectionCount + 1}" /-->
                                         </div>
-                                          </apex:outputPanel>
+                                     </apex:outputPanel>
                                         <!--                                    tab body end-->
                                         <!--                                    panel body end-->
                                     </div>
@@ -691,7 +694,7 @@
                                                <div class="Oblix_button_table_align">
                                                 <apex:commandButton styleClass="removeAssetCss" style="width:12px;height:12px"  onclick="removeAsset('{!asset.Id}'); return false"/> <span>{!asset.Asset_Title__c}</span><!--value="{!$Label.Oblix_lbl_UIUX_Delete}" -->
                                     <!--<apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" onclick="editAset(this, '{!asset.Id}); return false;"/>-->
-                                    <!--<input type="button" value="{!$Label.Oblix_lbl_UIUX_Edit}" onclick="editAsset(this, '{!asset.Id}')" class="btn" />
+                                    <!--<input type="button" value="{!$Label.Oblix_lbl_UIUX_Edit}" onclick="editAsset1(this, '{!asset.Id}')" class="btn" />
                                                 </div>
                                             </div>
                                         </div>
@@ -740,13 +743,15 @@
                             <div class="asset_shopping_basket_btn">
                                 <apex:commandButton styleClass="btn btn-primary btn-xs btn_check btn_finish_basket" value="FINISH WITH BASKET" action="{!finishBasket}"/>
                                 <!--button type="button" class="btn btn-primary btn-xs"><img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/check.png')}" width="12" height="12" />
-                                </button-->
+                                </button
+                                -->
                             </div>
-                            <apex:actionFunction action="{!refresh}" name="refreshAsset" reRender="assetPart,campaignFeeId,estimateId,Oblix_card" oncomplete="$.unblockUI()" />
+                            <apex:actionFunction action="{!refresh}" name="refreshAsset" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card" oncomplete="$.unblockUI()" />
                         </div>
                     </apex:outputPanel>
                 </div>
             </div>
+            </apex:outputPanel><!--end div  class row -->
         </div>
     </apex:form>
 </apex:page>
