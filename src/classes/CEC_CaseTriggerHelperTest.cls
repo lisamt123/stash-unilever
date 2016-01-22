@@ -18,7 +18,7 @@ public with sharing class CEC_CaseTriggerHelperTest {
         //System.debug('Role' + r.name);
         User u = new User(LastName = 'Testing', 
                           Username = 'cectestuser@test00DE0000000bbLj.org', 
-                          Email = 'cectestuser@test00DE0000000bbLj.org', 
+                          Email = 'testuser@test.com', 
                           Alias = 'utest', 
                           TimeZoneSidKey = 'Europe/London', 
                           LocaleSidKey = 'en_GB', 
@@ -390,6 +390,9 @@ public with sharing class CEC_CaseTriggerHelperTest {
             mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product', brand__c= 'Dove', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo', Consumer_Product_Descriptor_no_size__c ='Dove');
             insert productObj;  
             
+            cmm = new CEC_Case_Market_Mapping__c(Name='TestCMM');
+            insert cmm;
+            
             Test.startTest();
             
             case case2 = new Case();
@@ -405,6 +408,9 @@ public with sharing class CEC_CaseTriggerHelperTest {
             insert case2;
             
             case2.Status = 'Closed';
+            case2.Country__c = cmm.Id;
+            case2.Subject ='test';
+            
             update case2;
             
             
@@ -422,6 +428,8 @@ public with sharing class CEC_CaseTriggerHelperTest {
             List<Case> caseList = new List<Case>();
             List<Id> caseLstIds = new List<Id>();
                  
+            newcase.Country__c = cmm.Id;
+            newcase.Subject ='test';
             newcase.Status= 'Closed';
             update newcase;
             

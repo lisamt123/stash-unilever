@@ -16,6 +16,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Alert_Chatter_User_Id__c</fullName>
+        <description>CEC : Salesforce User Id to post the chatter feed in the group</description>
+        <externalId>false</externalId>
+        <label>Alert Chatter User Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Cosmetovigilence_CaseId_Reference__c</fullName>
         <description>CEC: Survey field reference that will store the Case Id from the Case record e.g. q55 in a url of  http://survey.clicktools.com/go?iv=26bnjdwb56aj0&amp;q55=500c0000004P3Vz.</description>
         <externalId>false</externalId>
@@ -153,6 +164,17 @@
         <externalId>false</externalId>
         <label>Safety Alert Email Id</label>
         <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Survey_URL__c</fullName>
+        <description>CEC - To store the Case Survey URL</description>
+        <externalId>false</externalId>
+        <label>Survey URL</label>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

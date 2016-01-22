@@ -300,6 +300,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>CSAT_Delay__c</fullName>
+        <externalId>false</externalId>
+        <formula>DATEVALUE( ClosedDate + Country__r.CSAT_Delay__c )</formula>
+        <label>CSAT Delay</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>Case_Brand_Mapping__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <description>CEC: Lookup to the brand mapping table to identify template and case parameters</description>
@@ -416,7 +426,7 @@ ISO Country Dependency Medium Name</description>
     </fields>
     <fields>
         <fullName>Claim_Status__c</fullName>
-        <description>CEC : To display the status of the Claim for the case</description>
+        <description>CEC : To hold the status of the claim.</description>
         <externalId>false</externalId>
         <label>Claim Status</label>
         <picklist>
@@ -765,6 +775,17 @@ ISO Country Dependency Medium Name</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>ExecuteCaseSurveyWorkflow__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: this is set to true, based on conditions, via a workflow when case is closed.</description>
+        <externalId>false</externalId>
+        <label>ExecuteCaseSurveyWorkflow</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Expiry_Date__c</fullName>
         <description>CEC: Used for Sapient integration</description>
         <externalId>false</externalId>
@@ -853,6 +874,30 @@ ISO Country Dependency Medium Name</description>
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Homecare__c</fullName>
+        <description>CEC: Homecare Cosmetovigilance survey link</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;http://survey.clicktools.com/go?iv=&quot;
+&amp; $Setup.cec_Org_Settings__c.Homecare_Questionnaire_Id__c
+&amp; &quot;&amp;q1=&quot; &amp; Id
+&amp; &quot;&amp;q2=&quot; &amp; TEXT(CreatedDate)
+&amp; &quot;&amp;q3=&quot; &amp; Text(Country_Name__c)
+&amp; &quot;&amp;q6=&quot; &amp; L2_Product_Category__c
+&amp; &quot;&amp;q7=&quot; &amp; L7_Product_Category__c
+&amp; &quot;&amp;q8=&quot; &amp; Case_Brand__c
+&amp; &quot;&amp;q9=&quot; &amp; CEC_Product_Reporting_Name__c
+&amp; &quot;&amp;q10=&quot; &amp; Product_UPC__c
+&amp; &quot;&amp;q11=&quot; &amp; Production_Code__c
+&amp; &quot;&amp;q12=&quot; &amp; TEXT(Origin), 
+&quot;Homecare Cosmetovigilence&quot;)</formula>
+        <label>Homecare</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Inconsistent_Case__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -862,6 +907,30 @@ ISO Country Dependency Medium Name</description>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Ingestion__c</fullName>
+        <description>CEC : Ingestion CosmetoVigilance survey link</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;http://survey.clicktools.com/go?iv=&quot;
+&amp; $Setup.cec_Org_Settings__c.Ingestion_Questionnaire_Id__c
+&amp; &quot;&amp;q1=&quot; &amp; Id
+&amp; &quot;&amp;q2=&quot; &amp; TEXT(CreatedDate)
+&amp; &quot;&amp;q3=&quot; &amp; Text(Country_Name__c)
+&amp; &quot;&amp;q6=&quot; &amp; L2_Product_Category__c
+&amp; &quot;&amp;q7=&quot; &amp; L7_Product_Category__c
+&amp; &quot;&amp;q8=&quot; &amp; Case_Brand__c
+&amp; &quot;&amp;q9=&quot; &amp; CEC_Product_Reporting_Name__c
+&amp; &quot;&amp;q10=&quot; &amp; Product_UPC__c
+&amp; &quot;&amp;q11=&quot; &amp; Production_Code__c
+&amp; &quot;&amp;q12=&quot; &amp; TEXT(Origin), 
+&quot;Ingestion Cosmetovigilence&quot;)</formula>
+        <label>Ingestion</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IsClosedOnCreate</fullName>
@@ -1378,6 +1447,32 @@ ISO Country Dependency Medium Name</description>
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>Personal_Care__c</fullName>
+        <description>CEC : Personal Care CosmetoVigilance Survey link</description>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&quot;http://survey.clicktools.com/go?iv=&quot; 
+&amp; $Setup.cec_Org_Settings__c.Cosmetovigilence_Questionnaire_Id__c
+&amp; &quot;&amp;q1=&quot; &amp; Id
+&amp; &quot;&amp;q2=&quot; &amp; CaseNumber
+&amp; &quot;&amp;q3=&quot; &amp; TEXT(CreatedDate)
+&amp; &quot;&amp;q4=&quot; &amp; Text(Country_Name__c)
+&amp; &quot;&amp;q7=&quot; &amp; L2_Product_Category__c
+&amp; &quot;&amp;q8=&quot; &amp; L7_Product_Category__c
+&amp; &quot;&amp;q9=&quot; &amp; Case_Brand__c
+&amp; &quot;&amp;q10=&quot; &amp; CEC_Product_Reporting_Name__c
+&amp; &quot;&amp;q11=&quot; &amp; Product_UPC__c
+&amp; &quot;&amp;q12=&quot; &amp; Production_Code__c
+&amp; &quot;&amp;q13=&quot; &amp; TEXT(Origin)
+&amp; &quot;&amp;q14=&quot; &amp; Global_Reason_L5_desc__c,
+&quot;Personal Care Cosmetovigilence&quot;)</formula>
+        <label>Personal Care</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Priority</fullName>
         <picklist>
             <picklistValues>
@@ -1625,7 +1720,6 @@ ISO Country Dependency Medium Name</description>
         <fullName>Reason_Code_Retention_Days__c</fullName>
         <externalId>false</externalId>
         <formula>Reason_Code__r.Retention_Days__c</formula>
-        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Reason Code Retention Days</label>
         <precision>18</precision>
         <required>false</required>
@@ -2005,6 +2099,19 @@ ISO Country Dependency Medium Name</description>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Unilever_Cluster__c</fullName>
+        <description>CEC: Displays the cluster field value from the Unilever geography</description>
+        <externalId>false</externalId>
+        <formula>Country__r.Country__r.Unilever_Cluster__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Unilever Cluster</label>
+        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -3031,15 +3138,6 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <filterScope>Queue</filterScope>
         <label>CEC North America Claims Queue</label>
         <queue>CEC_North_America_Claims_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>CEC_North_America_Escalation_Queue_Case</fullName>
-        <filterScope>Queue</filterScope>
-        <label>CEC North America Escalation Queue</label>
-        <queue>CEC_North_America_Escalation_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -4391,11 +4489,25 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
+        <fullName>CEC_Country_and_Verbatim_fields</fullName>
+        <active>true</active>
+        <description>CEC : To check country and Subject fields are mandatory</description>
+        <errorConditionFormula>AND(  AccountId !=Null, PRIORVALUE(AccountId)= AccountId, OR( Subject =Null, Country__c =Null),NOT( ISPICKVAL( Status , &apos;New&apos;)), PRIORVALUE( OwnerId )= OwnerId)</errorConditionFormula>
+        <errorMessage>Country and Verbatim is mandatory for this case.</errorMessage>
+    </validationRules>
+    <validationRules>
         <fullName>CEC_RetentionDetailCheck</fullName>
         <active>true</active>
         <description>CEC-Manual override reason</description>
         <errorConditionFormula>AND(  ISBLANK(Manual_Retention_Override__c) , OR(ISPICKVAL( Manual_Override_Reason__c , &apos;1-Legal&apos;),ISPICKVAL( Manual_Override_Reason__c , &apos;2-Customer Request&apos;)))</errorConditionFormula>
         <errorMessage>Please populate the &apos;Manual Retention Override&apos; field.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>CEC_UsedProductPreviouslyCheck</fullName>
+        <active>true</active>
+        <description>CEC - Mandatory check for &apos;Used Product Previously&apos; field.</description>
+        <errorConditionFormula>AND( Case_Market__c = &apos;North America&apos;, ISPICKVAL( Status , &apos;Closed&apos;), CONTAINS( Reason_L1_desc__c , &apos;Complaint&apos;),   ISPICKVAL(Used_Product_Previously__c ,&apos;&apos;) )</errorConditionFormula>
+        <errorMessage>&apos;Used Product Previously&apos; field is mandatory for Complaint cases.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Product_and_Reason_Code_Required</fullName>
@@ -4422,19 +4534,19 @@ False)</errorConditionFormula>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>/**********************************************************************
- Name:  Add Issue Button
- Copyright © 2013  Unilever
+Name: Add Issue Button
+Copyright © 2013 Unilever
 ======================================================================
 ======================================================================
-Purpose:  To create a child case by cloning the existing case                                                
+Purpose: To create a child case by cloning the existing case 
 1. To populate the case fields from the original case
 ======================================================================
 ======================================================================
-History                                                            
--------                                                            
-VERSION  AUTHOR       DATE             DETAIL                  Description
-   1.0 - Vaishnavi       29/01/2015       INITIAL DEVELOPMENT     Add Issue to a case. 
-   
+History 
+------- 
+VERSION AUTHOR DATE DETAIL Description
+1.0 - Vaishnavi 29/01/2015 INITIAL DEVELOPMENT Add Issue to a case. 
+
 ****************************************************************************/
 {!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)}
 {!REQUIRESCRIPT(&quot;/support/console/30.0/integration.js&quot;)}
@@ -4496,34 +4608,36 @@ clonedCaseRecord.UPC_Code_Detail__c=caseRecord.UPC_Code_Detail__c;
 
 sforce.connection.create([clonedCaseRecord],successCreate);
 
+
 /*This method is a call back method on successfully creating a child case. This calls the Tabs refresh method, inorder to have the related child cases in the related list of parent case record.*/
 //after creating
 function successCreate(result) {
+	if(result[0].success == &apos;false&apos;) {
+		alert(result[0].errors.message);
+	} else {
+		caseId = result[0].id;
 
-caseId = result[0].id;
+		if(caseRecord.Store__c != null &amp;&amp; caseRecord.Country__c != null){
 
-if(caseRecord.Store__c != null &amp;&amp; caseRecord.Country__c != null){
- 
- var updateCaseRecord = new sforce.SObject(&quot;Case&quot;);
- updateCaseRecord.Id = caseId;
- updateCaseRecord.Store__c = caseRecord.Store__c;
- sforce.connection.update([updateCaseRecord],successUpdate);
+		var updateCaseRecord = new sforce.SObject(&quot;Case&quot;);
+		updateCaseRecord.Id = caseId;
+		updateCaseRecord.Store__c = caseRecord.Store__c;
+		sforce.connection.update([updateCaseRecord],successUpdate);
 
-}else{
- 
+		}else{
 
- sforce.console.getPrimaryTabIds(refreshPrimaryCase);
- //Refresh finished
 
-}
-
+		sforce.console.getPrimaryTabIds(refreshPrimaryCase);
+		//Refresh finished
+		}
+	}
 }
 
 //after updating
 function successUpdate(result) {
 
- sforce.console.getPrimaryTabIds(refreshPrimaryCase);
- //Refresh finished
+sforce.console.getPrimaryTabIds(refreshPrimaryCase);
+//Refresh finished
 
 }
 

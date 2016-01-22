@@ -1005,6 +1005,10 @@
         <name>Bonus_Annual</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_Account_Site --></label>
+        <name>CEC_Account_Site</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_AlertActionSchedulerName --></label>
         <name>CEC_AlertActionSchedulerName</name>
     </customLabels>
@@ -1033,8 +1037,16 @@
         <name>CEC_CaseAccountPersonDetailsError</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_CaseCountryVerbitimMessage --></label>
+        <name>CEC_CaseCountryVerbitimMessage</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_CaseNumber --></label>
         <name>CEC_CaseNumber</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC CaseRefreshAlertError --></label>
+        <name>CEC_CaseRefreshAlertError</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC_Case_Factory_Survey_Reference --></label>
@@ -1049,6 +1061,10 @@
         <name>CEC_Category</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_ChequeBook_ChequeNo_Already_Added --></label>
+        <name>CEC_ChequeBook_ChequeNo_Already_Added</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_ChequeBook_DetailsMissing --></label>
         <name>CEC_ChequeBook_DetailsMissing</name>
     </customLabels>
@@ -1059,6 +1075,14 @@
     <customLabels>
         <label><!-- CEC_ChequeBook_Input_Fields_Missing --></label>
         <name>CEC_ChequeBook_input_fields_missing</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_City --></label>
+        <name>CEC_City</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ClickHere --></label>
+        <name>CEC_ClickHere</name>
     </customLabels>
     <customLabels>
         <label>Por favor guarde as alterações do caso antes de tentar adicionar um novo consumidor</label>
@@ -1113,6 +1137,14 @@
         <name>CEC_Consumer_Record_Update</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_Country --></label>
+        <name>CEC_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Country_region --></label>
+        <name>CEC_Country_region</name>
+    </customLabels>
+    <customLabels>
         <label>Criar contacto</label>
         <name>CEC_CreateContactDisplay</name>
     </customLabels>
@@ -1147,6 +1179,10 @@
     <customLabels>
         <label>Caso contrário</label>
         <name>CEC_Fulfilment_PostOption_otherwise</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_InvalidChatterGroupName --></label>
+        <name>CEC_InvalidChatterGroupName</name>
     </customLabels>
     <customLabels>
         <label>Ação</label>
@@ -1289,8 +1325,24 @@
         <name>CEC_Street</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_SurveyLink --></label>
+        <name>CEC_SurveyLink</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_SurveyName --></label>
+        <name>CEC_SurveyName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_SurveyResults --></label>
+        <name>CEC_SurveyResults</name>
+    </customLabels>
+    <customLabels>
         <label>Titulo</label>
         <name>CEC_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ValidChatterTemplate --></label>
+        <name>CEC_ValidChatterTemplate</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC_ValidEmailTemplate --></label>
@@ -10334,12 +10386,38 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- CEC_Enclosures --></description>
+        <label><!-- CEC_Enclosures --></label>
+        <name>CEC_Enclosures</name>
+        <sections>
+            <label><!-- Enclosures --></label>
+            <name>Enclosures</name>
+        </sections>
+        <sections>
+            <label><!-- Fulfilment Enclosures --></label>
+            <name>Fulfilment Enclosures</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- CEC Fulfillment &amp; Enclosure --></description>
         <label><!-- CEC Fulfillment &amp; Enclosure --></label>
         <name>CEC_Fulfillment_Enclosure</name>
         <sections>
             <label><!-- Fulfilment --></label>
             <name>Fulfilment</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Cases With/Without Activities --></description>
+        <label><!-- Cases With/Without Activities --></label>
+        <name>Cases_With_Without_Activities</name>
+        <sections>
+            <label><!-- Activities --></label>
+            <name>Activities</name>
+        </sections>
+        <sections>
+            <label><!-- Cases --></label>
+            <name>Cases</name>
         </sections>
     </reportTypes>
     <reportTypes>
@@ -10694,6 +10772,55 @@
         <sections>
             <label><!-- Ideas --></label>
             <name>Ideas</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- JLodge Reports --></description>
+        <label><!-- JLodge Reports --></label>
+        <name>JLodge_Reports</name>
+        <sections>
+            <columns>
+                <label><!--  Brand --></label>
+                <name> Brand</name>
+            </columns>
+            <columns>
+                <label><!-- Case Creator --></label>
+                <name>Case Creator</name>
+            </columns>
+            <columns>
+                <label><!-- Case No --></label>
+                <name>Case No</name>
+            </columns>
+            <columns>
+                <label><!-- Case owner manager --></label>
+                <name>Case owner manager</name>
+            </columns>
+            <columns>
+                <label><!-- Country --></label>
+                <name>Country</name>
+            </columns>
+            <columns>
+                <label><!-- Created Date --></label>
+                <name>Created Date</name>
+            </columns>
+            <columns>
+                <label><!-- Parent Case No. --></label>
+                <name>Parent Case No.</name>
+            </columns>
+            <columns>
+                <label><!-- Product Description inc. pack size --></label>
+                <name>Product Description inc. pack size</name>
+            </columns>
+            <columns>
+                <label><!-- Product UPC Code --></label>
+                <name>Product UPC Code</name>
+            </columns>
+            <columns>
+                <label><!-- Reason short code --></label>
+                <name>Reason short code</name>
+            </columns>
+            <label><!-- Users --></label>
+            <name>Users</name>
         </sections>
     </reportTypes>
     <reportTypes>
