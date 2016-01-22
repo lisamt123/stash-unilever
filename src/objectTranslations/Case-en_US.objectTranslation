@@ -66,6 +66,10 @@
         <name>CPG_Code_Reporting__c</name>
     </fields>
     <fields>
+        <label><!-- CSAT Delay --></label>
+        <name>CSAT_Delay__c</name>
+    </fields>
+    <fields>
         <label><!-- Case Brand Mapping --></label>
         <name>Case_Brand_Mapping__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
@@ -288,6 +292,10 @@
         <name>Escalated_to_Closed_Minutes__c</name>
     </fields>
     <fields>
+        <label><!-- ExecuteCaseSurveyWorkflow --></label>
+        <name>ExecuteCaseSurveyWorkflow__c</name>
+    </fields>
+    <fields>
         <label><!-- Expiry Date --></label>
         <name>Expiry_Date__c</name>
     </fields>
@@ -316,9 +324,17 @@
         <name>HistoricCreatedDate__c</name>
     </fields>
     <fields>
+        <label><!-- Homecare --></label>
+        <name>Homecare__c</name>
+    </fields>
+    <fields>
         <help><!-- Wrong product retrieved or advisor reported incorrectly --></help>
         <label><!-- Inconsistent Case --></label>
         <name>Inconsistent_Case__c</name>
+    </fields>
+    <fields>
+        <label><!-- Ingestion --></label>
+        <name>Ingestion__c</name>
     </fields>
     <fields>
         <label><!-- Is Language Skill Match --></label>
@@ -563,6 +579,10 @@
     <fields>
         <label><!-- PII Warning Check --></label>
         <name>PII_Warning_Check__c</name>
+    </fields>
+    <fields>
+        <label><!-- Personal Care --></label>
+        <name>Personal_Care__c</name>
     </fields>
     <fields>
         <name>Priority</name>
@@ -879,6 +899,10 @@
         <name>UPC_Code_Detail__c</name>
     </fields>
     <fields>
+        <label><!-- Unilever Cluster --></label>
+        <name>Unilever_Cluster__c</name>
+    </fields>
+    <fields>
         <label><!-- Unique ID --></label>
         <name>Unique_ID__c</name>
     </fields>
@@ -1038,6 +1062,10 @@
             <section>Attachments</section>
         </sections>
         <sections>
+            <label><!-- CosmetoVigilance links --></label>
+            <section>CosmetoVigilance links</section>
+        </sections>
+        <sections>
             <label><!-- Issue Information --></label>
             <section>Issue Information</section>
         </sections>
@@ -1092,8 +1120,16 @@
         <name>Spam</name>
     </recordTypes>
     <validationRules>
+        <errorMessage><!-- Country and Verbatim is mandatory for this case. --></errorMessage>
+        <name>CEC_Country_and_Verbatim_fields</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- Please populate the &apos;Manual Retention Override&apos; field. --></errorMessage>
         <name>CEC_RetentionDetailCheck</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &apos;Used Product Previously&apos; field is mandatory for Complaint cases. --></errorMessage>
+        <name>CEC_UsedProductPreviouslyCheck</name>
     </validationRules>
     <validationRules>
         <errorMessage><!-- You Must Select a Product Code &amp; Reason code --></errorMessage>

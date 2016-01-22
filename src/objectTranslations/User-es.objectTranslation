@@ -386,6 +386,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Letter Quality Check Percentage --></label>
+        <name>Letter_Quality_Check_Percentage__c</name>
+    </fields>
+    <fields>
         <help><!-- Your Unilever MCO. This field is automatically populated/updated for Unilever users each week. --></help>
         <label><!-- MCO --></label>
         <name>MCO__c</name>

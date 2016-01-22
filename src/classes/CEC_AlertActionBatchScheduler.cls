@@ -17,10 +17,10 @@ global class CEC_AlertActionBatchScheduler implements Database.Batchable<sObject
     
     String query;
 
-    CEC_AlertActionHelper alertActionHelper;
+    CEC_BatchAlertActionHelper alertActionHelper;
     
     global CEC_AlertActionBatchScheduler() {
-        alertActionHelper = new CEC_AlertActionHelper();
+        alertActionHelper = new CEC_BatchAlertActionHelper();
     }
 
     // Mandatory method to be implemented for the Schedulable interface implementation
@@ -30,7 +30,7 @@ global class CEC_AlertActionBatchScheduler implements Database.Batchable<sObject
             CEC_AlertActionBatchScheduler alertActionBatch = new CEC_AlertActionBatchScheduler();
             database.executebatch(alertActionBatch);
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN SCHEDULING THE CEC ALERT ACTION BATCH APEX JOB *** \n \n Details :: ' + e.getMessage();
+            String msgBodyStr = '*** ERROR IN SCHEDULING THE CEC ALERT ACTION BATCH APEX JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
             CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Scheduling Apex Job Failed');
             System.debug(msgBodyStr);
         }
@@ -38,16 +38,16 @@ global class CEC_AlertActionBatchScheduler implements Database.Batchable<sObject
     
     // Mandatory method to be implemented for the batchable interface implementation.
     global Database.QueryLocator start(Database.BatchableContext BC) {
-        query = 'SELECT Id, Current_Threshold__c, Alert_Threshold__c, Alert_Rule_Id__c, Name, Product_No_Size__c, L5_Reason_Code__c, Trigger_Email__c FROM cec_Alert_Tracker__c WHERE Trigger_Email__c = true';
+        query = 'SELECT Id, Current_Threshold__c, Alert_Threshold__c, Alert_Rule_Id__c, Name, Product_No_Size__c, L5_Reason_Code__c, Trigger_Batch__c FROM cec_Alert_Tracker__c WHERE Trigger_Batch__c = true';
         return Database.getQueryLocator(query);
     }
 
     // Mandatory method to be implemented for the batchable interface implementation to process the email alerts.
     global void execute(Database.BatchableContext BC, List<sObject> scope) {
         try {
-            alertActionHelper.sendEmailAlerts(scope);  
+            alertActionHelper.executeAction(scope);  
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN PROCESSING THE ALERT EMAILS IN THE BATCH JOB *** \n \n Details :: ' + e.getMessage();
+            String msgBodyStr = '*** ERROR IN PROCESSING THE ALERT EMAILS IN THE BATCH JOB *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
             CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Batch Job to send Alert Emails failed');
             System.debug(msgBodyStr);
         }        
@@ -77,7 +77,7 @@ global class CEC_AlertActionBatchScheduler implements Database.Batchable<sObject
             }
               
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN STARTING THE CEC ALERT ACTION SCHEDULER *** \n \n Details :: ' + e.getMessage();
+            String msgBodyStr = '*** ERROR IN STARTING THE CEC ALERT ACTION SCHEDULER *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
             CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Starting the  Apex Job Scheduler Failed');
             System.debug(msgBodyStr);
         }
@@ -95,7 +95,7 @@ global class CEC_AlertActionBatchScheduler implements Database.Batchable<sObject
                 System.abortJob(ct.Id);
             }  
         } catch(Exception e) {
-            String msgBodyStr = '*** ERROR IN STOPING THE CEC ALERT ACTION SCHEDULER *** \n \n Details :: ' + e.getMessage();
+            String msgBodyStr = '*** ERROR IN STOPING THE CEC ALERT ACTION SCHEDULER *** \n \n URL:: ' + URL.getSalesforceBaseUrl().toExternalForm() + '\n \n Details :: ' + e.getMessage();
             CEC_Util.sendNotificationEmail(msgBodyStr, 'CEC Notification : Stoping the  Apex Job Scheduler Failed');
             System.debug(msgBodyStr);
         }

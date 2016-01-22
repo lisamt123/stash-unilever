@@ -208,6 +208,10 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Anonymise check --></label>
+        <name>Anonymise_check__c</name>
+    </fields>
+    <fields>
         <label><!-- Awards --></label>
         <name>Awards__c</name>
     </fields>
@@ -231,6 +235,10 @@
     <fields>
         <label><!-- Company Structure --></label>
         <name>Company_Structure__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Note --></label>
+        <name>Consumer_Note__c</name>
     </fields>
     <fields>
         <label><!-- Financials Currency --></label>
@@ -701,8 +709,24 @@
         <name>D_B_Duns_Number__c</name>
     </fields>
     <fields>
+        <label><!-- Date Anonymized --></label>
+        <name>Date_Anonymized__c</name>
+    </fields>
+    <fields>
         <label><!-- Demandware Customer No --></label>
         <name>Demandware_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Deoleo Opt-in --></label>
+        <name>Deoleo_Opt_in__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Discipline --></label>
@@ -836,6 +860,18 @@
     <fields>
         <label><!-- General Email --></label>
         <name>General_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Gortons Opt-in --></label>
+        <name>Gortons_Opt_in__c</name>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <name>Industry</name>
@@ -1124,6 +1160,22 @@
         <name>Published__c</name>
     </fields>
     <fields>
+        <label><!-- R&amp;B Opt-in --></label>
+        <name>R_B_Opt_in__c</name>
+        <picklistValues>
+            <masterLabel>Brand</masterLabel>
+            <translation><!-- Brand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <name>Rating</name>
         <picklistValues>
             <masterLabel>Cold</masterLabel>
@@ -1216,6 +1268,22 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Sun Opt-In --></label>
+        <name>Sun_Opt_In__c</name>
+        <picklistValues>
+            <masterLabel>Brand</masterLabel>
+            <translation><!-- Brand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Tea Moment of The Day --></label>
         <name>Tea_moment_of_the_day__c</name>
     </fields>
@@ -1303,6 +1371,26 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Unilever Opt-In --></label>
+        <name>Unilever_Opt_In__c</name>
+        <picklistValues>
+            <masterLabel>Brand</masterLabel>
+            <translation><!-- Brand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Neutral</masterLabel>
+            <translation><!-- Neutral --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>No</masterLabel>
+            <translation><!-- No --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Yes</masterLabel>
+            <translation><!-- Yes --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- VIP --></label>
         <name>VIP__c</name>
     </fields>
@@ -1320,6 +1408,10 @@
         <sections>
             <label><!-- Additional Address Information --></label>
             <section>Additional Address Information</section>
+        </sections>
+        <sections>
+            <label><!-- Preferences --></label>
+            <section>Preferences</section>
         </sections>
     </layouts>
     <layouts>

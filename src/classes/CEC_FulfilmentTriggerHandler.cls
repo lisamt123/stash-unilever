@@ -37,12 +37,24 @@ This method is entry point for the actions to be executed before a cec_Fulfilmen
     }
     public void beforeUpdate(List<cec_Fulfilment__c> fulfilmentList, Map<Id, cec_fulfilment__C> fulfilmentOldMap){
         
-      
-                    /* Calling helper to check quality */
-                    CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
-                    if(!fulfilmentList.isEmpty())
-                        fulfilmentHelper.refundApprovalCheck(fulfilmentList,fulfilmentOldMap);
-                    
-                }          
- 
+        
+        /* Calling helper to check quality */
+        CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
+        //if(!fulfilmentList.isEmpty())
+        //Commented for CSC 3135
+        //fulfilmentHelper.refundApprovalCheck(fulfilmentList,fulfilmentOldMap);
+        fulfilmentHelper.deleteFulfilmentEnclosure(fulfilmentList,fulfilmentOldMap);
+        fulfilmentHelper.upsertFulfilmentEnclosure(fulfilmentList,fulfilmentOldMap);
+        
+    }     
+    public void afterInsert(List<cec_Fulfilment__c> fulfilmentList){
+        
+        
+        CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
+        if(!fulfilmentList.isEmpty())
+            fulfilmentHelper.insertFulfilmentEnclosure(fulfilmentList);
+        
+        
+    }    
+    
 }

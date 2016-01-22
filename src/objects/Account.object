@@ -381,6 +381,16 @@
         <trackHistory>false</trackHistory>
     </fields>
     <fields>
+        <fullName>Anonymise_check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC Anonymise check is used to pick up accounts for nullfying the data based on retention date</description>
+        <externalId>false</externalId>
+        <label>Anonymise check</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>Awards__c</fullName>
         <externalId>false</externalId>
         <label>Awards</label>
@@ -448,6 +458,19 @@
         <trackHistory>false</trackHistory>
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Consumer_Note__c</fullName>
+        <description>CEC: Displays images based on if Contact is frequent caller and/or a VIP</description>
+        <externalId>false</externalId>
+        <formula>IF( VIP__c, IMAGE(&apos;/resource/CEC_VIP_icon&apos;,&apos;VIP&apos;,20,20), NULL)&amp;&apos;  &apos;&amp;
+IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/CEC_FrequentCustomer_icon&apos;,&apos;Frequent&apos;,20,20), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Consumer Note</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Currency__c</fullName>
@@ -933,6 +956,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Date_Anonymized__c</fullName>
+        <description>CEC - Date Anonymized used to capture the actual execution time and date of the anonymisation process.</description>
+        <externalId>false</externalId>
+        <label>Date Anonymized</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>DateTime</type>
+    </fields>
+    <fields>
         <fullName>Demandware_ID__c</fullName>
         <description>TO: Unique identifier of Demandware Customer Id</description>
         <externalId>true</externalId>
@@ -943,6 +976,26 @@
         <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Deoleo_Opt_in__c</fullName>
+        <description>CEC - Opt-In requirements for the consumer</description>
+        <externalId>false</externalId>
+        <label>Deoleo Opt-in</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Description</fullName>
@@ -1120,6 +1173,26 @@
         <trackHistory>false</trackHistory>
         <type>Email</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Gortons_Opt_in__c</fullName>
+        <description>CEC - Opt-In requirements for the consumer</description>
+        <externalId>false</externalId>
+        <label>Gortons Opt-in</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>Industry</fullName>
@@ -1736,6 +1809,30 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>R_B_Opt_in__c</fullName>
+        <description>CEC - Opt-In requirements for the consumer</description>
+        <externalId>false</externalId>
+        <label>R&amp;B Opt-in</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Rating</fullName>
         <picklist>
             <picklistValues>
@@ -1922,6 +2019,30 @@
         <type>Picklist</type>
     </fields>
     <fields>
+        <fullName>Sun_Opt_In__c</fullName>
+        <description>CEC - Opt-In requirements for the consumer</description>
+        <externalId>false</externalId>
+        <label>Sun Opt-In</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Tea_moment_of_the_day__c</fullName>
         <description>TO: Tea moment of the day</description>
         <externalId>false</externalId>
@@ -2048,6 +2169,34 @@
             </picklistValues>
             <picklistValues>
                 <fullName>UL Careline</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Unilever_Opt_In__c</fullName>
+        <description>CEC - Opt-In requirements for the consumer</description>
+        <externalId>false</externalId>
+        <label>Unilever Opt-In</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Yes</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>No</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Brand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Neutral</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>

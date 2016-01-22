@@ -628,6 +628,17 @@
         <visibleLines>4</visibleLines>
     </fields>
     <fields>
+        <fullName>Letter_Quality_Check_Percentage__c</fullName>
+        <description>CEC Letter Quality Check Percentage is used to assign quality percentages for advisor&apos;s which define what percentage of their thunderhead letters get send for quality check.</description>
+        <externalId>false</externalId>
+        <label>Letter Quality Check Percentage</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Percent</type>
+    </fields>
+    <fields>
         <fullName>MCO__c</fullName>
         <description>Unilever MCO imported from ADAM field: unileverMCO</description>
         <externalId>false</externalId>

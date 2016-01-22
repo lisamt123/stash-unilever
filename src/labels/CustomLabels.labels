@@ -1762,6 +1762,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Bonus Annual</value>
     </labels>
     <labels>
+        <fullName>CEC_Account_Site</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Account_Site</shortDescription>
+        <value>Account Site</value>
+    </labels>
+    <labels>
         <fullName>CEC_AlertActionSchedulerName</fullName>
         <categories>CEC: Label</categories>
         <language>en_US</language>
@@ -1818,12 +1826,28 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>One of the Account value MailingStreet/MailingCity/MailingState/MailingCountry/MailingPostalCode should be available for creating the Fulfilment.</value>
     </labels>
     <labels>
+        <fullName>CEC_CaseCountryVerbitimMessage</fullName>
+        <categories>CEC:CaseErrorMsg</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_CaseCountryVerbitimMessage</shortDescription>
+        <value>Country and Verbatim is mandatory for this case</value>
+    </labels>
+    <labels>
         <fullName>CEC_CaseNumber</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_CaseNumber</shortDescription>
         <value>Case#</value>
+    </labels>
+    <labels>
+        <fullName>CEC_CaseRefreshAlertError</fullName>
+        <categories>CEC:Case_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC CaseRefreshAlertError</shortDescription>
+        <value>Please save changes to your case record and check the \&apos;Case Action\&apos; tab for Surveys</value>
     </labels>
     <labels>
         <fullName>CEC_Case_Factory_Survey_Reference</fullName>
@@ -1849,6 +1873,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Category</value>
     </labels>
     <labels>
+        <fullName>CEC_ChequeBook_ChequeNo_Already_Added</fullName>
+        <categories>CEC:ChequeBook_Details_Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ChequeBook_ChequeNo_Already_Added</shortDescription>
+        <value>Cheque number has already been added to the fulfilment</value>
+    </labels>
+    <labels>
         <fullName>CEC_ChequeBook_DetailsMissing</fullName>
         <categories>CEC:ChequeBook_Details_Error</categories>
         <language>en_US</language>
@@ -1871,6 +1903,22 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_ChequeBook_Input_Fields_Missing</shortDescription>
         <value>Either Brand, Country or Product Category information is missing.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_City</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_City</shortDescription>
+        <value>City</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ClickHere</fullName>
+        <categories>CEC: Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ClickHere</shortDescription>
+        <value>Click Here!</value>
     </labels>
     <labels>
         <fullName>CEC_Console_Message1</fullName>
@@ -1977,6 +2025,22 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Update action cannot be performed. Consumer record is already associated with the case record.</value>
     </labels>
     <labels>
+        <fullName>CEC_Country</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Country_region</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Country_region</shortDescription>
+        <value>Country/region</value>
+    </labels>
+    <labels>
         <fullName>CEC_CreateContactDisplay</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -2045,6 +2109,13 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_Fulfilment_PostOption_otherwise</shortDescription>
         <value>otherwise</value>
+    </labels>
+    <labels>
+        <fullName>CEC_InvalidChatterGroupName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_InvalidChatterGroupName</shortDescription>
+        <value>Invalid Chatter Group Name :</value>
     </labels>
     <labels>
         <fullName>CEC_Label_Action</fullName>
@@ -2323,6 +2394,30 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Street</value>
     </labels>
     <labels>
+        <fullName>CEC_SurveyLink</fullName>
+        <categories>CEC: Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SurveyLink</shortDescription>
+        <value>Survey Link</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SurveyName</fullName>
+        <categories>CEC: Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SurveyName</shortDescription>
+        <value>Survey Name</value>
+    </labels>
+    <labels>
+        <fullName>CEC_SurveyResults</fullName>
+        <categories>CEC: Label</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_SurveyResults</shortDescription>
+        <value>Survey Results</value>
+    </labels>
+    <labels>
         <fullName>CEC_Title</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -2331,11 +2426,20 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Title</value>
     </labels>
     <labels>
+        <fullName>CEC_ValidChatterTemplate</fullName>
+        <categories>CEC : Error</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ValidChatterTemplate</shortDescription>
+        <value>Invalid Chatter Template Name :</value>
+    </labels>
+    <labels>
         <fullName>CEC_ValidEmailTemplate</fullName>
+        <categories>CEC : Error</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_ValidEmailTemplate</shortDescription>
-        <value>Please enter a valid Email Template Name.</value>
+        <value>Invalid Email Template Name :</value>
     </labels>
     <labels>
         <fullName>CEC_isFormKnown</fullName>

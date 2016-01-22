@@ -58,7 +58,7 @@
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Active__c</fullName>
-        <defaultValue>false</defaultValue>
+        <defaultValue>true</defaultValue>
         <externalId>false</externalId>
         <label>Active</label>
         <trackTrending>false</trackTrending>
@@ -238,6 +238,10 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Poland</fullName>
                 <default>false</default>
             </picklistValues>
@@ -247,6 +251,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Spain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sri Lanka</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -378,6 +386,15 @@
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>X30_Days_Limit__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC : This checkbox will be used to filter Alert Tracker Items based on the  Roll-up summary field on the Alert tracker</description>
+        <externalId>false</externalId>
+        <label>30 Days Limit</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <label>Alert Rule</label>
     <listViews>

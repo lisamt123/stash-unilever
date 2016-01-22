@@ -220,10 +220,35 @@
                 <fullName>United Kingdom</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>United States</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Enclosure_Quantity__c</fullName>
+        <externalId>false</externalId>
+        <formula>Total_Inventory_Quantity__c  -  Total_Used_Quantity__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Enclosure Quantity</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>FileName__c</fullName>
@@ -266,6 +291,28 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Total_Inventory_Quantity__c</fullName>
+        <description>CEC this will hold the number of Total Inventory Quantity.(Roll-up Summary on Enclosure Inventory(Sum of Quantity)</description>
+        <externalId>false</externalId>
+        <label>Total Inventory Quantity</label>
+        <summarizedField>CEC_Enclosure_Inventory__c.Quantity__c</summarizedField>
+        <summaryForeignKey>CEC_Enclosure_Inventory__c.Enclosure_Id__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
+    </fields>
+    <fields>
+        <fullName>Total_Used_Quantity__c</fullName>
+        <description>CEC_Roll-up Summary on Fulfilment Enclosure(Sum of Quantity)</description>
+        <externalId>false</externalId>
+        <label>Total Used Quantity</label>
+        <summarizedField>CEC_Fulfilment_Enclosure__c.Quantity__c</summarizedField>
+        <summaryForeignKey>CEC_Fulfilment_Enclosure__c.Enclosure_Id__c</summaryForeignKey>
+        <summaryOperation>sum</summaryOperation>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>Type__c</fullName>
