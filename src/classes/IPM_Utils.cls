@@ -470,6 +470,19 @@ public without sharing class IPM_Utils {
         return false;  
     } 
     
+    /**********************************************************************
+    * @description: to get the master brand data
+    * @return : list of strings
+    */
+    public static Set<String> getMasterBrandData(){
+        
+        set<String> lstToReturn = new set<String>();
+        MDO_BrandPositions__c[] brandPositions = [SELECT brand_position_id__r.Name FROM MDO_BrandPositions__c LIMIT 9999];
+        for(MDO_BrandPositions__c eachbrandPos : brandPositions) {
+            lstToReturn.add(eachbrandPos.brand_position_id__r.Name);
+        }
+        return lstToReturn;
+    }
     
     public static Boolean checkDataValid(String data) {
         return Pattern.matches('/^0*('+'\\'+'.0+)$?/',data);
@@ -976,26 +989,19 @@ public without sharing class IPM_Utils {
                                                   LIMIT 50000];
         if(!finYearDetails.isEmpty()){
             for(IPM_Financial_Year__c finYr :finYearDetails){
-                System.debug('===>'+finYr.IPM_Financial__r.name);
+                
                 //additional condition - Global Project and not Ideas phase then Y3iTO should be from Market Cluster and not from Top Down
                 if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT) 
                     && finYr.IPM_Financial__r.IPM_Project_Rollout__c == null && finYr.IPM_Financial__r.Regional_Project__c == null && finYr.IPM_Financial__r.Local_Project__c == null
-                    && finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null && finYr.IPM_Financial__r.Parent_Project__r.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS) 
-                {
-                    iTOValue = (finYr.Turnover_Regional__c)/1000; 
-                    projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
-                }
-                //Global Financial : RT = CONSOLIDATED + Regional Project = null + Local Project = null
-                else if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT) 
-                    && finYr.IPM_Financial__r.IPM_Project_Rollout__c == null && finYr.IPM_Financial__r.Regional_Project__c == null && finYr.IPM_Financial__r.Local_Project__c == null
-                    && finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null) 
+                    && finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null ) 
                 {
                     iTOValue = (finYr.Turnover_Global__c)/1000; 
                     projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
                 }
+                
                 //Regional Financial : RT = CONSOLIDATED + Regional Project != null + Local Project = null
                 else if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT)
-                         && finYr.IPM_Financial__r.IPM_Project_Rollout__c != null && finYr.IPM_Financial__r.Regional_Project__c != null && finYr.IPM_Financial__r.Local_Project__c == null
+                         && finYr.IPM_Financial__r.Regional_Project__c != null && finYr.IPM_Financial__r.Local_Project__c == null
                          && finYr.Turnover_Regional__c != null)
                 {
                     iTOValue = (finYr.Turnover_Regional__c)/1000;
@@ -1010,17 +1016,6 @@ public without sharing class IPM_Utils {
                     projIdiTOMap.put(finYr.IPM_Financial__r.Local_Project__c,iTOValue);
                     
                 }
-                //Regional Original
-                else if(finYr.IPM_Financial__r.Regional_Project__c != null && finYr.IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                    iTOValue = (finYr.Turnover_Global__c)/1000;
-                    projIdiTOMap.put(finYr.IPM_Financial__r.Regional_Project__c,iTOValue);
-                }
-                 //Local Original
-                else if(finYr.IPM_Financial__r.Local_Project__c != null && finYr.IPM_Financial__r.Local_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                    iTOValue = (finYr.Turnover_Global__c)/1000;
-                    projIdiTOMap.put(finYr.IPM_Financial__r.Local_Project__c,iTOValue);
-                }
-                
             }
         }
         return projIdiTOMap;
