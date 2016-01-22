@@ -13,7 +13,7 @@ public with sharing class Oblix_ProjectHandler_Test {
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('Project', mSow.id);
             System.assertEquals(project.Financial_Year__c,mSow.id,FINANCIAL_YEAR);
             Oblix_ProjectHandler handler = new Oblix_ProjectHandler();
-            handler.bulkBefore();
+            
             handler.bulkAfter();
             handler.beforeDelete(project);
             handler.afterInsert(project);
@@ -23,7 +23,7 @@ public with sharing class Oblix_ProjectHandler_Test {
             
             project.name = 'change';
             update project;
-            handler.triggerShouldExecute = false;
+            Oblix_ProjectHandler.triggerShouldExecute = false;
             Test.stopTest();
         }
 	}

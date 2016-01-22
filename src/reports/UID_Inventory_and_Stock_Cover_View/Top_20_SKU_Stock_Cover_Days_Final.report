@@ -20,12 +20,12 @@
         <chartType>HorizontalBar</chartType>
         <enableHoverLabels>true</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</groupingColumn>
+        <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Category__c</groupingColumn>
         <location>CHART_TOP</location>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
-        <showValues>false</showValues>
+        <showValues>true</showValues>
         <size>Medium</size>
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
@@ -54,17 +54,17 @@
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</field>
+        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Category__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Brand__c</field>
+        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Brand__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c</field>
+        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Product_Name__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Top 20 SKU Stock Cover (Days)</name>

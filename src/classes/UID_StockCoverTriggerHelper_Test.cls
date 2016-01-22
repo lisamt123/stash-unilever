@@ -290,7 +290,7 @@ public class UID_StockCoverTriggerHelper_Test{
         Id secondaryAccountRecordType = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Secondary Account').getRecordTypeId();
         List<Account> newAccounts = new List<Account>();
         List<Order> newOrders = new List<Order>();
-        List<OrderItem> newOrderItems = new List<OrderItem>();
+        List<UID_Order_Product__c> newOrderItems = new List<UID_Order_Product__c>();
         
         String STATUS_DRAFT = 'Draft';
         
@@ -390,44 +390,44 @@ public class UID_StockCoverTriggerHelper_Test{
         database.insert(newOrders, FALSE);
         
         //create primary sales of the month
-        OrderItem primarySaleCurrentMonth = new OrderItem();
+        UID_Order_Product__c primarySaleCurrentMonth = new UID_Order_Product__c();
             primarySaleCurrentMonth.UID_Order_Quantity__c = 60;
-            primarySaleCurrentMonth.OrderId = primaryOrderCurrentMonth.Id;
-            primarySaleCurrentMonth.Quantity = 1;
-            primarySaleCurrentMonth.PricebookEntryId = productStandardPrice.Id;
-            primarySaleCurrentMonth.UnitPrice = unitPrice;
+            primarySaleCurrentMonth.UID_Order__c = primaryOrderCurrentMonth.Id;
+            //primarySaleCurrentMonth.Quantity = 10;
+            //primarySaleCurrentMonth.PricebookEntryId = productStandardPrice.Id;
+            //primarySaleCurrentMonth.UnitPrice = 1;
         newOrderItems.add(primarySaleCurrentMonth);
         //create secondary sales of the month
-        OrderItem secondarySaleCurrentMonth = new OrderItem();
+        UID_Order_Product__c secondarySaleCurrentMonth = new UID_Order_Product__c();
             secondarySaleCurrentMonth.UID_Order_Quantity__c = 10;
-            secondarySaleCurrentMonth.OrderId = secondaryOrderCurrentMonth.Id;
-            secondarySaleCurrentMonth.Quantity = 1;
-            secondarySaleCurrentMonth.PricebookEntryId = productStandardPrice.Id;
-            secondarySaleCurrentMonth.UnitPrice = unitPrice;
+            secondarySaleCurrentMonth.UID_Order__c = secondaryOrderCurrentMonth.Id;
+            //secondarySaleCurrentMonth.Quantity = 10;
+            //secondarySaleCurrentMonth.PricebookEntryId = productStandardPrice.Id;
+            //secondarySaleCurrentMonth.UnitPrice = 160;
         newOrderItems.add(secondarySaleCurrentMonth);
         //create secondary sales previous month
-        OrderItem secondarySalePrevMonth = new OrderItem();
+        UID_Order_Product__c secondarySalePrevMonth = new UID_Order_Product__c();
             secondarySalePrevMonth.UID_Order_Quantity__c = 10;
-            secondarySalePrevMonth.OrderId = secondaryOrderPrevMonth.Id;
-            secondarySalePrevMonth.Quantity = 1;
-            secondarySalePrevMonth.PricebookEntryId = productStandardPrice.Id;
-            secondarySalePrevMonth.UnitPrice = unitPrice;
+            secondarySalePrevMonth.UID_Order__c = secondaryOrderPrevMonth.Id;
+            //secondarySalePrevMonth.Quantity = 123;
+            //secondarySalePrevMonth.PricebookEntryId = productStandardPrice.Id;
+            //secondarySalePrevMonth.UnitPrice = 154;
         newOrderItems.add(secondarySalePrevMonth);
         //create secondary sales previous 2 month
-        OrderItem secondarySalePrev2Month = new OrderItem();
+        UID_Order_Product__c secondarySalePrev2Month = new UID_Order_Product__c();
             secondarySalePrev2Month.UID_Order_Quantity__c = 10;
-            secondarySalePrev2Month.OrderId = secondaryOrderPrev2Month.Id;
-            secondarySalePrev2Month.Quantity = 1;
-            secondarySalePrev2Month.PricebookEntryId = productStandardPrice.Id;
-            secondarySalePrev2Month.UnitPrice = unitPrice;
+            secondarySalePrev2Month.UID_Order__c = secondaryOrderPrev2Month.Id;
+            //secondarySalePrev2Month.Quantity = 13;
+            //secondarySalePrev2Month.PricebookEntryId = productStandardPrice.Id;
+            //secondarySalePrev2Month.UnitPrice = 41;
         newOrderItems.add(secondarySalePrev2Month);
         //create secondary sales previous 3 month
-        OrderItem secondarySalePrev3Month = new OrderItem();
+        UID_Order_Product__c secondarySalePrev3Month = new UID_Order_Product__c();
             secondarySalePrev3Month.UID_Order_Quantity__c = 10;
-            secondarySalePrev3Month.OrderId = secondaryOrderPrev3Month.Id;
-            secondarySalePrev3Month.Quantity = 1;
-            secondarySalePrev3Month.PricebookEntryId = productStandardPrice.Id;
-            secondarySalePrev3Month.UnitPrice = 1;
+            secondarySalePrev3Month.UID_Order__c = secondaryOrderPrev3Month.Id;
+            //secondarySalePrev3Month.Quantity = 71;
+            //secondarySalePrev3Month.PricebookEntryId = productStandardPrice.Id;
+            //secondarySalePrev3Month.UnitPrice = 81;
         newOrderItems.add(secondarySalePrev3Month);
         database.insert(newOrderItems,FALSE);
         

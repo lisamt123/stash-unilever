@@ -58,7 +58,7 @@
                 <name>UID_UpdateStockedProductFlagField</name>
                 <type>FieldUpdate</type>
             </actions>
-            <timeLength>0</timeLength>
+            <timeLength>1</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
     </rules>

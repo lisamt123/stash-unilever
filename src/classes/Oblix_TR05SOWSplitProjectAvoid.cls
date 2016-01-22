@@ -99,7 +99,8 @@ public with sharing class Oblix_TR05SOWSplitProjectAvoid {
     * @param : lstSplitProject from Trigger
     * @return : void
     */  
-    public static void SOWSplitProjectAvoid(Oblix_Marketing_SOW_Project_Splits__c splitRec, List<Oblix_Marketing_SOW_Project_Splits__c> lstSplitProject, List<Oblix_SOW_Projects__c> lstProject){
+    public static void SOWSplitProjectAvoid(Oblix_Marketing_SOW_Project_Splits__c splitRec, List<Oblix_Marketing_SOW_Project_Splits__c> lstSplitProject
+        , List<Oblix_SOW_Projects__c> lstProject){
        system.Debug('###splitRec : '+splitRec);
        system.Debug('###lstProject: '+lstProject);
         //Prepare MapProject To split : for each project its own percentage
@@ -127,12 +128,18 @@ public with sharing class Oblix_TR05SOWSplitProjectAvoid {
         
     }
     
-     public static List<Oblix_SOW_Projects__c> retrieveProjects(List<Oblix_Marketing_SOW_Project_Splits__c> lstSplitTrig){
+    /*******************************************************************
+        Purpose: get the list of parent Oblix_SOW_Projects__c records and all the related children records
+        Parameters: List<Oblix_Marketing_SOW_Project_Splits__c> - related children records
+        Returns: List of Oblix_SOW_Projects__c parents + related Oblix_Marketing_SOW_Project_Splits__c records
+        Throws [Exceptions]: none
+    ********************************************************************/
+    public static List<Oblix_SOW_Projects__c> retrieveProjects(List<Oblix_Marketing_SOW_Project_Splits__c> lstSplitTrig){
         set<Id> setProjectsIds = new set<ID>();
         for(Oblix_Marketing_SOW_Project_Splits__c split : lstSplitTrig){
             setProjectsIds.add(split.Project_Splits__c);
         }
-        return [Select Id, Name, OblixProjectSplitPercentage_Comment__c, Project_Scale_2__c, (Select Id, Name, Project_Splits__c, Percentage__c from Marketing_SOW_Project_Splits__r) from Oblix_SOW_Projects__c  where id in :setProjectsIds];
+        return [Select Id, Name, OblixProjectSplitPercentage_Comment__c, Project_Scale_2__c, (Select Id, Name, Project_Splits__c, Percentage__c, OblixCountry__r.Name from Marketing_SOW_Project_Splits__r) from Oblix_SOW_Projects__c  where id in :setProjectsIds];
     }
     
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <columns>
+        <field>FK_NAME</field>
+    </columns>
+    <columns>
+        <field>Oblix_Calculator__c.Role_Daily_Rate_EUR__c</field>
+    </columns>
+    <columns>
+        <field>Oblix_Calculator__c.FTE__c</field>
+    </columns>
+    <columns>
+        <field>Oblix_Calculator__c.OblixCountry__c</field>
+    </columns>
+    <columns>
+        <field>Oblix_Calculator__c.Agency_Department__c</field>
+    </columns>
+    <columns>
+        <field>Oblix_Calculator__c.Role_Title__c</field>
+    </columns>
+    <columns>
+        <field>Oblix_Calculator__c.Financial_Year__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Oblix_Calculator__c.Financial_Year__c</column>
+            <operator>equals</operator>
+            <value>FY2016,FY2017</value>
+        </criteriaItems>
+        <language>en_US</language>
+    </filter>
+    <format>Tabular</format>
+    <name>SWOP Role Rates - Non Campaign</name>
+    <params>
+        <name>co</name>
+        <value>1</value>
+    </params>
+    <reportType>CustomEntity$Oblix_Calculator__c@Oblix_Calculator__c.Oblix_Agency__c</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CUST_CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+</Report>
