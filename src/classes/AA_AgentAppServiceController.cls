@@ -89,42 +89,42 @@ public with sharing class AA_AgentAppServiceController {
      */
     public aa_Agent_Report__c convertRequestAgentReport(AA_WrapperUtility.AgentAppDataRequest objAgentApp){
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
-        if(!String.isEmpty(objAgentApp.UnileverBrandId)){
+       // if(!String.isEmpty(objAgentApp.UnileverBrandId)){
             newObjToBeInserted.Agent_App_Unilever_Brand__c  = objAgentApp.UnileverBrandId;
-        }
-        if(!String.isEmpty(objAgentApp.ReportDesc)){
+        //}
+        //if(!String.isEmpty(objAgentApp.ReportDesc)){
             newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
-        }
-       if(!String.isEmpty(objAgentApp.Retailer)){
+        //}
+       //if(!String.isEmpty(objAgentApp.Retailer)){
             newObjToBeInserted.Retailer__c  = objAgentApp.Retailer;
-       }
-       if(!String.isEmpty(objAgentApp.ReportingOn)){
+      // }
+       //if(!String.isEmpty(objAgentApp.ReportingOn)){
             newObjToBeInserted.Reporting_on__c = objAgentApp.ReportingOn;
-       }
-       if(!String.isEmpty(objAgentApp.CountryId)){
+       //}
+       //if(!String.isEmpty(objAgentApp.CountryId)){
             newObjToBeInserted.Country__c = objAgentApp.CountryId;
-       }
-       if(!String.isEmpty(objAgentApp.ReportName )){
+       //}
+      // if(!String.isEmpty(objAgentApp.ReportName )){
             newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
-       }
-       if(!String.isEmpty(objAgentApp.Town)){
+       //}
+       //if(!String.isEmpty(objAgentApp.Town)){
             newObjToBeInserted.Town__c = objAgentApp.Town;
-       }
-       if(!String.isEmpty(objAgentApp.Longitude)){
+       //}
+       //if(!String.isEmpty(objAgentApp.Longitude)){
             newObjToBeInserted.longitude__c = objAgentApp.Longitude;
-       }
-       if(!String.isEmpty(objAgentApp.Latitude)){
+       //}
+       //if(!String.isEmpty(objAgentApp.Latitude)){
             newObjToBeInserted.latitude__c = objAgentApp.Latitude;
-       }
-       if(!String.isEmpty(objAgentApp.CategoryId )){
+       //}
+       //if(!String.isEmpty(objAgentApp.CategoryId )){
             newObjToBeInserted.Category__c = objAgentApp.CategoryId ;
-       }
-       if(!String.isEmpty(objAgentApp.CompetitorId )){
+       //}
+       //if(!String.isEmpty(objAgentApp.CompetitorId )){
             newObjToBeInserted.Competitor_Name__c = objAgentApp.CompetitorId ;
-       }
-       if(!String.isEmpty(objAgentApp.CompetitorBrandId )){
+       //}
+       //if(!String.isEmpty(objAgentApp.CompetitorBrandId )){
             newObjToBeInserted.Competitor_Brand__c = objAgentApp.CompetitorBrandId ;
-       }
+       //}
         /* if(!Utility.isEmpty(objAgentApp.ClusterId)){
             newObjToBeInserted.Country__r.Cluster_Id__c = objAgentApp.ClusterId ;
         }*/
@@ -148,24 +148,24 @@ public with sharing class AA_AgentAppServiceController {
     public aa_Agent_Report__c convertRequestAgentReport_Competitor(AA_WrapperUtility.AgentAppDataRequest objAgentApp){
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
         
-        if(!String.isEmpty(objAgentApp.ReportName )){
+      //  if(!String.isEmpty(objAgentApp.ReportName )){
             newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
-        }
-        if(!String.isEmpty(objAgentApp.ReportDesc)){
+       // }
+        //if(!String.isEmpty(objAgentApp.ReportDesc)){
             newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
-        }
+        //}
         if(!String.isEmpty(objAgentApp.Source)){
             newObjToBeInserted.Source__c  = objAgentApp.Source;
         }
-        if(!String.isEmpty(objAgentApp.Retailer)){
+        //if(!String.isEmpty(objAgentApp.Retailer)){
             newObjToBeInserted.Retailer__c  = objAgentApp.Retailer;
-        }
-        if(!String.isEmpty(objAgentApp.CompetitorBrandId)){
+        //}
+        //if(!String.isEmpty(objAgentApp.CompetitorBrandId)){
             newObjToBeInserted.Competitor_Brand__c  = objAgentApp.CompetitorBrandId;
-        }
-        if(!String.isEmpty(objAgentApp.CompetitorId)){
+        //}
+        //if(!String.isEmpty(objAgentApp.CompetitorId)){
             newObjToBeInserted.Competitor_Name__c  = objAgentApp.CompetitorId;
-        }
+        //}
         if(!String.isEmpty(objAgentApp.CategoryId)){
             newObjToBeInserted.Category__c  = objAgentApp.CategoryId;
         }
@@ -176,18 +176,18 @@ public with sharing class AA_AgentAppServiceController {
             }
             
         }
-        if(!String.isEmpty(objAgentApp.CountryId)){
+        //if(!String.isEmpty(objAgentApp.CountryId)){
             newObjToBeInserted.Country__c = objAgentApp.CountryId;
-        }
-       if(!String.isEmpty(objAgentApp.Town)){
+        //}
+       //if(!String.isEmpty(objAgentApp.Town)){
             newObjToBeInserted.Town__c = objAgentApp.Town;
-       }
-       if(!String.isEmpty(objAgentApp.Longitude)){
+       //}
+       //if(!String.isEmpty(objAgentApp.Longitude)){
             newObjToBeInserted.longitude__c = objAgentApp.Longitude;
-       }
-       if(!String.isEmpty(objAgentApp.Latitude)){
+       //}
+       //if(!String.isEmpty(objAgentApp.Latitude)){
             newObjToBeInserted.latitude__c = objAgentApp.Latitude;
-       }
+       //}
        if(!String.isEmpty(objAgentApp.CodeOfConduct)){
             if(objAgentApp.CodeOfConduct == 'true'){
                 newObjToBeInserted.Is_Accepted_Code_of_Conduct__c = true;    

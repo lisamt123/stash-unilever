@@ -39,5 +39,5 @@ public with sharing class AA_Constants {
     public static final String StringAmerica='America';
     public static final String testString='test';
     public static final String TownSample='pune';
-    
+    public static final String SourceSample='Overheard from 3rd parties, Unsolicited';
 }
