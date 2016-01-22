@@ -5,7 +5,6 @@
 */
 @isTest
 public class IPM_FinancialController_Test {
-    //private static Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
     
     @testSetup static void financialSetUp() 
      {
@@ -392,75 +391,7 @@ public class IPM_FinancialController_Test {
         Test.stopTest();    
      }
     
-    /*
-    static testMethod void financialGlobalOrignalTest()
-    {       
-        Set<String> projectNameSet = new Set<String>{'TestComments1'};
-
-        User globalUser = [Select Id from User where Email ='globalUser@unilever.test.com' limit 1]; 
-        system.assertNotEquals(globalUser,null);
-        
-        System.runAs(globalUser)
-        { 
-            
-            Test.startTest();
-            List<IPM_Project__c>  projectList = [Select Id,Name,IPM_Phase__c,IPM_Project_Type__c,IPMProject_Span__c,(Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
-            system.assert(projectList.size()>0);
-            // Financials will not be created when global proj is in ideas phase.
-            PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+projectList[0].Id);
-            Test.setCurrentPageReference(pageRef); 
-            
-            List<IPM_Project__c>lstLocalProjects = [Select Id,IPM_Project_Type__c,IPM_Parent_Project__r.Name,IPMProject_Span__c,IPM_Phase__c from IPM_Project__c WHERE IPM_Parent_Project__c = :projectList[0].Id AND IPMProject_Span__c = :IPM_ConstantUtils.PROJECT_SPAN_LOCAL LIMIT 1];     
-            //System.assertEquals(lstLocalProjects[0].IPM_Parent_Project__r.Name,'TestComments1','function not call properly');
-           
-            List<Id> globalProjectIdList = new List<Id>();
-            
-            for(IPM_Project__c projecttemp : projectList)
-            {
-                globalProjectIdList.add(projecttemp.Id);
-            }
-            
-            
-            List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(globalProjectIdList,globalUser); 
-            system.assertNotEquals(projectListPhaseChange,null);
-            
-            update projectListPhaseChange;
-            
-            ///
-            pageRef = new PageReference('/apex/IPM_Financial?Id='+projectListPhaseChange[0].Id); 
-            Test.setCurrentPageReference(pageRef);
-            IPM_FinancialController ipmFinCon = new IPM_FinancialController();
-            
-            
-            
-            //System.AssertException: Assertion Failed: Expected: 1, Actual: 2
-            Map<Id,List<IPM_Project__c>> globalToRegionalMap = IPM_TestFactory_Helper.getRegionalProjects(globalProjectIdList);  
-            
-            list<IPM_Financial__c> allFinancial = [select id,name,Financial_External_ID__c,Parent_Project__c,Regional_Project__c,Local_Project__c,
-            Global_Project_Id__c,Global_External_Id__c,Regional_External_Id__c from IPM_Financial__c];
-            
-            // Validate that project has moved to feasibility Phase.
-            for(Id globalProjectId : globalToRegionalMap.keySet())
-            {
-                List<IPM_Project__c> regionalProjects = globalToRegionalMap.get(globalProjectId);
-                system.assert(regionalProjects.size() > 0); 
-                 
-                pageRef = new PageReference('/apex/IPM_Financial?Id='+regionalProjects[0].Id); 
-                Test.setCurrentPageReference(pageRef); 
-                    
-                ipmFinCon = new IPM_FinancialController();
-                callCtrlAction(ipmFinCon,1);
-                callCtrlAction(ipmFinCon,2);
-                callCtrlAction(ipmFinCon,3);
-                callCtrlAction(ipmFinCon,4);
-                
-                break;
-            }
-            Test.stopTest();
-        }
-       
-    }
-    */
+  
     
     static testMethod void financialRegionalOrignalTest()
     {       
