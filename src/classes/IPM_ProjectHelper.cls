@@ -1300,7 +1300,7 @@ public with sharing class IPM_ProjectHelper
                     projectInContext = financialYearUpdates.get(regionalProjectId);
                 }
                 
-                if( fin.Project_Sustainability_Period__c != projectInContext.Sustainability_Period__c)
+                if( projectInContext != null && (fin.Project_Sustainability_Period__c != projectInContext.Sustainability_Period__c))
                 {
                     fin.Project_Sustainability_Period__c = projectInContext.Sustainability_Period__c;
                     updatedFinancials.put(fin.Id,fin);
