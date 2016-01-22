@@ -61,11 +61,11 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
             agency = parentSow.Oblix_AgencyEstimate__r.Name;
         }
         if(OItem.Id != null){
-        	System.debug('!!! '+OItem);
-        	selectedCountryId = OItem.OblixCountry__c;
-        	if(selectedCountryId != null){
-            	selectedCountry = [select name from MDO_Geography__c where id =:selectedCountryId].Name.toUpperCase();
-        	}
+            System.debug('!!! '+OItem);
+            selectedCountryId = OItem.OblixCountry__c;
+            if(selectedCountryId != null){
+                selectedCountry = [select name from MDO_Geography__c where id =:selectedCountryId].Name.toUpperCase();
+            }
             reRenderAgencyDepartments();
             selectedAgencyDepartment = OItem.Agency_Department__c;
             reRenderRoleTitle();
@@ -76,14 +76,18 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
      
      
     
-     
+     /*
+    @Description : Used in VF4 to refresh fyear and agency values
+    */ 
      public void reRenderSOW(){
          parentSow = [Select Id, Name, Financial_Year__c, Marketing_Agency__c, Oblix_AgencyEstimate__r.Name, Oblix_AgencyEstimate__c from Marketing_SOW__c where id =:OItem.Oblix_SOWMarketing__c];
             System.debug('###parentSow : '+parentSow);
             fYear = parentSow.Financial_Year__c;
             agency = parentSow.Oblix_AgencyEstimate__r.Name;
      }
-     
+     /*
+    @Description : 
+    */ 
      public void reRenderAgencyDepartments(){
           
           if(selectedCountry != null && selectedCountry != ''){
@@ -109,7 +113,9 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
                 isAgencydisabled = false;
                 getAgencyDepartment();  
      }
-     
+     /*
+    @Description : ==============
+    */ 
      public void reRenderRoleTitle(){
             lstCalculatorRate = [Select Id, Name, RecordTypeId, Role_Daily_Rate_EUR__c, Agency_Department__c,  OblixCountry__r.Name, Oblix_Agency__c,
                     Role_Title__c, FTE__c, OblixCountry__c from Oblix_Calculator__c where Financial_Year__c=: fYear and OblixCountry__c =: selectedCountryId   and
@@ -165,7 +171,9 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
             return options;
      }
      
-     
+     /*
+    @Description : ==============
+    */ 
      public List<SelectOption> getAgencyDepartment(){
         
          List<SelectOption> options= new List<SelectOption>();
@@ -181,7 +189,10 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
            if(options.size()>1) { isroledisabled = false;  }
             return options;
      }
-     
+    
+    /*
+    @Description : ==============
+    */  
      public List<SelectOption> getRoleTitle(){
         
          List<SelectOption> options= new List<SelectOption>();
@@ -195,7 +206,9 @@ public with sharing class Oblix_Ctrl04Bis_OverrideOtherItemsNews {
             }
             return options;
      }
-     
+    /*
+    @Description : ==============
+    */ 
     public PageReference save(){
         try{
             system.debug('###OItem.FTE__c :'+OItem.FTE__c);

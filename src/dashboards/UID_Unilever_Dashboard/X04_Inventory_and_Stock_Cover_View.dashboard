@@ -12,50 +12,11 @@
             <operator>equals</operator>
             <values>BESTBUY MALDIVES PVT LTD</values>
         </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>LISUN IMPORTACAO E EXPORTACAO - RRASIA</values>
+        </dashboardFilterOptions>
         <name>Distributor</name>
-    </dashboardFilters>
-    <dashboardFilters>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>SKIN CLEANSING</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>ORAL CARE</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>DEODORANTS &amp; FRAGRANCES</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>SKIN CARE</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>HOUSEHOLD CARE</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>SAVOURY</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>HAIR CARE</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>LAUNDRY</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>TEA AND SOY &amp; FRUIT BEVERAGES</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>BAKING COOKING AND SPREADING</values>
-        </dashboardFilterOptions>
-        <name>Category</name>
     </dashboardFilters>
     <dashboardFilters>
         <dashboardFilterOptions>
@@ -98,7 +59,7 @@
             <operator>equals</operator>
             <values>10</values>
         </dashboardFilterOptions>
-        <name>Month</name>
+        <name>Report Month</name>
     </dashboardFilters>
     <dashboardType>SpecifiedUser</dashboardType>
     <isGridLayout>false</isGridLayout>
@@ -115,9 +76,6 @@
             <componentType>LineGrouped</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
@@ -150,9 +108,6 @@
                 <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
             </dashboardFilterColumns>
             <displayUnits>Integer</displayUnits>
@@ -181,9 +136,6 @@
             <componentType>LineGrouped</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
@@ -216,9 +168,6 @@
                 <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
             </dashboardFilterColumns>
             <displayUnits>Integer</displayUnits>
@@ -246,9 +195,6 @@
             <componentType>Column</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
@@ -280,9 +226,6 @@
                 <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
             </dashboardFilterColumns>
             <displayUnits>Integer</displayUnits>
@@ -290,7 +233,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Product_Name__c</groupingColumn>
             <header>Top 20 SKU Stock Cover (Days)</header>
             <legendPosition>Bottom</legendPosition>
             <maxValuesDisplayed>20</maxValuesDisplayed>
@@ -315,9 +258,6 @@
             <componentType>ColumnGrouped</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
@@ -350,9 +290,6 @@
                 <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
             </dashboardFilterColumns>
             <displayUnits>Millions</displayUnits>
@@ -371,14 +308,16 @@
             <useReportChart>false</useReportChart>
         </components>        
         <components>
-            <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+            <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
-            <componentType>ColumnGrouped</componentType>
+            <chartSummary>
+                <aggregate>Sum</aggregate>
+                <axisBinding>y</axisBinding>
+                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
+            </chartSummary>
+            <componentType>Column</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
@@ -388,6 +327,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
+            <groupingColumn>Account.Stocked_Products__r$UID_Start_Date__c</groupingColumn>
             <header>Monthly Inventory Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_M_Q_2_Final</report>
@@ -407,9 +347,6 @@
             <componentType>ColumnGrouped</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
@@ -442,9 +379,6 @@
                 <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
             </dashboardFilterColumns>
             <displayUnits>Integer</displayUnits>
@@ -452,7 +386,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Brand__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Brand__c</groupingColumn>
             <header>Brand-wise Stock Levels (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_Inventory_and_Stock_Cover_View/Stock_Analysis_Final</report>
@@ -473,9 +407,6 @@
                 <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
             </dashboardFilterColumns>
             <displayUnits>Integer</displayUnits>
@@ -483,7 +414,7 @@
             <drillToDetailEnabled>false</drillToDetailEnabled>
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
-            <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c</groupingColumn>
+            <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Product_Name__c</groupingColumn>
             <header>Bottom 20 SKU Stock Cover (Days)</header>
             <legendPosition>Bottom</legendPosition>
             <maxValuesDisplayed>20</maxValuesDisplayed>
@@ -507,9 +438,6 @@
             <componentType>Column</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
@@ -540,9 +468,6 @@
                 <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
             </dashboardFilterColumns>
             <displayUnits>Integer</displayUnits>
@@ -569,9 +494,6 @@
             <componentType>Column</componentType>
             <dashboardFilterColumns>
                 <column>Account$Name</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
@@ -602,9 +524,6 @@
                 <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</column>
-            </dashboardFilterColumns>
-            <dashboardFilterColumns>
                 <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Month__c</column>
             </dashboardFilterColumns>
             <displayUnits>Integer</displayUnits>
@@ -624,7 +543,7 @@
     </rightSection>
     <runningUser>chatter.support@unilever.com</runningUser>
     <textColor>#000000</textColor>
-    <title>04. Inventory and Stock Cover View</title>
+    <title>04: Inventory and Stock Cover View</title>
     <titleColor>#000000</titleColor>
     <titleSize>12</titleSize>
 </Dashboard>

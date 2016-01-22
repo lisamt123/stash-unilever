@@ -20,7 +20,7 @@
         <chartType>HorizontalBar</chartType>
         <enableHoverLabels>true</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</groupingColumn>
+        <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Category__c</groupingColumn>
         <location>CHART_TOP</location>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
@@ -50,28 +50,20 @@
     <columns>
         <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Net_Quantity__c</field>
     </columns>
-    <filter>
-        <criteriaItems>
-            <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Stock_Cover__c</column>
-            <operator>greaterOrEqual</operator>
-            <value>0</value>
-        </criteriaItems>
-        <language>en_US</language>
-    </filter>
     <format>Summary</format>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</field>
+        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Category__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Brand__c</field>
+        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Brand__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c</field>
+        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Product_Name__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Bottom 20 SKU Stock Cover (Days)</name>
