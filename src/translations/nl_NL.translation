@@ -89,6 +89,10 @@
         <name>Unilever_Fouracres</name>
     </customApplications>
     <customApplications>
+        <label><!-- Unilever International Distributor --></label>
+        <name>Unilever_International_Distributor</name>
+    </customApplications>
+    <customApplications>
         <label><!-- WIN@POS --></label>
         <name>WIN_POS</name>
     </customApplications>
@@ -11255,6 +11259,57 @@
         <sections>
             <label><!-- Topics --></label>
             <name>Topics</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- UID Order with Order Product --></description>
+        <label><!-- UID Order with Order Product --></label>
+        <name>UID_Order_with_Order_Product</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+        <sections>
+            <label><!-- UID Order Products --></label>
+            <name>UID Order Products</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- UID Sales Report --></description>
+        <label><!-- UID Sales Report --></label>
+        <name>UID_Sales_Report</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Order Products --></label>
+            <name>Order Products</name>
+        </sections>
+        <sections>
+            <label><!-- Orders --></label>
+            <name>Orders</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- UID Stocked Product Reports --></description>
+        <label><!-- UID Stocked Product Reports --></label>
+        <name>UID_Stocked_Product_Reports</name>
+        <sections>
+            <label><!-- Accounts --></label>
+            <name>Accounts</name>
+        </sections>
+        <sections>
+            <label><!-- Stocked Product Summary --></label>
+            <name>Stocked Product Summary</name>
+        </sections>
+        <sections>
+            <label><!-- Stocked Products --></label>
+            <name>Stocked Products</name>
         </sections>
     </reportTypes>
     <reportTypes>
