@@ -195,24 +195,6 @@
         <language>en_US</language>
     </listViews>
     <listViews>
-        <fullName>Tracker_Email_Records</fullName>
-        <columns>NAME</columns>
-        <columns>Alert_Rule_Id__c</columns>
-        <columns>Alert_Threshold__c</columns>
-        <columns>Current_Threshold__c</columns>
-        <columns>DayCode__c</columns>
-        <columns>Unique_Id__c</columns>
-        <columns>Rule_Type__c</columns>
-        <columns>CREATED_DATE</columns>
-        <columns>LAST_UPDATE</columns>
-        <filterScope>Everything</filterScope>
-        <label>Tracker Email Records</label>
-        <language>en_US</language>
-        <sharedTo>
-            <role>CEC_Global_Head</role>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>Trigger_Email_Sent_Today</fullName>
         <columns>NAME</columns>
         <columns>Alert_Rule_Id__c</columns>
