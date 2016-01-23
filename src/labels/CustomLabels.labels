@@ -3781,13 +3781,6 @@ Which Communications team do you represent? You must be associated to one Planne
         <value>Refresh</value>
     </labels>
     <labels>
-        <fullName>toolbar_app_top_nav_lbl_title_text</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Text for the link in the upper left corner</shortDescription>
-        <value>My chatter app</value>
-    </labels>
-    <labels>
         <fullName>uw_BET_Chattergrouparchived</fullName>
         <categories>BET 2.0</categories>
         <language>en_US</language>
