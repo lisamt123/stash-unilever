@@ -866,7 +866,7 @@ src/classes/uw_uploadBCImage.cls
 src/classes/uw_uploadBCImage.cls-meta.xml
 src/classes/WINatPOSPurgeStats_Test.cls
 src/classes/WINatPOSPurgeStats_Test.cls-meta.xml
-src/components/
+src/components
 src/components/BET_ApproveProjectsComponent.component
 src/components/BET_ApproveProjectsComponent.component-meta.xml
 src/components/BET_CategoryBrandSelectionComponent.component
@@ -1056,7 +1056,7 @@ src/documents/IPMNG/IPM_Notification_footer.png
 src/documents/IPMNG/IPM_Notification_footer.png-meta.xml
 src/documents/IPMNG/IPM_Notification_header.png
 src/documents/IPMNG/IPM_Notification_header.png-meta.xml
-src/email/
+src/email
 src/email/Approval_Emails/BET_Archived.email
 src/email/Approval_Emails/BET_Archived.email-meta.xml
 src/email/Approval_Emails/BET_FollowRequestCreated.email
@@ -1581,13 +1581,13 @@ src/reportTypes/BB_BD_Report.reportType
 src/reportTypes/BETs_with_Lead_IPM.reportType
 src/reportTypes/IPM_Projects_with_IPM_Project_Documents_with_IPM_Project_Document_Sections.reportType
 src/reportTypes/IPM_with_BET.reportType
-src/sharingRules/
+src/sharingRules
 src/sharingRules/IPM_Bosscard__c.sharingRules
 src/sharingRules/IPM_Country__c.sharingRules
 src/sharingRules/IPM_Financial__c.sharingRules
 src/sharingRules/IPM_Project_Rollout__c.sharingRules
 src/sharingRules/IPM_Project__c.sharingRules
-src/staticresources/
+src/staticresources
 src/staticresources/BET.resource
 src/staticresources/BET.resource-meta.xml
 src/staticresources/BETApp.resource
@@ -1624,7 +1624,7 @@ src/staticresources/IPM_Resource.resource
 src/staticresources/IPM_Resource.resource-meta.xml
 src/staticresources/IPM_Unilever_Geo.resource
 src/staticresources/IPM_Unilever_Geo.resource-meta.xml
-src/tabs/
+src/tabs
 src/tabs/All_Projects.tab
 src/tabs/IPM_Company_Card__c.tab
 src/tabs/IPM_CorePara_helps_example__c.tab
@@ -1644,7 +1644,7 @@ src/tabs/uw_BET__c.tab
 src/tabs/uw_Brand__c.tab
 src/tabs/uw_Links__c.tab
 src/tabs/uw_Terms_Conditions__c.tab
-src/triggers/
+src/triggers
 src/triggers/BET_Follow_Request.trigger
 src/triggers/BET_Follow_Request.trigger-meta.xml
 src/triggers/BET_LogChanges.trigger
