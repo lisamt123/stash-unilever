@@ -1676,6 +1676,8 @@ src/triggers/IPM_Task_Trigger.trigger
 src/triggers/IPM_Task_Trigger.trigger-meta.xml
 src/triggers/IPM_UserProfileTrigger.trigger
 src/triggers/IPM_UserProfileTrigger.trigger-meta.xml
+src/triggers/IPM_UserTriggerHandler.trigger
+src/triggers/IPM_UserTriggerHandler.trigger-meta.xml
 src/triggers/uw_Asset_AfterInsertAfterUpdate.trigger
 src/triggers/uw_Asset_AfterInsertAfterUpdate.trigger-meta.xml
 src/triggers/uw_Asset_Trigger.trigger
