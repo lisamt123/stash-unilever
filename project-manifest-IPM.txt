@@ -726,8 +726,8 @@ src/classes/IPM_UploadBusinessCase.cls
 src/classes/IPM_UploadBusinessCase.cls-meta.xml
 src/classes/IPM_UploadBusinessCase_Test.cls
 src/classes/IPM_UploadBusinessCase_Test.cls-meta.xml
-src/triggers/IPM_UserTriggerHandler.cls
-src/triggers/IPM_UserTriggerHandler.cls-meta.xml
+src/classes/IPM_UserTriggerHandler.cls
+src/classes/IPM_UserTriggerHandler.cls-meta.xml
 src/classes/IPM_UserProfileHandler.cls
 src/classes/IPM_UserProfileHandler.cls-meta.xml
 src/classes/IPM_Utils.cls
