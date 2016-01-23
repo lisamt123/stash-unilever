@@ -7,7 +7,7 @@
  */
 var jq = jQuery.noConflict();
 jq(document).ready(function() {
-	jq('.cust-overlay').hide();
+	jq(".cust-overlay").delay(1500).fadeOut();
 /* Below code is related to comments box */
     if (navigator.appVersion.match(/MSIE [\d.]+/)) {
         var placeholderText = 'Enter your action plan';
@@ -235,5 +235,5 @@ function ipmTaskDel(str, isLst, gateName, secName) {
 
 /* Below code is to redirect to a page */
 function gotoPage() {
-             window.top.location.href = IPMAppSE.SectionEditorPageRef+'?id='+IPMAppSE.projectId+'&projDocSecId='+IPMAppSE.projDocSecId;
+	window.top.location.href = IPMAppSE.SectionEditorPageRef+'?id='+IPMAppSE.projectId+'&projDocSecId='+IPMAppSE.projDocSecId;
 }

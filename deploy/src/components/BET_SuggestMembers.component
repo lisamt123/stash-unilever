@@ -1,0 +1,481 @@
+<!--*************************************************************************************
+Name : BET_SuggestMembers
+
+Purpose : Compoment responsible for adding the members
+
+History
+
+VERSION  AUTHOR                         DATE        DETAIL   Description
+1.0      k.szepietowski@polsource.com   20-07-2015  Initial
+1.1      m.bluj@polsource.com           21-08-2015  Changes related to issues with IPM integration
+*************************************************************************************-->
+
+<apex:component controller="BET_SuggestMembersController" allowDML="true">
+
+    <apex:includeScript value="{!URLFOR($Resource.jscolor_1_4_1, 'jscolor/jscolor.js')}" />
+    <!--<apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />-->
+    <apex:includeScript value="{!$Resource.BET}/scripts/blockUI.js" />
+    <!--<apex:includeScript value="{!$Resource.BET}/scripts/bootstrap.min.js" /> -->
+    <apex:includeScript value="{!$Resource.BET}/scripts/SuggestedMembers.js" />
+    <!--<apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" /> -->
+    
+    <!--<apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>-->
+    <apex:stylesheet value="{!$Resource.BET}/css/BETQtip.css" />
+    
+    <apex:attribute name="BetID" description="BET ID" type="Id" 
+                        required="false" assignTo="{!betIdCtrl}"/>                      
+
+    <apex:attribute name="ProjectID" description="IPM project ID" type="Id" 
+                        required="false" assignTo="{!projectIdCtrl}"/>
+
+    <apex:attribute name="Callback" description="URL to which page will be redirected after record creation" type="String" 
+                        required="false" assignTo="{!callbackCtrl}"/>
+
+    <apex:attribute name="Suggested_Members" description="List of suggested members Ids" type="Id[]" 
+                        required="false" assignTo="{!suggested_MembersCtrl}"/>
+
+    <apex:attribute name="User_buckets" description="List of user buckets with user Ids belonging to it" type="BET_MemberBucketWrapper[]" 
+                        required="false" assignTo="{!user_bucketsCtrl}"/>
+
+    <apex:attribute name="Suggested_Managers" description="List of suggested manager Ids" type="Id[]" 
+                        required="false" assignTo="{!suggested_managersCtrl}"/>
+
+    <apex:attribute name="usedInPopup" description="Indicator if component will be displayed in popup" type="Boolean" 
+                        required="false" default="true"/>
+    
+
+	<script>
+        var pup = {!usedInPopup};
+        if(!pup){
+            //store current jquery version
+            var quickFix = $;
+            //restore previous one only for $
+            jQuery.noConflict();
+            //store the previous jquery version
+            var qtipJQuery = $;
+            // restore the newest version to $
+            $ = quickFix;
+            function enableTooltip() {
+                qtipJQuery( document ).ready(function( jq ) {
+                    qtipJQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
+                    qtipJQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
+                    }
+                );
+            }
+            //fix overlay issue "dialog is on top overlay layer"
+            $.blockUI.defaults.css['z-index']        = 1601;
+            $.blockUI.defaults.overlayCSS['z-index'] = 1600;
+        }
+	</script>
+
+
+    <apex:actionFunction name="addExtMembers" action="{!addExternalMember}" reRender="suggestedMembersContainer"></apex:actionFunction>
+    <apex:actionFunction name="addExtMembersBet" action="{!addExternalMember}" reRender="suggestedMembersContainerbet"></apex:actionFunction>
+    <apex:actionFunction name="addMembers" action="{!addMembers}"></apex:actionFunction>
+
+
+    <apex:actionFunction name="deleteMember" action="{!deleteMember}"  oncomplete="unlockUI();" 
+        reRender="suggestedMembersContainer,suggestedMembersContainerbet">
+        <apex:param id="memberToDelete" name="memberToDelete" value="" assignTo="{!memberToDelete}"/>
+    </apex:actionFunction>
+    
+    <apex:actionFunction name="delExternalMemeber" action="{!delExternalMemeber}" oncomplete="unlockUI();" reRender="suggestedMembersContainer,suggestedMembersContainerbet">
+        <apex:param id="emailToDelete" name="emailToDelete" value="" assignTo="{!emailToDelete}"/>
+    </apex:actionFunction>
+
+    <apex:actionFunction action="{!skipPage}" name="skipPage" />
+    <apex:actionFunction action="{!searchUsers}" name="searchUsers" oncomplete="unlockUI();" reRender="modalSearchResult">
+            
+    </apex:actionFunction>
+        
+    <!--<apex:actionFunction action="{!addNewMembers}" name="addNewMembers" oncomplete="clearSearchForm();" 
+                         reRender="suggestedMembersContainer,suggestedMembersContainerbet">
+        <apex:param name="newlyAddedUsers" value="" assignTo="{!newlyAddedUsers}"/>
+    </apex:actionFunction>-->
+
+    <apex:actionFunction action="{!addNewMembers}" name="addNewMembers" oncomplete="unlockUI();"
+                         reRender="suggestedMembersContainer,suggestedMembersContainerbet">
+        <apex:param name="newlyAddedUsers" value="" assignTo="{!newlyAddedUsers}"/>
+    </apex:actionFunction>
+
+
+    <p class="suggestedMembersInfo" style="{!IF(usedInPopup,'','display:none;')}">
+        {!$Label.BET_SuggestedMemberComponentWarn}
+    </p>
+
+    <div style="{!IF(NOT(usedInPopup),'','display:none;')}">
+        <div class="suggestMemberHeader">{!$Label.BET_Add_Members}</div>
+        <div class="suggestMemberSubHeader">{!$Label.BET_Manage_Members}</div>
+        <hr class="suggestMemberHeaderLine" width="94%"/>
+    </div>
+
+
+    <div style="{!If(NOT(usedInPopup),'','display:none;')}" class="{!If(NOT(usedInPopup),'frameTableWrapper','')}">
+        <table class="sMframeTable">
+        <tr>
+            <td>
+
+                <div class="toolkitOwner">{!$Label.BET_Toolkit_Owner}</div>
+                <hr class="innerLine" width="96%"/>
+
+                <div>
+                    <div class="betOwner">
+                        <img src="{!OnwerPhoto}" alt="{!OnwerPhoto}" width="60px" height="60px" />
+                        <span class="betOwnerName">{!betOwnerInfo.Name}</span>
+                    </div>
+                </div>
+
+                <div class="toolkitOwner">{!$Label.BET_BET_Members}</div>
+                <hr class="innerLine" width="96%"/>
+
+                <apex:outputPanel id="suggestedMembersContainerbet" >
+                <script type="text/javascript">
+                    var pup = {!usedInPopup};
+                    if(!pup){
+                        enableTooltip();
+                    }
+                </script>
+
+                <div class="note">
+                	<apex:outputText escape="false" value="{!$Label.BET_Note}"/> 
+                </div>
+
+                <div class="memberAdd">
+
+                <apex:repeat value="{!SuggestedMembers}" var="member">
+                    <apex:variable value="{!1}" var="UserRowNum"/>
+                    <apex:repeat value="{!member.groupUsers}" var="memeberItem">
+                        <div id="userId_{!memeberItem.userInfo.id}">
+                            <table>
+                                <tr>
+                                    <td style="padding-bottom: 5px;"> 
+                                        <img src="{!memeberItem.userInfo.FullPhotoUrl}" alt="{!memeberItem.userInfo.Name}" width="60px" height="60px" />
+                                    </td>
+                                    <td width="150px">
+                                        <div class="userTitle"><span>{!memeberItem.userInfo.Name}</span></div>
+                                    </td>
+                                    <td>
+                                        <div class="trashIcon" style="background: url({!$Resource.BET}/images/trashIcon.png) no-repeat;" 
+                                            onclick="delMemeber('{!memeberItem.userInfo.id}');">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <apex:variable var="UserRowNum" value="{!UserRowNum + 1}"/>
+                    </apex:repeat>
+                </apex:repeat>   
+
+                <div data-toggle="modal" data-target="#myModal" onclick="var $ = jQuery.noConflict();addOtherMembers();" 
+                        class="addInternalMemberClass">
+                        {!$Label.BET_Add_Toolkit_Member}
+                </div>
+
+                </div>
+
+                <div class="toolkitEAU">{!$Label.BET_External_Agency_Users}</div>
+                <hr class="innerLine" width="96%"/>
+
+                <div class="externalMemberAdd">
+                <apex:repeat value="{!externalMembers}" var="eMember">
+
+                    <div id="euserId_{!eMember.email}">
+
+                        <table>
+                                <tr>
+                                    <td style="padding-bottom: 5px;"> 
+                                        <img src="{!eMember.photo}" alt="{!eMember.photo}" width="60px" height="60px" />
+                                    </td>
+                                    <td width="150px">
+                                        <div class="userTitle"><span>{!eMember.email}</span></div>
+                                    </td>
+                                    <td>
+                                        <div class="trashIcon" style="background: url({!$Resource.BET}/images/trashIcon.png) no-repeat;" 
+                                            onclick="lockUI(); delExternalMemeber('{!eMember.email}');">
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                    </div>
+
+                </apex:repeat>    
+
+                <div class="smtooltip">
+                    {!$Label.BET_Add_External_Agency_User}
+                    <apex:outputPanel layout="inline" styleClass="question-icon" html-data-tooltip="{!$Label.BET_Add_External_Agency_User_Tooltip}" />
+                </div>
+
+                <apex:inputText value="{!externalMemberEmailBet}" styleClass="addExternalMembersField" />
+                <div class="addExternalMembersBtn" onclick="addExtMembersBet();">
+                    {!$Label.BET_Add_Member}
+                </div>
+
+                </div>
+
+                </apex:outputPanel>
+
+                <div class="membersbtns">
+                    <div  class="addMembersBtn" onclick="addMembers();">
+                        {!$Label.BET_Save_And_Finish}
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+        </table>
+    </div>
+
+    <div id="betOwner" class="memberContainer">
+        <img class="circular"  src="{!OnwerPhoto}" alt="{!OnwerPhoto}" width="80px" height="80px" />
+        
+        <div class="userTitle" >
+            <span>{!betOwnerInfo.Name}</span>
+        </div>
+        
+        <div style="margin-top: 10px;">
+            <span>BET Owner</span>
+        </div>
+    </div>
+    
+    <apex:outputPanel id="betManager" layout="block" styleClass="memberContainer">
+        <apex:repeat value="{!managers}" var="manager">
+            <img class="circular"  src="{!manager.FullPhotoUrl}" alt="{!manager.FullPhotoUrl}" width="80px" height="80px" />
+        
+            <div class="userTitle" >
+                <span>{!manager.Name}</span>
+            </div>
+        
+            <div style="margin-top: 10px;">
+                <span>{!$Label.BETManagerRole}</span>
+            </div>
+        </apex:repeat>
+    </apex:outputPanel>
+    
+    <apex:outputPanel layout="block" id="suggestedMembersContainer" style="{!IF(NOT(usedInPopup),'display:none','')}">
+        <apex:variable value="{!1}" var="rowNum"/>
+        <apex:repeat value="{!SuggestedMembers}" var="member">
+            <div id="groupName_{!rowNum}" style="margin-top:10px;">
+                <div id="groupName_Colapse_{!rowNum}" style="float:left;" onclick="colapseGroup('{!rowNum}')">
+                    <img class="collapseExpandItem" alt="Collapse" src="{!$Resource.BET}/images/colapse.png" width="16px" height="16px"/>
+                </div>
+                <div id="groupName_Expand_{!rowNum}" style="float:left" onclick="expandGroup('{!rowNum}')">
+                    <img class="collapseExpandItem" alt="Expand" src="{!$Resource.BET}/images/expand.png" width="16px" height="16px"/>
+                </div>
+                <span style="font-weight:bold;">{!member.groupName}</span>
+                <span style="color:gray"> |  </span>
+                <span id="groupMembersCount" style="font-weight:bold;">{!member.groupUsers.size}</span>
+                <span>{!$Label.BET_SuggestedMemberMembers}</span>
+                
+                <apex:outputPanel styleClass="collapseExpand" onclick="collapseMembers();" rendered="{!rowNum == 1}">
+                  &nbsp; {!$Label.BET_SuggestedMemberComponentCollapse} 
+                </apex:outputPanel>
+                <apex:outputPanel styleClass="collapseExpand" onclick="expandMembers();" rendered="{!rowNum == 1}">
+                    {!$Label.BET_SuggestedMemberComponentExpand}
+                </apex:outputPanel>
+                <div style="clear: both;"/>
+                <div class="horizontalLine"/>
+                    <apex:variable value="{!1}" var="UserRowNum"/>
+                    <apex:repeat value="{!member.groupUsers}" var="memeberItem">
+                    <div id="userId_{!memeberItem.userInfo.id}" class="memberContainer">
+                        <img class="circular" alt="{!memeberItem.userInfo.Name}" src="{!memeberItem.userInfo.FullPhotoUrl}" 
+                         width="80px" height="80px" />
+                        
+                        <div class="userTitle" >
+                                <span>{!memeberItem.userInfo.Name}</span>
+                        </div>
+                        <apex:outputPanel layout="block" styleClass="leadBlock"  rendered="{!memeberItem.isManager}">
+                            <span>Leader</span>
+                        </apex:outputPanel>
+                        <div class="trashIcon" style="background: url({!$Resource.BET}/images/trashIcon.png) no-repeat;" onclick="delMemeber('{!memeberItem.userInfo.id}');">
+                            
+                        </div>
+                    </div>
+                        
+                    <apex:variable var="UserRowNum" value="{!UserRowNum + 1}"/>
+                        
+                    </apex:repeat>
+                
+                
+            </div >
+            
+            <div style="clear: both;"/>
+            <apex:variable var="rowNum" value="{!rowNum + 1}"/>
+        </apex:repeat>
+        
+        <div style="clear: both;"/>
+        <div  class="memberContainer">
+            
+            <a data-toggle="modal" data-target="#myModal">
+                <img alt="{!$Label.BET_SuggestedMemberAddOtherMember}" 
+                     onclick="var $ = jQuery.noConflict();" 
+                     class="addMemeberBtn" 
+                     src="{!$Resource.BET}/images/add_2.png" width="80px" height="80px"/>
+            </a>    
+           
+            <div class="userTitle" onclick="addOtherMembers();">
+                <span>{!$Label.BET_SuggestedMemberAddOtherMember}</span>
+            </div>
+             
+        </div>
+        <div style="clear: both;"/>
+
+        <apex:outputPanel layout="block">
+            <div id="groupExternal" style="margin-top:10px;">
+            <div id="groupExternal_Colapse" style="float:left;" onclick="colapseExternalGroup()">
+                <img class="collapseExpandItem" alt="Collapse" src="{!$Resource.BET}/images/colapse.png" width="16px" height="16px"/>
+            </div>
+            <div id="groupExternal_Expand" style="float:left" onclick="expandExternalGroup()">
+                <img class="collapseExpandItem" alt="Expand" src="{!$Resource.BET}/images/expand.png" width="16px" height="16px"/>
+            </div>
+            <span style="font-weight:bold;">External Agency Members</span>
+            <span style="color:gray"> |  </span>
+            <span id="groupMembersCount" style="font-weight:bold;">{!externalMembers.size}</span>
+            <span>{!$Label.BET_SuggestedMemberMembers}</span>
+            <apex:outputPanel styleClass="collapseExpand">
+                &nbsp;
+            </apex:outputPanel>
+            <apex:outputPanel styleClass="collapseExpand">
+                &nbsp;
+            </apex:outputPanel>
+            <div style="clear: both;"/>
+            <div class="horizontalLine"/>
+
+            <apex:repeat value="{!externalMembers}" var="eMember">
+
+                <div id="euserId_{!eMember.email}" class="memberContainer">
+                    <img class="circular" alt="{!eMember.email}" src="{!eMember.photo}" 
+                        width="80px" height="80px" />
+                            
+                    <div class="userTitle" >
+                        <span>{!eMember.email}</span>
+                    </div>        
+                    <div class="trashIcon" style="background: url({!$Resource.BET}/images/trashIcon.png) no-repeat;" 
+                        onclick="delExternalMemeber('{!eMember.email}');">
+                    </div>
+                </div>
+
+            </apex:repeat>
+
+
+            <div style="clear: both;"/>
+            <div class="memberContainer">
+            <apex:inputText value="{!externalMemberEmail}" styleClass="addExternalMembersField" />
+            <div class="addExternalMembersBtn" onclick="addExtMembers();">
+                Add External Member
+            </div>
+            </div>
+            </div>
+        </apex:outputPanel>
+
+        <div style="clear: both;"/>
+
+        <div>
+            <div  class="addMembersBtn" onclick="addMembers();">
+                {!$Label.BET_SuggestedMemberComponentAddMember}
+            </div>
+            <div class="skipMembersBtn" onclick="skipPage();">
+                {!$Label.BET_SuggestedMemberComponentSkipForNow}
+            </div>
+        </div>
+    </apex:outputPanel>
+
+    <div class="{!IF(usedInPopup,'','modal')} fade" id="myModal" role="dialog" style="{!IF(usedInPopup,'position: fixed;top: 100px;left: 120px;','')}" data-backdrop="false">
+        <div class="modal-dialog">
+                <div class="modal-content">
+                <div id="#ipmAddMemberModal" class="modal-header modal-header-bet">
+                     <button type="button" class="{!IF(usedInPopup,'close','close-bet')}" style="{!IF(usedInPopup,'','display:none;')}">
+                     &times;
+                     </button>
+                     <button type="button" class="{!IF(usedInPopup,'close','close-bet')}" data-dismiss="modal" 
+                     style="{!IF(usedInPopup,'display:none;','')}">
+                     &times;
+                     </button>
+                     <h4 class="modal-title modal-title-bet">{!$Label.BET_SuggestedMemberModalHeader}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="searchModal" style="{!IF(usedInPopup,'padding-left: 20px;padding-top:20px;','padding-top:1px;')}">
+                        <apex:inputText style="width:250px;" id="modalSearchByName" styleClass="form-control" value="{!searchUserName}"/>
+                    </div>
+                    
+                    <div class="searchModal" style="width: 50px;height: 33px;{!IF(usedInPopup,'padding-top:20px;','')}">
+                        <button type="button" onclick="searchUsersBtn();" style="padding: 6px 4px;" class="bootstrap.min.btn bootstrap.min.btn-default lookupSearchIcon"/>
+                    </div>
+                    
+                    <apex:outputPanel styleClass="scroll" id="modalSearchResult" layout="block">
+                        <apex:outputLabel id="noResultsFound" rendered="{!freeAddMembers.size == 0}" 
+                                            value="{!$Label.BET_SuggestedMemberModalNoResults}" 
+                                            style="{!IF(usedInPopup,'padding-left:20px;','')}"/>
+                        <apex:repeat value="{!freeAddMembers}" var="memberItem">
+                            <div class="searchMemberItem">
+
+                                <hr width="96%" class="memberseparator" style="{!IF(usedInPopup,'display:none;','')}"/>
+
+                                <!--<input  type="checkbox" onclick="var $ = jQuery.noConflict(); selectOrUnselectModal($(this));" 
+                                        id="userIdCheckbox_{!memberItem.id}" 
+                                        value="{!memberItem}"/>-->
+
+                                <input  type="checkbox" onclick="var $ = jQuery.noConflict(); selectOrUnselectModal($(this));addAllNewMembers();" 
+                                        id="userIdCheckbox_{!memberItem.id}" 
+                                        value="{!memberItem}"/>
+
+                                <img class="circularSmall" alt="{!memberItem.name}" src="{!memberItem.SmallPhotoUrl}" width="45px" height="45px"/>
+                                <span class="searchResultItem">{!memberItem.name}</span>
+                                <span class="searchResultItem">{!memberItem.Title}</span>
+                            </div>
+                        </apex:repeat>
+                        
+                    </apex:outputPanel>
+                    
+                </div>
+                <div class="modal-footer modal-footer-bet">
+                    <button type="button" style="{!IF(usedInPopup,'','display:none')}" 
+                            onclick="var $ = jQuery.noConflict(); $('#myModal').modal('hide'); clearSearchByNameField();"
+                            class="bootstrap.min.btn bootstrap.min.btn-default"
+                            >
+                            {!$Label.BET_SuggestedMemberModalCancel}
+                    </button>
+                    <button type="button" style="{!IF(usedInPopup,'','display:none')}" 
+                            onclick="var $ = jQuery.noConflict(); $('#myModal').modal('hide'); addAllNewMembers();" 
+                            class="bootstrap.min.btn bootstrap.min.btn-default"
+                            >
+                            {!$Label.BET_SuggestedMemberModalAddSelected}
+                    </button> 
+                    <button type="button" style="{!IF(NOT(usedInPopup),'','display:none')}" 
+                            onclick="clearSearchByNameField();" 
+                            class="bootstrap.min.btn bootstrap.min.btn-default searchCancel" 
+                            data-dismiss="modal">
+                            {!$Label.BET_SuggestedMemberModalCancel}
+                    </button>
+                    <button type="button" style="{!IF(NOT(usedInPopup),'','display:none')}" 
+                            onclick="addAllNewMembers();" 
+                            class="bootstrap.min.btn bootstrap.min.btn-default searchAdd" 
+                            data-dismiss="modal">
+                            {!$Label.BET_SuggestedMemberModalAddSelected}
+                    </button>  
+                     
+                </div>
+            </div>
+            
+        </div>
+    </div>   
+    <script>
+        var $ = jQuery.noConflict();
+        $( document ).ready(function() {
+            clearExpandColapseAfterRender();
+            jQuery('#myModal').modal({
+                show: false
+            });
+            jQuery('#myModal').on('show.bs.modal', function(){
+                jQuery(this).show();
+            });
+            jQuery('#myModal').on('shown.bs.modal', function(){
+                jQuery(this).show();
+            });
+            jQuery('#myModal').on('hidden.bs.modal', function(){
+                jQuery(this).hide();
+                jQuery('.modal:visible').length && jQuery(document.body).addClass('modal-open');
+            });
+            
+        });
+    </script>
+</apex:component>

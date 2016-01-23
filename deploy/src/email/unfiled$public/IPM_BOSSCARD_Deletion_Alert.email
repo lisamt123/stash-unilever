@@ -1,0 +1,8 @@
+Hi {!IPM_Bosscard__c.OwnerFullName},
+
+The Bosscard {!IPM_Bosscard__c.IPM_BosscardName__c} has not been updated since 6 months. Hence this has been instructed to our system to be deleted.
+
+This if for your information.
+
+Thanks,
+Unilever

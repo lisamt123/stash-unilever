@@ -5,6 +5,7 @@
  *******************************************************************/
 var jq = jQuery.noConflict();
 function finScriptCallBack() {
+	jq('[data-toggle="tooltip"]').tooltip();
     jq(".initAccordian").on("click", function() {
         var $this = jq(this);
         if ($this.parent().nextUntil(".leftsidemenu").is(":hidden")) {

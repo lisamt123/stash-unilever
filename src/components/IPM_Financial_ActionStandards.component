@@ -10,15 +10,16 @@
 <apex:attribute name="isEditable" type="boolean" assignTo="{!editTable}" description="Passing parameter to check is table editable or not"/>
 <apex:attribute name="secId" type="Id" required="false" assignTo="{!projDocSecId}" description="Passing Project Document Section Id"/>
 <apex:attribute name="projId" type="Id" required="true" assignTo="{!projectId}" description="Passing Project Id"/>
+<apex:attribute name="gate" type="string" assignTo="{!gateType}" description="passing gate name"/>
    <apex:outputPanel styleClass="gatefinancialbg" layout="block" rendered="{!isEditable}">
        <a href="{!$Page.IPM_Financial}?id={!projectId}">{!$Label.IPM_Navigate_Financial}</a>
    </apex:outputPanel>
    <div class="gatefinTabContainer">
     <!-- Action Standards -->
-    <table border="0" cellpadding="0" cellspacing="0" class="ipmFinancetable fintable table table-bordered textareabig">
+    <table border="0" cellpadding="0" cellspacing="0" class="ipmFinancetable fintable table table-bordered textareabig ipmFintableAlign">
         <thead>
             <tr>
-                <th scope="col" width="30%">                    
+                <th scope="col" width="29%">                    
                     <span class="finproject"></span>
                 </th>
                  <th scope="col">
@@ -29,7 +30,7 @@
                         <span class="finproject">   {!$Label.IPM_RESULTS} at {!gateName}</span>
                     </th>
                 </apex:repeat>
-                 <th scope="col" width="30%">                    
+                 <th scope="col" width="29%">                    
                     <span class="finproject">{!$Label.IPM_COMMENTS}</span>
                 </th>
             </tr>
@@ -158,8 +159,8 @@
             </tr>
             <tr>
                 <td class="fintleblubg fleft pl10">
-                    <div class="col-sm-7">{!$Label.ipmFinSummaryNPV}</div>i
-                    <div class="col-sm-5">€ 000</div>
+                    <div class="col-sm-7">{!$Label.ipmFinSummaryNPV}</div>
+                    <div class="col-sm-5">€ '000</div>
                 </td>
                 <td class="fintlewhitebg">
                     <apex:outputText value="{0, number, ###,###,###.#}" rendered="{!OR(project.IPM_Phase__c!='Ideas',!isEditable)}">
