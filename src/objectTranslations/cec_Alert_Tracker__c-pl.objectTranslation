@@ -99,10 +99,7 @@
         <label>Typ reguły</label>
         <name>Rule_Type__c</name>
     </fields>
-    <fields>
-        <label><!-- Trigger Email --></label>
-        <name>Trigger_Email__c</name>
-    </fields>
+
     <fields>
         <label><!-- Unique Id --></label>
         <name>Unique_Id__c</name>
