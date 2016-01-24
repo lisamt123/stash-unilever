@@ -56,6 +56,17 @@
         <template>CEC_Unilever/CEC_AutoResponse_Unilever_UK</template>
     </alerts>
     <alerts>
+        <fullName>CEC_Close_Case_Survey</fullName>
+        <description>CEC: Close Case Survey</description>
+        <protected>false</protected>
+        <recipients>
+            <field>ContactId</field>
+            <type>contactLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Close_Case_Survey</template>
+    </alerts>
+    <alerts>
         <fullName>CEC_Send_Auto_Response</fullName>
         <description>CEC Send Auto Response</description>
         <protected>false</protected>
@@ -65,17 +76,6 @@
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>CEC_Unilever/cec_Default_Auto_Response</template>
-    </alerts>
-    <alerts>
-        <fullName>close_Case_Survey</fullName>
-        <description>close Case Survey</description>
-        <protected>false</protected>
-        <recipients>
-            <field>ContactId</field>
-            <type>contactLookup</type>
-        </recipients>
-        <senderType>CurrentUser</senderType>
-        <template>unfiled$public/Close_Case_Survey</template>
     </alerts>
     <fieldUpdates>
         <fullName>CEC_Benelux_Market_Field_Update</fullName>
@@ -288,6 +288,22 @@
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
+        <fullName>CEC Close Case Survey</fullName>
+        <active>true</active>
+        <description>CEC: to send CSAT survey link</description>
+        <formula>ExecuteCaseSurveyWorkflow__c &amp;&amp;  ISBLANK(ParentId) &amp;&amp; ISPICKVAL( Status, &apos;Closed&apos;)&amp;&amp; NOT(ISBLANK(Case_Market_Mapping_Country_Id__c)) &amp;&amp; NOT(Reason_Code__r.Global_Listening_Tree__r.Exclude_From_CSAT__c) &amp;&amp; IF(ISPICKVAL(Origin, &apos;Email&apos;), VALUE(MID(TEXT((NOW()- $System.OriginDateTime)),13,2)) &lt; (Country__r.CSAT_Email_Percentage__c * 100), IF(ISPICKVAL(Origin,  &apos;Phone&apos;), VALUE(MID(TEXT((NOW()- $System.OriginDateTime)),13,2)) &lt; (Country__r.CSAT_Phone_Percentage__c * 100), IF(ISPICKVAL(Origin,  &apos;Social&apos;), VALUE(MID(TEXT((NOW()- $System.OriginDateTime)),13,2)) &lt; (Country__r.CSAT_Social_Percentage__c * 100), IF(ISPICKVAL(Origin,  &apos;Web&apos;), VALUE(MID(TEXT((NOW()- $System.OriginDateTime)),13,2)) &lt; (Country__r.CSAT_Web_Percentage__c * 100), FALSE))))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>CEC_Close_Case_Survey</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>Case.CSAT_Delay__c</offsetFromField>
+            <timeLength>0</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
         <fullName>CEC Copy Case Description</fullName>
         <actions>
             <name>CEC_Copy_Case_Description</name>
@@ -427,25 +443,6 @@
             <value>UK &amp; Ireland</value>
         </criteriaItems>
         <description>Auto Response Email on Case Creation for UK &amp; Ireland for Case Origin Web</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>Close Case Survey</fullName>
-        <actions>
-            <name>close_Case_Survey</name>
-            <type>Alert</type>
-        </actions>
-        <active>false</active>
-        <criteriaItems>
-            <field>Case.Status</field>
-            <operation>equals</operation>
-            <value>Closed</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>Case.Reason</field>
-            <operation>notEqual</operation>
-            <value>Duplicate</value>
-        </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
     <rules>
