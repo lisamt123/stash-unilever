@@ -726,6 +726,8 @@ src/classes/IPM_UploadBusinessCase.cls
 src/classes/IPM_UploadBusinessCase.cls-meta.xml
 src/classes/IPM_UploadBusinessCase_Test.cls
 src/classes/IPM_UploadBusinessCase_Test.cls-meta.xml
+src/classes/IPM_UserTriggerHandler.cls
+src/classes/IPM_UserTriggerHandler.cls-meta.xml
 src/classes/IPM_UserProfileHandler.cls
 src/classes/IPM_UserProfileHandler.cls-meta.xml
 src/classes/IPM_Utils.cls
@@ -1153,17 +1155,6 @@ src/email/Approval_Emails/BET_Member_Request_Rejected.email
 src/email/Approval_Emails/BET_Member_Request_Rejected.email-meta.xml
 src/email/Approval_Emails/BET_Unarchived.email
 src/email/Approval_Emails/BET_Unarchived.email-meta.xml
-src/flowDefinitions
-src/flowDefinitions/IPM_Notify_chatter_post_after_Bosscard_Inactivity_of_175_days.flowDefinition
-src/flowDefinitions/IPM_Notify_chatter_post_after_Bosscard_inactivity_of_30_days.flowDefinition
-src/flowDefinitions/IPM_Notify_Local_Rollout_Project_Created.flowDefinition
-src/flowDefinitions/IPM_Notify_Regional_Rollout_Project_Created.flowDefinition
-src/flowDefinitions/IPM_Notify_when_financial_is_changed.flowDefinition
-src/flowDefinitions/IPM_Notify_when_financial_year_is_changed.flowDefinition
-src/flowDefinitions/IPM_Notify_when_project_is_stopped.flowDefinition
-src/flowDefinitions/IPM_Post_chatter_when_regional_rollout_project_added_to_plan.flowDefinition
-src/flowDefinitions/IPM_Send_mail_when_TLD_changed.flowDefinition
-src/flowDefinitions/IPM_User_has_changed_roles.flowDefinition
 src/flows
 src/flows/IPM_Notify_Local_Rollout_Project_Created-3.flow
 src/flows/IPM_Notify_Local_Rollout_Project_Created-4.flow
@@ -1568,8 +1559,8 @@ src/permissionsets/IPM_ProjectLeader.permissionset
 src/permissionsets/IPM_System_Administrator.permissionset
 src/quickActions/Publisher_Action.quickAction
 src/reports
-src/reports/IPM_Reports/
-src/reports/IPM_reports-meta.xml
+src/reports/IPM_Reports
+src/reports/IPM_Reports-meta.xml
 src/reports/IPM_Reports/BD_BB_Alignment_Report.report
 src/reports/BET_reports
 src/reports/BET_reports/BETs_with_IPMs.report
