@@ -11,6 +11,7 @@ History
 VERSION  AUTHOR            DATE            DETAIL               Description
 1.0 -    Rajesh            19/11/2015      INITIAL DEVELOPMENT  CSR
 1.0 -    Masood            20/11/2015      INITIAL DEVELOPMENT  CSR
+2.0      Samrin Shaikh     17/12/2015       CSC-2765            CSC-2765 US-009 Letter/Enclosure auto population
 ***********************************************************************/
 
 /*
@@ -135,8 +136,8 @@ Test method for beforeInsert() method
             update oldfulfilmentObj;
             Listff1.add(oldfulfilmentObj); 
             
-            
-            fulfilmentHelper.refundApprovalCheck(Listff1,FulfilMap);
+            //Commented for CSC - 3135
+            //fulfilmentHelper.refundApprovalCheck(Listff1,FulfilMap);
             
             
         }
@@ -390,4 +391,357 @@ Test method for beforeInsert() method
         CEC_ChequeProcess.generateChequeNumber(null);
         
     }
+    public static testMethod void test_beforeUpdate(){
+        
+        User u = insertUser();
+        
+        System.runAs(u)
+        {
+            
+            
+            List<cec_Fulfilment__c>  Listff = new List<cec_Fulfilment__c> ();
+            List<cec_Fulfilment__c>  Listff1 = new List<cec_Fulfilment__c> ();  
+            List<cec_Fulfilment__c>  Listff2 = new List<cec_Fulfilment__c> ();  
+            Map<id,cec_Fulfilment__c> FulfilMap = new Map<id,cec_Fulfilment__c>();
+            Map<id,cec_Fulfilment__c> FulfilMap1 = new Map<id,cec_Fulfilment__c>();
+            Map<id,cec_Fulfilment__c> FulfilMap2 = new Map<id,cec_Fulfilment__c>();            
+            
+            
+           Account accountObj = new Account();
+            accountObj.RecordTypeId = [Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
+            accountObj.PersonMailingCity = 'Mumbai';
+            accountObj.LastName = 'TestAccount';        
+            
+            insert accountObj;
+            System.assertEquals( accountObj.LastName,'TestAccount');         
+            
+            
+            
+            Case caseObj = new Case();
+            caseObj .Status = 'New';
+            caseObj .Origin = 'Email';
+            caseObj.AccountID=  accountObj.id;
+            caseObj.Case_product_category__c='IceCream';
+            insert caseObj;
+            System.assertEquals( caseObj.Origin,'Email');           
+            
+            System.debug('~~~~caseObj '+ caseObj);     
+            System.debug('~~~~caseObj Account'+ caseObj.Account);      
+
+            cec_Enclosure__c enclosure1 = new cec_Enclosure__c();
+            enclosure1.name = 'UK601';
+            enclosure1.Active__c = true;
+            enclosure1.Country__c = 'United States';
+            insert enclosure1;
+            cec_Enclosure__c en1 = [select id,name from cec_Enclosure__c where name ='UK601' ];
+             System.assertEquals(en1.name,'UK601');  
+            
+            cec_Enclosure__c enclosure2 = new cec_Enclosure__c();
+            enclosure2.name = 'UK602';
+            enclosure2.Active__c = true;
+            enclosure2.Country__c = 'United States';
+            insert enclosure2;
+            cec_Enclosure__c en2 = [select id, name from cec_Enclosure__c where name ='UK602' ];
+             System.assertEquals(en2.name,'UK602');  
+            
+            cec_Enclosure__c enclosure3 = new cec_Enclosure__c();
+            enclosure3.name = 'UK603';
+            enclosure3.Active__c = true;
+            enclosure3.Country__c = 'United States';
+            insert enclosure3;
+            cec_Enclosure__c en3 = [select id,name from cec_Enclosure__c where name ='UK603' ];
+             System.assertEquals(en3.name,'UK603');  
+
+            cec_Enclosure__c enclosure4 = new cec_Enclosure__c();
+            enclosure4.name = 'UK604';
+            enclosure4.Active__c = true;
+            enclosure4.Country__c = 'United States';
+            insert enclosure4;
+            cec_Enclosure__c en4 = [select id,name from cec_Enclosure__c where name ='UK604' ];
+             System.assertEquals(en4.name,'UK604');  
+
+            cec_Enclosure__c enclosure5 = new cec_Enclosure__c();
+            enclosure5.name = 'UK605';
+            enclosure5.Active__c = true;
+            enclosure5.Country__c = 'United States';
+            insert enclosure5;          
+            cec_Enclosure__c en5 = [select id, name from cec_Enclosure__c where name ='UK605' ];
+             System.assertEquals(en5.name,'UK605');  
+            
+            integer enCount = [select count() from cec_Enclosure__c where name like 'UK%' ];
+            System.assertEquals(enCount,5);
+            
+            cec_Fulfilment__c fulfilmentObj = new cec_Fulfilment__c();
+            fulfilmentObj.Case__c = caseObj.id;  
+            fulfilmentObj.Country__c = 'United States';
+            
+            Listff.add(fulfilmentObj);   
+            insert Listff;
+            System.assertEquals(Listff.size(),1);
+            FulfilMap.put(fulfilmentObj.Id,fulfilmentObj);
+            System.debug('~~~~fulfilmentObj'+ fulfilmentObj);  
+            
+            cec_Fulfilment__c oldfulfilmentObj = [select ID,Enclosure1_Quantity__c,Enclosure2_Quantity__c,Enclosure3_Quantity__c,Enclosure4_Quantity__c,Enclosure5_Quantity__c from cec_Fulfilment__c where id = :fulfilmentObj.Id];
+            oldfulfilmentObj.Enclosure1__c = en1.Id;
+            oldfulfilmentObj.Enclosure2__c = en2.Id;
+            oldfulfilmentObj.Enclosure3__c = en3.Id;
+            oldfulfilmentObj.Enclosure4__c = en4.Id;
+            oldfulfilmentObj.Enclosure5__c = en5.Id;
+            
+            oldfulfilmentObj.Enclosure1_Quantity__c = '1';
+            oldfulfilmentObj.Enclosure2_Quantity__c = '2';
+            oldfulfilmentObj.Enclosure3_Quantity__c = '3';
+            oldfulfilmentObj.Enclosure4_Quantity__c = '4';
+            oldfulfilmentObj.Enclosure5_Quantity__c = '5';
+            
+            update oldfulfilmentObj;
+            
+            FulfilMap1.put(oldfulfilmentObj.Id,oldfulfilmentObj);
+            
+            
+            
+            System.assertEquals(Listff.size(),1);
+            
+            
+            User loggedinuser = [select Quality_Check_Percentage__c,Max_Refund_Amount__c, FirstName from User where id = :UserInfo.getUserId()];
+            
+            System.debug(''+loggedinuser.Quality_Check_Percentage__c+' '+loggedinuser.FirstName);
+            
+            
+            CEC_FulfilmentHelper fulfilmentHelper = new CEC_FulfilmentHelper();
+            fulfilmentHelper.upsertFulfilmentEnclosure(Listff,FulfilMap);
+            
+            integer ffENCount = [select count() from CEC_Fulfilment_Enclosure__c  ];
+            System.assertEquals(ffENCount,5);
+            
+
+            //////////////////////////////////
+            cec_Fulfilment__c oldfulfilmentObj1 = [select ID,Enclosure1_Quantity__c,Enclosure2_Quantity__c,Enclosure3_Quantity__c,Enclosure4_Quantity__c,Enclosure5_Quantity__c from cec_Fulfilment__c where id = :fulfilmentObj.Id];
+            oldfulfilmentObj1.Enclosure1_Quantity__c = '1';
+            oldfulfilmentObj1.Enclosure2_Quantity__c = '1';
+            oldfulfilmentObj1.Enclosure3_Quantity__c = '1';
+            oldfulfilmentObj1.Enclosure4_Quantity__c = '1';
+            oldfulfilmentObj1.Enclosure5_Quantity__c = '1';
+            
+            update oldfulfilmentObj1;
+            Listff1.add(oldfulfilmentObj1); 
+            System.assertEquals(Listff1.size(),1);
+
+            fulfilmentHelper.upsertFulfilmentEnclosure(Listff1,FulfilMap1);
+            FulfilMap2.put(oldfulfilmentObj1.Id,oldfulfilmentObj1);
+            
+            integer ffENCount1 = [select count() from CEC_Fulfilment_Enclosure__c  ];
+            System.assertEquals(ffENCount1,5);          
+
+        
+            cec_Fulfilment__c oldfulfilmentObj2 = [select ID,Enclosure1__c,Enclosure2__c,Enclosure3__c,Enclosure4__c,Enclosure5__c,Enclosure1_Quantity__c,Enclosure2_Quantity__c,Enclosure3_Quantity__c,Enclosure4_Quantity__c,Enclosure5_Quantity__c from cec_Fulfilment__c where id = :fulfilmentObj.Id];
+            
+            
+            oldfulfilmentObj2.Enclosure3__c = null;
+            oldfulfilmentObj2.Enclosure4__c = null;
+            oldfulfilmentObj2.Enclosure5__c = null;
+            
+            oldfulfilmentObj2.Enclosure3_Quantity__c = null;
+            oldfulfilmentObj2.Enclosure4_Quantity__c = null;
+            oldfulfilmentObj2.Enclosure5_Quantity__c = null;          
+
+            update oldfulfilmentObj2;
+            Listff2.add(oldfulfilmentObj2);
+            System.assertEquals(Listff2.size(),1);
+            
+             
+            fulfilmentHelper.deleteFulfilmentEnclosure(Listff2,FulfilMap2);
+            integer ffENCount2 = [select count() from CEC_Fulfilment_Enclosure__c  ];
+            System.assertEquals(ffENCount2,2);          
+            
+        
+            
+        }
+        
+    }
+
+    
+/* -- Samrin Changes For US - AutoEnclousure */  
+ public static testMethod void test_EnclousurePopulatedCheck(){
+               User u = insertUser();        
+        System.runAs(u) {
+
+            mdm_Product_Category__c pCategory = new mdm_Product_Category__c(name='ProductCategory', L0_Product_Category__c='Foods Category',L2_Product_Category__c='Other Foods');
+            insert pCategory;
+            
+            mdm_Case_Product__c productObj = new  mdm_Case_Product__c (name='Test Product1', Consumer_Product_Descriptor_Local_Lang__c ='Done Shampoo1', brand__c= 'Dove1', Consumer_Product_Descriptor_no_size__c ='Dove',Global_CPG_Code__c = pCategory.id);
+            insert productObj;           
+            
+            mdm_Global_Listening_Tree__c gListingTree = new mdm_Global_Listening_Tree__c(L5_Desc__c = 'Foreign matter - unidentifiable');
+            insert gListingTree;
+            
+            mdm_Reason_Code__c reasonObj = new mdm_Reason_Code__c(name='Foreign matter - unidentifiable', L5_Code__c='Foreign matter - unidentifiable',Global_Listening_Tree__c = gListingTree.Id);
+            insert reasonObj;
+            
+            mdm_Geography__c  geographyObj = new mdm_Geography__c(name='United States', ISO_Country_Dependency_Medium_Name__c= 'United States');
+            insert geographyObj;
+            
+            cec_Case_QC_Mapping__c caseQCMappingObj = new cec_Case_QC_Mapping__c(QC_Type__c='Spam',Status__c='New',Verbatim__c='Test description',Product__c=productObj.id,Reason_Code__c=reasonObj.id,Country__c=geographyObj.id);
+            insert caseQCMappingObj;
+
+            CEC_Case_Market_Mapping__c marketObj = new CEC_Case_Market_Mapping__c(Market__c='United States',Name ='United States',Country__c =geographyObj.id);
+            insert marketObj;
+            
+            List<cec_Alert_Rule__c> alertRuleLst = new  List<cec_Alert_Rule__c>();
+            cec_Alert_Rule__c alertRule1 = new cec_Alert_Rule__c(Name = 'Rule 1', Active__c=true, Type__c='Safety', Reason_Code__c = reasonObj.id, Market__c='United States',  All_Market__c = false, Threshold__c = 1, Product_Category__c = pCategory.Id, Product_Level__c = '0', Reason_Level__c = '5');
+            cec_Alert_Rule__c alertRule2 = new cec_Alert_Rule__c(Name = 'Rule 2', Active__c=true, Type__c='Safety', Reason_Code__c = reasonObj.id, Market__c='United States',  All_Market__c = false, Threshold__c = 1, Product_Category__c = pCategory.Id, Product_Level__c = '0', Reason_Level__c = '5');
+            cec_Alert_Rule__c alertRule3 = new cec_Alert_Rule__c(Name = 'Rule 3', Active__c=true, Type__c='Safety', Reason_Code__c = reasonObj.id, Market__c='United States',  All_Market__c = false, Threshold__c = 1, Product_Category__c = pCategory.Id, Product_Level__c = '0', Reason_Level__c = '5');
+            cec_Alert_Rule__c alertRule4 = new cec_Alert_Rule__c(Name = 'Rule 4', Active__c=true, Type__c='Safety', Reason_Code__c = reasonObj.id, Market__c='India',  All_Market__c = false, Threshold__c = 1, Product_Category__c = pCategory.Id, Product_Level__c = '0', Reason_Level__c = '5');
+            cec_Alert_Rule__c alertRule5 = new cec_Alert_Rule__c(Name = 'Rule 5', Active__c=true, Type__c='Safety', Reason_Code__c = reasonObj.id, Market__c='India',  All_Market__c = false, Threshold__c = 1, Product_Category__c = pCategory.Id, Product_Level__c = '0', Reason_Level__c = '5');
+
+            alertRuleLst.add(alertRule1);
+            alertRuleLst.add(alertRule2);
+            alertRuleLst.add(alertRule3);
+            alertRuleLst.add(alertRule4);
+            alertRuleLst.add(alertRule5);
+            insert alertRuleLst;
+
+            // Add Encolsures 
+            
+            List<cec_Enclosure__c> enclosureLst = new List<cec_Enclosure__c>();
+            cec_Enclosure__c enclosure1 = new cec_Enclosure__c(Name ='E - 111',Active__c =true,Country__c='United States');
+            cec_Enclosure__c enclosure2 = new cec_Enclosure__c(Name ='E - 112',Active__c =true,Country__c='United States');
+            cec_Enclosure__c enclosure3 = new cec_Enclosure__c(Name ='E - 113',Active__c =true,Country__c='India');
+            cec_Enclosure__c enclosure4 = new cec_Enclosure__c(Name ='E - 114',Active__c =true,Country__c='United States');
+            cec_Enclosure__c enclosure5 = new cec_Enclosure__c(Name ='E - 211',Active__c =true,Country__c='United States');
+            cec_Enclosure__c enclosure6 = new cec_Enclosure__c(Name ='E - 212',Active__c =true,Country__c='India');
+            cec_Enclosure__c enclosure7 = new cec_Enclosure__c(Name ='E - 213',Active__c =true,Country__c='United States');
+            cec_Enclosure__c enclosure8 = new cec_Enclosure__c(Name ='E - 214',Active__c =true,Country__c='United States');
+            cec_Enclosure__c enclosure9 = new cec_Enclosure__c(Name ='E - 311',Active__c =true,Country__c='United States');
+            cec_Enclosure__c enclosure10 = new cec_Enclosure__c(Name ='E - 312',Active__c =true,Country__c='United States');
+            cec_Enclosure__c enclosure11 = new cec_Enclosure__c(Name ='E - 313',Active__c =true,Country__c='India');
+            cec_Enclosure__c enclosure12= new cec_Enclosure__c(Name ='E - 314',Active__c =true,Country__c='United States');
+            enclosureLst.add(enclosure1);
+            enclosureLst.add(enclosure2);
+            enclosureLst.add(enclosure3);
+            enclosureLst.add(enclosure4);
+            enclosureLst.add(enclosure5);
+            enclosureLst.add(enclosure6);
+            enclosureLst.add(enclosure7);
+            enclosureLst.add(enclosure8);
+            enclosureLst.add(enclosure9);
+            enclosureLst.add(enclosure10);
+            enclosureLst.add(enclosure11);
+            enclosureLst.add(enclosure12);
+            insert enclosureLst;
+            
+            // Alert Actions 
+            List<cec_Alert_Action__c> alertActionLst = new  List<cec_Alert_Action__c>();
+            cec_Alert_Action__c alertAction1 = new cec_Alert_Action__c( Type__c = 'Fulfilment', Alert_Rule_Id__c = alertRule1.id,
+                                                                        Country_Name__c='United States',
+                                                                        Enclosure1__c =enclosure7.Id ,Enclosure5__c=enclosure4.Id );
+            cec_Alert_Action__c alertAction2 = new cec_Alert_Action__c( Type__c='Fulfilment', Alert_Rule_Id__c = alertRule2.id,
+                                                                         Country_Name__c='United States',
+                                                                         Enclosure1__c =enclosure7.Id ,Enclosure2__c =enclosure12.Id,Enclosure5__c=enclosure4.Id );
+
+            cec_Alert_Action__c alertAction3 = new cec_Alert_Action__c( Type__c='Fulfilment', Alert_Rule_Id__c = alertRule3.id,
+                                                                         Country_Name__c='United States',
+                                                                         Enclosure1__c =enclosure1.Id , Enclosure3__c =enclosure10.Id,Enclosure4__c=enclosure2.Id );
+
+            cec_Alert_Action__c alertAction4 = new cec_Alert_Action__c( Type__c='Fulfilment', Alert_Rule_Id__c = alertRule4.id,
+                                                                         Country_Name__c='United States',
+                                                                         Enclosure2__c =enclosure12.Id);
+            alertActionLst.Add(alertAction1);
+            alertActionLst.Add(alertAction2);
+            alertActionLst.Add(alertAction3);
+            alertActionLst.Add(alertAction4);
+            Insert alertActionLst;
+                
+            Account accountObj = new Account();
+            accountObj.RecordTypeId = [Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
+            accountObj.PersonMailingCity = 'NY';
+            accountObj.PersonMailingCountry='United States';
+            accountObj.LastName = 'TestAccount';        
+            
+            insert accountObj;       
+            Case caseObj= new Case();
+            caseObj.Status='New';
+            caseObj.Origin='Email'; 
+            caseObj.AccountID=  accountObj.id;
+            caseObj.Reason_Code__c = reasonObj.id;
+            caseObj.Country__c =marketObj.id;
+            CaseObj.DayCode__c='E111';
+            insert caseObj;
+            caseObj.CEC_Product__c = productObj.id;
+            Update caseObj;
+            String CaseId =caseObj.id;
+            // Call to the Functionality of  CSC : 2765  :  US-009 Letter/Enclosure auto population
+             
+            CEC_AlertFulfilmentEnclosureHelper.AlertFulfilmentEnclosureHelperWrapperResponse result =new   CEC_AlertFulfilmentEnclosureHelper.AlertFulfilmentEnclosureHelperWrapperResponse ();
+            result=CEC_AlertFulfilmentEnclosureHelper.populateEnclosureDetails(CaseId,accountObj.PersonMailingCountry);
+            System.assertEquals('Success', result.message);
+            System.assertEquals(5, result.enclosuresList.size());
+
+            //Fulfilment  
+            cec_Fulfilment__c newFulfilment = new cec_Fulfilment__c();
+            newFulfilment.Case__c = caseObj.id;
+            newFulfilment.Country__c=accountObj.PersonMailingCountry; 
+             if (result.status == 'S'){
+                
+            if(result.enclosuresList.size()>0 )
+            {
+                  if(result.enclosuresList.get(0) !=null)
+                    {
+                         newFulfilment.Enclosure1__c=result.enclosuresList.get(0);
+                         newFulfilment.Enclosure1_Quantity__c='1';
+                    }
+                  if(result.enclosuresList.get(1) !=null)
+                    {
+                         newFulfilment.Enclosure2__c=result.enclosuresList.get(1);
+                         newFulfilment.Enclosure2_Quantity__c='1';
+                    }
+                  if(result.enclosuresList.get(2) !=null)
+                    {
+                         newFulfilment.Enclosure3__c=result.enclosuresList.get(2);
+                         newFulfilment.Enclosure3_Quantity__c='1';
+                    }
+                  if(result.enclosuresList.get(3) !=null)
+                    {
+                         newFulfilment.Enclosure4__c=result.enclosuresList.get(3);
+                         newFulfilment.Enclosure4_Quantity__c='1';
+                    }
+                  if(result.enclosuresList.get(4)!=null)
+                    {
+                         newFulfilment.Enclosure5__c=result.enclosuresList.get(4);
+                         newFulfilment.Enclosure5_Quantity__c='1';
+                    }
+            
+            }
+        }
+       
+            Insert  newFulfilment;
+
+            
+            cec_Fulfilment__c  fulfilmenttemp  = [SELECT  Id, Name , Enclosure1__c,Enclosure2__c,Enclosure3__c,
+                                                  Enclosure4__c,Enclosure5__c,Enclosure1_Quantity__c,Enclosure2_Quantity__c,
+                                                  Enclosure3_Quantity__c,Enclosure4_Quantity__c,Enclosure5_Quantity__c 
+                                                  FROM cec_Fulfilment__c 
+                                                  WHERE id =:newFulfilment.Id ];
+
+            
+            // Rajesh Code start
+            System.assertNotEquals(fulfilmenttemp.Enclosure1__c,null);
+            System.assertNotEquals(fulfilmenttemp.Enclosure2__c,null);
+            System.assertNotEquals(fulfilmenttemp.Enclosure3__c,null);
+            System.assertNotEquals(fulfilmenttemp.Enclosure4__c,null);
+            System.assertNotEquals(fulfilmenttemp.Enclosure5__c,null);
+            System.assertEquals(fulfilmenttemp.Enclosure1_Quantity__c,'1');
+            System.assertEquals(fulfilmenttemp.Enclosure2_Quantity__c,'1');
+            System.assertEquals(fulfilmenttemp.Enclosure3_Quantity__c,'1');
+            System.assertEquals(fulfilmenttemp.Enclosure4_Quantity__c,'1');
+            System.assertEquals(fulfilmenttemp.Enclosure5_Quantity__c,'1');
+
+            integer ffENCount = [select count() from CEC_Fulfilment_Enclosure__c ];
+            System.assertEquals(5,ffENCount);
+
+            // Rajesh Code ends
+        
+    }
+ }
+   
 }

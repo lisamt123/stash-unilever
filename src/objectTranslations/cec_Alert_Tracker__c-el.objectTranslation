@@ -69,7 +69,10 @@
         <label>Κανόνας Τύπος</label>
         <name>Rule_Type__c</name>
     </fields>
-
+    <fields>
+        <label><!-- Trigger Batch --></label>
+        <name>Trigger_Batch__c</name>
+    </fields>
     <fields>
         <label><!-- Unique Id --></label>
         <name>Unique_Id__c</name>

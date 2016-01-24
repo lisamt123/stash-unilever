@@ -17,6 +17,7 @@ trigger CEC_Alert_Action on cec_Alert_Action__c (before insert, before update) {
 // Validate Email Templates for email template name is existing or not
         CEC_AlertActionTriggerHelper alertActions= new CEC_AlertActionTriggerHelper();
         alertActions.checkEmailTemplate(trigger.new);
+        alertActions.updateChatterGroupid(trigger.new);
         //alertActions.checkPopupLabel(trigger.new);
         
 }
