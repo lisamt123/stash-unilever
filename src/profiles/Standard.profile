@@ -118,7 +118,7 @@
     <applicationVisibilities>
         <application>Unilever_International_Distributor</application>
         <default>false</default>
-        <visible>false</visible>
+        <visible>true</visible>
     </applicationVisibilities>
     <applicationVisibilities>
         <application>WIN_POS</application>
