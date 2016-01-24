@@ -590,28 +590,29 @@
                                                             <ul class="nav nav-pills nav-stacked">
                                                                 <apex:variable var="count_opt" value="{!1}" />
                                                                 <apex:repeat value="{!mapSubCategOption[subCat]}" var="opt">
-                                                                    <li class="accordion_body_options {!if(count_opt == 1,'active','')}" id="option {!count_opt}"><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}" title="Score {!opt}" onclick="if($('.hideOptionAsset').is(':visible')) ReInitializeInstanceAF('{!subCat}');" data-toggle="tab"><strong> {!$Label.Oblix_lbl_UIUX_Option} {!count_opt} : </strong> {!mapSubCategOptionDescription[subCat+opt]}</a> </li>
+                                                                    <li class="accordion_body_options {!if(count_opt == 1,'active','')}"><a href="#{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}" title="Score {!opt}" onclick="if($('.hideOptionAsset').is(':visible')) ReInitializeInstanceAF('{!subCat}');" data-toggle="tab"><strong> {!$Label.Oblix_lbl_UIUX_Option} {!count_opt} : </strong> {!mapSubCategOptionDescription[subCat+opt]}</a> </li>
                                                                     <apex:variable var="count_opt" value="{!count_opt + 1}" />
                                                                 </apex:repeat>
                                                             </ul>
-                                                            <!--p class="accordion_body_options accordion_body_option_active"><a href="#"><strong>Option 2:</strong>&nbsp;Landing Pages, Page Take-overs.</a>
-                                                            </p-->
+                                                           
                                                         </div>
                                                         <div class="col-lg-6">
                                                             <div class="add_asset_panel">
                                                                 <div class="row">
                                                                     <div class="tab-content">
                                                                         <apex:repeat value="{!mapSubCategOption[subCat]}" var="opt">
-
+                                                                            
                                                                             <div class="tab-pane {!if(selectionCount == 1,'active','')}" id="{!mapRTIdCSS[recordType]}_tabs-{!count2}{!opt}">
-
-                                                                                <!--div class="row"-->
-
-                                                                                <apex:outputPanel id="assetPart">
+                                                                                    <apex:outputPanel id="countedID">
+                                                                                            <h2>Option {!selectionCount} selected</h2>
+                                                                                        </apex:outputPanel>
+                                                                                        
+                                                                                    <apex:outputPanel id="assetPart">
                                                                                     <apex:actionRegion >
 
-
-                                                                                        <h2>Option {!selectionCount} selected</h2>
+                                                                                        
+                                                                                        
+                                                                                        
                                                                                         <!--styleClass="removeBreak"-->
                                                                                         <div class="col-lg-4">
                                                                                             <p class="create_SOW_form_titles asset_panel_titles"></p>
@@ -625,7 +626,7 @@
                                                                                         </div>
                                                                                         <div class="col-lg-6">
                                                                                             <apex:inputField value="{!mapAssetsPerSubCat[subCat].Sub_Category__c}" style="display:none" styleClass="{!subCat} subCatPicklist" />
-                                                                                            <apex:inputField value="{!mapAssetsPerSubCat[subCat].Asset_Picklist__c}" onchange="showhideDetail($(this))" />
+                                                                                            <apex:inputField id="assetNamePicklist" value="{!mapAssetsPerSubCat[subCat].Asset_Picklist__c}" onchange="showhideDetail($(this))" />
                                                                                             <span class="error">error</span>
                                                                                             <div style="display:none" class="trDescribe"><p class="form_bracket_text">
                                                                                                 {!$Label.Oblix_lbl_UIUX_Please_describe} &nbsp;</p>
@@ -634,22 +635,27 @@
                                                                                             <apex:inputField value="{!mapAssetsPerSubCat[subCat].Quantity__c}" styleClass="assetQuantity" />
 
                                                                                             <apex:inputField style="width:100%;min-height:100px" value="{!assetInstance.Additional_Description__c}" styleClass="assetNotes" />
-                                                                                            <apex:commandButton value="ADD" action="{!AddToProjectAction}" onclick="if(setMendatory($(this))) blockme();" oncomplete="$.unblockUI()" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card" styleClass="btn btn-primary btn_plus btn_asset_add">
+                                                                                            <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                                                                                            <apex:commandButton value="ADD" action="{!AddToProjectAction}" onclick="if(setMendatory($(this))) blockme();" oncomplete="$.unblockUI();location.reload();" reRender="assetPart,campaignFeeId,Oblix_card" styleClass="btn btn-primary btn_plus btn_asset_add">
                                                                                                 <apex:param assignTo="{!recordType}" name="recordType" value="{!recordType}" />
                                                                                                 <apex:param assignTo="{!subCat}" name="subCat" value="{!subCat}" />
                                                                                                 <apex:param assignTo="{!complexity}" name="complexity" value="{!opt}" />
                                                                                                 <apex:param assignTo="{!selectionCountvar}" name="selectionCountvar" value="{!selectionCount}" />
                                                                                             </apex:commandButton>
+                                                                                            </apex:outputPanel>
                                                                                            <!-- <apex:commandButton value="UPDATE" onclick="updateAsset(this, {!selectionCount}); if(setMendatory($(this))) blockme(); return false;" styleclass="btn btn-primary hide_button" style="width:70px" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card"/>-->
+                                                                                           <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
                                                                                             <input value="UPDATE" onclick="updateAsset(this, {!selectionCount}); if(setMendatory($(this))) blockme(); return false;" class="btn btn-primary hide_button" style="width:70px" type="submit"  />  <!--return false;reRender="assetPart,campaignFeeId,estimateId,Oblix_card" -->
+                                                                                            </apex:outputPanel>
                                                                                         </div>
 
                                                                                     </apex:actionRegion>
+                                                                           
                                                                                 </apex:outputPanel>
-
+                                                                                <apex:variable var="selectionCount" value="{!selectionCount + 1}" />
                                                                             </div>
                                                                             <!--/div-->
-                                                                            <apex:variable var="selectionCount" value="{!selectionCount + 1}" />
+                                                                            
                                                                         </apex:repeat>
                                                                     </div>
                                                                 </div>
@@ -706,7 +712,9 @@
                                         <div class="Oblix_card_elmt asset_shopping_basket_item">
                                             <div>
                                                 <div class="Oblix_button_table_align">
+                                                <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
                                                     <apex:commandButton styleClass="removeAssetCss" style="width:12px;height:12px" onclick="removeAsset('{!wrapAsset.Asset_Picklist__c}', '{!project.Id}'); return false" /> 
+                                                </apex:outputPanel>
                                                             <span>
                                                                 <apex:commandLink onclick="editAsset(this, '{!wrapAsset.Id}'); return false;" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card">
                                                                     {!wrapAsset.Asset_Picklist__c}
@@ -746,7 +754,9 @@
                                 </button
                                 -->
                             </div>
-                            <apex:actionFunction action="{!refresh}" name="refreshAsset" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card" oncomplete="$.unblockUI()" />
+                            <apex:actionFunction action="{!refresh}" name="refreshAsset" reRender="campaignFeeId,Oblix_card" oncomplete="$.unblockUI()" >
+                              <apex:param name="updatedAssetInstance" assignTo="{!updatedAssetInstance}" value="" />
+                            </apex:actionFunction>
                         </div>
                     </apex:outputPanel>
                 </div>

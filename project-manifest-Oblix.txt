@@ -122,6 +122,8 @@ src/pages/Oblix_CampaignSummary.page
 src/pages/Oblix_CampaignSummary.page-meta.xml
 src/pages/Oblix_OuterPageTemplate.page
 src/pages/Oblix_OuterPageTemplate.page-meta.xml
+src/pages/Oblix_PermissionDenied.page
+src/pages/Oblix_PermissionDenied.page-meta.xml
 src/pages/Oblix_SOWCreate.page
 src/pages/Oblix_SOWCreate.page-meta.xml
 src/pages/Oblix_SOWMain.page

@@ -190,12 +190,12 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             //
             if (!liso_projects_for_sow.isEmpty())
                 for (Oblix_SOW_Projects__c  project : liso_projects_for_sow)
-                    li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Campaign', project));
+                    li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Campaign', project, hasEditAccess));
                 
 
             if (!liso_other_non_campaign_items.isEmpty())
                 for (Marketing_Basics__c otherItem : liso_other_non_campaign_items ) 
-                    li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', otherItem));
+                    li_campaign_and_non_campaign_items.add(new CampaignNonCampaignItems('Non Campaign', otherItem, hasEditAccess));
             System.DEBUG('Init Called 6 !!!!');
 
             String seriesbis = '';
@@ -818,7 +818,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         public String s_object_type {get;set;}
         public Oblix_CampaignStageLogic stage_identifier {get;set;}
 
-        public CampaignNonCampaignItems(String object_type, SObject campaign_non_campaign) {
+        public CampaignNonCampaignItems(String object_type, SObject campaign_non_campaign, Boolean hasEditAccess) {
             
             s_object_type = object_type;
             dynamic_object = campaign_non_campaign;
@@ -826,7 +826,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             // initialise StageIdentifier if it is a campaign type
             if ('Campaign' == object_type){
                 //system.debug('##campaign_non_campaign: ' + campaign_non_campaign);
-                stage_identifier = new Oblix_CampaignStageLogic((Oblix_SOW_Projects__c) campaign_non_campaign, true);
+                stage_identifier = new Oblix_CampaignStageLogic((Oblix_SOW_Projects__c) campaign_non_campaign, hasEditAccess,hasEditAccess);
             }
         }
     }

@@ -10,7 +10,7 @@
         <apex:define name="top_option_links"/>
 
         <apex:define name="top_right_panel">
-            <apex:commandButton value="CREATE SOW" action="{!CreateSOWAction}" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_create_sow" reRender="jqueryId,jqueryId2" onclick="blockme()" />
+            <apex:commandButton value="CREATE SOW" action="{!CreateSOWAction}" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_create_sow" reRender="jqueryId,jqueryId2" onclick="blockme()" rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}"/>
         </apex:define>
 
         <apex:define name="body_content">
@@ -75,7 +75,7 @@
                                                 <td>{!sow.SOW_Status__c}</td>
                                                 <td>€&nbsp;
                                                     <apex:outputText value="{0, number,###,###,##0}">
-                                                        <apex:param value="{!ROUND(sow.OblixSOWOverallTotal__c,0)}" />
+                                                        <apex:param value="{!sow.Total_Campaigns_This_FY__c+sow.OblixTotalOtherItemsFees__c}" />
                                                     </apex:outputText>
                                                 </td>
                                             </tr>

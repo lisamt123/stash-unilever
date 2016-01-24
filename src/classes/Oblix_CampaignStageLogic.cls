@@ -67,6 +67,7 @@ public with sharing class Oblix_CampaignStageLogic{
     public Integer i_percentage_of_fee_this_year {get;set;}
     public Integer i_agency_Percentage_of_fees_this_year {get;set;}
     public Boolean b_is_projection_selectable {get;set;}
+    public Boolean b_is_completion_selectable {get;set;}
     //public List<Boolean> lib_is_stage_projected {get;set;}
     //public List<Boolean> lib_is_stage_completed {get;set;}
     
@@ -122,11 +123,15 @@ public with sharing class Oblix_CampaignStageLogic{
     }
     
     
-     public Oblix_CampaignStageLogic(Oblix_SOW_Projects__c sow_project, Integer percentageValue){
-              sow_project_in_scope = sow_project;
-             i_percentage_of_fee_this_year = percentageValue;
-             system.debug('###i_percentage_of_fee_this_year : '+i_percentage_of_fee_this_year);
-             calculateFeesForThisYear();
+     public Oblix_CampaignStageLogic(Oblix_SOW_Projects__c sow_project, Integer percentageValue, boolean is_projection_selectable, boolean is_completeion_selectable){
+        sow_project_in_scope = sow_project;
+
+        b_is_projection_selectable = is_projection_selectable;
+        b_is_completion_selectable = is_completeion_selectable;
+
+        i_percentage_of_fee_this_year = percentageValue;
+        system.debug('###i_percentage_of_fee_this_year : '+i_percentage_of_fee_this_year);
+        calculateFeesForThisYear();
              
      }
     
@@ -140,6 +145,7 @@ public with sharing class Oblix_CampaignStageLogic{
         sow_project_in_scope = new Oblix_SOW_Projects__c();
         sow_project_in_scope.Financial_Year__c = sow_id;
         b_is_projection_selectable = true;
+        b_is_completion_selectable = true;
 
         // S.M. all projected stages should be set to true by default DE218
         sow_project_in_scope.Projected_Stage__c = STAGE_PROJECT_PRODUCTION;
@@ -153,7 +159,7 @@ public with sharing class Oblix_CampaignStageLogic{
     * @date         2016-01-09
     * @description  Oblix_CampaignStageLogic constructor
     ********************************************************************************/
-    public Oblix_CampaignStageLogic(Id sow_project_id, boolean is_projection_selectable){
+    public Oblix_CampaignStageLogic(Id sow_project_id, boolean is_projection_selectable, boolean is_completeion_selectable){
 
         // retrieve campaign by Id passed in - to create override constructor
         List<Oblix_SOW_Projects__c> liso_projects_for_sow = [SELECT Name, Project_Finish_Date__c, Campaign_Status__c, Platform__c, Project_Stage__c, Projected_Stage__c, Completed_Stage__c
@@ -162,7 +168,7 @@ public with sharing class Oblix_CampaignStageLogic{
             FROM Oblix_SOW_Projects__c WHERE Id = : sow_project_id ];
 
         if (NULL!=liso_projects_for_sow && !liso_projects_for_sow.isEmpty()){
-            this(liso_projects_for_sow[0],is_projection_selectable) ;
+            this(liso_projects_for_sow[0],is_projection_selectable, is_completeion_selectable) ;
         }
     }
 
@@ -171,9 +177,11 @@ public with sharing class Oblix_CampaignStageLogic{
     * @date         2016-01-09
     * @description  Oblix_CampaignStageLogic constructor
     ********************************************************************************/
-    public Oblix_CampaignStageLogic(Oblix_SOW_Projects__c sow_project, boolean is_projection_selectable ){
-
+    public Oblix_CampaignStageLogic(Oblix_SOW_Projects__c sow_project, boolean is_projection_selectable, boolean is_completeion_selectable){
+        
         b_is_projection_selectable = is_projection_selectable;
+        b_is_completion_selectable = is_completeion_selectable;
+
         sow_project_in_scope = sow_project;
         setStageAndCSS(sow_project.Projected_Stage__c, sow_project.Completed_Stage__c);
         calculateFeesForThisYear();
@@ -210,12 +218,16 @@ public with sharing class Oblix_CampaignStageLogic{
             
             // also set projection seletable value by checking b_is_projection_selectable
             li_projected_stages[i].b_is_stage_selectable = b_is_projection_selectable;
+
+            // also set completion selectable value by checkig b_is_completion_selectable
+            li_completed_stages[i].b_is_stage_selectable = b_is_completion_selectable;
         }
-         if(sow_project_in_scope.Value_To_BePaid_Manual_Override__c){
+        if(sow_project_in_scope.Value_To_BePaid_Manual_Override__c){
                 i_percentage_of_fee_this_year = Integer.valueOf(sow_project_in_scope.Percentage_of_Fee_for_this_FY__c);
                 i_fees_for_this_financial_year = Integer.valueOf(sow_project_in_scope.Value_to_be_paid_in_Current_FY__c);
                 system.debug('###i_fees_for_this_financial_year : '+i_fees_for_this_financial_year);
-          }
+        }
+
         s_selected_projected_stage = sow_project_in_scope.Projected_Stage__c;
         s_selected_completed_stage = sow_project_in_scope.Completed_Stage__c;
  
