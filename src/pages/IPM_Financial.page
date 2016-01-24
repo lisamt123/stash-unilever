@@ -347,7 +347,7 @@
                                                                 
                                                                
                                                                 
-                                                                <c:IPM_FinancialTable ipmFinancial="{!currentFinancial}"
+                                                                <!--<c:IPM_FinancialTable ipmFinancial="{!currentFinancial}"
                                                                     finWrapper="{!financialsInnovation}"
                                                                     colSpan="{!colSpan}"
                                                                     sustainabilityPeriod="{!sustainabilityPeriod}"
@@ -367,7 +367,7 @@
                                                                     isTLDYearMisaligned="{!isTLDYearMisaligned}"
                                                                     isITOgrtGTO="{!isITOgrtGTO}"
                                                                     isITOgrtGTOCal="{!isITOgrtGTOCal}" 
-                                                                />
+                                                                />-->
                                                         
                                                                 <c:IPM_FinancialSummaryTable ipmFinancial="{!currentFinancial}"
                                                                     fieldSuffix="{!fieldSuffix}"
@@ -389,7 +389,7 @@
                                                                 </apex:outputPanel>
                                                                 <apex:outputPanel id="financialYearCalendar">
                                                                 <!-- DEF2676 fix End --> 
-                                                                <c:IPM_FinancialTable ipmFinancial="{!currentFinancial}"
+                                                                <!--<c:IPM_FinancialTable ipmFinancial="{!currentFinancial}"
                                                                     finWrapper="{!financialsCalendar}"
                                                                     colSpan="{!colSpan}"
                                                                     sustainabilityPeriod="{!sustainabilityPeriod}"
@@ -408,7 +408,7 @@
                                                                     isTLDYearMisaligned="{!isTLDYearMisaligned}"
                                                                         isITOgrtGTO="{!isITOgrtGTO}"
                                                                         isITOgrtGTOCal="{!isITOgrtGTOCal}"
-                                                                />
+                                                                />-->
                                                                 </apex:outputPanel>
                                                         </div>
                                                         
