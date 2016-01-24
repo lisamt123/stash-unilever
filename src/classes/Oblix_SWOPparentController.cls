@@ -16,9 +16,10 @@ public with sharing virtual class Oblix_SWOPparentController {
     public Marketing_SOW__c selected_sow {get; set;}
     public Oblix_SOW_Projects__c selected_project {get;set;}
     public Oblix_CampaignStageLogic stage_identifier {get;set;}
+    public Boolean hasEditAccess { get; set; }
 
     public Oblix_SWOPparentController() {
-        
+        checkUserHasEditPermission();
     }
 
     /*******************************************************************************
@@ -45,19 +46,27 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @description  depending on the sow Id in scope and the required fields
     				populate the selected sow in scope - used by sub-classes
     ********************************************************************************/
-    public Marketing_SOW__c getSOW(Id sow_id, List<String> fields_to_query, String related_query_string){
+    public Marketing_SOW__c getSOW(String sow_id, List<String> fields_to_query, String related_query_string){
 
-    	Marketing_SOW__c sow = new Marketing_SOW__c();
-    	
-    	if (String.isNotBlank(sow_id) && !fields_to_query.isEmpty()){
+    	Marketing_SOW__c sow;
 
-            // build SOQL for querying campaign fields
-            String s_query_string = buildSOQLquery(fields_to_query, 'Marketing_SOW__c', related_query_string, 'Id = ' + '\'' + sow_id + '\'',null,null );
-            sow = Database.query(s_query_string);
+    	try{
+
+            if (String.isNotBlank(sow_id) && !fields_to_query.isEmpty()){
+
+                Id converted_sow_id = (Id) sow_id;
+
+                // build SOQL for querying campaign fields
+                String s_query_string = buildSOQLquery(fields_to_query, 'Marketing_SOW__c', related_query_string, 'Id = ' + '\'' + converted_sow_id + '\'',null,null );
+                sow = Database.query(s_query_string);
+            }
+            else
+            {
+                return null;
+            }
         }
-        else
-        {
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid sow id was passed in to the page'));
+        catch(Exception ex){
+                return null;
         }
 
         return sow;
@@ -69,24 +78,69 @@ public with sharing virtual class Oblix_SWOPparentController {
     * @description  depending on the campaign Id in scope and the required fields
     				populate the selected campaign in scope - used by sub-classes
     ********************************************************************************/
-    public Oblix_SOW_Projects__c getCampaign(Id campaign_id, List<String> fields_to_query, String related_query_string){
+    public Oblix_SOW_Projects__c getCampaign(String campaign_id, List<String> fields_to_query, String related_query_string){
 
-    	Oblix_SOW_Projects__c sow_project = new Oblix_SOW_Projects__c();
-    	
-    	if (String.isNotBlank(campaign_id) && !fields_to_query.isEmpty()){
+        Oblix_SOW_Projects__c sow_project;
 
-            // build SOQL for querying campaign fields
-            String s_query_string = buildSOQLquery(fields_to_query, 'Oblix_SOW_Projects__c', related_query_string, 'Id = ' + '\'' + campaign_id + '\'',null,null );
-            sow_project = Database.query(s_query_string);
+        try{
+        	
+        	if (String.isNotBlank(campaign_id) && !fields_to_query.isEmpty()){
+
+                Id converted_campaign_id = (Id) campaign_id;
+
+                // build SOQL for querying campaign fields
+                String s_query_string = buildSOQLquery(fields_to_query, 'Oblix_SOW_Projects__c', related_query_string, 'Id = ' + '\'' + converted_campaign_id + '\'',null,null );
+                    sow_project = Database.query(s_query_string);
+            }
+            else{
+                return null;
+                //ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid Id or you do not have permission to view this record!'));
+            }
         }
-        else
-        {
-            ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid project id was passed in to the page'));
+        catch(Exception ex){
+            return null;
+            //ApexPages.addMessage(new ApexPages.message(ApexPages.severity.ERROR,'Invalid Id or you do not have permission to view this record!'));
         }
-
         return sow_project;
     }
 
+    /*******************************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-17
+    * @description  Check if the current context user does not have access to record
+                    and redirect to permission denied page
+    ********************************************************************************/
+    public PageReference checkUserHasPermissionToSOW(){
+
+        if (NULl == selected_sow){
+            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
+            permission_denied_page.setRedirect(true);
+            return permission_denied_page;            
+        }
+        else{
+            return null;
+        }
+
+    }
+
+    /*******************************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-17
+    * @description  Check if the current context user does not have access to record
+                    and redirect to permission denied page
+    ********************************************************************************/
+    public PageReference checkUserHasPermissionToProject(){
+
+        if (NULl == selected_project){
+            Pagereference permission_denied_page = Page.Oblix_PermissionDenied;
+            permission_denied_page.setRedirect(true);
+            return permission_denied_page;            
+        }
+        else{
+            return null;
+        }
+
+    }
 
     /*******************************************************************************
     * @author       Shahin Movahedi
@@ -128,6 +182,21 @@ public with sharing virtual class Oblix_SWOPparentController {
             return query_string;
     }    
 
+    private void checkUserHasEditPermission(){
 
+        // if user has one of the 3 read/write permissions or is system admin then should be able to edit records
+        Integer existsInDB = 0;
+        hasEditAccess = false;
+
+        Id systemAdminProfileId = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id;
+        Id currentUserProfileId = UserInfo.getProfileId();
+        
+        Id currentUserId = UserInfo.getUserId();   
+        existsInDB = [SELECT count() FROM PermissionSetAssignment WHERE (AssigneeId = :currentUserId AND PermissionSet.Name IN ('Oblix_SWOP_UL_2_V1','Oblix_SWOP_UL_1_V1','Oblix_SWOP_Super_User_V1'))];
+
+        if(existsInDB > 0 || systemAdminProfileId == currentUserProfileId){
+            hasEditAccess = true;
+        }
+    }
 
 }

@@ -12,7 +12,6 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
     Map<Id, MDO_CategoryBrands__c> mids_campaign_id_category_brand = new Map<Id, MDO_CategoryBrands__c>();
 
     /*******************************************************************************
-    * @author       Shahin Movahedi
     * @date         2015-12-25
     * @description  This method is called prior to execution of a BEFORE trigger. 
                     Use this to cache any data required into maps 
@@ -36,7 +35,6 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
     }
     
     /*******************************************************************************
-    * @author       Shahin Movahedi
     * @date         2015-12-25
     * @description  This method is called prior to execution of a AFTER trigger. 
                     Use this to cache any data required into maps 
@@ -49,7 +47,7 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
             for(Marketing_SOW__c markSow : lstSOW){
                 setOWnerdsIds.add(markSow.OwnerId);
             }
-            lstMarketingShareToDelete = Oblix_TR01SOWMarkingSharing.retrieveMarketingShare(Trigger.New, setOWnerdsIds);
+            //lstMarketingShareToDelete = Oblix_TR01SOWMarkingSharing.retrieveMarketingShare(Trigger.New, setOWnerdsIds);
         }
         if(Trigger.isUpdate){
             //Start Approval Process Part
@@ -109,8 +107,10 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
     {
         System.debug('Entering FAU_ProgramHandler.andFinally');
         if(triggerShouldExecute && Trigger.isAfter){
-                delete lstMarketingShareToDelete;
-                insert lstMarketingShare;
+                Database.delete(lstMarketingShareToDelete, false);
+                Database.insert(lstMarketingShare, false);
+                //delete lstMarketingShareToDelete;
+                //insert lstMarketingShare;
                 //for(Approval.ProcessSubmitRequest req : lstApprovalReq){
                 //    Approval.ProcessResult result = Approval.process(req);
                 //    // display if the reqeust was successful

@@ -14,6 +14,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     public Oblix_SOW_Projects__c project {get; set;}
     public set<string> setRecordType  {get; set;}
     public map<string, list<Oblix_Project_Assets__c>> mapRTAssets {get; set;}
+    public String updatedAssetInstance { get;set; }
 
     public map<string, string> mapRTIdCSS {get; set;}
     public map<string, string> mapStageIdCSS {get; set;}
@@ -271,7 +272,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             project = getCampaign(projectId, Oblix_Utils.getAllFieldsInFieldsSet('Oblix_SOW_Projects__c', 'Oblix_Campaign_Summary'), ', (SELECT OblixCountry__r.Name, Percentage__c FROM Marketing_SOW_Project_Splits__r)');
             system.debug('###project : '+project );
             // get stage_identifier by project in scope or sowId if this is a new campaign
-            stage_identifier = new Oblix_CampaignStageLogic(project, true); 
+            stage_identifier = new Oblix_CampaignStageLogic(project, hasEditAccess,hasEditAccess); 
 
             //project = [Select Id, Name, Innovation_Projects__c , ProjectTotalAssetscore__c, Jobs_to_be_Done__c , Campaign_Fees_Total__c, Completed_Stage__c, Financial_Year__r.currency__c, Projected_Stage__c, Financial_Year__r.Financial_Year__c,Financial_Year__r.Name, BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Status__c, Preview_Date__c, Start_of_TV_production__c, Final_release__c, Live_Date__c, Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c, Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, Campaign_Countries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id = :projectId];
             sowName = project.Financial_Year__r.Name;
@@ -280,6 +281,8 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             countAssetNumberForCampaign = [Select count() from Oblix_Project_Assets__c  where Agency_Projects__c =: project.id];
             getAssetCampaign();
             getRecordTypesInfo();
+
+            System.DEBUG('In Here : ');
             if (project.Campaign_Countries__c != null) {
                 List<String> regionSeperatedList = new List<String>();
                 regionSeperatedList = project.Campaign_Countries__c.split('-');
@@ -353,6 +356,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     }
     @TestVisible
     private void getRecordTypesInfo() {
+        System.DEBUG('In Here : ');
         recordTypes = [SELECT Name FROM RecordType WHERE sObjectType = 'Oblix_Project_Assets__c' and name != 'Admin' Order by name];
         for (recordType rec : recordTypes) {
             lstRecordType.add(rec.name);
@@ -377,6 +381,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     @TestVisible
     private void getAssetCampaign() {
         list<Oblix_Project_Assets__c> lstAsset = [select Id, Agency_Projects__r.id, Channels__c, RecordType.Name, Quantity__c , Asset_Picklist__c, Asset_Title__c , Name, RecordTypeId, Sub_Category__c, FULL_Description__c, FULL_Description__r.name, Option_Name__c,Location__c from Oblix_Project_Assets__c where Agency_Projects__r.id = :project.id  limit 1000];
+        System.DEBUG('###lstAsset' + lstAsset);
         for (Oblix_Project_Assets__c asse : lstAsset) {
             if (asse.FULL_Description__c != null) {
                 asse.Asset_Title__c = asse.Quantity__c + crossX + mapAbreviation.get('' + asse.RecordType.Name) + '-' + mapAbreviation.get('' + asse.Sub_Category__c) + '-' + '0' + asse.FULL_Description__r.name.remove('Score ').remove('Full ').remove('Lite ');
@@ -857,7 +862,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     /*
     Description: Add assets to project
     */
-    public void AddToProjectAction() {
+    public Pagereference AddToProjectAction() {
         complexity = '%' + complexity;
         
         //assetInstance.Actual_Delivery_Date__c = assetInstanceDate;
@@ -877,10 +882,10 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         system.debug('============== assetInstance.Location__c: ' + assetInstance.Location__c);
 
         if (assetInstance.Asset_Picklist__c == null) {
-            return;
+            return null;
         }
         if (assetInstance.Asset_Picklist__c == 'Other' && ( assetInstance.Location__c == '' ||  assetInstance.Location__c == null)) {
-            return;
+            return null;
         }
         //end achraf
 
@@ -918,8 +923,10 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
           assetInstance.Id = tmpAssets[0].Id; 
           assetInstance.Quantity__c = assetInstance.Quantity__c  + tmpAssets[0].Quantity__c ;
           update assetInstance;
+          updatedAssetInstance = assetInstance.Id;
         }else{
             insert assetInstance;
+            updatedAssetInstance = assetInstance.Id;
         }
         
         lstAssetsForCard= [select Id, Name, Quantity__c, Sub_Category__c, Asset_Type__c, Asset_Title__c, Asset_Picklist__c,FULL_Description__c, FULL_Description__r.Name,Option_Name__c,Location__c   from Oblix_Project_Assets__c where Agency_Projects__c =: project.Id];
@@ -934,6 +941,9 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         assetInstance = new Oblix_Project_Assets__c ();
         assetInstance.clear();
         mapAssetsPerSubCat.put(subCat, new Oblix_Project_Assets__c(Sub_Category__c = subCat, Quantity__c = 1, recordTypeId = mapRTforSubCat.get(subCat)));
+        Pagereference newPage = new Pagereference('/apex/oblix_campaignaddasset?projectId=' +projectId +'&assetId=' + updatedAssetInstance);
+        newPage.setRedirect(true);
+        return newPage;
     }
     
     
@@ -1001,7 +1011,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
      /*
     Description:Remote Action to refresh assets titles  
     */
-    public void refresh() {
+    public Pagereference refresh() {
         lstAssetsForCard = new List<Oblix_Project_Assets__c>();
         list<Oblix_Project_Assets__c> lstAsset = [select Id, Agency_Projects__r.id, Channels__c, RecordType.Name, Quantity__c , Asset_Picklist__c, Asset_Title__c , Name, RecordTypeId, Sub_Category__c, FULL_Description__c, FULL_Description__r.name,Option_Name__c,Location__c from Oblix_Project_Assets__c where Agency_Projects__r.id = :project.id  limit 1000];
         for (Oblix_Project_Assets__c asse : lstAsset) {
@@ -1016,6 +1026,9 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         project = [Select Id, Name, Innovation_Projects__c , ProjectTotalAssetscore__c, Jobs_to_be_Done__c , Campaign_Fees_Total__c, Completed_Stage__c, Financial_Year__r.currency__c, Projected_Stage__c, Financial_Year__r.Financial_Year__c,Financial_Year__r.Name, BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Status__c, Preview_Date__c, Start_of_TV_production__c, Final_release__c, Live_Date__c, Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c, Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, Campaign_Countries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id = :projectId];
         estimateCost =  project.Campaign_Fees_Total__c;
         countAssetNumberForCampaign = [Select count() from Oblix_Project_Assets__c  where Agency_Projects__c =: project.id];
+        Pagereference newPage = new Pagereference('/apex/oblix_campaignaddasset?projectId=' +projectId +'&assetId=' + updatedAssetInstance);
+        newPage.setRedirect(true);
+        return newPage;
         //selectionCountvar = '1';
         /*
         *    This part is used to call method to fill Wrap Asset Lst to be shown in the Cart.

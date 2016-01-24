@@ -22,7 +22,7 @@
     Update History
     --------------
 */
-public with sharing class Oblix_SowMainController {
+public with sharing class Oblix_SowMainController extends Oblix_SWOPparentController{
 
     public Set<String> attachmentsToRemove {get; set;}
     public Marketing_SOW__c selSow {get; set;}
@@ -114,7 +114,7 @@ public with sharing class Oblix_SowMainController {
     */
 
     public void init() {
-        WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name,Oblix_AgencyEstimate__c ,OblixSOWOverallTotal__c,Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordTypeId=\'' + parentSOWRTID + '\'';
+        WhereQuery = 'Select Id, Agency_Contact__c,OblixTotalOtherItemsFees__c,Oblix_AgencyEstimate__r.name,Oblix_AgencyEstimate__c ,OblixSOWOverallTotal__c,Oblix_Current_FY_Total__c,Total_Campaigns_This_FY__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordTypeId=\'' + parentSOWRTID + '\'';
         runQuery();
     }
 
@@ -265,7 +265,7 @@ public with sharing class Oblix_SowMainController {
     */
     public void applyFilters() {
 
-        WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name , Oblix_AgencyEstimate__c,OblixSOWOverallTotal__c,Total_Campaigns_This_FY__c, Oblix_Current_FY_Total__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordType.name = \'Parent Sow Marketing\'';
+        WhereQuery = 'Select Id, Agency_Contact__c,Oblix_AgencyEstimate__r.name , OblixTotalOtherItemsFees__c, Oblix_AgencyEstimate__c,OblixSOWOverallTotal__c,Total_Campaigns_This_FY__c, Oblix_Current_FY_Total__c,Currency__c , Unilever_Lead__c, CreatedById, CreatedBy.Name, LastModifiedById, FINAL_APPROVED_FEE_K__c, LastModifiedBy.Name, Financial_Year__c, BigOblixProductCategory__c, Name, SmallProductCategory__c, OblixBrand__c, OblixBrand__r.Name, Marketing_Agency__c, LastModifiedDate, CreatedDate, SOW_Status__c  from Marketing_SOW__c  where recordType.name = \'Parent Sow Marketing\'';
         List<String> lstQueryWhere = buildQueryWhere();
         system.debug('###Sfdc lstQueryWhere :' + lstQueryWhere );
         if (lstQueryWhere.isEmpty()) {
@@ -463,9 +463,6 @@ public with sharing class Oblix_SowMainController {
         return;
     }
 
-    public Pagereference exitSwop(){
-        return Oblix_Utils.exitSwop();
-    }
 
     //remove attachment
     @RemoteAction

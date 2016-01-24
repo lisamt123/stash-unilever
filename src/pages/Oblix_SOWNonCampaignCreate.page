@@ -41,7 +41,7 @@
             <apex:param name="campaignItem" assignTo="{!seletedActivity}" value="" />
             <!-- <apex:param name="is_selection_for_edit_mode" assignTo="{!is_selection_for_edit_mode}" value="false" /> -->
         </apex:actionFunction>
-        <apex:actionFunction action="{!removeFromSelectionMap}" oncomplete="$.unblockUI()" name="removeFromSelectionMap" reRender="selectionTable,shoppingBasketPanel,campaignTotalPanel,shoppingBasketPanel,activity_resource_input_field_panel">
+        <apex:actionFunction action="{!removeFromSelectionMap}" oncomplete="$.unblockUI()" name="removeFromSelectionMap" reRender="selectionTable,shoppingBasketPanel,campaignTotalPanel">
             <apex:param name="selectedkey" assignTo="{!selectedkey}" value="" />
             <!-- <apex:param name="is_selection_for_edit_mode" assignTo="{!is_selection_for_edit_mode}" value="false" /> -->
         </apex:actionFunction>
@@ -60,7 +60,7 @@
             <apex:param name="selected_other" assignTo="{!selected_other}" value="" />
             <apex:param name="selected_role" assignTo="{!selected_role}" value="" />
             <apex:param name="selected_hours" assignTo="{!selected_hours}" value="" />
-            <apex:param name="selected_hourly_rate" assignTo="{!selected_hourly_rate}" value="" />
+            <!--apex:param name="selected_hourly_rate" assignTo="{!selected_hourly_rate}" value="" /-->
             <!-- <apex:param name="is_selection_for_edit_mode" assignTo="{!is_selection_for_edit_mode}" value="true" /> -->
         </apex:actionFunction>
 
@@ -174,7 +174,9 @@
                                         <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->hours
                                         <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
                                         <apex:outputPanel id="addUpdateButton">
-                                            <apex:commandButton value="{!(IF(setUpdateButton,'UPDATE','ADD'))}" styleClass="btn btn-primary btn_plus {!(IF(setUpdateButton,'btn_update','btn_asset_add'))}" onclick="addToActivitySelection(); return false;" />  
+                                            <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                                            <apex:commandButton value="{!(IF(setUpdateButton,'UPDATE','ADD'))}" styleClass="btn btn-primary btn_plus {!(IF(setUpdateButton,'btn_update','btn_asset_add'))}" onclick="addToActivitySelection(); return false;" /> 
+                                            </apex:outputPanel> 
                                         </apex:outputPanel>                                  
                                     </p>
                                 </div>
@@ -198,29 +200,33 @@
                                         </thead>
                                         <tbody>
                                             <apex:repeat value="{!activitySelectionMap}" var="eachActivity">
-                                                <tr onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">
-                                                    <th style="display:none;" id="idColumn_{!activitySelectionMap[eachActivity].key}">{!activitySelectionMap[eachActivity].key}</th>
+                                                <tr >
+                                                    <th style="display:none;" id="idColumn_{!activitySelectionMap[eachActivity].key}" >{!activitySelectionMap[eachActivity].key}</th>
                                                     <th style="display:none;" id="idColumn_{!activitySelectionMap[eachActivity].activityId}">{!activitySelectionMap[eachActivity].activityId}</th>
-                                                    <td>{!activitySelectionMap[eachActivity].selectedActivity}</td>
-                                                    <td>{!activitySelectionMap[eachActivity].selectedCountryname}</td>
-                                                    <td>{!activitySelectionMap[eachActivity].selectedAgencyDepartment}</td>
-                                                    <td>{!activitySelectionMap[eachActivity].selectedRole}</td>
-                                                    <td>{!activitySelectionMap[eachActivity].hourlyRate}</td>
-                                                    <td>{!activitySelectionMap[eachActivity].hoursSelected}</td>
-                                                    <td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedActivity}</td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedCountryname}</td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedAgencyDepartment}</td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].selectedRole}</td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].hourlyRate}</td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">{!activitySelectionMap[eachActivity].hoursSelected}</td>
+                                                    <td onclick="setActivityInputFieldsForSelectedItem('{!activitySelectionMap[eachActivity].selectedActivity}', '{!activitySelectionMap[eachActivity].selectedCountryname}', '{!activitySelectionMap[eachActivity].selectedAgencyDepartment}', '' ,'{!activitySelectionMap[eachActivity].selectedRole}', {!activitySelectionMap[eachActivity].hoursSelected}, {!activitySelectionMap[eachActivity].hourlyRate});">
                                                         <apex:outputText value="{0, number,###,###,##0}"> 
                                                             <apex:param value="{!activitySelectionMap[eachActivity].totalAmount}"/>
                                                         </apex:outputText>
                                                     </td>
                                                     <td>
-                                                        <a href="#" id="removeRow_{!activitySelectionMap[eachActivity].key}" value="{!activitySelectionMap[eachActivity].key}" onclick="removeRow('{!activitySelectionMap[eachActivity].key}');"> <img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" />
-                                                        </a>
+                                                        <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                                                            <a href="#" id="removeRow_{!activitySelectionMap[eachActivity].key}" value="{!activitySelectionMap[eachActivity].key}" onclick="removeRow('{!activitySelectionMap[eachActivity].key}');"> <img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" />
+                                                            </a>
+                                                        </apex:outputPanel>
                                                     </td>
                                                 </tr>
                                             </apex:repeat>
                                         </tbody>
                                     </table>
-                                    <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="insertSelectedActivities(); return false;" />
+                                    <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                                        <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="insertSelectedActivities(); return false;" />
+                                    </apex:outputPanel>
                                 </apex:outputPanel>
                             </apex:outputPanel>
                         </div>
@@ -260,7 +266,9 @@
                                             
                                             <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
                                             <apex:outputPanel id="addResourceUpdateButton">
+                                                <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
                                                 <apex:commandButton value="{!(IF(setResourceUpdateButton,'UPDATE','ADD'))}" styleClass="btn btn-primary btn_plus {!(IF(setResourceUpdateButton,'btn_update','btn_asset_add'))} " onclick="validateResourceSelection(); return false;" />
+                                                </apex:outputPanel>
                                             </apex:outputPanel>
                                         </p>
                                     </div>
@@ -281,7 +289,9 @@
                             <apex:repeat value="{!campaignBasketList}" var="eachItem">
                                 <div class="asset_shopping_basket_item">
                                     <div class="campaign_create_agency_hub_split_table_subtitle padding_bottom0">
-                                        <a href="#" id="basketRemoveRow_{!eachItem.activityName}" value="{!eachItem.activityName}" onclick="basketRemoveRow('{!eachItem.activityName}');"><img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" class="attachement_redcross" height="12" width="12" /></a>
+                                        <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                                            <a href="#" id="basketRemoveRow_{!eachItem.activityName}" value="{!eachItem.activityName}" onclick="basketRemoveRow('{!eachItem.activityName}');"><img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" class="attachement_redcross" height="12" width="12" /></a>
+                                        </apex:outputPanel>
                                         <a href="#" id="basketItem_{!eachItem.activityName}" onclick="getAndSetActivitiesByName('{!JSENCODE(eachItem.activityName)}');blockme();">{!eachItem.activityName} - €<apex:outputText value="{0, number,###,###,##0}"> <apex:param value="{!eachItem.totalAmount}"/></apex:outputText>
                                         </a>
                                     </div>
