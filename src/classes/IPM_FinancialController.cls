@@ -2380,6 +2380,7 @@ private Date getProjectMilestoneDate(){
             localRolloutProject = null;
             showMisalignedConfirmbtn = true;
             mcoCountryRolloutPlan = null;
+            //get the Rollout related to the project currently to get the TLD and year details
             if(project != null && currentFinancial != null) {
                 if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
                     localProjectTLD = project.IPM_Target_Launch_Dates__c.format();
@@ -2392,7 +2393,7 @@ private Date getProjectMilestoneDate(){
                         mcoCountryRolloutPlan = projRolloutList[0];
                     }
                     localRolloutProject = project;
-                } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {
+                } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {// if project is regional get the project detials based currentFinanical
                     projList = [Select (Select Name, IPM_Target_Launch_Dates__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Projects__r where name=:currentFinancial.Financial_External_ID__c), (Select Name,Previous_Target_Launch_Date__c , Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c From Regional_Project_Rollout__r where name=:currentFinancial.Financial_External_ID__c) From IPM_Project__c   where id=:project.id];
                     if(projList.size()>0 && projList[0].Regional_Project_Rollout__r.size()>0) {
                         localProjectRolloutTLD = projList[0].Regional_Project_Rollout__r[0].Target_Launch_Date__c.format();
@@ -2407,7 +2408,7 @@ private Date getProjectMilestoneDate(){
                     }
                 }
             }
-            
+            // check for the misalignment 
             if(localProjectTLD!= '' && localProjectTLD!=localProjectRolloutTLD) {
                 flag = true;
                 isMisalignedTLD  = true;
@@ -2416,11 +2417,13 @@ private Date getProjectMilestoneDate(){
                 	isTLDYearMisaligned = true;
                 	validationErrorMessage += Label.IPM_TLD_Year_Misaligned;
                 }
+               // misalignment message 
             } else if(validationErrorMessage.contains(Label.IPM_TLD_VR_Misaligned_Part_Msg)) {
                 isMisalignedTLD  = false;
                 validationErrorMessage = '';
             }          
-            isTargetLaunchDateMisaligned =  flag;                               
+            isTargetLaunchDateMisaligned =  flag; 
+            //check for the operational type project to check for the misalignment.                              
             if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL && project.Previous_Target_Launch_Date__c!=null && project.Previous_Target_Launch_Date__c!=project.IPM_Target_Launch_Dates__c) {
             	showMisalignedConfirmbtn = project.MisAligned_Confirmed_By_Finance_Leader__c;
             	currentTargetLaunchDate = project.IPM_Target_Launch_Dates__c.format();
@@ -2439,7 +2442,7 @@ private Date getProjectMilestoneDate(){
                                     break;
                                 }
                             }
-                        }                                                   
+                        }          // check for the misalignment                                          
                         if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c !=null){
                                 showMisalignedConfirmbtn = mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c;
                                 currentTargetLaunchDate = mcoCountryRolloutPlan.Target_Launch_Date__c.format();  
@@ -2451,7 +2454,7 @@ private Date getProjectMilestoneDate(){
                                 }
                         }                        
                 }
-            }else if(project!=null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
+            }else if(project!=null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){// misalignment for the regional projects 
                 if(mcoCountryRolloutPlan != null && mcoCountryRolloutPlan.Previous_Target_Launch_Date__c!=null && mcoCountryRolloutPlan.Target_Launch_Date__c !=null){
                     showMisalignedConfirmbtn = mcoCountryRolloutPlan.MisAligned_Confirmed_By_Finance_Leader__c;
                     previousTargetLaunchDate = mcoCountryRolloutPlan.Previous_Target_Launch_Date__c.format();
@@ -2462,7 +2465,7 @@ private Date getProjectMilestoneDate(){
                         showMisalignedConfirmbtn = true;
                     }  
                  }    
-            } else if(project!=null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
+            } else if(project!=null && project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {// misalignment for the local projects 
                     if(localRolloutProject != null && localRolloutProject.Previous_Target_Launch_Date__c !=null && localRolloutProject.IPM_Target_Launch_Dates__c !=null){
                         showMisalignedConfirmbtn = localRolloutProject.MisAligned_Confirmed_By_Finance_Leader__c;
                         previousTargetLaunchDate = localRolloutProject.Previous_Target_Launch_Date__c.format();

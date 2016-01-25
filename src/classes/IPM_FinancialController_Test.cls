@@ -16,7 +16,6 @@ public class IPM_FinancialController_Test {
     private static final string TESTREGIONALCOMMENTS1 = 'TestRegionalComments1';
     private static final string LIT_TEST = 'test';
     private static final string LIT_OPERATIONAL = 'Operational';
-    private static final integer EXEC_PART_1 = 1;
     private static final integer EXEC_PART_2 = 2;
     private static final integer EXEC_PART_3 = 3;
     private static final integer EXEC_PART_4 = 4;
