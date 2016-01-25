@@ -619,6 +619,7 @@ public class IPM_FinancialController_Test {
              system.assertEquals(ipmFinCon.currentTab,tab);
              ipmFinCon.changeTabs();
      }
+
      
     
 }
