@@ -12,21 +12,17 @@ private class IPM_UpdateGlobalProjectName_Test {
     private static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static List<IPM_Financial__c> finList=new List<IPM_Financial__c>();
     private static List<IPM_Project__c>projectListObj=new List<IPM_Project__c>();
-    private static IPM_Project_Rollout__c projRoll;
     private static List<IPM_Country__c> countryTest = new List<IPM_Country__c>();
     private static User stdUserForAssort;
     private static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     private static IPM_Financial_Year__c finYear=new IPM_Financial_Year__c();
     private static final string TEST_COMMENTS_STR='TestComments1';
-    private static string LOCAL_STR='Local';
     private static string REGIONAL_STR='Regional';
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
     private static User globalUser;
-    private static IPM_Project_Document_Section_Content__c projDocSecCon;
     private static final string PROJECT_DOC_CREATED_STR='Project Document created';
     private static string projectName='ProjectCreation';
-    private static string projUpdateName='ProjectUpdate';
-    private static String CONSOLIDATED_FINANCIAL_RECORDTYPE;
+    private static string projUpdateName='ProjectUpdate';    
     /*****************************************************************************
     * @description Test Data
     */  
@@ -75,10 +71,7 @@ private class IPM_UpdateGlobalProjectName_Test {
             insert regionalRolloutList;
             List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
             System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
-            projRoll=regionalRolloutList[0];
-            
-      
-            
+                  
         }
     }
     
@@ -142,9 +135,7 @@ private class IPM_UpdateGlobalProjectName_Test {
                 //System.assertEquals(finList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
             }
             
-          String strRecordTypeId1=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
-          CONSOLIDATED_FINANCIAL_RECORDTYPE=strRecordTypeId1;
-          finYear = IPM_TestFactory_Helper.createIPMFinancialYear(FALSE);
+          finYear = IPM_TestFactory_Helper.createIPMFinancialYear(FALSE); 
           finYear.IPM_Financial__c=finList[0].Id;
           finYear.Charter_Approved__c=true;
           finYear.Contract_Approved__c=true;
