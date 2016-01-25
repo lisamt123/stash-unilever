@@ -5,7 +5,23 @@
 */
 @isTest
 public class IPM_FinancialController_Test {
-    //private static Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3'};
+    
+    private static final string SELCTED_COUNTRY = 'USD';
+    private static final string SELCTED_CURRENCY_EUR = 'EUR';
+    private static final string SELCTED_CURRENCY_GBP = 'GBP';
+    private static final string PROJECT_BI_LARGE = 'Large';
+    private static final string SUST_PERIOD_3 = '3';
+    private static final string SUST_PERIOD_5 = '5';
+    private static final string DOC_SECTION = 'Charter';
+    private static final string TESTREGIONALCOMMENTS1 = 'TestRegionalComments1';
+    private static final string LIT_TEST = 'test';
+    private static final string LIT_OPERATIONAL = 'Operational';
+    private static final integer EXEC_PART_1 = 1;
+    private static final integer EXEC_PART_2 = 2;
+    private static final integer EXEC_PART_3 = 3;
+    private static final integer EXEC_PART_4 = 4;
+    private static final integer EXEC_PART_5 = 5;
+    private static final integer EXEC_PART_6 = 6;
     
     @testSetup static void financialSetUp() 
      {
@@ -23,13 +39,14 @@ public class IPM_FinancialController_Test {
          }
          
          
-         PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+globalProjectList[0].Id);
-            Test.setCurrentPageReference(pageRef); 
+         //PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+globalProjectList[0].Id);
+         //Test.setCurrentPageReference(pageRef); 
+         setPage(globalProjectList[0].Id);
             IPM_FinancialController ipmFinCon = new IPM_FinancialController();
-            callCtrlAction(ipmFinCon,1);
-            callCtrlAction(ipmFinCon,2);
-            callCtrlAction(ipmFinCon,3);
-            callCtrlAction(ipmFinCon,4);
+            //callCtrlAction(ipmFinCon,1);
+            callCtrlAction(ipmFinCon, EXEC_PART_2);
+            callCtrlAction(ipmFinCon, EXEC_PART_3);
+            callCtrlAction(ipmFinCon, EXEC_PART_4);
          
          
          
@@ -89,7 +106,7 @@ public class IPM_FinancialController_Test {
         List<IPM_Project__c> projectListPhaseChange = IPM_TestFactory_Helper.initiateProjectPhaseChange(liGlobIds,userList[0]); 
         //update BI
         for(IPM_project__c pr: projectListPhaseChange){
-            pr.BI__c = 'Large';
+            pr.BI__c = PROJECT_BI_LARGE;
         }
         update projectListPhaseChange;
         
@@ -147,8 +164,6 @@ public class IPM_FinancialController_Test {
                 localRollout.IPM_Regional_PL__c = userList[1].Id;
                 localRollout.IPM_Project_Job_Status__c = IPM_ConstantUtils.JOB_STATUS_ELIGIBLE;
                 localRollout.IPM_RolloutJobType__c = IPM_ConstantUtils.JOBTYPE_PROJECTCREATION_PHASECHANGE;  
-                localRollout.Target_Launch_Date__c = System.today().addMonths(10); //To cover 2523 line
-                localRollout.Previous_Target_Launch_Date__c = System.today().addMonths(9); //To cover 2523 line
                 break;
             }
             update localRolloutList;
@@ -182,7 +197,6 @@ public class IPM_FinancialController_Test {
         
      }
      
-     //TODO and IPM_Phase__c='Feasibility'for all below 4 methods 
      //Use case: Global original Feasibility phase and NON consilidate financnials
      static testMethod void testGlobalOriginalNONConsolidate(){
          Test.startTest();
@@ -202,11 +216,11 @@ public class IPM_FinancialController_Test {
              ipmFinCon.currentfinancialid = globFin.id;
              ipmFinCon.isConsolidatedOrNonkey = false;
              ipmFinCon.refreshFinancials();
-             //callCtrlAction(ipmFinCon,1);
-             callCtrlAction(ipmFinCon,2);
-             callCtrlAction(ipmFinCon,3);
-             callCtrlAction(ipmFinCon,4);
-             callCtrlAction(ipmFinCon,6);
+             
+             callCtrlAction(ipmFinCon, EXEC_PART_2);
+             callCtrlAction(ipmFinCon, EXEC_PART_3);
+             callCtrlAction(ipmFinCon, EXEC_PART_4);
+             //callCtrlAction(ipmFinCon,6);
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              //Load Tab TopDown
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
@@ -234,11 +248,11 @@ public class IPM_FinancialController_Test {
              ipmFinCon.currentfinancial = globFin;
              ipmFinCon.currentfinancialid = globFin.id;
              ipmFinCon.isConsolidatedOrNonkey = true;
-             //callCtrlAction(ipmFinCon,1);
-             callCtrlAction(ipmFinCon,2);
-             callCtrlAction(ipmFinCon,3);
-             callCtrlAction(ipmFinCon,4);
-             callCtrlAction(ipmFinCon,6);
+             
+             callCtrlAction(ipmFinCon, EXEC_PART_2);
+             callCtrlAction(ipmFinCon, EXEC_PART_3);
+             callCtrlAction(ipmFinCon, EXEC_PART_4);
+             callCtrlAction(ipmFinCon, EXEC_PART_6);
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              //Load Tab TopDown
              loadTab(globalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_TOPDOWN_NAME);
@@ -265,12 +279,12 @@ public class IPM_FinancialController_Test {
              ipmFinCon.currentfinancial = regionalRolloutNCFin;
              ipmFinCon.currentfinancialid = regionalRolloutNCFin.id;
              ipmFinCon.isConsolidatedOrNonkey = false;
-             //callCtrlAction(ipmFinCon,1);
-             callCtrlAction(ipmFinCon,2);
-             callCtrlAction(ipmFinCon,3);
-             callCtrlAction(ipmFinCon,4);
-             callCtrlAction(ipmFinCon,5);
-             callCtrlAction(ipmFinCon,6);
+             
+             callCtrlAction(ipmFinCon, EXEC_PART_2);
+             callCtrlAction(ipmFinCon, EXEC_PART_3);
+             callCtrlAction(ipmFinCon, EXEC_PART_4);
+             callCtrlAction(ipmFinCon, EXEC_PART_5);
+             callCtrlAction(ipmFinCon, EXEC_PART_6);
              //Load Tab MyView
              loadTab(regionalRolloutNC.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              //Load Tab TopDown
@@ -298,12 +312,12 @@ public class IPM_FinancialController_Test {
              ipmFinCon.currentfinancial = regFinCon;
              ipmFinCon.currentfinancialid = regFinCon.id;
              ipmFinCon.isConsolidatedOrNonkey = true;
-             //callCtrlAction(ipmFinCon,1);
-             callCtrlAction(ipmFinCon,2);
-             callCtrlAction(ipmFinCon,3);
-             callCtrlAction(ipmFinCon,4);
-             callCtrlAction(ipmFinCon,5); //Multicurrency calls can be just one place
-             callCtrlAction(ipmFinCon,6);
+             
+             callCtrlAction(ipmFinCon, EXEC_PART_2);
+             callCtrlAction(ipmFinCon, EXEC_PART_3);
+             callCtrlAction(ipmFinCon, EXEC_PART_4);
+             callCtrlAction(ipmFinCon, EXEC_PART_5); //Multicurrency calls can be just one place
+             callCtrlAction(ipmFinCon, EXEC_PART_6);
              //Load Tab MyView
              loadTab(regionalRollout.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              //Load Tab TopDown
@@ -334,11 +348,11 @@ public class IPM_FinancialController_Test {
              ipmFinCon.currentfinancial = regionalOrigFin;
              ipmFinCon.currentfinancialid = regionalOrigFin.id;
              ipmFinCon.isConsolidatedOrNonkey = false;
-             //callCtrlAction(ipmFinCon,1);
-             callCtrlAction(ipmFinCon,2);
-             callCtrlAction(ipmFinCon,3);
-             callCtrlAction(ipmFinCon,4);
-             callCtrlAction(ipmFinCon,6);
+             
+             callCtrlAction(ipmFinCon, EXEC_PART_2);
+             callCtrlAction(ipmFinCon, EXEC_PART_3);
+             callCtrlAction(ipmFinCon, EXEC_PART_4);
+             callCtrlAction(ipmFinCon, EXEC_PART_6);
              //Load Tab MyView
              loadTab(regionalOriginal.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              //Load Tab TopDown
@@ -366,11 +380,11 @@ public class IPM_FinancialController_Test {
              ipmFinCon.project = localRollout;
              ipmFinCon.currentfinancial = localRolloutFin;
              ipmFinCon.currentfinancialid = localRolloutFin.id;
-             //callCtrlAction(ipmFinCon,1);
-             callCtrlAction(ipmFinCon,2);
-             callCtrlAction(ipmFinCon,3);
-             callCtrlAction(ipmFinCon,4);
-             callCtrlAction(ipmFinCon,6);
+             
+             callCtrlAction(ipmFinCon, EXEC_PART_2);
+             callCtrlAction(ipmFinCon, EXEC_PART_3);
+             callCtrlAction(ipmFinCon, EXEC_PART_4);
+             callCtrlAction(ipmFinCon, EXEC_PART_6);
              //Load Tab MyView
              loadTab(localRollout.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              //Load Tab TopDown
@@ -382,25 +396,22 @@ public class IPM_FinancialController_Test {
      ///
      static testMethod void financialGlobalOperationalTest(){
          Test.startTest();
-         IPM_Project__c projectRecord = new IPM_Project__c(NAME = 'test',IPM_PROJECT_NAME__c='test' ,
+         IPM_Project__c projectRecord = new IPM_Project__c(NAME = LIT_TEST,IPM_PROJECT_NAME__c=LIT_TEST ,
                 IPM_COMPLEXITY__c =IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL__c = 'GCLT & RCLT',
                 IPM_TARGET_LAUNCH_DATES__c = System.today().addMonths(6),IPMProject_Span__c='Global', 
                 IPM_PROJECT_LEADER__c = UserInfo.getUserId(),IPM_CompanyCardText__c = 'Global Company Card',
-                IPM_Brand_Positioning__c = 'Dirt is Good',IPM_Project_Type__c = 'Operational',
-                IPM_ProjectSubType__c = 'Innovation/Renovation',IPM_Phase__c='Ideas',IPM_SourceProjectType__c = 'Operational',
+                IPM_Brand_Positioning__c = 'Dirt is Good',IPM_Project_Type__c = LIT_OPERATIONAL,
+                IPM_ProjectSubType__c = 'Innovation/Renovation',IPM_Phase__c='Ideas',IPM_SourceProjectType__c = LIT_OPERATIONAL,
                 Sustainability_Period__c = '3',IPM_Category_Text__c ='Household Care',IPM_Child_Complexity__c =IPM_ConstantUtils.COMPLEXITY_FULL, BI__c='Large');
                 
          insert projectRecord;
          system.assertNotEquals(projectRecord,null); 
-         PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+projectRecord.Id);
-         Test.setCurrentPageReference(pageRef); 
+         setPage(projectRecord.Id);
          
          IPM_FinancialController ipmFinCon = new IPM_FinancialController();
              boolean bConsolidateNonKey = ipmFinCon.isConsolidatedOrNonkey;
-             //callCtrlAction(ipmFinCon,1);
-             callCtrlAction(ipmFinCon,2);
-             callCtrlAction(ipmFinCon,3);
-             ///callCtrlAction(ipmFinCon,4); Error at line 122 from controller
+             callCtrlAction(ipmFinCon, EXEC_PART_2);
+             callCtrlAction(ipmFinCon, EXEC_PART_3);
              //Load Tab MyView
              loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              
@@ -410,26 +421,24 @@ public class IPM_FinancialController_Test {
      ///
      static testMethod void financialLocalOperationalTest(){
          Test.startTest();
-         IPM_Project__c projectRecord = new IPM_Project__c(NAME = 'test',IPM_PROJECT_NAME__c='test' ,
+         IPM_Project__c projectRecord = new IPM_Project__c(NAME = LIT_TEST,IPM_PROJECT_NAME__c=LIT_TEST ,
                 IPM_COMPLEXITY__c =IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL__c = 'GCLT & RCLT',
                 IPM_TARGET_LAUNCH_DATES__c = System.today().addMonths(6), Previous_Target_Launch_Date__c = System.today().addMonths(9), IPMProject_Span__c='Local', 
                 IPM_PROJECT_LEADER__c = UserInfo.getUserId(),IPM_CompanyCardText__c = 'Local Company Card',
-                IPM_Brand_Positioning__c = 'Dirt is Good',IPM_Project_Type__c = 'Operational',
-                IPM_ProjectSubType__c = 'Innovation/Renovation',IPM_Phase__c='Ideas',IPM_SourceProjectType__c = 'Operational',
+                IPM_Brand_Positioning__c = 'Dirt is Good',IPM_Project_Type__c = LIT_OPERATIONAL,
+                IPM_ProjectSubType__c = 'Innovation/Renovation',IPM_Phase__c='Ideas',IPM_SourceProjectType__c = LIT_OPERATIONAL,
                 Sustainability_Period__c = '3',IPM_Category_Text__c ='Household Care',IPM_Child_Complexity__c =IPM_ConstantUtils.COMPLEXITY_FULL, BI__c='Large');
                 
          insert projectRecord;
          system.assertNotEquals(projectRecord,null); 
-         PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+projectRecord.Id);
-         Test.setCurrentPageReference(pageRef); 
+          setPage(projectRecord.Id);
          
          IPM_FinancialController ipmFinCon = new IPM_FinancialController();
             
             ipmFinCon.isConsolidatedOrNonkey=false;
-             //callCtrlAction(ipmFinCon,1);
-             callCtrlAction(ipmFinCon,2);
-             callCtrlAction(ipmFinCon,3);
-             //callCtrlAction(ipmFinCon,4); //tld error
+             
+             callCtrlAction(ipmFinCon, EXEC_PART_2);
+             callCtrlAction(ipmFinCon, EXEC_PART_3);
              //Load Tab MyView
              loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              //Load Tab TopDown
@@ -447,23 +456,24 @@ public class IPM_FinancialController_Test {
                 liEX.add(new IPM_Exchange_Rate__c(Name='USD', Currency_Code__c='USD',Exchange_Rate__c=1.3));         
                 insert liEX;          
             
-                Set<String> projectNameSet = new Set<String>{'TestRegionalComments1'};
+                Set<String> projectNameSet = new Set<String>{TESTREGIONALCOMMENTS1};
                 List<IPM_Project__c>  projectList = [Select Id, Name,IPM_Project_Type__c, IPM_Phase__c, (Select Id from Project_Documents__r),(Select Id,Name,recordTypeId,IPM_Project_Job_Status__c from IPM_Project_Rollout__r) from IPM_Project__c where Name in:projectNameSet];
                 system.assert(projectList.size() > 0);
             
-            PageReference pRef = new PageReference('/apex/IPM_Financial_Currency?id='+projectList[0].Id);
-            Test.setCurrentPage(pRef); 
+            //PageReference pRef = new PageReference('/apex/IPM_Financial_Currency?id='+projectList[0].Id);
+            //Test.setCurrentPage(pRef); 
+            setPage(projectList[0].Id);
             
             IPM_FinancialController ipmCurr=new IPM_FinancialController();
             ipmCurr.loadCurrencyPage();
-            ipmCurr.currentTab = 'myview';
+            ipmCurr.currentTab = IPM_ConstantUtils.TAB_MYVIEW_NAME;
             ipmCurr.getItems();
-            ipmCurr.selectedCurrency = 'GBP';
+            ipmCurr.selectedCurrency = SELCTED_CURRENCY_GBP;
             ipmCurr.applyRate();
             //verify if exchange rate is applied as per selected country
             system.assertEquals(ipmCurr.exRate,0.8);
             
-            ipmCurr.selectedCurrency = 'EUR';
+            ipmCurr.selectedCurrency = SELCTED_CURRENCY_EUR;
             ipmCurr.applyRate();
             //verify if exchange rate is applied when go back to default currency
             system.assertEquals(ipmCurr.exRate,1);
@@ -473,30 +483,29 @@ public class IPM_FinancialController_Test {
      
      static testMethod void financialRegionalOperationalTest(){
          Test.startTest();
-         IPM_Project__c projectRecord = new IPM_Project__c(NAME = 'test',IPM_PROJECT_NAME__c='test' ,
+         IPM_Project__c projectRecord = new IPM_Project__c(NAME = LIT_TEST,IPM_PROJECT_NAME__c=LIT_TEST ,
                 IPM_COMPLEXITY__c =IPM_ConstantUtils.COMPLEXITY_FULL, IPM_GATEKEEPING_MODEL__c = 'GCLT & RCLT',
                 IPM_TARGET_LAUNCH_DATES__c = System.today().addMonths(6),IPMProject_Span__c='Regional', 
                 IPM_PROJECT_LEADER__c = UserInfo.getUserId(),IPM_CompanyCardText__c = 'Regional Company Card',
-                IPM_Brand_Positioning__c = 'Dirt is Good',IPM_Project_Type__c = 'Operational',
-                IPM_ProjectSubType__c = 'Innovation/Renovation',IPM_Phase__c='Ideas',IPM_SourceProjectType__c = 'Operational',
+                IPM_Brand_Positioning__c = 'Dirt is Good',IPM_Project_Type__c = LIT_OPERATIONAL,
+                IPM_ProjectSubType__c = 'Innovation/Renovation',IPM_Phase__c='Ideas',IPM_SourceProjectType__c = LIT_OPERATIONAL,
                 Sustainability_Period__c = '3',IPM_Category_Text__c ='Household Care',IPM_Child_Complexity__c =IPM_ConstantUtils.COMPLEXITY_FULL);
                 
          insert projectRecord;
          system.assertNotEquals(projectRecord,null); 
-         PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+projectRecord.Id);
-         Test.setCurrentPageReference(pageRef); 
+         //PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+projectRecord.Id);
+         //Test.setCurrentPageReference(pageRef); 
+         setPage(projectRecord.Id);
          
          list<IPM_Financial__c> regOpFin = [select id, name, Global_External_Id__c, Global_Project_Id__c from IPM_Financial__c where Global_External_Id__c=:projectRecord.id or
-                                    Global_Project_Id__c=:projectRecord.id or Financial_External_ID__c='test' limit 1];
+                                    Global_Project_Id__c=:projectRecord.id or Financial_External_ID__c = :LIT_TEST limit 1];
          
          IPM_FinancialController ipmFinCon = new IPM_FinancialController();
             if (regOpFin!=null && !regOpFin.isEmpty()){
                 ipmFinCon.currentfinancialid = regOpFin[0].id;
             }
-             //callCtrlAction(ipmFinCon,1);
-             callCtrlAction(ipmFinCon,2);
-             callCtrlAction(ipmFinCon,3);
-             //callCtrlAction(ipmFinCon,4);
+             callCtrlAction(ipmFinCon, EXEC_PART_2);
+             callCtrlAction(ipmFinCon, EXEC_PART_3);
              //Load Tab MyView
              loadTab(projectRecord.id, ipmFinCon, IPM_ConstantUtils.TAB_MYVIEW_NAME);
              //Load Tab TopDown
@@ -507,17 +516,16 @@ public class IPM_FinancialController_Test {
      }
     
     private static pageReference setPage(Id id){
-        PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+id);
+        //PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+id);
+        PageReference pageRef = Page.IPM_Financial;
+        pageRef.getParameters().put('id', id);
         Test.setCurrentPageReference(pageRef);
         return pageref;
     }
     
     private static void callCtrlAction(IPM_FinancialController ipmfincon, integer part){
-        if (part==1){
-                // MOVED to another method
-        }
-        if (part==2){        
-                ipmFinCon.selectedDocumentSection='ABC';
+        if (part == EXEC_PART_2){        
+                ipmFinCon.selectedDocumentSection = DOC_SECTION;
                 ipmFinCon.goToSection();
                 ipmFinCon.refreshFromLocal();
                 ipmFinCon.refreshFromRegional();
@@ -538,18 +546,18 @@ public class IPM_FinancialController_Test {
                 ipmFinCon.validateGrossProfit(lstIncrementalPLProfit);
                 ipmFinCon.validateY0GrossProfit(IPM_ConstantUtils.INVALID_VALUE);
         }
-        if (part==3){
+        if (part == EXEC_PART_3){
                 ipmFinCon.isEditMode=true;
                 ipmFinCon.editFinancials();
-                ipmFinCon.BI = 'Large';
+                ipmFinCon.BI = PROJECT_BI_LARGE;
                 ipmFinCon.saveFinancials();
-                ipmFinCon.selectedSustainabilityPeriod='3';
+                ipmFinCon.selectedSustainabilityPeriod = SUST_PERIOD_3;
                 ipmFinCon.changeSustainabilityPeriod(); 
                 ipmFinCon.checkSustainabilityPeriodChanged();
-                ipmFinCon.selectedSustainabilityPeriod='5';
+                ipmFinCon.selectedSustainabilityPeriod = SUST_PERIOD_3;
                 ipmFinCon.alignTLD(); //Should be after Sustainability method call
         }
-        if (part==4){
+        if (part == EXEC_PART_4){
                 ipmFinCon.changeSustainabilityPeriod();
                 ipmFinCon.checkSustainabilityPeriodChanged();
                 ipmFinCon.isTargetLaunchDateMisaligned=true;
@@ -561,10 +569,10 @@ public class IPM_FinancialController_Test {
                 boolean shPrev = ipmFinCon.showPrevious;
                 ipmFinCon.previous();
         }
-        if (part==5){ //Multicurrency methods call
+        if (part == EXEC_PART_5){ //Multicurrency methods call
             ipmFinCon.loadCurrencyPage();
             ipmFinCon.getItems();
-            ipmFinCon.selectedCurrency='USD';
+            ipmFinCon.selectedCurrency = SELCTED_COUNTRY;
             ipmFinCon.applyRate();
             ipmFinCon.CopyPasteTemplate();
             IPM_Country__c ctr = [select id from IPM_Country__c limit 1];
@@ -573,13 +581,13 @@ public class IPM_FinancialController_Test {
             ipmFinCon.updateCountry();
             
         }
-        if (part==6){ //only for certain type
+        if (part == EXEC_PART_6){ //only for certain type
                 ipmFinCon.updateMisalignmentByFinanceLeader(); //has Local and Global condition
                 string tdDisplay = ipmFinCon.targetLaunchDateToDisplay;
                 ipmFinCon.changeSustainabilityPeriod();
                          
                 //This fails 
-                ipmFinCon.fieldsuffix = 'Global';
+                ipmFinCon.fieldsuffix = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
                 IPM_FinancialWrapper finWrapper = new IPM_FinancialWrapper();
                 List<IPM_FinancialValueWrapper> liFinValWrGPL = new List<IPM_FinancialValueWrapper>();
                 IPM_FinancialValueWrapper finvalwrGPL = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0);
@@ -593,7 +601,7 @@ public class IPM_FinancialController_Test {
                 //ipmFinCon.populateVolumeType(finWrapper);
                 
                 //This works
-                ipmFinCon.fieldsuffix = 'Regional';
+                ipmFinCon.fieldsuffix = IPM_ConstantUtils.PROJECT_SPAN_REGIONAL;
                 IPM_FinancialValueWrapper lstGrossPLVolumeTon = new IPM_FinancialValueWrapper(0, IPM_ConstantUtils.INVALID_VALUE, 0);
                 finWrapper.lstGrossPLVolumeTons = new List<IPM_FinancialValueWrapper>{lstGrossPLVolumeTon};
                 
@@ -613,7 +621,8 @@ public class IPM_FinancialController_Test {
      //Parameterised function to load different tabs on Financial page.
      //Use Case: Rollout or Regional original projects have different tab sets.
      private static void loadTab(id projectId, IPM_FinancialController ipmFinCon, string tab){
-             PageReference pageRef = new PageReference('/apex/IPM_Financial?Id='+projectId);
+             PageReference pageRef = Page.IPM_Financial;
+             pageRef.getParameters().put('id', projectId);
              Test.setCurrentPageReference(pageRef);
              ipmFinCon.currentTab = tab;
              system.assertEquals(ipmFinCon.currentTab,tab);
