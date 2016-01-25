@@ -81,10 +81,9 @@ public class BET_Team_MemberHandlerClsHelper {
         Throws: -
     *************************************************************/
     public static void addExternalRelatedData(List<uw_BET_Team_Member__c> newList){
-        BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues(BET_Team_MemberHandlerCls.BETMANAGERCONFIG);
         Set<Id> betIds = new Set<Id>();
         List<uw_BET_Team_Member__c> externalMembers = new List<uw_BET_Team_Member__c>();
-        String externalRole = Test.isRunningTest() ? 'External Agency User' : BETManageMembersConfig.ExternalRole__c;
+        String externalRole = getExternalUserRoleName();
         for(uw_BET_Team_Member__c member : newList){
             if(member.Role__c == externalRole && member.Team_Member__c == null){
                 externalMembers.add(member);
@@ -141,4 +140,15 @@ public class BET_Team_MemberHandlerClsHelper {
         entitySubscription.ParentId = teamMember.Bet__c;
         return entitySubscription;
 	}
+
+    /************************************************************
+        Purpose: Method returns External User role name
+        Parameters: 
+        Returns: role name
+        Throws: -
+    *************************************************************/
+    public static String getExternalUserRoleName(){
+        BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues(BET_Team_MemberHandlerCls.BETMANAGERCONFIG);
+        return Test.isRunningTest() ? 'External Agency User' : BETManageMembersConfig.ExternalRole__c;
+    }
 }
