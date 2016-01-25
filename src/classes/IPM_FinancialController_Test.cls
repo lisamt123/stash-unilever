@@ -22,6 +22,7 @@ public class IPM_FinancialController_Test {
     private static final integer EXEC_PART_5 = 5;
     private static final integer EXEC_PART_6 = 6;
     
+    //This method creates required global, regional and local projects and rollouts, also related financials. These records are then accessed across the testmethods.
     @testSetup static void financialSetUp() 
      {
          List<User> userList = IPM_TestFactory_Helper.createUserList();
@@ -553,7 +554,7 @@ public class IPM_FinancialController_Test {
                 ipmFinCon.selectedSustainabilityPeriod = SUST_PERIOD_3;
                 ipmFinCon.changeSustainabilityPeriod(); 
                 ipmFinCon.checkSustainabilityPeriodChanged();
-                ipmFinCon.selectedSustainabilityPeriod = SUST_PERIOD_3;
+                ipmFinCon.selectedSustainabilityPeriod = SUST_PERIOD_5;
                 ipmFinCon.alignTLD(); //Should be after Sustainability method call
         }
         if (part == EXEC_PART_4){
