@@ -132,16 +132,16 @@ This componet used for regional rollout project
                                         </th>
                                        
                                         <th scope="col" width="180px" colspan="1">
-                                        	<apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
                                                 <apex:image styleClass="rounded" url="{!localProject.IPM_Project_Leader__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
-                                           	</apex:outputPanel>
+                                            </apex:outputPanel>
                                            <apex:outputField value="{!localProject.IPM_Project_Leader__c}"/>
                                         </th>
                                       
                                         <th scope="col" width="120px" colspan="1">
-                                        	<apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
+                                            <apex:outputPanel styleClass="pull-left proLeaderImg" layout="block">
                                                 <apex:image styleClass="rounded" url="{!localProject.IPM_Finance_Member__r.SmallPhotoUrl}" rendered="{!NOT(isEditMode)}"/>
-                                           	</apex:outputPanel>
+                                            </apex:outputPanel>
                                             <apex:outputField value="{!localProject.IPM_Finance_Member__c}"/>
                                         </th>
                                     </tr>
@@ -225,7 +225,7 @@ This componet used for regional rollout project
                                         </th>
                                        
                                         <th scope="col" width="100px" colspan="1">
-                                             <apex:outputField value="{!localRollout.IPM_Regional_Rollout_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Regional_Rollout_Status__c=='Leader'), false, true)}"/>
+                                            <apex:outputField value="{!localRollout.IPM_Regional_Rollout_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Regional_Rollout_Status__c=='Leader'), false, true)}"/>
                                             <apex:inputField value="{!lstcompleteRollout[localRolloutDuplicateId].IPM_Regional_Rollout_Status__c}" rendered="{!IF(AND(isStatusEditable,isEditMode,localRollout.IPM_Regional_Rollout_Status__c=='Leader'), true, false)}"/>
                                         </th>
                                         <apex:outputPanel rendered="{!if(AND(project.IPMProject_Span__c='Regional',project.IPM_Project_Type__c=='Original',project.IPM_Phase__c=='Ideas'),false,true)}">
@@ -347,7 +347,11 @@ This componet used for regional rollout project
                         <div class="row">    
                             <div class="col-sm-12"> 
                                 <span class="skipDesc">
-                                <apex:outputText value="{!$Label.IPM_PhaseChangeBKProcessWarning_Local}" escape="false"/></span> 
+                                    <apex:outputText value="{!$Label.IPM_PhaseChangeBKProcessWarning_Local}" escape="false"/>
+                                    <apex:outputPanel layout="block" styleClass="localModalDesc">
+                                        {!$Label.IPM_PhaseChangeBKProcessSecondWarning_Local}
+                                    </apex:outputPanel>
+                                </span> 
                             </div>            
                             <div class="skipButtoncontainer txtAlignright pull-right">
                                 <apex:outputPanel id="SkipBossC">

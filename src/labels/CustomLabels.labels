@@ -10020,6 +10020,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Please enter the phase</value>
     </labels>
     <labels>
+        <fullName>IPM_PhaseChangeBKProcessSecondWarning_Local</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM PhaseChangeBKProcessSecondWarning Local</shortDescription>
+        <value>Please note, once a Local Rollout Project is created you will need IPM Central Team assistance to delete it.</value>
+    </labels>
+    <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10031,8 +10038,9 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning_Local</shortDescription>
-        <value>If you have assigned your Country Leader/s, clicking Save here will begin creation of your Local Rollout Project/s. &lt;br/&gt; You will receive a notification via Email once the process is complete.&lt;br/&gt;Please note, once a Local Rollout Project is created you will need IPM Central Team assistance to delete it.</value>
+        <value>If you have assigned your Country Leader/s, clicking Save here will begin creation of your Local Rollout Project/s.You will receive a notification via Email once the process is complete.</value>
     </labels>
+    
     <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning_Regional</fullName>
         <language>en_US</language>
