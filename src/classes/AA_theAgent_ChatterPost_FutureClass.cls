@@ -4,15 +4,26 @@ Public with sharing class AA_theAgent_ChatterPost_FutureClass{
     @future 
     Public static void CallSendToChatter(Map<String,String> lsttriggerList)
     {
+    	Map<ID,aa_Agent_Report__c> countryList=new Map<ID,aa_Agent_Report__c>(); 
         for ( String objOnfeedID : lsttriggerList.keySet() ){
-
-                 aa_Agent_Report__c report = (aa_Agent_Report__c) JSON.deserialize(lsttriggerList.get(objOnfeedID), aa_Agent_Report__c.class);
-                 System.debug('Map key'+objOnfeedID+'================='+'object..report'+report);
+        	aa_Agent_Report__c report = (aa_Agent_Report__c) JSON.deserialize(lsttriggerList.get(objOnfeedID), aa_Agent_Report__c.class);
+        	     if(objOnfeedID!='Cluster_Id'){
+                           
                  AA_theAgent_ChatterPost_FutureClass.sendToChatter(Id.valueof(objOnfeedID), report.CreatedById, report.Report_Title__c, report.id,report.Country__c);
-             
+                 }else{
+                
+                 	countryList.put(report.Country__c,report);
+                 }
      
-                }
-
+         }
+          List<aa_Country__c> countryclusterlist=[select Cluster_Id__c from aa_Country__c where Id IN:countryList.keySet()];
+              for(aa_Country__c countryobj :countryclusterlist)
+               {
+               	  for ( String objreport : countryList.keySet() ){
+               	  	aa_Agent_Report__c report = (aa_Agent_Report__c)countryList.get(countryobj.Id);
+               	  	AA_theAgent_ChatterPost_FutureClass.sendToChatter(countryobj.Cluster_Id__c, report.CreatedById, report.Report_Title__c, report.id,report.Country__c);
+               	  }
+               }        
     }
     
     public static void sendToChatter(Id objectId, ID userToMentionId, String postText, Id reportId,string Country) {    

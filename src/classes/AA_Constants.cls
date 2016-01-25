@@ -40,4 +40,5 @@ public with sharing class AA_Constants {
     public static final String testString='test';
     public static final String TownSample='pune';
     public static final String SourceSample='Overheard from 3rd parties, Unsolicited';
+    public static final String NextLineText='\n\n';
 }
