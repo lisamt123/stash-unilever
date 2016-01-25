@@ -209,14 +209,17 @@ public with sharing class IPM_RolloutPlanTLDSync {
     * @return       NONE
     */
     public void updatedMilestoneTLD( List<IPM_Project__c> projects) {    
-		// removed exception handling as any exceptions/Messages  would be handled at controller 
-        Map<Id,IPM_Project__c> projIdProjectMap = new Map<Id,IPM_Project__c> {};
+		Map<Id,IPM_Project__c> projIdProjectMap = new Map<Id,IPM_Project__c> {};
         for(IPM_Project__c project :projects){
             projIdProjectMap.put(project.id, project);
         }
         List<IPM_Milestone__c> updatedMilestoneList = new List<IPM_Milestone__c> {};
-        for(IPM_Milestone__c ipmMileStone :[Select Id, IPM_Due_Date__c, IPM_Planned_Date__c, IPM_Project__c from IPM_Milestone__c where IPM_Project__c =: projIdProjectMap.keyset() and (IPM_Name__c = :IPM_Utils.TargetLaunchDateShiptoTrade or IPM_Name__c = :IPM_ConstantUtils.SHIPTO_TRADE_TLD)]){
-            ipmMileStone.IPM_Planned_Date__c =projIdProjectMap.get(ipmMileStone.IPM_Project__c).IPM_Target_Launch_Dates__c;
+        for(IPM_Milestone__c ipmMileStone :[Select Id, IPM_Name__c, IPM_Due_Date__c, IPM_Planned_Date__c, IPM_Project__c from IPM_Milestone__c where IPM_Project__c =: projIdProjectMap.keyset()]){
+            IPM_Project__c ipmProject = projIdProjectMap.get(ipmMileStone.IPM_Project__c);
+            ipmMileStone.IPM_Project_Launch_Date__c = ipmProject.IPM_Target_Launch_Dates__c;
+            if(IPM_Utils.TargetLaunchDateShiptoTrade.equals(ipmMileStone.IPM_Name__c) || IPM_ConstantUtils.SHIPTO_TRADE_TLD.equals(ipmMileStone.IPM_Name__c)) {
+            	ipmMileStone.IPM_Planned_Date__c = ipmProject.IPM_Target_Launch_Dates__c;
+            }
             updatedMilestoneList.add(ipmMileStone);
         }
         if(!updatedMilestoneList.isEmpty()){
