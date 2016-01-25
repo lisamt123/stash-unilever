@@ -3,7 +3,7 @@
 * @date         15/04/2015
 * @description  This class is used to test the functionality of IPM_FinancialController class 
 */
-@isTest
+@isTest 
 public class IPM_FinancialController_Test {
     
     private static final string SELCTED_COUNTRY = 'USD';
