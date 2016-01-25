@@ -24,13 +24,9 @@ NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVE
 POSSIBILITY OF SUCH DAMAGE.
 -->
 <apex:component controller="AA_RemoteServiceCallController">
-    <script>
+<script>
 var remotetk = window.remotetk;
-
-if (remotetk === undefined) {
-    remotetk = {};
-}
-
+if (remotetk === undefined) { remotetk = {}; }
 if (remotetk.Client === undefined) {
     function handleResult(result, callback, error, nullok) {
         if (result) {
@@ -44,44 +40,19 @@ if (remotetk.Client === undefined) {
             }
         } else if (typeof nullok !== 'undefined' && nullok) {
             callback();
-        } else {
-            error([{ message : "Null return from action method","errorCode":"NULL_RETURN"}]);
-        }
-    }
-
-    /**
-     * The Client provides a convenient abstraction similar to the Force.com
-     * REST API, allowing JavaScript in Visualforce pages access to data
-     * without consuming API calls.
-     * @constructor
-     */
-    remotetk.Client = function(){
-    }
-
-    /** NOOP: for compatibility with forcetk
-    */
+        } else { error([{ message : "Null return from action method","errorCode":"NULL_RETURN"}]);  }
+    } /*** The Client provides a convenient abstraction similar to the Force.com REST API, allowing JavaScript in Visualforce pages access to data without consuming API calls.  @constructor */
+    remotetk.Client = function(){ }
+    /** NOOP: for compatibility with forcetk  */
     remotetk.Client.prototype.setSessionToken = function() {}
     remotetk.Client.prototype.setRefreshToken = function() {}
     remotetk.Client.prototype.setUserAgentString = function() {}
-
-
-
     remotetk.Client.prototype.invokeService= function(serviceJSONObject,serviceName,requestType, callback, error) {
         Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.AA_RemoteServiceCallController.invokeService}', serviceJSONObject,serviceName,requestType, function(result){
-            handleResult(result, callback, error);
-        }, {
-            escape: false
-        });
-    }
+            handleResult(result, callback, error); }, {  escape: false }); }
     remotetk.Client.prototype.invokeServiceWithURLParameter= function(serviceJSONObject,serviceName,requestType,urlParameter, callback, error) {
         Visualforce.remoting.Manager.invokeAction('{!$RemoteAction.AA_RemoteServiceCallController.invokeServiceWithURLParameter}', serviceJSONObject,serviceName,requestType,urlParameter, function(result){
             handleResult(result, callback, error);
-        }, {
-            escape: false
-        });
-    }
-
-
-}
-    </script>
+        }, {   escape: false }); } }
+</script>
 </apex:component>
