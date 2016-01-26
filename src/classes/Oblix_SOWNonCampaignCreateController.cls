@@ -394,7 +394,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
         marketingBasicRecordToInsert.Name = resource.nonCampaignItem.name;
         marketingBasicRecordToInsert.No_of_Hours_Required__c = resource.hoursSelected;
         marketingBasicRecordToInsert.Agency_Department__c = resource.selectedAgencyDepartment;
-        marketingBasicRecordToInsert.OblixOtherItemFee__c = resource.hourlyRate != null ? Math.round(Decimal.valueof(resource.hourlyRate.trim()) * resource.hoursSelected / 100) : 0;
+        marketingBasicRecordToInsert.OblixOtherItemFee__c = NULL != resource.hourlyRate && NULL != resource.hoursSelected ? Math.round(Decimal.valueof(resource.hourlyRate.trim()) * resource.hoursSelected / 100) : 0;
         marketingBasicRecordToInsert.recordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Dedicated Resource').getRecordTypeId();
         // only set parent if inserting - upsert causes Field is not writeable error
         if (!isUpsert){
