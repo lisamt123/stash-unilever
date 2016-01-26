@@ -25,7 +25,6 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
 
 
 
-
     public map<string, string> mapRTIdCSS {get; set;}
     public map<string, string> mapStageIdCSS {get; set;}
     public string setIdCss {get; set;}
@@ -87,6 +86,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     //Can Adjust Boolean
     public Boolean canAdjust {get; set;}
     public Boolean isGlobalCampaign { get; set; }
+    public Boolean isGlobal { get; set; }
 
     public String selectedBrandInnov {get; set;}
     public String selectedBrandBrand {get; set;}
@@ -117,6 +117,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         isUpdate  = false;
         selectedRegion = '';
         isGlobalCampaign = false;
+        isGlobal = false;
         isFirst = true;
         Id idUser = UserInfo.getUserId();
         userConnected = [Select Name from User where Id = : idUser ];
@@ -535,6 +536,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         System.DEBUG('selectedRegion : ' + selectedRegion);
         if(selectedRegion.startsWith('Global')){
             project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
+            project.OblixRegion__c = selectedRegion;
         }
         System.DEBUG('project.Project_Scale_1__c  : ' + project.Project_Scale_1__c );
     }
@@ -735,6 +737,9 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             project.Percentage_of_Fee_for_this_FY__c = stage_identifier.sow_project_in_scope.Percentage_of_Fee_for_this_FY__c;
 
 
+            if(project.OblixRegion__c != null && project.OblixRegion__c.equalsIgnoreCase('Global')){
+                project.Campaign_Countries__c = 'Global';
+            }
             if (projectId != null) {
                 system.debug('## SaveProjectAction ProjectId!=null - Project_Scale_2__c: ' + project.Project_Scale_2__c + ' - Oblix_SplitHandler.b_initiated_from_vf_page: ' + Oblix_SplitHandler.b_initiated_from_vf_page);
                 if (project.Name == null) {
@@ -748,6 +753,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
                 }
 
             } else {
+                System.DEBUG('isGlobal : ' + isGlobal);
                 system.debug('## SaveProjectAction ProjectId=null - Project_Scale_2__c: ' + project.Project_Scale_2__c + ' - Oblix_SplitHandler.b_initiated_from_vf_page: ' + Oblix_SplitHandler.b_initiated_from_vf_page);
                 if (project.Name == null) {
                     ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'These fields are required : Name'));
@@ -764,6 +770,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
                         System.DEBUG('Split To Insert : ' + splitToInsert);
                     }
                     System.DEBUG('Inserted ProjectId : ' + project.Id );
+                    System.DEBUG('Project : ' + project);
                     PageReference newSOW = new PageReference('/apex/Oblix_CampaignAddAsset?projectId=' + project.Id);
                     newSOW.setRedirect(true);
                     return newSOW;

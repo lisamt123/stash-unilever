@@ -93,7 +93,7 @@
                         <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="true" Id="campaign_stage_component" /> 
                     </div>             
                         <div class="campaign_summary_info_table">
-                            <table class="campaign_summary_information">
+                            <table class="campaign_summary_information camp_sum_table_left_width">
                                 <tr>
                                     <td class="campaign_summary_information_titles">Last Updated</td>
                                     <td colspan="2">
@@ -136,17 +136,17 @@
                                     <td colspan="2">{!selected_project.Project_Scale_2__c}</td>
                                 </tr>
                             </table>
-                            <table class="campaign_summary_information" id="assets_list">
+                            <table class="campaign_summary_information camp_sum_table_right_width" id="assets_list">
                                 <tr>
-                                    <td class="campaign_summary_information_titles">Platform</td>
+                                    <td class="campaign_summary_information_titles camp_sum_table_title__width">Platform</td>
                                     <td colspan="2">{!selected_project.Platform__c}</td>
                                 </tr>
                                 <tr>
-                                    <td class="campaign_summary_information_titles">Campaign priority</td>
+                                    <td class="campaign_summary_information_titles camp_sum_table_title__width">Campaign priority</td>
                                     <td colspan="2">{!selected_project.Project_Priority__c}</td>
                                 </tr>
                                 <tr>
-                                    <td class="campaign_summary_information_titles cell_text_top_align">Timeline dates</td>
+                                    <td class="campaign_summary_information_titles cell_text_top_align camp_sum_table_title__width">Timeline dates</td>
                                     <td>
                                         <apex:outputText value="Campaign start" rendered="{!NULL<>selected_project.Project_Start_Date__c}"><br/></apex:outputText>
                                         <apex:outputText value="Campaign completion" rendered="{!NULL<>selected_project.Project_Completion_Date__c}"><br/></apex:outputText>

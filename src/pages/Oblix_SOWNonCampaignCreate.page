@@ -18,10 +18,15 @@
         </head>
 
 
+        <apex:actionFunction oncomplete="$.unblockUI()" name="refreshActivitySelection" reRender="agencyDepartment,dedicatedAgencyDepartment,selectedRole,rate,errMsg,other_pane,addUpdateButton,addResourceUpdateButton,dedicatedSelectedRole,dedicatedRate,hours" action="{!refreshActivitySelection}" >
+        
+            <apex:param name="selectedTab" assignTo="{!selectedTab}" value="" />
+        </apex:actionFunction>  
+
         <apex:actionFunction oncomplete="$.unblockUI()" name="activityUpdate" reRender="other_pane" >
         </apex:actionFunction>
 
-        <apex:actionFunction action="{!fillAgencyDepartment}" oncomplete="$.unblockUI()" name="adupdate" reRender="agencyDepartment,dedicatedAgencyDepartment,selectedRole,rate,errMsg,other_pane,addUpdateButton,addResourceUpdateButton" >
+        <!-- <apex:actionFunction action="{!fillAgencyDepartment}" oncomplete="$.unblockUI()" name="adupdate" reRender="agencyDepartment,dedicatedAgencyDepartment,selectedRole,rate,errMsg,other_pane,addUpdateButton,addResourceUpdateButton" >
             <apex:param name="selectedTab" assignTo="{!selectedTab}" value="" />
         </apex:actionFunction>
 
@@ -31,7 +36,7 @@
 
         <apex:actionFunction action="{!fillRate}" oncomplete="$.unblockUI()" name="Rateupdate" reRender="rate,dedicatedRate,hours,errMsg,addUpdateButton,addResourceUpdateButton" >
             <apex:param name="selectedTab" assignTo="{!selectedTab}" value="" />
-        </apex:actionFunction>       
+        </apex:actionFunction> -->       
 
 
         <apex:actionFunction action="{!getAndSetActivitiesByName}" oncomplete="$.unblockUI()" name="getAndSetActivitiesByName" reRender="selectionTable,resource_input_fields,activity_tabs, addResourceUpdateButton,activity_resource_input_field_panel">
@@ -139,13 +144,13 @@
                                 </div>
                                 <div class="col-lg-4">
                                     <p class="create_SOW_form_titles">Country*</p>
-                                    <apex:selectList size="1" value="{!activity.selectedCountryname}" onchange="adupdate('activity');blockme();" styleclass="investment_project_dropdowns_right" id="country">
+                                    <apex:selectList size="1" value="{!activity.selectedCountryname}" onchange="refreshActivitySelection('activity');blockme();" styleclass="investment_project_dropdowns_right" id="country">
                                         <apex:selectOptions value="{!countries}" />
                                     </apex:selectList>
                                 </div>
                                 <div class="col-lg-4">
                                     <p class="create_SOW_form_titles">Agency department*</p>
-                                    <apex:selectList size="1" value="{!activity.selectedAgencyDepartment}" styleclass="picklist_init investment_project_dropdowns_right" id="agencyDepartment" onchange="RTupdate('activity');blockme();" disabled="{!IF(activity.agencyVisible==false,true,false)}" style="min-width:100%;">
+                                    <apex:selectList size="1" value="{!activity.selectedAgencyDepartment}" styleclass="picklist_init investment_project_dropdowns_right" id="agencyDepartment" onchange="refreshActivitySelection('activity');blockme();" disabled="{!IF(activity.agencyVisible==false,true,false)}" style="min-width:100%;">
                                         <apex:selectOptions value="{!AgencyDepartments}" />
                                     </apex:selectList>
                                 </div>
@@ -163,7 +168,7 @@
                             <div class="row">
                                 <div class="col-lg-4 non_camp_dropdown_spacing">
                                     <p class="create_SOW_form_titles">Role*</p>
-                                    <apex:selectList size="1" value="{!activity.selectedRole}" id="selectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(activity.roleVisible==false,true,false)}" onchange="Rateupdate('activity');blockme();">
+                                    <apex:selectList size="1" value="{!activity.selectedRole}" id="selectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(activity.roleVisible==false,true,false)}" onchange="refreshActivitySelection('activity');blockme();">
                                         <apex:selectOptions value="{!agencyRoleTitle}" />
                                     </apex:selectList>
                                 </div>
@@ -174,7 +179,7 @@
                                         <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->hours
                                         <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
                                         <apex:outputPanel id="addUpdateButton">
-                                            <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                                            <apex:outputPanel rendered="{!IF(hasEditAccess,true,false)}">
                                             <apex:commandButton value="{!(IF(setUpdateButton,'UPDATE','ADD'))}" styleClass="btn btn-primary btn_plus {!(IF(setUpdateButton,'btn_update','btn_asset_add'))}" onclick="addToActivitySelection(); return false;" /> 
                                             </apex:outputPanel> 
                                         </apex:outputPanel>                                  
@@ -215,7 +220,7 @@
                                                         </apex:outputText>
                                                     </td>
                                                     <td>
-                                                        <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                                                        <apex:outputPanel rendered="{!IF(hasEditAccess,true,false)}">
                                                             <a href="#" id="removeRow_{!activitySelectionMap[eachActivity].key}" value="{!activitySelectionMap[eachActivity].key}" onclick="removeRow('{!activitySelectionMap[eachActivity].key}');"> <img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" />
                                                             </a>
                                                         </apex:outputPanel>
@@ -224,7 +229,7 @@
                                             </apex:repeat>
                                         </tbody>
                                     </table>
-                                    <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                                    <apex:outputPanel rendered="{!IF(hasEditAccess,true,false)}">
                                         <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="insertSelectedActivities(); return false;" />
                                     </apex:outputPanel>
                                 </apex:outputPanel>
@@ -239,13 +244,13 @@
                                     </div>
                                     <div class="col-lg-4">
                                         <p class="create_SOW_form_titles">Country*</p>
-                                        <apex:selectList size="1" value="{!resource.selectedCountryname}" onchange="adupdate('resource');blockme();" styleclass="investment_project_dropdowns_right" id="dedicatedCountry">
+                                        <apex:selectList size="1" value="{!resource.selectedCountryname}" onchange="refreshActivitySelection('resource');blockme();" styleclass="investment_project_dropdowns_right" id="dedicatedCountry">
                                             <apex:selectOptions value="{!countries}" />
                                         </apex:selectList>
                                     </div>
                                     <div class="col-lg-4">
                                         <p class="create_SOW_form_titles">Agency department*</p>
-                                        <apex:selectList size="1" value="{!resource.selectedAgencyDepartment}" styleclass="picklist_init investment_project_dropdowns_right" id="dedicatedAgencyDepartment" onchange="RTupdate('resource');blockme();" disabled="{!IF(resource.agencyVisible==false,true,false)}" style="min-width:100%;">
+                                        <apex:selectList size="1" value="{!resource.selectedAgencyDepartment}" styleclass="picklist_init investment_project_dropdowns_right" id="dedicatedAgencyDepartment" onchange="refreshActivitySelection('resource');blockme();" disabled="{!IF(resource.agencyVisible==false,true,false)}" style="min-width:100%;">
                                             <apex:selectOptions value="{!resourceAgencyDepartment}" />
                                         </apex:selectList>
                                     </div>
@@ -253,14 +258,14 @@
                                 <div class="row">
                                     <div class="col-lg-4 non_camp_dropdown_spacing">
                                         <p class="create_SOW_form_titles">Role*</p>
-                                        <apex:selectList size="1" value="{!resource.selectedRole}" id="dedicatedSelectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(resource.roleVisible==false,true,false)}" onchange="Rateupdate('resource');blockme();">
+                                        <apex:selectList size="1" value="{!resource.selectedRole}" id="dedicatedSelectedRole" styleclass="picklist_init" style="min-width:100%;" disabled="{!IF(resource.roleVisible==false,true,false)}" onchange="refreshActivitySelection('resource');blockme();">
                                             <apex:selectOptions value="{!resourceRoleTitle}" />
                                         </apex:selectList>
                                     </div>
                                     <div class="col-lg-8 non-campaign_hourly_rate_section yearly_rate_form_align">
                                         <p>FTE €&nbsp;&nbsp;
                                             <!--apex:outputLabel value="{!resource.hourlyRate}" id="dedicatedRate" /-->
-                                            <apex:outputText value="{0, number,###,###,##0}" id="dedicatedRate">
+                                            <apex:outputText value="{0, number,###,###,##0}" id="dedicatedRate" >
                                                 <apex:param value="{!VALUE(resource.hourlyRate)}" />
                                             </apex:outputText>
                                             <!--apex:input type="number" styleClass="hourly_rate_box" html-min="0" value="{!resource.hoursSelected}" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}" disabled="{!IF(resource.valVisible==false,false,false)}" id="dedicatedHoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" /-->&nbsp;&nbsp;
@@ -269,7 +274,7 @@
                                             
                                             <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
                                             <apex:outputPanel id="addResourceUpdateButton">
-                                                <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                                                <apex:outputPanel rendered="{!IF(hasEditAccess,true,false)}">
                                                 <apex:commandButton value="{!(IF(setResourceUpdateButton,'UPDATE','ADD'))}" styleClass="btn btn-primary btn_plus {!(IF(setResourceUpdateButton,'btn_update','btn_asset_add'))} " onclick="validateResourceSelection(); return false;" />
                                                 </apex:outputPanel>
                                             </apex:outputPanel>
@@ -292,7 +297,7 @@
                             <apex:repeat value="{!campaignBasketList}" var="eachItem">
                                 <div class="asset_shopping_basket_item">
                                     <div class="campaign_create_agency_hub_split_table_subtitle padding_bottom0">
-                                        <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                                        <apex:outputPanel rendered="{!IF(hasEditAccess,true,false)}">
                                             <a href="#" id="basketRemoveRow_{!eachItem.activityName}" value="{!eachItem.activityName}" onclick="basketRemoveRow('{!eachItem.activityName}');"><img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" class="attachement_redcross" height="12" width="12" /></a>
                                         </apex:outputPanel>
                                         <a href="#" id="basketItem_{!eachItem.activityName}" onclick="getAndSetActivitiesByName('{!JSENCODE(eachItem.activityName)}');blockme();">{!eachItem.activityName} - €<apex:outputText value="{0, number,###,###,##0}"> <apex:param value="{!eachItem.totalAmount}"/></apex:outputText>

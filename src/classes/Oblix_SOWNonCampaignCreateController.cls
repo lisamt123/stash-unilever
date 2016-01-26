@@ -240,6 +240,10 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
         //}
         selectedActivitiesSize = activitySelectionMap.values().size();
         System.Debug('activitySelectionMap : ' + activitySelectionMap);
+
+        setActivityAttributes(null , null, null, null, null, null, false);   
+        resource.hoursSelected = null;
+
     }
 
     public void removeFromSelectionMap(){
@@ -465,6 +469,15 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     
     }
     
+    public void refreshActivitySelection(){
+        fillCountries();
+        fillAgencyDepartment();
+        fillRoleTitle();
+        fillRate();
+        resource.hoursSelected = null;
+        activity.hoursSelected = null;
+    }
+
     /*
     Description : Method used to update Rate options in Activities form 
     */
@@ -498,6 +511,12 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
                 resource.roundedRate = String.valueOf(Math.round(Rates[0].FTE__c));//
                 //this.setResourceUpdateButton = false;
             }
+        }
+        else{
+            activity.hourlyRate = '';
+            activity.roundedRate = '';
+            resource.hourlyRate = '0';
+            resource.roundedRate = '0';
         }
         checkIFButtonISUpdateORAdd();
 
@@ -545,6 +564,10 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
                 //this.setResourceUpdateButton = false;
             }
 
+        }
+        else{
+            agencyRoleTitle = new List < SelectOption>();
+            resourceRoleTitle = new List <SelectOption>();        
         }
         System.DEBUG(' agencyRoleTitle ' + agencyRoleTitle);
         System.DEBUG(' resourceRoleTitle ' + resourceRoleTitle);
