@@ -51,7 +51,7 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
             stage_identifier = new Oblix_CampaignStageLogic(selected_project,hasEditAccess, hasEditAccess);
             
             //Check if the Connected user is the Owner of the Campaign, if So, then Enable AdjustFee Button.
-            if(selected_sow.OwnerId == UserInfo.getUserId()){
+            if(selected_sow.OwnerId == UserInfo.getUserId() || isSystemAdmin){
                 is_enable_Adjust = true;
             }
         }
@@ -144,6 +144,22 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
     public pageReference addAssetAction() {
         Pagereference addAssetPage = Page.Oblix_CampaignAddAsset;
         addAssetPage.getParameters().put('projectId', project_id);
+        addAssetPage.setRedirect(true);
+        return addAssetPage;
+    }
+
+
+    /*******************************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-09
+    * @description  redirect to add asset page
+    ********************************************************************************/
+    public pageReference viewAsset() {
+        Pagereference addAssetPage = Page.Oblix_CampaignAddAsset;
+
+        system.debug('project_id: ' + project_id + ' selected_asset_id: ' + selected_asset_id);
+        addAssetPage.getParameters().put('projectId', project_id);
+        addAssetPage.getParameters().put('assetId', selected_asset_id);
         addAssetPage.setRedirect(true);
         return addAssetPage;
     }

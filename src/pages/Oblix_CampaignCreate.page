@@ -1,4 +1,4 @@
-<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_SOWCampaignCreateController" standardStylesheets="false" action="{!init}">
+<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_SOWCampaignCreateController" standardStylesheets="true" action="{!init}">
 
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -235,7 +235,7 @@
                             <tr>
                                 <td class="campaign_create_agency_hub_split_table_subtitle">Campaign start</td>
                                 <td class="table_date_formatting">
-                                    <apex:inputField value="{!project.Project_Start_Date__c}" styleclass="dateProjSD" />
+                                    <apex:inputField value="{!project.Project_Start_Date__c}"  />
                                 </td>
                                 <td class="campaign_create_agency_hub_split_table_subtitle">First air date</td>
                                 <td class="table_date_formatting">

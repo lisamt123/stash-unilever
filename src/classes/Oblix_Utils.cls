@@ -609,6 +609,8 @@ public with sharing class Oblix_Utils {
         public String assetName;
         public String location;
         public String assetTitle;
+        public String projectId; 
+        public String optionName;
 
         public AssetDetailWrapper(Oblix_Project_Assets__c asset) {
             this.assetId = asset.Id;
@@ -618,6 +620,8 @@ public with sharing class Oblix_Utils {
             this.assetName = asset.Asset_Picklist__c;
             this.location =  asset.Location__c;
             this.assetTitle = asset.Asset_Title__c;
+            this.projectId = asset.Agency_Projects__c;
+            this.optionName = asset.Option_Name__c;
         }
     }
     

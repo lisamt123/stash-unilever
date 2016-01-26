@@ -17,8 +17,10 @@ public with sharing virtual class Oblix_SWOPparentController {
     public Oblix_SOW_Projects__c selected_project {get;set;}
     public Oblix_CampaignStageLogic stage_identifier {get;set;}
     public Boolean hasEditAccess { get; set; }
+    public Boolean isSystemAdmin {get; set;}
 
     public Oblix_SWOPparentController() {
+        checkIsSystemAdmin();
         checkUserHasEditPermission();
     }
 
@@ -182,21 +184,37 @@ public with sharing virtual class Oblix_SWOPparentController {
             return query_string;
     }    
 
+    public Boolean checkIsSystemAdmin(){
+
+        if (NULL == isSystemAdmin){
+
+            Id systemAdminProfileId = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id;
+            Id currentUserProfileId = UserInfo.getProfileId();
+
+            if (systemAdminProfileId == currentUserProfileId){
+                isSystemAdmin = true;
+            }
+            else{
+                isSystemAdmin = false;
+            }
+        }
+        return isSystemAdmin;
+    }
+
     private void checkUserHasEditPermission(){
 
         // if user has one of the 3 read/write permissions or is system admin then should be able to edit records
         Integer existsInDB = 0;
         hasEditAccess = false;
 
-        Id systemAdminProfileId = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id;
-        Id currentUserProfileId = UserInfo.getProfileId();
-        
+       
         Id currentUserId = UserInfo.getUserId();   
         existsInDB = [SELECT count() FROM PermissionSetAssignment WHERE (AssigneeId = :currentUserId AND PermissionSet.Name IN ('Oblix_SWOP_UL_2_V1','Oblix_SWOP_UL_1_V1','Oblix_SWOP_Super_User_V1'))];
 
-        if(existsInDB > 0 || systemAdminProfileId == currentUserProfileId){
+        if(existsInDB > 0 || checkIsSystemAdmin()){
             hasEditAccess = true;
         }
     }
+
 
 }

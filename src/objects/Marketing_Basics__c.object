@@ -1586,6 +1586,10 @@ Renamed to Other SOW items in reviews</description>
         <picklistValues>
             <picklist>Activities__c</picklist>
             <values>
+                <fullName>Brand Book</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>Other</fullName>
                 <default>false</default>
             </values>
