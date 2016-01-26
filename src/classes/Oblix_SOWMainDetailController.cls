@@ -551,6 +551,9 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         try{
 
 
+            // set static variable on the trigger handler to avoid setting big/small category
+            Oblix_SOWHandler.b_initiated_from_vf_page = true;
+            
             if (String.isBlank(errorRequired) && selected_sow != null && selected_sow.Id == null){
 
                 insert selected_sow;

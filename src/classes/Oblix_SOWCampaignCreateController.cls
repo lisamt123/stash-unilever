@@ -15,6 +15,15 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     public set<string> setRecordType  {get; set;}
     public map<string, list<Oblix_Project_Assets__c>> mapRTAssets {get; set;}
     public String updatedAssetInstance { get;set; }
+    public Boolean isUpdate { get; set; }
+    public String basketKey { get; set; }
+    public String selectedAssetId { get; set; }
+    public String assetPicklist { get; set; }
+    public String assetDescription { get; set; }
+    public String assetLocation { get; set; }
+    public String assetQuantity { get; set; }
+
+
 
     public map<string, string> mapRTIdCSS {get; set;}
     public map<string, string> mapStageIdCSS {get; set;}
@@ -72,10 +81,12 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     public map<string, string> mapAbreviation {get; set;}
     public List<SelectOption> innovationOptions {get; set;}
     public List<SelectOption> brandOptions {get; set;}
+    public Map<String,String> mapOfAssetBasket { get; set; }
 
     //Can Adjust Boolean
     public Boolean canAdjust {get; set;}
     public Boolean isGlobalCampaign { get; set; }
+    public Boolean isGlobal { get; set; }
 
     public String selectedBrandInnov {get; set;}
     public String selectedBrandBrand {get; set;}
@@ -103,8 +114,10 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         v3 = false;
         v4 = false;
         v5 = false;
+        isUpdate  = false;
         selectedRegion = '';
         isGlobalCampaign = false;
+        isGlobal = false;
         isFirst = true;
         Id idUser = UserInfo.getUserId();
         userConnected = [Select Name from User where Id = : idUser ];
@@ -114,6 +127,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         setIdCss = '[]';
         isError = false;
         listItems = '';
+        assetQuantity = '0';
         //Brand_Led_Growth = '';
         selectedBrandInnov = '';
         selectedBrandBrand = '';
@@ -391,6 +405,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             }
         }
         lstAssetsForCard.addAll(lstAsset);
+        populateMapOFBasket(lstAssetsForCard);
         if (!lstAsset.isEmpty()) {
             for (Oblix_Project_Assets__c asset : lstAsset) {
                 if (!(mapRTAssets).containsKey(asset.RecordType.Name)) { mapRTAssets.put(asset.RecordType.Name, new list<Oblix_Project_Assets__c>()); }
@@ -521,6 +536,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         System.DEBUG('selectedRegion : ' + selectedRegion);
         if(selectedRegion.startsWith('Global')){
             project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
+            project.OblixRegion__c = selectedRegion;
         }
         System.DEBUG('project.Project_Scale_1__c  : ' + project.Project_Scale_1__c );
     }
@@ -721,6 +737,9 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             project.Percentage_of_Fee_for_this_FY__c = stage_identifier.sow_project_in_scope.Percentage_of_Fee_for_this_FY__c;
 
 
+            if(project.OblixRegion__c != null && project.OblixRegion__c.equalsIgnoreCase('Global')){
+                project.Campaign_Countries__c = 'Global';
+            }
             if (projectId != null) {
                 system.debug('## SaveProjectAction ProjectId!=null - Project_Scale_2__c: ' + project.Project_Scale_2__c + ' - Oblix_SplitHandler.b_initiated_from_vf_page: ' + Oblix_SplitHandler.b_initiated_from_vf_page);
                 if (project.Name == null) {
@@ -734,6 +753,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
                 }
 
             } else {
+                System.DEBUG('isGlobal : ' + isGlobal);
                 system.debug('## SaveProjectAction ProjectId=null - Project_Scale_2__c: ' + project.Project_Scale_2__c + ' - Oblix_SplitHandler.b_initiated_from_vf_page: ' + Oblix_SplitHandler.b_initiated_from_vf_page);
                 if (project.Name == null) {
                     ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'These fields are required : Name'));
@@ -750,6 +770,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
                         System.DEBUG('Split To Insert : ' + splitToInsert);
                     }
                     System.DEBUG('Inserted ProjectId : ' + project.Id );
+                    System.DEBUG('Project : ' + project);
                     PageReference newSOW = new PageReference('/apex/Oblix_CampaignAddAsset?projectId=' + project.Id);
                     newSOW.setRedirect(true);
                     return newSOW;
@@ -859,6 +880,17 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         }
     }
     
+
+
+    public void setToProjectAction(){
+        system.debug('### subCatc ' + subCat);
+        system.debug('### mapAssetsPerSubCat ' + mapAssetsPerSubCat);
+        system.debug('### complexity ' + complexity);
+        system.debug('### selectionCountvar : ' + selectionCountvar);
+        this.subCat = subCat;
+        this.complexity = complexity;
+        this.selectionCountvar = selectionCountvar;
+    }
     /*
     Description: Add assets to project
     */
@@ -871,12 +903,17 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         system.debug('### assetInstance.Actual_Delivery_Date__c ' + assetInstance.Actual_Delivery_Date__c);
         system.debug('### subCatc ' + subCat);
         system.debug('### mapAssetsPerSubCat ' + mapAssetsPerSubCat);
+        system.debug('### complexity ' + complexity);
+        system.debug('### selectionCountvar : ' + selectionCountvar);
+        system.debug('============== assetInstance.Asset_Picklist__c: ' + assetPicklist);
         
         mapAssetsPerSubCat.get(subCat).Actual_Delivery_Date__c = assetInstance.Actual_Delivery_Date__c;
-        mapAssetsPerSubCat.get(subCat).Additional_Description__c = assetInstance.Additional_Description__c;
+        mapAssetsPerSubCat.get(subCat).Additional_Description__c = assetDescription;
 
         assetInstance = mapAssetsPerSubCat.get(subCat);
-
+        assetInstance.Asset_Picklist__c = assetPicklist;
+        assetInstance.Location__c = assetLocation;
+        assetInstance.Quantity__c = Integer.valueOf(assetQuantity);
         //achraf
         system.debug('============== assetInstance.Asset_Picklist__c: ' + assetInstance.Asset_Picklist__c);
         system.debug('============== assetInstance.Location__c: ' + assetInstance.Location__c);
@@ -928,9 +965,9 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             insert assetInstance;
             updatedAssetInstance = assetInstance.Id;
         }
-        
+        system.debug('### assetInstance : ' + assetInstance);
         lstAssetsForCard= [select Id, Name, Quantity__c, Sub_Category__c, Asset_Type__c, Asset_Title__c, Asset_Picklist__c,FULL_Description__c, FULL_Description__r.Name,Option_Name__c,Location__c   from Oblix_Project_Assets__c where Agency_Projects__c =: project.Id];
-         
+        populateMapOFBasket(lstAssetsForCard); 
         project = [Select Id, Name, Innovation_Projects__c , ProjectTotalAssetscore__c, Jobs_to_be_Done__c , Campaign_Fees_Total__c, Completed_Stage__c, Financial_Year__r.currency__c, Projected_Stage__c, Financial_Year__r.Financial_Year__c, Financial_Year__r.Name,BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Status__c, Preview_Date__c, Start_of_TV_production__c, Final_release__c, Live_Date__c, Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c, Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, Campaign_Countries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id = :projectId];
         estimateCost =  project.Campaign_Fees_Total__c;
         countAssetNumberForCampaign = [Select count() from Oblix_Project_Assets__c  where Agency_Projects__c =: project.id];
@@ -1000,7 +1037,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     @RemoteAction
     public static void removeAsset(String assetName, String projectId) {
         try {
-            delete [SELECT Id, Asset_Picklist__c, Agency_Projects__c,Option_Name__c,Location__c  FROM Oblix_Project_Assets__c WHERE Asset_Picklist__c =: assetName And Agency_Projects__c =: projectId];
+            delete [SELECT Id, Asset_Picklist__c, Agency_Projects__c,Option_Name__c,Location__c  FROM Oblix_Project_Assets__c WHERE Id =: assetName And Agency_Projects__c =: projectId];
             
         } catch (DMLException e) {
             ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Could not remove asset: ' + e.getMessage()));
@@ -1023,10 +1060,16 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             }
         }
         lstAssetsForCard.addAll(lstAsset);
+        populateMapOFBasket(lstAssetsForCard);
         project = [Select Id, Name, Innovation_Projects__c , ProjectTotalAssetscore__c, Jobs_to_be_Done__c , Campaign_Fees_Total__c, Completed_Stage__c, Financial_Year__r.currency__c, Projected_Stage__c, Financial_Year__r.Financial_Year__c,Financial_Year__r.Name, BET_first_release__c, Value_to_be_paid_in_Current_FY__c, Campaign_Status__c, Preview_Date__c, Start_of_TV_production__c, Final_release__c, Live_Date__c, Live_date_Asset_delivery__c, Date_for_Assets_to_be_in_BET__c, Timescale_Notes__c, Brand_Led_Growth__c, Project_Scale_1__c, Project_Scale_2__c, Campaign_Idea__c, Project_Finish_Date__c, Project_Stage__c, Platform__c, CreatedById, Project_Start_Date__c, CreatedDate, OblixRegion__c, Project_Priority__c, Project_Completion_Date__c, Description__c, Campaign_Countries__c, First_Air_Date__c, Production_Completion_Date__c, Financial_Year__c from Oblix_SOW_Projects__c where id = :projectId];
         estimateCost =  project.Campaign_Fees_Total__c;
         countAssetNumberForCampaign = [Select count() from Oblix_Project_Assets__c  where Agency_Projects__c =: project.id];
-        Pagereference newPage = new Pagereference('/apex/oblix_campaignaddasset?projectId=' +projectId +'&assetId=' + updatedAssetInstance);
+        Pagereference newPage;
+        if(updatedAssetInstance != null && !updatedAssetInstance.equalsIgnoreCase('')){
+            newPage = new Pagereference('/apex/oblix_campaignaddasset?projectId=' +projectId +'&assetId=' + updatedAssetInstance);
+        }else{
+            newPage = new Pagereference('/apex/oblix_campaignaddasset?projectId=' +projectId);
+        }
         newPage.setRedirect(true);
         return newPage;
         //selectionCountvar = '1';
@@ -1034,6 +1077,38 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         *    This part is used to call method to fill Wrap Asset Lst to be shown in the Cart.
         */
         //InitializeMapAssetNames(project.Id);
+    }
+
+    public void populateMapOFBasket(List<Oblix_Project_Assets__c> assets){
+        mapOfAssetBasket = new Map<String,String>();
+        for(Oblix_Project_Assets__c asset : assets){
+            String key = '';
+            if(asset.Location__c != null){
+                key = asset.Asset_Picklist__c + project.Id + asset.Option_Name__c + asset.Location__c;
+            }else{
+                key = asset.Asset_Picklist__c + project.Id + asset.Option_Name__c;
+            }
+            if(!mapOfAssetBasket.containsKey(key)){
+                mapOfAssetBasket.put(key,asset.Id);
+            }
+        }
+        existsInBasket();
+        System.DEBUG('mapOfAssetBasket : ' + mapOfAssetBasket);
+    }
+
+    
+    public void existsInBasket(){
+        System.DEBUG('mapOfAssetBasket : ' + mapOfAssetBasket);
+        System.DEBUG('BasketKey : ' + basketKey);
+        System.DEBUG('selectedAssetId : ' + selectedAssetId);
+        if(mapOfAssetBasket.containsKey(basketKey)){
+            isUpdate = true;
+            selectedAssetId = mapOfAssetBasket.get(basketKey);
+        }else{
+            isUpdate = false;
+        }
+        System.DEBUG('isUpdate : ' + isUpdate);
+        System.DEBUG('hasEditAccess : ' + hasEditAccess);
     }
     
     /*
@@ -1050,7 +1125,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     @RemoteAction
     public static Oblix_Utils.AssetDetailWrapper getAssetDetails(String assetId) {
         system.debug('###assetId  : '+assetId );
-        return new Oblix_Utils.AssetDetailWrapper([SELECT Id, Quantity__c, Additional_Description__c,
+        return new Oblix_Utils.AssetDetailWrapper([SELECT Id, Quantity__c, Agency_Projects__c, Additional_Description__c,
                 Actual_Delivery_Date__c, Asset_Picklist__c, Location__c, Asset_Title__c,Option_Name__c 
                 FROM Oblix_Project_Assets__c WHERE Id = : assetId LIMIT 1]);
     }

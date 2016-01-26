@@ -53,7 +53,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     private static final String NON_CAMPAIGN_RESOURCE_TYPE = 'dedicated resource';
 
 	public Oblix_SOWNonCampaignCreateController() {
-        System.debug('In Here : ');
+        
 		activity = new Oblix_NonCampaignWrapper();
         resource = new Oblix_NonCampaignWrapper();
         activitySelectionMap = new Map<String,Oblix_NonCampaignWrapper>();
@@ -81,7 +81,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
 	}
 
     public void getSelectedKeys(){
-        System.debug('In Here : ');
+        
         existingKeys = new Map<String, Marketing_Basics__c>();
         System.debug('!!! basicsList:'+marketing_SOW);
         for(Marketing_Basics__c eachRecord : [SELECT Non_Campaign_Key__c, No_of_Hours_Required__c, OblixOtherItemFee__c FROM Marketing_Basics__c WHERE Oblix_SOWMarketing__c =: marketing_SOW.Id LIMIT 10000]){
@@ -91,7 +91,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     }
 
     public PageReference finishBasket(){
-        System.debug('In Here : ');
+        
         PageReference campaignMainDetailPage = Page.oblix_sowmaindetail;
         campaignMainDetailPage.getParameters().put('sowId', marketing_SOW.Id);
         campaignMainDetailPage.setRedirect(True);
@@ -99,7 +99,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     }
     
     public void getSelectedActivitiesByName(String preSelectedName){
-        System.debug('In Here : ');
+        
         this.selectedName = preSelectedName;
         
         if(this.selectedName != null && !this.selectedName.equalsIgnoreCase('')){
@@ -110,13 +110,13 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     }
 
     public void getAndSetActivitiesByName(){
-        System.debug('In Here : ');
+        
         getSelectedActivitiesByName();
         checkAndSetActivityAttributes();
     }
 
     public void getSelectedActivitiesByName(){
-        System.debug('In Here : ');
+        
         selectedActivitiesSize = 0;
         existingKeys.clear();
         System.DEBUG('RecordTypeId : ' + rtActivity);
@@ -156,7 +156,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     }
 
     private void checkAndSetActivityAttributes(){
-        System.debug('In Here : ');
+        
         Oblix_NonCampaignWrapper non_campaign_to_pre_select = new Oblix_NonCampaignWrapper();
 
         if (NULL!=activitySelectionMap && !activitySelectionMap.values().isEmpty()){
@@ -197,7 +197,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
 
 
     public void addToActivitySelectionMap(){
-        System.debug('In Here : ');
+        
         System.DEBUG('Selected Activity : ' + seletedActivity);
         NonCampaignJSONWrapper activityJSONWrapper = new NonCampaignJSONWrapper();
         Oblix_NonCampaignWrapper selectedNonCampaignWrapper = new Oblix_NonCampaignWrapper();
@@ -240,11 +240,15 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
         //}
         selectedActivitiesSize = activitySelectionMap.values().size();
         System.Debug('activitySelectionMap : ' + activitySelectionMap);
+
+        setActivityAttributes(null , null, null, null, null, null, false);   
+        resource.hoursSelected = null;
+
     }
 
     public void removeFromSelectionMap(){
 
-        System.debug('In Here : ');
+        
         System.debug('Seleted Index : ' + selectedkey);
         System.DEBUG('activitySelectionMap Before : ' + activitySelectionMap);
 
@@ -262,7 +266,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     }
 
     public void removeItemFromBasketList(){
-        System.debug('In Here : ');
+        
         System.DEBUG('Basket Item to Remove : ' + basketItemToRemove);
         if(basketItemToRemove != null){
             delete [SELECT Id FROM Marketing_Basics__c WHERE Oblix_SOWMarketing__c =: marketing_SOW.Id AND Name =: basketItemToRemove];
@@ -273,7 +277,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     }
 
     public void setActivityInputFieldsForSelectedItem(){
-        System.debug('In Here : ');
+        
         setActivityAttributes(selected_activity, selected_country
         , selected_agent_department, selected_other
         , selected_role, selected_hours, true);
@@ -283,7 +287,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     public void setActivityAttributes(String selected_activity, String selected_country
         , String selected_agent_department, String selected_other
         , String selected_role, Integer selected_hours, Boolean setUpdateButton){
-        System.debug('In Here : ');
+        
         selectedTab = NON_CAMPAIGN_ACTIVITY_TYPE;
 
         this.setUpdateButton = setUpdateButton;
@@ -302,7 +306,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
 
     public void setResourceAttributes(String resource_name, String resource_country
         , String resource_agent_department, String selected_role, Integer resource_hours, Boolean setResourceUpdateButton){
-        System.debug('In Here : ');
+        
         selectedTab = NON_CAMPAIGN_RESOURCE_TYPE;
 
         this.setResourceUpdateButton = true;
@@ -333,7 +337,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
    
 
     public void insertSelectedActivitiesAndRefreshBasket(){
-        System.debug('In Here : ');
+        
         Map <String, String> abreviationsMap = Oblix_Utils.getAbreViationForCardAssets();
         List<Marketing_Basics__c> marketingBasicRecordList = new List<Marketing_Basics__c>();
 
@@ -374,7 +378,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     }
 
     public void upsertSelectedResourceAndRefreshBasket(){
-        System.debug('In Here : ');
+        
         Marketing_Basics__c marketingBasicRecordToInsert = new Marketing_Basics__c();
 
         selectedName = resource.nonCampaignItem.name;
@@ -390,7 +394,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
         marketingBasicRecordToInsert.Name = resource.nonCampaignItem.name;
         marketingBasicRecordToInsert.No_of_Hours_Required__c = resource.hoursSelected;
         marketingBasicRecordToInsert.Agency_Department__c = resource.selectedAgencyDepartment;
-        marketingBasicRecordToInsert.OblixOtherItemFee__c = resource.hourlyRate != null ? Math.round(Decimal.valueof(resource.hourlyRate.trim()) * resource.hoursSelected / 100) : 0;
+        marketingBasicRecordToInsert.OblixOtherItemFee__c = NULL != resource.hourlyRate && NULL != resource.hoursSelected ? Math.round(Decimal.valueof(resource.hourlyRate.trim()) * resource.hoursSelected / 100) : 0;
         marketingBasicRecordToInsert.recordTypeId = Schema.SObjectType.Marketing_Basics__c.getRecordTypeInfosByName().get('Dedicated Resource').getRecordTypeId();
         // only set parent if inserting - upsert causes Field is not writeable error
         if (!isUpsert){
@@ -413,7 +417,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     }
 
     public void refreshBasket(){
-        System.debug('In Here : ');
+        
         AggregateResult[] groupedResults = [SELECT Name, SUM(OblixOtherItemFee__c)totalAmount FROM Marketing_Basics__c 
                                                 WHERE Oblix_SOWMarketing__c = : marketing_SOW.Id GROUP BY Name];
         campaignBasketList = new List<CampaignBasket>();
@@ -426,7 +430,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     }
 
     public void getBasketTotal(List<CampaignBasket> campaignBasketList){
-        System.debug('In Here : ');
+        
         campaignTotalValue = 0;
         for(CampaignBasket eachCampaignBasket : campaignBasketList){
             campaignTotalValue += eachCampaignBasket.totalAmount;
@@ -434,7 +438,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     }
 
     public void clearActivitySelectionMap(){
-        System.debug('In Here : ');
+        
         activitySelectionMap.clear();
     }
 
@@ -451,7 +455,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     /* Void Method used to initialise marketing_SOW  
      */
     public void reRenderSOW() {
-        System.debug('In Here : ');
+        
         if (sowId != null) {
             marketing_SOW = [select id, Name, Financial_Year__c, currency__c, Oblix_AgencyEstimate__c, Oblix_AgencyEstimate__r.Name from marketing_SOW__c where id = : sowId];
             fYear = marketing_SOW.Financial_Year__c;
@@ -465,6 +469,15 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     
     }
     
+    public void refreshActivitySelection(){
+        fillCountries();
+        fillAgencyDepartment();
+        fillRoleTitle();
+        fillRate();
+        resource.hoursSelected = null;
+        activity.hoursSelected = null;
+    }
+
     /*
     Description : Method used to update Rate options in Activities form 
     */
@@ -498,6 +511,12 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
                 resource.roundedRate = String.valueOf(Math.round(Rates[0].FTE__c));//
                 //this.setResourceUpdateButton = false;
             }
+        }
+        else{
+            activity.hourlyRate = '';
+            activity.roundedRate = '';
+            resource.hourlyRate = '0';
+            resource.roundedRate = '0';
         }
         checkIFButtonISUpdateORAdd();
 
@@ -546,6 +565,10 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
             }
 
         }
+        else{
+            agencyRoleTitle = new List < SelectOption>();
+            resourceRoleTitle = new List <SelectOption>();        
+        }
         System.DEBUG(' agencyRoleTitle ' + agencyRoleTitle);
         System.DEBUG(' resourceRoleTitle ' + resourceRoleTitle);
         checkIFButtonISUpdateORAdd();
@@ -553,7 +576,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
 
     public List<SelectOption> populateRoleTitleList(Map<String,String> roleTitlesNameMap) {
         List<SelectOption> roleTitlesToReturn = new List<SelectOption>();
-        System.debug('In Here : ');
+        
         for (String temp: roleTitlesNameMap.keySet()) {
             // if ( activity.selectedRole==null)  activity.selectedRole= temp; //remplir automatiquement par la premiere valeur
             roleTitlesToReturn.add(new SelectOption(temp, roleTitlesNameMap.get(temp)));
@@ -617,7 +640,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
 
     public List<SelectOption> populateAgencyDepartmentList(Map <String, String> agencyDepartmentMap){
         List<SelectOption> departmentsToReturn = new List<SelectOption>();
-        System.debug('In Here : ');
+        
         if (!agencyDepartmentMap.keyset().isEmpty()) {
             for (String temp: agencyDepartmentMap.keySet()) {
                 departmentsToReturn.add(new SelectOption(temp, agencyDepartmentMap.get(temp)));
@@ -634,7 +657,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     Description : Method used to update Countries options in Activities and resources form 
     */
     public void fillCountries() {
-        System.debug('In Here : ');
+        
         List <Oblix_Calculator__c> countriesNames = new List <Oblix_Calculator__c>();
         countriesNames =[select Financial_Year__c,Oblix_Agency__c, OblixCountry__c, OblixCountry__r.name from Oblix_Calculator__c where Financial_Year__c=:fYear and  Oblix_Agency__c =:agency ];
         map<String,String>  countriesMap =new map<String,String> () ;
@@ -667,7 +690,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
     }
 
     public void checkIFButtonISUpdateORAdd(){
-        System.debug('In Here : ');
+        
         String keyToSearch = marketing_SOW.Id + activity.nonCampaignItem.Activities__c + activity.selectedCountryname + activity.selectedAgencyDepartment + activity.selectedRole;
         System.DEBUG(' keyToSearch: '+ keyToSearch);
         System.DEBUG(' activitySelectionMap: '+ activitySelectionMap);

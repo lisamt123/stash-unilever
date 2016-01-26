@@ -1,4 +1,4 @@
-<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_SOWCampaignCreateController" standardStylesheets="false" action="{!init}">
+<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_SOWCampaignCreateController" standardStylesheets="true" action="{!init}">
 
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
@@ -35,11 +35,12 @@
             <apex:param name="countries" assignTo="{!project.Campaign_Countries__c}" value="" />
         </apex:actionFunction>
         
-        <apex:actionFunction name="setAgencyHub" action="{!SaveProjectAction}" rerender="false">
+        <apex:actionFunction name="setAgencyHub" action="{!SaveProjectAction}" rerender="">
             <apex:param name="splitId" assignTo="{!listItems}" value="" />
+            <apex:param name="isGobal" assignTo="{!isGobal}" value=""/>
         </apex:actionFunction>
 
-        <apex:actionFunction name="setCampaignScaleOne" action="{!setCampaignScaleOne}" rerender="investmentPriority" immediate="true">
+        <apex:actionFunction name="setCampaignScaleOne" action="{!setCampaignScaleOne}" rerender="investmentPriority" immediate="true" oncomplete="$.unblockUI();">
             <apex:param name="selectedRegion" assignTo="{!selectedRegion}" value="" />
         </apex:actionFunction>
 
@@ -235,7 +236,7 @@
                             <tr>
                                 <td class="campaign_create_agency_hub_split_table_subtitle">Campaign start</td>
                                 <td class="table_date_formatting">
-                                    <apex:inputField value="{!project.Project_Start_Date__c}" styleclass="dateProjSD" />
+                                    <apex:inputField value="{!project.Project_Start_Date__c}"  />
                                 </td>
                                 <td class="campaign_create_agency_hub_split_table_subtitle">First air date</td>
                                 <td class="table_date_formatting">
@@ -267,7 +268,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="campaign_create_buttons">
-                        <apex:commandButton value="SAVE CAMPAIGN" onclick="validateCountrySplit(); return false; " styleClass="btn btn-primary btn-sm pull-right btn_save_campaign btn_check"/>
+                        <apex:commandButton value="SAVE CAMPAIGN" onclick="validateCountrySplit(); return false;" styleClass="btn btn-primary btn-sm pull-right btn_save_campaign btn_check"/>
                         <apex:commandButton value="CANCEL" action="{!backAction}" title="Cancel" styleClass="btn btn-sm pull-right btn_cancel btn_cross" immediate="true" html-formnovalidate="formnovalidate"/>
                     </div>
                 </div>
