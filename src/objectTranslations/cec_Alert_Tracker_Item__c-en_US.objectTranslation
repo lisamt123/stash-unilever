@@ -9,6 +9,14 @@
         <value>Alert Tracker Item</value>
     </caseValues>
     <fields>
+        <label><!-- Active --></label>
+        <name>Active__c</name>
+    </fields>
+    <fields>
+        <label><!-- Alert Rule Id --></label>
+        <name>Alert_Rule_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Alert Tracker --></label>
         <name>Alert_Tracker_Id__c</name>
         <relationshipLabel><!-- Alert Tracker Item --></relationshipLabel>
@@ -18,5 +26,12 @@
         <name>Case_Id__c</name>
         <relationshipLabel><!-- Alert Tracker Item --></relationshipLabel>
     </fields>
+    <layouts>
+        <layout>Alert Tracker Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

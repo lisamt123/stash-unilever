@@ -2246,10 +2246,11 @@ This means that they will not have editing rights. You can manage member &lt;br/
     </labels>
     <labels>
         <fullName>CEC_ValidEmailTemplate</fullName>
+        <categories>CEC : Error</categories>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>CEC_ValidEmailTemplate</shortDescription>
-        <value>Please enter a valid Email Template Name.</value>
+        <value>Invalid Email Template Name :</value>
     </labels>
     <labels>
         <fullName>CEC_isFormKnown</fullName>
