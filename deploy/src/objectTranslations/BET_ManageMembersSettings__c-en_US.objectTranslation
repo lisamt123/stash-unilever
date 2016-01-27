@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>BET_ManageMembers</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>BET_ManageMembers</value>
+    </caseValues>
+    <fields>
+        <label><!-- ApprovedStatus --></label>
+        <name>ApprovedStatus__c</name>
+    </fields>
+    <fields>
+        <label><!-- BET Member Object Name --></label>
+        <name>BET_Member_Object_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- DeniedStatus --></label>
+        <name>DeniedStatus__c</name>
+    </fields>
+    <fields>
+        <label><!-- ExternalAccessLevel --></label>
+        <name>ExternalAccessLevel__c</name>
+    </fields>
+    <fields>
+        <label><!-- ExternalRole --></label>
+        <name>ExternalRole__c</name>
+    </fields>
+    <fields>
+        <label><!-- InternalUserRecordType --></label>
+        <name>InternalUserRecordType__c</name>
+    </fields>
+    <fields>
+        <label><!-- ManagerRole --></label>
+        <name>ManagerRole__c</name>
+    </fields>
+    <fields>
+        <label><!-- MemberRole --></label>
+        <name>MemberRole__c</name>
+    </fields>
+    <fields>
+        <label><!-- ToolkitAccessLevel --></label>
+        <name>ToolkitAccessLevel__c</name>
+    </fields>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

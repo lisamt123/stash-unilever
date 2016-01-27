@@ -1,0 +1,38 @@
+<apex:page showHeader="false" sidebar="false" controller="BET_UpdateExpectedAssetsController" standardStylesheets="false">
+
+    <apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
+    <apex:stylesheet value="{!$Resource.BET}/css/BETManageMembersStyles.css" />
+    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.min.js" />    
+
+    <div style="font-family: Rockwell;font-size: 16px;padding-bottom:10px;">
+        {!$Label.BET_Tick_Info}
+    </div>
+
+    <apex:outputPanel layout="block" id="maincontainer" styleClass="frame">
+
+        <script>
+            function setFlag(){
+                window.top.postMessage(
+                    {
+                        action: 'saveExpectedAssets'
+                    }, 
+                    document.location.protocol + '//' + document.domain
+                );
+            }
+        </script>
+
+        <apex:form >
+            <apex:inputHidden value="{!runJsSuccess}" id="runJsSuccess"/>
+            <div class="eaButton">
+                <apex:commandButton onclick="this.value = '{!$Label.BET_Saving}';saveExpAssetsOne();setFlag();"
+                                value="{!$Label.BET_Save}"  
+                                oncomplete="this.value = '{!$Label.BET_Save}';" 
+                                styleClass="betBtnPink" 
+                                rerender="maincontainer"/>
+            </div>
+            <div class="eaComponent">
+                <c:BET_ExpectedAssetsComponent betId="{!betId}"/>
+            </div>
+        </apex:form>
+    </apex:outputPanel>
+</apex:page>

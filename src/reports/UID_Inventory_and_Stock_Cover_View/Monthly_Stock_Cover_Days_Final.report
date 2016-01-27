@@ -22,12 +22,12 @@
         <chartType>VerticalColumn</chartType>
         <enableHoverLabels>true</enableHoverLabels>
         <expandOthers>true</expandOthers>
-        <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Brand__c</groupingColumn>
+        <groupingColumn>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Brand__c</groupingColumn>
         <location>CHART_TOP</location>
         <showAxisLabels>true</showAxisLabels>
         <showPercentage>false</showPercentage>
         <showTotal>false</showTotal>
-        <showValues>false</showValues>
+        <showValues>true</showValues>
         <size>Large</size>
         <summaryAxisRange>Auto</summaryAxisRange>
         <textColor>#000000</textColor>
@@ -62,9 +62,6 @@
         <field>Account$Name</field>
     </columns>
     <columns>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Category__c</field>
-    </columns>
-    <columns>
         <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Net_Quantity__c</field>
     </columns>
     <columns>
@@ -79,7 +76,7 @@
     </groupingsDown>
     <groupingsDown>
         <dateGranularity>Day</dateGranularity>
-        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material__c.UID_Brand__c</field>
+        <field>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Material_Brand__c</field>
         <sortOrder>Asc</sortOrder>
     </groupingsDown>
     <name>Monthly Stock Cover (Days)</name>

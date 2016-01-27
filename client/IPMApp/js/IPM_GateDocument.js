@@ -5,7 +5,7 @@
 *********************************************************************************/
 /* Below code is for the accordion functionality */
 jq(document).ready(function() {
-    jq('.cust-overlay').hide();
+	jq(".cust-overlay").delay(1500).fadeOut();
     jq(".contenWrapper .ipmAcrdnExpand").hide();
     if (window.location.href.indexOf("IPM_GateDocument") > -1) {
         jq(".contenWrapper").find(".contenWrapper").find(".ecoDesignTable").find(".ipmAcrdnExpand").show();

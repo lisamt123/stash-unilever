@@ -57,6 +57,27 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>true</defaultValue>
+        <description>CEC : Checked by default. Unchecked if this record is more than 30 days old for the alert rule where 30 days limit is checked.</description>
+        <externalId>false</externalId>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Alert_Rule_Id__c</fullName>
+        <description>CEC: refers to cec_Alert_Rule__c &quot;Id&quot; field</description>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(Alert_Tracker_Id__r.Alert_Rule_Id__r.Id)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Alert Rule Id</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Alert_Tracker_Id__c</fullName>
         <externalId>false</externalId>
         <label>Alert Tracker</label>
@@ -71,16 +92,15 @@
     </fields>
     <fields>
         <fullName>Case_Id__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
         <label>Case_Id</label>
         <referenceTo>Case</referenceTo>
         <relationshipLabel>Alert Tracker Item</relationshipLabel>
         <relationshipName>Alert_Tracker_Item</relationshipName>
-        <relationshipOrder>1</relationshipOrder>
-        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <required>false</required>
         <trackTrending>false</trackTrending>
-        <type>MasterDetail</type>
-        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+        <type>Lookup</type>
     </fields>
     <label>Alert Tracker Item</label>
     <nameField>

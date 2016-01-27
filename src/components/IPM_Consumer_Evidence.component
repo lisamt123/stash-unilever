@@ -79,9 +79,9 @@
                                                     <div class="ceInfoContainer">
                                                         
                                                         <apex:outputPanel layout="block" styleClass="pull-left delTitlecon"> 
-                                                            <span >{!evi.IPM_Consumer_Evidence_Concept_Name__c}</span>
+                                                            <span >{!evi.IPM_Consumer_Evidence_Concept_Name__c} {!evi.IPM_Consumer_Evidence_Priority__c}</span>
                                                             <apex:outputPanel rendered="{!AND(isEditable,evi.IPM_Consumer_Evidence_Gate__c=gateType)}">
-                                                                <a class="icoButton delete floatR deleteConcept" title="Remove Concept" onclick="deleteconcept('{!evidenceCountry}','{!projDocSecId}','{!evi.Id}');"></a>
+                                                                <a class="icoButton delete floatR deleteConcept" title="Remove Concept" onclick="deleteconcept('{!evidenceCountry}','{!projDocSecId}','{!evi.Id}','{!evi.IPM_Consumer_Evidence_Priority__c}');"></a>
                                                             </apex:outputPanel>
                                                         </apex:outputPanel>
                                                         <div class="ceImage ceImageBig">
@@ -196,6 +196,7 @@
         <apex:param name="parama" assignTo="{!deleteCountry}" value=""/>
         <apex:param name="paramb" assignTo="{!projDocSecId}" value=""/>
         <apex:param name="paramc" assignTo="{!projDocSecConId}" value=""/>
+        <apex:param name="paramd" assignTo="{!priorityNumber}" value=""/>
     </apex:actionFunction>  
     <apex:actionFunction status="Loading" name="addNew" action="{!addConcept}" reRender="selectCheckboxScript,channelListDropDown,conceptSection,consumerEvidenceimgUpdate" oncomplete="selectCheckboxScript();">
         <apex:param name="parameter1" assignTo="{!addCountryConcept}" value=""/>

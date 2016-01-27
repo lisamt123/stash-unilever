@@ -31,6 +31,7 @@ jq(document).ready(function() {
     if (navigator.userAgent.indexOf("Trident") > -1) {
         strBrowser = "IE";
     }
+	/* The below if's cannot be merged as it may break functionality. Also if we try to merge it with the nested one, there will be contradiction with the other sonar issue 'Reduce the number of conditional operators' */
     if (window.CKEDITOR) {
         var strFrameParent = jq(document).find('.secEditSummary').find("textarea").attr('name');
 		if(strFrameParent != null){
@@ -38,7 +39,11 @@ jq(document).ready(function() {
 				CKEDITOR.instances[strFrameParent].on("key", function(e) {
 					var objTextArea = this.document.$.body;
 					var strText = objTextArea.textContent;
-					if ((e.data.domEvent.$.keyCode == 8) || (e.data.domEvent.$.keyCode == 46) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode == 36)) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode == 35)) || (e.data.domEvent.$.keyCode == 35) || (e.data.domEvent.$.keyCode == 36) || (e.data.domEvent.$.keyCode == 37) || (e.data.domEvent.$.keyCode == 38) || (e.data.domEvent.$.keyCode == 39) || (e.data.domEvent.$.keyCode == 40)) {
+					/* If we reduce the number of conditional operators it will contradict with the other sonar issue 'Merge this if statement with the nested one' */
+					if ((e.data.domEvent.$.keyCode == 8) || (e.data.domEvent.$.keyCode == 46) || ((e.data.domEvent.$.shiftKey) 
+						&& (e.data.domEvent.$.keyCode == 36)) || ((e.data.domEvent.$.shiftKey) && (e.data.domEvent.$.keyCode == 35)) 
+					    || (e.data.domEvent.$.keyCode == 35) || (e.data.domEvent.$.keyCode == 36) || (e.data.domEvent.$.keyCode == 37) 
+						|| (e.data.domEvent.$.keyCode == 38) || (e.data.domEvent.$.keyCode == 39) || (e.data.domEvent.$.keyCode == 40)) {
 						showCharacterCount();
 						e.cancelBubble = false;
 						e.returnValue = true;

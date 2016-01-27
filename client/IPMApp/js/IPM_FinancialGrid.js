@@ -14,11 +14,13 @@ var Validationflag3 = "false";
 var Validationflag4 = "false";
 var Validationflag5 = "false";
 var Validationflag6 = "false";
+var Validationflag7 = "false";
 var myWindow;
 function openWin() {
     myWindow = window.open(IPMAppFin.UploadBusinessCase + "?parentId=" + IPMAppFin.projectId, "myWindow", "width=400, height=200, top = 300, left= 500");
 }
-$(document).ready(function() {
+var jq = jQuery.noConflict();
+jq(document).ready(function() {
     var sustPeriod = IPMAppFin.Sustainability;
 	var BI = IPMAppFin.BI;
     var personalData;
@@ -284,6 +286,7 @@ $(document).ready(function() {
 			Validationflag4 = 'false';
 			Validationflag5 = 'false';
 			Validationflag6 = 'false';
+			Validationflag7 = 'false';
             if (cleanCalled) {
                 cleanCalled = false;
                 return;
@@ -299,34 +302,43 @@ $(document).ready(function() {
                         globalchanges.push([changes[i][0], changes[i][1], changes[i][2], changes[i][3]]);
                     }
                     for (var j = 0; j < globalchanges.length; j++) {
-                        if ((globalchanges[j][0].toString() == '9' || globalchanges[j][0].toString() == '33') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag == 'false') {
-                            alert(IPMAppFin.IPM_TurnOverCP);
-                            Validationflag = 'true';
-                        }
-                        if ((globalchanges[j][0].toString() == '11' || globalchanges[j][0].toString() == '35') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag1 == 'false') {
-                            alert(IPMAppFin.IPM_GrossProfitCP);
-                            Validationflag1 = 'true';
-                        }
-                        if ((globalchanges[j][0].toString() == '12' || globalchanges[j][0].toString() == '36') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag2 == 'false') {
-                            alert(IPMAppFin.IPM_AdvertisingCP);
-                            Validationflag2 = 'true';
-                        }
-                        if ((globalchanges[j][0].toString() == '13' || globalchanges[j][0].toString() == '37') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag3 == 'false') {
-                            alert(IPMAppFin.IPM_PBOCP);
-                            Validationflag3 = 'true';
-                        }
-                        if ((globalchanges[j][0].toString() == '15' || globalchanges[j][0].toString() == '39') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag4 == 'false') {
-                            alert(IPMAppFin.IPM_GMCP);
-                            Validationflag4 = 'true';
-                        }
-                        if ((globalchanges[j][0].toString() == '16' || globalchanges[j][0].toString() == '40') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag5 == 'false') {
-                            alert(IPMAppFin.IPM_AandP);
-                            Validationflag5 = 'true';
-                        }
-                        if ((globalchanges[j][0].toString() == '17' || globalchanges[j][0].toString() == '41') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag6 == 'false') {
-                            alert(IPMAppFin.IPM_PBOPCP);
-                            Validationflag6 = 'true';
-                        }
+					    if(BI != 'Small'){
+							if ((globalchanges[j][0].toString() == '9' || globalchanges[j][0].toString() == '33') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag == 'false') {
+								alert(IPMAppFin.IPM_TurnOverCP);
+								Validationflag = 'true';
+							}
+							if ((globalchanges[j][0].toString() == '11' || globalchanges[j][0].toString() == '35') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag1 == 'false') {
+								alert(IPMAppFin.IPM_GrossProfitCP);
+								Validationflag1 = 'true';
+							}
+							if ((globalchanges[j][0].toString() == '12' || globalchanges[j][0].toString() == '36') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag2 == 'false') {
+								alert(IPMAppFin.IPM_AdvertisingCP);
+								Validationflag2 = 'true';
+							}
+							if ((globalchanges[j][0].toString() == '13' || globalchanges[j][0].toString() == '37') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag3 == 'false') {
+								alert(IPMAppFin.IPM_PBOCP);
+								Validationflag3 = 'true';
+							}
+							if ((globalchanges[j][0].toString() == '15' || globalchanges[j][0].toString() == '39') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag4 == 'false') {
+								alert(IPMAppFin.IPM_GMCP);
+								Validationflag4 = 'true';
+							}
+							if ((globalchanges[j][0].toString() == '16' || globalchanges[j][0].toString() == '40') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag5 == 'false') {
+								alert(IPMAppFin.IPM_AandP);
+								Validationflag5 = 'true';
+							}
+							if ((globalchanges[j][0].toString() == '17' || globalchanges[j][0].toString() == '41') && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag6 == 'false') {
+								alert(IPMAppFin.IPM_PBOPCP);
+								Validationflag6 = 'true';
+                            }
+							
+							
+					    }
+						
+						if ((globalchanges[j][0].toString() == '7'  && globalchanges[j][1] == 1) && (globalchanges[j][3] == '' || globalchanges[j][3].toString() == '0') && Validationflag7 == 'false') {
+						   	    alert(IPMAppFin.IPM_CopyPastevolumevalid);
+								Validationflag7 = 'true';
+						}
                         if (globalchanges[j][0].toString() == '9' && globalchanges[j][1] == 5) {
                             Y1GTO = globalchanges[j][3];
                         }
@@ -388,7 +400,7 @@ $(document).ready(function() {
                             Y5CITO = globalchanges[j][3];
                         }
                     }
-					if(BI == 'Small'){
+					
 						GTO = Y1GTO + Y2GTO + Y3GTO + Y4GTO + Y5GTO;
 						CGTO = Y1CGTO + Y2CGTO + Y3CGTO + Y4CGTO + Y5CGTO;
 						ITO = Y1ITO + Y2ITO + Y3ITO + Y4ITO + Y5ITO;
@@ -401,8 +413,11 @@ $(document).ready(function() {
 							alert(IPMAppFin.IPM_ITOCalValidation);
 							Validationflag = 'true';
 						}
-					}
-                    if (Validationflag == 'false' && Validationflag1 == 'false' && Validationflag2 == 'false' && Validationflag3 == 'false' && Validationflag4 == 'false' && Validationflag5 == 'false' && Validationflag6 == 'false') {
+					
+					/* If we reduce the number of conditional operators it will contradict with the other sonar issue 'Merge this if statement with the nested one' */
+                    if (Validationflag == 'false' && Validationflag1 == 'false' && Validationflag2 == 'false' 
+					&& Validationflag3 == 'false' && Validationflag4 == 'false' && Validationflag5 == 'false' 
+					&& Validationflag6 == 'false' && Validationflag7 == 'false') {
                         document.getElementById('DivButton').style.display = 'inline';
                     } else {
                         document.getElementById('DivButton').style.display = 'none';

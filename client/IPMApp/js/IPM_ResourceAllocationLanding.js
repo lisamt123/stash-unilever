@@ -47,7 +47,7 @@ function submitAdd(objSubmitBtn){
    objSubmitBtn.disabled = false;
 }   
 /* Below code is to save the role of the members */
-function submitOnClick_Role(objSubmitBtn) {
+function submitOnClickRole(objSubmitBtn) {
     objSubmitBtn.disabled = true;
     objSubmitBtn.value = 'Adding...';
     RoleAndCategoryMem();

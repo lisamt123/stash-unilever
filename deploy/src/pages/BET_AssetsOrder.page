@@ -1,0 +1,58 @@
+<apex:page controller="BET_AssetsOrderController" docType="html-5.0" title="Order Assets" showHeader="false" sidebar="false">
+    <apex:stylesheet value="{!$Resource.BET}/libs/jquery-ui/jquery-ui.css" />
+    <apex:stylesheet value="{!$Resource.BET}/css/BETCommon.css" />
+    <apex:stylesheet value="{!$Resource.BET}/css/BETAssetsOrder.css" />
+
+    <div class="assetsDragAndDropInfo">
+        {!$Label.BET_Please_Drag_And_Drop}
+    </div>
+
+    <apex:outputPanel layout="block" styleClass="frame">
+    
+    <div class="aoButton">
+        <button id="sbid" onclick="this.innerHTML = '{!$Label.BET_Saving}'; saveOrder(); return false;" 
+            class="betBtnPink" style="margin-left: 20px; margin-top: 15px;">
+            {!$Label.BET_Save}
+        </button> 
+    </div>
+
+    <div class="assetsRowHeader">
+        <div class="assetElemHeaderBig">{!$ObjectType.uw_Asset__c.Fields.Name.Label}</div>
+        <div class="assetElemHeader">{!$ObjectType.uw_Asset__c.Fields.Studio_Asset_Type__c.Label}</div>
+        <div class="assetElemHeader">{!$ObjectType.uw_Asset__c.Fields.Media_Type__c.Label}</div>
+        <div class="assetElemHeaderSmall">{!$ObjectType.uw_Asset__c.Fields.Country__c.Label}</div>
+    </div>
+    
+    <div id="liAssets" class="assetsList">
+        <apex:repeat value="{!liAssets}" var="asst">
+                <div class="assetsRow">
+                    <div class="assetElemBig" data-id="{!asst.id}">{!asst.name}</div>
+                    <div class="assetElem">{!asst.Studio_Asset_Type__c}</div>
+                    <div class="assetElem">{!asst.Media_Type__c}</div>
+                    <div class="assetElemSmall">{!asst.Country__c}</div>
+                </div>
+        </apex:repeat>
+    </div>
+
+    </apex:outputPanel>
+
+    <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />
+    <apex:includeScript value="{!$Resource.BET}/libs/jquery-ui/jquery-ui.min.js" /> 
+    <apex:includeScript value="{!$Resource.BET}/scripts/jquery.ui.touch-punch.min.js" />
+    <apex:includeScript value="{!$Resource.BET}/scripts/BETAssetsOrder.js" />
+
+    <script type="text/javascript">
+        function saveOrderRemote(orderedAssets){
+          Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.BET_AssetsOrderController.updateAssetsOrder}',
+            orderedAssets,
+            function(result, event){
+              document.getElementById('sbid').innerHTML='{!$Label.BET_Save}';
+              saveOrderRemoteCallBack(event,result);
+            },
+            {escape: true}
+          );
+        }
+    </script>
+
+</apex:page>
