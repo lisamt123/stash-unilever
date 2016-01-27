@@ -202,4 +202,7 @@ src/triggers/SOWProjectBusinessValueDriverScore.trigger
 src/triggers/SOWProjectBusinessValueDriverScore.trigger-meta.xml
 src/triggers/SOWSplitProjectAvoid.trigger
 src/triggers/SOWSplitProjectAvoid.trigger-meta.xml
-
+src/permissionsets/Oblix_SWOP_Super_User_V1.permissionset
+src/permissionsets/Oblix_SWOP_UL3_4_V1.permissionset
+src/permissionsets/Oblix_SWOP_UL_1_V1.permissionset
+src/permissionsets/Oblix_SWOP_UL_2_V1.permissionset
