@@ -1,0 +1,12 @@
+<messaging:emailTemplate subject=" TNF with ID {!RelatedTo.Name} is  Signed " recipientType="User" relatedToType="CPA_TNF__c">
+<messaging:htmlEmailBody >
+    Hi,<br/><br/>
+    A TNF with ID {!RelatedTo.Name}  is  Signed on {!RelatedTo.dat_Signed_Date__c} and the PWORF with ID {!RelatedTo.lkp_PWO_ID__r.PWORF_ID__r.Name} is now marked as Terminated.
+<br/><br/>
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+   
+Regards, <br/><br/>
+
+Automation Contract System    
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

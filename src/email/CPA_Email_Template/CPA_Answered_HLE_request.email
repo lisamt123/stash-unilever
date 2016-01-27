@@ -1,0 +1,12 @@
+<messaging:emailTemplate subject="HLE request:  {!RelatedTo.HLE_Number__c} answered by {!RelatedTo.VDM__r.Name}" recipientType="User" relatedToType="CPA_HLE_Request__c">
+<messaging:htmlEmailBody >
+    Hi, <br/><br/>
+    A HLE request with ID: {!RelatedTo.HLE_Number__c}  is answered by  {!RelatedTo.VDM__r.Name} on {!RelatedTo.dat_HLE_Request_Answered_Date__c} . <br/><br/>
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!$Label.CPA_Default_URL}{!RelatedTo.Id} </a> <br/><br/>
+
+Regards, <br/><br/>
+
+Automation Contract System
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>

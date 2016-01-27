@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesSendEmailToMembers>true</doesSendEmailToMembers>
+    <name>CPA ULPM</name>
+    <queueSobject>
+        <sobjectType>CPA_CNF__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>CPA_CR__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>CPA_HLE_Request__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>CPA_LOI__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>CPA_PWORF__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>CPA_PWO__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>CPA_Queries__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>CPA_Query_comment__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>CPA_TNF__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>CPA_VDM__c</sobjectType>
+    </queueSobject>
+    <queueSobject>
+        <sobjectType>CPA_project_work_order__c</sobjectType>
+    </queueSobject>
+</Queue>

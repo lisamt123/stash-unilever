@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>CAP_Email_HLE_Request_is_Submitted</fullName>
+        <description>CAP Email HLE Request is Submitted</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CPA_Email_Template/CPA_HLE_Request_Submitted_by_SMT</template>
+    </alerts>
+    <alerts>
+        <fullName>CAP_Email_after_HLE_is_Accepted</fullName>
+        <description>CAP Email after HLE is Accepted</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CPA_Email_Template/CPA_HLE_Request_Accepted</template>
+    </alerts>
+    <alerts>
+        <fullName>CAP_HLE_Request_Withhold</fullName>
+        <description>CAP HLE Request Withhold</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULFT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULPM_group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CPA_Email_Template/CPA_PWORF_Withheld_by_SMT</template>
+    </alerts>
+    <alerts>
+        <fullName>CAP_HLE_Request_returned_by_VDM</fullName>
+        <description>CAP HLE Request returned by VDM</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>CAP_SMT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULFT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULPM_group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_ULPT_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <recipient>CAP_VDM_Group</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>CPA_Email_Template/CPA_HLE_Request_Return_by_VDM</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>CAP_HLE_Req_Owner_Update_to_VDM</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CAP_VDM_Queue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CAP HLE Req Owner Update to VDM</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CAP_HLE_Request_Owner_Update_to_ULPM</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CAP_ULPM</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CAP HLE Request Owner Update to ULPM</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CAP_HLE_Request_Recall</fullName>
+        <field>pkl_Status__c</field>
+        <literalValue>Withhold</literalValue>
+        <name>CAP HLE Request Recall</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CAP_HLE_Request_returned</fullName>
+        <field>pkl_Status__c</field>
+        <literalValue>Returned</literalValue>
+        <name>CAP HLE Request returned</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CAP_Manually_Accepted</fullName>
+        <field>pkl_Status__c</field>
+        <literalValue>Accepted</literalValue>
+        <name>CAP Manually Accepted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CAP_Owner_Update_to_ULPM</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CAP_ULPM</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CAP Owner Update to ULPM</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_Status_Saved</fullName>
+        <description>When HLE Request is Cloned/Created, STATUS is kept Saved.</description>
+        <field>pkl_Status__c</field>
+        <literalValue>Saved</literalValue>
+        <name>CPA Status Saved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>CPA HLE Request Cloned%2FCreated</fullName>
+        <actions>
+            <name>CPA_Status_Saved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>CPA_HLE_Request__c.pkl_Status__c</field>
+            <operation>notEqual</operation>
+            <value>Saved</value>
+        </criteriaItems>
+        <description>When HLE Request is Cloned/Created, STATUS is set to Saved.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

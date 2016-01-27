@@ -1,0 +1,29 @@
+<messaging:emailTemplate subject="CNF with ID {!RelatedTo.Name} is Signed" recipientType="User" relatedToType="CPA_CNF__c">
+<messaging:htmlEmailBody >
+    Hi, <br/><br/>
+    CNF with ID {!RelatedTo.Name} is Signed on {!RelatedTo.dat_Signed_Date__c}. <br/><br/>
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+
+Regards, <br/><br/>
+
+Automation Contract System
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
+
+
+
+<!---
+Sub: <Contract> with ID <Contract ID> is Signed
+
+
+Body:
+"Hi,
+
+A <Contract> with ID <Contract ID> is Signed on <Date & Time>.
+You can access it from here: <URL to PWORF/System>
+
+Regards,
+Automation Contract System"
+
+-->

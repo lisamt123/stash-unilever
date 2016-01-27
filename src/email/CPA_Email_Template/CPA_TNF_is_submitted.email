@@ -1,0 +1,24 @@
+<messaging:emailTemplate subject=" TNF with ID {!RelatedTo.Name} is Submitted by {!RelatedTo.txt_Accenture_Contact__c} " recipientType="User" relatedToType="CPA_TNF__c">
+<messaging:htmlEmailBody >
+    Hi,<br/><br/>
+    A TNF with ID {!RelatedTo.Name}  is Submitted by {!RelatedTo.txt_Accenture_Contact__c} on {!RelatedTo.dat_Submitted_Date__c} and the PWORF with ID {!RelatedTo.lkp_PWO_ID__r.PWORF_ID__r.Name} is now Sent For Termination.
+
+    You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!RelatedTo.Name} </a> <br/><br/>
+   
+Regards, <br/><br/>
+
+Automation Contract System    
+</messaging:htmlEmailBody>
+</messaging:emailTemplate>
+
+
+<!--
+"Hi,
+
+A TNF with ID <TNF ID> is Submitted by <ADM Name> on <Date & Time> and the PWORF with ID <PWORF ID> is now Sent For Termination.
+You can access it from here: <URL to PWORF/System>
+
+Regards,
+Automation Contract System"
+
+-->
