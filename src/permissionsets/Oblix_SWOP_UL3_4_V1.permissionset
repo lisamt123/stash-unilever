@@ -9,10 +9,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>Oblix_CampaignAssetBasket</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>Oblix_CampaignStageController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
