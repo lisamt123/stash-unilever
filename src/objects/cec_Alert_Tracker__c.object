@@ -175,6 +175,7 @@
     </listViews>
     <listViews>
         <fullName>PH_alert_tracker_detail</fullName>
+        <columns>Alert_Rule_Id__c</columns>
         <columns>NAME</columns>
         <columns>CREATED_DATE</columns>
         <columns>LAST_UPDATE</columns>
@@ -183,7 +184,6 @@
         <columns>L5_Reason_Code__c</columns>
         <columns>Current_Threshold__c</columns>
         <columns>Alert_Threshold__c</columns>
-        <columns>Alert_Rule_Id__c</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>LAST_UPDATE</field>
