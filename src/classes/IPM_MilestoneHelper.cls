@@ -483,8 +483,8 @@ public with sharing class IPM_MilestoneHelper
                                 // Key check to identify the milestone from source to target projects
                                 if(sourceKey == targetKey)
                                 {
-                                    //DEF3184 fix: Any update to Regional project's's milestone's Target Launch Date(Ship to Trade) should not update Local Project's milestone's Target Launch Date(Ship to Trade)
-                                    if(!(targetMilestone.IPM_Project__r.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL && targetMilestone.IPM_Name__c ==IPM_Utils.TargetLaunchDateShiptoTrade)) {
+                                    //DEF3184 & DEF3362 fix: Any update to Global/Regional project's milestone's Target Launch Date(Ship to Trade) should not update or copied to Regional/Local Project's milestone's Target Launch Date(Ship to Trade)
+                                    if(targetMilestone.IPM_Name__c != IPM_Utils.TargetLaunchDateShiptoTrade) {
                                         targetMilestone.IPM_Planned_Date__c =  eligiblemilestone.IPM_Planned_Date__c;
                                         finalMilestoneMap.put(targetMilestone.Id,targetMilestone);
                                         break;
