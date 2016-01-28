@@ -2435,7 +2435,7 @@ private Date getProjectMilestoneDate(){
                             Date tempTLD;
                             for(IPM_Project_Rollout__c rollout:proj.IPM_Project_Rollout__r) {
                                 String rolloutNonKeyName = rollout.Name.substringBeforeLast('_');
-                                if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && currentFinancial.Financial_External_ID__c.startsWith(rolloutNonKeyName) && !rollout.KeyMCO__c && rollout.isActive__c && rollout.IPM_Rollout_Span__c == 'Local') {
+                                if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && currentFinancial.Financial_External_ID__c.startsWith(rolloutNonKeyName) && !rollout.KeyMCO__c && rollout.isActive__c && rollout.IPM_Rollout_Span__c == IPM_ConstantUtils.ROLLOUT_SPAN_LOCAL) {
                                     if(tempTLD == null){
                                         mcoCountryRolloutPlan = rollout;
                                         tempTLD = rollout.Target_Launch_Date__c;
