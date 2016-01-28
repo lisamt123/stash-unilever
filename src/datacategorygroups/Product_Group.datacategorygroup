@@ -116,12 +116,8 @@
                 <name>Vaseline</name>
             </dataCategory>
             <dataCategory>
-                <label>Good</label>
-                <name>Good</name>
-            </dataCategory>
-            <dataCategory>
-                <label>Humor</label>
-                <name>Humor</name>
+                <label>Good Humor</label>
+                <name>Good_Humor</name>
             </dataCategory>
             <dataCategory>
                 <label>Hellmann&apos;s</label>
