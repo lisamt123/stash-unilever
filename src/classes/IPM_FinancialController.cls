@@ -83,8 +83,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         get 
         {
             Boolean flag = false;
-            
-            if(currentFinancial!=null && (currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE) || currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY))) 
+            if(currentFinancial!=null && currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_CONSOLIDATE)) 
             {    
                 flag = true;
             }
@@ -2431,12 +2430,19 @@ private Date getProjectMilestoneDate(){
             	  previousTargetLaunchDate = project.Previous_Target_Launch_Date__c.format();
             } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL) {
                 if(currentFinancial != null){
-                        IPM_Project__c proj = [Select (Select Name, Target_Launch_Date__c,Previous_Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Project_Rollout__r) From IPM_Project__c where id=:project.id];
+                        IPM_Project__c proj = [Select (Select Name, Target_Launch_Date__c,Previous_Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c,isActive__c,IPM_Rollout_Span__c From IPM_Project_Rollout__r) From IPM_Project__c where id=:project.id];                    
                         if(proj.IPM_Project_Rollout__r.size()>0) {
+                            Date tempTLD;
                             for(IPM_Project_Rollout__c rollout:proj.IPM_Project_Rollout__r) {
-                                if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && (rollout.name+IPM_ConstantUtils.FINANCIAL_NONKEY)==currentFinancial.Financial_External_ID__c){
-                                    mcoCountryRolloutPlan = rollout;
-                                    break;
+                                String rolloutNonKeyName = rollout.Name.substringBeforeLast('_');
+                                if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && currentFinancial.Financial_External_ID__c.startsWith(rolloutNonKeyName) && !rollout.KeyMCO__c && rollout.isActive__c && rollout.IPM_Rollout_Span__c == 'Local') {
+                                    if(tempTLD == null){
+                                        mcoCountryRolloutPlan = rollout;
+                                        tempTLD = rollout.Target_Launch_Date__c;
+                                    } else if (tempTLD>rollout.Target_Launch_Date__c){
+                                        mcoCountryRolloutPlan = rollout;
+                                        tempTLD = rollout.Target_Launch_Date__c;
+                                    }
                                 } else if(rollout.name==currentFinancial.Financial_External_ID__c) {
                                     mcoCountryRolloutPlan = rollout;
                                     break;
