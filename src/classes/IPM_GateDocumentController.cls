@@ -765,7 +765,13 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                      WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
                      
              }
-             
+             //DEF2858-Use Case: Regional rollout gate doc do not show Y3iTO value. (Project overview screen is showing value.)
+             //Analysis-Rollout project record store Regional project id in IPM_Poject__c and hence "rollout" query returns null.
+             else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
+                 fin=[SELECT id,Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c 
+                     FROM IPM_Financial__c 
+                     WHERE (Regional_Project__c=:project.Id OR regional_external_id__c=:nam) AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+             }
              
              /*DEF 2248*/
             finProjectPriority = new IPM_Financial__c();
