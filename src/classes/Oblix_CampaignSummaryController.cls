@@ -50,8 +50,13 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
             // get related stage identifier for the given selected project Id
             stage_identifier = new Oblix_CampaignStageLogic(selected_project,hasEditAccess, hasEditAccess);
             
-            //Check if the Connected user is the Owner of the Campaign, if So, then Enable AdjustFee Button.
-            if(selected_sow.OwnerId == UserInfo.getUserId() || isSystemAdmin){
+            // S.M - US51 
+            // Check if the connected user is the Owner of the SOW
+            // or if the user has superuser permission set assigned
+            // or if the user is the owner of the record and has UL1 / UL2 assigned
+            // or if the user is system admin
+            // *** UL1 and UL2 can only see their own records so no need to check for that below ***
+            if(selected_sow.OwnerId == UserInfo.getUserId() || isSystemAdmin || hasUL1permissionSet || hasUL2permissionSet || hasULSuperUserPermissionSet){
                 is_enable_Adjust = true;
             }
         }

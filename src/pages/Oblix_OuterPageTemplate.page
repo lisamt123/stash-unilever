@@ -13,7 +13,7 @@
                         <apex:insert name="top_breadcrumb"/>    
                     </p>
                 </div>
-                <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
+                <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" id="swopExitButton" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
                 </apex:commandButton>
                 <apex:commandLink styleClass="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" action="{!goToReportsHome}" value="REPORTS" target="_blank">
                 </apex:commandLink>

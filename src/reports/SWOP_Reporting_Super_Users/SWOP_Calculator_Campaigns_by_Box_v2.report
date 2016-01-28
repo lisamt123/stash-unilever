@@ -10,7 +10,7 @@
         <field>Marketing_SOW__c$SmallProductCategory__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c$Marketing_Agency__c</field>
+        <field>Marketing_SOW__c$Oblix_AgencyEstimate__c</field>
     </columns>
     <columns>
         <field>Marketing_SOW__c$Name</field>
@@ -22,7 +22,7 @@
         <field>Marketing_SOW__c.Marketing_Projects__r$Oblix_ProjectBoxNumber__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Points__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Total_Project_Score__c</field>
     </columns>
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Total_Fees__c</field>

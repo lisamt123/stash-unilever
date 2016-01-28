@@ -76,6 +76,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Oblix_Current_FY_Total__c</field>
+            <table>Marketing_SOW__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>FINAL_APPROVED_FEE_K__c</field>
             <table>Marketing_SOW__c</table>
         </columns>
@@ -142,6 +147,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Id</field>
+            <table>Marketing_SOW__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Total_Campaigns_This_FY__c</field>
             <table>Marketing_SOW__c</table>
         </columns>
         <columns>

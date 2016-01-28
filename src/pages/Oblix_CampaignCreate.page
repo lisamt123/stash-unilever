@@ -35,7 +35,7 @@
             <apex:param name="countries" assignTo="{!project.Campaign_Countries__c}" value="" />
         </apex:actionFunction>
         
-        <apex:actionFunction name="setAgencyHub" action="{!SaveProjectAction}" rerender="">
+        <apex:actionFunction name="setAgencyHub" action="{!SaveProjectAction}" rerender="errorMessages">
             <apex:param name="splitId" assignTo="{!listItems}" value="" />
             <apex:param name="isGobal" assignTo="{!isGobal}" value=""/>
         </apex:actionFunction>
@@ -64,7 +64,7 @@
                     <h2>Hi {!userConnected.Name}, Welcome to SWOP the Scope of Work Online Planner</h2>
                     <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;{!if(project.Name <> null,'Edit ' + project.Name,'Add new campaign')}
                     </p>               </div>
-                <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
+                <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" id="swopExitButton" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
                 </apex:commandButton>
                 <apex:commandLink styleClass="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" action="{!goToReportsHome}" value="REPORTS" target="_blank">
                 </apex:commandLink>
@@ -72,8 +72,11 @@
             </header>
         </div>
         <div class="container SOW_body">
-            <div class="row">
+            
+            <apex:outputPanel id="errorMessages">
                 <apex:pageMessages />
+            </apex:outputPanel>
+            <div class="row">
                 <div class="col-lg-6 col-md-6">
                 
                     <h1 class="SOW_header_title">{!IF(isEdit, 'Edit '+ project.Name,'Add campaign to '+ sowName)}</h1>

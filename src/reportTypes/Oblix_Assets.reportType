@@ -2,7 +2,7 @@
 <ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
     <baseObject>Asset_Scoring__c</baseObject>
     <category>other</category>
-    <deployed>false</deployed>
+    <deployed>true</deployed>
     <description>report to review the Asset scoring entries</description>
     <label>SWOP Asset Scoring</label>
     <sections>

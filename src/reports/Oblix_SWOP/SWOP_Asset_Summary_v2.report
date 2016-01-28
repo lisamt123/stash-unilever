@@ -7,19 +7,16 @@
         <field>Marketing_SOW__c.Marketing_Projects__r$Name</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c$OblixBrand__c</field>
-    </columns>
-    <columns>
         <field>Marketing_SOW__c$BigOblixProductCategory__c</field>
     </columns>
     <columns>
         <field>Marketing_SOW__c$SmallProductCategory__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c$Financial_Year__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$OblixRegion__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c$OblixSOWOverallTotal__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Hub_Summary__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -29,17 +26,32 @@
         </criteriaItems>
         <language>en_US</language>
     </filter>
-    <format>Tabular</format>
-    <name>SWOP Manual Fee Adjustment Report</name>
+    <format>Matrix</format>
+    <groupingsAcross>
+        <dateGranularity>Day</dateGranularity>
+        <field>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r$Asset_Picklist__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsAcross>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Marketing_SOW__c$Oblix_AgencyEstimate__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>Marketing_SOW__c$Financial_Year__c</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <name>SWOP Asset Summary</name>
     <params>
         <name>co</name>
         <value>1</value>
     </params>
-    <reportType>SWOP_SOW__c</reportType>
+    <reportType>Oblix_SWOP_SOW__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
     <timeFrameFilter>
-        <dateColumn>Marketing_SOW__c$CreatedDate</dateColumn>
+        <dateColumn>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>
     </timeFrameFilter>
 </Report>

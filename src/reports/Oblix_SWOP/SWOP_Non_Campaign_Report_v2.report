@@ -16,9 +16,6 @@
         <field>Marketing_SOW__c.Financial_Year__c</field>
     </columns>
     <columns>
-        <field>Marketing_Basics__c.non_campaign_title__c</field>
-    </columns>
-    <columns>
         <field>CHILD_NAME</field>
     </columns>
     <columns>
@@ -47,9 +44,6 @@
     </columns>
     <columns>
         <field>Marketing_Basics__c.Oblix_FTE_Real_Price__c</field>
-    </columns>
-    <columns>
-        <field>Marketing_Basics__c.Other_Activities__c</field>
     </columns>
     <filter>
         <criteriaItems>

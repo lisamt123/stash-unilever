@@ -103,7 +103,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     public Marketing_SOW__c selected_sow{get;set;}
     public Integer numberOFSelectedCountries { get; set; }
     
-    
+    private final String GLOBAL_REGION = 'Global';
     public String selectionCountvar{get;set;}
     
     public Boolean isFirst {get;set;}
@@ -305,7 +305,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
                 }
                 lstSelectedCountryJSON = JSON.serialize(lstSelectedCountry);
             }
-            if(project.OblixRegion__c != null && project.OblixRegion__c.startsWith('Global')){
+            if(project.OblixRegion__c != null && project.OblixRegion__c.startsWith(GLOBAL_REGION)){
                 isGlobalCampaign = true;
                 
             }else if(project.OblixRegion__c != null){
@@ -534,7 +534,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
 
     public void setCampaignScaleOne(){
         System.DEBUG('selectedRegion : ' + selectedRegion);
-        if(selectedRegion.startsWith('Global')){
+        if(selectedRegion.startsWith(GLOBAL_REGION)){
             project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
             project.OblixRegion__c = selectedRegion;
         }
@@ -574,7 +574,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         }else{
             project.Project_Scale_1__c = null;
         }
-        if(project.OblixRegion__c != null && project.OblixRegion__c.startsWith('Global')){
+        if(project.OblixRegion__c != null && project.OblixRegion__c.startsWith(GLOBAL_REGION)){
             project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
         }
         System.DEBUG('Project Scale Set : ' + project.Project_Scale_1__c);
@@ -737,8 +737,8 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             project.Percentage_of_Fee_for_this_FY__c = stage_identifier.sow_project_in_scope.Percentage_of_Fee_for_this_FY__c;
 
 
-            if(project.OblixRegion__c != null && project.OblixRegion__c.equalsIgnoreCase('Global')){
-                project.Campaign_Countries__c = 'Global';
+            if(project.OblixRegion__c != null && project.OblixRegion__c.equalsIgnoreCase(GLOBAL_REGION)){
+                project.Campaign_Countries__c = GLOBAL_REGION;
             }
             if (projectId != null) {
                 system.debug('## SaveProjectAction ProjectId!=null - Project_Scale_2__c: ' + project.Project_Scale_2__c + ' - Oblix_SplitHandler.b_initiated_from_vf_page: ' + Oblix_SplitHandler.b_initiated_from_vf_page);
@@ -779,8 +779,8 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             }
 
         } catch (DMLException le) {
-            if (le.getMessage().contains('DUPLICATE_VALUE')) {
-                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Duplicate Value Found with the same Name'));
+            if (le.getMessage().contains('DUPLICATES_DETECTED')) {
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Duplicate Value Found with the same Campaign Name'));
             }
             System.debug('###Error Occured : ' + le.getMessage());
             return null;
