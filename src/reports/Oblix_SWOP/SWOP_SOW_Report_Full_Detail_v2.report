@@ -37,7 +37,7 @@
         <field>Marketing_SOW__c$OblixSOWOverallTotal__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c$OblixTotalCampaignCalculatedTotalFee__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Fees_Total__c</field>
     </columns>
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Value_to_be_paid_in_Current_FY__c</field>

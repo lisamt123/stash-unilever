@@ -513,8 +513,8 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
             }
         }
         else{
-            activity.hourlyRate = '';
-            activity.roundedRate = '';
+            activity.hourlyRate = '0';
+            activity.roundedRate = '0';
             resource.hourlyRate = '0';
             resource.roundedRate = '0';
         }

@@ -40,10 +40,16 @@
         <field>Marketing_SOW__c$SOW_Status__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c$FINAL_APPROVED_FEE_K__c</field>
+        <field>Marketing_SOW__c$Oblix_Current_FY_Total__c</field>
     </columns>
     <columns>
         <field>Marketing_SOW__c$OblixSOWOverallTotal__c</field>
+    </columns>
+    <columns>
+        <field>Marketing_SOW__c$Total_Campaign_Fee__c</field>
+    </columns>
+    <columns>
+        <field>Marketing_SOW__c$OblixTotalOtherItemsFees__c</field>
     </columns>
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Description__c</field>
@@ -76,13 +82,10 @@
         <field>Marketing_SOW__c.Marketing_Projects__r$Preview_Date__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Timescale_Notes__c</field>
-    </columns>
-    <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Countries__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Region__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$OblixRegion__c</field>
     </columns>
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Hub_Summary__c</field>
@@ -107,9 +110,6 @@
     </columns>
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Completed_Stage__c</field>
-    </columns>
-    <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Status__c</field>
     </columns>
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Asset_Deliverables__c</field>

@@ -174,7 +174,9 @@
                                 </div>
                                 <div class="col-lg-8 non-campaign_hourly_rate_section">
                                     <p>Hourly rate €
-                                        <apex:outputLabel value="{!activity.hourlyRate}" id="rate" />
+                                        <apex:outputText value="{0, number,###,###,##0}" id="rate">
+                                            <apex:param value="{!VALUE(activity.hourlyRate)}"/>
+                                        </apex:outputText>
                                         <apex:input type="number" styleClass="hourly_rate_box" html-min="0" value="{!activity.hoursSelected}" onchange="if(!isNaN(parseInt($('.rateclass').text()))){ $('.rslt').text(Math.round(($(this).val()*parseFloat($('.rateclass').text()))+' '));formatNumber ($('.rslt'));}" disabled="{!IF(activity.valVisible==false,false,false)}" id="hoursSelected" onkeyup="   if($(this).val()<0)  $(this).val($(this).val()*-1);" />
                                         <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->hours
                                         <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->

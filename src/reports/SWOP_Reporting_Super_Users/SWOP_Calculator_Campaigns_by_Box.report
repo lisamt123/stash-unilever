@@ -19,40 +19,25 @@
         <field>Marketing_SOW__c.Marketing_Projects__r$Name</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c$Financial_Year__c</field>
-    </columns>
-    <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Oblix_ProjectBoxNumber__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Points__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Total_Project_Score__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c$Total_Campaign_Fee__c</field>
-    </columns>
-    <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Score__c</field>
-    </columns>
-    <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r$Asset_Description__c</field>
-    </columns>
-    <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r$Calculator_Question__c</field>
-    </columns>
-    <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Project_Scale_1__c</field>
-    </columns>
-    <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Project_Scale_2__c</field>
-    </columns>
-    <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Idea__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Total_Fees__c</field>
     </columns>
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Value_to_be_paid_in_Current_FY__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r$Quantity__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$OblixRegion__c</field>
+    </columns>
+    <columns>
+        <field>Marketing_SOW__c$Financial_Year__c</field>
+    </columns>
+    <columns>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Hub_Summary__c</field>
     </columns>
     <filter>
         <criteriaItems>
@@ -63,7 +48,7 @@
         <language>en_US</language>
     </filter>
     <format>Summary</format>
-    <name>SWOP Calculator Asset Points &amp; Box Detai</name>
+    <name>SWOP Calculator Campaigns by Box</name>
     <params>
         <name>co</name>
         <value>1</value>
@@ -71,8 +56,6 @@
     <reportType>Oblix_SWOP_SOW__c</reportType>
     <scope>organization</scope>
     <showDetails>true</showDetails>
-    <sortColumn>Marketing_SOW__c$Name</sortColumn>
-    <sortOrder>Asc</sortOrder>
     <timeFrameFilter>
         <dateColumn>Marketing_SOW__c$CreatedDate</dateColumn>
         <interval>INTERVAL_CUSTOM</interval>

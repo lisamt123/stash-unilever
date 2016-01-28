@@ -117,7 +117,7 @@
                                 </tr>
                                 <tr>
                                     <td class="campaign_summary_information_titles">Countries / Regions</td>
-                                    <td colspan="2" class="countriesSelected campaign_summary_countries_cell_width">{!selected_project.Campaign_Countries__c}</td>
+                                    <td colspan="2" class="expandMore campaign_summary_countries_cell_width">{!selected_project.Campaign_Countries__c}</td>
                                 </tr>
                                 <tr>
                                     <td class="campaign_summary_information_titles">Investment Priority</td>
@@ -213,11 +213,11 @@
                                 </tr>
                                 <tr>
                                     <td colspan="3"><span class="campaign_summary_information_titles" >Description</span><br/>
-                                    {!selected_project.Description__c}<!-- <a href="">more</a> --></td>
+                                    <div class="expandMore">{!selected_project.Description__c}</div><!-- <a href="">more</a> --></td>
                                 </tr>
                                 <tr>
                                     <td colspan="3"><span class="campaign_summary_information_titles" >Jobs to be done</span><br/>
-                                    {!selected_project.Jobs_to_be_Done__c}<!-- <a href="">more</a> --></td>
+                                    <div class="expandMore">{!selected_project.Jobs_to_be_Done__c}</div><!-- <a href="">more</a> --></td>
                                 </tr>
                             </table>
                         </div>    
@@ -253,7 +253,8 @@
                                             <apex:variable value="{!asset['Id']}" var="asset_id"/>
                                             <tr>
                                                 <apex:repeat value="{!$ObjectType.Oblix_Project_Assets__c.FieldSets.Oblix_Campaign_Summary}" var="field_name">
-                                                    <td style="{!IF(field_name.Label == 'Record ID','display:none;','')}" onclick="viewAssetFunction('{!asset_id}'); blockme();">
+                                                    <!-- <td style="{!IF(field_name.Label == 'Record ID','display:none;','')}" onclick="viewAssetFunction('{!asset_id}'); blockme();"> -->
+                                                    <td style="{!IF(field_name.Label == 'Record ID','display:none;','')}">
                                                         <apex:outputText value="{0, number, ###,###.##}" rendered="{!(asset[field_name] != null && field_name.Type =='double')}">
                                                             <apex:param value="{!asset[field_name]}" />
                                                         </apex:outputText> 
@@ -268,7 +269,7 @@
                                                         <!--apex:outputPanel rendered="{!IF(hasEditAccess == false,false,true)}">
                                                             
                                                         </apex:outputPanel-->
-                                                        <apex:outputText value="{!asset[field_name]}" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double')}" style="tableRow" >  </apex:outputText>
+                                                        <apex:outputText value="{!asset[field_name]}" rendered="{!(asset[field_name] != null && field_name.Type !='date' && field_name.Type !='double')}" style="tableRow" styleclass="expandMore">  </apex:outputText>
                                                     </td>
                                                 </apex:repeat>
                                                 <apex:outputPanel id="deleteTableDefinition" rendered="{!IF(hasEditAccess,true,false)}">
@@ -303,13 +304,9 @@
 
         </apex:define>
         <apex:define name="page_scripts">
+            <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignSummary.js')}"/>
             <script type="text/javascript">
-                $(document).ready(function() { 
-                    var table = $('#sowListTable').DataTable({
-                        "dom": 'lrtip',
-                        'pagingType': 'full_numbers'
-                    });
-                });
+                
             </script>
             <!--<script>
                 $(document).ready(function() {

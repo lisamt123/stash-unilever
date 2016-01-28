@@ -19,6 +19,13 @@ public with sharing virtual class Oblix_SWOPparentController {
     public Boolean hasEditAccess { get; set; }
     public Boolean isSystemAdmin {get; set;}
 
+    public Boolean hasUL1permissionSet{ get;set; }
+    public Boolean hasUL2permissionSet{ get;set; }
+    public Boolean hasULSuperUserPermissionSet{ get;set; }
+
+    private static final String UL1_PERMISSION_SET = 'Oblix_SWOP_UL_1_V1';
+    private static final String UL2_PERMISSION_SET = 'Oblix_SWOP_UL_2_V1';
+    private static final String UL_SUPER_USER_PERMISSION_SET = 'Oblix_SWOP_Super_User_V1';
     public Oblix_SWOPparentController() {
         checkIsSystemAdmin();
         checkUserHasEditPermission();
@@ -204,14 +211,30 @@ public with sharing virtual class Oblix_SWOPparentController {
     private void checkUserHasEditPermission(){
 
         // if user has one of the 3 read/write permissions or is system admin then should be able to edit records
-        Integer existsInDB = 0;
+        Integer i_permissions_assigned = 0;
         hasEditAccess = false;
+        hasUL1permissionSet = false;
+        hasUL2permissionSet = false;
+        hasULSuperUserPermissionSet = false;
 
-       
+        List<PermissionSetAssignment> li_permissions_assigned = new List<PermissionSetAssignment>();
         Id currentUserId = UserInfo.getUserId();   
-        existsInDB = [SELECT count() FROM PermissionSetAssignment WHERE (AssigneeId = :currentUserId AND PermissionSet.Name IN ('Oblix_SWOP_UL_2_V1','Oblix_SWOP_UL_1_V1','Oblix_SWOP_Super_User_V1'))];
 
-        if(existsInDB > 0 || checkIsSystemAdmin()){
+        for (PermissionSetAssignment permission_set_assignment: [SELECT PermissionSet.Name 
+            FROM PermissionSetAssignment WHERE AssigneeId = :currentUserId 
+                AND (PermissionSet.Name =: UL1_PERMISSION_SET OR PermissionSet.Name =: UL2_PERMISSION_SET OR PermissionSet.Name =: UL_SUPER_USER_PERMISSION_SET) ]){
+            if (UL1_PERMISSION_SET == permission_set_assignment.PermissionSet.Name){
+                hasUL1permissionSet = true;
+            }
+            else if (UL2_PERMISSION_SET == permission_set_assignment.PermissionSet.Name){
+                hasUL2permissionSet = true;
+            }
+            else if (UL_SUPER_USER_PERMISSION_SET == permission_set_assignment.PermissionSet.Name){
+                hasULSuperUserPermissionSet = true;
+            }
+            i_permissions_assigned ++;
+        }
+        if(i_permissions_assigned > 0 || checkIsSystemAdmin()){
             hasEditAccess = true;
         }
     }

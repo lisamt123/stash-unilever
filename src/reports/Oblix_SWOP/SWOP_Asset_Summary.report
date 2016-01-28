@@ -18,12 +18,6 @@
     <columns>
         <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Hub_Summary__c</field>
     </columns>
-    <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r$RecordType</field>
-    </columns>
-    <columns>
-        <field>Marketing_SOW__c.Marketing_Projects__r$Asset_Deliverables__c</field>
-    </columns>
     <filter>
         <criteriaItems>
             <column>Marketing_SOW__c$Financial_Year__c</column>

@@ -19,7 +19,13 @@
         <field>Marketing_SOW__c$Financial_Year__c</field>
     </columns>
     <columns>
-        <field>Marketing_SOW__c$OblixSOWOverallTotal__c</field>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Campaign_Fees_Total__c</field>
+    </columns>
+    <columns>
+        <field>Marketing_SOW__c.Marketing_Projects__r$Percentage_of_Fee_for_this_FY__c</field>
+    </columns>
+    <columns>
+        <field>Marketing_SOW__c$Total_Campaigns_This_FY__c</field>
     </columns>
     <filter>
         <criteriaItems>

@@ -779,8 +779,8 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
             }
 
         } catch (DMLException le) {
-            if (le.getMessage().contains('DUPLICATE_VALUE')) {
-                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Duplicate Value Found with the same Name'));
+            if (le.getMessage().contains('DUPLICATES_DETECTED')) {
+                ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error, 'Duplicate Value Found with the same Campaign Name'));
             }
             System.debug('###Error Occured : ' + le.getMessage());
             return null;

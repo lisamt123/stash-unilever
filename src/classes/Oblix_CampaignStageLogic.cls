@@ -446,7 +446,7 @@ public with sharing class Oblix_CampaignStageLogic{
                     deselect the stages if not in the correct sequence
     ********************************************************************************/
     public void setCompletionStage(String new_val, String old_val){
-        sow_project_in_scope.Value_To_BePaid_Manual_Override__c = false;
+
         s_selected_completed_stage = getStageNameByValues(new_val, old_val);
         system.debug('## sow_project_in_scope.Completed_Stage__c: ' + sow_project_in_scope.Completed_Stage__c + ' - new_val: ' + new_val + ' - old_val: ' + old_val);
         setStageAttributes(false,true);
