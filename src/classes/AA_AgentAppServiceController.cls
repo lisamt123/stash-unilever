@@ -7,79 +7,40 @@ public with sharing class AA_AgentAppServiceController {
     }
     
     public PageReference callAccountInsert(){
-        system.debug(LoggingLevel.INFO,'Inside AA_AgentAppServiceController: callAgentAppInsert : accToBeInserted = '+aaToOperate);
-       // AA_ApplicationWrapperObj appWrapperObj = new AA_ApplicationWrapperObj();
-       // appWrapperObj.objAgentAppDataRequest = aaToOperate.objAgentAppDataRequest;
-       // appWrapperObj.serviceName = AA_Constants.SVC_AGENT_APP_UNILEVER_CREATE;
-       // AA_BaseApplicationServices.invokeService(appWrapperObj);
-       // system.debug(LoggingLevel.INFO,'Inside AA_AgentAppServiceController: callAgentAppInsert : appWrapperObj.agentReportToInsert value = '+appWrapperObj);
-        return null;
+      return null;
     }
-
-
     public AA_ApplicationWrapperObj insertAgentApp(AA_ApplicationWrapperObj appWrapperObj){
         try{
             AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
             objAgentApp = appWrapperObj.objAgentAppDataRequest;
-            system.debug(LoggingLevel.INFO,'Inside AA_AgentAppServiceController: insertAgentApp : appWrapperObj.agentReportToInsert value = '+objAgentApp);
             list<String> agentAPPIDInserted = AA_DatabaseServiceUtil.upsertOperation(convertRequestAgentReport(objAgentApp));
             list<String> agentAPPDocumentIDInserted = AA_DatabaseServiceUtil.insertOperation(agentAPPIDInserted[0], objAgentApp.ContentDocumentId);
-            system.debug(agentAPPIDInserted.size()+'=='+ agentAPPDocumentIDInserted.size());
             appWrapperObj.message = 'Report Inserted Successfully';
-             system.debug('Unilever Report Submission Message ======>'+appWrapperObj.message);
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
-            system.debug('AgentDoc====contentDoc'+agentAPPDocumentIDInserted);
             objResponse.agentReportId = agentAPPIDInserted[0];
             appWrapperObj.objGetAgentDataResponse  =  objResponse;
-            system.debug('Unilever---====>'+appWrapperObj.objGetAgentDataResponse);
-  
-        }catch(Exception e){
+         }catch(Exception e){
              System.debug('Exception:' + e);
-
         }
-        /*catch(BaseServiceException baseAppEx){
-            throw new BaseServiceException(string.valueOf(baseAppEx.getCause()),baseAppEx);
-        }
-        catch(Exception genEx){
-            throw new BaseServiceException(
-            'Exception occured: AccountServiceController : insertAccount method ', genEx);
-        }*/
         return appWrapperObj;
     }
-    
-    
-     public AA_ApplicationWrapperObj insertAgentApp_Competitor(AA_ApplicationWrapperObj appWrapperObj){
+    public AA_ApplicationWrapperObj insertAgentApp_Competitor(AA_ApplicationWrapperObj appWrapperObj){
         try{
             AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
             objAgentApp = appWrapperObj.objAgentAppDataRequest;
-            system.debug(LoggingLevel.INFO,'Inside AA_AgentAppServiceController: insertAgentApp_Competitor : appWrapperObj.agentReportToInsert value = '+objAgentApp);
             list<String> agentAPPIDInserted = AA_DatabaseServiceUtil.upsertOperation(convertRequestAgentReport_Competitor(objAgentApp));
             list<String> agentAPPDocumentIDInserted = AA_DatabaseServiceUtil.insertOperation(agentAPPIDInserted[0], objAgentApp.ContentDocumentId);
-            system.debug(agentAPPIDInserted.size()+'=='+ agentAPPDocumentIDInserted.size());
             appWrapperObj.message = 'Report Inserted Successfully';
-            system.debug('Competitor Report Submission Message ======>'+appWrapperObj.message);
             AA_WrapperUtility.AgentAppDataResponse objResponse = new AA_WrapperUtility.AgentAppDataResponse();
-            system.debug('AgentDoc====contentDoc'+agentAPPDocumentIDInserted);
             objResponse.agentReportId = agentAPPIDInserted[0];
             appWrapperObj.objGetAgentDataResponse  =  objResponse;
-            system.debug('Competitor----====>'+appWrapperObj.objGetAgentDataResponse);
   
         }catch(Exception e){
         	 System.debug('Exception:' + e);
             
         }
-        /*catch(BaseServiceException baseAppEx){
-            throw new BaseServiceException(string.valueOf(baseAppEx.getCause()),baseAppEx);
-        }
-        catch(Exception genEx){
-            throw new BaseServiceException(
-            'Exception occured: AccountServiceController : insertAccount method ', genEx);
-        }*/
         return appWrapperObj;
     }
-  
-    
-    
     /**
      * @date        -   03/08/2015
      * @description -   mapping of InnerObjectFields to actual Objects
@@ -147,25 +108,15 @@ public with sharing class AA_AgentAppServiceController {
      */
     public aa_Agent_Report__c convertRequestAgentReport_Competitor(AA_WrapperUtility.AgentAppDataRequest objAgentApp){
         aa_Agent_Report__c newObjToBeInserted = new aa_Agent_Report__c();
-        
-      //  if(!String.isEmpty(objAgentApp.ReportName )){
-            newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
-       // }
-        //if(!String.isEmpty(objAgentApp.ReportDesc)){
-            newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
-        //}
+              newObjToBeInserted.Report_Title__c = objAgentApp.ReportName ;
+              newObjToBeInserted.Report_Description__c = objAgentApp.ReportDesc ;
+    
         if(!String.isEmpty(objAgentApp.Source)){
             newObjToBeInserted.Source__c  = objAgentApp.Source;
         }
-        //if(!String.isEmpty(objAgentApp.Retailer)){
             newObjToBeInserted.Retailer__c  = objAgentApp.Retailer;
-        //}
-        //if(!String.isEmpty(objAgentApp.CompetitorBrandId)){
             newObjToBeInserted.Competitor_Brand__c  = objAgentApp.CompetitorBrandId;
-        //}
-        //if(!String.isEmpty(objAgentApp.CompetitorId)){
             newObjToBeInserted.Competitor_Name__c  = objAgentApp.CompetitorId;
-        //}
         if(!String.isEmpty(objAgentApp.CategoryId)){
             newObjToBeInserted.Category__c  = objAgentApp.CategoryId;
         }
@@ -176,33 +127,22 @@ public with sharing class AA_AgentAppServiceController {
             }
             
         }
-        //if(!String.isEmpty(objAgentApp.CountryId)){
             newObjToBeInserted.Country__c = objAgentApp.CountryId;
-        //}
-       //if(!String.isEmpty(objAgentApp.Town)){
             newObjToBeInserted.Town__c = objAgentApp.Town;
-       //}
-       //if(!String.isEmpty(objAgentApp.Longitude)){
             newObjToBeInserted.longitude__c = objAgentApp.Longitude;
-       //}
-       //if(!String.isEmpty(objAgentApp.Latitude)){
             newObjToBeInserted.latitude__c = objAgentApp.Latitude;
-       //}
-       if(!String.isEmpty(objAgentApp.CodeOfConduct)){
+        if(!String.isEmpty(objAgentApp.CodeOfConduct)){
             if(objAgentApp.CodeOfConduct == 'true'){
                 newObjToBeInserted.Is_Accepted_Code_of_Conduct__c = true;    
             }else if(objAgentApp.CodeOfConduct == 'false'){
                 newObjToBeInserted.Is_Accepted_Code_of_Conduct__c = false;    
-            }
-            
-        }
-        
+            }          
+        }      
        
         Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
         newObjToBeInserted.RecordTypeId = recTypeId;    
-        //newObjToBeInserted.RecordTypeId = '012c00000008rxq';
         return newObjToBeInserted;
     }
     
@@ -210,15 +150,11 @@ public with sharing class AA_AgentAppServiceController {
         //Image Upload
         String agentReportId = agentAPPIDInserted[0];   
         ContentDocumentLink newFileShare = new ContentDocumentLink();
-        system.debug('content Version Id ========>'+objAgentApp.ContentDocumentId);     
         newFileShare.ContentDocumentId = [SELECT Id, VersionNumber, ContentDocumentId FROM ContentVersion where Id=: objAgentApp.ContentDocumentId LIMIT 1].ContentDocumentId ;
-        system.debug('content Doc Id ========>'+newFileShare.ContentDocumentId);
         newFileShare.ShareType= 'V';
         newFileShare.LinkedEntityId = ID.valueOf(agentReportId);
-        system.debug('======='+newFileShare);
         return newFileShare;
-    }
-    
+    }  
   
     /**
      * @date        -   03/08/2015
@@ -233,14 +169,12 @@ public with sharing class AA_AgentAppServiceController {
         AA_WrapperUtility.AgentAppDataResponse wrapperUtilityObj = new AA_WrapperUtility.AgentAppDataResponse();    
         wrapperUtilityObj.unileverBrandList = new List<aa_Agent_App_Competitor_Brand__c >();
         wrapperUtilityObj.unileverBrandList = agentUnileverBrandList;     
-        system.debug('List of unilever brand ====>'+ wrapperUtilityObj.unileverBrandList );
         appWrapperObj.objGetAgentDataResponse =  wrapperUtilityObj;
         
         //Retailer Values
         List<aa_Agent_Retailer__c>  agentRetailerList = getRetailerListValues();
         wrapperUtilityObj.unileverRetailerList = new List<aa_Agent_Retailer__c>();
         wrapperUtilityObj.unileverRetailerList = agentRetailerList;
-        system.debug('List of Retailer ====>'+wrapperUtilityObj.unileverRetailerList );
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
         
         //Reporting On Values
@@ -248,7 +182,6 @@ public with sharing class AA_AgentAppServiceController {
         reportingOnPickList = getReportingOnListValues();
         wrapperUtilityObj.reportingOnPicklistValues = new List<String>();
         wrapperUtilityObj.reportingOnPicklistValues = reportingOnPickList;
-        system.debug('List of Reporting ====>'+ wrapperUtilityObj.reportingOnPicklistValues);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
         
         //Country List Values 
@@ -271,36 +204,7 @@ public with sharing class AA_AgentAppServiceController {
                                               
         return appWrapperObj;
     }
-    //By anjali
-   /* public AA_ApplicationWrapperObj getCountryClusterMap(AA_ApplicationWrapperObj appWrapperObj){
-        Map<aa_Cluster__c,List<aa_Country__c>> countryClusterMapValues = getCountryClusterValues();
-        AA_WrapperUtility.AgentAppDataResponse wrapperUtilityObj = new AA_WrapperUtility.AgentAppDataResponse();
-        wrapperUtilityObj.countryClusterMap = new Map<aa_Cluster__c,List<aa_Country__c>>();
-        wrapperUtilityObj.countryClusterMap = countryClusterMapValues;
-        appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
-        return appWrapperObj;
-    }
-    
-    
-    public  Map<aa_Cluster__c,List<aa_Country__c>> getCountryClusterValues(){
-        List<aa_Country__c> countrylst = getCountryValues();
-        List<aa_Cluster__c> clusterList = getClusterValues();
-        List<aa_Country__c> countryFinalList =  new List<aa_Country__c>();
-        Map<aa_Cluster__c,List<aa_Country__c>> mapValue = new Map<aa_Cluster__c,List<aa_Country__c>>();
-       
-        for(aa_Cluster__c clusterObj:clusterList){
-            for(aa_Country__c countryObj:countrylst){
-                if(clusterObj.id == countryObj.Cluster_Id__c){
-                    countryFinalList.add(countryObj);
-                }
-            
-            }
-            mapValue.put(clusterObj,countryFinalList);
-            countryFinalList.clear();
-        }
-     return mapValue;
-    }*/
-    /**
+     /**
      * @date        -   03/08/2015
      * @description -   retrieve all Unilever Brand Name 
      * @param       -   void 
@@ -409,8 +313,7 @@ public with sharing class AA_AgentAppServiceController {
         fieldResult = aa_Agent_Report__c.Reporting_on__c.getDescribe();
         List<String> reportingOnPickListValues = getPicklistValues(fieldResult);
         return reportingOnPickListValues;
-   }
-   
+   } 
     
     /**
      * @date        -   11/08/2015
@@ -422,19 +325,11 @@ public with sharing class AA_AgentAppServiceController {
     public AA_ApplicationWrapperObj getCompetitorNameAndCategory_CompetitorReport(AA_ApplicationWrapperObj appWrapperObj){
         
         AA_WrapperUtility.AgentAppDataResponse wrapperUtilityObj = new AA_WrapperUtility.AgentAppDataResponse();    
-        //Competitor Name and Category Values
-       system.debug('11111111111111==========>'+appWrapperObj.objAgentAppDataRequest.CompetitorBrandId);
-        //Map<String,String> agentBrandCategory = getCompetitorCategory(appWrapperObj.objAgentAppDataRequest.CompetitorBrandId);
         List<aa_Agent_App_Brand_Category__c> objSelectedCompetitorCategoryOnBrand= getCompetitorCategory(appWrapperObj.objAgentAppDataRequest.CompetitorBrandId);
         wrapperUtilityObj.selectedCompetitorCategoryOnBrand = objSelectedCompetitorCategoryOnBrand;
-        //wrapperUtilityObj.competitorCategoryMap = new Map<String,String>();
-        //wrapperUtilityObj.competitorCategoryMap = agentBrandCategory;     
-        system.debug('wrapperUtilityObj.selectedCompetitorCategoryOnBrand ====>'+ wrapperUtilityObj.selectedCompetitorCategoryOnBrand);
         appWrapperObj.objGetAgentDataResponse =  wrapperUtilityObj;
-        system.debug('Wrapper obj------------------->'+appWrapperObj);
         return appWrapperObj;
-    }
-    
+    }    
     public List<aa_Agent_App_Competitor_Brand__c>  getCompetitorBrandListValues(){
         List<aa_Agent_App_Competitor_Brand__c> agentCompetitorBrandList = fetchValuesByRecordType('aa_Agent_App_Competitor_Brand__c',AA_Constants.ID_NAME,'Competitor Brand');  
         return agentCompetitorBrandList;
@@ -462,7 +357,6 @@ public with sharing class AA_AgentAppServiceController {
         List<aa_Agent_Retailer__c>  agentRetailerList = getRetailerListValues();
         wrapperUtilityObj.unileverRetailerList = new List<aa_Agent_Retailer__c>();
         wrapperUtilityObj.unileverRetailerList = agentRetailerList;
-        system.debug('List of Retailer ====>'+wrapperUtilityObj.unileverRetailerList );
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
         
         //Source Values
@@ -470,59 +364,49 @@ public with sharing class AA_AgentAppServiceController {
         sourcePickList = getSourceListValues();
         wrapperUtilityObj.sourcePicklistValues = new List<String>();
         wrapperUtilityObj.sourcePicklistValues = sourcePickList;
-        system.debug('List of source ====>'+ wrapperUtilityObj.sourcePicklistValues);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
         
         //Topic Values 
         List<aa_Topic__c>  topicValuesList = getTopicListValues();
         wrapperUtilityObj.topicList = new List<aa_Topic__c>();
         wrapperUtilityObj.topicList = topicValuesList;
-        system.debug('List of topics ====>'+wrapperUtilityObj.topicList);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
                 
         //Country List Values 
         List<aa_Country__c>  countryValuesList = getCountryValues();
         wrapperUtilityObj.countryList = new List<aa_Country__c>();
         wrapperUtilityObj.countryList = countryValuesList;
-        system.debug('List of country ====>'+wrapperUtilityObj.countryList);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
         
         //Competitor Brand List Values 
         List<aa_Agent_App_Competitor_Brand__c>  objCompetitorBrandList = getCompetitorBrandListValues();
         wrapperUtilityObj.competitorBrandList = new List<aa_Agent_App_Competitor_Brand__c>();
         wrapperUtilityObj.competitorBrandList = objCompetitorBrandList;
-        system.debug('wrapperUtilityObj.competitorBrandList ====>'+wrapperUtilityObj.competitorBrandList);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
         
         //Competitor Name List Values 
         List<aa_Agent_Competitor__c>  objCompetitorNameList = getCompetitorNameListValues();
         wrapperUtilityObj.competitorNameList = new List<aa_Agent_Competitor__c>();
         wrapperUtilityObj.competitorNameList = objCompetitorNameList;
-        system.debug('wrapperUtilityObj.competitorNameList ====>'+wrapperUtilityObj.competitorNameList);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
         
         //Category Name List Values 
         List<aa_Agent_App_Category__c>  objCategoryNameList = getCompetitorCategoryListValues();
         wrapperUtilityObj.categoryList = new List<aa_Agent_App_Category__c>();
         wrapperUtilityObj.categoryList = objCategoryNameList;
-        system.debug('wrapperUtilityObj.categoryList ====>'+wrapperUtilityObj.categoryList);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
         
          //Cluster List Values
         List <aa_Cluster__c> clusterValuesList= getClusterValues();
         wrapperUtilityObj.clusterList = new List<aa_Cluster__c>();
         wrapperUtilityObj.clusterList = clusterValuesList;
-        system.debug('List of cluster aslesha ====>'+wrapperUtilityObj.clusterList);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
         
         Map<string,aa_agent_app_custom_setting__c> objURL = aa_agent_app_custom_setting__c.getAll(); 
-       // wrapperUtilityObj.googleApiVaue = objURL.get('Google Api Key').Value__c;
-        system.debug('======>google'+wrapperUtilityObj.googleApiVaue);
         appWrapperObj.objGetAgentDataResponse = wrapperUtilityObj;
-        
+       
         return appWrapperObj;
-    }
-    
+    }   
      
     /**
      * @date        -   11/08/2015
@@ -591,8 +475,7 @@ public with sharing class AA_AgentAppServiceController {
             }  
         }
         return retList;
-    }
-    
+    }    
     
    public AA_ApplicationWrapperObj retriveAllAgentReports(AA_ApplicationWrapperObj appWrapperObj){
    try{
@@ -605,8 +488,6 @@ public with sharing class AA_AgentAppServiceController {
        
         String soqlquery='Select Id,Chatter_Post_ID__c,LastModifiedDate,Agent_App_Unilever_Brand__r.Name, Agent_App_Unilever_Brand__c,Town__c,Retailer__c, Retailer__r.Name, RecordType.Name, Name, Report_Title__c,Report_Description__c,CreatedDate,CreatedBy.SmallPhotoUrl, CreatedBy.Name, Country__c, Country__r.Name, Country__r.Cluster_Id__r.name,Country__r.Cluster_Id__c, Competitor_Name__c,Competitor_Name__r.Name,  Competitor_Brand__c,Competitor_Brand__r.Name,  Category__c, Category__r.Name,  Status__c,(Select Id, CommentCount, LikeCount, CreatedById,RelatedRecordId, ContentFileName From Feeds) From aa_Agent_Report__c where Status__c = \'Published (Public)\' ';
         
-        system.debug('wapper object=====>'+appWrapperObj);
-        system.debug('filter type%%%%% '+appWrapperObj.objAgentAppDataRequest.FilterType+'  aply filter'+appWrapperObj.objAgentAppDataRequest.ApplyFilter);
          AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
           objAgentApp = appWrapperObj.objAgentAppDataRequest;
         
@@ -618,18 +499,15 @@ public with sharing class AA_AgentAppServiceController {
         
         if(appWrapperObj.objAgentAppDataRequest.FilterType=='myReport')
         {
-            system.debug('In My Reports**');
-            soqlquery +='AND CreatedById =\''+UserInfo.getUserId()+'\'';  
+                soqlquery +='AND CreatedById =\''+UserInfo.getUserId()+'\'';  
         }
         
         if(appWrapperObj.objAgentAppDataRequest.FilterType=='filterReports' )
         {
         
-           system.debug('in filtered reports ');
             aa_Agent_Report__c requestAgentDataObj = new aa_Agent_Report__c();
                 
             if(objAgentApp.ApplyFilter==null || objAgentApp.ApplyFilter=='false'){
-                system.debug('apply filter null.......... faching values from db for user preferences');
             aa_Agent_App_User_Preference__c UserPref = [SELECT Id,
                                                                 UserId__c, 
                                                                 Category__c,
@@ -742,18 +620,14 @@ public with sharing class AA_AgentAppServiceController {
                 String recTypeId='';
                 if(appWrapperObj.objAgentAppDataRequest.RecordType=='Unilever')
                 {
-                    //RecordType Rectype=[Select  r.Name,r.Id From RecordType r where IsActive=true and Name like 'Unilever Agent Published Report' and  SobjectType='aa_agent_report__c'];
                     Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
                     Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
                     recTypeId = (RT.get('Unilever Agent Published Report')).getRecordTypeId();
-                    //newObjToBeInserted.RecordTypeId = recTypeId;
-                    system.debug('Record Type Id==>'+recTypeId);
                     soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+recTypeId+AA_Constants.Escapechar;
                 }                   
             
                if(appWrapperObj.objAgentAppDataRequest.RecordType=='Competitor')
                 {
-                    //RecordType Rectype=[Select  r.Name,r.Id From RecordType r where IsActive=true and Name like 'Competitor Report' and  SobjectType='aa_agent_report__c'];
                     Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
                     Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
                     recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
@@ -763,9 +637,7 @@ public with sharing class AA_AgentAppServiceController {
             aa_Agent_App_User_Preference__c userPref = [SELECT Id,UserId__c 
                                                                FROM aa_Agent_App_User_Preference__c              
                                                               Where UserId__c =: UserInfo.getUserId()];
-            system.debug('categoryid:::::::'+userPref);
-            system.debug('country ID to be saved in user pref'+requestAgentDataObj.Country__c);
-             
+         
             userPref.Category__c=requestAgentDataObj.Category__c;
             if(requestAgentDataObj.Country__c!= null || requestAgentDataObj.Country__c!='null')
             userPref.Country__c=requestAgentDataObj.Country__c;
@@ -783,8 +655,7 @@ public with sharing class AA_AgentAppServiceController {
             update userPref;            
         }
         }
-         system.debug('************'+appWrapperObj.objAgentAppDataRequest.LimitRecords);
-         
+        
          if(objAgentApp.SortOnMostLike!='true' || objAgentApp.SortOnMostLike==NULL){
          soqlquery +=' Order by LastModifiedDate desc';
          }
@@ -797,21 +668,13 @@ public with sharing class AA_AgentAppServiceController {
            
             for(aa_Agent_Report__Feed item:feedlist)
             {
-                 // if(i>Integer.valueOf(appWrapperObj.objAgentAppDataRequest.OffSet) && i<=totallimit)
-                  //{
                    idlist.add(String.valueOf(item.id));
                    reportidInString+='\''+item.id+'\',';
-                  //}
-                   //i++; 
             }
                    reportidInString+='\'\' )';
-           // set<ID> finalreportId=new set<ID>();
-            
-                       
-                   
+    
              soqlquery +=' AND chatter_post_id__c IN   '+ reportidInString; 
-             system.debug('%%%%%%%%%%%1234'+' AND chatter_post_id__c IN  '+ reportidInString);
-         }
+            }
          
         if(appWrapperObj.objAgentAppDataRequest.LimitRecords!=null && appWrapperObj.objAgentAppDataRequest.OffSet!=null &&(objAgentApp.SortOnMostLike!='true' || objAgentApp.SortOnMostLike==NULL)  )
         {
@@ -845,20 +708,12 @@ public with sharing class AA_AgentAppServiceController {
                                  system.debug('in for of feedlike'+objfeedlike.InsertedById +'===userId'+UserInfo.getUserId()+'reportid::'+agentfeed.ParentId);
                                   if(objfeedlike.InsertedById==UserInfo.getUserId() ){
                                     ReportUserLike.put(agentfeed.ParentId,'true');
-                                  }/*else{
-                                   ReportUserLike.put(agentfeed.ParentId,'false');
-                                  }*/
+                                  }
                        }
                    }
-                   
-                   system.debug('Final USer like map %%%%%%%'+ReportUserLike);
-        
-        
-        
-        for(aa_Agent_Report__c item : tmpList)
+               for(aa_Agent_Report__c item : tmpList)
                 {
                    AA_WrapperUtility.agentReportDetail objGetAllReports = new AA_WrapperUtility.agentReportDetail();
-                   //objGetAllReports.LikeCount=0;
                     objGetAllReports.agentReportID = item.Id;
                     objGetAllReports.unilever_brandId = item.Agent_App_Unilever_Brand__c;
                     objGetAllReports.competitor_nameId = item.Competitor_Name__c;
@@ -875,8 +730,7 @@ public with sharing class AA_AgentAppServiceController {
                     objGetAllReports.feedList =item.Feeds;
                     objGetAllReports.status =item.Status__c;
                     objGetAllReports.currentTime=String.valueOf(system.now());
-                    system.debug('=>>>>>>>>>>>>>>'+system.now()+'<<<<<'+objGetAllReports.currentTime);
-                    //objGetAllReports.recordType=item.RecordType.Name;
+
                     if(item.RecordType.Name!= null){
                         if(item.RecordType.Name == 'Unilever Agent Published Report'){
                              objGetAllReports.recordType = 'UL';
@@ -892,26 +746,16 @@ public with sharing class AA_AgentAppServiceController {
                     objGetAllReports.clusterId=item.Country__r.Cluster_Id__c;
                     objGetAllReports.UserLike=ReportUserLike.get(objGetAllReports.agentReportID);
                     
-                   // system.debug('feed array***********'+item.Feeds);
                    Set<String> imageFilekeyWords = new Set<String>{'.png','.jpg','.jpeg','.bmp','.JPG','.JPEG','.BMP','.PNG'}; // know the image file 
                    Set<String> docFilekeyWords = new Set<String>{'.ppt','.pdf','.xls','.xlsx','.doc','.docx','.csv','.txt'}; // know the image file     
                     for(aa_Agent_Report__Feed objfeed :item.Feeds)
                     {
                      objGetAllReports.TotalCommentCount+=objfeed.CommentCount;
-                     system.debug('item.Chatter_Post_ID__c -- >'+item.Chatter_Post_ID__c+'== objfeed.Id : '+objfeed.Id );
-                    // objGetAllReports.LikeCount=0;
-                     if(item.Chatter_Post_ID__c == objfeed.Id){
-                        system.debug('in like counr@@@@@@@@@@@@@@@@');
+                    if(item.Chatter_Post_ID__c == objfeed.Id){
                         objGetAllReports.LikeCount=objfeed.LikeCount;
-                       // objGetAllReports.TotalCommentCount=objfeed.CommentCount;
-                        system.debug('Like count for this record================================>'+objfeed.LikeCount);
                     }
-                        if(item.Chatter_Post_ID__c == objfeed.Id && objfeed.ContentFileName!=null){
-                           
-                            
-                            system.debug(' objfeed.ContentFileName ' +objfeed.ContentFileName);
+                        if(item.Chatter_Post_ID__c == objfeed.Id && objfeed.ContentFileName!=null){                          
                             String feedFileName = objfeed.ContentFileName;
-                            system.debug(' feedFileName ' +feedFileName);
                             List<String> tmpFileNameList = feedFileName.split('\\.');
                             String fileExtension;
                             if(tmpFileNameList.size() > 0){
@@ -1026,181 +870,7 @@ public with sharing class AA_AgentAppServiceController {
     /* Most like Reports results */
    public AA_ApplicationWrapperObj retrieveAgentReportsOnMostliked(AA_ApplicationWrapperObj appWrapperObj)
             { return appWrapperObj; }
-      /*         try{
-               system.debug('service controller retrive reports'+appWrapperObj.objAgentAppDataRequest);
-               Map<string,aa_agent_app_custom_setting__c> objURL = aa_agent_app_custom_setting__c.getAll(); 
-               String urlHost =  objURL.get('Salesforce Instance URL Content').Value__c;  // Salesforce Instance URL
-               String sfcURLContent =  objURL.get('SFC Content').Value__c; // URL for Image population on UI
-               String docURLContent =  objURL.get('Document URL Content').Value__c; // URL for Document (Logo) population on UI
-               system.debug('Custom Setting Contents urlHost'+urlHost+' sfcURLContent'+sfcURLContent +' docURLContent'+docURLContent); 
-               aa_Agent_Report__c requestAgentDataObj = new aa_Agent_Report__c();
-               AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
-               objAgentApp = appWrapperObj.objAgentAppDataRequest;
-                
-               List<string> idlist=new List<string>();
-               List< AA_WrapperUtility.agentReportDetail> objFinalReport = new List<AA_WrapperUtility.agentReportDetail>();
-               
-               //List<aa_Agent_Report__Feed> feedlist=[SELECT Id,likecount FROM aa_Agent_Report__Feed order by likecount desc LIMIT :appWrapperObj.objAgentAppDataRequest.LimitRecords  OFFSET : appWrapperObj.objAgentAppDataRequest.OffSet];
-             
-             
-              String  soqlFeedQuery='SELECT Id,likecount FROM aa_Agent_Report__Feed order by likecount desc';
-                      
-                      soqlFeedQuery +=' LIMIT '+ appWrapperObj.objAgentAppDataRequest.LimitRecords + ' OFFSET '+appWrapperObj.objAgentAppDataRequest.OffSet;
-       
-              system.debug('Final feed Query -- >'+soqlFeedQuery);    
-              List<aa_Agent_Report__Feed> feedlist=  database.query(soqlFeedQuery);             
-             
-               system.debug('#######'+feedlist) ;
-               for(aa_Agent_Report__Feed item:feedlist)
-                {
-                   idlist.add(String.valueOf(item.id));
-                }
-            
-                   List<aa_Agent_Report__c> reportList=[Select Id,Chatter_Post_ID__c,Agent_App_Unilever_Brand__r.Name, Agent_App_Unilever_Brand__c,Town__c,Retailer__c, Retailer__r.Name, Report_Description__c,RecordType.Name, Name, Report_Title__c,CreatedDate,CreatedBy.SmallPhotoUrl, CreatedBy.Name, Country__c, Country__r.Name, Country__r.Cluster_Id__r.name,Country__r.Cluster_Id__c, Competitor_Name__c,Competitor_Name__r.Name,  Competitor_Brand__c,Competitor_Brand__r.Name,  Category__c, Category__r.Name,  Status__c,(Select Id, CommentCount, LikeCount, CreatedById,RelatedRecordId, ContentFileName From Feeds) From aa_Agent_Report__c where Status__c ='Published (Public)' AND chatter_post_id__c in:idlist];
-                   
-                   
-                   // To check whether current user has liked report or not 
-                   Set<ID> feedIds=new Set<ID>();
-                   for(aa_Agent_Report__c itemfeedlike :reportList){
-                       for(aa_Agent_Report__Feed objfeedlike :itemfeedlike.Feeds){
-                        if(itemfeedlike.Chatter_Post_ID__c==objfeedlike.Id){
-                               feedIds.add(objfeedlike.Id);  
-                        }
-                       }
-                   }
-                   system.debug('feedids set==>'+feedIds);
-                   Map<ID,String> ReportUserLike =new Map<ID,String>();
-                   List<aa_Agent_Report__Feed> userfeedliketest= [Select ParentId ,RelatedRecordId,(Select Id, InsertedById  From FeedLikes) From aa_Agent_Report__Feed a where a.Id IN: feedIds];
-                  
-                   for (aa_Agent_Report__Feed agentfeed :userfeedliketest){
-                       for(FeedLike objfeedlike : agentfeed.FeedLikes)
-                       {
-                                 system.debug('in for of feedlike'+objfeedlike.InsertedById +'===userId'+UserInfo.getUserId());
-                                  if(objfeedlike.InsertedById==UserInfo.getUserId() ){
-                                    ReportUserLike.put(agentfeed.ParentId,'true');
-                                  }/*else{
-                                   ReportUserLike.put(agentfeed.ParentId,'false');
-                                  }*/
-             /*          }
-                   }
-                   
-                   system.debug('Final USer like map %%%%%%%'+ReportUserLike);
-                   
-                   for(aa_Agent_Report__c item :reportList){
-     
-                     AA_WrapperUtility.agentReportDetail objGetAllReports = new AA_WrapperUtility.agentReportDetail();
-                     objGetAllReports.agentReportID = item.Id;
-                     objGetAllReports.unilever_brandId = item.Agent_App_Unilever_Brand__c;
-                     objGetAllReports.competitor_nameId = item.Competitor_Name__c;
-                     objGetAllReports.competitor_brandId = item.Competitor_Brand__c ;
-                     objGetAllReports.retailerId = item.Retailer__c; 
-                     objGetAllReports.userImgUrl=item.CreatedBy.SmallPhotoUrl;
-                     objGetAllReports.reportTitl=item.Report_Title__c;
-                     objGetAllReports.reportDesc=item.Report_Description__c;
-                     objGetAllReports.unilever_brand=item.Agent_App_Unilever_Brand__r.Name;
-                     objGetAllReports.competitor_name=item.Competitor_Brand__r.Name;
-                     objGetAllReports.retailer=item.Retailer__r.Name;
-                     objGetAllReports.town=item.Town__c;
-                     objGetAllReports.country=item.Country__r.Name;
-                     objGetAllReports.feedList =item.Feeds;
-                     objGetAllReports.status =item.Status__c;
-                     objGetAllReports.currentTime=String.valueOf(system.now());
-                    //objGetAllReports.recordType=item.RecordType.Name;
-                    if(item.RecordType.Name!= null){
-                        if(item.RecordType.Name == 'Unilever Agent Published Report'){
-                             objGetAllReports.recordType = 'UL';
-                        } else if(item.RecordType.Name == 'Competitor Report'){
-                            objGetAllReports.recordType = 'CI';
-                        }
-                    }
-                    objGetAllReports.CreatedBy=item.CreatedBy.Name;
-                    objGetAllReports.CountryId=item.Country__c;
-                    objGetAllReports.CreatedTime=String.valueOf(item.LastModifiedDate);
-                    system.debug(LoggingLevel.INFO,'?retriveAllAgentReports? item.Feeds -- ?'+objGetAllReports.feedList);
-                    objGetAllReports.clusterName = item.Country__r.Cluster_Id__r.name;
-                    objGetAllReports.clusterId=item.Country__r.Cluster_Id__c;
-                    Set<String> imageFilekeyWords = new Set<String>{'.png','.jpg','.jpeg','.bmp'}; // know the image file 
-                    Set<String> docFilekeyWords = new Set<String>{'.ppt','.pdf','.xls','.xlsx','.doc','.docx','.csv','.txt'}; // know the image file     
-                 
-                 
-                    for(aa_Agent_Report__Feed objfeed :item.Feeds)
-                    {
-                       system.debug('feed***********'+objfeed);
-                       //get userId foe feed like 
-                       objGetAllReports.UserLike=ReportUserLike.get(objGetAllReports.agentReportID);
-                      
-                    /*  
-                        system.debug('if('+objfeed.RelatedRecordId+'=='+item.Id+')');
-                      *//*
-                        system.debug('item.Chatter_Post_ID__c -- >'+item.Chatter_Post_ID__c+'== objfeed.Id : '+objfeed.Id );
-                        if(item.Chatter_Post_ID__c == objfeed.Id)
-                        {
-                            objGetAllReports.LikeCount=objfeed.LikeCount;
-                            objGetAllReports.TotalCommentCount=objfeed.CommentCount;
-                            system.debug('Like count ==============================================>'+objfeed.LikeCount);
-                        }
-                        if(item.Chatter_Post_ID__c == objfeed.Id && objfeed.ContentFileName!=null ){
-                            
-                            
-                            system.debug(' objfeed.ContentFileName ' +objfeed.ContentFileName);
-                            String feedFileName = objfeed.ContentFileName;
-                            system.debug(' feedFileName ' +feedFileName);
-                            List<String> tmpFileNameList = feedFileName.split('\\.');
-                            String fileExtension;
-                            if(tmpFileNameList.size() > 0){
-                                fileExtension = '.'+tmpFileNameList[tmpFileNameList.size() -1];
-                            }
-                            system.debug(' tmpFileNameList -->'+tmpFileNameList+' fileExtension-- >'+fileExtension);
-                            if(imageFilekeyWords.contains(fileExtension)){
-                                System.debug('It contains Image!');
-                                 objGetAllReports.DocumentUrl = urlHost + sfcURLContent + objfeed.RelatedRecordId;
-                                system.debug('tmpList aa report Image one* '+objGetAllReports.agentReportID);
-                            }else if(docFilekeyWords.contains(fileExtension)){ /*If perticular file format associated with Chatter Post*/
-                  /*              System.debug('It contains file!');
-                                if(item.RecordType.Name == 'Unilever Agent Published Report'){
-                                    objGetAllReports.DocumentUrl = urlHost + docURLContent + objURL.get('UL Logo Id').Value__c;
-                                } else if(item.RecordType.Name == 'Competitor Report'){
-                                    objGetAllReports.DocumentUrl = urlHost + docURLContent + objURL.get('CI Logo Id').Value__c;
-                                } 
-                                system.debug('tmpList aa report Doc  '+objGetAllReports.DocumentUrl);
-                            }
-                            system.debug('tmpList aa report Doc 099* '+objGetAllReports.agentReportID);
-                            system.debug('final like count for report'+objfeed.LikeCount+'final comment count'+objfeed.CommentCount+'sending value==>'+objGetAllReports.TotalCommentCount);
-                        }
-                    }
-                    /*Set UL or CI logo if no Chatter post Id associated with Agent Report */
-            /*         if(objGetAllReports.DocumentUrl==null){
-                        system.debug('*No File or Image Attached to Report*');
-                        if(item.RecordType.Name == 'Unilever Agent Published Report'){
-                            objGetAllReports.DocumentUrl = urlHost + docURLContent + objURL.get('UL Logo Id').Value__c;
-                        } else if(item.RecordType.Name == 'Competitor Report'){
-                            objGetAllReports.DocumentUrl = urlHost + docURLContent + objURL.get('CI Logo Id').Value__c;
-                        } 
-                    }
-                    
-                    
-                    objFinalReport.add(objGetAllReports);
-                    system.debug('tmpList aa report 9************* '+objFinalReport.size());
-                    objFinalReport.sort();
-             appWrapperObj.objPassAgentReportsToNG = objFinalReport;
-             
-      String  countquery='SELECT count() FROM aa_Agent_Report__Feed';
-        Integer TotalAgentReports=database.countQuery(countquery);
-        appWrapperObj.TotalAgentReports=TotalAgentReports; 
-        system.debug('total number of rows'+TotalAgentReports);
-       //appWrapperObj.TotalAgentReports=9;
-        system.debug(LoggingLevel.INFO,'?retriveAllAgentReports?  '+appWrapperObj.objPassAgentReportsToNG);                               
-        }
-        }catch(DMLException e){
-            system.debug(e.getMessage());
-        }
-        catch(Exception e){
-            system.debug(e.getMessage());
-        }
-        
-        return appWrapperObj;
-           }
-    */
+  
     /**
      * @date        -   19/08/2015
      * @description -   retrieving isAcceptedTerms & Condition value
