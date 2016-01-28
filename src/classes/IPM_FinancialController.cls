@@ -2381,7 +2381,7 @@ private Date getProjectMilestoneDate(){
             showMisalignedConfirmbtn = true;
             mcoCountryRolloutPlan = null;
             //get the Rollout related to the project currently to get the TLD and year details
-            if(project != null && currentFinancial != null) {
+            if(project != null && currentFinancial != null && project.IPM_Project_Type__c!=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) {
                 if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
                     localProjectTLD = project.IPM_Target_Launch_Dates__c.format();
                     localProjectTLDYear = project.IPM_Target_Launch_Dates__c.year();
