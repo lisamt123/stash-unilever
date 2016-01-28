@@ -14,7 +14,7 @@
                 <apex:commandLink value="Edit SOW" action="{!editActionPage}"></apex:commandLink>&nbsp;&nbsp;|
                 <a href="" disabled="disabled">Clone SOW</a>&nbsp;&nbsp;|&nbsp;&nbsp;
                 <!-- <apex:commandLink value="Delete SOW" action="{!deleteAction}"></apex:commandLink> -->
-                <a href="#" onclick="if (confirm('are you sure you want to delete this asset?')){deleteSOW();blockme();}">Delete SOW</a>
+                <a href="#" onclick="if (confirm('Are you sure you want to delete this SOW?')){deleteSOW();blockme();}">Delete SOW</a>
             </apex:outputPanel>
         </apex:define>
 
