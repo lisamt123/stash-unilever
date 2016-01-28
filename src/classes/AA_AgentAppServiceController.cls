@@ -511,84 +511,72 @@ public with sharing class AA_AgentAppServiceController {
                                                                 FROM aa_Agent_App_User_Preference__c 
                                                                 where UserId__c =: UserInfo.getUserId()];                                                                
                if(UserPref.Country__c != NULL )
-                {
-                   soqlquery +='AND Country__c ='+AA_Constants.Escapechar+UserPref.Country__c+AA_Constants.Escapechar;    
-                }                
+                {  soqlquery +='AND Country__c ='+AA_Constants.Escapechar+UserPref.Country__c+AA_Constants.Escapechar; }                
+                
                 if(UserPref.Agent_App_Unilever_Brand__c!=NULL)
-                {
-                  soqlquery +='AND Agent_App_Unilever_Brand__c ='+AA_Constants.Escapechar+UserPref.Agent_App_Unilever_Brand__c+AA_Constants.Escapechar;
-                }                
+                { soqlquery +='AND Agent_App_Unilever_Brand__c ='+AA_Constants.Escapechar+UserPref.Agent_App_Unilever_Brand__c+AA_Constants.Escapechar; }
+                                
                 if(UserPref.Competitor_Name__c !=NULL)
-                {
-                  soqlquery +='AND Competitor_Name__c='+AA_Constants.Escapechar+UserPref.Competitor_Name__c+AA_Constants.Escapechar;
-                }                
+                { soqlquery +='AND Competitor_Name__c='+AA_Constants.Escapechar+UserPref.Competitor_Name__c+AA_Constants.Escapechar; }                
+                
                 if(UserPref.Competitor_Brand__c !=NULL)
-                {
-                   soqlquery +='AND Competitor_Brand__c ='+AA_Constants.Escapechar+UserPref.Competitor_Brand__c+AA_Constants.Escapechar;
-                }                
+                {  soqlquery +='AND Competitor_Brand__c ='+AA_Constants.Escapechar+UserPref.Competitor_Brand__c+AA_Constants.Escapechar; }
+                                
                 if(UserPref.Retailer__c !=NULL)
-                {
-                   soqlquery +='AND Retailer__c ='+AA_Constants.Escapechar+UserPref.Retailer__c+AA_Constants.Escapechar;
-                }                
+                { soqlquery +='AND Retailer__c ='+AA_Constants.Escapechar+UserPref.Retailer__c+AA_Constants.Escapechar;}
+                                
                 if(UserPref.Category__c !=NULL)
-                {
-                   soqlquery +='AND Category__c ='+AA_Constants.Escapechar+UserPref.Category__c+AA_Constants.Escapechar;
-                }  
+                { soqlquery +='AND Category__c ='+AA_Constants.Escapechar+UserPref.Category__c+AA_Constants.Escapechar; }  
+                
                 if(UserPref.Cluster__c !=NULL)
-                {
-                   soqlquery +='AND Country__r.Cluster_Id__c ='+AA_Constants.Escapechar+UserPref.Cluster__c+AA_Constants.Escapechar;
-                }   
+                { soqlquery +='AND Country__r.Cluster_Id__c ='+AA_Constants.Escapechar+UserPref.Cluster__c+AA_Constants.Escapechar; }
+                   
                 if(UserPref.RecordTypeId__c!=NULL)
-                {
-                soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+UserPref.RecordTypeId__c+AA_Constants.Escapechar;    
-                }       
+                { soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+UserPref.RecordTypeId__c+AA_Constants.Escapechar;}
+                       
                 if(UserPref.Topic__c!=NULL)
-                {
-                    soqlquery +='AND Topic__c ='+AA_Constants.Escapechar+UserPref.Topic__c+AA_Constants.Escapechar;
-                }
+                { soqlquery +='AND Topic__c ='+AA_Constants.Escapechar+UserPref.Topic__c+AA_Constants.Escapechar; }
+                
                 if(UserPref.ReportingOn__c!=NULL)
-                {
-                    soqlquery +='AND Reporting_on__c = '+AA_Constants.Escapechar+UserPref.ReportingOn__c+AA_Constants.Escapechar;
-                }
-           }else if(appWrapperObj.objAgentAppDataRequest.ApplyFilter=='true') {         
+                { soqlquery +='AND Reporting_on__c = '+AA_Constants.Escapechar+UserPref.ReportingOn__c+AA_Constants.Escapechar; }
+           }
+           else if(appWrapperObj.objAgentAppDataRequest.ApplyFilter=='true') {         
                 requestAgentDataObj=(aa_Agent_Report__c)convertRequestAgentReport(objAgentApp);
                 if(requestAgentDataObj.country__c != NULL )
-                {
-                   soqlquery +='AND Country__c ='+AA_Constants.Escapechar+requestAgentDataObj.country__c+AA_Constants.Escapechar;    
-                }                
+                { soqlquery +='AND Country__c ='+AA_Constants.Escapechar+requestAgentDataObj.country__c+AA_Constants.Escapechar; }                
+                
                 if(requestAgentDataObj.Agent_App_Unilever_Brand__c !=NULL)
-                {
-                  soqlquery +='AND Agent_App_Unilever_Brand__c ='+AA_Constants.Escapechar+requestAgentDataObj.Agent_App_Unilever_Brand__c +AA_Constants.Escapechar;
-                }                
+                { soqlquery +='AND Agent_App_Unilever_Brand__c ='+AA_Constants.Escapechar+requestAgentDataObj.Agent_App_Unilever_Brand__c +AA_Constants.Escapechar; }                
+                
                 if(requestAgentDataObj.Competitor_Name__c !=NULL)
-                {
-                  soqlquery +='AND Competitor_Name__c= '+AA_Constants.Escapechar+requestAgentDataObj.Competitor_Name__c +AA_Constants.Escapechar;
-                }                
+                { soqlquery +='AND Competitor_Name__c= '+AA_Constants.Escapechar+requestAgentDataObj.Competitor_Name__c +AA_Constants.Escapechar; }                
+                
                 if(requestAgentDataObj.Competitor_Brand__c !=NULL)
-                {
-                   soqlquery +='AND Competitor_Brand__c = '+AA_Constants.Escapechar+ requestAgentDataObj.Competitor_Brand__c+AA_Constants.Escapechar;
-                }                
+                { soqlquery +='AND Competitor_Brand__c = '+AA_Constants.Escapechar+ requestAgentDataObj.Competitor_Brand__c+AA_Constants.Escapechar;  }               
+                 
                 if(requestAgentDataObj.Retailer__c !=NULL)
-                {
-                   soqlquery +='AND Retailer__c = '+AA_Constants.Escapechar+requestAgentDataObj.Retailer__c+AA_Constants.Escapechar;
-                }                
+                { soqlquery +='AND Retailer__c = '+AA_Constants.Escapechar+requestAgentDataObj.Retailer__c+AA_Constants.Escapechar;  }                
+                
                 if(requestAgentDataObj.Category__c !=NULL)
-                {
-                   soqlquery +='AND Category__c = '+AA_Constants.Escapechar+requestAgentDataObj.Category__c+AA_Constants.Escapechar;
-                }                
+                {  soqlquery +='AND Category__c = '+AA_Constants.Escapechar+requestAgentDataObj.Category__c+AA_Constants.Escapechar;   }                
+                
                 if(appWrapperObj.objAgentAppDataRequest.ClusterId!=NULL)
                 {
                    soqlquery +='AND Country__r.Cluster_Id__c ='+AA_Constants.Escapechar+appWrapperObj.objAgentAppDataRequest.ClusterId+AA_Constants.Escapechar;
                 }
+                
                 if(appWrapperObj.objAgentAppDataRequest.TopicId!=NULL)
                 {
                     soqlquery +='AND Topic__c ='+AA_Constants.Escapechar+appWrapperObj.objAgentAppDataRequest.TopicId+AA_Constants.Escapechar;
                 }
+                
                 if(appWrapperObj.objAgentAppDataRequest.ReportingOn!=NULL)
                 {
                     soqlquery +='AND Reporting_on__c ='+AA_Constants.Escapechar+appWrapperObj.objAgentAppDataRequest.ReportingOn+AA_Constants.Escapechar;
                 }
+                
                 String recTypeId='';
+                
                 if(appWrapperObj.objAgentAppDataRequest.RecordType=='Unilever')
                 {
                     Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
@@ -596,13 +584,15 @@ public with sharing class AA_AgentAppServiceController {
                     recTypeId = (RT.get('Unilever Agent Published Report')).getRecordTypeId();
                     soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+recTypeId+AA_Constants.Escapechar;
                 }            
+                
                 if(appWrapperObj.objAgentAppDataRequest.RecordType=='Competitor')
                 {
                     Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
                     Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
                     recTypeId = (RT.get('Competitor Report')).getRecordTypeId();
                     soqlquery +='AND RecordTypeId  = '+AA_Constants.Escapechar+recTypeId+AA_Constants.Escapechar;
-                }            
+                }
+                            
             aa_Agent_App_User_Preference__c userPref = [SELECT Id,UserId__c 
                                                                FROM aa_Agent_App_User_Preference__c              
                                                               Where UserId__c =: UserInfo.getUserId()];         
@@ -621,9 +611,11 @@ public with sharing class AA_AgentAppServiceController {
              update userPref;            
         }
         }        
+         
          if(objAgentApp.SortOnMostLike!='true' || objAgentApp.SortOnMostLike==NULL){
          soqlquery +=' Order by LastModifiedDate desc';
-         }else if(objAgentApp.SortOnMostLike=='true'){
+         }
+         else if(objAgentApp.SortOnMostLike=='true'){
             String  soqlFeedQuery='SELECT Id,likecount FROM aa_Agent_Report__Feed order by likecount desc limit 1000'  ; //+ ' OFFSET '+appWrapperObj.objAgentAppDataRequest.OffSet;
             List<aa_Agent_Report__Feed> feedlist=  database.query(soqlFeedQuery);             
             set<ID>idlist=new set<ID>();            
