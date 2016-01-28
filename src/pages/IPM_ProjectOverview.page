@@ -230,14 +230,15 @@
                                             <input type="button" class="ipmButton" value="Change status"/>
                                         </div>
                                     </apex:outputPanel>
-    
+   									<!--  Move to Next Phase button render related changes  starts here -->
                                     <apex:outputPanel layout="block" styleClass="col-sm-12 SecButtonSet" rendered="{!projectDoc.IPM_Document_Status__c='Approved with Edits'}">
-                                            <apex:actionFunction name="movePLE" action="{!moveToPLE}" reRender=""/>
-                                            <!-- <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> -->
+		
+										<apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/>
                                             <div class="SecStatusUpdate removebutton statusButton" data-toggle="modal" data-target="#ipmMoveFeasibility"  data-backdrop="static" data-keyboard="false">
                                                 <span class="ipmButton Primary">{!$Label.IPM_Move_To} {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}</span>
                                             </div>     
                                     </apex:outputPanel>
+                                    <!--  Move to Next Phase button render related changes  ends here -->
                                 </apex:outputPanel>
                             </div>
                             
@@ -339,11 +340,12 @@
                             </div>
                         </div>
                             <apex:actionFunction name="movethePLE" action="{!moveToPLE}" reRender=""/>
+                            <!--   MOve to Next Phase Modal Pop-up Section starts here --------->
                             <div id="ipmMoveFeasibility" class="modal fade">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <!--                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                                            
                                             <div class="modal-title">{!$Label.IPM_UpdatePhaseConfirmation}</div>
                                         </div>
                                         
@@ -361,9 +363,12 @@
                                                             </div> 
                                                         </apex:outputPanel>
                                                         <div class="pull-left noPadright">
-                                                            <!-- <span class="ipmButton primary">Move to Feasibility</span>  -->
-                                                            <!-- <apex:actionStatus startText="" id="Loading" startStyleClass="proInit"/> -->
-                                                            <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="{!$Label.IPM_MoveToLabel} {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="moveToNextDoc()" styleClass="ipmButton primary"/>
+                                                            <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}&suggestedMembersButton=true&createBET=true'" styleClass="ipmButton primary" rendered="{!project.IPM_Phase__c='Ideas'}">
+                                                            <apex:param name="approveDocumentStatus" value="Approved" assignTo="{!projectDoc.IPM_Document_Status__c}"/>
+                                                        </apex:commandButton>
+                                                        <apex:commandButton action="{!moveToNextDocument}" status="Loading" value="Move to {!IF(project.IPM_Phase__c='Ideas','Feasibility',IF(project.IPM_Phase__c='Feasibility','Capability',(IF(project.IPM_Phase__c='Capability','Market Ready','Market Deployment'))))}" oncomplete="window.top.location.href='{!$Page.IPM_ProjectOverview}?id={!project.Id}'" styleClass="ipmButton primary" rendered="{!project.IPM_Phase__c!='Ideas'}">
+                                                            <apex:param name="approveDocumentStatus" value="Approved" assignTo="{!projectDoc.IPM_Document_Status__c}"/>
+                                                        </apex:commandButton>
                                                         </div> 
                                                         
                                                     </div>
@@ -373,6 +378,7 @@
                                     </div>
                                 </div>
                             </div> 
+                        <!--   MOve to Next Phase Modal Pop-up Section ends here --------->
                             
                             <!-- ------Ship To trade Modal starts here  -->
                             <div id="shipToPLE" class="modal fade">
