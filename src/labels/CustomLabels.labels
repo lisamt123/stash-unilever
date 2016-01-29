@@ -6604,6 +6604,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>You are attempting to remove the team member. You could add this member again via Add team members option. Are you sure want to remove?</value>
     </labels>
     <labels>
+        <fullName>IPM_Delete_Milestone_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete Milestone Message</shortDescription>
+        <value>You are about to remove this milestone from the milestone list. It cannot be restored at a later time. Are you sure to continue?</value>
+    </labels>
+    <labels>
         <fullName>IPM_Delete_task_msg</fullName>
         <language>en_US</language>
         <protected>false</protected>
