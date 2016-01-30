@@ -20,9 +20,7 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>Edit</actionName>
-        <content>Oblix_VF02OverrideAsetNewLookup</content>
-        <skipRecordTypeSelect>false</skipRecordTypeSelect>
-        <type>Visualforce</type>
+        <type>Default</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>Follow</actionName>
@@ -64,6 +62,51 @@ Changed to Campaign on 26/10/2015</description>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
+    <fieldSets>
+        <fullName>Oblix_Campaign_Summary</fullName>
+        <description>Campaign summary page table</description>
+        <displayedFields>
+            <field>Id</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Asset_Picklist__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Location__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Category__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Sub_Category__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Asset_Description__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Additional_Description__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Quantity__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Oblix_Campaign_Summary</label>
+    </fieldSets>
     <fields>
         <fullName>Actual_Delivery_Date__c</fullName>
         <externalId>false</externalId>
@@ -78,7 +121,7 @@ Changed to Campaign on 26/10/2015</description>
         <fullName>Additional_Description__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Add further details of the required asset to be produced</inlineHelpText>
-        <label>Additional Description</label>
+        <label>Other Info</label>
         <length>32768</length>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
@@ -116,17 +159,12 @@ Changed to Campaign on 26/10/2015</description>
         <description>Types of Typical Assets</description>
         <externalId>false</externalId>
         <inlineHelpText>Please select the Asset that most meets the type of Asset required?</inlineHelpText>
-        <label>Asset Names</label>
+        <label>Asset Name</label>
         <picklist>
             <controllingField>Sub_Category__c</controllingField>
             <picklistValues>
                 <fullName>Animatics</fullName>
                 <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Animation</fullName>
-                <controllingFieldValues>Origination Full</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -169,6 +207,11 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Microsite</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Complex Re-Edit</fullName>
                 <default>false</default>
             </picklistValues>
@@ -187,26 +230,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>EDM/eNewsletter (Complex)</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>EDM/eNewsletter (Complex Adaptation)</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>EDM/eNewsletter (Simple)</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>EDM/eNewsletter (Simple Adaptation)</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>EDM Adaptation</fullName>
                 <default>false</default>
             </picklistValues>
@@ -217,11 +240,6 @@ Changed to Campaign on 26/10/2015</description>
             <picklistValues>
                 <fullName>Experiential</fullName>
                 <controllingFieldValues>Experiential - Promotional ideas ORIGINATION</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Experiential - Adaptation</fullName>
-                <controllingFieldValues>Experiential - Promotional ideas ADAPTATION</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -249,38 +267,13 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Flash Banners Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Flash Landing Pages</fullName>
                 <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Flash Landing Pages Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Flash Take Over Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Flash Take Overs</fullName>
                 <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>High Digital Bundle</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>High Digital Bundle - Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -298,47 +291,12 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>KV Adaptation</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Landing Pages Adaptations</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Logo</fullName>
                 <controllingFieldValues>Origination</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Low Digital Bundle</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Low Digital Bundle - Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Medium Digital Bundle</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Medium Digital Bundle - Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Microsite</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Microsite Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -371,11 +329,6 @@ Changed to Campaign on 26/10/2015</description>
             <picklistValues>
                 <fullName>Narration</fullName>
                 <controllingFieldValues>Stimulus Requirements</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>OOH Adaptation</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -412,11 +365,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Print Adaptation</fullName>
-                <controllingFieldValues>Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Product Demos</fullName>
                 <controllingFieldValues>Origination Full</controllingFieldValues>
                 <default>false</default>
@@ -424,11 +372,6 @@ Changed to Campaign on 26/10/2015</description>
             <picklistValues>
                 <fullName>Promotional</fullName>
                 <controllingFieldValues>Experiential - Promotional ideas ORIGINATION</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Promotional - Adaptation</fullName>
-                <controllingFieldValues>Experiential - Promotional ideas ADAPTATION</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -442,11 +385,6 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Re Shoot</fullName>
-                <controllingFieldValues>Adaptations and Reedits</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Simple Adaptation</fullName>
                 <default>false</default>
             </picklistValues>
@@ -455,48 +393,13 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Social Content</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Social Content - Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Social Media App</fullName>
-                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Social Media App - Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Static Banner Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Static Banners</fullName>
                 <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Static Landing Page Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Static Landing Pages</fullName>
                 <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Static Page Take Over Adaptation</fullName>
-                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -578,7 +481,147 @@ Changed to Campaign on 26/10/2015</description>
                 <controllingFieldValues>Specialist Digital</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
-            <sorted>true</sorted>
+            <picklistValues>
+                <fullName>KV Adaptation</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>OOH Adaptation</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Print Adaptation</fullName>
+                <controllingFieldValues>Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Experiential - Adaptation</fullName>
+                <controllingFieldValues>Experiential - Promotional ideas ADAPTATION</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Promotional - Adaptation</fullName>
+                <controllingFieldValues>Experiential - Promotional ideas ADAPTATION</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Re Shoot</fullName>
+                <controllingFieldValues>Adaptations and Reedits</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDM/eNewsletter (Simple)</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>High Digital Bundle</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium Digital Bundle</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low Digital Bundle</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Social Media App</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Social Content</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDM/eNewsletter (Complex)</fullName>
+                <controllingFieldValues>Digital Campaign Assets</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Animation</fullName>
+                <controllingFieldValues>Origination Full</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Static Banner Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Static Landing Page Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Static Page Take Over Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Flash Banners Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Flash Landing Pages Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Flash Take Over Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Microsite Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDM/eNewsletter (Simple Adaptation)</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>High Digital Bundle - Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Medium Digital Bundle - Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Low Digital Bundle - Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Social Media App - Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Social Content - Adaptation</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>EDM/eNewsletter (Complex Adaptation)</fullName>
+                <controllingFieldValues>Digital Adaptation</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
         </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -667,6 +710,30 @@ Changed to Campaign on 26/10/2015</description>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Calculator_Question__c</fullName>
+        <description>For use in Campaign Asset scoring reports only, not shown on UI</description>
+        <externalId>false</externalId>
+        <formula>RecordType.Name&amp;&quot; &quot;&amp; TEXT(Sub_Category__c)</formula>
+        <label>Asset Type/Subcategory</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Category__c</fullName>
+        <externalId>false</externalId>
+        <formula>RecordType.Name</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Category</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Channels__c</fullName>
         <externalId>false</externalId>
         <label>Channels</label>
@@ -738,7 +805,7 @@ Changed to Campaign on 26/10/2015</description>
     <fields>
         <fullName>Location__c</fullName>
         <externalId>false</externalId>
-        <label>Location</label>
+        <label>Other Description</label>
         <length>18</length>
         <required>false</required>
         <trackHistory>true</trackHistory>
@@ -751,6 +818,17 @@ Changed to Campaign on 26/10/2015</description>
         <externalId>false</externalId>
         <label>Oblix Cloned From Parent Asset</label>
         <length>18</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Option_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>Option Name</label>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>

@@ -165,6 +165,14 @@
         <name>Oblix_tec_Unique_Name__c</name>
     </fields>
     <fields>
+        <label><!-- % of Total Fee --></label>
+        <name>Percentage_of_Total_Fee_Campaign_Fees__c</name>
+    </fields>
+    <fields>
+        <label><!-- % of Total Fee --></label>
+        <name>Percentage_of_Total_Fee_Non_Campaign__c</name>
+    </fields>
+    <fields>
         <label><!-- SOW Status --></label>
         <name>SOW_Status__c</name>
         <picklistValues>

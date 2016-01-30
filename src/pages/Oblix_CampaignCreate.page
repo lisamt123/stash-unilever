@@ -1,0 +1,282 @@
+<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_SOWCampaignCreateController" standardStylesheets="true" action="{!init}">
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/css/unilever-style.css')}" />
+    <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/css/multi-select.css')}" />
+    <script src="{!URLFOR($Resource.Oblix_JQueryBlockUI)}"></script>
+    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/jquery.multi-select.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/jquery.quicksearch.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/biMap.js')}" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+
+    <script>
+        var mapCountriesRegion = {!mapRelatedCntriesJSONMap};
+        var preSelectedCountries = {!if(lstSelectedCountryJSON <> null,lstSelectedCountryJSON,'[]')};
+        var preSelectedRegions = {!if(lstSelectedRegionJSON <> null,lstSelectedRegionJSON,'[]')};
+        var unileverRegions = "{!lstRegion}";
+        var isGlobalCampaign = {!isGlobalCampaign};
+        var counter = {!counterAsset}; 
+        var bimap = new BiMap;
+        bimap.push(mapCountriesRegion);
+        var selectedCountries = [];
+        var selectedRegions = [];
+        var currentUnion = []; 
+        console.log(unileverRegions); 
+    </script>
+    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignCreate.js')}" type="text/javascript"></script>
+    <apex:form >
+        
+       
+        <apex:actionFunction name="setInfoCountries" action="{!setInfoCountries}" reRender="investmentPriority" immediate="true">
+            <apex:param name="region" assignTo="{!project.OblixRegion__c}" value="" />
+            <apex:param name="countries" assignTo="{!project.Campaign_Countries__c}" value="" />
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="setAgencyHub" action="{!SaveProjectAction}" rerender="errorMessages">
+            <apex:param name="splitId" assignTo="{!listItems}" value="" />
+            <apex:param name="isGobal" assignTo="{!isGobal}" value=""/>
+        </apex:actionFunction>
+
+        <apex:actionFunction name="setCampaignScaleOne" action="{!setCampaignScaleOne}" rerender="investmentPriority" immediate="true" oncomplete="$.unblockUI();">
+            <apex:param name="selectedRegion" assignTo="{!selectedRegion}" value="" />
+        </apex:actionFunction>
+
+        <apex:actionFunction name="setInfoDrivers" action="{!setInfoDrivers}"  reRender="false">
+            <apex:param name="innovation" assignTo="{!project.Innovation_Projects__c}" value="" />
+            <apex:param name="innov" assignTo="{!selectedBrandInnov}" value="{!selectedBrandInnov}"/>
+            <apex:param name="brand" assignTo="{!selectedBrandBrand}" value="{!selectedBrandBrand}"/>
+            <apex:param name="idea" assignTo="{!project.Campaign_Idea__c}" value="" />
+            <apex:param name="scale1" assignTo="{!project.Project_Scale_1__c}" value="" />
+            <apex:param name="scale2" assignTo="{!project.Project_Scale_2__c}" value="" />
+        </apex:actionFunction>
+        <apex:actionFunction name="setCampaignScale" action="{!setCampaignScale}" reRender="agencyScale" immediate="true">
+            <apex:param name="numberOFSelectedCountries" assignTo="{!numberOFSelectedCountries}" value="" />
+        </apex:actionFunction>
+
+        <div class="Oblix_header_bkgd">
+            <header class="Oblix_header_panel">
+                <img alt="Unilever-Logo" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
+                <div class="header_divider_vertical"></div>
+                <div class="header_panel_text">
+                    <h2>Hi {!userConnected.Name}, Welcome to SWOP the Scope of Work Online Planner</h2>
+                    <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;{!if(project.Name <> null,'Edit ' + project.Name,'Add new campaign')}
+                    </p>               </div>
+                <apex:commandButton styleClass="btn btn-xs pull-right btn_cross btn_exit_swop" id="swopExitButton" action="{!exitSwop}" value="DONE FOR TODAY? EXIT SWOP">
+                </apex:commandButton>
+                <apex:commandLink styleClass="btn btn-xs pull-right btn-danger btn_report btn_go_to_reports" action="{!goToReportsHome}" value="REPORTS" target="_blank">
+                </apex:commandLink>
+
+            </header>
+        </div>
+        <div class="container SOW_body">
+            
+            <apex:outputPanel id="errorMessages">
+                <apex:pageMessages />
+            </apex:outputPanel>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                
+                    <h1 class="SOW_header_title">{!IF(isEdit, 'Edit '+ project.Name,'Add campaign to '+ sowName)}</h1>
+                </div>
+
+            </div>
+            <hr class="divider" />
+            <div class="row new_sow_form">
+                <div class="col-lg-4 col-md-4">
+                    <div>
+                        <div class="form-group" id="campaignNameLabel">
+                            <label for="SOWName" class="create_SOW_form_titles" >Campaign Name*</label>
+                            <apex:inputField styleClass="form-control" id="CampaignName" value="{!project.Name}" />
+                        </div>
+                        <div class="form-group">
+                            <p>Description&nbsp;<span class="form_bracket_text">(Optional)</span>
+                            </p>
+                            <apex:inputField styleClass="form-control multi_line_form_style" value="{!project.Description__c}" />
+                        </div>
+                        <div id="agencyHubSplitLabel">
+                            <apex:actionRegion >
+                                <apex:outputPanel id="projectsplitSelections">
+                                <table class="campaign_create_agency_hub_split_table">
+                                    <tr>
+                                        <td colspan="4" class="create_SOW_form_titles" >Agency hub split*</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="campaign_create_agency_hub_split_table_subtitle" colspan="4">List lead agency market and any other supporting agency hub with %</td>
+                                    </tr>
+                                    
+                                        <apex:variable value="{!1}" var="display" />
+                                        <apex:repeat value="{!lstProjectSplitHubs}" var="split">
+                                            <tr>
+                                                <td class="{!if(display == 1,'campaign_create_agency_hub_split_table_subhead','')} "> <strong><div style="display :{!if(display == 1,'block','none')} ">&nbsp;{!$Label.Oblix_lbl_UIUX_Lead_Agency}</div></strong></td>
+                                                <td style="display:none"><div class="idSplit_{!display}" style="display:none">{!split.id}</div></td>
+                                                <td>
+                                                    <apex:selectList value="{!split.OblixCountry__c}" multiselect="false" size="1" styleClass="countrySplit_{!display}" onchange="setAgencyHubSplit();"> 
+                                                        <apex:selectOptions value="{!countryOptions}" />
+                                                    </apex:selectList>
+                                                </td>
+                                                <td class="agency_hub_last_cell_spacing">
+                                                    <apex:inputField value="{!split.Percentage__c}" style="width:50px" styleClass="campaign_create_agency_hub_split_table_value percentage pourcentageSplit_{!display}" /> %</td>
+                                            </tr>
+                                            <apex:variable var="display" value="{!display + 1}" />
+                                        </apex:repeat>
+                                </table>
+                            </apex:outputPanel>
+                            </apex:actionRegion>
+                            <div class="campaign_create_agency_hub_split_table_subtitle">
+                                <apex:commandLink action="{!addOneMoreProjectSplitInstance}" value="Add Row" rerender="projectsplitSelections"></apex:commandLink></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                    <div>
+                        <div class="form-group">
+                            <p>Platform&nbsp;<span class="form_bracket_text">(Optional)</span>
+                            </p>
+                            <apex:inputField styleClass="form-control" id="platform" value="{!project.Platform__c}" />
+                        </div>
+                        <div class="form-group">
+                            <p>Jobs to be done&nbsp;<span class="form_bracket_text">(Optional)</span>
+                            </p>
+                            <apex:inputField styleClass="form-control multi_line_form_style" value="{!project.Jobs_to_be_Done__c}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 status_completion_chevron_bar campaign_create_chevron">
+                    <div class="chevron_width_control">
+                        <div class="status_completion_chevron_bar_main_styling">
+                            <p class="create_SOW_form_titles" id="stagesLabel">Choose stages for this FY*</p>
+                            <p class="campaign_create_agency_hub_split_table_subtitle">Confirm which stages of the project will be completed in the current year.</p>
+                        </div>
+                        <c:Oblix_CampaignStage StageIdentifier="{!stage_identifier}" AutoSave="false" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="campaign_region_picklist" id="countriesLabel">
+                        <p class="create_SOW_form_titles" >Countries / regions*</p>
+                        <div class="campaign_create_agency_hub_split_table_subtitle global_region_picklist">
+                            <input type="checkbox" name="global_region_picklist" id="global_region_picklist" />&nbsp;Set as global
+                        </div>
+                        <div class="campaign_create_agency_hub_split_table_subtitle" id="global_region_picklist_container">
+                            <apex:repeat value="{!lstRegion}" var="region">
+                                <input type="radio" name="global_region_picklist" class="region_margin_left30" id="{!region}" onclick="addToRegionSelection();">{!region}</input>
+                            </apex:repeat>
+                        </div>
+                        <div id="clearAllCountries">
+                            <a href='#' id='deselect-all-countries'>Remove all</a>
+                        </div>
+                        <div>
+                            <select multiple="multiple" id="country-select" name="my-select[]">
+                                <apex:repeat value="{!mapAllCountries}" var="country">
+                                    <option value='{!country}'>{!country}</option>
+                                </apex:repeat>
+                            </select>
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 investment_project_box">
+                    <div class="col-lg-6" id="innovationLabel">
+                        <h2>Investment Priority</h2>
+                        <div>
+                            <p class="create_SOW_form_titles" >Please Choose Innovation Projects or Brand Led Growth*</p>
+                            <input class="Innovation" type="radio" name="innovation" value="Innovation" onchange="$('.projBrandBrand').attr('disabled','disabled');$('.projBrandBrand')[0].selectedIndex=0;$('.projBrandInnov').removeAttr('disabled');" />
+                            <apex:selectList value="{!selectedBrandInnov}" multiselect="false" size="1" styleClass="investment_project_dropdowns_left input_init projBrandInnov" onchange="setInvestmentPriorityInnovationProject();">
+                                <apex:selectOptions value="{!innovationOptions}" />
+                            </apex:selectList>
+                            <br/>
+                            <p class="campaign_create_agency_hub_split_table_subtitle" style="padding:0;">{!$Label.Oblix_lbl_UIUX_Identifying_priorities}</p>
+                        </div>
+                        <div>
+                            <input class="Brand_Led_Growth" type="radio" name="innovation" value="Brand Led Growth" onchange="$('.projBrandBrand').removeAttr('disabled');$('.projBrandInnov').attr('disabled','disabled');$('.projBrandInnov')[0].selectedIndex=0;" />
+                            <apex:selectList value="{!selectedBrandBrand}" multiselect="false" size="1" styleClass="investment_project_dropdowns_left input_init projBrandBrand" onchange="setInvestmentPriorityBrandLedGrowth();">
+                                <apex:selectOptions value="{!brandOptions}" />
+                            </apex:selectList>
+                            <br/>
+                            <p class="campaign_create_agency_hub_split_table_subtitle" style="padding:0;">{!$Label.Oblix_lbl_UIUX_Identifying_priorities2} </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="create_SOW_form_titles_investment">
+                        <div id="campaignIdeaLabel" class="margin_top20">
+                            <p class="create_SOW_form_titles" >{!$ObjectType.Oblix_SOW_Projects__c.fields.Campaign_Idea__c.label}*</p>
+                            <apex:inputField value="{!project.Campaign_Idea__c}" style="width:80%" styleClass="investment_project_dropdowns_right projCampaignIdea" />
+                        </div>
+                            <apex:actionRegion >
+                                <apex:outputPanel id="investmentPriority">
+                                <div id="geographicCoverage" class="margin_top40">
+                                    <p class="create_SOW_form_titles" id="geographicCoverage">{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Scale_1__c.label}*</p>
+                                    <apex:inputField value="{!project.Project_Scale_1__c}" style="width:80%" styleClass="input_init projScale1" />
+                                </div>
+                                </apex:outputPanel>
+                                <apex:outputPanel id="agencyScale">
+                                <div id="campaignScaleLabel" class="margin_top40">
+                                    <p class="create_SOW_form_titles" id="campaignScaleLabel">{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Scale_2__c.label}*</p>
+                                    <apex:inputField value="{!project.Project_Scale_2__c}" style="width:80%" styleClass="input_init projScale2" />
+                                </div>
+                                </apex:outputPanel>
+                            </apex:actionRegion>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-8 create_campaign_priority">
+                        <p>{!$ObjectType.Oblix_SOW_Projects__c.fields.Project_Priority__c.label}&nbsp;<span class="form_bracket_text">(Optional)</span>
+                        </p>
+                        <apex:inputField value="{!project.Project_Priority__c}" />
+                        <hr class="divider" />
+                        <p>Dates to show on the campaign timeline&nbsp;<span class="form_bracket_text">(Optional)</span>
+                        </p>
+                        <table>
+                            <tr>
+                                <td class="campaign_create_agency_hub_split_table_subtitle">Campaign start</td>
+                                <td class="table_date_formatting">
+                                    <apex:inputField value="{!project.Project_Start_Date__c}"  />
+                                </td>
+                                <td class="campaign_create_agency_hub_split_table_subtitle">First air date</td>
+                                <td class="table_date_formatting">
+                                    <apex:inputField value="{!project.First_Air_Date__c}" styleclass="dateFAD" />
+                                </td>
+                                <td class="campaign_create_agency_hub_split_table_subtitle">Preview date</td>
+                                <td class="table_date_formatting">
+                                    <apex:inputField value="{!project.Preview_Date__c}" styleclass="dateProjPREV" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="campaign_create_agency_hub_split_table_subtitle">Campaign completion</td>
+                                <td class="table_date_formatting">
+                                    <apex:inputField value="{!project.Project_Completion_Date__c}" styleclass="dateProjCD" />
+                                </td>
+                                <td class="campaign_create_agency_hub_split_table_subtitle">BET first release</td>
+                                <td class="table_date_formatting">
+                                    <apex:inputField value="{!project.BET_first_release__c}" styleclass="dateProjBFR" />
+                                </td>
+                                <td class="campaign_create_agency_hub_split_table_subtitle">BET final release</td>
+                                <td class="table_date_formatting">
+                                    <apex:inputField value="{!project.Final_release__c}" styleclass="dateProjFR" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="campaign_create_buttons">
+                        <apex:commandButton value="SAVE CAMPAIGN" onclick="validateCountrySplit(); return false;" styleClass="btn btn-primary btn-sm pull-right btn_save_campaign btn_check"/>
+                        <apex:commandButton value="CANCEL" action="{!backAction}" title="Cancel" styleClass="btn btn-sm pull-right btn_cancel btn_cross" immediate="true" html-formnovalidate="formnovalidate"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </apex:form>
+    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
+</apex:page>

@@ -76,6 +76,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Oblix_Current_FY_Total__c</field>
+            <table>Marketing_SOW__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>FINAL_APPROVED_FEE_K__c</field>
             <table>Marketing_SOW__c</table>
         </columns>
@@ -146,6 +151,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Total_Campaigns_This_FY__c</field>
+            <table>Marketing_SOW__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>OblixTotalOtherItemsFees__c</field>
             <table>Marketing_SOW__c</table>
         </columns>
@@ -185,6 +195,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Agency_Percentage_of_Fees_to_this_FY__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Asset_Deliverables__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>
         <columns>
@@ -234,6 +249,16 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Campaign_Points__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Campaign_Score__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Oblix_tec_Unique_Name__c</field>
             <table>Marketing_SOW__c</table>
         </columns>
@@ -265,6 +290,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Project_Scale_1__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Campaign_Hub_Summary__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>
         <columns>
@@ -344,7 +374,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>OblixCountries__c</field>
+            <field>Campaign_Countries__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r</table>
         </columns>
         <columns>
@@ -533,6 +563,11 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>Asset_Type__c</field>
+            <table>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Calculator_Question__c</field>
             <table>Marketing_SOW__c.Marketing_Projects__r.Agency_Project_Assets__r</table>
         </columns>
         <columns>
