@@ -441,12 +441,24 @@
         <name>AR_StepTwo</name>
     </customLabels>
     <customLabels>
+        <label><!-- Accept from Local --></label>
+        <name>Accept_from_Local</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Accept from Regional --></label>
+        <name>Accept_from_Regional</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Agency Email Alerts --></label>
         <name>Agency_Email_Alerts</name>
     </customLabels>
     <customLabels>
         <label><!-- Agency Fee Title --></label>
         <name>Agency_Fee_Title</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Agree and Proceed --></label>
+        <name>Agree_and_Proceed</name>
     </customLabels>
     <customLabels>
         <label><!-- BETManagerRole --></label>
@@ -1007,6 +1019,14 @@
     <customLabels>
         <label><!-- Bonus_Annual --></label>
         <name>Bonus_Annual</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Business Case Update Needed --></label>
+        <name>Business_Case_Update_Needed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Business Case Update Needed Value --></label>
+        <name>Business_Case_Update_Needed_Value</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC_Account_Site --></label>
@@ -2189,6 +2209,10 @@
         <name>CRMfusionDBR101__DB_Warning_Task_Subject</name>
     </customLabels>
     <customLabels>
+        <label><!-- Cancel and Revert --></label>
+        <name>Cancel_and_Revert</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Core NT App Url --></label>
         <name>Core_NT_App_Url</name>
     </customLabels>
@@ -2765,6 +2789,10 @@
         <name>IPM_AboutProject</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM About To Postpone Comments --></label>
+        <name>IPM_About_To_Postpone_Comments</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_AccessBET --></label>
         <name>IPM_AccessBET</name>
     </customLabels>
@@ -2827,6 +2855,10 @@
     <customLabels>
         <label><!-- IPM_AdvertisingCP --></label>
         <name>IPM_AdvertisingCP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Agree and Remove --></label>
+        <name>IPM_AgreeCountryRemoval</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_AlertMsgOutsideOTIF --></label>
@@ -2935,6 +2967,10 @@
     <customLabels>
         <label><!-- IPM At --></label>
         <name>IPM_At</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_AttentionMsg --></label>
+        <name>IPM_AttentionMsg</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_BACK --></label>
@@ -3197,6 +3233,10 @@
         <name>IPM_BET_No_BET_Message</name>
     </customLabels>
     <customLabels>
+        <label><!-- No result found --></label>
+        <name>IPM_BET_No_Result_Found</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM BET SEARCH RESULT --></label>
         <name>IPM_BET_SEARCH_RESULT</name>
     </customLabels>
@@ -3283,6 +3323,10 @@
     <customLabels>
         <label><!-- IPM_BOSSCARD_SKIP --></label>
         <name>IPM_BOSSCARD_SKIP</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_BRAND_BUILDING_FINANCE --></label>
+        <name>IPM_BRAND_BUILDING_FINANCE</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_BRAND_POSITIONING --></label>
@@ -3625,6 +3669,10 @@
         <name>IPM_CONCEPT</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_CONCEPT_REMOVE_NOTE --></label>
+        <name>IPM_CONCEPT_REMOVE_NOTE</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_CONFIDENTIAL_INFO --></label>
         <name>IPM_CONFIDENTIAL_INFO</name>
     </customLabels>
@@ -3741,6 +3789,10 @@
         <name>IPM_Calendar</name>
     </customLabels>
     <customLabels>
+        <label><!-- Cancel and Revert --></label>
+        <name>IPM_CancelCountryRemoval</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_CategoryNameNotNull --></label>
         <name>IPM_CategoryNameNotNull</name>
     </customLabels>
@@ -3853,6 +3905,14 @@
         <name>IPM_Confirm_Parameter</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_Consolidate_Show_Earlier_Years --></label>
+        <name>IPM_Consolidate_Show_Earlier_Years</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_Consolidate_Show_Later_Years --></label>
+        <name>IPM_Consolidate_Show_Later_Years</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM Consumer Evidence --></label>
         <name>IPM_Consumer_Evidence</name>
     </customLabels>
@@ -3875,6 +3935,10 @@
     <customLabels>
         <label><!-- IPM_Contract --></label>
         <name>IPM_Contract</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_CopyPastevolumevalid --></label>
+        <name>IPM_CopyPastevolumevalid</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM Copy Team From Other Projects --></label>
@@ -3919,6 +3983,10 @@
     <customLabels>
         <label><!-- IPM_CreateNewBETTitle --></label>
         <name>IPM_CreateNewBETTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Create Assotment Strategy --></label>
+        <name>IPM_Create_Assotment_Strategy</name>
     </customLabels>
     <customLabels>
         <label><!-- used wherever we want to show error message for creating regional rollouts --></label>
@@ -4553,6 +4621,10 @@
         <name>IPM_FastTrackProject</name>
     </customLabels>
     <customLabels>
+        <label><!-- FastTrack HelpText --></label>
+        <name>IPM_FastTrack_HelpText</name>
+    </customLabels>
+    <customLabels>
         <label><!-- Used wherever file is uploaded successfully --></label>
         <name>IPM_File_Uploaded_Successfully</name>
     </customLabels>
@@ -4615,6 +4687,10 @@
     <customLabels>
         <label><!-- IPM_Fin_Years --></label>
         <name>IPM_Fin_Years</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Finacial key data missing message --></label>
+        <name>IPM_Finacial_Data_Missing</name>
     </customLabels>
     <customLabels>
         <label><!-- Final Stategic Intent --></label>
@@ -4725,6 +4801,10 @@
         <name>IPM_Function_Leader_is_responsible</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_FunctionalRoleErrorMsg --></label>
+        <name>IPM_FunctionalRoleErrorMsg</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_FunctionalTeamMsgIdeas --></label>
         <name>IPM_FunctionalTeamMsgIdeas</name>
     </customLabels>
@@ -4747,6 +4827,10 @@
     <customLabels>
         <label><!-- IPM_GATE_KEEPING_MODULE --></label>
         <name>IPM_GATE_KEEPING_MODULE</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_GATE_STOP_COMMENTS_MEETING --></label>
+        <name>IPM_GATE_STOP_COMMENTS_MEETING</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_GCLT_AND_RCLT_ALL_APPROVAL --></label>
@@ -4913,6 +4997,10 @@
         <name>IPM_GlobalProject</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_Go_back_to_gate --></label>
+        <name>IPM_Go_back_to_gate</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_GotoIPMPortal --></label>
         <name>IPM_GotoIPMPortal</name>
     </customLabels>
@@ -5033,6 +5121,18 @@
         <name>IPM_ITOValidation</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_ITO_GTO_CALENDAR --></label>
+        <name>IPM_ITO_GTO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_ITO_GTO_INNOVATION --></label>
+        <name>IPM_ITO_GTO_INNOVATION</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM ITO GTO Validation Common message --></label>
+        <name>IPM_ITO_GTO_Validation_Common_message</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_IdsApprovalNotNullMSg --></label>
         <name>IPM_IdsApprovalNotNullMSg</name>
     </customLabels>
@@ -5151,6 +5251,10 @@
     <customLabels>
         <label><!-- IPM_LOCAL_PROJECT --></label>
         <name>IPM_LOCAL_PROJECT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Label for Financial Edit --></label>
+        <name>IPM_Label_for_Financial_Edit</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM Later --></label>
@@ -5365,12 +5469,16 @@
         <name>IPM_Milestone_DueDate_Validation</name>
     </customLabels>
     <customLabels>
-        <label><!-- Milestone Due Date --></label>
+        <label><!-- Postponed Past Date Validation --></label>
         <name>IPM_Milestone_Due_Date</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM Milestone Due Date Error --></label>
         <name>IPM_Milestone_Due_Date_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_Milestone_FutureDueDate_Validation --></label>
+        <name>IPM_Milestone_FutureDueDate_Validation</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM Milestone Standard --></label>
@@ -5455,6 +5563,10 @@
     <customLabels>
         <label><!-- IPM_NO_DOCUMENT --></label>
         <name>IPM_NO_DOCUMENT</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_NO_EFFECT --></label>
+        <name>IPM_NO_EFFECT</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_NO_MATCHES_FOUND --></label>
@@ -6017,6 +6129,10 @@
         <name>IPM_PhaseChangeBKProcessWarning_Regional</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_PhaseChangeInProgressMsg --></label>
+        <name>IPM_PhaseChangeInProgressMsg</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM PhaseLabel --></label>
         <name>IPM_PhaseLabel</name>
     </customLabels>
@@ -6041,6 +6157,10 @@
         <name>IPM_Please_Fill_Comments_In</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM Please complete the Risk management plan before proposing gate document --></label>
+        <name>IPM_Please_complete_the_Risk_mitigation_plan_before_proposing_gate_document</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_PojectSetupUrl --></label>
         <name>IPM_PojectSetupUrl</name>
     </customLabels>
@@ -6051,6 +6171,14 @@
     <customLabels>
         <label><!-- IPM Postpone Msg --></label>
         <name>IPM_Postpone_Msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Postponed Future Date Validation --></label>
+        <name>IPM_Postponed_Future_Date_Validation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM Postponing Project Gate --></label>
+        <name>IPM_Postponing_Project_Gate</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM Priority | Dist target % --></label>
@@ -6107,6 +6235,10 @@
     <customLabels>
         <label><!-- IPM ProjectPhaseChangeMesg --></label>
         <name>IPM_ProjectPhaseChangeMesg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_ProjectPriority --></label>
+        <name>IPM_ProjectPriority</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM ProjectRoute --></label>
@@ -6225,6 +6357,10 @@
         <name>IPM_REFERENCE_MARKET_RESEARCH</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_REGIONAL_ROLLOUT_ADD_HELP --></label>
+        <name>IPM_REGIONAL_ROLLOUT_ADD_HELP</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_REMOVE_MILESTONE --></label>
         <name>IPM_REMOVE_MILESTONE</name>
     </customLabels>
@@ -6267,6 +6403,10 @@
     <customLabels>
         <label><!-- IPM_REVIEW_RISK_LINK_RQS --></label>
         <name>IPM_REVIEW_RISK_LINK_RQS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_REVIEW_RISK_QUICK_SCAN --></label>
+        <name>IPM_REVIEW_RISK_QUICK_SCAN</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_RISKY --></label>
@@ -6385,6 +6525,14 @@
         <name>IPM_Remove</name>
     </customLabels>
     <customLabels>
+        <label><!-- Remove Country From MCO --></label>
+        <name>IPM_RemoveCountryFromMCO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Remove Country Warning Message --></label>
+        <name>IPM_RemoveCountryMsg</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_RemoveTask --></label>
         <name>IPM_RemoveTask</name>
     </customLabels>
@@ -6411,6 +6559,10 @@
     <customLabels>
         <label><!-- IPM_Remove_Country --></label>
         <name>IPM_Remove_Country</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_Remove_Customer_Channel --></label>
+        <name>IPM_Remove_Customer_Channel</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_Remove_Member --></label>
@@ -6661,6 +6813,10 @@
         <name>IPM_SOME_CONSIDERATIONS</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM Started --></label>
+        <name>IPM_STARTED</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_START_ADD_ROLLOUT --></label>
         <name>IPM_START_ADD_ROLLOUT</name>
     </customLabels>
@@ -6679,6 +6835,10 @@
     <customLabels>
         <label><!-- IPM_SUMMARY --></label>
         <name>IPM_SUMMARY</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_SUMMARY_TEXT_MINIMUM_LIMIT --></label>
+        <name>IPM_SUMMARY_TEXT_MINIMUM_LIMIT</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM_SUPPLY_CHAIN_QUESTIONS --></label>
@@ -6807,6 +6967,10 @@
     <customLabels>
         <label><!-- IPM Select Sustainability --></label>
         <name>IPM_Select_Sustainab</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_Select Text --></label>
+        <name>IPM_Select_Text</name>
     </customLabels>
     <customLabels>
         <label><!-- Select existing Toolkit --></label>
@@ -6961,6 +7125,18 @@
         <name>IPM_TLD_SHOULD_BE_GREATER_THAN_TODAYDate</name>
     </customLabels>
     <customLabels>
+        <label><!-- IPM_TLD_VR_Misaligned --></label>
+        <name>IPM_TLD_VR_Misaligned</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_TLD_VR_Misaligned_Part_Msg --></label>
+        <name>IPM_TLD_VR_Misaligned_Part_Msg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_TLD_Year_Misaligned --></label>
+        <name>IPM_TLD_Year_Misaligned</name>
+    </customLabels>
+    <customLabels>
         <label><!-- IPM_TOPPING_UP_ON_THINGS --></label>
         <name>IPM_TOPPING_UP_ON_THINGS</name>
     </customLabels>
@@ -7039,6 +7215,10 @@
     <customLabels>
         <label><!-- IPM TaskLabel --></label>
         <name>IPM_TaskLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- IPM_TaskNameErrorMsg --></label>
+        <name>IPM_TaskNameErrorMsg</name>
     </customLabels>
     <customLabels>
         <label><!-- IPM Task Assign Text1 --></label>
@@ -8769,6 +8949,10 @@
         <name>TASK_OBJ_NAME</name>
     </customLabels>
     <customLabels>
+        <label><!-- TLD After Charter Contract and Market Ready Milestone Dates --></label>
+        <name>TLD_After_Charter_Contract_and_Market_Ready_Milestone_Dates</name>
+    </customLabels>
+    <customLabels>
         <label><!-- TO_CaseIdentifier --></label>
         <name>TO_CaseIdentifier</name>
     </customLabels>
@@ -9323,6 +9507,10 @@
     <customLabels>
         <label><!-- Refresh --></label>
         <name>refresh</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Audio --></label>
+        <name>secondsOblix_Lbl_UIUX_Audio_Score4</name>
     </customLabels>
     <customLabels>
         <label><!-- Text for the link in the upper left corner --></label>
@@ -10981,6 +11169,37 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- SWOP Asset Scoring --></description>
+        <label><!-- SWOP Asset Scoring --></label>
+        <name>Oblix_Assets</name>
+        <sections>
+            <label><!-- SWOP Asset  Scoring --></label>
+            <name>SWOP Asset  Scoring</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP SOW, Campaign and Asset --></description>
+        <label><!-- SWOP SOW, Campaign and Asset --></label>
+        <name>Oblix_Marketing_SOW</name>
+        <sections>
+            <label><!-- Marketing SOW --></label>
+            <name>Marketing SOW</name>
+        </sections>
+        <sections>
+            <label><!-- Marketing SOW Copies --></label>
+            <name>Marketing SOW Copies</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP Calculator --></description>
+        <label><!-- SWOP Calculator --></label>
+        <name>Oblix_SWOP_Calculator</name>
+        <sections>
+            <label><!-- SWOP Calculator --></label>
+            <name>SWOP Calculator</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- SWOP - SOW Campaigns and Assets --></description>
         <label><!-- SWOP - SOW Campaigns and Assets --></label>
         <name>Oblix_SWOP_SOW</name>
@@ -11219,6 +11438,79 @@
         <sections>
             <label><!-- Reports --></label>
             <name>Reports</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP Campaigns --></description>
+        <label><!-- SWOP Campaigns --></label>
+        <name>SWOP_Campaigns</name>
+        <sections>
+            <label><!-- Asset --></label>
+            <name>Asset</name>
+        </sections>
+        <sections>
+            <label><!-- SOW --></label>
+            <name>SOW</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaigns --></label>
+            <name>SWOP Campaigns</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP - SOW and Campaigns --></description>
+        <label><!-- SWOP - SOW and Campaigns --></label>
+        <name>SWOP_SOW</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaigns --></label>
+            <name>SWOP Campaigns</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP SOW --></description>
+        <label><!-- SWOP SOW --></label>
+        <name>SWOP_SOW_ONLY</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP SOW campaigns splits --></description>
+        <label><!-- SWOP SOW campaigns splits --></label>
+        <name>SWOP_SOW_campaigns_splits</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaign Splits --></label>
+            <name>SWOP Campaign Splits</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaigns --></label>
+            <name>SWOP Campaigns</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- SWOP with SWOP Campaigns with SWOP Campaign Splits --></description>
+        <label><!-- SWOP with SWOP Campaigns with SWOP Campaign Splits --></label>
+        <name>SWOP_with_SWOP_Campaigns_with_SWOP_Campaign_Splits</name>
+        <sections>
+            <label><!-- SWOP --></label>
+            <name>SWOP</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaign Splits --></label>
+            <name>SWOP Campaign Splits</name>
+        </sections>
+        <sections>
+            <label><!-- SWOP Campaigns --></label>
+            <name>SWOP Campaigns</name>
         </sections>
     </reportTypes>
     <reportTypes>

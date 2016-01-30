@@ -1,0 +1,285 @@
+<apex:page sidebar="false" controller="Oblix_SOWMainDetailController" docType="html-5.0" showHeader="false" standardStylesheets="true">
+
+    <apex:composition template="Oblix_OuterPageTemplate">
+
+        <apex:define name="top_breadcrumb">
+            <a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;{!selected_sow.Name}        
+        </apex:define>
+        <apex:define name="header_text">
+            {!selected_sow.Name}
+        </apex:define>
+
+        <apex:define name="top_option_links">
+            <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                <apex:commandLink value="Edit SOW" action="{!editActionPage}"></apex:commandLink>&nbsp;&nbsp;|
+                <a href="" disabled="disabled">Clone SOW</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                <!-- <apex:commandLink value="Delete SOW" action="{!deleteAction}"></apex:commandLink> -->
+                <a href="#" onclick="if (confirm('Are you sure you want to delete this SOW?')){deleteSOW();blockme();}">Delete SOW</a>
+            </apex:outputPanel>
+        </apex:define>
+
+        <apex:define name="top_right_panel">
+            <table class="SOW_header_value_summary">
+                <tr>
+                    <td class="SOW_header_value_title">SOW total</td>
+                    <td class="SOW_header_value">
+                        <h2>
+                           €
+                            <apex:outputText value="{0, number,###,###,##0}">
+                                <apex:param value="{!selected_sow.Total_Campaigns_This_FY__c+selected_sow.OblixTotalOtherItemsFees__c}" />
+                            </apex:outputText>
+                        </h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="SOW_header_value_subtitle">Campaign total</td>
+                    <td class="SOW_header_value_subvalue">
+                        €
+                        <apex:outputText value="{0, number,###,###,##0}">
+                            <apex:param value="{!selected_sow.Total_Campaigns_This_FY__c}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="SOW_header_value_subtitle">Non-campaign total</td>
+                    <td class="SOW_header_value_subvalue">
+                    €
+                    <apex:outputText value="{0, number,###,###,##0}">
+                            <apex:param value="{!selected_sow.OblixTotalOtherItemsFees__c}" />
+                        </apex:outputText>
+                    </td>
+                </tr>
+            </table>
+        </apex:define>
+
+        <apex:define name="body_content">
+            <hr class="divider" />
+            <table class="SOW_name_status_info">
+                <tr>
+                    <td class="SOW_name_status_info_titles">Status</td>
+                    <td>{!selected_sow.SOW_Status__c}</td>
+                    <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.BB_or_BD__c.label}</td>
+                    <td>{!selected_sow.BB_or_BD__c}</td>
+                </tr>
+                <tr>
+                    <td class="SOW_name_status_info_titles">Last updated</td>
+                    <td><apex:outputText value="{0,date,MM'/'dd'/'yyyy}">
+                             <apex:param value="{!selected_sow.lastmodifiedDate}" /> 
+                        </apex:outputText> by {!selected_sow.LastModifiedBy.Name}</td>
+                    <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.OblixBrand__c.label}</td>
+                    <td>{!selected_sow.OblixBrand__r.Name}</td>
+                </tr>
+                <tr>
+                    <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Oblix_AgencyEstimate__c.label}</td>
+                    <td>{!selected_sow.Oblix_AgencyEstimate__r.name}</td>
+                    <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.BigOblixProductCategory__c.label}</td>
+                    <td>{!selected_sow.BigOblixProductCategory__r.name}</td>
+                </tr>
+                <tr>
+                    <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Agency_Contact__c.label} </td>
+                    <td>{!selected_sow.Agency_Contact__r.name}</td>
+                    <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.SmallProductCategory__c.label}</td>
+                    <td>{!selected_sow.SmallProductCategory__r.name}</td>
+                </tr>
+                <tr>
+                    <td class="SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Unilever_Lead__c.label}</td>
+                    <td>{!selected_sow.Unilever_Lead__r.name}</td>
+                    <td class="SOW_name_status_info_margin SOW_name_status_info_titles">{!$ObjectType.Marketing_SOW__c.fields.Financial_Year__c.label}</td>
+                    <td>{!selected_sow.Financial_Year__c}</td>
+                </tr>
+            </table>
+            <div class="form-group sow_main_attachments " id="UnileverAttachment">
+                <p>Attachment</p>
+                 <apex:actionRegion >
+
+                    <div>
+                        <apex:repeat value="{!liso_attachments}" var="eachAttachment">
+                            <div id="{!eachAttachment.Id}">
+                                <div id="attachmentContainer">
+                                <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                                    <a class="attachment_item" href="#" data-attachment-id="{!eachAttachment.Id}" onclick="removeAttachments('{!eachAttachment.Id}'); return false;"></a>
+                                </apex:outputPanel>
+                                   &nbsp;
+                                    <a href="/servlet/servlet.FileDownload?file={!eachAttachment.Id}" target="_blank" title="Uploaded by {!eachAttachment.CreatedBy.Name} on {!eachAttachment.CreatedDate}"> {!eachAttachment.Name}</a>
+                                 </div>
+                            </div>
+                        </apex:repeat>
+                    </div>
+                 </apex:actionRegion>
+
+            </div>
+            <!-- Page: -->
+            
+
+            
+            <div class="row">
+                <ul id="tabs" class="sow_tab_style nav nav-tabs sow_tab_align " data-tabs="tabs">
+                    <li class="active"><a href="#red" data-toggle="tab">Related SOW items</a>
+                    </li>
+                    <li><a href="#orange" data-toggle="tab">Related SOW Conversation</a>
+                    </li>
+                    <li><a href="#yellow" data-toggle="tab">Campaign Timeline</a>
+                    </li>
+                    <apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}">
+                        <apex:commandButton value="ADD CAMPAIGN" title="ADD CAMPAIGN" action="{!AddProject}" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_campaign" disabled="{!IF(sow_id == null, true, false)}"></apex:commandButton>
+                        <apex:commandButton value="ADD NON-CAMPAIGN" title="ADD NON-CAMPAIGN" action="{!addNonCampaignProject}" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_non_campaign" disabled="{!IF(sow_id == null, true, false)}"></apex:commandButton>
+                    </apex:outputPanel>
+                </ul>
+            </div>
+            <!--            Welcome message to start building SOW -->
+            <apex:outputPanel id="newSOW" rendered="{!IF(li_campaign_and_non_campaign_items.size == 0,true,false)}">
+                <div class="row SOW_homepage_welcome_message" >
+                    <div class="col-lg-7 col-lg-offset-3">
+                        <h1>Click either button to start building your SOW</h1>
+                        <img alt="Add to SOW" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/arrow-green-up-right.png')}" width="96" height="77"/>
+                    </div>
+                </div>
+            </apex:outputPanel>
+            <apex:outputPanel id="relatedItems" rendered="{!IF(li_campaign_and_non_campaign_items.size > 0,true,false)}">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div id="my-tab-content" class="tab-content">
+                            <div class="tab-pane active" id="red">
+                                <div class="pull-right SOW_homepage_find">
+                                    <label>Find a specific SOW</label>
+                                    <input type="text" name="findSOW" id="searchBox" />
+                                </div>
+                                <table class="table table-striped" id="sowListTable">
+                                    <thead>
+                                        <tr>
+                                            <th style="display:none;width:0px !important">{!$Label.Oblix_lbl_UIUX_Project_Id}</th>
+                                            <th>{!$ObjectType.Oblix_SOW_Projects__c.fields.Name.label} </th>
+                                            <th>Type</th>
+                                            <th>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label}</th>
+                                            <th ><div>Countries</div></th>
+                                            <th class="table_cell_progress_bar">Stages</th>
+                                            <th>Full campaign fee</th>
+                                            <th>FY campaign fee</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- <apex:repeat value="{!thousandBlocks}" var="block"> -->
+                                        <apex:repeat value="{!li_campaign_and_non_campaign_items}" var="campaign_and_non_campaign">
+                                            <apex:outputPanel rendered="{!campaign_and_non_campaign.s_object_type == 'Campaign'}">
+                                                <tr class="{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'project_cancelled','')} camp">
+                                                    <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
+                                                    <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
+                                                    <td>{!campaign_and_non_campaign.s_object_type}</td>
+                                                    <td>{!campaign_and_non_campaign.dynamic_object['OblixRegion__c']}</td>
+                                                    <td ><div class="countriesSelected"> {!campaign_and_non_campaign.dynamic_object['Campaign_Countries__c']}</div></td>
+                                                    <td class="table_progress_bar_styling">
+                                                        <div id="crumbs">
+                                                            <p>{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'Project Cancelled','')}</p>
+                                                            <ul>
+                                                                <li>
+                                                                    <div title="Briefing" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[0].s_css_class_name}">
+                                                                        <a></a>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div title="Strategy & Planning" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[1].s_css_class_name}">
+                                                                        <a></a>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div title="Creative Ideation" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[2].s_css_class_name}">
+                                                                        <a></a>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div title="Creative Execution" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[3].s_css_class_name}">
+                                                                        <a></a>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div title="Production" class="{!campaign_and_non_campaign.stage_identifier.lis_stage_css_class[4].s_css_class_name}">
+                                                                        <a></a>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </td>
+                                                    <td>€&nbsp;
+                                                        <apex:outputText value="{0, number,###,###,##0}">
+                                                            <apex:param value="{!campaign_and_non_campaign.dynamic_object['Total_Fees_for_Project__c']}" />
+                                                        </apex:outputText>
+                                                    </td>
+                                                    <td>€&nbsp;
+                                                        <apex:outputText value="{0, number,###,###,##0}">
+                                                            <apex:param value="{!campaign_and_non_campaign.dynamic_object['Value_to_be_paid_in_Current_FY__c']}" />
+                                                        </apex:outputText>
+                                                    </td>
+                                                </tr>
+                                            </apex:outputPanel>
+                                            <apex:outputPanel rendered="{!campaign_and_non_campaign.s_object_type == 'Non Campaign'}">
+                                                <tr>
+                                                    <td style="display:none;width:0px !important">{!campaign_and_non_campaign.dynamic_object['Id']}</td>
+                                                    <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
+                                                    <td>{!campaign_and_non_campaign.s_object_type}</td>
+                                                    <td></td>
+                                                    <td>{!campaign_and_non_campaign.dynamic_object['OblixCountry__r.Name']}</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>€&nbsp;
+                                                        <apex:outputText value="{0, number,###,###,##0}">
+                                                            <apex:param value="{!campaign_and_non_campaign.dynamic_object['OblixOtherItemFee__c']}" />
+                                                        </apex:outputText>
+                                                    </td>
+                                                </tr>
+                                            </apex:outputPanel>
+                                        </apex:repeat>
+                                        <!-- </apex:repeat> -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="tab-pane" id="orange">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12">
+                                        <chatter:feedWithFollowers entityId="{!sow_id}">
+                                        </chatter:feedWithFollowers>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="yellow">
+                                <h1>Coming Soon</h1>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </apex:outputPanel>
+
+            <apex:actionFunction name="SaveAttachments" action="{!SaveAttachments}" rerender="accountTable, pageMessages">
+                <apex:param value="{!allFileList}" assignTo="{!allFileList}" name="allFileList" />
+            </apex:actionFunction>
+            <apex:actionFunction name="ViewProject" action="{!ViewProject}" rerender="accountTable, pageMessages">
+                <apex:param value="{!selectedProjectId}" assignTo="{!selectedProjectId}" name="ids" />
+            </apex:actionFunction>
+            <apex:actionFunction name="viewNonCampaign" action="{!viewNonCampaign}" rerender="accountTable, pageMessages">
+                <apex:param value="{!selectedProjectId}" assignTo="{!selectedProjectId}" name="ids" />
+            </apex:actionFunction>
+            <apex:actionFunction name="deleteSOW" action="{!DeleteAction}" oncomplete="unblockUI();"/>
+            <apex:actionFunction name="getCategoryBrandRec" action="{!getCategoryBrand}" rerender="sowNewId" oncomplete="unblockUI();">
+                <apex:param value="{!selected_sow.OblixBrand__c}" name="brandId" />
+            </apex:actionFunction>
+            <apex:actionFunction name="removeAttachmentsBack" action="{!refreshAttachments}" reRender="attachmentContainer" />
+        </apex:define>
+<!--         <div id="dialog-confirm" title="Confirm Delete" style="display:none;">
+            <p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>This SOW will be deleted, together with its campaign and other related items. Are you sure?</p>
+        </div> -->
+        <apex:define name="page_scripts">
+            <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_SOWMainDetail.js')}"/>
+
+            <script>
+            // Tooltip
+            $(function() {
+                $('#crumbs').tooltip();
+                //$( document ).tooltip();
+              });
+            </script>
+        </apex:define>
+    </apex:composition>
+    
+            
+            
+</apex:page>

@@ -1,7 +1,7 @@
 <!-- VF Created By Jamal -->
 <apex:page standardController="Oblix_Project_Assets__c" extensions="Oblix_Ctrl02OverrideAssetNew" id="Page" tabstyle="Oblix_Project_Assets__c">
  <apex:form id="myForm"> 
-  <script type="text/javascript"> 
+  <!--<script type="text/javascript"> 
   function openLookup(baseURL, width, modified, searchParam){
     var originalbaseURL = baseURL;
     var originalwidth = width;
@@ -35,7 +35,8 @@
       openPopup(originalbaseURL, "lookup", 350, 480, "width="+originalwidth+",height=480,toolbar=yes,status=yes,directories=no,menubar=yes,resizable=yes,scrollable=no", true);
     } 
   }
-</script>
+</script>-->
+    <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_OverrideAssetNewLookup.js')}" />
   {!$Label.Oblix_Lbl_SOW_Marketing_Clone_Procedure}
 <apex:sectionHeader title="{!$Label.Oblix_Lbl_VF02_Project_Asset}"  subtitle="{!IF(asset.Id<>null, asset.Name, 'New Asset')}" />
     <apex:actionFunction action="{!NULL}" name="changeType" reRender="myForm"/>
