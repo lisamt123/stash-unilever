@@ -56,7 +56,7 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Agency_Department__c</fullName>
         <externalId>false</externalId>
@@ -1128,6 +1128,23 @@
     </fields>
     <label>SWOP Calculator</label>
     <listViews>
+        <fullName>All</fullName>
+        <columns>RECORDTYPE</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>Financial_Year__c</columns>
+        <columns>Oblix_Agency__c</columns>
+        <columns>OblixCountry__c</columns>
+        <columns>Job_Description__c</columns>
+        <columns>Agency_Department__c</columns>
+        <columns>Role_Title__c</columns>
+        <columns>FTE__c</columns>
+        <columns>Role_Daily_Rate_EUR__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
         <fullName>BoxRange</fullName>
         <columns>OBJECT_ID</columns>
         <columns>RECORDTYPE</columns>
@@ -1147,6 +1164,28 @@
             <value>Box Range</value>
         </filters>
         <label>Box Range</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>Box_Range_DS</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>RECORDTYPE</columns>
+        <columns>NAME</columns>
+        <columns>Box_Range__c</columns>
+        <columns>Points_Low__c</columns>
+        <columns>Points_High__c</columns>
+        <columns>Financial_Year__c</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <columns>LAST_UPDATE</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>RECORDTYPE</field>
+            <operation>equals</operation>
+            <value>Oblix_Calculator__c.Box_Range</value>
+        </filters>
+        <label>Box Range DS</label>
         <language>en_US</language>
     </listViews>
     <listViews>
@@ -2959,5 +2998,5 @@
         </picklistValues>
     </recordTypes>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>
