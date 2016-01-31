@@ -460,17 +460,6 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
 
         //get global impact value for project      
         globalbusinessImpactStr='';
-        /*KEEP THE BELOW CODE TO CHECK IMPACT OF NEW CHANGE.
-        for(IPM_Financial__c fin:project.IPM_Financials_Consolidated__r){
-            globalbusinessImpactStr+='1';
-            if(fin.Global_External_Id__c==lstofuser[0].Name && fin.Global_External_Id__c!=null && fin.Business_Impact_Global__c != null){
-                globalbusinessImpactStr+='2';
-                globalbusinessImpactStr += fin.Business_Impact_Global__c;
-                break;
-            } 
-            globalbusinessImpactStr+='4';
-            
-        }*/
         //DEF2103-30/12/15-Reopen for BI not calculated on Global projects
         /*Analysis-IPM_Financials_Consolidated__r is not returning value may be because of recent change in BIG query above or change in formula field.
         New query is introduced now to fetch BI from IPM financial for global projects.
@@ -498,9 +487,17 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
             }
         }
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL &&  project.IPM_Project_Type__c !=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-            list<IPM_Financial__c> liFinParentLoc = [select Business_Impact_Global__c from IPM_Financial__c where global_project_id__c=:project.IPM_Global_Project_Id__c and parent_Project__c=:project.IPM_Global_Project_Id__c limit 1];
+            list<IPM_Financial__c> liFinParentLoc = [select Parent_Project__c, regional_project__r.IPM_Project_Type__c, Business_Impact_Global__c, Business_Impact_Regional__c from IPM_Financial__c where Local_Project__c=:project.Id limit 1];
             if (liFinParentLoc!=null && liFinParentLoc.size()>0){
-                globalbusinessImpactStr = liFinParentLoc[0].Business_Impact_Global__c;
+                //If local project has Global Original as parent then copy BI from financial's Global BI field
+                if(liFinParentLoc[0].Parent_Project__c!=null){
+                    globalbusinessImpactStr = liFinParentLoc[0].Business_Impact_Global__c;
+                }//if local project has Regional original as parent then copy BI from financial's regional BI field 
+                else if(liFinParentLoc[0].Parent_Project__c==null && liFinParentLoc[0].regional_project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
+                    globalbusinessImpactStr = liFinParentLoc[0].Business_Impact_Regional__c;
+                }else{
+                    globalbusinessImpactStr = '-';
+                }
             }
         }
         //DEF3019
