@@ -24147,6 +24147,10 @@
         <apexPage>BET</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+	<pageAccesses>
+		<apexPage>BET_AssetDispatcher</apexPage>
+		<enabled>true</enabled>
+    </pageAccesses>
     <pageAccesses>
         <apexPage>BET_Chatter</apexPage>
         <enabled>true</enabled>
