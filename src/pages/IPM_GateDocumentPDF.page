@@ -438,8 +438,11 @@
         .cmiTimeContainer1{display:table-cell;}
         .cpart1{display:table-cell;}
         .cmiRes1Container .cmiChrtrLeftValue:first-child,.cmiRes2Container .cmiChrtrRightValue:first-child{border-bottom:0.5pt solid #ccc;}
-               
-         td.bggray:first-child 
+
+        .ipmFintableAlign .finproject,.ipmFintableAlign tr.fintleblubg div,.ipmFintableAlign tr td.fintleblubg div{font-size:10px !important;}
+        .ipmFintableAlign tr td.fintleblubg div{padding-left:10px;}
+        
+        td.bggray:first-child 
         {
            width:27.5%
         } 
@@ -649,13 +652,14 @@
                     
                             <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
                     <td>
-                        <apex:outputText value="{!fin.Year_3_iTO_Global__c}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </td>
                     </apex:outputText>
                       
                             <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
                     <td>
-                        <apex:outputText value="{!finProjectPriority.Year_3_iTO_Local__c}"/><apex:outputText rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                    
+                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),finProjectPriority.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved'),finProjectPriority.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),finProjectPriority.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved' ),finProjectPriority.Year_3_iTO_MD__c,finProjectPriority.Year_3_iTO_Local__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </td>
                     </apex:outputText>
                   
@@ -663,7 +667,7 @@
                    
                             <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
                     <td>
-                        <apex:outputText value="{!fin.Year_3_iTO_Regional__c}"/><apex:outputText rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                        <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Regional__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                     </td>
                     </apex:outputText>
                    
@@ -716,8 +720,20 @@
                         </td>
                         <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Global','true','false')}">
                             <td>
-                                <apex:outputText value="{!fin.Year_3_iTO_Global__c}"/>
+                              <apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' && projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Global__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
                             </td>
+                        </apex:outputText>
+                         <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
+                            <td>
+                               
+                        		<apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_MD__c,finProjectPriority.Year_3_iTO_Local__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                                
+                            </td>
+                        </apex:outputText>
+                        <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
+                            <td>
+                        		<apex:outputText value="{!if(AND(projectDoc.IPM_GateDocuments__c=='Charter', projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Charter__c,if(AND(projectDoc.IPM_GateDocuments__c=='Contract' , projectDoc.IPM_Document_Status__c=='Approved' ),fin.Year_3_iTO_Contract__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Ready' , projectDoc.IPM_Document_Status__c='Approved' ),fin.Year_3_iTO_MR__c,if(AND(projectDoc.IPM_GateDocuments__c=='Market Deployment' , projectDoc.IPM_Document_Status__c=='Approved'),fin.Year_3_iTO_MD__c,fin.Year_3_iTO_Regional__c))))}"/><apex:outputText styleClass="threshold" rendered="{!isExemptFromThresholdITO}" value="{!$Label.IPM_Exempt_from_Threshold}"/>
+                            </td>      
                         </apex:outputText>
                     </tr>
                     <tr>     
@@ -739,16 +755,7 @@
                         <td>                    
                             <apex:outputText value="{!project.IPM_Complexity__c}"/>
                         </td>
-                        <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Local','true','false')}">
-                            <td>
-                                <apex:outputText value="{!fin.Year_3_iTO_Local__c}"/>
-                            </td>
-                        </apex:outputText>
-                        <apex:outputText rendered="{! if(project.IPMProject_Span__c=='Regional','true','false')}">
-                            <td>
-                                <apex:outputText value="{!fin.Year_3_iTO_Regional__c}"/>
-                            </td>      
-                        </apex:outputText>
+                       
                     </tr>
                     <tr class="lastchild" >    
                         <td class="label" >
@@ -785,10 +792,9 @@
            <apex:outputPanel rendered="{!IF(AND(OR(pds.IPM_Section__r.IPM_Section_Type__c='Text',pds.IPM_Section__r.IPM_Section_Type__c='Checklist',pds.IPM_Section__r.IPM_Section_Type__c='Static Table',pds.IPM_Section__r.IPM_Section_Type__c='Dynamic Complex Table',pds.IPM_Section__r.IPM_Section_Type__c='Dynamic Simple Table'),pds.IPM_Section__r.IPM_Parent_Section__r.External_ID__c!='Appendix',pds.IPM_Default_Section__c=true,IF(AND(pds.IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c = 'BLG',pds.IPM_Section__r.IPM_Section_Sequence__c='5.3'),FALSE,TRUE)),true,false)}"> 
                 <apex:outputText value="{!pds.IPM_Section_Sequence__c} {!pds.IPM_Section_Name__c} [{!pds.IPM_FunctionalRole__c}]"  styleClass="heading4 bold" />
           <!--- Components To BE Displayed within Sections--->
- 
- 
-                <!--<c:IPM_Financial_ActionStandards isEditable="false" projId="{!projectId}" secId="{!pds.Id}" rendered="{!pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards'}" > </c:IPM_Financial_ActionStandards>-->
-                <c:IPM_FinGate projId="{!projectId}" rendered="{!pds.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity'}" ></c:IPM_FinGate>
+
+                <c:IPM_Financial_ActionStandards gate="{!projectDoc.IPM_GateDocuments__c}" isEditable="false" projId="{!projectId}" secId="{!pds.Id}" rendered="{!AND(pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c!='Market Deployment')}" > </c:IPM_Financial_ActionStandards>
+                <c:IPM_FinGate projId="{!projectId}" rendered="{!OR(pds.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',AND(pds.IPM_Master_Section_External_Id__c='Business_Case_Action_Standards',projectDoc.IPM_GateDocuments__c=='Market Deployment'))}" ></c:IPM_FinGate>
                 <c:IPM_RND_QuestionsView rendered="{!if(OR(pds.IPM_Section_Name__c=='R&D Initial Outline (Product/Pack)',pds.IPM_Section_Name__c=='R&D Technical Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}" RNDEdit="False"></c:IPM_RND_QuestionsView>
                 <c:IPM_SC_Feasibility_QuestionsView rendered="{!if(OR(pds.IPM_Section_Name__c=='Supply Chain Feasibility',pds.IPM_Section_Name__c=='Supply Chain Technical Readiness'),true,false)}" gateDocType="{!projectDoc.IPM_GateDocuments__c}"></c:IPM_SC_Feasibility_QuestionsView>
                 <c:IPM_RND_Feasibility_QuestionsView rendered="{!if(pds.IPM_Section_Name__c=='R&D Feasibility',true,false)}" RNDEdit="False" gateDocType="{!projectDoc.IPM_GateDocuments__c}"> </c:IPM_RND_Feasibility_QuestionsView>    
@@ -821,7 +827,7 @@
                 
             </apex:outputPanel>
                 <apex:outputText value="{!apxSec.IPM_Section_Name__c} [{!apxSec.IPM_FunctionalRole__c}]"  styleClass="heading4 bold" />
-                    <c:IPM_FinInitialEstOfOppCharter projId="{!projectId}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity'}"></c:IPM_FinInitialEstOfOppCharter>
+                    <c:IPM_FinInitialEstOfOppCharter projId="{!projectId}" rendered="{!AND(apxSec.IPM_Master_Section_External_Id__c='Initial_Estimate_of_Opportunity',project.IPM_Project_Type__c!='Operational')}"></c:IPM_FinInitialEstOfOppCharter>
                     <c:IPM_Consumer_Evidence gate="{!projectDoc.IPM_GateDocuments__c}" getProjectId="{!projectId}" Editable="false" getSecid="{!apxSec.Id}" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Consumer_Evidence_Concept'}"></c:IPM_Consumer_Evidence>
                     <c:IPM_EcoDesignSection displayOnlyTables="true" getSectionId="{!apxSec.Id}"  rendered="{!apxSec.IPM_Master_Section_External_Id__c=='Environmental_Impact'}" />
                     <c:IPM_Customer_Channels gdpage="true" getProjectID="{!projectId}" getSecid="{!apxSec.Id}" CCEdit="false" rendered="{!apxSec.IPM_Master_Section_External_Id__c='Customers_Channels'}"></c:IPM_Customer_Channels>

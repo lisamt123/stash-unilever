@@ -768,15 +768,15 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             rollOut=new list<IPM_Project_Rollout__c>();
             rollOut=[SELECT Name,IPM_Status__c,IPM_Rollout_Span__c FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:project.Id];
             if(rollOut != null && !rollOut.isEmpty()){
-                fin=[SELECT Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c 
+                fin=[SELECT id,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c 
                      FROM IPM_Financial__c 
                      WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
                      
              }
              //DEF2858-Use Case: Regional rollout gate doc do not show Y3iTO value. (Project overview screen is showing value.)
              //Analysis-Rollout project record store Regional project id in IPM_Poject__c and hence "rollout" query returns null.
-             else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
-                 fin=[SELECT id,Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c 
+             else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL){
+                 fin=[SELECT id,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c,Business_Impact_Global__c,Business_Impact_Local__c,Business_Impact_Regional__c,Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c 
                      FROM IPM_Financial__c 
                      WHERE (Regional_Project__c=:project.Id OR regional_external_id__c=:nam) AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
              }
@@ -785,7 +785,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             finProjectPriority = new IPM_Financial__c();
             if (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL){
                 //added Year_3_iTO_Local__c for DEF3318
-                finProjectPriority = [Select ipm_cpp_local__c,Year_3_iTO_Local__c from IPM_Financial__c where Financial_External_ID__c =: nam limit 1];
+                finProjectPriority = [Select ipm_cpp_local__c,Year_3_iTO_Local__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c from IPM_Financial__c where Financial_External_ID__c =: nam limit 1];
             }    
             
              //DEF2103-30/12/15-Reopen for BI not calculated on Global projects-Gate document
@@ -835,7 +835,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                if (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
                         globalbusinessImpactStr = IPM_ConstantUtils.BLANK;    
                         
-                   fin= [Select Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c from IPM_Financial__c where Financial_External_ID__c =: nam limit 1];
+                   fin= [Select Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c,Year_3_iTO_Charter__c,Year_3_iTO_Contract__c,Year_3_iTO_MR__c,Year_3_iTO_MD__c from IPM_Financial__c where Financial_External_ID__c =: nam limit 1];
                           
                }
             Integer flag=[select count() from IPM_Country__c where Local_Rollout__r.IPM_Status__c=:IPM_ConstantUtils.ROLLOUT_LEADER AND (IPM_Project__c=:projectId 
