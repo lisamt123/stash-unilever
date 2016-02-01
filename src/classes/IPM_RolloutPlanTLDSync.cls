@@ -259,4 +259,23 @@ public with sharing class IPM_RolloutPlanTLDSync {
             insert emailOut;
         }
     }
+    /*******************************************************************************************************
+    * @description  Method to notify Project Leader that Finance leader has confirmed the TLD date changes in Ideas phase
+    * @param        Map projectId,projectRollout
+    * @return       NONE
+    */    
+    public void notifyProjectFinanceAboutFinanceLeaderConfirmation(Map<Id, IPM_Project_Rollout__c> projIdRollout ){
+        Map<Id,IPM_Project__c> projDetails = new Map<Id,IPM_Project__c>([Select Id, IPM_Project_Leader__r.Email from IPM_Project__c where Id in : projIdRollout.keySet() and IPM_Phase__c = :IPM_ConstantUtils.PHASE_IDEAS and IPM_Project_Type__c = :IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL  limit 50000]);
+            List<IPM_EmailOut_Notification__c> emailOut = new List<IPM_EmailOut_Notification__c>{};
+            for(Id projId : projDetails.keySet()){
+                IPM_EmailOut_Notification__c emailOutNotification = new IPM_EmailOut_Notification__c();    
+                emailOutNotification.To_Address__c = projDetails.get(projId).IPM_Project_Leader__r.Email;
+                emailOutNotification.Project_Name__c = projIdRollout.get(projId).Name;
+                emailOutNotification.MCO_Country_Name__c =  projIdRollout.get(projId).MCO_Name__c;
+                emailOut.add(emailOutNotification);                     
+            }
+            if(!emailOut.isEmpty()){
+                insert emailOut;
+            }               
+    }   
 }
