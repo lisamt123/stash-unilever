@@ -1250,7 +1250,7 @@ public without sharing class IPM_Utils {
     * @param1 proj : project record
     */
     public static Boolean isProjectToBeSyncedToEcoDesign(IPM_Project__c proj){
-        if( retrieveProjectType(proj).IPM_Dont_Sync_Proj_To_EcoDesign__c || proj.IPM_Answer_of_Q1__c == IPM_ConstantUtils.ECODESIGN_MARKET_PLACE_ACTIVITY_BLG
+        if( retrieveProjectType(proj).IPM_Dont_Sync_Proj_To_EcoDesign__c || proj.IPM_ProjectSubType__c == IPM_ConstantUtils.IPM_BLG
         ){
             return false;
         }
