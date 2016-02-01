@@ -80,6 +80,33 @@ global without sharing class BET_AssetService {
 		}
 	}
 
+	/********************************************************************
+		Purpose: Grants Access to file for given user
+		Parameters: Id fileId,Id userId
+        Returns: -
+        Throws: -
+	*********************************************************************/
+
+	public static void grantAccessToAsset(Id fileId,Id userId){
+		try{
+			List<ContentDocumentLink> linkedFiles = [select id from ContentDocumentLink where LinkedEntityId =: userId and ContentDocumentId =:fileId];
+			if(linkedFiles.isEmpty()){
+				ContentDocumentLink link = new ContentDocumentLink();
+				link.LinkedEntityId = userId;
+				link.ContentDocumentId = fileId;
+				link.ShareType = 'v';
+				link.Visibility = 'AllUsers';
+				if(!Test.isRunningTest()){
+					insert link;
+				}
+			}
+		}catch(Exception ex){
+			ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'BET_AssetService','grantAccessToAsset',
+                'Exception while granting access for ' + userId + ' for file ' + fileId,
+                new BET_CustomBETException(ex.getMessage()),'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
+		}
+	}
+
 	/************************************************************
         Purpose: Updates fileId field based on asset url
         Parameters: List<uw_Asset__c> assets
