@@ -44,7 +44,7 @@ public with sharing class IPM_TaskHandler implements ITrigger{
             //get project details 
             if(!projectIdSet.isEmpty())
             {
-                String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null);
+                String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
                 String projectWhereClause = ' WHERE Id in :projectIdSet AND IPM_Project_Leader__c != NULL LIMIT 50000';
                 projectQuery = projectQuery + projectWhereClause;
                 projectDetailMap = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>) database.query(projectQuery));
@@ -52,7 +52,7 @@ public with sharing class IPM_TaskHandler implements ITrigger{
             //get task section details
             if(!taskSectionIdSet.isEmpty())
             {
-                String sectionQuery = IPM_Utils.prepareSOQLQuery('IPM_Section__c',false,null);
+                String sectionQuery = IPM_Utils.prepareSOQLQuery('IPM_Section__c',false,null,true);
                 String sectionWhereClause = ' WHERE Id in :taskSectionIdSet  LIMIT 50000';
                 sectionQuery = sectionQuery + sectionWhereClause;
                 sectionDetailMap = new Map<Id,IPM_Section__c>( (List<IPM_Section__c>) database.query(sectionQuery));
@@ -101,15 +101,15 @@ public with sharing class IPM_TaskHandler implements ITrigger{
             }
         }
         if(Trigger.isInsert){
-        	list<IPM_Task__c> taskList = new list<IPM_Task__c>();
-        	for(IPM_Task__c tsk :(List<IPM_Task__c>)Trigger.new)
-        	{
-        		if(projectTask == tsk.RecordTypeId)
-        		{
-        			taskList.add(tsk);
-        		}
-        	}
-            IPM_ChatterFeedHelper.notifyAssigneeTaskAssigned(taskList);
+            list<IPM_Task__c> taskList = new list<IPM_Task__c>();
+            for(IPM_Task__c tsk :(List<IPM_Task__c>)Trigger.new)
+            {
+                if(projectTask == tsk.RecordTypeId)
+                {
+                    taskList.add(tsk);
+                }
+            }
+            IPM_ChatterFeedHelper.notifyAssigneeTaskAssigned((List<IPM_Task__c>)Trigger.New);
         }
     }
     /**
@@ -239,7 +239,7 @@ public with sharing class IPM_TaskHandler implements ITrigger{
         if(Trigger.isAfter && Trigger.isUpdate) {
             //Chatter that tasks are now COMPLETE!
             for(Id eachProject : projectTasksMap.keySet()) {
-           String postText = IPM_Utils.convertSetToString(projectTasksMap.get(eachProject)) + Label.IPM_Task_Completion_Text;
+           String postText = IPM_Utils.convertSetToString(projectTasksMap.get(eachProject)) +IPM_ConstantUtils.IPM_SPACE+ Label.IPM_Task_Completion_Text;
            subjectIdMessageMap.put(eachProject,postText);
           }
           IPM_ChatterUtils.postChatterFeedWithMention(projectTasksMap.keySet(),subjectIdMessageMap,null); 

@@ -28,15 +28,4 @@
         <formula>ISCHANGED( Project_Stage__c )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
-    <rules>
-        <fullName>Oblix_WF02_UpdateNameUniqueCampaign</fullName>
-        <actions>
-            <name>Oblix_FUUniqueNameCampaign</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>Used to Update Unique Field with Id of record, to avoid having duplicate records with the same name</description>
-        <formula>1=1</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
 </Workflow>

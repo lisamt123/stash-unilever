@@ -55,7 +55,7 @@
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Read</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>Change_Date__c</fullName>
         <externalId>false</externalId>
@@ -148,5 +148,5 @@
     </nameField>
     <pluralLabel>IPM Project Resource History</pluralLabel>
     <searchLayouts/>
-    <sharingModel>Read</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

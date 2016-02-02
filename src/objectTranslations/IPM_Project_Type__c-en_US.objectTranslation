@@ -9,6 +9,10 @@
         <value>Project Type</value>
     </caseValues>
     <fields>
+        <label><!-- FinancialCopyOverPrefix --></label>
+        <name>FinancialCopyOverPrefix__c</name>
+    </fields>
+    <fields>
         <label><!-- Associated Company Card --></label>
         <name>IPM_CompanyCard__c</name>
     </fields>

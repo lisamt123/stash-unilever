@@ -27,15 +27,4 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
-    <rules>
-        <fullName>Oblix_WF02_UpdateNameUnique</fullName>
-        <actions>
-            <name>OblixFU_UniqueName</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>true</active>
-        <description>WF used to update technical field name for having unicity</description>
-        <formula>1=1</formula>
-        <triggerType>onAllChanges</triggerType>
-    </rules>
 </Workflow>

@@ -56,7 +56,7 @@
     <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>Read</externalSharingModel>
+    <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
         <fullName>IPM_Effective_from__c</fullName>
         <description>Date upon which a particular Brand Position is considered to take effect</description>
@@ -122,5 +122,5 @@
     </nameField>
     <pluralLabel>BrandPosition</pluralLabel>
     <searchLayouts/>
-    <sharingModel>Read</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
 </CustomObject>

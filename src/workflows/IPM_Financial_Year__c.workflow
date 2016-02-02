@@ -1,6 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldUpdates>
+        <fullName>AP_Charter_Copy_Over</fullName>
+        <field>AP_of_TO_Charter__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), AP_of_TO_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),AP_of_TO_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),AP_of_TO_Local__c,0)))</formula>
+        <name>A&amp;P Charter Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AP_Contract_Copy_Over</fullName>
+        <field>AP_of_TO_Contract__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), AP_of_TO_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),AP_of_TO_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),AP_of_TO_Local__c,0)))</formula>
+        <name>A&amp;P Contract Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AP_MD_Copy_Over</fullName>
+        <field>AP_of_TO_MD__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), AP_of_TO_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),AP_of_TO_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),AP_of_TO_Local__c,0)))</formula>
+        <name>A&amp;P MD Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>AP_MR_Copy_Over</fullName>
+        <field>AP_of_TO_MR__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), AP_of_TO_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),AP_of_TO_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),AP_of_TO_Local__c,0)))</formula>
+        <name>A&amp;P MR Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_ValueMarketShare_GlobalToRegional</fullName>
+        <field>Value_Market_Share_Regional__c</field>
+        <formula>Value_Market_Share_Global__c</formula>
+        <name>Copy ValueMarketShare GlobalToRegional</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_ValueMarketShare_Global_To_Local</fullName>
+        <field>Value_Market_Share_Local__c</field>
+        <formula>Value_Market_Share_Global__c</formula>
+        <name>Copy ValueMarketShare Global To Local</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_ValueMarketShare_Local_To_Regional</fullName>
+        <field>Value_Market_Share_Regional__c</field>
+        <formula>Value_Market_Share_Local__c</formula>
+        <name>Copy ValueMarketShare Local To Regional</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_ValueMarketShare_Regional_To_Local</fullName>
+        <field>Value_Market_Share_Local__c</field>
+        <formula>Value_Market_Share_Regional__c</formula>
+        <name>Copy ValueMarketShare Regional To Local</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>FY_Charter_Copy_AP</fullName>
         <field>AP_of_TO_Charter__c</field>
         <formula>AP_of_TO_Global__c</formula>
@@ -648,6 +728,179 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>GM_CharterCopy_Over</fullName>
+        <field>GM_of_TO_Charter__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), GM_of_TO_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),GM_of_TO_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),GM_of_TO_Local__c,0)))</formula>
+        <name>GM CharterCopy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>GM_Contract_Copy_Over</fullName>
+        <field>GM_of_TO_Contract__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), GM_of_TO_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),GM_of_TO_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),GM_of_TO_Local__c,0)))</formula>
+        <name>GM Contract Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>GM_MD_Copy_Over</fullName>
+        <field>GM_of_TO_MD__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), GM_of_TO_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),GM_of_TO_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),GM_of_TO_Local__c,0)))</formula>
+        <name>GM MD Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>GM_MR_Copy_Over</fullName>
+        <field>GM_of_TO_MR__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), GM_of_TO_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),GM_of_TO_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),GM_of_TO_Local__c,0)))</formula>
+        <name>GM MR Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>PBO_Charter_Copy_Over</fullName>
+        <field>PBO_of_TO_Charter__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), PBO_of_TO_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),PBO_of_TO_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),PBO_of_TO_Local__c,0)))</formula>
+        <name>PBO Charter Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>PBO_Contract_Copy_Over</fullName>
+        <field>PBO_of_TO_Contract__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), PBO_of_TO_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),PBO_of_TO_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),PBO_of_TO_Local__c,0)))</formula>
+        <name>PBO Contract Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>PBO_MD_Copy_Over</fullName>
+        <field>PBO_of_TO_MD__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), PBO_of_TO_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),PBO_of_TO_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),PBO_of_TO_Local__c,0)))</formula>
+        <name>PBO MD Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>PBO_MR_Copy_Over</fullName>
+        <field>PBO_of_TO_MR__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), PBO_of_TO_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),PBO_of_TO_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),PBO_of_TO_Local__c,0)))</formula>
+        <name>PBO MR Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Value_Market_Share_Charter_Copy_Over</fullName>
+        <field>Value_Market_Share_Charter__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), Value_Market_Share_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),Value_Market_Share_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),Value_Market_Share_Local__c,0)))</formula>
+        <name>Value Market Share Charter Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Value_Market_Share_Contract_Copy_Over</fullName>
+        <field>Value_Market_Share_Contract__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), Value_Market_Share_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),Value_Market_Share_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),Value_Market_Share_Local__c,0)))</formula>
+        <name>Value Market Share Contract Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Value_Market_Share_MD_Copy_Over</fullName>
+        <field>Value_Market_Share_MR__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), Value_Market_Share_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),Value_Market_Share_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),Value_Market_Share_Local__c,0)))</formula>
+        <name>Value Market Share MD Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Value_Market_Share_MR_Copy_Over</fullName>
+        <field>Value_Market_Share_MR__c</field>
+        <formula>IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Global&apos;), Value_Market_Share_Global__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Regional&apos;),Value_Market_Share_Regional__c,IF(ISPICKVAL(IPM_Financial_Postfix__c,&apos;Local&apos;),Value_Market_Share_Local__c,0)))</formula>
+        <name>Value Market Share MR Copy Over</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Volume_Tons_Regional</fullName>
+        <field>Volume_Tons_Regional__c</field>
+        <formula>Volume_Tons_Global__c</formula>
+        <name>Volume Tons Regional</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Copy ValueMarketShare Global To Local</fullName>
+        <actions>
+            <name>Copy_ValueMarketShare_Global_To_Local</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
+        <formula>Copy_Global_to_Local__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy ValueMarketShare Global To Regional</fullName>
+        <actions>
+            <name>Copy_ValueMarketShare_GlobalToRegional</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
+        <formula>Copy_Global_to_Regional__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy ValueMarketShare Local To Regional</fullName>
+        <actions>
+            <name>Copy_ValueMarketShare_Local_To_Regional</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
+        <formula>Copy_Local_to_Regional__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy ValueMarketShare Regional To Local</fullName>
+        <actions>
+            <name>Copy_ValueMarketShare_Regional_To_Local</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
+        <formula>Copy_Regional_to_Local__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
     <rules>
         <fullName>Financial Year Charter Approved</fullName>
         <actions>
@@ -1054,6 +1307,98 @@
             <operation>equals</operation>
             <value>True</value>
         </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>IPM Financial Year Charter Approved</fullName>
+        <actions>
+            <name>AP_Charter_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>GM_CharterCopy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>PBO_Charter_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Value_Market_Share_Charter_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
+        <formula>Charter_Approved__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>IPM Financial Year Contract Approved</fullName>
+        <actions>
+            <name>AP_Contract_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>GM_Contract_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>PBO_Contract_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Value_Market_Share_Contract_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
+        <formula>Contract_Approved__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>IPM Financial Year MD Approved</fullName>
+        <actions>
+            <name>AP_MD_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>GM_MD_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>PBO_MD_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Value_Market_Share_MD_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
+        <formula>MD_Approved__c</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>IPM Financial Year MR Approved</fullName>
+        <actions>
+            <name>AP_MR_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>GM_MR_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>PBO_MR_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Value_Market_Share_MR_Copy_Over</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Currently doing it using Workflow because of Process Builder known defect of not properly copying over Percentage Fields.</description>
+        <formula>MR_Approved__c</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
 </Workflow>

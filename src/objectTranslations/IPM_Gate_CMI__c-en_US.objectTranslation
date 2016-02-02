@@ -57,8 +57,28 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Gate --></label>
         <name>Gate__c</name>
+        <picklistValues>
+            <masterLabel>Charter</masterLabel>
+            <translation><!-- Charter --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Contract</masterLabel>
+            <translation><!-- Contract --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Added At --></label>
+        <name>IPM_CMI_Added_At__c</name>
         <picklistValues>
             <masterLabel>Charter</masterLabel>
             <translation><!-- Charter --></translation>

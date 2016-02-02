@@ -51,7 +51,8 @@ private class BET_AssetServiceTest {
 		BET_ExpectedAssets__c ea = new BET_ExpectedAssets__c(Brand_Experience_Toolkit__c = bet.id, Expected__c = 1, Type__c = 'Test');
 		insert ea;
 		Test.startTest();
-		System.assert(BET_AssetService.expectedAssetsSetForBet(bet.id),'There sould be expected asets for this bet');
+		System.assert(!BET_AssetService.expectedAssetsSetForBet(null),'There should be no expected assets for this bet');
+		System.assert(BET_AssetService.expectedAssetsSetForBet(bet.id),'There should be expected assets for this bet');
 		Test.stopTest();
 	}
 
@@ -109,6 +110,32 @@ private class BET_AssetServiceTest {
 		assets = [select id from uw_Asset__c where uw_Bet__c =: bet.id];
 		Test.startTest();
 		System.assertEquals(assets.size(),4,'There should be 4 records');
+		Test.stopTest();
+	}
+
+	@isTest static void getAssetFileIdentifierTest(){
+		Id identifier = UserInfo.getUserId();
+		uw_Asset__c asset = new uw_Asset__c(URL_of_Asset__c = '/download/'+identifier);
+		Test.startTest();
+		System.assertEquals(BET_AssetService.getAssetFileIdentifier(asset),identifier,'Identifier must match');
+		Test.stopTest();
+	}
+
+	@istest static void approvedAssetTypesNumerMapTest(){
+		uw_Bet__c bet = BET_TestUtils.getTestBet();
+		insert bet;
+
+		uw_Asset__c asset1 = new uw_Asset__c(name = 'test123321a', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID,Order_Of_Display__c = null,Status__c = APPROVED_STATUS,Media_Type__c = 'type1');
+		uw_Asset__c asset2 = new uw_Asset__c(name = 'test123321b', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID,Order_Of_Display__c = 1.0,Status__c = APPROVED_STATUS,Media_Type__c = 'type2');
+		uw_Asset__c asset3 = new uw_Asset__c(name = 'test123321c', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID,Order_Of_Display__c = 1.0,Status__c = APPROVED_STATUS,Media_Type__c = 'type3');
+		uw_Asset__c asset4 = new uw_Asset__c(name = 'test123321d', uw_Bet__c = bet.id,File_Id__c = BAD_FILE_ID,Order_Of_Display__c = 2.0,Status__c = APPROVED_STATUS,Media_Type__c = 'type4');
+
+		List<uw_Asset__c> assets = new List<uw_Asset__c>{asset1,asset2,asset3,asset4};
+		insert assets;
+
+		Map<String,Integer> nmap = BET_AssetService.approvedAssetTypesNumerMap(bet.id);
+		Test.startTest();
+		System.assertEquals(nmap.keySet().size(),4,'There should be 4 records');
 		Test.stopTest();
 	}
 	

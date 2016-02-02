@@ -416,5 +416,4 @@
     </apex:outputPanel> 
   <!-- End Default Content REMOVE THIS -->
 <apex:includeScript value="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" loadOnReady="true"/>
-<apex:includeScript value="{!URLFOR($Resource.IPM_Resource, 'js/IPM_GateDocument.js')}" loadOnReady="true" />
 </apex:component>

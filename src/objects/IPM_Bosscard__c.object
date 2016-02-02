@@ -424,7 +424,7 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <fullName>IPM_Region_Shr__c</fullName>
         <externalId>false</externalId>
         <label>Region</label>
-        <length>80</length>
+        <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>

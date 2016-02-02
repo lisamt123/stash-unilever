@@ -4,257 +4,155 @@
 * @description  This class is used for updating the rollout status and dates
 */
 
-/* This class is being used to Set First and Follower on a rollout/Project , 
-    which needs access to all Rollout and Projects associated with a project
+/* This class is being used to Set First and Follower on a rollout/Project , which needs access to all Rollout and 
+   Projects associated with a project, hence has been set as Without Sharing.
 */
 
-public without sharing class  IPM_ProcessRolloutStatusAndDates {
-    
-    private static final string PROCESS_REGIONAL_PROJECTS = 'processRegionalProjects';
-    private static final string CLASS_NAME = IPM_ProcessRolloutStatusAndDates.class.getName();
-    
+public without sharing class  IPM_ProcessRolloutStatusAndDates 
+{
     /*******************************************************************************************************
     * @description                          Method used to process updation of Rollout Status
-    * @param setGlobalProjectIds            Set of Global Project Ids
-    * @param setRegionalOriginalProjectIds  Set of Regional Original Project Ids
-    * @return                               NONE
-    */
-    public static void execute(Set<Id> setGlobalProjectIds, Set<Id> setRegionalOriginalProjectIds){
-        execute(setGlobalProjectIds, setRegionalOriginalProjectIds, new Set<String>());
-    }
-    
-    /*******************************************************************************************************
-    * @description                          Method used to process updation of Rollout Status
-    * @param setGlobalProjectIds            Set of Global Project Ids
-    * @param setRegionalOriginalProjectIds  Set of Regional Original Project Ids
+    * @param setTopLevelProjectIds          Set of Top Level Project Ids
     * @param setDeleteRolloutIds            Set of Rollouts that are being deleted
     * @return                               NONE
     */
-    public static void execute(Set<Id> setGlobalProjectIds, Set<Id> setRegionalOriginalProjectIds, Set<String> setDeleteRolloutIds){
-        String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
-        
-        Map<String, Date> mapEarliestGlobalLaunchDate = new Map<String,Date>();
-        
-        //PROCESS GLOBAL PROJECTS
-        if(!setGlobalProjectIds.isEmpty()){
-            //For Earliest Dates across the project
-            
-            //FOr Earliest Dates for every regional rollout
-            Map<String, Date> mapEarliestRegionalRolloutLaunchDate = new Map<String,Date>();                       
-            
-            List<IPM_Project__c> lstGlobalProjects = [SELECT Id, 
-                                                      (SELECT Id, Name, Target_Launch_Date__c, IPM_Status__c, Regional_Rollout__c, Regional_Rollout__r.Target_Launch_Date__c 
-                                                       FROM IPM_Project_Rollout__r 
-                                                       WHERE RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE ),
-                                                      //AND Regional_Project__c =: null),
-                                                      (SELECT Id 
-                                                       FROM IPM_Projects__r)
-                                                      FROM IPM_Project__c 
-                                                      WHERE IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL AND Id IN: setGlobalProjectIds LIMIT 50000];
-           
-            Set<Id> setRegionalProjectIds = new Set<Id>();
-            For(IPM_Project__c globalProject : lstGlobalProjects){
-                //Process Local Rollouts
-                For(IPM_Project_Rollout__c localRollout : globalProject.IPM_Project_Rollout__r){
-                    //Only use in calculation if the rollout is not about to be deleted
-                    if(!setDeleteRolloutIds.contains(localRollout.Id)){
-                        Date targetLaunchDate = localRollout.Target_Launch_Date__c;
-                        if(mapEarliestGlobalLaunchDate.containsKey(globalProject.Id) && mapEarliestGlobalLaunchDate.get(globalProject.Id) < targetLaunchDate){
-                            targetLaunchDate = mapEarliestGlobalLaunchDate.get(globalProject.Id);
-                        }                        
-                        mapEarliestGlobalLaunchDate.put(globalProject.Id, targetLaunchDate);
-                        
-                        //Reset for Regional Rollout calculations
-                        targetLaunchDate = localRollout.Target_Launch_Date__c;
-                        //Regional Rollout Map
-                        if(mapEarliestRegionalRolloutLaunchDate.containsKey(localRollout.Regional_Rollout__c) && mapEarliestRegionalRolloutLaunchDate.get(localRollout.Regional_Rollout__c) < targetLaunchDate){
-                            targetLaunchDate = mapEarliestRegionalRolloutLaunchDate.get(localRollout.Regional_Rollout__c);                            
-                        }                        
-                        mapEarliestRegionalRolloutLaunchDate.put(localRollout.Regional_Rollout__c, targetLaunchDate);
-                    }
-                }
-                
-                //Create a set of Regional Project Ids for processing later
-                For(IPM_Project__c regionalProject : globalProject.IPM_Projects__r)
-                    setRegionalProjectIds.add(regionalProject.Id);
-            }
-            IPM_ProcessRolloutStatusAndDates.processRegionalProjects(setRegionalProjectIds, lstGlobalProjects, mapEarliestGlobalLaunchDate, mapEarliestRegionalRolloutLaunchDate);           
-        }
-        if(!setRegionalOriginalProjectIds.isEmpty()){            
-            IPM_ProcessRolloutStatusAndDates.processRegionalProjects(setRegionalOriginalProjectIds, null, mapEarliestGlobalLaunchDate, null);
-        }
-
-        //TODO: PROCESS REGIONAL ORIGINAL PROJECTS
-    }
     
-    public static void processRegionalProjects(Set<Id> setRegionalProjectIds, List<IPM_Project__c> lstGlobalProjects, Map<String, Date> mapEarliestGlobalLaunchDate, Map<String, Date> mapEarliestRegionalRolloutLaunchDate){
-        List<IPM_Project_Rollout__c> lstUpdateProjectRollouts = new List<IPM_Project_Rollout__c>();
-        List<IPM_Project__c> lstUpdateProjects = new List<IPM_Project__c>();
-        Set<Id> updateRolloutListSet = new Set<Id>();
-        //To check if the Leader is found for the Global project
-        Boolean isLeaderFound = false;
-        List<IPM_Project__c> lstRegionalProjects = [SELECT Id, IPM_Parent_Project__c, IPM_Target_Launch_Dates__c, 
-                                                    (SELECT Id, Name, Target_Launch_Date__c, IPM_Status__c 
-                                                     FROM Regional_Project_Rollout__r 
-                                                     WHERE NOT(Regional_Project__c =: null)),
-                                                    (SELECT Id, IPM_Target_Launch_Dates__c, IPM_Rollout_Status__c, IPM_Parent_Project__r.IPM_Parent_Project__c 
-                                                     FROM IPM_Projects__r)
-                                                    FROM IPM_Project__c 
-                                                    WHERE IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL AND Id IN: setRegionalProjectIds LIMIT 50000];
+    
+    public static void execute(Set<Id> setTopLevelProjectIds,Set<Id> deleteRolloutIds)
+    {
+        String LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get(IPM_ConstantUtils.LOCAL_ROLLOUT_RT).getRecordTypeId();
+      
+       
+         if(!setTopLevelProjectIds.isEmpty())
+         {
+            List<IPM_Project__c> lstGlobalProjects = [SELECT Id,IPM_Parent_Project__c,IPMProject_Span__c,
+                                                        // LOCAL ROLLOUT RELATED TO GLOBAL ORIGINAL 
+                                                        (SELECT Id, Name, Target_Launch_Date__c,IPM_Status__c,IPM_Regional_Rollout_Status__c,Regional_Rollout__c, Regional_Rollout__r.Target_Launch_Date__c 
+                                                            FROM IPM_Project_Rollout__r 
+                                                            WHERE RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE AND isActive__c = true AND id not in :deleteRolloutIds ORDER By Target_Launch_Date__c),
+                                                            
+                                                        // LOCAL ROLLOUT IF IT IS REGIONAL ORIGINAL 
+                                                        (SELECT Id, Name,IPM_Project__c,Target_Launch_Date__c, IPM_Status__c,IPM_Regional_Rollout_Status__c,Regional_Rollout__c, Regional_Rollout__r.Target_Launch_Date__c 
+                                                            FROM Regional_Project_Rollout__r 
+                                                            WHERE RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE AND isActive__c = true AND id not in :deleteRolloutIds order By Target_Launch_Date__c),
+                                                            
+                                                        (SELECT Id FROM IPM_Projects__r)
+                                                      FROM IPM_Project__c 
+                                                      WHERE Id IN: setTopLevelProjectIds LIMIT 50000];
         
-        For(IPM_Project__c regionalProject : lstRegionalProjects){
-            //Process Local Rollouts
-            For(IPM_Project_Rollout__c localRollout : regionalProject.Regional_Project_Rollout__r){
-                Date targetLaunchDate = localRollout.Target_Launch_Date__c;
-                if(mapEarliestGlobalLaunchDate.containsKey(regionalProject.IPM_Parent_Project__c) && mapEarliestGlobalLaunchDate.get(regionalProject.IPM_Parent_Project__c) < targetLaunchDate){
-                    targetLaunchDate = mapEarliestGlobalLaunchDate.get(regionalProject.IPM_Parent_Project__c);
-                    
-                }
+         
+           
+           
+           Map<Id,IPM_Project_Rollout__c> updatedRolloutMap = new Map<Id,IPM_Project_Rollout__c>();
+           
+           Set<Id> globalMinimumSet = new Set<Id>();
+           Set<Id> regionalMinimumSet = new Set<Id>();
+           
+           List<IPM_Project__c> regionalProjectList = new List<IPM_Project__c>();
+           
+           for(IPM_Project__c globalProject : lstGlobalProjects)
+           {
+                IPM_Project_Rollout__c minimumdateRollout = null;
                 
-                mapEarliestGlobalLaunchDate.put(regionalProject.IPM_Parent_Project__c, targetLaunchDate);
-            }
-            
-            //Process Local Projects
-            For(IPM_Project__c localProject : regionalProject.IPM_Projects__r){
-                Date targetLaunchDate = localProject.IPM_Target_Launch_Dates__c;
-                if(mapEarliestGlobalLaunchDate.containsKey(regionalProject.IPM_Parent_Project__c) && mapEarliestGlobalLaunchDate.get(regionalProject.IPM_Parent_Project__c) < targetLaunchDate){
-                    targetLaunchDate = mapEarliestGlobalLaunchDate.get(regionalProject.IPM_Parent_Project__c);
-                    
+                if(globalProject.IPM_Project_Rollout__r!= null && !globalProject.IPM_Project_Rollout__r.isEmpty())
+                {
+                    minimumdateRollout = globalProject.IPM_Project_Rollout__r[0];
+                    regionalProjectList.addAll(globalProject.IPM_Projects__r);
                 }
+                else if(globalProject.Regional_Project_Rollout__r!= null && !globalProject.Regional_Project_Rollout__r.isEmpty())
+                {
+                    minimumdateRollout = globalProject.Regional_Project_Rollout__r[0];
+                } 
                 
-                mapEarliestGlobalLaunchDate.put(regionalProject.IPM_Parent_Project__c, targetLaunchDate);
-            }
-        }
-        
-        //---------------------------------------------------------------
-        //UPDATE ROLLOUTS AND PROJECTS WITH APPROPRIATE STATUS AND DATES
-        //---------------------------------------------------------------
-        
-        //Global Projects
-        isLeaderFound = false;
-        if(lstGlobalProjects != NULL && !lstGlobalProjects.isEmpty()){
-            For(IPM_Project__c globalProject : lstGlobalProjects){
-                //Process Local Rollouts
-                For(IPM_Project_Rollout__c localRollout : globalProject.IPM_Project_Rollout__r){
-                    Date earliestDate = mapEarliestGlobalLaunchDate.get(globalProject.Id);
-                    if(earliestDate == localRollout.Target_Launch_Date__c){
-                        if(localRollout.IPM_Status__c == IPM_ConstantUtils.ROLLOUT_LEADER){
-                            isLeaderFound = true;
-                        }else if(!isLeaderFound ){
-                            localRollout.IPM_Status__c  = IPM_ConstantUtils.ROLLOUT_LEADER;
-                            isLeaderFound = true;
-                            
-                            if(!updateRolloutListSet.contains(localRollout.Id)){
-                                lstUpdateProjectRollouts.add(localRollout);
-                                updateRolloutListSet.add(localRollout.Id);
-                            }
-                        }else{
-                            localRollout.IPM_Status__c  = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
-                            if(!updateRolloutListSet.contains(localRollout.Id)){
-                                lstUpdateProjectRollouts.add(localRollout);
-                                updateRolloutListSet.add(localRollout.Id);
-                            }
-                        }
-                    }else{
-                        localRollout.IPM_Status__c  = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
-                        if(!updateRolloutListSet.contains(localRollout.Id)){
-                            lstUpdateProjectRollouts.add(localRollout);
-                            updateRolloutListSet.add(localRollout.Id);
-                        }
+                if (minimumdateRollout != null)
+                {
+                    if(globalProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+                    {
+                    	regionalMinimumSet.add(minimumdateRollout.Id);
                     }
-                }                
-            }
-            
-            //Regional Rollouts
-            For(String regionalRolloutId : mapEarliestRegionalRolloutLaunchDate.keySet()){
-                if(!updateRolloutListSet.contains(regionalRolloutId )){                                                                
-                    lstUpdateProjectRollouts.add(
-                        new IPM_Project_Rollout__c(
-                            Id = regionalRolloutId,
-                            Target_Launch_Date__c = mapEarliestRegionalRolloutLaunchDate.get(regionalRolloutId)
-                        )
-                    );
-                    updateRolloutListSet.add(regionalRolloutId);
+                    else
+                    {
+                    	globalMinimumSet.add(minimumdateRollout.Id);
+                    }
+                }    
+           }
+           
+         
+           
+           
+           if(!regionalProjectList.isEmpty())
+           {
+                List<IPM_Project__c> lstRegionalProjects = [SELECT Id,
+                                                            (SELECT Id, Name,IPM_Project__c,Target_Launch_Date__c, IPM_Status__c,IPM_Regional_Rollout_Status__c,
+                                                                Regional_Rollout__c, Regional_Rollout__r.Target_Launch_Date__c 
+                                                                FROM Regional_Project_Rollout__r 
+                                                                WHERE RecordTypeId =: LOCAL_ROLLOUT_RECORDTYPE AND isActive__c = true AND id not in :deleteRolloutIds  
+                                                                order By Target_Launch_Date__c) 
+                                                            FROM IPM_Project__c 
+                                                            WHERE Id IN: regionalProjectList LIMIT 50000];
+                for(IPM_Project__c regionalProject : lstRegionalProjects)
+                {
+                    IPM_Project_Rollout__c minimumdateRollout = null;
+                    
+                    if(regionalProject.Regional_Project_Rollout__r!= null && !regionalProject.Regional_Project_Rollout__r.isEmpty())
+                    {
+                        minimumdateRollout = regionalProject.Regional_Project_Rollout__r[0];
+                        
+                        if(updatedRolloutMap.containsKey(minimumdateRollout.Id))
+                        {
+                            minimumdateRollout = updatedRolloutMap.get(minimumdateRollout.Id);
+                        }
+                    
+                        regionalMinimumSet.add(minimumdateRollout.Id);
+                    } 
                 }
-            }
-            
-            //Global Projects
-            For(String globalProjectId : mapEarliestGlobalLaunchDate.keySet()){
-                lstUpdateProjects.add(
-                    new IPM_Project__c(
-                        Id = globalProjectId,
-                        IPM_Target_Launch_Dates__c = mapEarliestGlobalLaunchDate.get(globalProjectId)
-                    )
-                );
-            }
-        }   
-        
-        //Regional Rollout Projects
-        For(IPM_Project__c regionalProject : lstRegionalProjects){
-            //Process Local Rollouts
-            For(IPM_Project_Rollout__c localRollout : regionalProject.Regional_Project_Rollout__r){
-                localRollout.IPM_Status__c  = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
-                Date earliestDate = mapEarliestGlobalLaunchDate.get(regionalProject.IPM_Parent_Project__c);
-                if(earliestDate == localRollout.Target_Launch_Date__c){
-                    if(localRollout.IPM_Status__c == IPM_ConstantUtils.ROLLOUT_LEADER){
-                        isLeaderFound = true;
-                    }else if(!isLeaderFound ){
-                        localRollout.IPM_Status__c  = IPM_ConstantUtils.ROLLOUT_LEADER;
-                        isLeaderFound = true;
-                        if(!updateRolloutListSet.contains(localRollout.Id)){
-                            lstUpdateProjectRollouts.add(localRollout);
-                            updateRolloutListSet.add(localRollout.Id);
-                        }
-                    }else{
-                        localRollout.IPM_Status__c  = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
-                        if(!updateRolloutListSet.contains(localRollout.Id)){
-                            lstUpdateProjectRollouts.add(localRollout);
-                            updateRolloutListSet.add(localRollout.Id);
-                        }
-                    }
-                } else{
-                    localRollout.IPM_Status__c  = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
-                    if(!updateRolloutListSet.contains(localRollout.Id)){
-                        lstUpdateProjectRollouts.add(localRollout);
-                        updateRolloutListSet.add(localRollout.Id);
-                    }
+           }
+           
+           
+           
+           for(IPM_Project__c globalProject : lstGlobalProjects)
+           {
+                List<IPM_Project_Rollout__c> relatedLocalRollout = new List<IPM_Project_Rollout__c>();
+                if(globalProject.IPM_Project_Rollout__r!= null && !globalProject.IPM_Project_Rollout__r.isEmpty())
+                {
+                    relatedLocalRollout = globalProject.IPM_Project_Rollout__r;
                 }
-            }
-            
-            //Process Local Projects
-            For(IPM_Project__c localProject : regionalProject.IPM_Projects__r){
-                Date earliestDate = mapEarliestGlobalLaunchDate.get(localProject.IPM_Parent_Project__r.IPM_Parent_Project__c);
-                if(earliestDate == localProject.IPM_Target_Launch_Dates__c){
-                    if(localProject.IPM_Rollout_Status__c == IPM_ConstantUtils.ROLLOUT_LEADER){
-                        isLeaderFound = true;
-                    }else if(!isLeaderFound ){
-                        localProject.IPM_Rollout_Status__c  = IPM_ConstantUtils.ROLLOUT_LEADER;
-                        isLeaderFound = true;
-                        lstUpdateProjects.add(localProject);
-                    }else{                           
-                        localProject.IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
-                        lstUpdateProjects.add(localProject);
+                else if(globalProject.Regional_Project_Rollout__r!= null && !globalProject.Regional_Project_Rollout__r.isEmpty())
+                {
+                    relatedLocalRollout = globalProject.Regional_Project_Rollout__r;
+                }    
+                
+                for(IPM_Project_Rollout__c localRollout : relatedLocalRollout)
+                {
+                    if(globalMinimumSet.contains(localRollout.Id))
+                    {
+                        localRollout.IPM_Status__c = IPM_ConstantUtils.ROLLOUT_LEADER;
                     }
-                } else{
-                    if(localProject.IPM_Rollout_Status__c != IPM_ConstantUtils.ROLLOUT_FOLLOWER){
-                        localProject.IPM_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
-                        lstUpdateProjects.add(localProject);
+                    else
+                    {
+                        localRollout.IPM_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;
                     }
+                    
+                    if(regionalMinimumSet.contains(localRollout.Id))
+                    {
+                        localRollout.IPM_Regional_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_LEADER;
+                    }
+                    else
+                    {
+                        localRollout.IPM_Regional_Rollout_Status__c = IPM_ConstantUtils.ROLLOUT_FOLLOWER;   
+                    }
+                    updatedRolloutMap.put(localRollout.Id,localRollout);
                 }
+           }
+           
+           
+           
+            if(!updatedRolloutMap.isEmpty())
+            {
+                IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = true;     
+                update updatedRolloutMap.values();
+                IPM_RolloutTriggerHandler.SKIP_TRIGGER_EXECUTION = false;
             }
-        }
-        
-        try{
-            if(!lstUpdateProjectRollouts.isEmpty()){
-                update lstUpdateProjectRollouts;
-            }
-            if(!lstUpdateProjects.isEmpty()){
-                update lstUpdateProjects;
-            }
-        }catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-                                                       PROCESS_REGIONAL_PROJECTS ,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,null);                                                        
-        }    
+       }
     }
 }

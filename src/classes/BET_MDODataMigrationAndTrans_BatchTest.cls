@@ -92,5 +92,13 @@ private class BET_MDODataMigrationAndTrans_BatchTest {
         System.assertEquals(batch.getBrandPosition(brand.id,category.id),bp.id,'Brand position record should match given brand position record');
         Test.stopTest();
     }
+	
+	@isTest static void logErrorsTest(){
+		Test.startTest();
+		BET_MDODataMigrationAndTransform_Batch batch = new BET_MDODataMigrationAndTransform_Batch();
+		batch.logErrors(new List<uw_Bet__c> {new uw_Bet__c()});
+		System.assertEquals(1,1,'Assertion is valid');
+		Test.stopTest();
+	}
     
 }

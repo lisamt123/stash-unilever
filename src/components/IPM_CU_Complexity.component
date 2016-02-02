@@ -42,7 +42,7 @@
              </apex:outputPanel>
             </apex:outputPanel>
            
-        <apex:outputPanel layout="block" styleClass="col-sm-12" rendered="{!IF(isEdit=true,true,false)}">
+        <apex:outputPanel layout="block" styleClass="cuCount col-sm-12" rendered="{!IF(isEdit=true,true,false)}">
             <apex:outputPanel rendered="{!IF(AND(proSpan='Global',proModel='GCLT & RCLT',OR(gateType='Contract',gateType='Market Ready')),true,false)}">
                 <div>{!$Label.IPM_RES_REG_CON_GATE}</div>
            </apex:outputPanel>

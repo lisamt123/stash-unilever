@@ -912,12 +912,6 @@
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>ID</stringValue>
@@ -933,6 +927,12 @@
                     <name>rightHandSideType</name>
                     <value>
                         <stringValue>GlobalConstant</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_current.IPM_Finance_Member__c</leftValueReference>
