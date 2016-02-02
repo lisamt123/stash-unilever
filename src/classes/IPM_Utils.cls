@@ -2,6 +2,7 @@
     @Description: General utility class to store frequently used variables and values.
     @Author: Cognizant Technology
     @Date: Sep 2014
+    Generic class used to access IPM specific custom setting data, hence kept as Without Sharing.
 */
 public without sharing class IPM_Utils {
 
@@ -94,6 +95,10 @@ public without sharing class IPM_Utils {
     public static String Finance = 'Finance';
     public static String IPM_Central_Team = 'IPM_Central_Team';
     public static String IPM_Business_Partners = 'IPM_Business_Partners';
+    public static String IPM_MarketReadyGate = 'Market Ready Gate';
+    public static String IPM_MarketDeploymentGate = 'Market Deployment Gate';
+    public static String IPM_Stopped = 'Stopped';
+    public static String IPM_PLE = 'PLE';
 
     //IPM_Milestone
     public static Set<String> mileNames=new Set<String>{'Charter Gate Approval','Contract Gate Approval','Market Ready Gate Approval',
@@ -146,6 +151,7 @@ public without sharing class IPM_Utils {
     public static String milePMRecordType ='IPM Project Milestones';
     public static String mileMRecordType ='IPM Milestones';
     public static String DevelopingIPM_Market_Type ='Developed';
+    public static String mileSnapRecordType ='IPM_Snapshot';
     public static String EmergingIPM_Market_Type ='Developing & Emerging';
     public static String IPM_Type_of_Milestone ='Standard';
     public static String recordTypeName ='IPM Project Tasks';
@@ -169,7 +175,7 @@ public without sharing class IPM_Utils {
     //All the phases & their respective Gates
     public static Map<String, String> phaseGateDocumentMap = new Map<String, String>{Ideas => Charter, Feasibility => Contract,
                                                                                       Capability => MarketReady, MarketReady => MarketDeployment,
-                                                                                      MarketDeployment => notapplicable,'PLE' => notapplicable,'Stopped' => notapplicable};
+                                                                                      MarketDeployment => notapplicable,IPM_PLE => notapplicable,IPM_Stopped => notapplicable};
     
     public static final String FORUPDATE_STRING = ' FOR UPDATE ';
     public static final String LIMIT_STRING = ' LIMIT 50000 ';
@@ -372,61 +378,7 @@ public without sharing class IPM_Utils {
         String strToReturn = firstLetterRemovedStr.substring(firstLetterRemovedStr.indexOf(delim)+1, firstLetterRemovedStr.length());
         return strToReturn;
     }
-    /**********************************************************************
-    * @description: 18 character conversion from an algorithm generally available
-    * @param1 : id of the 15 char length
-    * @return : 18 char id
-    */
-    public static String convertTo18CharId(String passedId){
-        
-        if(String.isNotBlank(passedId) && passedId.length() == 15 ){      
-            List <String> lstTriplets = new List<String> { passedId.Substring(0, 5), passedId.Substring(5, 5), passedId.Substring(10, 5) };
-            Map<String, String> mapCharacters = new Map<String, String>{
-                '00000' => 'A',
-                '00001' => 'B',
-                '00010' => 'C',
-                '00011' => 'D',
-                '00100' => 'E',
-                '00101' => 'F',
-                '00110' => 'G',
-                '00111' => 'H',
-                '01000' => 'I',
-                '01001' => 'J',
-                '01010' => 'K',
-                '01011' => 'L',
-                '01100' => 'M',
-                '01101' => 'N',
-                '01110' => 'O',
-                '01111' => 'P',
-                '10000' => 'Q',
-                '10001' => 'R',
-                '10010' => 'S',
-                '10011' => 'T',
-                '10100' => 'U',
-                '10101' => 'V',
-                '10110' => 'W',
-                '10111' => 'X',
-                '11000' => 'Y',
-                '11001' => 'Z',
-                '11010' => '0',
-                '11011' => '1',
-                '11100' => '2',
-                '11101' => '3',
-                '11110' => '4',
-                '11111' => '5'
-            };
-            String suffix = '';
-            for(String value : lstTriplets){
-                String reverse = value.Reverse();
-                reverse.replaceall('[a-z0-9]','0');
-                reverse.replaceall('[A-Z]','1');
-
-                suffix+= mapCharacters.get(reverse);
-            }
-            return passedId + suffix;
-        }
-        return passedId;
-    }
+    
    
    /**********************************************************************
     * @description: Get project details to add them in the map
@@ -499,53 +451,25 @@ public without sharing class IPM_Utils {
         list<IPM_Project__c> lstProjectUser =[SELECT IPM_Project_Type__c, IPM_Project_Name__c ,IPM_Phase__c,IPMProject_Span__c,IPM_Project_Leader__c,Deputy_Project_Leader__c 
                                                FROM IPM_Project__c 
                                                WHERE (IPM_Project_Leader__c =: UserInfo.getUserId() or Deputy_Project_Leader__c =: UserInfo.getUserId()) 
-                                                     AND  id =: projectId AND Is_Archieved__c=false LIMIT 1];
+                                                     AND  id =: projectId AND Is_Archieved__c=false  LIMIT 1];
         if(lstProjectUser!=null && !lstProjectUser.isEmpty())
         {
-            
-            if((IPM_ConstantUtils.SpanGlobal.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_IDEAS.equals(lstProjectUser[0].IPM_Phase__c))||
-               (IPM_ConstantUtils.SpanGlobal.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.FEASIBILITY_PHASE.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.SpanGlobal.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_CAPABILITY.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.SpanGlobal.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_MARKET_READY.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.SpanGlobal.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.SpanGlobal.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_PLE.equals(lstProjectUser[0].IPM_Phase__c)) ||
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_IDEAS.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.FEASIBILITY_PHASE.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_CAPABILITY.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_MARKET_READY.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT.equals(lstProjectUser[0].IPM_Phase__c)) || 
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_PLE.equals(lstProjectUser[0].IPM_Phase__c)) ||
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.FEASIBILITY_PHASE.equals(lstProjectUser[0].IPM_Phase__c))||
-               (IPM_ConstantUtils.IPMREGIONAL.equals(lstProjectUser[0].IPMProject_Span__c) && IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT.equals(lstProjectUser[0].IPM_Project_Type__c) && IPM_ConstantUtils.PHASE_CAPABILITY.equals(lstProjectUser[0].IPM_Phase__c))
-         ){
-                return true;
-            }
-        
-        }
+             if(!IPM_ConstantUtils.PROJECT_SPAN_LOCAL.equalsIgnoreCase(lstProjectUser[0].IPMProject_Span__c)){
+                 return true;
+             }
+         }
         //security for central team and BP users
         IPM_CustomPermission cpr = new IPM_CustomPermission();
         boolean isCentralTeam=false;
         boolean isBPUser=false;
         isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
         isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
-        if(isCentralTeam || (isBPUser && !IPM_ConstantUtils.FEASIBILITY_PHASE.equals(lstProjectUser[0].IPM_Phase__c))){
+        if(isCentralTeam || isBPUser){
            return true; 
         }  
         return false;  
     } 
-    /**********************************************************************
-    * @description: to get the master brand data
-    * @return : list of strings
-    */
-    public static Set<String> getMasterBrandData(){
-        
-        set<String> lstToReturn = new set<String>();
-        mdm_Brand_Position__c[] brandPositions = [SELECT Brand_Position_Name__c FROM mdm_Brand_Position__c LIMIT 9999];
-        for(mdm_Brand_Position__c eachbrandPos : brandPositions) {
-            lstToReturn.add(eachbrandPos.Brand_Position_Name__c);
-        }
-        return lstToReturn;
-    }
+    
     
     public static Boolean checkDataValid(String data) {
         return Pattern.matches('/^0*('+'\\'+'.0+)$?/',data);
@@ -582,17 +506,23 @@ public without sharing class IPM_Utils {
       @param2 addChild : Child SObject which needs to be fetched.
     */
     
-    public static String prepareSOQLQuery(String SObjectName ,Boolean addChild,Set<String> includededChildObjects) 
-    {
-        Set<String> systemFields = new set<String>{'lastmodifiedbyid','isdeleted','lastvieweddate', 'lastreferenceddate','lastmodifieddate','isdeleted'};
+    public static String prepareSOQLQuery(String SObjectName ,Boolean addChild,Set<String> includededChildObjects, Boolean includeSystemFields) 
+    { 
+        Set<String> mandatoryStandardFieldSet = new Set<String>{'id','name','recordtypeid'};
+        
         Set<String> skippedChildObject = new Set<String>{'IPM_Project__c'};
         Map<String,Map<String,String>> orderByMap = new Map<String,Map<String,String>>{};
        
         String queryStr = ' Select ';
 
-        for(String fieldAPIName :  Schema.getGlobalDescribe().get(SObjectName).getDescribe().fields.getMap().keySet())
-        {    
-            if(fieldAPIName != 'Id' && !systemFields.contains(fieldAPIName))
+        Schema.DescribeSObjectResult sObjectDescribe = Schema.getGlobalDescribe().get(SObjectName).getDescribe();
+        
+        Map<String,Schema.SObjectField> sobjectFieldMap = sObjectDescribe.fields.getMap();
+        
+        for(String fieldAPIName :  sobjectFieldMap.keySet())
+        {   
+            Schema.DescribeFieldResult fieldDescribe = sobjectFieldMap.get(fieldAPIName).getDescribe(); 
+            if(!mandatoryStandardFieldSet.contains(fieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() ) )
             {
                 queryStr += ' '+fieldAPIName+',';
             }
@@ -618,12 +548,26 @@ public without sharing class IPM_Utils {
                     queryStr += ' ( Select ';
                     for(String childFieldAPIName : childFieldTypeMap.keySet())
                     {
-                        if(childFieldAPIName != 'Id' &&  !systemFields.contains(childFieldAPIName))
+                        Schema.DescribeFieldResult fieldDescribe = childFieldTypeMap.get(childFieldAPIName).getDescribe();
+                        if(!mandatoryStandardFieldSet.contains(childFieldAPIName) && ( includeSystemFields || fieldDescribe.isCustom() ) )
                         {
                             queryStr += ' '+childFieldAPIName+',';
                         }
+                    } 
+                    
+                    if(!childObjectDescibe.getRecordTypeInfos().isEmpty())
+                    { 
+                        for(Schema.RecordTypeInfo recordInfo : childObjectDescibe.getRecordTypeInfos())
+                        {
+                            if(!recordInfo.isMaster())
+                            {
+                                queryStr += 'recordTypeId,';
+                                break;
+                            }
+                        }
                     }
-                    queryStr += 'Id from '+childRelationshipName;
+                    
+                    queryStr += 'Id,Name from '+childRelationshipName;
                     
                     queryStr = queryStr.removeEnd(IPM_ConstantUtils.COMMA);
                     
@@ -632,7 +576,19 @@ public without sharing class IPM_Utils {
             }   
         }
         
-        queryStr += 'Id from '+SObjectName+' ';
+        if(!sObjectDescribe.getRecordTypeInfos().isEmpty())
+        {
+            for(Schema.RecordTypeInfo recordInfo : sObjectDescribe.getRecordTypeInfos())
+            {
+                if(!recordInfo.isMaster())
+                {
+                    queryStr += 'recordTypeId,';
+                    break;
+                }
+            }
+        }
+                    
+        queryStr += 'Id,Name from '+SObjectName+' ';
 
         return queryStr;
     } 
@@ -904,6 +860,7 @@ public without sharing class IPM_Utils {
             {
                 companyCardSet.add(project.IPM_Company_Card__c);  
             }
+            
         }
 
         if(!companyCardSet.isEmpty())
@@ -947,13 +904,15 @@ public without sharing class IPM_Utils {
     {
         IPM_ProjectMetadata__c selectedProjectMetadata = null;
         
-        if(project.IPM_Project_Type__c !=null && project.IPM_CompanyCardText__c !=null)
+        if(project.IPM_SourceProjectType__c !=null && project.IPM_CompanyCardText__c !=null)
         {
+            
             for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
             {
-                if(projectMetadata.IPM_Project_Type__c == project.IPM_Project_Type__c && projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
+                if(projectMetadata.IPM_Project_Type__c == project.IPM_SourceProjectType__c && projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
                 {
                     selectedProjectMetadata = projectMetadata;
+                    
                     break;
                 } 
             }
@@ -961,6 +920,7 @@ public without sharing class IPM_Utils {
         
         if(selectedProjectMetadata == null && project.IPM_ProjectSubType__c !=null && project.IPM_CompanyCardText__c !=null)
         {
+           
             for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
             {
                 if(projectMetadata.IPM_ProjectSubType__c.contains(project.IPM_ProjectSubType__c) && projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c)
@@ -1010,15 +970,23 @@ public without sharing class IPM_Utils {
         
         //query financial year and financial deatils
         IPM_Financial_Year__c[] finYearDetails = [SELECT Turnover_Global__c, Turnover_Regional__c,Turnover_Local__c ,IPM_Financial__r.Parent_Project__c,IPM_Financial__r.Regional_Project__c,IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c,IPM_Financial__r.Local_Project__c,IPM_Financial__r.IPM_Project_Rollout__c,
-                                                        IPM_Financial__r.RecordTypeId,IPM_Financial__r.Business_Impact_Global__c,IPM_Financial__r.name,IPM_Financial__r.Local_Project__r.IPM_Project_Type__c
+                                                        IPM_Financial__r.RecordTypeId,IPM_Financial__r.Business_Impact_Global__c,IPM_Financial__r.name,IPM_Financial__r.Local_Project__r.IPM_Project_Type__c,IPM_Financial__r.Parent_Project__r.IPM_Phase__c //SS change
                                                   FROM IPM_Financial_Year__c
                                                   WHERE Year__c = '3' AND Year_Type__c =: IPM_ConstantUtils.YEAR_TYPE_INNOVATION AND PL_Type__c =: IPM_ConstantUtils.PL_TYPE_INCREMENTAL    
                                                   LIMIT 50000];
         if(!finYearDetails.isEmpty()){
             for(IPM_Financial_Year__c finYr :finYearDetails){
                 System.debug('===>'+finYr.IPM_Financial__r.name);
-                //Global Financial : RT = CONSOLIDATED + Regional Project = null + Local Project = null
+                //additional condition - Global Project and not Ideas phase then Y3iTO should be from Market Cluster and not from Top Down
                 if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT) 
+                    && finYr.IPM_Financial__r.IPM_Project_Rollout__c == null && finYr.IPM_Financial__r.Regional_Project__c == null && finYr.IPM_Financial__r.Local_Project__c == null
+                    && finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null && finYr.IPM_Financial__r.Parent_Project__r.IPM_Phase__c!=IPM_ConstantUtils.PHASE_IDEAS) 
+                {
+                    iTOValue = (finYr.Turnover_Regional__c)/1000; 
+                    projIdiTOMap.put(finYr.IPM_Financial__r.Parent_Project__c,iTOValue);
+                }
+                //Global Financial : RT = CONSOLIDATED + Regional Project = null + Local Project = null
+                else if(finYr.IPM_Financial__r.RecordTypeId == IPM_Utils.getFinancialRecordType(IPM_ConstantUtils.CONSOLIDATED_FINANCIAL_RT) 
                     && finYr.IPM_Financial__r.IPM_Project_Rollout__c == null && finYr.IPM_Financial__r.Regional_Project__c == null && finYr.IPM_Financial__r.Local_Project__c == null
                     && finYr.Turnover_Global__c != null && finYr.IPM_Financial__r.Parent_Project__c != null) 
                 {
@@ -1044,14 +1012,15 @@ public without sharing class IPM_Utils {
                 }
                 //Regional Original
                 else if(finYr.IPM_Financial__r.Regional_Project__c != null && finYr.IPM_Financial__r.Regional_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                	iTOValue = (finYr.Turnover_Global__c)/1000;
+                    iTOValue = (finYr.Turnover_Global__c)/1000;
                     projIdiTOMap.put(finYr.IPM_Financial__r.Regional_Project__c,iTOValue);
                 }
                  //Local Original
                 else if(finYr.IPM_Financial__r.Local_Project__c != null && finYr.IPM_Financial__r.Local_Project__r.IPM_Project_Type__c == IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                	iTOValue = (finYr.Turnover_Global__c)/1000;
+                    iTOValue = (finYr.Turnover_Global__c)/1000;
                     projIdiTOMap.put(finYr.IPM_Financial__r.Local_Project__c,iTOValue);
                 }
+                
             }
         }
         return projIdiTOMap;
@@ -1066,7 +1035,7 @@ public without sharing class IPM_Utils {
     {
         Set<Id> projectIds = new Set<Id>();
 
-        String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null);
+        String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery(IPM_Project,false,null,true);
         String ProjectDetailWhereClause = 'Id in :incomingProjectIds';
         
         projectDetailSelectQuery = ProjectDetailSelectQuery  + ' WHERE ' + ProjectDetailWhereClause + LIMIT_STRING +  FORUPDATE_STRING ;
@@ -1096,7 +1065,7 @@ public without sharing class IPM_Utils {
     {
         Set<Id> projectIds = new Set<Id>();
 
-        String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null);
+        String ProjectDetailSelectQuery = IPM_Utils.prepareSOQLQuery(IPM_Project,false,null,true);
         String ProjectDetailWhereClause = 'IPM_Parent_Project__c in :incomingProjectIds';
         
         ProjectDetailSelectQuery = ProjectDetailSelectQuery  + ' WHERE ' + ProjectDetailWhereClause + LIMIT_STRING ;
@@ -1231,10 +1200,11 @@ public without sharing class IPM_Utils {
         }else{ // If project type is not operational, It can be Original or Rollout of Original
             strProjectType = IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL;
         }
-        
+        system.debug('IPM_ProjectMetadata__c:::'+IPM_ProjectMetadata__c.getAll().values());
         // Get the source Project Type and Source Company card to identify the Phase Sequence.
         for(IPM_ProjectMetadata__c projectMetadata : IPM_ProjectMetadata__c.getAll().values())
         {
+        	
             if(projectMetadata.IPM_ApplicableCompanyCard__c == project.IPM_CompanyCardText__c && projectMetadata.IPM_Project_Type__c == strProjectType)
             {
                 selectedProjectMetadata = projectMetadata;
@@ -1261,7 +1231,9 @@ public without sharing class IPM_Utils {
      mail.setToAddresses(toAddresses);
      mail.setSubject(emailSubject + apexJob.Status);
      mail.setPlainTextBody(emailBody1 + apexJob.TotalJobItems + emailBody2 + apexJob.NumberOfErrors + emailBody3);
-     Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+     if (!Test.isRunningTest()) {
+        Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });
+     }
     }
     
     /**************************************************************
@@ -1269,12 +1241,72 @@ public without sharing class IPM_Utils {
     * @param1 proj : project record
     */
     public static Boolean isProjectToBeSyncedToEcoDesign(IPM_Project__c proj){
-		if( retrieveProjectType(proj).IPM_Dont_Sync_Proj_To_EcoDesign__c || proj.IPM_Answer_of_Q1__c == IPM_ConstantUtils.ECODESIGN_MARKET_PLACE_ACTIVITY_BLG
-		){
-			return false;
-		}
-		else{
-			return true;
-		}
-	}
+        if( retrieveProjectType(proj).IPM_Dont_Sync_Proj_To_EcoDesign__c || proj.IPM_Answer_of_Q1__c == IPM_ConstantUtils.ECODESIGN_MARKET_PLACE_ACTIVITY_BLG
+        ){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    
+    public static Boolean validateTriggerSkip()
+    {
+        if(Trigger.isExecuting)
+        {
+            string CSkey=IPM_ConstantUtils.BLANK;
+            List<sObject> sobjectList = Trigger.New;
+            if(Trigger.isInsert)
+            {
+                if(Trigger.New!=null && !Trigger.New.isEmpty())
+                {
+                    sobjectList = Trigger.New;
+                    CSkey = sobjectList[0].getSObjectType().getDescribe().name.replace('__c','')+'Trigger';
+                }   
+            }
+            else
+            {
+                if(Trigger.old != null && !Trigger.old.isEmpty())
+                {
+                    sobjectList = Trigger.Old;
+                    CSkey = sobjectList[0].getSObjectType().getDescribe().name.replace('__c','')+'Trigger';
+                }
+            }
+            
+            if(String.isNotBlank(CSkey))
+            {
+                IPM_Trigger_Router__c triggerRouter = IPM_Trigger_Router__c.getInstance(CSkey); 
+                if(triggerRouter!=null && triggerRouter.is_Disabled__c)
+                {
+                    return true;
+                }
+            }  
+        } 
+        return false;
+    } 
+    
+     /*******************************************************************************************************
+    * @description              Method to get Financial External Id
+    * @param projectRollout     Rollout for which external id needs o be generated
+    * @return                   Financial External Id
+    */
+    public static String getFinancialExternalId(IPM_Project_Rollout__c projectRollout)
+    { 
+        if (projectRollout.KeyMCO__c)
+        {
+            return projectRollout.IPM_Rollout_Project__c;
+        }
+        else
+        { 
+            if(projectRollout.Added_At_Stage__c == IPM_ConstantUtils.PHASE_IDEAS)
+            {
+                return projectRollout.Regional_Rollout_External_Id__c + IPM_ConstantUtils.FINANCIAL_NONKEY;
+            }
+            else
+            {
+                return projectRollout.IPM_Rollout_Project__c;
+            }
+            
+        }
+    }
 }

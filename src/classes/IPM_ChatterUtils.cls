@@ -31,10 +31,21 @@ public with sharing class IPM_ChatterUtils {
 
             //add @mention tags if any
             if(subjectIdMentionIdSetMap != null && !subjectIdMentionIdSetMap.isEmpty() && subjectIdMentionIdSetMap.get(subjectId) != null){
+            	
+            	if(subjectIdMessageMap.get(subjectId).contains(System.Label.IPM_TLD_Misaligned)){
+                	ConnectApi.TextSegmentInput textSegmentInputTLDAttentionMsg = new ConnectApi.TextSegmentInput();
+                    textSegmentInputTLDAttentionMsg.text = Label.IPM_AttentionMsg+IPM_ConstantUtils.IPM_SPACE;
+                    messageBodyInput.messageSegments.add(textSegmentInputTLDAttentionMsg);
+                }
+                		
                 for(Id mentionId: subjectIdMentionIdSetMap.get(subjectId)){
                         ConnectApi.MentionSegmentInput mentionSegmentInput = new ConnectApi.MentionSegmentInput();
                         mentionSegmentInput.id = mentionId;
                         messageBodyInput.messageSegments.add(mentionSegmentInput);
+                        
+                        ConnectApi.TextSegmentInput textSegmentInputComma = new ConnectApi.TextSegmentInput();
+                        textSegmentInputComma.text = IPM_ConstantUtils.COMMA + IPM_ConstantUtils.IPM_SPACE;
+                        messageBodyInput.messageSegments.add(textSegmentInputComma);
                 }
             }
             

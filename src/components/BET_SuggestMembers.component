@@ -13,13 +13,13 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 <apex:component controller="BET_SuggestMembersController" allowDML="true">
 
     <apex:includeScript value="{!URLFOR($Resource.jscolor_1_4_1, 'jscolor/jscolor.js')}" />
-    <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />
+    <!--<apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />-->
     <apex:includeScript value="{!$Resource.BET}/scripts/blockUI.js" />
-    <apex:includeScript value="{!$Resource.BET}/scripts/bootstrap.min.js" />
+    <!--<apex:includeScript value="{!$Resource.BET}/scripts/bootstrap.min.js" /> -->
     <apex:includeScript value="{!$Resource.BET}/scripts/SuggestedMembers.js" />
-    <apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" />    
+    <!--<apex:includeScript value="{!$Resource.BETApp}/js/jquery.qtip.min.js" /> -->
     
-    <apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>
+    <!--<apex:stylesheet value="{!$Resource.BET}/css/bootstrap.min.css"/>-->
     <apex:stylesheet value="{!$Resource.BET}/css/BETQtip.css" />
     
     <apex:attribute name="BetID" description="BET ID" type="Id" 
@@ -45,24 +45,27 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     
 
 	<script>
-        //store current jquery version
-        var quickFix = $;
-        //restore previous one only for $
-        jQuery.noConflict();
-        //store the previous jquery version
-        var qtipJQuery = $;
-        // restore the newest version to $
-        $ = quickFix;
-        function enableTooltip() {
-            qtipJQuery( document ).ready(function( jq ) {
-                qtipJQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
-                qtipJQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
-             }
-            );
+        var pup = {!usedInPopup};
+        if(!pup){
+            //store current jquery version
+            var quickFix = $;
+            //restore previous one only for $
+            jQuery.noConflict();
+            //store the previous jquery version
+            var qtipJQuery = $;
+            // restore the newest version to $
+            $ = quickFix;
+            function enableTooltip() {
+                qtipJQuery( document ).ready(function( jq ) {
+                    qtipJQuery('.question-icon[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' } });
+                    qtipJQuery('.question-icon-left[data-tooltip!=""]').qtip({content: { attr: 'data-tooltip' },position: { my: 'bottom right', at: 'top left' } });
+                    }
+                );
+            }
+            //fix overlay issue "dialog is on top overlay layer"
+            $.blockUI.defaults.css['z-index']        = 1601;
+            $.blockUI.defaults.overlayCSS['z-index'] = 1600;
         }
-        //fix overlay issue "dialog is on top overlay layer"
-        $.blockUI.defaults.css['z-index']        = 1601;
-        $.blockUI.defaults.overlayCSS['z-index'] = 1600;
 	</script>
 
 
@@ -71,9 +74,11 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
     <apex:actionFunction name="addMembers" action="{!addMembers}"></apex:actionFunction>
 
 
-    <apex:actionFunction name="deleteMember" action="{!deleteMember}"  oncomplete="unlockUI();">
+    <apex:actionFunction name="deleteMember" action="{!deleteMember}"  oncomplete="unlockUI();" 
+        reRender="suggestedMembersContainer,suggestedMembersContainerbet">
         <apex:param id="memberToDelete" name="memberToDelete" value="" assignTo="{!memberToDelete}"/>
     </apex:actionFunction>
+    
     <apex:actionFunction name="delExternalMemeber" action="{!delExternalMemeber}" oncomplete="unlockUI();" reRender="suggestedMembersContainer,suggestedMembersContainerbet">
         <apex:param id="emailToDelete" name="emailToDelete" value="" assignTo="{!emailToDelete}"/>
     </apex:actionFunction>
@@ -83,7 +88,12 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
             
     </apex:actionFunction>
         
-    <apex:actionFunction action="{!addNewMembers}" name="addNewMembers" oncomplete="clearSearchForm();" 
+    <!--<apex:actionFunction action="{!addNewMembers}" name="addNewMembers" oncomplete="clearSearchForm();" 
+                         reRender="suggestedMembersContainer,suggestedMembersContainerbet">
+        <apex:param name="newlyAddedUsers" value="" assignTo="{!newlyAddedUsers}"/>
+    </apex:actionFunction>-->
+
+    <apex:actionFunction action="{!addNewMembers}" name="addNewMembers" oncomplete="unlockUI();"
                          reRender="suggestedMembersContainer,suggestedMembersContainerbet">
         <apex:param name="newlyAddedUsers" value="" assignTo="{!newlyAddedUsers}"/>
     </apex:actionFunction>
@@ -120,7 +130,10 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 
                 <apex:outputPanel id="suggestedMembersContainerbet" >
                 <script type="text/javascript">
-                    enableTooltip();
+                    var pup = {!usedInPopup};
+                    if(!pup){
+                        enableTooltip();
+                    }
                 </script>
 
                 <div class="note">
@@ -360,7 +373,7 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
             <div  class="addMembersBtn" onclick="addMembers();">
                 {!$Label.BET_SuggestedMemberComponentAddMember}
             </div>
-            <div class="addMembersBtn" onclick="skipPage();">
+            <div class="skipMembersBtn" onclick="skipPage();">
                 {!$Label.BET_SuggestedMemberComponentSkipForNow}
             </div>
         </div>
@@ -370,8 +383,14 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
         <div class="modal-dialog">
                 <div class="modal-content">
                 <div id="#ipmAddMemberModal" class="modal-header modal-header-bet">
-                    <button type="button" class="{!IF(usedInPopup,'close','close-bet')}" data-dismiss="modal" style="{!IF(usedInPopup,'display:none;','')}">&times;</button>
-                    <h4 class="modal-title modal-title-bet">{!$Label.BET_SuggestedMemberModalHeader}</h4>
+                     <button type="button" class="{!IF(usedInPopup,'close','close-bet')}" style="{!IF(usedInPopup,'','display:none;')}">
+                     &times;
+                     </button>
+                     <button type="button" class="{!IF(usedInPopup,'close','close-bet')}" data-dismiss="modal" 
+                     style="{!IF(usedInPopup,'display:none;','')}">
+                     &times;
+                     </button>
+                     <h4 class="modal-title modal-title-bet">{!$Label.BET_SuggestedMemberModalHeader}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="searchModal" style="{!IF(usedInPopup,'padding-left: 20px;padding-top:20px;','padding-top:1px;')}">
@@ -391,9 +410,14 @@ VERSION  AUTHOR                         DATE        DETAIL   Description
 
                                 <hr width="96%" class="memberseparator" style="{!IF(usedInPopup,'display:none;','')}"/>
 
-                                <input  type="checkbox" onclick="var $ = jQuery.noConflict(); selectOrUnselectModal($(this));" 
+                                <!--<input  type="checkbox" onclick="var $ = jQuery.noConflict(); selectOrUnselectModal($(this));" 
+                                        id="userIdCheckbox_{!memberItem.id}" 
+                                        value="{!memberItem}"/>-->
+
+                                <input  type="checkbox" onclick="var $ = jQuery.noConflict(); selectOrUnselectModal($(this));addAllNewMembers();" 
                                         id="userIdCheckbox_{!memberItem.id}" 
                                         value="{!memberItem}"/>
+
                                 <img class="circularSmall" alt="{!memberItem.name}" src="{!memberItem.SmallPhotoUrl}" width="45px" height="45px"/>
                                 <span class="searchResultItem">{!memberItem.name}</span>
                                 <span class="searchResultItem">{!memberItem.Title}</span>

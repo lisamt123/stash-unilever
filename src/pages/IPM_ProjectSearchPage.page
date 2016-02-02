@@ -619,14 +619,7 @@
                        <apex:actionFunction name="toggleSortTLDs" action="{!toggleSortTLDs}" rerender="prjPanel,jsLoad,paginationSec" status="myStatus" />
                     </apex:form>
                     <apex:outputPanel id="jsLoad">
-                        <script>
-                            var brandList = [];
-                        </script>
-                        <apex:repeat value="{!masterBrandArr}" var="arrayItem">
-                        <script>
-                            brandList.push('{!arrayItem}');
-                        </script>
-                        </apex:repeat>
+                        
                         <apex:includeScript value="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectSearchComp.js')}"/>
                         <script>    
                            jq("#srchBrand").keypress(function(o){return 13==o.which?(loadProjects(jq("#srchBrand").val()),!1):void 0}),jq(document).ready(function(){jq("#sortProjects").on("click",function(){toggleSortProjects()}),jq("#sortPhases").on("click",function(){toggleSortPhases()}),jq("#sortPLs").on("click",function(){toggleSortPLs()}),jq("#sortGKs").on("click",function(){toggleSortGKs()}),jq("#sortITOs").on("click",function(){toggleSortITOs()}),jq("#sortTLDs").on("click",function(){toggleSortTLDs()})});

@@ -43,7 +43,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
             }
             if(!lstProjectIds.isEmpty())
             {
-                String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null);
+                String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
                 String projectWhereClause = ' WHERE id IN : lstProjectIds LIMIT 50000';
                 projectQuery = projectQuery + projectWhereClause;
                 ipmProjects = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>) database.query(projectQuery));
@@ -75,6 +75,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
                     }
                 }
             }
+            
         } 
         //IPM BET related changes: Start
         //Call IPM BET Helper class method to update Release Status Missed flags on IPM Project
@@ -95,8 +96,9 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
             if(!mapProjectBETMS.isEmpty()){
                 IPM_BETHelper.updateBETMilestoneMissOnProject(mapProjectBETMS);
             }
+            //IPM BET related changes: End
         }
-        //IPM BET related changes: End
+        
     }
     
     /**
@@ -126,7 +128,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
             
             if(!lstProjectIds.isEmpty())
             {
-                String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null);
+                String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
                 String projectWhereClause = ' WHERE id IN : lstProjectIds LIMIT 50000';
                 projectQuery = projectQuery + projectWhereClause;
                 ipmProjects = new Map<Id,IPM_Project__c>( (List<IPM_Project__c>) database.query(projectQuery));
@@ -159,6 +161,7 @@ public with sharing class IPM_MilestoneHandler implements ITrigger{
             {    
                 IPM_MilestoneHelper.CopyMilestones(eligibleProjectMapForCopyOver,eligibleMilestoneMapForCopyOver);
             }
+            
         } 
     }
     /**

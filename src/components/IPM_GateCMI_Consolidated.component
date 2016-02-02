@@ -76,14 +76,12 @@
                                                                                             </div> 
                                                                                             <span class="{!sec.IPM_CMI_Outcome_Color__c}"></span>
                                                                                         </div>
-                                                                                        <div class="cmiContractAchievedContainer">
-                                                                                            <apex:outputPanel layout="block" rendered="{!OR(types='Contract',types='Market Ready')}">
-                                                                                                <div class="pull-left">
-                                                                                                    <apex:outputField value="{!sec.IPM_CMI_Results_Acheived__c}" rendered="{!!sec.IPM_CMI_Is_Free_Text__c}"/>
-                                                                                                </div> 
-                                                                                                <span class="{!sec.IPM_CMI_Outcome_Color_Achieved__c}"></span>
-                                                                                            </apex:outputPanel> 
-                                                                                        </div>
+                                                                                        <apex:outputPanel styleclass="cmiContractAchievedContainer" layout="block" rendered="{!OR(types='Contract',types='Market Ready')}">
+                                                                                            <div class="pull-left">
+                                                                                                <apex:outputField value="{!sec.IPM_CMI_Results_Acheived__c}" rendered="{!!sec.IPM_CMI_Is_Free_Text__c}"/>
+                                                                                            </div> 
+                                                                                            <span class="{!sec.IPM_CMI_Outcome_Color_Achieved__c}"></span>
+                                                                                        </apex:outputPanel> 
                                                                                         <div class="cmiContractCommentContainer">
                                                                                             <div class="ronlyComment">
                                                                                                 <apex:outputField styleClass="ronlyComment" value="{!sec.IPM_CMI_Comments__c}"   />
@@ -106,14 +104,14 @@
                                                                                                 <span class="{!os.IPM_CMI_Overall_Colour__c}"></span>
                                                                                             </div>
                                                                                         </div>
-                                                                                        <div class="contractResultContainer">
+                                                                                        <apex:outputPanel styleClass="contractResultContainer" layout="block" rendered="{!OR(types='Contract',types='Market Ready')}">
                                                                                             <div class="midContainer">
                                                                                                 <div class="cmiResultBox ContractoverallSubtext">
                                                                                                     <apex:outputField value="{!os.IPM_CMI_Overall_Score_Achieved__c}" rendered="{!OR(os.IPM_CMI_Overall_Colour_Coding_Method__c='System',os.IPM_CMI_Overall_Colour_Coding_Method__c='Manual')}"/>  
                                                                                                 </div>
                                                                                                 <span class="{!os.IPM_CMI_Overall_Colour_Achieved__c}"></span>
                                                                                             </div>
-                                                                                        </div>
+                                                                                        </apex:outputPanel>
                                                                                         <div class="contractCommentContainer ronlyComment">
                                                                                             <apex:outputField value="{!os.IPM_CMI_Overall_Comments__c}" />
                                                                                         </div>

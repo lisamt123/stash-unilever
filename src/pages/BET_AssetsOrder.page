@@ -24,7 +24,6 @@
     </div>
     
     <div id="liAssets" class="assetsList">
-        
         <apex:repeat value="{!liAssets}" var="asst">
                 <div class="assetsRow">
                     <div class="assetElemBig" data-id="{!asst.id}">{!asst.name}</div>
@@ -38,8 +37,9 @@
     </apex:outputPanel>
 
     <apex:includeScript value="{!$Resource.BET}/scripts/jquery.min.js" />
+    <apex:includeScript value="{!$Resource.BET}/libs/jquery-ui/jquery-ui.min.js" /> 
+    <apex:includeScript value="{!$Resource.BET}/scripts/jquery.ui.touch-punch.min.js" />
     <apex:includeScript value="{!$Resource.BET}/scripts/BETAssetsOrder.js" />
-    <apex:includeScript value="{!$Resource.BET}/libs/jquery-ui/jquery-ui.min.js" />
 
     <script type="text/javascript">
         function saveOrderRemote(orderedAssets){

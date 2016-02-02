@@ -426,7 +426,7 @@ IMAGE(&quot;/resource/ipmResource/images/cone.png&quot;, &quot;Not Started&quot;
     </listViews>
     <nameField>
         <label>Project Document Id</label>
-        <trackFeedHistory>false</trackFeedHistory>
+        <trackFeedHistory>true</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>

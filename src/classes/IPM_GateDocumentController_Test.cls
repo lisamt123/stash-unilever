@@ -6,6 +6,7 @@
 @isTest
 public class IPM_GateDocumentController_Test{    
     public static IPM_Project__c project;// Project object initialization
+  
     public static IPM_Project_Document__c projDoc;
     public static List<IPM_Project_Document__c> projDocList=new List<IPM_Project_Document__c>();
     private static List<IPM_Project__c>projectList=new list<IPM_Project__c>();
@@ -20,10 +21,17 @@ public class IPM_GateDocumentController_Test{
     public static List<IPM_Project_Document_Section__c>projectDocSecListObj=new List<IPM_Project_Document_Section__c>();
     public static User globalUser;
     public static List<IPM_Questionnaire__c> quesList;
+    public static List<IPM_Milestone__c> mileList;
     public static IPM_ProjectIntermediateController interCon;
     public static IPM_Project_Document_Section__c docSec;
     public static IPM_Project_Document__c document;
     public static User stdUserForGateDocument;
+     private static string LOCAL_STR='Local';
+    private static string REGIONAL_STR='Regional';
+     public static List<IPM_Project_Rollout__c> regionalRolloutList;
+     public static List<IPM_Project_Rollout__c> localRolloutList;
+      private static IPM_Document_Template__c ipdt;
+    private static IPM_Project_Template__c projTempl;
    /*************************************************************************************************************************
     * @description Test Data
     */
@@ -55,13 +63,42 @@ public class IPM_GateDocumentController_Test{
             project=projectList[0];
             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:project.ID LIMIT 1];
             System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
+            
+              regionalRolloutList = IPM_TestFactory_Helper.createRegionalRolloutList(false,projectList,new List<User>{stdUserForGateDocument,stdUserForGateDocument,stdUserForGateDocument});
+            insert regionalRolloutList;
+            List<IPM_Project_Rollout__c> proRegListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:regionalRolloutList[0].ID LIMIT 1];
+            System.assertEquals(proRegListObj[0].IPM_Rollout_Span__c,REGIONAL_STR,'regional rollout created');//positive test
+            
+            Map<Id,List<IPM_Project_Rollout__c>> projectToRolloutMap = new Map<Id,List<IPM_Project_Rollout__c>>();
+            for(IPM_Project_Rollout__c projectRollout : regionalRolloutList)
+            {
+                List<IPM_Project_Rollout__c> projectRolloutList = new List<IPM_Project_Rollout__c>();
+                if(projectToRolloutMap.containsKey(projectRollout.IPM_Project__c))
+                {
+                    projectRolloutList = projectToRolloutMap.get(projectRollout.IPM_Project__c);
+                }
+                projectRolloutList.add(projectRollout);
+                projectToRolloutMap.put(projectRollout.IPM_Project__c,projectRolloutList);
+                
+            }
+            
+            // Create local Rollouts for Created regional Rollouts.
+             localRolloutList = IPM_TestFactory_Helper.createLocalRolloutsList(false,projectToRolloutMap,new List<User>{stdUserForGateDocument});  
+            
+            insert localRolloutList; 
+            localRolloutList[0].Regional_Project__c=regionalRolloutList[0].IPM_Project__c;
+            update localRolloutList;
+            List<IPM_Project_Rollout__c> proLocListObj=[SELECT IPM_Rollout_Span__c from IPM_Project_Rollout__c WHERE ID =:localRolloutList[0].ID LIMIT 1];
+            System.assertEquals(proLocListObj[0].IPM_Rollout_Span__c,LOCAL_STR,'local rollout created');//positive test
+            
+            
         }
     }
     
     /*************************************************************************************************************************
     * @description Test Data to set up the project related data
     */
-    @testSetup static void initializeTestMethodData(){
+    static void initializeTestMethodData(){
         
         Set<String> projectNameSet = new Set<String>{TEST_COMMENTS_STR};
         globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
@@ -75,15 +112,55 @@ public class IPM_GateDocumentController_Test{
             for(IPM_Project__c projectObj : projectListObj) {
                 projDocList = projectObj.Project_Documents__r;
                 quesList=projectObj.IPM_Questionnaires__r;
+                mileList=projectObj.IPM_Milestones__r;
                 System.assertEquals(projDocList[0].IPM_GateDocuments__c,IPM_ConstantUtils.CHARTER_GATE,PROJECT_DOC_CREATED_STR);
             }
+           
+           
+             IPM_Project_Template__c projTemplate = IPM_TestFactory_Helper.createIPMProjectTemplate(FALSE);
+            insert projTemplate;
+            List<IPM_Project_Template__c> projTemplList=[SELECT ID,IPM_Template_Complexity__c FROM IPM_Project_Template__c WHERE ID=:projTemplate.ID LIMIT 1];
+            projTempl=projTemplList[0];        
+            System.assertEquals(projTempl.IPM_Template_Complexity__c, IPM_ConstantUtils.COMPLEXITY_FULL);
+    
+            IPM_Document_Template__c ipdoctem = IPM_TestFactory_Helper.creteIPMDocumentTemplate(FALSE);
+            ipdoctem.IPM_Project_Template__c = projTempl.ID;
+            insert ipdoctem;
+            List<IPM_Document_Template__c> projDocTemplList=[SELECT ID,IPM_Project_Template__c,IPM_Document_Template_Name__c,IPM_Document_Type__c FROM IPM_Document_Template__c WHERE ID=:ipdoctem.ID LIMIT 1];
+            ipdt=projDocTemplList[0];
+            System.assertEquals(projDocTemplList[0].id,ipdoctem.id );//positive test
+            
+            IPM_Section__c secMastParent = IPM_TestFactory_Helper.createIPMSection(FALSE);
+            secMastParent.IPM_Document_Template__c = ipdt.ID;
+            
+            insert secMastParent;
+            List<IPM_Section__c> projSecMstlList=[SELECT ID,IPM_Document_Template__c,IPM_Section_Sequence__c,IPM_Section_Name__c FROM IPM_Section__c WHERE ID=:secMastParent.ID LIMIT 1];
+           
+            System.assertEquals(projSecMstlList[0].IPM_Document_Template__c,ipdt.ID);//positive test
+            
+            //Creating master Section
+            IPM_Section__c secMast = IPM_TestFactory_Helper.createIPMSection(FALSE);
+            secMast.IPM_Document_Template__c = ipdt.ID;
+            secMast.IPM_Parent_Section__c =secMastParent.Id;
+            secMast.IPM_Section_Type__c=IPM_ConstantUtils.SECTION_TYPE_TEXT;
+            insert secMast;
+            List<IPM_Section__c> projSecMstlList1=[SELECT ID,IPM_Document_Template__c,IPM_Section_Sequence__c,IPM_Section_Name__c FROM IPM_Section__c WHERE ID=:secMast.ID LIMIT 1];
+          
+            System.assertEquals(projSecMstlList1[0].IPM_Document_Template__c,ipdt.ID);//positive test
+            
             document=projDocList[0];
-            projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
-            where IPM_Project_Document__c=:projDocList[0].Id];
+            projectDocSecListObj = [Select Id,IPM_Section_Name__c,IPM_Section_Sequence__c,IPM_Section__r.IPM_Parent_Section__c,IPM_Project_Document__c from IPM_Project_Document_Section__c 
+            where IPM_Project_Document__c=:document.Id];
             system.assertEquals(projectDocSecListObj[0].IPM_Project_Document__c,projDocList[0].Id);
             docSec=projectDocSecListObj[0];
+            projectDocSecListObj[0].IPM_Section__c=secMast.Id;
+            projectDocSecListObj[0].IPM_Default_Section__c=true;
+            projectDocSecListObj[0].IPM_Master_Section_External_Id__c =IPM_ConstantUtils.IPM_CU_COMPLEXITY;
+            projectDocSecListObj[0].IPM_FunctionalRole__c=IPM_ConstantUtils.FUNCTIONAL_ROLE_PL;
+            update projectDocSecListObj;
             pRef = Page.IPM_GateDocument;
             pRef.getParameters().put(IPM_ConstantUtils.SF_ID, projectListObj[0].Id);
+            pRef.getParameters().put('printDoc', IPM_ConstantUtils.CHARTER_GATE);
             Test.setCurrentPage(pRef);
             interCon=new IPM_ProjectIntermediateController ();
             interCon.project.Id=projectListObj[0].Id;
@@ -102,6 +179,8 @@ public class IPM_GateDocumentController_Test{
             test.startTest();
          ipmGateDocContrl=new IPM_GateDocumentController();
             ipmGateDocContrl.DueDateMsg=false;
+            ipmGateDocContrl.lstMstn=new List<IPM_Milestone__c>();
+            ipmGateDocContrl.lstMstn.add(mileList[0]);
             ipmGateDocContrl.getProjectDocument();
             ipmGateDocContrl.project.IPM_Phase__c=IPM_ConstantUtils.PHASE_FEASIBILITY;
             ipmGateDocContrl.project.IPM_GateKeeping_Model__c=IPM_ConstantUtils.GATEKEEPING_MODEL_GCLT;
@@ -144,7 +223,12 @@ public class IPM_GateDocumentController_Test{
             test.startTest();
             ipmGateDocContrl=new IPM_GateDocumentController();
             ipmGateDocContrl.appendixCCId='abc';
-            ipmGateDocContrl.proDocSectionListForAppendix=projectDocSecListObj;
+            ipmGateDocContrl.projectDoc=document;
+            ipmGateDocContrl.dueDate=String.valueOf(system.today());
+            ipmGateDocContrl.globalbusinessImpactStr='xyz';
+            ipmGateDocContrl.proSubSectionParentsSequences='qwe';
+            ipmGateDocContrl.proDocSectionListForAppendix=new List<IPM_Project_Document_Section__c>();
+            ipmGateDocContrl.proDocSectionListForAppendix.add(projectDocSecListObj[0]);
             ipmGateDocContrl.getIpmuserType();
             ipmGateDocContrl.IsTypeAll=true;
             ipmGateDocContrl.filterSections();
@@ -169,6 +253,10 @@ public class IPM_GateDocumentController_Test{
             ipmGateDocContrl.IsFinance=true;
             ipmGateDocContrl.IsBB=true;
             ipmGateDocContrl.IsPL=true;
+            ipmGateDocContrl.proSubSectionParentsSequenceList1=new Set<String>();
+            ipmGateDocContrl.proSubSectionParentsSequenceList1.add('ert');
+            ipmGateDocContrl.projSubSectionList=new List<IPM_Project_Document_Section__c>();
+            ipmGateDocContrl.projSubSectionList.add(projectDocSecListObj[0]);
             ipmGateDocContrl.filterSections();
             System.assertEquals(ipmGateDocContrl.IsFilledIn,false,'value reset through func call');
             ipmGateDocContrl.IsCMI=true;
@@ -184,6 +272,7 @@ public class IPM_GateDocumentController_Test{
             ipmGateDocContrl.IsBB=true;
             ipmGateDocContrl.filterSections();
             ipmGateDocContrl.IsPL=true;
+            ipmGateDocContrl.projectDoc=document;
             ipmGateDocContrl.filterSections();
             System.assertEquals(ipmGateDocContrl.IsFilledIn,false,'value reset through func call');
             test.stopTest();
@@ -238,13 +327,18 @@ public class IPM_GateDocumentController_Test{
     /*************************************************************************************************************************
 * @description Running Test Script to Reset the Filters
 */ 
-    static testMethod void resetFiltersTest(){initializeTestMethodData();
+    static testMethod void resetFiltersTest(){
+    initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();  
-        ipmGateDocContrl=new IPM_GateDocumentController();
+       
+            ipmGateDocContrl=new IPM_GateDocumentController();
             ipmGateDocContrl.exportToPdf();
             ipmGateDocContrl.moveToPLE();
             ipmGateDocContrl.ResetFilters();
+           
+             ipmGateDocContrl.exportToPdf();
+            
             System.assert(ipmGateDocContrl.IsTypeAll,'value reset');
             test.stopTest();
         }
@@ -257,8 +351,11 @@ public class IPM_GateDocumentController_Test{
         initializeTestMethodData();
         system.RunAs(globalUser){
             test.startTest();
-           ipmGateDocContrl=new IPM_GateDocumentController ();
+          ipmGateDocContrl=new IPM_GateDocumentController();
+           
+            
             ipmGateDocContrl.moveToNextDocument();
+            
             ipmGateDocContrl.projectDoc.Id=projDocList[0].Id;
             ipmGateDocContrl.getDynamicSection();
             List<IPM_Project_Document_Section__c>projSubLevelSectionList=[SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c, IPM_Section_Sequence__c, 

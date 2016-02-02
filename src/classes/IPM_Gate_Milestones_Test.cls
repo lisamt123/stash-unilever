@@ -8,14 +8,14 @@
 */
 @isTest
 public class IPM_Gate_Milestones_Test {
-	
-	private static User stdUserForMilestone;
-	
-	/**
-	    *  Description: Milestone Set up data
-	    *  @name mileStoneSetUp
-	*/
-	@testSetup static void mileStoneSetUp() 
+    
+    private static User stdUserForMilestone;
+    private static final string TEST_COMMENTS_STR='TestComments1';
+    /**
+        *  Description: Milestone Set up data
+        *  @name mileStoneSetUp
+    */
+    @testSetup static void mileStoneSetUp() 
     {
        System.runAs(IPM_TestFactory_Helper.createUserAdmin(true))
     	{
@@ -30,11 +30,22 @@ public class IPM_Gate_Milestones_Test {
         List<IPM_Company_Card__c> companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
         insert companyCardList;
         
+        List<IPM_Company_Card__c>comList=[select Id from IPM_Company_Card__c where Id=:companyCardList[0].Id limit 1];
+        System.assertEquals(comList[0].Id,companyCardList[0].Id,'company card inserted');
+        
+        // Inserting Master Data whose OWD are set to readOnly/View All    
         IPM_TestFactory_Helper.getProjectMasterData();
+        
+        // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+        IPM_TestFactory_Helper.shareMasterProject(new List<User>{stdUserForMilestone});
+        
         List<IPM_Project__c> projectList = IPM_TestFactory_Helper.projectSetUp(1, stdUserForMilestone);
         System.runAs(stdUserForMilestone)
         {
             insert projectList;
+            
+             List<IPM_Project__c> projlList1=[SELECT ID,Name,IPM_Phase__c,IPM_Complexity__c,IPM_GateKeeping_Model__c FROM IPM_Project__c WHERE ID=:projectList[0].ID LIMIT 1];
+            System.assertEquals(projlList1[0].Name,TEST_COMMENTS_STR,'project name');//positive test
         } 
         
     }    
@@ -56,12 +67,27 @@ public class IPM_Gate_Milestones_Test {
         System.assert(projectList[0].IPM_Milestones__r.size() > 0); 
         System.runAs(globalUser)
         { 
-        	Test.startTest();
-			IPM_Gate_Milestones gateMilestones= new IPM_Gate_Milestones();
-			gateMilestones.projectId = projectList[0].Id;
-			// assert to check Component is displaying the milestones related to that particular project 
-			System.assert([Select Id from IPM_Milestone__c WHERE IPM_Project__c =: gateMilestones.projectId ].size() > 0);
-			Test.stopTest();	
+            Test.startTest();
+            IPM_Gate_Milestones gateMilestones= new IPM_Gate_Milestones();
+            gateMilestones.projectId = projectList[0].Id;
+            gateMilestones.gateType=IPM_ConstantUtils.CHARTER_GATE;
+            gateMilestones.gateDocumentStatus=IPM_ConstantUtils.STATUS_APPROVED;
+            gateMilestones.projectId = projectList[0].Id;
+            gateMilestones.gateType=IPM_ConstantUtils.CONTRACT_GATE;
+            
+            gateMilestones.projectId = projectList[0].Id;
+            gateMilestones.gateType=IPM_ConstantUtils.MARKET_READY_GATE;
+            
+            gateMilestones.projectId = projectList[0].Id;
+            gateMilestones.gateType=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;
+            
+            gateMilestones.projectId = projectList[0].Id;
+            
+            // assert to check Component is displaying the milestones related to that particular project 
+            List<IPM_Milestone__c>milestoneList=[Select Id from IPM_Milestone__c WHERE IPM_Project__c =: gateMilestones.projectId];
+                                               
+            System.assertNotEquals(milestoneList.size(),0,'retreiving project specific milestones');
+            Test.stopTest();    
         }
 	}
 }

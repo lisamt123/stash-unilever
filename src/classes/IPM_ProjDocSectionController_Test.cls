@@ -27,7 +27,7 @@ public class IPM_ProjDocSectionController_Test{
     public static List<IPM_Questionnaire__c> questionaire = new List<IPM_Questionnaire__c>();
     public static User otherUser;
     public static String Project_Template = 'should be same';
-
+	
     /***********************************
     * @Description: Test Data Creation
     * *********************************/
@@ -54,12 +54,14 @@ public class IPM_ProjDocSectionController_Test{
         system.assertEquals(ipmCompanyCardList.size(), 3, 'Company card not created properly.');
         
         IPM_TestFactory_Helper.getProjectMasterData();
-         
+        
         projectList = IPM_TestFactory_Helper.projectSetUp(1,platformUser);
-         
+        
         System.runAs(platformUser)
         {
-           insert projectList;
+            insert projectList;
+            projectList[0].IPM_Technical_Project_Leader__c=platformUser.id;
+            update projectList;
         }  
         Set<Id> projectIdList = new Set<Id>();        
         for(IPM_project__c temp : projectList){
@@ -74,7 +76,7 @@ public class IPM_ProjDocSectionController_Test{
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1];  
         System.runAs(globalUser)
         { 
-            projectListObj = [Select Id, Name, (Select Id,IPM_GateDocuments__c from Project_Documents__r)
+            projectListObj = [Select Id, Name,IPM_Technical_Project_Leader__c, (Select Id,IPM_GateDocuments__c from Project_Documents__r)
             from IPM_Project__c where Name in:projectNameSet];
             
             for(IPM_Project__c projectObj : projectListObj)
@@ -190,7 +192,7 @@ public class IPM_ProjDocSectionController_Test{
             IPM_Questionnaire__c testQuestionaire = [Select id, IPM_Active_RQS__c from IPM_Questionnaire__c where id=: questionaire[0].Id];
             system.assertEquals(testQuestionaire.IPM_Active_RQS__c, true, 'Questionare not updated properly.');
             otherUser= IPM_TestFactory_Helper.createIPMPlatformProfileUser('');
-           }
+        }
     }
     
     /**************************************************************************************************************************
@@ -208,6 +210,9 @@ public class IPM_ProjDocSectionController_Test{
             Test.setCurrentPage(pRef );
             
             IPM_ProjectDocumentSectionController projDocSecControl=new IPM_ProjectDocumentSectionController();
+            projDocSecControl.selectedOTIFStatus='abc';
+            projDocSecControl.gateDocument=IPM_ConstantUtils.CHARTER_GATE;
+            projDocSecControl.secList='asd';
             projDocSecControl.isFlagedNext = 'True';
             projDocSecControl.isChecked = 'true';
             projDocSecControl.IsGateSave = 'Gate';
@@ -220,6 +225,15 @@ public class IPM_ProjDocSectionController_Test{
             projDocSecControl.getSecOption();
             System.assert(projDocSecControl.projDocSec!=null, 'Project Document Section');
             System.assert(projDocSecControl.projDoc!=null);
+            projDocSecControl.status=true;
+            projDocSecControl.IsEditableSumm=true;
+            projDocSecControl.projDocSec.IPM_Gate_Document_Summary__c='test with comment.test with comment';
+            projDocSecControl.projDocSec.IPM_Negotiable__c=true;
+            projDocSecControl.save();
+            projDocSecControl.projDocSec.IPM_Negotiable__c=false;
+            projDocSecControl.projDocSec.IPM_PDP_Document_Summary__c=projDocSecControl.projDocSec.IPM_Gate_Document_Summary__c;
+            projDocSecControl.project.name='testwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddatatestwithinvaliddata';
+            projDocSecControl.save(); 
         }
         Test.stopTest();
     }
@@ -371,6 +385,21 @@ public class IPM_ProjDocSectionController_Test{
             IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
             projDocSecControl.save();
         }
+        testResource.IPM_Role_Type__c = 'BB';
+        update testResource; 
+        
+        System.runAs(testUser)
+        {
+            PageReference pRef = Page.IPM_ProjectDocumentSectionEditor;
+            pRef.getparameters().put('Id', projectListObj[0].ID);
+            pRef.getparameters().put(PROJ_DOC_SEC_ID_STR, testSection.Id);
+            Test.setCurrentPage(pRef );
+            
+            IPM_ProjectDocumentSectionController projDocSecControl =new IPM_ProjectDocumentSectionController();
+            projDocSecControl.project.IPM_Phase__c=IPM_ConstantUtils.PHASE_MARKET_READY;
+            projDocSecControl.getIpmuserType();
+        }
+        
         Test.stopTest();
     }
     
