@@ -24,13 +24,18 @@ public with sharing class IPM_SoqlUtilities {
     *************************************************************************************/
     public static Map<Id, IPM_Bosscard__c> getBosscardMap(String recordId){
         String queryString = 'SELECT ';
-        For (String field : Schema.SObjectType.IPM_Bosscard__c.fields.getMap().KeySet()){
+        for (String field : Schema.SObjectType.IPM_Bosscard__c.fields.getMap().KeySet())
+        {
             if (field != 'Id')
+            {
                 queryString+= field + ', ';
+            }
         }
         queryString+= 'Id,IPM_Gate_Keeper__r.smallphotourl,IPM_Gate_Keeper__r.name,IPM_Project_Leader__r.name,CreatedBy.Name FROM IPM_Bosscard__c';
         if (recordId != null)
+        {
             queryString+= ' WHERE Id =: recordId';
+        }
         
         queryString+= ' ORDER BY Name ASC ';
         

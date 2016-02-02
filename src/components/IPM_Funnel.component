@@ -12,8 +12,8 @@
         <div class="col-sm-12">           
             <div class="basic panel ipmFunnelPanel">
                 <div class="progress-wrap">
-                    <ul class="progress-bar {!IF(AND(project.IPM_Phase__c = 'PLE',project.IPM_Project_Type__c = 'Operational'), 'pleProgress', '' )}">
-                        <li class="first {!IF(project.IPM_Phase__c != '', 'completed', '')}"><span>{!$Label.IPM_INITIATION}</span></li>
+                    <ul class="progress-bar {!IF(project.IPM_Project_Type__c = 'Operational', 'pleProgress', '' )}">
+                        <li class="first {!IF(project.IPM_Phase__c != '', 'completed', '')}"><span>{!if(project.IPM_Bosscard_Status__c,$Label.IPM_BOSSCARD,$Label.IPM_INITIATION)}</span></li>
                     
                         <apex:variable value="{!0}" var="counter"/>
                         <apex:repeat value="{!associatedProjectPhases}" var="phase" >

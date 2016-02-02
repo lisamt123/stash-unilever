@@ -115,6 +115,8 @@ private class IPM_AssortmentStrategy_Test {
             projDocSecCon.IPM_Assort_Channel_Name__c=HYPERMARKET_STR;
             projDocSecCon.IPM_Incumbent_CUs__c=INCUMBENT_STR;
             projDocSecCon.IPM_Content_Type__c=IPM_ConstantUtils.ASSORTMENT_CONTENT_TYPE;
+            projDocSecCon.IPM_Assortment_CU_Priority__c = 1;
+            projDocSecCon.IPM_Incumbent_CUs__c = 'Test';
             
             insert projDocSecCon;
             IPM_Project_Document_Section_Content__c projectDocSecConObj=[select IPM_Content_Type__c,IPM_Project_Document_Section__c from IPM_Project_Document_Section_Content__c where id=:projDocSecCon.Id];
@@ -173,7 +175,7 @@ private class IPM_AssortmentStrategy_Test {
     *@Description : to Intialize the data for IPM_AssortmentStrategy object and 
                     to cover updateAssortS method of IPM_AssortmentStrategy class
     ***************************************************************************/
-    static testMethod void testchangePriority(){
+    static testMethod void testUpdateAssortS(){
         
         
         
@@ -184,7 +186,7 @@ private class IPM_AssortmentStrategy_Test {
             ipmAssort.AssortPriority='1';
             ipmAssort.ProdocSecId=projectDocSecListObj[0].Id;
             ipmAssort.setProdocSecId(projectDocSecListObj[0].Id);
-            ipmAssort.selecteAssortTodelete=projDocSecCon.Id;
+            ipmAssort.selecteAssort=projDocSecCon.Id;
             ipmAssort.updateAssortS();
             List<IPM_Project_Document_Section_Content__c> secConLst1=[select IPM_Content_Type__c,IPM_Assortment_Strategy_Priority__c  from IPM_Project_Document_Section_Content__c where ID=:projDocSecCon.Id];
             system.assertEquals(secConLst1[0].IPM_Assortment_Strategy_Priority__c,'1','Data is updated');
@@ -212,5 +214,31 @@ private class IPM_AssortmentStrategy_Test {
             
             Test.stopTest();
         } 
-    }    
+    } 
+    
+    /*************************************************************************
+    *@Description : to Intialize the data for IPM_AssortmentStrategy object and 
+                    to cover ChangePriority method of IPM_AssortmentStrategy class
+    ***************************************************************************/
+    static testMethod void testChangePriority(){
+        
+        
+        
+        Test.startTest();
+        initializeTestMethodData();
+        system.RunAs(globalUser){
+            
+            ipmAssort.priorityNumber=2;
+            ipmAssort.arrow=IPM_ConstantUtils.UP_ARROW;
+            ipmAssort.priorityCU = 'Test';
+            ipmAssort.ProdocSecId=projectDocSecListObj[0].Id;           
+            ipmAssort.ChangePriority();
+            List<IPM_Project_Document_Section_Content__c> secConLst1=[select IPM_Content_Type__c,IPM_Assortment_Strategy_Priority__c  from IPM_Project_Document_Section_Content__c where ID=:projDocSecCon.Id];
+            system.assertEquals(secConLst1[0].IPM_Assortment_Strategy_Priority__c,'1','Data is not updated properly');
+            
+            
+            Test.stopTest();
+            
+        }
+    }   
 }

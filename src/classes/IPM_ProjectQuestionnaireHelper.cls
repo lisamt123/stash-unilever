@@ -209,7 +209,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                                 
                                 if(incomingProject.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL && projectCurrentGate == IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE &&
                                         existingQuestionare.RecordTypeId == recTypeIDRQS && (existingQuestionare.IPM_Active_RQS__c || existingQuestionare.IPM_Is_Added_Question__c) &&  
-                                        existingQuestionare.IPM_Score__c >= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE )
+                                        existingQuestionare.IPM_Market_Deployment_Score__c>= IPM_ConstantUtils.RISK_QUESTIONNAIRE_SCORE )
                                 {
                                     addedQuestionareAtParent.add(existingQuestionare);
                                 }
@@ -325,17 +325,21 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                 break;   
             }
         }
-           
+        
+        integer questionSequence=0;// introduced to accomodate differnt sequencing for Original and Operational Projects   
         for(IPM_Questionnaire__c gkQ : gateKeepercheckListMaster)
-        {
+        {  
             for(IPM_Project_Document_Section__c projectDocumentSection : projectGateSpecificSections)
             {
+               
                if(gkQ.IPM_Section_External_Id__c!=null && !String.isBlank(gkQ.IPM_Section_External_Id__c) && 
                projectDocumentSection.IPM_Master_Section_External_Id__c!=null && !String.isBlank(projectDocumentSection.IPM_Master_Section_External_Id__c) &&
                        gkQ.IPM_Section_External_Id__c.trim() == projectDocumentSection.IPM_Master_Section_External_Id__c.trim())
                 {
                     if(!IPM_ProjectHelper.projectSectionMap.containsKey(projectDocumentSection.Id))
                     {
+                      
+                        questionSequence++; 
                         IPM_Questionnaire__c tempGKQ = new IPM_Questionnaire__c();
                         tempGKQ.IPM_Project__c = project.Id;
                         tempGKQ.IPM_Question_Help_Text__c = gkQ.IPM_Question_Help_Text__c;
@@ -346,7 +350,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                         tempGKQ.IPM_RQS_Gate_Type__c = gateType;
                         tempGKQ.IPM_GK_Answers__c = gkQ.IPM_GK_Answers__c;
                         tempGKQ.RecordTypeId = recTypeGK;
-                        tempGKQ.IPM_Sequence_Number__c =gkQ.IPM_Sequence_Number__c; 
+                        tempGKQ.IPM_Sequence_Number__c =questionSequence; 
                         tempGKQ.IPM_Section_Sequence_Number__c = projectDocumentSection.IPM_Section_Sequence_Number__c; 
                         tempGKQ.IPM_Project_Document_Section__c = projectDocumentSection.Id;
                         tempGKQ.IPM_Section_External_Id__c= gkQ.IPM_Section_External_Id__c;                 
@@ -358,8 +362,11 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                 if(gkQ.IPM_Section_External_Id__c==null)
                
                 {
+                  
                     if(!IPM_ProjectHelper.projectSectionMap.containsKey(projectDocumentSection.Id))
                     {
+                      
+                       questionSequence++;
                         IPM_Questionnaire__c tempGKQ = new IPM_Questionnaire__c();
                         tempGKQ.IPM_Project__c = project.Id;
                         tempGKQ.IPM_Question_Help_Text__c = gkQ.IPM_Question_Help_Text__c;
@@ -370,7 +377,7 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                         tempGKQ.IPM_RQS_Gate_Type__c = gateType;
                         tempGKQ.IPM_GK_Answers__c = gkQ.IPM_GK_Answers__c;
                         tempGKQ.RecordTypeId = recTypeGK;
-                        tempGKQ.IPM_Sequence_Number__c = gkQ.IPM_Sequence_Number__c;
+                        tempGKQ.IPM_Sequence_Number__c = questionSequence;
                         tempGKQ.IPM_Section_External_Id__c= gkQ.IPM_Section_External_Id__c;
                         insertProjectGKCheckList.add(tempGKQ);
                     }
@@ -428,6 +435,14 @@ public with sharing class IPM_ProjectQuestionnaireHelper {
                 tempQuestionare.IPM_Comments__c = questionMasterObj.IPM_Comments__c;
                 tempQuestionare.IPM_Is_Added_Question__c = questionMasterObj.IPM_Is_Added_Question__c;
                 tempQuestionare.IPM_Active_RQS__c = questionMasterObj.IPM_Active_RQS__c;
+                tempQuestionare.IPM_Charter_Comments__c= questionMasterObj.IPM_Charter_Comments__c;
+                tempQuestionare.IPM_Charter_Score__c= questionMasterObj.IPM_Charter_Score__c;
+                tempQuestionare.IPM_Contract_Comments__c= questionMasterObj.IPM_Contract_Comments__c;
+                tempQuestionare.IPM_Contract_Score__c= questionMasterObj.IPM_Contract_Score__c;
+                tempQuestionare.IPM_Market_Deployment_Comments__c= questionMasterObj.IPM_Market_Deployment_Comments__c;
+                tempQuestionare.IPM_Market_Deployment_Score__c= questionMasterObj.IPM_Market_Deployment_Score__c;
+                tempQuestionare.IPM_Market_Ready_Comments__c= questionMasterObj.IPM_Market_Ready_Comments__c;
+                tempQuestionare.IPM_Market_Ready_Score__c= questionMasterObj.IPM_Market_Ready_Score__c;
             }
            
             projectQuestionareList.add(tempQuestionare);

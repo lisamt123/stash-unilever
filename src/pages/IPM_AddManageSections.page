@@ -73,7 +73,7 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_AddManageSections.js')}" type="text/javascript"></script>
     <apex:outputPanel id="backtomainpg">
         <script>
-            var IPMApp = {GateDocumentPageRef:'{!$Page.IPM_GateDocument}', projectId:'{!HTMLENCODE(projectId)}'};            
+            var IPMApp = {GateDocumentPageRef:'{!$Page.IPM_GateDocument}', projectId:'{!HTMLENCODE(projectId)}',printDoc:'{!HTMLENCODE(projectDoc.IPM_GateDocuments__c)}'};            
         </script>
     </apex:outputPanel>
 </apex:page>

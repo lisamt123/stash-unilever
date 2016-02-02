@@ -8,14 +8,14 @@
  ************************************************************************************************************/
 
 global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchable<sObject> {   
+  
 
-
-    global final String query; 
+    global final String query;  
     global map<id,IPM_Project__c> projectIdMap = new map<id,IPM_Project__c>();   
     global set<id> projectIdSet = new set<id>();
     global set<id> rolloutprojectIdSet = new set<id>();
     global map<Id,list<IPM_Project_Rollout__c>> projRolloutMap;
-    global map<string,list<IPM_Financial_Year__c>> rolloutFinancialYearmap;
+    global map<string,list<IPM_Financial_Year__c>> rolloutFinancialYearmap;  
     global map<id,list<IPM_Financial__c>> rolloutFinancialmap;
     global list<IPM_Analytics__c> analyticRecList;  
     public static final String BB_BD_REPORT_RUNDATE='BD BB Report'; //To fetch BB BD Report last run date from custom setting
@@ -46,9 +46,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             projectIdSet.add(p.Id);
             if(String.isNotBlank(p.IPM_Phase__c) && p.IPM_Phase__c.equalsignorecase(IPM_Utils.Ideas)){
                 rolloutprojectIdSet.add(p.Id);
-            }                
+            }
         }
-
+        
         //Delete existing analytics records so that the changes made to the existing projects will be recorded again
         try{  
         List<IPM_Analytics__c> analyticsRecDelList = new list<IPM_Analytics__c>([SELECT id
@@ -228,8 +228,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         }
         
         //Fetching rollout records for project in Ideas phase and creating map
-       	projRolloutMap = new map<id,list<IPM_Project_Rollout__c>>();
-       	set<id> regionalRolloutset = new set<id> ();
+         projRolloutMap = new map<id,list<IPM_Project_Rollout__c>>();
+         set<id> regionalRolloutset = new set<id> ();
         try{
             list<IPM_Project_Rollout__c> projRolloutList = new list<IPM_Project_Rollout__c>([SELECT id,
                                                                                                     name,
@@ -252,7 +252,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                             projRolloutMap.put(pr.IPM_Project__r.id, rolloutList);              
                     }
                     if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
-                    	regionalRolloutset.add(pr.Id);	
+                      regionalRolloutset.add(pr.Id);  
                     }
                 }    
             }
@@ -323,10 +323,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         }   
         catch(Exception ex){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR,null,null,null,null); 
-        }  
-        
-
-
+        } 
         //End of Map creation logic ***
 
         //Start - Analytics Object Record Insertion 
@@ -364,14 +361,15 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             a.IPM_Project_Start_Date__c = p.CreatedDate.date(); 
             a.IPM_Cluster_Project__c = p.IPM_Clusters__c;
             a.IPM_Phase__c = p.IPM_Phase__c;            
-            a.IPM_Exempt_from_Threshold__c = p.Exempt_from_Threshold__c;
+            a.IPM_Exempt_from_Threshold__c = p.Exempt_from_Threshold__c; 
+            a.IPM_Auto_Aligned_Fin_TLD__c = p.IPM_Misalligned__c; // Auto_Aligned will only be checked for local projects
 
 
             if(String.isNotBlank(p.IPMProject_Span__c) && (p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal) || p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional))){
                 a.IPM_IC_NBU__c = IPM_Utils.IPM_IC;
             }else if(String.isNotBlank(p.IPMProject_Span__c) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
                 a.IPM_IC_NBU__c = IPM_Utils.IPM_IC_NBU;
-                a.IPM_Market_Cluster__c = p.Market_Cluster_Name__c;  
+                a.IPM_Market_Cluster__c = p.Market_Cluster_Name__c;                 
             }
 
             if(String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original)){
@@ -379,27 +377,26 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             }else if(String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){
                 a.IPM_Geography__c = p.Market_Cluster_Name__c;
             }else if(String.isNotBlank(p.IPM_Project_Type__c) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
-                if(ipmCountryMap.containskey(p.id)) a.IPM_Geography__c = ipmCountryMap.get(p.id);
+                if(ipmCountryMap.containskey(p.id)){ a.IPM_Geography__c = ipmCountryMap.get(p.id);}
             }
 
-            if(String.isNotBlank(p.IPM_Category_Text__c) && p.IPM_Category_Text__c != IPM_ConstantUtils.HHC_CONSTANT && p.IPM_Category_Text__c != System.Label.IPM_Laundry){
+            if(String.isNotBlank(p.IPM_Category_Text__c) && String.isNotBlank(p.IPMPlatform__c) && p.IPMPlatform__c != IPM_ConstantUtils.OPTION_NONE && p.IPM_Category_Text__c != IPM_ConstantUtils.HHC_CONSTANT && p.IPM_Category_Text__c != System.Label.IPM_Laundry){
                 a.IPM_Platform__c = p.IPMPlatform__c;
             }
             // populate target launch year & month
-            if(String.isNotBlank(p.IPM_Project_Type__c) && (p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) || p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL))){
+            if(String.isNotBlank(p.IPM_Project_Type__c) && (p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Original) || p.IPM_Project_Type__c.equalsignorecase(IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL) ||(String.isNotBlank(p.IPMProject_Span__c) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)))){
                 a.IPM_Target_Launch_Month_BD__c = p.IPM_Target_Launch_Month__c;
                 a.IPM_Target_Launch_Year_BD__c = p.IPM_Target_Launch_Year__c;   
             }
-            if (String.isNotBlank(p.IPMProject_Span__c) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){
+            if (String.isNotBlank(p.IPMProject_Span__c) && String.isNotBlank(p.IPM_Project_Type__c) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)){
                 a.IPM_Target_Launch_Month_BB__c = p.IPM_Target_Launch_Month__c;
-                a.IPM_Target_Launch_Year_BB__c = p.IPM_Target_Launch_Year__c;
+                a.IPM_Target_Launch_Year_BB__c = p.IPM_Target_Launch_Year__c; 
             }
 
             //Copying IPM Financial field values
-            if(projFinmap.containskey(p.Id)) a.IPM_Auto_Aligned_Fin_TLD__c = projFinMap.get(p.id).IPM_Auto_Aligned_Fin_TLD__c;
-
+          
             //Global Project Business Impact Global will be copy to Global,Regional & Local project
-            if(projFinmap.containskey(p.Id)) a.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; 
+            if(projFinmap.containskey(p.Id)){ a.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; }  
 
             //Copying IPM Milestone fields 
             if(projMilestoneMap.containskey(p.id)){ 
@@ -439,7 +436,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 
                     if(mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.BET_MS_FIRST_RELEASE)){
                         a.IPM_BET_First_Release_Due_Date__c = mile.IPM_Due_Date__c;
-                        a.IPM_BET_First_Released_On_Date__c = mile.IPM_Completed_on__c; 
+                        a.IPM_BET_First_Released_On_Date__c = mile.IPM_Completed_on__c;     
                     }
 
                     if(mile.IPM_Name__c.equalsignorecase(IPM_ConstantUtils.BET_MS_FINAL_RELEASE)){
@@ -458,9 +455,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     // Populating 1st Full Year Gross TO (BD)
                     if(String.isNotBlank(fr.Year_Type__c) && String.isNotBlank(fr.PL_Type__c) && fr.Name.equalsignorecase(IPM_Utils.Y1) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Innovation) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
 
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)) a.IPM_1st_Full_Year_Gross_TO_BD__c = fr.Turnover_Local__c;
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)) a.IPM_1st_Full_Year_Gross_TO_BD__c = fr.Turnover_Regional__c;
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)) a.IPM_1st_Full_Year_Gross_TO_BD__c = fr.Turnover_Global__c;
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)){ a.IPM_1st_Full_Year_Gross_TO_BD__c = fr.Turnover_Local__c;}
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)){ a.IPM_1st_Full_Year_Gross_TO_BD__c = fr.Turnover_Regional__c;}
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)){ a.IPM_1st_Full_Year_Gross_TO_BD__c = fr.Turnover_Global__c;}
 
                     }
                     // Populating 1st Full Year iTO (BD) & 1st Full Year iGP (BD)
@@ -483,42 +480,42 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     // Populating Gross TO (BD) - Y0 - Y8
                     if(String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
 
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())) a.IPM_Gross_TO_Y0_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())) a.IPM_Gross_TO_Y1_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())) a.IPM_Gross_TO_Y2_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year())) a.IPM_Gross_TO_Y3_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())) a.IPM_Gross_TO_Y4_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())) a.IPM_Gross_TO_Y5_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())) a.IPM_Gross_TO_Y6_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())) a.IPM_Gross_TO_Y7_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())) a.IPM_Gross_TO_Y8_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())){ a.IPM_Gross_TO_Y0_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())){ a.IPM_Gross_TO_Y1_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())){ a.IPM_Gross_TO_Y2_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year())){ a.IPM_Gross_TO_Y3_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())){ a.IPM_Gross_TO_Y4_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())){ a.IPM_Gross_TO_Y5_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())){ a.IPM_Gross_TO_Y6_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())){ a.IPM_Gross_TO_Y7_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())){ a.IPM_Gross_TO_Y8_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
 
                     }
 
                     if(String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){
 
                         // Populating iTO (BD) - Y0 - Y8  
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())) a.IPM_iTO_Y0_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())) a.IPM_iTO_Y1_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())) a.IPM_iTO_Y2_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year())) a.IPM_iTO_Y3_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())) a.IPM_iTO_Y4_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())) a.IPM_iTO_Y5_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())) a.IPM_iTO_Y6_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())) a.IPM_iTO_Y7_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())) a.IPM_iTO_Y8_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())){ a.IPM_iTO_Y0_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())){ a.IPM_iTO_Y1_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())){ a.IPM_iTO_Y2_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year())){ a.IPM_iTO_Y3_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())){ a.IPM_iTO_Y4_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())){ a.IPM_iTO_Y5_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())){ a.IPM_iTO_Y6_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())){a.IPM_iTO_Y7_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())){ a.IPM_iTO_Y8_BD__c = getTurnOver(fr,p.IPMProject_Span__c,TURNOVER);}
 
 
                         // Populating iGP (BD) - Y0 - Y8
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())) a.IPM_iGP_Y0_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())) a.IPM_iGP_Y1_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())) a.IPM_iGP_Y2_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);
-                        if(fr.Name == string.valueof(system.today().year())) a.IPM_iGP_Y3_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())) a.IPM_iGP_Y4_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())) a.IPM_iGP_Y5_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())) a.IPM_iGP_Y6_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())) a.IPM_iGP_Y7_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);
-                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())) a.IPM_iGP_Y8_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())){ a.IPM_iGP_Y0_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())){ a.IPM_iGP_Y1_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())){ a.IPM_iGP_Y2_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);}
+                        if(fr.Name == string.valueof(system.today().year())){ a.IPM_iGP_Y3_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())){ a.IPM_iGP_Y4_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())){ a.IPM_iGP_Y5_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())) {a.IPM_iGP_Y6_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())){ a.IPM_iGP_Y7_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);}
+                        if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())){ a.IPM_iGP_Y8_BD__c = getTurnOver(fr,p.IPMProject_Span__c,GROSSPROFIT);}
 
                     }  
 
@@ -526,18 +523,40 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) &&  fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross))
                     {  
 
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)) a.IPM_Y3_gTO_BD__c = fr.Turnover_Local__c;
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)) a.IPM_Y3_gTO_BD__c = fr.Turnover_Regional__c;
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)) a.IPM_Y3_gTO_BD__c = fr.Turnover_Global__c;
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)) 
+                        {
+                            a.IPM_Y3_gTO_BD__c = fr.Turnover_Local__c;
+                        }
+                        
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional))
+                        {
+                            a.IPM_Y3_gTO_BD__c = fr.Turnover_Regional__c;
+                        }
+                        
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal))
+                        {
+                            a.IPM_Y3_gTO_BD__c = fr.Turnover_Global__c;
+                        }
 
                     }                   
                     // Populating Y3 iTO                   
                     if(fr.Year__c == IPM_Utils.n3 && String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental))
                     {                       
 
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)) a.IPM_Y3_iTO_BD__c = fr.Turnover_Local__c;
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional)) a.IPM_Y3_iTO_BD__c = fr.Turnover_Regional__c;
-                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal)) a.IPM_Y3_iTO_BD__c = fr.Turnover_Global__c;                       
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local)) 
+                        {   
+                            a.IPM_Y3_iTO_BD__c = fr.Turnover_Local__c;
+                        }
+                        
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Regional))
+                        {
+                            a.IPM_Y3_iTO_BD__c = fr.Turnover_Regional__c;
+                        }
+                        
+                        if(p.IPMProject_Span__c.equalsignorecase(IPM_Utils.valueGlobal))
+                        { 
+                            a.IPM_Y3_iTO_BD__c = fr.Turnover_Global__c;  
+                        }                     
                     }
 
                 }//end of Financial Year For loop
@@ -545,9 +564,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             }
             analyticreclist.add(a);  
             if(projRolloutMap.containskey(a.IPM_Project_Id__c)){
-            	List<IPM_Analytics__c> rollAnalyticlist = new List<IPM_Analytics__c> (addrolloutproject(a));
+              List<IPM_Analytics__c> rollAnalyticlist = new List<IPM_Analytics__c> (addrolloutproject(a));
                 if(!rollAnalyticlist.isEmpty()){
-                	analyticreclist.addall(rollAnalyticlist);                
+                  analyticreclist.addall(rollAnalyticlist);                
                 }               
             }  
 
@@ -590,23 +609,43 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
 
         double returnValue=0;
 
-        if( projectSpan.equalsignorecase(IPM_Utils.Local)){
-            if(returnType.equalsignorecase(TURNOVER)) returnValue = fr.Turnover_Local__c;
-            if(returnType.equalsignorecase(GROSSPROFIT)) returnValue = fr.Gross_Profit_Local__c;    
+        if( projectSpan.equalsignorecase(IPM_Utils.Local))
+        {
+            if(returnType.equalsignorecase(TURNOVER))
+            { 
+                returnValue = fr.Turnover_Local__c;
+            }
+            
+            if(returnType.equalsignorecase(GROSSPROFIT))
+            { 
+                returnValue = fr.Gross_Profit_Local__c;  
+            }  
         }
 
-        if( projectSpan.equalsignorecase(IPM_Utils.Regional)){
-            if(returnType.equalsignorecase(TURNOVER)) returnValue = fr.Turnover_Regional__c;
-            if(returnType.equalsignorecase(GROSSPROFIT)) returnValue = fr.Gross_Profit_Regional__c;
+        if( projectSpan.equalsignorecase(IPM_Utils.Regional))
+        {
+            if(returnType.equalsignorecase(TURNOVER))
+            {
+                returnValue = fr.Turnover_Regional__c;
+            }
+            
+            if(returnType.equalsignorecase(GROSSPROFIT)){ returnValue = fr.Gross_Profit_Regional__c;}
         }
 
-        if( projectSpan.equalsignorecase(IPM_Utils.valueGlobal)){
-            if(returnType.equalsignorecase(TURNOVER)) returnValue = fr.Turnover_Global__c;
-            if(returnType.equalsignorecase(GROSSPROFIT)) returnValue = fr.Gross_Profit_Global__c;
+        if( projectSpan.equalsignorecase(IPM_Utils.valueGlobal))
+        {
+            if(returnType.equalsignorecase(TURNOVER))
+            {
+                returnValue = fr.Turnover_Global__c;
+            }
+            
+            if(returnType.equalsignorecase(GROSSPROFIT))
+            { 
+                returnValue = fr.Gross_Profit_Global__c;
+            }
         }
 
         return returnValue; 
-
     }  
     
     /*********************************************************************************************************************
@@ -619,7 +658,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
         
        
         IPM_Analytics__c parent = parentanalyticrec;
-       	list<IPM_Analytics__c> returnList = new list<IPM_Analytics__c>();
+         list<IPM_Analytics__c> returnList = new list<IPM_Analytics__c>();
         id regionalrolloutid;             
          
              for(IPM_Project_Rollout__c pr:projRolloutMap.get(parent.IPM_Project_Id__c)){
@@ -700,42 +739,42 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                             // Populating Gross TO (BD) - Y0 - Y8
                             if(String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Gross)){
         
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())) r.IPM_Gross_TO_Y0_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())) r.IPM_Gross_TO_Y1_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())) r.IPM_Gross_TO_Y2_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year())) r.IPM_Gross_TO_Y3_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())) r.IPM_Gross_TO_Y4_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())) r.IPM_Gross_TO_Y5_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())) r.IPM_Gross_TO_Y6_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())) r.IPM_Gross_TO_Y7_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())) r.IPM_Gross_TO_Y8_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())){ r.IPM_Gross_TO_Y0_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())){ r.IPM_Gross_TO_Y1_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())){ r.IPM_Gross_TO_Y2_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year())){ r.IPM_Gross_TO_Y3_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())){ r.IPM_Gross_TO_Y4_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())){r.IPM_Gross_TO_Y5_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())){ r.IPM_Gross_TO_Y6_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())){ r.IPM_Gross_TO_Y7_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())){ r.IPM_Gross_TO_Y8_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
         
                             }
         
                             if(String.isNotBlank(fr.Year_Type__c) && fr.Year_Type__c.equalsignorecase(IPM_Utils.Calendar) && String.isNotBlank(fr.PL_Type__c) && fr.PL_Type__c.equalsignorecase(IPM_Utils.Incremental)){
         
                                 // Populating iTO (BD) - Y0 - Y8  
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())) r.IPM_iTO_Y0_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())) r.IPM_iTO_Y1_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())) r.IPM_iTO_Y2_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year())) r.IPM_iTO_Y3_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())) r.IPM_iTO_Y4_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())) r.IPM_iTO_Y5_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())) r.IPM_iTO_Y6_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())) r.IPM_iTO_Y7_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())) r.IPM_iTO_Y8_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())){ r.IPM_iTO_Y0_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())){ r.IPM_iTO_Y1_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())){ r.IPM_iTO_Y2_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year())){ r.IPM_iTO_Y3_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())){ r.IPM_iTO_Y4_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())){ r.IPM_iTO_Y5_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())){ r.IPM_iTO_Y6_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())){ r.IPM_iTO_Y7_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())){ r.IPM_iTO_Y8_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,TURNOVER);}
         
         
                                 // Populating iGP (BD) - Y0 - Y8
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())) r.IPM_iGP_Y0_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())) r.IPM_iGP_Y1_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())) r.IPM_iGP_Y2_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);
-                                if(fr.Name == string.valueof(system.today().year())) r.IPM_iGP_Y3_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())) r.IPM_iGP_Y4_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())) r.IPM_iGP_Y5_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())) r.IPM_iGP_Y6_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())) r.IPM_iGP_Y7_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);
-                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())) r.IPM_iGP_Y8_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_3__c.intValue())){ r.IPM_iGP_Y0_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_2__c.intValue())){ r.IPM_iGP_Y1_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y_1__c.intValue())){ r.IPM_iGP_Y2_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);}
+                                if(fr.Name == string.valueof(system.today().year())){ r.IPM_iGP_Y3_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y1__c.intValue())){ r.IPM_iGP_Y4_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y2__c.intValue())){ r.IPM_iGP_Y5_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y3__c.intValue())){ r.IPM_iGP_Y6_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y4__c.intValue())){r.IPM_iGP_Y7_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);}
+                                if(fr.Name == string.valueof(system.today().year() + reportcs.Y5__c.intValue())){ r.IPM_iGP_Y8_BD__c = getTurnOver(fr,IPM_Utils.valueGlobal,GROSSPROFIT);}
         
                             }  
         

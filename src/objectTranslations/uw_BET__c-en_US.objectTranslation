@@ -718,6 +718,10 @@ Note: If you cannot find your brand then you can select any brand and uncheck &a
         </sections>
     </layouts>
     <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Bet visibility cannot be set back to Private --></errorMessage>
+        <name>VisibilityChangeBackToPrivate</name>
+    </validationRules>
     <webLinks>
         <label><!-- UploadKeyVisual --></label>
         <name>UploadKeyVisual</name>

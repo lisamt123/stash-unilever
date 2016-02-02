@@ -149,13 +149,13 @@ Phase :Feasibility Phase 
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>leftHandSideType</name>
+                    <name>rightHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
                 <processMetadataValues>
-                    <name>rightHandSideType</name>
+                    <name>leftHandSideType</name>
                     <value>
                         <stringValue>Picklist</stringValue>
                     </value>
@@ -269,12 +269,6 @@ Phase :Feasibility Phase 
             </conditions>
             <conditions>
                 <processMetadataValues>
-                    <name>operatorDataType</name>
-                    <value>
-                        <stringValue>String</stringValue>
-                    </value>
-                </processMetadataValues>
-                <processMetadataValues>
                     <name>inputDataType</name>
                     <value>
                         <stringValue>String</stringValue>
@@ -290,6 +284,12 @@ Phase :Feasibility Phase 
                     <name>rightHandSideType</name>
                     <value>
                         <stringValue>GlobalConstant</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
                     </value>
                 </processMetadataValues>
                 <leftValueReference>myVariable_current.IPM_Finance_Member__r.FirstName</leftValueReference>

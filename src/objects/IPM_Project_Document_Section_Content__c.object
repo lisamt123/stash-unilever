@@ -466,6 +466,10 @@
                 <fullName>CVM (Concept Viability Measure)</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Endurance</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
@@ -573,6 +577,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -582,6 +587,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -591,6 +597,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -600,6 +607,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -627,29 +635,20 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -678,7 +677,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
-                <controllingFieldValues>package communication</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -725,6 +723,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -734,6 +733,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -743,6 +743,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -752,6 +753,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -779,29 +781,20 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Parity</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Loss</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Win</fullName>
-                <controllingFieldValues>Differentiation</controllingFieldValues>
-                <controllingFieldValues>Expensiveness</controllingFieldValues>
                 <controllingFieldValues>Key Attributes</controllingFieldValues>
                 <controllingFieldValues>Overall liking</controllingFieldValues>
-                <controllingFieldValues>Relevance</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -830,7 +823,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
-                <controllingFieldValues>package communication</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -875,6 +867,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -884,6 +877,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -893,6 +887,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -902,6 +897,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -971,7 +967,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
-                <controllingFieldValues>package communication</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1008,6 +1003,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -1017,6 +1013,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -1026,6 +1023,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -1035,6 +1033,7 @@
                 <controllingFieldValues>Attraction</controllingFieldValues>
                 <controllingFieldValues>CVM (Concept Viability Measure)</controllingFieldValues>
                 <controllingFieldValues>Communication</controllingFieldValues>
+                <controllingFieldValues>Endurance</controllingFieldValues>
                 <controllingFieldValues>Point of Purchase</controllingFieldValues>
                 <controllingFieldValues>Salience</controllingFieldValues>
                 <default>false</default>
@@ -1104,7 +1103,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Possible Failure</fullName>
-                <controllingFieldValues>package communication</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1324,6 +1322,17 @@
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Consumer_Evidence_Priority__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Consumer Evidence Priority</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>

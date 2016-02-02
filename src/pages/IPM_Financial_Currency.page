@@ -55,19 +55,26 @@
                                                    <li>
                                                        <div class="projectContainer">
                                                             <div class="pHead accrHead filterSubTitle {!IF(currentFinancialId == mapConsolidatedFinancials[rolloutWrapper.regionName].Id, 'selected', '')}">
-                                                            <span class='expico-square fa fa-minus'></span>
-                                                                <apex:commandLink value="{!rolloutWrapper.regionName}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel" rendered="{!if(project.IPMProject_Span__c != 'Local',true,false)}" status="loadingStatus" oncomplete="finScriptCallBack()">
-                                                                    <apex:param name="currentFinancialId" value="{!mapConsolidatedFinancials[rolloutWrapper.regionName].Id}" assignTo="{!currentFinancialId}"/>
-                                                                </apex:commandLink>
-                                                                <apex:outputText value="{!rolloutWrapper.regionName}" rendered="{!project.IPMProject_Span__c == 'Local'}" />
+                                                            <apex:outputText rendered="{!project.IPMProject_Span__c != 'Local'}" >
+                                                                <span class='expico-square fa fa-minus'></span>
+                                                                    <apex:commandLink value="{!rolloutWrapper.regionName}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel" rendered="{!if(project.IPMProject_Span__c != 'Local',true,false)}" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                        <apex:param name="currentFinancialId" value="{!mapConsolidatedFinancials[rolloutWrapper.regionName].Id}" assignTo="{!currentFinancialId}"/>
+                                                                    </apex:commandLink>
+                                                             </apex:outputText>        
                                                             </div> 
                                                             <div class="ipmAcrdnExpand"> 
                                                              <ul class="docFilter accordionFilters">
                                                                     <apex:repeat value="{!rolloutWrapper.lstFinancials}" var="financial">  
                                                                         <li class="{!IF(financial.Status__c == $Label.IPM_SUBMITTED, $Label.IPM_SUBMIT_CODE, IF(financial.Status__c == $Label.IPM_IN_PROGRESS, $Label.IPM_PROGRESS_CODE, $Label.IPM_NOT_STARTED_CODE))} {!IF(currentFinancialId == financial.Id, $Label.IPM_Selected, '')} finRecord">
-                                                                            <i class="flag"></i><apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel" status="loadingStatus" oncomplete="finScriptCallBack()">
+                                                                            <div class="incHeight" id="flagID">              
+                                                                                <span class="key wordwrap">
+                                                                                    <apex:image styleClass="wid26" value="{!URLFOR($Resource.IPM_Resource, 'images/flag.svg')}" rendered="{!IF(AND(NOT(CONTAINS(financial.Financial_External_ID__c, '_NONKEY')), currentTab == 'myview', project.IPM_Phase__c <> 'Ideas'), TRUE, FALSE)}"/>
+                                                                                </span>
+                                                                            
+                                                                            <apex:commandLink value="{!financial.Financial_External_ID__c}" action="{!refreshFinancials}" reRender="rolloutPanel,tabContentPanel,flagID" status="loadingStatus" oncomplete="finScriptCallBack()">
                                                                                 <apex:param name="currentFinancialId" value="{!financial.Id}" assignTo="{!currentFinancialId}"/>
                                                                             </apex:commandLink>
+                                                                            </div>
                                                                         </li>           
                                                                    </apex:repeat>
                                                                 </ul>
@@ -88,7 +95,7 @@
                             </div>
                             </apex:outputPanel>
                             <!----------------------------------------------------- MAIN PANEL ------------------------------------------->
-                            <div class="col-sm-10 pull-right tempWrapper finTableData">                               
+                            <div class="{!IF(project.IPM_Project_Type__c != 'Operational','col-sm-10','col-sm-12')} pull-right tempWrapper finTableData">                               
                                
                                 <div class="row">                                                           
                                     <div class="col-sm-12 noPadright">                    
@@ -141,7 +148,7 @@
                                                 <!------------------------------------------------- Tab Content ------------------------------------------->
                                                
                                                 <!-- Currency work starts -->
-                                                <div id="dvCurrency">
+                                                <div id="dvCurrency marginT10P">
                                                     <apex:panelGrid columns="3" columnClasses="col1Curr,col2Curr,col3Curr" border="0" cellpadding="5" cellspacing="5">
                                                         <apex:outputPanel >
                                                         <apex:outputLabel styleClass="selCur" value="Please select currency: "/> 
@@ -155,13 +162,13 @@
                                                         <apex:outputPanel >
                                                             <apex:outputText id="otl" styleClass="otlCurr" value="Currency: {!selectedCurrency}: {!exrate}"/>
                                                         </apex:outputPanel>
-                                                        <apex:outputPanel >
+                                                        <apex:outputPanel styleClass="SecButtonSet marginT10P">
                                                             <apex:commandLink action="{!URLFOR('/apex/IPM_Financial?id=' +project.id)}" title="{!$Label.IPM_Currency_back_button}" >
-                                                                <i class="fa fa-arrow-left"></i>
+                                                                <i class="fa ipmButton primary">{!$Label.IPM_Currency_back_button}</i>
                                                             </apex:commandLink>
                                                             &nbsp;&nbsp;&nbsp;&nbsp;
-                                                            <apex:commandLink styleClass="icoButton download"   title="{!$Label.IPM_Currency_print_button}" onclick="window.print();" >
-                                                            <i class="fa fa-print"></i>
+                                                            <apex:commandLink styleClass="icoButton print download printIconAlign pull-right marginT5P"   title="{!$Label.IPM_Currency_print_button}" onclick="window.print();" >
+                                                            <i class="fa"></i>
                                                             </apex:commandLink>
                                                         </apex:outputPanel>    
                                                     </apex:panelGrid>

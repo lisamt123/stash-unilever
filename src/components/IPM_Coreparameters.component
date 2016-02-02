@@ -477,9 +477,8 @@
                                                 <apex:outputPanel rendered="{! if(IPM_Coreparameter.IPM_BET_Toolkit__c!=$Label.IPM_BET_NoBET,true,false)}">
 
                                                     <apex:outputPanel rendered="{!IPM_Coreparameter.IPM_BET_Toolkit__c==$Label.IPM_BET_Link_Existing}">
-                                                    <span class="coreParam noBetMsg">
-                                                        {!$Label.IPM_BET_DifferentReleaseDate_HelpText} 
-                                                    </span>
+                                                        <span class="coreParam noBetMsg">
+                                                            {!$Label.IPM_BET_DifferentReleaseDate_HelpText} </span>
                                                     </apex:outputPanel>
                                                     <div class="col-sm-12 toolkitContainer noPadleft">
                                                         <apex:outputPanel id="xyz">
@@ -503,6 +502,8 @@
                                                                 </apex:outputPanel>
 
                                                                 <apex:outputPanel layout="block" id="idToRerender">
+                                                                    <span class="coreParam noBetMsg"> <apex:outputText rendered="{!AND(searchresultBet.size==0,isEmptySearchResult =true)}">{!$Label.IPM_BET_No_Result_Found}</apex:outputText>
+                                                                    </span>
                                                                     <apex:outputPanel layout="block"
                                                                         styleClass="panel-label bsFieldLabel"
                                                                         rendered="{!searchresultBet.size>0}">
@@ -845,42 +846,12 @@
         </div>
 
     </div>
-
-    <div id="basicModal" tabindex="-1" data-backdrop-limit="1"
-        class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"
-                        aria-hidden="true">&times;</button>
-                    <div class="modal-title">{!$Label.IPM_CP_Unlink}</div>
-                </div>
-                <div class="">
-                    <div class="paracont">
-                        <p>
-                            <apex:outputText value="{!$Label.IPM_BETUnlinkingMessage}">
-                                <apex:param value="{!PreSelectedBet.betName}" />
-                            </apex:outputText>
-                        </p>
-                    </div>
-                    <div class="paracont">
-                        <div class="floatR">
-                            <a href="#" title="{!$Label.IPM_Back}" class="ipmButton"
-                                data-dismiss="modal">{!$Label.IPM_CANCEL}</a> <a href="#"
-                                title="{!$Label.IPM_SAVE_AND_CONTINUE}" onClick="unlinkBET();"
-                                class="ipmButton primary" data-dismiss="modal">{!$Label.IPM_CP_Unlink}</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <apex:outputPanel id="gototeam">
         <script
             src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}"
             type="text/javascript"></script>
         <script>
-            var IPMProAppCP = {iscompleted:'{!IPM_Coreparameter.IPM_IsCompleted__c}', setupurl:'{!URLFOR($Page.IPM_ProjectSetUpView)}', projectUrl:'{!URLFOR($Page.IPM_CoreparameterPage)}', projectName:'{!projectID}', prosubtype:'{!Project.IPM_ProjectSubType__c}', oprtnLabel:'{!$Label.IPM_Operational}', blgLabel:'{!$Label.IPM_Brand_Led_Growth}', addtnlParameter:'{!isAdditionalCoreparameter}', coreParameter: '{!isEditCoreparameter}', bduser: '{!editCPVByBD}', tpluser: '{!editETByTPL}'};
+            var IPMProAppCP = {select: '{!$Label.IPM_Select_Text}',iscompleted:'{!IPM_Coreparameter.IPM_IsCompleted__c}', setupurl:'{!URLFOR($Page.IPM_ProjectSetUpView)}', projectUrl:'{!URLFOR($Page.IPM_CoreparameterPage)}', projectName:'{!projectID}', prosubtype:'{!Project.IPM_ProjectSubType__c}', oprtnLabel:'{!$Label.IPM_Operational}', blgLabel:'{!$Label.IPM_Brand_Led_Growth}', addtnlParameter:'{!isAdditionalCoreparameter}', coreParameter: '{!isEditCoreparameter}', bduser: '{!editCPVByBD}', tpluser: '{!editETByTPL}'};
       </script>
     </apex:outputPanel>
 

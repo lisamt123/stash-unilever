@@ -32,6 +32,15 @@ public with sharing class BET_NewBetComponentController {
         goToMemberSelection = false;
     }
 
+    public Boolean ownerOrManager {
+        get{
+            return BET_SuggestedMemberService.checkIfUserIsManagerOrOwnerOfBet(bet.id, UserInfo.getUserId());
+        }
+        set{
+            ownerOrManager = value;
+        }   
+    }
+
     /************************************************************
         Purpose: Method cancels upsert operation on BET obiect
         Parameters: -
@@ -108,6 +117,9 @@ public with sharing class BET_NewBetComponentController {
         Boolean betNameExists = BET_CommonService.checkIfBetExists(bet);
         goToMemberSelection = redirectToMembersComponent;
         if(errorMessages.isEmpty() && !betNameExists){
+            if(bet.id == null){
+                bet.Sharing__c = 'Private';
+            }
             upsert bet;
         } else {
             if(betNameExists) {

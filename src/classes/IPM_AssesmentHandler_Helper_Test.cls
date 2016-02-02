@@ -12,15 +12,8 @@ private class IPM_AssesmentHandler_Helper_Test {
     public static User platformUser;
     public static List<IPM_Assessment__c> finalAssessmentList = new List<IPM_Assessment__c>();
     public static List<IPM_Company_Card__c> companyCardList; 
-    public static IPM_Project__c ipmProject ;
     public static List<IPM_Project__c> projectList;
-    public static List<IPM_Project_Document__c> projDocList;
-    public static IPM_Project_Document_Section__c projDocSec;
-    public static List<IPM_Customer_Channel_Priority_Order__c> customerChannelPriorityList;
-    public static User resourceAlloctionUser1;
-    public static final String AssessmentName = 'Assessment 1';
     public static List<Id> projIdList = new List<Id>();
-    public Static String IPM_ProjectType =  'IPM_ProjectType';
     /***********************************
       Description of the purpose of the method. 
       @name: insertAssessmentTest
@@ -50,7 +43,6 @@ private class IPM_AssesmentHandler_Helper_Test {
          System.runAs(platformUser)
          {
            for(IPM_Project__c proj : projectList){
-            proj.Synced_From_EcoDesign_TimeStamp__c = System.now().addMinutes(15);
             proj.First_Sync_To_EcoDesign__c = true;
             proj.IPM_GateKeeping_Model__c = IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH;
             proj.IPMProject_Span__c = IPM_ConstantUtils.PROJECT_SPAN_GLOBAL;
@@ -82,7 +74,7 @@ private class IPM_AssesmentHandler_Helper_Test {
             for(integer i=0; i<4 ; i++) {
                 IPM_Country__c tempCountry = new  IPM_Country__c(Geography__c = geo.Id,
                 IPM_Project__c = projectList[0].id,IPM_Rollout_Status__c = 'With MCO',
-                IS_EI_Country__c = true);    
+                IS_EI_Country__c = true, isActive__c = true);    
             
                 countryList.add(tempCountry);
             }
@@ -101,15 +93,20 @@ private class IPM_AssesmentHandler_Helper_Test {
             IPM_TestFactory_Helper.createAssessments(true, projectList[0].id, countryList[0].id,IPM_ConstantUtils.PHASE_IDEAS );
            
             
-            Id assmntId = [Select Id,IPM_Country__c from IPM_Assessment__c Where Project_Phase__c = 'Ideas'][0].IPM_Country__c;
+            Id assmntId = [Select Id,IPM_Country__c from IPM_Assessment__c Where Project_Phase__c = 'Ideas' limit 1][0].IPM_Country__c;
             
-            IPM_Country__c countryToDelete  =  [Select Id, name from IPM_Country__c where Id =:assmntId][0];
+            IPM_Country__c countryToDelete  =  [Select Id, name from IPM_Country__c where Id =:assmntId limit 1][0];
            
             
             //to implement deletion of assessment on deletion of country
             delete countryToDelete;
             
-            List<IPM_Assessment__c> assmntsOfDeletedCountry = [Select Id from IPM_Assessment__c where IPM_Country__c =:countryToDelete.Id];
+            IPM_Country__c countryToDeactivate  =  [Select Id, name from IPM_Country__c limit 1][0];
+            countryToDeactivate.isActive__c = false;
+            
+            update countryToDeactivate;
+            
+            List<IPM_Assessment__c> assmntsOfDeletedCountry = [Select Id from IPM_Assessment__c where IPM_Country__c =:countryToDelete.Id limit 1000];
             
             System.assertEquals(0,assmntsOfDeletedCountry.size(),'Number of country to deleted :'+assmntsOfDeletedCountry.size());
             test.stopTest();
@@ -161,13 +158,13 @@ private class IPM_AssesmentHandler_Helper_Test {
             }       
             insert finalAssessmentList;
             
-            IPM_Project__c projToUpdate = [Select Id,IPM_Phase__c from IPM_Project__c where Id =:projectList[0].Id];
+            IPM_Project__c projToUpdate = [Select Id,IPM_Phase__c from IPM_Project__c where Id =:projectList[0].Id limit 1000];
             projToUpdate.IPM_Phase__c = IPM_ConstantUtils.PHASE_FEASIBILITY;
             Update projToUpdate;
 
             IPM_TestFactory_Helper.initiateProjectPhaseChange(projIdList,globalUser);
                 
-            List<IPM_Assessment__c> noOfAssessmentNow = [Select Id from IPM_Assessment__c where IPM_Project__c =:projectList[0].Id];
+            List<IPM_Assessment__c> noOfAssessmentNow = [Select Id from IPM_Assessment__c where IPM_Project__c =:projectList[0].Id limit 1000];
             System.assertEquals(4,noOfAssessmentNow.Size(),'Number of Assessment is:'+noOfAssessmentNow.Size());
             test.stopTest();
         }
@@ -175,7 +172,7 @@ private class IPM_AssesmentHandler_Helper_Test {
     }
     
     
-        /***********************************
+   /***********************************
       Description of the purpose of the method. 
       @name: copyOverAssmntTest
       @Description: To test copyOverAssessments method
@@ -185,8 +182,6 @@ private class IPM_AssesmentHandler_Helper_Test {
     ***********************************/
     static testMethod void testAssessmentWithWrongPhase() {
   
-        // At this point Async process kicks in and starts creating Related Object information.    
-        // Create Country specific information.
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1][0];
         List<IPM_Country__c> countryList= new List<IPM_Country__c>();
         System.runAs(globalUser)
@@ -205,7 +200,6 @@ private class IPM_AssesmentHandler_Helper_Test {
                   finalAssessmentList.add(assessment);
                   i++;
             }       
-            //insert finalAssessmentList;
             
             //To check if error is thrown when a project with different phase is inserted
             try{
@@ -223,8 +217,6 @@ private class IPM_AssesmentHandler_Helper_Test {
     
     static testMethod void testAssessmentWithWrongCountry() {
   
-        // At this point Async process kicks in and starts creating Related Object information.    
-        // Create Country specific information.
         User globalUser = [Select Id,LastName from User where LastName='PLATFORM_USER' limit 1][0];
         List<IPM_Country__c> countryList= new List<IPM_Country__c>();
         System.runAs(globalUser)

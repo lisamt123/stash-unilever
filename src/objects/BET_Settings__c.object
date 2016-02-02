@@ -3,6 +3,14 @@
     <customSettingsType>Hierarchy</customSettingsType>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>FollowRequestAutoApproved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>FollowRequestAutoApproved</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>HelpChatterGroupId__c</fullName>
         <externalId>false</externalId>
         <label>HelpChatterGroupId</label>
