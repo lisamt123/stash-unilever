@@ -31912,10 +31912,6 @@
         <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
-        <apexPage>BET_AssetsOrder</apexPage>
-        <enabled>false</enabled>
-    </pageAccesses>
-    <pageAccesses>
         <apexPage>BET_Chatter</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
