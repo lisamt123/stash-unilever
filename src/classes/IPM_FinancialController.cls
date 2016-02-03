@@ -2414,7 +2414,7 @@ private Date getProjectMilestoneDate(){
                 validationErrorMessage = String.format(Label.IPM_TLD_VR_Misaligned,new List<String>{localProjectName,localProjectRolloutTLD,localProjectTLD});
                 if((localProjectRolloutTLDYear-localProjectTLDYear) != 0 ) {
                 	isTLDYearMisaligned = true;
-                	validationErrorMessage += Label.IPM_TLD_Year_Misaligned;
+                	validationErrorMessage += IPM_ConstantUtils.IPM_SPACE + Label.IPM_TLD_Year_Misaligned;
                 }
                // misalignment message 
             } else if(validationErrorMessage.contains(Label.IPM_TLD_VR_Misaligned_Part_Msg)) {
