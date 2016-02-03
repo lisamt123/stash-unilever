@@ -55,7 +55,7 @@
     <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Read</externalSharingModel>
     <fields>
         <fullName>brand_Id__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -138,5 +138,5 @@
     </nameField>
     <pluralLabel>BrandManufacturers</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Read</sharingModel>
 </CustomObject>

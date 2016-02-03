@@ -35927,6 +35927,10 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>IPM_Clusters__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>IPM_Company_Card__c</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -35972,6 +35976,10 @@ KPI permissions for users who will be using the OVNG Custom Lightning component 
     </tabSettings>
     <tabSettings>
         <tab>IPM_Task__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>IPM_User_Profile__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>

@@ -33197,6 +33197,15 @@
         <object>IPM_Project__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
+    <objectPermissions>
+        <allowCreate>false</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>false</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>IPM_USLP_Country__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
     <pageAccesses>
         <apexPage>AA_ReportAccepted</apexPage>
         <enabled>false</enabled>
@@ -35654,6 +35663,10 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>IPM_Clusters__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>IPM_Company_Card__c</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -35699,6 +35712,10 @@
     </tabSettings>
     <tabSettings>
         <tab>IPM_Task__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>IPM_User_Profile__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>

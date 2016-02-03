@@ -35636,6 +35636,10 @@
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>
+        <tab>IPM_Clusters__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
         <tab>IPM_Company_Card__c</tab>
         <visibility>None</visibility>
     </tabSettings>
@@ -35681,6 +35685,10 @@
     </tabSettings>
     <tabSettings>
         <tab>IPM_Task__c</tab>
+        <visibility>None</visibility>
+    </tabSettings>
+    <tabSettings>
+        <tab>IPM_User_Profile__c</tab>
         <visibility>None</visibility>
     </tabSettings>
     <tabSettings>

@@ -39810,6 +39810,10 @@
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
+        <tab>IPM_Clusters__c</tab>
+        <visibility>DefaultOff</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
         <tab>IPM_CorePara_helps_example__c</tab>
         <visibility>DefaultOff</visibility>
     </tabVisibilities>

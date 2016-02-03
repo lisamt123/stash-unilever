@@ -55,7 +55,7 @@
     <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Previous_Target_Launch_Date__c</fullName>
         <externalId>false</externalId>
@@ -103,5 +103,5 @@
     </nameField>
     <pluralLabel>IPM EmailOut Notifications</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>
