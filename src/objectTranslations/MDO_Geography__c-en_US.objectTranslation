@@ -224,5 +224,12 @@
         <label><!-- Parent MDM Id Tree --></label>
         <name>parent_mdm_id_tree__c</name>
     </fields>
+    <layouts>
+        <layout>Geography Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -20,7 +20,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_section_notification1</template>
+        <template>IPM_Emails/IPM_section_notification1</template>
     </alerts>
     <alerts>
         <fullName>IPM_send_Email_PL_EmailAlert</fullName>
@@ -31,7 +31,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_section_notification1</template>
+        <template>IPM_Emails/IPM_section_notification1</template>
     </alerts>
     <fieldUpdates>
         <fullName>IPM_Field_Update_Negotiable</fullName>

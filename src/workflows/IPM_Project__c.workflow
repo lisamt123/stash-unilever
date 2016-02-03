@@ -158,7 +158,7 @@
             <type>creator</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Project_Archival_Mail_Alert</template>
+        <template>IPM_Emails/IPM_Project_Archival_Mail_Alert</template>
     </alerts>
     <alerts>
         <fullName>IPM_Send_Failure_Phase_Change_Notification</fullName>
