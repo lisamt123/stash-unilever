@@ -21,7 +21,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Notify_Project_Leader_about_FL_confirm_TLD_change_On_Email_Notification_Obj</template>
+        <template>IPM_Emails/IPM_Notify_Project_Leader_about_FL_confirm_TLD_change_On_Email_Notification_Obj</template>
     </alerts>
     <rules>
         <fullName>IPM Notify Finance Leader about TLD is changed</fullName>
