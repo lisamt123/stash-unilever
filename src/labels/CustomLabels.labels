@@ -11770,13 +11770,6 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_TIMING_OF_CHARTER</shortDescription>
         <value>The focus of this section is on: (1) timing of Charter Gate (no more than 6 months after BOSSCARD approval); and (2) initial thinking on when the project could be launched.</value>
     </labels>
-	<labels>
-        <fullName>IPM_TLD_Year_Misaligned</fullName>
-        <value>Calendar Years are misaligned.</value>
-        <protected>false</protected>
-        <language>en_GB</language>
-        <shortDescription>IPM_TLD_Year_Misaligned</shortDescription>
-    </labels>
     <labels>
         <fullName>IPM_TLD_ALIGNMENT</fullName>
         <language>en_US</language>
