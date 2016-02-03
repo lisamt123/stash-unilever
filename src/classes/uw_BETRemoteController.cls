@@ -217,6 +217,11 @@ public with sharing class uw_BETRemoteController {
 
             System.debug('results.bet.expectedAssetsProvided ' + results.bet.expectedAssetsProvided);
 
+            if(results.bet.betIPMProjectId != null && results.bet.betIPMProjectName == null){
+                IPM_BETWrapper ipmwrap =  IPM_BETUpdateService.ipm_Wrapper((Id)results.bet.betIPMProjectId);
+                results.bet.betIPMProjectName = ipmwrap.projectName;
+            }
+
             resultMap.put('bet', results.bet);
             resultMap.put('members', results.memberSetting);
             return new uw_BETWrapper('Result', '0', resultMap,'');        
