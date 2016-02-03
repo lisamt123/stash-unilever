@@ -8,4 +8,6 @@
     <tab>IPM_My_To_Do_List</tab>
     <tab>IPM_Company_Card__c</tab>
     <tab>IPM_Exchange_Rate__c</tab>
+    <tab>IPM_Clusters__c</tab>
+    <tab>IPM_User_Profile__c</tab>
 </CustomApplication>
