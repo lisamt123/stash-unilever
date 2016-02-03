@@ -1,5 +1,3 @@
-
-/* Helper class takes sharing settings from its 'parent' */
 public class BET_FollowRequestTriggerHandlerClsHelper {
 
 	private BET_FollowRequestTriggerHandlerClsHelper() {}
@@ -42,7 +40,7 @@ public class BET_FollowRequestTriggerHandlerClsHelper {
 			}
 		}
 		for(uw_Bet__c bet : [select id,Launch_Date__c,IPM_Project__c,Category_Group__c,
-							 Product_Category__c,Brand_Position__c 
+							 Product_Category__c,Brand_Position__c,Inoplan_Project_Keyword_Search__c
 							 from uw_Bet__c where id in : betIds and IPM_Project__c = null]){
 			betMap.put(bet.id,bet);
 		}
@@ -69,7 +67,7 @@ public class BET_FollowRequestTriggerHandlerClsHelper {
 			betIds.add(fr.Brand_Experience_Toolkit__c);
 		}
 		for(uw_Bet__c bet : [select id,Launch_Date__c,IPM_Project__c,Category_Group__c,
-							 Product_Category__c,Brand_Position__c 
+							 Product_Category__c,Brand_Position__c,Inoplan_Project_Keyword_Search__c 
 							 from uw_Bet__c where id in : betIds]){
 			betMap.put(bet.id,bet);
 		}
