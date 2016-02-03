@@ -1,3 +1,4 @@
+/* Helper class takes sharing settings from its 'parent' */
 public class BET_FollowRequestTriggerHandlerClsHelper {
 
 	private BET_FollowRequestTriggerHandlerClsHelper() {}
