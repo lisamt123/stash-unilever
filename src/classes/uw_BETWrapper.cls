@@ -147,15 +147,19 @@ public with sharing class uw_BETWrapper {
             this.assetOwner = aOwner;    
             this.displayOrder = (Integer)asset.Order_Of_Display__c;
 
-            if(this.assetDownloadLink != null && this.assetDownloadLink.contains(validLinkPrefix)){ 
-                Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/'); 
-                if(startIdx > -1){
-                    this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, startIdx+25);
+            if(asset.File_Id__c != null){
+                this.assetPreviewLink = '/apex/BET_AssetDispatcher?fileId='+asset.File_Id__c+'&type='+BET_AssetDispatcherController.PREVIEW;
+                this.assetDownloadLink = '/apex/BET_AssetDispatcher?fileId='+asset.File_Id__c+'&type='+BET_AssetDispatcherController.DOWNLOAD+'&downloadLink='+this.assetDownloadLink;
+            } else {
+                if(this.assetDownloadLink != null && this.assetDownloadLink.contains(validLinkPrefix)){ 
+                    Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/'); 
+                    if(startIdx > -1){
+                        this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, startIdx+25);
+                    }
+                } else if(this.assetDownloadLink != null){
+                    this.assetPreviewLink = this.assetDownloadLink;
                 }
-            } else if(this.assetDownloadLink != null){
-                this.assetPreviewLink = this.assetDownloadLink;
             }
-
         }
     }
 
@@ -315,8 +319,11 @@ public with sharing class uw_BETWrapper {
             this.betRegion = bet.Region__c; 
             this.betProjectName = bet.Inoplan_Project__r.Name;
             this.betProjectId = bet.Inoplan_Project__c;
-            this.betIPMProjectName = bet.IPM_Project__r.Name;
+            this.betIPMProjectName = String.isBlank(bet.IPM_Project__r.Name) ? bet.Inoplan_Project_Keyword_Search__c : bet.IPM_Project__r.Name;
             this.betIPMProjectId = bet.IPM_Project__c;
+            if(!String.isBlank(this.betIPMProjectId)){
+                this.betProjectName = this.betIPMProjectName;
+            }
             this.betStatus = bet.Status__c;
             this.betLastUpdated = bet.LastModifiedDate;
             this.betActive = betActive; 

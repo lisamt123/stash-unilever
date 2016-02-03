@@ -193,14 +193,7 @@ public with sharing class uw_BETRemoteController {
         Id currentUserId = UserInfo.getUserId();
         Map<String, Object> resultMap = new Map<String, Object>();
         try{
-
-            if(BET_CommonService.isBETOperationAdmin() || BET_CommonService.isHubAdmin()){
-                /*
-                    Future method is invoked for BET Operation admin to grant access to all BETs assets
-                */
-                BET_AssetService.grantAccessToBetsAssets(betId,currentUserId);
-            }
-
+            
             BET_AssetService.forceAssetReordering(betId);
 
             uw_BETWrapper.DetailWrapper results = uw_BETDetailService.getBETDetails(betId, currentUserId);
@@ -223,6 +216,11 @@ public with sharing class uw_BETRemoteController {
             results.bet.assetPrioritySet = assetPrioritySet;
 
             System.debug('results.bet.expectedAssetsProvided ' + results.bet.expectedAssetsProvided);
+
+            if(results.bet.betIPMProjectId != null && results.bet.betIPMProjectName == null){
+                IPM_BETWrapper ipmwrap =  IPM_BETUpdateService.ipm_Wrapper((Id)results.bet.betIPMProjectId);
+                results.bet.betIPMProjectName = ipmwrap.projectName;
+            }
 
             resultMap.put('bet', results.bet);
             resultMap.put('members', results.memberSetting);

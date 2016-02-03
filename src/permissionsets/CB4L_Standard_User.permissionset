@@ -8620,6 +8620,10 @@
         <apexPage>BET</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
+	<pageAccesses>
+		<apexPage>BET_AssetDispatcher</apexPage>
+		<enabled>true</enabled>
+    </pageAccesses>		
     <pageAccesses>
         <apexPage>BET_AssetsOrder</apexPage>
         <enabled>true</enabled>
