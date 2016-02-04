@@ -487,7 +487,7 @@
                 
                 <apex:variable value="{!OR( NOT(showMisalignment), finWrapper.y0GrossProfitDifference==0 )}" var="Y0ProfitAligned" />
                 
-                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF( OR(isy0GrossProfitInvalid, Y0ProfitMisAligned ),'misaligned', '')}">
+                <td class="y0BorderGay {!IF(MOD(rowCount, 2) > 0, 'fintlegrybg', '')} {!IF(AND(isInnovation,OR(isy0GrossProfitInvalid, Y0ProfitMisAligned ) ),'misaligned', '')}">
                     <apex:outputText rendered="{!isInnovation}">
                         <apex:outputText rendered="{!AND(Y0ProfitMisAligned,NOT(isEditMode) ) }">
                             <a href="#" data-toggle="tooltip" rel="tooltip" data-html="true" data-original-title="{!$Label.IPM_GROSS_PROFIT} {!$Label.IPM_AT_REGIONAL_LEVEL} {!finWrapper.y0GrossProfitRegional}
