@@ -25,7 +25,7 @@ public without sharing class BET_LinkingService {
 	*************************************************************/
 	public static void setASLead(Id ProjectId, Id BetId){
 		System.debug('Entering setASLead : ' + ProjectId + ', ' + BetId);
-		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c, Launch_Date__c from uw_Bet__c where id =: BetId];
+		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c, Launch_Date__c,Inoplan_Project_Keyword_Search__c from uw_Bet__c where id =: BetId];
 		IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(ProjectId);
 		BET_LinkingServiceValidator.validateParams(betRecords);
 		try{
@@ -60,6 +60,7 @@ public without sharing class BET_LinkingService {
 		bet.Category_Group__c = projectWrapper.categoryGroupName;
 		bet.Product_Category__c = projectWrapper.categoryName;
 		bet.Brand_Position__c = projectWrapper.brandPosition;
+		bet.Inoplan_Project_Keyword_Search__c = projectWrapper.projectName;
 		update bet;
 	}
 
@@ -203,7 +204,7 @@ public without sharing class BET_LinkingService {
 	*************************************************************/
 	public static void UnFollow(Id ProjectId, Id BetId){ //US 23
 		System.debug('Entering UnFollow : ' + ProjectId + ', ' + BetId);
-		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c,name,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c,Final_Release_Due_Date__c,First_Release_Due_Date__c from uw_Bet__c where id =: BetId];
+		List<uw_Bet__c> betRecords = [select id, ownerid, Is_Archived__c, IPM_Project__c,name,Launch_Date__c,Brand_Position__c,Product_Category__c,Category_Group__c,Final_Release_Due_Date__c,First_Release_Due_Date__c,Inoplan_Project_Keyword_Search__c from uw_Bet__c where id =: BetId];
 		IPM_BETWrapper project = IPM_BETUpdateService.ipm_Wrapper(ProjectId);
 		BET_LinkingServiceValidator.validateParams(betRecords);
 		Id betOwner = betRecords.get(0).ownerid;
