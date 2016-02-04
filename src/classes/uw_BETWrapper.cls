@@ -315,8 +315,11 @@ public with sharing class uw_BETWrapper {
             this.betRegion = bet.Region__c; 
             this.betProjectName = bet.Inoplan_Project__r.Name;
             this.betProjectId = bet.Inoplan_Project__c;
-            this.betIPMProjectName = bet.IPM_Project__r.Name;
+            this.betIPMProjectName = String.isBlank(bet.IPM_Project__r.Name) ? bet.Inoplan_Project_Keyword_Search__c : bet.IPM_Project__r.Name;
             this.betIPMProjectId = bet.IPM_Project__c;
+            if(!String.isBlank(this.betIPMProjectId)){
+                this.betProjectName = this.betIPMProjectName;
+            }
             this.betStatus = bet.Status__c;
             this.betLastUpdated = bet.LastModifiedDate;
             this.betActive = betActive; 
