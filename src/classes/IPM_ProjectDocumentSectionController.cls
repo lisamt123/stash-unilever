@@ -68,6 +68,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     private static final String PROJ_DOC_SEC_ID='projDocSecId';
     private static final String EXTERNAL_ID_ENVIRONMENTAL_IMPACT='Environmental_Impact';
     public static final Set<String> sectionEditableOnStatus = new Set<String>{IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,IPM_ConstantUtils.STATUS_NOT_STARTED,IPM_ConstantUtils.STATUS_IN_PROGRESS};
+    public Static final String ENVIRONMENTAL_IMPACT = IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_EXTERNAL_ID;
 
     /****************************************************************************************************************************************************************
     * @description Fetching the Page parameters and Retrieving Project,Projerct Document and Projerct Document Section
