@@ -68,6 +68,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
     private static final String PROJ_DOC_SEC_ID='projDocSecId';
     private static final String EXTERNAL_ID_ENVIRONMENTAL_IMPACT='Environmental_Impact';
     public static final Set<String> sectionEditableOnStatus = new Set<String>{IPM_ConstantUtils.DOCUMENT_STATUS_POSTPONED,IPM_ConstantUtils.DOCUMENT_STATUS_APPROVEDWITHEDITS,IPM_ConstantUtils.STATUS_NOT_STARTED,IPM_ConstantUtils.STATUS_IN_PROGRESS};
+    public Static final String ENVIRONMENTAL_IMPACT = IPM_ConstantUtils.ENVIRONMENTAL_IMPACT_EXTERNAL_ID;
 
     /****************************************************************************************************************************************************************
     * @description Fetching the Page parameters and Retrieving Project,Projerct Document and Projerct Document Section
@@ -721,11 +722,12 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         }
         
         projectSectionsList=[SELECT Id,IPM_Section_Name__c, IPM_Section_Sequence__c, 
-            IPM_Project_Document__r.IPM_Project__c FROM IPM_Project_Document_Section__c 
+            IPM_Project_Document__r.IPM_Project__c, IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c ,IPM_Master_Section_External_Id__c FROM IPM_Project_Document_Section__c 
             WHERE IPM_Project_Document__r.IPM_Project__c = :String.escapeSingleQuotes(projectId) AND
             IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER
             AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER AND        
             IPM_Project_Document__r.IPM_GateDocuments__c = :projDoc.IPM_GateDocuments__c AND IPM_Default_Section__c = true
+            AND ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_ProjectSubType__c !=:IPM_ConstantUtils.IPM_BLG ))
             ORDER BY IPM_Section_Sequence__c];
         
         for(IPM_Project_Document_Section__c eachProSection : projectSectionsList) {

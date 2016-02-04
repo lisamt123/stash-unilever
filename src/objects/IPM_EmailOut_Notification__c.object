@@ -58,6 +58,16 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>MCO_Country_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>MCO/Country Name</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Previous_Target_Launch_Date__c</fullName>
         <externalId>false</externalId>
         <label>Previous Target Launch Date</label>

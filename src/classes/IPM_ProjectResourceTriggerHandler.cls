@@ -191,7 +191,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
   
     //List of all Project records which have been previously synced to EcoDesign
     prevSyncedProjList = [SELECT Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
-                             IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c,Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
+                             IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c,Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
     
     projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,OPTION_ALL);
     
@@ -241,7 +241,7 @@ public with sharing class IPM_ProjectResourceTriggerHandler
             projIdsSet.add(projResource.IPM_Project__c);
         }
         prevSyncedProjList = [SELECT Id,First_Sync_To_EcoDesign__c,IPM_Project_Type__c,IPM_GateKeeping_Model__c,IPMProject_Span__c,
-                             IPM_Phase__c,IPM_Answer_of_Q1__c,IPM_CompanyCardText__c, Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
+                             IPM_Phase__c,IPM_ProjectSubType__c, IPM_Answer_of_Q1__c, IPM_CompanyCardText__c, Project_Countries__c FROM IPM_Project__c WHERE Id IN :projIdsSet LIMIT 50000];
     
         projMembersMap = IPM_ProjectCountryDetails.getProjectIdMembersListMap(projIdsSet,OPTION_ALL);
     

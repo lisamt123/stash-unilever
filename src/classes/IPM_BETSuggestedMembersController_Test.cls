@@ -45,27 +45,5 @@ public class IPM_BETSuggestedMembersController_Test {
         }
     }
 
-    // Negative test to check for the error message
-    static testmethod void testupdateBETonProjectNegative() {
-        initialSetup();
-        system.runAs(runningUser) {
-            Test.startTest();
-            
-            try {
-                IPM_Project__c ipmProject = (IPM_TestFactory_Helper.createOriginalProjectList(true, 1))[0];
-                PageReference pRef1 = new PageReference('/apex/IPM_BETSuggestedMembers?id=' + ipmProject.id + '&showMembers=true&BETId=' + null);
-                ApexPages.currentPage().getParameters().put('BETId', 'InvalidId');
-                ApexPages.currentPage().getParameters().put('id', ipmProject.id);
-                Test.setCurrentPage(pRef1);
-                IPM_BETSuggestedMembersController cont = new IPM_BETSuggestedMembersController();
-                cont.updateBETonProject();
-            } catch (Exception e) {
-                Boolean expectedExceptionThrown = e.getMessage().contains(System.Label.IPM_BET_BETUpdate_failure_ErrMsg) ? true : false;
-                System.AssertEquals(expectedExceptionThrown, true, 'Intended custom error message not thrown');
-            }
-            
-            Test.stopTest();
-        }
-    }
-
+   
 }

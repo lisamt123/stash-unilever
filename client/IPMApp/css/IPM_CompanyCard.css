@@ -5,7 +5,7 @@
     .pt20{padding-top:20px;}
 	.ipmSelect .multiSelect {height: auto !important;}
 	.inputField .multiSelect {height: auto !important;}
-
+	.message .errorM3{background-color: #FFEBEC !important; height:30px;}
     
     /* content container */
     

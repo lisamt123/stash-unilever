@@ -335,7 +335,7 @@
      </apex:form> 
      <apex:outputPanel id="jsLoadM">     
      <script>
-        var IPMAppLM = {isCompleteMilestones:'{!isCompleteMilestones}', removeMilestone:'{!$Label.IPM_REMOVE_MILESTONE}', msgDelMilestone:'{!$Label.delete_milestone_msg}', phaseM:'{!phaseM}'};
+        var IPMAppLM = {isCompleteMilestones:'{!isCompleteMilestones}', removeMilestone:'{!$Label.IPM_REMOVE_MILESTONE}', msgDelMilestone:'{!$Label.IPM_Delete_Milestone_Msg}', phaseM:'{!phaseM}'};
      
      </script>
      </apex:outputPanel>
