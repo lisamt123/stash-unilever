@@ -2475,7 +2475,7 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.Year_Type__c</field>
             <operation>equals</operation>
-            <value>Calendar</value>
+            <value>Innovation</value>
         </summaryFilterItems>
         <summaryFilterItems>
             <field>IPM_Financial_Year__c.PL_Type__c</field>

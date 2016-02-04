@@ -18972,11 +18972,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>IPM_Project__c.EcoDesign_Sync_Eligible_Timestamp__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>IPM_Project__c.EcoDesign_Sync_Error__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -19656,26 +19651,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.Sync_Countries__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.Sync_Members__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.Sync_Project__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.Synced_From_EcoDesign_TimeStamp__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.Upcoming_Milestone_Due_Date__c</field>
         <readable>true</readable>
@@ -19683,11 +19658,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project__c.Update_BET__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.existsAtLeastOneAssmntPerEICountry__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
