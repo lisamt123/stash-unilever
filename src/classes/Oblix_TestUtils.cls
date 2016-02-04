@@ -17,7 +17,7 @@ public with sharing class Oblix_TestUtils {
           LocaleSidKey = 'en_US', ProfileId = profile.Id,firstname = 'sf test one', 
           TimeZoneSidKey = 'Europe/London',AF_Agency_Fees_User_Type__c = 'Category Finance',isActive = true, 
           UserName = 'testuser@test123321.com');
-        insert user;
+        insert user; 
 
         return user;
     }
@@ -36,6 +36,7 @@ public with sharing class Oblix_TestUtils {
         marketingSow.OblixBrand__c = brandId;
         marketingSow.SmallProductCategory__c = createSmallProductCategory().id;
         marketingSow.BigOblixProductCategory__c = createBigProductCategory().id;
+        marketingSow.Financial_Year__c = 'FY2015';
         insert marketingSow;
         return marketingSow;
     }
@@ -69,6 +70,7 @@ public with sharing class Oblix_TestUtils {
         Oblix_SOW_Projects__c project = new Oblix_SOW_Projects__c();
         project.Name = name;
         project.Financial_Year__c = marketingSowId;
+        project.Campaign_Countries__c = 'France, UK, Germany';
         insert project;
         return project;
     }

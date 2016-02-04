@@ -10,7 +10,7 @@
 
 global without sharing class IPM_BETDueDateNotificationBatch implements Database.Batchable<sObject>  {
     
-    private final integer DAY_VALUE = 15;
+    private static final integer DAY_VALUE = 15;
     private Integer dateValue = 0;
     private map<Id,String> projIdchatterMessageMap ;//contains project id as key and repective chatter message as value
     private Set<Id> projIdNewProjectsSet ;// set of project ids
@@ -19,7 +19,10 @@ global without sharing class IPM_BETDueDateNotificationBatch implements Database
     private static final String DATEFORMAT='dd MMMM yyyy';
     
     global Database.QueryLocator start(Database.BatchableContext bC) {
+        
+        // Used in dynamic Query. 
         Date dueInFifteeneDays = system.today().addDays(15); // Milestones approaching due date in next 15 days. // variable used in query below NO SONAR
+        
         String query = 'SELECT BET_MS_First_Release_Date__c,BET_MS_Final_Release_Date__c,Deputy_Project_Leader__c,IPM_Project_Leader__c,';
         query += 'IPM_Project_Name__c,IPM_Target_Launch_Dates__c,(SELECT IPM_Project_Leader__c from IPM_Projects__r) from IPM_Project__c ';
         query += 'WHERE BET_MS_First_Release_Date__c =: dueInFifteeneDays or BET_MS_Final_Release_Date__c =: dueInFifteeneDays';
@@ -39,7 +42,9 @@ global without sharing class IPM_BETDueDateNotificationBatch implements Database
         {   
             for(IPM_Project__c eachProject :updatedProjectsList)
             {
+                // Used in dynamic Query. 
             	Datetime targetLaunchDate=datetime.newInstance(eachProject.IPM_Target_Launch_Dates__c.year(),eachProject.IPM_Target_Launch_Dates__c.month(),eachProject.IPM_Target_Launch_Dates__c.day());
+                
                 //post chatter feed for BET First release
                 if(String.IsNotBlank(String.valueOf(eachProject.BET_MS_First_Release_Date__c)))
                 {

@@ -82,6 +82,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Letter_Quality_Check_Percentage__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Market__c</field>
             </layoutItems>
             <layoutItems>
@@ -94,6 +98,14 @@
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Refund_Authorization_Limit__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Max_Refund_Amount__c</field>
             </layoutItems>
         </layoutColumns>
         <style>OneColumn</style>

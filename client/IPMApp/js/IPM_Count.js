@@ -98,10 +98,10 @@
             $form.toggleClass(settings.dirtyClass, isDirty);
             // Fire change event if required
             if (changed) {
-                if (settings.change) settings.change.call($form, $form);
-                if (isDirty) $form.trigger('dirty.areYouSure', [$form]);
-                if (!isDirty) $form.trigger('clean.areYouSure', [$form]);
-                $form.trigger('change.areYouSure', [$form]);
+                if (settings.change) { settings.change.call($form, $form); }
+                if (isDirty) { $form.trigger('dirty.areYouSure', [$form]); }
+                if (!isDirty) { $form.trigger('clean.areYouSure', [$form]);
+                $form.trigger('change.areYouSure', [$form]);}
             }
         };
         var rescan = function() {

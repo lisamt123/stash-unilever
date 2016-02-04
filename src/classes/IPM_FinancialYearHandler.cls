@@ -4,10 +4,13 @@
 * @description:Trigger Handler for the IPM_Project_Document_Section__c SObject. This class implements the ITrigger
 * interface to help ensure the trigger code is bulkified and all in one place.
 */
-public with sharing class IPM_FinancialYearHandler implements ITrigger{   
-    public static boolean firstRun = true;
+public with sharing class IPM_FinancialYearHandler implements ITrigger
+{    
+    public static Map<Id,IPM_Financial_Year__c> deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>();
+    
     //@description:Constructor
-    public IPM_FinancialYearHandler (){
+    public IPM_FinancialYearHandler ()
+    {
         ExceptionLoggingHelper.initializeExceptionLog(); 
     }
     /**
@@ -15,53 +18,56 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger{
     * This method is called prior to execution of a BEFORE trigger. Use this to cache
     * any data required into maps prior execution of the trigger.
     */
-    public void bulkBefore(){
-        IPM_FinancialYearTriggerHandler handler = new IPM_FinancialYearTriggerHandler();
-        
-        if(System.Trigger.isDelete){
-            handler.onBeforeDelete((Map<Id,IPM_Financial_Year__c>) Trigger.oldMap);
-        }
-        
+    public void bulkBefore()
+    {
+       Set<Id> deleteFinancialYearSet = new Set<Id>();
+       
+       if(Trigger.isDelete)
+       {
+            for(IPM_Financial_Year__c financialYear : (List<IPM_Financial_Year__c>)Trigger.Old)
+            {
+                deleteFinancialYearSet.add(financialYear.Id);
+            } 
+       }
+       
+       if(!deleteFinancialYearSet.isEmpty())
+       {   
+            String financialYearQuery = IPM_FinancialYearHelper.getFinancialYearQuery();
+            String financialYearWhereClause = ' where Id in :deleteFinancialYearSet ';
+            financialYearQuery = financialYearQuery + financialYearWhereClause;
+            
+            deleteFinancialYearMap = new Map<Id,IPM_Financial_Year__c>( (List<IPM_Financial_Year__c>) database.query(financialYearQuery)); 
+        }    
     }
     /**
     * @description:bulkAfter
     * This method is called prior to execution of a AFTER trigger. Use this to cache
     * any data required into maps prior execution of the trigger.
     */
-    public void bulkAfter(){
-        IPM_FinancialYearTriggerHandler handler = new IPM_FinancialYearTriggerHandler();
+    public void bulkAfter()
+    {
+        Set<Id> incomingFinancialYearSet = new Set<Id>();
+        Map<String,IPM_Financial_Year__c> upsertconsolidatedFinancialYearMap = new Map<String,IPM_Financial_Year__c>();
 
-        if(System.Trigger.isUpdate){
-        	//if (firstRun) {
-				//firstRun = false;
-				//system.debug(loggingLevel.Error,'RTDebug firstRun=========>>>>>>>>>'+firstRun);
-				Map<Id,IPM_Financial_Year__c> oldFMap = (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap;
-        		for(IPM_Financial_Year__c fYear:oldFMap.values()) {
-					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.External_Id__c '+fYear.External_Id__c);
-					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Financial_External_Id__c '+fYear.Financial_External_Id__c);
-					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Volume_Local__c '+fYear.Volume_Local__c);
-					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Volume_Tons_Local__c '+fYear.Volume_Tons_Local__c);
-					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Turnover_Local__c '+fYear.Turnover_Local__c);
-					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Gross_Profit_Local__c '+fYear.Gross_Profit_Local__c);
-					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Advertising_Promotions_Local__c '+fYear.Advertising_Promotions_Local__c);
-					System.debug(loggingLevel.Error,'RTDebug oldFMap fYear.Profit_Before_Overheads_Local__c '+fYear.Profit_Before_Overheads_Local__c);
-				}
-				Map<Id,IPM_Financial_Year__c> newFMap = (Map<Id,IPM_Financial_Year__c>) Trigger.newMap;
-				for(IPM_Financial_Year__c fYear:newFMap.values()) {
-					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.External_Id__c '+fYear.External_Id__c);
-					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Financial_External_Id__c '+fYear.Financial_External_Id__c);
-					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Volume_Local__c '+fYear.Volume_Local__c);
-					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Volume_Tons_Local__c '+fYear.Volume_Tons_Local__c);
-					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Turnover_Local__c '+fYear.Turnover_Local__c);
-					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Gross_Profit_Local__c '+fYear.Gross_Profit_Local__c);
-					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Advertising_Promotions_Local__c '+fYear.Advertising_Promotions_Local__c);
-					System.debug(loggingLevel.Error,'RTDebug newFMap fYear.Profit_Before_Overheads_Local__c '+fYear.Profit_Before_Overheads_Local__c);
-				}
-        		handler.onAfterUpdate((Map<Id,IPM_Financial_Year__c>) Trigger.newMap, (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap);
-            	handler.updateFinancialActionStandard((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
-           // }
-            
+        if(Trigger.isUpdate)
+        {
+        	Map<Id,IPM_Financial_Year__c> oldFinancialMap = (Map<Id,IPM_Financial_Year__c>) Trigger.oldMap;
+            IPM_FinancialYearHelper.updateFinancialActionStandard((Map<Id,IPM_Financial_Year__c>) Trigger.newMap);
+            IPM_FinancialYearHelper.initialiseFYConsolidation((List<IPM_Financial_Year__c>)Trigger.new,oldFinancialMap,null,upsertconsolidatedFinancialYearMap);
         }
+        else if(Trigger.isDelete) 
+        {
+        	if(!deleteFinancialYearMap.isEmpty()) 
+	        {
+	            IPM_FinancialYearHelper.initialiseFYConsolidation(deleteFinancialYearMap.values(),null,deleteFinancialYearMap,upsertconsolidatedFinancialYearMap);
+	        }	
+        }
+        
+        if(!upsertconsolidatedFinancialYearMap.isEmpty())
+        {
+            upsert upsertconsolidatedFinancialYearMap.values() External_Id__c;
+        }
+        
     }
     /**
     * @description:beforeInsert
@@ -69,7 +75,8 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger{
     * trigger.
     * @para:sobject record
     */
-    public void beforeInsert(SObject so){
+    public void beforeInsert(SObject so) 
+    {
         //This method has been included as the class implements the ITrigger interface
     }
     /**
@@ -79,8 +86,11 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger{
     * @para:old sobject record
     * @para:new sobject record
     */
-    public void beforeUpdate(SObject oldSo, SObject so){ 
+    public void beforeUpdate(SObject oldSo, SObject so)
+    { 
         //This method has been included as the class implements the ITrigger interface
+        IPM_Financial_Year__c newFinancialYear = (IPM_Financial_Year__c)so;
+        IPM_Financial_Year__c oldFinancialYear = (IPM_Financial_Year__c)oldSo;
     }
     
     /**
@@ -88,18 +98,22 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger{
     * This method is called iteratively for each record to be deleted during a BEFORE
     * trigger.
     */
-    public void beforeDelete(SObject so){  
+    public void beforeDelete(SObject so)
+    {  
         //This method has been included as the class implements the ITrigger interface
     }
+    
     /**
     * @description:afterInsert
     * This method is called iteratively for each record to be insert during a AFTER
     * trigger.
     * @para:sobject record
     */
-    public void afterInsert(SObject so){
+    public void afterInsert(SObject so)
+    {
         //This method has been included as the class implements the ITrigger interface
     }
+    
     /**
     * @description:afterUpdate
     * This method is called iteratively for each record to be update during a AFTER
@@ -107,16 +121,19 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger{
     * @para:old sobject record
     * @para:new sobject record
     */
-    public void afterUpdate(SObject oldSo, SObject so){ 
+    public void afterUpdate(SObject oldSo, SObject so)
+    { 
         //This method has been included as the class implements the ITrigger interface
     }
+    
     /**
     * @description:afterDelete
     * This method is called iteratively for each record to be delete during a AFTER
     * trigger.
     * @para:sobject record
     */
-    public void afterDelete(SObject so){
+    public void afterDelete(SObject so)
+    {
         //This method has been included as the class implements the ITrigger interface
     }
     
@@ -125,7 +142,8 @@ public with sharing class IPM_FinancialYearHandler implements ITrigger{
     * This method is called once all records have been processed by the trigger. Use this 
     * method to accomplish any final operations such as creation or updates of other records.
     */
-    public void andFinally(){
+    public void andFinally()
+    {
         //Added by Devendra - call method to insert all exception logs got while excecution of trigger
         ExceptionLoggingHelper.insertLogRecordList();
     }

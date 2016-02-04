@@ -58,6 +58,13 @@
 		</antcall>
 
 		<antcall target="generatePackageMembers2">
+			<param name="objtyp"  value="CustomPermission" />
+			<param name="objext"  value="customPermission" />
+			<param name="objdir"  value="customPermissions" />
+			<param name="objflt"  value="*" />
+		</antcall>		
+
+		<antcall target="generatePackageMembers2">
 			<param name="objtyp"  value="AssignmentRules" />
 			<param name="objext"  value="assignmentRules" />
 			<param name="objdir"  value="assignmentRules" />
@@ -201,6 +208,13 @@
 			<param name="objtyp"  value="Flow" />
 			<param name="objext"  value="flow" />
 			<param name="objdir"  value="flows" />
+			<param name="objflt"  value="*" />
+		</antcall>	
+
+		<antcall target="generatePackageMembers2">
+			<param name="objtyp"  value="FlowDefinition" />
+			<param name="objext"  value="flowDefinition" />
+			<param name="objdir"  value="flowDefinitions" />
 			<param name="objflt"  value="*" />
 		</antcall>	
 
@@ -464,7 +478,7 @@
 			   var objexc = project.getProperty('objexc');
 			   var stage  = project.getProperty('stage.dir');
 			   var target  = project.getProperty('target');
-				 java.lang.System.out.println(objtyp); 
+				 
 			   var msg = '';
 			   msg+='\t<types>\n';
 

@@ -1,0 +1,25 @@
+/************** CSS HEADER INFORMATION******************************************************
+	- File Name     : IPM_FinancialCopyPasteGrid
+	- Description   : This file is used in the Financial Copy Paste Grid page 
+	- Client        : Unilever
+	- Last Modified : 18-11-15
+	- Author        : Cognizant Technology Solutions  
+*******************************************************************************************/
+/* ===GLOBAL STYLES=== */
+.panel,table{border:0 !important;}
+table{margin-bottom:0 !important;}
+.headerSearchLeftRoundedCorner #phSearchInput{top:2px !important;}
+.panel{padding:0 !important;margin-top: 10px;}
+label{cursor:auto !important;}
+.grentxt{margin-top: 4px;}
+ul, ol, dl{font-size:1em !important;}
+.pageHeadToolbar{border-bottom:0 !important;}
+.noPadleft{padding-left:0 !important;}
+.noPadright{padding-right:0 !important;}
+.icoButton.question{line-height:29px !important;}
+.gridBtnContainer{margin-top:10px;}
+.gridMcoLabel{color:#555;margin-top: 6px;font-weight:bold;margin-right:10px;cursor:auto !important;}
+.drpfield{border-color: #ccc !important;width:35% !important;background-size:40px;}
+.ipmButton{height:34px !important;}
+.gridInfo {margin-bottom:20px;border: 1px solid #B0D2E6;padding: 10px;border-radius: 4px;text-indent: 30px;background: url(../images/info_icon.png) no-repeat 12px 10px #E5F8FF;}
+.gridInfo label{color: #007DBB !important;}

@@ -46,7 +46,7 @@
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Visualforce</type>
     </actionOverrides>
-	<allowInChatterGroups>false</allowInChatterGroups>
+    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <customHelpPage>be_help_pop_up</customHelpPage>
     <deploymentStatus>Deployed</deploymentStatus>
@@ -56,6 +56,7 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -1406,6 +1407,15 @@ Note: If you cannot find your brand then you can select any brand and uncheck &a
         <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>VisibilityChangeBackToPrivate</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( NOT(ISNEW()),
+      ISCHANGED(Sharing__c),
+      ISPICKVAL(Sharing__c,&apos;Private&apos;) 
+      )</errorConditionFormula>
+        <errorMessage>Bet visibility cannot be set back to Private</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>UploadKeyVisual</fullName>
         <availability>online</availability>

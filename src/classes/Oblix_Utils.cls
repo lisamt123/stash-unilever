@@ -6,6 +6,7 @@
     Create date: 09/ 2015
     Created by Jamal Rida
     Author : @Jamal
+    Modified by : @AES
     Details
     -------
     This class is  : used as a global class which contains all Global Methods
@@ -14,16 +15,17 @@
     Update History
     --------------
 */
+
 public with sharing class Oblix_Utils {
 
-    //private static final String PROJECT_BRIEFFING = Label.Oblix_Lbl_UIUX_Utils_Projected_Briefing;
-    //private static final String COMPLETED_BRIEFFING = Label.Oblix_Lbl_UIUX_Utils_Completed_Briefing;
     private static final String PROJECT_ASSET_NAME = 'Oblix_Project_Assets__c';
     private static final String DIGITAL = 'digital';
     private static final String AUDIO_VISUAL = 'Audio_Visual';
     private static final String EXPERIENTIAL = 'Experiential';
     private static final String STATIC_IMAGERY = 'Static_Imagery';
-    
+    private static Map<String, List<String>> ms_lis_fields_in_fieldset = new  Map<String, List<String>>();
+
+
     //Used to Wrap RecordType By Object
     public static Map<string, ID> MapRecordType(String ObjectName) {
 
@@ -61,6 +63,31 @@ public with sharing class Oblix_Utils {
 
     }
     
+
+    /********************************************************************
+    * @author       Shahin Movahedi
+    * @date         2016-01-09
+    * @description  This function helper retrieves all fields from fieldset 
+                    of a given object
+    *********************************************************************/
+    public static list<string> getAllFieldsInFieldsSet (String obj_api_name, String fieldset_name){
+        system.debug('## ms_lis_fields_in_fieldset' + ms_lis_fields_in_fieldset);
+        if(null==ms_lis_fields_in_fieldset || (null!=ms_lis_fields_in_fieldset 
+                && null==ms_lis_fields_in_fieldset.get(obj_api_name+fieldset_name))){
+
+            List<String> li_fields = new List<String>();
+            Schema.SObjectType target_type = Schema.getGlobalDescribe().get(obj_api_name);
+            Schema.FieldSet field_set = target_type.getDescribe().fieldSets.getMap().get(fieldset_name);
+            
+            for(Schema.FieldSetMember field : field_set.getFields()) {
+                li_fields.add(field.getFieldPath());
+             }
+            ms_lis_fields_in_fieldset.put(obj_api_name+fieldset_name,li_fields);
+        }
+        return ms_lis_fields_in_fieldset.get(obj_api_name+fieldset_name);
+    }
+
+
     // Added by AES to get the list of subcategories related to recType 
     public static list<string> lstSubCatPerRecT(string recType) {
 
@@ -71,22 +98,22 @@ public with sharing class Oblix_Utils {
             lst.add(Label.Oblix_Lbl_UIUX_Audio_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Audio_Visual_Adaptation_nd_ReEdits_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Cut_downs_Tag_Subcategory);
-        }
+        }else
         if (recType == Label.Oblix_Lbl_UIUX_Digital) {
             lst.add(Label.Oblix_Lbl_UIUX_Digital_campaign_assets_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Digit_adapt_requir_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Always_on_Social_Digit_requir_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Data_Ana_Report_Dash_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Specialist_Digital_Subcategory);
-        }
+        }else
         if (recType == Label.Oblix_Lbl_UIUX_Experiential) {
             lst.add(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory);
-        }
+        }else
         if (recType == Label.Oblix_Lbl_UIUX_Static_Img) {
             lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory);
             lst.add(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory);
-        }
+        }else
         if (recType == Label.Oblix_Lbl_UIUX_Stimulus_Materials) {
             lst.add(Label.Oblix_Lbl_UIUX_Stim_require_Subcategory);
         }
@@ -104,13 +131,11 @@ public with sharing class Oblix_Utils {
         }
         return lstStage;
     }
-    
+
     // Added by AES to get the map of options by Sub category  
     public static map<string, list<string>> getMapSubCategOption() {
         map<string, list<string>> mapSubCategOption = new map<string, list<string>>();
         mapSubCategOption.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('2');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('3');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('4');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory).add('5');
 
@@ -122,8 +147,6 @@ public with sharing class Oblix_Utils {
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory).add('5');
 
         mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('1');
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('2');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('3');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('4');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Audio_Subcategory).add('5');
@@ -182,7 +205,6 @@ public with sharing class Oblix_Utils {
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory).add('5');
 
         mapSubCategOption.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory, new list<string>());
-        mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('1');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('2');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('3');
         mapSubCategOption.get(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory).add('4');
@@ -212,8 +234,6 @@ public with sharing class Oblix_Utils {
     public static map<string, string> getmapSubCategOptionDescription() {
         map<string, string> mapSubCategOptionDescription = new map<string, string>();
 
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 2, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score2);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 3, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score3);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 4, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Subcategory + 5, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_F_Score5);
 
@@ -223,8 +243,6 @@ public with sharing class Oblix_Utils {
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 4, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Subcategory + 5, Label.Oblix_Lbl_UIUX_AudioVisual_ORIGINATION_L_Score5);
 
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 1, Label.Oblix_Lbl_UIUX_Audio_Score1);
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 2, Label.Oblix_Lbl_UIUX_Audio_Score2);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 3, Label.Oblix_Lbl_UIUX_Audio_Score3);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 4, Label.Oblix_Lbl_UIUX_Audio_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Audio_Subcategory + 5, Label.Oblix_Lbl_UIUX_Audio_Score5);
@@ -279,18 +297,14 @@ public with sharing class Oblix_Utils {
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory + 4, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Subcategory + 5, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ADAPT_Score5);
 
-
-        mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 1, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score1);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 2, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score2);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 3, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score3);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 4, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Subcategory + 5, Label.Oblix_Lbl_UIUX_Experiential_Prom_ideas_ORIGI_Score5);
 
-
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory + 3, Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Score3);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory + 4, Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Score4);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Subcategory + 5, Label.Oblix_Lbl_UIUX_Stat_img_ADAPT_Score5);
-
 
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory + 1, Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score1);
         mapSubCategOptionDescription.put(Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Subcategory + 2, Label.Oblix_Lbl_UIUX_Stat_img_ORIG_Score2);
@@ -344,7 +358,7 @@ public with sharing class Oblix_Utils {
         return mapSubCategOptionDefinition;
 
     }
-
+	@testVisible
     private static String getProjectedItems2(String projected){
         
         List<String> projectedSetRetVal = new List<String>();
@@ -365,7 +379,7 @@ public with sharing class Oblix_Utils {
         return String.join(projectedSetRetVal,',');
         
     }
-    
+    @testVisible
     private static String getCompletedItems2(String completed){
         
         List<String> completedSetRetVal = new List<String>();
@@ -509,7 +523,7 @@ public with sharing class Oblix_Utils {
         temp = [select id from MDO_Geography__c where name = :Cname limit 1];
         // system.debug('===========Cname' + Cname);
         //system.debug('===========temp' + temp);
-        if (temp == null) { return temp[0].id; }
+        if (temp != null) { return temp[0].id; }
         else { return null; }
     }
 
@@ -575,6 +589,7 @@ public with sharing class Oblix_Utils {
         sortedSelectOptions.addAll(selectOptionSortByLabel(greaterSelectOption));
         return SortedSelectOptions;
     }
+    
     public static List<SelectOption> setFirstValue(String value, List<SelectOption> selectedList) {
         List<SelectOption> options = new List<SelectOption>();
         options.add(new SelectOption('', value));
@@ -594,6 +609,8 @@ public with sharing class Oblix_Utils {
         public String assetName;
         public String location;
         public String assetTitle;
+        public String projectId; 
+        public String optionName;
 
         public AssetDetailWrapper(Oblix_Project_Assets__c asset) {
             this.assetId = asset.Id;
@@ -603,6 +620,8 @@ public with sharing class Oblix_Utils {
             this.assetName = asset.Asset_Picklist__c;
             this.location =  asset.Location__c;
             this.assetTitle = asset.Asset_Title__c;
+            this.projectId = asset.Agency_Projects__c;
+            this.optionName = asset.Option_Name__c;
         }
     }
     
@@ -622,4 +641,16 @@ public with sharing class Oblix_Utils {
         }
         return asset.Asset_name__c;
     }
+
+    //Generic Function to exit swop and go to salesforce homepage
+    public static Pagereference exitSwop(){
+        Pagereference exitSwopHome = new Pagereference('/');
+        return exitSwopHome.setRedirect(true);
+    }
+
+    public static Pagereference goToReportsHome(){
+        Pagereference goToReportsHome = new Pagereference('/00O/o');
+        return goToReportsHome.setRedirect(true);
+    }
+
 }

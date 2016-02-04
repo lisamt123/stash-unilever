@@ -53,6 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -64,6 +65,62 @@
         <label>Account Owner Active Flag</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>CSAT_Delay__c</fullName>
+        <description>CEC: No of days the case closure the CSAT survey can be sent</description>
+        <externalId>false</externalId>
+        <label>CSAT Delay</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CSAT_Email_Percentage__c</fullName>
+        <description>CEC: CSAT percentage for email channel</description>
+        <externalId>false</externalId>
+        <label>CSAT Email Percentage</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>CSAT_Phone_Percentage__c</fullName>
+        <description>CEC: CSAT percentage for phone channel</description>
+        <externalId>false</externalId>
+        <label>CSAT Phone Percentage</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>CSAT_Social_Percentage__c</fullName>
+        <description>CEC: CSAT percentage for social chanel</description>
+        <externalId>false</externalId>
+        <label>CSAT Social Percentage</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
+    </fields>
+    <fields>
+        <fullName>CSAT_Web_Percentage__c</fullName>
+        <description>CEC: CSAT percentage for web channel</description>
+        <externalId>false</externalId>
+        <label>CSAT Web Percentage</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Percent</type>
     </fields>
     <fields>
         <fullName>CaseOrigin__c</fullName>
@@ -404,6 +461,15 @@
         <label>CEC Nordic Queue</label>
         <language>en_US</language>
         <queue>CEC_Nordic_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_North_America_Queue_CEC_Case_Market_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC North America Queue</label>
+        <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

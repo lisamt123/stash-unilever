@@ -15,4 +15,6 @@
     <tab>standard-Dashboard</tab>
     <tab>standard-Document</tab>
     <tab>User_Default_Setting__c</tab>
+    <tab>CEC_ChequeBook_Detail__c</tab>
+    <tab>cec_Case_Action__c</tab>
 </CustomApplication>

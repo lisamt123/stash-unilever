@@ -1,0 +1,75 @@
+<aura:component controller="OV_RemoteController">
+<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+<aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/>
+<aura:registerEvent name="deleteMyKPIElement" type="c:OV_DeleteMyKPIEvent"/>
+<aura:attribute name="kpielement" type="OV_Wrapper.KPIElementWrapper"/>
+<aura:attribute name="isLarge" type="Boolean" default="false"/>
+<aura:attribute name="isNumberCentered" type="Boolean" default="true"/>
+<aura:attribute name="shelfIcon" type="String" default="custom3"/>
+<aura:attribute name="shelfColour" type="String" />
+<aura:attribute name="filtersExpanded" type="Boolean" default="false"/>
+<aura:attribute name="popupTimeout" type="Object"/>
+<aura:attribute name="popupShown" type="Boolean" default="false"/>
+<aura:attribute name="readOnly" type="Boolean" default="false"/>
+<aura:attribute name="expandVisible" type="Boolean" default="true"/>
+<aura:attribute name="timeField" type="String" />
+<aura:attribute name="actionPending" type="Boolean" default="false"/>
+
+<aura:attribute name="currentSuffixType" type="String"/>
+<aura:attribute name="previousSuffixType" type="String"/>
+
+<aura:registerEvent name="OV_WizardEditKpiEvent" type="c:OV_WizardEditKpiEvent" />
+
+<div class="{!(v.isLarge) ? 'kpiRoot lrg' : 'kpiRoot'}">
+    <div class="kpiRootPanel">
+        <span class="{! 'kpiRootManage s1utility s1utility-settings' + (v.popupShown?' active':'') + (v.readOnly ?' readOnly':' clickable') }" onclick="{!c.togglePopup}"></span>
+        <div class="{! 'kpiRootName' + (v.readOnly == true || (v.readOnly == false &amp;&amp; empty(v.kpielement.kpiReportId) == true) ?' readOnly':' clickable')}" onclick="{!c.showReportDetails}">
+        	<div class="kpiRootNameInner">
+            	{!v.kpielement.kpiName}
+            </div>
+        </div>
+        <div class="kpiRootValuesWrapper">
+            <div class="kpiRootValues">
+                <div class="{!v.kpielement.kpiTransactionDirection + (v.isNumberCentered?' numberCentered':'') + ' kpiRootCurrentValue' +(v.readOnly == true || (v.readOnly == false &amp;&amp; empty(v.kpielement.kpiReportId) == true) ?' readOnly':' clickable')}" onclick="{!c.showReportDetails}">
+                    <span class="currentPrefix">{!v.kpielement.kpiTransactionValuePrefix}</span>
+                    <span class="currentValue">{!v.kpielement.kpiTransactionValue}</span>
+                    <span class="{! 'currentSuffix ' + v.currentSuffixType}">{!v.kpielement.kpiTransactionValueSuffix}</span>
+                    <span class="{! 'arrowUp s1utility s1utility-up' + (v.kpielement.kpiDirectionSentiment!='UP_BAD'?' good':' bad')}"></span>
+                    <span class="{! 'arrowDown s1utility s1utility-down' + (v.kpielement.kpiDirectionSentiment=='UP_BAD'?' good':' bad')}"></span>
+                    <span class="arrowFlat s1utility s1utility-right"></span>
+                </div>
+                <div class="{!'kpiRootPreviousValue'+ (v.readOnly == true || (v.readOnly == false &amp;&amp; empty(v.kpielement.kpiReportId) == true) ?' readOnly':' clickable')}" onclick="{!c.showReportDetails}">
+                    <span class="previousPrefix">{!v.kpielement.kpiTransactionPreviousValuePrefix}</span>
+                    <span class="previousValue">{!v.kpielement.kpiTransactionPreviousValue}</span>
+                    <span class="{! 'previousSuffix ' + v.previousSuffixType}">{!v.kpielement.kpiTransactionPreviousValueSuffix}</span>
+                </div>
+            </div>
+        </div>
+        <div class="kpiRootTimeField">
+        	{! !v.timeField ? '' : v.timeField }
+        </div>
+        <div aura:id="kpiRoot-details" class="kpiRootDetails clickable" onclick="{!c.toggleFilters}" >
+            <div>
+            	<aura:if isTrue="{!v.expandVisible}">
+                    <div aura:id="kpi-filterButton" class="expandButton">{! v.filtersExpanded? 'less...':'more...'}
+                </div>
+                </aura:if>
+            </div>
+            <div class="{! 'kpiDimentions' + (v.readOnly == true || (v.readOnly == false &amp;&amp; empty(v.kpielement.kpiReportId) == true) ?' readOnly':' clickable')}" onclick="{!c.showReportDetails}">
+                <ul aura:id="kpi-filters" class="{!(v.filtersExpanded ? 'expanded' : '') + ' ' + (v.expandVisible ? 'hasExpandButton' : '') + (v.dimensions.length &lt; 3 ? ' hasLessThanThree' : '')}">
+                    <aura:iteration items="{!v.dimensions}" var="dimension">
+                    <li title="{!dimension}">{!dimension}</li>
+                    </aura:iteration>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="{! 'kpiManagePopup' + (v.popupShown?'':' hidden')}">
+        <div class="pointer"></div>
+        <ul>
+            <li class="clickable" onclick="{!c.editMyKPIElement}"><i class="icon s1utility s1utility-edit"></i><span>Edit KPI</span></li>
+            <li class="clickable" onclick="{!c.deleteMyKPIElement}" ><i class="icon s1utility s1utility-close"></i><span>Remove KPI</span></li>
+        </ul>
+    </div>
+</div>
+</aura:component>

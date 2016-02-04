@@ -114,10 +114,10 @@
                                     <div class="col-sm-6 noPadleft noPadright">
                                         <span class="coreSectionFtitle">{!$Label.IPM_Consumer_Value_Perception}</span>
                                     </div>
-                                    <apex:outputPanel layout="Block" styleClass="col-sm-6 noPadleft noPadright" rendered="{!coreConfig.IPM_CVP__c}">
+                                    <apex:outputPanel layout="Block" styleClass="col-sm-6 noPadleft noPadright" rendered="{!coreConfig.IPM_CPV__c}">
                                         <span class="coreSectionFvalue">:  {!IPM_Coreparameter.IPM_Answer_of_Q2__c}</span>
                                     </apex:outputPanel>
-                                    <apex:outputPanel layout="Block" styleClass="col-sm-6 noPadleft noPadright" rendered="{!!coreConfig.IPM_CVP__c}">
+                                    <apex:outputPanel layout="Block" styleClass="col-sm-6 noPadleft noPadright" rendered="{!!coreConfig.IPM_CPV__c}">
                                         <span class="coreSectionFvalue">:  {!$Label.IPM_Not_Applicable_Core}</span>
                                     </apex:outputPanel>
                                 </div>

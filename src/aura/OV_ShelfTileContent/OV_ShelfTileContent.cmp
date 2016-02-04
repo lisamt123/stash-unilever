@@ -17,6 +17,7 @@
     <aura:attribute name="shelfTileTitle" type="String"/>
 
     <aura:attribute name="activeFolderTileId" type="String"/>
+    <aura:attribute name="activeFolderName" type="String" default="" />
 
     <div class="{! 'OVBS bootstrap-sf1 shelfTileContent_wrapper' + ($Browser.isPhone?' OV_phone':'') + ((!$Browser.isPhone &amp;&amp; ($Browser.isIOS || $Browser.isAndroid) )?' OV_tablet':'' ) + ((!$Browser.isPhone &amp;&amp; !$Browser.isIOS &amp;&amp; !$Browser.isAndroid )?' OV_desktop':'') }">
         <div class="row shelfTile-contentTitle">
@@ -30,7 +31,7 @@
         </div>
         <div class="row shelfTile-contentList">
             <aura:iteration items="{!v.headingTitleList}" var="header">
-                <c:OV_ShelfTileContentItems activeFolderTileId="{!v.activeFolderTileId}" shelfTitle="{!v.shelfTitle}" shelfTileTitle="{!v.shelfTileTitle}" shelfTileShelfId="{!v.shelfTileShelfId}" shelfColour="{!v.shelfColour}" shelfIcon="{!v.shelfIcon}" shelfTileId="{!v.shelfTile.shelfTileId}" headerTitle="{!header}" headingList="{!v.headingList}" />
+                <c:OV_ShelfTileContentItems activeFolderName="{!v.activeFolderName}" activeFolderTileId="{!v.activeFolderTileId}" shelfTitle="{!v.shelfTitle}" shelfTileTitle="{!v.shelfTileTitle}" shelfTileShelfId="{!v.shelfTileShelfId}" shelfColour="{!v.shelfColour}" shelfIcon="{!v.shelfIcon}" shelfTileId="{!v.shelfTile.shelfTileId}" headerTitle="{!header}" headingList="{!v.headingList}" />
             </aura:iteration>
         </div>
     </div>

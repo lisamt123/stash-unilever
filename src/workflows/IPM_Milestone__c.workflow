@@ -17,7 +17,7 @@
             <type>email</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_Due_Date_in_the_past2</template>
+        <template>IPM_Emails/IPM_Due_Date_in_the_past2</template>
     </alerts>
     <fieldUpdates>
         <fullName>Due_Date</fullName>
@@ -68,7 +68,7 @@
     </rules>
     <rules>
         <fullName>IPM_BET_WF_Trigger_MS_StatusCheck</fullName>
-        <active>false</active>
+        <active>true</active>
         <formula>AND(IPM_Due_Date__c &lt;&gt;NULL, IPM_Due_Date__c&gt;= TODAY(),ISPICKVAL(IPM_Type_of_Milestone__c, &apos;BET&apos;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
         <workflowTimeTriggers>

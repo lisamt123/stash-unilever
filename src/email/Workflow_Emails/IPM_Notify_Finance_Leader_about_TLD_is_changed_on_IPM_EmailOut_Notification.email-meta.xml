@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <encodingKey>ISO-8859-1</encodingKey>
+    <letterhead>IPM_Notification_Letterhead</letterhead>
+    <name>IPM Notify Finance Leader about TLD is changed on IPM EmailOut Notification</name>
+    <style>freeForm</style>
+    <subject>Attention Target Launch Date is changed for {!IPM_EmailOut_Notification__c.Project_Name__c}</subject>
+    <textOnly>The Target Launch Date for {!IPM_EmailOut_Notification__c.Project_Name__c} has been updated to {!IPM_EmailOut_Notification__c.Target_Launch_Date__c} from {!IPM_EmailOut_Notification__c.Previous_Target_Launch_Date__c}.</textOnly>
+    <type>html</type>
+</EmailTemplate>

@@ -96,16 +96,28 @@
         <label><!-- Change --></label>
         <name>Change__c</name>
         <picklistValues>
-            <masterLabel>WL2 - Implement &amp; Modify</masterLabel>
-            <translation><!-- WL2 - Implement &amp; Modify --></translation>
+            <masterLabel>Decision-making involves the use of judgment and there is an emphasis on the development of new/improved procedures and on the translation of policy into operational plans.</masterLabel>
+            <translation><!-- Decision-making involves the use of judgment and there is an emphasis on the development of new/improved procedures and on the translation of policy into operational plans. --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>WL3 - New levels of performance development</masterLabel>
-            <translation><!-- WL3 - New levels of performance development --></translation>
+            <masterLabel>Enhances approaches to foster change and innovation consistent with the corporate vision</masterLabel>
+            <translation><!-- Enhances approaches to foster change and innovation consistent with the corporate vision --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>WL4 - Research, invention and recommendations</masterLabel>
-            <translation><!-- WL4 - Research, invention and recommendations --></translation>
+            <masterLabel>Evaluates and constructs solutions to variable situations within general policies and broadly defined organizational goals.</masterLabel>
+            <translation><!-- Evaluates and constructs solutions to variable situations within general policies and broadly defined organizational goals. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Looks for higher levels of performance from existing products, systems and processes.</masterLabel>
+            <translation><!-- Looks for higher levels of performance from existing products, systems and processes. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Makes self fully-available to partners to extend capacity to improve and develop higher quality systems and processes. Initiates ways of adding value and containing costs.</masterLabel>
+            <translation><!-- Makes self fully-available to partners to extend capacity to improve and develop higher quality systems and processes. Initiates ways of adding value and containing costs. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thinking is towards clearly defined objectives within established policy frameworks, but requires solutions that represent improvements on current practice (direct development of new procedures).</masterLabel>
+            <translation><!-- Thinking is towards clearly defined objectives within established policy frameworks, but requires solutions that represent improvements on current practice (direct development of new procedures). --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -737,7 +749,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Highest L&apos;ship Team Comments --></label>
+        <label><!-- Highest LT Comments --></label>
         <name>Highest_L_ship_Team_Comments__c</name>
     </fields>
     <fields>
@@ -745,7 +757,7 @@
         <name>Highest_L_ship_Team_Multiplier__c</name>
     </fields>
     <fields>
-        <label><!-- Highest L&apos;ship Team to S&apos;holder Manage --></label>
+        <label><!-- Highest LT to Stakeholder Manage --></label>
         <name>Highest_L_ship_Team_to_S_holder_Manage__c</name>
         <picklistValues>
             <masterLabel>WL3</masterLabel>
@@ -785,7 +797,7 @@
         <name>Impact_of_The_Decision_Weighted_Score__c</name>
     </fields>
     <fields>
-        <label><!-- Impact of The Decisions Comments --></label>
+        <label><!-- Impact of Decisions Comments --></label>
         <name>Impact_of_The_Decisions_Comments__c</name>
     </fields>
     <fields>
@@ -793,7 +805,7 @@
         <name>Impact_of_The_Decisions_Score__c</name>
     </fields>
     <fields>
-        <label><!-- Impact of The Decisions --></label>
+        <label><!-- Impact of Decisions --></label>
         <name>Impact_of_The_Decisions__c</name>
         <picklistValues>
             <masterLabel>0 - 1 year</masterLabel>
@@ -905,7 +917,7 @@
         <name>Influence_in_Decision_Making_Score__c</name>
     </fields>
     <fields>
-        <label><!-- Influence in Decison Making Process Comm --></label>
+        <label><!-- Influence in Decison Making Process --></label>
         <name>Influence_in_Decison_Making_Process_Comm__c</name>
     </fields>
     <fields>
@@ -991,6 +1003,10 @@
         <picklistValues>
             <masterLabel>5B</masterLabel>
             <translation><!-- 5B --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>6</masterLabel>
+            <translation><!-- 6 --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>WL1</masterLabel>
@@ -1162,7 +1178,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- No. of Factories &amp; Production Lines Comm --></label>
+        <label><!-- No. of Factories &amp; Production Lines --></label>
         <name>No_of_Factories_Production_Lines_Comm__c</name>
     </fields>
     <fields>
@@ -1238,7 +1254,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- No. of Key Accounts (Modern Trade) Comme --></label>
+        <label><!-- No. of Key Accounts (Modern Trade) --></label>
         <name>No_of_Key_Accounts_Modern_Trade_Comme__c</name>
     </fields>
     <fields>
@@ -1665,16 +1681,28 @@
         <label><!-- Problem Solving --></label>
         <name>Problem_Solving__c</name>
         <picklistValues>
-            <masterLabel>WL2 - Fact Gathering and Diagnosis; Concrete Situations</masterLabel>
-            <translation><!-- WL2 - Fact Gathering and Diagnosis; Concrete Situations --></translation>
+            <masterLabel>Many conditions often require analytical and investigative review. Challenges others to learn from one another.</masterLabel>
+            <translation><!-- Many conditions often require analytical and investigative review. Challenges others to learn from one another. --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>WL3 - Challenging but Concrete and Operational</masterLabel>
-            <translation><!-- WL3 - Challenging but Concrete and Operational --></translation>
+            <masterLabel>Positions a business within broadly defined strategy. Involves scanning environment &amp; anticipating impact of external forces, up to a 5-year horizon. Resolves very complex analytical, technical &amp; mgt challenges through interpretation &amp; evaluation.</masterLabel>
+            <translation><!-- Positions a business within broadly defined strategy. Involves scanning environment &amp; anticipating impact of external forces, up to a 5-year horizon. Resolves very complex analytical, technical &amp; mgt challenges through interpretation &amp; evaluation. --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>WL4 - Strategic Nature, Abstract and Conceptual Analysis</masterLabel>
-            <translation><!-- WL4 - Strategic Nature, Abstract and Conceptual Analysis --></translation>
+            <masterLabel>Problems are defined and still mainly operational. However, at this level problems are more challenging and often solutions are critical in delivering company wide strategic objective.</masterLabel>
+            <translation><!-- Problems are defined and still mainly operational. However, at this level problems are more challenging and often solutions are critical in delivering company wide strategic objective. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Problems are mainly operational and need more analysis. Identify these issues of integration so they can be dealt with at a national level.</masterLabel>
+            <translation><!-- Problems are mainly operational and need more analysis. Identify these issues of integration so they can be dealt with at a national level. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thinking within a general frame of reference toward functional objectives, in situations with some nebulous, intangible or unstructured aspects.</masterLabel>
+            <translation><!-- Thinking within a general frame of reference toward functional objectives, in situations with some nebulous, intangible or unstructured aspects. --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Thinks beyond existing procedures &amp; policies; uses judgment for solutions for the situation. Requires truly analytical interpretative/evaluative thinking using experience of existing policies &amp; practices to reason through different &amp; varied solutions.</masterLabel>
+            <translation><!-- Thinks beyond existing procedures &amp; policies; uses judgment for solutions for the situation. Requires truly analytical interpretative/evaluative thinking using experience of existing policies &amp; practices to reason through different &amp; varied solutions. --></translation>
         </picklistValues>
     </fields>
     <fields>
@@ -1734,11 +1762,11 @@
         <name>Size_of_Activation_Per_Weighted_Score__c</name>
     </fields>
     <fields>
-        <label><!-- Size of Activation Per Year (Incr) Comme --></label>
+        <label><!-- Size of Activation Per Year Comments --></label>
         <name>Size_of_Activation_Per_Year_Incr_Comme__c</name>
     </fields>
     <fields>
-        <label><!-- Size of Activation Per Year (incrementa --></label>
+        <label><!-- Size of Activation Per Year (increments) --></label>
         <name>Size_of_Activation_Per_Year_Incrementa__c</name>
         <picklistValues>
             <masterLabel>0-5%</masterLabel>
@@ -1946,7 +1974,7 @@
         <name>Total_Score__c</name>
     </fields>
     <fields>
-        <label><!-- Total Stores Covered (Modern Trade) Comm --></label>
+        <label><!-- Total Stores Covered (Modern Trade) --></label>
         <name>Total_Stores_Covered_Modern_Trade_Comm__c</name>
     </fields>
     <fields>
@@ -2246,7 +2274,7 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- indirects to Be Managed Comments --></label>
+        <label><!-- Indirects to Be Managed Comments --></label>
         <name>indirects_to_Be_Managed_Comments__c</name>
     </fields>
     <fields>

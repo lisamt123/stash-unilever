@@ -15,6 +15,7 @@
 
     <aura:attribute name="activeShelfTileId" type="String" default="" />
     <aura:attribute name="activeFolderTileId" type="String" default="" />
+    <aura:attribute name="activeFolderName" type="String" default="" />
 
     <div class="row">
 	    <div class="col-xs-12">
@@ -36,6 +37,7 @@
                                 shelfTitle="{!v.shelfItem.shelfTitle}"
                                 activeShelfTileId="{!v.activeShelfTileId}"
                                 activeFolderTileId="{!v.activeFolderTileId}"
+                                activeFolderName="{!v.activeFolderName}"
                                 />
 					    </aura:iteration>
 				    </div>

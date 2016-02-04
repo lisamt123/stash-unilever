@@ -106,6 +106,10 @@
             <translation><!-- Nordic --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>North America</masterLabel>
+            <translation><!-- North America --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Poland</masterLabel>
             <translation><!-- Poland --></translation>
         </picklistValues>
@@ -116,6 +120,10 @@
         <picklistValues>
             <masterLabel>Spain</masterLabel>
             <translation><!-- Spain --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Sri Lanka</masterLabel>
+            <translation><!-- Sri Lanka --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>United Kingdom</masterLabel>
@@ -194,6 +202,10 @@
             <masterLabel>Safety</masterLabel>
             <translation><!-- Safety --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- 30 Days Limit --></label>
+        <name>X30_Days_Limit__c</name>
     </fields>
     <gender><!-- Neuter --></gender>
     <layouts>

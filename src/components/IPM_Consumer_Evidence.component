@@ -63,7 +63,7 @@
                                         </div>
                                         <apex:outputPanel styleClass="pull-left" layout="block" rendered="{!isEditable}">
                                             <div class="SecButtonSet noPadright noMtop">
-                                                <apex:commandLink styleClass="icoButton delete deleteCountry" title="Remove Country" onclick="deleteCountry('{!evidenceCountry}','{!projDocSecId}');" rendered="{!isEditable}"> </apex:commandLink>
+                                                <a class="icoButton delete deleteCountry" title="Remove Country" onclick="deleteCountry('{!evidenceCountry}','{!projDocSecId}');" rendered="{!isEditable}"></a>
                                             </div>
                                         </apex:outputPanel>
                                         <apex:outputPanel rendered="{!isEditable}">
@@ -79,8 +79,10 @@
                                                     <div class="ceInfoContainer">
                                                         
                                                         <apex:outputPanel layout="block" styleClass="pull-left delTitlecon"> 
-                                                            <span >{!evi.IPM_Consumer_Evidence_Concept_Name__c}</span>
-                                                            <apex:commandLink styleClass="icoButton delete floatR deleteConcept" title="Remove Concept" onclick="deleteconcept('{!evidenceCountry}','{!projDocSecId}','{!evi.Id}');" rendered="{!AND(isEditable,evi.IPM_Consumer_Evidence_Gate__c=gateType)}"></apex:commandLink>
+                                                            <span >{!evi.IPM_Consumer_Evidence_Concept_Name__c} {!evi.IPM_Consumer_Evidence_Priority__c}</span>
+                                                            <apex:outputPanel rendered="{!AND(isEditable,evi.IPM_Consumer_Evidence_Gate__c=gateType)}">
+                                                                <a class="icoButton delete floatR deleteConcept" title="Remove Concept" onclick="deleteconcept('{!evidenceCountry}','{!projDocSecId}','{!evi.Id}','{!evi.IPM_Consumer_Evidence_Priority__c}');"></a>
+                                                            </apex:outputPanel>
                                                         </apex:outputPanel>
                                                         <div class="ceImage ceImageBig">
                                                             <apex:outputPanel layout="block" >
@@ -114,7 +116,7 @@
                                                                 <div class="container-fluid">
                                                                     <div class="row">    
                                                                         <div class="col-sm-12">
-                                                                            <span class="skipDesc">{!$Label.IPM_Remove_Country}</span>
+                                                                            <span class="skipDesc">{!$Label.IPM_Remove_CMI}</span>
                                                                             <span>{!$Label.IPM_CMI_NOTE}</span>
                                                                         </div>
                                                                         <div class="deleteButtoncontainer txtAlignright pull-right"> 
@@ -150,7 +152,7 @@
                                                         <div class="row">    
                                                             <div class="col-sm-12">
                                                                 <span class="skipDesc">{!$Label.IPM_Remove_Country}</span>
-                                                                <span>{!$Label.IPM_CMI_NOTE}</span>
+                                                                <span>{!$Label.IPM_CONCEPT_REMOVE_NOTE}</span>
                                                             </div>
                                                             <div class="deleteButtoncontainer txtAlignright pull-right"> 
                                                                 <div class="noPadright buttonMarginRight pull-left">
@@ -194,6 +196,7 @@
         <apex:param name="parama" assignTo="{!deleteCountry}" value=""/>
         <apex:param name="paramb" assignTo="{!projDocSecId}" value=""/>
         <apex:param name="paramc" assignTo="{!projDocSecConId}" value=""/>
+        <apex:param name="paramd" assignTo="{!priorityNumber}" value=""/>
     </apex:actionFunction>  
     <apex:actionFunction status="Loading" name="addNew" action="{!addConcept}" reRender="selectCheckboxScript,channelListDropDown,conceptSection,consumerEvidenceimgUpdate" oncomplete="selectCheckboxScript();">
         <apex:param name="parameter1" assignTo="{!addCountryConcept}" value=""/>

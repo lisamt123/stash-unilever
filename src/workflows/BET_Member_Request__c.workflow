@@ -43,10 +43,7 @@
             <type>Alert</type>
         </actions>
         <active>true</active>
-        <formula>IF(ISNEW(), 
-AND(ISPICKVAL(Status__c,&apos;Approved&apos;),NOT(Do_Not_Notify_User__c))
-,AND(ISPICKVAL(Status__c,&apos;Approved&apos;), ISCHANGED(Status__c), NOT(Do_Not_Notify_User__c))
-)</formula>
+        <formula>IF(ISNEW(),  AND(ISPICKVAL(Status__c,&apos;Approved&apos;),NOT(Do_Not_Notify_User__c)) ,AND(ISPICKVAL(Status__c,&apos;Approved&apos;), ISCHANGED(Status__c), NOT(Do_Not_Notify_User__c)) )</formula>
         <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>

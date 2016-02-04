@@ -47,8 +47,9 @@ public without sharing class BET_Team_MemberHandlerCls {
     *************************************************************/
 	public static void addSharings(List<uw_BET_Team_Member__c> newList){
 		System.debug('Entering addSharings : ' + newList);
-		BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues(BETMANAGERCONFIG);
+        BET_ManageMembersSettings__c BETManageMembersConfig = BET_ManageMembersSettings__c.getValues(BET_Team_MemberHandlerCls.BETMANAGERCONFIG);
         String managerRoleStr = Test.isRunningTest() ? MANAGERROLE : BETManageMembersConfig.ManagerRole__c;
+        String externalRole = BET_Team_MemberHandlerClsHelper.getExternalUserRoleName();
         List<uw_BET__Share> shares = new List<uw_BET__Share>();
         Set<Id> bets = new Set<Id>();
         for(uw_BET_Team_Member__c member : newList){
@@ -57,7 +58,7 @@ public without sharing class BET_Team_MemberHandlerCls {
         Map<Id,uw_bet__c> betMap = new Map<Id,uw_bet__c>([select id, ownerid from uw_bet__c where id in : bets]);
 		for(uw_BET_Team_Member__c member : newList){
 			uw_bet__c bet = betMap.get(member.BET__c);
-			if(bet != null && member.Team_Member__c != null && member.Team_Member__c != bet.ownerId) {
+			if(bet != null && member.Team_Member__c != null && member.Team_Member__c != bet.ownerId && member.Role__c != externalRole) {
          		shares.add(BET_Team_MemberHandlerClsHelper.addShareByMember(member,managerRoleStr));
         	}
 		}
@@ -117,6 +118,7 @@ public without sharing class BET_Team_MemberHandlerCls {
     *************************************************************/
 	public static void addEntitySubscriptions(List<uw_BET_Team_Member__c> newList){
 		System.debug('Entering addEntitySubscriptions : ' + newList);
+        String externalRole = BET_Team_MemberHandlerClsHelper.getExternalUserRoleName();
 		List<EntitySubscription> eSubscriptions = new List<EntitySubscription>();
 
 		Map<Id,Set<Id>> betMembersSubscrMap = new Map<Id,Set<Id>>();
@@ -134,7 +136,7 @@ public without sharing class BET_Team_MemberHandlerCls {
 		}
 
 		for(uw_BET_Team_Member__c teamMember : newList){
-			if(teamMember.Team_Member__c != null && betMembersSubscrMap.get(teamMember.Bet__c) != null && !betMembersSubscrMap.get(teamMember.Bet__c).contains(teamMember.Team_Member__c)){
+			if(teamMember.Team_Member__c != null && betMembersSubscrMap.get(teamMember.Bet__c) != null && !betMembersSubscrMap.get(teamMember.Bet__c).contains(teamMember.Team_Member__c) && teamMember.Role__c != externalRole){
         		eSubscriptions.add(BET_Team_MemberHandlerClsHelper.addEntitiySubscriptionByTeamMember(teamMember));
         	}
         	
@@ -169,14 +171,19 @@ public without sharing class BET_Team_MemberHandlerCls {
     public static void addStandardUserPermissionSet(List<uw_BET_Team_Member__c> newTeamMembers){
         Set<Id> relatedUsersIds = new Set<Id>();
 
+        String externalRole = BET_Team_MemberHandlerClsHelper.getExternalUserRoleName();
+
         for(uw_BET_Team_Member__c member : newTeamMembers){
-            if(member.Team_Member__c != null) {
+            if(member.Team_Member__c != null && member.Role__c != externalRole) {
                 relatedUsersIds.add(member.Team_Member__c);
             }
         }
 
-        if(!relatedUsersIds.isEmpty()){
-            addStandardUserPermissionSet(relatedUsersIds);
+        if(!relatedUsersIds.isEmpty() && !(System.isBatch() || System.isFuture())){
+            addStandardUserPermissionSetFuture(relatedUsersIds);
+        }
+        else if(!relatedUsersIds.isEmpty() && (System.isBatch() || System.isFuture())){
+            addStandardUserPermissionSet(relatedUsersIds);            
         }
     }
 
@@ -187,6 +194,16 @@ public without sharing class BET_Team_MemberHandlerCls {
         Throws: -
     *************************************************************/
     @Future
+    private static void addStandardUserPermissionSetFuture(Set<Id> relatedUsersIds){
+        addStandardUserPermissionSet(relatedUsersIds);
+    }
+
+    /************************************************************
+        Purpose: Method adds CB4L_Standard_User permission sets to new members in case they do not have any other BET permission set assigned
+        Parameters: Set<Id> relatedUsersIds
+        Returns: -
+        Throws: -
+    *************************************************************/
     private static void addStandardUserPermissionSet(Set<Id> relatedUsersIds){
         if(!relatedUsersIds.isEmpty()) {
 

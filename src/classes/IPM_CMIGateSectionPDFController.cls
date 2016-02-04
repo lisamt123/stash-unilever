@@ -51,12 +51,10 @@ public with sharing Class IPM_CMIGateSectionPDFController{
             gateCMICharterList=[SELECT Id,Gate__c,IPM_CMI_Overall_Colour_Score_Method__c,Element__c,Test__c,KPI__c,Input__c,Results__c,Country__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
                                 FROM IPM_Gate_CMI__c 
                                 WHERE IPM_Skip_Test__c=false and IPM_Project__c=:project.Id and Gate__c='Charter'];
-            System.debug(gateCMICharterList+'******gateCMICharterList***********'); 
             secConCharterList=[SELECT Id,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Colour_Achieved__c ,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Free_Text__c,IPM_CMI_Overall_Comments__c,IPM_CMI_Is_Free_Text__c,IPM_CMI_Result_Timing__c,IPM_CMI_Country__c,IPM_Gate_CMI__c,IPM_CMI_Input__c,IPM_CMI_Comments__c,IPM_CMI_Result__c,
                                IPM_Project_Document_Section__c,IPM_CMI_Outcome_Color_Achieved__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Outcome_Color__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
                                FROM IPM_Project_Document_Section_Content__c 
                                WHERE IPM_Content_Type__c=:IPM_ConstantUtils.CMIGATE_CONTENT_TYPE AND IPM_Gate_CMI__r.Gate__c='Charter' AND IPM_Project_Document_Section__c=:projDocSecId];
-            System.debug(secConCharterList.size()+'secConCharterList');
             List<IPM_Project_Document_Section_Content__c> addContList;
             for(IPM_Gate_CMI__c cmi:gateCMICharterList){
                     addContList=new List<IPM_Project_Document_Section_Content__c>();
@@ -67,14 +65,10 @@ public with sharing Class IPM_CMIGateSectionPDFController{
                             addContList.add(con);
                         }
                     }
-                    System.debug(addContList.size()+'***************addContList**********');
                 contentMap.put(cmi.Id,addContList);
             }     
-            System.debug(countryNames+'***countryNames****');    
-             System.debug(displayCon.size()+'***'+displayCon.keySet()+'****');    
         }
         catch(Exception ex){
-            System.debug(ex.getMessage()+ex);
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),'IPM_CMIGateSectionPDFController',
                 'showTableData',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);                
         }

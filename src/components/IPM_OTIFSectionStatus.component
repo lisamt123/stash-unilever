@@ -15,8 +15,6 @@
 <div class="altBGcolor">
   <table class="ipmTable table table-bordered gkTable otifTable mt20"> 
   <tbody> 
- <apex:repeat value="{!secConList}" var="con">
- <apex:outputPanel rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c==con.Section_Content_Ext_Id__c,true,false)}">
  <tr>
      <td>
          <div class="panelMessage"><span class="asterisk">{!$Label.IPM_DOES_APPEAR_IN_GATE_DOC}</span></div>
@@ -25,6 +23,9 @@
   <tr>   
     <th>{!$Label.IPM_OTIF_MEASURE}</th> 
  </tr>
+  <apex:repeat value="{!secConList}" var="con">
+ <apex:outputPanel rendered="{!if(projDocSec.IPM_Master_Section_External_Id__c==con.Section_Content_Ext_Id__c,true,false)}">
+ 
   <tr>   
     <td>
      <apex:outputText value="{!con.IPM_OTIF_Measure__c}"/>
@@ -33,7 +34,7 @@
 <tr>  
     <td> 
     <apex:outputPanel rendered="{!Iseditable}">                      
-                    <apex:outputPanel rendered="{!con.IPM_OTIF_No_of_Status__c=4}" styleClass="sliderOTIF">
+                    <apex:outputPanel rendered="{!con.IPM_OTIF_No_of_Status__c=4}" styleClass="sliderOTIF5">
                     <input type="hidden" class="" id="answer{!con.Id}" name="answer" value="{!con.IPM_OTIF_Status__c}"/> 
                                  <div class="sld5 legendSld">
                                    <label for="s0" onclick="changeStatus('{!con.Id}','');" class="info" title="Select">{!$Label.IPM_SELECT}</label>
@@ -65,7 +66,7 @@
                              </div> 
                                 </apex:outputPanel>
                     </apex:outputPanel> 
-             <apex:outputText rendered="{!!Iseditable}"><div class="{!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)}"></div></apex:outputtext>
+             <apex:outputText rendered="{!!Iseditable}"><div class="gkcStatus {!IF(con.IPM_OTIF_Status__c=='{!$Label.IPM_NO_APPLICABLE}','notApplicable',con.IPM_OTIF_Status__c)}">{!con.IPM_OTIF_Status__c}</div></apex:outputtext>
           
     </td>
     </tr>   

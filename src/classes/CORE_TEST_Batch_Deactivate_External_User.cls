@@ -6,7 +6,8 @@ public static testMethod void myTestMethodForBatch() {
    User obj_user  = new User (username='Core_Chatter_user_admin_test1@admintest.com',IsActive=true,City='Bangalore',Function__c='Information Technology', Alias='user1',
                                  timezonesidkey='America/Los_Angeles',ProfileId=p.id,Email='Core_Chatter_user_admin_test1@admintest.com',FederationIdentifier='feed1',
                                  FirstName='user1', LastName='user2',emailencodingkey='UTF-8',languagelocalekey='en_US',localesidkey='en_US');
-    insert obj_user; 
+   insert obj_user; 
+   System.assert(obj_user != null);
    
    List<User> scope  = [SELECT username,IsActive,City,Function__c,Alias,timezonesidkey,ProfileId,Email,
                         FederationIdentifier,FirstName,LastName,emailencodingkey,languagelocalekey,localesidkey
@@ -25,6 +26,7 @@ public static testMethod void myTestMethodForBatch() {
 public static testMethod void myTestMethodForScheduler() {        
          test.starttest();
          CORE_Batch_Deactivate_Ext_User_Scheduler myClass = new CORE_Batch_Deactivate_Ext_User_Scheduler();
+         System.assert(myClass != null);
          test.stopTest();
     }
 }

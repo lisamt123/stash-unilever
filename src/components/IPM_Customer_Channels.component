@@ -137,7 +137,7 @@
                                 </div>
                                 <apex:outputPanel rendered="{!isEditable}">
                                     <div class="col-sm-2 SecButtonSet noPadright pull-right noMtop">
-                                        <a class="icoButton delete deleteChannel" title="Remove Customer Channel" onclick="deletecc('{!con.Id}');"></a>
+                                        <a class="icoButton delete deleteChannel" title="{!$Label.IPM_Remove_Customer_Channel}" onclick="deletecc('{!con.Id}');"></a>
                                     </div>
                                 </apex:outputPanel>
                             </div>
@@ -466,7 +466,7 @@
                                     <div class="container-fluid">
                                         <div class="row">    
                                             <div class="col-sm-12">
-                                                <span class="skipDesc">{!$Label.IPM_Remove_CMI}</span>
+                                                <span class="skipDesc">{!$Label.IPM_Remove_Channel}</span>
                                                 <span>{!$Label.IPM_CMI_NOTE}</span>
                                             </div>
                                             <div class="deleteButtoncontainer txtAlignright pull-right"> 

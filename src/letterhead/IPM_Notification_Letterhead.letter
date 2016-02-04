@@ -11,14 +11,14 @@
         <backgroundColor>#FFFFFF</backgroundColor>
         <height>100</height>
         <horizontalAlignment>Left</horizontalAlignment>
-        <logo>IPMNG/IPM_Notification_Letterhead_Footer.png</logo>
+        <logo>IPMNG/IPM_Notification_footer.png</logo>
         <verticalAlignment>Top</verticalAlignment>
     </footer>
     <header>
         <backgroundColor>#FFFFFF</backgroundColor>
         <height>100</height>
         <horizontalAlignment>Left</horizontalAlignment>
-        <logo>IPMNG/IPM_Notification_Letterhead_Header.png</logo>
+        <logo>IPMNG/IPM_Notification_header.png</logo>
         <verticalAlignment>Top</verticalAlignment>
     </header>
     <middleLine>
