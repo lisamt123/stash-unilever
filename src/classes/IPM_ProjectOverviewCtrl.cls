@@ -9,13 +9,14 @@
     comment :This controller class handles the complex logic of showing alerts and notifications in header, project summary, all the sections and To-do's
     associated to logged-in user's functional role, BET code, project's history and chatter posta in Recent Activiites column, due to which class size has been increased. 
 */
-public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediateController {
+public with sharing class IPM_ProjectOverviewCtrl {
 
     public IPM_ProjectOverviewCtrl() {
         //class Constructor 
     }
     public Map<String, String> BusinessCaseMessageMap{get;set;}
     public List<IPM_Project__History> lstprojecthistory {get;set;} //variable to identify if the project is fast track
+    public IPM_Financial__c fin {get;set;}//used for fetching the BusinessImpact details
     public String lstalertMessage {get;set;} //alert message for the fast track
     public List<String> lstFinAlertMessage {get;set;} //Alert message for financial misalignment
     public List<String> lstRolloutProjectAlertMessage {get;set;} //Alert message for Rollout local projec leader is blank
@@ -346,7 +347,7 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
         IPM_Category_Icon__c,IPM_Target_Launch_Date__c,IPM_Parent_Project__c,IPM_Parent_Project__r.name, IPM_Project_Leader__c, IPM_Technical_Project_Leader__c, 
         Deputy_Project_Leader__c, IPM_Finance_Member__c, IPM_Project_Gatekeeper__c,BET_MS_Final_Release_Date__c,BET_MS_First_Release_Date__c,BET_TLD_Final_Release_Date__c,BET_TLD_First_Release_Date__c,
         IPM_Parent_Project__r.IPM_Target_Launch_Dates__c,IPM_Parent_Project__r.IPM_Project_Name__c,IPM_SourceProjectType__c,
-        IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,
+        IPM_Exists_AtLeast_OneAssmntPerEICountry__c,IPM_Temporary_Phase__c,   IPM_Parent_Project__r.IPM_Parent_Project__r.BET_Link_Requested__c,EcoDesign_Sync_Status__c, IPM_Global_Project_Id__c, IPM_Project_Job_Status__c,IPM_Parent_Project__r.IPM_Project_Type__c,
         (SELECT IPM_Task_Name__c, IPM_Due_Date1__c, IPM_Task_Type__c, IPM_Project_Document_Section__r.IPM_Section_Sequence__c,
         IPM_Project_Document_Section__r.IPM_Section_Name__c, IPM_Completed__c, IPM_Completed_Date__c,IPM_Project_Document_Section__c,IPM_Active__c,
         IPM_Project__c
@@ -460,51 +461,71 @@ public with sharing class IPM_ProjectOverviewCtrl extends IPM_ProjectIntermediat
 
         //get global impact value for project      
         globalbusinessImpactStr='';
-        //DEF2103-30/12/15-Reopen for BI not calculated on Global projects
-        /*Analysis-IPM_Financials_Consolidated__r is not returning value may be because of recent change in BIG query above or change in formula field.
-        New query is introduced now to fetch BI from IPM financial for global projects.
-        */
-        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
-            list<IPM_Financial__c> liFinGlobal = [SELECT Business_Impact_Global__c FROM IPM_Financial__c WHERE parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL and parent_project__c=:lstofuser[0].id and regional_external_id__c=null limit 1];
-            if (liFinGlobal!=null && liFinGlobal.size()>0){
-                globalbusinessImpactStr = liFinGlobal[0].Business_Impact_Global__c;
-            }
-        }
-        
-        //DEF2103 - Copy Global Business Impact for Regional and Local projects from Global Project
-        /*Case: When project is Regional Rollout*/
-        if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
-            list<IPM_Financial__c> liFinParentReg = [select Business_Impact_Global__c from IPM_Financial__c where (Parent_Project__c=:project.IPM_Parent_Project__c OR global_project_id__c=:project.IPM_Parent_Project__c) and parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL limit 1];
-            if (liFinParentReg!=null && liFinParentReg.size()>0){
-                globalbusinessImpactStr = liFinParentReg[0].Business_Impact_Global__c;
-            }
-        }
-        /*Case: When project is Regional Original*/
-        else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-            list<IPM_Financial__c> liFinRegOrig = [select Business_Impact_Regional__c from IPM_Financial__c where (regional_external_id__c=:lstofuser[0].Name OR global_project_id__c=:lstofuser[0].Name) and regional_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL limit 1];
-            if (liFinRegOrig!=null && liFinRegOrig.size()>0){
-                globalbusinessImpactStr = liFinRegOrig[0].Business_Impact_Regional__c;
-            }
-        }
-        else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL &&  project.IPM_Project_Type__c !=IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-            list<IPM_Financial__c> liFinParentLoc = [select Parent_Project__c, regional_project__r.IPM_Project_Type__c, Business_Impact_Global__c, Business_Impact_Regional__c from IPM_Financial__c where Local_Project__c=:project.Id limit 1];
-            if (liFinParentLoc!=null && liFinParentLoc.size()>0){
-                //If local project has Global Original as parent then copy BI from financial's Global BI field
-                if(liFinParentLoc[0].Parent_Project__c!=null){
-                    globalbusinessImpactStr = liFinParentLoc[0].Business_Impact_Global__c;
-                }//if local project has Regional original as parent then copy BI from financial's regional BI field 
-                else if(liFinParentLoc[0].Parent_Project__c==null && liFinParentLoc[0].regional_project__r.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                    globalbusinessImpactStr = liFinParentLoc[0].Business_Impact_Regional__c;
-                }else{
-                    globalbusinessImpactStr = '-';
-                }
-            }
-        }
-        //DEF3019
-        if (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-           	globalbusinessImpactStr = IPM_ConstantUtils.BLANK;	
-        }
-         BusinessCaseMessageMap = new Map<String, String>();
+       // Set Business Impact
+       // Check if the source Project is ORIGINAL
+       	if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+		{
+			//IF SPAN is Global
+			if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+			{
+				fin=[SELECT Business_Impact_Global__c					            
+					 FROM IPM_Financial__c 
+					 WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+				globalbusinessImpactStr = fin.Business_Impact_Global__c;
+			}
+			//IF SPAN is Regional
+			else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+			{	//Project Type is Original
+				if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+				{
+					 fin=[SELECT Business_Impact_Regional__c
+					 FROM IPM_Financial__c 
+					 WHERE Regional_Project__c=:project.Id AND Financial_External_ID__c=:project.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+					 globalbusinessImpactStr = fin.Business_Impact_Regional__c;						
+				}
+				else if(project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
+				{
+					//Project Type is Rollout
+					fin=[SELECT Business_Impact_Global__c
+						 FROM IPM_Financial__c 
+						 WHERE Parent_Project__c=:project.IPM_Parent_Project__c AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+					 globalbusinessImpactStr = fin.Business_Impact_Global__c;
+				}
+			}
+			else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+			{
+				string parentProjectType=project.IPM_Parent_Project__r.IPM_Project_Type__c;
+				IPM_Financial__c finLocal=new IPM_Financial__c();
+				// if local is Child to Regional Original Project
+				if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
+				{
+					fin=[SELECT Business_Impact_Regional__c FROM IPM_Financial__c 
+							  WHERE Regional_Project__c=:project.IPM_Parent_Project__c 
+							  AND Financial_External_ID__c=:project.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+					 globalbusinessImpactStr = fin.Business_Impact_Regional__c;
+				}
+				// if local is Child to Regional Local Project
+				else if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)// traverse to its Global Project for getting BI from CONSOLIDATED Financial
+				{
+					IPM_Project__c globalParentId= [Select IPM_Parent_Project__r.IPM_Parent_Project__c,IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c FROM IPM_Project__c where ID=:project.Id];
+					fin=[SELECT Business_Impact_Global__c FROM IPM_Financial__c 
+							 WHERE Parent_Project__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__c
+							 AND Financial_External_ID__c=:globalParentId.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Project_Name__c+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
+					 
+					 
+					 globalbusinessImpactStr = fin.Business_Impact_Global__c;
+				}
+				
+			}
+		}
+		// For BI where Source is OPERATIONAL project. Will work got GKM5,GKM6,GKM7 OPERATIONAL
+		else if(project.IPM_SourceProjectType__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL)
+		{
+			globalbusinessImpactStr = IPM_ConstantUtils.BLANK;			
+	
+		}
+        //upto here
+        BusinessCaseMessageMap = new Map<String, String>();
         List<IPM_Financial__c> financialList = [Select Id, RecordTypeId, Global_Project_Id__c,Regional_Project__c,Local_Project__c, Financial_External_ID__c, Display_Name__c,
                                                  Parent_Project__r.Name,
                             (SELECT Id, Turnover_Global__c, Turnover_Local__c,Turnover_Regional__c, Profit_Before_Overheads_Global__c,
