@@ -100,10 +100,6 @@
         <relationshipLabel><!-- IPM Projects (Deputy Project Leader) --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- EcoDesign Sync Eligible Timestamp --></label>
-        <name>EcoDesign_Sync_Eligible_Timestamp__c</name>
-    </fields>
-    <fields>
         <label><!-- EcoDesign Sync Error --></label>
         <name>EcoDesign_Sync_Error__c</name>
     </fields>
@@ -1024,22 +1020,6 @@
         </picklistValues>
     </fields>
     <fields>
-        <label><!-- Sync Countries --></label>
-        <name>Sync_Countries__c</name>
-    </fields>
-    <fields>
-        <label><!-- Sync Members --></label>
-        <name>Sync_Members__c</name>
-    </fields>
-    <fields>
-        <label><!-- Sync Project --></label>
-        <name>Sync_Project__c</name>
-    </fields>
-    <fields>
-        <label><!-- Synced From EcoDesign TimeStamp --></label>
-        <name>Synced_From_EcoDesign_TimeStamp__c</name>
-    </fields>
-    <fields>
         <label><!-- Upcoming Milestone Due Date --></label>
         <name>Upcoming_Milestone_Due_Date__c</name>
     </fields>
@@ -1048,13 +1028,16 @@
         <name>Update_BET__c</name>
     </fields>
     <fields>
-        <label><!-- Exists At Least One Assmnt Per EICountry --></label>
-        <name>existsAtLeastOneAssmntPerEICountry__c</name>
-    </fields>
-    <fields>
         <label><!-- update on change of ms first release dat --></label>
         <name>update_on_change_of_ms_first_release_dat__c</name>
     </fields>
+    <layouts>
+        <layout>IPM Project Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
     <recordTypes>
         <label><!-- Clustering --></label>
         <name>Clustering</name>

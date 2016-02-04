@@ -345,6 +345,10 @@
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>
         </sections>
+        <sections>
+            <label><!-- Snapshot Due Dates --></label>
+            <section>Snapshot Due Dates</section>
+        </sections>
     </layouts>
     <layouts>
         <layout>IPM Milestone Layout</layout>
