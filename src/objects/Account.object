@@ -1512,7 +1512,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
     <fields>
         <fullName>NumberOfEmployees</fullName>
         <trackFeedHistory>false</trackFeedHistory>
-	<trackHistory>false</trackHistory>
+        <trackHistory>false</trackHistory>
     </fields>
 <fields>
         <fullName>OOH_ActivitionDate__c</fullName>
@@ -6924,7 +6924,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
+<picklistValues>
             <picklist>OOH_Family__c</picklist>
             <values>
                 <fullName>Restaurant</fullName>
@@ -7879,7 +7879,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
                 <default>false</default>
             </values>
         </picklistValues>
-        <picklistValues>
+<picklistValues>
             <picklist>OOH_Family__c</picklist>
             <values>
                 <fullName>Restaurant</fullName>
@@ -14198,6 +14198,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         </picklistValues>
     </recordTypes>
     <searchLayouts>
+
         <customTabListAdditionalFields>ACCOUNT.NAME</customTabListAdditionalFields>
         <customTabListAdditionalFields>ACCOUNT.PHONE1</customTabListAdditionalFields>
         <customTabListAdditionalFields>PC_EMAIL</customTabListAdditionalFields>
