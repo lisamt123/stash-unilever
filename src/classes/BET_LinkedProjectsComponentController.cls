@@ -25,10 +25,10 @@ public with sharing class BET_LinkedProjectsComponentController {
 	*************************************************************/
 	public List<FollowRequestWrapper> getLinkedProjects(){
 		System.debug('Entering getLinkedProjects');
-		uw_Bet__c bet = [select id, IPM_Project__c , IPM_Project__r.name from uw_Bet__c where id=:betIdentifier];
+		uw_Bet__c bet = [select id, IPM_Project__c , IPM_Project__r.name, Inoplan_Project_Keyword_Search__c from uw_Bet__c where id=:betIdentifier];
 		List<FollowRequestWrapper> requests = new List<FollowRequestWrapper>();
 		if(bet.IPM_Project__c != null){
-			requests.add(new FollowRequestWrapper(bet.IPM_Project__c,bet.IPM_Project__r.name,true));
+			requests.add(new FollowRequestWrapper(bet.IPM_Project__c,bet.Inoplan_Project_Keyword_Search__c,true));
 		}
 		for(BET_Follow_Request__c req : [select id,Project_Name__c,Project_Id__c from BET_Follow_Request__c where Brand_Experience_Toolkit__c=:betIdentifier 
 										 and Status__c=:BET_LinkingService.FOLLOW_STATUS_APPROVED 
