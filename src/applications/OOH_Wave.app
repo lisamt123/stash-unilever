@@ -4,4 +4,5 @@
     <label>OOH Wave</label>
     <tab>standard-Account</tab>
     <tab>standard-Asset</tab>
+    
 </CustomApplication>
