@@ -504,6 +504,22 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>Product Categories</pluralLabel>
+    <recordTypes>
+        <fullName>UL_Products</fullName>
+        <active>false</active>
+        <label>UL Products</label>
+        <picklistValues>
+            <picklist>Corp_Prod_Grouping_Active_Status__c</picklist>
+            <values>
+                <fullName>Active</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Inactive</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts>
         <lookupDialogsAdditionalFields>L2_Product_Category__c</lookupDialogsAdditionalFields>
         <lookupDialogsAdditionalFields>Corp_Brand_Name__c</lookupDialogsAdditionalFields>
