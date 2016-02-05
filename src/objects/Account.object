@@ -1164,13 +1164,14 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackHistory>false</trackHistory>
         <type>Checkbox</type>
     </fields>
-<fields>
-       <fullName>First_Purchase_Dates__c</fullName>
+    <fields>
+        <fullName>First_Purchase_Dates__c</fullName>
         <externalId>false</externalId>
         <label>First Purchase Dates</label>
         <summarizedField>OOH_SellOutData__c.OOH_SellOutDate__c</summarizedField>
         <summaryForeignKey>OOH_SellOutData__c.OOH_DistributorAccount__c</summaryForeignKey>
         <summaryOperation>max</summaryOperation>
+        <trackHistory>false</trackHistory>
         <type>Summary</type>
     </fields>
     <fields>
@@ -1514,12 +1515,13 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
     </fields>
-<fields>
+    <fields>
         <fullName>OOH_ActivitionDate__c</fullName>
         <externalId>false</externalId>
         <label>Activition Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Date</type>
     </fields>
     <fields>
@@ -1530,6 +1532,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -1540,6 +1543,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <length>15</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1550,6 +1554,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <length>80</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1560,6 +1565,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <length>18</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1570,6 +1576,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <length>40</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1580,6 +1587,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <length>200</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1590,6 +1598,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <length>100</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1600,6 +1609,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <length>18</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1611,6 +1621,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <length>18</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>true</unique>
     </fields>
@@ -1630,6 +1641,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Picklist</type>
     </fields>
     <fields>
@@ -1639,6 +1651,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Image</label>
         <required>false</required>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1649,6 +1662,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <length>18</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1659,6 +1673,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <length>20</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1681,6 +1696,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <relationshipName>SaleTerminals</relationshipName>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Lookup</type>
     </fields>
     <fields>
@@ -1691,6 +1707,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <length>18</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>true</unique>
     </fields>
@@ -1702,6 +1719,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -1712,6 +1730,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <length>50</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Text</type>
         <unique>false</unique>
     </fields>
@@ -1724,6 +1743,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Percent</type>
     </fields>
     <fields>
@@ -1734,6 +1754,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <required>false</required>
         <scale>0</scale>
         <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
         <type>Number</type>
         <unique>false</unique>
     </fields>
@@ -2077,6 +2098,46 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             </picklistValues>
             <picklistValues>
                 <fullName>Cold</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Region__c</fullName>
+        <description>This field is used to capture region of Distributor</description>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <picklist>
+            <picklistValues>
+                <fullName>NORTE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>ANDALUCIA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>LEVANTE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CENTRO</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CATALUÃ‘A</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BALEARES</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>CANARIAS</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -3870,7 +3931,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
                 <default>false</default>
             </values>
         </picklistValues>
-<picklistValues>
+        <picklistValues>
             <picklist>OOH_Family__c</picklist>
             <values>
                 <fullName>Restaurant</fullName>
@@ -3912,6 +3973,37 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             </values>
             <values>
                 <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Region__c</picklist>
+            <values>
+                <fullName>ANDALUCIA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BALEARES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CANARIAS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CATALUÃ%E2%80%98A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CENTRO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LEVANTE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NORTE</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -4920,7 +5012,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
                 <default>false</default>
             </values>
         </picklistValues>
-<picklistValues>
+        <picklistValues>
             <picklist>OOH_Family__c</picklist>
             <values>
                 <fullName>Restaurant</fullName>
@@ -4985,6 +5077,37 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             </values>
             <values>
                 <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Region__c</picklist>
+            <values>
+                <fullName>ANDALUCIA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BALEARES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CANARIAS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CATALUÃ%E2%80%98A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CENTRO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LEVANTE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NORTE</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5874,7 +5997,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
                 <default>false</default>
             </values>
         </picklistValues>
-<picklistValues>
+        <picklistValues>
             <picklist>OOH_Family__c</picklist>
             <values>
                 <fullName>Restaurant</fullName>
@@ -5916,6 +6039,37 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             </values>
             <values>
                 <fullName>Warm</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Region__c</picklist>
+            <values>
+                <fullName>ANDALUCIA</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>BALEARES</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CANARIAS</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CATALUÃ%E2%80%98A</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>CENTRO</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LEVANTE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>NORTE</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
