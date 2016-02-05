@@ -2634,6 +2634,15 @@ OwnerId))</formula>
         <language>en_US</language>
     </listViews>
     <listViews>
+        <fullName>IPM_a7IE00000004STR_IPM_Project</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTINGPROJ2</label>
+        <queue>IPM_a7IE00000004STR</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>My_IPM_Projects</fullName>
         <columns>CREATED_DATE</columns>
         <columns>NAME</columns>

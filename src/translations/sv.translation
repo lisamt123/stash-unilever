@@ -9885,6 +9885,19 @@
         </sections>
     </reportTypes>
     <reportTypes>
+        <description><!-- Agent App User Details --></description>
+        <label><!-- Agent App User Details --></label>
+        <name>Agent_App_User_Details</name>
+        <sections>
+            <label><!-- Agent App User Preferences (Last Modified By) --></label>
+            <name>Agent App User Preferences (Last Modified By)</name>
+        </sections>
+        <sections>
+            <label><!-- Users --></label>
+            <name>Users</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
         <description><!-- Agent Report Custom --></description>
         <label><!-- Agent Report Custom --></label>
         <name>Agent_Report_Custom</name>

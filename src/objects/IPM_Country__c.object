@@ -558,6 +558,15 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004STR_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTINGPROJ2</label>
+        <queue>IPM_a7IE00000004STR</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>
