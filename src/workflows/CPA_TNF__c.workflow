@@ -20,7 +20,7 @@
             <type>owner</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_TNF_is_accepted</template>
+        <template>CPA_Email_Template/CPA_TNF_for_PWO_is_accepted</template>
     </alerts>
     <alerts>
         <fullName>CPA_TNF_Accepted_Email_Alert</fullName>
@@ -39,7 +39,7 @@
             <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_TNF_is_accepted</template>
+        <template>CPA_Email_Template/CPA_TNF_for_PWO_is_accepted</template>
     </alerts>
     <alerts>
         <fullName>CPA_TNF_Is_Submitted</fullName>
@@ -61,7 +61,7 @@
             <type>owner</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_TNF_is_submitted</template>
+        <template>CPA_Email_Template/CPA_TNF_for_PWO_is_submitted</template>
     </alerts>
     <alerts>
         <fullName>CPA_TNF_Resubmitted_Email_Alert</fullName>
@@ -80,7 +80,7 @@
             <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_TNF_is_resubmitted</template>
+        <template>CPA_Email_Template/CPA_TNF_for_PWO_is_resubmitted</template>
     </alerts>
     <alerts>
         <fullName>CPA_TNF_Returned_Email_Alert</fullName>
@@ -99,7 +99,7 @@
             <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_TNF_is_returned</template>
+        <template>CPA_Email_Template/CPA_TNF_for_PWO_is_returned</template>
     </alerts>
     <alerts>
         <fullName>CPA_TNF_Returned_by_SMT</fullName>
@@ -121,7 +121,7 @@
             <type>owner</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_TNF_is_returned</template>
+        <template>CPA_Email_Template/CPA_TNF_for_PWO_is_returned</template>
     </alerts>
     <alerts>
         <fullName>CPA_TNF_Sent_for_Signature_Email_Alert</fullName>
@@ -140,7 +140,7 @@
             <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_TNF_is_sent_for_signature</template>
+        <template>CPA_Email_Template/CPA_TNF_for_PWO_is_sent_for_signature</template>
     </alerts>
     <alerts>
         <fullName>CPA_TNF_Signed_Email_Alert</fullName>
@@ -159,7 +159,7 @@
             <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_TNF_is_signed</template>
+        <template>CPA_Email_Template/CPA_TNF_for_PWO_is_signed</template>
     </alerts>
     <alerts>
         <fullName>CPA_TNF_Submitted_Email_Alert</fullName>
@@ -178,7 +178,7 @@
             <type>group</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>CPA_Email_Template/CPA_TNF_is_submitted</template>
+        <template>CPA_Email_Template/CPA_TNF_for_PWO_is_submitted</template>
     </alerts>
     <fieldUpdates>
         <fullName>Approval_Comment_Requested</fullName>

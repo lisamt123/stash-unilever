@@ -32,49 +32,49 @@ global class CPA_TNF_InformationController {
       if(TnfRec!= null){
           if((TnfRec.pkl_Status__c == 'Saved') || callFromVF == false){
               if(TnfRec.pkl_Currency__c == 'Select')
-                 RequiredFieldMap.put('Currency','Mandatory');
+                 RequiredFieldMap.put('Currency',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.txt_Unilever_Clarity_ID__c == null)
-                 RequiredFieldMap.put('Unilever Clarity ID','Mandatory');
+                 RequiredFieldMap.put('Unilever Clarity ID',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.txt_Approved_by__c == null)
-                 RequiredFieldMap.put('Approved by','Mandatory');
+                 RequiredFieldMap.put('Approved by',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.dt_TD_Date_Notified__c == null)
-                 RequiredFieldMap.put('Date Notified','Mandatory');
+                 RequiredFieldMap.put('Date Notified',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.dt_TD_Effective_Date__c == null)
-                 RequiredFieldMap.put('Effective Date','Mandatory');
+                 RequiredFieldMap.put('Effective Date',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.txt_PWO_number__c == null)
-                 RequiredFieldMap.put('PWO number','Mandatory');
+                 RequiredFieldMap.put('PWO number',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.txt_PWO_title__c== null)
-                 RequiredFieldMap.put('PWO title','Mandatory');
+                 RequiredFieldMap.put('PWO title',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.txt_Reason_for_termination__c == null)
-                 RequiredFieldMap.put('Reason for termination','Mandatory');
+                 RequiredFieldMap.put('Reason for termination',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.txt_TNF_ID__c == null)
-                 RequiredFieldMap.put('TNF ID','Mandatory');
+                 RequiredFieldMap.put('TNF ID',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.txt_Relocation_of_resources__c == null)
-                 RequiredFieldMap.put('Relocation of resources','Mandatory');
+                 RequiredFieldMap.put('Relocation of resources',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.txt_Comments__c == null)
-                 RequiredFieldMap.put('Comments','Mandatory');
+                 RequiredFieldMap.put('Comments',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.num_Variance_in_charges__c == null)
-                 RequiredFieldMap.put('Variance in charges','Mandatory');
+                 RequiredFieldMap.put('Variance in charges',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.num_Variance_in_effort__c == null)
-                 RequiredFieldMap.put('Variance in effort','Mandatory');
+                 RequiredFieldMap.put('Variance in effort',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.num_Planned_charges__c == null)
-                 RequiredFieldMap.put('Planned charges','Mandatory');   
+                 RequiredFieldMap.put('Planned charges',ConstantsForContractingAppClasses.MANDATORY);   
               if(TnfRec.num_Actual_charges__c == null)
-                 RequiredFieldMap.put('Actual charges','Mandatory'); 
+                 RequiredFieldMap.put('Actual charges',ConstantsForContractingAppClasses.MANDATORY); 
               if(TnfRec.txt_Actual_effort_in_days__c == null)
-                 RequiredFieldMap.put('Actual effort in days','Mandatory');
+                 RequiredFieldMap.put('Actual effort in days',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.num_Planned_effort_in_days__c == null)
-                 RequiredFieldMap.put('Planned effort in days','Mandatory'); 
+                 RequiredFieldMap.put('Planned effort in days',ConstantsForContractingAppClasses.MANDATORY); 
               if(TnfRec.txt_TD_Notice_Required__c == null)
-                 RequiredFieldMap.put('Notice Required','Mandatory');
+                 RequiredFieldMap.put('Notice Required',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.pkl_Terminated_by__c== null)
-                 RequiredFieldMap.put('Terminated by','Mandatory');
+                 RequiredFieldMap.put('Terminated by',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.txt_Accenture_Contact__c == null)
-                 RequiredFieldMap.put('Accenture Contact','Mandatory');
+                 RequiredFieldMap.put('Accenture Contact',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.lkp_Unilever_Contact__c == null)
-                 RequiredFieldMap.put('Unilever Contact','Mandatory');
+                 RequiredFieldMap.put('Unilever Contact',ConstantsForContractingAppClasses.MANDATORY);
               if(TnfRec.txt_Other_Currency__c == null && TnfRec.pkl_Currency__c == 'Other') 
-                 RequiredFieldMap.put('Other Currency','Mandatory');
+                 RequiredFieldMap.put('Other Currency',ConstantsForContractingAppClasses.MANDATORY);
              }              
         }   
         if(RequiredFieldMap != null && !RequiredFieldMap.isEmpty()){ 

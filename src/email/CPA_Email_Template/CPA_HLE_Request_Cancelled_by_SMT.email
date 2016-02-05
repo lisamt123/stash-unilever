@@ -1,7 +1,7 @@
 <messaging:emailTemplate subject="HLE request: {!RelatedTo.HLE_Request_ID__c} cancelled by {!RelatedTo.LastModifiedBy.Name}" recipientType="User" relatedToType="CPA_HLE_Request__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
-    A HLE request with ID: {!RelatedTo.HLE_Request_ID__c}  is cancelled by {!RelatedTo.LastModifiedBy.Name} on {!RelatedTo.dat_Submitted_Date__c} . <br/><br/>
+    A HLE request with ID: {!RelatedTo.HLE_Request_ID__c}  is cancelled by {!RelatedTo.LastModifiedBy.Name} on {!RelatedTo.dat_Cancelled_date__c} . <br/><br/>
 
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!$Label.CPA_Default_URL}{!RelatedTo.Id} </a> <br/><br/>
 

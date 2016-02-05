@@ -134,6 +134,25 @@
         <template>CPA_Email_Template/CPA_LOI_is_cancelled</template>
     </alerts>
     <fieldUpdates>
+        <fullName>Approval_Comment_Requested_for_LOI</fullName>
+        <field>Approval_Comment_Check__c</field>
+        <literalValue>Requested</literalValue>
+        <name>Approval Comment Requested for LOI</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approval_Comment_Required_for_LOI</fullName>
+        <field>Approval_Comment_Check__c</field>
+        <literalValue>Required</literalValue>
+        <name>Approval Comment Required for LOI</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_LOI_Accepted</fullName>
         <field>dat_Accepted_Date__c</field>
         <formula>Today()</formula>
@@ -186,7 +205,7 @@
     <fieldUpdates>
         <fullName>CPA_LOI_Cancelled_Record_Type</fullName>
         <field>RecordTypeId</field>
-        <lookupValue>LOI_Cancael</lookupValue>
+        <lookupValue>LOI_Cancel</lookupValue>
         <lookupValueType>RecordType</lookupValueType>
         <name>CPA LOI Cancelled Record Type</name>
         <notifyAssignee>false</notifyAssignee>
@@ -300,6 +319,20 @@
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>Approval Comment Flag for LOI</fullName>
+        <actions>
+            <name>Approval_Comment_Requested_for_LOI</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_LOI__c.Approval_Comment_Check__c</field>
+            <operation>equals</operation>
+            <value>Required</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
     <rules>
         <fullName>CPA LOI Accepted</fullName>
         <actions>

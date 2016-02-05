@@ -40,6 +40,10 @@
         <name>Approval_from_Unilever</name>
         <rejectionActions>
             <action>
+                <name>Approval_Comment_Required_for_LOI</name>
+                <type>FieldUpdate</type>
+            </action>
+            <action>
                 <name>CPA_LOI_Owner_Update_to_VDM</name>
                 <type>FieldUpdate</type>
             </action>
@@ -55,6 +59,12 @@
     </approvalStep>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Approval_Comment_Required_for_LOI</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
@@ -67,6 +77,12 @@
         </action>
     </initialSubmissionActions>
     <label>CPA LOI Approval</label>
+    <recallActions>
+        <action>
+            <name>Approval_Comment_Required_for_LOI</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
     <recordEditability>AdminOnly</recordEditability>
     <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>

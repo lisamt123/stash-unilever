@@ -18,6 +18,10 @@
                 <behavior>Required</behavior>
                 <field>Type_Of_Query__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CPA_Project_Work_Order__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

@@ -33,7 +33,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>PWO_ID__c</field>
+                <field>CPA_Project_Work_Order__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -206,13 +206,13 @@
         <label>Resourcing Details</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>pec_Estimated_On_shore__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>pec_Estimated_Off_shore__c</field>
             </layoutItems>
         </layoutColumns>
@@ -265,6 +265,20 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>CAP_User_Defined_Attribute__c.lkp_CR__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>num_Entity_Type__c</fields>
+        <fields>txt_Entity_Name__c</fields>
+        <fields>fcur_Cost_of_resource__c</fields>
+        <fields>num_Rate__c</fields>
+        <fields>num_Value__c</fields>
+        <fields>num_Year__c</fields>
+        <fields>txt_month__c</fields>
+        <fields>txt_Level__c</fields>
+        <fields>txt_Location__c</fields>
+        <relatedList>CPA_Commercial_Details__c.CR__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>

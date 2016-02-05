@@ -27,7 +27,7 @@ public class CPA_AttchemntUnit {
         
         for(Attachment objAttachment:lstAttachment){
             
-            if(objAttachment.ContentType.contains('spreadsheet') || objAttachment.ContentType.contains('ms-excel'))
+            if(objAttachment.ContentType.contains('spreadsheet') & objAttachment.ContentType.contains('ms-excel'))
             {
                 mapAttachmentType.put(objAttachment.id,'spreadsheet');
             }else if(objAttachment.ContentType.contains('pdf')){
@@ -71,7 +71,7 @@ public class CPA_AttchemntUnit {
        
         for(CPA_PWO__c objPWO :[Select Id,chk_Excel_Attached__c,chk_PDF_Attached__c from CPA_PWO__c where ID IN:setParentId]){
             
-            if((objPWO.chk_Excel_Attached__c != true ||  objPWO.chk_PDF_Attached__c!= true) && mapAttachmentIDPWOID.get(objPWO.ID)!= null){
+            if((objPWO.chk_Excel_Attached__c != true &  objPWO.chk_PDF_Attached__c!= true) && mapAttachmentIDPWOID.get(objPWO.ID)!= null){
                 for(Attachment objAttachment:mapAttachmentIDPWOID.get(objPWO.Id)){
                     if(mapAttachmentType.get(objAttachment.id) == 'spreadsheet'){
                         objPWO.chk_Excel_Attached__c = true;
@@ -93,4 +93,306 @@ public class CPA_AttchemntUnit {
         
     }
     
+    public static void deleteCommericalData(List<Attachment> lstatt)    {
+        List<CPA_Commercial_Details__c >listComDetail = new List<CPA_Commercial_Details__c>();
+        set<Id> setPWOID = new set<Id>();
+        set<Id> setCRID = new set<Id>();
+        
+        for(Attachment objAtta : lstatt){
+            
+            string srtTemp = objAtta.ParentId;
+            if(objAtta.Name.startswith('Commercial')) {
+                if( srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger)) {
+                    setPWOID.add(objAtta.ParentId);
+                }   
+                else if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_CR)){
+                    setCRID.add(objAtta.ParentId);
+                }
+            
+            }
+        }
+        listComDetail = [Select Id, Name , CR__c,Project_Work_Order__c from CPA_Commercial_Details__c where Project_Work_Order__c IN : setPWOID OR CR__c IN :setCRID];
+        if(listComDetail!=null && listComDetail.size()>0){
+            delete listComDetail;
+        }
+        
+        
+    }
+    
+     /***This function reads the CSV file and inserts records into the CPA_Commercial_Details__c object. ***/
+    public static void ReadFile(List<Attachment> lstatt)    {
+
+        for(Attachment att : lstatt){
+            string nameFile;
+            String[] filelines = new String[]{};
+            List<CPA_Commercial_Details__c> PWOupload;
+            try{
+                
+                    
+                    nameFile =att.body.toString();
+                     
+                    
+                    //Now sepatate every row of the excel file
+                    filelines = nameFile.split('\n');
+                    
+                    //Iterate through every line and create a CPA_Commercial_Details__c record for each row
+                    PWOupload = new List<CPA_Commercial_Details__c>();
+                    
+                    for (Integer i=1;i<filelines.size();i++)
+                    {
+                        String[] inputvalues = new String[]{};
+                        
+                        inputvalues = filelines[i].split(',');                    
+                        CPA_Commercial_Details__c a = new CPA_Commercial_Details__c();
+                        if(inputvalues[0].trim() !=  null & inputvalues[0].trim() != ''){
+                            a.num_Entity_Type__c =  Integer.valueof(inputvalues[0].trim());
+                        }else {
+                            a.num_Entity_Type__c = 0;
+                        }
+                        
+                        a.txt_Entity_Name__c = inputvalues[1];       
+                        a.txt_Role__c = inputvalues[2];
+                        a.txt_Location__c = inputvalues[3];
+                        a.txt_Level__c = inputvalues[4];
+                        if(inputvalues[5].trim() !=null &inputvalues[5].trim() !=''){
+                            a.num_Rate__c =  Integer.valueof(inputvalues[5].trim());
+                        }else{
+                            a.num_Rate__c =0;
+                        }
+                        
+                        a.txt_Cost_Name__c = inputvalues[6];
+                        if(inputvalues[7].trim()!=null & inputvalues[7].trim()!=''){
+                            a.num_Year__c =Integer.valueof(inputvalues[7].trim());
+                        }else{
+                                a.num_Year__c = 0;
+                        }
+                        
+                        a.txt_month__c = inputvalues[8].trim();
+                        if(inputvalues[9].trim() != NULL & inputvalues[9].trim()!= ''){
+                            a.num_Efforts__c = Integer.valueof(inputvalues[9].trim());
+                        }else {
+                            a.num_Efforts__c = 0;
+                        }
+                        
+                        if(inputvalues[10].trim() !=null & inputvalues[10].trim()!= ''){
+                            a.num_Value__c = Integer.valueof(inputvalues[10].trim());  
+                        }else{
+                            a.num_Value__c =0;
+                        }
+                        string srtTemp = att.ParentId;
+                        if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger)){
+                            a.Project_Work_Order__c = att.ParentId;
+                        }else if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_CR)){
+                            a.CR__c = att.ParentId;
+                        }
+                        
+                          
+                        PWOupload.add(a);
+                    }
+             }
+             catch(Exception e){
+                   system.debug('Exception --> '+ e.getMessage());
+             }       
+            //Finally, insert the collected records
+            try{
+                system.debug('PWOupload-->'+PWOupload);
+                insert PWOupload;
+                map<ID,list<CPA_Commercial_Details__c>> mapPWOComDetai = new map<ID,list<CPA_Commercial_Details__c>>();
+                map<ID,list<CPA_Commercial_Details__c>> mapCRComDetai = new map<ID,list<CPA_Commercial_Details__c>>();
+                List<CPA_project_work_order__c> lstUpdatePWO = new List < CPA_project_work_order__c>();
+                List<CPA_CR__c> lstUpdateCR = new List < CPA_CR__c>();
+                
+                set<Id> setPWOID = new set<Id>();
+                set<Id> setCRID = new set<Id>();
+                
+                for (CPA_Commercial_Details__c obj :PWOupload ){
+                    if(obj.Project_Work_Order__c!=null){
+                        setPWOID.add(obj.Project_Work_Order__c);
+                    }else if(obj.CR__c!=null){
+                        setCRID.add(obj.CR__c);
+                    }               
+                }
+                
+                List<CPA_project_work_order__c>lstPWO = [Select ID,num_Expense_charges_of_work_order__c,Name,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_Authorisation_man_days__c from CPA_project_work_order__c where ID IN :setPWOID];
+                List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c  from CPA_CR__c where ID IN:  setCRID];
+                if(lstPWO !=null && setPWOID !=null){
+                    for(CPA_project_work_order__c objPWO : lstPWO){
+                        List <CPA_Commercial_Details__c>lstTemp = new List<CPA_Commercial_Details__c>();
+                        for(CPA_Commercial_Details__c obj : PWOupload){
+                            if(obj.Project_Work_Order__c == objPWO.Id){
+                                lstTemp.add(obj);
+                            }
+                        }
+                        mapPWOComDetai.put(objPWO.Id,lstTemp);
+                    }
+                
+                    
+                    for(CPA_project_work_order__c objPWO : lstPWO){
+                        Decimal  intTotalmandays = 0;
+                        Decimal  intEstimatedValue = 0;
+                        Decimal  intIndicativeExpenses  = 0;
+                        Decimal  intNonPayroll   = 0;
+                        Decimal  intPMOTax = 0;
+                        Decimal  intContingencyCharges  =0;
+                        Decimal  intDiscounts = 0;
+                        Decimal  intAuthorisation = 0;
+                        Decimal  intAuthorisationman= 0;
+                        Decimal  intRMS = 0;
+                        Decimal  intOther = 0;
+                        Decimal  intCostResource = 0;
+                        Decimal  intTotalcost = 0;
+                        for(CPA_Commercial_Details__c objCOm : mapPWOComDetai.get(objPWO.id)){
+                            if(objCOm.txt_Entity_Name__c=='Resource' || objCOm.num_Entity_Type__c ==1 ){
+                                intTotalmandays = intTotalmandays + objCOm.num_Efforts__c;
+                                intCostResource = intCostResource + (objCOm.num_Efforts__c * objCOm.num_Rate__c );
+                                
+                            }
+                            if(objCOm.txt_Entity_Name__c=='Indicative Expenses' || objCOm.num_Entity_Type__c ==2){
+                                intIndicativeExpenses = intIndicativeExpenses + objCOm.num_Value__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='Non Payroll' || objCOm.num_Entity_Type__c ==3){
+                                intNonPayroll = intNonPayroll +  objCOm.num_Value__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='PMO Tax'  || objCOm.num_Entity_Type__c ==4){
+                                intPMOTax = intPMOTax +  objCOm.num_Value__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='Contingency Charges' || objCOm.num_Entity_Type__c ==5){
+                                intContingencyCharges = intContingencyCharges+  objCOm.num_Value__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='Discounts' || objCOm.num_Entity_Type__c ==6){
+                                intDiscounts = intDiscounts+  objCOm.num_Value__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='Authorisation' || objCOm.num_Entity_Type__c ==8){
+                                intAuthorisation = intAuthorisation+ objCOm.num_Value__c;
+                                intAuthorisationman = intAuthorisationman + objCOm.num_Efforts__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='RMS' || objCOm.num_Entity_Type__c ==9){
+                                intRMS = intRMS+objCOm.num_Value__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='Others' || objCOm.num_Entity_Type__c ==7){
+                                intOther = intOther +  objCOm.num_Value__c;
+                            }
+                            
+                        }
+                        objPWO.num_Estimated_Value_of_PWO__c = (intCostResource + intRMS + intContingencyCharges + intNonPayroll + intAuthorisation+intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
+                        objPWO.num_Estimated_Man_days_of_PWO__c = intTotalmandays;
+                        if(intTotalmandays> 0){
+                            objPWO.num_Target_Blend_Rate__c = intCostResource / intTotalmandays;
+                        }else {
+                            objPWO.num_Target_Blend_Rate__c =0;
+                        }
+                        objPWO.num_Authorisation_charges__c = intAuthorisation;
+                        objPWO.num_Authorisation_man_days__c = intAuthorisationman;
+                        objPWO.num_Expense_charges_of_work_order__c  =intIndicativeExpenses;
+                        
+                        lstUpdatePWO.add(objPWO);
+                    }
+                
+                
+                    if(lstUpdatePWO !=null && lstUpdatePWO.size() > 0){
+                        update lstUpdatePWO;
+                    }
+                }
+                
+                if(lstCR !=null && setCRID !=null){
+                    for(CPA_CR__c objCR : lstCR){
+                        List <CPA_Commercial_Details__c>lstTemp = new List<CPA_Commercial_Details__c>();
+                        for(CPA_Commercial_Details__c obj : PWOupload){
+                            if(obj.CR__c == objCR.Id){
+                                lstTemp.add(obj);
+                            }
+                        }
+                        mapCRComDetai.put(objCR.Id,lstTemp);
+                    }
+                    
+                    
+                    for(CPA_CR__c objCR : lstCR){
+                        Decimal  intTotalmandays = 0;
+                        Decimal  intEstimatedValue = 0;
+                        Decimal  intIndicativeExpenses  = 0;
+                        Decimal  intNonPayroll   = 0;
+                        Decimal  intPMOTax = 0;
+                        Decimal  intContingencyCharges  =0;
+                        Decimal  intDiscounts = 0;
+                        Decimal  intAuthorisation = 0;
+                        Decimal  intAuthorisationman= 0;
+                        Decimal  intRMS = 0;
+                        Decimal  intOther = 0;
+                        Decimal  intCostResource = 0;
+                        Decimal  intTotalcost = 0;
+                        for(CPA_Commercial_Details__c objCOm : mapCRComDetai.get(objCR.id)){
+                            if(objCOm.txt_Entity_Name__c=='Resource' || objCOm.num_Entity_Type__c ==1 ){
+                                intTotalmandays = intTotalmandays + objCOm.num_Efforts__c;
+                                intCostResource = intCostResource + (objCOm.num_Efforts__c * objCOm.num_Rate__c );
+                                
+                            }
+                            if(objCOm.txt_Entity_Name__c=='Indicative Expenses' || objCOm.num_Entity_Type__c ==2){
+                                intIndicativeExpenses = intIndicativeExpenses + objCOm.num_Value__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='Non Payroll' || objCOm.num_Entity_Type__c ==3){
+                                intNonPayroll = intNonPayroll +  objCOm.num_Value__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='PMO Tax'  || objCOm.num_Entity_Type__c ==4){
+                                intPMOTax = intPMOTax +  objCOm.num_Value__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='Contingency Charges' || objCOm.num_Entity_Type__c ==5){
+                                intContingencyCharges = intContingencyCharges+  objCOm.num_Value__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='Discounts' || objCOm.num_Entity_Type__c ==6){
+                                intDiscounts = intDiscounts+  objCOm.num_Value__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='Authorisation' || objCOm.num_Entity_Type__c ==8){
+                                intAuthorisation = intAuthorisation+ objCOm.num_Value__c;
+                                intAuthorisationman = intAuthorisationman + objCOm.num_Efforts__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='RMS' || objCOm.num_Entity_Type__c ==9){
+                                intRMS = intRMS+objCOm.num_Value__c;
+                            }
+                            if(objCOm.txt_Entity_Name__c=='Others' || objCOm.num_Entity_Type__c ==7){
+                                intOther = intOther +  objCOm.num_Value__c;
+                            }
+                            
+                        }
+                        objCR.num_Estimated_Value_of_CR__c = (intCostResource + intRMS + intContingencyCharges + intNonPayroll + intAuthorisation+intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
+                        objCR.num_Estimated_Man_days_of_CR__c = intTotalmandays;
+                        if(intTotalmandays> 0){
+                            objCR.num_Target_Blend_Rate__c = intCostResource / intTotalmandays;
+                        }else {
+                            objCR.num_Target_Blend_Rate__c =0;
+                        }
+                        objCR.num_Authorisation_charges__c = intAuthorisation;
+                        objCR.num_Authorisation_man_days__c = intAuthorisationman;
+                        objCR.num_Expense_charges_of_CR__c  =intIndicativeExpenses;
+                        
+                        if(intCostResource!=null& intCostResource > 0){
+                            objCR.pec_Expense__c = (intIndicativeExpenses/ intCostResource)*100;
+                        }
+                        
+                        system.debug('CR-->'+objCR);
+                        lstUpdateCR.add(objCR);
+                    }
+                    
+                    if(lstUpdateCR !=null && lstUpdateCR.size() > 0){
+                        update lstUpdateCR;
+                        system.debug('pdated CR-->'+lstUpdateCR);
+                    }
+                    
+                    
+                    
+                    
+                }
+        
+        
+                
+            }
+            catch (Exception e)
+            {
+                ApexPages.Message errormsg = new ApexPages.Message(ApexPages.severity.ERROR,'An error has occured inserting the records'+e.getMessage());
+                ApexPages.addMessage(errormsg);
+                system.debug('Exception --> '+ e.getMessage());
+            }   
+        }
+         
+        
+    }   
 }

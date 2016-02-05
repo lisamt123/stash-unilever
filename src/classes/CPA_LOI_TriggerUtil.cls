@@ -101,7 +101,7 @@ public class CPA_LOI_TriggerUtil{
         for(CPA_LOI__c objNewLOI : newLOI){
                 setPWORF.add(objNewLOI.lkp_PWORF__c);
             }
-        for(CPA_PWORF__c objPworf : [select id,mpkl_Project_Phases__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,txt_Clarity_ID__c from CPA_PWORF__c where ID  IN: setPWORF]){
+        for(CPA_PWORF__c objPworf : [select id,RecordTypeId ,mpkl_Project_Phases__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,txt_Clarity_ID__c from CPA_PWORF__c where ID  IN: setPWORF]){
                 mapPWORF.put(objPworf.Id,objPworf);
             }
             
@@ -116,10 +116,143 @@ public class CPA_LOI_TriggerUtil{
                     objNewLOI.lkp_Unilever_content_approver__c = objPWORFTemp.lkp_Unilever_content_approver__c;
                 if(objNewLOI.mpkl_Phases_covered_by_WAR__c == null && objPWORFTemp.mpkl_Project_Phases__c !=null)
                     objNewLOI.mpkl_Phases_covered_by_WAR__c = objPWORFTemp.mpkl_Project_Phases__c;
-                if(objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.mpkl_Project_Phases__c)) 
+                string AllrecordType = CPA_PWORF_Record_type__c.getValues('All').Record_type_id__c;
+                if(objPWORFTemp.RecordTypeId == AllrecordType && objNewLOI.mpkl_Phases_covered_by_WAR__c!=null && !objNewLOI.mpkl_Phases_covered_by_WAR__c.containsOnly(objPWORFTemp.mpkl_Project_Phases__c)) 
                         objNewLOI.addError('Only ' + objPWORFTemp.mpkl_Project_Phases__c.replaceAll(';', ', ') + ' Project Phases are allow');
             }
         }
     }
+/** Method Name : requireApprovalComments
+    * Parameter   : newLOIList
+    * Return type : None
+    * Author      : Pooja Kanani  
+    * Description : This method make the Approval comments require
+    */
+    public static void requireApprovalComments(List<CPA_LOI__c> newLOIList){
+ 
+      // Create a map that stores all the objects that require editing 
+      Map<Id, CPA_LOI__c> approvalStatements = new Map<Id, CPA_LOI__c>{};
 
+      for(CPA_LOI__c inv: newLOIList)
+      {
+        // Put all objects for update that require a comment check in a map,
+        // so we only have to use 1 SOQL query to do all checks
+        
+        if (inv.Approval_Comment_Check__c == 'Required')
+        { 
+          approvalStatements.put(inv.Id, inv);
+          // Reset the field value to null, 
+          // so that the check is not repeated,
+          // next time the object is updated
+          inv.Approval_Comment_Check__c = null; 
+        }
+      }  
+       
+      if (!approvalStatements.isEmpty())  
+      {
+        // If there are some approvals to be reviewed for approval, then
+        // get the most recent process instance for each object.
+        List<Id> processInstanceIds = new List<Id>{};
+        
+        for (CPA_LOI__c invs : [SELECT (SELECT ID
+                                                  FROM ProcessInstances
+                                                  ORDER BY CreatedDate DESC
+                                                  LIMIT 1)
+                                          FROM CPA_LOI__c
+                                          WHERE ID IN :approvalStatements.keySet()])
+        {
+            processInstanceIds.add(invs.ProcessInstances[0].Id);
+        }
+          
+        // Now that we have the most recent process instances, we can check
+        // the most recent process steps for comments.  
+        for (ProcessInstance pi : [SELECT TargetObjectId,
+                                       (SELECT Id, StepStatus, Comments 
+                                        FROM Steps
+                                        ORDER BY CreatedDate DESC
+                                        LIMIT 1 )
+                                   FROM ProcessInstance
+                                   WHERE Id IN :processInstanceIds
+                                   ORDER BY CreatedDate DESC])
+        {
+          // If no comment exists, then prevent the object from saving.                 
+          if ((pi.Steps[0].Comments == null || 
+               pi.Steps[0].Comments.trim().length() == 0))
+          {
+            approvalStatements.get(pi.TargetObjectId).addError(
+             'Operation Cancelled: Please provide a reason ' + 
+             'for your approval / rejection / Recall!');
+          }
+        }                                       
+      }
+    }
+/** Method Name : cancelAllLOI
+    * Parameter   : newLOIList
+    * Return type : None
+    * Author      : Pooja Kanani  
+    * Description : This method cancel all LOI
+    */
+    public static void cancelAllLOI(List<CPA_LOI__c> newLOI){
+        set<Id> setPWORF = new set<ID>();
+        system.debug('newLOI>>>>>>>>'+newLOI);
+        for(CPA_LOI__c objNewLOI : newLOI){
+            if(objNewLOI.pkl_Status__c == 'Cancelled'){
+                system.debug('objNewLOI.pkl_Status__c >>>>>>>>'+objNewLOI.pkl_Status__c );
+                setPWORF.add(objNewLOI.lkp_PWORF__c);
+            }
+        }
+        system.debug('pooja>>>>>>>>>>'+[select id,pkl_Status__c from CPA_LOI__c where lkp_PWORF__c  IN: setPWORF and pkl_Status__c != 'Cancelled']);
+        for(CPA_LOI__c objLoi : [select id,pkl_Status__c from CPA_LOI__c where lkp_PWORF__c  IN: setPWORF and pkl_Status__c != 'Cancelled']){
+            system.debug('objLoi>>>>>>>>>>'+objLoi);
+                objLoi.pkl_Status__c = 'Cancelled';
+                system.debug('objLoi.pkl_Status__c >>>>>>>>'+objLoi.pkl_Status__c );
+                update objLoi;
+            }
+    }
+    
+    /** Method Name : internalLIOID
+    * Parameter   : newLOI
+    * Return type : None
+    * Author      : Dinesh Girase  
+    * Description : This method creates Internal LOI ID, used fro search purpose
+    */
+    public static void internalLIOID(List<CPA_LOI__c> newLOI){
+        List<AggregateResult> lstLOI = [SELECT count(ID) newCount FROM CPA_LOI__c];
+        if(lstLOI[0].get('newCount') != null){
+            Integer maxNo = Integer.valueOf(lstLOI[0].get('newCount') + '');
+            String newInternalPWOID = getInternalPWOID(maxNo);
+            System.debug('newInternalPWOID  ######## : ' + newInternalPWOID );
+            newLOI[0].txt_Internal_LOI_ID__c = newInternalPWOID;
+            System.debug('txt_Internal_LOI_ID__c ######## : ' + newInternalPWOID);
+            List<CPA_PWORF__c> pworfs = [SELECT For_Search__c FROM CPA_PWORF__c Where Id =: newLOI[0].lkp_PWORF__c];
+            if(pworfs[0].For_Search__c != null){
+                String test = pworfs[0].For_Search__c;
+                System.debug('LOI Search ######## : ' + pworfs[0].For_Search__c);
+                pworfs[0].For_Search__c = test + ', ' + newInternalPWOID;
+                update pworfs;
+            }
+        }
+    }
+    
+    /**   Method Name : getInternalPWOID
+    * Parameter   : numSearch
+    * Return type : Strint
+    * Author      : Dinesh Girase  
+    * Description : This method generates incremental Internal LOI ID
+    */
+    public static String getInternalPWOID(Integer numSearch){
+        String strPWOID;
+        integer intIncrementNum = numSearch + 1;
+        if(string.valueof(numSearch).length() == 1)
+            strPWOID = 'LOI-0000' + string.valueof(intIncrementNum);
+        if(string.valueof(numSearch).length() == 2)
+            strPWOID = 'LOI-000' + string.valueof(intIncrementNum);
+        if(string.valueof(numSearch).length() == 3)
+            strPWOID = 'LOI-00' + string.valueof(intIncrementNum);
+        if(string.valueof(numSearch).length() == 4)
+            strPWOID = 'LOI-0' + string.valueof(intIncrementNum);
+        if(string.valueof(numSearch).length() == 5)
+            strPWOID = 'LOI-' + string.valueof(intIncrementNum);
+        return strPWOID;
+    }
 }

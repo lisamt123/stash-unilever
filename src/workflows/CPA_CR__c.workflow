@@ -88,6 +88,26 @@
         <template>CPA_Email_Template/CPA_Submit_a_CR_against_PWO</template>
     </alerts>
     <fieldUpdates>
+        <fullName>Approval_Comment_Requested_for_CR</fullName>
+        <field>Approval_Comment_Check__c</field>
+        <literalValue>Requested</literalValue>
+        <name>Approval Comment Requested for CR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approval_Comment_Required_for_CR</fullName>
+        <field>Approval_Comment_Check__c</field>
+        <literalValue>Required</literalValue>
+        <name>Approval Comment Required for CR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_CR_Create</fullName>
         <field>RecordTypeId</field>
         <lookupValue>CPA_CR_Other</lookupValue>
@@ -141,6 +161,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_CR_Resubmitted</fullName>
+        <field>dat_Resubmitted_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>CPA CR Resubmitted</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_CR_Return_Date</fullName>
         <field>dat_Returned_Date__c</field>
         <formula>TODAY()</formula>
@@ -170,6 +199,15 @@
         <operation>LookupValue</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_CR_Status_update_to_Return</fullName>
+        <field>pkl_Status__c</field>
+        <literalValue>Returned</literalValue>
+        <name>CPA CR Status  update to Return</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CPA_CR_Submitted</fullName>
@@ -238,6 +276,20 @@
         <protected>false</protected>
     </fieldUpdates>
     <rules>
+        <fullName>Approval Comment Flag for CR</fullName>
+        <actions>
+            <name>Approval_Comment_Requested_for_CR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_CR__c.Approval_Comment_Check__c</field>
+            <operation>equals</operation>
+            <value>Required</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
         <fullName>CPA CR Cloned%2FCreated</fullName>
         <actions>
             <name>CPA_CR_Create</name>
@@ -248,26 +300,40 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
         <criteriaItems>
             <field>CPA_CR__c.pkl_Status__c</field>
             <operation>notEqual</operation>
             <value>Saved</value>
         </criteriaItems>
+        <criteriaItems>
+            <field>CPA_CR__c.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>CPA Standalone CR</value>
+        </criteriaItems>
         <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
-        <fullName>CPA CR Returned Saved</fullName>
+        <fullName>CPA CR Resubmitted</fullName>
+        <actions>
+            <name>CPA_CR_Resubmitted</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_CR__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Resubmitted</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA CR Returned</fullName>
         <actions>
             <name>CPA_CR_Saved_returned</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
-        <booleanFilter>1 OR 2</booleanFilter>
-        <criteriaItems>
-            <field>CPA_CR__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Saved</value>
-        </criteriaItems>
         <criteriaItems>
             <field>CPA_CR__c.pkl_Status__c</field>
             <operation>equals</operation>
@@ -286,30 +352,6 @@
             <field>CPA_CR__c.pkl_Status__c</field>
             <operation>equals</operation>
             <value>Signed</value>
-        </criteriaItems>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>CPA CR Submitted%2C Resubmitted</fullName>
-        <actions>
-            <name>CPA_CR_SMT_Send_for_Signature</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <actions>
-            <name>CPA_CR_Submitted</name>
-            <type>FieldUpdate</type>
-        </actions>
-        <active>false</active>
-        <booleanFilter>1 OR 2</booleanFilter>
-        <criteriaItems>
-            <field>CPA_CR__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Submitted</value>
-        </criteriaItems>
-        <criteriaItems>
-            <field>CPA_CR__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Resubmitted</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

@@ -67,6 +67,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>CPA_Project_Work_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>CPA Project Work Order</label>
+        <referenceTo>CPA_project_work_order__c</referenceTo>
+        <relationshipLabel>Queries</relationshipLabel>
+        <relationshipName>Queries</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>CR_ID__c</fullName>
         <externalId>false</externalId>
         <formula>LookupCR_Query__r.Name</formula>

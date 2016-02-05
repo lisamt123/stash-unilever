@@ -69,7 +69,7 @@
             </action>
         </rejectionActions>
     </approvalStep>
-    <emailTemplate>CPA_Email_Template/CPA_TNF_is_submitted</emailTemplate>
+    <emailTemplate>CPA_Email_Template/CPA_TNF_for_PWO_is_submitted</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <finalApprovalActions>
         <action>

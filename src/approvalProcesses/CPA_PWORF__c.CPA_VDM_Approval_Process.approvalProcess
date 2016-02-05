@@ -41,6 +41,10 @@
         <name>CAP_VDM_Approval</name>
         <rejectionActions>
             <action>
+                <name>Approval_Comment_Required_for_PWORF</name>
+                <type>FieldUpdate</type>
+            </action>
+            <action>
                 <name>CAP_Owner_Update_to_ULPM</name>
                 <type>FieldUpdate</type>
             </action>
@@ -74,6 +78,12 @@
         </criteriaItems>
     </entryCriteria>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Approval_Comment_Required_for_PWORF</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
@@ -86,11 +96,11 @@
         </action>
     </initialSubmissionActions>
     <label>CPA VDM Approval Process</label>
-    <nextAutomatedApprover>
-        <useApproverFieldOfRecordOwner>true</useApproverFieldOfRecordOwner>
-        <userHierarchyField>vdm_approval__c</userHierarchyField>
-    </nextAutomatedApprover>
     <recallActions>
+        <action>
+            <name>Approval_Comment_Required_for_PWORF</name>
+            <type>FieldUpdate</type>
+        </action>
         <action>
             <name>CAP_Pworf_Withhold</name>
             <type>Alert</type>

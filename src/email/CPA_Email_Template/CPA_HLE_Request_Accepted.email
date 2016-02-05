@@ -1,7 +1,7 @@
-<messaging:emailTemplate subject="HLE Request with ID: {!RelatedTo.Name} submitted by {!RelatedTo.txt_Accenture_Project_Manager__c}" recipientType="User" relatedToType="CPA_HLE_Request__c">
+<messaging:emailTemplate subject="HLE Request with ID: {!RelatedTo.Name} is accepted" recipientType="User" relatedToType="CPA_HLE_Request__c">
 <messaging:htmlEmailBody >
     Hi, <br/><br/>
-    A HLE Request with ID: {!RelatedTo.HLE_Request_ID__c}  is accepted by {!RelatedTo.txt_Accenture_Project_Manager__c} on {!RelatedTo.dat_Submitted_Date__c} . <br/><br/>
+    A HLE Request with ID: {!RelatedTo.HLE_Request_ID__c}  is accepted on {!RelatedTo.Accepted_Date__c} . <br/><br/>
 
     You can access it from here: <a href="{!$Label.CPA_Default_URL}{!RelatedTo.Id} ">{!$Label.CPA_Default_URL}{!RelatedTo.Id} </a> <br/><br/>
 

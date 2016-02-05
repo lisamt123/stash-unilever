@@ -69,12 +69,66 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <type>TextArea</type>
     </fields>
     <fields>
+        <fullName>Approval_Comment_Check__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Comment Check</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Breached_By_Days__c</fullName>
         <description>This field created for Work Order Status Report.</description>
         <externalId>false</externalId>
         <formula>IF((IF(ISNULL(dat_Revised_Submission_Date__c), TODAY()- dat_Expected_SLA2_Date__c, TODAY()- dat_Revised_Submission_Date__c))==0, null, (IF(ISNULL(dat_Revised_Submission_Date__c), TODAY()- dat_Expected_SLA2_Date__c, TODAY()- dat_Revised_Submission_Date__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Breached By Days</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Breached_Days__c</fullName>
+        <description>This field created for reporting purpose.</description>
+        <externalId>false</externalId>
+        <formula>If ( ISPICKVAL( pkl_Breach_Applicable__c , &apos;YES&apos;),
+	CASE(pkl_Status__c,
+		&quot;Accepted&quot;,(
+		   CASE(MOD( dat_Expected_SLA2_Date__c - DATE(1985,6,24),7), 
+			  0 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+			  1 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+			  2 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+			  3 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+			  4 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+			  5 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+			  6 , CASE( MOD( TODAY() - dat_Expected_SLA2_Date__c ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+			  999) 
+			  + 
+			  (FLOOR(( TODAY() - dat_Expected_SLA2_Date__c )/7)*5) 
+		),
+		&quot;Answered&quot;,(
+			 CASE(MOD( dat_Expected_SLA2_Date__c - DATE(1985,6,24),7), 
+				  0 , CASE( MOD( dat_PWORF_Answered_Date__c - dat_Expected_SLA2_Date__c ,7),1,2,2,3,3,4,4,5,5,5,6,5,1), 
+				  1 , CASE( MOD( dat_PWORF_Answered_Date__c - dat_Expected_SLA2_Date__c ,7),1,2,2,3,3,4,4,4,5,4,6,5,1), 
+				  2 , CASE( MOD( dat_PWORF_Answered_Date__c - dat_Expected_SLA2_Date__c ,7),1,2,2,3,3,3,4,3,5,4,6,5,1), 
+				  3 , CASE( MOD( dat_PWORF_Answered_Date__c - dat_Expected_SLA2_Date__c ,7),1,2,2,2,3,2,4,3,5,4,6,5,1), 
+				  4 , CASE( MOD( dat_PWORF_Answered_Date__c - dat_Expected_SLA2_Date__c ,7),1,1,2,1,3,2,4,3,5,4,6,5,1), 
+				  5 , CASE( MOD( dat_PWORF_Answered_Date__c - dat_Expected_SLA2_Date__c ,7),1,0,2,1,3,2,4,3,5,4,6,5,0), 
+				  6 , CASE( MOD( dat_PWORF_Answered_Date__c - dat_Expected_SLA2_Date__c ,7),1,1,2,2,3,3,4,4,5,5,6,5,0), 
+				  999) 
+				  + 
+				  (FLOOR(( dat_PWORF_Answered_Date__c - dat_Expected_SLA2_Date__c )/7)*5) 
+		
+		),
+	0)
+,0)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Breached Days</label>
         <precision>18</precision>
         <required>false</required>
         <scale>0</scale>
@@ -161,18 +215,14 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <fullName>Does_this_Project_involve_Unilever_conf__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Does this ‘Project’ involve Unilever confidential data which should not be passed to A.N? Other third party as part of a Unilever acquisition, or AN Other confidential data which should not be passed to Unilever? This section is for Merger and Acquisition</inlineHelpText>
-        <label>Does this Project involve Unilever conf*</label>
+        <label>3rd Party/Unilever Confidential Data*</label>
         <picklist>
             <picklistValues>
-                <fullName>The Project will affect Unilever confidential data which should not be passed to (Type Name: (Third Party or Data))</fullName>
+                <fullName>Involved</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>The Project will affect (Type Name: (Third Party or Data)) confidential data which should not be passed to Unilever</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>The Project will affect (Type Name: (Third Party or Data)) confidential data which can be provided to specific Unilever personnel</fullName>
+                <fullName>Not Involved</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -186,7 +236,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <fullName>Does_this_project_change_Core_Business_M__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Does this project change the Core Business Model processes or sub-processes?</inlineHelpText>
-        <label>Does this Project change Core Business*</label>
+        <label>Core Business Model changed?*</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -228,12 +278,37 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <description>Displays expected date and analyse activities</description>
         <externalId>false</externalId>
         <inlineHelpText>Expected Start Date for Plan &amp; Analyse Activities</inlineHelpText>
-        <label>Expected Start Date for Plan &amp; Analyse*</label>
+        <label>Expected PA Start Date*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>For_Search_Numeric__c</fullName>
+        <description>This field will contain the PWO ID count. Used for search logic, not on UI.</description>
+        <externalId>false</externalId>
+        <label>For Search Numeric</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>For_Search__c</fullName>
+        <description>This field will be used for record search purpose only. it will be appended with various contract Ids on a particular PWORF.</description>
+        <externalId>false</externalId>
+        <label>For Search</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>Governance_Risk_and_Compliance__c</fullName>
@@ -261,7 +336,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <externalId>false</externalId>
         <inlineHelpText>Has W@R been discussed with Supplier Performance Team?
 (If no, please contact Supplier Performance Team to discuss)</inlineHelpText>
-        <label>Has W@R been discussed with Supplier Pe*</label>
+        <label>Agreed with Supplier Performance Team*</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -406,7 +481,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <externalId>false</externalId>
         <inlineHelpText>Is this a new or re-worked Integration Requirement?
 This section should assess the impact on UPXI,XI, BODI and MQ and includes assessment of volumetric impact etc.</inlineHelpText>
-        <label>Is this a New or Re-Worked Integration *</label>
+        <label>New or ReWorked Integration Requirement*</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -644,7 +719,7 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
         <fullName>TAT__c</fullName>
         <description>This field created for reporting purpose.</description>
         <externalId>false</externalId>
-        <formula>IF( ISBLANK( dat_Resubmitted_Date__c ) ,  (dt_Date_Of_Acceptance__c  -  dat_Submitted_Date__c) , (( dt_Date_Of_Acceptance__c  -  dat_Submitted_Date__c)-( dat_Resubmitted_Date__c  -  dat_Withhold_Date__c) ) )</formula>
+        <formula>IF( ISPICKVAL( pkl_Status__c , &quot;Resubmitted Date&quot; ) ,  dat_Resubmitted_Date__c  -  dat_Withhold_Date__c ,  dat_PWORF_Answered_Date__c  -  dat_Submitted_Date__c )</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>TAT</label>
         <precision>18</precision>
@@ -677,6 +752,19 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Unique_PWORF__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Unique PWORF</label>
+        <length>80</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
     </fields>
     <fields>
         <fullName>VDM_Name__c</fullName>
@@ -743,7 +831,7 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
     <fields>
         <fullName>When_do_you_require_the_Work_at_Risk_to__c</fullName>
         <externalId>false</externalId>
-        <label>When do you require the Work at Risk to</label>
+        <label>Work at Risk Start Date</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -754,7 +842,7 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
         <fullName>Which_BP_Innovation_director_has_approve__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Which BP/Innovation director has approved the Work at Risk spend?</inlineHelpText>
-        <label>Which BP/Innovation director has approve</label>
+        <label>Director who approved W@R spend</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -776,7 +864,7 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
         <fullName>Will_this_project_require_an_LOI_for_Wor__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Will this project require an LOI for Working at Risk?</inlineHelpText>
-        <label>Will this project require an LOI for Wo*</label>
+        <label>Work at Risk required?*</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -952,17 +1040,6 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
         <fullName>dat_Withhold_Date__c</fullName>
         <externalId>false</externalId>
         <label>Withhold Date</label>
-        <required>false</required>
-        <trackFeedHistory>false</trackFeedHistory>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>dt_Date_Of_Acceptance__c</fullName>
-        <description>Date when the vendor accepted the PWORF manually</description>
-        <externalId>false</externalId>
-        <label>Date Of Acceptance</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1448,7 +1525,8 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>MultiselectPicklist</type>
+        <visibleLines>4</visibleLines>
     </fields>
     <fields>
         <fullName>pkl_Pricing_Model__c</fullName>
@@ -1637,42 +1715,52 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
         <picklist>
             <picklistValues>
                 <fullName>Saved</fullName>
+                <color>#0B6FCE</color>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Submitted</fullName>
+                <color>#78C953</color>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Cancelled</fullName>
+                <color>#E27001</color>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Resubmitted</fullName>
+                <color>#A845DC</color>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Withhold</fullName>
+                <color>#F3D904</color>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Auto Accepted</fullName>
+                <color>#A53711</color>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Returned</fullName>
+                <color>#66E9BD</color>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Accepted</fullName>
+                <color>#0B24BE</color>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Rejected</fullName>
+                <color>#419249</color>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Answered</fullName>
+                <color>#B6E32E</color>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1775,6 +1863,7 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
         <fullName>txt_OtherProjectPhases__c</fullName>
         <description>Phases of the project that are covered in the PWORF required if Other is selected in Phases of the project</description>
         <externalId>false</externalId>
+        <inlineHelpText>Mandatory, if Other is selected in Project Phases.</inlineHelpText>
         <label>Other -Project Phases</label>
         <length>255</length>
         <required>false</required>
@@ -2138,17 +2227,6 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
     </fields>
     <label>PWORF</label>
     <listViews>
-        <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>auto_PWORF_ID__c</columns>
-        <columns>RECORDTYPE</columns>
-        <columns>pkl_Status__c</columns>
-        <columns>VDM__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>All</label>
-        <language>en_US</language>
-    </listViews>
-    <listViews>
         <fullName>CAP_ULPM_CPA_PWORF</fullName>
         <filterScope>Queue</filterScope>
         <label>CPA ULPM</label>
@@ -2224,15 +2302,11 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
         <picklistValues>
             <picklist>Does_this_Project_involve_Unilever_conf__c</picklist>
             <values>
-                <fullName>The Project will affect %28Type Name%3A %28Third Party or Data%29%29 confidential data which can be provided to specific Unilever personnel</fullName>
+                <fullName>Involved</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>The Project will affect %28Type Name%3A %28Third Party or Data%29%29 confidential data which should not be passed to Unilever</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>The Project will affect Unilever confidential data which should not be passed to %28Type Name%3A %28Third Party or Data%29%29</fullName>
+                <fullName>Not Involved</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -2525,7 +2599,7 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
             </values>
             <values>
                 <fullName>T%26M</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Target Price</fullName>
@@ -2748,15 +2822,11 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
         <picklistValues>
             <picklist>Does_this_Project_involve_Unilever_conf__c</picklist>
             <values>
-                <fullName>The Project will affect %28Type Name%3A %28Third Party or Data%29%29 confidential data which can be provided to specific Unilever personnel</fullName>
+                <fullName>Involved</fullName>
                 <default>false</default>
             </values>
             <values>
-                <fullName>The Project will affect %28Type Name%3A %28Third Party or Data%29%29 confidential data which should not be passed to Unilever</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>The Project will affect Unilever confidential data which should not be passed to %28Type Name%3A %28Third Party or Data%29%29</fullName>
+                <fullName>Not Involved</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3049,7 +3119,7 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
             </values>
             <values>
                 <fullName>T%26M</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Target Price</fullName>
@@ -3157,10 +3227,6 @@ This section should assess the impact on UPXI,XI, BODI and MQ and includes asses
             </values>
             <values>
                 <fullName>Project Work Package</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Resource Secondment</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3804,6 +3870,9 @@ result = sforce.connection.update([p]);
 location.reload(true);
 } else if(p.pkl_Status__c == &quot;Auto Accepted&quot; || p.pkl_Status__c == &quot;Manually Accepted&quot;){
 alert(&quot;PWORF is already Accepted&quot;);
+}
+else if(p.pkl_Status__c == &quot;Saved&quot;){
+	alert(&quot;PWORF should be atleast Submitted for Cancellation&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -3851,7 +3920,7 @@ if(isValidateFlag == &apos;true&apos;){
 	else{ 
 	p.pkl_Status__c = &quot;Submitted&quot;; 
 	result = sforce.connection.update([p]); 
-	//alert(result ); 
+	
 	location.reload(true); 
 	} 
 
@@ -3859,30 +3928,6 @@ if(isValidateFlag == &apos;true&apos;){
 else { 
 alert(&quot; PWORF cannot be submitted as all the required fields data is not entered&quot;); 
 
-}</url>
-    </webLinks>
-    <webLinks>
-        <fullName>Test_Cancel</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <linkType>javascript</linkType>
-        <masterLabel>Test Cancel</masterLabel>
-        <openType>onClickJavaScript</openType>
-        <protected>false</protected>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
-var p = new sforce.SObject(&apos;CPA_PWORF__c&apos;);
-p.id = &quot;{!CPA_PWORF__c.Id}&quot;;
-p.pkl_Status__c = &quot;{!CPA_PWORF__c.pkl_Status__c }&quot;;
-p.RecordTypeid = &quot;{!CPA_PWORF__c.RecordTypeId}&quot;;
-alert(p.RecordTypeid );
-p.RecordTypeid =&quot;01218000000CjsC&quot;;
-result = sforce.connection.update([p]);
-location.reload(true);
-
-if(result[0].getBoolean(&quot;success&quot;)) {
-window.open(&quot;/&quot;+&quot;{!CPA_PWORF__c.Id}&quot;+ &quot;/e&quot;,&quot;_self&quot;);
-}else{
-alert(result);
 }</url>
     </webLinks>
     <webLinks>
@@ -3898,24 +3943,29 @@ alert(result);
 var p = new sforce.SObject(&apos;CPA_PWORF__c&apos;); 
 p.id = &quot;{!CPA_PWORF__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_PWORF__c.pkl_Status__c }&quot;; 
-profileName = &quot;{!$Profile.Name}&quot;; 
 
-if(profileName == &quot;System Administrator&quot; || profileName == &quot;CPA SMT&quot;){ 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name;
+
+if( permissionSetName == &quot;CPA_SMT&quot;){
 	if(p.pkl_Status__c != &quot;Answered&quot; &amp;&amp; p.pkl_Status__c != &quot;Cancelled&quot; &amp;&amp; p.pkl_Status__c != &quot;Withhold&quot;){
 		p.pkl_Status__c = &quot;Withhold&quot;;	
+
 		result = sforce.connection.update([p]); 
 		location.reload(true);
 	}else{
 		alert(&quot;PWORF Can not be Withhold as it is already Answered/Cancelled/Withhold&quot;); 
 	}
-}else if(profileName == &quot;CPA ULPM&quot;){
-			if(p.pkl_Status__c == &quot;Saved&quot; || p.pkl_Status__c == &quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; || p.pkl_Status__c == &quot;Returned&quot;){
+}
+else if(permissionSetName == &quot;CPA_ULPM&quot;){
+		if(p.pkl_Status__c == &quot;Saved&quot; || p.pkl_Status__c == &quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; || p.pkl_Status__c == &quot;Returned&quot;){
 			p.pkl_Status__c = &quot;Withhold&quot;;	
 			result = sforce.connection.update([p]); 
 			location.reload(true);
-			
 		}else if(p.pkl_Status__c == &quot;Cancelled&quot; || p.pkl_Status__c != &quot;Answered&quot; || p.pkl_Status__c != &quot;Withhold&quot;){
-				alert(&quot;PWORF Can not be Withhold as it is already Answered/Cancelled/Withhold&quot;); 
+			alert(&quot;PWORF Can not be Withhold as it is already Answered/Cancelled/Withhold&quot;); 
 		}else{
 			alert(&quot;PWORF Can not be Withhold, Please request SMT to withhold it&quot;); 
 		}
@@ -3934,66 +3984,67 @@ if(profileName == &quot;System Administrator&quot; || profileName == &quot;CPA S
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
 
-	var p = new sforce.SObject(&apos;CPA_PWORF__c&apos;); 
-	p.id = &quot;{!CPA_PWORF__c.Id}&quot;; 
-	p.pkl_Status__c = &quot;{!CPA_PWORF__c.pkl_Status__c }&quot;; 
-	p.profileName = &quot;{!$Profile.Name}&quot;; 
+var p = new sforce.SObject(&apos;CPA_PWORF__c&apos;); 
+p.id = &quot;{!CPA_PWORF__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_PWORF__c.pkl_Status__c }&quot;; 
 
-	var pwoIdList = new Array(); 
-	var doFlag= true; 
-	var errMsg =&quot;&quot;; 
+var pwoIdList = new Array(); 
+var doFlag= true; 
+var errMsg =&quot;&quot;; 
 
-	if(p.profileName == &quot;System Administrator&quot; || p.profileName == &quot;CPA ULPM&quot; || p.profileName == &quot;CPA SMT&quot;){ 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name;
+
+if( permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_SMT&quot;){ 
 
 	if(p.pkl_Status__c != &quot;Cancelled&quot;){ 
 
-	var result = sforce.connection.query(&quot;select id,txta_Reason_for_Cancellation__c,pkl_Status__c,PWORF_ID__c from CPA_PWO__c where PWORF_ID__c =&apos;&quot;+p.id+&quot;&apos;&quot;); 
+	var result = sforce.connection.query(&quot;select id,txta_Reason_for_Cancellation__c,pkl_Status__c,PWORF_ID__c from CPA_project_work_order__c where PWORF_ID__c =&apos;&quot;+p.id+&quot;&apos;&quot;); 
 	var pwoRecords = result.getArray(&quot;records&quot;); 
 
-	for(i=0;i&lt; pwoRecords.length;i++){ 
-		if(pwoRecords[i].pkl_Status__c != &apos;Delivered&apos; &amp;&amp; pwoRecords[i].pkl_Status__c != &apos;Closed&apos; &amp;&amp; pwoRecords[i].pkl_Status__c != &apos;Terminated&apos;) 
-			pwoIdList.push(pwoRecords[i].Id); 
-		else{ 
-			doFlag= false; 
-		break; 
-		} 
-	}//for 
+		for(i=0;i&lt; pwoRecords.length;i++){ 
+			if(pwoRecords[i].pkl_Status__c != &apos;Delivered&apos; &amp;&amp; pwoRecords[i].pkl_Status__c != &apos;Closed&apos; &amp;&amp; pwoRecords[i].pkl_Status__c != &apos;Terminated&apos;) 
+				pwoIdList.push(pwoRecords[i].Id); 
+			else{ 
+				doFlag= false; 
+			break; 
+			} 
+		}//for 
 
-//alert(&quot;pwoIdList &gt; &quot;+pwoIdList); 
 
-	if(doFlag == true &amp;&amp; pwoIdList.length &gt;0 ){ 
+		if(doFlag == true &amp;&amp; pwoIdList.length &gt;0 ){ 
+			for (i=0; i &lt; pwoIdList.length; i++) { 
+				result = sforce.connection.query(&quot;select id,ltxta_Reason_for_Cancellation__c,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+pwoIdList[i] +&quot;&apos; AND (pkl_Status__c = &apos;Delivered&apos; )&quot;); 
+				var crRecords = result.getArray(&quot;records&quot;); 
+			//	alert(crRecords);
+				if(crRecords.length &gt;0){ 
+					doFlag= false; break; 
+				}	
+			}//for 
+		} //if(doFlag == true &amp;&amp; pwoIdList.length &gt;0 )	
 
-	for (i=0; i &lt; pwoIdList.length; i++) { 
-		result = sforce.connection.query(&quot;select id,ltxta_Reason_for_Cancellation__c,pkl_Status__c,PWO_ID__c from CPA_CR__c where PWO_ID__c = &apos;&quot;+pwoIdList[i] +&quot;&apos; AND (pkl_Status__c = &apos;Delivered&apos; )&quot;); 
-		var crRecords = result.getArray(&quot;records&quot;); 
-		alert(crRecords);
-		if(crRecords.length &gt;0){ 
-			doFlag= false; break; 
-		}	
-	}//for 
+	// Status check Starts here 
+		if(doFlag == true ){ 
+			if(permissionSetName == &quot;CPA_ULPM&quot; &amp;&amp; (p.pkl_Status__c != &quot;Accepted&quot; &amp;&amp; p.pkl_Status__c != &quot;Answered&quot; &amp;&amp; p.pkl_Status__c != &quot;Auto Accepted&quot; &amp;&amp; p.pkl_Status__c != &quot;Sent For Signature&quot; &amp;&amp; p.pkl_Status__c != &quot;Signed&quot;)){ 
+				// redirect to cancel 
+				window.open(&apos;/apex/CPA_PWORF_Cancel_Reason?id=&apos;+&quot;{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
+			}else if( permissionSetName == &quot;CPA_SMT&quot;){ 
+				// redirect to cancel 
+				window.open(&apos;/apex/CPA_PWORF_Cancel_Reason?id=&apos;+&quot;{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
+			}else{ 
+				alert(&apos;PWORF is already Accepted/Answered&apos;); 
+			} 
 
-	} //if(doFlag == true &amp;&amp; pwoIdList.length &gt;0 )	
-//alert(&quot;doFlag= &quot;+ doFlag); 
-
-// Status check Starts here 
-	if(doFlag == true ){ 
-		if(p.profileName == &quot;CPA ULPM&quot; &amp;&amp; (p.pkl_Status__c != &quot;Accepted&quot; &amp;&amp; p.pkl_Status__c != &quot;Answered&quot; &amp;&amp; p.pkl_Status__c != &quot;Auto Accepted&quot; &amp;&amp; p.pkl_Status__c != &quot;Sent For Signature&quot; &amp;&amp; p.pkl_Status__c != &quot;Signed&quot;)){ 
-			// redirect to cancel 
-			window.open(&apos;/apex/CPA_PWORF_Cancel_Reason?id=&apos;+&quot;{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
-		}else if(p.profileName == &quot;System Administrator&quot; || p.profileName == &quot;CPA SMT&quot;){ 
-			// redirect to cancel 
-			window.open(&apos;/apex/CPA_PWORF_Cancel_Reason?id=&apos;+&quot;{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
 		}else{ 
-			alert(&apos;PWORF is already Accepted/Answered&apos;); 
+			alert(&apos;Can not Cancel PWORF as one of the PWO/CR are Delivered/Closed/Terminated&apos;); 
 		} 
 
-	}else{ 
-	alert(&apos;Can not Cancel PWORF as one of the PWO/CR are Delivered/Closed/Terminated&apos;); 
+	// Status check Ends here 
+	}
+	else{alert(&quot;Can not Cancel PWO as it is already Cancelled&quot;); 
 	} 
-
-// Status check Ends here 
-}else{alert(&quot;Can not Cancel PWO as it is already Cancelled&quot;); 
-} 
 
 }else{ 
 alert(&quot;Insufficient Privilege&quot;); 

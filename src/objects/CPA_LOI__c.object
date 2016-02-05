@@ -56,6 +56,14 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Approval_Comment_Check__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Comment Check</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
         <fullName>Comments__c</fullName>
         <externalId>false</externalId>
         <label>Comments</label>
@@ -82,7 +90,8 @@
     <fields>
         <fullName>Total_Number_of_Man_days_being_requested__c</fullName>
         <externalId>false</externalId>
-        <label>Total Number of Man days being requested</label>
+        <inlineHelpText>Total Number of Man-days being requested for this WAR request at MC Rates</inlineHelpText>
+        <label>W@R mandays approved at MC Rates</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -293,7 +302,7 @@
         <fullName>num_Total_value_in_being_requested_for__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Total value in € being requested for this WAR?</inlineHelpText>
-        <label>Total value in € being requested for th*</label>
+        <label>W@R € spend approved at MC Rates*</label>
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
@@ -342,7 +351,7 @@
         <picklist>
             <picklistValues>
                 <fullName>Saved</fullName>
-                <default>true</default>
+                <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Submitted</fullName>
@@ -394,10 +403,33 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Internal_LOI_ID__c</fullName>
+        <description>this field will store incremental internal LOI ID, used for search purpose</description>
+        <externalId>false</externalId>
+        <label>Internal LOI ID</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_Internal_PWO_ID__c</fullName>
         <description>Populated from PWORF</description>
         <externalId>false</externalId>
         <label>Internal PWO ID*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Other_Currency__c</fullName>
+        <externalId>false</externalId>
+        <label>Other Currency</label>
         <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -450,7 +482,22 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
+    <fields>
+        <fullName>txta_Reason_for_Return__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>LOI can be return if Status is Sent for Signature</inlineHelpText>
+        <label>Reason for Return</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
     <label>LOI</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <listViews>
         <fullName>CAP_ULPM_LOI</fullName>
         <filterScope>Queue</filterScope>
@@ -487,10 +534,10 @@
     <pluralLabel>LOIs</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
-        <fullName>LOI_Cancael</fullName>
+        <fullName>LOI_Cancel</fullName>
         <active>true</active>
         <description>After Cancel</description>
-        <label>LOI Cancael</label>
+        <label>LOI Cancel</label>
         <picklistValues>
             <picklist>mpkl_Phases_covered_by_WAR__c</picklist>
             <values>
@@ -569,7 +616,7 @@
             </values>
             <values>
                 <fullName>Saved</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Sent for Signature</fullName>
@@ -667,7 +714,7 @@
             </values>
             <values>
                 <fullName>Saved</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Sent for Signature</fullName>
@@ -683,7 +730,18 @@
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchFilterFields>OBJECT_ID</searchFilterFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>pkl_Status__c</searchFilterFields>
+        <searchFilterFields>txt_PWO_number__c</searchFilterFields>
+        <searchFilterFields>txt_PWO_title__c</searchFilterFields>
+        <searchFilterFields>CREATEDBY_USER</searchFilterFields>
+        <searchResultsAdditionalFields>txt_PWO_number__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>pkl_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>txt_Internal_LOI_ID__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>CPA_New_LOI_cant_be_created</fullName>
@@ -715,16 +773,26 @@ ISPICKVAL(lkp_PWORF__r.pkl_Status__c , &quot;Saved&quot;)
 
 var p = new sforce.SObject(&apos;CPA_LOI__c&apos;); 
 p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c }&quot;; 
-p.profileName = &quot;{!$Profile.Name}&quot;; 
 
 
-if(p.profileName == &quot;System Administrator&quot; || p.profileName == &quot;CPA SMT&quot;){ 
-	if(p.pkl_Status__c != &apos;Cancelled&apos;){ 
-	window.open(&apos;/apex/CPA_LOI_Cancel_Reason?id=&apos;+&quot;{!CPA_LOI__c.Id}&quot;,&quot;_self&quot;); 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name;
+
+if( permissionSetName == &quot;CPA_SMT&quot;){
+	if(p.pkl_Status__c == &apos;Saved&apos;){ 
+		alert(&quot;LOI should be atleast Submitted for Cancellation&quot;); 
+	}
+	else if(p.pkl_Status__c != &apos;Cancelled&apos;){ 
+		window.open(&apos;/apex/CPA_LOI_Cancel_Reason?id=&apos;+&quot;{!CPA_LOI__c.Id}&quot;,&quot;_self&quot;); 
 	} 
-	else{ 
-	alert(&quot;Can not Cancel LOI as it is already Cancelled&quot;); 
-	} 
+	else if(p.pkl_Status__c == &apos;Cancelled&apos;){ 
+		alert(&quot;Can not Cancel LOI as it is already Cancelled&quot;); 
+	}else{
+		alert(&quot;Can not Cancel LOI,Concern Administrator&quot;); 
+	}
+	
 } else{ 
 alert(&quot;Insufficient Privilege&quot;); 
 }</url>
@@ -749,44 +817,96 @@ var isValidateFlag = sforce.apex.execute(&quot;CPA_LOI_InformationController&quo
 
 //alert(&quot;isValidateFlag --&gt; &quot;+isValidateFlag);
 
-//if(p.isValidated__c == &quot;1&quot;){ 
-if(isValidateFlag == &apos;true&apos;){ 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name;
 
-	if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
-		p.pkl_Status__c = &quot;Resubmitted&quot;; 
-		result = sforce.connection.update([p]); 
+if( permissionSetName == &quot;CPA_ADM&quot;){
+	if(isValidateFlag == &apos;true&apos;){ 
+
+		if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
+			p.pkl_Status__c = &quot;Resubmitted&quot;; 
+			result = sforce.connection.update([p]); 
+			location.reload(true); 
+
+		} 
+		else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
+			alert(&quot;LOI  is already submitted&quot;); 
+		} 
+		else if(p.pkl_Status__c ==&quot;Answered&quot; ){ 
+
+			alert(&quot;LOI is already Answered, you cant submit for Approval&quot;); 
+		}
+		else if(p.pkl_Status__c ==&quot;Cancelled&quot; ){ 
+
+			alert(&quot;LOI is Cancelled, you cant submit for Approval&quot;); 
+		} 
+		else if(p.pkl_Status__c ==&quot;Accepted&quot; ){ 
+
+			alert(&quot;LOI is Accepted, you cant submit for Approval&quot;); 
+		}
+		else if(p.pkl_Status__c ==&quot;Sent for Signature&quot; || p.pkl_Status__c == &quot;Signed&quot; || p.pkl_Status__c == &quot;Delivered&quot;){
+			alert(&quot;LOI cant be submitted for Approval as it is Accepted and moved for further processing&quot;); 
+		}
+		else{ 
+
+			p.pkl_Status__c = &quot;Submitted&quot;; 
+			result = sforce.connection.update([p]);
 		location.reload(true); 
+		} 
 
 	} 
-	else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
-		alert(&quot;LOI  is already submitted&quot;); 
-	} 
-	else if(p.pkl_Status__c ==&quot;Answered&quot; ){ 
+	else { 
+	alert(&quot;LOI can not be submitted, Due to Required fields are missing&quot;); 
 
-		alert(&quot;LOI is already Answered, you cant submit for Approval&quot;); 
 	}
-	else if(p.pkl_Status__c ==&quot;Cancelled&quot; ){ 
+}
+else{ 	alert(&quot;Insufficient Privilege&quot;); }</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_Return_LOI</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Return LOI</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
 
-		alert(&quot;LOI is Cancelled, you cant submit for Approval&quot;); 
-	} 
-	else if(p.pkl_Status__c ==&quot;Accepted&quot; ){ 
+var p = new sforce.SObject(&apos;CPA_LOI__c&apos;); 
+p.id = &quot;{!CPA_LOI__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c }&quot;; 
 
-		alert(&quot;LOI is Accepted, you cant submit for Approval&quot;); 
+
+try { 
+	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+	var result = sforce.connection.query(soql); 
+	var records1 = result.getArray(&apos;records&apos;); 
+	var permissionSetName = records1[0].PermissionSet.Name; 
+
+	
+
+	if( permissionSetName == &quot;CPA_SMT&quot;){  
+		if(p.pkl_Status__c == &quot;Signed&quot;){ 
+			alert(&quot;Can not Return as LOI is already Signed&quot;); 
+		} 
+		else if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
+			alert(&quot;Can not Return as LOI is already Cancelled&quot;); 
+		}else if(p.pkl_Status__c ==&quot;Sent for Signature&quot;){ 
+			window.open(&apos;/apex/CPA_LOI_Reason_for_return?id=&apos;+&quot;{!CPA_LOI__c.Id}&quot;,&quot;_self&quot;); 
+		}else if(p.pkl_Status__c == &quot;Returned&quot;){
+			alert(&quot;Can not Return as LOI is already Returned&quot;); 			
+		}
+	}else{
+			alert(&quot;Insufficient Privilege&quot;);  
 	}
-	else if(p.pkl_Status__c ==&quot;Sent for Signature&quot; || p.pkl_Status__c == &quot;Signed&quot; || p.pkl_Status__c == &quot;Delivered&quot;){
-		alert(&quot;LOI cant be submitted for Approval as it is Accepted and moved for further processing&quot;); 
-	}
-	else{ 
-
-		p.pkl_Status__c = &quot;Submitted&quot;; 
-		result = sforce.connection.update([p]);
-	location.reload(true); 
-	} 
-
-} 
-else { 
-alert(&quot;LOI can not be submitted, Due to Required fields are missing&quot;); 
-
+	
+}catch (e) { 
+alert( 
+&quot;An unexpected Error has Occurred. Error: \r\n&quot; + 
+e 
+); 
 }</url>
     </webLinks>
     <webLinks>
@@ -802,16 +922,24 @@ alert(&quot;LOI can not be submitted, Due to Required fields are missing&quot;);
 var p = new sforce.SObject(&apos;CPA_LOI__c&apos;); 
 p.id = &quot;{!CPA_LOI__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c}&quot;; 
-profileName = &quot;{!$Profile.Name}&quot;; 
 
-if(profileName == &quot;System Administrator&quot; || profileName == &quot;CPA SMT&quot;){ 
-if(p.pkl_Status__c == &quot;Accepted&quot;){ 
-p.pkl_Status__c = &quot;Sent for Signature&quot;;	
-result = sforce.connection.update([p]); 
-location.reload(true); 
-}else{ 
-alert(&quot;LOI can not be Sent for Signature as it is not yet Accepted&quot;); 
-} 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name;
+
+if( permissionSetName == &quot;CPA_SMT&quot;){ 
+	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
+		p.pkl_Status__c = &quot;Sent for Signature&quot;;	
+		result = sforce.connection.update([p]); 
+		location.reload(true); 
+	}
+	else if(p.pkl_Status__c == &quot;Sent for Signature&quot;){
+		alert(&quot;LOI can not be Sent for Signature as it is already sent.&quot;); 
+	}	
+	else{ 
+		alert(&quot;LOI can not be Sent for Signature,Concern Administrator&quot;); 
+	} 
 }else{ 
 alert(&quot;Insufficient Privilege&quot;); 
 }</url>
@@ -828,19 +956,24 @@ alert(&quot;Insufficient Privilege&quot;);
 
 var p = new sforce.SObject(&apos;CPA_LOI__c&apos;); 
 p.id = &quot;{!CPA_LOI__c.Id}&quot;; 
-p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c}&quot;; 
-profileName = &quot;{!$Profile.Name}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_LOI__c.pkl_Status__c}&quot;;
 
-if(profileName == &quot;System Administrator&quot; || profileName == &quot;CPA SMT&quot;){ 
-if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
-p.pkl_Status__c = &quot;Signed&quot;;	
-result = sforce.connection.update([p]); 
-location.reload(true); 
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name;
+
+if(permissionSetName == &quot;CPA_SMT&quot;){ 
+	if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
+		p.pkl_Status__c = &quot;Signed&quot;;	
+		result = sforce.connection.update([p]); 
+		location.reload(true); 
+	}else{ 
+		alert(&quot;LOI can not be Signed,Concern Administrator&quot;); 
+	} 
 }else{ 
-alert(&quot;LOI can not be Signed as it is not yet Sent for Signature&quot;); 
-} 
-}else{ 
-alert(&quot;Insufficient Privilege&quot;); 
+	alert(&quot;Insufficient Privilege&quot;); 
 }</url>
     </webLinks>
 </CustomObject>

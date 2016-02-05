@@ -45,11 +45,19 @@
         <name>Update_CR_status</name>
         <rejectionActions>
             <action>
+                <name>Approval_Comment_Required_for_CR</name>
+                <type>FieldUpdate</type>
+            </action>
+            <action>
                 <name>CPA_CR_Owner_Update_to_VDM</name>
                 <type>FieldUpdate</type>
             </action>
             <action>
                 <name>CPA_CR_Return_Date</name>
+                <type>FieldUpdate</type>
+            </action>
+            <action>
+                <name>CPA_CR_Status_update_to_Return</name>
                 <type>FieldUpdate</type>
             </action>
             <action>
@@ -64,7 +72,26 @@
     </approvalStep>
     <description>This approval process manages approvals related to CR contract.</description>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <booleanFilter>1 OR 2</booleanFilter>
+        <criteriaItems>
+            <field>CPA_CR__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>CPA_CR__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Resubmitted</value>
+        </criteriaItems>
+    </entryCriteria>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Approval_Comment_Required_for_CR</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
     <initialSubmissionActions>
         <action>
@@ -82,6 +109,10 @@
     </initialSubmissionActions>
     <label>CPA CR Approval Process</label>
     <recallActions>
+        <action>
+            <name>Approval_Comment_Required_for_CR</name>
+            <type>FieldUpdate</type>
+        </action>
         <action>
             <name>CPA_CR_Owner_Update_to_VDM</name>
             <type>FieldUpdate</type>

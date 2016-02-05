@@ -4,6 +4,7 @@
     <customButtons>Cancel_LOI</customButtons>
     <customButtons>btn_Sent_for_signature</customButtons>
     <customButtons>btn_Signed</customButtons>
+    <customButtons>btn_Return_LOI</customButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
@@ -38,8 +39,8 @@
         <label>Project Details</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>Name</field>
+                <behavior>Edit</behavior>
+                <field>txt_Internal_LOI_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -117,6 +118,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_Currency__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Other_Currency__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

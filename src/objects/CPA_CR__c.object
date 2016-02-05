@@ -55,6 +55,27 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <fields>
+        <fullName>Approval_Comment_Check__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Comment Check</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CPA_Project_Work_Order__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>PWO</label>
+        <referenceTo>CPA_project_work_order__c</referenceTo>
+        <relationshipLabel>CRs</relationshipLabel>
+        <relationshipName>CRs</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
         <fullName>CR_Count__c</fullName>
         <description>This field created for reporting purpose.</description>
         <externalId>false</externalId>
@@ -68,6 +89,18 @@
         <trackTrending>false</trackTrending>
         <type>Number</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Final_Project_End_Date__c</fullName>
+        <description>This report created for reporting purpose.</description>
+        <externalId>false</externalId>
+        <formula>IF( ISNULL( dt_CR_End_date__c ) ,  CPA_Project_Work_Order__r.dt_Expected_End_date__c  , dt_CR_End_date__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Final Project End Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>PWO_ID__c</fullName>
@@ -350,6 +383,18 @@
         <precision>18</precision>
         <required>false</required>
         <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_Delta_Efforts__c</fullName>
+        <externalId>false</externalId>
+        <label>Delta Efforts</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -788,6 +833,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txta_Reason_for_Return__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>CR Can be returned if status is sent for signature</inlineHelpText>
+        <label>Reason for Return</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
         <fullName>txta_Unilever_Project_Name__c</fullName>
         <description>Project name/title</description>
         <externalId>false</externalId>
@@ -798,6 +853,11 @@
         <type>TextArea</type>
     </fields>
     <label>CR</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <listViews>
         <fullName>CAP_ULPM_CR</fullName>
         <filterScope>Queue</filterScope>
@@ -1517,8 +1577,211 @@
             </values>
         </picklistValues>
     </recordTypes>
+    <recordTypes>
+        <fullName>CPA_Standalone_CR</fullName>
+        <active>true</active>
+        <label>CPA Standalone CR</label>
+        <picklistValues>
+            <picklist>Approval_Comment_Check</picklist>
+            <values>
+                <fullName>Requested</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Required</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>Region_impacted__c</picklist>
+            <values>
+                <fullName>AAR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Europe</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Global</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>LATAM</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>North America</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_Change_Record_history__c</picklist>
+            <values>
+                <fullName>1st Change</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>2nd Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>3rd Change</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>4th Change</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Currency__c</picklist>
+            <values>
+                <fullName>EURO</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>GBP</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>INR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>USD</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Phase_change_record_raised__c</picklist>
+            <values>
+                <fullName>Analyze</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Project_Phases__c</picklist>
+            <values>
+                <fullName>Analyse</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Build</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Deploy</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Design</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Plan</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Test</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Sent for Signature</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Signed</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts/>
     <sharingModel>Private</sharingModel>
+    <validationRules>
+        <fullName>CPA_CR_Cant_be_created</fullName>
+        <active>true</active>
+        <errorConditionFormula>OR( 
+
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Cancelled&quot;), 
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent for Signature&quot;), 
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Signed&quot;), 
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Delivered&quot;), 
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Terminated&quot;), 
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent For Termination&quot;), 
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Closed&quot;),
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Request For Termination&quot;),
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent For Closure&quot;),
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Saved&quot;)
+
+
+
+)</errorConditionFormula>
+        <errorMessage>CR cant be created, because PWO is in process of Closer/Termination/Cancellation/ Not Accepted by Supply Management Team</errorMessage>
+    </validationRules>
     <validationRules>
         <fullName>Specify_Cancellation_Reason</fullName>
         <active>false</active>
@@ -1539,39 +1802,45 @@
 
 var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
 p.id = &quot;{!CPA_CR__c.Id}&quot;; 
-p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;;
+p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
 p.dat_Actual_End_Date__c = &quot;{!CPA_CR__c.dat_Actual_End_Date__c }&quot;; 
-PWO_ID__c = &quot;{!CPA_CR__c.PWO_ID__c}&quot;; 
-profileName = &quot;{!$Profile.Name}&quot;;
-var today = new Date();
-var dd = today.getDate();
-var mm = today.getMonth();
-var yyyy = today.getFullYear();
-today = new Date(yyyy,mm,dd);
+PWO_ID__c = &quot;{!CPA_CR__c.CPA_Project_Work_Order__c}&quot;; 
+profileName = &quot;{!$Profile.Name}&quot;; 
+var today = new Date(); 
+var dd = today.getDate(); 
+var mm = today.getMonth(); 
+var yyyy = today.getFullYear(); 
+today = new Date(yyyy,mm,dd); 
 
-result = sforce.connection.query(&quot;select Id from CPA_PWO__c where Name = &apos;&quot;+PWO_ID__c+&quot;&apos;&quot;);
+result = sforce.connection.query(&quot;select Id,pkl_Status__c, TNF_Status__c from CPA_Project_Work_Order__c where Name = &apos;&quot;+PWO_ID__c+&quot;&apos;&quot;); 
 var pwoRecords = result.getArray(&quot;records&quot;); 
 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
 
-result = sforce.connection.query(&quot;select Id, pkl_Status__c, lkp_PWO_ID__c from CPA_TNF__c where lkp_PWO_ID__c = &apos;&quot;+pwoRecords[0].Id+&quot;&apos; AND  pkl_Status__c =&apos;Submitted&apos;&quot;); 
-var tnfRecords = result.getArray(&quot;records&quot;); 
-
-if (profileName != &quot;System Administrator&quot; &amp;&amp; profileName != &quot;CPA VDM&quot;){ 
-	alert(&quot;Insufficient Privilege&quot;); 
+//alert(p.pkl_Status__c);
+if( permissionSetName == &quot;CPA_ADM&quot;){ 
+alert(&quot;Insufficient Privilege&quot;); 
+} 
+else{ 
+if(p.pkl_Status__c == &quot;Signed&quot; &amp;&amp; (pwoRecords[0].pkl_Status__c != &quot;Terminated&quot; || pwoRecords[0].pkl_Status__c != &quot;Sent For Termination&quot; || pwoRecords[0].pkl_Status__c != &quot;Request For Termination&quot;)){ 
+p.pkl_Status__c = &quot;Delivered&quot;;	
+p.dat_Actual_End_Date__c = today; 
+result = sforce.connection.update([p]); 
+location.reload(true); 
+} 
+else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
+alert(&quot;CR is already Delivered&quot;); 
 }
-else{
-	if(p.pkl_Status__c == &quot;Signed&quot; &amp;&amp; tnfRecords.length== 0){ 
-		p.pkl_Status__c = &quot;Delivered&quot;;	
-		p.dat_Actual_End_Date__c = today;
-		result = sforce.connection.update([p]);
-		location.reload(true);
-	}
-	else if(p.pkl_Status__c != &quot;Signed&quot;){
-		alert(&quot;CR can not be Delivered as it is not yet signed&quot;); 	
-	}
-	else if(p.pkl_Status__c == &quot;Signed&quot; &amp;&amp; tnfRecords.length != 0){
-		alert(&quot;CR can not be Delivered as TNF has been submitted for the PWO to which this CR is associated&quot;); 	
-	}
+else if(p.pkl_Status__c != &quot;Signed&quot;){ 
+alert(&quot;CR can not be Delivered as it is not yet signed&quot;); 
+} 
+else { 
+alert(&quot;CR can not be Delivered, Contact Administrator&quot;); 
+} 
 }</url>
     </webLinks>
     <webLinks>
@@ -1634,20 +1903,72 @@ else {
 
 var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
-p.profileName = &quot;{!$Profile.Name}&quot;; 
 
 
-if(p.profileName == &quot;System Administrator&quot; || p.profileName == &quot;CPA SMT&quot;){ 
-if(p.pkl_Status__c == &apos;Cancelled&apos;){ 
-alert(&quot;Can not Cancel CR as it is already Cancelled&quot;); 
-}else if(p.pkl_Status__c == &apos;Delivered&apos;){ 
-alert(&quot;Can not Cancel CR as it is Delivered&quot;); 
-} 
-else{ 
-window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;); 
-} 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+
+
+if( permissionSetName == &quot;CPA_SMT&quot;){ 
+
+	if(p.pkl_Status__c == &apos;Cancelled&apos;){ 
+		alert(&quot;Can not Cancel CR as it is already Cancelled&quot;); 
+	}else if(p.pkl_Status__c == &apos;Delivered&apos;){ 
+		alert(&quot;Can not Cancel CR as it is Delivered&quot;); 
+	} 
+	else{ 
+		window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;); 
+	} 
 } else{ 
 alert(&quot;Insufficient Privilege&quot;); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_Reason_for_Return</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Reason for Return</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
+p.id = &quot;{!CPA_CR__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
+
+
+try { 
+	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+	var result = sforce.connection.query(soql); 
+	var records1 = result.getArray(&apos;records&apos;); 
+	var permissionSetName = records1[0].PermissionSet.Name; 
+
+	
+
+	if( permissionSetName == &quot;CPA_SMT&quot;){  
+		if(p.pkl_Status__c == &quot;Signed&quot;){ 
+			alert(&quot;Can not Return as LOI is already Signed&quot;); 
+		} 
+		else if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
+			alert(&quot;Can not Return as LOI is already Cancelled&quot;); 
+		}else if(p.pkl_Status__c ==&quot;Sent for Signature&quot;){ 
+			window.open(&apos;/apex/CPA_CR_Reason_for_return?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;); 
+		}else if(p.pkl_Status__c == &quot;Returned&quot;){
+			alert(&quot;Can not Return as LOI is already Returned&quot;); 			
+		}
+	}else{
+			alert(&quot;Insufficient Privilege&quot;);  
+	}
+	
+}catch (e) { 
+alert( 
+&quot;An unexpected Error has Occurred. Error: \r\n&quot; + 
+e 
+); 
 }</url>
     </webLinks>
     <webLinks>
@@ -1663,18 +1984,28 @@ alert(&quot;Insufficient Privilege&quot;);
 var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
 p.id = &quot;{!CPA_CR__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
-profileName = &quot;{!$Profile.Name}&quot;; 
 
-if(profileName == &quot;System Administrator&quot; || profileName == &quot;CPA SMT&quot;){ 
-if(p.pkl_Status__c == &quot;Accepted&quot;){ 
-p.pkl_Status__c = &quot;Sent for Signature&quot;;	
-result = sforce.connection.update([p]); 
-location.reload(true); 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+
+
+if( permissionSetName == &quot;CPA_SMT&quot;){
+	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
+		p.pkl_Status__c = &quot;Sent for Signature&quot;;	
+		result = sforce.connection.update([p]); 
+		location.reload(true); 
+	}
+	else if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
+		alert(&quot;CR is already Sent for Signature&quot;);
+	}
+	else{ 
+		alert(&quot;CR Can not be Sent for Signature, Concern Administrator&quot;); 
+	} 
 }else{ 
-alert(&quot;CR Can not be Sent for Signature as it is not yet Accepted&quot;); 
-} 
-}else{ 
-alert(&quot;Insufficient Privilege&quot;); 
+	alert(&quot;Insufficient Privilege&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -1690,18 +2021,29 @@ alert(&quot;Insufficient Privilege&quot;);
 var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
 p.id = &quot;{!CPA_CR__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
-profileName = &quot;{!$Profile.Name}&quot;; 
 
-if(profileName == &quot;System Administrator&quot; || profileName == &quot;CPA SMT&quot;){ 
-if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
-p.pkl_Status__c = &quot;Signed&quot;;	
-result = sforce.connection.update([p]); 
-location.reload(true); 
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+
+
+if( permissionSetName == &quot;CPA_SMT&quot;){  
+	if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
+		p.pkl_Status__c = &quot;Signed&quot;;	
+		result = sforce.connection.update([p]); 
+		location.reload(true); 
+	}
+	else if(p.pkl_Status__c == &quot;Signed&quot;){ 
+		alert(&quot;CR is already Signed&quot;);
+	}
+	else{ 
+		alert(&quot;CR Can not be Signed, Concern Administrator&quot;); 
+	} 
 }else{ 
-alert(&quot;CR Can not be Signed as it is not yet Sent for Signature&quot;); 
-} 
-}else{ 
-alert(&quot;Insufficient Privilege&quot;); 
+	alert(&quot;Insufficient Privilege&quot;); 
 }</url>
     </webLinks>
 </CustomObject>

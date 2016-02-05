@@ -21,7 +21,7 @@ boolean callFromVF = false;
     boolean CreateRequiredFieldMessage(id loiId,boolean callFromVF){
         RequiredFieldMap = new Map<String,String>();
         mandatoryStringFlag = null;
-         LoiRec = [select id,isValidated__c,pkl_Status__c,pkl_Currency__c,num_Expense_charges_of_LOI__c,txt_Internal_PWO_ID__c,dt_LOI_End_date__c,dt_LOI_Start_Date__c,mpkl_Phases_covered_by_WAR__c,txt_PWO_number__c,txt_PWO_title__c,lkp_Unilever_budget_approver__c,txt_Unilever_Clarity_ID__c,lkp_Unilever_content_approver__c from CPA_LOI__c where id =: loiId];
+         LoiRec = [select id,isValidated__c,pkl_Status__c,pkl_Currency__c,num_Expense_charges_of_LOI__c,txt_Internal_PWO_ID__c,dt_LOI_End_date__c,dt_LOI_Start_Date__c,mpkl_Phases_covered_by_WAR__c,txt_PWO_number__c,txt_PWO_title__c,lkp_Unilever_budget_approver__c,txt_Unilever_Clarity_ID__c,lkp_Unilever_content_approver__c, txt_Other_Currency__c from CPA_LOI__c where id =: loiId];
          system.debug('LoiRec>>>>'+LoiRec);
 
          CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(LoiRec.pkl_Status__c);
@@ -34,22 +34,28 @@ boolean callFromVF = false;
          if(LoiRec != null){
             System.debug('Building Map !! ' );
               if((LoiRec.pkl_Status__c == 'Saved' || LoiRec.pkl_Status__c == 'Withhold') || callFromVF == false){
-             if(LoiRec.pkl_Currency__c == 'Select')
-                 RequiredFieldMap.put('Currency','Mandatory');   
+             if(LoiRec.pkl_Currency__c == 'Select' || LoiRec.pkl_Currency__c == null)
+                 RequiredFieldMap.put('Currency',ConstantsForContractingAppClasses.MANDATORY);  
+              if(LoiRec.pkl_Currency__c == 'OTHER'){
+                  if(LoiRec.txt_Other_Currency__c == null){
+                    RequiredFieldMap.put('Other Currency','It is mandatory if OTHER as Currency');      
+                  }
+              }
+             
              if(LoiRec.num_Expense_charges_of_LOI__c == null)
-                 RequiredFieldMap.put('Expense charges of LOI','Mandatory');
+                 RequiredFieldMap.put('Expense charges of LOI',ConstantsForContractingAppClasses.MANDATORY);
              if(LoiRec.txt_Internal_PWO_ID__c == null)
-                 RequiredFieldMap.put('Internal PWO ID','Mandatory');                        
+                 RequiredFieldMap.put('Internal PWO ID',ConstantsForContractingAppClasses.MANDATORY);                        
              if(LoiRec.mpkl_Phases_covered_by_WAR__c == null)
-                 RequiredFieldMap.put('Phases covered by WAR','Mandatory');          
+                 RequiredFieldMap.put('Phases covered by WAR',ConstantsForContractingAppClasses.MANDATORY);          
              if(LoiRec.txt_PWO_number__c == null)
-                 RequiredFieldMap.put('PWO number','Mandatory');        
+                 RequiredFieldMap.put('PWO number',ConstantsForContractingAppClasses.MANDATORY);        
              if(LoiRec.txt_PWO_title__c == null)
-                 RequiredFieldMap.put('PWO title','Mandatory');          
+                 RequiredFieldMap.put('PWO title',ConstantsForContractingAppClasses.MANDATORY);          
              if(LoiRec.pkl_Status__c == null)
-                 RequiredFieldMap.put('Status','Mandatory');         
+                 RequiredFieldMap.put('Status',ConstantsForContractingAppClasses.MANDATORY);         
              if(LoiRec.txt_Unilever_Clarity_ID__c == null)
-                 RequiredFieldMap.put('Unilever Clarity ID','Mandatory');
+                 RequiredFieldMap.put('Unilever Clarity ID',ConstantsForContractingAppClasses.MANDATORY);
              if(LoiRec.dt_LOI_Start_Date__c == null || LoiRec.dt_LOI_Start_Date__c < system.today())
                  RequiredFieldMap.put('LOI Start Date','It is Mandatory and should not be before today date');
              if(LoiRec.dt_LOI_End_date__c == null || LoiRec.dt_LOI_End_date__c < LoiRec.dt_LOI_Start_Date__c)

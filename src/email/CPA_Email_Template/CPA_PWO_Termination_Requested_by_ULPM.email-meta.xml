@@ -4,7 +4,8 @@
     <available>true</available>
     <description>ULPM/SMT initiates termination of a PWO</description>
     <encodingKey>ISO-8859-1</encodingKey>
-    <name>CPA  PWO Termination Requested by ULPM</name>
+    <name>CPA PWO Termination Requested by ULPM</name>
     <style>none</style>
+    <subject>Termination requested for PWO with ID</subject>
     <type>visualforce</type>
 </EmailTemplate>

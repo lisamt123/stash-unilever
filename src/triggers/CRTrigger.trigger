@@ -1,8 +1,12 @@
 trigger CRTrigger on CPA_CR__c (before insert, after insert, before update, after update) {
 
     if(Trigger.isUpdate && Trigger.isBefore){ //for before update trigger
+        
         CPA_CR_TriggerUtil.previouStatusValue(trigger.old,trigger.new);
         CPA_CR_TriggerUtil.checklistValueOfCR(trigger.new);
+        CPA_CR_TriggerUtil.requireApprovalComments(trigger.new);
+      //  CPA_CR_TriggerUtil.unlockrecord(trigger.old,trigger.new);
+        
     }
     if(Trigger.isUpdate && Trigger.isAfter){ //for after update trigger
         CPA_CR_TriggerUtil.submitforApproval(trigger.old,trigger.new);

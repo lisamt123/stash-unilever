@@ -17,7 +17,7 @@
         <apex:pageMessages />
         <apex:pageBlockSection columns="2">
             <div style="text-align: center;">
-                <span style="margin-right: 10px;">Reason for Cancellation:   
+                <span style="margin-right: 10px;">Please Enter Reason for CR Cancellation   
                     <apex:inputTextarea styleClass="myClass" id="cancelReson"  value="{!strReason}" label=" " required="true"/>
                 </span >
             </div>

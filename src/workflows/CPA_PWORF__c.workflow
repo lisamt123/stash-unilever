@@ -249,6 +249,26 @@
         <template>CPA_Email_Template/CPA_PWORF_Withheld_by_SMT</template>
     </alerts>
     <fieldUpdates>
+        <fullName>Approval_Comment_Requested_for_PWORF</fullName>
+        <field>Approval_Comment_Check__c</field>
+        <literalValue>Requested</literalValue>
+        <name>Approval Comment Requested for PWORF</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approval_Comment_Required_for_PWORF</fullName>
+        <field>Approval_Comment_Check__c</field>
+        <literalValue>Required</literalValue>
+        <name>Approval Comment Required for PWORF</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CAP_Manually_Accepted</fullName>
         <field>pkl_Status__c</field>
         <literalValue>Accepted</literalValue>
@@ -520,6 +540,15 @@ null)</formula>
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_PWORF_uniqueness</fullName>
+        <field>Unique_PWORF__c</field>
+        <formula>Name</formula>
+        <name>CPA PWORF uniqueness</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_Penalty_Applicable</fullName>
         <field>pkl_Penalty_Applicable__c</field>
         <literalValue>YES</literalValue>
@@ -556,6 +585,20 @@ null)</formula>
         <operation>Literal</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <rules>
+        <fullName>Approval Comment Flag for PWORF</fullName>
+        <actions>
+            <name>Approval_Comment_Requested_for_PWORF</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_PWORF__c.Approval_Comment_Check__c</field>
+            <operation>equals</operation>
+            <value>Required</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
     <rules>
         <fullName>CPA PWORF Accepted</fullName>
         <actions>
@@ -757,6 +800,16 @@ null)</formula>
         </criteriaItems>
         <description>This workflow will fire after the status for PWORF will be Submitted update the date fields.</description>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA PWORF uniqueness</fullName>
+        <actions>
+            <name>CPA_PWORF_uniqueness</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>OR((IF( AND(NOT(ISNEW()) , ISCHANGED(  Name  )) , true,false)),(IF( AND(ISNEW() , NOT(ISBLANK(Name  ))) , true,false)))</formula>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>CPA SLA2 BreachCheck</fullName>

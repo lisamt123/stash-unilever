@@ -88,7 +88,7 @@
         </sharedTo>
     </listViews>
     <nameField>
-        <label>VDM Name</label>
+        <label>Vendor Name</label>
         <type>Text</type>
     </nameField>
     <pluralLabel>VDM</pluralLabel>

@@ -56,10 +56,69 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
     <fields>
+        <fullName>Accepted_Date__c</fullName>
+        <externalId>false</externalId>
+        <label>Accepted Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Approval_Comment_Check__c</fullName>
+        <externalId>false</externalId>
+        <label>Approval Comment Check</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Estimate_Type__c</fullName>
+        <externalId>false</externalId>
+        <label>Estimate Type</label>
+        <picklist>
+            <picklistValues>
+                <fullName>HLE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>BPE</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Estimates_Status__c</fullName>
+        <defaultValue>&quot;Saved&quot;</defaultValue>
+        <externalId>false</externalId>
+        <label>Estimates Status</label>
+        <length>50</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>HLE_Number__c</fullName>
         <externalId>false</externalId>
         <label>HLE Number</label>
         <length>20</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>HLE_Proposed_high_level_plan_timelines__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Proposed high level plan&amp;timelines*</label>
+        <length>255</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -77,10 +136,59 @@
         <type>AutoNumber</type>
     </fields>
     <fields>
+        <fullName>HLE_Request_SLA1_end_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND(ISBLANK(dat_Resubmitted_Date__c),ISBLANK(dat_Submitted_Date__c )),null,IF(ISBLANK(dat_Resubmitted_Date__c),(CASE( 
+MOD(dat_Submitted_Date__c - DATE(1900, 1, 7), 7), 
+0, (dat_Submitted_Date__c ) + num_SLA1__c + FLOOR((num_SLA1__c-1)/5)*2, 
+1, (dat_Submitted_Date__c ) + num_SLA1__c + FLOOR((num_SLA1__c)/5)*2, 
+2, (dat_Submitted_Date__c ) + num_SLA1__c + FLOOR((num_SLA1__c+1)/5)*2, 
+3, (dat_Submitted_Date__c ) + num_SLA1__c + FLOOR((num_SLA1__c+2)/5)*2, 
+4, (dat_Submitted_Date__c ) + num_SLA1__c + FLOOR((num_SLA1__c+3)/5)*2, 
+5, (dat_Submitted_Date__c ) + num_SLA1__c + CEILING((num_SLA1__c)/5)*2, 
+6, (dat_Submitted_Date__c ) - IF(num_SLA1__c&gt;0,1,0) + num_SLA1__c + CEILING((num_SLA1__c)/5)*2, 
+null)),(CASE( 
+MOD(dat_Resubmitted_Date__c - DATE(1900, 1, 7), 7), 
+0, (dat_Resubmitted_Date__c ) + num_SLA1__c + FLOOR((num_SLA1__c-1)/5)*2, 
+1, (dat_Resubmitted_Date__c ) + num_SLA1__c + FLOOR((num_SLA1__c)/5)*2, 
+2, (dat_Resubmitted_Date__c ) + num_SLA1__c + FLOOR((num_SLA1__c+1)/5)*2, 
+3, (dat_Resubmitted_Date__c ) + num_SLA1__c + FLOOR((num_SLA1__c+2)/5)*2, 
+4, (dat_Resubmitted_Date__c ) + num_SLA1__c + FLOOR((num_SLA1__c+3)/5)*2, 
+5, (dat_Resubmitted_Date__c ) + num_SLA1__c + CEILING((num_SLA1__c)/5)*2, 
+6, (dat_Resubmitted_Date__c ) - IF(num_SLA1__c&gt;0,1,0) + num_SLA1__c + CEILING((num_SLA1__c)/5)*2, 
+null))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>HLE Request SLA1 end Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>HLE_Request_SLA2_end_Date__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(ISBLANK(Accepted_Date__c),null,(CASE( 
+MOD(Accepted_Date__c - DATE(1900, 1, 7), 7), 
+0, (Accepted_Date__c ) + num_SLA2__c + FLOOR((num_SLA2__c-1)/5)*2, 
+1, (Accepted_Date__c ) + num_SLA2__c + FLOOR((num_SLA2__c)/5)*2, 
+2, (Accepted_Date__c ) + num_SLA2__c + FLOOR((num_SLA2__c+1)/5)*2, 
+3, (Accepted_Date__c ) + num_SLA2__c + FLOOR((num_SLA2__c+2)/5)*2, 
+4, (Accepted_Date__c ) + num_SLA2__c + FLOOR((num_SLA2__c+3)/5)*2, 
+5, (Accepted_Date__c ) + num_SLA2__c + CEILING((num_SLA2__c)/5)*2, 
+6, (Accepted_Date__c ) - IF(num_SLA2__c&gt;0,1,0) + num_SLA2__c + CEILING((num_SLA2__c)/5)*2, 
+null)))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>HLE Request SLA2 end Date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>PFS_Is_there_approved_funding_for_this__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Is there approved funding for this project</inlineHelpText>
-        <label>Approved Funding for this Project*</label>
+        <label>Funding approved?*</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -123,6 +231,7 @@
     </fields>
     <fields>
         <fullName>Vendor_Name__c</fullName>
+        <defaultValue>&quot;Accenture&quot;</defaultValue>
         <externalId>false</externalId>
         <label>Vendor Name</label>
         <length>20</length>
@@ -131,6 +240,15 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>dat_Cancelled_date__c</fullName>
+        <externalId>false</externalId>
+        <label>Cancelled date</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
     </fields>
     <fields>
         <fullName>dat_Expected_SLA1_Date__c</fullName>
@@ -199,6 +317,24 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>dt_HLE_Date_PWORF_required__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Date PWORF required</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>dt_HLE_Preparation_date__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Preparation date*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Date</type>
+    </fields>
+    <fields>
         <fullName>dt_Planned_end_date__c</fullName>
         <description>Date when the project ends</description>
         <externalId>false</externalId>
@@ -222,6 +358,16 @@
         <fullName>eml_AAL_Email__c</fullName>
         <externalId>false</externalId>
         <label>Email*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>eml_HLE_PB_Email__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Email*</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -308,9 +454,80 @@
         <visibleLines>5</visibleLines>
     </fields>
     <fields>
+        <fullName>num_BPE_Effort_in_man_days__c</fullName>
+        <externalId>false</externalId>
+        <label>BPE Effort in man-days*</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_HLE_Estimated_Accenture_charge__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Estimated Accenture charge</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_HLE_Estimated_man_days__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Estimated man-days*</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_SLA1__c</fullName>
+        <description>Capture SLA1 in the background from custom settings.</description>
+        <externalId>false</externalId>
+        <label>SLA1</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>num_SLA2__c</fullName>
+        <description>Capture SLA2 in the background from custom settings.</description>
+        <externalId>false</externalId>
+        <label>SLA2</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>ph_AAL_Contact_No__c</fullName>
         <externalId>false</externalId>
         <label>Contact No*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>ph_HLE_PB_Contact_No__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Contact No*</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -436,19 +653,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Sent for Signature</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Signed</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Deliverd</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Withhold</fullName>
+                <fullName>Answered</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -463,17 +668,6 @@
         <externalId>false</externalId>
         <label>Name*</label>
         <length>255</length>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>txt_Accenture_Project_Manager__c</fullName>
-        <externalId>false</externalId>
-        <label>Accenture Project Manager</label>
-        <length>250</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -516,6 +710,59 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_BPE_Accenture_Demand_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>BPE Accenture Demand ID*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_BPE_Accenture_Project_Manager__c</fullName>
+        <externalId>false</externalId>
+        <label>BPE Accenture Project Manager*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_BPE_Key_assumptions__c</fullName>
+        <externalId>false</externalId>
+        <label>BPE Key assumptions*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>txt_BPE_Title__c</fullName>
+        <externalId>false</externalId>
+        <label>BPE Title*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_BPE_Unilever_Demand_ID__c</fullName>
+        <externalId>false</externalId>
+        <label>BPE Unilever Demand ID*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_Background__c</fullName>
         <description>Relevant background context information on the project, including purpose, objectives, business benefits.</description>
         <externalId>false</externalId>
@@ -538,6 +785,121 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_HLE_Accenture_Area__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Accenture Area</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_HLE_Accenture_estimated_project_char__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Accenture estimated project charge*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_HLE_Accenture_reference__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Accenture reference*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_HLE_Assumptions_Risks_Qualifying__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Assumption/Risks/Qualifying Info*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>txt_HLE_Commercial_caveats__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Commercial caveats*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_HLE_Next_steps__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Next steps</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_HLE_PB_Name__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Name*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_HLE_Project_charging_mechanism__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Project charging mechanism*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>txt_HLE_Scope__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Scope*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_HLE_Skill_Resources_Blend_rate__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Skill / Resources / Blend rate*</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_HLE_Solution_overview_approach__c</fullName>
+        <externalId>false</externalId>
+        <label>HLE Solution overview/approach*</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
     </fields>
     <fields>
         <fullName>txt_NA_Notes__c</fullName>
@@ -609,26 +971,6 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>txt_SLA1__c</fullName>
-        <description>Capture SLA1 in the background from custom settings.</description>
-        <externalId>false</externalId>
-        <label>SLA1</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
-    </fields>
-    <fields>
-        <fullName>txt_SLA2__c</fullName>
-        <description>Capture SLA2 in the background from custom settings.</description>
-        <externalId>false</externalId>
-        <label>SLA2</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Date</type>
     </fields>
     <fields>
         <fullName>txt_Software_Licensing_requirements__c</fullName>
@@ -726,6 +1068,15 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+    <fields>
+        <fullName>txta_Reason_for_Cancellation__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason for Cancellation</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
     <label>HLE Request</label>
     <listViews>
         <fullName>All</fullName>
@@ -771,8 +1122,1378 @@
         <type>Text</type>
     </nameField>
     <pluralLabel>HLE Requests</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <recordTypes>
+        <fullName>A_HLE_Request_Saved</fullName>
+        <active>true</active>
+        <label>A HLE Request Saved</label>
+        <picklistValues>
+            <picklist>Estimate_Type__c</picklist>
+            <values>
+                <fullName>BPE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PFS_Is_there_approved_funding_for_this__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PFS_If_yes_what_is_the_source__c</picklist>
+            <values>
+                <fullName>IPIX</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self-funded</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_HLE_type__c</picklist>
+            <values>
+                <fullName>Ball park estimate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PADBTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>BPE</fullName>
+        <active>true</active>
+        <label>BPE</label>
+        <picklistValues>
+            <picklist>Estimate_Type__c</picklist>
+            <values>
+                <fullName>BPE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PFS_Is_there_approved_funding_for_this__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PFS_If_yes_what_is_the_source__c</picklist>
+            <values>
+                <fullName>IPIX</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self-funded</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_HLE_type__c</picklist>
+            <values>
+                <fullName>Ball park estimate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PADBTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>BPE_Answered</fullName>
+        <active>true</active>
+        <label>BPE Answered</label>
+        <picklistValues>
+            <picklist>Estimate_Type__c</picklist>
+            <values>
+                <fullName>BPE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PFS_Is_there_approved_funding_for_this__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PFS_If_yes_what_is_the_source__c</picklist>
+            <values>
+                <fullName>IPIX</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self-funded</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_HLE_type__c</picklist>
+            <values>
+                <fullName>Ball park estimate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PADBTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>BPE_Cancelled</fullName>
+        <active>true</active>
+        <label>BPE Cancelled</label>
+        <picklistValues>
+            <picklist>Estimate_Type__c</picklist>
+            <values>
+                <fullName>BPE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PFS_Is_there_approved_funding_for_this__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PFS_If_yes_what_is_the_source__c</picklist>
+            <values>
+                <fullName>IPIX</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self-funded</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_HLE_type__c</picklist>
+            <values>
+                <fullName>Ball park estimate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PADBTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>HLE</fullName>
+        <active>true</active>
+        <label>HLE</label>
+        <picklistValues>
+            <picklist>Estimate_Type__c</picklist>
+            <values>
+                <fullName>BPE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PFS_Is_there_approved_funding_for_this__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PFS_If_yes_what_is_the_source__c</picklist>
+            <values>
+                <fullName>IPIX</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self-funded</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_HLE_type__c</picklist>
+            <values>
+                <fullName>Ball park estimate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PADBTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>HLE_Answered</fullName>
+        <active>true</active>
+        <label>HLE Answered</label>
+        <picklistValues>
+            <picklist>Estimate_Type__c</picklist>
+            <values>
+                <fullName>BPE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PFS_Is_there_approved_funding_for_this__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PFS_If_yes_what_is_the_source__c</picklist>
+            <values>
+                <fullName>IPIX</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self-funded</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_HLE_type__c</picklist>
+            <values>
+                <fullName>Ball park estimate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PADBTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>HLE_Cancelled</fullName>
+        <active>true</active>
+        <label>HLE Cancelled</label>
+        <picklistValues>
+            <picklist>Estimate_Type__c</picklist>
+            <values>
+                <fullName>BPE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PFS_Is_there_approved_funding_for_this__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PFS_If_yes_what_is_the_source__c</picklist>
+            <values>
+                <fullName>IPIX</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self-funded</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_HLE_type__c</picklist>
+            <values>
+                <fullName>Ball park estimate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PADBTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>HLE_Request_Accepted</fullName>
+        <active>true</active>
+        <label>HLE Request Accepted</label>
+        <picklistValues>
+            <picklist>Estimate_Type__c</picklist>
+            <values>
+                <fullName>BPE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PFS_Is_there_approved_funding_for_this__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PFS_If_yes_what_is_the_source__c</picklist>
+            <values>
+                <fullName>IPIX</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self-funded</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_HLE_type__c</picklist>
+            <values>
+                <fullName>Ball park estimate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PADBTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>HLE_request_Cancelled</fullName>
+        <active>true</active>
+        <label>HLE request Cancelled</label>
+        <picklistValues>
+            <picklist>Estimate_Type__c</picklist>
+            <values>
+                <fullName>BPE</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HLE</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>PFS_Is_there_approved_funding_for_this__c</picklist>
+            <values>
+                <fullName>No</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Yes</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>mpkl_PFS_If_yes_what_is_the_source__c</picklist>
+            <values>
+                <fullName>IPIX</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Other</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Regional</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Self-funded</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Business_area__c</picklist>
+            <values>
+                <fullName>Customer Development</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Finance</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>HR</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>IT %26 Comms</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Information %26 Analytics</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Marketing %26 R%26D</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Supply chain</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Workplace</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_HLE_type__c</picklist>
+            <values>
+                <fullName>Ball park estimate</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>PA</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>PADBTD</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Service Introduction</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>pkl_Status__c</picklist>
+            <values>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Answered</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Resubmitted</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Returned</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Saved</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <webLinks>
+        <fullName>Cancel</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Cancel</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_HLE_Request__c&apos;); 
+p.id = &quot;{!CPA_HLE_Request__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;; 
+//alert(p.pkl_Status__c); 
+try { 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+
+if(permissionSetName == &quot;CPA_ULPM&quot;){ 
+if(p.pkl_Status__c == &quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; || p.pkl_Status__c == &quot;Saved&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
+window.open(&apos;/apex/CPA_HLE_Cancel_Reason?id=&apos;+&quot;{!CPA_HLE_Request__c.Id}&quot;,&quot;_self&quot;); 
+}else if (p.pkl_Status__c == &quot;Accepted&quot; || p.pkl_Status__c == &quot;Answered&quot;){ 
+alert(&quot;Can not Cancel HLE as it is Accepted/Answered. Please contact Supplier Management Team&quot;); 
+}else if (p.pkl_Status__c == &quot;Cancelled&quot;){ 
+alert(&quot;Can not Cancel HLE as it is already cancelled&quot;); 
+} 
+}else if(permissionSetName == &quot;CPA_SMT&quot;) { 
+if(p.pkl_Status__c != &quot;Cancelled&quot;){ 
+window.open(&apos;/apex/CPA_HLE_Cancel_Reason?id=&apos;+&quot;{!CPA_HLE_Request__c.Id}&quot;,&quot;_self&quot;); 
+}else{
+alert(&quot;Can not Cancel HLE as it is already cancelled&quot;); 
+}
+}else alert(&quot;Insufficient Privilege&quot;); 
+
+}catch (e) { 
+alert( 
+&quot;An unexpected Error has Occurred. Error: \r\n&quot; + 
+e 
+); 
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Create_Estimates</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Create Estimates</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_HLE_Request__c&apos;); 
+p.id = &quot;{!CPA_HLE_Request__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;; 
+p.Estimate_Type__c = &quot;{!CPA_HLE_Request__c.Estimate_Type__c }&quot;; 
+p.Estimates_Status__c = &quot;{!CPA_HLE_Request__c.Estimates_Status__c }&quot;; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(permissionSetName);
+if( permissionSetName == &quot;CPA_ADM&quot;){
+	if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; || p.pkl_Status__c ==&quot;Saved&quot; || p.pkl_Status__c ==&quot;Returned&quot;){ 
+		alert(&quot;Can not Estimate HLE Request as it is not yet Accepted&quot;); 
+	} 
+	else if(p.pkl_Status__c ==&quot;Accepted&quot; ){
+		if(p.Estimate_Type__c == &quot;BPE&quot;){ 
+		//p.Estimates_Status__c = &quot;Saved&quot;;
+			window.open(&quot;/&quot;+&quot;{!CPA_HLE_Request__c.Id}&quot;+ &quot;/e?RecordType={!$Label.CPA_BPE_Recordtype}&amp;retURL=%2F{!CPA_HLE_Request__c.Id}&quot;,&quot;_self&quot;); 
+		}else if(p.Estimate_Type__c == &quot;HLE&quot;){ 
+		//p.Estimates_Status__c = &quot;Saved&quot;;
+			window.open(&quot;/&quot;+&quot;{!CPA_HLE_Request__c.Id}&quot;+ &quot;/e?RecordType={!$Label.CPA_HLE_Recordtype}&amp;retURL=%2F{!CPA_HLE_Request__c.Id}&quot;,&quot;_self&quot;); 
+		}else {
+			alert(&quot;Please select Type of Estimate&quot;);
+		} 
+	}else if(p.pkl_Status__c ==&quot;Cancelled&quot; ){ 
+		alert(&quot;Can not Estimate HLE Request as it is Cancelled&quot;); 
+	} else if(p.pkl_Status__c ==&quot;Answered&quot; ){ 
+		alert(&quot;Can not Estimate as it is already Estimated&quot;); 
+	}
+} 
+else{ 
+	alert(&quot;Insufficient Privilege&quot;);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Submit</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Submit</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_HLE_Request__c&apos;); 
+p.id = &quot;{!CPA_HLE_Request__c.Id}&quot;; 
+p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;; 
+
+
+var isValidateFlag = sforce.apex.execute(&quot;CPA_HLERequInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id}); 
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+if( permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_SMT&quot;){ 
+	if(isValidateFlag == &apos;true&apos;){ 
+		if(p.pkl_Status__c == &quot;Returned&quot;){ 
+		p.pkl_Status__c = &quot;Resubmitted&quot;; 
+		result = sforce.connection.update([p]); 
+		location.reload(true); 
+
+		} 
+		else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
+		alert(&quot;HLE Request is already submitted&quot;); 
+		} 
+		else if(p.pkl_Status__c ==&quot;Answered&quot; ){ 
+
+		alert(&quot;HLE Request is already Answered, you cant submit for Approval&quot;); 
+		} 
+		else if(p.pkl_Status__c ==&quot;Cancelled&quot; ){ 
+
+		alert(&quot;HLE Request is Cancelled, you cant submit for Approval&quot;); 
+		} 
+		else if(p.pkl_Status__c ==&quot;Accepted&quot; ){ 
+
+		alert(&quot;HLE Request is Accepted, you cant submit for Approval&quot;); 
+		} 
+		
+		else{ 
+
+		p.pkl_Status__c = &quot;Submitted&quot;;		
+		result = sforce.connection.update([p]); 
+		location.reload(true); 
+		} 
+
+	} 
+	else { 
+	alert(&quot;HLE Request can not be submitted, Due to Required fields are missing&quot;); 
+
+	} 
+} 
+else{ alert(&quot;Insufficient Privilege&quot;); }</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Submit_Estimates</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Submit Estimates</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_HLE_Request__c&apos;); 
+p.id = &quot;{!CPA_HLE_Request__c.Id}&quot;; 
+p.Estimates_Status__c = &quot;{!CPA_HLE_Request__c.Estimates_Status__c }&quot;; 
+p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;; 
+var isValidateFlag = sforce.apex.execute(&quot;CPA_HLERequInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id}); 
+
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(permissionSetName);
+//alert(isValidateFlag);
+if( permissionSetName == &quot;CPA_ADM&quot;){ 
+	if(isValidateFlag == &apos;true&apos;){ 
+		if(p.Estimates_Status__c != &quot;Submitted&quot;){ 
+			p.Estimates_Status__c = &quot;Submitted&quot;; 
+			p.pkl_Status__c = &quot;Answered&quot;;
+			//alert(p.Estimates_Status__c);
+			result = sforce.connection.update([p]); 
+			//alert(result);
+			location.reload(true); 
+		}else {alert(&quot;Estimates are already submitted&quot;); } 
+	}else { 
+	alert(&quot;Estimates can not be submitted, Due to Required fields are missing&quot;); 
+	} 
+} 
+else{ alert(&quot;Insufficient Privilege&quot;); }</url>
+    </webLinks>
     <webLinks>
         <fullName>Submit_For_Unilever</fullName>
         <availability>online</availability>

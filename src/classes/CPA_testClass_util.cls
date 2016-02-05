@@ -47,7 +47,7 @@ public class CPA_testClass_util {
         pworfRec.dt_Expected_start_date__c = system.today() ;
         pworfRec.Expected_Start_Date_for_DBTD_PWO__c = system.today() ;
         pworfRec.Expected_Start_Date_for_Plan_and_Analyse__c = system.today() ;
-        pworfRec.Impact_if_expected_business_go_live_date__c = 'test' ;
+        pworfRec.Impact_if_expected_business_go_live_date__c = ConstantsForContractingAppClasses.TEST ;
         pworfRec.Planning_sessions_expected__c ='Planning sessions expected'  ;
         pworfRec.Project_Dependencies__c ='Project Dependencies'  ;
         pworfRec.Summary_of_requirements_and_deliverables__c ='Summary of requirements and deliverables'  ;
@@ -58,7 +58,7 @@ public class CPA_testClass_util {
         pworfRec.Governance_Risk_and_Compliance__c ='Governance Risk and Compliance'  ;          
         pworfRec.Has_W_R_been_discussed_with_Supplier_Per__c ='Has W@R been discussed with Supplier Per'  ;        
         pworfRec.Interface_to_the_system__c  ='Interface to the system'  ;
-        pworfRec.Interface_to_the_system__c  ='Yes' ;
+        pworfRec.Interface_to_the_system__c  =ConstantsForContractingAppClasses.YES ;
         pworfRec.Interface_to_the_system_Detail__c = 'Interface to the system Detail'  ;
         pworfRec.Is_Project__c  ='Is Project Require Data Specific Testing'  ;    
         pworfRec.Is_Project_Require__c   ='Is Project Require Performance Testing'  ;  
@@ -69,18 +69,18 @@ public class CPA_testClass_util {
         pworfRec.mpkl_Project_Phases__c ='Design; Build; Test; Deploy';
         pworfRec.txt_OtherProjectPhases__c = 'Other Project Phases'  ;            
         pworfRec.pkl_Process_Office_Area_E2E__c='Process Office Area E2E'  ;
-        pworfRec.Is_Project__c  ='Yes' ;
+        pworfRec.Is_Project__c  =ConstantsForContractingAppClasses.YES ;
         pworfRec.Project_Require_Data_Specific_Testing__c ='Project Require Data Specific Testing'  ;                   
-        pworfRec.Is_Project_Require__c  ='Yes' ;
+        pworfRec.Is_Project_Require__c  =ConstantsForContractingAppClasses.YES ;
         pworfRec.txta_Project_Require_Performance_Testing__c  = 'Project Require Performance Testing'  ;     
         pworfRec.pkl_Project_Scale__c  ='Large Project';    
-        pworfRec.Role_or_System_Authorisation__c  ='Yes';
+        pworfRec.Role_or_System_Authorisation__c  =ConstantsForContractingAppClasses.YES;
         pworfRec.txta_Role_or_System_Authorisation_detail__c  ='Role or System Authorisation detail'  ; 
-        pworfRec.pkl_Is_this_Project_Invasive_in_nature__c ='Yes' ;
+        pworfRec.pkl_Is_this_Project_Invasive_in_nature__c =ConstantsForContractingAppClasses.YES ;
         pworfRec.txta_Project_Invasive_in_nature__c = 'Why Project Invasive in nature?'  ;
         pworfRec.Will_this_project_require_an_LOI_for_Wor__c ='Will this project require an LOI for Wor'  ;
 
-        pworfRec.Will_this_project_require_an_LOI_for_Wor__c  = 'Yes';
+        pworfRec.Will_this_project_require_an_LOI_for_Wor__c  = ConstantsForContractingAppClasses.YES;
         pworfRec.How_many_man_days_do_you_think_you_requi__c  = 'Man Days'  ;
         pworfRec.When_do_you_require_the_Work_at_Risk_to__c  =  'When do you require the Work at Risk to'  ;
         pworfRec.txta_Why_is_Work_at_risk_required__c  =  'Why is Work at risk required?'  ;
@@ -109,27 +109,27 @@ public class CPA_testClass_util {
         objRandD.Business_Process_Area_del__c= 'Business Process';
         objRandD.High_Level_Description_del__c = 'High Level Description';
         objRandD.New_or_changed_requirement_del__c = 'Changed';
-        objRandD.Requirement_Type_del__c = 'TEST';
+        objRandD.Requirement_Type_del__c = ConstantsForContractingAppClasses.TEST;
         objRandD.PWORF_Requirement_Deliverables__c = objPWORF.id;
-        objRandD.Name = 'TEST';
+        objRandD.Name = ConstantsForContractingAppClasses.TEST;
         return objRandD;
     }
     
     public static Risk_Assessment_and_Mitigation__c createRiskAssessment (CPA_PWORF__c objPWORF){
         Risk_Assessment_and_Mitigation__c objRAM = new Risk_Assessment_and_Mitigation__c();
-        objRAM.ltxta_Impact__c = 'TEST';
-        objRAM.ltxta_Mitigation_Action__c = 'TEST';
-        objRAM.ltxta_Probability__c = 'test';
+        objRAM.ltxta_Impact__c = ConstantsForContractingAppClasses.TEST;
+        objRAM.ltxta_Mitigation_Action__c = ConstantsForContractingAppClasses.TEST;
+        objRAM.ltxta_Probability__c = ConstantsForContractingAppClasses.TEST;
         objRAM.lkp_PWORF__c = objPWORF.Id;
-        objRAM.ltxta_Risk_description__c = 'Test';
-        objRAM.Name = 'TEST';
+        objRAM.ltxta_Risk_description__c = ConstantsForContractingAppClasses.TEST;
+        objRAM.Name = ConstantsForContractingAppClasses.TEST;
         return objRAM;
     }
 
     public static PWORFKey_Contacts__c CreateKeyContacts(CPA_PWORF__c objPWORF){
         PWORFKey_Contacts__c objKC = new PWORFKey_Contacts__c();
-        objKC.Name = 'Test';
-        objKC.E_mail__c = 'test@test.com';
+        objKC.Name = ConstantsForContractingAppClasses.TEST;
+        objKC.E_mail__c = ConstantsForContractingAppClasses.TEST_EMAIL;
         objKC.Telephone__c = '2371243814';
         objKC.PWORF__c = objPWORF.Id;
         
@@ -170,7 +170,7 @@ public class CPA_testClass_util {
         pworfRec.dt_Expected_start_date__c = system.today() ;
         pworfRec.Expected_Start_Date_for_DBTD_PWO__c = system.today() ;
         pworfRec.Expected_Start_Date_for_Plan_and_Analyse__c = system.today() ;
-        pworfRec.Impact_if_expected_business_go_live_date__c = 'test' ;
+        pworfRec.Impact_if_expected_business_go_live_date__c = ConstantsForContractingAppClasses.TEST ;
         pworfRec.Planning_sessions_expected__c ='Planning sessions expected'  ;
         pworfRec.Project_Dependencies__c ='Project Dependencies'  ;
         pworfRec.Summary_of_requirements_and_deliverables__c ='Summary of requirements and deliverables'  ;
@@ -181,7 +181,7 @@ public class CPA_testClass_util {
         pworfRec.Governance_Risk_and_Compliance__c ='Governance Risk and Compliance'  ;          
         pworfRec.Has_W_R_been_discussed_with_Supplier_Per__c ='Has W@R been discussed with Supplier Per'  ;        
         pworfRec.Interface_to_the_system__c  ='Interface to the system'  ;
-        pworfRec.Interface_to_the_system__c  ='Yes' ;
+        pworfRec.Interface_to_the_system__c  =ConstantsForContractingAppClasses.YES ;
         pworfRec.Interface_to_the_system_Detail__c = 'Interface to the system Detail'  ;
         pworfRec.Is_Project__c  ='Is Project Require Data Specific Testing'  ;    
         pworfRec.Is_Project_Require__c   ='Is Project Require Performance Testing'  ;  
@@ -192,18 +192,18 @@ public class CPA_testClass_util {
         pworfRec.mpkl_Project_Phases__c ='Other (provide free text to enter)';
         pworfRec.txt_OtherProjectPhases__c = 'Other Project Phases'  ;            
         pworfRec.pkl_Process_Office_Area_E2E__c='Process Office Area E2E'  ;
-        pworfRec.Is_Project__c  ='Yes' ;
+        pworfRec.Is_Project__c  =ConstantsForContractingAppClasses.YES ;
         pworfRec.Project_Require_Data_Specific_Testing__c ='Project Require Data Specific Testing'  ;                   
-        pworfRec.Is_Project_Require__c  ='Yes' ;
+        pworfRec.Is_Project_Require__c  =ConstantsForContractingAppClasses.YES ;
         pworfRec.txta_Project_Require_Performance_Testing__c  = 'Project Require Performance Testing'  ;     
         pworfRec.pkl_Project_Scale__c  ='Project Scale';    
-        pworfRec.Role_or_System_Authorisation__c  ='Yes';
+        pworfRec.Role_or_System_Authorisation__c  =ConstantsForContractingAppClasses.YES;
         pworfRec.txta_Role_or_System_Authorisation_detail__c  ='Role or System Authorisation detail'  ; 
-        pworfRec.pkl_Is_this_Project_Invasive_in_nature__c ='Yes' ;
+        pworfRec.pkl_Is_this_Project_Invasive_in_nature__c =ConstantsForContractingAppClasses.YES ;
         pworfRec.txta_Project_Invasive_in_nature__c = 'Why Project Invasive in nature?'  ;
         pworfRec.Will_this_project_require_an_LOI_for_Wor__c ='Will this project require an LOI for Wor'  ;
 
-        pworfRec.Will_this_project_require_an_LOI_for_Wor__c  = 'Yes';
+        pworfRec.Will_this_project_require_an_LOI_for_Wor__c  = ConstantsForContractingAppClasses.YES;
         pworfRec.How_many_man_days_do_you_think_you_requi__c  = 'Man Days'  ;
         pworfRec.When_do_you_require_the_Work_at_Risk_to__c  =  'When do you require the Work at Risk to'  ;
         pworfRec.txta_Why_is_Work_at_risk_required__c  =  'Why is Work at risk required?'  ;
@@ -236,9 +236,9 @@ public class CPA_testClass_util {
         insert objKCs;
         
         
-        objLOI.txt_Accenture_Project_Manager__c = 'TEST';
-        objLOI.Comments__c = 'Test';
-        objLOI.pkl_Currency__c = 'TEST';
+        objLOI.txt_Accenture_Project_Manager__c = ConstantsForContractingAppClasses.TEST;
+        objLOI.Comments__c = ConstantsForContractingAppClasses.TEST;
+        objLOI.pkl_Currency__c = ConstantsForContractingAppClasses.TEST;
         objLOI.num_Expense_charges_of_LOI__c = 2;
         objLOI.num_If_applicable_please_specify_the__c = 4;
         
@@ -247,7 +247,7 @@ public class CPA_testClass_util {
         objLOI.mpkl_Phases_covered_by_WAR__c = 'Design; Build; Test; Deploy';
         objLOI.txt_PWO_number__c = 'PWO00123';
         objLOI.lkp_PWORF__c = objPWORF.Id;
-        objLOI.txt_PWO_title__c = 'TEST';
+        objLOI.txt_PWO_title__c = ConstantsForContractingAppClasses.TEST;
         objLOI.num_Total_value_in_being_requested_for__c = 1;
         objLOI.txt_Unilever_Clarity_ID__c = '21323';
         
@@ -269,11 +269,11 @@ public class CPA_testClass_util {
         insert objKCs;
         
         
-        objPwo.txt_Accenture_Project_Manager__c = 'TEST';
+        objPwo.txt_Accenture_Project_Manager__c = ConstantsForContractingAppClasses.TEST;
         objPwo.num_Authorisation_charges__c = 100;
         objPwo.num_Authorisation_man_days__c = 100;
         objPwo.pkl_Billing_Details__c = 'Unilever Europe';
-        objPwo.Comments__c = 'Test';
+        objPwo.Comments__c = ConstantsForContractingAppClasses.TEST;
         objPwo.Currency__c = 'EUR';
         objPwo.num_Estimated_Man_days_of_PWO__c = 10;
         objPwo.pec_Estimated_Off_shore__c = 1;
@@ -297,7 +297,7 @@ public class CPA_testClass_util {
         objPwo.num_Target_Blend_Rate__c = 1;
         objPwo.num_Total_work_order_charge__c =1;
         objPwo.mpkl_Unilever_Innovation_Area__c = 'HR';
-        objPwo.txt_Unilever_Project_Name__c = 'Test';
+        objPwo.txt_Unilever_Project_Name__c = ConstantsForContractingAppClasses.TEST;
         objPwo.txt_Unilever_Reference__c = 'Uni';
         objPwo.pec_Variance__c =1;
         objPwo.num_Varied_Target_Blend_Rate__c = 1;
@@ -314,11 +314,11 @@ public class CPA_testClass_util {
 
     public static CPA_CR__c createCR(CPA_PWO__c objPWO){
         CPA_CR__c objCR = new CPA_CR__c();
-        objCR.txt_Accenture_Project_Manager__c = 'TEST';
+        objCR.txt_Accenture_Project_Manager__c = ConstantsForContractingAppClasses.TEST;
         objCR.num_Authorisation_charges__c = 1;
         objCR.num_Authorisation_man_days__c =1;
         objCR.mpkl_Change_Record_history__c = '2nd Change';
-        objCR.txt_Change_Record_number__c = 'Test';
+        objCR.txt_Change_Record_number__c = ConstantsForContractingAppClasses.TEST;
         objCR.ltxta_Comments__c = 'Test C';
         objCR.dt_CR_End_date__c = system.Today()+8;
         objCR.dt_CR_Start_Date__c = system.today();
@@ -332,21 +332,21 @@ public class CPA_testClass_util {
         objCR.num_Expense_charges_of_CR__c =1;
         objCR.num_ITC_resources_man_days__c =1;
         objCR.num_On_shore_senior_resources_man_days__c =1;
-        objCR.txt_Other_Phase_change_record_raised__c = 'TEST';
+        objCR.txt_Other_Phase_change_record_raised__c = ConstantsForContractingAppClasses.TEST;
         objCR.txt_Other_Project_Phases__c = 'Other';
         objCR.pkl_Phase_change_record_raised__c = 'PLAN';
-        objCR.txt_Previous_Status_Value__c = 'Test';
-        objCR.pkl_Project_Phases__c = 'Test';
+        objCR.txt_Previous_Status_Value__c = ConstantsForContractingAppClasses.TEST;
+        objCR.pkl_Project_Phases__c = ConstantsForContractingAppClasses.TEST;
         objCR.PWO_ID__c = objPWO.Id;
-        objCR.PWO_number__c = 'TEST';
+        objCR.PWO_number__c = ConstantsForContractingAppClasses.TEST;
         objCR.Region_impacted__c = 'Europe';
         objCR.num_RMS_value__c =1;
         objCR.num_Senior_resources_man_days__c =1;
         objCR.num_Target_Blend_Rate__c =1;
-        objCR.txt_Title_of_change__c ='Test';
+        objCR.txt_Title_of_change__c =ConstantsForContractingAppClasses.TEST;
         objCR.num_Total_charge_of_CR__c = 1;
-        objCR.txta_Unilever_Project_Name__c = 'Test';
-        objCR.txt_Unilever_Reference__c = 'Test';
+        objCR.txta_Unilever_Project_Name__c = ConstantsForContractingAppClasses.TEST;
+        objCR.txt_Unilever_Reference__c = ConstantsForContractingAppClasses.TEST;
         objCR.pec_Variance__c=1;
         objCR.num_Varied_Target_Blend_Rate__c =1;
         
@@ -375,22 +375,22 @@ public class CPA_testClass_util {
         
         
        CPA_TNF__c objTNF = new CPA_TNF__c();
-        objTNF.txt_Accenture_Contact__c = 'TEST';
+        objTNF.txt_Accenture_Contact__c = ConstantsForContractingAppClasses.TEST;
         objTNF.num_Actual_charges__c =1;
         objTNF.txt_Actual_effort_in_days__c =1;
-        objTNF.txt_Approved_by__c = 'TEST';
-        objTNF.txt_Comments__c = 'TEST';
+        objTNF.txt_Approved_by__c = ConstantsForContractingAppClasses.TEST;
+        objTNF.txt_Comments__c = ConstantsForContractingAppClasses.TEST;
         objTNF.pkl_Currency__c = 'INR';
         objTNF.dt_TD_Date_Notified__c = system.Today();
         objTNF.dt_TD_Effective_Date__c = system.Today();
-        objTNF.txt_TD_Notice_Required__c = 'Test';
+        objTNF.txt_TD_Notice_Required__c = ConstantsForContractingAppClasses.TEST;
         objTNF.num_Planned_charges__c =1;
         objTNF.num_Planned_effort_in_days__c=1;
         objTNF.lkp_PWO_ID__c = ObjPWO.Id;
         objTNF.txt_PWO_number__c = '2';
         objTNF.txt_PWO_title__c = 'Title';
-        objTNF.txt_Reason_for_termination__c = 'Test';
-        objTNF.txt_Relocation_of_resources__c = 'Test';
+        objTNF.txt_Reason_for_termination__c = ConstantsForContractingAppClasses.TEST;
+        objTNF.txt_Relocation_of_resources__c = ConstantsForContractingAppClasses.TEST;
         objTNF.pkl_Terminated_by__c = 'Unilever';
         objTNF.txt_TNF_ID__c = '12344';
         objTNF.txt_Unilever_Clarity_ID__c ='122133';
@@ -425,7 +425,7 @@ public class CPA_testClass_util {
         update ObjPWO;
         CPA_CNF__c objCNF = new CPA_CNF__c();
         
-        objCNF.txt_Accenture_Project_Manager__c='Test';
+        objCNF.txt_Accenture_Project_Manager__c=ConstantsForContractingAppClasses.TEST;
         objCNF.num_Actual_Day_rate__c = 1;
         objCNF.num_Actual_expenses__c =1;
         objCNF.num_Actual_fees_inclusive_of_discount__c =1;
@@ -434,8 +434,8 @@ public class CPA_testClass_util {
         objCNF.num_Actual_PMO_tax__c =1;
         objCNF.dt_Actual_PWO_End_Date__c=system.today();
         objCNF.num_Actual_total_charges__c =1;
-        objCNF.Comments__c ='Test';
-        objCNF.txt_CR_number__c = 'Test';
+        objCNF.Comments__c =ConstantsForContractingAppClasses.TEST;
+        objCNF.txt_CR_number__c = ConstantsForContractingAppClasses.TEST;
         objCNF.mpkl_Currency__c = 'EURO';
         objCNF.num_Planned_Day_rate__c =1;
         objCNF.num_Planned_expenses__c =1;
@@ -446,8 +446,8 @@ public class CPA_testClass_util {
         objCNF.dt_Planned_PWO_End_Date__c= system.today();
         objCNF.num_Planned_total_charges__c =1;
         objCNF.PWO_ID__c = ObjPWO.Id;
-        objCNF.txt_PWO_number__c ='Test';
-        objCNF.txt_PWO_title__c = 'TEST';
+        objCNF.txt_PWO_number__c =ConstantsForContractingAppClasses.TEST;
+        objCNF.txt_PWO_title__c = ConstantsForContractingAppClasses.TEST;
         objCNF.lkp_Unilever_budget_approver__c = testUSer.Id;
         objCNF.lkp_Unilever_content_approver__c = testUSer.Id;
         objCNF.num_Variance_number_in_man_days__c=1;
@@ -460,29 +460,29 @@ public class CPA_testClass_util {
     
     public static CPA_HLE_Request__c CreateHLERequest(){
         CPA_HLE_Request__c objHLEREQ = new CPA_HLE_Request__c();
-        objHLEREQ.txt_Background__c  = 'Test';
+        objHLEREQ.txt_Background__c  = ConstantsForContractingAppClasses.TEST;
         objHLEREQ.ph_UBPR_Contact_No__c  ='123';
         objHLEREQ.ph_UIOS_Contact_No__c ='123';
         objHLEREQ.ph_AAL_Contact_No__c  ='123';
         objHLEREQ.dt_Date_raised__c  =system.Today();
-        objHLEREQ.txt_Dependencies__c  ='Test';
-        objHLEREQ.eml_UBPR_Email__c  ='test@test.com';
-        objHLEREQ.eml_UIOS_Email__c  ='test@test.com';
-        objHLEREQ.eml_AAL_Email__c  ='test@test.com';
-        objHLEREQ.txt_UBPR_Name__c = 'test@test.com';
-        objHLEREQ.txt_UIOS_Name__c  ='test@test.com';
-        objHLEREQ.txt_AAL_Name__c  ='test@test.com';
+        objHLEREQ.txt_Dependencies__c  =ConstantsForContractingAppClasses.TEST;
+        objHLEREQ.eml_UBPR_Email__c  =ConstantsForContractingAppClasses.TEST_EMAIL;
+        objHLEREQ.eml_UIOS_Email__c  =ConstantsForContractingAppClasses.TEST_EMAIL;
+        objHLEREQ.eml_AAL_Email__c  =ConstantsForContractingAppClasses.TEST_EMAIL;
+        objHLEREQ.txt_UBPR_Name__c = ConstantsForContractingAppClasses.TEST_EMAIL;
+        objHLEREQ.txt_UIOS_Name__c  =ConstantsForContractingAppClasses.TEST_EMAIL;
+        objHLEREQ.txt_AAL_Name__c  =ConstantsForContractingAppClasses.TEST_EMAIL;
         objHLEREQ.dt_Planned_end_date__c  =system.Today();
         objHLEREQ.dt_Planned_start_date__c  =system.Today();
-        objHLEREQ.txt_Project_description_specification__c  = 'Tes';
-        objHLEREQ.txt_Project_type__c   = 'Tes';
-        objHLEREQ.txt_Request_ID__c  = 'Tes';
-        objHLEREQ.txt_Risks_and_issues__c  = 'Tes';
-        objHLEREQ.txt_Software_Licensing_requirements__c  = 'Tes';
-        objHLEREQ.txt_Support_impact__c  = 'Tes';
-        objHLEREQ.txt_Technologies__c  = 'Tes';
-        objHLEREQ.txt_Title__c  = 'Tes';
-        objHLEREQ.txt_UL_reference__c  = 'Tes';
+        objHLEREQ.txt_Project_description_specification__c  = ConstantsForContractingAppClasses.TEST;
+        objHLEREQ.txt_Project_type__c   = ConstantsForContractingAppClasses.TEST;
+        objHLEREQ.txt_Request_ID__c  = ConstantsForContractingAppClasses.TEST;
+        objHLEREQ.txt_Risks_and_issues__c  = ConstantsForContractingAppClasses.TEST;
+        objHLEREQ.txt_Software_Licensing_requirements__c  = ConstantsForContractingAppClasses.TEST;
+        objHLEREQ.txt_Support_impact__c  = ConstantsForContractingAppClasses.TEST;
+        objHLEREQ.txt_Technologies__c  = ConstantsForContractingAppClasses.TEST;
+        objHLEREQ.txt_Title__c  = ConstantsForContractingAppClasses.TEST;
+        objHLEREQ.txt_UL_reference__c  = ConstantsForContractingAppClasses.TEST;
         
         return objHLEREQ;
         

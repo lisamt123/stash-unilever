@@ -41,7 +41,9 @@ public class CPA_PWORF_TriggerUtil{
      public static void submitforApproval(List<CPA_PWORF__c> oldPWORFList,List<CPA_PWORF__c> newPWORFList)    
     {
        set<Id> setId = new Set<Id>();
-       
+      List<CPA_PWORF__c> WithholdsetId = new List<CPA_PWORF__c>();
+       Approval.ProcessWorkitemRequest[] prWkItemsForApproval = New Approval.ProcessWorkItemRequest[]{};
+       Approval.ProcessSubmitRequest[] reqlist = new Approval.ProcessSubmitRequest[]{};
        for (Integer i = 0; i < newPWORFList.size(); i++) {
             
         if ((oldPWORFList[i].pkl_Status__c  <> 'Submitted' &&   newPWORFList[i].pkl_Status__c == 'Submitted')|| (oldPWORFList[i].pkl_Status__c  <> 'Resubmitted' &&   newPWORFList[i].pkl_Status__c == 'Resubmitted') &&  !isSubmitted) {
@@ -51,17 +53,26 @@ public class CPA_PWORF_TriggerUtil{
             req.setComments('Submitted for approval. Please approve.');
             req.setObjectId(newPWORFList[i].Id);
             // submit the approval request for processing
-            Approval.ProcessResult result = Approval.process(req);
+            //Approval.ProcessResult result = Approval.process(req);
             // display if the reqeust was successful
-
+            reqlist.add(req);
+            system.debug('req--->'+req);
             isSubmitted = true;
         }else if(oldPWORFList[i].pkl_Status__c  <> 'Auto Accepted' &&   newPWORFList[i].pkl_Status__c == 'Auto Accepted'){
                 setId.add(newPWORFList[i].Id);      
+        }else if(oldPWORFList[i].pkl_Status__c  <> 'Withhold' &&   newPWORFList[i].pkl_Status__c == 'Withhold'){
+            WithholdsetId.add(newPWORFList[i]);
         }
  
         }
-        
-        
+        if(!reqlist.isEmpty()){
+             Approval.ProcessResult[] result = Approval.process(reqlist);
+             system.debug('result --->'+result );
+        }
+       if(WithholdsetId !=null && WithholdsetId.size()>0){
+            Approval.unLockResult[] lrList = Approval.unlock(WithholdsetId, false);
+            
+        }
         if(setId != null){
             Approval.ProcessWorkitemRequest[] prWkItems = New Approval.ProcessWorkItemRequest[]{};
             
@@ -151,9 +162,9 @@ public class CPA_PWORF_TriggerUtil{
         String strStatus = newPWORFList[0].pkl_Status__c;
         Date dt1 = Date.today();
         if(strStatus.equalsIgnoreCase('Accepted') || strStatus.equalsIgnoreCase('Auto Accepted'))
-            newPWORFList[0].dt_Date_Of_Acceptance__c = dt1;
+            newPWORFList[0].dat_SLA1_Accepted_Date__c = dt1;
         else if(!strStatus.equalsIgnoreCase('Answered'))
-            newPWORFList[0].dt_Date_Of_Acceptance__c = null;
+            newPWORFList[0].dat_SLA1_Accepted_Date__c = null;
         if(strStatus.equalsIgnoreCase('Submitted')){
             
             newPWORFList[0].dat_Submitted_Date__c =dt1;
@@ -259,8 +270,87 @@ public class CPA_PWORF_TriggerUtil{
         }//Submitted if condition
     }
     
+/**   Method Name : requireApprovalComments
+    * Parameter   : newPWORFList
+    * Return type : None
+    * Author      : Pooja Kanani  
+    * Description : This method make the Approval comments require
+    */
+    public static void requireApprovalComments(List<CPA_PWORF__c> newPWORFList){
+ 
+  // Create a map that stores all the objects that require editing 
+  Map<Id, CPA_PWORF__c> approvalStatements = new Map<Id, CPA_PWORF__c>{};
+
+  for(CPA_PWORF__c inv: newPWORFList)
+  {
+    // Put all objects for update that require a comment check in a map,
+    // so we only have to use 1 SOQL query to do all checks
     
-       
+    if (inv.Approval_Comment_Check__c == 'Required')
+    { 
+      approvalStatements.put(inv.Id, inv);
+      // Reset the field value to null, 
+      // so that the check is not repeated,
+      // next time the object is updated
+      inv.Approval_Comment_Check__c = null; 
+    }
+  }  
+   
+  if (!approvalStatements.isEmpty())  
+  {
+    // If there are some approvals to be reviewed for approval, then
+    // get the most recent process instance for each object.
+    List<Id> processInstanceIds = new List<Id>{};
+    
+    for (CPA_PWORF__c invs : [SELECT (SELECT ID
+                                              FROM ProcessInstances
+                                              ORDER BY CreatedDate DESC
+                                              LIMIT 1)
+                                      FROM CPA_PWORF__c
+                                      WHERE ID IN :approvalStatements.keySet()])
+    {
+        processInstanceIds.add(invs.ProcessInstances[0].Id);
+    }
+      
+    // Now that we have the most recent process instances, we can check
+    // the most recent process steps for comments.  
+    for (ProcessInstance pi : [SELECT TargetObjectId,
+                                   (SELECT Id, StepStatus, Comments 
+                                    FROM Steps
+                                    ORDER BY CreatedDate DESC
+                                    LIMIT 1 )
+                               FROM ProcessInstance
+                               WHERE Id IN :processInstanceIds
+                               ORDER BY CreatedDate DESC])
+    {
+      // If no comment exists, then prevent the object from saving.                 
+      if ((pi.Steps[0].Comments == null || 
+           pi.Steps[0].Comments.trim().length() == 0))
+      {
+        approvalStatements.get(pi.TargetObjectId).addError(
+         'Operation Cancelled: Please provide a reason ' + 
+         'for your approval / rejection / Recall!');
+      }
+    }                                       
+  }
+}    
+
+    /**   Method Name : requireApprovalComments
+    * Parameter   : newPWORFList
+    * Return type : None
+    * Author      : Dinesh Girase  
+    * Description : This method make the Approval comments require
+    */
+    public static void forSearch(List<CPA_PWORF__c> newPWORFList){
+        Integer maxNo=0;
+        List<AggregateResult> maxNum = new List<AggregateResult>();
+        maxNum = [SELECT Max(For_Search_Numeric__c) FROM CPA_PWORF__c];
+        for(AggregateResult maxNumber : maxNum){
+            maxNo = Integer.valueOf(maxNumber.get('expr0') + '');
+            System.debug('maxNum######## : ' + maxNo);
+        }
+        List<CPA_PWORF__c> pworfs = [SELECT For_Search__c FROM CPA_PWORF__c Where Id =: newPWORFList[0].ID];
+    }
    
     
 }

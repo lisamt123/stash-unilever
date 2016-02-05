@@ -7,5 +7,7 @@
     <tab>CPA_HLE_Request__c</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
-    <tab>CAP_Issue_and_Bug__c</tab>
+    <tab>CPA_project_work_order__c</tab>
+    <tab>CPA_LOI__c</tab>
+    <tab>CPA_CR__c</tab>
 </CustomApplication>

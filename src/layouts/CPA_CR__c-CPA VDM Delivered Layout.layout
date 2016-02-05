@@ -34,7 +34,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>PWO_ID__c</field>
+                <field>CPA_Project_Work_Order__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -207,13 +207,13 @@
         <label>Resourcing Details</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>pec_Estimated_On_shore__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>pec_Estimated_Off_shore__c</field>
             </layoutItems>
         </layoutColumns>

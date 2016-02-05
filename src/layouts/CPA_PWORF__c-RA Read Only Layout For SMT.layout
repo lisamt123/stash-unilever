@@ -124,10 +124,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>dt_Date_Of_Acceptance__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>txt_Internal_PWO_ID__c</field>
             </layoutItems>
         </layoutColumns>
@@ -349,11 +345,11 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>txt_PWO_title__c</fields>
         <fields>pkl_Status__c</fields>
-        <fields>pkl_Region__c</fields>
-        <fields>OWNER.FIRST_NAME</fields>
-        <relatedList>CPA_PWO__c.PWORF_ID__c</relatedList>
+        <fields>fml_Clarity_ID__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>CREATEDBY_USER</fields>
+        <relatedList>CPA_project_work_order__c.PWORF_ID__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>

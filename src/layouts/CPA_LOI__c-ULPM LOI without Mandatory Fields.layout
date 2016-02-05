@@ -112,6 +112,10 @@
                 <behavior>Readonly</behavior>
                 <field>pkl_Currency__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txt_Other_Currency__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>

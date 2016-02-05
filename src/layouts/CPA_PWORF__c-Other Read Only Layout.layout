@@ -3,7 +3,6 @@
     <customButtons>Submit_For_VDM</customButtons>
     <customButtons>bnt_Withhold</customButtons>
     <customButtons>btn_Cancel_PWORF</customButtons>
-    <customButtons>Test_Cancel</customButtons>
     <excludeButtons>Delete</excludeButtons>
     <excludeButtons>Share</excludeButtons>
     <excludeButtons>Submit</excludeButtons>
@@ -75,6 +74,10 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>txt_OtherProjectPhases__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>pkl_Pricing_Model__c</field>
             </layoutItems>
             <layoutItems>
@@ -128,10 +131,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_Project_Scale__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_OtherProjectPhases__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -433,17 +432,17 @@
         <label>SLA Breach</label>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>pkl_Breach_Applicable__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>dat_Revised_Submission_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>pkl_Penalty_Applicable__c</field>
             </layoutItems>
             <layoutItems>
@@ -515,11 +514,11 @@
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>txt_PWO_title__c</fields>
         <fields>pkl_Status__c</fields>
-        <fields>pkl_Region__c</fields>
-        <fields>OWNER.FIRST_NAME</fields>
-        <relatedList>CPA_PWO__c.PWORF_ID__c</relatedList>
+        <fields>fml_Clarity_ID__c</fields>
+        <fields>CREATED_DATE</fields>
+        <fields>CREATEDBY_USER</fields>
+        <relatedList>CPA_project_work_order__c.PWORF_ID__c</relatedList>
     </relatedLists>
     <relatedLists>
         <fields>NAME</fields>
