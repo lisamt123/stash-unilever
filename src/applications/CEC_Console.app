@@ -171,6 +171,15 @@
         <location>full</location>
     </listPlacement>
     <listRefreshMethod>refreshListRows</listRefreshMethod>
+    <liveAgentConfig>
+        <enableLiveChat>true</enableLiveChat>
+        <openNewAccountSubtab>false</openNewAccountSubtab>
+        <openNewCaseSubtab>false</openNewCaseSubtab>
+        <openNewContactSubtab>false</openNewContactSubtab>
+        <openNewLeadSubtab>false</openNewLeadSubtab>
+        <openNewVFPageSubtab>false</openNewVFPageSubtab>
+        <showKnowledgeArticles>true</showKnowledgeArticles>
+    </liveAgentConfig>
     <saveUserSessions>true</saveUserSessions>
     <tab>standard-Chatter</tab>
     <tab>standard-Account</tab>
@@ -190,6 +199,7 @@
     <tab>cec_Store__c</tab>
     <tab>User_Default_Setting__c</tab>
     <tab>CEC_ChequeBook_Detail__c</tab>
+    <tab>standard-LiveAgentSupervisor</tab>
     <workspaceMappings>
         <mapping>
             <tab>Article__c</tab>
@@ -241,6 +251,9 @@
         </mapping>
         <mapping>
             <tab>standard-KnowledgePublishing</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-LiveAgentSupervisor</tab>
         </mapping>
         <mapping>
             <tab>standard-report</tab>

@@ -2649,6 +2649,15 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
         <label>Finder-Regional Projects</label>
         <language>en_US</language>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004STR_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TESTINGPROJ2</label>
+        <queue>IPM_a7IE00000004STR</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>FIN-{0000}</displayFormat>
         <label>Name</label>
