@@ -2670,14 +2670,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IPM_FinancialTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_FinancialTriggerHandler_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>IPM_FinancialValueWrapper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3171,14 +3163,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_UserProfileHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -10998,6 +10982,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Skill_Match__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.SourceId</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>

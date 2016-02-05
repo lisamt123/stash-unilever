@@ -2670,14 +2670,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IPM_FinancialTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_FinancialTriggerHandler_Test</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>IPM_FinancialValueWrapper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -3171,14 +3163,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_UserProfileHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler_Test</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -10998,6 +10982,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Case.Skill_Match__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Case.SourceId</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -35100,6 +35089,14 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>CanUseNewDashboardBuilder</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ChatterFileLink</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>ChatterInternalUser</name>
     </userPermissions>
     <userPermissions>
@@ -35112,7 +35109,15 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>CreateCustomizeDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>CreateCustomizeFilters</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>CreateCustomizeReports</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -35124,6 +35129,14 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>EditMyDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>EditMyReports</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>EditTopics</name>
     </userPermissions>
     <userPermissions>
@@ -35132,7 +35145,19 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>ExportReport</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>MassInlineEdit</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>NewReportBuilder</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>RunReports</name>
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
@@ -35141,5 +35166,13 @@
     <userPermissions>
         <enabled>true</enabled>
         <name>ViewHelpLink</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPublicDashboards</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ViewPublicReports</name>
     </userPermissions>
 </Profile>
