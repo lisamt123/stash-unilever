@@ -17,6 +17,10 @@
         <name>Brand__c</name>
     </fields>
     <fields>
+        <label><!-- Company --></label>
+        <name>Company__c</name>
+    </fields>
+    <fields>
         <label>Paese</label>
         <name>Country__c</name>
         <picklistValues>
@@ -171,6 +175,10 @@
             <masterLabel>United States</masterLabel>
             <translation><!-- United States --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Enclosure Code --></label>
+        <name>Enclosure_Code__c</name>
     </fields>
     <fields>
         <label><!-- Enclosure Quantity --></label>

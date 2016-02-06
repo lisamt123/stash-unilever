@@ -63,6 +63,10 @@
                 <behavior>Edit</behavior>
                 <field>CSAT_Social_Percentage__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Default_From_Address__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

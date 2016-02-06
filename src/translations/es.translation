@@ -1033,6 +1033,10 @@
         <name>CEC_Account_Site</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_Address --></label>
+        <name>CEC_Address</name>
+    </customLabels>
+    <customLabels>
         <label><!-- CEC_AlertActionSchedulerName --></label>
         <name>CEC_AlertActionSchedulerName</name>
     </customLabels>
@@ -1185,6 +1189,10 @@
         <name>CEC_Display_Records</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_Distance --></label>
+        <name>CEC_Distance</name>
+    </customLabels>
+    <customLabels>
         <label>Email: debe entrar un valor</label>
         <name>CEC_Email</name>
     </customLabels>
@@ -1233,6 +1241,14 @@
         <name>CEC_Lastname</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_Latitude --></label>
+        <name>CEC_Latitude</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Longitude --></label>
+        <name>CEC_Longitude</name>
+    </customLabels>
+    <customLabels>
         <label>Marketing Opt In</label>
         <name>CEC_Marketing_Opt_in</name>
     </customLabels>
@@ -1247,6 +1263,10 @@
     <customLabels>
         <label>Falta información</label>
         <name>CEC_Missing_Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Name --></label>
+        <name>CEC_Name</name>
     </customLabels>
     <customLabels>
         <label>Error: Incapaz de crear Nuevo Caso</label>
@@ -1277,6 +1297,10 @@
         <name>CEC_OtherDetailsSection</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_PageSize --></label>
+        <name>CEC_PageSize</name>
+    </customLabels>
+    <customLabels>
         <label>Número Caso Inicial</label>
         <name>CEC_ParentCaseNumber</name>
     </customLabels>
@@ -1299,6 +1323,14 @@
     <customLabels>
         <label><!-- CEC_ProductCategory --></label>
         <name>CEC_ProductCategory</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ProductCode --></label>
+        <name>CEC_ProductCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ProductLocator --></label>
+        <name>CEC_ProductLocator</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC_Product_Hierarchy --></label>
@@ -1341,6 +1373,10 @@
         <name>CEC_Specify_Details_in_Missing_Info</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_State --></label>
+        <name>CEC_State</name>
+    </customLabels>
+    <customLabels>
         <label>Status: Error de validación: Valor requerido</label>
         <name>CEC_Status</name>
     </customLabels>
@@ -1371,6 +1407,10 @@
     <customLabels>
         <label><!-- CEC_ValidEmailTemplate --></label>
         <name>CEC_ValidEmailTemplate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_ZipCode --></label>
+        <name>CEC_ZipCode</name>
     </customLabels>
     <customLabels>
         <label>¿Se conoce el formato?</label>
@@ -10588,6 +10628,55 @@
         <sections>
             <label><!-- Unilever Geographies --></label>
             <name>Unilever Geographies</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- CEC Case Product &amp; Product Category --></description>
+        <label><!-- CEC Case Product &amp; Product Category --></label>
+        <name>CEC_Case_Product_Product_Category</name>
+        <sections>
+            <label><!-- Case Products --></label>
+            <name>Case Products</name>
+        </sections>
+        <sections>
+            <columns>
+                <label><!-- Global CPG Code --></label>
+                <name>Global CPG Code</name>
+            </columns>
+            <columns>
+                <label><!-- L0 Product Category  --></label>
+                <name>L0 Product Category </name>
+            </columns>
+            <columns>
+                <label><!-- L1 Product Category --></label>
+                <name>L1 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L2 Product Category --></label>
+                <name>L2 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L3 Product Category --></label>
+                <name>L3 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L4 Product Category --></label>
+                <name>L4 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L5 Product Category --></label>
+                <name>L5 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L6 Product Category --></label>
+                <name>L6 Product Category</name>
+            </columns>
+            <columns>
+                <label><!-- L7 Product Category --></label>
+                <name>L7 Product Category</name>
+            </columns>
+            <label><!-- Product Categories --></label>
+            <name>Product Categories</name>
         </sections>
     </reportTypes>
     <reportTypes>

@@ -494,6 +494,32 @@ ISO Country Dependency Medium Name</description>
         <trackTrending>false</trackTrending>
     </fields>
     <fields>
+        <fullName>Consumer_Email__c</fullName>
+        <description>CEC: This is used in thunderhead email</description>
+        <externalId>false</externalId>
+        <formula>Account.PersonContact.Email</formula>
+        <label>Consumer Email</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Consumer_Note__c</fullName>
+        <description>CEC: Displays images based on if Contact is frequent caller and/or a VIP</description>
+        <externalId>false</externalId>
+        <formula>IF( Account.VIP__c , IMAGE(&apos;/resource/CEC_VIP_icon&apos;,&apos;VIP&apos;,20,20), NULL) &amp;&apos;  &apos;&amp;
+IF( ISPICKVAL(  Account.Known_Consumer__c , &apos;Frequent&apos;), IMAGE(&apos;/resource/CEC_FrequentCustomer_icon&apos;,&apos;Frequent&apos;,20,20), NULL)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Consumer Note</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Consumer_Product_Descriptor_no_size__c</fullName>
         <externalId>false</externalId>
         <formula>CEC_Product__r.Consumer_Product_Descriptor_no_size__c</formula>
@@ -535,15 +561,15 @@ ISO Country Dependency Medium Name</description>
         <label>Country Name</label>
         <picklist>
             <picklistValues>
-                <fullName>None</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Austria</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Belgium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canada</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -599,7 +625,15 @@ ISO Country Dependency Medium Name</description>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>Netherlands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>None</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -630,7 +664,11 @@ ISO Country Dependency Medium Name</description>
                 <fullName>United Kingdom</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
+            <picklistValues>
+                <fullName>United States</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -708,6 +746,21 @@ ISO Country Dependency Medium Name</description>
         <formula>Country__r.DefaultAccountOwnerId__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>DefaultCMMAccountOwner Id</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Default_From_Address__c</fullName>
+        <description>CEC Override From Address filed is populated in following way.
+If &apos;Override From Address&apos;(on Case) is selected then use that
+else if &apos;Default Outbound Email address&apos; on Case Brand Mapping is not null then use that
+else populate &apos;Default From Address&apos; from Case Market Mapping.</description>
+        <externalId>false</externalId>
+        <formula>IF( NOT(ISBLANK(TEXT(Override_From_Address__c))) , TEXT(Override_From_Address__c),  IF(Case_Brand_Mapping__r.Outbound_Email_Address__c != null , Case_Brand_Mapping__r.Outbound_Email_Address__c,  Country__r.Default_From_Address__c ) )</formula>
+        <label>Default From Address</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -847,6 +900,58 @@ ISO Country Dependency Medium Name</description>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Global_Reason_L1_desc__c</fullName>
+        <description>CEC: Global description of the L1 Reason Code, in English</description>
+        <externalId>false</externalId>
+        <formula>Reason_Code__r.Global_Listening_Tree__r.L1_Desc__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Global Reason L1 desc</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Global_Reason_L2_desc__c</fullName>
+        <description>CEC: Global description of the L2 Reason Code, in English</description>
+        <externalId>false</externalId>
+        <formula>Reason_Code__r.Global_Listening_Tree__r.L2_Desc__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Global Reason L2 desc</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Global_Reason_L3_desc__c</fullName>
+        <description>CEC: Global description of the L3 Reason Code, in English</description>
+        <externalId>false</externalId>
+        <formula>Reason_Code__r.Global_Listening_Tree__r.L3_Desc__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Global Reason L3 desc</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Global_Reason_L4_desc__c</fullName>
+        <description>CEC: Global description of the L4 Reason Code, in English</description>
+        <externalId>false</externalId>
+        <formula>Reason_Code__r.Global_Listening_Tree__r.L4_Desc__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Global Reason L4 desc</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1379,6 +1484,10 @@ ISO Country Dependency Medium Name</description>
                 <fullName>Email Sri Lanka</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Email North America</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -1407,6 +1516,45 @@ ISO Country Dependency Medium Name</description>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Override_From_Address__c</fullName>
+        <description>CEC Override From Address is a dependant picklist of email addresses based on the country name picklist</description>
+        <externalId>false</externalId>
+        <label>Override From Address</label>
+        <picklist>
+            <controllingField>Country_Name__c</controllingField>
+            <picklistValues>
+                <fullName>UnileverConsumercare.US@unilever.com</fullName>
+                <controllingFieldValues>United States</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UnileverServicioalConsumidor.MX@unilever.com</fullName>
+                <controllingFieldValues>Mexico</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UnileverServicioalConsumidor.US@unilever.com</fullName>
+                <controllingFieldValues>United States</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UnileverConsumercare.CA@unilever.com</fullName>
+                <controllingFieldValues>Canada</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>UnileverServicesAuxConsommateurs@unilever.com</fullName>
+                <controllingFieldValues>Canada</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>OwnerId</fullName>
@@ -4067,6 +4215,29 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Override_From_Address__c</picklist>
+            <values>
+                <fullName>UnileverConsumercare%2ECA%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UnileverConsumercare%2EUS%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UnileverServicesAuxConsommateurs%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UnileverServicioalConsumidor%2EMX%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UnileverServicioalConsumidor%2EUS%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Priority</picklist>
             <values>
                 <fullName>1 - High</fullName>
@@ -4312,6 +4483,29 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
         </picklistValues>
         <picklistValues>
+            <picklist>Override_From_Address__c</picklist>
+            <values>
+                <fullName>UnileverConsumercare%2ECA%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UnileverConsumercare%2EUS%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UnileverServicesAuxConsommateurs%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UnileverServicioalConsumidor%2EMX%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>UnileverServicioalConsumidor%2EUS%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
             <picklist>Priority</picklist>
             <values>
                 <fullName>1 - High</fullName>
@@ -4518,7 +4712,12 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_UsedProductPreviouslyCheck</fullName>
         <active>true</active>
         <description>CEC - Mandatory check for &apos;Used Product Previously&apos; field.</description>
-        <errorConditionFormula>AND( Case_Market__c = &apos;North America&apos;, ISPICKVAL( Status , &apos;Closed&apos;), CONTAINS( Reason_L1_desc__c , &apos;Complaint&apos;),   ISPICKVAL(Used_Product_Previously__c ,&apos;&apos;) )</errorConditionFormula>
+        <errorConditionFormula>AND( Case_Market__c = &apos;North America&apos;,
+ISPICKVAL( Status , &apos;Closed&apos;),
+$RecordType.Name = &apos;None&apos;,CONTAINS(
+Reason_L1_desc__c , &apos;Complaint&apos;),
+ISPICKVAL(Used_Product_Previously__c ,&apos;&apos;)
+)</errorConditionFormula>
         <errorMessage>&apos;Used Product Previously&apos; field is mandatory for Complaint cases.</errorMessage>
     </validationRules>
     <validationRules>

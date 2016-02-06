@@ -168,6 +168,16 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Default_From_Address__c</fullName>
+        <description>CEC Default_From_Address  filed will have a default value for &apos;From address&apos; while sending email.</description>
+        <externalId>false</externalId>
+        <label>Default From Address</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Language__c</fullName>
         <description>CEC: contains the Language Name which will be used in webtocase scenario by integration team</description>
         <externalId>false</externalId>

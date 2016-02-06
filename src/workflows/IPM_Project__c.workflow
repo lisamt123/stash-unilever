@@ -399,7 +399,7 @@
             <name>IPM_Send_Failure_Phase_Change_Notification</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>ISPICKVAL(IPM_Project_Job_Status__c,&apos;Failed&apos;)</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -420,7 +420,7 @@
     </rules>
     <rules>
         <fullName>IPM Project Archival On Inactive</fullName>
-        <active>true</active>
+        <active>false</active>
         <criteriaItems>
             <field>IPM_Project__c.Is_Archieved__c</field>
             <operation>equals</operation>
@@ -494,7 +494,7 @@
             <name>IPM_Notify_Project_Leader_for_FL_TLD_confirmation</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>IPM Send Email to Project Leader Once Finance Leader acknowledge  TLD change on Financial page</description>
         <formula>AND(ISCHANGED( MisAligned_Confirmed_By_Finance_Leader__c),  MisAligned_Confirmed_By_Finance_Leader__c)</formula>
         <triggerType>onAllChanges</triggerType>
@@ -574,7 +574,7 @@
             <name>IPM_Notify_Finance_Leader_the_TLD_changed</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <description>Notification to Finance Leader for TLD change in Local Rollout Project</description>
         <formula>AND( ISPICKVAL(IPMProject_Span__c, &apos;Local&apos;),  ISPICKVAL(IPM_Project_Type__c, &apos;Rollout&apos;), OR(ISPICKVAL(IPM_Phase__c, &apos;Feasibility&apos;), ISPICKVAL(IPM_Phase__c, &apos;Capability&apos;), ISPICKVAL(IPM_Phase__c, &apos;Market Ready&apos;), ISPICKVAL(IPM_Phase__c, &apos;Market Deployment&apos;)), ISCHANGED( IPM_Target_Launch_Dates__c ) )</formula>
         <triggerType>onAllChanges</triggerType>
@@ -585,7 +585,7 @@
             <name>IPM_Send_Success_Phase_Change_Notification</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
+        <active>false</active>
         <formula>AND(ISPICKVAL(IPM_ProjectJobType__c,&apos;Phase Change&apos;),ISPICKVAL(IPM_Project_Job_Status__c,&apos;Completed&apos;))</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

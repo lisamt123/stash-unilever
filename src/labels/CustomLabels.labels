@@ -1805,6 +1805,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Account Site</value>
     </labels>
     <labels>
+        <fullName>CEC_Address</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Address</shortDescription>
+        <value>Address</value>
+    </labels>
+    <labels>
         <fullName>CEC_AlertActionSchedulerName</fullName>
         <categories>CEC: Label</categories>
         <language>en_US</language>
@@ -2108,6 +2116,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>records are being displayed</value>
     </labels>
     <labels>
+        <fullName>CEC_Distance</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Distance</shortDescription>
+        <value>Distance</value>
+    </labels>
+    <labels>
         <fullName>CEC_Email</fullName>
         <categories>VF page :CEC_NewAccountCase</categories>
         <language>en_US</language>
@@ -2201,6 +2217,22 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Last Name: You must enter a value</value>
     </labels>
     <labels>
+        <fullName>CEC_Latitude</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Latitude</shortDescription>
+        <value>Latitude</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Longitude</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Longitude</shortDescription>
+        <value>Longitude</value>
+    </labels>
+    <labels>
         <fullName>CEC_Marketing_Opt_in</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -2229,6 +2261,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_Missing_Information</shortDescription>
         <value>Missing Information</value>
+    </labels>
+    <labels>
+        <fullName>CEC_Name</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Name</shortDescription>
+        <value>Name</value>
     </labels>
     <labels>
         <fullName>CEC_NewCaseError</fullName>
@@ -2286,6 +2326,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Other Details</value>
     </labels>
     <labels>
+        <fullName>CEC_PageSize</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_PageSize</shortDescription>
+        <value>PageSize</value>
+    </labels>
+    <labels>
         <fullName>CEC_ParentCaseNumber</fullName>
         <categories>CEC: VF Page Global Display</categories>
         <language>en_US</language>
@@ -2332,6 +2380,21 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_ProductCategory</shortDescription>
         <value>Product Category</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ProductCode</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ProductCode</shortDescription>
+        <value>ProductCode</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ProductLocator</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ProductLocator</shortDescription>
+        <value>Product Locator</value>
     </labels>
     <labels>
         <fullName>CEC_Product_Hierarchy</fullName>
@@ -2413,6 +2476,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Please Specify which details are known</value>
     </labels>
     <labels>
+        <fullName>CEC_State</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_State</shortDescription>
+        <value>State</value>
+    </labels>
+    <labels>
         <fullName>CEC_Status</fullName>
         <categories>VF page :CEC_NewAccountCase</categories>
         <language>en_US</language>
@@ -2474,6 +2545,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <protected>false</protected>
         <shortDescription>CEC_ValidEmailTemplate</shortDescription>
         <value>Please enter a valid Email Template Name.</value>
+    </labels>
+    <labels>
+        <fullName>CEC_ZipCode</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_ZipCode</shortDescription>
+        <value>Zip Code</value>
     </labels>
     <labels>
         <fullName>CEC_isFormKnown</fullName>

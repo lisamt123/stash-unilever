@@ -119,6 +119,18 @@
                 <behavior>Required</behavior>
                 <field>Status</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Default_From_Address__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Override_From_Address__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>Consumer_Note__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -145,7 +157,7 @@
                 <field>Case_Brand__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
+                <behavior>Readonly</behavior>
                 <field>Country_Name__c</field>
             </layoutItems>
             <layoutItems>
@@ -155,6 +167,14 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Manual_Retention_Override__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Case_Brand_Mapping__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>PII_Data_Check__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -174,12 +194,7 @@
                 <field>Description</field>
             </layoutItems>
         </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>PII_Data_Check__c</field>
-            </layoutItems>
-        </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
     <layoutSections>
@@ -412,6 +427,9 @@
             <quickActionName>Case.Email</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
+            <quickActionName>Case.ONE_Correspond_Email</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
             <quickActionName>FeedItem.ContentPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
@@ -499,7 +517,28 @@
         <relatedList>Third_Party_Survey__c.Case__c</relatedList>
     </relatedLists>
     <relatedLists>
+        <excludeButtons>New</excludeButtons>
+        <fields>NAME</fields>
+        <fields>Name__c</fields>
+        <fields>Address__c</fields>
+        <fields>City__c</fields>
+        <fields>Distance__c</fields>
+        <fields>Phone__c</fields>
+        <fields>State__c</fields>
+        <fields>Zip_Code__c</fields>
+        <relatedList>CEC_Product_Locator__c.Case__c</relatedList>
+    </relatedLists>
+    <relatedLists>
         <relatedList>RelatedCaseContactRoleList</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <fields>TH1__Draft_name__c</fields>
+        <fields>TH1__Document_Setting__c</fields>
+        <fields>TH1__Primary_Object_Record_Name__c</fields>
+        <fields>TH1__Status__c</fields>
+        <fields>LAST_UPDATE</fields>
+        <relatedList>TH1__Draft__c.Related_Lookup_Case__c</relatedList>
     </relatedLists>
     <relatedLists>
         <relatedList>RelatedEntityHistoryList</relatedList>

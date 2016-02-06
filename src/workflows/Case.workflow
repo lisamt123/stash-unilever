@@ -146,6 +146,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CEC_Set_Case_Status_to_Close</fullName>
+        <description>CEC: This will set Case Status to close.</description>
+        <field>Status</field>
+        <literalValue>Closed</literalValue>
+        <name>CEC Set Case Status to Close</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CEC_UK_CaseOrigin_Field_Update</fullName>
         <description>Update CaseOrigin  to Email</description>
         <field>Origin</field>
@@ -286,6 +296,39 @@
         </criteriaItems>
         <description>CEC : To update the Case Origin field.</description>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC Auto close social cases after 7 days</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Social</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Awaiting Information from Consumer</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Product_Code__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.CEC_Reason_Code__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>CEC :This will automatically close a &apos;social&apos; case after 7 days if no response has been received to the initial response from the CEC so that effective housekeeping of cases is maintained</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>CEC_Set_Case_Status_to_Close</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>Case.LastModifiedDate</offsetFromField>
+            <timeLength>7</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
     </rules>
     <rules>
         <fullName>CEC Close Case Survey</fullName>

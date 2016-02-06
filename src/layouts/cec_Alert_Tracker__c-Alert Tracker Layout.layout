@@ -28,11 +28,11 @@
                 <field>Current_Threshold__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Trigger_Batch__c</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Edit</behavior>
+                <field>Trigger_Batch__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

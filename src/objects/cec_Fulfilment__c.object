@@ -1826,7 +1826,7 @@ caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.Perso
         }
         
         var result =sforce.apex.execute(&quot;CEC_AlertFulfilmentEnclosureHelper&quot;,&quot;populateEnclosureDetails&quot;,{CaseId:caseRecord.Id,CountryName :newFulfilment.Country__c });
-
+         // alert(&apos;my alert===&apos;+result); 
         if (result[0].status == &apos;S&apos;){
             if(result[0].enclosuresList != null)
             {
@@ -1834,30 +1834,30 @@ caseRecord.Account.PersonMailingCity == null &amp;&amp; caseRecord.Account.Perso
                   if(result[0].enclosuresList[0])
                     {
                          newFulfilment.Enclosure1__c=result[0].enclosuresList[0];
-                         newFulfilment.Enclosure1_Quantity__c=1;
+                         //newFulfilment.Enclosure1_Quantity__c=1;
                     }
 
                   if(result[0].enclosuresList[1])
                     {
                          newFulfilment.Enclosure2__c=result[0].enclosuresList[1];
-                         newFulfilment.Enclosure2_Quantity__c=1;
+                         //newFulfilment.Enclosure2_Quantity__c=1;
                     }
 
                   if(result[0].enclosuresList[2])
                     {
                          newFulfilment.Enclosure3__c=result[0].enclosuresList[2];
-                         newFulfilment.Enclosure3_Quantity__c=1;
+                         //newFulfilment.Enclosure3_Quantity__c=1;
                     }
 
                   if(result[0].enclosuresList[3])
                     {
                          newFulfilment.Enclosure4__c=result[0].enclosuresList[3];
-                         newFulfilment.Enclosure4_Quantity__c=1;
+                        // newFulfilment.Enclosure4_Quantity__c=1;
                     }
                   if(result[0].enclosuresList[4])
                     {
                          newFulfilment.Enclosure5__c=result[0].enclosuresList[4];
-                         newFulfilment.Enclosure5_Quantity__c=1;
+                         //newFulfilment.Enclosure5_Quantity__c=1;
                     }
             
             }

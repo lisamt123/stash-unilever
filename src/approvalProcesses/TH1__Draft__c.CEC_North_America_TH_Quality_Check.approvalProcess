@@ -19,7 +19,7 @@
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <entryCriteria>
-            <formula>VALUE(MID(TEXT((CreatedDate - $System.OriginDateTime)),13,2)) &lt; ($User.Letter_Quality_Check_Percentage__c* 100) || VALUE(MID(TEXT((CreatedDate - $System.OriginDateTime)),13,2)) &lt; ($User.Quality_Check_Percentage__c * 100)</formula>
+            <formula>IF( TH1__Document_Setting__r.TH1__Thunderhead_channel_name__c  = &quot;Print&quot;, VALUE(MID(TEXT((CreatedDate - $System.OriginDateTime)),13,2)) &lt; ($User.Letter_Quality_Check_Percentage__c* 100),  IF(( TH1__Document_Setting__r.TH1__Thunderhead_channel_name__c  = &quot;Web&quot; ||  TH1__Document_Setting__r.TH1__Thunderhead_channel_name__c =&quot;HTML&quot;), VALUE(MID(TEXT((CreatedDate - $System.OriginDateTime)),13,2)) &lt; ($User.Quality_Check_Percentage__c * 100), FALSE) )</formula>
         </entryCriteria>
         <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
         <label>Step 1</label>
@@ -45,6 +45,10 @@
             <name>CEC_Thunderhead_Approved_Template</name>
             <type>Task</type>
         </action>
+        <action>
+            <name>CEC_Update_Status</name>
+            <type>FieldUpdate</type>
+        </action>
     </finalApprovalActions>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
@@ -59,6 +63,6 @@
         <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
         <userHierarchyField>Manager</userHierarchyField>
     </nextAutomatedApprover>
-    <recordEditability>AdminOnly</recordEditability>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
     <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>
