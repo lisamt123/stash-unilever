@@ -325,6 +325,118 @@
         </sharedFrom>
     </sharingOwnerRules>
     <sharingOwnerRules>
+        <fullName>Role_Equals_CEC_Global_Head</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Role Equals CEC Global Head</label>
+        <sharedTo>
+            <role>CEC_Global_Head</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Global_Head</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_CEE_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Role Equals CEE - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_CEE</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_CEE</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_Europe_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Role Equals Europe - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_Europe</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_Europe</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_HGS_Europe_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Role Equals HGS Europe - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_HGS_Europe</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_HGS_Europe</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_South_Asia_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Role Equals South Asia - Manager</label>
+        <sharedTo>
+            <role>CEC_Manager_South_Asia</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>CEC_Manager_South_Asia</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_TO_Europe_Manager</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Role Equals TO Europe - Manager</label>
+        <sharedTo>
+            <role>TO_Manager_Europe</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>TO_Manager_Europe</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>Role_Equals_TO_Global_Head</fullName>
+        <accessLevel>Edit</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>None</caseAccessLevel>
+            <contactAccessLevel>Edit</contactAccessLevel>
+            <opportunityAccessLevel>Edit</opportunityAccessLevel>
+        </accountSettings>
+        <label>Role Equals TO Global Head</label>
+        <sharedTo>
+            <role>TO_Global_Head</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>TO_Global_Head</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
         <fullName>Share_Agency_List_Accounts</fullName>
         <accessLevel>Edit</accessLevel>
         <accountSettings>

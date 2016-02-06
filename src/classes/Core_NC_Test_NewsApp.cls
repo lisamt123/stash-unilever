@@ -16,10 +16,11 @@ public class Core_NC_Test_NewsApp{
     
     public static testMethod void TestNewsAppGlobalNews(){
         test.starttest();
+        String strSiteTypeOrName1='News Centre';
         DateTime dt=System.now().addDays(-1);
         News_Article__c news1=new News_Article__c(Name='Test1',News_Article_Topics__c='Innovation',News_Body__c='Test Body1',
-                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.google.com',Site_Name__c='News Centre',
-                                                  Site_Type__c='News Centre',Sub_Title__c='Sub Title1',Summary__c='Test Summary1',Title__c='Title1',
+                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.google.com',Site_Name__c=strSiteTypeOrName1,
+                                                  Site_Type__c=strSiteTypeOrName1,Sub_Title__c='Sub Title1',Summary__c='Test Summary1',Title__c='Title1',
                                                   View_Count__c=10);
         insert news1;
         System.assert(news1!= null);
@@ -67,14 +68,15 @@ public class Core_NC_Test_NewsApp{
     
     public static testMethod void TestNewsAppTrendingNews(){
         test.starttest();
+        String strSiteTypeOrName2='News Centre';
         DateTime dt=System.now().addDays(-1);
         News_Article__c news1=new News_Article__c(Name='Test1',News_Article_Topics__c='Innovation',News_Body__c='Test Body4',
-                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.google.com',Site_Name__c='News Centre',
-                                                  Site_Type__c='News Centre',Sub_Title__c='Sub Title4',Summary__c='Test Summary4',Title__c='Title4',
+                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.yahoo.com',Site_Name__c=strSiteTypeOrName2,
+                                                  Site_Type__c=strSiteTypeOrName2,Sub_Title__c='Sub Title4',Summary__c='Test Summary4',Title__c='Title4',
                                                   View_Count__c=10);
         insert news1;
         News_Article__c news3=new News_Article__c(Name='Test2',News_Article_Topics__c='Marketplace',News_Body__c='Test Body5',
-                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.google.com',Site_Name__c='Finance',
+                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.yahoo.com',Site_Name__c='Finance',
                                                   Site_Type__c='MCO',Sub_Title__c='Sub Title5',Summary__c='Test Summary5',Title__c='Title5',
                                                   View_Count__c=10);
         insert news3;
@@ -112,14 +114,15 @@ public class Core_NC_Test_NewsApp{
     
     public static testMethod void TestNewsAppChatterShare(){
         test.starttest();
+        String strSiteTypeOrName3='News Centre';
         DateTime dt=System.now().addDays(-1);
         News_Article__c news1=new News_Article__c(Name='Test1',News_Article_Topics__c='Leadership',News_Body__c='Test Body6',
-                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.google.com',Site_Name__c='News Centre',
-                                                  Site_Type__c='News Centre',Sub_Title__c='Sub Title6',Summary__c='Test Summary6',Title__c='Title6',
+                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.msn.com',Site_Name__c=strSiteTypeOrName3,
+                                                  Site_Type__c=strSiteTypeOrName3,Sub_Title__c='Sub Title6',Summary__c='Test Summary6',Title__c='Title6',
                                                   View_Count__c=10);
         insert news1;
         News_Article__c news3=new News_Article__c(Name='Test2',News_Article_Topics__c='Marketplace',News_Body__c='Test Body7',
-                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.google.com',Site_Name__c='Finance',
+                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.msn.com',Site_Name__c='Finance',
                                                   Site_Type__c='MCO',Sub_Title__c='Sub Title7',Summary__c='Test Summary7',Title__c='Title7',
                                                   View_Count__c=10);
         insert news3;
@@ -151,10 +154,11 @@ public class Core_NC_Test_NewsApp{
     
     public static testMethod void TestNewsAppNewsFeedController(){
         test.starttest();
+        String strSiteTypeOrName4='News Centre';
         DateTime dt=System.now().addDays(-1);
         News_Article__c news1=new News_Article__c(Name='Test1',News_Article_Topics__c='Our People',News_Body__c='Test Body8',
-                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.google.com',Site_Name__c='News Centre',
-                                                  Site_Type__c='News Centre',Sub_Title__c='Sub Title8',Summary__c='Test Summary8',Title__c='Title8',
+                                                  News_Publish_Date__c=dt,Sharepoint_URL__c='http://www.yahoo.com',Site_Name__c=strSiteTypeOrName4,
+                                                  Site_Type__c=strSiteTypeOrName4,Sub_Title__c='Sub Title8',Summary__c='Test Summary8',Title__c='Title8',
                                                   View_Count__c=10);
         insert news1;
         System.assert(news1!= null);

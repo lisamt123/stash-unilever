@@ -96,6 +96,10 @@
                 <fullName>Email Sri Lanka</fullName>
                 <default>false</default>
             </picklistValues>
+            <picklistValues>
+                <fullName>Email North America</fullName>
+                <default>false</default>
+            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <type>Picklist</type>

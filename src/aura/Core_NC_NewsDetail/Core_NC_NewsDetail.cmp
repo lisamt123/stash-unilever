@@ -178,8 +178,8 @@
                             <!--<iframe src="{!'/apex/NewsArticleFeed_NewsApp?articleid='+v.newsId}" scrolling="false" id="iframe_id" class="fullWidth" height="250px"/>-->
                         </div>
                     </div>
-                    <input type="text"/>
-                    <div onclick="{!c.postChatterInfo}">  POST </div>
+                    <!--<input type="text"/>
+                    <div onclick="{!c.postChatterInfo}">  POST </div>-->
                     <forceChatter:feed type="Record" subjectId="{!v.newsId}"/>
                 </aura:if>
             </div>

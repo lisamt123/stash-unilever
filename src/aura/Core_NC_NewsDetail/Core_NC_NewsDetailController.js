@@ -103,7 +103,7 @@
         selectEvent.setParams({"selectedNewsDetail":newArticleList.RelatedNewsDetail[carouselIndex].NewsId,"NewsType":component.get("v.NewsType") }).fire();
 	},
     navigateToBottomElement : function(cmp,evt) {
-        cmp.find("mydivbottom").getElement().scrollIntoView();
+       // cmp.find("mydivbottom").getElement().scrollIntoView();
     },
     doneRendering: function(cmp, event, helper) {
         //if(!cmp.get("v.isDoneRendering")){

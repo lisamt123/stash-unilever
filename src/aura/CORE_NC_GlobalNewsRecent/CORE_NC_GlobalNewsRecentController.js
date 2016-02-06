@@ -5,7 +5,7 @@
         var selectedNewsType = component.get("v.NewsType");
         console.log(selectedNewsType+'------------0----------------'+component.get("v.filterType"));
         switch (component.get("v.filterType")) {
-            case "showCategories":  selectedFilterType = "Categories and Brands";
+            case "showCategories":  selectedFilterType = "Categories & Brands";
                 					break;
             case "showInnovation":  selectedFilterType = "Innovation";
                 					break;
@@ -15,7 +15,7 @@
                 					break;
             case "showPeople":  selectedFilterType = "Our People";
                 					break;
-            case "showPerformance":  selectedFilterType = "Performance and Strategy";
+            case "showPerformance":  selectedFilterType = "Performance & Strategy";
                 					break;
             case "showSustainable":  selectedFilterType = "Sustainable Living";
                 					break;
