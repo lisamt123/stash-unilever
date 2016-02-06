@@ -3,7 +3,7 @@
  * @date 22/12/2015
  * @description - This Class is used to perform operation on before update event of PWORFTrigger
  */
-public class CPA_PWORF_TriggerUtil{
+public with sharing class CPA_PWORF_TriggerUtil{
     public static boolean isSubmitted=false;
     public static Map<string, SLAConfiguration__c> SLAMap {get;set;}
     //Public static List<string> keyNames {get;set;}
@@ -111,7 +111,7 @@ public class CPA_PWORF_TriggerUtil{
     * Return type : None
     * Description : This method is to insert the VDM_Name__c on PWORF record
     */
-     public static void vDMNameUpdate(List<CPA_PWORF__c> newPWORFList){   
+    /* public static void vDMNameUpdate(List<CPA_PWORF__c> newPWORFList){   
     List<CPA_VDM__c> vdms = [SELECT Id, name FROM CPA_VDM__c];   
 
     for (CPA_PWORF__c  pworf: newPWORFList ){
@@ -120,7 +120,7 @@ public class CPA_PWORF_TriggerUtil{
                 pworf.VDM_Name__c= vdms[0].name;
             }           
         }
-    }
+    }*/
 
 
 /*
