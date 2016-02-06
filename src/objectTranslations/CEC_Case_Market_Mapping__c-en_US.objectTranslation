@@ -51,6 +51,10 @@
         <name>DefaultCaseOwnerId__c</name>
     </fields>
     <fields>
+        <label><!-- Default From Address --></label>
+        <name>Default_From_Address__c</name>
+    </fields>
+    <fields>
         <label><!-- Language --></label>
         <name>Language__c</name>
         <picklistValues>

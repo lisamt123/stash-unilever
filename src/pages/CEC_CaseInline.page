@@ -59,14 +59,18 @@
                 </apex:pageBlockSectionItem>
             </apex:pageBlockSection>
             
-            <apex:pageBlockSection columns="2">
+            <apex:pageBlockSection columns="3">
                 <apex:pageBlockSectionItem >
                     <apex:commandLink value="{!$Label.CEC_Missing_Information}" onclick="callCountryVerbatimValidation();" action="{!toggleMissingInfoDisplay}" reRender="MissingInfoSectionOuter"/>
-                </apex:pageBlockSectionItem>  
+                </apex:pageBlockSectionItem> 
                 <apex:pageBlockSectionItem id="ProductButton">
                     <!--<apex:image value="{!$Resource.CEC_Recommended_Products}" title="Recommended Products" height="25" width="25" onclick="return popitup('/apex/CEC_ProductRange?id={!$CurrentPage.parameters.id}')"/>-->
                     <apex:commandLink value="{!$Label.CEC_RecommendedProducts}" onclick="return popitup('/apex/CEC_ProductRange?id={!$CurrentPage.parameters.id}')"/>
-                </apex:pageBlockSectionItem>   
+                    <apex:outputLabel ></apex:outputLabel>
+                </apex:pageBlockSectionItem> 
+                <apex:pageBlockSectionItem id="ProductLocator">
+                    <apex:commandLink value="{!$Label.CEC_ProductLocator}" onclick="return popitup('/apex/CEC_IRIProductLocator?id={!$CurrentPage.parameters.id}')"/>
+                </apex:pageBlockSectionItem> 
             </apex:pageBlockSection>
 
             

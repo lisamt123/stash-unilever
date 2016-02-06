@@ -1,0 +1,16 @@
+<apex:page controller="CEC_LiveAgentController" action="{!takeSurvey}">
+    <apex:pagemessages />
+    <apex:form >
+        <apex:outputLabel > Thanks for contacting Dove support. We are always here to help you.<br/>
+        To Improve our services, we would like you to take a short survey. It would take 2 minutes.<br/> We appreciate your cooperation. </apex:outputLabel><br/>
+        <apex:outputLabel value="{!chatkey}"/><br/>
+        <apex:outputLabel value="{!caseId}"/>
+        
+        chatkey: <input id="chatkey" name="chatkey" value="{!$CurrentPage.parameters.chatKey}" /><br/>
+        buttonid: <input id="buttonId" name="button_id" value="{!$CurrentPage.parameters.buttonid}" /><br/>
+        session id: <input id="sessionId" name="session_id" value="{!$CurrentPage.parameters.sessionid}" />
+        session id: <input id="sessionId" name="session_id" value="{!$CurrentPage.parameters.deploymentid}" />
+        <apex:commandButton value="Take Survey" action="{!takeSurvey}"/>
+        <apex:detail />
+    </apex:form>
+</apex:page>

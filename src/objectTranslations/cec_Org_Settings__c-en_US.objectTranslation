@@ -34,8 +34,20 @@
         <name>Homecare_Questionnaire_Id__c</name>
     </fields>
     <fields>
+        <label><!-- IRI Client Id --></label>
+        <name>IRI_Client_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- IRI Product Family Id --></label>
+        <name>IRI_Product_Family_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Ingestion Questionnaire Id --></label>
         <name>Ingestion_Questionnaire_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- LiveChatQuestionaireId --></label>
+        <name>LiveChatQuestionaireId__c</name>
     </fields>
     <fields>
         <label><!-- Mulesoft User Id --></label>

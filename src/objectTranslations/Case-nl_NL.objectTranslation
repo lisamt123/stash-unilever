@@ -139,6 +139,14 @@
         <name>Claims_Notes__c</name>
     </fields>
     <fields>
+        <label><!-- Consumer Email --></label>
+        <name>Consumer_Email__c</name>
+    </fields>
+    <fields>
+        <label><!-- Consumer Note --></label>
+        <name>Consumer_Note__c</name>
+    </fields>
+    <fields>
         <label><!-- Consumer Product Descriptor no size --></label>
         <name>Consumer_Product_Descriptor_no_size__c</name>
     </fields>
@@ -152,6 +160,10 @@
         <picklistValues>
             <masterLabel>Belgium</masterLabel>
             <translation><!-- Belgium --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Canada</masterLabel>
+            <translation><!-- Canada --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Czech Republic</masterLabel>
@@ -206,6 +218,10 @@
             <translation><!-- Lithuania --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Mexico</masterLabel>
+            <translation><!-- Mexico --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Netherlands</masterLabel>
             <translation><!-- Netherlands --></translation>
         </picklistValues>
@@ -241,6 +257,10 @@
             <masterLabel>United Kingdom</masterLabel>
             <translation><!-- United Kingdom --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>United States</masterLabel>
+            <translation><!-- United States --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label>Land</label>
@@ -266,6 +286,10 @@
     <fields>
         <label><!-- DefaultCMMAccountOwner Id --></label>
         <name>DefaultCMMAccountOwner_Id__c</name>
+    </fields>
+    <fields>
+        <label><!-- Default From Address --></label>
+        <name>Default_From_Address__c</name>
     </fields>
     <fields>
         <label><!-- Escalated Date --></label>
@@ -306,6 +330,22 @@
     <fields>
         <label><!-- First Response Email Time --></label>
         <name>First_Response_Email_Time__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global Reason L1 desc --></label>
+        <name>Global_Reason_L1_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global Reason L2 desc --></label>
+        <name>Global_Reason_L2_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global Reason L3 desc --></label>
+        <name>Global_Reason_L3_desc__c</name>
+    </fields>
+    <fields>
+        <label><!-- Global Reason L4 desc --></label>
+        <name>Global_Reason_L4_desc__c</name>
     </fields>
     <fields>
         <label><!-- Global Reason L5 desc --></label>
@@ -511,6 +551,10 @@
             <translation><!-- Email Nordic --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email North America</masterLabel>
+            <translation><!-- Email North America --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email Poland</masterLabel>
             <translation><!-- Email Poland --></translation>
         </picklistValues>
@@ -562,6 +606,30 @@
     <fields>
         <label><!-- Out of Hours --></label>
         <name>Out_of_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Override From Address --></label>
+        <name>Override_From_Address__c</name>
+        <picklistValues>
+            <masterLabel>UnileverConsumercare.CA@unilever.com</masterLabel>
+            <translation><!-- UnileverConsumercare.CA@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UnileverConsumercare.US@unilever.com</masterLabel>
+            <translation><!-- UnileverConsumercare.US@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UnileverServicesAuxConsommateurs@unilever.com</masterLabel>
+            <translation><!-- UnileverServicesAuxConsommateurs@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UnileverServicioalConsumidor.MX@unilever.com</masterLabel>
+            <translation><!-- UnileverServicioalConsumidor.MX@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>UnileverServicioalConsumidor.US@unilever.com</masterLabel>
+            <translation><!-- UnileverServicioalConsumidor.US@unilever.com --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <help><!-- Green: No PII Data ; Red: PII Data present in the Description field --></help>
@@ -1098,6 +1166,10 @@
     <quickActions>
         <label><!-- NewChildCase --></label>
         <name>NewChildCase</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Email --></label>
+        <name>ONE_Correspond_Email</name>
     </quickActions>
     <quickActions>
         <label><!-- SendEmail --></label>

@@ -1,0 +1,32 @@
+<apex:page showHeader="false"> 
+    <!-- This script takes the endpoint URL parameter passed from the deployment 
+      page and makes it the action for the form -->
+    <script type="text/javascript">
+    (function() { 
+        function handlePageLoad() {
+            var endpointMatcher = new RegExp("[\\?\\&]endpoint=([^&#]*)");
+            document.getElementById('prechatForm').setAttribute('action',
+            decodeURIComponent(endpointMatcher.exec(document.location.search)[1]));
+        }
+        if (window.addEventListener) {
+            window.addEventListener('load', handlePageLoad, false);
+        } else {
+            window.attachEvent('onload', handlePageLoad, false);
+        }
+    })(); 
+    </script>
+    <h1>Input details</h1>
+    <form method='post' id='prechatForm'>
+        First Name: <input type='text' name='liveagent.prechat:FirstNameDetail' /><br />
+        <input type="hidden" name="liveagent.prechat:caseOrigin" value="Chat" />
+        <input type="hidden" name="liveagent.prechat.findorcreate.map:Case" value="Origin,caseOrigin;Subject,caseSubject;" />
+        <input type="hidden" name="liveagent.prechat.findorcreate.map.doCreate:Case" value="Origin,true;Subject,true;" />
+        <input type="hidden" name="liveagent.prechat.findorcreate.showOnCreate:Case" value="true" />
+        <input type="hidden" name="liveagent.prechat.findorcreate.saveToTranscript:Case" value="Case" />
+        <input type='submit' value='Request Chat' id='prechat_submit'/>  
+        
+        <style type="text/css">
+            p {font-weight: bolder }
+        </style> 
+    </form> 
+</apex:page>

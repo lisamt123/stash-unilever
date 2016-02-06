@@ -80,7 +80,7 @@
     </fieldUpdates>
     <rules>
         <fullName>Auto Deletion Bosscard</fullName>
-        <active>true</active>
+        <active>false</active>
         <description>AUto delete a bosscard after 6 months of no activity</description>
         <formula>TRUE</formula>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
