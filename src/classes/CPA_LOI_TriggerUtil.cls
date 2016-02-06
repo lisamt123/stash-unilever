@@ -15,7 +15,7 @@ public class CPA_LOI_TriggerUtil{
     { 
         List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem ];
         for (Integer i = 0; i < newLOIList.size(); i++) {
-            if((LOIOldList[i].pkl_Status__c  == 'Submitted' || LOIOldList[i].pkl_Status__c  == 'Resubmitted') && (newLOIList[i].pkl_Status__c == 'Cancelled')){
+            if((LOIOldList[i].pkl_Status__c  == ConstantsForContractingAppClasses.SUBMITTED || LOIOldList[i].pkl_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED) && (newLOIList[i].pkl_Status__c == ConstantsForContractingAppClasses.CANCELLED)){
                 for(ProcessInstanceWorkitem piwi:piwiList){
                     if(piwi.ProcessInstance.TargetObjectId == newLOIList[i].id && !isSubmitted ){ 
                         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
@@ -42,7 +42,7 @@ public class CPA_LOI_TriggerUtil{
        
        for (Integer i = 0; i < newLOIList.size(); i++) {
             
-        if ((oldLOIList[i].pkl_Status__c  <> 'Submitted' &&   newLOIList[i].pkl_Status__c == 'Submitted')|| (oldLOIList[i].pkl_Status__c  <> 'Resubmitted' &&   newLOIList[i].pkl_Status__c == 'Resubmitted') &&  !isSubmitted) {
+        if ((oldLOIList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.SUBMITTED &&   newLOIList[i].pkl_Status__c == ConstantsForContractingAppClasses.SUBMITTED)|| (oldLOIList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.RESUBMITTED &&   newLOIList[i].pkl_Status__c == ConstantsForContractingAppClasses.RESUBMITTED) &&  !isSubmitted) {
              
             // create the new approval request to submit
             Approval.ProcessSubmitRequest req = new Approval.ProcessSubmitRequest();
@@ -53,7 +53,7 @@ public class CPA_LOI_TriggerUtil{
             // display if the reqeust was successful
 
             isSubmitted = true;
-        }else if(oldLOIList[i].pkl_Status__c  <> 'Cancelled' &&   newLOIList[i].pkl_Status__c == 'Cancelled'){
+        }else if(oldLOIList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.CANCELLED &&   newLOIList[i].pkl_Status__c == ConstantsForContractingAppClasses.CANCELLED){
                 setPworfId.add(newLOIList[i].lkp_PWORF__c);
         }
  
@@ -196,15 +196,15 @@ public class CPA_LOI_TriggerUtil{
         set<Id> setPWORF = new set<ID>();
         system.debug('newLOI>>>>>>>>'+newLOI);
         for(CPA_LOI__c objNewLOI : newLOI){
-            if(objNewLOI.pkl_Status__c == 'Cancelled'){
+            if(objNewLOI.pkl_Status__c == ConstantsForContractingAppClasses.CANCELLED){
                 system.debug('objNewLOI.pkl_Status__c >>>>>>>>'+objNewLOI.pkl_Status__c );
                 setPWORF.add(objNewLOI.lkp_PWORF__c);
             }
         }
-        system.debug('pooja>>>>>>>>>>'+[select id,pkl_Status__c from CPA_LOI__c where lkp_PWORF__c  IN: setPWORF and pkl_Status__c != 'Cancelled']);
-        for(CPA_LOI__c objLoi : [select id,pkl_Status__c from CPA_LOI__c where lkp_PWORF__c  IN: setPWORF and pkl_Status__c != 'Cancelled']){
+        system.debug('pooja>>>>>>>>>>'+[select id,pkl_Status__c from CPA_LOI__c where lkp_PWORF__c  IN: setPWORF and pkl_Status__c !=: ConstantsForContractingAppClasses.CANCELLED]);
+        for(CPA_LOI__c objLoi : [select id,pkl_Status__c from CPA_LOI__c where lkp_PWORF__c  IN: setPWORF and pkl_Status__c !=: ConstantsForContractingAppClasses.CANCELLED]){
             system.debug('objLoi>>>>>>>>>>'+objLoi);
-                objLoi.pkl_Status__c = 'Cancelled';
+                objLoi.pkl_Status__c = ConstantsForContractingAppClasses.CANCELLED;
                 system.debug('objLoi.pkl_Status__c >>>>>>>>'+objLoi.pkl_Status__c );
                 update objLoi;
             }
@@ -214,7 +214,7 @@ public class CPA_LOI_TriggerUtil{
     * Parameter   : newLOI
     * Return type : None
     * Author      : Dinesh Girase  
-    * Description : This method creates Internal LOI ID, used fro search purpose
+    * Description : This method creates Internal LOI ID, used for search purpose
     */
     public static void internalLIOID(List<CPA_LOI__c> newLOI){
         List<AggregateResult> lstLOI = [SELECT count(ID) newCount FROM CPA_LOI__c];
@@ -236,12 +236,12 @@ public class CPA_LOI_TriggerUtil{
     
     /**   Method Name : getInternalPWOID
     * Parameter   : numSearch
-    * Return type : Strint
+    * Return type : String
     * Author      : Dinesh Girase  
     * Description : This method generates incremental Internal LOI ID
     */
     public static String getInternalPWOID(Integer numSearch){
-        String strPWOID;
+        String strPWOID='';
         integer intIncrementNum = numSearch + 1;
         if(string.valueof(numSearch).length() == 1)
             strPWOID = 'LOI-0000' + string.valueof(intIncrementNum);
