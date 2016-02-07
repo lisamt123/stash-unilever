@@ -37886,6 +37886,10 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
+        <name>ImportCustomObjects</name>
+    </userPermissions>
+    <userPermissions>
+        <enabled>true</enabled>
         <name>ImportLeads</name>
     </userPermissions>
     <userPermissions>
