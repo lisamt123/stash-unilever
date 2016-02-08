@@ -19713,11 +19713,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>IPM_Project__c.existsAtLeastOneAssmntPerEICountry__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>IPM_Project__c.update_on_change_of_ms_first_release_dat__c</field>
         <readable>true</readable>
     </fieldPermissions>
