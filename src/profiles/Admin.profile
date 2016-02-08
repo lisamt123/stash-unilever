@@ -19702,11 +19702,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.Synced_From_EcoDesign_TimeStamp__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.Upcoming_Milestone_Due_Date__c</field>
         <readable>true</readable>
