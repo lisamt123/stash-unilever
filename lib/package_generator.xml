@@ -203,22 +203,21 @@
 			<param name="objdir"  value="fieldSets" />
 			<param name="objflt"  value="*" />
 		</antcall>	
-<!--
+
 		<antcall target="generatePackageMembers2">
 			<param name="objtyp"  value="Flow" />
 			<param name="objext"  value="flow" />
 			<param name="objdir"  value="flows" />
 			<param name="objflt"  value="*" />
 		</antcall>	
-//-->
-<!--
+
 		<antcall target="generatePackageMembers2">
 			<param name="objtyp"  value="FlowDefinition" />
 			<param name="objext"  value="flowDefinition" />
 			<param name="objdir"  value="flowDefinitions" />
 			<param name="objflt"  value="*" />
 		</antcall>	
-//-->
+
 		<antcall target="generatePackageMembers2">
 			<param name="objtyp"  value="Group" />
 			<param name="objext"  value="group" />

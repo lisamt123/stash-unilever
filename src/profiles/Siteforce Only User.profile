@@ -19703,11 +19703,7 @@
         <readable>false</readable>
     </fieldPermissions>
 
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_Project__c.Sync_Members__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.Sync_Project__c</field>
