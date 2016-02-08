@@ -19068,11 +19068,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>IPM_Project__c.EcoDesign_Sync_Eligible_Timestamp__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>IPM_Project__c.EcoDesign_Sync_Error__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -19704,11 +19699,6 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>IPM_Project__c.Sustainability_Period__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
-        <field>IPM_Project__c.Sync_Countries__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -586,11 +586,6 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <field>Sync_Countries__c</field>
-            <table>IPM_Project__c</table>
-        </columns>
-        <columns>
-            <checkedByDefault>false</checkedByDefault>
             <field>Sync_Members__c</field>
             <table>IPM_Project__c</table>
         </columns>

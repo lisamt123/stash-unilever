@@ -19067,11 +19067,7 @@
         <field>IPM_Project__c.Deputy_Project_Leader__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_Project__c.EcoDesign_Sync_Eligible_Timestamp__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.EcoDesign_Sync_Error__c</field>
@@ -19707,11 +19703,7 @@
         <field>IPM_Project__c.Sustainability_Period__c</field>
         <readable>false</readable>
     </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
-        <field>IPM_Project__c.Sync_Countries__c</field>
-        <readable>false</readable>
-    </fieldPermissions>
+
     <fieldPermissions>
         <editable>false</editable>
         <field>IPM_Project__c.Sync_Members__c</field>
