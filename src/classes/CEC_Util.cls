@@ -26,9 +26,7 @@ public class CEC_Util {
                 mail.setToAddresses(toAddresses);
                 mail.setSubject(emailSubject);
                 mail.setHTMLBody(msgString);
-                if (!Test.isRunningTest()) {
-                    Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
-                }
+                Messaging.sendEmail(new Messaging.SingleEmailMessage[]{mail});
             }
         }
     } 
