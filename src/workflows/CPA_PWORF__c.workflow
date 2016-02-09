@@ -782,10 +782,6 @@ null)</formula>
             <name>CPA_PWORF_Resubmitted_SLA1_date</name>
             <type>FieldUpdate</type>
         </actions>
-        <actions>
-            <name>Resubmitted_Action_field_Udate</name>
-            <type>FieldUpdate</type>
-        </actions>
         <active>true</active>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <criteriaItems>
@@ -880,10 +876,6 @@ null)</formula>
         <actions>
             <name>CPA_PWORF_Submitted_Email_Alert</name>
             <type>Alert</type>
-        </actions>
-        <actions>
-            <name>Action_field_Udate</name>
-            <type>FieldUpdate</type>
         </actions>
         <active>true</active>
         <criteriaItems>

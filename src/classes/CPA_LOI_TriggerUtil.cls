@@ -217,20 +217,34 @@ public with sharing class CPA_LOI_TriggerUtil{
     * Description : This method creates Internal LOI ID, used for search purpose
     */
     public static void internalLIOID(List<CPA_LOI__c> newLOI){
+        String newInternalPWOID='';
+        List<AggregateResult> lstPWO = [SELECT count(ID) newCount FROM CPA_project_work_order__c];
+        if(lstPWO[0].get('newCount') != null){
+            Integer maxNo = Integer.valueOf(lstPWO[0].get('newCount') + '');
+            newInternalPWOID = getInternalID(maxNo,'PWO');
+            System.debug('newInternalPWOID  ######## : ' + newInternalPWOID );
+        }
+        
         List<AggregateResult> lstLOI = [SELECT count(ID) newCount FROM CPA_LOI__c];
         if(lstLOI[0].get('newCount') != null){
             Integer maxNo = Integer.valueOf(lstLOI[0].get('newCount') + '');
-            String newInternalPWOID = getInternalPWOID(maxNo);
-            System.debug('newInternalPWOID  ######## : ' + newInternalPWOID );
-            newLOI[0].txt_Internal_LOI_ID__c = newInternalPWOID;
-            System.debug('txt_Internal_LOI_ID__c ######## : ' + newInternalPWOID);
-            List<CPA_PWORF__c> pworfs = [SELECT For_Search__c FROM CPA_PWORF__c Where Id =: newLOI[0].lkp_PWORF__c];
-            if(pworfs[0].For_Search__c != null){
-                String test = pworfs[0].For_Search__c;
-                System.debug('LOI Search ######## : ' + pworfs[0].For_Search__c);
-                pworfs[0].For_Search__c = test + ', ' + newInternalPWOID;
-                update pworfs;
+            String newInternalLOIID = getInternalID(maxNo,'LOI');
+            System.debug('newInternalLOIID  ######## : ' + newInternalLOIID );
+            newLOI[0].txt_Internal_LOI_ID__c = newInternalLOIID;
+            newLOI[0].txt_Internal_PWO_ID__c = newInternalPWOID;
+            System.debug('newInternalPWOID ######## : ' + newInternalPWOID);
+            
+            List<CPA_PWORF__c> pworfs = [SELECT For_Search__c, txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newLOI[0].lkp_PWORF__c];
+            if(pworfs[0].txt_Internal_PWO_ID__c != null){
+                pworfs[0].txt_Internal_PWO_ID__c = newInternalPWOID;
+                if(pworfs[0].For_Search__c != null){
+                    String test = pworfs[0].For_Search__c;
+                    System.debug('LOI Search ######## : ' + pworfs[0].For_Search__c);
+                    pworfs[0].For_Search__c = test + ', ' + newInternalLOIID;
+                    update pworfs;
+                }
             }
+            
         }
     }
     
@@ -240,19 +254,19 @@ public with sharing class CPA_LOI_TriggerUtil{
     * Author      : Dinesh Girase  
     * Description : This method generates incremental Internal LOI ID
     */
-    public static String getInternalPWOID(Integer numSearch){
+    public static String getInternalID(Integer numSearch, String idType){
         String strPWOID='';
         integer intIncrementNum = numSearch + 1;
         if(string.valueof(numSearch).length() == 1)
-            strPWOID = 'LOI-0000' + string.valueof(intIncrementNum);
+            strPWOID = idType + '-0000' + string.valueof(intIncrementNum);
         if(string.valueof(numSearch).length() == 2)
-            strPWOID = 'LOI-000' + string.valueof(intIncrementNum);
+            strPWOID = idType + '-000' + string.valueof(intIncrementNum);
         if(string.valueof(numSearch).length() == 3)
-            strPWOID = 'LOI-00' + string.valueof(intIncrementNum);
+            strPWOID = idType + '-00' + string.valueof(intIncrementNum);
         if(string.valueof(numSearch).length() == 4)
-            strPWOID = 'LOI-0' + string.valueof(intIncrementNum);
+            strPWOID = idType + '-0' + string.valueof(intIncrementNum);
         if(string.valueof(numSearch).length() == 5)
-            strPWOID = 'LOI-' + string.valueof(intIncrementNum);
+            strPWOID = idType + '-' + string.valueof(intIncrementNum);
         return strPWOID;
     }
 }

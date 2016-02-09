@@ -13,11 +13,11 @@ public with sharing class CPA_CR_TriggerUtil{
     */
      public static void recallApproval(List<CPA_CR__c> CROldList,List<CPA_CR__c> newCRList)    
     { 
-        List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem ];
+        List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem];
         for (Integer i = 0; i < newCRList.size(); i++) {
-            if((CROldList[i].pkl_Status__c  == 'Submitted' || CROldList[i].pkl_Status__c  == 'Resubmitted') && (newCRList[i].pkl_Status__c == 'Cancelled')){
-                for(ProcessInstanceWorkitem piwi:piwiList){
-                    if(piwi.ProcessInstance.TargetObjectId == newCRList[i].id && !isSubmitted ){ 
+            if((CROldList[i].pkl_Status__c  == ConstantsForContractingAppClasses.SUBMITTED  || CROldList[i].pkl_Status__c  == 'Resubmitted') && (newCRList[i].pkl_Status__c == 'Cancelled')){
+              for(ProcessInstanceWorkitem piwi:piwiList){
+                    if(!isSubmitted ){ 
                         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
                         req.setComments('Recalling and unlocking request.');
                         req.setAction('Removed');
@@ -39,7 +39,7 @@ public with sharing class CPA_CR_TriggerUtil{
     {
              for (Integer i = 0; i < newCRList.size(); i++) {
             
-        if ((oldCRList[i].pkl_Status__c  <> 'Submitted' &&   newCRList[i].pkl_Status__c == 'Submitted')|| (oldCRList[i].pkl_Status__c  <> 'Resubmitted' &&   newCRList[i].pkl_Status__c == 'Resubmitted') &&  !isSubmitted) {
+        if ((oldCRList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.SUBMITTED &&   newCRList[i].pkl_Status__c == ConstantsForContractingAppClasses.SUBMITTED)|| (oldCRList[i].pkl_Status__c  <> 'Resubmitted' &&   newCRList[i].pkl_Status__c == 'Resubmitted') &&  !isSubmitted) {
              
             // create the new approval request to submit
             Approval.ProcessSubmitRequest req = new Approval.ProcessSubmitRequest();
@@ -219,7 +219,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
     { system.debug('newCR>>>>>>>>>'+newCR);
         List<CPA_CR__c> cancelsetId = new List<CPA_CR__c>();
         for (Integer i = 0; i < newCR.size(); i++) {
-            if((oldCRList[i].pkl_Status__c  == 'Submitted' || oldCRList[i].pkl_Status__c  == 'Resubmitted') && newCR[i].pkl_Status__c == 'Cancelled'){
+            if((oldCRList[i].pkl_Status__c  == ConstantsForContractingAppClasses.SUBMITTED || oldCRList[i].pkl_Status__c  == 'Resubmitted') && newCR[i].pkl_Status__c == 'Cancelled'){
                 cancelsetId.add(newCR[i]);  
             }       
         }
@@ -237,7 +237,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
         map<Id,CPA_Project_Work_Order__c>mapPWO = new map<ID,CPA_Project_Work_Order__c>();
         
         for(CPA_CR__c objCR : newCR.values()){
-            if(objCR.pkl_Status__c =='Submitted' && oldCRList.get(objCR.Id).pkl_Status__c <> 'Submitted'){
+            if(objCR.pkl_Status__c == ConstantsForContractingAppClasses.SUBMITTED && oldCRList.get(objCR.Id).pkl_Status__c <> ConstantsForContractingAppClasses.SUBMITTED){
                 lstCR.add(objCR);
                 if(objCR.chk_isStandalone_CR__c != true) setPWOID.add(objCR.CPA_Project_Work_Order__c);
             }

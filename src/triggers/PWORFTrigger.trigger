@@ -14,7 +14,8 @@ trigger PWORFTrigger on CPA_PWORF__c (before insert, after insert, before update
          //CPA_PWORF_TriggerUtil.updateSLAData(trigger.new);
          CPA_PWORFAgeing.calcualteAgeing(trigger.new); // to set the Ageing Days.
          //Dinesh added below line for search testing, please dont remove this line
-         calculationOfBusinessDaysForSLADates.forSearch(trigger.old,trigger.new);
+         //9/2 - commented because, generating PWO ID either from LIO or PWO
+         //calculationOfBusinessDaysForSLADates.forSearch(trigger.old,trigger.new);
     }
     if(Trigger.isInsert && Trigger.isBefore){ //for before insert trigger
         //CPA_PWORF_TriggerUtil.vDMNameUpdate(trigger.new);//to update the VDM_Name__c on PWORF record

@@ -26,7 +26,7 @@ global  with sharing class CPA_HLERequInformationController {
         if(customSettingStatusMsg.HLE_Request_Status_Msg__c != null  && callFromVF){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.HLE_Request_Status_Msg__c));
         }
-        if((hleRec.pkl_Status__c == 'Saved'  || callFromVF == false)){
+        if((hleRec.pkl_Status__c == 'Saved'  || !callFromVF)){
             if(hleRec.txt_Assumptions__c  == null) 
                  RequiredFieldMap.put('Assumptions',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Background__c  == null) 

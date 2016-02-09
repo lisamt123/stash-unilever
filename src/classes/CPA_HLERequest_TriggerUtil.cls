@@ -17,7 +17,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
     public static void submitforApproval(List<CPA_HLE_Request__c> oldHLEReqList,List<CPA_HLE_Request__c> newHLEReqList){        
         for (Integer i = 0; i < newHLEReqList.size(); i++) {
             
-            if ((oldHLEReqList[i].pkl_Status__c  <> 'Submitted' &&   newHLEReqList[i].pkl_Status__c == 'Submitted')|| (oldHLEReqList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.RESUBMITTED &&   newHLEReqList[i].pkl_Status__c == ConstantsForContractingAppClasses.RESUBMITTED) &&  !isSubmitted) {
+            if ((oldHLEReqList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.SUBMITTED &&   newHLEReqList[i].pkl_Status__c == ConstantsForContractingAppClasses.SUBMITTED)|| (oldHLEReqList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.RESUBMITTED &&   newHLEReqList[i].pkl_Status__c == ConstantsForContractingAppClasses.RESUBMITTED) &&  !isSubmitted) {
                 // create the new approval request to submit
                 Approval.ProcessSubmitRequest req = new Approval.ProcessSubmitRequest();
                 req.setComments('Submitted for approval. Please approve.');
@@ -40,7 +40,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
     { 
         List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem ];
         for (Integer i = 0; i < newHLEReqList.size(); i++) {
-            if((oldHLEReqList[i].pkl_Status__c  == 'Submitted' || oldHLEReqList[i].pkl_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED) && (newHLEReqList[i].pkl_Status__c == 'Cancelled')){
+            if((oldHLEReqList[i].pkl_Status__c  == ConstantsForContractingAppClasses.SUBMITTED || oldHLEReqList[i].pkl_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED) && (newHLEReqList[i].pkl_Status__c == 'Cancelled')){
                 for(ProcessInstanceWorkitem piwi:piwiList){
                     if(piwi.ProcessInstance.TargetObjectId == newHLEReqList[i].id && !isSubmitted ){ 
                         Approval.ProcessWorkitemRequest req = new Approval.ProcessWorkitemRequest();
@@ -64,7 +64,7 @@ public with sharing class CPA_HLERequest_TriggerUtil{
     { 
         List<CPA_HLE_Request__c> cancelsetId = new List<CPA_HLE_Request__c>();
         for (Integer i = 0; i < newHLEReqList.size(); i++) {
-            if((oldHLEReqList[i].pkl_Status__c  == 'Submitted' || oldHLEReqList[i].pkl_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED) && newHLEReqList[i].pkl_Status__c == 'Cancelled'){
+            if((oldHLEReqList[i].pkl_Status__c  == ConstantsForContractingAppClasses.SUBMITTED || oldHLEReqList[i].pkl_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED) && newHLEReqList[i].pkl_Status__c == 'Cancelled'){
                 cancelsetId.add(newHLEReqList[i]);  
             }       
         }
@@ -84,10 +84,10 @@ public with sharing class CPA_HLERequest_TriggerUtil{
         //system.debug('customSettingSLA>' +customSettingSLA );     
         for (Integer i = 0; i < newHLEReqList.size(); i++) {
              //system.debug('oldHLEReqList[i].pkl_Status__c'+oldHLEReqList[i].pkl_Status__c);
-             if (oldHLEReqList[i].pkl_Status__c  <> 'Submitted' &&   newHLEReqList[i].pkl_Status__c == 'Submitted') newHLEReqList[i].dat_Submitted_Date__c = system.today();
+             if (oldHLEReqList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.SUBMITTED &&   newHLEReqList[i].pkl_Status__c == ConstantsForContractingAppClasses.SUBMITTED) newHLEReqList[i].dat_Submitted_Date__c = system.today();
              if (oldHLEReqList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.RESUBMITTED &&   newHLEReqList[i].pkl_Status__c == ConstantsForContractingAppClasses.RESUBMITTED) newHLEReqList[i].dat_Resubmitted_Date__c = system.today();
              if (oldHLEReqList[i].pkl_Status__c  <> 'Accepted' &&   newHLEReqList[i].pkl_Status__c == 'Accepted') newHLEReqList[i].Accepted_Date__c = system.today();
-            if ((oldHLEReqList[i].pkl_Status__c  <> 'Submitted' &&   newHLEReqList[i].pkl_Status__c == 'Submitted')|| (oldHLEReqList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.RESUBMITTED &&   newHLEReqList[i].pkl_Status__c == ConstantsForContractingAppClasses.RESUBMITTED)) {
+            if ((oldHLEReqList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.SUBMITTED &&   newHLEReqList[i].pkl_Status__c == ConstantsForContractingAppClasses.SUBMITTED)|| (oldHLEReqList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.RESUBMITTED &&   newHLEReqList[i].pkl_Status__c == ConstantsForContractingAppClasses.RESUBMITTED)) {
                 if(customSettingSLA.HLE_Request_SLA1__c!= null) newHLEReqList[i].num_SLA1__c = customSettingSLA.HLE_Request_SLA1__c;
                 else newHLEReqList[i].num_SLA1__c = 0;
                 if(customSettingSLA.HLE_Request_SLA2__c!= null) newHLEReqList[i].num_SLA2__c = customSettingSLA.HLE_Request_SLA2__c;
