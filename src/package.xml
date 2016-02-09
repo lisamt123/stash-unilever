@@ -177,6 +177,8 @@
         <members>BET_AccessServiceTest</members>
         <members>BET_ApproveProjectsComponentContrTest</members>
         <members>BET_ApproveProjectsComponentController</members>
+		<members>BET_AssetDispatcherController</members>
+		<members>BET_AssetDispatcherControllerTest</members>
         <members>BET_AssetHandler</members>
         <members>BET_AssetHandlerCls</members>
         <members>BET_AssetHandlerClsTest</members>
@@ -1531,6 +1533,7 @@
 		<members>BET_MultiUploadAssets</members>
 		<members>BET_AssetsOrder</members>
 		<members>BET_SingleAssetUpload</members>
+		<members>BET_AssetDispatcher</members>
         <name>ApexPage</name>
     </types>
     <types>

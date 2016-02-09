@@ -429,7 +429,7 @@
                             <div class="elements" infinite-scroll='nextPage()' infinite-scroll-disabled='scrollDisabled == true'>
                                 <div class="row data-row" ng-repeat="asset in assets" ng-if="assets.length > 0">
                                     <div class="col-xs-4" ng-hide="selectedAssetTab != 'approved'">
-										<a href="{{asset.assetDownloadLink}}">
+										<a target="_blank" href="{{asset.assetDownloadLink}}">
 											<!--<span class="icon icon-document"></span>-->
 											<img src="{{sfConfig.resourceBasePath}}images/download.png" style="padding-left:8px;"/>
 										</a>
