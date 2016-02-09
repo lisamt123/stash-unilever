@@ -3971,6 +3971,87 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004TgA_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_HIJUMP 4BIG_N&amp;R</label>
+        <queue>IPM_a7IE00000004TgA</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004TgF_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_SLICES_LA</label>
+        <queue>IPM_a7IE00000004TgF</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004TgK_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_NEW DELHIW2_SEAA</label>
+        <queue>IPM_a7IE00000004TgK</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004TgP_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PUPOW2_N&amp;R</label>
+        <queue>IPM_a7IE00000004TgP</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004TgU_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PICASSOOLH_LA</label>
+        <queue>IPM_a7IE00000004TgU</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004TgZ_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TAI CHI_SEAA</label>
+        <queue>IPM_a7IE00000004TgZ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004Tge_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_FALCO_NA</label>
+        <queue>IPM_a7IE00000004Tge</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004Tgj_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MILANO 15W2_EU</label>
+        <queue>IPM_a7IE00000004Tgj</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004Ti1_IPM_Project_Document_Section_Content</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004Ti1</label>
+        <queue>IPM_a7IE00000004Ti1</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>SecCon-{0000}</displayFormat>
         <label>Section Content Id</label>
