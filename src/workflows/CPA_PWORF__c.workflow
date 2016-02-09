@@ -249,6 +249,25 @@
         <template>CPA_Email_Template/CPA_PWORF_Withheld_by_SMT</template>
     </alerts>
     <fieldUpdates>
+        <fullName>Accepted_Action_field_Udate</fullName>
+        <description>PWORF is Accepted by Vendor.</description>
+        <field>txt_Action__c</field>
+        <formula>&quot;PWORF is Accepted by Vendor&quot;</formula>
+        <name>Accepted Action field Udate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Action_field_Udate</fullName>
+        <field>txt_Action__c</field>
+        <formula>&quot;PWORF is Submitted successfully and waiting for Vendor&apos;s Approval.&quot;</formula>
+        <name>Action field Udate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Approval_Comment_Requested_for_PWORF</fullName>
         <field>Approval_Comment_Check__c</field>
         <literalValue>Requested</literalValue>
@@ -267,6 +286,16 @@
         <operation>Literal</operation>
         <protected>false</protected>
         <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Auto_Accepted_Action_field_Udate</fullName>
+        <description>PWORF is Auto Accepted.</description>
+        <field>txt_Action__c</field>
+        <formula>&quot;PWORF is Auto Accepted&quot;</formula>
+        <name>Auto Accepted Action field Udate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>CAP_Manually_Accepted</fullName>
@@ -568,12 +597,59 @@ null)</formula>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Cancelled_Action_field_Udate</fullName>
+        <description>PWORF is Cancelled.</description>
+        <field>txt_Action__c</field>
+        <formula>&quot;PWORF is Cancelled&quot;</formula>
+        <name>Cancelled Action field Udate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Resubmitted_Action_field_Udate</fullName>
+        <field>txt_Action__c</field>
+        <formula>&quot;PWORF is Resubmitted successfully and waiting for Vendor&apos;s Approval.&quot;</formula>
+        <name>Resubmitted Action field Udate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Returned_Action_field_Udate</fullName>
+        <description>PWORF is returned to Unilever PM</description>
+        <field>txt_Action__c</field>
+        <formula>&quot;PWORF is returned to Unilever PM&quot;</formula>
+        <name>Returned Action field Udate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Saved_Action_field_Udate</fullName>
+        <field>txt_Action__c</field>
+        <formula>&quot;PWORF is saved successfully and waiting for Unilever PM to submit it to vendor&quot;</formula>
+        <name>Saved Action field Udate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_Status</fullName>
         <field>pkl_Status__c</field>
         <literalValue>Auto Accepted</literalValue>
         <name>Update Status</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Withhold_Action_field_Udate</fullName>
+        <field>txt_Action__c</field>
+        <formula>&quot;PWORF is Withhold.&quot;</formula>
+        <name>Withhold Action field Udate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -606,6 +682,10 @@ null)</formula>
             <type>Alert</type>
         </actions>
         <actions>
+            <name>Accepted_Action_field_Udate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CPA_PWORF_Accepted_Date_Update</name>
             <type>FieldUpdate</type>
         </actions>
@@ -622,6 +702,10 @@ null)</formula>
         <actions>
             <name>CPA_PWORF_Auto_Accepted_Email_Alert</name>
             <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Auto_Accepted_Action_field_Udate</name>
+            <type>FieldUpdate</type>
         </actions>
         <actions>
             <name>CPA_PWORF_Auto_Accepted_Date_Update</name>
@@ -649,6 +733,10 @@ null)</formula>
             <name>CPA_PWORF_Cancelled_Status</name>
             <type>FieldUpdate</type>
         </actions>
+        <actions>
+            <name>Cancelled_Action_field_Udate</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <criteriaItems>
             <field>CPA_PWORF__c.isCancelled__c</field>
@@ -661,6 +749,10 @@ null)</formula>
         <fullName>CPA PWORF Cloned%2FCreated</fullName>
         <actions>
             <name>CPA_Status_Saved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Saved_Action_field_Udate</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
@@ -690,6 +782,10 @@ null)</formula>
             <name>CPA_PWORF_Resubmitted_SLA1_date</name>
             <type>FieldUpdate</type>
         </actions>
+        <actions>
+            <name>Resubmitted_Action_field_Udate</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <criteriaItems>
@@ -716,6 +812,10 @@ null)</formula>
         </actions>
         <actions>
             <name>CPA_PWORF_Returned_Date_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Returned_Action_field_Udate</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
@@ -752,6 +852,10 @@ null)</formula>
             <name>CPA_PWORF_Submitted_dat_Expected_SLA1_Da</name>
             <type>FieldUpdate</type>
         </actions>
+        <actions>
+            <name>Withhold_Action_field_Udate</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <booleanFilter>1 AND 2 AND 3</booleanFilter>
         <criteriaItems>
@@ -777,20 +881,9 @@ null)</formula>
             <name>CPA_PWORF_Submitted_Email_Alert</name>
             <type>Alert</type>
         </actions>
-        <active>true</active>
-        <criteriaItems>
-            <field>CPA_PWORF__c.pkl_Status__c</field>
-            <operation>equals</operation>
-            <value>Submitted</value>
-        </criteriaItems>
-        <description>This workflow will fire after the status for PWORF will be Submitted update the date fields.</description>
-        <triggerType>onCreateOrTriggeringUpdate</triggerType>
-    </rules>
-    <rules>
-        <fullName>CPA PWORF submitted1</fullName>
         <actions>
-            <name>CPA_PWORF_Submitted_Email_Alert</name>
-            <type>Alert</type>
+            <name>Action_field_Udate</name>
+            <type>FieldUpdate</type>
         </actions>
         <active>true</active>
         <criteriaItems>

@@ -3,7 +3,7 @@
  * @date 12/01/2016
  * @description - This Class is used to perform various operations for HLE request
  */
-public class CPA_HLERequest_TriggerUtil{
+public with sharing class CPA_HLERequest_TriggerUtil{
 
     public static boolean isSubmitted = false;
 

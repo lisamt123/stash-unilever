@@ -3,7 +3,7 @@
  * @date 25/01/2016
  * @description - This Class is used to perform operation on event of Termination Requested  Trigger
  */
-public class CPA_Termination_Requested_TriggerUtil{
+public with sharing class CPA_Termination_Requested_TriggerUtil{
     
     public static void updatePwoOnTR(List<CPA_Termination_Requested__c> newTR){
         

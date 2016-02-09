@@ -138,7 +138,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>VDM__c</field>
+                <field>VDM_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

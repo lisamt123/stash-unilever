@@ -1,4 +1,4 @@
-public class CPA_HLERequestInformationController {
+public with sharing class CPA_HLERequestInformationController {
  //Public id hleId; 
  Public id hleReqId;
  //Public CPA_CR__c crRec;

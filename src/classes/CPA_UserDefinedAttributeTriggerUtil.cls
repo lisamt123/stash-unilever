@@ -12,7 +12,7 @@ Purpose:
  1.0      Shreyas Mangalvedhekar        29/12/2015      INITIAL DEVELOPMENT          CSR: 
  ***********************************************************************/
 
-public class CPA_UserDefinedAttributeTriggerUtil {
+public with sharing class CPA_UserDefinedAttributeTriggerUtil {
     
     
     

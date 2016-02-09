@@ -184,6 +184,18 @@
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>fml_PWORF_Clarity_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>lkp_PWORF__r.txt_Clarity_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>PWORF Clarity ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>isValidated__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -403,6 +415,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Action__c</fullName>
+        <description>Action Pending</description>
+        <externalId>false</externalId>
+        <label>Action</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_Internal_LOI_ID__c</fullName>
         <description>this field will store incremental internal LOI ID, used for search purpose</description>
         <externalId>false</externalId>
@@ -531,7 +555,7 @@
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>LOIs</pluralLabel>
+    <pluralLabel>LOI</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>LOI_Cancel</fullName>
@@ -914,7 +938,7 @@ e
         <availability>online</availability>
         <displayType>button</displayType>
         <linkType>javascript</linkType>
-        <masterLabel>Sent for Signature</masterLabel>
+        <masterLabel>Send for Signature</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
@@ -931,7 +955,8 @@ var permissionSetName = records1[0].PermissionSet.Name;
 if( permissionSetName == &quot;CPA_SMT&quot;){ 
 	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
 		p.pkl_Status__c = &quot;Sent for Signature&quot;;	
-		result = sforce.connection.update([p]); 
+		result = sforce.connection.update([p]);
+
 		location.reload(true); 
 	}
 	else if(p.pkl_Status__c == &quot;Sent for Signature&quot;){
@@ -949,7 +974,7 @@ alert(&quot;Insufficient Privilege&quot;);
         <availability>online</availability>
         <displayType>button</displayType>
         <linkType>javascript</linkType>
-        <masterLabel>Signed</masterLabel>
+        <masterLabel>Sign</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 

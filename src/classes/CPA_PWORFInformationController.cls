@@ -1,4 +1,4 @@
-global class CPA_PWORFInformationController {
+global with sharing class CPA_PWORFInformationController {
  Public id pworfId;
  Public CPA_PWORF__c pworfRec;
  Public CPA_PWORF__c pworfRecord;
@@ -31,10 +31,9 @@ global class CPA_PWORFInformationController {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.Status_Message__c));
         }
         if((pworfRec.pkl_Status__c == 'Saved' || pworfRec.pkl_Status__c == 'Withhold')  || callFromVF == false){
-    if(pworfRec.txta_PWO_linked_to_CR__c== null  &&  pworfRec.pkl_Request_Type__c== 'Project Scope Change (CR)')
-                objectMap.put('PWO linked to CR' ,ConstantsForContractingAppClasses.PWOlinkedtoCR);
-            if(pworfRec.VDM__c== null)
-                objectMap.put('Vendor' ,ConstantsForContractingAppClasses.MANDATORY);
+
+            //if(pworfRec.VDM__c== null)
+                //objectMap.put('Vendor' ,ConstantsForContractingAppClasses.MANDATORY);
             if(pworfRec.Business_Case__c == null)
                 objectMap.put('Business Case',ConstantsForContractingAppClasses.MANDATORY);              
             if((pworfRec.In_Scope__c ==null))
@@ -65,14 +64,19 @@ global class CPA_PWORFInformationController {
             }           
             if(pworfRec.pkl_Landscape__c  =='Select' || pworfRec.pkl_Landscape__c  ==null ) 
                 objectMap.put('Landscape',ConstantsForContractingAppClasses.MANDATORY);         
-            if(pworfRec.pkl_Request_Type__c  =='Other' && pworfRec.txta_Other_Request_Type__c  == null )  
-                objectMap.put('Other Request Type','Mandatory, If Other is selected in Request Type.');
             if(pworfRec.pkl_Pricing_Model__c =='Select' || pworfRec.pkl_Pricing_Model__c ==null)  
                 objectMap.put('Pricing Model',ConstantsForContractingAppClasses.MANDATORY);                            
             if(pworfRec.pkl_Region__c  =='Select' || pworfRec.pkl_Region__c  == null)    
                 objectMap.put('Region',ConstantsForContractingAppClasses.MANDATORY);           
+            
             if(pworfRec.pkl_Request_Type__c =='Select' || pworfRec.pkl_Request_Type__c ==null )   
                 objectMap.put('Request Type',ConstantsForContractingAppClasses.MANDATORY);
+            if(pworfRec.pkl_Request_Type__c  =='Other' && pworfRec.txta_Other_Request_Type__c  == null )  
+                objectMap.put('Other Request Type','Mandatory, If Other is selected in Request Type.'); 
+            
+            if(pworfRec.txta_PWO_linked_to_CR__c== null  &&  pworfRec.pkl_Request_Type__c== 'Project Scope Change (CR)')
+                objectMap.put('PWO linked to CR' ,'Mandatory, If Request Type is Project Scope Change (CR).');
+                
             //if(pworfRec.dat_Revised_Submission_Date__c <= date.Today())  
                 //objectMap.put('Revised Submission Date',ConstantsForContractingAppClasses.MANDATORY);
             
@@ -156,7 +160,7 @@ global class CPA_PWORFInformationController {
                 if(pworfRec.pkl_Is_this_Project_Invasive_in_nature__c =='Yes' && pworfRec.txta_Project_Invasive_in_nature__c == null) 
                     objectMap.put('Why Project Invasive in nature?' ,'Mandatory, If Project is Invasive in nature');
                 if(pworfRec.Will_this_project_require_an_LOI_for_Wor__c =='Select' || pworfRec.Will_this_project_require_an_LOI_for_Wor__c ==null)
-                    objectMap.put('Will this project require an LOI for Wor' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Work at Risk required?*' ,ConstantsForContractingAppClasses.MANDATORY);
                 //if(pworfRec.dt_Expected_go_live_date__c <= date.Today()) 
                     //objectMap.put('Expected go-live date', 'Date should be greater than current date');
                 if(pworfRec.Will_this_project_require_an_LOI_for_Wor__c  == 'Yes'){

@@ -1121,7 +1121,7 @@ null)))</formula>
         <trackHistory>false</trackHistory>
         <type>Text</type>
     </nameField>
-    <pluralLabel>HLE Requests</pluralLabel>
+    <pluralLabel>HLE Request</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>A_HLE_Request_Saved</fullName>

@@ -103,7 +103,6 @@
         <externalId>false</externalId>
         <label>PWORF ID</label>
         <referenceTo>CPA_PWORF__c</referenceTo>
-        <relationshipLabel>PWO</relationshipLabel>
         <relationshipName>PWO</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -360,7 +359,6 @@
         <externalId>false</externalId>
         <label>Linked PWOs</label>
         <referenceTo>CPA_PWO__c</referenceTo>
-        <relationshipLabel>PWO</relationshipLabel>
         <relationshipName>child_Linked_PWOs</relationshipName>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -989,7 +987,7 @@
         <type>LongTextArea</type>
         <visibleLines>5</visibleLines>
     </fields>
-    <label>PWO</label>
+    <label>PWO old</label>
     <listViews>
         <fullName>CAP_ULPM_CPA_PWO</fullName>
         <filterScope>Queue</filterScope>
@@ -1023,7 +1021,7 @@
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>PWO</pluralLabel>
+    <pluralLabel>PWO old</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>CPA_PWO_ACCEPT</fullName>

@@ -91,6 +91,34 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Delta__c</fullName>
+        <description>This field created for reporting purpose.</description>
+        <externalId>false</externalId>
+        <label>Delta</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Efforts_MD__c</fullName>
+        <description>This field created for reporting purpose.</description>
+        <externalId>false</externalId>
+        <formula>IF( ISNULL( num_Estimated_Man_days_of_CR__c ) ,   CPA_Project_Work_Order__r.num_Estimated_Man_days_of_PWO__c  , num_Estimated_Man_days_of_CR__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Efforts (MD)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Final_Project_End_Date__c</fullName>
         <description>This report created for reporting purpose.</description>
         <externalId>false</externalId>
@@ -158,6 +186,15 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>chk_isStandalone_CR__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isStandalone CR</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>dat_Accepted_Date__c</fullName>
@@ -261,6 +298,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>fml_Pworf_Clarity_ID__c</fullName>
+        <externalId>false</externalId>
+        <formula>CPA_Project_Work_Order__r.PWORF_ID__r.txt_Clarity_ID__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Pworf Clarity ID</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>isValidated__c</fullName>
@@ -753,11 +802,46 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Action__c</fullName>
+        <externalId>false</externalId>
+        <label>Action</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_Change_Record_number__c</fullName>
         <description>CR ID</description>
         <externalId>false</externalId>
         <label>Change Record Number*</label>
         <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_For_Search__c</fullName>
+        <description>This field is used internally, for search purpose.</description>
+        <externalId>false</externalId>
+        <label>For Search</label>
+        <length>250</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>txt_Internal_CR_ID__c</fullName>
+        <description>This field is to store auto generated internal CR ID. Will be used for searching purpose.</description>
+        <externalId>false</externalId>
+        <label>Internal CR ID</label>
+        <length>10</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -891,12 +975,12 @@
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>CRs</pluralLabel>
+    <pluralLabel>CR</pluralLabel>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
     <recordTypes>
         <fullName>CPA_CR_Cancelled</fullName>
         <active>true</active>
-        <label>CPA CR Cancelled</label>
+        <label>CR Cancelled</label>
         <picklistValues>
             <picklist>Region_impacted__c</picklist>
             <values>
@@ -1067,7 +1151,7 @@
     <recordTypes>
         <fullName>CPA_CR_Other</fullName>
         <active>true</active>
-        <label>CPA CR Other</label>
+        <label>CR Other</label>
         <picklistValues>
             <picklist>Region_impacted__c</picklist>
             <values>
@@ -1238,7 +1322,7 @@
     <recordTypes>
         <fullName>CPA_CR_SIgned</fullName>
         <active>true</active>
-        <label>CPA CR SIgned</label>
+        <label>CR SIgned</label>
         <picklistValues>
             <picklist>Region_impacted__c</picklist>
             <values>
@@ -1409,7 +1493,7 @@
     <recordTypes>
         <fullName>CPA_CR_Submitted</fullName>
         <active>true</active>
-        <label>CPA CR Submitted</label>
+        <label>CR Submitted</label>
         <picklistValues>
             <picklist>Region_impacted__c</picklist>
             <values>
@@ -1580,7 +1664,7 @@
     <recordTypes>
         <fullName>CPA_Standalone_CR</fullName>
         <active>true</active>
-        <label>CPA Standalone CR</label>
+        <label>Standalone CR</label>
         <picklistValues>
             <picklist>Approval_Comment_Check</picklist>
             <values>
@@ -1743,7 +1827,7 @@
             </values>
             <values>
                 <fullName>Saved</fullName>
-                <default>false</default>
+                <default>true</default>
             </values>
             <values>
                 <fullName>Sent for Signature</fullName>
@@ -1764,22 +1848,17 @@
     <validationRules>
         <fullName>CPA_CR_Cant_be_created</fullName>
         <active>true</active>
-        <errorConditionFormula>OR( 
+        <errorConditionFormula>AND( ISNEW() ,RecordType.DeveloperName !=&apos;CPA_Standalone_CR&apos; ,OR( 
 
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Cancelled&quot;), 
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent for Signature&quot;), 
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Signed&quot;), 
-ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Delivered&quot;), 
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Terminated&quot;), 
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent For Termination&quot;), 
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Closed&quot;),
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Request For Termination&quot;),
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent For Closure&quot;),
-ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Saved&quot;)
-
-
-
-)</errorConditionFormula>
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Saved&quot;)))</errorConditionFormula>
         <errorMessage>CR cant be created, because PWO is in process of Closer/Termination/Cancellation/ Not Accepted by Supply Management Team</errorMessage>
     </validationRules>
     <validationRules>
@@ -1795,7 +1874,7 @@ ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Saved&quot;)
         <availability>online</availability>
         <displayType>button</displayType>
         <linkType>javascript</linkType>
-        <masterLabel>Delivered</masterLabel>
+        <masterLabel>Deliver</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
@@ -1854,40 +1933,49 @@ alert(&quot;CR can not be Delivered, Contact Administrator&quot;);
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
 {!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)}
 
-
 var p = new sforce.SObject(&apos;CPA_CR__c&apos;); 
 p.id = &quot;{!CPA_CR__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_CR__c.pkl_Status__c }&quot;; 
 p.isValidated__c = &quot;{!CPA_CR__c.isValidated__c }&quot;; 
 
-var isValidateFlag = sforce.apex.execute(&quot;CPA_CRInformationController&quot;,&quot;checkIsValidated&quot;,{crId:p.id});
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
 
+//alert(p.pkl_Status__c); 
+if(permissionSetName == &quot;CPA_ADM&quot;){ 
+	var isValidateFlag = sforce.apex.execute(&quot;CPA_CRInformationController&quot;,&quot;checkIsValidated&quot;,{crId:p.id});
+	//if(p.isValidated__c == &quot;1&quot; ){ 
+	if(isValidateFlag == &apos;true&apos;){ 
+		if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
+			p.pkl_Status__c = &quot;Resubmitted&quot;; 
+			result = sforce.connection.update([p]); 
+			location.reload(true); 
 
-//if(p.isValidated__c == &quot;1&quot; ){ 
-if(isValidateFlag == &apos;true&apos;){ 
-	if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
-		p.pkl_Status__c = &quot;Resubmitted&quot;; 
-		result = sforce.connection.update([p]); 
-		location.reload(true); 
-
+		} 
+		else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
+			alert(&quot;CR is already submitted&quot;); 
+		} 
+		else if(p.pkl_Status__c ==&quot;Accepted&quot; ){ 
+			alert(&quot;CR is already Accepted, you cant submit for Approval&quot;); 
+		}
+		else if(p.pkl_Status__c ==&quot;Sent for Signature&quot; || p.pkl_Status__c == &quot;Signed&quot; || p.pkl_Status__c == &quot;Delivered&quot;){
+			alert(&quot;CR cant be submitted for Approval as it is Accepted and moved for further processing&quot;); 
+		}
+		else{ 
+			p.pkl_Status__c = &quot;Submitted&quot;; 
+			result = sforce.connection.update([p]); 
+	alert(result);
+			location.reload(true); 
+		} 
 	} 
-	else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
-		alert(&quot;CR is already submitted&quot;); 
-	} 
-	else if(p.pkl_Status__c ==&quot;Accepted&quot; ){ 
-		alert(&quot;CR is already Accepted, you cant submit for Approval&quot;); 
+	else { 
+		alert(&quot;CR can not be submitted, Due to Required fields are missing&quot;); 
 	}
-	else if(p.pkl_Status__c ==&quot;Sent for Signature&quot; || p.pkl_Status__c == &quot;Signed&quot; || p.pkl_Status__c == &quot;Delivered&quot;){
-		alert(&quot;CR cant be submitted for Approval as it is Accepted and moved for further processing&quot;); 
-	}
-	else{ 
-		p.pkl_Status__c = &quot;Submitted&quot;; 
-		result = sforce.connection.update([p]); 
-		location.reload(true); 
-	} 
-} 
-else { 
-	alert(&quot;CR can not be submitted, Due to Required fields are missing&quot;); 
+}else{
+	alert(&quot;Insufficient Privilege&quot;);
 }</url>
     </webLinks>
     <webLinks>
@@ -1976,7 +2064,7 @@ e
         <availability>online</availability>
         <displayType>button</displayType>
         <linkType>javascript</linkType>
-        <masterLabel>Sent for Signature</masterLabel>
+        <masterLabel>Send for Signature</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
@@ -1996,6 +2084,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
 		p.pkl_Status__c = &quot;Sent for Signature&quot;;	
 		result = sforce.connection.update([p]); 
+alert(result);
 		location.reload(true); 
 	}
 	else if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
@@ -2013,7 +2102,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
         <availability>online</availability>
         <displayType>button</displayType>
         <linkType>javascript</linkType>
-        <masterLabel>Signed</masterLabel>
+        <masterLabel>Sign</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 

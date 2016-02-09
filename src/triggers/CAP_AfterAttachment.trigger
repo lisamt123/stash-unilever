@@ -7,20 +7,23 @@ trigger CAP_AfterAttachment on Attachment (after insert, before delete) {
         
         for(Attachment objAttachemt : trigger.new){
             string srtTemp = objAttachemt.ParentId;
-            if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger)){
+          /*  if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger)){
                 lstAttachment.add(objAttachemt);
                 setParentId.add(objAttachemt.ParentId);
                 
-            }
+            }*/
             if(objAttachemt.Name.startswith('Commercial') &&(srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger) || srtTemp.startswith(label.CAP_ParentId_For_Attachment_CR)) ){
                     lstAttachmentRead.add(objAttachemt);
+                    lstAttachment.add(objAttachemt);
+                    setParentId.add(objAttachemt.ParentId);
             }
             
         }
+        CPA_AttchemntUnit.ReadFile(lstAttachmentRead);
         CPA_AttchemntUnit.updateCPAPWO(lstAttachment,setParentId);
         
         
-        CPA_AttchemntUnit.ReadFile(lstAttachmentRead);
+        
     }
     if(trigger.isbefore && trigger.isdelete){
         List<Attachment> lstAttachmentRead = new List<Attachment>();

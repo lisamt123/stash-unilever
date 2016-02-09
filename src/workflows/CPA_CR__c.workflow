@@ -201,6 +201,15 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_CR_Standalone_CR</fullName>
+        <field>chk_isStandalone_CR__c</field>
+        <literalValue>1</literalValue>
+        <name>CPA CR Standalone CR</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_CR_Status_update_to_Return</fullName>
         <field>pkl_Status__c</field>
         <literalValue>Returned</literalValue>
@@ -354,6 +363,20 @@
             <value>Signed</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA CR Standalone CR</fullName>
+        <actions>
+            <name>CPA_CR_Standalone_CR</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_CR__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>CPA Standalone CR</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
     </rules>
     <rules>
         <fullName>CPA Delivered%2CCancel</fullName>

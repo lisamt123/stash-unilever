@@ -229,7 +229,7 @@
     <fieldUpdates>
         <fullName>CPA_BPE_Cancelled</fullName>
         <field>RecordTypeId</field>
-        <lookupValue>HLE_Cancelled</lookupValue>
+        <lookupValue>BPE_Cancelled</lookupValue>
         <lookupValueType>RecordType</lookupValueType>
         <name>CPA BPE Cancelled</name>
         <notifyAssignee>false</notifyAssignee>

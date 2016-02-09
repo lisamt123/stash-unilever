@@ -291,8 +291,8 @@
     <fieldUpdates>
         <fullName>CPA_Project_Work_order_Owner_update</fullName>
         <field>OwnerId</field>
-        <lookupValue>cpa.smt@mindtree.com</lookupValue>
-        <lookupValueType>User</lookupValueType>
+        <lookupValue>CPA_SMT</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
         <name>CPA Project Work order Owner update</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>LookupValue</operation>
@@ -462,6 +462,24 @@
         <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_is_CNF_cancelled</fullName>
+        <field>chk_isCNFcancelled__c</field>
+        <literalValue>0</literalValue>
+        <name>CPA is CNF cancelled</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_is_TNF_cancelled</fullName>
+        <field>chk_isTNFcancelled__c</field>
+        <literalValue>0</literalValue>
+        <name>CPA is TNF cancelled</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
     <rules>
         <fullName>Approval Comment Flag for Contracts</fullName>
         <actions>
@@ -486,11 +504,15 @@
             <name>CPA_Record_type_CPA_PWO_Delivered</name>
             <type>FieldUpdate</type>
         </actions>
+        <actions>
+            <name>CPA_is_CNF_cancelled</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <criteriaItems>
-            <field>CPA_project_work_order__c.CNF_Status__c</field>
+            <field>CPA_project_work_order__c.chk_isCNFcancelled__c</field>
             <operation>equals</operation>
-            <value>Cancelled</value>
+            <value>True</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -718,7 +740,7 @@
         <criteriaItems>
             <field>CPA_project_work_order__c.pkl_Status__c</field>
             <operation>equals</operation>
-            <value>Submitted,Resubmitted,Accepted,Sent for Signature</value>
+            <value>Accepted,Sent for Signature</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>
@@ -802,11 +824,15 @@
             <name>CPA_Record_type_CPA_PWO_Signed</name>
             <type>FieldUpdate</type>
         </actions>
+        <actions>
+            <name>CPA_is_TNF_cancelled</name>
+            <type>FieldUpdate</type>
+        </actions>
         <active>true</active>
         <criteriaItems>
-            <field>CPA_project_work_order__c.TNF_Status__c</field>
+            <field>CPA_project_work_order__c.chk_isTNFcancelled__c</field>
             <operation>equals</operation>
-            <value>Cancelled</value>
+            <value>True</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

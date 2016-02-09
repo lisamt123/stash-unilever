@@ -27,10 +27,11 @@ public class CPA_AttchemntUnit {
         
         for(Attachment objAttachment:lstAttachment){
             
-            if(objAttachment.ContentType.contains('spreadsheet') & objAttachment.ContentType.contains('ms-excel'))
+            if(objAttachment.ContentType.contains('spreadsheet') && objAttachment.ContentType.contains('ms-excel'))
             {
                 mapAttachmentType.put(objAttachment.id,'spreadsheet');
             }else if(objAttachment.ContentType.contains('pdf')){
+                system.debug('objAttachment-->'+objAttachment);
                 mapAttachmentType.put(objAttachment.id,'pdf');
             }else {
                 mapAttachmentType.put(objAttachment.id,'unkonwn');
@@ -55,8 +56,8 @@ public class CPA_AttchemntUnit {
         // Variable declaration section 
         map<id,string> mapAttachmentType = findAttachmentType(lstAttachment);
         map<Id,list<Attachment>> mapAttachmentIDPWOID = new map<Id,list<Attachment>>();
-        set<CPA_PWO__c> lstUpdatePWO = new set<CPA_PWO__c>();
-        map<Id,CPA_PWO__c> mapPwo = new map<Id,CPA_PWO__c>();
+        set<CPA_project_work_order__c> lstUpdatePWO = new set<CPA_project_work_order__c>();
+        map<Id,CPA_project_work_order__c> mapPwo = new map<Id,CPA_project_work_order__c>();
         // Variable declaration section 
         
         for(Id objID : setParentId){
@@ -69,10 +70,11 @@ public class CPA_AttchemntUnit {
             mapAttachmentIDPWOID.put(objID,lstTempd);
         }
        
-        for(CPA_PWO__c objPWO :[Select Id,chk_Excel_Attached__c,chk_PDF_Attached__c from CPA_PWO__c where ID IN:setParentId]){
+        for(CPA_project_work_order__c objPWO :[Select Id,chk_Excel_Attached__c,chk_PDF_Attached__c from CPA_project_work_order__c where ID IN:setParentId]){
             
-            if((objPWO.chk_Excel_Attached__c != true &  objPWO.chk_PDF_Attached__c!= true) && mapAttachmentIDPWOID.get(objPWO.ID)!= null){
+            if((objPWO.chk_Excel_Attached__c != true ||  objPWO.chk_PDF_Attached__c!= true) && mapAttachmentIDPWOID.get(objPWO.ID)!= null){
                 for(Attachment objAttachment:mapAttachmentIDPWOID.get(objPWO.Id)){
+                    system.debug('TEST-->'+mapAttachmentType.get(objAttachment.id));
                     if(mapAttachmentType.get(objAttachment.id) == 'spreadsheet'){
                         objPWO.chk_Excel_Attached__c = true;
                             mapPwo.put(objPWO.id,objPWO);
@@ -80,7 +82,9 @@ public class CPA_AttchemntUnit {
                                             
                     }
                     if(mapAttachmentType.get(objAttachment.id) == 'pdf'){
+                        system.debug('objAttachment--->'+objAttachment);
                         objPWO.chk_PDF_Attached__c =true;
+                        system.debug('objpwo --> '+ objPWO);
                         mapPwo.put(objPWO.id,objPWO);                       
                         
                     }
@@ -123,6 +127,9 @@ public class CPA_AttchemntUnit {
     public static void ReadFile(List<Attachment> lstatt)    {
 
         for(Attachment att : lstatt){
+            if(att.ContentType.contains('ms-excel')){
+                
+            
             string nameFile;
             String[] filelines = new String[]{};
             List<CPA_Commercial_Details__c> PWOupload;
@@ -213,7 +220,7 @@ public class CPA_AttchemntUnit {
                     }               
                 }
                 
-                List<CPA_project_work_order__c>lstPWO = [Select ID,num_Expense_charges_of_work_order__c,Name,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_Authorisation_man_days__c from CPA_project_work_order__c where ID IN :setPWOID];
+                List<CPA_project_work_order__c>lstPWO = [Select ID,num_Expense_charges_of_work_order__c,pec_Expense__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,Name,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_Authorisation_man_days__c from CPA_project_work_order__c where ID IN :setPWOID];
                 List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c  from CPA_CR__c where ID IN:  setCRID];
                 if(lstPWO !=null && setPWOID !=null){
                     for(CPA_project_work_order__c objPWO : lstPWO){
@@ -241,10 +248,21 @@ public class CPA_AttchemntUnit {
                         Decimal  intOther = 0;
                         Decimal  intCostResource = 0;
                         Decimal  intTotalcost = 0;
+                        Decimal  intoffshower = 0;
+                        Decimal  intOnshower = 0;
+                        Decimal  intNoOfResources = 0;
                         for(CPA_Commercial_Details__c objCOm : mapPWOComDetai.get(objPWO.id)){
                             if(objCOm.txt_Entity_Name__c=='Resource' || objCOm.num_Entity_Type__c ==1 ){
                                 intTotalmandays = intTotalmandays + objCOm.num_Efforts__c;
                                 intCostResource = intCostResource + (objCOm.num_Efforts__c * objCOm.num_Rate__c );
+                                intNoOfResources = intNoOfResources+1;
+                                string strLocation = objCOm.txt_Location__c.trim();
+                                strLocation = strLocation.toUpperCase();
+                                if(strLocation == 'INDIA' || strLocation == 'PHILIPPINES'){
+                                    intoffshower = intoffshower + 1;
+                                }else {
+                                    intOnshower = intOnshower + 1;
+                                }
                                 
                             }
                             if(objCOm.txt_Entity_Name__c=='Indicative Expenses' || objCOm.num_Entity_Type__c ==2){
@@ -273,6 +291,7 @@ public class CPA_AttchemntUnit {
                                 intOther = intOther +  objCOm.num_Value__c;
                             }
                             
+                            
                         }
                         objPWO.num_Estimated_Value_of_PWO__c = (intCostResource + intRMS + intContingencyCharges + intNonPayroll + intAuthorisation+intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
                         objPWO.num_Estimated_Man_days_of_PWO__c = intTotalmandays;
@@ -284,6 +303,17 @@ public class CPA_AttchemntUnit {
                         objPWO.num_Authorisation_charges__c = intAuthorisation;
                         objPWO.num_Authorisation_man_days__c = intAuthorisationman;
                         objPWO.num_Expense_charges_of_work_order__c  =intIndicativeExpenses;
+                        if(intNoOfResources> 0){
+                            system.debug('intNoOfResources--->'+intNoOfResources + ' intoffshower-->'+intoffshower + ' intOnshower-->'+intOnshower);
+                            objPWO.pec_Estimated_Off_shore__c = (intoffshower/intNoOfResources)*100;
+                            objPWO.pec_Estimated_On_shore__c = (intOnshower/intNoOfResources)*100;
+                        }
+                        if(intCostResource>0){
+                            objPWO.pec_Expense__c = (intIndicativeExpenses/intCostResource)*100;
+                        }else {
+                            objPWO.pec_Expense__c = 0;
+                        }
+                        objPWO.chk_Excel_Attached__c = true;
                         
                         lstUpdatePWO.add(objPWO);
                     }
@@ -320,12 +350,29 @@ public class CPA_AttchemntUnit {
                         Decimal  intOther = 0;
                         Decimal  intCostResource = 0;
                         Decimal  intTotalcost = 0;
+                        Decimal  intoffshower = 0;
+                        Decimal  intOnshower = 0;
+                        Decimal  intNoOfResources = 0;
+                        
+                        
+                        
                         for(CPA_Commercial_Details__c objCOm : mapCRComDetai.get(objCR.id)){
                             if(objCOm.txt_Entity_Name__c=='Resource' || objCOm.num_Entity_Type__c ==1 ){
                                 intTotalmandays = intTotalmandays + objCOm.num_Efforts__c;
+                                intNoOfResources = intNoOfResources+1;
                                 intCostResource = intCostResource + (objCOm.num_Efforts__c * objCOm.num_Rate__c );
+                                string strLocation = objCOm.txt_Location__c.trim();
+                        strLocation = strLocation.toUpperCase();
+                        
+                        if(strLocation == 'INDIA' || strLocation == 'PHILIPPINES'){
+                            intoffshower = intoffshower + 1;
+                        }else {
+                            intOnshower = intOnshower + 1;
+                        }
+                                
                                 
                             }
+                            
                             if(objCOm.txt_Entity_Name__c=='Indicative Expenses' || objCOm.num_Entity_Type__c ==2){
                                 intIndicativeExpenses = intIndicativeExpenses + objCOm.num_Value__c;
                             }
@@ -366,7 +413,14 @@ public class CPA_AttchemntUnit {
                         
                         if(intCostResource!=null& intCostResource > 0){
                             objCR.pec_Expense__c = (intIndicativeExpenses/ intCostResource)*100;
+                        }else {
+                            objCR.pec_Expense__c = 0;
                         }
+                        if(intNoOfResources> 0){
+                            objCR.pec_Estimated_Off_shore__c = (intoffshower/intNoOfResources)*100;
+                            objCR.pec_Estimated_On_shore__c = (intOnshower/intNoOfResources)*100;
+                        }
+                        
                         
                         system.debug('CR-->'+objCR);
                         lstUpdateCR.add(objCR);
@@ -390,7 +444,15 @@ public class CPA_AttchemntUnit {
                 ApexPages.Message errormsg = new ApexPages.Message(ApexPages.severity.ERROR,'An error has occured inserting the records'+e.getMessage());
                 ApexPages.addMessage(errormsg);
                 system.debug('Exception --> '+ e.getMessage());
-            }   
+            } 
+        }   /*else if(objAttachment.ContentType.contains('pdf'){
+                string srtTemp = att.ParentId;
+                set<ID> setPWOID = new set<ID>();
+                if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger)){
+                    setPWOID.add(att.ParentId);
+                }
+                List<CPA_>
+            }       */
         }
          
         

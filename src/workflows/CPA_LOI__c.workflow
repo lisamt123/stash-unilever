@@ -449,6 +449,10 @@
             <type>Alert</type>
         </actions>
         <actions>
+            <name>CPA_LOI_Cancelled_Record_Type</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
             <name>CPA_LOI_Signed_Date_Update</name>
             <type>FieldUpdate</type>
         </actions>

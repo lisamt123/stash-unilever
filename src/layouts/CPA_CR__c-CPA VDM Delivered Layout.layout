@@ -78,10 +78,6 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_Other_Project_Phases__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
                 <field>dat_Actual_End_Date__c</field>
             </layoutItems>
         </layoutColumns>
@@ -123,11 +119,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>Region_impacted__c</field>
+                <field>txt_Other_Project_Phases__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>txt_Other_Currency__c</field>
+                <field>Region_impacted__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -196,6 +192,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>pkl_Currency__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txt_Other_Currency__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

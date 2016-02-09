@@ -1,4 +1,4 @@
-<apex:page standardController="CPA_CR__c" extensions="CPA_CRInformationController" action="{!UpdateCR}">
+<apex:page standardController="CPA_CR__c" extensions="CPA_CRInformationController">
   <apex:form style="overflow:auto;height:250px"  >
   <apex:pageBlock >
       <apex:pageMessages />

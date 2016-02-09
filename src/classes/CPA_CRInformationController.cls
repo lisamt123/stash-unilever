@@ -1,4 +1,4 @@
-global class CPA_CRInformationController {
+global with sharing class CPA_CRInformationController {
  public id crId;
  public CPA_CR__c crRec;
  public String mandatoryStringFlag {get; set;}   
@@ -28,7 +28,7 @@ global class CPA_CRInformationController {
         if(customSettingStatusMsg.CR_Status_Msg__c != null && callFromVF){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.CR_Status_Msg__c));
         }
-        if((crRec.pkl_Status__c == 'Saved')|| callFromVF == false){
+        if((crRec.pkl_Status__c == 'Saved')|| !callFromVF){
             if(crRec.txt_Accenture_Project_Manager__c  == null)  
                  RequiredFieldMap.put( 'Accenture Project Manager' ,ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.mpkl_Change_Record_history__c  == null)  
@@ -103,19 +103,7 @@ global class CPA_CRInformationController {
         system.debug(' return true');
         return true;        
     }
-    public void UpdateCR() {
-        if(!RequiredFieldMap.isEmpty()){
-            if(crRec.isValidated__c != false){
-                    crRec.isValidated__c = false;  
-                    update crRec;                   
-            }   
-        }else if(crRec.isValidated__c != true){
-                    crRec.isValidated__c = true;  
-                    update crRec;                   
-         }
-        
-    }
-    
+   
      webService static boolean checkIsValidated(Id crId) {
         boolean flag ;
 

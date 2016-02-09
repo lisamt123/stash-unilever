@@ -1,4 +1,4 @@
-global class CPA_LOI_InformationController {
+global with sharing class CPA_LOI_InformationController {
 Public id loiId;
 Public CPA_LOI__c LoiRec;
 Public String mandatoryStringFlag {get; set;}   

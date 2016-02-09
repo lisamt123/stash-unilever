@@ -1,4 +1,4 @@
-global  class CPA_HLERequInformationController {
+global  with sharing class CPA_HLERequInformationController {
     Public id hleReqId;
     Public CPA_HLE_Request__c hleRec;
     Public String mandatoryStringFlag {get; set;}
@@ -76,9 +76,14 @@ global  class CPA_HLERequInformationController {
             if(hleRec.txt_UL_reference__c  == null) 
                  RequiredFieldMap.put('UL Reference',ConstantsForContractingAppClasses.MANDATORY);
            
-        }if(hleRec.pkl_Status__c == 'Accepted' && hleRec.Estimate_Type__c == null){
+        }if(hleRec.pkl_Status__c == 'Accepted' && hleRec.Estimate_Type__c == null && callFromVF){
             estimateFlag = 'Please select Estimate Type, wherther it will be High Level Estimation(HLE)/Ball Park Estimation(BPE) in Estimate Type Section';
-            //RequiredFieldMap.put('Estimate Type','Please select Estimate Type as High Level Estimation(HLE) / Ball Park Estimation(BPE)');
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, estimateFlag ));
+        }else if(hleRec.pkl_Status__c == 'Accepted' && hleRec.Estimate_Type__c == 'BPE' && callFromVF){
+            estimateFlag = 'Please submit Ball Park Estimation';
+            ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, estimateFlag ));
+        }else if(hleRec.pkl_Status__c == 'Accepted' && hleRec.Estimate_Type__c == 'HLE' && callFromVF){
+            estimateFlag = 'Please submit High Level Estimation';
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, estimateFlag ));
         }
         if((hleRec.recordtypeid == label.CPA_BPE_Recordtype && hleRec.pkl_Status__c == 'Accepted')){
@@ -109,7 +114,7 @@ global  class CPA_HLERequInformationController {
                       
         if(!RequiredFieldMap.isEmpty()){
             //ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, 'Below fields are mandatory to Submit the record'));
-            mandatoryStringFlag = 'Below field(s) are mandatory to Submit the record';
+            mandatoryStringFlag =  'Below field(s) are mandatory to Submit the record';
             return false;
         }
         return true;

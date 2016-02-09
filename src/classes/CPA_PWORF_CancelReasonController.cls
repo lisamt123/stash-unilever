@@ -1,4 +1,4 @@
-public Class CPA_PWORF_CancelReasonController{
+public with sharing Class CPA_PWORF_CancelReasonController{
      Public id pworfId;
      Public CPA_PWORF__c pworfRec;
      Public List<CPA_PWO__c> pwoRec;

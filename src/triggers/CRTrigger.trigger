@@ -6,15 +6,21 @@ trigger CRTrigger on CPA_CR__c (before insert, after insert, before update, afte
         CPA_CR_TriggerUtil.checklistValueOfCR(trigger.new);
         CPA_CR_TriggerUtil.requireApprovalComments(trigger.new);
       //  CPA_CR_TriggerUtil.unlockrecord(trigger.old,trigger.new);
+      CPA_CR_TriggerUtil.calculateDelta(trigger.oldMap,trigger.newMap);
         
     }
     if(Trigger.isUpdate && Trigger.isAfter){ //for after update trigger
         CPA_CR_TriggerUtil.submitforApproval(trigger.old,trigger.new);
         CPA_CR_TriggerUtil.recallApproval(trigger.old,trigger.new);
+
     }
     if(Trigger.isInsert && Trigger.isBefore){ //for before insert trigger
        CPA_CR_TriggerUtil.CreateCR(trigger.new);
        CPA_CR_TriggerUtil.checklistValueOfCR(trigger.new);
+       CPA_CR_TriggerUtil.standaloneCR(trigger.new);
+       //added by dinesh, remove below comments later on
+       //CPA_CR_TriggerUtil.internalCRID(trigger.new);
+
     }
     /*if(Trigger.isInsert && Trigger.isAfter){ //for after insert trigger
 

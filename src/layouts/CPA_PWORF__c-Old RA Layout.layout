@@ -69,8 +69,8 @@
                 <field>pkl_Region__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>VDM__c</field>
+                <behavior>Readonly</behavior>
+                <field>VDM_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -99,14 +99,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txta_Probability__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_SLA1__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_SLA2__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -188,14 +180,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txta_Risk_description__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>dat_Expected_SLA1_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>dat_Expected_SLA2_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -295,10 +279,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>dat_Withhold_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>dat_SLA1_Accepted_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
