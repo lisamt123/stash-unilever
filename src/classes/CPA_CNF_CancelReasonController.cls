@@ -1,4 +1,4 @@
-public class CPA_CNF_CancelReasonController {
+public with sharing class CPA_CNF_CancelReasonController {
  Public id cnfId{get;set;}
      Public CPA_CNF__c cnfRec;
      Public string strReason{get;set;}

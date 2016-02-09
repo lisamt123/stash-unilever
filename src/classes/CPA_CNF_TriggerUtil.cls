@@ -3,7 +3,7 @@
  * @date 11/01/2016
  * @desCNFiption - This Class is used to perform operation on before update event of CNF  Trigger
  */
-public class CPA_CNF_TriggerUtil{
+public with sharing class CPA_CNF_TriggerUtil{
     public static boolean isSubmitted=false;
 /*
     * Method Name : recallApproval
@@ -144,7 +144,7 @@ public class CPA_CNF_TriggerUtil{
             update lstUpdatePWO;
             
         }catch(Exception e){
-            
+            System.debug('Exception: ' + e);
         }
         
         

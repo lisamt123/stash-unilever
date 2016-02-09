@@ -1,4 +1,4 @@
-public class CPA_testClass_util {
+public with sharing class CPA_testClass_util {
     
     public static User createTestUser (){
         User testUser;

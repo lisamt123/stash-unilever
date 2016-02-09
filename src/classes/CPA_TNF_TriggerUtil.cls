@@ -3,7 +3,7 @@
  * @date 11/01/2016
  * @description - This Class is used to perform operation on before update event of TNF  Trigger
  */
-public class CPA_TNF_TriggerUtil{
+public with sharing class CPA_TNF_TriggerUtil{
     public static boolean isSubmitted=false;
 /*
     * Method Name : recallApproval

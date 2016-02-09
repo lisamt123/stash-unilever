@@ -8254,7 +8254,11 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
             </values>
         </picklistValues>
     </recordTypes>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>fml_Pworf_Clarity_ID__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>pkl_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
         <fullName>CPA_PWO_Canat_be_created</fullName>

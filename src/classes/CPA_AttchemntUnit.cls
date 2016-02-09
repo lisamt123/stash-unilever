@@ -12,7 +12,7 @@ Purpose:
  1.0      Shreyas Mangalvedhekar        21/12/2015      INITIAL DEVELOPMENT          CSR: 
  ***********************************************************************/
 
-public class CPA_AttchemntUnit {
+public with sharing class CPA_AttchemntUnit {
 
  /*******************************************************************    
    Purpose:  This static method will return the file type of each attachment                                                            

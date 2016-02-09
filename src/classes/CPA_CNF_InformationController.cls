@@ -1,4 +1,4 @@
-global class CPA_CNF_InformationController {
+global with sharing class CPA_CNF_InformationController {
 public id cnfId;
 public CPA_CNF__c cnfRec;
 public String mandatoryString;   

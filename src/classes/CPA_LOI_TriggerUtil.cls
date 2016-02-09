@@ -214,14 +214,15 @@ public with sharing class CPA_LOI_TriggerUtil{
     * Parameter   : newLOI
     * Return type : None
     * Author      : Dinesh Girase  
-    * Description : This method creates Internal LOI ID, used for search purpose
+    * Description : This method creates Internal LOI ID for LOI, Internal PWO ID for LOI & PWORF used for search purpose
     */
     public static void internalLIOID(List<CPA_LOI__c> newLOI){
         String newInternalPWOID='';
         List<AggregateResult> lstPWO = [SELECT count(ID) newCount FROM CPA_project_work_order__c];
         if(lstPWO[0].get('newCount') != null){
             Integer maxNo = Integer.valueOf(lstPWO[0].get('newCount') + '');
-            newInternalPWOID = getInternalID(maxNo,'PWO');
+            //Why +1 is because, here we are creating LOI on PWORF, there is no PWO record present
+            newInternalPWOID = getInternalID(maxNo+1,'PWO');
             System.debug('newInternalPWOID  ######## : ' + newInternalPWOID );
         }
         
@@ -235,14 +236,20 @@ public with sharing class CPA_LOI_TriggerUtil{
             System.debug('newInternalPWOID ######## : ' + newInternalPWOID);
             
             List<CPA_PWORF__c> pworfs = [SELECT For_Search__c, txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newLOI[0].lkp_PWORF__c];
-            if(pworfs[0].txt_Internal_PWO_ID__c != null){
+            if(pworfs[0].txt_Internal_PWO_ID__c == null){
+                System.debug('txt_Internal_PWO_ID__c is NULL ######## : ');
                 pworfs[0].txt_Internal_PWO_ID__c = newInternalPWOID;
                 if(pworfs[0].For_Search__c != null){
                     String test = pworfs[0].For_Search__c;
                     System.debug('LOI Search ######## : ' + pworfs[0].For_Search__c);
                     pworfs[0].For_Search__c = test + ', ' + newInternalLOIID;
-                    update pworfs;
+                }else{
+                    System.debug('Else - LOI Search ######## : ' );
+                    pworfs[0].For_Search__c = newInternalPWOID + ', ' + newInternalLOIID;
                 }
+                update pworfs;
+            }else{
+                System.debug('txt_Internal_PWO_ID__c is NOT NULL ######## : ');
             }
             
         }

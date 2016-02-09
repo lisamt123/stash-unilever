@@ -1,5 +1,5 @@
 //AC.09.07.01
-public Class CPA_TNF_CancelReasonController{
+public with sharing class CPA_TNF_CancelReasonController{
     Public id tnfId;
     Public CPA_TNF__c tnfRec;
     Public string strReason{get;set;}

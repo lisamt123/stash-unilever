@@ -1,7 +1,7 @@
 //AC.08.12.01
 //AC.10.07.03
 
-public Class CPA_PWO_CancelReasonController{
+public with sharing class CPA_PWO_CancelReasonController{
     Public id pwoId;
     Public CPA_PWO__c pwoRec;
     Public string strReason{get;set;}

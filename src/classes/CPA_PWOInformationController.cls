@@ -1,4 +1,4 @@
-global class CPA_PWOInformationController {
+global with sharing class CPA_PWOInformationController {
  public id pwoId;
  public CPA_PWO__c pwoRec;
  public Map<String,String> RequiredFieldMap {get; set;}

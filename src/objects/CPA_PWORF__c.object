@@ -3316,9 +3316,10 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     </recordTypes>
     <searchLayouts>
         <searchResultsAdditionalFields>txt_Clarity_ID__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>txt_Project_Repository_Location__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>txt_Cost_Centre__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>dt_Expected_start_date__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>pkl_Status__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>txta_Title__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>RECORDTYPE</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
