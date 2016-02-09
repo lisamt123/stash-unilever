@@ -14,12 +14,71 @@
 */
 public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparentController {
 
-    public Marketing_SOW__c selected_sow {get; set;}
+    public Boolean can_delete_sow{
+        get{
+            return Oblix_PermissionHandler.canDeleteSOW(selected_sow.SOW_Status__c);
+        }
+    }
+
+    public Boolean can_delete_attachment{
+        get{
+            return Oblix_PermissionHandler.canDeleteAttachment(selected_sow.SOW_Status__c);
+        }
+    }
+
+    public Boolean can_add_attachment{
+        get{
+            return Oblix_PermissionHandler.canAddNewAttachment(selected_sow.SOW_Status__c);
+        }
+    }
+
+    public Boolean can_manage_campaign{
+        get{
+            return Oblix_PermissionHandler.canManageCampaign(selected_sow.SOW_Status__c);
+        }
+    }
+
+    public Boolean can_manage_non_campaign{
+        get{
+            return Oblix_PermissionHandler.canManageNonCampaign(selected_sow.SOW_Status__c);
+        }
+    }
+
+    public Boolean sow_approvers_defined{
+        get{
+            return selected_sow.Unilever_SOW_Approver_Name__c != null && selected_sow.Agency_SOW_Approver_Name__c != null;
+        }
+    }
+
+    public Boolean can_submit_for_approval{
+        get{
+            return Oblix_PermissionHandler.canSubmitForApproval(selected_sow.SOW_Status__c);
+        }
+    }
+
+    public Boolean can_reject_sow{
+        get{
+            return Oblix_PermissionHandler.canRejectSOW(selected_sow.SOW_Status__c);
+        }
+    }
+
+    public Boolean can_approve_sow{
+        get{
+            return Oblix_PermissionHandler.canApproveSOW(selected_sow.SOW_Status__c);
+        }
+    }
+
+    //public Marketing_SOW__c selected_sow {get; set;}
     public id sow_id {get; set;}
     public id project_id {get; set;}
     public List<Attachment> liso_attachments {get; set;}
     public List<Attachment> liso_attachments_to_add {get; set;}
     public List<Note> liso_notes {get; set;}
+
+    // controller attribute to ease passing of comment text from vf page to controller
+    public String sowSubmitComments {get; set;}
+    public String sowApproveComments {get; set;}
+    public String sowRejectComments {get; set;}
 
     //Projects to the Sow
     public List<Oblix_SOW_Projects__c> liso_projects_for_sow {get; set;}
@@ -910,6 +969,109 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             return reportFolderURL;
             
         } set;
+    }
+
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-08
+    * @description  submit SOW for approval
+    ********************************************************************************/
+    public void submitForApproval(){
+
+        // skip unilever approval if creator is approver
+        if(UserInfo.getUserId() == selected_sow.Unilever_SOW_Approver_Name__c)
+            selected_sow.SOW_Creator_is_Approver__c = true;
+
+        selected_sow.SOW_Status__c = Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL;
+        selected_sow.Approval_Submitter__c = UserInfo.getUserId();
+
+        //update selected_sow;
+        update selected_sow;
+
+        // Create an approval request for the account
+        Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
+        req1.setComments(sowSubmitComments);
+        req1.setObjectId(selected_sow.Id);
+
+        // Submit on behalf of a specific submitter
+        req1.setSubmitterId(UserInfo.getUserId());
+
+        // Submit the record to specific process and skip the criteria evaluation
+        req1.setProcessDefinitionNameOrId('Oblix_SOW_Approval_Process_v1');
+        //req1.setSkipEntryCriteria(true);
+
+        // Submit the approval request for the account
+        Approval.ProcessResult result = Approval.process(req1);
+
+        // Verify the result
+        //System.assert(result.isSuccess());
+
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-09
+    * @description  reject SOW with mandatory comments
+    ********************************************************************************/
+    public void rejectSOW(){
+
+        // get sow approval record - there can be only one (?)
+        List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :selected_sow.Id];
+        if(workItems.size() == 1){
+
+            ProcessInstanceWorkitem wi = workItems[0];
+
+            Approval.ProcessWorkitemRequest pwr = new Approval.ProcessWorkitemRequest();
+            pwr.setComments(sowRejectComments);
+            pwr.setAction('Reject');
+            pwr.setWorkitemId(wi.Id);
+            system.debug('## selected_sow.Id: ' + selected_sow.Id + 'pwr: ' + JSON.serializePretty(pwr) + ' WorkItem: ' + wi.Id);
+            Approval.ProcessResult result =  Approval.process(pwr);
+
+            if(result.isSuccess()){
+                // reload SOW to get new sow status
+                selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
+            }
+
+        } else {
+
+            // there should be only one work item for a given object.
+
+        }
+
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-09
+    * @description  approve SOW with optional comments
+    ********************************************************************************/
+    public void approveSOW(){
+
+        // get sow approval record - there can be only one (?)
+        List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :selected_sow.Id];
+        if(workItems.size() == 1){
+
+            ProcessInstanceWorkitem wi = workItems[0];
+
+            Approval.ProcessWorkitemRequest pwr = new Approval.ProcessWorkitemRequest();
+            pwr.setComments(sowApproveComments);
+            pwr.setAction('Approve');
+            pwr.setWorkitemId(wi.Id);
+            Approval.ProcessResult result =  Approval.process(pwr);
+
+            if(result.isSuccess()){
+                // reload SOW to get new sow status
+                selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
+            }
+
+        } else {
+
+            // there should be only one work item for a given object.
+
+        }
+
     }
 
     

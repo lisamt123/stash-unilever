@@ -16,19 +16,21 @@ public with sharing virtual class Oblix_SWOPparentController {
     public Marketing_SOW__c selected_sow {get; set;}
     public Oblix_SOW_Projects__c selected_project {get;set;}
     public Oblix_CampaignStageLogic stage_identifier {get;set;}
-    public Boolean hasEditAccess { get; set; }
-    public Boolean isSystemAdmin {get; set;}
+    
+    public Boolean hasEditAccess { 
+        get{ 
+            return Oblix_PermissionHandler.hasEditAccess();
+        }
+    }
 
-    public Boolean hasUL1permissionSet{ get;set; }
-    public Boolean hasUL2permissionSet{ get;set; }
-    public Boolean hasULSuperUserPermissionSet{ get;set; }
+    public Boolean can_edit { 
+        get{ 
+            return Oblix_PermissionHandler.hasEditAccess();
+        }
+    }
 
-    private static final String UL1_PERMISSION_SET = 'Oblix_SWOP_UL_1_V1';
-    private static final String UL2_PERMISSION_SET = 'Oblix_SWOP_UL_2_V1';
-    private static final String UL_SUPER_USER_PERMISSION_SET = 'Oblix_SWOP_Super_User_V1';
     public Oblix_SWOPparentController() {
-        checkIsSystemAdmin();
-        checkUserHasEditPermission();
+
     }
 
     /*******************************************************************************
@@ -190,54 +192,5 @@ public with sharing virtual class Oblix_SWOPparentController {
 
             return query_string;
     }    
-
-    public Boolean checkIsSystemAdmin(){
-
-        if (NULL == isSystemAdmin){
-
-            Id systemAdminProfileId = [SELECT Id FROM Profile WHERE Name = 'System Administrator'].Id;
-            Id currentUserProfileId = UserInfo.getProfileId();
-
-            if (systemAdminProfileId == currentUserProfileId){
-                isSystemAdmin = true;
-            }
-            else{
-                isSystemAdmin = false;
-            }
-        }
-        return isSystemAdmin;
-    }
-
-    private void checkUserHasEditPermission(){
-
-        // if user has one of the 3 read/write permissions or is system admin then should be able to edit records
-        Integer i_permissions_assigned = 0;
-        hasEditAccess = false;
-        hasUL1permissionSet = false;
-        hasUL2permissionSet = false;
-        hasULSuperUserPermissionSet = false;
-
-        List<PermissionSetAssignment> li_permissions_assigned = new List<PermissionSetAssignment>();
-        Id currentUserId = UserInfo.getUserId();   
-
-        for (PermissionSetAssignment permission_set_assignment: [SELECT PermissionSet.Name 
-            FROM PermissionSetAssignment WHERE AssigneeId = :currentUserId 
-                AND (PermissionSet.Name =: UL1_PERMISSION_SET OR PermissionSet.Name =: UL2_PERMISSION_SET OR PermissionSet.Name =: UL_SUPER_USER_PERMISSION_SET) ]){
-            if (UL1_PERMISSION_SET == permission_set_assignment.PermissionSet.Name){
-                hasUL1permissionSet = true;
-            }
-            else if (UL2_PERMISSION_SET == permission_set_assignment.PermissionSet.Name){
-                hasUL2permissionSet = true;
-            }
-            else if (UL_SUPER_USER_PERMISSION_SET == permission_set_assignment.PermissionSet.Name){
-                hasULSuperUserPermissionSet = true;
-            }
-            i_permissions_assigned ++;
-        }
-        if(i_permissions_assigned > 0 || checkIsSystemAdmin()){
-            hasEditAccess = true;
-        }
-    }
-
 
 }

@@ -10,6 +10,8 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
     List<Marketing_SOW__c> lstSowRecordsApproval = new List<Marketing_SOW__c>();    
 
     Map<Id, MDO_CategoryBrands__c> mids_campaign_id_category_brand = new Map<Id, MDO_CategoryBrands__c>();
+    Map<String, Set<Id>> brandCatKey_unileverApproverIds_map = new Map<String, Set<Id>>();
+    Map<String, Set<Id>> brandCatKey_agencyApproverIds_map = new Map<String, Set<Id>>();
 
     /*******************************************************************************
     * @date         2015-12-25
@@ -23,7 +25,9 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
         if (Trigger.isInsert){
             // because the VF page already has a logic to handle big and small category - no need to set it via trigger
             if (!b_initiated_from_vf_page)
-                mids_campaign_id_category_brand = Oblix_SOWHandlerLogic.retrieveBrandCategoriesForSOW(Trigger.New, NULL);            
+                mids_campaign_id_category_brand = Oblix_SOWHandlerLogic.retrieveBrandCategoriesForSOW(Trigger.New, NULL);
+            // get all user permissions that define approvers for each brand-category combination of SOWs in this scope
+            Oblix_SOWHandlerLogic.retrieveBrandCategoryApprovers(Trigger.New, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
         }
 
         if (Trigger.isUpdate){
@@ -65,6 +69,8 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
         // because the VF page already has a logic to handle big and small category - no need to set it via trigger
         if (!b_initiated_from_vf_page)
             Oblix_SOWHandlerLogic.adjustBrandCategoriesForSOW((Marketing_SOW__c) so, mids_campaign_id_category_brand);
+        // set approvers to SOWs in this scope
+        Oblix_SOWHandlerLogic.setSOWApprovers((Marketing_SOW__c) so, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
     }
     
     public void beforeUpdate(SObject oldSo, SObject so)

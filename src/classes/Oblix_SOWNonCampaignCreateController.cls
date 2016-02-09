@@ -1,5 +1,10 @@
 public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWOPparentController {
 
+    public Boolean can_manage_non_campaign{
+        get{
+            return Oblix_PermissionHandler.canManageNonCampaign(selected_sow.SOW_Status__c);
+        }
+    }
 	public Oblix_NonCampaignWrapper activity {get;set;} 
     public Oblix_NonCampaignWrapper resource {get;set;}
 

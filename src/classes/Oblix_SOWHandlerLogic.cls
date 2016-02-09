@@ -76,4 +76,98 @@ public with sharing class Oblix_SOWHandlerLogic {
     	
     }
 
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-04
+    * @description  This method gets approvers for the brand-BigC combination, and
+                    populates the unilever and agency approvers maps passed in by
+                    reference
+    ********************************************************************************/
+    public static void retrieveBrandCategoryApprovers(List<Marketing_SOW__c> newSOWs, Map<String, Set<Id>> brandCatKey_unileverApproverIds_map, Map<String, Set<Id>> brandCatKey_agencyApproverIds_map){
+        Map<String, Id> mBrandCatKey_appoverUserId = new Map<String, Id>();
+
+        // get approvers for categories of SOWs in scope
+        Set<Id> bigCIds = new Set<Id>();
+        Set<Id> brandIds = new Set<Id>();
+        for(Marketing_SOW__c sow : newSOWs){
+            bigCIds.add(sow.BigOblixProductCategory__c);
+            brandIds.add(sow.OblixBrand__c);
+        }
+        List<Oblix_User_Permission__c> userPermissions = [SELECT Id, CategoryBrand_id__r.Brand_id__c, CategoryBrand_id__r.Product_Category_Id__c, User_id__c, RecordTypeId
+                                                            FROM Oblix_User_Permission__c 
+                                                            WHERE CategoryBrand_id__r.Brand_id__c IN :brandIds 
+                                                                AND CategoryBrand_id__r.Product_Category_Id__c IN :bigCIds 
+                                                                AND Level_of_Access__c = :Oblix_Utils.USER_PERMISSION_APPROVER];
+
+        // build a map of brandId_bigcategoryId as keys and list of approver ids as values, which we will use to populate approver fields on SOWs
+        for(Oblix_User_Permission__c up : userPermissions){
+            String brandCatKey = up.CategoryBrand_id__r.Brand_id__c + '_' + up.CategoryBrand_id__r.Product_Category_Id__c;
+            if(up.RecordTypeId == Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER){
+                if(brandCatKey_unileverApproverIds_map.containsKey(brandCatKey) == false){
+                    Set<Id> approverIds = new Set<Id>();
+                    brandCatKey_unileverApproverIds_map.put(brandCatKey, approverIds);
+                }
+                brandCatKey_unileverApproverIds_map.get(brandCatKey).add(up.User_id__c);
+            } else if (up.RecordTypeId == Oblix_Utils.RT_USER_PERMISSION_AGENCY_USER){
+                if(brandCatKey_agencyApproverIds_map.containsKey(brandCatKey) == false){
+                    Set<Id> approverIds = new Set<Id>();
+                    brandCatKey_agencyApproverIds_map.put(brandCatKey, approverIds);
+                }
+                brandCatKey_agencyApproverIds_map.get(brandCatKey).add(up.User_id__c);
+            }
+        }
+
+    }
+
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-07
+    * @description  This method sets Unilever and agency approvers. Requires both
+                    Brand and Big Category fields to be populated. Expects that there
+                    is at least one approver for brand-category defined.
+    ********************************************************************************/
+    public static Boolean setSOWApprovers(Marketing_SOW__c sow, Map<String, Set<Id>> brandCatKey_unileverApproverIds_map, Map<String, Set<Id>> brandCatKey_agencyApproverIds_map){
+
+        Boolean isChanged = false;
+
+        // populate approvers on SOWs. Currently only one approver is populated, but the system allows as many as there are approver fields on SOW
+        if(String.isNotEmpty(sow.OblixBrand__c) && String.isNotEmpty(sow.BigOblixProductCategory__c)){
+            String brandCatKey = sow.OblixBrand__c + '_' + sow.BigOblixProductCategory__c;
+
+            if(brandCatKey_unileverApproverIds_map != null && brandCatKey_unileverApproverIds_map.containsKey(brandCatKey)){
+                Set<Id> unileverApprovers = brandCatKey_unileverApproverIds_map.get(brandCatKey);
+                // change only if needed
+                if(unileverApprovers.contains(sow.Unilever_SOW_Approver_Name__c) == false){
+                    isChanged = true;
+                    sow.Unilever_SOW_Approver_Name__c = unileverApprovers.iterator().next();
+                }
+                // to be uncommented if more than one user will be able to approve:
+                // if(unileverApprovers.iterator().hasNext()) sow.Unilever_SOW_Approver_Name_2__c = unileverApprovers.iterator().next();
+            } else {
+                // if no approvers are defined, clear the current approver value
+                sow.Unilever_SOW_Approver_Name__c = null;
+            }
+
+            if(brandCatKey_agencyApproverIds_map != null && brandCatKey_agencyApproverIds_map.containsKey(brandCatKey)){
+                Set<Id> agencyApprovers = brandCatKey_agencyApproverIds_map.get(brandCatKey);
+                // change only if needed
+                if(agencyApprovers.contains(sow.Agency_SOW_Approver_Name__c) == false){
+                    isChanged = true;
+                    sow.Agency_SOW_Approver_Name__c = agencyApprovers.iterator().next();
+                }
+                // to be uncommented if more than one user will be able to approve:
+                // if(agencyApprovers.iterator().hasNext()) sow.Agency_SOW_Approver_Name_2__c = agencyApprovers.iterator().next();
+            } else {
+                // if no approvers are defined, clear the current approver value
+                sow.Agency_SOW_Approver_Name__c = null;
+            }
+
+        }
+        
+        return isChanged;
+
+    }
+
+
 }
