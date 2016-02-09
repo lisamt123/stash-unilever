@@ -61,43 +61,43 @@ public with sharing class IPM_UpdateGlobalProjectName {
                 for(IPM_Financial__c prodoc:proj.IPM_Financials_Consolidated__r)
                 {
                     if(prodoc.Financial_External_ID__c!=null){
-                    	updateFinList.add(prodoc);
+                    updateFinList.add(prodoc);
                     }
-                    
                 }
                 
                 for(IPM_Financial__c prodoc:proj.IPM_Financials_Regional__r)
                 {
                 	
                      if(prodoc.Financial_External_ID__c!=null){
-                    	updateFinList.add(prodoc);
+                    updateFinList.add(prodoc);
                     }
                 }
+                
                 for(IPM_Financial__c prodoc:proj.IPM_Financials_Local__r)
                 {
                      if(prodoc.Financial_External_ID__c!=null){
-                    	updateFinList.add(prodoc);
+                    updateFinList.add(prodoc);
                     }
                 }
+                
                 for(IPM_Country__c country:proj.IPM_Countries__r)
 				{
                     if(country.Project_Country__c!=null){
-                    	updateCountryList.add(country);
+                    updateCountryList.add(country);
                     }
-                    
                 }
                 
 				for(IPM_Milestone__c miles:proj.IPM_Milestones__r)
 				{
                     if(miles.ExternalField__c!=null){
-                    	updateMilesList.add(miles);
+                    updateMilesList.add(miles);
                     }
                 }
                 
                 for(IPM_Task__c tsk:proj.Tasks__r)
                 {
                     if(tsk.ExternalField__c!=null){
-                    	updateTaskList.add(tsk);
+                    updateTaskList.add(tsk);
                     }
                 }
                 
@@ -275,10 +275,9 @@ public with sharing class IPM_UpdateGlobalProjectName {
 				finUpdate.id=fin.id;//assign finance id to be update
 				String finName_STR=IPM_ConstantUtils.BLANK;
 				if(fin.External_Id__c!=null){
-					finName_STR=fin.External_Id__c.replace(oldprojectnameMap.get(fin.IPM_Financial__c),updatedProNameMap.get(fin.IPM_Financial__c));//get finance external id after '-' as string
-					finUpdate.External_Id__c=finName_STR;//update finance name with updated project name
+				finName_STR=fin.External_Id__c.replace(oldprojectnameMap.get(fin.IPM_Financial__c),updatedProNameMap.get(fin.IPM_Financial__c));//get finance external id after '-' as string
+				finUpdate.External_Id__c=finName_STR;//update finance name with updated project name
 				}
-				
 				finList.add(finUpdate);//add finance into list
 			    alreadyUpdatedIds.add(fin.Id); 
 			}

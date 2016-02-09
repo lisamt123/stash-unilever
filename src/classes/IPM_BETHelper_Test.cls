@@ -459,19 +459,19 @@ class IPM_BETHelper_Test {
         User testRunningUser = [Select Id, LastName from User where LastName = : USER_LAST_NAME
         limit 1];
 
-        uw_BET__c betRecord1 = [Select id, name, Status__c, FinalReleaseDate__c, Final_Release_Due_Date__c, FirstReleaseDate__c, First_Release_Due_Date__c, Is_Archived__c, OwnerId, Category_Group__c, Product_Category__c, Brand_Position__c, Product_Brand__c from uw_BET__c where name = : TEST_BET00
+        uw_BET__c betRecord1 = [Select id, name, Status__c, FinalReleaseDate__c, Final_Release_Due_Date__c, FirstReleaseDate__c, First_Release_Due_Date__c, Is_Archived__c, OwnerId, Category_Group__c, Product_Category__c, Brand_Position__c, Product_Brand__c from uw_BET__c where name = : TEST_BET01
         limit 1];
-        uw_BET__c betRecord2 = [Select id, name, Status__c, FinalReleaseDate__c, Final_Release_Due_Date__c, FirstReleaseDate__c, First_Release_Due_Date__c, Is_Archived__c, OwnerId, Category_Group__c, Product_Category__c, Brand_Position__c, Product_Brand__c from uw_BET__c where name = : TEST_BET01
-        limit 1];
+        
         IPM_Project_Resource__c PrjctResrc1 = [select IPM_User__c from IPM_Project_Resource__c where IPM_Role_Type__c = :IPM_Role_BD
         LIMIT 1];
-        System.runAs(testRunningUser) {
+        
+        System.runAs(testRunningUser) { 
 
             Test.StartTest();
-            IPM_BETHelper.sendBETAccessRequestonFirstRelease(betRecord2.Id);
+            IPM_BETHelper.sendBETAccessRequestonFirstRelease(betRecord1.Id);  
             Test.StopTest();
 
-            System.assertEquals([Select UserId__c from BET_Member_Request__c where Brand_Experience_Toolkit__c = : betRecord2.Id limit 1].UserId__c, PrjctResrc1.IPM_User__c, 'Failed to send Regional/Local Rollout Leader Access Request to BET');
+            System.assertEquals([Select UserId__c from BET_Member_Request__c where Brand_Experience_Toolkit__c = : betRecord1.Id limit 1].UserId__c, PrjctResrc1.IPM_User__c, 'Failed to send Regional/Local Rollout Leader Access Request to BET');
         }
     }
 
@@ -687,4 +687,25 @@ class IPM_BETHelper_Test {
             System.assertEquals(BET_BETService.getBet(proj0.BET__c).targetLaunchDate, proj0.IPM_Target_Launch_Dates__c, 'Failed to send updates to BET on Project update in IPM');
         }
     }
+    
+    //test Method to  test updation of  bet on project after phase change 
+    static testMethod void testupdateBETlinktoProject() {
+    	
+        User testRunningUser = [Select Id, LastName from User where LastName = : USER_LAST_NAME  limit 1];
+
+        uw_BET__c betRecord1 = [Select Id from uw_BET__c where name = : TEST_BET02  limit 1];
+        
+        IPM_Project__c proj1 = [Select Id, BET__c from IPM_Project__c where IPM_Project_Name__c = : TEST_PROJECT06  limit 1];   
+            
+             System.runAs(testRunningUser) {
+             Test.StartTest();
+             IPM_BETHelper.updateBETlinktoProject(betRecord1.Id,proj1.Id);  
+             Test.StopTest();
+             }
+             
+        System.assertEquals([Select BET__c from IPM_Project__c where Id =:proj1.Id ].BET__c,betRecord1.id,'Failed to update BET on project' ); 
+      
+    }
+    
+    
 }

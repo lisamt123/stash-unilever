@@ -240,6 +240,7 @@
                                                 <apex:outputText value="{!$Label.IPM_SELECT_TLD}" rendered="{!AND(isBusinessError,CONTAINS(businessErrorField,'IPM_Target_Launch_Dates__c'))}" styleClass="TldErrMsg"/>
                                                 <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAY}" rendered="{!isTLDLessThnSixMnth}" styleClass="TldErrMsg"/>
                                                 <apex:outputText value="{!$Label.IPM_TLD_SHOULD_BE_GREATER_THAN_TODAYDate}" rendered="{!isTLDLessThnToday}" styleClass="TldErrMsg"/>
+                                                <apex:outputText value="{!$Label.TLD_After_Charter_Contract_and_Market_Ready_Milestone_Dates}" rendered="{!isTLDBeforeGates}" styleClass="TldErrMsg"/>
                                             </apex:outputPanel>
                                         </apex:outputPanel>
                                     </div>

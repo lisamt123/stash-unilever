@@ -3781,13 +3781,6 @@ Which Communications team do you represent? You must be associated to one Planne
         <value>Refresh</value>
     </labels>
     <labels>
-        <fullName>toolbar_app_top_nav_lbl_title_text</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Text for the link in the upper left corner</shortDescription>
-        <value>My chatter app</value>
-    </labels>
-    <labels>
         <fullName>uw_BET_Chattergrouparchived</fullName>
         <categories>BET 2.0</categories>
         <language>en_US</language>
@@ -6604,6 +6597,13 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <value>You are attempting to remove the team member. You could add this member again via Add team members option. Are you sure want to remove?</value>
     </labels>
     <labels>
+        <fullName>IPM_Delete_Milestone_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete Milestone Message</shortDescription>
+        <value>You are about to remove this milestone from the milestone list. It cannot be restored at a later time. Are you sure to continue?</value>
+    </labels>
+    <labels>
         <fullName>IPM_Delete_task_msg</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -8886,7 +8886,7 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Postponed Past Date Validation</shortDescription>
-        <value>The postponed date for this project must be after the due date for the previous gate&apos;s milestone.</value>
+        <value>You cannot postpone your project to a date which is before your previous gate due date. If you would like to do this, please revise your project plan first and then postpone the project.</value>
     </labels>
     <labels>
         <fullName>IPM_Milestone_Due_Date_Error</fullName>
@@ -10020,6 +10020,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Please enter the phase</value>
     </labels>
     <labels>
+        <fullName>IPM_PhaseChangeBKProcessSecondWarning_Local</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM PhaseChangeBKProcessSecondWarning Local</shortDescription>
+        <value>Please note, once a Local Rollout Project is created you will need IPM Central Team assistance to delete it.</value>
+    </labels>
+    <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning</fullName>
         <language>en_US</language>
         <protected>false</protected>
@@ -10031,8 +10038,9 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_PhaseChangeBKProcessWarning_Local</shortDescription>
-        <value>Clicking on Save would submit your Request for creation of Local Project as soon as the local project leader is assigned.A local rollout project, once projected, cannot be deleted by the project leader and will have to be done via local project leader through stop project. Once Processing is complete,you would be notified via Email.</value>
+        <value>If you have assigned your Country Leader/s, clicking Save here will begin creation of your Local Rollout Project/s.You will receive a notification via Email once the process is complete.</value>
     </labels>
+    
     <labels>
         <fullName>IPM_PhaseChangeBKProcessWarning_Regional</fullName>
         <language>en_US</language>
@@ -10122,7 +10130,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Postponed Future Date Validation</shortDescription>
-        <value>The postponed date for this project must be before the due date for the next gate&apos;s milestone.</value>
+        <value>You cannot postpone your project to a date which is after your next gate due date. If you would like to do this, please revise your project plan first and then postpone the project.</value>
     </labels>
     <labels>
         <fullName>IPM_Postponing_Project_Gate</fullName>
@@ -11755,13 +11763,6 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <shortDescription>IPM_TIMING_OF_CHARTER</shortDescription>
         <value>The focus of this section is on: (1) timing of Charter Gate (no more than 6 months after BOSSCARD approval); and (2) initial thinking on when the project could be launched.</value>
     </labels>
-	<labels>
-        <fullName>IPM_TLD_Year_Misaligned</fullName>
-        <value>Calendar Years are misaligned.</value>
-        <protected>false</protected>
-        <language>en_GB</language>
-        <shortDescription>IPM_TLD_Year_Misaligned</shortDescription>
-    </labels>
     <labels>
         <fullName>IPM_TLD_ALIGNMENT</fullName>
         <language>en_US</language>
@@ -11803,6 +11804,13 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>IPM_TLD_VR_Misaligned_Part_Msg</shortDescription>
         <value>is misaligned: Value at Regional</value>
+    </labels>
+    <labels>
+        <fullName>IPM_TLD_Year_Misaligned</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM_TLD_Year_Misaligned</shortDescription>
+        <value>Calendar Years are misaligned.</value>
     </labels>
     <labels>
         <fullName>IPM_TOPPING_UP_ON_THINGS</fullName>
@@ -12788,7 +12796,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <protected>false</protected>
         <shortDescription>Oblix_Lbl_Innovation_Projects_HubsPartners5</shortDescription>
         <value>Up to 5 locations</value>
-    </labels>
+   </labels>
     <labels>
         <fullName>Oblix_Lbl_Innovation_Projects_Innovation</fullName>
         <categories>Oblix Calculator</categories>
@@ -15143,7 +15151,15 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <value>Visible to Unilever only</value>
     </labels>
     <labels>
-        <fullName>Oblix_lbl_UIUX_hours</fullName>
+        <fullName>secondsOblix_Lbl_UIUX_Audio_Score4</fullName>
+        <categories>Oblix_VF08_ProjectEdit</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Audio</shortDescription>
+        <value>Full creative development and production of audio content, 30-60</value>
+    </labels>
+    <labels>
+        <fullName>toolbar_app_top_nav_lbl_title_text</fullName>
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>Oblix_lbl_UIUX_hours</shortDescription>

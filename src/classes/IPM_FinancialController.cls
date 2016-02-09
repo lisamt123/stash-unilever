@@ -2393,32 +2393,11 @@ private Date getProjectMilestoneDate(){
                     }
                     localRolloutProject = project;
                 } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) {// if project is regional get the project detials based currentFinanical
-                    String financialExternalIdString;
-                    if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY)){
-                        financialExternalIdString = currentFinancial.Financial_External_ID__c.substringBeforeLast('_');
-                    } else {
-                        financialExternalIdString = currentFinancial.Financial_External_ID__c;
-                    }
-                    projList = [Select (Select Name, IPM_Target_Launch_Dates__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Projects__r where name like :financialExternalIdString+'%'), (Select Name,Previous_Target_Launch_Date__c , Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c, isActive__c,IPM_Rollout_Span__c From Regional_Project_Rollout__r where name like :financialExternalIdString+'%') From IPM_Project__c   where id=:project.id];
+                    projList = [Select (Select Name, IPM_Target_Launch_Dates__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Projects__r where name=:currentFinancial.Financial_External_ID__c), (Select Name,Previous_Target_Launch_Date__c , Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c From Regional_Project_Rollout__r where name=:currentFinancial.Financial_External_ID__c) From IPM_Project__c   where id=:project.id];
                     if(projList.size()>0 && projList[0].Regional_Project_Rollout__r.size()>0) {
-                            Date tempTLD;
-                            for(IPM_Project_Rollout__c rollout:projList[0].Regional_Project_Rollout__r) {
-                                String rolloutNonKeyName = rollout.Name.substringBeforeLast('_');
-                                if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && currentFinancial.Financial_External_ID__c.startsWith(rolloutNonKeyName) && !rollout.KeyMCO__c && rollout.isActive__c && rollout.IPM_Rollout_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
-                                    if(tempTLD == null){
-                                        mcoCountryRolloutPlan = rollout;
-                                        tempTLD = rollout.Target_Launch_Date__c;
-                                    } else if (tempTLD>rollout.Target_Launch_Date__c){
-                                        mcoCountryRolloutPlan = rollout;
-                                        tempTLD = rollout.Target_Launch_Date__c;
-                                    }
-                                } else if(rollout.name==currentFinancial.Financial_External_ID__c) {
-                                    mcoCountryRolloutPlan = rollout;
-                                    break;
-                                }
-                            }                       
-                        localProjectRolloutTLD = mcoCountryRolloutPlan.Target_Launch_Date__c.format();
-                        localProjectRolloutTLDYear = mcoCountryRolloutPlan.Target_Launch_Date__c.year();                                               
+                        localProjectRolloutTLD = projList[0].Regional_Project_Rollout__r[0].Target_Launch_Date__c.format();
+                        localProjectRolloutTLDYear = projList[0].Regional_Project_Rollout__r[0].Target_Launch_Date__c.year();
+                        mcoCountryRolloutPlan = projList[0].Regional_Project_Rollout__r[0];
                     }
                     if(projList.size()>0 && projList[0].IPM_Projects__r.size()>0) {
                         localProjectTLD = projList[0].IPM_Projects__r[0].IPM_Target_Launch_Dates__c.format();

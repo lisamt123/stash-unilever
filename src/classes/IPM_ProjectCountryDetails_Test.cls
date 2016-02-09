@@ -381,7 +381,12 @@ private class IPM_ProjectCountryDetails_Test {
             IPM_ProjectCountryDetails.updateCountriesToFinancials(countryList,false);
           
          
+           List<IPM_Project__c> regionalProjectList = IPM_TestFactory_Helper.projectSetUpRegional(1,globalUser);
          
+           System.runAs(globalUser)
+           {
+            insert regionalProjectList;
+           }
            
            List<IPM_Project_Rollout__c> projRollOutList = [Select Id from IPM_Project_Rollout__c where IPM_Project__c in :projectList limit 1000];
            System.debug(LoggingLevel.Error,'projRollOutListprojRollOutListprojRollOutList::'+projRollOutList);
