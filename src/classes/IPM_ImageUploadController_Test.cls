@@ -7,76 +7,129 @@
 @isTest
 public class IPM_ImageUploadController_Test
 {    
-    Static testMethod void imageUpload()
-    {
-        Test.startTest();
+     private static IPM_Bosscard__c boss;
+     private static IPM_Project__c proj;
+     private static User plUser = new User();
+     private static User readUser = new User();
+     private static IPM_ImageUploadController imgCtrl; 
+     
+    
+    /*************************************************
+     * @Description: Test data initilaization
+     * ***********************************************/
+    static void initializeData(){
+        //Insert User as project leader with permission set
+        plUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);
         
-        Profile p=[Select Id from Profile where Name='System Administrator'];       
-        
-        //Insert User 
-        User u= new User(Alias = 'uploadi', Email='uploadi@unilever.com', 
-        EmailEncodingKey='UTF-8', LastName='Test Useriu', LanguageLocaleKey='en_US', 
-        LocaleSidKey='en_US', ProfileId = p.Id, 
-        TimeZoneSidKey='Europe/London',isActive=true, 
-        UserName='uploadi@test362.com');
-        //insert u;  
-        
-        //Insert User 
-        User u1= new User(Alias = 'testiu11', Email='standarduseriu1@unilever.com', 
-        EmailEncodingKey='UTF-8', LastName='Test Useriu', LanguageLocaleKey='en_US', 
-        LocaleSidKey='en_US', ProfileId = p.Id, 
-        TimeZoneSidKey='Europe/London',isActive=true, 
-        UserName='testuseriu1@test362.com');
-        //insert u1;      
-        
-        //Insert Company Card
-        IPM_Company_Card__c compCard=new IPM_Company_Card__c();
-        //compCard.Name='Test Company Card';
-        //insert compCard;
-        
-        //Insert User Profile
-        IPM_User_Profile__c up=new IPM_User_Profile__c();
-        //up.IPM_User__c=u.Id;
-        //insert up;
-        
-        //Insert User Profile
-        IPM_User_Profile__c up1=new IPM_User_Profile__c();
-        //up1.IPM_User__c=u1.Id;
-        //up1.IPM_Company_Card__c=compCard.Id;
-        //insert up1;
-        
-        //System.runAs(u)
-        //{ 
-            //Insert Bosscard
-            IPM_Bosscard__c boss=new IPM_Bosscard__c();
+        List<User>userList=[SELECT lastName FROM user WHERE id=:plUser.id LIMIT 1];
+    	System.AssertEquals(userList[0].lastName, plUser.lastName,'user lastName is:'+userList[0].lastName);//positive test
+    	
+    	readUser= IPM_TestFactory_Helper.createUser(false);
+        insert readUser;
+        List<User>userLists=[SELECT lastName FROM user WHERE id=:readUser.id LIMIT 1];
+    	System.AssertEquals(userLists[0].lastName, readUser.lastName,'user lastName is:'+userLists[0].lastName);//positive test
+    	
+    	 
+        //run as project leader
+        system.runAs(plUser){
+    	 	//Insert Bosscard
+            boss = IPM_TestFactory_Helper.createIPMBosscard(FALSE);
             boss.IPM_BosscardName__c='Test Boss';
-            boss.IPM_Bosscard_Status__c='In Progress';
+            boss.IPM_Bosscard_Status__c=IPM_ConstantUtils.STATUS_IN_PROGRESS;
             insert boss;
-            System.Assert(boss.Id != null, 'The Bosscard record not inserted');
-            
-            //Insert Project
-            IPM_Project__c proj=new IPM_Project__c();
+            List<IPM_Bosscard__c>bossList=[SELECT IPM_Bosscard_Status__c FROM IPM_Bosscard__c WHERE ID=:boss.id LIMIT 1];
+        	System.AssertEquals(bossList[0].IPM_Bosscard_Status__c,IPM_ConstantUtils.STATUS_IN_PROGRESS, 'Bosscard status is:'+bossList[0].IPM_Bosscard_Status__c); //Positive test
+       		
+       		
+       		//Insert Project
+            proj= IPM_TestFactory_Helper.createIPMProject(FALSE); 
             proj.IPM_Project_Name__c='Test Boss';
             proj.IPM_Bosscard__c=boss.Id;
+            proj.IPM_Project_Leader__c=plUser.id;
             insert proj;
-            System.Assert(proj.Id != null, 'The project record not inserted');
+            List<IPM_Project__c>projList=[SELECT IPM_Bosscard__c FROM IPM_Project__c WHERE id=:proj.id LIMIT 1];
+        	System.AssertEquals(projList[0].IPM_Bosscard__c,boss.Id, 'Bosscard id is:'+projList[0].IPM_Bosscard__c); //Positive test
             
             PageReference pg = Page.IPM_ImageUpload;
             Test.setCurrentPageReference(pg);
-            ApexPages.CurrentPage().getparameters().put('Id', proj.id);
-            ApexPages.CurrentPage().getparameters().put('isProject', 'true');
-            IPM_ImageUploadController  imgCtrl=new IPM_ImageUploadController();
-            imgCtrl.document.name='.jpg';   
-            imgCtrl.upload();
+            ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, proj.id);
+            ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.IPM_IMGUPLOAD_ISPROJECT, IPM_ConstantUtils.IPM_IMGUPLOAD_TRUE);
+            imgCtrl=new IPM_ImageUploadController();
             
-            PageReference pg1 = Page.IPM_ImageUpload;
-            Test.setCurrentPageReference(pg1);
-            ApexPages.CurrentPage().getparameters().put('Id', boss.id);
-            ApexPages.CurrentPage().getparameters().put('isProject', 'false');
-            IPM_ImageUploadController  imgCtrl1=new IPM_ImageUploadController();
-            imgCtrl1.document.name='.jpg';   
-            imgCtrl1.upload();
-        //}
-        Test.stopTest();
+           
+	 	}
+            
     }
+    
+    
+    /*************************************************
+     * @Description: Test invoke imageUpload for project
+     * ***********************************************/
+    static testMethod void testImageUploadProject(){ 
+        
+        initializeData();
+        test.startTest();
+        system.runAs(plUser)
+        {  
+            //upload project logo
+            imgCtrl.document.name='Image.jpg'; 
+            imgCtrl.isError = true;
+            imgCtrl.document.body=Blob.valueof('test');
+            imgCtrl.project=IPM_ConstantUtils.IPM_IMGUPLOAD_TRUE;
+            imgCtrl.projectId=proj.id;
+            imgCtrl.upload();
+            List<IPM_Project__c>projList=[SELECT IPM_Project_Logo_Id__c FROM IPM_Project__c WHERE id=:proj.id LIMIT 1];
+        	System.AssertEquals(projList[0].IPM_Project_Logo_Id__c,imgCtrl.imgid, 'Project logo should be inserted'+projList[0].IPM_Project_Logo_Id__c); //Positive test
+			
+			//upload invalid image        
+        	imgCtrl.document.name='InvalidImage';
+            imgCtrl.isError = false;
+            imgCtrl.upload();
+            List<IPM_Project__c>projLists=[SELECT IPM_Project_Logo_Id__c FROM IPM_Project__c WHERE id=:proj.id LIMIT 1];
+        	System.AssertEquals(projLists[0].IPM_Project_Logo_Id__c,projList[0].IPM_Project_Logo_Id__c, 'Project logo should be inserted'+projLists[0].IPM_Project_Logo_Id__c); //Negative test
+			 
+            
+            
+        } 
+        test.stopTest();  
+        
+    }
+    /*************************************************
+     * @Description: Test invoke imageUpload for bosscard
+     * ***********************************************/
+    static testMethod void testImageUploadBosscard(){ 
+        
+        initializeData();
+        test.startTest();
+        system.runAs(plUser)
+        {  
+            imgCtrl.document.name='Images.jpg'; 
+            imgCtrl.isError = true;
+            imgCtrl.document.body=Blob.valueof('testing');
+            imgCtrl.project='false';
+            imgCtrl.projectId=boss.id;
+            imgCtrl.upload();
+            List<IPM_Bosscard__c>bossList=[SELECT IPM_Bosscard_Logo_Id__c FROM IPM_Bosscard__c WHERE id=:boss.id LIMIT 1];
+        	System.AssertEquals(bossList[0].IPM_Bosscard_Logo_Id__c,imgCtrl.imgid, 'bosscard logo should be inserted'+bossList[0].IPM_Bosscard_Logo_Id__c); //Positive test
+        	
+        	
+        } 
+        //no access current user but trying to update
+        system.runAs(readUser)
+        {  
+            imgCtrl.document.name='ProImages.jpg'; 
+            imgCtrl.isError = true;
+            imgCtrl.document.body=Blob.valueof('Invalid testing');
+            imgCtrl.project='false';
+            imgCtrl.projectId=boss.id;
+            imgCtrl.upload();
+            List<IPM_Bosscard__c>bossList=[SELECT IPM_Bosscard_Logo_Id__c FROM IPM_Bosscard__c WHERE id=:boss.id LIMIT 1];
+        	System.AssertEquals(bossList.isEmpty(),true, 'no access to current user'); //Negative test
+        	
+        	
+        } 
+        test.stopTest();  
+        
+    }
+    
 }

@@ -9,6 +9,14 @@
         <value>IPM OTIF Status</value>
     </caseValues>
     <fields>
+        <label><!-- IPM_Carry GK Section Answer --></label>
+        <name>IPM_Carry_GK_Section_Answer__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM External Id --></label>
+        <name>IPM_External_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Gate Document Type --></label>
         <name>IPM_Gate_Document_Type__c</name>
     </fields>

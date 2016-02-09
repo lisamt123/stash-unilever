@@ -1,367 +1,350 @@
+/*******************************************************
+* @Description: Test class for CustomerChannelController
+* @Author:Cognizant
+* @Date:05/11/2015
+* *****************************************************/
+
 @isTest
 public class IPM_ProjectResourceTriggerHandlerTest {
-
-    public static IPM_Project__c project;
-    public static IPM_Project__c project1;
-    public static IPM_Project_Document__c projDoc;
-    public static IPM_Project_Template__c projTemp; 
-    public static IPM_Project_Document_Section__c projDocSec;
-    public static IPM_Document_Template__c ipdt;
-    public static IPM_Project_Template__c projTempl;
-    public static IPM_Section__c secMst;
-    public static IPM_Bosscard__c Bosscard;
-    public static IPM_Bosscard__c Bosscard1;
-    public static IPM_Project_Resource__c ipmProjectResource;
-    public static IPM_Project_Resource__c ipmProjectResource1;
-    public static list<IPM_Project_Resource__c>  ipmProjectResourcelist;
-    public static IPM_ProjectResourceTriggerHandler ipmProjectResourceTriggerHandler;
     
-   /* @isTest static void verifyProjectTLDs() {
+    public static List<User> userList = new  List<User>();
+    public static List<IPM_Project__c> projectList = new List<IPM_Project__c>();
+    public static List<IPM_Project__c> ipmProjectList= new List<IPM_Project__c>();
+    public static List<IPM_Project_Document__c> projectDocList = new List<IPM_Project_Document__c>();
+    public static List<IPM_Project_Document_Section__c> projectDocSectionList  = new List<IPM_Project_Document_Section__c>();
+    public static List<IPM_Project_Resource__c> projectResourceList  = new List<IPM_Project_Resource__c>();
+    public static List<IPM_Task__c> taskList  = new List<IPM_Task__c>();
+    private static String RESOURCE_HISTORY_INSERTED = 'Project Resource History Inserted'; 
+    private static String RESOURCE_HISTORY_UPDATED = 'Project Resource History Updated'; 
+    private static User projectLeader;
+    /***********************************
+    * @Description: Test Data Creation
+    * *********************************/
+    private static void createTestData()
+    {
+        Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator' limit 3]; 
+
+       projectLeader = IPM_TestFactory_Helper.createUser(false);
+        projectLeader.ProfileId = p.id;                           
+
+
+        User projectResource1 =IPM_TestFactory_Helper.createUser(false);
+        projectResource1.ProfileId = p.id;
+
+        User projectResource2 = IPM_TestFactory_Helper.createUser(false);
+        projectResource2.ProfileId = p.id;      
+                                 
+        User projectResource3 = IPM_TestFactory_Helper.createUser(false);
+        projectResource3.ProfileId = p.id;
+
+        User projectResource4 = IPM_TestFactory_Helper.createUser(false);                                                  
+        projectResource4.ProfileId = p.id;
         
+        User projectResource5 = IPM_TestFactory_Helper.createUser(false);                                                  
+        projectResource5.ProfileId = p.id;
+        
+        userList.add(projectLeader);
+        userList.add(projectResource1);
+        userList.add(projectResource2);
+        userList.add(projectResource3);
+        userList.add(projectResource4);
+        userList.add(projectResource5);
+        insert userList;
+        
+        //creating Project Template
+        IPM_Project_Template__c projTemplate = IPM_TestFactory_Helper.createIPMProjectTemplate(true);
+        
+        //Creating Document Template
+        IPM_Document_Template__c ipdoctem = IPM_TestFactory_Helper.creteIPMDocumentTemplate(false);
+        ipdoctem.IPM_Project_Template__c=projTemplate.ID;
+        ipdoctem.IPM_Document_Type__c=IPM_ConstantUtils.CHARTER_GATE;
+
+        insert ipdoctem;
+
+        //Creating master Section
+        IPM_Section__c secMast = IPM_TestFactory_Helper.createIPMSection(false);
+        secMast.IPM_Document_Template__c=ipdoctem.ID;
+
+        IPM_Project__c project1 = IPM_TestFactory_Helper.createIPMProject(false);
+        project1.IPM_PM_Approach__c = IPM_Utils.Internal;
+        project1.IPM_Project_Leader__c = projectLeader.Id;
+        project1.IPM_GateKeeping_Model__c='Both';
+        
+        projectList.add(project1);
+        insert projectList;
+
+        insert secMast;
+        
+        IPM_Task__c taskAsociatedRD = new IPM_Task__c(IPM_Type_of_Gate__c = IPM_ConstantUtils.CHARTER_GATE,IPM_Phase__c = 'Ideas',
+                                                      IPM_Task_Complexity__c = IPM_ConstantUtils.COMPLEXITY_FULL,Name= '-Identify top 3 strategic channels',
+                                                      IPM_Function__c = 'R&D',IPM_Task_Name__c ='Develop and lock Concept1',
+                                                      IPM_Project_Template__c = projTemplate.Id,IPM_Section__c = secMast.Id,IPM_Project__c = project1.Id
+                                                     );
+        
+        IPM_Task__c taskAsociatedFinance = new IPM_Task__c(IPM_Type_of_Gate__c = IPM_ConstantUtils.CHARTER_GATE,IPM_Phase__c = 'Ideas',
+                                                           IPM_Task_Complexity__c = IPM_ConstantUtils.COMPLEXITY_FULL,Name= 'Identify Finance',
+                                                           IPM_Function__c = 'Finance',IPM_Task_Name__c ='Develop and lock Concept2',
+                                                           IPM_Project_Template__c = projTemplate.Id,IPM_Section__c = secMast.Id, IPM_Project__c = project1.Id
+                                                          );
+        
+        taskList.add(taskAsociatedRD);
+        taskList.add(taskAsociatedFinance);
+        insert taskList;
+
+        IPM_Project_Document__c projectDocList1 = IPM_TestFactory_Helper.createIPMProjectDocument(false);
+        projectDocList1.Name='TESTAPPROVERCL-Charter1';
+        projectDocList1.IPM_Project__c=projectList[0].Id;
+        projectDocList1.IPM_Project_Template__c= projTemplate.Id;
+        projectDocList1.IPM_Approval_Date__c=System.today();
+        projectDocList1.IPM_Approved_Comments__c='Approved';
+
+        projectDocList.add(projectDocList1);
+        insert projectDocList;
+
+        // Creationg Project Document Sections
+        IPM_Project_Document_Section__c pojDocSection0 = IPM_TestFactory_Helper.createIPMProjectDocumentSection(false);
+
+        pojDocSection0.IPM_Project_Document__c = projectDocList[0].Id;
+        pojDocSection0.IPM_Section__c=secMast.Id;
+        
+        projectDocSectionList.add(pojDocSection0);
+        insert projectDocSectionList;
+    } 
+    
+    /***********************************
+    * @Description: validate Resource Sharing functionality
+    * *********************************/
+    public static testmethod void testResourceSharing()
+    {
+        Test.startTest();
+        createTestData();
+        Test.stopTest();
+        // Add Resources to Project to create Tasks for resources.
+        
+        IPM_Project_Resource__c ipmProjectResource1 = IPM_TestFactory_Helper.createIPMProjectResource(projectList[0].Id, false);
+        ipmProjectResource1.IPM_User__c = userList[1].Id;
+        ipmProjectResource1.IPM_Role_Type__c = 'Finance';
+        projectResourceList.add(ipmProjectResource1);
+        
+        IPM_Project_Resource__c ipmProjectResource2 = IPM_TestFactory_Helper.createIPMProjectResource(projectList[0].Id, false);
+        ipmProjectResource2.IPM_User__c = userList[2].Id;
+        ipmProjectResource2.IPM_Role_Type__c = 'R&D';
+        projectResourceList.add(ipmProjectResource2);
+        
+        insert projectResourceList;
+        
+        System.runAs(userList[0]){
+            update projectList[0];
+            
+            // Update the User information and assign it to someone else and verify whether tasks are reAllocated.        
+            projectResourceList[0].IPM_User__c  = userList[3].Id;
+            
+            update projectResourceList;
+            
+            list<IPM_Task__c> tasksList = [SELECT IPM_Assignee__c, IPM_Function__c, IPM_Project__c FROM IPM_Task__c 
+                                           WHERE IPM_Project__c = :projectList[0].Id AND IPM_Completed__c != true];
+            
+            // Validate if the Tasks have been reassigned.
+            for(IPM_Task__c task : tasksList ){
+                if(task.IPM_Function__c == 'Finance')
+                {
+                    System.assertEquals(task.IPM_Assignee__c,userList[3].Id, 'IPM_Assignee__c Is Different');
+                    System.assertNotEquals(task.IPM_Assignee__c,userList[1].Id);
+                }
+            }
+        }
+    }
+
+    //Testmethod to test IPM Project Resource History for Bulk insertion of project resources
+    static testMethod void testProjectResourceHistoryForBulkInsertion(){
+        //Initialize test data
+        createTestData();
         Test.startTest();
         
-        IPM_Project__c projects=new IPM_Project__c();
-        projects.Name='teest';
-        projects.IPM_Project_Name__c='test';
-        projects.IPM_PM_Approach__c='External';
-        projects.IPM_IsCompleted__c=true;
-        projects.IPM_Fast_Track_Project__c=false;
-        projects.IPM_Phase__c='Ideas';
-        projects.IPM_Market_Type__c='Developing';
-        projects.IPM_Complexity__c='Lite';
-        projects.IPM_Target_Launch_Dates__c=System.today()+10;
-        projects.IPM_Project_Leader__c=UserInfo.getUserId();
-        insert projects;  
+        // Add Resources to Project to 
+        IPM_Project_Resource__c ipmProjectResource1 = new IPM_Project_Resource__c(IPM_Role_Type__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE,IPM_Project__c = projectList[0].Id,
+                                                                                  IPM_User__c = userList[1].Id,IPM_Project_Role_Owner__c = true);
         
-        IPM_Task__c[] tasksList = [SELECT Id FROM IPM_Task__c WHERE IPM_Project__c = :projects.Id];
+        IPM_Project_Resource__c ipmProjectResource2 = new IPM_Project_Resource__c(IPM_Role_Type__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_RD,IPM_Project__c = projectList[0].Id,
+                                                                                  IPM_User__c = userList[2].Id,IPM_Project_Role_Owner__c = true);
         
-        //system.assert(tasksList.size()>0);
-        apexpages.currentpage().getparameters().put('Id',projects.Id);
-        ApexPages.StandardController sc = new ApexPages.StandardController(projects);
-        IPM_TaskCompCtrl cont =new IPM_TaskCompCtrl();
-        cont.getProjectTasks();
-        Integer cnt = cont.closedTasks;
-        cont.getPhase();
-        cont.getProjectTasks();
-        cont.getUser();
-        cont.toggleSortPhases();
-        cont.toggleSortTasks();
-        cont.toggleSortAssignees();
-        cont.toggleSortCompletion();
-        cont.toggleDueDate();
-        cont.filterCompleteTasks();
-        cont.myTasks();
-        cont.myRole();
-        cont.filteredPhase();
-        cont.toggleSortSections();
-        List<IPM_TaskCompCtrl.TaskWrapper> p = cont.projectTasks;
-        String[] strLst1 = cont.phasesList;
-        String str = cont.toggleRole;
-        Test.stopTest(); 
-    }*/
-    
-      static testmethod void testCreateIPMProjectResource(){
-
-       Test.startTest();
-       initializedData();
-       verifyOnAfterInsert();
-       Test.stopTest();  
-    }
-      
-    public static testmethod list<IPM_Project_Resource__c>  initializedData()
-    {       
-       IPM_Project__share  proshare = new IPM_Project__share  ();
-       IPM_Project__share  proshare1 = new IPM_Project__share  ();
-       List<IPM_Project__share  > listproshare  = new List<IPM_Project__share>();
-       IPM_Project_Document__share  projectDocumentShare = new IPM_Project_Document__share  ();
-       List<IPM_Project_Document__share  > listIPMProjectDocumentShare  = new List<IPM_Project_Document__share  >();
-       IPM_Project_Document_Section__Share  projectDocumentSecShare = new IPM_Project_Document_Section__Share  ();
-       List<IPM_Project_Document_Section__Share  > listIPMProjectDocumentSecShare  = new List<IPM_Project_Document_Section__Share>();
-      // List<IPM_Task__Share>ProTaskShare=new list<IPM_Task__Share>();
-       List<IPM_Project_Document_Section__Share>ProDocSec=new list<IPM_Project_Document_Section__Share>();
-       List<IPM_Project_Document_Section_Content__Share>ProDocContent=new list<IPM_Project_Document_Section_Content__Share>();
-      /* List<IPM_Milestone__Share>ProMiles=new list<IPM_Milestone__Share>();
-       List<IPM_Questionnaire__Share>IpmQuests=new list<IPM_Questionnaire__Share>();
-       List<IPM_Bosscard__Share>IpmBossShare=new list<IPM_Bosscard__Share>();
-       IPM_Bosscard__Share Bossshare=new IPM_Bosscard__Share();
-       IPM_Questionnaire__Share ipmQuestionaireShare = new IPM_Questionnaire__Share();
-       List<IPM_Questionnaire__Share > listIPMQuestionaireShare  = new List<IPM_Questionnaire__Share >();*/
-
-       IPM_Project_Document_Section_Content__c  ipmProjDocSectionContent =new IPM_Project_Document_Section_Content__c ();
-       IPM_Project_Document_Section_Content__share  ipmProjDocSectionContentShare = new IPM_Project_Document_Section_Content__share  ();
-       List<IPM_Project_Document_Section_Content__share  > listipmProjDocSectionContentShare  = new List<IPM_Project_Document_Section_Content__share  >();
-
-       IPM_Project_Document__Share ProDocShr=new IPM_Project_Document__Share();
-       IPM_Project__Share ipmProshr=new IPM_Project__Share ();
-       IPM_Project_Resource__Share DPLrsShr=new IPM_Project_Resource__Share ();
-       IPM_Project_Resource__Share GatekrsShr=new IPM_Project_Resource__Share ();
-       IPM_Project_Resource__Share TPLrsShr=new IPM_Project_Resource__Share ();
-       IPM_Project_Document_Section__Share ProSec;
-      // IPM_Task__Share ProTskShare=new IPM_Task__Share ();
-       IPM_Project_Document_Section_Content__Share IpmDocContent=new IPM_Project_Document_Section_Content__Share ();
-       /*IPM_Milestone__Share PLIpmMilesShr=new IPM_Milestone__Share ();
-       IPM_Questionnaire__Share IPMQuestshr=new IPM_Questionnaire__Share ();*/
+        IPM_Project_Resource__c ipmProjectResource3 = new IPM_Project_Resource__c(IPM_Role_Type__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_CD,IPM_Project__c = projectList[0].Id,
+                                                                                  IPM_User__c = userList[3].Id,IPM_Project_Role_Owner__c = true);
         
-        PermissionSet Fps=new PermissionSet();
-        Fps=[SELECT Id FROM PermissionSet WHERE Name = 'IPMNG_Basic' limit 1]; 
-        PermissionSetAssignment psa = new PermissionSetAssignment();
-       
-        User u = new User();
-        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
-        u = new User(Alias = 'Rtg30', Email='Rtg30@testorg4.com', 
-        EmailEncodingKey='UTF-8', LastName='fin20', LanguageLocaleKey='en_US', 
-        LocaleSidKey='en_US', ProfileId = p.Id, 
-        TimeZoneSidKey='America/Los_Angeles', UserName='Rtg30@testorg4.com', 
-        IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-        IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-        insert u;
-          System.runAs(u) {
-                psa.AssigneeId = u.Id;
-                psa.PermissionSetId = Fps.Id;
-                insert psa;
-           }
+        IPM_Project_Resource__c ipmProjectResource4 = new IPM_Project_Resource__c(IPM_Role_Type__c =  IPM_ConstantUtils.FUNCTIONAL_ROLE_BD,IPM_Project__c = projectList[0].Id,
+                                                                                  IPM_User__c = userList[4].Id,IPM_Project_Role_Owner__c = true);
         
+        IPM_Project_Resource__c ipmProjectResource5 = new IPM_Project_Resource__c(IPM_Role_Type__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI,IPM_Project__c = projectList[0].Id,
+                                                                                  IPM_User__c = userList[5].Id,IPM_Project_Role_Owner__c = true);
         
-       projTempl=new IPM_Project_Template__c();
-       projTempl.IPM_Template_Complexity__c='Full';
-       insert projTempl;
+        projectResourceList.add(ipmProjectResource1);
+        projectResourceList.add(ipmProjectResource2);
+        projectResourceList.add(ipmProjectResource3);
+        projectResourceList.add(ipmProjectResource4);
+        projectResourceList.add(ipmProjectResource5);
+        insert projectResourceList;
         
-       ipdt=new IPM_Document_Template__c();
-       ipdt.IPM_Project_Template__c=projTempl.ID;
-       ipdt.IPM_Document_Template_Name__c='Contract';
-       ipdt.IPM_Document_Type__c='Charter';
-       insert ipdt;
-       
-       secMst=new IPM_Section__c();
-       secMst.IPM_Document_Template__c=ipdt.ID;
-       secMst.IPM_Section_Sequence__c='1.1';
-       secMst.IPM_Section_Name__c='Ideas';
-       insert secMst;
+        List<IPM_Project_Resource_History__c> resourceHistoryList = [Select Id,Type__c from IPM_Project_Resource_History__c where IPM_Project__c =: projectList[0].Id];
+        System.assertEquals(5, resourceHistoryList.size(), RESOURCE_HISTORY_INSERTED);
         
-       Bosscard=new IPM_Bosscard__c();
-       Bosscard.Name='TestGate1';
-       insert Bosscard;
-       
-        Bosscard1=new IPM_Bosscard__c();
-       Bosscard1.Name='TestGate2';
-       insert Bosscard1;
-        
-      project=new IPM_Project__c();
-       project.Name='TestGate';
-       project.IPM_Phase__c='Ideas';
-       project.IPM_Complexity__c='Full';
-       project.IPM_Bosscard__c=Bosscard.id;
-      
-      project1=new IPM_Project__c();
-       project1.Name='TestGateLite';
-       project1.IPM_Phase__c='Ideas';
-       project1.IPM_Complexity__c='Lite';
-       project.IPM_Bosscard__c=Bosscard1.id;
-        
-       IPM_TestDataUtils testData = new IPM_TestDataUtils();
-      
-       
-       
-      // IPM_Company_Card__c ipmCompanyCard = new IPM_Company_Card__c();
-       
-       //insert ipmCompanyCard;
-       
-       
-       project.IPM_Technical_Project_Leader__c =u.Id;
-       project.IPM_Project_Leader__c = u.Id;
-       project.Deputy_Project_Leader__c = u.Id;
-       project.IPM_Project_Gatekeeper__c = u.Id;
-       //project.IPM_Company_Card__c =ipmCompanyCard.Id;
-       insert project; 
-       
-       project1.IPM_Technical_Project_Leader__c =u.Id;
-       project1.IPM_Project_Leader__c = u.Id;
-       project1.Deputy_Project_Leader__c = u.Id;
-       project1.IPM_Project_Gatekeeper__c = u.Id;
-       insert project1;
-
-       projTemp=new IPM_Project_Template__c();
-       projTemp.IPM_Template_Complexity__c='Full';
-       insert projTemp;
-        
-     projDoc=new IPM_Project_Document__c();
-       projDoc.IPM_GateDocuments__c='Charter'; 
-       projDoc.IPM_Project__c=project.ID;
-       projDoc.IPM_Project_Template__c=projTemp.Id;
-       insert projDoc;     
-        
-      projDocSec=new IPM_Project_Document_Section__c();
-        projDocSec.IPM_Project_Document__c=projDoc.ID;
-        projDocSec.IPM_Section__c=secMst.Id;
-        projDocSec.IPM_Negotiable__c=true;
-        insert projDocSec; 
-
-       ipmProjDocSectionContent =  new IPM_Project_Document_Section_Content__c ();
-        ipmProjDocSectionContent .IPM_Project_Document_Section__c =projDocSec.ID;
-        
-        insert ipmProjDocSectionContent ;
-        
-        
-        
-        /*ipmltask=new IPM_Task__c ();
-        ipmltask.name='testtask';
-        ipmltask.IPM_Project__c=project.id;
-        insert ipmltask; 
-        
-        PLIpmMiles=new IPM_Milestone__c();
-        PLIpmMiles.name='testtask';
-        PLIpmMiles.IPM_Project__c=project.id;
-        insert PLIpmMiles; */
-        
-        ipmProjectResource = new IPM_Project_Resource__c();
-       
-        ipmProjectResource.IPM_Role_Type__c = 'Finance';
-        ipmProjectResource.IPM_Project__c = project.Id ;
-        ipmProjectResource.IPM_User__c = psa.AssigneeId ;
-        insert ipmProjectResource;
-        
-        ipmProjectResource1 = new IPM_Project_Resource__c();
-       
-        ipmProjectResource1.IPM_Role_Type__c = 'R&D';
-        ipmProjectResource1.IPM_Project__c = project1.Id ;
-        ipmProjectResource1.IPM_User__c = psa.AssigneeId ;
-        insert ipmProjectResource1;
-        
-        /*
-            Share insertion
-        */
-        
-      /*  Bossshare=new IPM_Bosscard__Share();
-        Bossshare.parentid=Project.IPM_Bosscard__c;
-        Bossshare.accesslevel='edit';
-        Bossshare.userorgroupid = permissionSetAssignment.AssigneeId;
-          
-        IpmBossShare.add(Bossshare); 
-        insert IpmBossShare;
-
-        PLIpmMilesShr.ParentId= PLIpmMiles.Id;
-        PLIpmMilesShr.userOrGroupId = permissionSetAssignment.AssigneeId;
-        PLIpmMilesShr.accesslevel = 'Edit';
-        ProMiles.add(PLIpmMilesShr);
-        insert ProMiles;
-       
-        ProTskShare.ParentId= ipmltask.Id;
-        ProTskShare.userOrGroupId = permissionSetAssignment.AssigneeId;
-        ProTskShare.accesslevel = 'Edit';
-        ProTaskShare.add(ProTskShare);
-        insert ProTaskShare;*/
-       
-        proshare.ParentId= project.Id;
-        proshare.userOrGroupId = psa.AssigneeId;
-        proshare.accesslevel = 'Edit';
-        
-        proshare1.ParentId= project.Id;
-        proshare1.userOrGroupId = psa.AssigneeId;
-        proshare1.accesslevel = 'Edit';
-        listproshare.add(proshare);
-        listproshare.add(proshare1);
-        insert listproshare  ;
-       
-        projectDocumentShare.ParentId= projDoc.Id;
-        projectDocumentShare.userOrGroupId = psa.AssigneeId;
-        projectDocumentShare.accesslevel = 'Edit';
-        listIPMProjectDocumentShare.add(projectDocumentShare);
-        insert listIPMProjectDocumentShare  ;
-       
-        projectDocumentSecShare.ParentId= projDocSec.Id;
-        projectDocumentSecShare.userOrGroupId =psa.AssigneeId;
-        projectDocumentSecShare.accesslevel = 'Edit';
-        listIPMProjectDocumentSecShare.add(projectDocumentSecShare);
-        insert listIPMProjectDocumentSecShare  ;
-        
-       /* questionaire = testdata.createIPMQuestionaire(project);
-
-        ipmQuestionaireShare.ParentId= questionaire.Id;
-        ipmQuestionaireShare.userOrGroupId = permissionSetAssignment.AssigneeId ;
-        ipmQuestionaireShare.accesslevel = 'Edit';
-        
-        listIPMQuestionaireShare.add(ipmQuestionaireShare);
-        insert listIPMQuestionaireShare;*/
-        
-        ipmProjDocSectionContentShare .ParentId= ipmProjDocSectionContent.Id;
-        ipmProjDocSectionContentShare .userOrGroupId = psa.AssigneeId ;
-        ipmProjDocSectionContentShare .accesslevel = 'Edit';
-        
-        listipmProjDocSectionContentShare .add(ipmProjDocSectionContentShare );
-        insert listipmProjDocSectionContentShare  ;
-        
-        ipmProjectResourcelist= new list<IPM_Project_Resource__c>();
-        ipmProjectResourcelist.add(ipmProjectResource);
-        ipmProjectResourcelist.add(ipmProjectResource1);
-        
-         System.debug('ipmProjectResourcelist objects first:' +ipmProjectResourcelist);
-        
-        return ipmProjectResourcelist;
-        
+        for(IPM_Project_Resource_History__c resourceHistory : resourceHistoryList){
+            System.assertEquals(IPM_ConstantUtils.HISTORY_INSERTED, resourceHistory.Type__c, RESOURCE_HISTORY_INSERTED);
+        }
+        Test.stopTest();
     }
     
-       public static User  testRunAs() {
-   
-      List<User> usrname = [SELECT UserName from User where UserName='standarduser@testorg4.com' ];
-      User u = new User();
+     //Testmethod to test IPM Project Resource History for Bulk updation of project resources
+    static testMethod void testProjectResourceHistoryForBulkUpdation(){
+        Integer updateCount =0;
+         
+        //Initialize test data
+        createTestData();
+        Test.startTest();
         
-        if(usrname== null){
-              // Setup test data
-              // This code runs as the system user
-              Profile p = [SELECT Id FROM Profile WHERE Name='System Administrator']; 
-
-
-              
-              u = new User(Alias = 'standt4', Email='standarduser@testorg4.com', 
-              EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
-              LocaleSidKey='en_US', ProfileId = p.Id, 
-              TimeZoneSidKey='America/Los_Angeles', UserName='standarduser@testorg4.com', 
-              IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-              IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-              insert u;
-              
-              
-              
-              System.runAs(u) {
-              
-                  
-                  PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'IPMNG_Basic'];
-                    PermissionSetAssignment psa = new PermissionSetAssignment();
-                    psa.AssigneeId = u.Id;
-                    psa.PermissionSetId = ps.Id;
-                    insert psa;
-
-                  
-                  
-                 // The following code runs as user 'u' 
-                 System.debug('Current User: ' + UserInfo.getUserName());
-                 System.debug('Current Profile: ' + UserInfo.getProfileId()); 
-              }
-      }
-      else {
-             if(usrname.size()>0){
-                 u = [SELECT Alias,Email,EmailEncodingKey,LastName,LanguageLocaleKey,LocaleSidKey,ProfileId ,TimeZoneSidKey,UserName, IPM_Category__c ,IPM_Brand_Positioning__c, IPM_Brand_Name__c ,IPM_Role__c , IPM_Sub_Category__c    from User where UserName='standarduser@testorg4.com' ];
-                 
-             }     
-         }   
-      return u ;
-   }
-    
-    static void verifyOnAfterInsert(){
-    
-    //Test.startTest();
-    boolean m_isExecuting = true;
-    ipmProjectResourceTriggerHandler = new IPM_ProjectResourceTriggerHandler(m_isExecuting);
-   // System.debug('ipmProjectResourcelist objects:' +ipmProjectResourcelist);
-     ipmProjectResourceTriggerHandler.onAfterInsert(ipmProjectResourcelist);
-     IPM_ProjectResourceTriggerHandler.memberChangingRole(ipmProjectResourcelist);
-     ipmProjectResourceTriggerHandler.onAfterUnDelete(ipmProjectResourcelist);
-     ipmProjectResourceTriggerHandler.OnAfterDelete(ipmProjectResourcelist);
-    
-    //Test.stopTest();
-    
-    
-    
+        // Add Resources to Project to 
+        IPM_Project_Resource__c ipmProjectResource1 = new IPM_Project_Resource__c(IPM_Role_Type__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_FINANCE,IPM_Project__c = projectList[0].Id,
+                                                                                  IPM_User__c = userList[1].Id,IPM_Project_Role_Owner__c = true);
+        
+        IPM_Project_Resource__c ipmProjectResource2 = new IPM_Project_Resource__c(IPM_Role_Type__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_RD,IPM_Project__c = projectList[0].Id,
+                                                                                  IPM_User__c = userList[2].Id,IPM_Project_Role_Owner__c = true);
+        
+        IPM_Project_Resource__c ipmProjectResource3 = new IPM_Project_Resource__c(IPM_Role_Type__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_CD,IPM_Project__c = projectList[0].Id,
+                                                                                  IPM_User__c = userList[3].Id,IPM_Project_Role_Owner__c = true);
+        
+        IPM_Project_Resource__c ipmProjectResource4 = new IPM_Project_Resource__c(IPM_Role_Type__c =  IPM_ConstantUtils.FUNCTIONAL_ROLE_BD,IPM_Project__c = projectList[0].Id,
+                                                                                  IPM_User__c = userList[4].Id,IPM_Project_Role_Owner__c = true);
+        
+        IPM_Project_Resource__c ipmProjectResource5 = new IPM_Project_Resource__c(IPM_Role_Type__c = IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI,IPM_Project__c = projectList[0].Id,
+                                                                                  IPM_User__c = userList[5].Id,IPM_Project_Role_Owner__c = true);
+        
+        projectResourceList.add(ipmProjectResource1);
+        projectResourceList.add(ipmProjectResource2);
+        projectResourceList.add(ipmProjectResource3);
+        projectResourceList.add(ipmProjectResource4);
+        projectResourceList.add(ipmProjectResource5);
+        insert projectResourceList;
+        
+        List<IPM_Project_Resource_History__c> resourceHistoryList = [Select Id from IPM_Project_Resource_History__c where IPM_Project__c =: projectList[0].Id];
+        System.assertEquals(5, resourceHistoryList.size(), RESOURCE_HISTORY_INSERTED);
+        
+        List<IPM_Project_Resource__c> lstResourceToUpdate = new List<IPM_Project_Resource__c>();
+        for(IPM_Project_Resource__c eachResource : projectResourceList){
+                eachResource.IPM_Project_Role_Owner__c = false;
+                lstResourceToUpdate.add(eachResource);
+        }
+        update lstResourceToUpdate;
+        
+        resourceHistoryList = [Select Id,Type__c from IPM_Project_Resource_History__c where IPM_Project__c =: projectList[0].Id];
+        
+        for(IPM_Project_Resource_History__c resourceHistory : resourceHistoryList){
+            if(IPM_ConstantUtils.HISTORY_UPDATED == resourceHistory.Type__c ){
+                updateCount++;
+            }
+        }
+        System.assertEquals(5, updateCount, RESOURCE_HISTORY_UPDATED);
+        IPM_ProjectResourceTriggerHandler proResTrig=new IPM_ProjectResourceTriggerHandler();
+        Map<Id, IPM_Project_Resource__c> resMap=new Map<Id, IPM_Project_Resource__c>();
+        resMap.put(projectResourceList[0].Id,projectResourceList[0]);
+        proResTrig.OnAfterUpdate(lstResourceToUpdate,resMap,resMap);
+        Set<Id>userId=new Set<Id>();
+        //User projectLeader = IPM_TestFactory_Helper.createUser(false);
+        userId.add(projectLeader.Id);
+        IPM_ProjectResourceTriggerHandler.notifyRoleChangeToPLs(userId);
+        IPM_ProjectResourceTriggerHandler.memberChangingRole(lstResourceToUpdate);
+        proResTrig.onAfterUnDelete(lstResourceToUpdate);
+        Test.stopTest();
     }
+    
+    /***********************************
+    * @Description: validate Resource DML Operation and change in project sync status
+    * *********************************/
+    public static testmethod void testResourceInsertionUpdationDeletion(){
+        // Current running in Sharing mode with old sharing logic. Using System admin profile for time being.
+        User globalUser = IPM_TestFactory_Helper.createUserAdmin(false);
+        globalUser.email = 'globalUser@unilever.test.com';
+         
+        User regionalUser = IPM_TestFactory_Helper.createUserAdmin(false);
+        regionalUser.email = 'regionalUser@unilever.test.com';
+        
+        User localUser = IPM_TestFactory_Helper.createUserAdmin(false);
+        localUser.email = 'localUser@unilever.test.com';
+        
+        userList = new List<User>{globalUser,regionalUser,localUser};
+        insert userList;    
+
+        List<IPM_Company_Card__c> companyCardList ;
+        
+        
+        System.runAs(userList[0]) {
+            // Create Company Card information 
+            IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
+            globalCompanyCard.IPM_TxtGeographical_Scope__c = 'TEST123';
+            globalCompanyCard.IPM_Business_Partner__c = NULL;
+            IPM_Company_Card__c regionalCompanyCard = IPM_TestFactory_Helper.createRegionalCompanyCard(false);
+            regionalCompanyCard.IPM_TxtGeographical_Scope__c = 'TEST123';
+            regionalCompanyCard.IPM_Business_Partner__c = NULL;
+            IPM_Company_Card__c localCompanyCard = IPM_TestFactory_Helper.createLocalCompanyCard(false);
+            localCompanyCard.IPM_TxtGeographical_Scope__c = 'TEST123';
+            localCompanyCard.IPM_Business_Partner__c = NULL;
+            
+            companyCardList = new List<IPM_Company_Card__c>{globalCompanyCard,regionalCompanyCard,localCompanyCard};
+            insert companyCardList;
+        }
+        Test.startTest();
+        System.runAs(userList[0]) {
+
+            List<String> projectNames = new List<String>();
+        
+            // Get master data for the project including Templates,Documents,Section,Tasks and Milestones.
+            IPM_TestFactory_Helper.getProjectMasterData();
+            
+            // Create project for assignment.
+            ipmProjectList = IPM_TestFactory_Helper.createOriginalProjectList(false, 10);
+            for(IPM_Project__c project : ipmProjectList) {
+                project.IPM_Company_Card__c = companyCardList[0].Id;
+                project.IPM_Project_Gatekeeper__c = UserInfo.getUserId();
+                project.IPM_Project_Leader__c = userList[0].Id;
+                project.Success_Timestamp_EcoDesign__c = System.now().addMinutes(15);
+                project.IPM_SourceProjectType__c = 'Original';
+                project.First_Sync_To_EcoDesign__c = true;
+                projectNames.add(project.IPM_Project_Name__c); 
+            }
+        
+            insert ipmProjectList;
+            
+            IPM_Project_Resource__c ipmProjectResource1 = IPM_TestFactory_Helper.createIPMProjectResource(ipmProjectList[1].Id, false);
+            ipmProjectResource1.IPM_User__c = userList[1].Id;
+            ipmProjectResource1.IPM_Role_Type__c = 'Finance';
+            ipmProjectResource1.IPM_Member_Email__c = 'abc@gmail.com';
+            projectResourceList.add(ipmProjectResource1);
+            insert ipmProjectResource1;
+            
+            IPM_Project_Resource__c ipmProjectResource2 = IPM_TestFactory_Helper.createIPMProjectResource(ipmProjectList[1].Id, false);
+            ipmProjectResource2.IPM_User__c = userList[2].Id;
+            ipmProjectResource2.IPM_Role_Type__c = 'R&D';
+            ipmProjectResource2.IPM_Member_Email__c = 'xyz@gmail.com';
+            projectResourceList.add(ipmProjectResource2);
+            insert ipmProjectResource2;
+            List <IPM_Project_Resource__c> projList1 = [Select id,IPM_User__c from IPM_Project_Resource__c where Id =: ipmProjectResource2.Id LIMIT 1];
+            System.assertEquals(userList[2].Id, projList1[0].IPM_User__c, 'User id should be '+userList[2].Id);
+            
+            List<IPM_Project_Resource__c> ipmProjectResourceList = [Select id,IPM_User__c,IPM_Role_Type__c,IPM_Member_Email__c from IPM_Project_Resource__c limit 1000];
+            for(IPM_Project_Resource__c projRes : ipmProjectResourceList){
+                projRes.IPM_Member_Email__c = 'newemail@gmail.com';
+            }
+
+            Update ipmProjectResourceList;
+            
+            delete ipmProjectResourceList[0];
+            
+            List <IPM_Project_Resource__c> projResourceLst = [Select id,IPM_User__c from IPM_Project_Resource__c where Id =: ipmProjectResourceList[0].Id LIMIT 1];
+            System.assertEquals(projResourceLst.isEmpty(),true,'record is deleted');
+            
+        }
+        
+        Test.stopTest();
+    }
+    
+    
     
 }

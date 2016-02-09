@@ -1,3 +1,10 @@
+/*
+  Class Name: Utility
+  Author : Mindtree
+  Date: 1 June 2015
+  Requirement/Project Name: Unilever Salesforce Engagement
+  Requirement/Description: Utility class used for both Chatter Approval and Ideation App
+*/
 public with sharing class Utility {
 	
     

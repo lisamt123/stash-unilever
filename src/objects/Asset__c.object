@@ -59,9 +59,54 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
+    <fields>
+        <fullName>Additional_Owner_1__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Additional Owner 1</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Assets</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Additional_Owner_2__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <externalId>false</externalId>
+        <label>Additional Owner 2</label>
+        <referenceTo>User</referenceTo>
+        <relationshipName>Assets1</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>Agency_Edit_Access_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Agency Edit Access</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Agency_Read_Access_Text__c</fullName>
+        <externalId>false</externalId>
+        <label>Agency Read Access</label>
+        <length>32768</length>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
     <fields>
         <fullName>Asset_Group__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
@@ -214,10 +259,6 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Direct</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
                 <fullName>Discounters</fullName>
                 <default>false</default>
             </picklistValues>
@@ -231,10 +272,6 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Food Stores</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>GT</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -261,14 +298,6 @@
                 <fullName>Supermarkets</fullName>
                 <default>false</default>
             </picklistValues>
-            <picklistValues>
-                <fullName>Traditional</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>Wholesale</fullName>
-                <default>false</default>
-            </picklistValues>
             <sorted>false</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
@@ -284,7 +313,35 @@
         <label>Country</label>
         <picklist>
             <picklistValues>
-                <fullName>BR</fullName>
+                <fullName>Algeria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Argentina</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Australia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Austria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bahrain</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Bangladesh</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Belgium</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Botswana</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -292,7 +349,243 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
+                <fullName>Cambodia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Cameroon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Canada</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Chile</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
                 <fullName>China</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Colombia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Czech Republic</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Denmark</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Egypt</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Eritrea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Estonia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ethiopia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Fiji</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Finland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>France</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Germany</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ghana</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Gibraltar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Greece</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hong Kong</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Hungary</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>India</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Indonesia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ireland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Italy</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Japan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kenya</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Kuwait</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lebanon</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Lithuania</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Malaysia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mexico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Morocco</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Mozambique</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Myanmar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nepal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Netherlands</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>New Zealand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nicaragua</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Nigeria</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Norway</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Oman</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Pakistan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Panama</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Papua New Guinea</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Paraguay</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Peru</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Philippines</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Poland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Portugal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Puerto Rico</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Qatar</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Romania</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Russia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Rwanda</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Saudi Arabia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Senegal</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Singapore</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Slovakia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Slovenia</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -300,14 +593,70 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>UK</fullName>
+                <fullName>South Korea</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>ZA</fullName>
+                <fullName>Spain</fullName>
                 <default>false</default>
             </picklistValues>
-            <sorted>false</sorted>
+            <picklistValues>
+                <fullName>Sri Lanka</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sudan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Sweden</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Switzerland</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Taiwan</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Thailand</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Tunisia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>United Arab Emirates</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>United Kingdom</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>United States</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Venezuela</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Vietnam</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Zimbabwe</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>true</sorted>
         </picklist>
         <trackFeedHistory>false</trackFeedHistory>
         <trackTrending>false</trackTrending>
@@ -381,6 +730,14 @@
             </picklistValues>
             <picklistValues>
                 <fullName>SEAA</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>South Asia</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>NAMETRUB</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -460,11 +817,15 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>In Store Execution</fullName>
+                <fullName>Repeatable Model</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Repeatable Model</fullName>
+                <fullName>Call To Action</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Best Practices</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -1262,9 +1623,20 @@ ToDelete=Asset will be removed by the system automatically at the scheduled dele
         <type>MultiselectPicklist</type>
         <visibleLines>4</visibleLines>
     </fields>
-    <label>Asset</label>
-    <listViews>
-        <fullName>All</fullName>
+    <fields>
+        <fullName>Video_URL_Link__c</fullName>
+        <description>Optional field to hold the url for associated video</description>
+        <externalId>false</externalId>
+        <label>Video URL Link</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>Asset</label>    <listViews>
+        <fullName>All_Assets</fullName>
         <columns>NAME</columns>
         <columns>Category__c</columns>
         <columns>Brand__c</columns>
@@ -1273,7 +1645,8 @@ ToDelete=Asset will be removed by the system automatically at the scheduled dele
         <columns>Channels__c</columns>
         <columns>POS_Asset_Type__c</columns>
         <filterScope>Everything</filterScope>
-        <label>All</label>
+        <label>All Assets</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Asset Name</label>
@@ -1291,4 +1664,24 @@ ToDelete=Asset will be removed by the system automatically at the scheduled dele
         <errorConditionFormula>IF(Brand__c = null, false, IF(Category__c = null, true, false))</errorConditionFormula>
         <errorMessage>If a brand is specified, category must also be provided</errorMessage>
     </validationRules>
+    <webLinks>
+        <fullName>Delete_Asset</fullName>
+        <availability>online</availability>
+        <description>Custom delete</description>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Delete Asset</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/20.0/apex.js&quot;)} 
+var assetId = &apos;{!Asset__c.Id}&apos;; 
+var result = sforce.apex.execute(&quot;WINatPOS_AssetService&quot;, &quot;deleteAsset&quot;,{assetId : assetId }); 
+
+if(result[0] === &apos;&apos;) { 
+window.location=&apos;/apex/WINatPOSHomePage&apos;;
+}else{
+alert(result[0]);
+}</url>
+    </webLinks>
 </CustomObject>

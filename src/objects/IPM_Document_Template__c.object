@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>To Capture the Document Template Master based on the Project Template</description>
@@ -70,7 +69,6 @@
     </fields>
     <fields>
         <fullName>IPM_Document_Template_Name__c</fullName>
-        <caseSensitive>false</caseSensitive>
         <description>To capture the Name of the Document Template</description>
         <externalId>false</externalId>
         <label>IPM Document Template Name</label>
@@ -78,7 +76,7 @@
         <required>true</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
-        <unique>true</unique>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Document_Type__c</fullName>
@@ -121,12 +119,26 @@
         <type>Lookup</type>
     </fields>
     <label>IPM Document Template</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>IPM_Document_Template_Name__c</columns>
+        <columns>IPM_Document_Type__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>IDT-{0000}</displayFormat>
         <label>IPM Document Template Id</label>
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>IPM Document Templates</pluralLabel>
-    <searchLayouts/>
+    <searchLayouts>
+        <searchResultsAdditionalFields>IPM_Document_Template_Name__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Project_Template__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Document_Type__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>IPM_Document_Order__c</searchResultsAdditionalFields>
+    </searchLayouts>
     <sharingModel>Private</sharingModel>
 </CustomObject>

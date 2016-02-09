@@ -53,6 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -147,7 +148,7 @@
     <listViews>
         <fullName>CEC_General_Queue_cec_Store</fullName>
         <filterScope>Queue</filterScope>
-        <label>General Queue</label>
+        <label>CEC UKI Queue</label>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -199,6 +200,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_North_America_Queue_cec_Store</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC North America Queue</label>
+        <queue>CEC_North_America_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Poland_Queue</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Poland Queue</label>
@@ -222,6 +232,15 @@
         <filterScope>Queue</filterScope>
         <label>CEC Spain Queue</label>
         <queue>CEC_Spain_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>CEC_Sri_Lanka_Queue_cec_Store</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC Sri Lanka Queue</label>
+        <queue>CEC_Sri_Lanka_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

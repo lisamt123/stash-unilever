@@ -13,6 +13,11 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <field>Agency_Entity_Name__c</field>
+            <table>AF_OOPS_Estimate__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>AF_Agency_Entity__c</field>
             <table>AF_OOPS_Estimate__c</table>
         </columns>
@@ -193,6 +198,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Brand</displayNameOverride>
             <field>AF_OOPS_Actual__c.AF_Brand__c</field>
             <table>AF_OOPS_Estimate__c</table>
         </columns>
@@ -339,6 +345,30 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>AF_PO_Report_Type__c</field>
+            <table>AF_OOPS_Estimate__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Big Category</displayNameOverride>
+            <field>AF_OOPS_Actual__c.AF_Brand__c.AF_Super_category__c</field>
+            <table>AF_OOPS_Estimate__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Brand</displayNameOverride>
+            <field>AF_OOPS_Actual__c.AF_Brand__c.Name</field>
+            <table>AF_OOPS_Estimate__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Category</displayNameOverride>
+            <field>AF_OOPS_Actual__c.AF_Category_Name__c</field>
+            <table>AF_OOPS_Estimate__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Big Category</displayNameOverride>
+            <field>AF_OOPS_Actual__c.AF_Brand__c.AF_Category_Brands__c.AF_Super_category__c</field>
             <table>AF_OOPS_Estimate__c</table>
         </columns>
         <masterLabel>OOPS Estimates</masterLabel>

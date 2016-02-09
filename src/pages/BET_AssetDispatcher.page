@@ -1,0 +1,2 @@
+<apex:page showHeader="false" sidebar="false" controller="BET_AssetDispatcherController" action="{!grantAccess}">
+</apex:page>

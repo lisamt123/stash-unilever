@@ -78,9 +78,9 @@ public class Test_AF_AgencyReviewCommentsExtension
      //Instantiating the class AF_AgencyReviewCommentsExtension 
      ApexPages.StandardController sc = new ApexPages.StandardController(brandEst);
      AF_AgencyReviewCommentsExtension agencRevControl=new AF_AgencyReviewCommentsExtension (sc);
-     agencRevControl.save();
+     agencRevControl.saveControllerReview();
      agencRevControl.checkReview=false;
-     agencRevControl.save();
+     agencRevControl.saveControllerReview();
      
      Test.stopTest(); 
      }

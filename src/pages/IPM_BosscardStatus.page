@@ -1,0 +1,202 @@
+<!--  
+*************************************************************************
+*@Description: This is the page where user can change the bosscard status.
+*@Author: Cognizant
+*@Created Date: 15/06/2015
+*@Copyright © 2015  Unilever  
+*************************************************************************
+-->
+
+<apex:page controller="IPM_BosscardStatusController" title="{!bosscardStatus_STR}" standardStylesheets="true" sidebar="false" showHeader="false"  id="IPM_BosscardStatus">
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'assets/font-awesome/css/font-awesome.min.css')}"/>
+
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Modal1.css')}"/>    
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Buttons.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_Table.css')}"/>  
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_BosscardStatus.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.IPM_Resource, 'css/IPM_HomePage.css')}"/>
+    <apex:form id="frm">
+        <div class="container-fluid">
+            <div class="statusButtonContainer">
+                <div class="statusButtons" id="ipmUpdateStatusTab">
+                    <ul class="ipmStatusTabs">
+                        <div class="tabContainer">
+                            <li class="status_progress" onclick="changeBosscardStatus('{!inProgress_STR}');">
+                                <div class="statusButtons" >
+                                    <span class="progressIcon"></span>
+                                    <span class="StatusLabel">{!$Label.IPM_Bosscard_Inprogress}</span> 
+                                    <input id="edits" type="radio" name="status"/>
+                                    <label for="edits"></label>
+                                </div>
+                            </li>
+                            <li class="status_approved" onclick="changeBosscardStatus('{!approved_STR}');">
+                                <div class="statusButtons">
+                                    <span class="approvedIcon"></span>
+                                    <span class="StatusLabel">{!$Label.IPM_Bosscard_Approved}</span> 
+                                    <input id="approved" type="radio" name="status"/>
+                                    <label for="approved"></label>
+                                </div>
+                            </li>
+                            <li class="status_notapproved" onclick="changeBosscardStatus('{!notApproved_STR}');">
+                                <div class="statusButtons">
+                                    <span class="notapprovedIcon"></span>
+                                    <span class="StatusLabel">{!$Label.IPM_Bosscard_NotApproved}</span> 
+                                    <input id="postponed" type="radio" name="status"/>
+                                    <label for="postponed"></label>
+                                </div>
+                            </li>
+                            <li class="status_discard" onclick="changeBosscardStatus('{!discard_STR}');">
+                                <div class="statusButtons">
+                                    <span class="discardIcon"></span>
+                                    <span class="StatusLabel">{!$Label.IPM_Bosscard_Discard}</span> 
+                                    <input id="discard" type="radio" name="status"/>
+                                    <label for="discard"></label>
+                                </div>
+                            </li>
+
+                        </div>
+                    </ul> 
+                    <div class="ipmGetStartedContent" id="status_progress">
+                        <div class="sContainer">
+                            <div class="StatusContent">  
+                                <div class="col-xs-12 toolTipMsg proPointer marginTop"><span class="statusToolTip">{!$Label.IPM_Bosscard_InProgress_Message}</span></div>       
+                            </div>   
+                        </div>
+                        <div class="textareaContainer">
+                            <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
+                            <apex:inputtextarea value="{!inProgressComments}"  id="Bosscommentsinprogress" />
+                        </div>
+                    </div> 
+                    <div class="ipmGetStartedContent" id="status_approved">
+                        <div class="sContainer">
+                            <div class="StatusContent">  
+                                <div class="col-xs-12 toolTipMsg approvePointer marginTop"><span class="statusToolTip">{!$Label.IPM_Bosscard_Congratulations}</span></div>
+                            </div>   
+                        </div>                      
+                        <apex:outputPanel layout="block" styleClass="nominateContainer" rendered="{!searchPL_Bool}">
+                            <span class="commentHeader">{!$Label.IPM_Bosscard_Nominate}</span>
+                            <span class="apprDesc">{!$Label.IPM_Bosscard_Project_Leader}</span>
+                            <div class="col-sm-12 bscrdStatusSearch noPadleft">
+                                <apex:inputtext value="{!selectedPL}" html-data-placeholder="{!$Label.IPM_Search_Project_Leader}" styleclass="searchLeader placeholder" />
+                                <img alt="Search" class="srchImage"  src="{!URLFOR($Resource.IPM_Resource, 'images/search.svg')}" onclick="callsearch();" />
+                            </div>
+                            <apex:outputPanel layout="block" id="peoplecount" styleClass="clearfix">
+                                <span class="commentHeader">{!$Label.IPM_Bosscard_People} ({!plcount_INT})</span>
+                            </apex:outputPanel>    
+                            <apex:outputPanel layout="block" styleClass="leadersList" id="SearchCoreMem">
+                                <table class="ipmTable leaderTable table table-bordered">
+                                    <tbody>
+                                        <apex:repeat value="{!projecLeaderlist}" var="UP">
+                                        <tr>
+                                            
+                                            <td>
+                                                <apex:image styleClass="rounded" url="{!UP.IPM_User__r.SmallPhotoUrl}"/>
+                                            </td>
+                                            <td class="leaderbox">
+                                                <apex:outputText styleClass="leaderName" value="{!UP.IPM_User__r.name} |   "/>
+                                                <apex:outputLink styleClass="leaderMail" value="mailto:{!UP.IPM_User__r.email}">{!UP.IPM_User__r.email}</apex:outputLink>
+                                            </td>
+                                            <td>
+                                                <input type="radio" class="rbutton" name="UserP" id="{!UP.id}" value="{!UP.id}" onclick="selectedCMem('{!UP.IPM_User__r.id}')"/>
+                                                <label for="{!UP.id}"></label>
+                                            </td>
+                                        </tr>   
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                                <apex:outputText rendered="{!IsNoMatchfound=true}" value="{!$Label.IPM_NO_MATCHES_FOUND}" id="notfound" />
+                           </apex:outputPanel>
+                        </apex:outputPanel>
+                        <div class="textareaContainer">
+                            <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
+                            <apex:inputtextarea value="{!inApprovedComments}"  id="Bosscomments"/>
+                            <span class="commentDesc">{!$Label.IPM_Bosscard_Feedback}</span>
+                        </div>
+                        <apex:actionFunction action="{!filterprojectLeader}" name="callsearch" reRender="SearchCoreMem,peoplecount,refresh"/>
+                         <apex:actionFunction name="selectedCMem" action="{!holdPLUserId}" reRender="refresh">
+                            <apex:param name="PLid" value="" assignTo="{!holdPL_STR}"/>
+                        </apex:actionFunction> 
+                    </div>
+                    <div class="ipmGetStartedContent" id="status_notapproved">
+                        <div class="sContainer">
+                            <div class="StatusContent">  
+                                <div class="col-xs-12 toolTipMsg notapprovePointer marginTop"><span class="statusToolTip">{!$Label.IPM_Bosscard_Approved_Message}</span></div>       
+                            </div>   
+                        </div>   
+                        <div class="textareaContainer">
+                            <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
+                            <apex:inputtextarea value="{!inNotApprovedComments}"  id="BosscommentsNotApprove"/>
+                        </div>  
+                    </div> 
+                    <div class="ipmGetStartedContent" id="status_discard">
+                        <div class="sContainer">
+                            <div class="StatusContent">  
+                                <div class="col-xs-12 toolTipMsg discardPointer marginTop"><span class="statusToolTip">{!$Label.IPM_Bosscard_Discared_Message}</span></div>       
+                            </div>   
+                        </div>  
+                        <div class="textareaContainer">
+                            <span class="commentHeader">{!$Label.IPM_Bosscard_Comments}</span>
+                            <apex:inputtextarea value="{!inDiscardComments}"  id="BosscommentsDiscard"/>
+                        </div> 
+                    </div> 
+                    <apex:actionStatus id="loading" startStyleClass="proInit"></apex:actionStatus>
+                    <div class="statusButtonContainer pull-right">
+                        <apex:commandLink value="{!$Label.IPM_CANCEL}" styleClass="ipmButton" onclick="cancel();"/>
+                        <apex:outputPanel id="refresh">
+                            <apex:commandLink action="{!updateStatus}" value="{!$Label.IPM_CHANGE}" styleClass="ipmButton primary" oncomplete="goToBosscardParentPage()"  rendered="{!isNotApproved}"/>   
+                            <apex:outputPanel rendered="{!isApprovedOtherPLSelected}">
+                                <span class="disableButton">{!$Label.IPM_Bosscard_Change}</span>
+                            </apex:outputPanel>
+                             <apex:outputPanel rendered="{!isApprovedWithPLSelected}">
+                                <a onclick="createPro('{!holdPL_STR}');"  Class="ipmButton primary">{!$Label.IPM_Bosscard_Change}</a>
+                                 
+                             </apex:outputPanel>
+                            <apex:outputPanel rendered="{!isApprovedButNoPLSelected}">
+                                <a onclick="createPro('{!holdPL_STR}');"  Class="ipmButton primary">{!$Label.IPM_Bosscard_Change}</a>
+                                 
+                             </apex:outputPanel>
+                        </apex:outputPanel>
+                    </div>     
+                </div>
+            </div>
+        </div>
+        <apex:actionFunction name="updateBosscardStatus" action="{!setStatus}" reRender="refresh,refreshstatus" status="loading">
+            <apex:param assignTo="{!Statusvalue}" value="" name="updateBossStatus"/>
+        </apex:actionFunction>
+    </apex:form>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_functions.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/jquery.clearsearch.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.js')}" type="text/javascript"></script>
+    <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_BosscardStatus.js')}" type="text/javascript"></script>  
+    <apex:outputPanel id="refreshstatus">
+    <script>
+        var IPMApp = {bossurl:'{!URLFOR($Page.IPM_Bosscard)}',projecturl:'{!URLFOR($Page.IPM_ProjectSetUpView)}',homeurl:'{!URLFOR($Page.IPM_HomePage)}',status:'{!JSINHTMLENCODE(Statusvalue)}',bosscardId:'{!bosscard.Id}',CurrentPage:'{!JSINHTMLENCODE($CurrentPage.parameters.goto)}',ComponentBosscomments:'{!$Component.frm.Bosscomments}',boolVal:'{!searchPL_Bool}', systemMsg:'{!$Label.IPM_System_Admin}'};
+   </script>
+    </apex:outputPanel> 
+    <script>
+    jq('.searchLeader').clearSearch();
+    <!-- The below script needs to included in the page as RemoteAction is invoked when Bosscard is Approved to create Project, which doesnot work when referenced from Static resource-->
+    function createPro(plId){
+            var RemoteActionCreatePro = '{!$RemoteAction.IPM_BosscardStatusController.createProject}';
+            var bossCommentValue = document.getElementById(IPMApp.ComponentBosscomments).value;
+            Visualforce.remoting.Manager.invokeAction(
+                RemoteActionCreatePro,IPMApp.bosscardId,plId,bossCommentValue,
+                function(result, event){
+                    if (event.status) {
+                        if(event.result!=null){
+                            if(IPMApp.boolVal=='true'){
+                                 window.top.location.href=IPMApp.homeurl;
+                            }else{
+                                 window.top.location.href=IPMApp.projecturl+'?Pid='+event.result;
+                            } 
+                               }
+                             else{
+                                 alert(IPMApp.systemMsg);
+                             }
+                        }
+                    }
+                );         
+            }
+    </script>
+</apex:page>

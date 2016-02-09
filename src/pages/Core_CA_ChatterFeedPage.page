@@ -76,7 +76,9 @@
             margin-bottom: 60px;
             margin-left:10px; 
         }
-    }    
+    }   
+    
+    
 </style>
 <div class="feedPagePadding" >
     <chatter:feed entityId="{!$CurrentPage.parameters.id}" showPublisher="true" />

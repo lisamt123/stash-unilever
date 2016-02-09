@@ -16,6 +16,14 @@
                 <field>IPM_Document_Template_Name__c</field>
             </layoutItems>
             <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Document_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IPM_Document_Order__c</field>
+            </layoutItems>
+            <layoutItems>
                 <behavior>Required</behavior>
                 <field>IPM_Project_Template__c</field>
             </layoutItems>
@@ -24,10 +32,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>OwnerId</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>IPM_Document_Type__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
@@ -65,8 +69,10 @@
         <fields>NAME</fields>
         <fields>IPM_Section_Name__c</fields>
         <fields>IPM_Section_Type__c</fields>
-        <fields>IPM_Section_Label_Type__c</fields>
         <fields>IPM_Section_Sequence__c</fields>
+        <fields>IPM_Parent_Section__c</fields>
+        <fields>External_ID__c</fields>
+        <fields>IPM_FunctionalRole__c</fields>
         <relatedList>IPM_Section__c.IPM_Document_Template__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
@@ -75,7 +81,7 @@
     <showRunAssignmentRulesCheckbox>false</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>false</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hL0000000H9TD</masterLabel>
+        <masterLabel>00hM0000000QRGr</masterLabel>
         <sizeX>4</sizeX>
         <sizeY>0</sizeY>
         <summaryLayoutStyle>Default</summaryLayoutStyle>

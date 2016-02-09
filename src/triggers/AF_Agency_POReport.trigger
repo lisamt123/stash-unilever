@@ -2,11 +2,13 @@ trigger AF_Agency_POReport on AF_Agency_Estimate__c (after insert,after update,b
     Set<id> AgencyEstids=new set<id>();
     Boolean deletePOReport=false;
 
-    if(!Trigger.isDelete){
+    if(!Trigger.isDelete && !AF_brandEstimatehandlerHelper.testvar){
         system.debug('inside update....');
         for(AF_Agency_Estimate__c  eachRecord:Trigger.new )   
         {
+            
             AgencyEstids.add(eachRecord.Id);
+            
         }   
     }
     else if(Trigger.isDelete){
@@ -17,8 +19,11 @@ trigger AF_Agency_POReport on AF_Agency_Estimate__c (after insert,after update,b
         }
         deletePOReport = true;
     }
-    if(AgencyEstids.size()>0){
+    if(AgencyEstids.size()>0 && !system.isBatch()){
         AF_GetBaseFeePOData.CreatePOReportFromAgencyEstimate(AgencyEstids,deletePOReport);
+    }
+    else if(AgencyEstids.size()>0 && system.isBatch()){
+    AF_GetBaseFeePOData.BatchcreatePOReportFromAgencyEstimate(AgencyEstids,deletePOReport);
     }
 
 }

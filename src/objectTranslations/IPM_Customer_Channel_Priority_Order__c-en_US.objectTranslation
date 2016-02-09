@@ -6,7 +6,7 @@
     </caseValues>
     <caseValues>
         <plural>true</plural>
-        <value>IPM Customer Channel Priority Order</value>
+        <value>IPM Customer Channel Priority</value>
     </caseValues>
     <fields>
         <label><!-- Priority Order Value --></label>

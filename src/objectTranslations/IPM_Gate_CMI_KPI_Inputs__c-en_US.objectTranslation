@@ -9,12 +9,24 @@
         <value>IPM Gate CMI KPI Inputs</value>
     </caseValues>
     <fields>
+        <label><!-- IPM Input Size --></label>
+        <name>IPM_Input_Size__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Inputs --></label>
         <name>IPM_Inputs__c</name>
     </fields>
     <fields>
         <label><!-- IPM KPI --></label>
         <name>IPM_KPI__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Overall Colour Score Method --></label>
+        <name>IPM_Overall_Colour_Score_Method__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Overall Score Label --></label>
+        <name>IPM_Overall_Score_Label__c</name>
     </fields>
     <fields>
         <label><!-- IPM Test --></label>

@@ -73,9 +73,37 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- IPM CMI Overall Colour Score Method --></label>
+        <name>IPM_CMI_Overall_Colour_Score_Method__c</name>
+        <picklistValues>
+            <masterLabel>Manual</masterLabel>
+            <translation><!-- Manual --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Applicable</masterLabel>
+            <translation><!-- Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>System</masterLabel>
+            <translation><!-- System --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- IPM CMI Records Count --></label>
+        <name>IPM_CMI_Records_Count__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Project --></label>
         <name>IPM_Project__c</name>
         <relationshipLabel><!-- IPM Gate CMIs --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Skip Test Reason --></label>
+        <name>IPM_Skip_Test_Reason__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Skip Test --></label>
+        <name>IPM_Skip_Test__c</name>
     </fields>
     <fields>
         <label><!-- Input --></label>

@@ -18,11 +18,6 @@
         <name>Project_Description__c</name>
     </fields>
     <fields>
-        <label><!-- Stakeholder (Organisation) --></label>
-        <name>StakeholderOrganisation__c</name>
-        <relationshipLabel><!-- Unilever Projects --></relationshipLabel>
-    </fields>
-    <fields>
         <label><!-- Unilever Project Lead --></label>
         <name>Unilever_Project_Lead__c</name>
         <relationshipLabel><!-- Unilever Projects --></relationshipLabel>

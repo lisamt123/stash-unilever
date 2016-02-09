@@ -63,7 +63,7 @@
         </feedFilters>
         <fullWidthFeed>true</fullWidthFeed>
         <hideSidebar>false</hideSidebar>
-        <highlightExternalFeedItems>true</highlightExternalFeedItems>
+        <highlightExternalFeedItems>false</highlightExternalFeedItems>
         <rightComponents>
             <componentType>HelpAndToolLinks</componentType>
         </rightComponents>
@@ -79,6 +79,7 @@
         <rightComponents>
             <componentType>CustomButtons</componentType>
         </rightComponents>
+        <useInlineFiltersInConsole>false</useInlineFiltersInConsole>
     </feedLayout>
     <layoutSections>
         <customLabel>false</customLabel>
@@ -120,8 +121,8 @@
                 <field>ParentId</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Brand__c</field>
+                <behavior>Readonly</behavior>
+                <field>Case_Brand__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -309,9 +310,6 @@
     </layoutSections>
     <quickActionList>
         <quickActionListItems>
-            <quickActionName>Case.Email</quickActionName>
-        </quickActionListItems>
-        <quickActionListItems>
             <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
@@ -414,7 +412,7 @@
     <showRunAssignmentRulesCheckbox>true</showRunAssignmentRulesCheckbox>
     <showSubmitAndAttachButton>true</showSubmitAndAttachButton>
     <summaryLayout>
-        <masterLabel>00hc0000000ZBmV</masterLabel>
+        <masterLabel>00he0000000HJjy</masterLabel>
         <sizeX>3</sizeX>
         <sizeY>4</sizeY>
         <summaryLayoutItems>

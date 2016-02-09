@@ -239,6 +239,18 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Currency</displayNameOverride>
+            <field>AF_MatrixCodeTemp__c</field>
+            <table>AF_Bonus_Summary__c.Bonus_Matrix__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Exchange Rate</displayNameOverride>
+            <field>AF_Agency_ExchangeRateTemp__c</field>
+            <table>AF_Bonus_Summary__c.Bonus_Matrix__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>Category__c</field>
             <table>AF_Bonus_Summary__c.Bonus_Matrix__r</table>
         </columns>
@@ -284,6 +296,12 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Exchange Rate@ReadyforPO</displayNameOverride>
+            <field>ReadyforPOExchangeRateTemp__c</field>
+            <table>AF_Bonus_Summary__c.Bonus_Matrix__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
             <field>AF_IsCrossBorderImage__c</field>
             <table>AF_Bonus_Summary__c.Bonus_Matrix__r</table>
         </columns>
@@ -305,6 +323,12 @@
         <columns>
             <checkedByDefault>false</checkedByDefault>
             <field>AF_Overidden__c</field>
+            <table>AF_Bonus_Summary__c.Bonus_Matrix__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Currency @ReadyforPO</displayNameOverride>
+            <field>AF_ReadyforPoCodeTemp__c</field>
             <table>AF_Bonus_Summary__c.Bonus_Matrix__r</table>
         </columns>
         <columns>
@@ -334,7 +358,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
-            <displayNameOverride>Currency</displayNameOverride>
+            <displayNameOverride>Currency @ Ready for PO</displayNameOverride>
             <field>AF_Rate_Currency__c</field>
             <table>AF_Bonus_Summary__c.Bonus_Matrix__r</table>
         </columns>
@@ -350,6 +374,7 @@
         </columns>
         <columns>
             <checkedByDefault>false</checkedByDefault>
+            <displayNameOverride>Exchange Rate@PO</displayNameOverride>
             <field>AF_Ready_For_PO_Exchange_Rate__c</field>
             <table>AF_Bonus_Summary__c.Bonus_Matrix__r</table>
         </columns>
@@ -398,6 +423,11 @@
             <checkedByDefault>false</checkedByDefault>
             <displayNameOverride>Legal Entity Name</displayNameOverride>
             <field>AF_Agency_Entity__c.AF_Legal_Entity_Name__c</field>
+            <table>AF_Bonus_Summary__c.Bonus_Matrix__r</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>AF_Agency_Entity__c.AF_Local_Currency__c.Country_Currency__c</field>
             <table>AF_Bonus_Summary__c.Bonus_Matrix__r</table>
         </columns>
         <masterLabel>Bonus Matrix</masterLabel>

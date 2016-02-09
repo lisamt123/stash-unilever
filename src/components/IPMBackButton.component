@@ -1,8 +1,0 @@
-<apex:component >
-   <apex:attribute name="projectId" type="String" description="Pass the project id"/>
-           
-               <a href="/apex/IPMProject?id={!projectId}" title="Back"><span class="ipmBackBtn fa fa-chevron-left arrow"></span></a>
-               <!-- <apex:commandLink styleClass="ipmButton teal pull-left">Back</apex:commandLink>-->
-              
-  
-</apex:component>

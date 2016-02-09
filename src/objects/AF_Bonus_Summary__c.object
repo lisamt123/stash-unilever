@@ -53,6 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -235,6 +236,16 @@
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>No_of_Matrix_Cells__c</fullName>
+        <externalId>false</externalId>
+        <label>No of Matrix Cells</label>
+        <summaryForeignKey>AF_Bonus_Matrix__c.AF_Bonus_Summary__c</summaryForeignKey>
+        <summaryOperation>count</summaryOperation>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Summary</type>
     </fields>
     <fields>
         <fullName>VisbleToAgency__c</fullName>

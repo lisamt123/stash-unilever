@@ -29,19 +29,11 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>harriet.howell@unilever.com</name>
+                <name>leena.varsani@unilever.com</name>
                 <type>user</type>
             </approver>
             <approver>
-                <name>mona.alami-merrouni@unilever.com</name>
-                <type>user</type>
-            </approver>
-            <approver>
-                <name>rachel.goertz@unilever.com</name>
-                <type>user</type>
-            </approver>
-            <approver>
-                <name>sandra.fontano@unilever.com</name>
+                <name>maisie-rose.byrne@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
@@ -67,19 +59,11 @@
         </approvalActions>
         <assignedApprover>
             <approver>
-                <name>harriet.howell@unilever.com</name>
+                <name>leena.varsani@unilever.com</name>
                 <type>user</type>
             </approver>
             <approver>
-                <name>mona.alami-merrouni@unilever.com</name>
-                <type>user</type>
-            </approver>
-            <approver>
-                <name>rachel.goertz@unilever.com</name>
-                <type>user</type>
-            </approver>
-            <approver>
-                <name>sandra.fontano@unilever.com</name>
+                <name>maisie-rose.byrne@unilever.com</name>
                 <type>user</type>
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>

@@ -292,6 +292,10 @@
                 <behavior>Edit</behavior>
                 <field>AF_Category_Name_Wk__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_Dont_Show_on_Report__c</field>
+            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -366,6 +370,26 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>AF_AgencyUsers5__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_AgencyUsers6__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_AgencyUsers7__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_AgencyUsers8__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_AgencyUsers9__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>AF_AgencyUsers10__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

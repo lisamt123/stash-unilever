@@ -13,12 +13,29 @@
         <name>IPM_Category__c</name>
     </fields>
     <fields>
+        <label><!-- Company Card --></label>
+        <name>IPM_Company_Card__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Docmnt Sec FunctionalorSummary Inpt --></label>
+        <name>IPM_Docmnt_Sec_FunctionalorSummary_Inpt__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Locale Time --></label>
+        <name>IPM_Locale_Time__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Member Email --></label>
         <name>IPM_Member_Email__c</name>
     </fields>
     <fields>
-        <label><!-- IPM Project Name --></label>
-        <name>IPM_Project_Name__c</name>
+        <label><!-- IPM Project Document Section Name --></label>
+        <name>IPM_Project_Document_Section_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Project Document Section --></label>
+        <name>IPM_Project_Document_Section__c</name>
+        <relationshipLabel><!-- IPM Project Resources --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Owner --></label>
@@ -30,6 +47,10 @@
         <relationshipLabel><!-- IPM Project Resources --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- IPM_Res_Email --></label>
+        <name>IPM_Res_Email__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Role Type --></label>
         <name>IPM_Role_Type__c</name>
     </fields>
@@ -38,21 +59,17 @@
         <name>IPM_Role__c</name>
     </fields>
     <fields>
-        <label><!-- IPM Section Id --></label>
-        <name>IPM_Section_Id__c</name>
-    </fields>
-    <fields>
-        <label><!-- IPM Section Name --></label>
-        <name>IPM_Section_Name__c</name>
-    </fields>
-    <fields>
-        <label><!-- IPM Sequence Number --></label>
-        <name>IPM_Sequence_Number__c</name>
+        <label><!-- IPM Unique Resource --></label>
+        <name>IPM_Unique_Resource__c</name>
     </fields>
     <fields>
         <label><!-- User --></label>
         <name>IPM_User__c</name>
         <relationshipLabel><!-- IPM Project Resources --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM copyEmail --></label>
+        <name>IPM_copyEmail__c</name>
     </fields>
     <fields>
         <label><!-- IPM send an email --></label>
@@ -64,13 +81,6 @@
     </fields>
     <layouts>
         <layout>IPM Project Resource Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
-    <layouts>
-        <layout>Project Resource Layout</layout>
         <sections>
             <label><!-- Custom Links --></label>
             <section>Custom Links</section>

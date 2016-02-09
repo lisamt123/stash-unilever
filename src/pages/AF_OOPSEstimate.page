@@ -2,6 +2,87 @@
 <!-- {!Buttondisplay}<br/>
  {!oopsEstimate.AF_OOPS_Actual__r.AF_Status__c}<br/>
  {!LoggedinUser.AF_Agency_Fees_User_Type__c} -->
+ <style>
+.marginL0{
+    margin-left:0px !important;
+    width:121px !important;
+    height: 25px !important;
+}
+ .paddingTB5
+{
+   padding:5px 0px;
+}
+.marginTL
+{
+  margin:8px 0px 0px 36px;
+}
+.PaddingL24
+{
+   padding:0px 0px 0px 24px;
+   font-size:14px;
+}
+div ul.helpListStyle
+{
+  margin: 5px 0px 0px -20px;
+  font-size: 13px;
+}
+div ul.helpListStyle li {
+    list-style:none;
+    padding:2px 0px;
+}
+
+div ul.helpListStyle li:before {
+    content: "";
+    position:relative;
+    left: -8px;
+    background-color:#74AE00;
+    
+    display:inline-block;
+    width:6px;
+    height:6px;
+    border-radius:50%
+}
+h5.titleHelpStyle
+{
+  margin: 10px 0px 10px 31px;
+  font-weight: bold;
+  float: left;
+  clear: both;
+  width: 100%;
+  font-size: 16px;
+}
+.textAlignC
+{
+   text-align:center;
+}
+.marginL46P
+{
+   margin-left:46% !important;
+}
+
+#iframe_cont
+{
+    width:100%;
+}
+.modal-body
+{
+    height: 93%;
+} 
+.modal-body #iframe_cont
+{
+   height:100%;
+}
+.modal-dialog
+{
+  width:85% !important;
+  height:95% !important;
+  margin-top:8px !important;
+}
+.modal-content
+{
+  height:102%;
+}
+ </style>
  <script>
      function isNumberKey(evt)
        {
@@ -21,214 +102,107 @@
           return result; 
        }
   </script>
- <style>
- 
-  .heading_main{
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 0;
-    padding-bottom:5px;
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%;
-    }
-.heading_text{
-    color: black;
-    font-size: 20px;
-    margin-right: 20px;
-    padding: 7px 1px 8px 8px;
-}
+<!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End --> 
 
- .comment_box1{
-    margin-top: 5px;
-    width: 982px;
-    height: 93px;
-    margin-bottom: 5px;
-    border: 2px solid #74AE00;
-    border-radius: 7px;
-    resize: none;
-    font-size:16px;
-    }
- .submit_btn{
-background: none repeat scroll 0 0 #E400A7 !important;
-border: 1px solid red!important;
-border-radius: 5px !important;
-color: #FFFFFF!important;
-font-size: 14px!important;
-height: 30px;
-/* margin-top: 10px!important; */
-/* padding-bottom: 20px; */
-/* padding-top: 5px; */
-width: 100px;
-/* margin-left: 470px !important; */
-float: left;
-margin-left: 177px!important;
-margin-right: 5px!important;
- }
- 
- .submit_btn_screen1_oops{
-  background: none repeat scroll 0 0 #E400A7 !important;
-border: 1px solid red!important;
-border-radius: 5px !important;
-color: #FFFFFF!important;
-font-size: 14px!important;
-height: 30px;
-/*margin-top: 10px!important;*/
-/* padding-bottom: 20px; */
-/* padding-top: 5px; */
-width: 100px;
-/* margin-left: 470px !important; */
-float: left;
-margin-left: 80px!important;
- }
- 
-  .submit_btnblur{
-    background: none repeat scroll 0 0 #CCC !important;
-    border: 1px solid red!important;
-    border-radius: 5px !important;
-    color: #FFFFFF!important;
-    font-size: 16px!important;
-    height: 35px;
-    margin-top: 13px ;
-    padding-bottom: 20px;
-    padding-top: 5px;
-    width: 160px;
-    margin-left:100px !important;
- }
- 
-  .values1
-   {
-   background: none repeat scroll 0 0 #FFFFFF;
-border: 2px solid #74AE00;
-border-radius: 5px;
-color: #000000;
-font-size: 16px;
-height: 25px;
-margin-top: 5px;
-padding: 0;
-width: 120px;
-text-align: center;
-padding-top: 2px;
-padding-left: 5px;
+<!-- Bootstrap_css File Start -->
+    <link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.css')}" type="text/css"/>
+<!-- Bootstrap_css File End -->
 
-   }
-   
-  .values1_oops
-   {
-background: none repeat scroll 0 0 #FFFFFF;
-border: 2px solid #74AE00;
-border-radius: 5px;
-color: #000000;
-font-size: 16px;
-height: 25px;
-/* margin-top: 5px; */
-padding: 0;
-width: 120px;
-text-align: center;
-padding-top: 2px;
-padding-left: 5px;
-margin-left: 160px;
-   }
-   
-    .values2_oops
-   {
-    background: none repeat scroll 0 0 #FFFFFF;
-border: 2px solid #74AE00;
-border-radius: 5px;
-color: #000000;
-font-size: 16px;
-height: 25px;
-/* margin-top: 5px; */
-padding: 0;
-width: 120px;
-text-align: center;
-padding-top: 2px;
-padding-left: 5px;
-   }
-   
- 
- </style>
- <!--Tab Style - Vaseem to Amend -->
-<style>
-    .activeTab {background-color: #95BD4F;color: white;background-image: none;padding: 10px;cursor: pointer;font-size:16px;font-weight:bold;}
-    .inactiveTab { background-color: lightgrey; color:black; background-image:none;cursor: pointer;font-size:16px;}
-</style>
- <apex:form id="frm">
- 
- 
- 
+ <!-- jquery library Start-->
+  <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'jquery.min.js')}"></script>
+  <!-- jquery library End-->
+  
+     <!-- Bootstrap_Js File start-->
+    <script type="text/javascript" language="javascript" src="{!URLFOR($Resource.bootstrap_POC, 'bootstrap.min.js')}"></script>
+    <!--Bootstrap Js File End -->
+
+
+<!-- Bootstrap Tooltip Method Start--> 
+<script type="text/javascript" language="javascript">
+        var bsjQuery = jQuery.noConflict();
+        bsjQuery(document).ready(function() {
+           bsjQuery(myFunction);
+         }); 
+         function myFunction() {
+             bsjQuery('[data-toggle=tooltip]').tooltip(); 
+             bsjQuery(".submit_btn_addcomment, .submit_btn, .submit_btn_screen1_oops").each(function(){
+    var originalClick = bsjQuery(this).attr("onclick");
+    bsjQuery(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
+}) 
+        }
+    </script>
+<!-- Bootstrap Tooltip Method End-->
+
+
+ <apex:form id="frm" styleClass="AF_OOPSEstimate">
   <div class="row">           
         <div class="col-lg-12 charttable1">         
-            <apex:image url="{!$Resource.header_new}" style="width:100%;height:37px;" />            
+            <apex:image url="{!$Resource.header_new}" styleClass="headimg"/>            
         </div>          
     </div>
     
     <!-- <div class="heading_main">
        <h1 class="heading_text"> OOPS Estimate </h1>
       </div>-->
-      
-      
+          
 <apex:tabPanel switchType="ajax" id="MainPanel" tabClass="activeTab" inactiveTabClass="inactiveTab" >
- <apex:tab label="OOPS Estimate" name="OOPS Estimate" id="OppsEstimate" >
+ <apex:tab label="OOPS Estimate" name="OOPS Estimate" id="OppsEstimate" oncomplete="myFunction();">
  <apex:pagemessages id="pm1" />
      <apex:pageBlock >
-     <div style="text-align: center!important;font-size:16px;font-weight:bold;"> <apex:outputText id="Billing" >Billing to: <b>{!oopsEstimate.Unilever_Entity_Name__c}</b></apex:outputText> </div>
+     <div class="billingTo"> <apex:outputText id="Billing" >Billing to: <b>{!oopsEstimate.Unilever_Entity_Name__c}</b></apex:outputText> </div>
      </apex:pageBlock>
      
-     <table  style="border: 2px solid #74AE00;border-radius: 10px; padding:0.8%;width:100%;border-collapse:separate!important;float: left;/*margin-left:30px;*/margin-bottom:10px;">
-   <tr style="display: inline;
-    font-weight: bold;
-  /* margin-bottom: 5px !important; */
-    margin-left: 37px !important;
-   /* margin-top: 5px !important;*/
-    width: 600px;">
-        <td style="display: inline; margin-right: 103px;"> <apex:outputText ><!-- Please enter all figures in thousands of Euros --></apex:outputText></td>
-         <td style="display: inline;"><!--Agreed Base Fees -->
-         <span style="font-weight: bold; margin-left: 16px;"> <apex:outputText ><!-- {!agreedBaseFee} --></apex:outputText></span>
+     <table class="billingGrid">
+   <tr class="emptycellRow">
+        <td class="emptyCell"> <apex:outputText ><!-- Please enter all figures in thousands of Euros --></apex:outputText></td>
+         <td class="dispInline"><!--Agreed Base Fees -->
+         <span class="cellOutputTxt"> <apex:outputText ><!-- {!agreedBaseFee} --></apex:outputText></span>
+         <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();" styleClass="floatR" html-data-toggle="tooltip" title="{!$Label.AF_OOPSMX_Override}" html-data-placement="left"/>
          </td>
      </tr>
      
      
-    <tr style="margin-top: 1px !important; font-weight: bold; margin-bottom: 10px ! important; display: block; margin-left: 60px ! important; width: 600px;">
-       <td style="padding-left: 20px;font-size: 16px;padding-top:10px;">
-                 <span style="font-size: 16px; display: block;text-align: center;font-weight:bold;margin-left:93px;">Unilever Entity</span>  
-                <span style="margin-left:93px;margin-top: 5px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 14px; display: block;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 145px;height: 25px;padding-top: 5px;">{!oopsEstimate.Unilever_Entity_Name__c}
+    <tr class="entityRow">
+       <td class="unileverEntityCell">
+                 <span class="unileverEntityLable">Unilever Entity</span>  
+                <span class="unileverEntityoutputTxt">{!oopsEstimate.Unilever_Entity_Name__c}
             </span>
             </td>
-        <td style="padding-left: 20px;font-size: 16px;padding-top:10px;">
-                  <span style="font-size: 16px; display: block;text-align: center;font-weight:bold;">Agency Entity</span> 
-                <span style="margin-top: 5px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 14px; display: block;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 145px;height: 25px;padding-top: 5px;"> {!oopsEstimate.Agency_Entity_Name__c}
+        <td class="agencyEntityCell">
+                  <span class="agencyEntityLable">Agency Entity</span> 
+                <span class="agencyEntityoutputTxt"> {!oopsEstimate.Agency_Entity_Name__c}
                 </span>  
             </td>
             <br/>
-       <td style="font-size: 20px; margin-left: 18px ! important; display: inline;">
+       <td class="oopsEstimateLable">
        <apex:outputText >OOPS Estimate</apex:outputText></td>
        
      
             
              
-       <td style="font-size: 20px; display: inline; margin-left: 100px ! important;">
-             <span style="font-size: 20px;font-weight:bold;">€ </span>
-             <span style="display: inline-block;margin-top: 5px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 16px;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 125px;height: 25px;padding-top: 5px;">
+       <td class="oopsEstimateValueCell">
+             <span class="euroTxt">€ </span>
+             <span class="euroValueOutput">
              <apex:outputText value="{0,number,###,###,###}" >
              <apex:param value="{!oopsEstimate.AF_Estimate__c}"/>
              </apex:outputText>
              </span>
         </td>
-         <td style="font-size: 20px; display: inline; /* margin-bottom: 15px ! important;*/"><!-- <apex:outputText >{!oopsAgencyCurrencyCode}</apex:outputText> --></td>
-         <td style="display: inline; width: 20px; margin-left: 5px;"><apex:outputText ><!--{!oopsEstimateAgencyValue} --></apex:outputText> </td>
+         <td class="currencyCodeOops"><!-- <apex:outputText >{!oopsAgencyCurrencyCode}</apex:outputText> --></td>
+         <td class="estimateAgeValue"><apex:outputText ><!--{!oopsEstimateAgencyValue} --></apex:outputText> </td>
      </tr>
     
     
-     <tr style="margin-top: 20px !important; font-weight: bold; display: block; margin-left:  60px ! important; width: 600px;">
-               <td style="font-size: 20px; margin-left: 18px ! important; display: inline;">
+     <tr class="overrideOOPSEstimateRow">
+               <td class="overrideOOPSEstimateCell">
                <apex:outputText >Override OOPS Estimate</apex:outputText>
                </td>
-              <td style="font-size: 20px; display: inline; margin-left: 10px ! important;">
-                    <span style="font-size: 20px;font-weight:bold;">€ </span>
-                     <apex:inputtext value="{!OppsEstimatesValue}" id="override1" onkeypress="return isNumberKey(event)" disabled="{!Buttondisplay}" styleClass="values1">
-                     
-                     <apex:actionSupport action="{!CalculateLocalC}" reRender="TotalLocal" event="onchange"/>
+              <td class="OverrideEuroCell">
+                    <span class="OverrideEuroLable">€ </span>
+                     <apex:inputtext value="{!OppsEstimatesValue}" id="override1" onkeypress="return isNumberKey(event)" disabled="{!Buttondisplay}" styleClass="values1 width147P"> 
+                     <apex:actionSupport action="{!CalculateLocalC}" reRender="TotalLocal,TotalLocal1" event="onchange"/>
                      </apex:inputtext>
                      <apex:inputText value="{!oopsEstimate.AF_Estimate__c}" id="override" onkeypress="return isNumberKey(event)" disabled="{!Buttondisplay}" rendered="false"/>
                      <!--  
@@ -243,8 +217,8 @@ padding-left: 5px;
      </tr>  
      
      
-    <tr style="margin-top: 20px !important; font-weight: bold; display: inline-block; margin-left: 0px ! important; /* width: 515px; */">
-               <td style="font-size: 20px; margin-left: 18px ! important; display: inline-block;width: 225px;float: left;">
+    <tr class="r4poRow2">
+               <td class="r4poRow2Cell">
                 <apex:outputText >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 
                 </apex:outputText>
@@ -252,42 +226,41 @@ padding-left: 5px;
              
           
               
-              <td style="display: inline-block;font-size:16px;width: 35px!important;/* border: 1px solid red; */float: left;padding-left: 65px;padding-right: 0px;margin-left: 3px;padding-top: 7px;">
+              <td class="r4poRow2SecondCell">
               
-              <apex:outputPanel id="convertedvalue">
+             <!-- <apex:outputPanel id="convertedvalue2">
               <apex:outputText ></apex:outputText>
-              </apex:outputPanel>
+              </apex:outputPanel>-->
            
            
-           
-            <apex:outputText style="margin-left: 42px;width: 54px!important;/*border: 1px solid red;*/display: inline-block;">
-            {!oopsEstimate.AF_OOPS_Matrix_Currency_Code__c}</apex:outputText>
+            <span class="marginL-22P">
+            <apex:outputText styleClass="r4poRow2LableTxt">
+            {!oopsEstimate.AF_OOPS_Matrix_Currency_Code__c}</apex:outputText></span>
              </td>
              
-              <td style="display: inline-block;font-size:16px;width: 127px!important;float: left;">
-          <span style="display: inline-block;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 16px;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 125px;height: 25px;padding-top: 5px;">         
-                <apex:outputText value="{0,number,###,###,###}" id="TotalLocal" >
+              <td class="r4poRow2OutputTxtboxCell">
+          <span class="r4poRow2OutputTxtbox">         
+                <apex:outputText value="{0,number,###,###,###}" id="TotalLocal2" >
                  <apex:param value="{!EsLocal}"/>
                </apex:outputText>
           </span>
              
-              </td>
-        
-     </tr>  
+        </td>
+     </tr>
      
-     <tr style="margin-top: 5px !important;margin-bottom: 25px ! important; margin-left:  60px ! important; width: 600px;">
-       <td style="margin-left: 79px ! important; display: block;font-size:16px;margin-top: 10px;margin-bottom: 10px;">
+     <tr class="agencyExchangeRateRow">
+       <td class="agencyExchangeRateCell">
        <apex:outputPanel rendered="{!!IsReadyforPO}">
-       <apex:outputText style="margin-top:10px;" >Current Average Unilever Exchange Rate {!oopsEstimate.AF_Agency_Exchange_Rate__c}</apex:outputText>
+       <apex:outputText styleClass="marginT10P">Current Average Unilever Exchange Rate {!oopsEstimate.AF_Agency_Exchange_Rate__c}</apex:outputText>
        </apex:outputPanel>
        </td>
        </tr>
     
      <tr>
      <td>
-         <apex:commandButton value="Add Comment" onClick="commentsToggleOpen('commentAddTable');return false;" styleClass="submit_btn_addcomment"  />
+         <apex:commandButton value="Add Comment" onClick="commentsToggleOpen('commentAddTable');return false;" html-data-toggle="tooltip" styleClass="submit_btn_addcomment custom-link222 floatL" title="{!$Label.AF_OOPSMX_General_feedback}" />
                  
-         <apex:commandButton value="Save" action="{!Save}" StyleClass="submit_btn_screen1_oops" rendered="{!IF(AND(isOopsEditable,NOT(IsReadyforPO)),'true','false')}" reRender="frm,pm1"/> 
+         <apex:commandButton value="Save" action="{!Save}" StyleClass="submit_btn_screen1_oops marginL5P marginT6" rendered="{!IF(AND(isOopsEditable,NOT(IsReadyforPO)),'true','false')}" reRender="frm,pm1" status="status"/> 
          
          <!--<apex:commandButton value="Save" action="{!Save}" StyleClass="submit_btn_screen1_oops" rendered="{!!Buttondisplay}" reRender="frm"/> -->
          
@@ -329,31 +302,131 @@ padding-left: 5px;
       -->
     </apex:tab>
     
-    <apex:tab label="PO Number" name="PO Number" id="PONumber" rendered="{!IF(AND(IsShowPOTab,IsReadyforPO),true,false)}">
+    <apex:tab label="PO Details" name="PO number" id="PONumber" rendered="{!IF(AND(IsShowPOTab,IsReadyforPO),true,false)}" oncomplete="myFunction();">
     <apex:pagemessages id="pm2"/>
-      <table  align="center" style="border: 2px solid #74AE00;border-radius: 10px; padding:0.8%;width: 50%;border-collapse:separate!important;/* float: left; *//* margin-left:30px; */">
-    <tr>
-    <td style="width: 150px;">
-    <span style="font-size: 16px; font-weight:bold;display: inline;margin-left: 180px;">
-         <apex:outputLabel >PO Number</apex:outputLabel>
-         </span>
+      <apex:image url="{!$Resource.Help}" width="30px" height="30px" onclick="openHelpLink();" styleClass="floatR" html-data-toggle="tooltip" html-data-placement="left" title="{!$Label.AF_PO_OverrideHelp}"/>
+      
+      <table  align="center" class="poNumberGrid">
+      <!--<tr>
+         <td colspan="3" class="oopsMessage">Oops Estimate Amount for Refrence</td>
+      </tr>
+      <tr>
+    <td width="30%" class="oopsEstimateLabel">
+       <apex:outputText >OOPS Estimate</apex:outputText></td>
+    <td width="70%">
+    <span class="euroTxt">€ </span>
+       <span class="euroValueOutput">
+             <apex:outputText value="{0,number,###,###,###}" >
+             <apex:param value="{!oopsEstimate.AF_Estimate__c}"/>
+             </apex:outputText>
+             </span>
     </td>
-   <!-- <td>
-     <span style="font-size: 16px; font-weight:bold;display: inline;text-align: center;/* width: 339px!important; *//* border: 1px solid red; */margin-left: 27px;">
-           <apex:outputLabel >PO Value</apex:outputLabel>
-           </span>
-    </td>-->
-    </tr>
-    
-    <tr>
     <td>
-      <apex:inputField id="po_number" value="{!polist.AF_PO_Number__c}" styleClass="values1_oops" rendered="{!isPOEditable}"/>
-       <apex:outputPanel rendered="{!IsReadonlyPO}">
-       <span style="margin-top: 5px;margin-left:158px;font-weight:bold;border:1px solid black;border-radius:5px;color:white;font-size: 16px; display: block;text-align: center;background-color:#7f8c8d;/* padding: 5px; */width: 125px;height: 25px;padding-top: 5px;">
-       <apex:outputField value="{!polist.AF_PO_Number__c}" rendered="{!!isPOEditable}" />
+    </td>
+    </tr>
+    <tr>
+      <td calspan="3">&nbsp;</td>
+    </tr>
+    <tr>
+    <td class="lcUsdRowCellLable">
+            <apex:outputPanel id="convertedvalue13">
+            <apex:outputText ></apex:outputText>
+            </apex:outputPanel>
+            <span class="lcUsdRowCellLableStyle fontweightB">
+            <apex:outputText styleClass="lcUsdRowStyle">
+            LC-{!oopsEstimate.AF_OOPS_Matrix_Currency_Code__c}</apex:outputText>
+            </span>
+    </td>
+    <td class="lcUsdoutputTxtCell">
+            <span class="lcUsdoutputLableBox2">         
+            <apex:outputText value="{0,number,###,###,###}" id="TotalLocal12" >
+            <apex:param value="{!EsLocal}"/>
+            </apex:outputText>
+            </span>
+    </td>
+    <td>
+    </td>
+</tr>-->
+       <tr>
+         <td class="oopsMessage textAlignC">
+         <span class="PaddingL24">Please enter your Purchase Order number and Save.</span>
+         </td>
+      </tr>
+      <tr>
+        <td class="textAlignC">
+            <span class="poNumLable" style="font-size:15.7px">
+            <apex:outputLabel >PO Number</apex:outputLabel>
+            </span>
+        </td>
+      </tr>
+      <tr>
+        
+        <td class="textAlignC">
+            <apex:inputField id="po_number" value="{!polist.AF_PO_Number__c}" styleClass="values1_oops" rendered="{!isPOEditable}"/>
+            <apex:outputPanel rendered="{!IsReadonlyPO}">
+            <span class="txtEditable">
+            <apex:outputField value="{!polist.AF_PO_Number__c}" rendered="{!!isPOEditable}" />
+            </span>
+            </apex:outputPanel>    
+        </td>
+        
+    </tr>
+    <tr>
+       <td class="textAlignC">
+           <apex:commandButton value="Save" action="{!SavePO}" StyleClass="btn submit_btn marginL46P" rendered="{!isPOEditable}" reRender="pm2,po_number,po_estimateLocal" style="margin-left:46% !important"/>
+        </td>
+    </tr>
+    </table>
+    <apex:outputpanel rendered="{!IF(AND(POOverrideDisplay1,isCMCOSuperUser),true,false)}">
+    <table class="poNumberGrid marginTL">
+     <tr>
+         <td colspan="3" class="oopsMessage">
+           <span class="PaddingL24">If your Purchase Order has been raised to a different value than advised in the PO report please amend below.</span>
+         </td>
+      </tr>
+      <tr>
+    <td  colspan="3" class="paddingTB5">
+        <span class="poOvRideLable">
+        <apex:outputLabel >OOPS Estimate Override</apex:outputLabel>
+        </span>
+    </td>
+    </tr>
+    <tr>
+    <td width="17%" class="paddingTB5">
+       <apex:outputPanel rendered="{!IF(AND(oopsEstimate.AF_Ready_For_PO_Exchange_Rate__c!=null,oopsEstimate.AF_Status__c=='Ready for PO'),'true','false')}" styleClass="poOvRideLable flaotL">
+            <apex:outputText styleClass="oopsMatrixCurrencyCode">
+            LC-{!oopsEstimate.AF_OOPS_Matrix_Currency_Code__c}</apex:outputText>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!IF(AND(oopsEstimate.AF_Ready_For_PO_Exchange_Rate__c==null,oopsEstimate.AF_Status__c=='Ready for PO'),'true','false')}" styleClass="poOvRideLable floatL">
+            <apex:outputText styleClass="oopsMatrixCurrencyCode" >
+            LC-{!oopsEstimate.AF_OOPS_Matrix_Currency_Code__c}</apex:outputText>
+        </apex:outputPanel>
+    </td>
+    <td width="17%" class="paddingTB5">
+      <apex:inputField id="po_estimateLocal" value="{!polist.AF_Override_Estimate_Local__c}" styleClass="values1_oops" style="margin-left:0px" rendered="{!isCMCOSuperUser}"/>
+       <apex:outputPanel rendered="{!!isCMCOSuperUser}">
+       <span class="unileverEntityoutputTxt marginL0" >
+       <apex:outputField value="{!polist.AF_Override_Estimate_Local__c}" rendered="{!!isCMCOSuperUser}" />
        </span>
        </apex:outputPanel>
+       
     </td>
+    <td width="66%" class="paddingTB5">
+       <apex:commandButton value="Save" action="{!confirmBox}" StyleClass="btn submit_btn" rendered="{!isCMCOSuperUser}" reRender="popuprej" style="margin:-1px 0px 0px 10px !important"/>
+    </td>
+    </tr>
+    <tr>
+        <td colspan="3" class="paddingTB5">
+            <h5 class="titleHelpStyle">Help on this functionality:</h5>
+            <div>
+              <ul class="helpListStyle">
+               <li>Leave the field blank if you raised the correct PO for the period</li>
+               <li>Insert zero into the field if you didn’t raise a PO for the period</li>
+               <li>Insert value into the field if you have raised a different number on your PO than advised on the PO report</li>
+             </ul>
+            </div>
+        </td>
+    </tr>
    <!-- <td>
       <Apex:inputfield id="povalue" value="{!oopsEstimate.AF_PO_Value__c}" styleClass="values2_oops" rendered="{!isPOEditable}"/>
        <apex:outputPanel rendered="{!!isPOEditable}">
@@ -362,21 +435,128 @@ padding-left: 5px;
        </span>
        </apex:outputPanel>
     </td>-->
-    </tr>
     <tr>
-    <td colspan= "2">
+    <td colspan= "3">
    <!-- <apex:commandButton value="Save" action="{!SavePO}" style="Align:center" styleClass="save_btn" Rerender="pm2"/>-->
       
-      <apex:commandButton value="Save" action="{!SavePO}" StyleClass="btn submit_btn" rendered="{!isPOEditable}" reRender="pm2"/>
+      
+      
      <!-- <apex:commandButton value="Save" action="{!SavePO}" styleClass="submit_btnblur" rendered="{!Buttondisplay}" disabled="{!Buttondisplay}" reRender="pm2"/> -->
    
     </td>
     </tr>
     </table>
-   
+   </apex:outputpanel>
     </apex:tab>
     </apex:tabPanel>
+     <apex:outputPanel id="popuprej">
+                <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!bConfirmBox}"/>
+                    <apex:outputPanel styleClass="customPopup" layout="block" rendered="{!bConfirmBox}">
+                        <div class="floatR"><apex:commandButton value="X" action="{!closePopupReject}" rerender="popuprej" styleClass="buttonX"/></div>
+                            <center style="margin:20px;"><h2><apex:outputLabel value="{!$Label.AF_POOveride_Warning}" styleClass="fontSize16"/> </h2><br/><br/>
+                                <apex:commandButton value="Confirm" action="{!OverridePO}" styleClass="continue_btn wid70PX" reRender="pm2,po_number,po_estimateLocal,popuprej"/>
+                            </center>                ,
+                    </apex:outputPanel>
+            </apex:outputPanel>
+    
+      
+    <apex:ActionStatus id="status" >
+        <apex:facet name="start">
+            <c:AF_Spinner BackColor="#efefef" borderColor="#efefef" borderSize="3" height="50px" width="180px" Message="Please wait" messageStyle="color:Darkred;font-size:10pt;font-family:arial;font-weight:bold;" ImageUrl="/img/loading.gif"/>
+        </apex:facet>
+        </apex:ActionStatus>
+        
+        
+        <!-- Bootstrap bootstrap modal window Start -->    
+<div class="model_container">
+<div class="modal fade" id="myModal3" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+         <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <!--<h4 class="modal-title" id="myModalLabel">Modal title</h4>-->
+           </div>
+         <div class="modal-body">
+              <apex:image url="{!$Resource.Loading}" height="36" width="36" styleClass="loading_img"/>
+              <div id="loader_cont">
+                
+              </div>
+              <iframe frameborder="0" name="remotepage" id="iframe_cont"></iframe>
+         </div>
+         <!--
+         <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+         </div>
+         -->
+        </div><!-- /.modal-content -->
+     </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div> 
+<!-- Bootstrap bootstrap modal window End --> 
  </apex:form>
+
+<!-- Bootstrap bootstrap modal window methods  Start-->
+<script>
+document.body.setAttribute("data-shouldRefreshPage", "0");
+bsjQuery(document).ready(function(){
+ bsjQuery(document).on('click','.modalButton3', function(e) {
+    bsjQuery("#iframe_cont").contents().find("body").html('');
+    var src = bsjQuery(this).attr('data-src');
+    var height = bsjQuery(this).attr('data-height') || 360;
+    var width = bsjQuery(this).attr('data-width') || 800;
+    bsjQuery('#myModal3').on('hidden.bs.modal',shouldRefreshPage);
+    bsjQuery("#myModal3 iframe").attr({'src':src,
+                        'height': height,
+                        'width': width});                                  
+});
+});
+
+
+function timerForPageRefresh(){
+    shouldRefreshPage(!bsjQuery('#myModal3').is(":visible"));
+}
+function shouldRefreshPage(flag) {
+   if(document.body.getAttribute("data-shouldRefreshPage") != "0" && flag){
+       document.body.setAttribute("data-shouldRefreshPage", "0");
+       window.location.reload(true);
+   }
+   else if(!flag){
+       window.setTimeout(timerForPageRefresh, 100);
+   }
+}
+/* Change the click attributes of save buttons to set Flag on Top document to refresh page on close of modal */
+function initializePageRefresh(){
+    var originalClick = bsjQuery(this).attr("onclick");
+    bsjQuery(this).attr("onclick", 'parent.document.body.setAttribute("data-shouldRefreshPage", "1");' + originalClick);
+}
+
+bsjQuery('#iframe_cont').load(function(){
+    var popupFrame = bsjQuery("#iframe_cont").contents();
+    if(popupFrame.find("iframe").length ){
+        popupFrame.find("iframe").each(function(){
+            bsjQuery(this).contents().find(".EditSave").each(initializePageRefresh);
+        });
+    }
+    popupFrame.find(".EditSave").each(initializePageRefresh);
+    
+});
+</script>
+<!-- Bootstrap bootstrap modal window methods End-->
+
+<!-- Bootstrap bootstrap modal window loading_img methods Start-->
+<script> 
+    bsjQuery(document).ready(function () {
+        bsjQuery('#iframe_cont').on('load', function () {
+         bsjQuery('#loader_cont, .loading_img').show();
+            console.log("madhu");
+            bsjQuery('#loader_cont, .loading_img').delay(3000).hide(0);
+            //setTimeout("jQuery('#loader_cont, .loading_img').hide();",6000 );
+        });
+    });   
+</script>
+<!-- Bootstrap bootstrap modal window loading_img methods End--> 
+    
  <script>
   function commentsToggleOpen(elementId) 
   {
@@ -390,7 +570,5 @@ padding-left: 5px;
       document.getElementById(elementId).style.display = 'none';
   }
   commentsToggleClose('commentAddTable');
-
-
 </script>
 </apex:page>

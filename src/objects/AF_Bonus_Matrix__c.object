@@ -53,6 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -83,6 +84,19 @@
         <type>Lookup</type>
     </fields>
     <fields>
+        <fullName>AF_Agency_ExchangeRateTemp__c</fullName>
+        <description>This field is used for Reporting backup</description>
+        <externalId>false</externalId>
+        <label>Agency ExchangeRateTemp</label>
+        <precision>15</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Agency_Exchange_Rate__c</fullName>
         <defaultValue>0</defaultValue>
         <description>AgencyFee#GLOBAL#To Store agency exchange rate.</description>
@@ -101,9 +115,9 @@
         <description>AgencyFee#GLOBAL#To Store agency spot rate.</description>
         <externalId>false</externalId>
         <label>Agency Spot Rate</label>
-        <precision>12</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>2</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -295,6 +309,16 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>AF_IsCrossBorderReport__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(TEXT(AF_Agency_Entity__r.AF_Country__c) != TEXT(AF_Unilever_Entity__r.AF_Country__c),true,false)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IsCrossBorderReport</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>AF_IsCrossBorder__c</fullName>
         <description>This field will be useful for cross border calculations in Agencyfee Application</description>
         <externalId>false</externalId>
@@ -304,6 +328,18 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AF_MatrixCodeTemp__c</fullName>
+        <description>This field created,for reporting backup</description>
+        <externalId>false</externalId>
+        <label>MatrixCodeTemp</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>AF_Overidden__c</fullName>
@@ -408,12 +444,24 @@
         <description>Exchange Rate used by agency unilever combination where values are at Ready for po</description>
         <externalId>false</externalId>
         <label>Ready For PO Exchange Rate</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_ReadyforPoCodeTemp__c</fullName>
+        <description>This field is used for reporting backup</description>
+        <externalId>false</externalId>
+        <label>ReadyforPoCodeTemp</label>
+        <length>10</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -632,6 +680,18 @@ if( AF_Bonus_Results__r.AF_IsPilotModel__c , AF_Bonus_Results__r.AF_Total_Remune
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ReadyforPOExchangeRateTemp__c</fullName>
+        <externalId>false</externalId>
+        <label>ReadyforPOExchangeRateTemp</label>
+        <precision>15</precision>
+        <required>false</required>
+        <scale>5</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>

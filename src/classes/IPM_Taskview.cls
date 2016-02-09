@@ -1,239 +1,176 @@
-public class IPM_Taskview {
-        
-        public IPM_Project__c IPM{set;get;}
-        public List<SelectOption> options{set;get;}
-        public id selectedpid{set;get;}
-        public map<id,IPM_Project__c> pmap{set;get;}
-        public String adhoc{get;set;}
-        public Boolean pmApproachMessage{get;set;}
-        //public list<projecttaskwrapper> projecttasks{set;get;}
-        //public IPM_Project_Task__c ipt{set;get;}
-        public Boolean isTaskeditable{get;set;}
-        public Boolean isAllTask{get;set;}
-        public Boolean isMilestoneEditable{get;set;}
-        public Boolean isBDuser{get;set;}
-        public Boolean isupdateDates{get;set;}
-        public string FunctionRole{get;set;}      
-        public boolean isvisible{get;set;}
-        public id projectId{get;set;}
-    public Ipm_Taskview (ApexPages.StandardController controller) {
-        isupdateDates=true;
-        isvisible=true;
-        FunctionRole='';
-        pmap=new map<id,IPM_Project__c>();
-        //ipt=new IPM_Project_Task__c();
-        //projecttasks=new list<projecttaskwrapper>();
-        options = new List<SelectOption>();
-        id fpid;
-        integer cou=0;
-       getIpmuserType();
-        for (IPM_Project__c ip:[select id,IPM_Project_Name__c,IPM_Project_Description__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Complexity__c from IPM_Project__c where IPM_Project_Name__c!=:null and Id =: apexpages.currentpage().getparameters().get('Id') limit 50000]) 
-        {
-            if(cou==0)
-            {
-            fpid=ip.id;
-            cou=1;
-            }
-            pmap.put(ip.id,ip);
-            
-            options.add(new SelectOption(ip.id, ip.IPM_Project_Name__c));
-        }
-        set<id> temp=pmap.keyset();
-        IPM=pmap.get(fpid);
-        
-    /*if(apexpages.currentpage().getparameters().get('adhoc') == 'true'){
-        adhoc='&adhoc=true';
-        for(IPM_Project_Task__c ipt:[select id,IPM_Task_Status__c,IPM_Task_Name__c,IPM_Task_Role__c,IPM_Project_Status_Icon__c,IPM_Project_Section__c,IPM_Task_Type__c,IPM_Project__c,IPM_Date__c,IPM_Assigned_To__c from IPM_Project_Task__c where IPM_Adhoc__c = true and IPM_Project__c=:apexpages.currentpage().getparameters().get('Id')])
-            projecttasks.add(new projecttaskwrapper(ipt));
-    }
-    else{
-        adhoc='';
-        for(IPM_Project_Task__c ipt:[select id,IPM_Task_Status__c,IPM_Task_Name__c,IPM_Task_Role__c,IPM_Project_Status_Icon__c,IPM_Project_Section__c,IPM_Task_Type__c,IPM_Project__c,IPM_Date__c,IPM_Assigned_To__c from IPM_Project_Task__c where IPM_Project__c=:apexpages.currentpage().getparameters().get('Id') order By IPM_Task_Role__c  limit 50000])
-            projecttasks.add(new projecttaskwrapper(ipt));
-    }*/
-  
-    }
-    
-    
-    public String getMileStoneAlerts(){
-        String mileStoneName;
-        IPM_Project__c proj=[select id,IPM_PM_Approach__c,IPM_Market_Type__c,IPM_Project_Name__c,IPM_Target_Launch_Dates__c,IPM_Fast_Track_Project__c,IPM_Project_Description__c,IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,IPM_Complexity__c from IPM_Project__c where Id =: apexpages.currentpage().getparameters().get('Id')];
-        if(proj.IPM_PM_Approach__c == 'External'){
-            pmApproachMessage=true;
-        }
-        if(!proj.IPM_Fast_Track_Project__c){
-          List<IPM_Milestone__c> lstMileStones= [SELECT Id,IPM_Due_Date__c,IPM_Milestone__c,IPM_Name__c,IPM_Phase__c,IPM_Project__c FROM IPM_Milestone__c WHERE IPM_Project__c =: proj.Id and IPM_Phase__c = 'Capability' ];
-          if(!lstMileStones.isEmpty()){
-              for(IPM_Milestone__c mile:lstMileStones){
-                  if(proj.IPM_Market_Type__c=='Developing'){
-                      if(mile.IPM_Due_Date__c!=null){
-                      if(mile.IPM_Due_Date__c.daysBetween(proj.IPM_Target_Launch_Dates__c) < 120){
-                          mileStoneName='4 months';
-                      }
-                     } 
-                  }else if(proj.IPM_Market_Type__c=='Developing & Emerging'){
-                      if(mile.IPM_Due_Date__c!=null){
-                      if(mile.IPM_Due_Date__c.daysBetween(proj.IPM_Target_Launch_Dates__c) < 180){
-                          mileStoneName='6 months';
-                      }
-                     }
-                  }
-              }
-          }
-        }
-        return mileStoneName;
-    }
-   /* public void projectchange()
-    {
-        projecttasks=new list<projecttaskwrapper>();
-    IPM=pmap.get(selectedpid);
-    
-    if(apexpages.currentpage().getparameters().get('adhoc') == 'true'){
-        for(IPM_Project_Task__c ipt:[select id,IPM_Task_Name__c,IPM_Task_Role__c,IPM_Project_Status_Icon__c,IPM_Project_Section__c,IPM_Task_Type__c,IPM_Project__c,IPM_Date__c,IPM_Assigned_To__c from IPM_Project_Task__c where IPM_Adhoc__c = true and IPM_Project__c=:apexpages.currentpage().getparameters().get('Id')])
-            projecttasks.add(new projecttaskwrapper(ipt));
-        }
-    else{
-        for(IPM_Project_Task__c ipt:[select id,IPM_Task_Name__c,IPM_Task_Role__c,IPM_Project_Status_Icon__c,IPM_Project_Section__c,IPM_Task_Type__c,IPM_Project__c,IPM_Date__c,IPM_Assigned_To__c from IPM_Project_Task__c where IPM_Project__c=:apexpages.currentpage().getparameters().get('Id') order By IPM_Task_Role__c  limit 50000])
-            projecttasks.add(new projecttaskwrapper(ipt));
-        }
-    }*/
-    
- public void getIpmuserType(){
- 
- projectId=apexpages.currentpage().getparameters().get('Id');
- system.debug('id.......'+projectId);
-// system.debug('function role.....'+Frole);
- list<IPM_Project_Resource__c>CountTaskSCUser=[select IPM_Role_Type__c,IPM_Project_Role_Owner__c from IPM_Project_Resource__c where 
-                                         IPM_Project__c=:projectId and IPM_User__c=:userinfo.getuserid() and IPM_Role_Type__c='Supply Chain' limit 1];
- if(CountTaskSCUser.size()>0){
- isTaskeditable=true;
- isAllTask=true; 
- }                                        
- list<IPM_Project_Resource__c>lstProuser=[select IPM_Role_Type__c,IPM_User__c,IPM_Project_Role_Owner__c,IPM_Project__r.IPM_Project_Leader__c from IPM_Project_Resource__c where 
-                                         IPM_Project__c=:projectId and IPM_User__c=:userinfo.getuserid()  limit 1];
- 
- if(lstProuser.size()>0){
-    
-    if(lstProuser[0].IPM_Role_Type__c!='Guest'){
-    isMilestoneEditable=true;
-    isTaskeditable=true;
-    FunctionRole=lstProuser[0].IPM_Role_Type__c;
-    if(lstProuser[0].IPM_Role_Type__c=='BD Marketing')
-    FunctionRole='BD';
-    }
-    else {
-    isMilestoneEditable=false;
-    isTaskeditable=false;
-    }
-   if(lstProuser[0].IPM_Role_Type__c=='BD' || lstProuser[0].IPM_Role_Type__c=='BD Marketing'){
-    isBDuser=true;
-    }
-    if(lstProuser[0].IPM_Role_Type__c=='CMI' || lstProuser[0].IPM_Role_Type__c=='CD' || lstProuser[0].IPM_Role_Type__c=='Finance' || lstProuser[0].IPM_Role_Type__c=='Guest'){
-    isupdateDates=false;
-    }
-  } 
- list<IPM_Project__c>lstofuser=[select IPM_Project_Leader__c,IPM_Project_Gatekeeper__c,Deputy_Project_Leader__c,IPM_Technical_Project_Leader__c from IPM_Project__c where 
-                                         id=:projectId limit 1];
- system.debug('size................'+lstofuser.size());
- if(lstofuser.size()>0){
-    if(lstofuser[0].IPM_Project_Leader__c==userinfo.getuserid()){
-    isMilestoneEditable=true;
-    isTaskeditable=true;
-    isAllTask=true;  
-    }else if(lstofuser[0].IPM_Project_Gatekeeper__c==userinfo.getuserid()){
-    isMilestoneEditable=false;
-    isTaskeditable=false;
-    isupdateDates=false;
-    isAllTask=false;
-    isvisible=false;  
-    }else if(lstofuser[0].Deputy_Project_Leader__c==userinfo.getuserid()){
-    isMilestoneEditable=true;
-    isTaskeditable=true;
-    isAllTask=true;    
-    }else if(lstofuser[0].IPM_Technical_Project_Leader__c==userinfo.getuserid()){
-    isMilestoneEditable=true;
-    isTaskeditable=true;
-    isAllTask=true;  
-    }
-   }
-list<PermissionSetAssignment>PermissonS=[select Assignee.Name, PermissionSet.Name
-                                        from PermissionSetAssignment where (PermissionSet.Name='IPM_Central_Team' or PermissionSet.Name='IPM_Business_Partners') and Assignee.id=:userinfo.getuserid()];
- if(PermissonS.size()>0){
- isMilestoneEditable=true;
- isTaskeditable=true;
- isAllTask=true; 
- }                                       
-}    
- 
-   /* public void rolechange()
-    {
-        projecttasks=new list<projecttaskwrapper>();
-        System.debug('\n Task Name:'+ipt.IPM_Task_Role__c);
-        if(ipt.IPM_Task_Role__c != null){
-            for(IPM_Project_Task__c ipt:[select id,IPM_Task_Name__c,IPM_Task_Role__c,IPM_Task_Status__c,IPM_Project_Section__c,IPM_Project_Status_Icon__c,IPM_Task_Type__c,IPM_Project__c,IPM_Date__c,IPM_Assigned_To__c from IPM_Project_Task__c where IPM_Project__c=:IPM.id and IPM_Task_Role__c=:ipt.IPM_Task_Role__c order By IPM_Task_Role__c  limit 50000])
-            projecttasks.add(new projecttaskwrapper(ipt));
-        }else{
-            for(IPM_Project_Task__c ipt:[select id,IPM_Task_Name__c,IPM_Task_Role__c,IPM_Task_Status__c,IPM_Project_Section__c,IPM_Project_Status_Icon__c,IPM_Task_Type__c,IPM_Project__c,IPM_Date__c,IPM_Assigned_To__c from IPM_Project_Task__c where IPM_Project__c=:IPM.id order By IPM_Task_Role__c  limit 50000])
-            projecttasks.add(new projecttaskwrapper(ipt));
-        }
-        
-        
-    }*/
-     /*public ApexPages.StandardSetController setCon {
-        get {
-            if(setCon == null) {
-                setCon = new ApexPages.StandardSetController(Database.getQueryLocator(
-                     [select id,IPM_Task_Name__c,IPM_Task_Role__c,IPM_Date__c,IPM_Task_Type__c,IPM_Project_Section__c,IPM_Project_Status_Icon__c,IPM_Project__c,IPM_Assigned_To__c from IPM_Project_Task__c where IPM_Project__c=:apexpages.currentpage().getparameters().get('Id') and IPM_Task_Role__c=:ipt.IPM_Task_Role__c order By IPM_Task_Role__c  limit 50000]));
-            }
-            return setCon;
-        }
-        set;
-    }*/
-    /*public List<IPM_Project_Task__c> getprojecttasks() {
-        List<IPM_Project_Task__c> lstTasks;
-        
+/**************************************************************************************************************
+*@Author:Cognizant
+*@Date:October 2014
+*@Description : This is the Controller used to display Count of Tasks and Milestones.
+*To display Alerts and give permissions as prt of security.
+*Referring in IPM_TaskList Page
+****************************************************************************************************************/
 
-         if(apexpages.currentpage().getparameters().get('adhoc') == 'true'){
-             lstTasks=[select id,IPM_Task_Name__c,IPM_Project__c,IPM_Project_Section__c,IPM_Project_Status_Icon__c,IPM_Task_Role__c,IPM_Date__c,IPM_Task_Type__c,IPM_Assigned_To__c from IPM_Project_Task__c where IPM_Project__c=:apexpages.currentpage().getparameters().get('Id') and IPM_Adhoc__c = true];
-         }else{
-             lstTasks=[select id,IPM_Task_Name__c,IPM_Project__c,IPM_Project_Section__c,IPM_Project_Status_Icon__c,IPM_Task_Role__c,IPM_Date__c,IPM_Task_Type__c,IPM_Assigned_To__c from IPM_Project_Task__c where IPM_Project__c=:apexpages.currentpage().getparameters().get('Id')];
-         }
-         System.debug('\n lstTasks:'+lstTasks);
-         return lstTasks;
-    }*/
+ 
+public with sharing class IPM_Taskview extends IPM_ProjectIntermediateController { 
+
+    public Boolean pmApproachMessage {get;set;} // To check the Approach of the project
+    public Boolean isTaskeditable {get;set;} // To check if the task is editable
+    public Boolean isAllTask {get;set;} // To check the task list
+    public Boolean isMilestoneEditable {get;set;} // To check the milestone is editable
+    public Boolean isBDuser {get;set;} // Teammember permissions
+    public Boolean isupdateDates {get;set;} // Update Due dates
+    public string functionRole {get;set;}  // To know the Functional role of the user    
+    public boolean isvisible {get;set;} // Visibility of the page
+    public id projectId {get;set;} // Getting the projectids
+    public Boolean updateApproach{get;set;}//checking for security
+    public Boolean updateComplexity{get;set;}//checking for security
+    public IPM_Project_Type__c projectType{get;set;}
+    //*@Description: Specifies complexity type
+    public string complexityType{get;set;}
+    private final String IPM_TASKVIEW_STR = IPM_Taskview.class.getName();
+    private static final String ERROR_STR = 'Error';
+    public boolean isCreateTask{get;set;}
     
-    /* public void deletetasks()
+    /****************************************************************************
+@Description : Initialization of the parameterized constructor 
+@Param: Controller
+*****************************************************************************/
+    
+    public Ipm_Taskview (ApexPages.StandardController controller) {
+        try
         {
-            list<projecttaskwrapper> newlist=new list<projecttaskwrapper>();
-            list<IPM_Project_Task__c> dellist=new list<IPM_Project_Task__c>();
-            for(projecttaskwrapper ptw:projecttasks)
+            isupdateDates = true;
+            isvisible = true;
+            isCreateTask=false;
+            functionRole = '';
+            complexityType = '';
+            updateApproach = false;
+            isMilestoneEditable = false;
+            isTaskeditable = false;
+            isAllTask = false;
+            updateComplexity = false;
+            projectId = apexpages.currentpage().getparameters().get(IPM_Utils.Id);
+            getIpmuserType();
+            
+            complexityType = project.IPM_Complexity__c;
+            
+            if(project.IPM_PM_Approach__c == IPM_Utils.External)
             {
-                if(ptw.delcheck==true)
-                    dellist.add(ptw.ipt);
-                else
-                    newlist.add(ptw);
+                pmApproachMessage = true;
             }
-            if(dellist.size()>0){
-                delete dellist;
-            }
-            projecttasks=newlist;
-        }*/
+            
+            if(project.IPM_Phase__c == IPM_ConstantUtils.PHASE_PLE)
+            {
+                isMilestoneEditable = isTaskeditable = isupdateDates = false;
+            }   
+
+            projectType = IPM_Utils.retrieveProjectType(project);
+                     
+        }catch(Exception eX){ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,Label.IPM_Generic_ErrorMessage);ApexPages.addMessage(myMsg); }
+    }
     
-   /* public class projecttaskwrapper
-    {
-        
-            public boolean delcheck{set;get;}
-            public IPM_Project_Task__c IPT{set;get;}
+    
+    
+    /****************************************************************************
+    @Description : To get the users based on Functional Role
+    @Param: project id
+    *****************************************************************************/
+    
+    public void getIpmuserType(){
+        try
+        {
+            Id loggedInUser = userinfo.getuserid();
+           
+            // To query the Team Members on project Resource object
+            list<IPM_Project_Resource__c> projectResourceList = [select Id,IPM_Role_Type__c,IPM_User__c,IPM_Project_Role_Owner__c,IPM_Project__r.IPM_Project_Leader__c,IPM_Project__r.Deputy_Project_Leader__c,IPM_Project__r.IPM_Technical_Project_Leader__c 
+                                                                 from IPM_Project_Resource__c where 
+                                                                 IPM_Project__c=:projectId and IPM_User__c=:userinfo.getuserid() and IPM_Project__r.Is_Archieved__c=false  limit 1];
             
-            public projecttaskwrapper(){
-                IPT = new IPM_Project_Task__c();
-                delcheck = false;
+            if(projectResourceList != null && !projectResourceList.isEmpty()){
+                IPM_Project_Resource__c projectResource = projectResourceList[0];
+              
+                if( projectResource.IPM_Role_Type__c != IPM_Utils.Guest ){
+                
+                    isMilestoneEditable = false;
+                    
+                    if( projectResource.IPM_Role_Type__c == IPM_Utils.BD || projectResource.IPM_Role_Type__c == IPM_Utils.BDMarketing )
+                    {
+                        isBDuser=true;
+                    }
+                   if(projectResource.IPM_Project_Role_Owner__c)
+                   {
+                                isCreateTask=true;
+                                isTaskeditable =true;
+                   }
+                }
+                else {
+                    isMilestoneEditable=false;
+                    
+                }
+                if( projectResource.IPM_Role_Type__c != null && !String.isBlank(projectResource.IPM_Role_Type__c)){
+                    functionRole = projectResource.IPM_Role_Type__c;
+                }
+                if(projectResource.IPM_Role_Type__c==IPM_Utils.CMI || projectResource.IPM_Role_Type__c==IPM_Utils.CD || projectResource.IPM_Role_Type__c==IPM_Utils.Finance || projectResource.IPM_Role_Type__c==IPM_Utils.Guest){
+                    isupdateDates=false;
+                }
+            } 
+            
+            // Checking the user List
+            if(!project.Is_Archieved__c){
+                // To check the Project Leader
+               if( loggedInUser != null && ( loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c ))                            
+                {
+                    isMilestoneEditable=true;
+                    
+                }
+              
+               if(loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c || loggedInUser == project.IPM_Technical_Project_Leader__c)
+               {
+                        isTaskeditable =true;
+                        isCreateTask=true;
+                        isAllTask=true;
+                        
+                        if(loggedInUser == project.IPM_Project_Leader__c || loggedInUser == project.Deputy_Project_Leader__c || (loggedInUser == project.IPM_Technical_Project_Leader__c && (project.IPM_Technical_Project_Leader__c == project.IPM_Project_Leader__c || project.IPM_Technical_Project_Leader__c == project.Deputy_Project_Leader__c))){
+                            
+                            updateApproach =true;
+                            updateComplexity = true;
+                        }
+               }
             }
+            //security for central team and BP users
+                IPM_CustomPermission cpr = new IPM_CustomPermission();
+                boolean isCentralTeam=false;
+                boolean isBPUser=false;
+                isCentralTeam = cpr.hasPermission(IPM_ConstantUtils.IPM_CENTRALTEAM_PERMISSION);
+                isBPUser=cpr.hasPermission(IPM_ConstantUtils.IPM_BUSINESSPARTNER_PERMISSION);
+                if(isCentralTeam || isBPUser){
+                    isMilestoneEditable=true;
+                    isTaskeditable=true;
+                    updateApproach=true;
+                    updateComplexity = true;
+                    isCreateTask=true;
+                    isAllTask=true;
+                } 
             
-            public projecttaskwrapper(IPM_Project_Task__c task){
-            IPT = task;
-            delcheck = false;
+            
+        }catch(Exception eX){ApexPages.addMessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage)); ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_TASKVIEW_STR,'getIpmuserType',ex.getMessage(),ex, ERROR_STR, null, null, null,null); }       
+    }    
+    /****************************************************************************
+    @Description : save complexity type
+    *****************************************************************************/
+    
+    public void saveComplexityType(){
+        list<IPM_Project__c> projectUpdateList = new list<IPM_Project__c>();
+        
+        if(project.IPM_Complexity__c != complexityType || project.IPM_Child_Complexity__c != complexityType )
+        {
+                project.IPM_Complexity__c = complexityType;
+                project.IPM_Child_Complexity__c = complexityType;
+                projectUpdateList.add(project);
         }
-            
-    }*/
+        try
+        {
+            if(!projectUpdateList.isEmpty())
+            {
+                update projectUpdateList;
+            }
+        }
+        catch(Exception ex) {ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_TASKVIEW_STR,'SaveComplexityType',ex.getMessage(),ex, ERROR_STR, null, null, null,null); }
+    }  
 }

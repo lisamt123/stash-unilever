@@ -2,27 +2,12 @@
     <apex:attribute name="ParentRecordValue" type="String" AssignTo="{!ParentRecordId}" Description="The parent record that the component is to work with."  />
     <apex:attribute name="IsViewAllValue" type="String" AssignTo="{!IsViewAll}" Description="The Is View All FLAG"  /> 
        
-    
-    <style>
-    
-        .odd { 
-         background-color: #FCF7F7;
-}
-.even {
-         background-color: #DFF0D8;
-}
 
-body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th {
- background:#61A631;
- color: #FFFFFF;
- font-size:16px;
- }
+<!-- Common_Style File Start -->
+<link rel="stylesheet" href="{!URLFOR($Resource.bootstrap_POC, 'common_style.css')}" type="text/css"/>
+<!-- Common_Style File End -->
+
  
- h2.mainTitle {
-font-size: 16px!important;
-}
-    
-   </style> 
    <script type="text/javascript">
             $('a.addfancy').fancybox({
               autoSize: false,
@@ -40,39 +25,49 @@ font-size: 16px!important;
                         location.reload();
                     }
             });
-</script>  
+            
+   function custFunc(){
+      parent.document.body.setAttribute("data-shouldRefreshPage", "1");
+  }
+</script>
+<div  class="AF_DocumentListComp"> 
     <apex:pageBlock title="Documents"> 
-        <apex:outputPanel rendered="{!IsViewAllLink}" style="font-size:16px;font-weight:bold;margin-bottom: -8px!important;display: block;">
-            <apex:outputLink rendered="{!!isAgencyFlag}" value="apex/AF_ViewAll?DParentId={!ParentRecordId}" styleClass="addfancy" id="theLink1">View All</apex:outputLink>
-            <apex:outputLink rendered="{!isAgencyFlag}" value="apex/AF_ViewAll?DParentId={!ParentRecordId}" styleClass="addfancy" id="theLink2">View All</apex:outputLink>
+        <apex:outputPanel rendered="{!IsViewAllLink}" styleClass="ViewAllLink">
+            <!--<apex:outputLink rendered="{!!isAgencyFlag}" value="apex/AF_ViewAll?DParentId={!ParentRecordId}" styleClass="addfancy" id="theLink1">View All</apex:outputLink>-->
+            
+            <apex:outputLink styleClass="modalButton3" html-data-backdrop="static" html-data-keyboard="false"  rendered="{!!isAgencyFlag}" id="theLink1" 
+    html-data-src="apex/AF_ViewAll?DParentId={!ParentRecordId}" html-data-target="#myModal3" html-data-toggle="modal">View All</apex:outputLink>
+    
+            <!--<apex:outputLink rendered="{!isAgencyFlag}" value="apex/AF_ViewAll?DParentId={!ParentRecordId}" styleClass="addfancy" id="theLink2">View All</apex:outputLink>-->
+            <apex:outputLink styleClass="modalButton3" html-data-backdrop="static" html-data-keyboard="false"  rendered="{!isAgencyFlag}" id="theLink2" 
+    html-data-src="apex/AF_ViewAll?DParentId={!ParentRecordId}" html-data-target="#myModal3" html-data-toggle="modal">View All</apex:outputLink>
             </apex:outputPanel>
             <br />
             
-        <apex:pageBlockTable title="Documents"   id="pgblck"  value="{!AttachmentList}" var="doc" rowClasses="even,odd" style="font-size:16px;" >
-           <apex:column >
-            <apex:commandLink action="{!delDocument}" rerender="pgblck" rendered="{!!status}">Delete
+        <apex:pageBlockTable title="Documents"   id="pgblck"  value="{!AttachmentList}" var="doc" rowClasses="even,odd" styleClass="fontSize16P">
+           <apex:column width="5%">
+            <apex:commandLink action="{!delDocument}" rerender="pgblck" rendered="{!!status}" onclick="custFunc()" styleClass="EditSave">Delete
             <apex:param name="documentId" value="{!doc.Id}" assignTo="{!docId}"/>
-            
             </apex:commandLink>
           </apex:column>
-           <apex:column headerValue="Date">
-           <apex:outputText value="{!doc.LastModifiedDate}"/>
+           <apex:column headerValue="Date" width="10%">
+           <apex:outputField value="{!doc.LastModifiedDate}"/>
            </apex:column>
     
-          <apex:column headerValue="Type">
+          <apex:column headerValue="Type" width="10%">
           <apex:outputText value="{!doc.ContentType}"/>
           </apex:column>
        
-          <apex:column headerValue="Description">
+          <apex:column headerValue="Description" width="40%">
           <apex:outputLink value="{!URLFOR($Action.Attachment.Download, doc.id)}" target="_blank">{!doc.Description}</apex:outputLink>
           </apex:column>
     
-         <apex:column headerValue="User">
+         <apex:column headerValue="User" width="35%">
          <apex:outputText value="{!doc.Owner.name}"/>
          </apex:column>
 
         </apex:pageBlockTable>
     </apex:pageBlock>
         
-        
+</div>       
 </apex:component>

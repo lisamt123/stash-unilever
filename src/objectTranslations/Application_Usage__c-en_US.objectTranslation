@@ -13,6 +13,10 @@
         <name>Accessed__c</name>
     </fields>
     <fields>
+        <label><!-- Application Login Month --></label>
+        <name>Application_Login_Month__c</name>
+    </fields>
+    <fields>
         <label><!-- Application --></label>
         <name>Application__c</name>
         <picklistValues>
@@ -31,6 +35,10 @@
     <fields>
         <label><!-- Days Since Last Access --></label>
         <name>Days_Since_Last_Access__c</name>
+    </fields>
+    <fields>
+        <label><!-- Job Function --></label>
+        <name>Job_Function__c</name>
     </fields>
     <fields>
         <label><!-- Last Accessed Date --></label>

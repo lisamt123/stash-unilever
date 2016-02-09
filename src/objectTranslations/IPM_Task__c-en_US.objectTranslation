@@ -22,6 +22,10 @@
         <relationshipLabel><!-- IPM Tasks --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- AutoCompleted By System --></label>
+        <name>IPM_AutoCompletedBySystem__c</name>
+    </fields>
+    <fields>
         <label><!-- Completed Date --></label>
         <name>IPM_Completed_Date__c</name>
     </fields>
@@ -32,6 +36,10 @@
     <fields>
         <label><!-- Due Date1 --></label>
         <name>IPM_Due_Date1__c</name>
+    </fields>
+    <fields>
+        <label><!-- Milestone Due Date --></label>
+        <name>IPM_Due_Date__c</name>
     </fields>
     <fields>
         <label><!-- Function --></label>
@@ -57,6 +65,10 @@
             <translation><!-- Finance --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>PL</masterLabel>
+            <translation><!-- PL --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>R&amp;D</masterLabel>
             <translation><!-- R&amp;D --></translation>
         </picklistValues>
@@ -64,6 +76,23 @@
             <masterLabel>Supply Chain</masterLabel>
             <translation><!-- Supply Chain --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- is Master --></label>
+        <name>IPM_Is_Master__c</name>
+    </fields>
+    <fields>
+        <label><!-- Master Section Name --></label>
+        <name>IPM_Master_Section_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- Master Section Sequence --></label>
+        <name>IPM_Master_Section_Sequence__c</name>
+    </fields>
+    <fields>
+        <label><!-- Master Task --></label>
+        <name>IPM_Master_Task__c</name>
+        <relationshipLabel><!-- IPM Tasks --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Phase --></label>
@@ -134,6 +163,10 @@
         <name>IPM_Task_Name__c</name>
     </fields>
     <fields>
+        <label><!-- Task Temp Complexity --></label>
+        <name>IPM_Task_Temp_Complexity__c</name>
+    </fields>
+    <fields>
         <label><!-- Task Type --></label>
         <name>IPM_Task_Type__c</name>
         <picklistValues>
@@ -164,10 +197,18 @@
             <masterLabel>Market Ready Gate</masterLabel>
             <translation><!-- Market Ready Gate --></translation>
         </picklistValues>
+        <picklistValues>
+            <masterLabel>PLE/Learnings</masterLabel>
+            <translation><!-- PLE/Learnings --></translation>
+        </picklistValues>
     </fields>
     <fields>
         <label><!-- Version Number --></label>
         <name>IPM_Version_Number__c</name>
+    </fields>
+    <fields>
+        <label><!-- IsSystemGenerated --></label>
+        <name>IsSystemGenerated__c</name>
     </fields>
     <layouts>
         <layout>Task Layout</layout>

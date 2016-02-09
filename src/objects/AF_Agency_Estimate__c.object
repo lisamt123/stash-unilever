@@ -53,6 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
@@ -127,6 +128,18 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_AgencyEntityId__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(AF_Agency_Entity__r.AF_Agency__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>AgencyEntityId</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_Agency_Category_Id__c</fullName>
         <description>This is used to provide Access to Agency Estiamte based on Category.</description>
         <externalId>false</externalId>
@@ -191,9 +204,9 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <description>AgencyFee#GLOBAL#To Store agency exchange rates.</description>
         <externalId>false</externalId>
         <label>Matrix Data Entry Exchange Rate</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -204,9 +217,9 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <description>AgencyFee#GLOBAL#To Store agency spot rate.</description>
         <externalId>false</externalId>
         <label>Ready For PO Exchange Rate</label>
-        <precision>14</precision>
+        <precision>15</precision>
         <required>false</required>
-        <scale>4</scale>
+        <scale>5</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
@@ -240,6 +253,28 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <externalId>false</externalId>
         <formula>CASESAFEID(AF_Agency_Entity__r.AF_Agency__c) +&apos;::&apos;+ CASESAFEID(AF_Brand_Id__c) +&apos;::&apos;+  text(AF_Unilever_Entity__r.AF_Country__c)  +&apos;::&apos;+ AF_Fiscal_Year__c</formula>
         <label>Bonus Agency Formula</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_BrandEstimate_Active__c</fullName>
+        <externalId>false</externalId>
+        <formula>AF_Brand_Estimate__r.AF_Active__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>BrandEstimate Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>AF_BrandIdunique__c</fullName>
+        <externalId>false</externalId>
+        <formula>CASESAFEID(AF_Brand_Estimate__r.Brand__r.Id)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>BrandIdunique</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -359,21 +394,7 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <fullName>AF_Compound_Key__c</fullName>
         <description>Key to uniquely identify this estimate - used in dataloading</description>
         <externalId>false</externalId>
-        <formula>IF( 
-OR( 
-ISBLANK( AF_Brand_Estimate__r.AF_Fiscal_Year__c), 
-ISBLANK(AF_Agency_Entity__r.AF_Agency__c), 
-ISBLANK( AF_Brand_Estimate__r.Brand__c ), 
-ISBLANK( AF_Agency_Entity_Name__c ), 
-ISBLANK( AF_Unilever_Entity_Name__c ) 
-), 
-&apos;!!! ERROR !!!&apos;, 
-AF_Brand_Estimate__r.AF_Fiscal_Year__c + &apos;|&apos; + 
-AF_Agency_Entity__r.AF_Agency__c + &apos;|&apos; + 
-AF_Brand_Estimate__r.Brand__c + &apos;|&apos; + 
-AF_Agency_Entity_Name__c+ &apos;|&apos; + 
-AF_Unilever_Entity_Name__c 
-)</formula>
+        <formula>AF_Brand_Estimate__r.AF_Fiscal_Year__c +&apos;|&apos;+CASESAFEID (AF_Agency_Entity__r.AF_Agency__c)+&apos;|&apos;+CASESAFEID (AF_Brand_Estimate__r.Brand__c)+&apos;|&apos;+AF_Agency_Entity_Name__c+&apos;|&apos;+AF_Unilever_Entity_Name__c</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Compound Key</label>
         <required>false</required>
@@ -759,6 +780,21 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>AF_Mean_Quarter__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(INCLUDES( AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c , &quot;Q1&quot;), &quot;Q0&quot;, 
+IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q2&quot;), &quot;Q1&quot;, 
+IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q3&quot;), &quot;Q2&quot;, 
+IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q4&quot;), &quot;Q3&quot;, null))))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Mean Quarter</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>AF_No_Previous_POs__c</fullName>
         <defaultValue>0</defaultValue>
         <description>No of Previous PO&apos;s Raised</description>
@@ -824,6 +860,43 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Adaptation_LC__c</fullName>
+        <description>This field is used to override the PO Adaptation value for the PO report</description>
+        <externalId>false</externalId>
+        <label>Override PO Adaptation – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Digital_LC__c</fullName>
+        <externalId>false</externalId>
+        <label>Override PO Digital – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_OverridePO_Traditional_LC__c</fullName>
+        <externalId>false</externalId>
+        <label>Override PO Traditional – LC</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
         <unique>false</unique>
     </fields>
     <fields>
@@ -1154,6 +1227,18 @@ IF(INCLUDES(AF_Brand_Estimate__r.AF_Basefee_Estimate_Initial_Quarter__c, &quot;Q
         <trackHistory>true</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>AF_UnileverCountryName__c</fullName>
+        <externalId>false</externalId>
+        <formula>text(AF_Unilever_Entity__r.AF_Country__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>UnileverCountryName</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>

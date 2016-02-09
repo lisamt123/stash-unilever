@@ -12,6 +12,7 @@
 <!-- VERSION  AUTHOR        DATE            DETAIL                    RELEASE/CSR     -->
 <!-- 1.0 -    Kasi&Pavan   22/01/2015      INITIAL DEVELOPMENT        Phase III       -->
 <!-- 2.0 -    Sathish V    04/02/2015      Console UI Enhancement     Phase III       -->
+<!-- 3.0 -    Goverdhan S  16/12/2015      Added Consumer Note field  CSC-2755        -->
 <!--====================================================-->
 
 <apex:page controller="CEC_NewAccountController" tabStyle="Account" cache="true" language="{!$CurrentPage.parameters.lang}">
@@ -35,8 +36,8 @@
             <apex:pageBlock id="detail" mode="maindetail"> 
                 <apex:pageBlockButtons id="Buttons" location="bottom"> 
                     <apex:outputPanel id="ButtonDiv" layout="block">
-                        <apex:commandButton styleClass="non-create" value="{!$Label.CEC_Search_Button}" action="{!searchConsumer}" rerender="ButtonDiv,consumerResults,ErrorMessages" oncomplete="resultsMode()"/>
-                        <apex:commandButton styleClass="non-searchable" value="{!$Label.CEC_Create_Button}" action="{!saveAccount}" rerender="ButtonDiv,consumerResults,ErrorMessages" rendered="{!AND(searchPerformed,newConsumer.Id==null)}" oncomplete="createdMode({!isContactPopulated},{!isTransactionSuccess})"/>   
+                        <apex:commandButton styleClass="non-create" value="{!$Label.CEC_Search_Button}" action="{!searchConsumer}" rerender="ButtonDiv,consumerResults,ErrorMessages,ResultTitle" oncomplete="resultsMode()"/>
+                        <apex:commandButton styleClass="non-searchable" value="{!$Label.CEC_Create_Button}" action="{!saveAccount}" rerender="ButtonDiv,consumerResults,ErrorMessages,ResultTitle" rendered="{!AND(searchPerformed,newConsumer.Id==null)}" oncomplete="createdMode({!isContactPopulated},{!isTransactionSuccess})"/>   
                     </apex:outputPanel>
                 </apex:pageBlockButtons>           
                 <apex:pageMessages id="ErrorMessages" escape="false"/>
@@ -53,7 +54,7 @@
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.CEC_Last_Name}"/>
-                        <apex:inputText value="{!newConsumer.Lastname}" required="true"/>
+                        <apex:inputText value="{!newConsumer.Lastname}"/>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.CEC_PostCode}"/>                        
@@ -62,17 +63,21 @@
                     <apex:pageBlockSectionItem >
                         <apex:outputLabel value="{!$Label.CEC_Street}"/>
                         <apex:inputField id="vf_account_street" value="{!newConsumer.PersonMailingStreet}" />    
-                    </apex:pageBlockSectionItem>    
+                    </apex:pageBlockSectionItem> 
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
-                        <apex:outputLabel value="City"/>
+                        <apex:outputLabel value="{!$Label.CEC_Account_Site}"/>
+                        <apex:inputField id="vf_account_site" value="{!newConsumer.Site}" />
+                    </apex:pageBlockSectionItem>   
+                    <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
+                        <apex:outputLabel value="{!$Label.CEC_City}"/>
                         <apex:inputField id="vf_account_city" value="{!newConsumer.PersonMailingCity}" />    
                     </apex:pageBlockSectionItem>   
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
-                        <apex:outputLabel value="County/region"/>
+                        <apex:outputLabel value="{!$Label.CEC_Country_region}"/>
                         <apex:inputField id="vf_account_state" value="{!newConsumer.PersonMailingState}" />    
                     </apex:pageBlockSectionItem>    
                     <apex:pageBlockSectionItem labelStyleClass="non-searchable" dataStyleClass="non-searchable">
-                        <apex:outputLabel value="Country"/>                        
+                        <apex:outputLabel value="{!$Label.CEC_Country}"/>                        
                         <apex:inputField id="vf_account_country" value="{!newConsumer.PersonMailingCountry}"/>
                     </apex:pageBlockSectionItem>
                     <apex:pageBlockSectionItem >
@@ -92,21 +97,22 @@
         </apex:outputPanel>
         <apex:outputPanel id="consumerResults" styleClass="results" layout="block">
             <apex:pageBlock mode="maindetail">
-                <apex:outputPanel styleClass="results-title" layout="block">
-                    <h2>{!$Label.CEC_ConsumerResultsTitleDisplay}</h2>
+                <apex:outputPanel styleClass="results-title" layout="block">                    
+                    <h2 id="ResultTitle"> {!resultsOutputTitle} </h2>
                 </apex:outputPanel>
                 <apex:pageBlockTable value="{!duplicateConsumerList}" var="dupe" id="duplicates" frame="none" rules="none" >
                     <tr class="container">
-                        <apex:column width="70%" colspan="2" styleClass="name top">
-                            <apex:image url="{!URLFOR($Resource.cec_images,'cec_link_arrow.png')}" width="18" height="18"/>       
+                        <apex:column width="100%" colspan="2" styleClass="name top">                       
+                            <apex:image url="{!URLFOR($Resource.cec_images,'cec_link_arrow.png')}" width="18" height="18"/> &nbsp;                               
                             <apex:actionSupport event="onclick" action="{!chooseAccount}" rerender="ButtonDiv,consumerResults,ErrorMessages" oncomplete="refreshPrimaryTab({!isContactPopulated},{!isTransactionSuccess})">
                                 <apex:param name="selectedAccount" assignTo="{!selectedAccountId}" value="{!dupe.consumer.id}"/>
                             </apex:actionSupport>
-                            <apex:outputLabel value="{!dupe.consumer.Salutation} {!dupe.consumer.Name}"/>
-                        </apex:column>
+                            <apex:outputtext style="font-weight: bold" value="{!dupe.consumer.Salutation} {!dupe.consumer.Name}"/> &nbsp;
+                            <apex:outputText value="{!dupe.consumer.Consumer_Note__c}" escape="false"/>                           
+                        </apex:column>                        
                         <apex:column width="30%" styleClass="more top">
                             <apex:outputLabel value="Show more"/>
-                        </apex:column>  
+                        </apex:column>                                            
                         <apex:column width="20%" styleClass="results-label partial-address" breakBefore="true">
                             <apex:outputLabel value="Address:"/>
                         </apex:column>
@@ -119,23 +125,29 @@
                         <apex:column width="80%" colspan="2" styleClass="results-data full-address">
                             <apex:outputLabel value="{!dupe.consumer.PersonMailingStreet} {!dupe.consumer.PersonMailingCity} {!dupe.consumer.PersonMailingState} {!dupe.consumer.PersonMailingPostalCode} {!dupe.consumer.PersonMailingCountry}"/>
                         </apex:column>
-                        <apex:column width="20%" styleClass="results-label email bottom" breakBefore="true">
+                        <apex:column width="20%" styleClass="results-label email" breakBefore="true">
                             <apex:outputLabel value="Email:"/>
                         </apex:column>
-                        <apex:column width="80%" colspan="2" styleClass="results-data email bottom">
+                        <apex:column width="80%" colspan="2" styleClass="results-data email">
                             <apex:outputLabel value="{!dupe.consumer.PersonEmail}"/>
                         </apex:column>
-                        <apex:column width="20%" styleClass="results-label phone additional" breakBefore="true">
+                        <apex:column width="20%" styleClass="results-label phone bottom" breakBefore="true">
                             <apex:outputLabel value="Phone:"/>
                         </apex:column>
-                        <apex:column width="80%" colspan="2" styleClass="results-data phone additional">
+                        <apex:column width="80%" colspan="2" styleClass="results-data phone bottom">
                             <apex:outputLabel value="{!dupe.consumer.Phone}"/>
                         </apex:column>
-                        <apex:column width="20%" styleClass="results-label phone additional" breakBefore="true">
+                        <apex:column width="20%" styleClass="results-label issue-title additional" breakBefore="true">
                             <apex:outputLabel value=""/>
                         </apex:column>
                         <apex:column width="80%" colspan="2" styleClass="results-data issue-title additional">
                             <apex:outputLabel value="Latest Case"/>
+                        </apex:column>
+                        <apex:column width="20%" styleClass="results-label LatestCaseNumber additional" breakBefore="true">
+                           <apex:outputLabel value="Case #:"/>
+                        </apex:column>
+                        <apex:column width="80%" colspan="2" styleClass="results-data LatestCaseNumber additional">
+                             <apex:outputLabel value="{!dupe.consumer.Latest_Case_Number__c}"/>
                         </apex:column>
                         <apex:column width="20%" styleClass="results-label LatestCaseProduct additional" breakBefore="true">
                             <apex:outputLabel value="Product:"/>
@@ -153,7 +165,7 @@
                 </apex:pageBlockTable>
                 <br/>   
                 <apex:outputPanel styleClass="results-footer" layout="block">    
-                    <apex:outputLabel value="{!resultsOutputLabel}" for="create-new-contact"/>
+                    <apex:outputLabel value="{!resultsOutputLabel}" for="create-new-contact" id="ResultLabel"/>
                     <br/>
                     <apex:commandButton styleClass="btn" id="create-new-contact" value="{!$Label.CEC_ConsumerCreateContactButtonDisplay}" disabled="{!isContactPopulated}"/>
                 </apex:outputPanel>
@@ -258,11 +270,13 @@
                     $(this).parent().find('td').toggleClass('current');
                     $(this).parent().nextAll().eq(0).find('.partial-address').toggle();
                     $(this).parent().nextAll().eq(1).find('.full-address').toggle().toggleClass('current');
-                    $(this).parent().nextAll().eq(2).find('.email').toggleClass('bottom').toggleClass('current');
-                    $(this).parent().nextAll().eq(3).find('.additional').toggle().toggleClass('current').toggleClass('current-case-divider');
-                    $(this).parent().nextAll().eq(4).find('.additional').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(2).find('.email').toggleClass('current');
+                    $(this).parent().nextAll().eq(3).find('.phone').toggleClass('bottom').toggleClass('current');
+                    $(this).parent().nextAll().eq(4).find('.additional').toggle().toggleClass('current').toggleClass('current-case-divider');
                     $(this).parent().nextAll().eq(5).find('.additional').toggle().toggleClass('current');
                     $(this).parent().nextAll().eq(6).find('.additional').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(7).find('.additional').toggle().toggleClass('current');
+                    $(this).parent().nextAll().eq(8).find('.additional').toggle().toggleClass('current');
                 });
 
                 $('.results-footer .btn').click(function (e) {
@@ -287,10 +301,13 @@
         function createdMode(isContactPopulated, isTranSuccess) {
             if (isContactPopulated && isTranSuccess) {
                 sforce.console.getFocusedPrimaryTabId(doRefresh);
-            } else {
+            } else if (isContactPopulated && !isTranSuccess) {
                 // Else do not refresh.                
                 $('.tabs .create a').html('{!$Label.CEC_ConsumerSearchDisplay}').parent().addClass('search').removeClass('create');
                 searchMode();
+                $('.tab.results').hide();
+            } else {
+                createMode();
                 $('.tab.results').hide();
             }
         }

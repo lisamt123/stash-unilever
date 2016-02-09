@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>false</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>true</enableActivities>
@@ -135,6 +134,18 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_HoldCategory__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(INCLUDES( IPM_User_Category__c ,&quot;Household Care&quot;), &quot;Household Care,&quot;, &quot;&quot;) &amp;
+IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &quot;&quot;)</formula>
+        <label>HoldCategory</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_IT_Contacts__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -164,6 +175,18 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>IPM_Region__c</fullName>
+        <description>store user region&apos;s</description>
+        <externalId>false</externalId>
+        <label>Region</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Reporting__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -183,6 +206,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Laundry</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ice Cream</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -233,11 +260,11 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>CD</fullName>
+                <fullName>CMI</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>CMI</fullName>
+                <fullName>CD</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -306,17 +333,62 @@
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
+    <fields>
+        <fullName>Unique_User_Company_Card__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <externalId>false</externalId>
+        <label>Unique User Company Card</label>
+        <length>40</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <fields>
+        <fullName>WL__c</fullName>
+        <externalId>false</externalId>
+        <label>WL</label>
+        <picklist>
+            <picklistValues>
+                <fullName>WL1</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WL2</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>WL3</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
     <label>IPM User Profile</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>CREATED_DATE</columns>
+        <columns>NAME</columns>
+        <columns>IPM_User__c</columns>
+        <columns>IPM_User_Role__c</columns>
+        <columns>IPM_User_Function__c</columns>
+        <columns>IPM_User_Category__c</columns>
+        <columns>IPM_Company_Card__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
+        <displayFormat>UP-{00000}</displayFormat>
         <label>ObjectUser ProfileIPM Name</label>
         <trackHistory>false</trackHistory>
-        <type>Text</type>
+        <type>AutoNumber</type>
     </nameField>
     <pluralLabel>IPM User Profile</pluralLabel>
-    <searchLayouts>
-        <searchResultsAdditionalFields>IPM_User__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>IPM_Project_Leader__c</searchResultsAdditionalFields>
-        <searchResultsAdditionalFields>IPM_Finance_Member__c</searchResultsAdditionalFields>
-    </searchLayouts>
+    <searchLayouts/>
     <sharingModel>Private</sharingModel>
 </CustomObject>

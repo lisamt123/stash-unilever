@@ -9,12 +9,32 @@
         <value>IPM Questionnaires</value>
     </caseValues>
     <fields>
+        <label><!-- External Id --></label>
+        <name>External_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Active RQS --></label>
         <name>IPM_Active_RQS__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Charter Comments --></label>
+        <name>IPM_Charter_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Charter Score --></label>
+        <name>IPM_Charter_Score__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Comments --></label>
         <name>IPM_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Contract Comments --></label>
+        <name>IPM_Contract_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Contract Score --></label>
+        <name>IPM_Contract_Score__c</name>
     </fields>
     <fields>
         <label><!-- IPM GK Answers --></label>
@@ -55,6 +75,22 @@
     <fields>
         <label><!-- IPM Is Added Question --></label>
         <name>IPM_Is_Added_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Market Deployment Comments --></label>
+        <name>IPM_Market_Deployment_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Market Deployment Score --></label>
+        <name>IPM_Market_Deployment_Score__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Market Ready Comments --></label>
+        <name>IPM_Market_Ready_Comments__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Market Ready Score --></label>
+        <name>IPM_Market_Ready_Score__c</name>
     </fields>
     <fields>
         <label><!-- IPM POS Question Type --></label>
@@ -101,6 +137,10 @@
     <fields>
         <label><!-- IPM Question --></label>
         <name>IPM_Question__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Questionnaire Type --></label>
+        <name>IPM_Questionnaire_Type__c</name>
     </fields>
     <fields>
         <label><!-- IPM RQS Gate Type --></label>
@@ -175,6 +215,10 @@
         <name>IPM_Score__c</name>
     </fields>
     <fields>
+        <label><!-- IPM Section External Id --></label>
+        <name>IPM_Section_External_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- IPM Section Sequence Number --></label>
         <name>IPM_Section_Sequence_Number__c</name>
     </fields>
@@ -223,6 +267,18 @@
     <recordTypes>
         <label><!-- RQS Questionnaire --></label>
         <name>RQS_Questionnaire</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- R&amp;D Feasibility --></label>
+        <name>R_D_Feasibility</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Supply Chain Feasibility --></label>
+        <name>Supply_Chain_Feasibility</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- TradeMark --></label>
+        <name>TradeMark</name>
     </recordTypes>
     <startsWith>Consonant</startsWith>
 </CustomObjectTranslation>

@@ -62,7 +62,7 @@ public class CORE_CA_ReminderAlert_Batch_Test {
        scope.add(objApprover2);
        Database.BatchableContext BC;
        CORE_CA_ReminderAlert_Batch objReminderAlertBatch = new CORE_CA_ReminderAlert_Batch();
-       objReminderAlertBatch.start(bc);
+       //objReminderAlertBatch.start(bc);
        objReminderAlertBatch.execute(BC, scope); 
        objReminderAlertBatch.finish(BC);        
        
@@ -96,6 +96,7 @@ public class CORE_CA_ReminderAlert_Batch_Test {
          test.starttest();
          // Code coverage for 'CORE_CA_ReminderAlert_Scheduler'
          CORE_CA_ReminderAlert_Scheduler myClass = new CORE_CA_ReminderAlert_Scheduler();
+         System.assert(myClass != null);
          //String chron = '0 0 0 3 9 ? 2022';//'0 0 23 * * ?';        
          //system.schedule('Test Sched111', chron, myClass);
          //CORE_CA_UnfollowUser_Scheduler objUnfollowScheduler = new CORE_CA_UnfollowUser_Scheduler();

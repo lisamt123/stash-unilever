@@ -210,6 +210,10 @@
         <name>MR_Locked__c</name>
     </fields>
     <fields>
+        <label><!-- NameYearPLtype --></label>
+        <name>NameYearPLtype__c</name>
+    </fields>
+    <fields>
         <label><!-- PBO (% of T/O) Charter --></label>
         <name>PBO_of_TO_Charter__c</name>
     </fields>

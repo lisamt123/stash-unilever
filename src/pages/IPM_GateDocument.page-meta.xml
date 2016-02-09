@@ -3,6 +3,6 @@
     <apiVersion>31.0</apiVersion>
     <availableInTouch>false</availableInTouch>
     <confirmationTokenRequired>false</confirmationTokenRequired>
-    <description>Cloned from ipmProjectRevamp to create ipmGetDocumentV4</description>
-    <label>IPM GateDocument</label>
+    <description>The gate document landing page</description>
+    <label>IPM_GateDocument</label>
 </ApexPage>

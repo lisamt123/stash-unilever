@@ -4,10 +4,11 @@
     <description>CEC: Stores settings related to the CEC org and application</description>
     <enableFeeds>false</enableFeeds>
     <fields>
-        <fullName>Austria_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Austria cosmetovigilence questionnaire</description>
+        <fullName>AlertAction_Time_Scheduler__c</fullName>
+        <description>CEC - Time past hour separated by semicolon for AlertAction Email Scheduler</description>
         <externalId>false</externalId>
-        <label>Austria Questionnaire Id</label>
+        <inlineHelpText>Enter a number between 0-59 separated by &apos;;&apos;</inlineHelpText>
+        <label>AlertAction Time Scheduler</label>
         <length>30</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -15,11 +16,11 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Belgium_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Belgium cosmetovigilence questionnaire</description>
+        <fullName>Alert_Chatter_User_Id__c</fullName>
+        <description>CEC : Salesforce User Id to post the chatter feed in the group</description>
         <externalId>false</externalId>
-        <label>Belgium Questionnaire Id</label>
-        <length>30</length>
+        <label>Alert Chatter User Id</label>
+        <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
@@ -38,53 +39,9 @@
     </fields>
     <fields>
         <fullName>Cosmetovigilence_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the cosmetovigilence questionnaire, used is custom links, for example on the Case record for quick access, e.g 26bnjdwb56aj0</description>
+        <description>CEC: Id of the personalcare cosmetovigilence questionnaire, used is custom links, for example on the Case record for quick access, e.g 26bnjdwb56aj0</description>
         <externalId>false</externalId>
-        <label>UK Questionnaire Id</label>
-        <length>255</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Cyprus_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Cyprus cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Cyprus Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Czech_Republic_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Czech Republic cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Czech Republic Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Denmark_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Denmark cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Denmark Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Estonia_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Estonia cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Estonia Questionnaire Id</label>
+        <label>Personalcare Questionnaire Id</label>
         <length>30</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -103,10 +60,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Finland_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Finland cosmetovigilence questionnaire</description>
+        <fullName>Homecare_Questionnaire_Id__c</fullName>
+        <description>CEC: Id of the Homecare cosmetovigilence questionnaire, used is custom links, for example on the Case record for quick access, e.g 26bnjdwb56aj0</description>
         <externalId>false</externalId>
-        <label>Finland Questionnaire Id</label>
+        <label>Homecare Questionnaire Id</label>
         <length>30</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -114,87 +71,10 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>France_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the France cosmetovigilence questionnaire</description>
+        <fullName>Ingestion_Questionnaire_Id__c</fullName>
+        <description>CEC: Id of the personalcare cosmetovigilence questionnaire, used is custom links, for example on the Case record for quick access, e.g 26bnjdwb56aj0</description>
         <externalId>false</externalId>
-        <label>France Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Germany_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Germany cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Germany Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Greece_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Greece cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Greece Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Hungary_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Hungary cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Hungary Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>India_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the India cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>India Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Italy_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Italy cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Italy Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Latvia_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Latvia cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Latvia Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Lithuania_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Lithuania cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Lithuania Questionnaire Id</label>
+        <label>Ingestion Questionnaire Id</label>
         <length>30</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -212,77 +92,89 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Netherland_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Netherlands cosmetovigilence questionnaire</description>
+        <fullName>PII_Account_Address_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: To enable the PII Account address check functionality</description>
         <externalId>false</externalId>
-        <label>Netherland Questionnaire Id</label>
-        <length>30</length>
+        <label>PII Account Address Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PII_Account_Name_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: To enable the PII Account Name check functionality</description>
+        <externalId>false</externalId>
+        <label>PII Account Name Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PII_DOB_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: To enable the PII Date of Birth check functionality</description>
+        <externalId>false</externalId>
+        <label>PII DOB Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PII_Email_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: To enable the PII email check functionality</description>
+        <externalId>false</externalId>
+        <label>PII Email Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>PII_Keywords__c</fullName>
+        <externalId>false</externalId>
+        <inlineHelpText>Keywords to be considered for PII Warning check. Delimited by hypen &apos;-&apos;</inlineHelpText>
+        <label>PII Keywords</label>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Norway_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Norway cosmetovigilence questionnaire</description>
+        <fullName>PII_Phone_Number_Check__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>CEC: To enable the PII phone check functionality</description>
         <externalId>false</externalId>
-        <label>Norway Questionnaire Id</label>
-        <length>30</length>
+        <label>PII Phone Number Check</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Recommended_Products_Page_Size__c</fullName>
+        <description>CEC: To store the recommended products page limit</description>
+        <externalId>false</externalId>
+        <label>Recommended Products Page Size</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Safety_Alert_Email_Id__c</fullName>
+        <externalId>false</externalId>
+        <label>Safety Alert Email Id</label>
+        <length>50</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Poland_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Poland cosmetovigilence questionnaire</description>
+        <fullName>Survey_URL__c</fullName>
+        <description>CEC - To store the Case Survey URL</description>
         <externalId>false</externalId>
-        <label>Poland Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Portugal_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Portugal cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Portugal Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Spain_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Spain cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Spain Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Sweden_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Sweden cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Sweden Questionnaire Id</label>
-        <length>30</length>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Switzerland_Questionnaire_Id__c</fullName>
-        <description>CEC: Id of the Switzerland cosmetovigilence questionnaire</description>
-        <externalId>false</externalId>
-        <label>Switzerland Questionnaire Id</label>
-        <length>30</length>
+        <label>Survey URL</label>
+        <length>255</length>
         <required>false</required>
         <trackTrending>false</trackTrending>
         <type>Text</type>

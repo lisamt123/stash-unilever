@@ -1,0 +1,40 @@
+<aura:component implements="force:appHostable" controller="OV_RemoteController">
+    <!-- init logger -->
+    <c:OV_UtilsLogger />
+
+    <!-- load styleshets and required JS code -->
+    <ltng:require styles="/resource/OV_stylesMerged/styles.css?rev10b"
+        scripts="/resource/OV_jquery, /resource/OV_bootstrap_drilldown, /resource/OV_jqueryDotDot"
+        afterScriptsLoaded="{!c.doInit}"
+    />
+
+    <!-- register event listeners -->
+    <aura:handler name="destroy" value="{!this}" action="{!c.handleDestroy}" />
+    <aura:handler event="aura:locationChange" action="{!c.onLocationChange}"/>
+    <aura:handler event="c:OV_NavigationEvent" action="{!c.swapInComponent}"/>
+    <aura:handler event="c:OV_FiltersEvent" action="{!c.applyFilters}" />
+    <aura:handler event="c:OV_TabClickEvent" action="{!c.tabViewClicked}" />
+
+    <aura:dependency resource="markup://c:OV_*" />
+
+    <aura:registerEvent name="OV_ShelfTileExpandEvent" type="c:OV_ShelfTileExpandEvent" />
+    <aura:registerEvent name="OV_ShelfTileFolderExpandEvent" type="c:OV_ShelfTileExpandEvent" />
+
+    <aura:handler event="c:OV_ShelfTileExpandEvent" action="{!c.handleTileClick}"/>
+    <aura:handler event="c:OV_ShelfTileFolderExpandEvent" action="{!c.handleFolderClick}"/>
+
+    <aura:attribute name="activeShelfTile" type="String" />
+    <aura:attribute name="activeShelfFolderTile" type="String" />
+    <aura:attribute name="activeFolderName" type="String" />
+
+    <!-- render navigation here ... -->
+    <aura:attribute name="debugMessage" type="String"/>
+    
+    <!-- area where subcomponents will be rendered to -->
+    <div aura:id="mainComponent" style="min-height:100%">
+        <aura:renderIf isTrue="{!$Browser.isPhone == true || $Browser.isTablet == true}">
+            <div class="notAvailableForMobile">{!$Label.c.OV_MobileApplicationInfo}</div>
+        </aura:renderIf>
+        {!v.body}
+    </div>
+</aura:component>

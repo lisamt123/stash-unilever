@@ -44,7 +44,6 @@
         <actionName>View</actionName>
         <type>Default</type>
     </actionOverrides>
-    <allowInChatterGroups>true</allowInChatterGroups>
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <description>MDO Junction object for Brand and product category objects</description>
@@ -73,7 +72,7 @@
         <fullName>brand_mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>Brand MDM Id</label>
-        <length>6</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -84,7 +83,7 @@
         <fullName>mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>MDM ID</label>
-        <length>12</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -109,7 +108,7 @@
         <fullName>product_category_mdm_id__c</fullName>
         <externalId>true</externalId>
         <label>Product Category MDM Id</label>
-        <length>6</length>
+        <length>32</length>
         <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -120,14 +119,27 @@
         <fullName>status__c</fullName>
         <externalId>false</externalId>
         <label>Status</label>
-        <length>10</length>
-        <required>false</required>
+        <picklist>
+            <picklistValues>
+                <fullName>Active</fullName>
+                <default>true</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>InActive</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>Picklist</type>
     </fields>
     <label>CategoryBrands</label>
+    <listViews>
+        <fullName>All</fullName>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
     <nameField>
         <displayFormat>PCB-{00000}</displayFormat>
         <label>Name</label>

@@ -5,10 +5,18 @@
         <type>Default</type>
     </actionOverrides>
     <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
         <actionName>SaveEdit</actionName>
         <type>Default</type>
     </actionOverrides>
     <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>FeedItemId</fullName>
+        <type>Lookup</type>
+    </fields>
     <fields>
         <fullName>GiverId</fullName>
         <type>Lookup</type>

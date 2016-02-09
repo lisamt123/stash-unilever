@@ -53,6 +53,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -220,7 +221,7 @@
     <listViews>
         <fullName>CEC_General_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
-        <label>General Queue</label>
+        <label>CEC UKI Queue</label>
         <queue>CEC_General_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -272,6 +273,15 @@
         </sharedTo>
     </listViews>
     <listViews>
+        <fullName>CEC_North_America_Queue_cec_Case_QC_Mapping</fullName>
+        <filterScope>Queue</filterScope>
+        <label>CEC North America Queue</label>
+        <queue>CEC_North_America_Queue</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
         <fullName>CEC_Poland_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
         <label>CEC Poland Queue</label>
@@ -281,19 +291,23 @@
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Portugal_Queue_cec_Case_QC_Mapping</fullName>
+        <fullName>CEC_Spain_Queue_cec_Case_QC_Mapping</fullName>
         <filterScope>Queue</filterScope>
-        <label>CEC Portugal Queue</label>
-        <queue>CEC_Portugal_Queue</queue>
+        <label>CEC Spain Queue</label>
+        <queue>CEC_Spain_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>CEC_Spain_Queue_cec_Case_QC_Mapping</fullName>
+        <fullName>CEC_Sri_Lanka_Queue_cec_Case_QC_Mapping</fullName>
+        <columns>NAME</columns>
+        <columns>Product__c</columns>
+        <columns>Reason_Code__c</columns>
         <filterScope>Queue</filterScope>
-        <label>CEC Spain Queue</label>
-        <queue>CEC_Spain_Queue</queue>
+        <label>CEC Sri Lanka Queue</label>
+        <language>en_US</language>
+        <queue>CEC_Sri_Lanka_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>

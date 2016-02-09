@@ -17,7 +17,11 @@
         <name>Alert_Action_Id__c</name>
     </fields>
     <fields>
-        <label><!-- Brand --></label>
+        <label><!-- Brand Reporting --></label>
+        <name>Brand_Reporting__c</name>
+    </fields>
+    <fields>
+        <label><!-- Contact us Brand --></label>
         <name>Brand__c</name>
     </fields>
     <fields>
@@ -27,6 +31,14 @@
     <fields>
         <label><!-- Product Hierarchy --></label>
         <name>CEC_Product_Hierarchy__c</name>
+    </fields>
+    <fields>
+        <label><!-- CEC Product Reporting Name --></label>
+        <name>CEC_Product_Reporting_Name__c</name>
+    </fields>
+    <fields>
+        <label><!-- CEC Product Reporting Name (no size) --></label>
+        <name>CEC_Product_Reporting_Name_no_size__c</name>
     </fields>
     <fields>
         <label><!-- CEC_Product --></label>
@@ -50,9 +62,17 @@
         <name>CMM_Account_Owner_Active_Flag__c</name>
     </fields>
     <fields>
+        <label><!-- CPG Code Reporting --></label>
+        <name>CPG_Code_Reporting__c</name>
+    </fields>
+    <fields>
         <label><!-- Case Brand Mapping --></label>
         <name>Case_Brand_Mapping__c</name>
         <relationshipLabel><!-- Cases --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Case Brand --></label>
+        <name>Case_Brand__c</name>
     </fields>
     <fields>
         <label><!-- Case Market Mapping Country Id --></label>
@@ -71,8 +91,56 @@
         <name>Case_Market__c</name>
     </fields>
     <fields>
+        <label><!-- Case Record Count --></label>
+        <name>Case_Record_Count__c</name>
+    </fields>
+    <fields>
         <label><!-- Case product category --></label>
         <name>Case_product_category__c</name>
+    </fields>
+    <fields>
+        <label><!-- Claim Status --></label>
+        <name>Claim_Status__c</name>
+        <picklistValues>
+            <masterLabel>Active</masterLabel>
+            <translation><!-- Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Active Transferred</masterLabel>
+            <translation><!-- Active Transferred --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Closed</masterLabel>
+            <translation><!-- Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal</masterLabel>
+            <translation><!-- Legal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal Closed</masterLabel>
+            <translation><!-- Legal Closed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Legal Transferred</masterLabel>
+            <translation><!-- Legal Transferred --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Potential</masterLabel>
+            <translation><!-- Potential --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Store Active</masterLabel>
+            <translation><!-- Store Active --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Store Closed</masterLabel>
+            <translation><!-- Store Closed --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Claims Notes --></label>
+        <name>Claims_Notes__c</name>
     </fields>
     <fields>
         <label><!-- Consumer Product Descriptor no size --></label>
@@ -204,6 +272,22 @@
         <name>DefaultCMMAccountOwner_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Escalated Date --></label>
+        <name>Escalated_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- Escalated to Closed(Days) --></label>
+        <name>Escalated_to_Closed_Days__c</name>
+    </fields>
+    <fields>
+        <label><!-- Escalated to Closed(Hours) --></label>
+        <name>Escalated_to_Closed_Hours__c</name>
+    </fields>
+    <fields>
+        <label><!-- Escalated to Closed(Minutes) --></label>
+        <name>Escalated_to_Closed_Minutes__c</name>
+    </fields>
+    <fields>
         <label><!-- Expiry Date --></label>
         <name>Expiry_Date__c</name>
     </fields>
@@ -214,6 +298,14 @@
     <fields>
         <label><!-- Factory Investigation Survey Link --></label>
         <name>Factory_Investigation_Survey_Link__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Response Date --></label>
+        <name>First_Response_Date__c</name>
+    </fields>
+    <fields>
+        <label><!-- First Response Email Time --></label>
+        <name>First_Response_Email_Time__c</name>
     </fields>
     <fields>
         <label><!-- Global Reason L5 desc --></label>
@@ -253,8 +345,16 @@
         <name>L3_Product_Category__c</name>
     </fields>
     <fields>
+        <label><!-- L3 Product Reporting --></label>
+        <name>L3_Product_Reporting__c</name>
+    </fields>
+    <fields>
         <label><!-- L4 Product Category --></label>
         <name>L4_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L4 Product Reporting --></label>
+        <name>L4_Product_Reporting__c</name>
     </fields>
     <fields>
         <label><!-- L5 Code --></label>
@@ -265,12 +365,24 @@
         <name>L5_Product_Category__c</name>
     </fields>
     <fields>
+        <label><!-- L5 Product Reporting --></label>
+        <name>L5_Product_Reporting__c</name>
+    </fields>
+    <fields>
         <label><!-- L6 Product Category --></label>
         <name>L6_Product_Category__c</name>
     </fields>
     <fields>
+        <label><!-- L6 Product Reporting --></label>
+        <name>L6_Product_Reporting__c</name>
+    </fields>
+    <fields>
         <label><!-- L7 Product Category --></label>
         <name>L7_Product_Category__c</name>
+    </fields>
+    <fields>
+        <label><!-- L7 Product Reporting --></label>
+        <name>L7_Product_Reporting__c</name>
     </fields>
     <fields>
         <label><!-- Language --></label>
@@ -283,6 +395,26 @@
     <fields>
         <label><!-- Machine Serial Number --></label>
         <name>Machine_ID__c</name>
+    </fields>
+    <fields>
+        <label><!-- Manual Override Reason --></label>
+        <name>Manual_Override_Reason__c</name>
+        <picklistValues>
+            <masterLabel>1-Legal</masterLabel>
+            <translation><!-- 1-Legal --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>2-Customer Request</masterLabel>
+            <translation><!-- 2-Customer Request --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>3-Default</masterLabel>
+            <translation><!-- 3-Default --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Manual Retention Override --></label>
+        <name>Manual_Retention_Override__c</name>
     </fields>
     <fields>
         <label><!-- Market --></label>
@@ -383,6 +515,10 @@
             <translation><!-- Email Spain --></translation>
         </picklistValues>
         <picklistValues>
+            <masterLabel>Email Sri Lanka</masterLabel>
+            <translation><!-- Email Sri Lanka --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Email TO France</masterLabel>
             <translation><!-- Email TO France --></translation>
         </picklistValues>
@@ -412,8 +548,21 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Original Description --></label>
+        <name>Original_Description__c</name>
+    </fields>
+    <fields>
         <label><!-- Out of Hours --></label>
         <name>Out_of_Hours__c</name>
+    </fields>
+    <fields>
+        <help><!-- Green: No PII Data ; Red: PII Data present in the Description field --></help>
+        <label><!-- PII Data Check --></label>
+        <name>PII_Data_Check__c</name>
+    </fields>
+    <fields>
+        <label><!-- PII Warning Check --></label>
+        <name>PII_Warning_Check__c</name>
     </fields>
     <fields>
         <name>Priority</name>
@@ -431,8 +580,16 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Product CPG Code --></label>
+        <name>Product_CPG_Code__c</name>
+    </fields>
+    <fields>
         <label><!-- Product Code --></label>
         <name>Product_Code__c</name>
+    </fields>
+    <fields>
+        <label><!-- Product ISO Country Code --></label>
+        <name>Product_ISO_Country_Code__c</name>
     </fields>
     <fields>
         <label><!-- Product Skill --></label>
@@ -572,6 +729,10 @@
             <masterLabel>Suggestion</masterLabel>
             <translation><!-- Suggestion --></translation>
         </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Reason Code Retention Days --></label>
+        <name>Reason_Code_Retention_Days__c</name>
     </fields>
     <fields>
         <label><!-- Reason Code --></label>
@@ -722,6 +883,33 @@
         <name>Unique_ID__c</name>
     </fields>
     <fields>
+        <help><!-- -Brand : Used The Brand Before, NOT The Product In Question
+
+-New User : No Prior Use Of This Product Or Used A Competitor Brand
+
+-Regular User : Used This Exact Product &amp; Variant Before
+
+-Unknown : Information Not Available --></help>
+        <label><!-- Used Product Previously --></label>
+        <name>Used_Product_Previously__c</name>
+        <picklistValues>
+            <masterLabel>Brand</masterLabel>
+            <translation><!-- Brand --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>New User</masterLabel>
+            <translation><!-- New User --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regular User</masterLabel>
+            <translation><!-- Regular User --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Unknown</masterLabel>
+            <translation><!-- Unknown --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- WorkIt: Allow Update --></label>
         <name>WorkIt2__Allow_Update__c</name>
     </fields>
@@ -846,6 +1034,10 @@
             <section>Additional Issue Information</section>
         </sections>
         <sections>
+            <label><!-- Attachments --></label>
+            <section>Attachments</section>
+        </sections>
+        <sections>
             <label><!-- Issue Information --></label>
             <section>Issue Information</section>
         </sections>
@@ -900,6 +1092,10 @@
         <name>Spam</name>
     </recordTypes>
     <validationRules>
+        <errorMessage><!-- Please populate the &apos;Manual Retention Override&apos; field. --></errorMessage>
+        <name>CEC_RetentionDetailCheck</name>
+    </validationRules>
+    <validationRules>
         <errorMessage><!-- You Must Select a Product Code &amp; Reason code --></errorMessage>
         <name>Product_and_Reason_Code_Required</name>
     </validationRules>
@@ -910,6 +1106,14 @@
     <webLinks>
         <label><!-- Cosmetovigilence --></label>
         <name>Cosmetovigilence</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Homecare_Cosmetovigilence --></label>
+        <name>Homecare_Cosmetovigilence</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Ingestion_Cosmetovigilence --></label>
+        <name>Ingestion_Cosmetovigilence</name>
     </webLinks>
     <webLinks>
         <label><!-- New_Case --></label>

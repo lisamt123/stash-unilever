@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
     <alerts>
+        <fullName>Bosscard_deleted</fullName>
+        <description>Bosscard deleted</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>unfiled$public/IPM_BOSSCARD_Deletion_Alert</template>
+    </alerts>
+    <alerts>
         <fullName>IPM_BOSSCARD_Archival_Mail_Alert</fullName>
         <description>IPM BOSSCARD Archival Mail Alert</description>
         <protected>false</protected>
@@ -9,6 +19,26 @@
         </recipients>
         <senderType>CurrentUser</senderType>
         <template>unfiled$public/IPM_BOSSCARD_Archival_Mail_Alert</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_Email_to_Notify_Auto_Deletion_of_Bosscard_after_6_months_of_inactivity</fullName>
+        <description>IPM Email to Notify Auto-Deletion of Bosscard after 6 months of inactivity</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/IPM_template_to_Notify_Auto_Deletion_of_Bosscard_after_6_months_of_inactivity2</template>
+    </alerts>
+    <alerts>
+        <fullName>IPM_Email_to_Notify_Bosscard_In_Activity_for_30_Day</fullName>
+        <description>IPM Email to Notify Bosscard In-Activity for 30 Day</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/IPM_Email_template_to_Notify_Bosscard_In_Activity_for_30_Day</template>
     </alerts>
     <fieldUpdates>
         <fullName>IPM_BOSSCARD_Archival_Update</fullName>
@@ -20,13 +50,24 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
-        <fullName>IPM_Update_Bosscard_Approval_Date</fullName>
-        <field>IPM_Bosscord_Approval_Date__c</field>
-        <formula>TODAY()</formula>
-        <name>Update Bosscard Approval Date</name>
+        <fullName>IPM_Bosscard_Post_Chatter_after_175days</fullName>
+        <field>Used_By_Workflow_175_days__c</field>
+        <formula>&apos;Post to Chatter 175 days&apos;</formula>
+        <name>IPM Bosscard Post Chatter after 175days</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Formula</operation>
         <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>IPM_Bosscard_Post_Chatter_after_30_days</fullName>
+        <field>Used_By_Workflow_30_days__c</field>
+        <formula>IF( Used_By_Workflow_30_days__c  = &apos;Date Changed&apos;, &apos;&apos;, &apos;Date Changed&apos;)</formula>
+        <name>IPM Bosscard Post Chatter after 30 days</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
         <fullName>Update_IPM_Bosscard_Name</fullName>
@@ -38,18 +79,20 @@
         <protected>false</protected>
     </fieldUpdates>
     <rules>
-        <fullName>Bosscard Approval Date</fullName>
-        <actions>
-            <name>IPM_Update_Bosscard_Approval_Date</name>
-            <type>FieldUpdate</type>
-        </actions>
+        <fullName>Auto Deletion Bosscard</fullName>
         <active>true</active>
-        <criteriaItems>
-            <field>IPM_Bosscard__c.IPM_Is_Accepted__c</field>
-            <operation>equals</operation>
-            <value>True</value>
-        </criteriaItems>
-        <triggerType>onAllChanges</triggerType>
+        <description>AUto delete a bosscard after 6 months of no activity</description>
+        <formula>TRUE</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Bosscard_deleted</name>
+                <type>Alert</type>
+            </actions>
+            <offsetFromField>IPM_Bosscard__c.IPM_Bosscard_Last_Modified_Date_Time__c</offsetFromField>
+            <timeLength>183</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
     </rules>
     <rules>
         <fullName>IPM BOSSCARD Archival On Inactive</fullName>
@@ -70,7 +113,7 @@
                 <name>IPM_BOSSCARD_Archival_Update</name>
                 <type>FieldUpdate</type>
             </actions>
-            <offsetFromField>IPM_Bosscard__c.LastModifiedDate</offsetFromField>
+            <offsetFromField>IPM_Bosscard__c.CreatedDate</offsetFromField>
             <timeLength>28</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
@@ -79,7 +122,7 @@
                 <name>IPM_BOSSCARD_Archival_Mail_Alert</name>
                 <type>Alert</type>
             </actions>
-            <offsetFromField>IPM_Bosscard__c.LastModifiedDate</offsetFromField>
+            <offsetFromField>IPM_Bosscard__c.CreatedDate</offsetFromField>
             <timeLength>21</timeLength>
             <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
         </workflowTimeTriggers>
@@ -96,5 +139,39 @@
             <operation>notEqual</operation>
         </criteriaItems>
         <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>IPM Notify Auto-Deletion of Bosscard after 175 days of Inactivity</fullName>
+        <active>true</active>
+        <formula>NOT( ISNULL ( LastModifiedDate ))  &amp;&amp;  ISBLANK(Used_By_Workflow_175_days__c) &amp;&amp;   ISPICKVAL(IPM_Bosscard_Status__c  , &apos;In Progress&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>IPM_Email_to_Notify_Auto_Deletion_of_Bosscard_after_6_months_of_inactivity</name>
+                <type>Alert</type>
+            </actions>
+            <actions>
+                <name>IPM_Bosscard_Post_Chatter_after_175days</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>IPM_Bosscard__c.LastModifiedDate</offsetFromField>
+            <timeLength>175</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>IPM Notify Auto-Deletion of Bosscard after 30 days of Inactivity</fullName>
+        <active>true</active>
+        <formula>ISPICKVAL(IPM_Bosscard_Status__c  , &apos;In Progress&apos;) &amp;&amp; ( Used_By_Workflow_30_days__c  = &apos;Date Changed&apos; ||  Used_By_Workflow_30_days__c = &apos;&apos;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>IPM_Bosscard_Post_Chatter_after_30_days</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <offsetFromField>IPM_Bosscard__c.LastModifiedDate</offsetFromField>
+            <timeLength>30</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
     </rules>
 </Workflow>

@@ -52,6 +52,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>false</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
@@ -249,6 +250,18 @@
         <unique>false</unique>
     </fields>
     <label>Application Log</label>
+    <listViews>
+        <fullName>All</fullName>
+        <columns>Running_User__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>CREATED_DATE</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>NAME</columns>
+        <columns>LogCode__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+        <language>en_US</language>
+    </listViews>
     <nameField>
         <displayFormat>EXL-{000000000}</displayFormat>
         <label>Exception Log Name</label>
@@ -258,4 +271,11 @@
     <pluralLabel>Application Logs</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>Debug_Level_Required</fullName>
+        <active>true</active>
+        <description>Debug level required while creating exception log.</description>
+        <errorConditionFormula>ISPICKVAL( DebugLevel__c , &quot;&quot;)</errorConditionFormula>
+        <errorMessage>Debug Level is required while creating exception log.</errorMessage>
+    </validationRules>
 </CustomObject>

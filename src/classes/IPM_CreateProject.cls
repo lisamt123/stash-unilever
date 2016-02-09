@@ -1,40 +1,74 @@
-public class IPM_CreateProject {
-public IPM_Project__c ipmProject{get;set;}
-public string projectid{get;set;}
-public list<IPM_User_Profile__c>CompanyCard=new list<IPM_User_Profile__c>();
-public list<IPM_User_Profile__c>lstGatekeeper=new list<IPM_User_Profile__c>();
-public string isBoosEdtable{get;set;}
-public string isProEditable{get;set;}
-public IPM_CreateProject(){
-string CCardid='';
-isBoosEdtable=apexpages.currentpage().getparameters().get('IsBossCardEditable');
-isProEditable=apexpages.currentpage().getparameters().get('IsProjectEditable');
-
-CompanyCard=[select IPM_Company_Card__c,IPM_Project_Leader__c from IPM_User_Profile__c where IPM_User__c=:userinfo.getuserid()];
-    if(CompanyCard.size()>0){
-        CCardid=CompanyCard[0].IPM_Company_Card__c;   
-     }
-  if(CCardid !=''){
-    lstGatekeeper=[select IPM_User__c from IPM_User_Profile__c where IPM_Company_Card__c=:CCardid];
+/************************************************* 
+*@Author:Cognizant
+*@Date:January 2015
+*@Description :  To create new project and bosscard
+*@Referring in createprojectsv page
+**************************************************/
+Global with sharing class IPM_CreateProject { //It is global class since we have used a remote action method in this class
+    //@Description :For inserting a project on click of My project will not have a BOSSCARD.  
+    //public IPM_Project__c ipmProject{get;set;}
+    
+    //@Description :To capture the project ID and pass it as a parameter.
+    //public string projectid{get;set;}
+    
+    //@Description : To understand whether the BOSSCARD is editable or not.
+    public string isBoosEdtable{get;set;}
+    
+    //@Description : To understand whether the Project is editable or not.
+    public string isProEditable{get;set;}
+    
+    private static final string CLASS_NAME = 'IPM_CreateProject';
+    
+    /**************************************************************************************
+    *@Description :Constructor to read the information from the page paramaters 
+    ***************************************************************************************/    
+    public IPM_CreateProject(){
+        isBoosEdtable=apexpages.currentpage().getparameters().get('IsBossCardEditable');
+        isProEditable=apexpages.currentpage().getparameters().get('IsProjectEditable');
     }
-}
-public void CreateProjectId(){
-list <IPM_Project__c > lstofemptyProjectname=new list<IPM_Project__c>();
-lstofemptyProjectname=[select name from IPM_Project__c where IPM_Project_Name__c=:'' and IPM_Bosscard__c='' and CreatedBy.ID=:UserInfo.getUserId()];
-               
-if(lstofemptyProjectname.size()>0){
-   delete lstofemptyProjectname;
-  }
- ipmProject=new IPM_Project__c();
- ipmProject.IPM_Project_Leader__c=userinfo.getuserid();
- if(lstGatekeeper.size()>0){
-  //ipmProject.IPM_Project_Gatekeeper__c=lstGatekeeper[0].IPM_User__c;
- }
- if(CompanyCard.size()>0){
-  //ipmProject.IPM_Company_Card__c=CompanyCard[0].IPM_Company_Card__c;
- }
- insert ipmProject;
- projectid=ipmProject.id;
-}
+    
+    /*************************************************************** 
+    *@Description :For creating the project.
+    *@return:project id
+    ****************************************************************/   
+    @Remoteaction
+    global static id CreateProjectId(){
+        
+        IPM_Project__c ipmProject=new IPM_Project__c();
+        try {
+            
+            // Insert the project.
+            ipmProject.IPM_Project_Leader__c=userinfo.getuserid();
+                insert ipmProject; //Need to insert only one project
+                return ipmProject.id;
+        }
+        catch(Exception ex){
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                'createBosscard',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);                            
+            return null;
+        }
+        
+    }
+    /*************************************************************** 
+    *@Description :For creating the bosscard.
+    *@return:bosscard id
+    ****************************************************************/   
+    @Remoteaction
+    global static id createBosscard(){
+        
+        IPM_Bosscard__c ipmBosscard=new IPM_Bosscard__c();
+        try {
+            
+            // Insert the bosscard.
+            insert ipmBosscard; //Need to insert only one bosscard
+            return ipmBosscard.id;
+        }
+        catch(Exception ex){
+                    ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
+                'createBosscard',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);                            
 
+            return null;                                      
+        }
+    
+    }
 }

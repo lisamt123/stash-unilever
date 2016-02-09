@@ -37,11 +37,14 @@ public  with sharing class AF_MatrixAgencySummary {
     Public Boolean IsReadyforPO{get;set;}
     public List<String> quarterOops;
     public Integer ytgValue{get;set;}
+    public String ytgColour{get;set;}
     public AF_MatrixAgencySummary(ApexPages.StandardController controller) {
       
       call_constructor();
       AF_ApproveActualsCtrl actConst = new AF_ApproveActualsCtrl();
       ytgValue = actConst.getTotalSum();
+        if(ytgValue > oopsActObj.AF_OOPS_Estimate__c)
+      {ytgColour='red';}else{ytgColour='black';}
        
     }
     public void call_constructor(){

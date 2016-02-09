@@ -9,6 +9,34 @@
         <value>IPM Project Rollout</value>
     </caseValues>
     <fields>
+        <label><!-- Added At Stage --></label>
+        <name>Added_At_Stage__c</name>
+        <picklistValues>
+            <masterLabel>Capability</masterLabel>
+            <translation><!-- Capability --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Feasibility</masterLabel>
+            <translation><!-- Feasibility --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Ideas</masterLabel>
+            <translation><!-- Ideas --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Deployment</masterLabel>
+            <translation><!-- Market Deployment --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Market Ready</masterLabel>
+            <translation><!-- Market Ready --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>PLE</masterLabel>
+            <translation><!-- PLE --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Calculated Sustainability Period --></label>
         <name>Calculated_Sustainability_Period__c</name>
     </fields>
@@ -20,6 +48,15 @@
         <label><!-- Finance Lead --></label>
         <name>Finance_Member__c</name>
         <relationshipLabel><!-- IPM Project Rollout (Finance Lead) --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- Global Project Phase --></label>
+        <name>Global_Project_Phase__c</name>
+    </fields>
+    <fields>
+        <label><!-- IPM Company Card --></label>
+        <name>IPM_Company_Card__c</name>
+        <relationshipLabel><!-- IPM Project Rollout --></relationshipLabel>
     </fields>
     <fields>
         <label><!-- Finance Lead Text --></label>
@@ -34,9 +71,45 @@
         </picklistValues>
     </fields>
     <fields>
+        <label><!-- Phase Change Queue Job Id --></label>
+        <name>IPM_PhaseChangeQueueJobId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Project Job Status --></label>
+        <name>IPM_Project_Job_Status__c</name>
+        <picklistValues>
+            <masterLabel>Completed</masterLabel>
+            <translation><!-- Completed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Eligible For Processing</masterLabel>
+            <translation><!-- Eligible For Processing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Failed</masterLabel>
+            <translation><!-- Failed --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Not Applicable</masterLabel>
+            <translation><!-- Not Applicable --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Picked For Processing</masterLabel>
+            <translation><!-- Picked For Processing --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Processing</masterLabel>
+            <translation><!-- Processing --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Global Project --></label>
         <name>IPM_Project__c</name>
         <relationshipLabel><!-- IPM Project Rollout --></relationshipLabel>
+    </fields>
+    <fields>
+        <label><!-- IPM Regional Original Project --></label>
+        <name>IPM_Regional_Original_Project__c</name>
     </fields>
     <fields>
         <label><!-- IPM Regional PL Text --></label>
@@ -48,8 +121,48 @@
         <relationshipLabel><!-- IPM Project Rollout (Rollout Project Leader) --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- Rollout Job Type --></label>
+        <name>IPM_RolloutJobType__c</name>
+        <picklistValues>
+            <masterLabel>Adhoc - Rollout Project Creation</masterLabel>
+            <translation><!-- Adhoc - Rollout Project Creation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Phase Change - Rollout Project Creation</masterLabel>
+            <translation><!-- Phase Change - Rollout Project Creation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Process Phase Change</masterLabel>
+            <translation><!-- Process Phase Change --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
         <label><!-- Rollout Project --></label>
         <name>IPM_Rollout_Project__c</name>
+    </fields>
+    <fields>
+        <label><!-- Rollout Span --></label>
+        <name>IPM_Rollout_Span__c</name>
+        <picklistValues>
+            <masterLabel>Local</masterLabel>
+            <translation><!-- Local --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Regional</masterLabel>
+            <translation><!-- Regional --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Rollout Type --></label>
+        <name>IPM_Rollout_Type__c</name>
+        <picklistValues>
+            <masterLabel>Rollout</masterLabel>
+            <translation><!-- Rollout --></translation>
+        </picklistValues>
+    </fields>
+    <fields>
+        <label><!-- Small C --></label>
+        <name>IPM_Small_C__c</name>
     </fields>
     <fields>
         <label><!-- Status --></label>
@@ -254,18 +367,6 @@
             <translation><!-- MCO --></translation>
         </picklistValues>
     </fields>
-    <fields>
-        <label><!-- Unilever Geography --></label>
-        <name>Unilever_Geography__c</name>
-        <relationshipLabel><!-- IPM Project Rollout --></relationshipLabel>
-    </fields>
-    <layouts>
-        <layout>IPM Project Rollout Layout</layout>
-        <sections>
-            <label><!-- Custom Links --></label>
-            <section>Custom Links</section>
-        </sections>
-    </layouts>
     <layouts>
         <layout>Local Rollout</layout>
         <sections>

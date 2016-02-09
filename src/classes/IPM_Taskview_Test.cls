@@ -1,224 +1,217 @@
+/******************************************** 
+   @Author:Cognizant
+   @name:IPM_Taskview_Test
+   @CreateDate:01/02/2015
+   @Description:Test class to test IPM_Taskview class functionalities which is the Controller used to display Count of Tasks and Milestones.
+   @Version:1.0
+*********************************************/
 @isTest
 public class IPM_Taskview_Test{
-    public static TestMethod void updTaskView(){
+    public static final String STR_TEST = 'test';
+    public static final String BLANK_STR='';
+    public static IPM_Project__c projects;
     
+    private static User platformUser;
     
-        PermissionSet Fps=new PermissionSet();
-        Fps=[SELECT Id FROM PermissionSet WHERE Name = 'IPMNG_Basic' limit 1]; 
-        PermissionSetAssignment psa = new PermissionSetAssignment();
-       
-        User u = new User();
-        Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
-        u = new User(Alias = 'raj22', Email='raj22@testorg4.com', 
-        EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
-        LocaleSidKey='en_US', ProfileId = p.Id, 
-        TimeZoneSidKey='America/Los_Angeles', UserName='raj22@testorg4.com', 
-        IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-        IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-        insert u;
-          System.runAs(u) {
-                psa.AssigneeId = u.Id;
-                psa.PermissionSetId = Fps.Id;
-                insert psa;
-           }
-         
-        PermissionSetAssignment psa1 = new PermissionSetAssignment();
-       
-        User u1 = new User();
-        u1 = new User(Alias = 'raj20', Email='raj20@testorg4.com', 
-        EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
-        LocaleSidKey='en_US', ProfileId = p.Id, 
-        TimeZoneSidKey='America/Los_Angeles', UserName='raj20@testorg4.com', 
-        IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-        IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-        insert u1;
-          System.runAs(u1) {
-                psa1.AssigneeId = u1.Id;
-                psa1.PermissionSetId = Fps.Id;
-                insert psa1;
-           }
-        //Insert Company Card
-        /*IPM_Company_Card__c compCard=new IPM_Company_Card__c();
-        compCard.Name='Test Company Cardm';
-        insert compCard;*/
+    private static ApexPages.StandardController sc;
+    private static IPM_Taskview taskview;
+    private static List<IPM_Project_Resource__c> ipmProjRescourceTestList;
+    private static PermissionSetAssignment permissionAssignment;
+    public static void initialisedData(){
         
-        //Insert User Profile
-       /* IPM_User_Profile__c up=new IPM_User_Profile__c();
-        up.IPM_User__c=u.Id;
-        insert up;*/
+        System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
+            platformUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.BLANK);
+            
+        }
         
-        //Insert User Profile
-       /* IPM_User_Profile__c up1=new IPM_User_Profile__c();
-        up1.IPM_User__c=u1.Id;
-        //up1.IPM_Company_Card__c=compCard.Id;
-        insert up1;*/
+        permissionAssignment = new PermissionSetAssignment();
+        permissionAssignment.AssigneeId = platformUser.Id;
+        permissionAssignment.PermissionSetId = [SELECT Id FROM PermissionSet WHERE Name =:IPM_Utils.IPM_Central_Team limit 1].Id;
+        insert permissionAssignment;
         
-        //User u = testRunAs();
+        system.assertEquals(permissionAssignment.AssigneeId,platformUser.Id);
         
-                
-        //System.debug('*******Printing user---'+ u1.Id);
-        
-        IPM_Project__c projects=new IPM_Project__c();
-        projects.Name='teest';
-        projects.IPM_Project_Name__c='test';
-        projects.IPM_PM_Approach__c='External';
-        projects.IPM_IsCompleted__c=true;
-        projects.IPM_Fast_Track_Project__c=false;
-        projects.IPM_Phase__c='Ideas';
-        projects.IPM_Market_Type__c='Developing';
-        projects.IPM_Complexity__c='Lite';
-        projects.IPM_Target_Launch_Dates__c=System.today()+10;
-        projects.IPM_Project_Leader__c=u.Id;
-        //projects.IPM_Project_Gatekeeper__c=UserInfo.getUserId();
-        //projects.Deputy_Project_Leader__c=UserInfo.getUserId();
-        //projects.IPM_Technical_Project_Leader__c=UserInfo.getUserId();
-        // System.Assert(projects.Id != null, 'The project record not inserted');
-        insert projects;  
-        
-        
-                
-        IPM_Project__share  proshare = new IPM_Project__share  ();
-        List<IPM_Project__share  > listproshare  = new List<IPM_Project__share>();
-        proshare.ParentId= projects.Id;
-        proshare.userOrGroupId =  psa1.AssigneeId;
-        proshare.accesslevel = 'Edit';
-        listproshare.add(proshare);
-        insert listproshare;
-        
-        
-        IPM_Project_Resource__c pResource=new IPM_Project_Resource__c();
-        pResource.IPM_User__c=u1.Id;
-        pResource.IPM_Project__c=projects.Id;
-        pResource.IPM_Role_Type__c='Supply Chain';
-        insert pResource;
-        
-                
-        
-        IPM_Project_Resource__Share projectResourceShr=new IPM_Project_Resource__Share ();
-        List<IPM_Project_Resource__Share> projectResourceShrList=new list<IPM_Project_Resource__Share>();
-        projectResourceShr.ParentId= pResource.Id;
-        projectResourceShr.userOrGroupId =  psa1.AssigneeId;
-        projectResourceShr.accesslevel = 'Edit';
-        projectResourceShrList.add(projectResourceShr);
-        insert projectResourceShrList;
-        
-        IPM_Milestone__c milestone=new IPM_Milestone__c();
-        milestone.IPM_Due_Date__c =System.today()+30;
-        milestone.IPM_Name__c ='test';
-        milestone.IPM_Phase__c = 'Phase';
-        milestone.IPM_Project__c =projects.Id;
-        insert milestone;
-        
-        apexpages.currentpage().getparameters().put('Id',projects.Id);
-         ApexPages.StandardController sc = new ApexPages.StandardController(projects);
-        IPM_Taskview taskview =new IPM_Taskview(sc);
-        taskview.isupdateDates=true;
-        taskview.isvisible=true;
-        taskview.FunctionRole='';
-        taskview.getMileStoneAlerts();
-        
-        /*        
-        IPM_Taskview__Share taskViewShr=new IPM_Taskview__Share ();
-        List<IPM_Taskview__Share>protaskViewShr=new list<IPM_Taskview__Share>();        
-        taskViewShr.ParentId= taskview.Id;
-        taskViewShr.userOrGroupId = permissionSetAssignment.AssigneeId;
-        taskViewShr.accesslevel = 'Edit';
-        protaskViewShr.add(taskViewShr);
-        insert protaskViewShr;
-        */
-        
-        IPM_Milestone__c milestone1=new IPM_Milestone__c();
-        milestone1.IPM_Due_Date__c =System.today()+30;
-        milestone1.IPM_Name__c ='test';
-        milestone1.IPM_Phase__c = 'Capability';
-        milestone1.IPM_Project__c =projects.Id;
-        insert milestone1;
-        
-        IPM_Milestone__Share PLIpmMilesShr=new IPM_Milestone__Share ();
-        List<IPM_Milestone__Share>ProMiles=new list<IPM_Milestone__Share>();        
-        PLIpmMilesShr.ParentId= milestone1.Id;
-        PLIpmMilesShr.userOrGroupId =  psa1.AssigneeId;
-        PLIpmMilesShr.accesslevel = 'Edit';
-        ProMiles.add(PLIpmMilesShr);
-        insert ProMiles;
-
-               
+        //Creating project and assigning project resource as IPM Platform user's context
+        System.runAs(platformUser){
+            //Creation of IPM Project
+            projects = IPM_TestFactory_Helper.createOriginalProjectList(false, 1)[0];
+            
+            projects.IPM_PM_Approach__c = IPM_ConstantUtils.IPM_APPROACH_EXTERNAL;
+            projects.IPM_Market_Type__c='Developing';
+            projects.IPM_Complexity__c= IPM_ConstantUtils.COMPLEXITY_LITE;
+            projects.Deputy_Project_Leader__c= UserInfo.getUserId();
+            projects.IPM_Technical_Project_Leader__c= UserInfo.getUserId();
+            projects.IPM_Project_Gatekeeper__c=UserInfo.getUserId();
+            insert projects;  
+            system.assertEquals(projects.IPM_Complexity__c,IPM_ConstantUtils.COMPLEXITY_LITE);
+            
+            putCurrentPageParameter('Id',projects.Id);
+           
+            ipmProjRescourceTestList = IPM_TestFactory_Helper.createIPMProjectResourceList(false, 1); 
+            
+            ipmProjRescourceTestList[0].IPM_Role_Type__c = IPM_ConstantUtils.IPM_ROLE_BD_MARKETING;
+            ipmProjRescourceTestList[0].IPM_Project__c = projects.Id;
+            insert ipmProjRescourceTestList;
+            system.assertEquals(ipmProjRescourceTestList[0].IPM_Role_Type__c,IPM_ConstantUtils.IPM_ROLE_BD_MARKETING);
+        }
+        System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
+            ipmProjRescourceTestList[0].IPM_User__c =platformUser.Id;
+            ipmProjRescourceTestList[0].IPM_Project_Role_Owner__c = true;
+            update ipmProjRescourceTestList;
+        }
 
         
-        try{
-        taskview.getMileStoneAlerts();
-        }catch(Exception e){}
-        taskview.getIpmuserType();
         
-      //  test.StartTest();
-     /*  IPM_Project__c pr=new IPM_Project__c(Id=projects.Id,IPM_Project_Leader__c='',IPM_Project_Gatekeeper__c=UserInfo.getUserId());
-        update pr;  
-        taskview.getIpmuserType();
-        
-        IPM_Project__c pr1=new IPM_Project__c(Id=projects.Id,IPM_Project_Leader__c='',IPM_Project_Gatekeeper__c='',Deputy_Project_Leader__c=UserInfo.getUserId());
-        update pr1;  
-        taskview.getIpmuserType();
-        
-        IPM_Project__c pr2=new IPM_Project__c(Id=projects.Id,IPM_Project_Leader__c='',IPM_Project_Gatekeeper__c='',Deputy_Project_Leader__c='',IPM_Technical_Project_Leader__c=UserInfo.getUserId());
-        update pr2; 
-        taskview.getIpmuserType();*/
-       // test.stopTest();
-   
+    }
     
+    /**
+    *  Description: Method to put the current page parameters
+    *  @name: putCurrentPageParameter
+    **/
+    public static void putCurrentPageParameter(String idStr,Id id){
+        ApexPages.currentPage().getParameters().put(idStr,id);
+    }
+    
+    /**
+    *  Test method to test GetIpmuserType as BD user
+    *  @name:testGetIpmuserTypeAsBDUser
+    */
+    public static TestMethod void testGetIpmuserTypeAsBDUser(){
+        
+       initialisedData(); 
+       
+       Test.startTest(); 
+       
+        System.runAs(platformUser){
+            sc = new ApexPages.StandardController(projects);
+            taskview =new IPM_Taskview(sc);
+            
+            System.assertEquals(true,taskview.isTaskeditable);
+            System.assertEquals(true,taskview.isCreateTask);
+            System.assertEquals(true,taskview.isupdateDates);
+            System.assertEquals(true,taskview.updateApproach);
+            System.assertEquals(true,taskview.updateComplexity);
+       }
+        Test.stopTest();
+    }
+    
+    /**
+    *  Test method to test GetIpmuserType as CD user
+    *  @name:testGetIpmuserTypeAsCDUser
+    */
+    public static TestMethod void testGetIpmuserTypeAsCDUser(){
+        
+       initialisedData(); 
+       
+       Test.startTest(); 
+       
+       System.runAs(platformUser){
+            ipmProjRescourceTestList[0].IPM_Role_Type__c = IPM_Utils.CD;
+            update ipmProjRescourceTestList[0];
+                      
+            sc = new ApexPages.StandardController(projects);
+            taskview =new IPM_Taskview(sc);
+            System.assertEquals(false,taskview.isupdateDates, 'updateDates Failed');
+            
+        }
+        Test.stopTest();
+    }
+    
+    /**
+    *  Test method to test GetIpmuserType as Guest User
+    *  @name:testGetIpmuserTypeAsGuestUser
+    */
+    public static TestMethod void testGetIpmuserTypeAsGuestUser(){
+        
+       initialisedData(); 
+       
+       Test.startTest(); 
+       
+       System.runAs(platformUser){
+            ipmProjRescourceTestList[0].IPM_Role_Type__c = IPM_Utils.Guest;
+            update ipmProjRescourceTestList[0];
+                      
+            sc = new ApexPages.StandardController(projects);
+            taskview =new IPM_Taskview(sc);
+            System.assertEquals(true,taskview.isMilestoneEditable, 'MilestoneEditable is Unchecked');
+            
+        }
+        Test.stopTest();
+    }
+    
+    /**
+    *  Test method to test when project is moved to PLE
+    *  @name:testProjectMovedtoPLE
+    */
+    public static TestMethod void testProjectMovedtoPLE(){
+        
+       initialisedData(); 
+       
+       Test.startTest(); 
+       
+       System.runAs(platformUser){
+            projects.IPM_Phase__c = IPM_ConstantUtils.PHASE_PLE;
+            update projects;
+                      
+            sc = new ApexPages.StandardController(projects);
+            taskview =new IPM_Taskview(sc);
+            System.assertEquals(true,taskview.isMilestoneEditable, 'MilestoneEditable is Unchecked');
+            System.assertEquals(true,taskview.isTaskeditable, 'Taskeditable is Unchecked' );
+            System.assertEquals(true,taskview.isupdateDates, 'updateDates is Unchecked');    
+            
+        }
+        Test.stopTest();
+    }
+    
+    /**
+    *  Test method to test GetIpmuserType as PL
+    *  @name:testGetIpmuserTypeAsPLUser
+    */
+    
+    
+    /**
+    *  Test method to test the save task complexity functionality
+    *  @name:testSaveTaskComplexity
+    */
+    public static TestMethod void testSaveTaskComplexity(){
+        
+        initialisedData();
+        Test.startTest();
+        System.runAs(platformUser){
+            sc = new ApexPages.StandardController(projects);
+            taskview =new IPM_Taskview(sc);
+            taskview.isupdateDates=true;
+            taskview.isvisible=true;
+            taskview.FunctionRole=BLANK_STR;
+            taskView.ComplexityType= IPM_ConstantUtils.COMPLEXITY_FULL;
+            taskView.saveComplexityType();
+            system.assertEquals(taskView.project.IPM_Child_Complexity__c,IPM_ConstantUtils.COMPLEXITY_FULL, 'IPM_Child_Complexity__c Not Matched');
+        }
+        Test.stopTest();   
+        
     }
     
     
-    
-   public static User  testRunAs() {
-   
-      List<User> usrname = [SELECT UserName from User where UserName='standarduser@testorg4.com' ];
-      User u = new User();
+    /**
+    *  Negative test data method,to cover the catch blocks
+    *  @name:incorrectDataNegativeTest
+    */
+    public static TestMethod void incorrectDataNegativeTest(){
+        initialisedData();
+        Test.startTest();
+        System.runAs(platformUser){
+                projects.IPM_Phase__c= IPM_ConstantUtils.PHASE_PLE;
+                projects.IPM_Market_Type__c='Developing';
+                update projects; 
         
-        if(usrname== null){
-              // Setup test data
-              // This code runs as the system user
-              Profile p = [SELECT Id FROM Profile WHERE Name='Standard User']; 
-
-
-              
-              u = new User(Alias = 'standt4', Email='standarduser@testorg4.com', 
-              EmailEncodingKey='UTF-8', LastName='Testing4', LanguageLocaleKey='en_US', 
-              LocaleSidKey='en_US', ProfileId = p.Id, 
-              TimeZoneSidKey='America/Los_Angeles', UserName='standarduser@testorg4.com', 
-              IPM_Category__c = 'test4'  , IPM_Brand_Positioning__c= 'test4',IPM_Brand_Name__c ='test1',
-              IPM_Role__c='Gate Keeper' ,IPM_Sub_Category__c='test', isActive =true);
-              insert u;
-              
-              
-              
-              System.runAs(u) {
-              
-                  
-                  PermissionSet ps = [SELECT Id FROM PermissionSet WHERE Name = 'IPMNG_Basic'];
-                    PermissionSetAssignment psa = new PermissionSetAssignment();
-                    psa.AssigneeId = u.Id;
-                    
-                    
-                    psa.PermissionSetId = ps.Id;
-                    insert psa;
-                    
-                    System.debug('****** psa.AssigneeId '+ psa.AssigneeId );
-                  
-                  
-                 // The following code runs as user 'u' 
-                 System.debug('Current User: ' + UserInfo.getUserName());
-                 System.debug('Current Profile: ' + UserInfo.getProfileId()); 
-              }
-      }
-      else {
-             if(usrname.size()>0){
-                 u = [SELECT Alias,Email,EmailEncodingKey,LastName,LanguageLocaleKey,LocaleSidKey,ProfileId ,TimeZoneSidKey,UserName, IPM_Category__c ,IPM_Brand_Positioning__c, IPM_Brand_Name__c ,IPM_Role__c , IPM_Sub_Category__c    from User where UserName='standarduser@testorg4.com' ];
-                 
-             }     
-         }   
-      return u ;
-   }
-    
-    
-    
+                sc = new ApexPages.StandardController(projects);
+                taskview =new IPM_Taskview(sc);
+                taskview.getIpmuserType();
+                List<Apexpages.Message> pageMessages = ApexPages.getMessages();
+                for(ApexPages.Message message : pageMessages) {
+                   system.assertEquals(message.getDetail(),Label.IPM_Generic_ErrorMessage, 'Message Changed');
+                }
+        }  
+        Test.stopTest(); 
+     }
 }

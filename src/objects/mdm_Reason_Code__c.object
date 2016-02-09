@@ -54,6 +54,7 @@
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
@@ -256,6 +257,18 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Retention_Days__c</fullName>
+        <description>CEC-Retention Days it have number of days for Reason Code</description>
+        <externalId>false</externalId>
+        <label>Retention Days</label>
+        <precision>5</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Unique_Key__c</fullName>
         <caseSensitive>false</caseSensitive>
         <externalId>true</externalId>
@@ -267,20 +280,6 @@
         <unique>true</unique>
     </fields>
     <label>Reason Code</label>
-    <listViews>
-        <fullName>All_Reason_Codes</fullName>
-        <columns>NAME</columns>
-        <columns>ISO_Country__c</columns>
-        <columns>Active__c</columns>
-        <columns>L5_Code__c</columns>
-        <columns>L5_Desc__c</columns>
-        <columns>L5_Global_Code__c</columns>
-        <columns>L5_Short_Desc__c</columns>
-        <columns>Unique_Key__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>All Reason Codes</label>
-        <language>en_US</language>
-    </listViews>
     <nameField>
         <label>Reason Code Name</label>
         <type>Text</type>

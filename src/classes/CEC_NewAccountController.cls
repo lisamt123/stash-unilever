@@ -29,7 +29,8 @@ global with sharing class CEC_NewAccountController{
     
     public Account newConsumer {get; set;}  // Reference to Account object     
     public String selectedAccountId {get; set;}  
-    public String resultsOutputLabel {get;set;}  
+    public String resultsOutputLabel {get;set;} 
+    public String resultsOutputTitle {get;set;} 
     public List<ConsumerWrapper> duplicateConsumerList {get; set;}    
     public Boolean searchPerformed {get;set;}
     public Boolean showDuplicates {get;set;}
@@ -46,6 +47,8 @@ global with sharing class CEC_NewAccountController{
         public ConsumerWrapper(Account con) {
              consumer = con;  
         }
+        // Boolean flag to check whether the consumer record is sorted/filtered to display in the results page.
+        public Boolean resultOrderFlag = false;
     }
        
     public CEC_NewAccountController() {
@@ -65,6 +68,7 @@ global with sharing class CEC_NewAccountController{
         searchPerformed = false;
         showDuplicates = false;
         isTransactionSuccess = true;
+        resultsOutputTitle = Label.CEC_ConsumerResultsTitleDisplay;
         
         RecordType recType = [select id from recordType where Name = 'Person Account' and sobjectType='account' limit 1];
         
@@ -93,14 +97,21 @@ global with sharing class CEC_NewAccountController{
     
         try{                
             duplicateConsumers = new Map<Id, ConsumerWrapper>();  
-            duplicateConsumerList = new List<ConsumerWrapper>();          
-            if(newConsumer.LastName != null && newConsumer.LastName != '' ) {     
+            duplicateConsumerList = new List<ConsumerWrapper>();
+            Boolean  hasResultToDisplayFlag = false; 
+            if(String.isNotBlank(newConsumer.LastName) || String.isNotBlank(newConsumer.PersonMailingPostalCode) || String.isNotBlank(newConsumer.PersonMailingStreet) || String.isNotBlank(newConsumer.PersonEmail) || String.isNotBlank(newConsumer.Phone)) {  
                 newConsumer.RecordTypeId = [Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
+
+                // If there is a phone value then remove all the special characters and set the value to the custom field. This will be used in the DupeBlocker search for the phone which has special characters.
+                if (String.isNotBlank(newConsumer.Phone)) {
+                    newConsumer.Phone_No_Special_Char__c = CEC_Util.removeSpecialChar(newConsumer.Phone);
+                }
                 String accountString = JSON.serialize(newConsumer);                
-                accountString = accountString.subString( 0, accountString.length() - 1 ) + ',"IsPersonAccount":true}';
+                accountString = accountString.subString(0, accountString.length() - 1 ) + ',"IsPersonAccount":true}';
                 newConsumer = (Account)JSON.deserialize( accountString, Account.class );
                 List<CRMfusionDBR101.DB_Api.Matches> matchSets = CRMfusionDBR101.DB_Api.findMatches(newConsumer);
                 if(!matchSets.isEmpty()){
+                    System.debug('The Matchset from DupeBlocker :: ' + matchSets);
                     showDuplicates = true;
                     Set<Id> accountIds = new Set<Id>();
                     for (CRMfusionDBR101.DB_Api.Matches matchSet : matchSets ) {
@@ -108,14 +119,32 @@ global with sharing class CEC_NewAccountController{
                             accountIds.add(accId);
                         }
                     }        
-                    for (Account consumer : [Select Salutation, Name, Phone, FirstName, LastName, IsPersonAccount,PersonEmail, PersonMailingStreet, PersonMailingCity, PersonMailingPostalCode, PersonMailingState, PersonMailingCountry,Latest_Case_Reason_Code__c,Latest_Case_Product_Code__c From Account Where Id In : accountIds]) {
+                    for (Account consumer : [Select Salutation, Name, Phone, FirstName, LastName, IsPersonAccount,PersonEmail, PersonMailingStreet, PersonMailingCity, PersonMailingPostalCode, PersonMailingState, PersonMailingCountry, Latest_Case_Number__c, Latest_Case_Reason_Code__c,Latest_Case_Product_Code__c,Phone_No_Special_Char__c,Consumer_Note__c,VIP__c  From Account Where Id In : accountIds]) {
                         duplicateConsumers.put(consumer.Id, new ConsumerWrapper(consumer)); 
                     }
-                    duplicateConsumerList = duplicateConsumers.values(); 
-                }
+                    List<ConsumerWrapper> unOrderedConsumerList = duplicateConsumers.values(); 
+                    // Set the Search results page title
+                    
+                    duplicateConsumerList = filterAndReorderSearchResults(unOrderedConsumerList);
+
+                    if (duplicateConsumerList.size() > 0) {
+                        hasResultToDisplayFlag = true;
+                    }                      
+                } 
                 searchPerformed = true;    
                 isTransactionSuccess = true;
-            }         
+            } else {
+                isTransactionSuccess = false;
+                ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.Error, Label.CEC_SearchValidationError));    
+            }
+            // Display the title if based on the consumer search results
+            if (hasResultToDisplayFlag) {
+                resultsOutputTitle = Label.CEC_ConsumerResultsTitleDisplay;
+            } else {
+                // Set the Search results page title as no results
+                resultsOutputTitle = Label.CEC_ConsumerResultsNoMatchTitle;
+            } 
+     
         }catch(Exception e){
             isTransactionSuccess = false;
             System.debug('Exception in SearchConsumer method ' + e.getMessage());
@@ -171,7 +200,7 @@ global with sharing class CEC_NewAccountController{
                 isTransactionSuccess = false;
                 ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.Error, Label.CEC_Consumer_Record_Update));
             
-            } else if(newConsumer.LastName != null && newConsumer.LastName != '') {
+            } else {
                                
                 newConsumer.RecordTypeId = [Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
                       
@@ -181,9 +210,9 @@ global with sharing class CEC_NewAccountController{
                 
                 Database.SaveResult res = Database.insert(newConsumer, false);
                 if (!res.isSuccess()) {
-                    System.debug(res.getErrors()[0].getMessage());
-                    // Commenting the custom error message because the dupeblocker already added the error message in case of insert failure
-                    //ApexPages.addMessage(new ApexPages.Message( ApexPages.severity.Error, Label.CEC_Consumer_Duplicate_Error));
+                    isTransactionSuccess = false;
+                    System.debug('EXCEPTION IN THE DUPEBLOCKER :: ' + res.getErrors()[0].getMessage());
+                    ApexPages.addMessage(new ApexPages.Message( ApexPages.severity.Error, res.getErrors()[0].getMessage()));
                 } else if(caseId != null) {
                     currentCase = [SELECT Id from Case WHERE Id = :caseId];
                     currentCase.AccountId = newConsumer.Id;
@@ -195,6 +224,7 @@ global with sharing class CEC_NewAccountController{
             }            
         }catch(Exception e) {
             isTransactionSuccess = false;
+            System.debug('Exception in saveAccount method ' + e.getMessage());
             ApexPages.addMessage(new ApexPages.Message(ApexPages.severity.Error, Label.CEC_Consumer_Duplicate_Error) );
         }        
         return null;      
@@ -219,6 +249,69 @@ global with sharing class CEC_NewAccountController{
             return false;
         }
         return false;
+    }
+
+    /*
+        The Consumer search results returned by DupeBlocker should be Ordered based on the following criterias
+        1. Email Match
+        2. Phone Match
+        3. PostCode Match
+        4. Street + LastName Match
+        The rest of the Consumer records are ignored.
+    */
+    public List<ConsumerWrapper> filterAndReorderSearchResults(List<ConsumerWrapper> duplicateConsumerList) { 
+
+        List<ConsumerWrapper> finalOrderedConsumerList = new List<ConsumerWrapper>();
+
+        System.debug('The Consumer List to be filtered/Ordered :: ' + duplicateConsumerList);
+
+        // Order 1 : Check the email match
+        if(String.isNotBlank(newConsumer.PersonEmail)) {
+            String searchEmailStr = newConsumer.PersonEmail;
+            for(ConsumerWrapper account : duplicateConsumerList) {
+                if (account.resultOrderFlag != true && String.isNotBlank(account.consumer.PersonEmail) && account.consumer.PersonEmail == searchEmailStr) {
+                    account.resultOrderFlag = true;
+                    finalOrderedConsumerList.add(account);
+                }
+            }
+        }
+        // Order 2 : Check the phone match
+        if(String.isNotBlank(newConsumer.Phone_No_Special_Char__c) && newConsumer.Phone_No_Special_Char__c.length() >= 6) {
+            // Get last 6 characters of the phone.
+            String searchPhoneStr = newConsumer.Phone_No_Special_Char__c.subString(newConsumer.Phone_No_Special_Char__c.length()-6);
+            for(ConsumerWrapper account : duplicateConsumerList) {
+                if (account.resultOrderFlag != true && String.isNotBlank(account.consumer.Phone_No_Special_Char__c) && account.consumer.Phone_No_Special_Char__c.contains(searchPhoneStr)) {
+                    account.resultOrderFlag = true;
+                    finalOrderedConsumerList.add(account);
+                }
+            }
+        }
+
+        // Order 3 : Check the PostalCode match
+
+        if(String.isNotBlank(newConsumer.PersonMailingPostalCode)) {
+            String searchPostalCodeStr = newConsumer.PersonMailingPostalCode;
+            for(ConsumerWrapper account : duplicateConsumerList) {
+                if (account.resultOrderFlag != true && String.isNotBlank(account.consumer.PersonMailingPostalCode) && account.consumer.PersonMailingPostalCode == searchPostalCodeStr) {
+                    account.resultOrderFlag = true;
+                    finalOrderedConsumerList.add(account);
+                }
+            }
+        }
+
+        // Order 4 : Check the Street & LastName match
+
+        if(String.isNotBlank(newConsumer.PersonMailingStreet) && String.isNotBlank(newConsumer.LastName)) {
+            String searchStreetStr = newConsumer.PersonMailingStreet;
+            String searchLastNameStr = newConsumer.LastName;
+            for(ConsumerWrapper account : duplicateConsumerList) {
+                if (account.resultOrderFlag != true && String.isNotBlank(account.consumer.PersonMailingStreet) && String.isNotBlank(account.consumer.LastName) && account.consumer.PersonMailingStreet == searchStreetStr && account.consumer.LastName == searchLastNameStr) {
+                    account.resultOrderFlag = true;
+                    finalOrderedConsumerList.add(account);
+                }
+            }
+        }
+        return finalOrderedConsumerList;
     }
     
  }

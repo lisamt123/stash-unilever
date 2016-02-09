@@ -71,12 +71,29 @@
         <name>Market_Cluster_for_KeyWord_Search__c</name>
     </fields>
     <fields>
-        <help><!-- Asset Groups can be created for Innovation (Guidelines) and Repeatable Models. --></help>
+        <help><!-- Identifies whether the Asset Group display (made up of the asset thumbnails) should have a New indicator or not --></help>
+        <label><!-- New Indicator? --></label>
+        <name>New_Indicator__c</name>
+    </fields>
+    <fields>
+        <help><!-- Asset Groups can be created for Innovation (Guidelines) and Repeatable Models. In Addition can be created for In-Store Execution and Masterbrand . --></help>
         <label><!-- Asset Type --></label>
         <name>Type__c</name>
         <picklistValues>
+            <masterLabel>Best Practices</masterLabel>
+            <translation><!-- Best Practices --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Call To Action</masterLabel>
+            <translation><!-- Call To Action --></translation>
+        </picklistValues>
+        <picklistValues>
             <masterLabel>Innovation</masterLabel>
             <translation><!-- Innovation --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>Masterbrand</masterLabel>
+            <translation><!-- Masterbrand --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>Repeatable Model</masterLabel>

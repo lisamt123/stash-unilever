@@ -60,9 +60,10 @@
     <enableFeeds>true</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>false</enableReports>
+    <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>Brand_Name_For_KeyWord_Search__c</fullName>
         <externalId>false</externalId>
@@ -189,18 +190,41 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Type__c</fullName>
-        <description>Asset Groups can be created for Innovation (Guidelines) and Repeatable Models.</description>
+        <fullName>New_Indicator__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Identifies whether the Asset Group display (made up of the asset thumbnails) should have a New indicator or not</description>
         <externalId>false</externalId>
-        <inlineHelpText>Asset Groups can be created for Innovation (Guidelines) and Repeatable Models.</inlineHelpText>
+        <inlineHelpText>Identifies whether the Asset Group display (made up of the asset thumbnails) should have a New indicator or not</inlineHelpText>
+        <label>New Indicator?</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Type__c</fullName>
+        <description>Asset Groups can be created for Innovation (Guidelines) and Repeatable Models. In Addition can be created for In-Store Execution and Masterbrand .</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Asset Groups can be created for Innovation (Guidelines) and Repeatable Models. In Addition can be created for In-Store Execution and Masterbrand .</inlineHelpText>
         <label>Asset Type</label>
         <picklist>
+            <picklistValues>
+                <fullName>Masterbrand</fullName>
+                <default>false</default>
+            </picklistValues>
             <picklistValues>
                 <fullName>Innovation</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Repeatable Model</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Call To Action</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Best Practices</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>
@@ -229,6 +253,7 @@
         <columns>Type__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <label>Asset Group Name</label>

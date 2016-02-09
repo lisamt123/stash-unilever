@@ -4,6 +4,17 @@
     <description>Contains KPI&apos;s and Corresponding Inputs</description>
     <enableFeeds>false</enableFeeds>
     <fields>
+        <fullName>IPM_Input_Size__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Input Size</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Inputs__c</fullName>
         <externalId>false</externalId>
         <label>IPM Inputs</label>
@@ -24,6 +35,26 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>IPM_Overall_Colour_Score_Method__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Overall Colour Score Method</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>IPM_Overall_Score_Label__c</fullName>
+        <externalId>false</externalId>
+        <label>IPM Overall Score Label</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>IPM_Test__c</fullName>
         <externalId>false</externalId>
         <label>IPM Test</label>
@@ -34,5 +65,4 @@
         <unique>false</unique>
     </fields>
     <label>IPM Gate CMI KPI Inputs</label>
-    <visibility>Public</visibility>
 </CustomObject>

@@ -46,6 +46,7 @@ global class BET_DataFixReleaseDate_Batch implements Database.Batchable<sObject>
                     'File id not set : ' + assets.get(0), new BET_CustomBETException('File id not set : ' + assets.get(0)),'ERROR',null,null,(Integer)DateTime.now().getTime(),'BET');
                 }
             }catch(ConnectApi.ConnectApiException e){
+
                 logException('Resource not found : execute ' + assets.get(0) + ' ' + e.getStackTraceString(),e);
             }catch(Exception e){
                 logException('execute ' + assets.get(0) + ' ' + e.getStackTraceString(),e);
@@ -57,6 +58,7 @@ global class BET_DataFixReleaseDate_Batch implements Database.Batchable<sObject>
                     bets.add(updateDates(bet));
                 }
             }
+
             update bets;
         }
         System.debug('Exit execute : ' + bets);

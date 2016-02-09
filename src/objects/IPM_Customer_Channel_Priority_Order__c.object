@@ -14,5 +14,4 @@
         <unique>false</unique>
     </fields>
     <label>IPM Customer Channel Priority Order</label>
-    <visibility>Public</visibility>
 </CustomObject>

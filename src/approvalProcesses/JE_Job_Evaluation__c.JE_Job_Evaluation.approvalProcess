@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>true</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+        <field>UL_Grade__c</field>
+        <field>Final_Recommendation__c</field>
+        <field>Revised_Grade__c</field>
+        <field>Revised_Grade_Justification__c</field>
+        <field>Reward_Manager__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>adhoc</type>
+            </approver>
+        </assignedApprover>
+        <entryCriteria>
+            <criteriaItems>
+                <field>JE_Job_Evaluation__c.Final_Recommendation__c</field>
+                <operation>contains</operation>
+                <value>4,5</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
+        <label>Initial Submission</label>
+        <name>Initial_Submission</name>
+    </approvalStep>
+    <description>Used to submit Job Evaluation records for Level 4 &amp; above for VP Approval</description>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <finalApprovalRecordLock>true</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>JE Job Evaluation</label>
+    <nextAutomatedApprover>
+        <useApproverFieldOfRecordOwner>true</useApproverFieldOfRecordOwner>
+        <userHierarchyField>Manager</userHierarchyField>
+    </nextAutomatedApprover>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

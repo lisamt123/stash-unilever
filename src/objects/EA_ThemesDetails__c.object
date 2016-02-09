@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Everyday Action - Theme related cache.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>ThemeColorCode__c</fullName>
+        <description>Color codes for theme related activity cards.</description>
+        <externalId>false</externalId>
+        <label>ThemeColorCode</label>
+        <length>10</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ThemeDescription__c</fullName>
+        <description>Everyday Activity record types description.</description>
+        <externalId>false</externalId>
+        <label>ThemeDescription</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <label>EA_ThemesDetails</label>
+    <visibility>Public</visibility>
+</CustomObject>
