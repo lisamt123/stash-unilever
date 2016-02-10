@@ -1118,6 +1118,16 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>isApprovalProcessStarted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>isApprovalProcessStarted</label>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>isCancelled__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -3919,7 +3929,7 @@ if(isValidateFlag == &apos;true&apos;){
 	if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
 		p.pkl_Status__c = &quot;Resubmitted&quot;; 
 		result = sforce.connection.update([p]); 
-//alert(result);
+alert(result);
 		location.reload(true); 
 
 	} 
@@ -3938,7 +3948,7 @@ if(isValidateFlag == &apos;true&apos;){
 	else{ 
 	p.pkl_Status__c = &quot;Submitted&quot;; 
 	result = sforce.connection.update([p]); 
-	
+	alert(result);
 	location.reload(true); 
 	} 
 

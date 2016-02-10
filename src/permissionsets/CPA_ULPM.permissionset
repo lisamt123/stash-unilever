@@ -705,9 +705,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_HLE_Request__c.dat_Cancelled_date__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1722,6 +1722,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_PWORF__c.ftxt_Unilever_Project_Manager_Name__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_PWORF__c.isApprovalProcessStarted__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

@@ -223,7 +223,7 @@ public with sharing class CPA_LOI_TriggerUtil{
     * Description : This method creates Internal LOI ID for LOI, Internal PWO ID for LOI & PWORF used for search purpose
     */
     public static void internalLIOID(List<CPA_LOI__c> newLOI){
-        String newInternalPWOID='';
+        /*String newInternalPWOID='';
         List<AggregateResult> lstPWO = [SELECT count(ID) newCount FROM CPA_project_work_order__c];
         if(lstPWO[0].get('newCount') != null){
             Integer maxNo = Integer.valueOf(lstPWO[0].get('newCount') + '');
@@ -258,7 +258,7 @@ public with sharing class CPA_LOI_TriggerUtil{
                 System.debug('txt_Internal_PWO_ID__c is NOT NULL ######## : ');
             }
             
-        }
+        }*/
     }
     
     /**   Method Name : getInternalPWOID
@@ -267,7 +267,7 @@ public with sharing class CPA_LOI_TriggerUtil{
     * Author      : Dinesh Girase  
     * Description : This method generates incremental Internal LOI ID
     */
-    public static String getInternalID(Integer numSearch, String idType){
+   /* public static String getInternalID(Integer numSearch, String idType){
         String strPWOID='';
         integer intIncrementNum = numSearch + 1;
         if(string.valueof(numSearch).length() == 1)
@@ -281,5 +281,5 @@ public with sharing class CPA_LOI_TriggerUtil{
         if(string.valueof(numSearch).length() == 5)
             strPWOID = idType + '-' + string.valueof(intIncrementNum);
         return strPWOID;
-    }
+    }*/
 }

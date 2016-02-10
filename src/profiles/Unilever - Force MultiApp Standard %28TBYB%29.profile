@@ -1727,6 +1727,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CPA_PWORF__c.isApprovalProcessStarted__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CPA_PWORF__c.isCancelled__c</field>
         <readable>false</readable>
     </fieldPermissions>

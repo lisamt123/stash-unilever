@@ -1,7 +1,7 @@
 public with sharing Class CPA_PWORF_CancelReasonController{
      Public id pworfId;
      Public CPA_PWORF__c pworfRec;
-     Public List<CPA_PWO__c> pwoRec;
+     Public List<CPA_project_work_order__c> pwoRec;
      Public List<CPA_LOI__c> loiRec;
      Public List<CPA_CR__c> crRec;
      Public List<Id> pwoIdList;
@@ -18,7 +18,7 @@ public with sharing Class CPA_PWORF_CancelReasonController{
       
     public void getRecord(ID pworfId){
         pworfRec = [select id,ltxt_Reason_for_Cancellation__c,pkl_Status__c,isCancelled__c  from CPA_PWORF__c where id =:pworfId];
-        pwoRec = [select id,txta_Reason_for_Cancellation__c,pkl_Status__c,PWORF_ID__c  from CPA_PWO__c  where PWORF_ID__c =:pworfId];      
+        pwoRec = [select id,txta_Reason_for_Cancellation__c,pkl_Status__c,PWORF_ID__c  from CPA_project_work_order__c  where PWORF_ID__c =:pworfId];      
         loiRec =[select id,txta_Reason_for_Cancellation__c,pkl_Status__c,lkp_PWORF__c  from CPA_LOI__c where lkp_PWORF__c =:pworfId];
         Id profileId=userinfo.getProfileId();
       
@@ -28,7 +28,7 @@ public with sharing Class CPA_PWORF_CancelReasonController{
     public PageReference  SaveCancelReason(){
         List<id> pwoIdList = new List<id>();
         if(pwoRec.size()>0){
-            for(CPA_PWO__c pwo:pwoRec){
+            for(CPA_project_work_order__c pwo:pwoRec){
                 pwoIdList.add(pwo.id);
             }
         }
@@ -64,10 +64,10 @@ public with sharing Class CPA_PWORF_CancelReasonController{
         pworfRecord.isCancelled__c= true;
         update pworfRecord;
     }
-    void pwoCancel(List<CPA_PWO__c> pwoRecList){
-        List<CPA_PWO__c> pwoList = new List<CPA_PWO__c>();
+    void pwoCancel(List<CPA_project_work_order__c> pwoRecList){
+        List<CPA_project_work_order__c> pwoList = new List<CPA_project_work_order__c>();
         if(pwoRecList.size()>0){
-            for(CPA_PWO__c pwo:pwoRecList){
+            for(CPA_project_work_order__c pwo:pwoRecList){
                 pwo.txta_Reason_for_Cancellation__c = strReason;
                 pwo.pkl_Status__c= 'Cancelled';
                 pwoList.add(pwo);

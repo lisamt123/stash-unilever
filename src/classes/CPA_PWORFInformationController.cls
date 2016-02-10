@@ -158,14 +158,14 @@ global with sharing class CPA_PWORFInformationController {
                 if(pworfRec.Role_or_System_Authorisation__c  =='Yes'&& pworfRec.txta_Role_or_System_Authorisation_detail__c  == null) 
                     objectMap.put('Role or System Authorisation detail' ,'Mandatory, if the project has Role or System Authorization'); 
                 if(pworfRec.pkl_Is_this_Project_Invasive_in_nature__c =='Yes' && pworfRec.txta_Project_Invasive_in_nature__c == null) 
-                    objectMap.put('Why Project Invasive in nature?' ,'Mandatory, If Project is Invasive in nature');
+                    objectMap.put('Work at Risk required?' ,'Mandatory, If Project is Invasive in nature');
                 if(pworfRec.Will_this_project_require_an_LOI_for_Wor__c =='Select' || pworfRec.Will_this_project_require_an_LOI_for_Wor__c ==null)
                     objectMap.put('Work at Risk required?*' ,ConstantsForContractingAppClasses.MANDATORY);
                 //if(pworfRec.dt_Expected_go_live_date__c <= date.Today()) 
                     //objectMap.put('Expected go-live date', 'Date should be greater than current date');
                 if(pworfRec.Will_this_project_require_an_LOI_for_Wor__c  == 'Yes'){
                     if(pworfRec.How_many_man_days_do_you_think_you_requi__c  == null) objectMap.put('Man Days' ,'Mandatory,If this Project require LOI');
-                    if(pworfRec.When_do_you_require_the_Work_at_Risk_to__c  == null) objectMap.put('When do you require the Work at Risk to' ,'Mandatory,If this Project require LOI');
+                    if(pworfRec.When_do_you_require_the_Work_at_Risk_to__c  == null) objectMap.put('Work at Risk Start Date' ,'Mandatory,If this Project require LOI');
                     if(pworfRec.txta_Why_is_Work_at_risk_required__c  == null) objectMap.put('Why is Work at risk required?' ,'Mandatory,If this Project require LOI');
                     if(pworfRec.txta_What_specific_roles_do_you_require__c  == null) objectMap.put('What specific roles do you require?' ,'Mandatory,If this Project require LOI');
                     if(pworfRec.txta_ITC_Resources_Utilisation__c  == null) objectMap.put('ITC Resources Utilisation' ,'Mandatory,If this Project require LOI');

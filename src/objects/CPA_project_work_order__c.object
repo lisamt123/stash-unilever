@@ -9011,7 +9011,7 @@ if(isValidateFlag == &apos;true&apos;){
 	} 	else if(p.pkl_Status__c ==&quot;Saved&quot;){ 
 		p.pkl_Status__c = &quot;Submitted&quot;; 
 		result = sforce.connection.update([p]); 
-//alert(result);
+alert(result);
 		location.reload(true); 
 	} 
 	else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 

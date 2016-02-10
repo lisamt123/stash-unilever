@@ -1861,9 +1861,18 @@ ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Terminated&quot;),
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent For Termination&quot;), 
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Closed&quot;),
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Request For Termination&quot;),
-ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent For Closure&quot;),
-ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Saved&quot;)))</errorConditionFormula>
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent For Closure&quot;)
+))</errorConditionFormula>
         <errorMessage>CR cant be created, because PWO is in process of Closer/Termination/Cancellation/ Not Accepted by Supply Management Team</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>CPA_CR_NOT_on_PWO_Saved</fullName>
+        <active>true</active>
+        <description>CPA_CR Can&apos;t be created if the associated  PWO is in SAVED only</description>
+        <errorConditionFormula>AND( ISNEW() ,RecordType.DeveloperName !=&apos;CPA_Standalone_CR&apos; ,OR( 
+ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Saved&quot;)
+))</errorConditionFormula>
+        <errorMessage>CR cant be created, because associated  PWO is still in Saved Status.</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Specify_Cancellation_Reason</fullName>

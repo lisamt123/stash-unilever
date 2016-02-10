@@ -355,7 +355,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
     */ 
     
     public static void internalCRID(List<CPA_CR__c> newCR){
-        List<AggregateResult> lstCR = [SELECT count(ID) newCount FROM CPA_CR__c];
+       /* List<AggregateResult> lstCR = [SELECT count(ID) newCount FROM CPA_CR__c];
         if(lstCR[0].get('newCount') != null){
             Integer maxNo = Integer.valueOf(lstCR[0].get('newCount') + '');
             String newInternalCRID = getInternalCRID(maxNo);
@@ -386,7 +386,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
                 pworfs[0].For_Search__c = existingPWORFData + ', ' + newInternalCRID;
                 update pworfs;
             }
-        }
+        }*/
     }
     
     /**   Method Name : getInternalCRID
@@ -396,7 +396,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
     * Description : This method generates incremental Internal CR ID
     */
     
-    public static String getInternalCRID(Integer numSearch){
+    /*public static String getInternalCRID(Integer numSearch){
         String strCRID='';
         integer intIncrementNum = numSearch + 1;
         if(string.valueof(numSearch).length() == 1)
@@ -410,6 +410,6 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
         if(string.valueof(numSearch).length() == 5)
             strCRID = 'CR-' + string.valueof(intIncrementNum);
         return strCRID;
-    }
+    }*/
     
 }

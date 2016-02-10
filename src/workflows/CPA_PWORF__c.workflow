@@ -411,6 +411,15 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_PWORF_Approval_started</fullName>
+        <field>isApprovalProcessStarted__c</field>
+        <literalValue>1</literalValue>
+        <name>CPA PWORF Approval started</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_PWORF_Auto_Accepted_Date_Update</fullName>
         <field>dat_Auto_Accepted_Date__c</field>
         <formula>TODAY()</formula>

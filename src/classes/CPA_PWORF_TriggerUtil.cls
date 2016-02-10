@@ -22,7 +22,7 @@ public with sharing class CPA_PWORF_TriggerUtil{
         }
         List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem where ProcessInstance.TargetObjectId IN:settempPWORFID ];
         for (Integer i = 0; i < newPWORFList.size(); i++) {
-            if((oldPWORFList[i].pkl_Status__c  == 'Submitted' || oldPWORFList[i].pkl_Status__c  == 'Resubmitted') && (newPWORFList[i].pkl_Status__c == 'Cancelled' || newPWORFList[i].pkl_Status__c == 'Withhold')){
+            if((oldPWORFList[i].pkl_Status__c  == ConstantsForContractingAppClasses.SUBMITTED || oldPWORFList[i].pkl_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED) && (newPWORFList[i].pkl_Status__c == 'Cancelled' || newPWORFList[i].pkl_Status__c == 'Withhold')){
                 //PWORF.isCancelled__c = true;
                 for(ProcessInstanceWorkitem piwi:piwiList){
                     if(piwi.ProcessInstance.TargetObjectId == newPWORFList[i].id && !isSubmitted ){ 
@@ -51,7 +51,7 @@ public with sharing class CPA_PWORF_TriggerUtil{
        Approval.ProcessSubmitRequest[] reqlist = new Approval.ProcessSubmitRequest[]{};
        for (Integer i = 0; i < newPWORFList.size(); i++) {
             
-        if ((oldPWORFList[i].pkl_Status__c  <> 'Submitted' &&   newPWORFList[i].pkl_Status__c == 'Submitted')|| (oldPWORFList[i].pkl_Status__c  <> 'Resubmitted' &&   newPWORFList[i].pkl_Status__c == 'Resubmitted') &&  !isSubmitted) {
+        if ((oldPWORFList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.SUBMITTED &&   newPWORFList[i].pkl_Status__c == ConstantsForContractingAppClasses.SUBMITTED)|| (oldPWORFList[i].pkl_Status__c  <> ConstantsForContractingAppClasses.RESUBMITTED &&   newPWORFList[i].pkl_Status__c == ConstantsForContractingAppClasses.RESUBMITTED) &&  !isSubmitted) {
              
             // create the new approval request to submit
             Approval.ProcessSubmitRequest req = new Approval.ProcessSubmitRequest();
@@ -65,7 +65,7 @@ public with sharing class CPA_PWORF_TriggerUtil{
             isSubmitted = true;
         }else if(oldPWORFList[i].pkl_Status__c  <> 'Auto Accepted' &&   newPWORFList[i].pkl_Status__c == 'Auto Accepted'){
                 setId.add(newPWORFList[i].Id);      
-        }else if(oldPWORFList[i].pkl_Status__c  <> 'Withhold' &&   newPWORFList[i].pkl_Status__c == 'Withhold'){
+        }else if((oldPWORFList[i].pkl_Status__c  <> 'Withhold' &&   newPWORFList[i].pkl_Status__c == 'Withhold')|| (oldPWORFList[i].pkl_Status__c  <> 'Submitted' &&   newPWORFList[i].pkl_Status__c == 'Submitted') || (oldPWORFList[i].pkl_Status__c  <> 'Resubmitted' &&   newPWORFList[i].pkl_Status__c == 'Resubmitted') ){
             WithholdsetId.add(newPWORFList[i]);
         }
  
@@ -129,7 +129,7 @@ public with sharing class CPA_PWORF_TriggerUtil{
             newPWORFList[0].dat_SLA1_Accepted_Date__c = dt1;
         else if(!strStatus.equalsIgnoreCase('Answered'))
             newPWORFList[0].dat_SLA1_Accepted_Date__c = null;
-        if(strStatus.equalsIgnoreCase('Submitted')){
+        if(strStatus.equalsIgnoreCase(ConstantsForContractingAppClasses.SUBMITTED)){
             
             newPWORFList[0].dat_Submitted_Date__c =dt1;
             newPWORFList[0].dat_Resubmitted_Date__c = dt1;
