@@ -14,6 +14,8 @@ src/classes/uw_BETSearchService.cls
 src/classes/uw_BETSearchService.cls-meta.xml
 src/classes/uw_BETWrapper.cls
 src/classes/uw_BETWrapper.cls-meta.xml
+src/classes/BET_LinkedProjectsComponentController.cls
+src/classes/BET_LinkedProjectsComponentController.cls-meta.xml
 src/components
 src/components/BET_CategoryBrandSelectionComponent.component
 src/components/BET_CategoryBrandSelectionComponent.component-meta.xml
