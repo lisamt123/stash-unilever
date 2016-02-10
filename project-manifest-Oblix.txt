@@ -1,5 +1,9 @@
 src/classes/Oblix_AssetHandler.cls
 src/classes/Oblix_AssetHandler.cls-meta.xml
+src/classes/Oblix_CampaignAddAssetController.cls
+src/classes/Oblix_CampaignAddAssetController.cls-meta.xml
+src/classes/Oblix_CampaignCreateHelper.cls
+src/classes/Oblix_CampaignCreateHelper.cls-meta.xml
 src/classes/Oblix_AssetHandler_Test.cls
 src/classes/Oblix_AssetHandler_Test.cls-meta.xml
 src/classes/Oblix_CampaignStageController.cls
@@ -48,6 +52,8 @@ src/classes/Oblix_NonCampaignWrapper.cls
 src/classes/Oblix_NonCampaignWrapper.cls-meta.xml
 src/classes/Oblix_OuterPageTemplateController.cls
 src/classes/Oblix_OuterPageTemplateController.cls-meta.xml
+src/classes/Oblix_PermissionHandler.cls
+src/classes/Oblix_PermissionHandler.cls-meta.xml
 src/classes/Oblix_ProjectHandler.cls
 src/classes/Oblix_ProjectHandler.cls-meta.xml
 src/classes/Oblix_ProjectHandlerLogic.cls

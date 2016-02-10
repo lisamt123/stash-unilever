@@ -13,6 +13,7 @@
 
 
             <apex:actionFunction name="setInfoCountries" action="{!setInfoCountries}" reRender="investmentPriority" immediate="true">
+                <apex:param name="mainRegion" assignTo="{!selectedMainRegions}" value="" />
                 <apex:param name="region" assignTo="{!campaignHelper.selectedProject.OblixRegion__c}" value="" />
                 <apex:param name="countries" assignTo="{!campaignHelper.selectedProject.Campaign_Countries__c}" value="" />
             </apex:actionFunction>
@@ -262,15 +263,17 @@
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/fastLiveFilter.min.js')}" />
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/underscore.min.js')}" />
+            <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/biMap.js')}" type="text/javascript"></script>
             <script>
                 var mapRegionCountries = {!campaignHelper.regionsWithCountriesMapJSON};
                 var preSelectedCountries = {!if (campaignHelper.selectedCountriesJSON <> null, campaignHelper.selectedCountriesJSON, '[]')};
+                var preSelectedMainRegions = {!if (campaignHelper.selectedMainRegionJSON <> null, campaignHelper.selectedMainRegionJSON, '[]')};
                 var preSelectedRegions = {!if (campaignHelper.selectedRegionsJSON <> null, campaignHelper.selectedRegionsJSON, '[]')};
                 var unileverRegions = "{!campaignHelper.unileverRegions}";
                 var isGlobalCampaign = {!campaignHelper.isGlobalCampaign};
                 var counter = {!campaignHelper.numberOfAgencyHubSplits};
-                //var bimap = new BiMap;
-                //bimap.push(mapCountriesRegion);
+                var bimap = new BiMap;
+                bimap.push(mapRegionCountries);
                 var selectedCountries = [];
                 var selectedRegions = [];
                 var currentUnion = [];

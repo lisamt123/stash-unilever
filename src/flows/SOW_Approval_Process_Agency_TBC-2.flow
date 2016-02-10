@@ -35,7 +35,7 @@
         <processMetadataValues>
             <name>textJson</name>
             <value>
-                <stringValue>{&quot;mentions&quot;:[],&quot;message&quot;:&quot;SOW {![Marketing_SOW__c].Name}\n\n@[{![Marketing_SOW__c].Approval_Submitter__r.Id}] SOW returned, please review further comments&quot;}</stringValue>
+                <stringValue>{&quot;mentions&quot;:[],&quot;message&quot;:&quot;SOW {![Marketing_SOW__c].Name}\n@[{![Marketing_SOW__c].Approval_Submitter__c.Id}] SOW returned, please review further comments\n&quot;}</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_2_A1</name>
@@ -48,8 +48,8 @@
             <name>text</name>
             <value>
                 <stringValue>SOW {!myVariable_current.Name}
-
-@[{!myVariable_current.Approval_Submitter__r.Id}] SOW returned, please review further comments</stringValue>
+@[{!myVariable_current.Approval_Submitter__r.Id}] SOW returned, please review further comments
+</stringValue>
             </value>
         </inputParameters>
         <inputParameters>
@@ -66,7 +66,7 @@
         <processMetadataValues>
             <name>textJson</name>
             <value>
-                <stringValue>{&quot;mentions&quot;:[],&quot;message&quot;:&quot;SOW {![Marketing_SOW__c].Name}\n\n@[{![Marketing_SOW__c].Approval_Submitter__r.Id}] SOW now approved&quot;}</stringValue>
+                <stringValue>{&quot;mentions&quot;:[],&quot;message&quot;:&quot;SOW {![Marketing_SOW__c].Name}\n\n@[{![Marketing_SOW__c].Approval_Submitter__c.Id}] SOW now approved&quot;}</stringValue>
             </value>
         </processMetadataValues>
         <name>myRule_3_A1</name>
@@ -200,7 +200,7 @@
                 <leftValueReference>myVariable_current.SOW_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Awaiting Agency Approval</stringValue>
+                    <stringValue>Awaiting Agency Approval (TBC)</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -362,13 +362,13 @@
                 <leftValueReference>myVariable_old.SOW_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Awaiting Agency Approval</stringValue>
+                    <stringValue>Awaiting Agency Approval (TBC)</stringValue>
                 </rightValue>
             </conditions>
             <label>Previously Met - Prev</label>
         </rules>
     </decisions>
-    <description>To be used once Agencies are using the SWOP app</description>
+    <description>To be used with the SOW Approval Process before Agencies have access to the SWOP app</description>
     <formulas>
         <processMetadataValues>
             <name>originalFormula</name>
@@ -403,8 +403,8 @@ ISPICKVAL(PRIORVALUE({!myVariable_old.SOW_Status__c}),&quot;Awaiting Unilever Ap
 ISPICKVAL(PRIORVALUE({!myVariable_old.SOW_Status__c}),&quot;Draft - with Unilever&quot;)
 )</expression>
     </formulas>
-    <interviewLabel>SOW_Approval_Process-3_Marketing_SOW__c</interviewLabel>
-    <label>SOW Approval Process</label>
+    <interviewLabel>SOW_Approval_Process_Agency_TBC-2_Marketing_SOW__c</interviewLabel>
+    <label>SOW Approval Process (Agency TBC)</label>
     <processMetadataValues>
         <name>ObjectType</name>
         <value>

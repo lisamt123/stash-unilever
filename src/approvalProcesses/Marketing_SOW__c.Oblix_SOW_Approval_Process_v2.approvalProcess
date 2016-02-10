@@ -30,6 +30,14 @@
             </approver>
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Marketing_SOW__c.SOW_Creator_is_Approver__c</field>
+                <operation>equals</operation>
+                <value>False</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
         <label>UL to review</label>
         <name>UL_to_review</name>
         <rejectionActions>
@@ -67,18 +75,7 @@
         <rejectBehavior>
             <type>RejectRequest</type>
         </rejectBehavior>
-        <rejectionActions>
-            <action>
-                <name>SOW_Returned_to_Unilever</name>
-                <type>Alert</type>
-            </action>
-            <action>
-                <name>Update_SOW_Status_to_Returned_by_Agency</name>
-                <type>FieldUpdate</type>
-            </action>
-        </rejectionActions>
     </approvalStep>
-    <description>Approval Process for SWOP app. Approval Process is fired when the creator of the SOW is not an approver for the brand/category specified on the SOW</description>
     <emailTemplate>Oblix_SOW_Email/SOW_for_Internal_Approval</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>

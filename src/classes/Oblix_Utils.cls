@@ -667,7 +667,8 @@ public with sharing class Oblix_Utils {
     public static RecordType getRecordType(String rtDeveloperName, String sObjType){
         if(recordTypesMap == null){
             recordTypesMap = new Map<String, Map<String, RecordType>>();
-            List<RecordType> listRecTypes = [select Id, SObjectType, DeveloperName, Name from RecordType];
+            // S.M 20160210 to avoid sonar issue, need to have a limit on the SOQL setting to 1000 to make future proof
+            List<RecordType> listRecTypes = [select Id, SObjectType, DeveloperName, Name from RecordType LIMIT 1000];
             for(RecordType rt : listRecTypes){
                 Map<String, RecordType> sObjectRecTypesMap = recordTypesMap.get(rt.sObjectType);
                 if(sObjectRecTypesMap == null){
@@ -709,14 +710,15 @@ public with sharing class Oblix_Utils {
     *                                                                               *
     ********************************************************************************/
 
+    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v3';
+
     public static final String SOW_STATUS_APPROVED_BY_UNILEVER = 'Awaiting Agency Approval';
     public static final String SOW_STATUS_APPROVED_BY_AGENCY = 'Approved';
     public static final String SOW_STATUS_AWAITING_UNILEVER_APPROVAL = 'Awaiting Unilever Approval';
     public static final String SOW_STATUS_AWAITING_AGENCY_APPROVAL = 'Awaiting Agency Approval';
+    public static final String SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC = 'Awaiting Agency Approval (TBC)';
     public static final String SOW_STATUS_REJECTED_BY_UNILEVER = 'Rejected By Unilever';
     public static final String SOW_STATUS_REJECTED_BY_AGENCY = 'Rejected By Agency';
-
-    public static final Set<String> SOW_APPROVAL_ACTIVE = new Set<String>{'a', 'b'};
 
 
     /*------------------------------RECORD TYPE IDs---------------------------------*/

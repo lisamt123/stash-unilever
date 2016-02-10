@@ -103,13 +103,15 @@ public with sharing class Oblix_SOWHandlerLogic {
         for(Oblix_User_Permission__c up : userPermissions){
             String brandCatKey = up.CategoryBrand_id__r.Brand_id__c + '_' + up.CategoryBrand_id__r.Product_Category_Id__c;
             if(up.RecordTypeId == Oblix_Utils.RT_USER_PERMISSION_UNILEVER_USER){
-                if(brandCatKey_unileverApproverIds_map.containsKey(brandCatKey) == false){
+                // S.M. 20160209 - sonar issue resolved by avoid checking == false and use ! instead
+                if(!brandCatKey_unileverApproverIds_map.containsKey(brandCatKey)){
                     Set<Id> approverIds = new Set<Id>();
                     brandCatKey_unileverApproverIds_map.put(brandCatKey, approverIds);
                 }
                 brandCatKey_unileverApproverIds_map.get(brandCatKey).add(up.User_id__c);
             } else if (up.RecordTypeId == Oblix_Utils.RT_USER_PERMISSION_AGENCY_USER){
-                if(brandCatKey_agencyApproverIds_map.containsKey(brandCatKey) == false){
+                // S.M. 20160209 - sonar issue resolved by avoid checking == false and use ! instead
+                if(!brandCatKey_agencyApproverIds_map.containsKey(brandCatKey)){
                     Set<Id> approverIds = new Set<Id>();
                     brandCatKey_agencyApproverIds_map.put(brandCatKey, approverIds);
                 }
@@ -138,7 +140,8 @@ public with sharing class Oblix_SOWHandlerLogic {
             if(brandCatKey_unileverApproverIds_map != null && brandCatKey_unileverApproverIds_map.containsKey(brandCatKey)){
                 Set<Id> unileverApprovers = brandCatKey_unileverApproverIds_map.get(brandCatKey);
                 // change only if needed
-                if(unileverApprovers.contains(sow.Unilever_SOW_Approver_Name__c) == false){
+                // S.M. 20160209 - sonar issue resolved by avoid checking == false and use ! instead
+                if(!unileverApprovers.contains(sow.Unilever_SOW_Approver_Name__c)){
                     isChanged = true;
                     sow.Unilever_SOW_Approver_Name__c = unileverApprovers.iterator().next();
                 }
@@ -152,7 +155,8 @@ public with sharing class Oblix_SOWHandlerLogic {
             if(brandCatKey_agencyApproverIds_map != null && brandCatKey_agencyApproverIds_map.containsKey(brandCatKey)){
                 Set<Id> agencyApprovers = brandCatKey_agencyApproverIds_map.get(brandCatKey);
                 // change only if needed
-                if(agencyApprovers.contains(sow.Agency_SOW_Approver_Name__c) == false){
+                // S.M. 20160209 - sonar issue resolved by avoid checking == false and use ! instead
+                if(!agencyApprovers.contains(sow.Agency_SOW_Approver_Name__c)){
                     isChanged = true;
                     sow.Agency_SOW_Approver_Name__c = agencyApprovers.iterator().next();
                 }

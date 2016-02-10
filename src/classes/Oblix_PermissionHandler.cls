@@ -14,7 +14,6 @@
 public with sharing class Oblix_PermissionHandler {
 
 	private static Boolean b_is_system_admin;
-    private static Boolean b_has_edit_access;
 
     private static Boolean b_has_ul1_permission_set;
     private static Boolean b_has_ul2_permission_set;
@@ -52,6 +51,24 @@ public with sharing class Oblix_PermissionHandler {
             }
         }
         return b_is_system_admin;
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-09
+    * @description  static boolean is current user the next approver of a record
+    ********************************************************************************/
+    public static Boolean isNextApprover(Id targetId){
+
+        Id currentUserId = UserInfo.getUserId();
+
+        List<ProcessInstanceWorkitem> workItems = [SELECT Id, ActorId FROM ProcessInstanceWorkitem 
+                                                    WHERE ProcessInstance.TargetObjectId =:targetId 
+                                                        AND ProcessInstance.Status = 'Pending' 
+                                                        AND ActorId =:currentUserId];
+
+        return workItems.isEmpty() == false;
+
     }
 
     /*******************************************************************************
@@ -301,10 +318,11 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canSubmitForApproval(String sow_status){
     	// only UL1, SuperUser and Sysadmin can send sow for approval
     	// if not already approved
-    	if (hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin() || hasAG1permissionSet()
+        if ( (hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin() || hasAG1permissionSet())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status && Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status
-                && Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status)){
+                && Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status
+                && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC != sow_status)){
     		return true;
     	}
     	else{
@@ -319,14 +337,14 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and sow status
                     allow user to return SOW
     ********************************************************************************/
-    public static Boolean canRejectSOW(String sow_status){
+    public static Boolean canRejectSOW(String sow_status, Id sow_id){
         // Only allow the user to reject depending on the status of SOW and the user permissionset assigned
         if (
-                (hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin())
+                (hasSuperUserpermissionSet() || isSystemAdmin() || (hasUL1permissionSet() && isNextApprover(sow_id)))
                 && 
                 (Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL == sow_status)
             ||
-                (hasAG1permissionSet())
+                (hasAG1permissionSet() && isNextApprover(sow_id))
                 &&
                 (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL == sow_status)
         ){
@@ -343,14 +361,14 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and sow status
                     allow user to approve SOW
     ********************************************************************************/
-    public static Boolean canApproveSOW(String sow_status){
+    public static Boolean canApproveSOW(String sow_status, Id sow_id){
         // Only allow the user to reject depending on the status of SOW and the user permissionset assigned
         if (
-                (hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin())
+                (hasSuperUserpermissionSet() || isSystemAdmin() || (hasUL1permissionSet() && isNextApprover(sow_id)))
                 && 
                 (Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL == sow_status)
             ||
-                (hasAG1permissionSet())
+                (hasAG1permissionSet() && isNextApprover(sow_id))
                 &&
                 (Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL == sow_status)
         ){

@@ -30,7 +30,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
             Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
 
-            Oblix_SOWCampaignCreateController controller = new Oblix_SOWCampaignCreateController();
+            Oblix_CampaignAddAssetController controller = new Oblix_CampaignAddAssetController();
             string complexity = controller.complexity;
             string idSplit = controller.idSplit;
             Set<Oblix_Project_Assets__c> ClearList = controller.ClearList;
@@ -43,7 +43,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             controller.addOneMoreProjectSplitInstance();
             controller.finishBasket();
             controller.ReInitializeInstance();
-            Oblix_SOWCampaignCreateController.removeAsset(asset.name, project.Id);
+            Oblix_CampaignAddAssetController.removeAsset(asset.name, project.Id);
             
             Test.stopTest();
 
@@ -107,7 +107,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
 
-            Oblix_SOWCampaignCreateController controller = new Oblix_SOWCampaignCreateController();
+            Oblix_CampaignAddAssetController controller = new Oblix_CampaignAddAssetController();
 
             controller.lstProjectSplitHubs = new List<Oblix_Marketing_SOW_Project_Splits__c>();
 
@@ -133,7 +133,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
 
-            Oblix_SOWCampaignCreateController controller = new Oblix_SOWCampaignCreateController();
+            Oblix_CampaignAddAssetController controller = new Oblix_CampaignAddAssetController();
 
             controller.listItems = 'null_null_1.0,null_null_2.0,';
 
@@ -161,7 +161,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
 
-            Oblix_SOWCampaignCreateController controller = new Oblix_SOWCampaignCreateController();
+            Oblix_CampaignAddAssetController controller = new Oblix_CampaignAddAssetController();
 
             controller.setInfoDrivers();
             controller.setInfoStages();
@@ -193,7 +193,7 @@ private class Oblix_SOWCampaignCreateController_Test {
 
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
 
-            Oblix_SOWCampaignCreateController controller = new Oblix_SOWCampaignCreateController();
+            Oblix_CampaignAddAssetController controller = new Oblix_CampaignAddAssetController();
 
             controller.project = project;
 
@@ -223,7 +223,7 @@ private class Oblix_SOWCampaignCreateController_Test {
         System.runAs(Oblix_TestUtils.createTestUser()) {
             Oblix_SOW_Projects__c project = initSaveProjectActionData();
 
-            Oblix_SOWCampaignCreateController ctrl = new Oblix_SOWCampaignCreateController();
+            Oblix_CampaignAddAssetController ctrl = new Oblix_CampaignAddAssetController();
 
             ctrl.project = project;
             ctrl.project.Name = null;
@@ -239,7 +239,7 @@ private class Oblix_SOWCampaignCreateController_Test {
     @isTest static void SaveProjectAction_Error2_Test() {
         System.runAs(Oblix_TestUtils.createTestUser()) {
             Oblix_SOW_Projects__c project = initSaveProjectActionData();
-            Oblix_SOWCampaignCreateController ctrl = new Oblix_SOWCampaignCreateController();
+            Oblix_CampaignAddAssetController ctrl = new Oblix_CampaignAddAssetController();
             ctrl.project = project;
             ctrl.project.Name = null;
             ctrl.projectId = null;
@@ -253,7 +253,7 @@ private class Oblix_SOWCampaignCreateController_Test {
     @isTest static void SaveProjectAction_Error3_Test(){
         System.runAs(Oblix_TestUtils.createTestUser()) {
             Oblix_SOW_Projects__c project = initSaveProjectActionData();
-            Oblix_SOWCampaignCreateController ctrl = new Oblix_SOWCampaignCreateController();
+            Oblix_CampaignAddAssetController ctrl = new Oblix_CampaignAddAssetController();
             ctrl.project = project;
             ctrl.projectId = null;
 
@@ -267,7 +267,7 @@ private class Oblix_SOWCampaignCreateController_Test {
     
         System.runAs(Oblix_TestUtils.createTestUser()) {
             Oblix_SOW_Projects__c project = initSaveProjectActionData();
-            Oblix_SOWCampaignCreateController ctrl = new Oblix_SOWCampaignCreateController();
+            Oblix_CampaignAddAssetController ctrl = new Oblix_CampaignAddAssetController();
             ctrl.project = project;
             ctrl.projectId = project.Id;
             
@@ -288,7 +288,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
             
             Test.startTest();
-            Oblix_SOWCampaignCreateController.removeAsset(asset.Id);
+            Oblix_CampaignAddAssetController.removeAsset(asset.Id);
             Test.stopTest();
             
             List<Oblix_Project_Assets__c> result = [select Id from Oblix_Project_Assets__c where id = :asset.Id];
@@ -305,7 +305,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             project.Total_Fees_for_Project__c  = 1000;
             update project;
             Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
-            Oblix_SOWCampaignCreateController ctrl = new Oblix_SOWCampaignCreateController();
+            Oblix_CampaignAddAssetController ctrl = new Oblix_CampaignAddAssetController();
             
             Test.startTest();
             ctrl.refresh();
@@ -322,7 +322,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
             
             Test.startTest();
-            Map<String, String> result = Oblix_SOWCampaignCreateController.getAbreViationByRTBySubCatgForCardAssets();
+            Map<String, String> result = Oblix_CampaignAddAssetController.getAbreViationByRTBySubCatgForCardAssets();
             Test.stopTest();
             
             System.assert(!result.isEmpty());
@@ -338,7 +338,7 @@ private class Oblix_SOWCampaignCreateController_Test {
             Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
             
             Test.startTest();
-            Oblix_Utils.AssetDetailWrapper result = Oblix_SOWCampaignCreateController.getAssetDetails(asset.Id);
+            Oblix_Utils.AssetDetailWrapper result = Oblix_CampaignAddAssetController.getAssetDetails(asset.Id);
             Test.stopTest();
             
             System.assert(result != null);
@@ -353,12 +353,12 @@ private class Oblix_SOWCampaignCreateController_Test {
             Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
             asset.Asset_Title__c = 'test X title';
             update asset;
-            Oblix_SOWCampaignCreateController ctrl = new Oblix_SOWCampaignCreateController();
+            Oblix_CampaignAddAssetController ctrl = new Oblix_CampaignAddAssetController();
             Map<String, Object> details = new Map<String, Object>();
             details.put('quantity', '50');
             
             Test.startTest();
-            Oblix_SOWCampaignCreateController.UpdateProjectAction(asset.Id, details) ;
+            Oblix_CampaignAddAssetController.UpdateProjectAction(asset.Id, details) ;
             Test.stopTest();
             
             Oblix_Project_Assets__c result = [select quantity__c from Oblix_Project_Assets__c where id =: asset.Id];

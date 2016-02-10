@@ -132,7 +132,7 @@
                         <div class="modal-footer">
                             <div class="modal_button_align">
                                 <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton action="{!rejectSOW}" id="rejectButton" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn-xs btn_return btn_send_back" value="SEND BACK" html-data-dismiss="modal"  onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                <apex:commandButton action="{!rejectSOW}" id="rejectButton" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn-xs btn_return btn_send_back" value="SEND BACK" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
@@ -290,7 +290,7 @@
                                             <th style="display:none;width:0px !important">{!$Label.Oblix_lbl_UIUX_Project_Id}</th>
                                             <th>{!$ObjectType.Oblix_SOW_Projects__c.fields.Name.label} </th>
                                             <th>Type</th>
-                                            <th>{!$ObjectType.Oblix_SOW_Projects__c.fields.OblixRegion__c.label}</th>
+                                            <th>Clusters</th>
                                             <th ><div>Countries</div></th>
                                             <th class="table_cell_progress_bar">Stages</th>
                                             <th>Full campaign fee</th>
@@ -416,11 +416,9 @@
                 $('#crumbs').tooltip();
                 //$( document ).tooltip();
               });
-            // $(document).ready(function(){
-            //     $('#rejectComments').keyup(function(){
-            //         $('#rejectButton').prop('disabled', this.value == "" ? true : false);     
-            //     });
-            // });
+            $(document).ready(function() {
+                $('[id$="rejectButton"]').attr('disabled', 'disabled');
+            });
             </script>
         </apex:define>
     </apex:composition>

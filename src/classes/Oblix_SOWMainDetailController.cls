@@ -46,7 +46,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     public Boolean sow_approvers_defined{
         get{
-            return selected_sow.Unilever_SOW_Approver_Name__c != null && selected_sow.Agency_SOW_Approver_Name__c != null;
+            // until the agency users are live, agency approvers aren't mandatory
+            return selected_sow.Unilever_SOW_Approver_Name__c != null;// && selected_sow.Agency_SOW_Approver_Name__c != null;
         }
     }
 
@@ -58,13 +59,13 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     public Boolean can_reject_sow{
         get{
-            return Oblix_PermissionHandler.canRejectSOW(selected_sow.SOW_Status__c);
+            return Oblix_PermissionHandler.canRejectSOW(selected_sow.SOW_Status__c, selected_sow.Id);
         }
     }
 
     public Boolean can_approve_sow{
         get{
-            return Oblix_PermissionHandler.canApproveSOW(selected_sow.SOW_Status__c);
+            return Oblix_PermissionHandler.canApproveSOW(selected_sow.SOW_Status__c, selected_sow.Id);
         }
     }
 
@@ -112,7 +113,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     private static final Integer notesSize = 255;
     private static final String sow_param_name = 'sowId';
-
+    private static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
     //achraf
     public Attachment attachment {
         get {
@@ -191,7 +192,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             selected_sow = new Marketing_SOW__c ();
         }
         else {
-            selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
+            selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', FIELD_SET_SOW_MAIN_DETAIL) , null);
         }
         
         //System.DEBUG('!!selected_sow:'+selected_sow);
@@ -534,7 +535,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             if (String.isBlank(errorRequired)){
 
                 upsert selected_sow;
-                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
+                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', FIELD_SET_SOW_MAIN_DETAIL) , null);
 
                 sow_id = selected_sow.Id;
                 
@@ -616,7 +617,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             if (String.isBlank(errorRequired) && selected_sow != null && selected_sow.Id == null){
 
                 insert selected_sow;
-                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
+                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', FIELD_SET_SOW_MAIN_DETAIL) , null);
             }
 
             uploadeAttachment(); 
@@ -980,32 +981,49 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     public void submitForApproval(){
 
         // skip unilever approval if creator is approver
-        if(UserInfo.getUserId() == selected_sow.Unilever_SOW_Approver_Name__c)
+        if(UserInfo.getUserId() == selected_sow.Unilever_SOW_Approver_Name__c){
             selected_sow.SOW_Creator_is_Approver__c = true;
-
-        selected_sow.SOW_Status__c = Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL;
+            selected_sow.SOW_Status__c = Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC;
+        } else {
+            selected_sow.SOW_Creator_is_Approver__c = false;
+            selected_sow.SOW_Status__c = Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL;
+        }
+        
         selected_sow.Approval_Submitter__c = UserInfo.getUserId();
 
         //update selected_sow;
         update selected_sow;
 
-        // Create an approval request for the account
-        Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
-        req1.setComments(sowSubmitComments);
-        req1.setObjectId(selected_sow.Id);
+        if(selected_sow.SOW_Creator_is_Approver__c){
 
-        // Submit on behalf of a specific submitter
-        req1.setSubmitterId(UserInfo.getUserId());
+            // just lock the record
+            try{
+                Approval.lock(new List<Marketing_SOW__c>{selected_sow});
+            } catch (Exception e){
+                system.debug(e);
+            }
 
-        // Submit the record to specific process and skip the criteria evaluation
-        req1.setProcessDefinitionNameOrId('Oblix_SOW_Approval_Process_v1');
-        //req1.setSkipEntryCriteria(true);
+        } else {
 
-        // Submit the approval request for the account
-        Approval.ProcessResult result = Approval.process(req1);
+            // Create an approval request for the SOW
+            Approval.ProcessSubmitRequest req1 = new Approval.ProcessSubmitRequest();
+            req1.setComments(sowSubmitComments);
+            req1.setObjectId(selected_sow.Id);
 
-        // Verify the result
-        //System.assert(result.isSuccess());
+            // Submit on behalf of a specific submitter
+            req1.setSubmitterId(UserInfo.getUserId());
+
+            // Submit the record to specific process and skip the criteria evaluation
+            req1.setProcessDefinitionNameOrId(Oblix_Utils.APPROVAL_PROCESS_NAME);
+            //req1.setSkipEntryCriteria(true);
+
+            // Submit the approval request for the account
+            Approval.ProcessResult result = Approval.process(req1);
+
+            // Verify the result
+            //System.assert(result.isSuccess());
+
+        }
 
     }
 
@@ -1018,7 +1036,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
         // get sow approval record - there can be only one (?)
         List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :selected_sow.Id];
-        if(workItems.size() == 1){
+        // S.M 20160209 adding checks and removing else to fix sonar issue
+        if(NULL!=workItems && workItems.size() == 1){
 
             ProcessInstanceWorkitem wi = workItems[0];
 
@@ -1031,14 +1050,14 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
             if(result.isSuccess()){
                 // reload SOW to get new sow status
-                selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
+                selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', FIELD_SET_SOW_MAIN_DETAIL) , null);
             }
-
-        } else {
-
-            // there should be only one work item for a given object.
-
         }
+        //} else {
+
+        //    // there should be only one work item for a given object.
+
+        //}
 
     }
 
@@ -1051,7 +1070,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
         // get sow approval record - there can be only one (?)
         List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :selected_sow.Id];
-        if(workItems.size() == 1){
+        // S.M 20160209 adding checks and removing else to fix sonar issue
+        if(NULL != workItems && workItems.size() == 1){
 
             ProcessInstanceWorkitem wi = workItems[0];
 
@@ -1063,14 +1083,14 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
             if(result.isSuccess()){
                 // reload SOW to get new sow status
-                selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', 'Oblix_SOW_Main_Detail') , null);
+                selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', FIELD_SET_SOW_MAIN_DETAIL) , null);
             }
-
-        } else {
-
-            // there should be only one work item for a given object.
-
         }
+        //} else {
+
+        //    // there should be only one work item for a given object.
+
+        //}
 
     }
 
