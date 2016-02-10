@@ -154,10 +154,6 @@
                 <behavior>Readonly</behavior>
                 <field>txta_Reason_for_Cancellation__c</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>isValidated__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
