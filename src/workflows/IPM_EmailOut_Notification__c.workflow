@@ -18,7 +18,7 @@
             <name>IPM_Notify_Finance_Leader_about_TLD_change</name>
             <type>Alert</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <criteriaItems>
             <field>IPM_EmailOut_Notification__c.To_Address__c</field>
             <operation>notEqual</operation>

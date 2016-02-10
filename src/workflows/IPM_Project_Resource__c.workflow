@@ -49,7 +49,7 @@
             <name>IPM_Update_Notification</name>
             <type>FieldUpdate</type>
         </actions>
-        <active>false</active>
+        <active>true</active>
         <description>send an email to all members associated with functional role and section</description>
         <formula>IPM_send_an_email__c=true</formula>
         <triggerType>onAllChanges</triggerType>
