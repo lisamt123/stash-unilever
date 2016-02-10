@@ -185,6 +185,7 @@ src/components/Oblix_CmpAuditTracking.component-meta.xml
 src/components/Oblix_leaseGanttChart.component
 src/components/Oblix_leaseGanttChart.component-meta.xml
 src/labels/CustomLabels.labels
+src/objects/Asset_Scoring__c.object
 src/objects/Marketing_Agency__c.object
 src/objects/Marketing_Basics__c.object
 src/objects/Marketing_SOW__c.object
