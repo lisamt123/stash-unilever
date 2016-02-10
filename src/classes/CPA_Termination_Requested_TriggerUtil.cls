@@ -9,7 +9,7 @@ public with sharing class CPA_Termination_Requested_TriggerUtil{
         
         set<Id> setPWO = new set<ID>();
         map<Id,CPA_PWO__c> mapPWO = new map<ID,CPA_PWO__c>();
-        
+        List<CPA_PWO__c> pwoList =new List<CPA_PWO__c>();
         for(CPA_Termination_Requested__c objnewTR : newTR){
                 setPWO.add(objnewTR.PWO__c);
             }
@@ -21,9 +21,10 @@ public with sharing class CPA_Termination_Requested_TriggerUtil{
             CPA_PWO__c objPWOTemp = mapPWO.get(objnewTR.PWO__c);
             if(objPWOTemp !=null){
                 objPWOTemp.pkl_Status__c ='Request For Termination';
-                update objPWOTemp;
+                pwoList.add(objPWOTemp);
             }
         }
+        if(pwoList.size()>0) update pwoList;
     }    
 
 }

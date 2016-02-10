@@ -15,7 +15,12 @@ public with sharing class CPA_PWORF_TriggerUtil{
     */
      public static void recallApproval(List<CPA_PWORF__c> oldPWORFList,List<CPA_PWORF__c> newPWORFList)    
     { 
-        List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem ];
+       set<ID> settempPWORFID = new set<ID>();
+       for(CPA_PWORF__c objPWORFTemp: newPWORFList){
+            
+            settempPWORFID.add(objPWORFTemp.Id);
+        }
+        List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem where ProcessInstance.TargetObjectId IN:settempPWORFID ];
         for (Integer i = 0; i < newPWORFList.size(); i++) {
             if((oldPWORFList[i].pkl_Status__c  == 'Submitted' || oldPWORFList[i].pkl_Status__c  == 'Resubmitted') && (newPWORFList[i].pkl_Status__c == 'Cancelled' || newPWORFList[i].pkl_Status__c == 'Withhold')){
                 //PWORF.isCancelled__c = true;
@@ -105,49 +110,8 @@ public with sharing class CPA_PWORF_TriggerUtil{
         
     
     }
-/*
-    * Method Name : vDMNameUpdate
-    * Parameter   : 
-    * Return type : None
-    * Description : This method is to insert the VDM_Name__c on PWORF record
-    */
-    /* public static void vDMNameUpdate(List<CPA_PWORF__c> newPWORFList){   
-    List<CPA_VDM__c> vdms = [SELECT Id, name FROM CPA_VDM__c];   
-
-    for (CPA_PWORF__c  pworf: newPWORFList ){
-            if(vdms!=null && vdms[0]!=null){
-                pworf.VDM__c = vdms[0].id;                      
-                pworf.VDM_Name__c= vdms[0].name;
-            }           
-        }
-    }*/
 
 
-/*
-    * Method Name : Project_requestorAssign
-    * Parameter   : 
-    * Return type : None
-    * Description : This method is to assign the lkp_Project_requestor__c on PWORF record if it is empty
-    */
-    public static void AssignProject_requestor(List<CPA_PWORF__c> newPWORFList){   
-      /*  system.debug('pworfs>>>>>>>'+newPWORFList);
-         Id requestor = null;
-        for (CPA_PWORF__c  pworf: newPWORFList ){
-            requestor = pworf.lkp_Project_requestor__c;
-            if( requestor == null){
-                Id creatorId = pworf.CreatedById ;
-                String strCreatedby = Id.valueOf(creatorId);
-                if(strCreatedby.startsWith('005')){
-                    System.debug('pworf.creatorId -> '+creatorId);
-                User userObj = [select id,name from user where id = :creatorId];
-                System.debug(' userObj.name-> '+userObj);
-                pworf.lkp_Project_requestor__c = userObj.Id;
-                }
-            } 
-        } */
-    }
-   
-    
     /*
     * Method Name : updateSLAData
     * Parameter   : oldPWORFList, newPWORFList
@@ -335,13 +299,13 @@ public with sharing class CPA_PWORF_TriggerUtil{
   }
 }    
 
-    /**   Method Name : requireApprovalComments
+    /**   Method Name : forSearch
     * Parameter   : newPWORFList
     * Return type : None
     * Author      : Dinesh Girase  
-    * Description : This method make the Approval comments require
+    * Description : not in use
     */
-    public static void forSearch(List<CPA_PWORF__c> newPWORFList){
+    /*public static void forSearch(List<CPA_PWORF__c> newPWORFList){
         Integer maxNo=0;
         List<AggregateResult> maxNum = new List<AggregateResult>();
         maxNum = [SELECT Max(For_Search_Numeric__c) FROM CPA_PWORF__c];
@@ -350,7 +314,6 @@ public with sharing class CPA_PWORF_TriggerUtil{
             System.debug('maxNum######## : ' + maxNo);
         }
         List<CPA_PWORF__c> pworfs = [SELECT For_Search__c FROM CPA_PWORF__c Where Id =: newPWORFList[0].ID];
-    }
-   
+    }*/
     
 }

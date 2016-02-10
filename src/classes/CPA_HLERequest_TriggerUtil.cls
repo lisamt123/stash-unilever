@@ -38,7 +38,12 @@ public with sharing class CPA_HLERequest_TriggerUtil{
     */
      public static void recallApproval(List<CPA_HLE_Request__c> oldHLEReqList,List<CPA_HLE_Request__c> newHLEReqList)    
     { 
-        List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem ];
+       set<ID> settempHLEreqID = new set<ID>();
+       for(CPA_HLE_Request__c objHLEReqTemp: newHLEReqList){
+            
+            settempHLEreqID.add(objHLEReqTemp.Id);
+        }
+        List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem where ProcessInstance.TargetObjectId IN:settempHLEreqID  ];
         for (Integer i = 0; i < newHLEReqList.size(); i++) {
             if((oldHLEReqList[i].pkl_Status__c  == ConstantsForContractingAppClasses.SUBMITTED || oldHLEReqList[i].pkl_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED) && (newHLEReqList[i].pkl_Status__c == 'Cancelled')){
                 for(ProcessInstanceWorkitem piwi:piwiList){

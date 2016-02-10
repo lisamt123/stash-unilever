@@ -72,7 +72,7 @@ public with sharing class CPA_AttchemntUnit {
        
         for(CPA_project_work_order__c objPWO :[Select Id,chk_Excel_Attached__c,chk_PDF_Attached__c from CPA_project_work_order__c where ID IN:setParentId]){
             
-            if((objPWO.chk_Excel_Attached__c != true ||  objPWO.chk_PDF_Attached__c!= true) && mapAttachmentIDPWOID.get(objPWO.ID)!= null){
+            if((!objPWO.chk_Excel_Attached__c ||  !objPWO.chk_PDF_Attached__c) && mapAttachmentIDPWOID.get(objPWO.ID)!= null){
                 for(Attachment objAttachment:mapAttachmentIDPWOID.get(objPWO.Id)){
                     system.debug('TEST-->'+mapAttachmentType.get(objAttachment.id));
                     if(mapAttachmentType.get(objAttachment.id) == 'spreadsheet'){
@@ -236,7 +236,7 @@ public with sharing class CPA_AttchemntUnit {
                     
                     for(CPA_project_work_order__c objPWO : lstPWO){
                         Decimal  intTotalmandays = 0;
-                        Decimal  intEstimatedValue = 0;
+                        //Decimal  intEstimatedValue = 0;
                         Decimal  intIndicativeExpenses  = 0;
                         Decimal  intNonPayroll   = 0;
                         Decimal  intPMOTax = 0;
@@ -247,7 +247,7 @@ public with sharing class CPA_AttchemntUnit {
                         Decimal  intRMS = 0;
                         Decimal  intOther = 0;
                         Decimal  intCostResource = 0;
-                        Decimal  intTotalcost = 0;
+                        //Decimal  intTotalcost = 0;
                         Decimal  intoffshower = 0;
                         Decimal  intOnshower = 0;
                         Decimal  intNoOfResources = 0;
@@ -338,7 +338,7 @@ public with sharing class CPA_AttchemntUnit {
                     
                     for(CPA_CR__c objCR : lstCR){
                         Decimal  intTotalmandays = 0;
-                        Decimal  intEstimatedValue = 0;
+                        //Decimal  intEstimatedValue = 0;
                         Decimal  intIndicativeExpenses  = 0;
                         Decimal  intNonPayroll   = 0;
                         Decimal  intPMOTax = 0;
@@ -349,7 +349,7 @@ public with sharing class CPA_AttchemntUnit {
                         Decimal  intRMS = 0;
                         Decimal  intOther = 0;
                         Decimal  intCostResource = 0;
-                        Decimal  intTotalcost = 0;
+                        //Decimal  intTotalcost = 0;
                         Decimal  intoffshower = 0;
                         Decimal  intOnshower = 0;
                         Decimal  intNoOfResources = 0;
