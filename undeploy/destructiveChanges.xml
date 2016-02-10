@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+	Please update to list the components which are required to be removed
+	//-->
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
 		<members>BET_ManageMembersController_Test2</members>

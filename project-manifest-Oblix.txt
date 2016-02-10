@@ -213,6 +213,7 @@ src/triggers/SOWProjectBusinessValueDriverScore.trigger
 src/triggers/SOWProjectBusinessValueDriverScore.trigger-meta.xml
 src/triggers/SOWSplitProjectAvoid.trigger
 src/triggers/SOWSplitProjectAvoid.trigger-meta.xml
+<<<<<<< HEAD
 src/workflows/Marketing_SOW__c.workflow
 src/approvalProcesses/Marketing_SOW__c.Oblix_SOW_Approval_Process_v1.approvalProcess
 src/approvalProcesses/Marketing_SOW__c.Oblix_SOW_Approval_Process_v2.approvalProcess
@@ -243,3 +244,9 @@ src/permissionsets/Oblix_SWOP_Super_User_V1.permissionset
 src/permissionsets/Oblix_SWOP_UL_1_V1.permissionset
 src/permissionsets/Oblix_SWOP_UL_2_V1.permissionset
 src/permissionsets/Oblix_SWOP_UL3_4_V1.permissionset
+=======
+src/permissionsets/Oblix_SWOP_Super_User_V1.permissionset
+src/permissionsets/Oblix_SWOP_UL3_4_V1.permissionset
+src/permissionsets/Oblix_SWOP_UL_1_V1.permissionset
+src/permissionsets/Oblix_SWOP_UL_2_V1.permissionset
+>>>>>>> 8418c5f636e37ef23d65b63cab212ed735b3ce82
