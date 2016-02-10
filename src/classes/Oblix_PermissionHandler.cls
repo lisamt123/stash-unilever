@@ -67,7 +67,14 @@ public with sharing class Oblix_PermissionHandler {
                                                         AND ProcessInstance.Status = 'Pending' 
                                                         AND ActorId =:currentUserId];
 
-        return workItems.isEmpty() == false;
+        //S.M. 20160210 resolved sonar issue
+        if (NULL!=workItems && !workItems.isEmpty()){
+            return true;
+        }
+        else{
+            return false;
+        }
+        //return workItems.isEmpty() == false;
 
     }
 

@@ -114,6 +114,8 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     private static final Integer notesSize = 255;
     private static final String sow_param_name = 'sowId';
     private static final String FIELD_SET_SOW_MAIN_DETAIL = 'oblix_sow_main_detail';
+    private static final String OBJECT_SOW_TO_QUERY = 'marketing_sow__c';
+
     //achraf
     public Attachment attachment {
         get {
@@ -192,7 +194,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             selected_sow = new Marketing_SOW__c ();
         }
         else {
-            selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', FIELD_SET_SOW_MAIN_DETAIL) , null);
+            selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
         }
         
         //System.DEBUG('!!selected_sow:'+selected_sow);
@@ -535,7 +537,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             if (String.isBlank(errorRequired)){
 
                 upsert selected_sow;
-                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', FIELD_SET_SOW_MAIN_DETAIL) , null);
+                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
 
                 sow_id = selected_sow.Id;
                 
@@ -617,7 +619,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             if (String.isBlank(errorRequired) && selected_sow != null && selected_sow.Id == null){
 
                 insert selected_sow;
-                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', FIELD_SET_SOW_MAIN_DETAIL) , null);
+                selected_sow = getSOW(selected_sow.Id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
             }
 
             uploadeAttachment(); 
@@ -1050,7 +1052,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
             if(result.isSuccess()){
                 // reload SOW to get new sow status
-                selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', FIELD_SET_SOW_MAIN_DETAIL) , null);
+                selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
             }
         }
         //} else {
@@ -1083,7 +1085,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
             if(result.isSuccess()){
                 // reload SOW to get new sow status
-                selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet('Marketing_SOW__c', FIELD_SET_SOW_MAIN_DETAIL) , null);
+                selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
             }
         }
         //} else {

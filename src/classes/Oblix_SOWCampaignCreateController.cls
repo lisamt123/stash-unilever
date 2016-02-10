@@ -42,8 +42,6 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         set;
     }
 
-    private final String GLOBAL_REGION = 'Global';
-
     public Oblix_SOWCampaignCreateController() {
         system.debug('================================================= im the controller here ===');
         campaignHelper = new Oblix_CampaignCreateHelper();
