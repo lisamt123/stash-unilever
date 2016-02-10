@@ -81,6 +81,7 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
         set;
     }
 
+    @testvisible
     private String financialYear {
         get {
             If(selectedSow != null && financialYear == null) {
