@@ -533,7 +533,7 @@
                     <div class="col-sm-6 text-center" id="stopsection">
                         <div><img src="{!URLFOR($Resource.IPM_Resource, 'images/img_ple.png')}" alt="PLE" /></div>                                   
                         <div class="successStyle">{!$Label.IPM_ProjectLaunchMeassage}</div>
-                        <div class="launchDate">on&nbsp;<apex:outputField value="{!projectDoc.IPM_Approval_Date__c }"/></div>                                   
+						<div class="launchDate">on&nbsp;<apex:outputField value="{!project.IPM_Actual_Launch_Date__c }"/></div>                                 
                     </div>
                 </apex:outputPanel>  
                                      

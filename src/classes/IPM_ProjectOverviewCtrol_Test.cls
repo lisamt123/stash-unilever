@@ -215,5 +215,39 @@ public class IPM_ProjectOverviewCtrol_Test {
         	IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
         	system.assert(overCtrl1.childProjectsIncompleteAlert != null);
        }
-     }      
+    }
+
+	//Testmethod to validate moveToPLE functionality
+    static testMethod void testmoveToPLE()
+    {
+    	// Get the newly created Projects from Database. 
+        Set<String> projectNameSet = new Set<String>{'TestComments1'};
+        User globalProjectLeader = null;
+        
+        // Get the list of user's for project leaders.
+        List<User> userList = [Select Id,Name,lastName from User where LastName='GLOBAL_PL'];
+        
+        // Creating manual share records as Criteria based Sharing doesnt work for Test Classes.
+        IPM_TestFactory_Helper.shareMasterProject(userList); 
+        globalProjectLeader = userList[0];
+        
+        System.RunAs(globalProjectLeader)
+        {
+            
+        List<IPM_Project__c> projectList = [Select Id,IPM_Phase__c,Name,IPM_GateKeeping_Model__c,IPM_Complexity__c,IPM_Project_Name__c
+                                                    from IPM_Project__c where Name in:projectNameSet];
+           
+        Test.startTest();
+        PageReference pRef1 = new PageReference(sPageRefURL+projectList[0].ID);
+        Test.setCurrentPage(pRef1);
+        
+        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
+        IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
+        
+        overCtrl1.moveToPLE();
+        list<IPM_Project__c> ResultProject = [Select Id, IPM_Actual_Launch_Date__c from IPM_Project__c where Id =: projectList[0].Id];
+        System.assertEquals(Date.today(), ResultProject[0].IPM_Actual_Launch_Date__c, 'Launch Date Is Wrong');
+        Test.stopTest();
+        }
+    }
  }

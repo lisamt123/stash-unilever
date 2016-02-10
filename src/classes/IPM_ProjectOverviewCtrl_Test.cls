@@ -520,26 +520,6 @@ public class IPM_ProjectOverviewCtrl_Test
         }
     }
     
-    //Testmethod to validate moveToPLE functionality
-    static testMethod void testmoveToPLE(){
-        platformUser =IPM_TestFactory_Helper.returnPlatformUser();
-         
-        system.runAs(platformUser)
-        {
-        initializedData();
-        Test.startTest();
-        PageReference pRef1 = new PageReference(sPageRefURL+project.ID);
-        Test.setCurrentPage(pRef1);
-        
-        IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
-        IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
-        overCtrl1.moveToPLE();
-        project = [Select Id, IPM_Actual_Launch_Date__c from IPM_Project__c where Id =: project.Id];
-        System.assertEquals(Date.today(), project.IPM_Actual_Launch_Date__c, 'Launch Date Is Wrong');
-        Test.stopTest();
-        }
-    }
-    
     //Testmethod to validate markComplete functionality
     static testMethod void testmarkComplete(){
         platformUser =IPM_TestFactory_Helper.returnPlatformUser();
