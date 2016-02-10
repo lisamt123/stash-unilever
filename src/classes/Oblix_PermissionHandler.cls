@@ -323,9 +323,9 @@ public with sharing class Oblix_PermissionHandler {
     				allow user to submit SOW for approval
     ********************************************************************************/
     public static Boolean canSubmitForApproval(String sow_status){
-    	// only UL1, SuperUser and Sysadmin can send sow for approval
+    	// only UL2, UL1, SuperUser and Sysadmin can send sow for approval
     	// if not already approved
-        if ( (hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin() || hasAG1permissionSet())
+        if ( (hasUL2permissionSet() || hasUL1permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin() || hasAG1permissionSet())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status && Oblix_Utils.SOW_STATUS_APPROVED_BY_AGENCY != sow_status
                 && Oblix_Utils.SOW_STATUS_AWAITING_UNILEVER_APPROVAL != sow_status && Oblix_Utils.SOW_STATUS_AWAITING_AGENCY_APPROVAL != sow_status
