@@ -2243,7 +2243,8 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <listViews>
         <fullName>CAP_ULPM_CPA_PWORF</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
+        <label>ULPM</label>
+        <language>en_US</language>
         <queue>CAP_ULPM</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -2256,14 +2257,15 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <columns>Analyse_sessions_expected__c</columns>
         <columns>txta_Application_infrastructure__c</columns>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
         <language>en_US</language>
         <queue>CAP_VDM_Queue</queue>
     </listViews>
     <listViews>
         <fullName>CPA_SMT_CPA_PWORF</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA SMT</label>
+        <label>SMT</label>
+        <language>en_US</language>
         <queue>CPA_SMT</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

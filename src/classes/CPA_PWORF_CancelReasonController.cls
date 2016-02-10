@@ -65,30 +65,36 @@ public with sharing Class CPA_PWORF_CancelReasonController{
         update pworfRecord;
     }
     void pwoCancel(List<CPA_PWO__c> pwoRecList){
+        List<CPA_PWO__c> pwoList = new List<CPA_PWO__c>();
         if(pwoRecList.size()>0){
             for(CPA_PWO__c pwo:pwoRecList){
                 pwo.txta_Reason_for_Cancellation__c = strReason;
                 pwo.pkl_Status__c= 'Cancelled';
-                update pwo;
+                pwoList.add(pwo);
             }
+            update pwoList;
         }
     }
     void loiCancel(List<CPA_LOI__c> loiRecList){
+        List<CPA_LOI__c> loiList = new List<CPA_LOI__c>();
         if(loiRecList.size()>0){
             for(CPA_LOI__c loi:loiRecList){
                 loi.txta_Reason_for_Cancellation__c = strReason;
                 loi.pkl_Status__c= 'Cancelled';
-                update loi;
+                loiList.add(loi);
             }
+            update loiList;
         }
     }
     void crCancel(List<CPA_CR__c> crRecList){
+        List<CPA_CR__c> crList = new List<CPA_CR__c>();
         if(crRecList.size()>0){
             for(CPA_CR__c cr:crRecList){
                 cr.ltxta_Reason_for_Cancellation__c = strReason;
                 cr.pkl_Status__c= 'Cancelled';
-                update cr;
+                crList.add(cr);
             }
+            update crList;
         }
     }
 }

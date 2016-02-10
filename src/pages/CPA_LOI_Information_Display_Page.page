@@ -1,4 +1,4 @@
-<apex:page standardController="CPA_LOI__c" extensions="CPA_LOI_InformationController"  action="{!UpdateLoi}"> 
+<apex:page standardController="CPA_LOI__c" extensions="CPA_LOI_InformationController"> 
  <apex:form style="overflow:auto;height:250px"  >
   <apex:pageBlock >
       <apex:pageMessages />

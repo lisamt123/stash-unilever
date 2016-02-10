@@ -2120,6 +2120,21 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <listViews>
+        <fullName>CPA_SMT_PWO</fullName>
+        <columns>NAME</columns>
+        <columns>fml_Clarity_ID__c</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>OWNER.FIRST_NAME</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Queue</filterScope>
+        <label>SMT</label>
+        <language>en_US</language>
+        <queue>CPA_SMT</queue>
+        <sharedTo>
+            <group>CAP_SMT_Group</group>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>PWO-{00000}</displayFormat>
         <label>PWO ID</label>

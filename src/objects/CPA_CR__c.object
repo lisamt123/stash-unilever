@@ -91,19 +91,6 @@
         <unique>false</unique>
     </fields>
     <fields>
-        <fullName>Delta__c</fullName>
-        <description>This field created for reporting purpose.</description>
-        <externalId>false</externalId>
-        <label>Delta</label>
-        <precision>6</precision>
-        <required>false</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
         <fullName>Efforts_MD__c</fullName>
         <description>This field created for reporting purpose.</description>
         <externalId>false</externalId>
@@ -129,6 +116,16 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>Is_Latest_CR__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>This field created for reporting purpose.</description>
+        <externalId>false</externalId>
+        <label>Is Latest CR?</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>PWO_ID__c</fullName>
@@ -945,28 +942,31 @@
     <listViews>
         <fullName>CAP_ULPM_CR</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
+        <label>ULPM</label>
+        <language>en_US</language>
         <queue>CAP_ULPM</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <group>CAP_ULPM_group</group>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CAP_VDM_Queue_CR</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
+        <language>en_US</language>
         <queue>CAP_VDM_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <group>CAP_VDM_Group</group>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CPA_SMT_CPA_CR</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA SMT</label>
+        <label>SMT</label>
+        <language>en_US</language>
         <queue>CPA_SMT</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <group>CAP_SMT_Group</group>
         </sharedTo>
     </listViews>
     <nameField>

@@ -352,11 +352,6 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
-        <field>CPA_CR__c.Delta__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
         <editable>false</editable>
         <field>CPA_CR__c.Efforts_MD__c</field>
         <readable>true</readable>
@@ -364,6 +359,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_CR__c.Final_Project_End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_CR__c.Is_Latest_CR__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>

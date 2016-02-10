@@ -13,7 +13,12 @@ public with sharing class CPA_LOI_TriggerUtil{
     */
      public static void recallApproval(List<CPA_LOI__c> LOIOldList,List<CPA_LOI__c> newLOIList)    
     { 
-        List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem ];
+        set<ID> settempLOIID = new set<ID>();
+       for(CPA_LOI__c objLOITemp: newLOIList){
+            
+            settempLOIID.add(objLOITemp.Id);
+        }
+        List<ProcessInstanceWorkitem> piwiList = [SELECT Id, ProcessInstanceId, ProcessInstance.TargetObjectId FROM ProcessInstanceWorkitem where ProcessInstance.TargetObjectId IN:settempLOIID ];
         for (Integer i = 0; i < newLOIList.size(); i++) {
             if((LOIOldList[i].pkl_Status__c  == ConstantsForContractingAppClasses.SUBMITTED || LOIOldList[i].pkl_Status__c  == ConstantsForContractingAppClasses.RESUBMITTED) && (newLOIList[i].pkl_Status__c == ConstantsForContractingAppClasses.CANCELLED)){
                 for(ProcessInstanceWorkitem piwi:piwiList){
@@ -60,7 +65,7 @@ public with sharing class CPA_LOI_TriggerUtil{
         }
         if(setPworfId !=null && setPworfId.size()>0){
                 for(CPA_PWORF__c objPWORF :[select id,chk_LOI_Cancelled__c from CPA_PWORF__c where ID IN:setPworfId]){
-                    if(objPWORF.chk_LOI_Cancelled__c != true){
+                    if(!objPWORF.chk_LOI_Cancelled__c){
                         objPWORF.chk_LOI_Cancelled__c = true;
                         lstPWORF.add(objPWORF);
                     }               
@@ -85,7 +90,7 @@ public with sharing class CPA_LOI_TriggerUtil{
         for(CPA_LOI__c obj : newList){
             for(CPA_PWORF__c objPWORF :listPworf ){
                 if(obj.lkp_PWORF__c == objPWORF.Id  )
-                if(Test.isrunningtest()!=true){
+                if(!Test.isrunningtest()){
                     //obj.addError('LOI is already cancelled so its not possible to create another LOI, Please respond with PWO.'); 
                     obj.addError('This PWORF contains a Cancelled LOI so its not possible to create another LOI, Please respond with PWO.'); 
                     }               
@@ -195,19 +200,20 @@ public with sharing class CPA_LOI_TriggerUtil{
     public static void cancelAllLOI(List<CPA_LOI__c> newLOI){
         set<Id> setPWORF = new set<ID>();
         system.debug('newLOI>>>>>>>>'+newLOI);
+        List<CPA_LOI__c> ListnewLOI  = new List<CPA_LOI__c>();
         for(CPA_LOI__c objNewLOI : newLOI){
             if(objNewLOI.pkl_Status__c == ConstantsForContractingAppClasses.CANCELLED){
                 system.debug('objNewLOI.pkl_Status__c >>>>>>>>'+objNewLOI.pkl_Status__c );
                 setPWORF.add(objNewLOI.lkp_PWORF__c);
             }
         }
-        system.debug('pooja>>>>>>>>>>'+[select id,pkl_Status__c from CPA_LOI__c where lkp_PWORF__c  IN: setPWORF and pkl_Status__c !=: ConstantsForContractingAppClasses.CANCELLED]);
         for(CPA_LOI__c objLoi : [select id,pkl_Status__c from CPA_LOI__c where lkp_PWORF__c  IN: setPWORF and pkl_Status__c !=: ConstantsForContractingAppClasses.CANCELLED]){
             system.debug('objLoi>>>>>>>>>>'+objLoi);
                 objLoi.pkl_Status__c = ConstantsForContractingAppClasses.CANCELLED;
                 system.debug('objLoi.pkl_Status__c >>>>>>>>'+objLoi.pkl_Status__c );
-                update objLoi;
+                ListnewLOI.add(objLoi);
             }
+        update ListnewLOI;
     }
     
     /** Method Name : internalLIOID

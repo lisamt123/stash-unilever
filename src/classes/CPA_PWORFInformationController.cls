@@ -30,7 +30,7 @@ global with sharing class CPA_PWORFInformationController {
         if(customSettingStatusMsg.Status_Message__c != null && callFromVF){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.Status_Message__c));
         }
-        if((pworfRec.pkl_Status__c == 'Saved' || pworfRec.pkl_Status__c == 'Withhold')  || callFromVF == false){
+        if((pworfRec.pkl_Status__c == 'Saved' || pworfRec.pkl_Status__c == 'Withhold')  || !callFromVF){
 
             //if(pworfRec.VDM__c== null)
                 //objectMap.put('Vendor' ,ConstantsForContractingAppClasses.MANDATORY);
@@ -210,18 +210,7 @@ global with sharing class CPA_PWORFInformationController {
             if(pworfRecord.Risk_Assessment_and_Mitigation__r.size()==0) objectMap.put('Risk Assessment and Mitigation' ,ConstantsForContractingAppClasses.MANDATORY);            
         }*/
     }
-    public void UpdatePworf() {
-        if(!objectMap.isEmpty()){
-            if(pworfRec.isValidated__c != false){
-                    pworfRec.isValidated__c = false;  
-                    update pworfRec;                   
-            }   
-        }else if(pworfRec.isValidated__c != true){
-                    pworfRec.isValidated__c = true;  
-                    update pworfRec;                   
-         }
-        
-    }
+   
     
     webService static boolean checkIsValidated(Id objId) {
         boolean flag ;

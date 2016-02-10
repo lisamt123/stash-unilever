@@ -33,7 +33,7 @@ boolean callFromVF = false;
      
          if(LoiRec != null){
             System.debug('Building Map !! ' );
-              if((LoiRec.pkl_Status__c == 'Saved' || LoiRec.pkl_Status__c == 'Withhold') || callFromVF == false){
+              if((LoiRec.pkl_Status__c == 'Saved' || LoiRec.pkl_Status__c == 'Withhold') || !callFromVF){
              if(LoiRec.pkl_Currency__c == 'Select' || LoiRec.pkl_Currency__c == null)
                  RequiredFieldMap.put('Currency',ConstantsForContractingAppClasses.MANDATORY);  
               if(LoiRec.pkl_Currency__c == 'OTHER'){
@@ -73,18 +73,7 @@ boolean callFromVF = false;
         return true;
     }
  
- public void UpdateLOI() {
-        if(!RequiredFieldMap.isEmpty()){
-            if(LoiRec.isValidated__c != false){
-                    LoiRec.isValidated__c = false;  
-                    update LoiRec;                   
-            }   
-        }else if(LoiRec.isValidated__c != true){
-                    LoiRec.isValidated__c = true;  
-                    update LoiRec;                   
-         }
-        
-    } 
+ 
     webService static boolean checkIsValidated(Id objId) {
         boolean flag ;
 

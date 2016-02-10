@@ -1,4 +1,4 @@
-<apex:page standardController="CPA_PWORF__c" extensions="CPA_PWORFInformationController" action="{!UpdatePworf}">
+<apex:page standardController="CPA_PWORF__c" extensions="CPA_PWORFInformationController">
  <apex:form >
    <apex:pageBlock >
       <apex:pageMessages />

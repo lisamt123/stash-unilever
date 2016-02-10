@@ -525,28 +525,31 @@
     <listViews>
         <fullName>CAP_ULPM_LOI</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA ULPM</label>
+        <label>ULPM</label>
+        <language>en_US</language>
         <queue>CAP_ULPM</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <group>CAP_ULPM_group</group>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CAP_VDM_Queue_LOI</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA VDM Queue</label>
+        <label>VDM</label>
+        <language>en_US</language>
         <queue>CAP_VDM_Queue</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <group>CAP_VDM_Group</group>
         </sharedTo>
     </listViews>
     <listViews>
         <fullName>CPA_SMT_CPA_LOI</fullName>
         <filterScope>Queue</filterScope>
-        <label>CPA SMT</label>
+        <label>SMT</label>
+        <language>en_US</language>
         <queue>CPA_SMT</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <group>CAP_SMT_Group</group>
         </sharedTo>
     </listViews>
     <nameField>
