@@ -995,15 +995,6 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>IPM_a7IE00000004T0n_IPM_Bosscard</fullName>
-        <filterScope>Queue</filterScope>
-        <label>IPM_BOXTER</label>
-        <queue>IPM_a7IE00000004T0n</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>IPM_a7IE00000004T0s_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_KITEBOARDING B</label>
@@ -1188,15 +1179,6 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <filterScope>Queue</filterScope>
         <label>IPM_ALEGRIA</label>
         <queue>IPM_a7IE00000004T9z</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
-        <fullName>IPM_a7IE00000004TA4_IPM_Bosscard</fullName>
-        <filterScope>Queue</filterScope>
-        <label>IPM_ZAFIRA OK</label>
-        <queue>IPM_a7IE00000004TA4</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
@@ -2084,15 +2066,6 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         </sharedTo>
     </listViews>
     <listViews>
-        <fullName>IPM_a7IE00000004TZE_IPM_Bosscard</fullName>
-        <filterScope>Queue</filterScope>
-        <label>IPM_ALMATI</label>
-        <queue>IPM_a7IE00000004TZE</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
-    </listViews>
-    <listViews>
         <fullName>IPM_a7IE00000004TZJ_IPM_Bosscard</fullName>
         <filterScope>Queue</filterScope>
         <label>IPM_MORODER</label>
@@ -2340,6 +2313,69 @@ IMAGE(&apos;/resource/IPM_Resource/images/category_HHC.png&apos;,&apos;HOUSEHOLD
         <filterScope>Queue</filterScope>
         <label>IPM_TEST ECO 9FEB</label>
         <queue>IPM_a7IE00000004TiB</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004TjT_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004TjT</label>
+        <queue>IPM_a7IE00000004TjT</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004TjY_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004TjY</label>
+        <queue>IPM_a7IE00000004TjY</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004Tl0_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_BOXTER</label>
+        <queue>IPM_a7IE00000004Tl0</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004TlZ_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ALMATI</label>
+        <queue>IPM_a7IE00000004TlZ</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004TmX_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004TmX</label>
+        <queue>IPM_a7IE00000004TmX</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004Tmc_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004Tmc</label>
+        <queue>IPM_a7IE00000004Tmc</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004Tmh_IPM_Bosscard</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ZAFIRA OK</label>
+        <queue>IPM_a7IE00000004Tmh</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
         </sharedTo>
