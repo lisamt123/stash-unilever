@@ -207,7 +207,7 @@ src/tabs/MDO_BrandUser__c.tab
 src/triggers/SOWAssetToProjectCalculatorV.trigger
 src/triggers/SOWAssetToProjectCalculatorV.trigger-meta.xml
 src/triggers/SOWMarketingSharing.trigger
-src/triggers/SOWMarketingSharing.trigger-meta.xmlment
+src/triggers/SOWMarketingSharing.trigger-meta.xml
 src/triggers/SOWProjectBusinessValueDriverScore.trigger
 src/triggers/SOWProjectBusinessValueDriverScore.trigger-meta.xml
 src/triggers/SOWSplitProjectAvoid.trigger
