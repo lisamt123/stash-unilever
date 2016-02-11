@@ -35,6 +35,19 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
             if (!b_initiated_from_vf_page)
                 // the list contains the new Marketing_SOW__c which require big & small categories to be adjusted
                 mids_campaign_id_category_brand = Oblix_SOWHandlerLogic.retrieveBrandCategoriesForSOW(Trigger.New, (Map<Id,Marketing_SOW__c>) Trigger.oldMap);
+
+            // if there is a change in brand or small category, need to re-set approvers
+            List<Marketing_SOW__c> liso_changed_brand_smallc = new List<Marketing_SOW__c>();
+            List<Marketing_SOW__c> newList = (List<Marketing_SOW__c>) Trigger.new;
+            for(Marketing_SOW__c sow : newList){
+                Marketing_SOW__c oldSow = (Marketing_SOW__c) Trigger.oldMap.get(sow.Id);
+                if(sow.OblixBrand__c != oldSow.OblixBrand__c || sow.SmallProductCategory__c != oldSow.SmallProductCategory__c){
+                    liso_changed_brand_smallc.add(sow);
+                }
+            }
+            if(!liso_changed_brand_smallc.isEmpty()){
+                Oblix_SOWHandlerLogic.retrieveBrandCategoryApprovers(liso_changed_brand_smallc, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
+            }
         }
     }
     
@@ -79,6 +92,13 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
         if (!b_initiated_from_vf_page)
             Oblix_SOWHandlerLogic.adjustBrandCategoriesForSOW((Marketing_SOW__c) so, mids_campaign_id_category_brand);
             //Oblix_TR06SowMarketBrandPopulate.PopulateBrandCategoriesforSOWHandler((Marketing_SOW__c)so, lstMarkBrandCateg);
+
+        Marketing_SOW__c sow = (Marketing_SOW__c) so;
+        Marketing_SOW__c oldSow = (Marketing_SOW__c) oldSo;
+        // set approvers to SOWs in this scope
+        if((sow.OblixBrand__c != oldSow.OblixBrand__c) || (sow.SmallProductCategory__c != oldSow.SmallProductCategory__c)){
+            Oblix_SOWHandlerLogic.setSOWApprovers(sow, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
+        }
     }
      
 

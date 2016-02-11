@@ -444,7 +444,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.OblixTotalAdaptFees__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -454,7 +454,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.OblixTotalDigitalFees__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -474,7 +474,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.OblixTotalProjectsFees__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -507,9 +507,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Marketing_SOW__c.SOW_Creator_is_Approver__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1169,32 +1169,32 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_User_Permission__c.Brand_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_User_Permission__c.CategoryBrand_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_User_Permission__c.Category_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_User_Permission__c.Level_of_Access__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Oblix_User_Permission__c.User_Email__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>Oblix_User_Permission__c.User_id__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <label>Oblix SWOP Super User V1</label>
     <objectPermissions>
@@ -1258,6 +1258,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Oblix_SOW_Projects__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Oblix_User_Permission__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <pageAccesses>
@@ -1326,7 +1335,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Marketing_SOW__c.ChildSowMarketing</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Marketing_SOW__c.ParentSowMarketing</recordType>
@@ -1370,11 +1379,11 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Oblix_User_Permission__c.Oblix_Agency_User</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Oblix_User_Permission__c.Oblix_Unilever_User</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <tabSettings>
         <tab>MDO_BrandUser__c</tab>
@@ -1382,7 +1391,7 @@
     </tabSettings>
     <tabSettings>
         <tab>Oblix_Calculator__c</tab>
-        <visibility>Available</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>Oblix_Marketing_SOW_Project_Splits__c</tab>
@@ -1394,7 +1403,7 @@
     </tabSettings>
     <tabSettings>
         <tab>Oblix_SOW_Projects__c</tab>
-        <visibility>Available</visibility>
+        <visibility>Visible</visibility>
     </tabSettings>
     <tabSettings>
         <tab>SWOP</tab>

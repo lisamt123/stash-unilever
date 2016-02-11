@@ -1,12 +1,13 @@
 @isTest
 private class Oblix_SOWCampaignCreateController_Test {
 
-    private static final String NOT_NULL_MESSAGE = 'Page Reference should not be null';
+    //private static final String NOT_NULL_MESSAGE = 'Page Reference should not be null';
     private static final String PROJECT_TXT = 'Project';
     private static final String PROJECT_TXT_1 = 'Project1';
     private static final String PROJECTID_TXT = 'projectId';
     private static final String SOWID_TXT = 'sowId';
     private static final String GLOBAL_REGION = 'Global';
+    private static final String COUNTRY_TYPE = 'Country';
 
     @isTest static void SOWCampaignCreateControllerTest_addOneMoreProjectSplitInstance_isSplitInstanceAdded() {
         User u = Oblix_TestUtils.createTestUser();
@@ -229,7 +230,7 @@ private class Oblix_SOWCampaignCreateController_Test {
         }
     } 
 
-    @isTest static void SOWCampaignCreateControllerTest_FinancialYear_isfinancialYearSetinCreateMode() {
+    @isTest static void SOWCampaignCreateControllerTest_FinancialYear_isFinancialYearSetinCreateMode() {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
@@ -245,7 +246,24 @@ private class Oblix_SOWCampaignCreateController_Test {
         }
     } 
 
-     @isTest static void SOWCampaignCreateControllerTest_FinancialYear_isfinancialYearSetinEditMode() {
+     @isTest static void SOWCampaignCreateControllerTest_FinancialYear_isFinancialYearSetinEditMode() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+
+            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            
+            Test.startTest();
+                System.assertEquals(campaignCreateController.campaignHelper.financialYear, 'FY2015');
+                
+            Test.stopTest();      
+        }
+    } 
+
+    @isTest static void SOWCampaignCreateControllerTest_countriesByFinancialYear_isCountriesByFinancialYearSet() {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
@@ -256,10 +274,59 @@ private class Oblix_SOWCampaignCreateController_Test {
             Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
             Test.startTest();
-                System.assertEquals(campaignCreateController.campaignHelper.financialYear, 'FY2015');
+                System.assert(campaignCreateController.campaignHelper.countriesByFinancialYear!=null);
                 
             Test.stopTest();      
         }
     } 
+
+    @isTest static void SOWCampaignCreateControllerTest_countriesRegions_isCountriesRegionsArtefactsSet() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+            MDO_Geography__c testGeography = new MDO_Geography__c(name=PROJECT_TXT,geography_type__c = COUNTRY_TYPE);
+            insert testGeography;
+            MDO_Geography__c testGeography1 = new MDO_Geography__c(name=PROJECT_TXT,geography_type__c = COUNTRY_TYPE);
+            insert testGeography1;
+            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            
+            Test.startTest();
+                System.assert(campaignCreateController.campaignHelper.countriesMap!=null);
+                System.assert(campaignCreateController.campaignHelper.regionsWithCountriesMap!=null);
+                System.assert(campaignCreateController.campaignHelper.countriesWithRegionsMap!=null);
+                System.assert(campaignCreateController.campaignHelper.allCountries!=null);
+                System.assert(campaignCreateController.campaignHelper.unileverRegions!=null);
+                System.assert(campaignCreateController.campaignHelper.regionsWithCountriesMapJSON!=null);
+                System.assert(campaignCreateController.campaignHelper.selectedCountriesJSON!=null);
+                System.assert(campaignCreateController.campaignHelper.selectedMainRegionJSON!=null);
+                System.assert(campaignCreateController.campaignHelper.countryIdsMap!=null);
+                System.assert(campaignCreateController.campaignHelper.countryOptions!=null);
+            Test.stopTest();      
+        }
+    }
+
+    @isTest static void SOWCampaignCreateControllerTest_brandAndInnovationOptions_isbrandAndInnovationOptionsSet() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+            MDO_Geography__c testGeography = new MDO_Geography__c(name=PROJECT_TXT,geography_type__c = COUNTRY_TYPE);
+            insert testGeography;
+            MDO_Geography__c testGeography1 = new MDO_Geography__c(name=PROJECT_TXT,geography_type__c = COUNTRY_TYPE);
+            insert testGeography1;
+            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            
+            Test.startTest();
+                System.assert(campaignCreateController.campaignHelper.innovationOptions!=null);
+                System.assert(campaignCreateController.campaignHelper.brandOptions!=null);
+            Test.stopTest();      
+        }
+    }
+    
        
 }

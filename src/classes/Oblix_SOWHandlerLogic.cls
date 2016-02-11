@@ -90,7 +90,7 @@ public with sharing class Oblix_SOWHandlerLogic {
         Set<Id> bigCIds = new Set<Id>();
         Set<Id> brandIds = new Set<Id>();
         for(Marketing_SOW__c sow : newSOWs){
-            bigCIds.add(sow.BigOblixProductCategory__c);
+            bigCIds.add(sow.SmallProductCategory__c);
             brandIds.add(sow.OblixBrand__c);
         }
         List<Oblix_User_Permission__c> userPermissions = [SELECT Id, CategoryBrand_id__r.Brand_id__c, CategoryBrand_id__r.Product_Category_Id__c, User_id__c, RecordTypeId
@@ -134,8 +134,8 @@ public with sharing class Oblix_SOWHandlerLogic {
         Boolean isChanged = false;
 
         // populate approvers on SOWs. Currently only one approver is populated, but the system allows as many as there are approver fields on SOW
-        if(String.isNotEmpty(sow.OblixBrand__c) && String.isNotEmpty(sow.BigOblixProductCategory__c)){
-            String brandCatKey = sow.OblixBrand__c + '_' + sow.BigOblixProductCategory__c;
+        if(String.isNotEmpty(sow.OblixBrand__c) && String.isNotEmpty(sow.SmallProductCategory__c)){
+            String brandCatKey = sow.OblixBrand__c + '_' + sow.SmallProductCategory__c;
 
             if(brandCatKey_unileverApproverIds_map != null && brandCatKey_unileverApproverIds_map.containsKey(brandCatKey)){
                 Set<Id> unileverApprovers = brandCatKey_unileverApproverIds_map.get(brandCatKey);

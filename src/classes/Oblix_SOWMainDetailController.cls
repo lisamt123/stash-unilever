@@ -69,6 +69,12 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         }
     }
 
+    public Boolean is_sole_editor{
+        get{
+            return Oblix_PermissionHandler.isOnlyBrandCatEditor(selected_sow.OblixBrand__c, selected_sow.SmallProductCategory__c, UserInfo.getUserId());
+        }
+    }
+
     //public Marketing_SOW__c selected_sow {get; set;}
     public id sow_id {get; set;}
     public id project_id {get; set;}

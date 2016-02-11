@@ -94,6 +94,7 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
         set;
     }
 
+    @testvisible
     private List < Oblix_Calculator__c > countriesByFinancialYear {
         get {
             if (countriesByFinancialYear == null) {
@@ -106,6 +107,7 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
         set;
     }
 
+    @testvisible
     private Map < Id, MDO_Geography__c > countriesMap {
         get {
             if (countriesMap == null) {
@@ -118,6 +120,7 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
         set;
     }
 
+    @testvisible
     private Map < String, Set < String >> regionsWithCountriesMap {
         get {
             if (regionsWithCountriesMap == null && countriesMap != null) {
@@ -227,6 +230,7 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
         set;
     }
 
+    @testvisible
     private Map < String, Id > countryIdsMap {
         get {
             if (countryIdsMap == null) {

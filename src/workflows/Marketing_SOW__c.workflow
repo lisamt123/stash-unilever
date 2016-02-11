@@ -9,7 +9,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>Oblix_SOW_Email/SOW_returned_to_Marketeer</template>
+        <template>Oblix_SOW_Email/SOW_returned_to_Marketeer_2</template>
     </alerts>
     <alerts>
         <fullName>SOW_Approved_by_Agency</fullName>
@@ -34,7 +34,7 @@
             <type>userLookup</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>Oblix_SOW_Email/SOW_Approved_by_Unilever</template>
+        <template>Oblix_SOW_Email/SOW_Approved_by_Unilever_2</template>
     </alerts>
     <alerts>
         <fullName>SOW_Ready_for_Internal_Approval</fullName>
@@ -97,15 +97,6 @@
         <field>SOW_Status__c</field>
         <literalValue>Draft - with Unilever</literalValue>
         <name>Update SOW Status to Draft</name>
-        <notifyAssignee>false</notifyAssignee>
-        <operation>Literal</operation>
-        <protected>false</protected>
-    </fieldUpdates>
-    <fieldUpdates>
-        <fullName>Update_SOW_Status_to_Draft_with_UL</fullName>
-        <field>SOW_Status__c</field>
-        <literalValue>Draft - with Unilever</literalValue>
-        <name>Update SOW Status to Draft with UL</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
         <protected>false</protected>

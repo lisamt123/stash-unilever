@@ -710,7 +710,7 @@ public with sharing class Oblix_Utils {
     *                                                                               *
     ********************************************************************************/
 
-    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v3';
+    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v4';
 
     public static final String SOW_STATUS_APPROVED_BY_UNILEVER = 'Awaiting Agency Approval';
     public static final String SOW_STATUS_APPROVED_BY_AGENCY = 'Approved';
@@ -730,5 +730,8 @@ public with sharing class Oblix_Utils {
 
     /*------------------------------LEVELS OF ACCESS---------------------------------*/
     public static final String USER_PERMISSION_APPROVER = 'Approver';
+    public static final String USER_PERMISSION_READ_ONLY = 'Read Only';
+    public static final String USER_PERMISSION_ACCESS_EDIT = 'Access & Edit';
+    public static final String USER_PERMISSION_SUPERUSER = 'Superuser';
 
 }

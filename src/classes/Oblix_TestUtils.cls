@@ -33,7 +33,7 @@ public with sharing class Oblix_TestUtils {
         for(Integer counter = 0; counter < numberOfCountriesToCreate; counter++){
             returnedString += 'Country ' + counter + ',';
         }
-        returnedString.removeEnd(',');
+        returnedString = returnedString.removeEnd(',');
         return returnedString;
     }
 

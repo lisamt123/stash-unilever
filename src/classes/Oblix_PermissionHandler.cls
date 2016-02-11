@@ -387,6 +387,26 @@ public with sharing class Oblix_PermissionHandler {
     }
 
     /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-11
+    * @description  checks if a user is the only user with edit permission for 
+                    this brand-category combination of this SOW
+    ********************************************************************************/
+    public static Boolean isOnlyBrandCatEditor(Id brand_id, Id category_id, Id user_id){
+
+        AggregateResult[] ar = [SELECT COUNT(Id) cnt 
+            FROM Oblix_User_Permission__c 
+            WHERE Level_of_Access__c != :Oblix_Utils.USER_PERMISSION_READ_ONLY
+                AND CategoryBrand_id__r.Brand_id__c = :brand_id
+                AND CategoryBrand_id__r.Product_Category_Id__c = :category_id
+                AND User_id__c != :user_id];
+
+        Decimal numberOfOtherApprovers = (Decimal) ar[0].get('cnt');
+
+        return (numberOfOtherApprovers == 0);
+    }
+
+    /*******************************************************************************
     * @author       Shahin Movahedi
     * @date         2016-02-02
     * @description  Depending on the assigned permission sets and sow status

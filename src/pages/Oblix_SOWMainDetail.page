@@ -70,6 +70,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <p>Once you submit [{!selected_sow.Name}] for approval you will no longer be able to make any edits to it or the campaigns within.</p>
+                                    <p class="text-danger"><apex:outputText rendered="{!is_sole_editor == false}" value="There are other users in the system with edit access to this same SOW. Make sure that there isn't anyone else working on the same SOW before submitting."/></p>
                                     <p class="text-danger"><apex:outputText rendered="{!sow_approvers_defined == false}" value="This SOW cannot be submitted for approval because there is no Unilever and/or Agency approver defined for this brand-category combination."/></p>
                                     <apex:outputText rendered="{!sow_approvers_defined}">
                                         <p><strong>Optional:</strong> Do you want to add a comment to this?</p>
