@@ -116,6 +116,10 @@ src/classes/Oblix_TR06SowMarketBrandPopulate_Test.cls
 src/classes/Oblix_TR06SowMarketBrandPopulate_Test.cls-meta.xml
 src/classes/Oblix_TestUtils.cls
 src/classes/Oblix_TestUtils.cls-meta.xml
+src/classes/Oblix_UserPermissionHandler.cls
+src/classes/Oblix_UserPermissionHandler.cls-meta.xml
+src/classes/Oblix_UserPermissionHandlerLogic.cls
+src/classes/Oblix_UserPermissionHandlerLogic.cls-meta.xml
 src/classes/Oblix_Utils.cls
 src/classes/Oblix_Utils.cls-meta.xml
 src/classes/Oblix_Utils_Test.cls
@@ -212,6 +216,8 @@ src/triggers/SOWProjectBusinessValueDriverScore.trigger
 src/triggers/SOWProjectBusinessValueDriverScore.trigger-meta.xml
 src/triggers/SOWSplitProjectAvoid.trigger
 src/triggers/SOWSplitProjectAvoid.trigger-meta.xml
+src/triggers/Oblix_UserPermissionTrigger.trigger
+src/triggers/Oblix_UserPermissionTrigger.trigger-meta.xml
 src/workflows/Marketing_SOW__c.workflow
 src/approvalProcesses/Marketing_SOW__c.Oblix_SOW_Approval_Process_v4.approvalProcess
 src/email
