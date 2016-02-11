@@ -137,7 +137,7 @@ public with sharing class Oblix_SOWHandlerLogic {
             brandIds.add(sow.OblixBrand__c);
         }
         
-        List<Oblix_User_Permission__c> userPermissions = [SELECT Id, CategoryBrand_id__r.Brand_id__c, CategoryBrand_id__r.Product_Category_Id__c, User_id__c, RecordTypeId
+        List<Oblix_User_Permission__c> userPermissions = [SELECT Id, CategoryBrand_id__r.Brand_id__c, CategoryBrand_id__r.Product_Category_Id__c, User_id__c, RecordTypeId, Level_of_Access__c
                                                             FROM Oblix_User_Permission__c 
                                                             WHERE CategoryBrand_id__r.Brand_id__c IN :brandIds 
                                                                 AND CategoryBrand_id__r.Product_Category_Id__c IN :bigCIds];
@@ -174,12 +174,16 @@ public with sharing class Oblix_SOWHandlerLogic {
 
                 for(Oblix_User_Permission__c userPermission : brandCatKey_UserIds_map.get(brandCatKey)){
 
-                    Marketing_SOW__Share ms = new Marketing_SOW__Share();
-                    ms.ParentId = sow.Id;
-                    ms.UserOrGroupId =  userPermission.User_id__c;
-                    ms.RowCause = Schema.Marketing_SOW__Share.RowCause.Manual;
-                    ms.AccessLevel = userPermission.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_READ_ONLY ? 'Read' : 'Edit';
-                    sharesToInsert.add(ms);
+                    if(sow.OwnerId != userPermission.User_id__c){
+
+                        Marketing_SOW__Share ms = new Marketing_SOW__Share();
+                        ms.ParentId = sow.Id;
+                        ms.UserOrGroupId =  userPermission.User_id__c;
+                        ms.RowCause = Schema.Marketing_SOW__Share.RowCause.MANUAL;
+                        ms.AccessLevel = userPermission.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_READ_ONLY ? 'Read' : 'Edit';
+                        sharesToInsert.add(ms);
+
+                    }
 
                 }
 
@@ -198,7 +202,7 @@ public with sharing class Oblix_SOWHandlerLogic {
     ********************************************************************************/
     public static void deleteAllManualSharing(List<Marketing_SOW__c> liso_sow){
 
-        List<Marketing_SOW__Share> sowShares = [SELECT Id from Marketing_SOW__Share WHERE ParentId IN :liso_sow];
+        List<Marketing_SOW__Share> sowShares = [SELECT Id from Marketing_SOW__Share WHERE ParentId IN :liso_sow AND RowCause = :Schema.Marketing_SOW__Share.RowCause.MANUAL];
 
         delete sowShares;
 

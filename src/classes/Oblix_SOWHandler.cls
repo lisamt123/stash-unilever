@@ -60,17 +60,20 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
                     prior execution of the trigger.
     ********************************************************************************/
     public void bulkAfter(){
-        set<Id> setOWnerdsIds = new set<Id>();
-        List<Marketing_SOW__c> lstSOW = Trigger.New;
-        if(Trigger.isInsert || Trigger.isUpdate){
-            for(Marketing_SOW__c markSow : lstSOW){
-                setOWnerdsIds.add(markSow.OwnerId);
-            }
-            //lstMarketingShareToDelete = Oblix_TR01SOWMarkingSharing.retrieveMarketingShare(Trigger.New, setOWnerdsIds);
+        //set<Id> setOWnerdsIds = new set<Id>();
+        //List<Marketing_SOW__c> lstSOW = Trigger.New;
+        //if(Trigger.isInsert || Trigger.isUpdate){
+        //    for(Marketing_SOW__c markSow : lstSOW){
+        //        setOWnerdsIds.add(markSow.OwnerId);
+        //    }
+        //    //lstMarketingShareToDelete = Oblix_TR01SOWMarkingSharing.retrieveMarketingShare(Trigger.New, setOWnerdsIds);
+        //}
 
+        if(Trigger.isInsert){
             //get all user permissions
             brandCatKey_UserPermissions_map = Oblix_SOWHandlerLogic.retrieveUserPermissions(Trigger.new);
         }
+        
         if(Trigger.isUpdate){
             //Start Approval Process Part
              for (Integer i = 0; i < Trigger.new.size(); i++) {
@@ -78,7 +81,10 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
                     lstSowRecordsApproval.add((Marketing_SOW__c)Trigger.new[i]);
                 }
              }
-             // if there is a change in brand or small category, need to re-set approvers
+        }
+
+        if(Trigger.isUpdate || Trigger.isDelete){
+            // if there is a change in brand or small category, need to re-set approvers
             List<Marketing_SOW__c> liso_changed_brand_smallc = new List<Marketing_SOW__c>();
             List<Marketing_SOW__c> newList = (List<Marketing_SOW__c>) Trigger.new;
             for(Marketing_SOW__c sow : newList){
@@ -91,7 +97,7 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
                 brandCatKey_UserPermissions_map = Oblix_SOWHandlerLogic.retrieveUserPermissions(Trigger.new);
                 Oblix_SOWHandlerLogic.deleteAllManualSharing(liso_changed_brand_smallc);
             }
-        }    
+        }
             
     }
     
@@ -136,8 +142,13 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
     {
         //lstMarketingShare = pOblix_TR01SOWMarkingSharing.sowMarketingSharing((Marketing_SOW__c)so, Trigger.New);
         lstApprovalReq = Oblix_TR02SubmitSOWForApproval.SubmitSowForApproval((Marketing_SOW__c)so, lstSowRecordsApproval);
-        List<Marketing_SOW__Share> li_sowShare = Oblix_SOWHandlerLogic.adjustSharing((Marketing_SOW__c) so, brandCatKey_UserPermissions_map);
-        li_sharesToInsert.addAll(li_sowShare);
+        //re-calculate sharing
+        Marketing_SOW__c sow = (Marketing_SOW__c) so;
+        Marketing_SOW__c oldSow = (Marketing_SOW__c) oldSo;
+        if((sow.OblixBrand__c != oldSow.OblixBrand__c) || (sow.SmallProductCategory__c != oldSow.SmallProductCategory__c)){
+            List<Marketing_SOW__Share> li_sowShare = Oblix_SOWHandlerLogic.adjustSharing((Marketing_SOW__c) so, brandCatKey_UserPermissions_map);
+            li_sharesToInsert.addAll(li_sowShare);
+        }
     }
     
     public void afterDelete(SObject so)
@@ -158,7 +169,7 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
             insert li_sharesToInsert;
         }
 
-        if(triggerShouldExecute && Trigger.isAfter){
+        //if(triggerShouldExecute && Trigger.isAfter){
                 //Database.delete(lstMarketingShareToDelete, false);
                 //Database.insert(lstMarketingShare, false);
                 //delete lstMarketingShareToDelete;
@@ -168,7 +179,7 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
                 //    // display if the reqeust was successful
                     //System.debug('Submitted for approval successfully: '+result.isSuccess());
                 //}
-        }
+        //}
         System.debug('Exiting Oblix_SOWHandler.andFinally');
     }
 }
