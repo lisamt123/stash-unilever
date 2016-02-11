@@ -126,8 +126,8 @@ public with sharing class Oblix_SOWHandlerLogic {
     * @description  This method gets user permission setting for a given brand and 
                     category
     ********************************************************************************/
-    public static Map<String, Set<Id>> retrieveUserPermissions(List<Marketing_SOW__c> newSOWs){
-        Map<String, Set<Id>> brandCatKey_UserIds_map = new Map<String, Set<Id>>();
+    public static Map<String, List<Oblix_User_Permission__c>> retrieveUserPermissions(List<Marketing_SOW__c> newSOWs){
+        Map<String, List<Oblix_User_Permission__c>> brandCatKey_UserIds_map = new Map<String, List<Oblix_User_Permission__c>>();
 
         // get approvers for categories of SOWs in scope
         Set<Id> bigCIds = new Set<Id>();
@@ -147,10 +147,10 @@ public with sharing class Oblix_SOWHandlerLogic {
             String brandCatKey = up.CategoryBrand_id__r.Brand_id__c + '_' + up.CategoryBrand_id__r.Product_Category_Id__c;
             // S.M. 20160209 - sonar issue resolved by avoid checking == false and use ! instead
             if(!brandCatKey_UserIds_map.containsKey(brandCatKey)){
-                Set<Id> approverIds = new Set<Id>();
-                brandCatKey_UserIds_map.put(brandCatKey, approverIds);
+                List<Oblix_User_Permission__c> approvers = new List<Oblix_User_Permission__c>();
+                brandCatKey_UserIds_map.put(brandCatKey, approvers);
             }
-            brandCatKey_UserIds_map.get(brandCatKey).add(up.User_id__c);
+            brandCatKey_UserIds_map.get(brandCatKey).add(up);
         }
 
         return brandCatKey_UserIds_map;
@@ -162,7 +162,7 @@ public with sharing class Oblix_SOWHandlerLogic {
     * @description  This method gets creates sharings for a sow based on
                     user permissions
     ********************************************************************************/
-    public static List<Marketing_SOW__Share> adjustSharing(Marketing_SOW__c sow, Map<String, Set<Id>> brandCatKey_UserIds_map){
+    public static List<Marketing_SOW__Share> adjustSharing(Marketing_SOW__c sow, Map<String, List<Oblix_User_Permission__c>> brandCatKey_UserIds_map){
 
         List<Marketing_SOW__Share> sharesToInsert = new List<Marketing_SOW__Share>();
 
@@ -172,12 +172,13 @@ public with sharing class Oblix_SOWHandlerLogic {
 
             if(brandCatKey_UserIds_map.containsKey(brandCatKey)){
 
-                for(Id userId : brandCatKey_UserIds_map.get(brandCatKey)){
+                for(Oblix_User_Permission__c userPermission : brandCatKey_UserIds_map.get(brandCatKey)){
 
                     Marketing_SOW__Share ms = new Marketing_SOW__Share();
                     ms.ParentId = sow.Id;
-                    ms.UserOrGroupId =  userId;
+                    ms.UserOrGroupId =  userPermission.User_id__c;
                     ms.RowCause = Schema.Marketing_SOW__Share.RowCause.Manual;
+                    ms.AccessLevel = userPermission.Level_of_Access__c == Oblix_Utils.USER_PERMISSION_READ_ONLY ? 'Read' : 'Edit';
                     sharesToInsert.add(ms);
 
                 }

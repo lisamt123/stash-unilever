@@ -223,6 +223,12 @@ src/email/Oblix_SOW_Email/SOW_for_Unilever_Approval.email
 src/email/Oblix_SOW_Email/SOW_for_Unilever_Approval.email-meta.xml
 src/email/Oblix_SOW_Email/SOW_returned_to_Marketeer_2.email
 src/email/Oblix_SOW_Email/SOW_returned_to_Marketeer_2.email-meta.xml
+src/email/Oblix_SOW_Email/SOW_Approved_by_Agency.email
+src/email/Oblix_SOW_Email/SOW_Approved_by_Agency.email-meta.xml
+src/email/Oblix_SOW_Email/SOW_for_Internal_Approval.email
+src/email/Oblix_SOW_Email/SOW_for_Internal_Approval.email-meta.xml
+src/email/Oblix_SOW_Email/SOW_returned_to_Marketeer_by_Agency.email
+src/email/Oblix_SOW_Email/SOW_returned_to_Marketeer_by_Agency.email-meta.xml
 src/flowDefinitions/SOW_Approval_Process_Agency_TBC.flowDefinition
 src/flowDefinitions/SOW_Approval_Process.flowDefinition
 src/flows/SOW_Approval_Process_Agency_TBC-1.flow
@@ -235,6 +241,7 @@ src/permissionsets/Oblix_SWOP_UL_1_V1.permissionset
 src/permissionsets/Oblix_SWOP_UL_2_V1.permissionset
 src/permissionsets/Oblix_SWOP_UL3_4_V1.permissionset
 src/permissionsets/Oblix_SWOP_Super_User_V1.permissionset
+src/permissionsets/Oblix_SWOP_Readonly_User.permissionset
 src/documents/SWOP_Files
 src/documents/SWOP_Files-meta.xml
 src/documents/SWOP_Files/SWOP_Letterhead_Logo.jpg

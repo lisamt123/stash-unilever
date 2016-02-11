@@ -12,7 +12,8 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
     Map<Id, MDO_CategoryBrands__c> mids_campaign_id_category_brand = new Map<Id, MDO_CategoryBrands__c>();
     Map<String, Set<Id>> brandCatKey_unileverApproverIds_map = new Map<String, Set<Id>>();
     Map<String, Set<Id>> brandCatKey_agencyApproverIds_map = new Map<String, Set<Id>>();
-    Map<String, Set<Id>> brandCatKey_UserIds_map = new Map<String, Set<Id>>();
+    Map<String, List<Oblix_User_Permission__c>> brandCatKey_UserPermissions_map = new Map<String, List<Oblix_User_Permission__c>>();
+    List<Marketing_SOW__Share> li_sharesToInsert = new List<Marketing_SOW__Share>();
 
     /*******************************************************************************
     * @date         2015-12-25
@@ -68,7 +69,7 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
             //lstMarketingShareToDelete = Oblix_TR01SOWMarkingSharing.retrieveMarketingShare(Trigger.New, setOWnerdsIds);
 
             //get all user permissions
-            brandCatKey_UserIds_map = Oblix_SOWHandlerLogic.retrieveUserPermissions(Trigger.new);
+            brandCatKey_UserPermissions_map = Oblix_SOWHandlerLogic.retrieveUserPermissions(Trigger.new);
         }
         if(Trigger.isUpdate){
             //Start Approval Process Part
@@ -87,7 +88,7 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
                 }
             }
             if(!liso_changed_brand_smallc.isEmpty()){
-                brandCatKey_UserIds_map = Oblix_SOWHandlerLogic.retrieveUserPermissions(Trigger.new);
+                brandCatKey_UserPermissions_map = Oblix_SOWHandlerLogic.retrieveUserPermissions(Trigger.new);
                 Oblix_SOWHandlerLogic.deleteAllManualSharing(liso_changed_brand_smallc);
             }
         }    
@@ -126,15 +127,17 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
     
     public void afterInsert(SObject so)
     {
-        lstMarketingShare = Oblix_TR01SOWMarkingSharing.sowMarketingSharing((Marketing_SOW__c)so, Trigger.New);
-        Oblix_SOWHandlerLogic.adjustSharing((Marketing_SOW__c) so, brandCatKey_UserIds_map);
+        //lstMarketingShare = Oblix_TR01SOWMarkingSharing.sowMarketingSharing((Marketing_SOW__c)so, Trigger.New);
+        List<Marketing_SOW__Share> li_sowShare = Oblix_SOWHandlerLogic.adjustSharing((Marketing_SOW__c) so, brandCatKey_UserPermissions_map);
+        li_sharesToInsert.addAll(li_sowShare);
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        lstMarketingShare = Oblix_TR01SOWMarkingSharing.sowMarketingSharing((Marketing_SOW__c)so, Trigger.New);
+        //lstMarketingShare = pOblix_TR01SOWMarkingSharing.sowMarketingSharing((Marketing_SOW__c)so, Trigger.New);
         lstApprovalReq = Oblix_TR02SubmitSOWForApproval.SubmitSowForApproval((Marketing_SOW__c)so, lstSowRecordsApproval);
-        Oblix_SOWHandlerLogic.adjustSharing((Marketing_SOW__c) so, brandCatKey_UserIds_map);
+        List<Marketing_SOW__Share> li_sowShare = Oblix_SOWHandlerLogic.adjustSharing((Marketing_SOW__c) so, brandCatKey_UserPermissions_map);
+        li_sharesToInsert.addAll(li_sowShare);
     }
     
     public void afterDelete(SObject so)
@@ -150,10 +153,14 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
      */
     public void andFinally()
     {
-        System.debug('Entering FAU_ProgramHandler.andFinally');
+        System.debug('Entering Oblix_SOWHandler.andFinally');
+        if(!li_sharesToInsert.isEmpty()){
+            insert li_sharesToInsert;
+        }
+
         if(triggerShouldExecute && Trigger.isAfter){
-                Database.delete(lstMarketingShareToDelete, false);
-                Database.insert(lstMarketingShare, false);
+                //Database.delete(lstMarketingShareToDelete, false);
+                //Database.insert(lstMarketingShare, false);
                 //delete lstMarketingShareToDelete;
                 //insert lstMarketingShare;
                 //for(Approval.ProcessSubmitRequest req : lstApprovalReq){
@@ -162,6 +169,6 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
                     //System.debug('Submitted for approval successfully: '+result.isSuccess());
                 //}
         }
-        System.debug('Exiting Oblix_ProjectHandler.andFinally');
+        System.debug('Exiting Oblix_SOWHandler.andFinally');
     }
 }
