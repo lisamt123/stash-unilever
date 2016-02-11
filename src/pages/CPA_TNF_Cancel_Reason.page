@@ -1,4 +1,4 @@
-<apex:page standardController="CPA_TNF__c" extensions="CPA_TNF_CancelReasonController" sidebar="false" showHeader="false" >
+<apex:page standardController="CPA_TNF__c"> <!-- extensions="CPA_TNF_CancelReasonController" sidebar="false" showHeader="false" >
 
  <style>
     input {
@@ -30,5 +30,5 @@
                <apex:commandButton value="Cancel"  action="{!CancelReason}"/> 
             </apex:pageBlockSection>
     </apex:pageBlock>
-</apex:form>
+</apex:form>-->
 </apex:page>

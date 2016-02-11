@@ -1,4 +1,4 @@
-<apex:page standardController="CPA_CNF__c" extensions="CPA_CNF_InformationController" action="{!UpdateCnf}">
+<apex:page standardController="CPA_CNF__c"><!--extensions="CPA_CNF_InformationController" action="{!UpdateCnf}">
    <apex:form style="overflow:auto;height:250px"  >
   <apex:pageBlock >
       <apex:pageMessages />
@@ -16,5 +16,5 @@
             </apex:pageBlockTable>
         </apex:pageBlock>    
     </apex:pageBlock> 
- </apex:form> 
+ </apex:form> -->
 </apex:page>

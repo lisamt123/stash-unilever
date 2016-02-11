@@ -1,4 +1,4 @@
-<apex:page standardController="CPA_PWO__c" extensions="CPA_PWO_CancelReasonController" sidebar="false" showHeader="false" >
+<apex:page standardController="CPA_PWO__c"><!-- extensions="CPA_PWO_CancelReasonController" sidebar="false" showHeader="false" >
 
  <style>
     input {
@@ -28,5 +28,5 @@
             <apex:commandButton value="Cancel" action="{!CancelReason}" immediate="true" html-formnovalidate="formnovalidate" />
         </apex:pageBlockSection>
     </apex:pageBlock>
-</apex:form>
+</apex:form>-->
 </apex:page>

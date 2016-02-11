@@ -1,4 +1,4 @@
-<apex:page standardController="CPA_PWO__c" extensions="CPA_PWOInformationController" action="{!UpdatePwo}">
+<apex:page standardController="CPA_PWO__c"><!-- extensions="CPA_PWOInformationController" action="{!UpdatePwo}">
   <apex:form style="overflow:auto;height:250px"  >
   <apex:pageBlock >
       <apex:pageMessages />
@@ -14,5 +14,5 @@
             </apex:pageBlockTable>
         </apex:pageBlock>    
     </apex:pageBlock> 
- </apex:form> 
+ </apex:form> -->
 </apex:page>

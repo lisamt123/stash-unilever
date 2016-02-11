@@ -14,18 +14,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CPA_CNF_CancelReasonController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CPA_CNF_InformationController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CPA_CNF_TriggerUtil</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CPA_CRInformationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -62,10 +50,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CPA_PWOInformationController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CPA_PWORFInformationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -75,26 +59,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_PWORF_TriggerUtil</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CPA_PWO_CancelReasonController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CPA_PWO_TriggerUtil</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CPA_TNF_CancelReasonController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CPA_TNF_InformationController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CPA_TNF_TriggerUtil</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>

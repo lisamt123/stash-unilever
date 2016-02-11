@@ -1,5 +1,5 @@
 trigger CPA_CNF_Trigger on CPA_CNf__c (after update ,  before Insert) {
-    if(Trigger.isUpdate && Trigger.isBefore){ //for before update trigger
+    /*if(Trigger.isUpdate && Trigger.isBefore){ //for before update trigger
         CPA_CNF_TriggerUtil.checklistValueOfCNF(trigger.new);
     }
     if(trigger.isUpdate && trigger.isAfter){
@@ -9,5 +9,5 @@ trigger CPA_CNF_Trigger on CPA_CNf__c (after update ,  before Insert) {
      }
      If (trigger.isbefore && trigger.isInsert){
          CPA_CNF_TriggerUtil.CreateCNF(trigger.new);
-     }
+     }*/
 }

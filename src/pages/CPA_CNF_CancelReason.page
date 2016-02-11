@@ -1,4 +1,4 @@
-<apex:page standardController="CPA_CNF__c" extensions="CPA_CNF_CancelReasonController">
+<apex:page standardController="CPA_CNF__c"><!-- extensions="CPA_CNF_CancelReasonController">
     <style>
     input {
         padding-top: 0;
@@ -28,5 +28,5 @@
             <apex:commandButton action="{!CancelReason}" value="Cancel" immediate="true" html-formnovalidate="formnovalidate" />
         </apex:pageBlockSection>
     </apex:pageBlock>
-</apex:form>
+</apex:form>-->
 </apex:page>
