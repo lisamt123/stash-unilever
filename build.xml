@@ -58,6 +58,27 @@
     </delete>
     <move file="${basedir}/${sfdc.retrieveTarget}" tofile="src"/>
   </target>
+   <!-- ***************************************************************************** -->
+  <!-- Deploy the meta-data from code Repository to salesforce your org with test class run NIkhil    -->
+  <!-- ***************************************************************************** -->
+  <target name="deploy-with-Testclasses-execution">
+    <echo level="info">Performing the deploy</echo>
+    <sf:deploy username="${sf.username}"
+      password="${sf.password}"
+      serverurl="${sf.serverurl}"
+      runAllTests="false"
+      testLevel="RunLocalTests"
+      logType="Detail"
+      allowMissingFiles="true"
+      autoUpdatePackage="true"
+      ignoreWarnings="true"
+      deployRoot="${basedir}/src"
+      pollWaitMillis="${sfdc.pollWaitMillis}"
+      maxPoll="${sfdc.maxPoll}"/>
+  </target>
+
+  <target name="deployIPM" depends="deploy"/>
+  
   <!-- ***************************************************************************** -->
   <!-- Deploy the meta-data from code Repository to salesforce your org     -->
   <!-- ***************************************************************************** -->
