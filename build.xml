@@ -75,10 +75,7 @@
       deployRoot="${basedir}/src"
       pollWaitMillis="${sfdc.pollWaitMillis}"
       maxPoll="${sfdc.maxPoll}"/>
-  </target>
-
-  <target name="deployIPM" depends="deploy"/>
-  
+  </target>  
   <!-- ***************************************************************************** -->
   <!-- Deploy the meta-data from code Repository to salesforce your org     -->
   <!-- ***************************************************************************** -->
