@@ -1,6 +1,0 @@
-EMAIL 
-The following SOW is ready for approval: 
-
-{!Marketing_SOW__c.Name} 
-
-Click here to view the SOW: {!Marketing_SOW__c.Link}

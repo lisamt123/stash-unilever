@@ -12,6 +12,7 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
     Map<Id, MDO_CategoryBrands__c> mids_campaign_id_category_brand = new Map<Id, MDO_CategoryBrands__c>();
     Map<String, Set<Id>> brandCatKey_unileverApproverIds_map = new Map<String, Set<Id>>();
     Map<String, Set<Id>> brandCatKey_agencyApproverIds_map = new Map<String, Set<Id>>();
+    Map<String, Set<Id>> brandCatKey_UserIds_map = new Map<String, Set<Id>>();
 
     /*******************************************************************************
     * @date         2015-12-25
@@ -65,6 +66,9 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
                 setOWnerdsIds.add(markSow.OwnerId);
             }
             //lstMarketingShareToDelete = Oblix_TR01SOWMarkingSharing.retrieveMarketingShare(Trigger.New, setOWnerdsIds);
+
+            //get all user permissions
+            brandCatKey_UserIds_map = Oblix_SOWHandlerLogic.retrieveUserPermissions(Trigger.new);
         }
         if(Trigger.isUpdate){
             //Start Approval Process Part
@@ -73,6 +77,19 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
                     lstSowRecordsApproval.add((Marketing_SOW__c)Trigger.new[i]);
                 }
              }
+             // if there is a change in brand or small category, need to re-set approvers
+            List<Marketing_SOW__c> liso_changed_brand_smallc = new List<Marketing_SOW__c>();
+            List<Marketing_SOW__c> newList = (List<Marketing_SOW__c>) Trigger.new;
+            for(Marketing_SOW__c sow : newList){
+                Marketing_SOW__c oldSow = (Marketing_SOW__c) Trigger.oldMap.get(sow.Id);
+                if(sow.OblixBrand__c != oldSow.OblixBrand__c || sow.SmallProductCategory__c != oldSow.SmallProductCategory__c){
+                    liso_changed_brand_smallc.add(sow);
+                }
+            }
+            if(!liso_changed_brand_smallc.isEmpty()){
+                brandCatKey_UserIds_map = Oblix_SOWHandlerLogic.retrieveUserPermissions(Trigger.new);
+                Oblix_SOWHandlerLogic.deleteAllManualSharing(liso_changed_brand_smallc);
+            }
         }    
             
     }
@@ -107,15 +124,17 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
         return;
     }
     
-    public void afterInsert(SObject so) 
+    public void afterInsert(SObject so)
     {
         lstMarketingShare = Oblix_TR01SOWMarkingSharing.sowMarketingSharing((Marketing_SOW__c)so, Trigger.New);
+        Oblix_SOWHandlerLogic.adjustSharing((Marketing_SOW__c) so, brandCatKey_UserIds_map);
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
         lstMarketingShare = Oblix_TR01SOWMarkingSharing.sowMarketingSharing((Marketing_SOW__c)so, Trigger.New);
         lstApprovalReq = Oblix_TR02SubmitSOWForApproval.SubmitSowForApproval((Marketing_SOW__c)so, lstSowRecordsApproval);
+        Oblix_SOWHandlerLogic.adjustSharing((Marketing_SOW__c) so, brandCatKey_UserIds_map);
     }
     
     public void afterDelete(SObject so)

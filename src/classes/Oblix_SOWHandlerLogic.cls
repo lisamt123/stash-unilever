@@ -84,7 +84,6 @@ public with sharing class Oblix_SOWHandlerLogic {
                     reference
     ********************************************************************************/
     public static void retrieveBrandCategoryApprovers(List<Marketing_SOW__c> newSOWs, Map<String, Set<Id>> brandCatKey_unileverApproverIds_map, Map<String, Set<Id>> brandCatKey_agencyApproverIds_map){
-        Map<String, Id> mBrandCatKey_appoverUserId = new Map<String, Id>();
 
         // get approvers for categories of SOWs in scope
         Set<Id> bigCIds = new Set<Id>();
@@ -118,6 +117,89 @@ public with sharing class Oblix_SOWHandlerLogic {
                 brandCatKey_agencyApproverIds_map.get(brandCatKey).add(up.User_id__c);
             }
         }
+
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-11
+    * @description  This method gets user permission setting for a given brand and 
+                    category
+    ********************************************************************************/
+    public static Map<String, Set<Id>> retrieveUserPermissions(List<Marketing_SOW__c> newSOWs){
+        Map<String, Set<Id>> brandCatKey_UserIds_map = new Map<String, Set<Id>>();
+
+        // get approvers for categories of SOWs in scope
+        Set<Id> bigCIds = new Set<Id>();
+        Set<Id> brandIds = new Set<Id>();
+        for(Marketing_SOW__c sow : newSOWs){
+            bigCIds.add(sow.SmallProductCategory__c);
+            brandIds.add(sow.OblixBrand__c);
+        }
+        
+        List<Oblix_User_Permission__c> userPermissions = [SELECT Id, CategoryBrand_id__r.Brand_id__c, CategoryBrand_id__r.Product_Category_Id__c, User_id__c, RecordTypeId
+                                                            FROM Oblix_User_Permission__c 
+                                                            WHERE CategoryBrand_id__r.Brand_id__c IN :brandIds 
+                                                                AND CategoryBrand_id__r.Product_Category_Id__c IN :bigCIds];
+
+        // build a map of brandId_bigcategoryId as keys and list of approver ids as values, which we will use to populate approver fields on SOWs
+        for(Oblix_User_Permission__c up : userPermissions){
+            String brandCatKey = up.CategoryBrand_id__r.Brand_id__c + '_' + up.CategoryBrand_id__r.Product_Category_Id__c;
+            // S.M. 20160209 - sonar issue resolved by avoid checking == false and use ! instead
+            if(!brandCatKey_UserIds_map.containsKey(brandCatKey)){
+                Set<Id> approverIds = new Set<Id>();
+                brandCatKey_UserIds_map.put(brandCatKey, approverIds);
+            }
+            brandCatKey_UserIds_map.get(brandCatKey).add(up.User_id__c);
+        }
+
+        return brandCatKey_UserIds_map;
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-11
+    * @description  This method gets creates sharings for a sow based on
+                    user permissions
+    ********************************************************************************/
+    public static List<Marketing_SOW__Share> adjustSharing(Marketing_SOW__c sow, Map<String, Set<Id>> brandCatKey_UserIds_map){
+
+        List<Marketing_SOW__Share> sharesToInsert = new List<Marketing_SOW__Share>();
+
+        if(String.isNotEmpty(sow.OblixBrand__c) && String.isNotEmpty(sow.SmallProductCategory__c)){
+
+            String brandCatKey = sow.OblixBrand__c + '_' + sow.SmallProductCategory__c;
+
+            if(brandCatKey_UserIds_map.containsKey(brandCatKey)){
+
+                for(Id userId : brandCatKey_UserIds_map.get(brandCatKey)){
+
+                    Marketing_SOW__Share ms = new Marketing_SOW__Share();
+                    ms.ParentId = sow.Id;
+                    ms.UserOrGroupId =  userId;
+                    ms.RowCause = Schema.Marketing_SOW__Share.RowCause.Manual;
+                    sharesToInsert.add(ms);
+
+                }
+
+            }
+
+        }
+
+        return sharesToInsert;
+
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-11
+    * @description  This method deletes all sharing in the system for a given record
+    ********************************************************************************/
+    public static void deleteAllManualSharing(List<Marketing_SOW__c> liso_sow){
+
+        List<Marketing_SOW__Share> sowShares = [SELECT Id from Marketing_SOW__Share WHERE ParentId IN :liso_sow];
+
+        delete sowShares;
 
     }
 

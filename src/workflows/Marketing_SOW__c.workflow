@@ -102,6 +102,15 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>Update_SOW_Status_to_Returned_ByApprover</fullName>
+        <field>SOW_Status__c</field>
+        <literalValue>Returned by Approver</literalValue>
+        <name>Update SOW Status to Returned ByApprover</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>Update_SOW_Status_to_Returned_by_Agency</fullName>
         <field>SOW_Status__c</field>
         <literalValue>Returned by Agency</literalValue>

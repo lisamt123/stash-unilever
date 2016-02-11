@@ -38,12 +38,12 @@
                 <type>Alert</type>
             </action>
             <action>
-                <name>Update_SOW_Status_to_Draft_with_UL</name>
+                <name>Update_SOW_Status_to_Returned_ByApprover</name>
                 <type>FieldUpdate</type>
             </action>
         </rejectionActions>
     </approvalStep>
-    <emailTemplate>Oblix_SOW_Email/SOW_for_Internal_Approval</emailTemplate>
+    <emailTemplate>Oblix_SOW_Email/SOW_for_Unilever_Approval</emailTemplate>
     <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
     <entryCriteria>
         <booleanFilter>1</booleanFilter>
@@ -55,7 +55,7 @@
     </entryCriteria>
     <finalApprovalRecordLock>true</finalApprovalRecordLock>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
-    <label>Oblix SOW Approval Process v1</label>
+    <label>Oblix SOW Approval Process v4</label>
     <recallActions>
         <action>
             <name>Update_SOW_Status_to_Draft</name>
