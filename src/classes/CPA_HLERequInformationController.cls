@@ -76,24 +76,24 @@ global  with sharing class CPA_HLERequInformationController {
             if(hleRec.txt_UL_reference__c  == null) 
                  RequiredFieldMap.put('UL Reference',ConstantsForContractingAppClasses.MANDATORY);
            
-        }if(hleRec.pkl_Status__c == 'Accepted' && hleRec.Estimate_Type__c == null && callFromVF){
+        }if(hleRec.pkl_Status__c == ConstantsForContractingAppClasses.ACCEPTED && hleRec.Estimate_Type__c == null && callFromVF){
             estimateFlag = 'Please select Estimate Type, wherther it will be High Level Estimation(HLE)/Ball Park Estimation(BPE) in Estimate Type Section';
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, estimateFlag ));
-        }else if(hleRec.pkl_Status__c == 'Accepted' && hleRec.Estimate_Type__c == 'BPE' && callFromVF){
+        }else if(hleRec.pkl_Status__c == ConstantsForContractingAppClasses.ACCEPTED && hleRec.Estimate_Type__c == 'BPE' && callFromVF){
             estimateFlag = 'Please submit Ball Park Estimation';
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, estimateFlag ));
-        }else if(hleRec.pkl_Status__c == 'Accepted' && hleRec.Estimate_Type__c == 'HLE' && callFromVF){
+        }else if(hleRec.pkl_Status__c == ConstantsForContractingAppClasses.ACCEPTED && hleRec.Estimate_Type__c == 'HLE' && callFromVF){
             estimateFlag = 'Please submit High Level Estimation';
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, estimateFlag ));
         }
-        if((hleRec.recordtypeid == label.CPA_BPE_Recordtype && hleRec.pkl_Status__c == 'Accepted')){
+        if((hleRec.recordtypeid == label.CPA_BPE_Recordtype && hleRec.pkl_Status__c == ConstantsForContractingAppClasses.ACCEPTED)){
             if(hleRec.txt_BPE_Accenture_Demand_ID__c   == null)  RequiredFieldMap.put('BPE  Accenture Demand ID',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_BPE_Unilever_Demand_ID__c  == null)  RequiredFieldMap.put('BPE Unilever Demand ID',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_BPE_Title__c   == null)  RequiredFieldMap.put('BPE Title',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_BPE_Accenture_Project_Manager__c   == null)  RequiredFieldMap.put('BPE Accenture project manager',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.num_BPE_Effort_in_man_days__c   == null)  RequiredFieldMap.put('BPE Effort in man-days',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_BPE_Key_assumptions__c   == null)  RequiredFieldMap.put('BPE Key assumptions',ConstantsForContractingAppClasses.MANDATORY);
-        }else if((hleRec.recordtypeid == label.CPA_HLE_Recordtype && hleRec.pkl_Status__c == 'Accepted' )){
+        }else if((hleRec.recordtypeid == label.CPA_HLE_Recordtype && hleRec.pkl_Status__c == ConstantsForContractingAppClasses.ACCEPTED )){
             if(hleRec.txt_HLE_Accenture_estimated_project_char__c  == null)  RequiredFieldMap.put('HLE Accenture estimated project charge*',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_HLE_Accenture_reference__c  == null)  RequiredFieldMap.put('HLE Accenture reference*',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_HLE_Assumptions_Risks_Qualifying__c  == null)  RequiredFieldMap.put('HLE Assumption/Risks/Qualifying Info*',ConstantsForContractingAppClasses.MANDATORY);
