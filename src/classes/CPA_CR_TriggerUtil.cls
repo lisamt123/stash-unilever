@@ -84,7 +84,7 @@ public with sharing class CPA_CR_TriggerUtil{
         map<Id,CPA_project_work_order__c> mapPWO  = new map <ID,CPA_project_work_order__c>();
         
         for(CPA_CR__c objCR : newCNFList){
-            if(objCR.chk_isStandalone_CR__c != true){
+            if(!objCR.chk_isStandalone_CR__c){
                 setPWOID.add(objCR.CPA_Project_Work_Order__c);
             }
         }
@@ -118,7 +118,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
         map<Id,CPA_project_work_order__c> mapPWO = new map<ID,CPA_project_work_order__c>();
         
         for(CPA_CR__c objnewCR : newCR){
-            if(objnewCR.chk_isStandalone_CR__c != true){
+            if(!objnewCR.chk_isStandalone_CR__c){
                 setPWO.add(objnewCR.CPA_Project_Work_Order__c);
             }
         }
@@ -245,7 +245,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
         for(CPA_CR__c objCR : newCR.values()){
             if(objCR.pkl_Status__c == ConstantsForContractingAppClasses.SUBMITTED && oldCRList.get(objCR.Id).pkl_Status__c <> ConstantsForContractingAppClasses.SUBMITTED){
                 lstCR.add(objCR);
-                if(objCR.chk_isStandalone_CR__c != true) setPWOID.add(objCR.CPA_Project_Work_Order__c);
+                if(!objCR.chk_isStandalone_CR__c) setPWOID.add(objCR.CPA_Project_Work_Order__c);
             }
         }
       if(setPWOID.size()>0 && setPWOID!=null){  
