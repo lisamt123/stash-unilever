@@ -1326,7 +1326,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Marketing_SOW__c.ChildSowMarketing</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Marketing_SOW__c.ParentSowMarketing</recordType>

@@ -42,6 +42,8 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         set;
     }
 
+    public User userConnected {get;set;}
+    
     public Oblix_SOWCampaignCreateController() {
         system.debug('================================================= im the controller here ===');
         campaignHelper = new Oblix_CampaignCreateHelper();
