@@ -213,10 +213,10 @@
                     <apex:outputLabel >{!$Label.BET_ProjectName}</apex:outputLabel>
                 </div>
                 <div class="item-input" style="{!IF(NOT(userHasAccessToProject),'','display:none')}">
-                    <apex:inputText value="{!bet.IPM_Project__r.name}" disabled="true"/>
+                    <apex:inputText value="{!bet.Inoplan_Project_Keyword_Search__c}" disabled="true"/>
                 </div>
                 <div class="item-input item-output-link" style="{!IF(userHasAccessToProject,'','display:none')}">
-                    <a href="/apex/IPM_ProjectOverview?id={!bet.IPM_Project__c}" target="_blank">{!bet.IPM_Project__r.name}</a>
+                    <a href="/apex/IPM_ProjectOverview?id={!bet.IPM_Project__c}" target="_blank">{!bet.Inoplan_Project_Keyword_Search__c}</a>
                 </div>
             </div>
             <div class="form-item-brandtip" style="{!IF(bet.IPM_Project__c != null,'display:none','')}">
