@@ -27,7 +27,7 @@
         }
     </style>
     <apex:form >
-
+<!-- TEMPORARILY REMOVING THE CLASS DEFINITION TO FIX IN CI -->
 <!--         <div class="Oblix_header_bkgd">
             <header class="Oblix_header_panel">
                 <img alt="Unilever Logo" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
