@@ -25,7 +25,7 @@ public with sharing class Oblix_UserPermissionHandler implements ITrigger{
                     prior execution of the trigger.
     ********************************************************************************/
 	public void bulkBefore(){
-
+		return;
 	}
 
 	/*******************************************************************************
@@ -46,27 +46,27 @@ public with sharing class Oblix_UserPermissionHandler implements ITrigger{
 	}
 
 	public void beforeInsert(SObject so){
-
+		return;
 	}
 
 	public void beforeUpdate(SObject oldSo, SObject so){
-
+		return;
 	}
 
 	public void beforeDelete(SObject so){
-
+		return;
 	}
 
 	public void afterInsert(SObject so){
-
+		return;
 	}
 
 	public void afterUpdate(SObject oldSo, SObject so){
-
+		return;
 	}
 
 	public void afterDelete(SObject so){
-
+		return;
 	}
 
 	/**

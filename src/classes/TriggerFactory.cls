@@ -136,10 +136,7 @@ public with sharing class TriggerFactory
             return new Oblix_UserPermissionHandler();
             
         }
-        
-
-
-
+		
         if (soType == FAU_Webinar_Participant__c.sObjectType)
         {
             return new FAU_Webinar_ParticipantHandler();

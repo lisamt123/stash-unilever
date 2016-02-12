@@ -1,6 +1,5 @@
 <apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_SOWCampaignCreateController" standardStylesheets="true">
-<!-- TEMPORARILY REMOVING THE CLASS DEFINITION TO FIX IN CI -->
-<!--     <apex:composition template="Oblix_OuterPageTemplate">
+    <apex:composition template="Oblix_OuterPageTemplate">
         <apex:define name="top_breadcrumb">
             <a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!IF(campaignHelper.isEdit,  campaignHelper.selectedProject.Financial_Year__c, campaignHelper.selectedSow.Id)}">{!IF(campaignHelper.isEdit,  campaignHelper.selectedProject.Financial_Year__r.Name, campaignHelper.selectedSow.Name)}</a>&nbsp;<span>&#9658;</span>&nbsp;{!campaignHelper.selectedProject.Name}
         </apex:define>
@@ -282,5 +281,5 @@
             </script>
             <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignCreate.js')}" type="text/javascript"></script>
         </apex:define>
-    </apex:composition> -->
+    </apex:composition>
 </apex:page>

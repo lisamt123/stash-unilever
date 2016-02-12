@@ -27,13 +27,15 @@
         }
     </style>
     <apex:form >
-<!-- TEMPORARILY REMOVING THE CLASS DEFINITION TO FIX IN CI -->
-<!--         <div class="Oblix_header_bkgd">
+
+        <div class="Oblix_header_bkgd">
             <header class="Oblix_header_panel">
                 <img alt="Unilever Logo" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/Oblix_Unilever_logo.png')}" width="54" height="60" />
                 <div class="header_divider_vertical"></div>
                 <div class="header_panel_text">
                     <h2>Hi {!userConnected.Name}, Welcome to SWOP the Scope of Work Online Planner</h2>
+                    <!-- <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">SOW name</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">Add new campaign</a>
+                    </p> -->
 
                     <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_campaignsummary?projectId={!project.Id}">{!project.Name}</a> &nbsp;
                         <span>&#9658;</span>&nbsp;Add campaign assets</p>
@@ -110,6 +112,7 @@
                                                 </apex:repeat>
 
                                             </ul>
+                                            <!-- tab body-->
                                             <apex:outputPanel id="tab-contentPanel">
                                                 <div id="my-tab-content" class="tab-content">
                                                     <apex:variable var="count2" value="{!1}" />
@@ -145,6 +148,7 @@
 
 
 
+                                                                                                <!--styleClass="removeBreak"-->
                                                                                                 <div class="col-lg-4">
                                                                                                     <p class="create_SOW_form_titles asset_panel_titles"></p>
                                                                                                     <p class="create_SOW_form_titles asset_panel_titles">{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label}*</p>
@@ -167,14 +171,18 @@
                                                                                                     <apex:inputField value="{!mapAssetsPerSubCat[subCat].Quantity__c}" styleClass="assetQuantity" />
 
                                                                                                     <apex:inputField style="width:100%;min-height:100px" value="{!assetInstance.Additional_Description__c}" styleClass="assetNotes" />
+                                                                                                    <!--apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}"-->
                                                                                                     <apex:outputpanel id="overallPanel">
                                                                                                         <apex:outputPanel rendered="{!AND(hasEditAccess,NOT(isUpdate))}" id="AddButton">
                                                                                                             <apex:commandButton value="ADD" onclick="if(addAsset(this, '{!subCat}' , '{!recordType}')); return false;" oncomplete="$.unblockUI();location.reload();" reRender="assetPart,campaignFeeId,Oblix_card" styleClass="btn btn-primary btn_plus btn_asset_add">
 
                                                                                                             </apex:commandButton>
+                                                                                                            <!--input value="Add" onclick="addAsset(this, '{!subCat}' , '{!recordType}'); if(setMendatory($(this))) return false;" class="btn btn-primary" style="width:70px" type="submit" data-asset-id='{!selectedAssetId}' /-->
                                                                                                         </apex:outputPanel>
+                                                                                                        <!-- <apex:commandButton value="UPDATE" onclick="updateAsset(this, {!selectionCount}); if(setMendatory($(this))) blockme(); return false;" styleclass="btn btn-primary hide_button" style="width:70px" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card"/>-->
                                                                                                         <apex:outputPanel rendered="{!AND(hasEditAccess, isUpdate)}" id="UpdateButton">
                                                                                                             <input value="UPDATE" onclick="updateAsset(this, {!selectionCount}); if(setMendatory($(this))) blockme(); return false;" class="btn btn-primary" style="width:70px" type="submit" data-asset-id='{!selectedAssetId}' />
+                                                                                                            <!--return false;reRender="assetPart,campaignFeeId,estimateId,Oblix_card" -->
                                                                                                         </apex:outputPanel>
                                                                                                     </apex:outputPanel>
                                                                                                 </div>
@@ -184,6 +192,7 @@
                                                                                         </apex:outputPanel>
                                                                                         <apex:variable var="selectionCount" value="{!selectionCount + 1}" />
                                                                                     </div>
+                                                                                    <!--/div-->
 
                                                                                 </apex:repeat>
                                                                             </div>
@@ -193,12 +202,17 @@
                                                             </div>
                                                         </div>
 
+                                                        <!--                                    tab body end-->
+                                                        <!--                                    tab body-->
 
                                                         <apex:variable var="count2" value="{!count2 + 1}" />
                                                     </apex:repeat>
 
+                                                    <!--apex:variable var="selectionCount" value="{!selectionCount + 1}" /-->
                                                 </div>
                                             </apex:outputPanel>
+                                            <!--                                    tab body end-->
+                                            <!--                                    panel body end-->
                                         </div>
                                     </div>
                                 </div>
@@ -216,6 +230,20 @@
                                 </div>
                                 <div class="asset_shopping_basket_body">
                                     <div class="asset_shopping_basket_item_title ">
+
+                                        <!--
+                                <apex:repeat value="{!lstAssetsForCard}" var="asset">
+                                        <div class="Oblix_card_elmt">
+                                            <div>
+                                               <div class="Oblix_button_table_align">
+                                                <apex:commandButton styleClass="removeAssetCss" style="width:12px;height:12px"  onclick="removeAsset('{!asset.Id}'); return false"/> <span>{!asset.Asset_Title__c}</span><!--value="{!$Label.Oblix_lbl_UIUX_Delete}" -->
+                                        <!--<apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" onclick="editAset(this, '{!asset.Id}); return false;"/>-->
+                                        <!--<input type="button" value="{!$Label.Oblix_lbl_UIUX_Edit}" onclick="editAsset1(this, '{!asset.Id}')" class="btn" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                </apex:repeat> 
+                                -->
 
 
                                         <apex:repeat value="{!lstAssetsForCard}" var="wrapAsset">
@@ -262,7 +290,9 @@
                                 <div class="asset_shopping_basket_btn">
                                     <apex:commandButton styleClass="btn btn-primary btn-xs btn_check btn_finish_basket" value="FINISH WITH BASKET" action="{!finishBasket}" />
 
+                                    <!--button type="button" class="btn btn-primary btn-xs"><img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/check.png')}" width="12" height="12" />
                                 </button
+                                -->
                                 </div>
                                 <apex:actionFunction action="{!AddToProjectAction}" name="setToProjectAction" reRender="">
                                     <apex:param assignTo="{!recordType}" name="recordType" value="" />
@@ -286,6 +316,7 @@
                     </div>
                 </div>
             </apex:outputPanel>
-        </div> -->
+            <!--end div  class row -->
+        </div>
     </apex:form>
 </apex:page>

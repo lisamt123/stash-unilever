@@ -47,15 +47,15 @@ public with sharing class Oblix_UserPermissionHandlerLogic {
 			brandCatKeys.add(cb.brand_id__c + '_' + cb.product_Category_Id__c);
 		}
 
-		List<Marketing_SOW__c> affectedSOWs_unfiltered = [SELECT Id, OblixBrand__c, BigOblixProductCategory__c, Unilever_SOW_Approver_Name__c, Agency_SOW_Approver_Name__c
+		List<Marketing_SOW__c> affectedSOWs_unfiltered = [SELECT Id, OblixBrand__c, SmallProductCategory__c, Unilever_SOW_Approver_Name__c, Agency_SOW_Approver_Name__c
 												FROM Marketing_SOW__c 
 												WHERE OblixBrand__c IN :brandIds 
-													AND BigOblixProductCategory__c IN :categoryIds];
+													AND SmallProductCategory__c IN :categoryIds];
 
 		// make sure only affected SOWs are returned, not any SOW which has any of the brands in brandsSet and any category in categoriesSet
 		List<Marketing_SOW__c> affectedSOWs = new List<Marketing_SOW__c>();
 		for(Marketing_SOW__c sow : affectedSOWs_unfiltered){
-			String sowKey = sow.OblixBrand__c + '_' + sow.BigOblixProductCategory__c;
+			String sowKey = sow.OblixBrand__c + '_' + sow.SmallProductCategory__c;
 			if(brandCatKeys.contains(sowKey)){
 				affectedSOWs.add(sow);
 			}
@@ -102,11 +102,11 @@ public with sharing class Oblix_UserPermissionHandlerLogic {
 			lockedSOWIds.add(pi.TargetObjectId);
 
 		// Should approvals in progress be aborted on this change?
-		if(lockedSOWIds.isEmpty() == false)
+		if(!lockedSOWIds.isEmpty())
 			abortRelatedApprovals(lockedSOWIds);
 
 		// after all related approvals have been aborted, no sowsToUpdate in scope should be locked anymore
-		if(sowsToUpdate.isEmpty() == false)
+		if(!sowsToUpdate.isEmpty())
 			update sowsToUpdate;
 
 	}
