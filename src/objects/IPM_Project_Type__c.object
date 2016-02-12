@@ -22,6 +22,14 @@
         <type>Text</type>
         <unique>false</unique>
     </fields>
+	 <fields>		
+        <fullName>IPM_CopyLaunchDate2Parent__c</fullName>		
+        <defaultValue>false</defaultValue>		
+        <externalId>false</externalId>		
+        <label>CopyLaunchDate2Parent</label>		
+        <trackTrending>false</trackTrending>		
+        <type>Checkbox</type>		
+    </fields>
     <fields>
         <fullName>IPM_CopyMilestoneToGlobal__c</fullName>
         <defaultValue>false</defaultValue>

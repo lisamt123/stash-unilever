@@ -1001,17 +1001,40 @@ public with sharing class IPM_ProjectOverviewCtrl {
     ******************************************************************/
      public void moveToPLE()
      {
-        try{
-
-             project.IPM_Phase__c=IPM_ConstantUtils.PHASE_PLE;
-             project.IPM_Actual_Launch_Date__c=Date.today();
-             update project ;
+        
+		List<IPM_Project__c> lstProjectsToUpdate = new List<IPM_Project__c>();
+        try
+		{
+			IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(project);
+        	IPM_Project_Type__c nextPhaseProjectType = IPM_Utils.getNextPhase(currentProjectType,false);
+        	
+        	if(nextPhaseProjectType != null && nextPhaseProjectType.IPM_Phase__c!=null)
+        	{
+	            project.IPM_Phase__c = nextPhaseProjectType.IPM_Phase__c;
+	            project.IPM_Actual_Launch_Date__c = Date.today();
+	            lstProjectsToUpdate.add(project);
+        	}
+        	if(nextPhaseProjectType.IPM_CopyLaunchDate2Parent__c)
+            {
+              //Regional Project for local project
+              if(project.IPM_Parent_Project__c != null && project.IPM_Parent_Project__r.IPM_Actual_Launch_Date__c == null){
+                lstProjectsToUpdate.add( new IPM_Project__c(Id= project.IPM_Parent_Project__c, IPM_Actual_Launch_Date__c = Date.today()));
+              }
+                
+              //GLobal Project for local project
+              if(project.IPM_Parent_Project__r.IPM_Parent_Project__c != null && project.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Actual_Launch_Date__c == null){
+                lstProjectsToUpdate.add( new IPM_Project__c(Id= project.IPM_Parent_Project__r.IPM_Parent_Project__c, IPM_Actual_Launch_Date__c = Date.today()));
+              }
+                  
+          }
+          if(!lstProjectsToUpdate.IsEmpty()){
+          	update lstProjectsToUpdate;
+          }
         }
-        catch (DmlException ex){
-            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,
-               'moveToPLE',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+        catch (DmlException ex)
+		{
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,'moveToPLE',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.Error,Label.IPM_Generic_ErrorMessage));   
- 
         }
      }
      

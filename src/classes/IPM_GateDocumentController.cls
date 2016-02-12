@@ -872,13 +872,45 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     /********************************************************************
     @description For Moving Gate Document from Market Deployment to PLE
     */
-    public void moveToPLE(){
-        try{
-            project.IPM_Phase__c=IPM_ConstantUtils.PHASE_PLE;
-            project.IPM_Actual_Launch_Date__c=Date.today();
-            update project;
+    public void moveToPLE()
+	{
+        List<IPM_Project__c> lstProjectsToUpdate = new List<IPM_Project__c>();
+        try
+        {
+            IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(project);
+            IPM_Project_Type__c nextPhaseProjectType = IPM_Utils.getNextPhase(currentProjectType,false);
+            
+            if(nextPhaseProjectType != null && nextPhaseProjectType.IPM_Phase__c!=null)
+            {
+                project.IPM_Phase__c = nextPhaseProjectType.IPM_Phase__c;
+                project.IPM_Actual_Launch_Date__c = Date.today();
+                lstProjectsToUpdate.add(project);
+            }
+            
+            if(nextPhaseProjectType.IPM_CopyLaunchDate2Parent__c)
+            {
+                for(IPM_Project__c localProject : [SELECT Id,
+                                                   IPM_Parent_Project__r.IPM_Actual_Launch_Date__c, IPM_Parent_Project__c,
+                                                   IPM_Parent_Project__r.IPM_Parent_Project__c, IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Actual_Launch_Date__c 
+                                                   from IPM_Project__c where id=: project.Id]){
+                                                   
+                    //Regional Project for local project
+                    if(localProject.IPM_Parent_Project__c != null && localProject.IPM_Parent_Project__r.IPM_Actual_Launch_Date__c == null){
+                        lstProjectsToUpdate.add( new IPM_Project__c(Id= localProject.IPM_Parent_Project__c, IPM_Actual_Launch_Date__c = Date.today()));
+                    }
+                        
+                    //GLobal Project for local project
+                    if(localProject.IPM_Parent_Project__r.IPM_Parent_Project__c != null && localProject.IPM_Parent_Project__r.IPM_Parent_Project__r.IPM_Actual_Launch_Date__c == null){
+                        lstProjectsToUpdate.add( new IPM_Project__c(Id= localProject.IPM_Parent_Project__r.IPM_Parent_Project__c, IPM_Actual_Launch_Date__c = Date.today()));
+                    }
+                }   
+            }
+            if(!lstProjectsToUpdate.IsEmpty()){
+                update lstProjectsToUpdate;
+            }
         }
-        catch(Exception ex){
+        catch(Exception ex)
+        {
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
                'moveToPLE',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
 
