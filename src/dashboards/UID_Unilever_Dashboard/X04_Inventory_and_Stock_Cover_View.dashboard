@@ -6,10 +6,6 @@
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>Distributor User</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
             <values>BESTBUY MALDIVES PVT LTD</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
@@ -21,43 +17,43 @@
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>01</values>
+            <values>Jan</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>02</values>
+            <values>Feb</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>03</values>
+            <values>Mar</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>04</values>
+            <values>Apr</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>05</values>
+            <values>May</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>06</values>
+            <values>Jun</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>07</values>
+            <values>Jul</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>08</values>
+            <values>Aug</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>09</values>
+            <values>Sep</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>10</values>
+            <values>Oct</values>
         </dashboardFilterOptions>
         <name>Report Month</name>
     </dashboardFilters>
@@ -99,9 +95,8 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Stocked_Product_Value__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
             <componentType>LineGrouped</componentType>
             <dashboardFilterColumns>
@@ -159,9 +154,8 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
             <componentType>LineGrouped</componentType>
             <dashboardFilterColumns>
@@ -211,7 +205,7 @@
             <report>UID_Inventory_and_Stock_Cover_View/Monthly_Stock_Cover_Days_Final</report>
             <showPercentage>false</showPercentage>
             <showValues>true</showValues>
-            <sortBy>RowLabelDescending</sortBy>
+            <sortBy>RowValueAscending</sortBy>
             <useReportChart>false</useReportChart>
         </components>
         <components>
@@ -281,9 +275,8 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Stocked_Product_Value__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
             <componentType>ColumnGrouped</componentType>
             <dashboardFilterColumns>
@@ -340,9 +333,8 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Stocked_Products__r.Stocked_Product_Summary__r$UID_Avail_Quantity__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
             <componentType>ColumnGrouped</componentType>
             <dashboardFilterColumns>
