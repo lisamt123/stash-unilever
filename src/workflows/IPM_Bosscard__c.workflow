@@ -8,7 +8,7 @@
             <type>owner</type>
         </recipients>
         <senderType>DefaultWorkflowUser</senderType>
-        <template>unfiled$public/IPM_BOSSCARD_Deletion_Alert</template>
+        <template>IPM_Emails/IPM_BOSSCARD_Deletion_Alert</template>
     </alerts>
     <alerts>
         <fullName>IPM_BOSSCARD_Archival_Mail_Alert</fullName>
@@ -18,7 +18,7 @@
             <type>owner</type>
         </recipients>
         <senderType>CurrentUser</senderType>
-        <template>unfiled$public/IPM_BOSSCARD_Archival_Mail_Alert</template>
+        <template>IPM_Emails/IPM_BOSSCARD_Archival_Mail_Alert</template>
     </alerts>
     <alerts>
         <fullName>IPM_Email_to_Notify_Auto_Deletion_of_Bosscard_after_6_months_of_inactivity</fullName>
