@@ -131,6 +131,15 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         } 
     }
 
+    public void setCampaignScaleOne(){
+        //System.DEBUG('selectedRegion : ' + selectedRegion);
+        //if(selectedRegion.startsWith(GLOBAL_REGION)){
+        //    project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
+        //    project.OblixRegion__c = selectedRegion;
+        //}
+        System.DEBUG('project.Project_Scale_1__c  : ' + project.Project_Scale_1__c );
+    }
+
     private void setCampaignScaleOne(String selectedMainRegions, String selectedCountriesLoc) {
         String countriesSelected = '';
         List < String > splitRegion = new List < String > ();
