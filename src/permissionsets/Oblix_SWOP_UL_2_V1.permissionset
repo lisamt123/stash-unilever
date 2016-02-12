@@ -248,6 +248,10 @@
         <apexClass>Oblix_wrapper_NonCamp</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>TriggerFactory</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <description>Allow CRUD on shared SOW records and childs</description>
     <fieldPermissions>
         <editable>false</editable>

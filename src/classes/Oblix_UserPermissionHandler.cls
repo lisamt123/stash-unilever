@@ -42,7 +42,7 @@ public with sharing class Oblix_UserPermissionHandler implements ITrigger{
 		Oblix_SOWHandlerLogic.deleteAllManualSharing(affectedSOWs);
 
 		brandCatKey_UserPermissions_map = Oblix_SOWHandlerLogic.retrieveUserPermissions(affectedSOWs);
-		
+
 	}
 
 	public void beforeInsert(SObject so){
@@ -59,15 +59,9 @@ public with sharing class Oblix_UserPermissionHandler implements ITrigger{
 
 	public void afterInsert(SObject so){
 
-		List<Marketing_SOW__Share> li_sowShare = Oblix_SOWHandlerLogic.adjustSharing((Marketing_SOW__c) so, brandCatKey_UserPermissions_map);
-        li_sharesToInsert.addAll(li_sowShare);
-
 	}
 
 	public void afterUpdate(SObject oldSo, SObject so){
-
-		List<Marketing_SOW__Share> li_sowShare = Oblix_SOWHandlerLogic.adjustSharing((Marketing_SOW__c) so, brandCatKey_UserPermissions_map);
-        li_sharesToInsert.addAll(li_sowShare);
 
 	}
 
@@ -83,11 +77,23 @@ public with sharing class Oblix_UserPermissionHandler implements ITrigger{
      */
 	public void andFinally(){
 
+		// update approvers on SOW
 		Oblix_UserPermissionHandlerLogic.updateSOWApprovers(affectedSOWs, brandCatKey_unileverApproverIds_map, brandCatKey_agencyApproverIds_map);
 
-		if(!li_sharesToInsert.isEmpty()){
-            insert li_sharesToInsert;
-        }
+		// update sharings
+		if(Trigger.isAfter){
+
+			for(Marketing_SOW__c sow : affectedSOWs){
+
+				List<Marketing_SOW__Share> li_sowShare = Oblix_SOWHandlerLogic.adjustSharing(sow, brandCatKey_UserPermissions_map);
+        		li_sharesToInsert.addAll(li_sowShare);
+        	}
+
+        	if(!li_sharesToInsert.isEmpty()){
+	            insert li_sharesToInsert;
+	        }
+
+		}
 
 	}
 }

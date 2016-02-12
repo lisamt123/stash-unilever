@@ -248,6 +248,10 @@
         <apexClass>Oblix_wrapper_NonCamp</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>TriggerFactory</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
     <description>Readonly User with no record visibility restriction for SWOP related objects</description>
     <fieldPermissions>
         <editable>false</editable>

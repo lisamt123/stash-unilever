@@ -120,6 +120,8 @@ src/classes/Oblix_UserPermissionHandler.cls
 src/classes/Oblix_UserPermissionHandler.cls-meta.xml
 src/classes/Oblix_UserPermissionHandlerLogic.cls
 src/classes/Oblix_UserPermissionHandlerLogic.cls-meta.xml
+src/classes/TestDataFactory.cls
+src/classes/TestDataFactory.cls-meta.xml
 src/classes/Oblix_Utils.cls
 src/classes/Oblix_Utils.cls-meta.xml
 src/classes/Oblix_Utils_Test.cls
