@@ -16,10 +16,6 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         get;
         set;
     }
-    public transient Boolean firstEntry {
-        get;
-        set;
-    }
     public List < Oblix_Marketing_SOW_Project_Splits__c > agencyHubSplitListToInsertOnEdit {
         get;
         set;
@@ -63,6 +59,9 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
     public List<SelectOption> innovationOptions {get; set;}
     public List<SelectOption> brandOptions {get; set;}
 
+    public void init() {
+        system.debug('started');
+    }
     
     public Oblix_SOWCampaignCreateController() {
         system.debug('================================================= im the controller here ===');
@@ -116,7 +115,6 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         System.DEBUG('Set Countries : ' + campaignHelper.selectedProject.Campaign_Countries__c);
         System.DEBUG('All Regions : ' + campaignHelper.selectedProject.OblixRegion__c);
         System.DEBUG('Main Regions : ' + selectedMainRegions);
-        System.DEBUG('firstEntry ' + firstEntry);
         List < String > regionList = new List < String > ();
         String tempCountries = campaignHelper.selectedProject.Campaign_Countries__c;
         if (selectedMainRegions != null && campaignHelper.selectedProject.Campaign_Countries__c.length() > 0) {
@@ -126,9 +124,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         }
         System.DEBUG('Set Changes Countries : ' + campaignHelper.selectedProject.Campaign_Countries__c);
         System.DEBUG('Set Changes Region : ' + campaignHelper.selectedProject.OblixRegion__c);
-        if (!firstEntry) {
-            setCampaignScaleOne(selectedMainRegions, tempCountries);
-        } 
+        setCampaignScaleOne(selectedMainRegions, tempCountries);
     }
 
     public void setCampaignScaleOne(){
