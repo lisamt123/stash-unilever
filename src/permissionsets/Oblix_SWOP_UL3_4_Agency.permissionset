@@ -237,6 +237,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_UserPermissionHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_Utils</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -247,10 +251,6 @@
     <classAccesses>
         <apexClass>Oblix_wrapper_NonCamp</apexClass>
         <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TriggerFactory</apexClass>
-        <enabled>true</enabled>
     </classAccesses>
     <description>Access to the Swop Application for marketer based on brand</description>
     <fieldPermissions>

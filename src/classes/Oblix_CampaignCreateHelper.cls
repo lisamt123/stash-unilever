@@ -193,7 +193,7 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
             if (selectedCountriesJSON == null && isEdit && selectedProject.Campaign_Countries__c != null) {
                 List < String > regionSeperatedList = new List < String > ();
                 List < String > selectedCountriesList = new List < String > ();
-                regionSeperatedList = selectedProject.Campaign_Countries__c.split('-');
+                regionSeperatedList = selectedProject.Campaign_Countries__c.split('/');
                 if (regionSeperatedList != null && regionSeperatedList.size() > 1) {
                     selectedCountriesList = regionSeperatedList[1].split(',');
                 }
@@ -209,7 +209,7 @@ public with sharing class Oblix_CampaignCreateHelper extends Oblix_SWOPparentCon
             if (selectedMainRegionJSON == null && isEdit && selectedProject.Campaign_Countries__c != null) {
                 List < String > regionSeperatedList = new List < String > ();
                 List < String > mainRegionsList = new List < String > ();
-                regionSeperatedList = selectedProject.Campaign_Countries__c.split('-');
+                regionSeperatedList = selectedProject.Campaign_Countries__c.split('/');
                 if (regionSeperatedList[0] != null) {
                     mainRegionsList = regionSeperatedList[0].split(',');
                 }

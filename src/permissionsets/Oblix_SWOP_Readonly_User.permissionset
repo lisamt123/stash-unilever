@@ -237,6 +237,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_UserPermissionHandlerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_Utils</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -246,10 +250,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>Oblix_wrapper_NonCamp</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>TriggerFactory</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <description>Readonly User with no record visibility restriction for SWOP related objects</description>

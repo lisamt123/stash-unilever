@@ -99,7 +99,7 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         List < String > regionList = new List < String > ();
         String tempCountries = campaignHelper.selectedProject.Campaign_Countries__c;
         if (selectedMainRegions != null && campaignHelper.selectedProject.Campaign_Countries__c.length() > 0) {
-            campaignHelper.selectedProject.Campaign_Countries__c = selectedMainRegions + '-' + campaignHelper.selectedProject.Campaign_Countries__c;
+            campaignHelper.selectedProject.Campaign_Countries__c = selectedMainRegions + '/' + campaignHelper.selectedProject.Campaign_Countries__c;
         } else {
             campaignHelper.selectedProject.Campaign_Countries__c = campaignHelper.selectedProject.OblixRegion__c;
         }
