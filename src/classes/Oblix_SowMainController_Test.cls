@@ -63,7 +63,7 @@ private static final String TWO_ELEMENTS_MESSSAGE = 'There should be two element
             Test.stopTest();
 
             controller.selectedSewId = mSow.id;
-            controller.RerenderSelectedSow();
+            controller.clearFilters();
 
             Attachment att = new Attachment(parentId = mSow.id, name = 'attachmentUnitTest', body = Blob.valueOf(FINAL_TEST));
             insert att;

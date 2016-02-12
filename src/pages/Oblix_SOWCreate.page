@@ -115,24 +115,26 @@
 	                    </div>
 	                    <div class="form-group" id="UnileverAttachment">
 	                    	<p>Attachment&nbsp;<span class="form_bracket_text">(Optional)</span></p>
-                            <apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file" styleclass="v3 add_attachment_input" />
+                            <apex:inputFile value="{!attachment.body}" filename="{!attachment.name}" id="file" styleclass="v3 add_attachment_input" rendered="{!IF(can_add_attachment,true,false)}" />
                             <apex:actionRegion >
                                 <apex:actionFunction name="removeAttachmentsBack" action="{!refreshAttachments}" reRender="attachmentContainer" />
                             </apex:actionRegion>
-                            <apex:commandButton styleClass="btn btn-primary btn_plus btn_asset_add" action="{!softSaveCampaign}" value="ADD" onclick="return validateFormEntries();" immediate="false" />
+                            <apex:commandButton styleClass="btn btn-primary btn_plus btn_asset_add" action="{!softSaveCampaign}" value="ADD" onclick="return validateFormEntries();" immediate="false" rendered="{!IF(can_add_attachment,true,false)}"/>
                             <br/>
                             <br/>
                             <apex:repeat value="{!liso_attachments}" var="eachAttachment">
                                 <div id="{!eachAttachment.Id}">
                                 	<div id="attachmentContainer">
-                                        <a  class="attachment_item"  href="#" data-attachment-id="{!eachAttachment.Id}" onclick="removeAttachments('{!eachAttachment.Id}'); return false;"></a>&nbsp;
+                                		<apex:outputPanel rendered="{!IF(can_delete_attachment,true,false)}">
+                                        	<a  class="attachment_item"  href="#" data-attachment-id="{!eachAttachment.Id}" onclick="removeAttachments('{!eachAttachment.Id}'); return false;"></a>&nbsp;
+                                        </apex:outputPanel>
                                         <a href="/servlet/servlet.FileDownload?file={!eachAttachment.Id}" target="_blank"> {!eachAttachment.Name}</a>
                                 	</div>
                                 </div>
                             </apex:repeat>
                         </div>
 	                    <div class="SOW_create_buttons">
-	                        <apex:commandButton value="SAVE SOW"   action="{!SaveSOW}" title="{!$Label.Oblix_lbl_UIUX_Save_Sow}" onclick="return validateFormEntries();" styleClass="btn btn-primary btn-sm pull-right btn_check btn_save_sow" immediate="false"/>
+	                        <apex:commandButton value="SAVE SOW"   action="{!SaveSOW}" title="{!$Label.Oblix_lbl_UIUX_Save_Sow}" onclick="return validateFormEntries();" styleClass="btn btn-primary btn-sm pull-right btn_check btn_save_sow" immediate="false" rendered="{!IF(can_edit,true,false)}"/>
 	                        <apex:commandButton value="CANCEL" action="{!cancelAction}" title="Cancel" styleClass="btn btn-sm pull-right btn_cross btn_cancel" immediate="true" html-formnovalidate="formnovalidate"/>
 	                        
 	                    </div>

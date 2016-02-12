@@ -1,369 +1,332 @@
 @isTest
 private class Oblix_SOWCampaignCreateController_Test {
 
-    private static final String NOT_NULL_MESSAGE = 'Page Reference should not be null';
+    //private static final String NOT_NULL_MESSAGE = 'Page Reference should not be null';
     private static final String PROJECT_TXT = 'Project';
+    private static final String PROJECT_TXT_1 = 'Project1';
     private static final String PROJECTID_TXT = 'projectId';
+    private static final String SOWID_TXT = 'sowId';
+    private static final String GLOBAL_REGION = 'Global';
+    private static final String COUNTRY_TYPE = 'Country';
 
-    @isTest static void initTest() {
+    @isTest static void SOWCampaignCreateControllerTest_addOneMoreProjectSplitInstance_isSplitInstanceAdded() {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
-            Test.startTest();
-            MDO_Geography__c geographyRegion = new MDO_Geography__c();
-            geographyRegion.Name = 'Europe';
-            geographyRegion.geography_type__c = 'Region';
-            insert geographyRegion;
-
-            MDO_Geography__c geographyCountry = new MDO_Geography__c();
-            geographyCountry.Name = 'France';
-            geographyCountry.geography_type__c = 'Country Cluste';
-            geographyCountry.parent_L5__c = geographyRegion.Id;
-            insert geographyCountry;
-
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
-
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
-            System.assert(project.Id != null, 'project not null');
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
-
-            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
-
-            Oblix_SOWCampaignCreateController controller = new Oblix_SOWCampaignCreateController();
-            string complexity = controller.complexity;
-            string idSplit = controller.idSplit;
-            Set<Oblix_Project_Assets__c> ClearList = controller.ClearList;
-            String selectedCountry = controller.selectedCountry;
-            controller.subCat = 'Adaptation';
-            controller.recordType = 'Experiential';
-            controller.AddToProjectAction();
-            controller.exitSwop();
-            controller.setCampaignScale();
-            controller.addOneMoreProjectSplitInstance();
-            controller.finishBasket();
-            controller.ReInitializeInstance();
-            Oblix_SOWCampaignCreateController.removeAsset(asset.name, project.Id);
-            
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            Test.startTest();
+                // check there are 5 instances already
+                System.assertEquals(campaignCreateController.campaignHelper.numberOfAgencyHubSplits, 5);
+                campaignCreateController.addOneMoreProjectSplitInstance();  
+                // check to see another instance is added
+                System.assertEquals(campaignCreateController.campaignHelper.agencySplitHubs.size(), 6);
             Test.stopTest();
-
-            System.assert(controller.userConnected != null, 'User should be set');
         }
-    }
+    }  
 
-    @istest static void backActionWithProjectTest() {
+    @isTest static void SOWCampaignCreateControllerTest_createFiveInstancesOFMarketingSplits_isFiveInstancesOFMarketingSplitsCreated() {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
-            Test.startTest();
-
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
-
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            Test.startTest();
+                // check there are 5 instances already
+                System.assertEquals(campaignCreateController.campaignHelper.agencySplitHubs.size(), 5);
+                campaignCreateController.addOneMoreProjectSplitInstance();  
+                // check to see another instance is added
+                System.assertEquals(campaignCreateController.campaignHelper.agencySplitHubs.size(), 6);
+            Test.stopTest();
+        }
+    }  
 
+
+    @isTest static void SOWCampaignCreateControllerTest_setInfoCountries_isInfoCountriesSet() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
-
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            
+            Test.startTest();
+                campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c = Oblix_TestUtils.createCountries(1);
+                campaignCreateController.setInfoCountries();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Constants.Innovation_Projects_Market1);
 
-            Oblix_SOWCampaignCreateController controller = new Oblix_SOWCampaignCreateController();
+                campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c = Oblix_TestUtils.createCountries(4);
+                campaignCreateController.setInfoCountries();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Constants.Innovation_Projects_Market2);
 
+                campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c = Oblix_TestUtils.createCountries(8);
+                campaignCreateController.setInfoCountries();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Constants.Innovation_Projects_Market3);
+
+                campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c = Oblix_TestUtils.createCountries(13);
+                campaignCreateController.setInfoCountries();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Constants.Innovation_Projects_Market4);
+
+                campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c = Oblix_TestUtils.createCountries(20);
+                campaignCreateController.setInfoCountries();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Constants.Innovation_Projects_Market5);
+
+                campaignCreateController.selectedMainRegions = '1region';
+                campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c = '';
+                campaignCreateController.setInfoCountries();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,null);
             Test.stopTest();
 
-            System.assert(controller.BackAction() != null, NOT_NULL_MESSAGE);
+
+            
         }
+    } 
 
-    }
-
-    @istest static void backActionWithoutProjectTest() {
+    @isTest static void SOWCampaignCreateControllerTest_setCampaignScaleOneSetToGlobal_isCampaignScaleOneSetToGlobal() {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
-
-            Test.startTest();
-
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
-
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-
-            ApexPages.currentPage().getParameters().put('sowId', mSow.id);
-
-            Oblix_SOWCampaignCreateController controller = new Oblix_SOWCampaignCreateController();
-
-            Test.stopTest();
-
-            System.assert(controller.BackAction() != null, NOT_NULL_MESSAGE);
-        }
-
-    }
-
-    @isTest static void AddAgencySplitTest() {
-        User u = Oblix_TestUtils.createTestUser();
-        System.runAs(u) {
-            Test.startTest();
-
-            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
-
-            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
-
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
-
-            Oblix_SOWCampaignCreateController controller = new Oblix_SOWCampaignCreateController();
-
-            controller.lstProjectSplitHubs = new List<Oblix_Marketing_SOW_Project_Splits__c>();
-
-            controller.AddAgencySplit();
-
-            Test.stopTest();
-
-            System.assert(!controller.lstProjectSplitHubs.isEmpty(), 'Collection should not be empty');
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            
+            Test.startTest();
+                campaignCreateController.setCampaignScaleOneGlobal();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_1__c,Oblix_Constants.Innovation_Projects_Market5);
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.OblixRegion__c,'Global');
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Campaign_Countries__c,'Global');
+                
+            Test.stopTest();      
         }
-    }
+    } 
 
-
-    @isTest static void setInfoSplitHubTest() {
+    @isTest static void SOWCampaignCreateControllerTest_setCampaignScale_isCampaignScaleSet() {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
-            Test.startTest();
-
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
-
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
-
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            
+            Test.startTest();
+                campaignCreateController.campaignHelper.numberOFSelectedCountries = 1;
+                campaignCreateController.setCampaignScale();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_2__c,'1 location');
 
-            Oblix_SOWCampaignCreateController controller = new Oblix_SOWCampaignCreateController();
+                campaignCreateController.campaignHelper.numberOFSelectedCountries = 2;
+                campaignCreateController.setCampaignScale();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_2__c,'Up to 2 locations');
 
-            controller.listItems = 'null_null_1.0,null_null_2.0,';
+                campaignCreateController.campaignHelper.numberOFSelectedCountries = 3;
+                campaignCreateController.setCampaignScale();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_2__c,'Up to 3 locations');
 
-            controller.setInfoSplitHub();
+                campaignCreateController.campaignHelper.numberOFSelectedCountries = 4;
+                campaignCreateController.setCampaignScale();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_2__c,'Up to 4 locations');
 
-            System.assert(controller.agencySplitInstanceJS != null, 'Object should not be null');
+                campaignCreateController.campaignHelper.numberOFSelectedCountries = 5;
+                campaignCreateController.setCampaignScale();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_2__c,'Up to 5 locations');
 
-            //controller.ValueDriversUpdate();
-            //controller.getAssetRecordType();
-
-            Test.stopTest();
+                campaignCreateController.campaignHelper.numberOFSelectedCountries = 6;
+                campaignCreateController.setCampaignScale();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Project_Scale_2__c,'More than 5 locations');
+            Test.stopTest();      
         }
-    }
+    } 
 
-    @isTest static void setInfoMethodTest() {
+    @isTest static void SOWCampaignCreateControllerTest_setInfoDrivers_isInfoDriversSet() {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
-            Test.startTest();
-
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
-
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
-
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
-
-            Oblix_SOWCampaignCreateController controller = new Oblix_SOWCampaignCreateController();
-
-            controller.setInfoDrivers();
-            controller.setInfoStages();
-            controller.setInfoCountries();
-            controller.setInfoTimeLine();
-            controller.EditAction();
-            //controller.setAgencyHubOnComplete();
-            controller.setMoreDetails();
-            controller.saveSubCatAsset();
-            controller.SaveProjectAction();
-
-            Test.stopTest();
-
-            System.assert(project != null, 'Project should not be null');
-            System.assert(controller.isEdit, 'Edit flag should be set');
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            
+            Test.startTest();
+                campaignCreateController.campaignHelper.selectedProject.Innovation_Projects__c = Label.Oblix_Lbl_Innovation_Projects_Innovation;
+                campaignCreateController.campaignHelper.selectedBrandInnovation = 'test';
+                campaignCreateController.setInfoDrivers();
+                System.assertEquals(campaignCreateController.campaignHelper.selectedProject.Brand_Led_Growth__c,'test');
+                
+            Test.stopTest();      
         }
-    }
+    } 
 
-    static testMethod void ValueDriversProjectTest() {
+    @isTest static void SOWCampaignCreateControllerTest_setAgencyHubSplit_isAgencyHubSplitSet() {
         User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
-            Test.startTest();
-
             MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
-
             Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
-
             Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
-
+            Oblix_SOW_Projects__c project1 = Oblix_TestUtils.createSowProjects(PROJECT_TXT_1, mSow.id);
+            MDO_Geography__c testGeography = new MDO_Geography__c(name=PROJECT_TXT);
+            Oblix_Marketing_SOW_Project_Splits__c testSplit = new Oblix_Marketing_SOW_Project_Splits__c(Project_Splits__c=project.Id);
+            Oblix_Marketing_SOW_Project_Splits__c testSplit1 = new Oblix_Marketing_SOW_Project_Splits__c(Project_Splits__c=project1.Id);
+            insert testSplit1;
+            insert testSplit;
+            insert testGeography;
             ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
-
-            Oblix_SOWCampaignCreateController controller = new Oblix_SOWCampaignCreateController();
-
-            controller.project = project;
-
-            controller.ValueDriversProject('c1,c2,c4,c4');
-            controller.ValueDriversProject('c1,c2,c4,c4,c5,c6');
-            controller.ValueDriversProject('c1,c2,c4,c4,c5,c6,c7,c8,c9,c10,c11');
-            controller.ValueDriversProject('c1,c2,c4,c4,c5,c6,c7,c8,c9,c10,c11,c12,c13,c14,c15,c16');
-
-            Test.stopTest();
-
-            System.assertEquals(controller.project.Project_Scale_1__c , Oblix_Constants.Innovation_Projects_Market5, 'Field should not be empty');
-
-        }
-
-    }
-
-    private static Oblix_SOW_Projects__c initSaveProjectActionData() {
-        Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects('test_project',
-                                        Oblix_TestUtils.createTestMarketingSow(null, null,
-                                                Oblix_TestUtils.createBrand('test_brand', 'test').Id).Id);
-
-        ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
-        return project;
-    }
-
-    @isTest static void SaveProjectAction_Error_Test() {
-        System.runAs(Oblix_TestUtils.createTestUser()) {
-            Oblix_SOW_Projects__c project = initSaveProjectActionData();
-
-            Oblix_SOWCampaignCreateController ctrl = new Oblix_SOWCampaignCreateController();
-
-            ctrl.project = project;
-            ctrl.project.Name = null;
-            ctrl.projectId = project.Id;
-
-            Test.startTest();
-            System.assertEquals(null, ctrl.SaveProjectAction());
-            Test.stopTest();
-            
-        }
-    }
-
-    @isTest static void SaveProjectAction_Error2_Test() {
-        System.runAs(Oblix_TestUtils.createTestUser()) {
-            Oblix_SOW_Projects__c project = initSaveProjectActionData();
-            Oblix_SOWCampaignCreateController ctrl = new Oblix_SOWCampaignCreateController();
-            ctrl.project = project;
-            ctrl.project.Name = null;
-            ctrl.projectId = null;
-
-            Test.startTest();
-            System.assertEquals(null, ctrl.SaveProjectAction());
-            Test.stopTest();
-        }
-    }
-
-    @isTest static void SaveProjectAction_Error3_Test(){
-        System.runAs(Oblix_TestUtils.createTestUser()) {
-            Oblix_SOW_Projects__c project = initSaveProjectActionData();
-            Oblix_SOWCampaignCreateController ctrl = new Oblix_SOWCampaignCreateController();
-            ctrl.project = project;
-            ctrl.projectId = null;
-
-            Test.startTest();
-            System.assertEquals(null, ctrl.SaveProjectAction());
-            Test.stopTest();
-        }
-    }
-    
-    @isTest static void setAsGlobal_Test(){
-    
-        System.runAs(Oblix_TestUtils.createTestUser()) {
-            Oblix_SOW_Projects__c project = initSaveProjectActionData();
-            Oblix_SOWCampaignCreateController ctrl = new Oblix_SOWCampaignCreateController();
-            ctrl.project = project;
-            ctrl.projectId = project.Id;
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
             Test.startTest();
-            ctrl.setAsGlobal();
-            Test.stopTest();
-            
-            Oblix_SOW_Projects__c result = [select OblixRegion__c from Oblix_SOW_Projects__c where id = :project.Id];
-            System.assertEquals('World',result.OblixRegion__c);
+                campaignCreateController.agencyHubSplitWrapperListJSONString = '[{"existingId":"","countryId":"'+testGeography.Id+'","splitPercentage":"10"},{"existingId":"","countryId":"'+testGeography.Id+'","splitPercentage":"90"}]';
+                campaignCreateController.setAgencyHubSplit();
+                System.assertEquals(campaignCreateController.agencyHubSplitListToInsertOnEdit.size(),2);
+                
+                campaignCreateController.agencyHubSplitWrapperListJSONString = '[{"existingId":"'+testSplit.id+'","countryId":"'+testGeography.Id+'","splitPercentage":"10"},{"existingId":"'+testSplit1.id+'","countryId":"'+testGeography.Id+'","splitPercentage":"90"}]';
+                campaignCreateController.setAgencyHubSplit();
+                System.assertEquals(campaignCreateController.agencyHubSplitListToUpdate.size(),2);
+                
+            Test.stopTest();      
         }
-    }
-    /*
-    @isTest static void removeAsset_Test(){
-    
-        System.runAs(Oblix_TestUtils.createTestUser()) {
+    } 
+
+    @isTest static void SOWCampaignCreateControllerTest_setAgencyHubSplit_isAgencyHubSplitSetOnInsert() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            MDO_Geography__c testGeography = new MDO_Geography__c(name=PROJECT_TXT);
             
-            Oblix_SOW_Projects__c project = initSaveProjectActionData();
-            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
+            insert testGeography;
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
             Test.startTest();
-            Oblix_SOWCampaignCreateController.removeAsset(asset.Id);
-            Test.stopTest();
-            
-            List<Oblix_Project_Assets__c> result = [select Id from Oblix_Project_Assets__c where id = :asset.Id];
-            System.assert(result.isEmpty());
+                campaignCreateController.agencyHubSplitWrapperListJSONString = '[{"existingId":"","countryId":"'+testGeography.Id+'","splitPercentage":"10"},{"existingId":"","countryId":"'+testGeography.Id+'","splitPercentage":"90"}]';
+                campaignCreateController.setAgencyHubSplit();
+                System.assertEquals(campaignCreateController.agencyHubSplitListToInsert.size(),2);
+                System.assertEquals(campaignCreateController.campaignHelper.isGlobalCampaign, false);
+            Test.stopTest();      
         }
-    }
-    */
-    
-    @isTest static void refresh_Test(){
-    
-        System.runAs(Oblix_TestUtils.createTestUser()) {
-            
-            Oblix_SOW_Projects__c project = initSaveProjectActionData();
-            project.Total_Fees_for_Project__c  = 1000;
+    } 
+
+    @isTest static void SOWCampaignCreateControllerTest_GlobalCampaign_isGobalCampaignSet() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+            project.OblixRegion__c = GLOBAL_REGION;
             update project;
-            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
-            Oblix_SOWCampaignCreateController ctrl = new Oblix_SOWCampaignCreateController();
+            
+            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
             
             Test.startTest();
-            ctrl.refresh();
-            Test.stopTest();
-            System.assertEquals(1,ctrl.countAssetNumberForCampaign);
+                System.assertEquals(campaignCreateController.campaignHelper.isEdit, true);
+                System.assertEquals(campaignCreateController.campaignHelper.isGlobalCampaign, true);
+                
+            Test.stopTest();      
+        }
+    } 
+
+    @isTest static void SOWCampaignCreateControllerTest_FinancialYear_isFinancialYearSetinCreateMode() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            
+            ApexPages.currentPage().getParameters().put(SOWID_TXT, mSow.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            
+            Test.startTest();
+                System.assertEquals(campaignCreateController.campaignHelper.financialYear, 'FY2015');
+                
+            Test.stopTest();      
+        }
+    } 
+
+     @isTest static void SOWCampaignCreateControllerTest_FinancialYear_isFinancialYearSetinEditMode() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+
+            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            
+            Test.startTest();
+                System.assertEquals(campaignCreateController.campaignHelper.financialYear, 'FY2015');
+                
+            Test.stopTest();      
+        }
+    } 
+
+    @isTest static void SOWCampaignCreateControllerTest_countriesByFinancialYear_isCountriesByFinancialYearSet() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+            
+            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            
+            Test.startTest();
+                System.assert(campaignCreateController.campaignHelper.countriesByFinancialYear!=null);
+                
+            Test.stopTest();      
+        }
+    } 
+
+    @isTest static void SOWCampaignCreateControllerTest_countriesRegions_isCountriesRegionsArtefactsSet() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+            MDO_Geography__c testGeography = new MDO_Geography__c(name=PROJECT_TXT,geography_type__c = COUNTRY_TYPE);
+            insert testGeography;
+            MDO_Geography__c testGeography1 = new MDO_Geography__c(name=PROJECT_TXT,geography_type__c = COUNTRY_TYPE);
+            insert testGeography1;
+            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            
+            Test.startTest();
+                System.assert(campaignCreateController.campaignHelper.countriesMap!=null);
+                System.assert(campaignCreateController.campaignHelper.regionsWithCountriesMap!=null);
+                System.assert(campaignCreateController.campaignHelper.countriesWithRegionsMap!=null);
+                System.assert(campaignCreateController.campaignHelper.allCountries!=null);
+                System.assert(campaignCreateController.campaignHelper.unileverRegions!=null);
+                System.assert(campaignCreateController.campaignHelper.regionsWithCountriesMapJSON!=null);
+                System.assert(campaignCreateController.campaignHelper.selectedCountriesJSON!=null);
+                System.assert(campaignCreateController.campaignHelper.selectedMainRegionJSON!=null);
+                System.assert(campaignCreateController.campaignHelper.countryIdsMap!=null);
+                System.assert(campaignCreateController.campaignHelper.countryOptions!=null);
+            Test.stopTest();      
+        }
+    }
+
+    @isTest static void SOWCampaignCreateControllerTest_brandAndInnovationOptions_isbrandAndInnovationOptionsSet() {
+        User u = Oblix_TestUtils.createTestUser();
+        System.runAs(u) {
+            MDO_Brand__c brand = Oblix_TestUtils.createBrand(Oblix_TestUtils.DEFAULT_BRAND_NAME, Oblix_TestUtils.BRAND_STATUS_ACTIVE);
+            Marketing_SOW__c mSow = Oblix_TestUtils.createTestMarketingSow(Oblix_TestUtils.DEFAULT_MARKETING_SOW_NAME, Oblix_TestUtils.SOW_STATUS_OPEN, brand.id);
+            Oblix_SOW_Projects__c project = Oblix_TestUtils.createSowProjects(PROJECT_TXT, mSow.id);
+            MDO_Geography__c testGeography = new MDO_Geography__c(name=PROJECT_TXT,geography_type__c = COUNTRY_TYPE);
+            insert testGeography;
+            MDO_Geography__c testGeography1 = new MDO_Geography__c(name=PROJECT_TXT,geography_type__c = COUNTRY_TYPE);
+            insert testGeography1;
+            ApexPages.currentPage().getParameters().put(PROJECTID_TXT, project.id);
+            Oblix_SOWCampaignCreateController campaignCreateController = new Oblix_SOWCampaignCreateController();
+            
+            Test.startTest();
+                System.assert(campaignCreateController.campaignHelper.innovationOptions!=null);
+                System.assert(campaignCreateController.campaignHelper.brandOptions!=null);
+            Test.stopTest();      
         }
     }
     
-    @isTest static void getAbreviationForCardAssets_Test(){
-    
-        System.runAs(Oblix_TestUtils.createTestUser()) {
-            
-            Oblix_SOW_Projects__c project = initSaveProjectActionData();
-            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
-            
-            Test.startTest();
-            Map<String, String> result = Oblix_SOWCampaignCreateController.getAbreViationByRTBySubCatgForCardAssets();
-            Test.stopTest();
-            
-            System.assert(!result.isEmpty());
-        }
-    }    
-    
-    
-     @isTest static void getAssetDetails_Test(){
-    
-        System.runAs(Oblix_TestUtils.createTestUser()) {
-            
-            Oblix_SOW_Projects__c project = initSaveProjectActionData();
-            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
-            
-            Test.startTest();
-            Oblix_Utils.AssetDetailWrapper result = Oblix_SOWCampaignCreateController.getAssetDetails(asset.Id);
-            Test.stopTest();
-            
-            System.assert(result != null);
-        }
-    }       
-    
-    @isTest static void UpdateProjectAction_Test(){
-    
-        System.runAs(Oblix_TestUtils.createTestUser()) {
-            
-            Oblix_SOW_Projects__c project = initSaveProjectActionData();
-            Oblix_Project_Assets__c asset = Oblix_TestUtils.createProjectAssets(project.Id);
-            asset.Asset_Title__c = 'test X title';
-            update asset;
-            Oblix_SOWCampaignCreateController ctrl = new Oblix_SOWCampaignCreateController();
-            Map<String, Object> details = new Map<String, Object>();
-            details.put('quantity', '50');
-            
-            Test.startTest();
-            Oblix_SOWCampaignCreateController.UpdateProjectAction(asset.Id, details) ;
-            Test.stopTest();
-            
-            Oblix_Project_Assets__c result = [select quantity__c from Oblix_Project_Assets__c where id =: asset.Id];
-            System.assertEquals(50, Integer.valueOf(result.quantity__c));
-        }
-    }      
-    
+       
 }

@@ -495,6 +495,7 @@ public with sharing class Oblix_Utils {
     }
     
     // Added by AES to get the description for each record type
+    // Could be moved to Custom Settings ? - Nimil
     public static map<string, string> getMapRecordTypeDescription() {
         map<string, string> mapRecordTypeDescription = new map<string, string>();
         mapRecordTypeDescription.put(Label.Oblix_Lbl_UIUX_AudioVisuel, ' - ' + Label.Oblix_Lbl_UIUX_AudioVisuel_Description);
@@ -652,5 +653,85 @@ public with sharing class Oblix_Utils {
         Pagereference goToReportsHome = new Pagereference('/00O/o');
         return goToReportsHome.setRedirect(true);
     }
+
+
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-02
+    * @description  new implementation for retreiving record type ids
+    ********************************************************************************/
+    
+    // get the recordTypeId based on the passed in DeveloperName and objecttype check if the map is already populated first
+    private static Map<String, Map<String, RecordType>> recordTypesMap = null;
+    public static RecordType getRecordType(String rtDeveloperName, String sObjType){
+        if(recordTypesMap == null){
+            recordTypesMap = new Map<String, Map<String, RecordType>>();
+            // S.M 20160210 to avoid sonar issue, need to have a limit on the SOQL setting to 1000 to make future proof
+            List<RecordType> listRecTypes = [select Id, SObjectType, DeveloperName, Name from RecordType LIMIT 1000];
+            for(RecordType rt : listRecTypes){
+                Map<String, RecordType> sObjectRecTypesMap = recordTypesMap.get(rt.sObjectType);
+                if(sObjectRecTypesMap == null){
+                    sObjectRecTypesMap = new Map<String, RecordType>();
+                    recordTypesMap.put(rt.sObjectType, sObjectRecTypesMap);
+                }
+                sObjectRecTypesMap.put(rt.DeveloperName, rt);
+            }
+        }
+        Map<String, RecordType> sObjectMap = recordTypesMap.get(sObjType);
+
+        RecordType retVal = null;
+        if(sObjectMap != null){
+            retVal = sObjectMap.get(rtDeveloperName);
+        }
+        System.debug('------ ' + retVal);
+        return retVal;
+    }
+
+    public static Id getRecordTypeId(String rtDeveloperName, String sObjType){
+
+        RecordType rt = getRecordType(rtDeveloperName, sObjType);
+
+        return rt == null ? null : rt.Id;
+
+    }
+
+    /********************************************************************************
+    *                                                                               *
+    *                                  CUSTOM SETTINGS                              *
+    *                                                                               *
+    ********************************************************************************/
+
+
+
+    /********************************************************************************
+    *                                                                               *
+    *                                  CONSTANTS                                    *
+    *                                                                               *
+    ********************************************************************************/
+
+    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v4';
+
+    public static final String SOW_STATUS_APPROVED_BY_UNILEVER = 'Awaiting Agency Approval';
+    public static final String SOW_STATUS_APPROVED_BY_AGENCY = 'Approved';
+    public static final String SOW_STATUS_AWAITING_UNILEVER_APPROVAL = 'Awaiting Unilever Approval';
+    public static final String SOW_STATUS_AWAITING_AGENCY_APPROVAL = 'Awaiting Agency Approval';
+    public static final String SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC = 'Awaiting Agency Approval (TBC)';
+    public static final String SOW_STATUS_REJECTED_BY_UNILEVER = 'Rejected By Unilever';
+    public static final String SOW_STATUS_REJECTED_BY_AGENCY = 'Rejected By Agency';
+
+
+    /*------------------------------RECORD TYPE IDs---------------------------------*/
+    public static final Id RT_SOW_PARENT = getRecordTypeId('ParentSowMarketing', 'Marketing_SOW__c');
+    public static final Id RT_USER_PERMISSION_UNILEVER_USER = getRecordTypeId('Oblix_Unilever_User', 'Oblix_User_Permission__c');
+    public static final Id RT_USER_PERMISSION_AGENCY_USER = getRecordTypeId('Oblix_Agency_User', 'Oblix_User_Permission__c');
+
+
+
+    /*------------------------------LEVELS OF ACCESS---------------------------------*/
+    public static final String USER_PERMISSION_APPROVER = 'Approver';
+    public static final String USER_PERMISSION_READ_ONLY = 'Read Only';
+    public static final String USER_PERMISSION_ACCESS_EDIT = 'Access & Edit';
+    public static final String USER_PERMISSION_SUPERUSER = 'Superuser';
 
 }

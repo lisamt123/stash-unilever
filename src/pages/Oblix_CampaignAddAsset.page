@@ -1,5 +1,5 @@
-<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_SOWCampaignCreateController" standardStylesheets="true">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<apex:page showHeader="false" sidebar="false" docType="html-5.0" controller="Oblix_CampaignAddAssetController" standardStylesheets="true">
+    <!-- <script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.css" />
     <script type="text/javascript" src="https://cdn.datatables.net/s/bs-3.3.5/jqc-1.11.3,dt-1.10.10/datatables.min.js"></script>
@@ -8,473 +8,6 @@
     <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/swopJS.js')}" />
     <script src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/Oblix_CampaignAddAsset.js')}" />
     <script type="text/javascript" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/js/jquery.sticky.js')}"></script>
-    <!--  
-    <script>
-        var updateAsset1 = function(btn, selectioncounter) {
-            blockme();
-            var button = $(btn);
-            console.dir('###button : '+button.html());
-            var assetId = button.attr('data-asset-id');
-            var options = button.parent().find('.subCatPicklist');
-            
-            var subCat ;
-            options.find('option').each(function (index, el) {
-                 if($(el).attr("selected") == 'selected') {
-                        subCat = $(el).val();
-                         console.dir(' subCat  '+subCat);
-                 }
-            });
-            var details = {
-                quantity: button.parent().find('.assetQuantity').val(),
-                location: button.parent().find('.descMend').val(),
-                asset_Picklist: button.parent().find('select').last().find('option:selected').text(),
-                additional_Description : button.parent().find('.assetNotes').val(),
-                option_Name : '{!$Label.Oblix_lbl_UIUX_Option}' + selectioncounter
-            }
-            console.dir('###selectioncounter :'+'{!$Label.Oblix_lbl_UIUX_Option}');
-            Oblix_SOWCampaignCreateController.UpdateProjectAction(assetId, details, function(data, event) {
-                button.addClass('hide_button');
-                button.siblings('input[type="button"]').removeClass('hide_button');
-                refreshAsset();
-            });
-        }
-        </script>
-      
-           
-           var openAsset = function (){
-                var assetId = window.location.search.split('&')[1].split('=')[1];
-                var assetDetails = getAssetDetails(assetId);
-                assetDetails.then(function (data){
-                 if(data.status.status){
-                  var assetName = data.data.assetTitle;
-                  var properties = assetName.split(' X ');
-                  var numberOfQuantity = properties[0];
-                  var selectedAbreviation = properties[1].split('-');
-                  var allAbreviation = JSON.parse(sessionStorage.getItem('assestAbreviations'));                
-                  var firstOption = null;
-                  var secondOption = null;
-                  var thirdOption = selectedAbreviation[2];
-                  console.dir('## selectedAbreviation[2] : '+selectedAbreviation[2]);
-                  var firstElement = null;
-                  var secondElement = null;
-                  var thirdElement = null;
-                  var selectorDetailPanel = null;
-                  var options = null;
-                  Object.keys(allAbreviation).forEach(function (key){
-                    var currentAbraviation = allAbreviation[key];
-                    if(currentAbraviation === selectedAbreviation[0] + '-' + selectedAbreviation[1]){
-                      options = key.split('_');
-                      
-                    }
-                  })
-                  firstOption = options[0];
-                  secondOption = options[1];    
-                  var sel1 ;                   
-                  $('.panel-group').find('.panel-default').find('.panel-heading').each(function (index, el){
-                    
-                    if($(el).text().search(firstOption) !== -1 ){
-                      firstElement = $(el);
-                      console.dir('### first elmnt une seul fois :'+firstElement.html());
-                      var secondSearchArray = firstElement.next().first().find('div[id*="_tabs"]').children('ul');
-                      console.dir('### secondSearchArray :'+secondSearchArray.html());
-                      secondSearchArray.find('a').each(function (index2, el) {
-                          if($(el).text().search(secondOption) !== -1){
-                            secondElement = $(el);
-                            var curentIndex = index2 + 1;
-                            var selector1 = 'div[id*="_tabs-' + curentIndex + '"]';
-                            var selector2 = 'a[href*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                            sel1 = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                            thirdElement = secondSearchArray.find(selector2);
-                            selectorDetailPanel = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                          }
-                      });
-                    }
-                  });
-                  
-                  if(firstElement && ! firstElement.parent().find('.panel-collapse').hasClass('in')) firstElement.parent().find('.panel-collapse').addClass('in');
-                  
-                  if(secondElement && secondElement.find('a').attr('tabindex') !== '0') secondElement.trigger('click');
-                  
-                  thirdElement.parent().parent().find('.active').removeClass('active');   
-                  thirdElement.parent().addClass(' active');
-                 
-                  
-                  var detailPanel = thirdElement.closest('ul').parent().next().find(sel1);
-                  thirdElement.closest('ul').parent().next().find('.active').removeClass('active');   
-                  thirdElement.closest('ul').parent().next().find(sel1).addClass(' active');
-              
-                  detailPanel.find('span').find('.col-lg-6').find('select').val(data.data.assetName);
-                  detailPanel.find('span').find('.col-lg-6').find('.descMend').val(data.data.location);
-                  detailPanel.find('span').find('.col-lg-6').find('.assetQuantity').val(data.data.quantity);                 
-                  detailPanel.find('span').find('.col-lg-6').find('.assetNotes').val(data.data.additionalDescription);   
-                   
-                  detailPanel.find('span').find('.col-lg-6').find('input[type="submit"]').removeClass('hide_button').attr('data-asset-id', assetId);
-                  detailPanel.find('span').find('.col-lg-6').find('input[type="button"]').addClass('hide_button').attr('data-asset-id', assetId);
-                  
-                  if(data.data.assetName == "Other"){
-                      detailPanel.find('span').find('.col-lg-6').find('.trDescribe').css({"display":"block"});
-                  }
-                  
-                 
-                }
-                }, function (err){
-                
-              });
-                  
-              }  
-           
-      <script>
-              //Edit Asset : 
-          
-              var editAsset1 = function (el, assetId){
-                //debugger;
-                  var assetDetails = getAssetDetails(assetId);
-                   assetDetails.then(function (data){
-                     if(data.status.status){
-                   
-                      var assetName = data.data.assetTitle;
-                      var properties = assetName.split(' X ');
-                      var numberOfQuantity = properties[0];
-                      var selectedAbreviation = properties[1].split('-');
-                      var allAbreviation = JSON.parse(sessionStorage.getItem('assestAbreviations'));
-
-                      var firstOption = null;
-                      var secondOption = null;
-                      var thirdOption = selectedAbreviation[2];
-                      var firstElement = null;
-                      var secondElement = null;
-                      var thirdElement = null;
-                      var selectorDetailPanel = null;
-                      var options = null;
-                      Object.keys(allAbreviation).forEach(function (key){
-                        var currentAbraviation = allAbreviation[key];
-                        //debugger;
-                        if(currentAbraviation === selectedAbreviation[0] + '-' + selectedAbreviation[1]){
-                            //debugger;
-                          options = key.split('_');
-                        } /*else if(currentAbraviation === selectedAbreviation[1]){
-                          secondOption = key;
-                        }*/
-                      })
-
-                  firstOption = options[0];
-                  secondOption = options[1];
-                 var sel1 ;                   
-                  $('.panel-group').find('.panel-default').find('.panel-heading').each(function (index, el){
-                    $(el).parent().find('.panel-collapse').removeClass('in');
-                    if($(el).text().search(firstOption) !== -1 ){
-                      firstElement = $(el);
-                     
-                      console.dir('### first elmnt une seul fois :'+firstElement.html());
-                      var secondSearchArray = firstElement.next().first().find('div[id*="_tabs"]').children('ul');
-                      console.dir('### secondSearchArray :'+secondSearchArray.html());
-                      secondSearchArray.find('a').each(function (index2, el) {
-                          if($(el).text().search(secondOption) !== -1){
-                            secondElement = $(el);
-                            var curentIndex = index2 + 1;
-                            var selector1 = 'div[id*="_tabs-' + curentIndex + '"]';
-                            var selector2 = 'a[href*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                            sel1 = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                            thirdElement = secondSearchArray.find(selector2);
-                            selectorDetailPanel = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                          }
-                      });
-                    }
-                  });
-                  
-                  if(firstElement && ! firstElement.parent().find('.panel-collapse').hasClass('in')) firstElement.parent().find('.panel-collapse').addClass('in');
-                  
-                  if(secondElement && secondElement.find('a').attr('tabindex') !== '0') secondElement.trigger('click');
-                  
-                  thirdElement.parent().parent().find('.active').removeClass('active');   
-                  thirdElement.parent().addClass(' active');
-                  
-                  
-                  var detailPanel = thirdElement.closest('ul').parent().next().find(sel1);
-                  thirdElement.closest('ul').parent().next().find('.active').removeClass('active');   
-                  thirdElement.closest('ul').parent().next().find(sel1).addClass(' active');
-              
-                  detailPanel.find('span').find('.col-lg-6').find('select').val(data.data.assetName);
-                  detailPanel.find('span').find('.col-lg-6').find('.descMend').val(data.data.location);
-                  detailPanel.find('span').find('.col-lg-6').find('.assetQuantity').val(data.data.quantity);                 
-                  detailPanel.find('span').find('.col-lg-6').find('.assetNotes').val(data.data.additionalDescription);   
-                   
-                  detailPanel.find('span').find('.col-lg-6').find('input[type="submit"]').removeClass('hide_button').attr('data-asset-id', assetId);
-                  detailPanel.find('span').find('.col-lg-6').find('input[type="button"]').addClass('hide_button').attr('data-asset-id', assetId);
-                  
-                  if(data.data.assetName == "Other"){
-                      detailPanel.find('span').find('.col-lg-6').find('.trDescribe').css({"display":"block"});
-                  }  
-                }
-                }, function (err){
-                
-              });  
-                 
-                  
-              }   
-   
-    
-    
-    <script>
-       $(function (){
-                if(window.location.search.indexOf('&') > -1){
-                    if(window.location.search.split('&')[1].split('=')[0] === 'assetId'){
-                        openAsset()
-                    }                      
-                }
-            });
-       
-        function setMendatory(x) {
-
-            if (x.parent().parent().find("span").find("select").val() == '') {
-                alert('Asset name can\'t be null');
-                return false;
-            }
-            
-            if (x.parent().parent().find("span").find("select").val() == 'Other' && x.parent().parent().find(".trDescribe").find(".descMend").val() == '') {
-                x.find(".error").css("display", "block");
-                alert('Please give description ');
-                return false;
-            } else {
-                return true;
-            }
-        }
-
-        function showhideDetail(x) {
-            if (x.val() == 'Other') {
-                x.parent().parent().find(".trDescribe").removeAttr("style");
-                x.parent().parent().parent().find(".quantselector").addClass("add_assets_other_box_spacing");
-               
-            } else {
-                x.parent().parent().find(".trDescribe").css("display", "none");
-            }
-            return false;
-        }
-
-        var updateAsset = function(btn) {
-            blockme();
-            var button = $(btn);
-            var assetId = button.attr('data-asset-id');
-            var options = button.parent().find('.subCatPicklist');
-            
-            var subCat ;
-            options.find('option').each(function (index, el) {
-                 if($(el).attr("selected") == 'selected') {
-                        subCat = $(el).val();
-                         console.dir(' subCat  '+subCat);
-                 }
-            });
-            var details = {
-                quantity: button.parent().find('.assetQuantity').val(),
-                location: button.parent().find('.descMend').val(),
-                asset_Picklist: button.parent().find('select').last().find('option:selected').text(),
-                additional_Description : button.parent().find('.assetNotes').val()
-            }
-            
-            Oblix_SOWCampaignCreateController.UpdateProjectAction(assetId, details, function(data, event) {
-                button.addClass('hide_button');
-                button.siblings('input[type="button"]').removeClass('hide_button');
-                refreshAsset();
-            });
-        }
-        var removeAsset = function(assetName, projectId) {
-            blockme();
-            Oblix_SOWCampaignCreateController.removeAsset(assetName, projectId, function(data, event) {
-                if (event.status) {
-                    refreshAsset();
-                }
-            });
-        };
-        
-       var getAssetDetails = function (assetId){
-            var deferred = $.Deferred();
-             Oblix_SOWCampaignCreateController.getAssetDetails(assetId, function (assetDetails, event) {
-                 deferred.resolve({data: assetDetails, status: event});
-             });
-                return deferred.promise();
-              }
-              
-              //Edit Asset : 
-          
-              var editAsset = function (el, assetId){
-                //debugger;
-                  var assetDetails = getAssetDetails(assetId);
-                   assetDetails.then(function (data){
-                     if(data.status.status){
-                   
-                      var assetName = data.data.assetTitle;
-                      var properties = assetName.split(' X ');
-                      var numberOfQuantity = properties[0];
-                      var selectedAbreviation = properties[1].split('-');
-                      var allAbreviation = JSON.parse(sessionStorage.getItem('assestAbreviations'));
-
-                      var firstOption = null;
-                      var secondOption = null;
-                      var thirdOption = selectedAbreviation[2];
-                      var firstElement = null;
-                      var secondElement = null;
-                      var thirdElement = null;
-                      var selectorDetailPanel = null;
-                      var options = null;
-                      Object.keys(allAbreviation).forEach(function (key){
-                        var currentAbraviation = allAbreviation[key];
-                        //debugger;
-                        if(currentAbraviation === selectedAbreviation[0] + '-' + selectedAbreviation[1]){
-                            //debugger;
-                          options = key.split('_');
-                        } /*else if(currentAbraviation === selectedAbreviation[1]){
-                          secondOption = key;
-                        }*/
-                      })
-
-                  firstOption = options[0];
-                  secondOption = options[1];
-                 var sel1 ;                   
-                  $('.panel-group').find('.panel-default').find('.panel-heading').each(function (index, el){
-                    
-                    if($(el).text().search(firstOption) !== -1 ){
-                      firstElement = $(el);
-                      console.dir('### first elmnt une seul fois :'+firstElement.html());
-                      var secondSearchArray = firstElement.next().first().find('div[id*="_tabs"]').children('ul');
-                      console.dir('### secondSearchArray :'+secondSearchArray.html());
-                      secondSearchArray.find('a').each(function (index2, el) {
-                          if($(el).text().search(secondOption) !== -1){
-                            secondElement = $(el);
-                            var curentIndex = index2 + 1;
-                            var selector1 = 'div[id*="_tabs-' + curentIndex + '"]';
-                            var selector2 = 'a[href*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                            sel1 = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                            thirdElement = secondSearchArray.find(selector2);
-                            selectorDetailPanel = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                          }
-                      });
-                    }
-                  });
-                  
-                  if(firstElement && ! firstElement.parent().find('.panel-collapse').hasClass('in')) firstElement.parent().find('.panel-collapse').addClass('in');
-                  
-                  if(secondElement && secondElement.find('a').attr('tabindex') !== '0') secondElement.trigger('click');
-                  
-                  thirdElement.parent().parent().find('.active').removeClass('active');   
-                  thirdElement.parent().addClass(' active');
-                  
-                  
-                  var detailPanel = thirdElement.closest('ul').parent().next().find(sel1);
-                  thirdElement.closest('ul').parent().next().find('.active').removeClass('active');   
-                  thirdElement.closest('ul').parent().next().find(sel1).addClass(' active');
-              
-                  detailPanel.find('span').find('.col-lg-6').find('select').val(data.data.assetName);
-                  detailPanel.find('span').find('.col-lg-6').find('.descMend').val(data.data.location);
-                  detailPanel.find('span').find('.col-lg-6').find('.assetQuantity').val(data.data.quantity);                 
-                  detailPanel.find('span').find('.col-lg-6').find('.assetNotes').val(data.data.additionalDescription);   
-                   
-                  detailPanel.find('span').find('.col-lg-6').find('input[type="submit"]').removeClass('hide_button').attr('data-asset-id', assetId);
-                  detailPanel.find('span').find('.col-lg-6').find('input[type="button"]').addClass('hide_button').attr('data-asset-id', assetId);
-                  
-                  if(data.data.assetName == "Other"){
-                      detailPanel.find('span').find('.col-lg-6').find('.trDescribe').css({"display":"block"});
-                  }  
-                }
-                }, function (err){
-                
-              });  
-                 
-                  
-              }   
-              
-           var openAsset = function (){
-                var assetId = window.location.search.split('&')[1].split('=')[1];
-                var assetDetails = getAssetDetails(assetId);
-                assetDetails.then(function (data){
-                 if(data.status.status){
-                  var assetName = data.data.assetTitle;
-                  var properties = assetName.split(' X ');
-                  var numberOfQuantity = properties[0];
-                  var selectedAbreviation = properties[1].split('-');
-                  var allAbreviation = JSON.parse(sessionStorage.getItem('assestAbreviations'));                
-                  var firstOption = null;
-                  var secondOption = null;
-                  var thirdOption = selectedAbreviation[2];
-                  console.dir('## selectedAbreviation[2] : '+selectedAbreviation[2]);
-                  var firstElement = null;
-                  var secondElement = null;
-                  var thirdElement = null;
-                  var selectorDetailPanel = null;
-                  var options = null;
-                  Object.keys(allAbreviation).forEach(function (key){
-                    var currentAbraviation = allAbreviation[key];
-                    if(currentAbraviation === selectedAbreviation[0] + '-' + selectedAbreviation[1]){
-                      options = key.split('_');
-                      
-                    }
-                  })
-                  firstOption = options[0];
-                  secondOption = options[1];    
-                  var sel1 ;                   
-                  $('.panel-group').find('.panel-default').find('.panel-heading').each(function (index, el){
-                    
-                    if($(el).text().search(firstOption) !== -1 ){
-                      firstElement = $(el);
-                      console.dir('### first elmnt une seul fois :'+firstElement.html());
-                      var secondSearchArray = firstElement.next().first().find('div[id*="_tabs"]').children('ul');
-                      console.dir('### secondSearchArray :'+secondSearchArray.html());
-                      secondSearchArray.find('a').each(function (index2, el) {
-                          if($(el).text().search(secondOption) !== -1){
-                            secondElement = $(el);
-                            var curentIndex = index2 + 1;
-                            var selector1 = 'div[id*="_tabs-' + curentIndex + '"]';
-                            var selector2 = 'a[href*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                            sel1 = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                            thirdElement = secondSearchArray.find(selector2);
-                            selectorDetailPanel = 'div[id*="_tabs-' + curentIndex + thirdOption.replace(/^0+/, '') + '"]';
-                          }
-                      });
-                    }
-                  });
-                  
-                  if(firstElement && ! firstElement.parent().find('.panel-collapse').hasClass('in')) firstElement.parent().find('.panel-collapse').addClass('in');
-                  
-                  if(secondElement && secondElement.find('a').attr('tabindex') !== '0') secondElement.trigger('click');
-                  
-                  thirdElement.parent().parent().find('.active').removeClass('active');   
-                  thirdElement.parent().addClass(' active');
-                  
-                  
-                  var detailPanel = thirdElement.closest('ul').parent().next().find(sel1);
-                  thirdElement.closest('ul').parent().next().find('.active').removeClass('active');   
-                  thirdElement.closest('ul').parent().next().find(sel1).addClass(' active');
-              
-                  detailPanel.find('span').find('.col-lg-6').find('select').val(data.data.assetName);
-                  detailPanel.find('span').find('.col-lg-6').find('.descMend').val(data.data.location);
-                  detailPanel.find('span').find('.col-lg-6').find('.assetQuantity').val(data.data.quantity);                 
-                  detailPanel.find('span').find('.col-lg-6').find('.assetNotes').val(data.data.additionalDescription);   
-                   
-                  detailPanel.find('span').find('.col-lg-6').find('input[type="submit"]').removeClass('hide_button').attr('data-asset-id', assetId);
-                  detailPanel.find('span').find('.col-lg-6').find('input[type="button"]').addClass('hide_button').attr('data-asset-id', assetId);
-                    
-                }
-                }, function (err){
-                
-              });
-                  
-              }   
-      
-         var getAbreviationForCardAssets = function (){
-                Oblix_SOWCampaignCreateController.getAbreViationByRTBySubCatgForCardAssets(function (data, event){
-                  if(event.status){
-                    sessionStorage.setItem('assestAbreviations', JSON.stringify(data));
-                  }
-                });
-              }      
-        getAbreviationForCardAssets();
-
-        // Sticky basket
-        $(document).ready(function(){
-          $("#sticker").sticky({topSpacing:0});
-        });
-    </script>-->
-
-   
     <style>
         .removeAssetCss {
             background-image: url("{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}") !important;
@@ -501,9 +34,6 @@
                 <div class="header_divider_vertical"></div>
                 <div class="header_panel_text">
                     <h2>Hi {!userConnected.Name}, Welcome to SWOP the Scope of Work Online Planner</h2>
-                    <!-- <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">SOW name</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="#">Add new campaign</a>
-                    </p> -->
-
                     <p><a href="/apex/oblix_sowmain">SWOP Home</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_sowmaindetail?sowId={!selected_sow.Id}">{!selected_sow.Name}</a>&nbsp;<span>&#9658;</span>&nbsp;<a href="/apex/oblix_campaignsummary?projectId={!project.Id}">{!project.Name}</a> &nbsp;
                         <span>&#9658;</span>&nbsp;Add campaign assets</p>
 
@@ -579,7 +109,6 @@
                                                 </apex:repeat>
 
                                             </ul>
-                                            <!-- tab body-->
                                             <apex:outputPanel id="tab-contentPanel">
                                                 <div id="my-tab-content" class="tab-content">
                                                     <apex:variable var="count2" value="{!1}" />
@@ -611,11 +140,6 @@
 
                                                                                         <apex:outputPanel id="assetPart">
                                                                                             <apex:actionRegion >
-
-
-
-
-                                                                                                <!--styleClass="removeBreak"-->
                                                                                                 <div class="col-lg-4">
                                                                                                     <p class="create_SOW_form_titles asset_panel_titles"></p>
                                                                                                     <p class="create_SOW_form_titles asset_panel_titles">{!$ObjectType.Oblix_Project_Assets__c.fields.Asset_Picklist__c.label}*</p>
@@ -638,18 +162,14 @@
                                                                                                     <apex:inputField value="{!mapAssetsPerSubCat[subCat].Quantity__c}" styleClass="assetQuantity" />
 
                                                                                                     <apex:inputField style="width:100%;min-height:100px" value="{!assetInstance.Additional_Description__c}" styleClass="assetNotes" />
-                                                                                                    <!--apex:outputPanel rendered="{!IF(hasEditAccess || $Profile.Name =='System Administrator',true,false)}"-->
                                                                                                     <apex:outputpanel id="overallPanel">
                                                                                                         <apex:outputPanel rendered="{!AND(hasEditAccess,NOT(isUpdate))}" id="AddButton">
                                                                                                             <apex:commandButton value="ADD" onclick="if(addAsset(this, '{!subCat}' , '{!recordType}')); return false;" oncomplete="$.unblockUI();location.reload();" reRender="assetPart,campaignFeeId,Oblix_card" styleClass="btn btn-primary btn_plus btn_asset_add">
 
                                                                                                             </apex:commandButton>
-                                                                                                            <!--input value="Add" onclick="addAsset(this, '{!subCat}' , '{!recordType}'); if(setMendatory($(this))) return false;" class="btn btn-primary" style="width:70px" type="submit" data-asset-id='{!selectedAssetId}' /-->
                                                                                                         </apex:outputPanel>
-                                                                                                        <!-- <apex:commandButton value="UPDATE" onclick="updateAsset(this, {!selectionCount}); if(setMendatory($(this))) blockme(); return false;" styleclass="btn btn-primary hide_button" style="width:70px" reRender="tab-contentPanel,assetPart,campaignFeeId,Oblix_card"/>-->
                                                                                                         <apex:outputPanel rendered="{!AND(hasEditAccess, isUpdate)}" id="UpdateButton">
                                                                                                             <input value="UPDATE" onclick="updateAsset(this, {!selectionCount}); if(setMendatory($(this))) blockme(); return false;" class="btn btn-primary" style="width:70px" type="submit" data-asset-id='{!selectedAssetId}' />
-                                                                                                            <!--return false;reRender="assetPart,campaignFeeId,estimateId,Oblix_card" -->
                                                                                                         </apex:outputPanel>
                                                                                                     </apex:outputPanel>
                                                                                                 </div>
@@ -659,8 +179,6 @@
                                                                                         </apex:outputPanel>
                                                                                         <apex:variable var="selectionCount" value="{!selectionCount + 1}" />
                                                                                     </div>
-                                                                                    <!--/div-->
-
                                                                                 </apex:repeat>
                                                                             </div>
                                                                         </div>
@@ -668,18 +186,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
-                                                        <!--                                    tab body end-->
-                                                        <!--                                    tab body-->
-
                                                         <apex:variable var="count2" value="{!count2 + 1}" />
                                                     </apex:repeat>
-
-                                                    <!--apex:variable var="selectionCount" value="{!selectionCount + 1}" /-->
                                                 </div>
                                             </apex:outputPanel>
-                                            <!--                                    tab body end-->
-                                            <!--                                    panel body end-->
                                         </div>
                                     </div>
                                 </div>
@@ -697,22 +207,6 @@
                                 </div>
                                 <div class="asset_shopping_basket_body">
                                     <div class="asset_shopping_basket_item_title ">
-
-                                        <!--
-                                <apex:repeat value="{!lstAssetsForCard}" var="asset">
-                                        <div class="Oblix_card_elmt">
-                                            <div>
-                                               <div class="Oblix_button_table_align">
-                                                <apex:commandButton styleClass="removeAssetCss" style="width:12px;height:12px"  onclick="removeAsset('{!asset.Id}'); return false"/> <span>{!asset.Asset_Title__c}</span><!--value="{!$Label.Oblix_lbl_UIUX_Delete}" -->
-                                        <!--<apex:commandButton value="{!$Label.Oblix_lbl_UIUX_Edit}" onclick="editAset(this, '{!asset.Id}); return false;"/>-->
-                                        <!--<input type="button" value="{!$Label.Oblix_lbl_UIUX_Edit}" onclick="editAsset1(this, '{!asset.Id}')" class="btn" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                </apex:repeat> 
-                                -->
-
-
                                         <apex:repeat value="{!lstAssetsForCard}" var="wrapAsset">
                                             <div class="Oblix_card_elmt asset_shopping_basket_item">
                                                 <div>
@@ -756,10 +250,6 @@
                                 </div>
                                 <div class="asset_shopping_basket_btn">
                                     <apex:commandButton styleClass="btn btn-primary btn-xs btn_check btn_finish_basket" value="FINISH WITH BASKET" action="{!finishBasket}" />
-
-                                    <!--button type="button" class="btn btn-primary btn-xs"><img src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/check.png')}" width="12" height="12" />
-                                </button
-                                -->
                                 </div>
                                 <apex:actionFunction action="{!AddToProjectAction}" name="setToProjectAction" reRender="">
                                     <apex:param assignTo="{!recordType}" name="recordType" value="" />
@@ -783,7 +273,6 @@
                     </div>
                 </div>
             </apex:outputPanel>
-            <!--end div  class row -->
         </div>
-    </apex:form>
+    </apex:form> -->
 </apex:page>

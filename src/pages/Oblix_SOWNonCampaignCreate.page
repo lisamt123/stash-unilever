@@ -181,7 +181,7 @@
                                         <!--input type="number" class="hourly_rate_box" name="hourlyRate" /-->hours
                                         <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
                                         <apex:outputPanel id="addUpdateButton">
-                                            <apex:outputPanel rendered="{!IF(hasEditAccess,true,false)}">
+                                            <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
                                             <apex:commandButton value="{!(IF(setUpdateButton,'UPDATE','ADD'))}" styleClass="btn btn-primary btn_plus {!(IF(setUpdateButton,'btn_update','btn_asset_add'))}" onclick="addToActivitySelection(); return false;" /> 
                                             </apex:outputPanel> 
                                         </apex:outputPanel>                                  
@@ -222,7 +222,7 @@
                                                         </apex:outputText>
                                                     </td>
                                                     <td>
-                                                        <apex:outputPanel rendered="{!IF(hasEditAccess,true,false)}">
+                                                        <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
                                                             <a href="#" id="removeRow_{!activitySelectionMap[eachActivity].key}" value="{!activitySelectionMap[eachActivity].key}" onclick="removeRow('{!activitySelectionMap[eachActivity].key}');"> <img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" width="12" height="12" />
                                                             </a>
                                                         </apex:outputPanel>
@@ -231,7 +231,7 @@
                                             </apex:repeat>
                                         </tbody>
                                     </table>
-                                    <apex:outputPanel rendered="{!IF(hasEditAccess,true,false)}">
+                                    <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
                                         <apex:commandButton value="ADD SELECTION TO BASKET" styleClass="btn btn-primary btn-xs pull-right btn_plus btn_add_selection" onclick="insertSelectedActivities(); return false;" />
                                     </apex:outputPanel>
                                 </apex:outputPanel>
@@ -276,7 +276,7 @@
                                             
                                             <!--button class="btn btn-primary btn_plus btn_asset_add" onclick="addToActivitySelectionMap();">ADD</button-->
                                             <apex:outputPanel id="addResourceUpdateButton">
-                                                <apex:outputPanel rendered="{!IF(hasEditAccess,true,false)}">
+                                                <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
                                                 <apex:commandButton value="{!(IF(setResourceUpdateButton,'UPDATE','ADD'))}" styleClass="btn btn-primary btn_plus {!(IF(setResourceUpdateButton,'btn_update','btn_asset_add'))} " onclick="validateResourceSelection(); return false;" />
                                                 </apex:outputPanel>
                                             </apex:outputPanel>
@@ -299,7 +299,7 @@
                             <apex:repeat value="{!campaignBasketList}" var="eachItem">
                                 <div class="asset_shopping_basket_item">
                                     <div class="campaign_create_agency_hub_split_table_subtitle padding_bottom0">
-                                        <apex:outputPanel rendered="{!IF(hasEditAccess,true,false)}">
+                                        <apex:outputPanel rendered="{!IF(can_manage_non_campaign,true,false)}">
                                             <a href="#" id="basketRemoveRow_{!eachItem.activityName}" value="{!eachItem.activityName}" onclick="basketRemoveRow('{!eachItem.activityName}');"><img alt="Remove" src="{!URLFOR($Resource.Oblix_SwopAssets, 'Oblix_SwopAssets/images/redcross.png')}" class="attachement_redcross" height="12" width="12" /></a>
                                         </apex:outputPanel>
                                         <a href="#" id="basketItem_{!eachItem.activityName}" onclick="getAndSetActivitiesByName('{!JSENCODE(eachItem.activityName)}');blockme();">{!eachItem.activityName} - €<apex:outputText value="{0, number,###,###,##0}"> <apex:param value="{!eachItem.totalAmount}"/></apex:outputText>
