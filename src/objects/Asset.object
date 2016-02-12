@@ -261,7 +261,7 @@
         <language>en_US</language>
     </listViews>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <recordTypes>
+    <recordTypes> 
         <fullName>Assets</fullName>
         <active>true</active>
         <label>Assets</label>
