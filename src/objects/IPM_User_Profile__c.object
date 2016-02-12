@@ -373,8 +373,15 @@ IF(INCLUDES(IPM_User_Category__c ,&quot;Laundry&quot;), &quot;Laundry,&quot;, &q
     <label>IPM User Profile</label>
     <listViews>
         <fullName>All1</fullName>
+        <columns>NAME</columns>
+        <columns>IPM_User__c</columns>
+        <columns>IPM_User_Role__c</columns>
+        <columns>Unique_User_Company_Card__c</columns>
+        <columns>IPM_Company_Card__c</columns>
+        <columns>OBJECT_ID</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <nameField>
         <displayFormat>UP-{00000}</displayFormat>
