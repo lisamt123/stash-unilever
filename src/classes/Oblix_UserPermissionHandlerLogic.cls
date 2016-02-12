@@ -34,7 +34,7 @@ public with sharing class Oblix_UserPermissionHandlerLogic {
 		}
 
 		//get the related brand and category ids so we can build the BradCatKeys
-		List<MDO_CategoryBrands__c> categoryBrands = [SELECT Id, Brand_id__c, Product_Category_Id__c 
+		List<MDO_CategoryBrands__c> categoryBrands = [SELECT Id, Brand_id__c, Product_Category_Id__c
 														FROM MDO_CategoryBrands__c 
 														WHERE Id IN :oldAndNewCategoryBrands];
 
@@ -47,7 +47,7 @@ public with sharing class Oblix_UserPermissionHandlerLogic {
 			brandCatKeys.add(cb.brand_id__c + '_' + cb.product_Category_Id__c);
 		}
 
-		List<Marketing_SOW__c> affectedSOWs_unfiltered = [SELECT Id, OblixBrand__c, SmallProductCategory__c, Unilever_SOW_Approver_Name__c, Agency_SOW_Approver_Name__c
+		List<Marketing_SOW__c> affectedSOWs_unfiltered = [SELECT Id, OblixBrand__c, SmallProductCategory__c, Unilever_SOW_Approver_Name__c, Agency_SOW_Approver_Name__c, OwnerId
 												FROM Marketing_SOW__c 
 												WHERE OblixBrand__c IN :brandIds 
 													AND SmallProductCategory__c IN :categoryIds];

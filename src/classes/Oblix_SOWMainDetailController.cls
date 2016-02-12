@@ -75,6 +75,18 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
         }
     }
 
+    public Boolean is_with_ul2{
+        get{
+            return (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER );
+        }
+    }
+
+    public Boolean show_submit{
+        get{
+            return can_submit_for_approval && ( !( Oblix_PermissionHandler.hasUL1permissionSet() && is_with_ul2) || is_sole_editor);
+        }
+    }
+
     //public Marketing_SOW__c selected_sow {get; set;}
     public id sow_id {get; set;}
     public id project_id {get; set;}
@@ -986,7 +998,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     * @date         2016-02-08
     * @description  submit SOW for approval
     ********************************************************************************/
-    public void submitForApproval(){
+    public PageReference submitForApproval(){
 
         // skip unilever approval if creator is approver
         if(UserInfo.getUserId() == selected_sow.Unilever_SOW_Approver_Name__c){
@@ -1032,6 +1044,9 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
             //System.assert(result.isSuccess());
 
         }
+
+        PageReference ref = new PageReference('/apex/oblix_sowmain');
+        return ref;
 
     }
 
