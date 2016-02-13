@@ -41,28 +41,106 @@ public with sharing class Oblix_SOWCampaignCreateController extends Oblix_SWOPpa
         }
         set;
     }
-
-    public User userConnected {get;set;}
-    public String sowName { get; set; }
-    public String mapRelatedCntriesJSONMap { get; set; }
+    
+    // **********************************************************************
+    // S.M ADDED TO ALLOW VALIDATION PASS FOR QA TEST - NEED TO REMOVE AFTER
+    // **********************************************************************
+public User userConnected {get; set;}
+    public boolean v1 {get; set;} // to show Correct check on buttons V
+    public boolean v2 {get; set;}
+    public boolean v3 {get; set;}
+    public boolean v4 {get; set;}
+    public boolean v5 {get; set;}
+    public id projectId {get; set;}
+    public list<Oblix_Project_Assets__c> lstAssets {get; set;}
+    public boolean isEdit {get; set;}
+    public Oblix_SOW_Projects__c project {get; set;}
+    public set<string> setRecordType  {get; set;}
+    public map<string, list<Oblix_Project_Assets__c>> mapRTAssets {get; set;}
+    public String updatedAssetInstance { get;set; }
+    public Boolean isUpdate { get; set; }
+    public String basketKey { get; set; }
+    public String selectedAssetId { get; set; }
+    public String assetPicklist { get; set; }
+    public String assetDescription { get; set; }
+    public String assetLocation { get; set; }
+    public String assetQuantity { get; set; }
+    public map<string, string> mapRTIdCSS {get; set;}
+    public map<string, string> mapStageIdCSS {get; set;}
+    public string setIdCss {get; set;}
+    public string recordType {get; set;}
+    public string subCat {get; set;}
+    public string complexity {get; set;}
+    public list<Oblix_Project_Assets__c> lstAssetsForCard {get; set;}
+    public map<string, list<string>> mapRTSUBCat {get; set;}
+    public list<RecordType> recordTypes {get; set;}
+    public list<string> lstRecordType {get; set;}
+    public integer mynumber {get; set;}
+    public list<string> lstStage {get; set;}
+    public Map<String, Set<String>> mapRelatedCntries {get; set;}
+    public Map<String, String> mapRegionCntries {get; set;}
+    public Oblix_Project_Assets__c  assetInstance  {get; set;}
+    public String lstAjaxCountries {get; set;}
+    public set<string> lstRegion {get; set;}
+    public map<string, ID> mapIdCSSCountryRegion {get; set;}
+    public string lstIdCSSSelected {get; set;}
+    public List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplitHubs {get; set;}
+    private list<string> lstSelectedCountry ;
     public String lstSelectedCountryJSON { get; set; }
     public String lstSelectedRegionJSON { get; set; }
-    public set<string> lstRegion {get; set;}
-    public Boolean isGlobalCampaign { get; set; }
-    public integer counterAsset {get; set;}
-    public Oblix_SOW_Projects__c project {get; set;}
-    public List<SelectOption> countryOptions {get; set;}
-    public List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplitHubs {get; set;}
+    public String selectedRegion { get; set; }
+    public Oblix_Marketing_SOW_Project_Splits__c agencySplitInstanceJS {get; set;}
+    public map<string, integer> feePercentages {get; set;}
+    public map<string, string> mapScoreDesc {get; set;}
+    public set<string> lstNameCountries {get; set;}
     public Oblix_Marketing_SOW_Project_Splits__c  split {get; set;}
-    public List<String> mapAllCountries { get; set; }
-    public String selectedBrandInnov {get; set;}
+    public list<Oblix_Marketing_SOW_Project_Splits__c> splitToInsert {get; set;}
+    public list<Oblix_Marketing_SOW_Project_Splits__c> splitToUpdate {get; set;}
+    public list<Oblix_Marketing_SOW_Project_Splits__c> splitToDelete {get; set;}
+    public string idSplit {get; set;}
+    public integer counterAsset {get; set;}
+    public map<string, list<string>> mapSubCategOption {get; set;}
+    public map<string, string> mapSubCategOptionDescription {get; set;}
+    public map<string, string> mapSubCategOptionDefinition {get; set;}
+    public map<string, string> mapRecordTypeDescription {get; set;}
+    public Set<Oblix_Project_Assets__c> ClearList {get; set;}
+    public String selectedCountry {get; set;}
+    public List<SelectOption> countryOptions {get; set;}
+    public map<string, string> mapIdCountries {get; set;}
+    public string listItems {get; set;}
+    public decimal estimateCost {get; set;}
+    public Integer countAssetNumberForCampaign  {get;set;}
+    public string lstSubCategory {get; set;}
+    public map<string, Oblix_Project_Assets__c> mapAssetsPerSubCat {get; set;}
+    public map<string, string> mapRTforSubCat {get; set;}
+    public map<string, string> mapAbreviation {get; set;}
     public List<SelectOption> innovationOptions {get; set;}
     public List<SelectOption> brandOptions {get; set;}
+    public Map<String,String> mapOfAssetBasket { get; set; }
+    public Boolean canAdjust {get; set;}
+    public Boolean isGlobalCampaign { get; set; }
+    public Boolean isGlobal { get; set; }
+    public String selectedBrandInnov {get; set;}
+    public String selectedBrandBrand {get; set;}
+    public boolean isError {get; set;}
+    private static string crossX = ' X ';
+    public String mapRelatedCntriesJSON { get; set; }
+    public String mapRelatedCntriesJSONMap { get; set; }
+    public List<String> mapAllCountries { get; set; }
+    public String sowName { get; set; }
+    public Marketing_SOW__c selected_sow{get;set;}
+    public Integer numberOFSelectedCountries { get; set; }
+    private final String GLOBAL_REGION = 'Global';
+    public String selectionCountvar{get;set;}
+    public Boolean isFirst {get;set;}
+    // **********************************************************************
+    // S.M ADDED TO ALLOW VALIDATION PASS FOR QA TEST - NEED TO REMOVE AFTER
+    // **********************************************************************
 
     public void init() {
         system.debug('started');
     }
-    
+
     public Oblix_SOWCampaignCreateController() {
         system.debug('================================================= im the controller here ===');
         campaignHelper = new Oblix_CampaignCreateHelper();
