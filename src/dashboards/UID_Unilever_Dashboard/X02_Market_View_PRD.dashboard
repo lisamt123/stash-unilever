@@ -6,22 +6,22 @@
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>LISUN IMPORTACAO E EXPORTACAO - RRASIA</values>
+            <values>BESTBUY MALDIVES PVT LTD</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>BESTBUY MALDIVES PVT LTD</values>
+            <values>LISUN IMPORTACAO E EXPORTACAO - RRASIA</values>
         </dashboardFilterOptions>
         <name>Distributor</name>
     </dashboardFilters>
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>SKIN CLEANSING</values>
+            <values>BAKING COOKING AND SPREADING</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>ORAL CARE</values>
+            <values>COFFEE &amp; SNACKS</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
@@ -29,15 +29,7 @@
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>SKIN CARE</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>HOUSEHOLD CARE</values>
-        </dashboardFilterOptions>
-        <dashboardFilterOptions>
-            <operator>equals</operator>
-            <values>SAVOURY</values>
+            <values>DRESSINGS</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
@@ -45,58 +37,78 @@
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
+            <values>HOUSEHOLD CARE</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>ICE CREAM</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
             <values>LAUNDRY</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>TEA AND SOY &amp; FRUIT BEVERAGES</values>
+            <values>ORAL CARE</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>BAKING COOKING AND SPREADING</values>
+            <values>SAVOURY</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>SKIN CARE</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>SKIN CLEANSING</values>
+        </dashboardFilterOptions>
+        <dashboardFilterOptions>
+            <operator>equals</operator>
+            <values>TEA AND SOY &amp; FRUIT BEVERAGES</values>
         </dashboardFilterOptions>
         <name>Category</name>
     </dashboardFilters>
     <dashboardFilters>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>01</values>
+            <values>Jan</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>02</values>
+            <values>Feb</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>03</values>
+            <values>Mar</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>04</values>
+            <values>Apr</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>05</values>
+            <values>May</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>06</values>
+            <values>Jun</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>07</values>
+            <values>Jul</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>08</values>
+            <values>Aug</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>09</values>
+            <values>Sep</values>
         </dashboardFilterOptions>
         <dashboardFilterOptions>
             <operator>equals</operator>
-            <values>10</values>
+            <values>Oct</values>
         </dashboardFilterOptions>
         <name>Report Month</name>
     </dashboardFilters>
@@ -108,13 +120,12 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
             <componentType>Bar</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -141,13 +152,12 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Orders__r.Order_Products__r$UID_Distributor_Value__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
             <componentType>Bar</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -174,13 +184,12 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Orders__r.Order_Products__r$UID_Order_Quantity__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
             <componentType>Bar</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -207,13 +216,12 @@
             <autoselectColumnsFromReport>false</autoselectColumnsFromReport>
             <chartAxisRange>Auto</chartAxisRange>
             <chartSummary>
-                <aggregate>Sum</aggregate>
                 <axisBinding>y</axisBinding>
-                <column>Account.Orders__r.Order_Products__r$UID_Order_Quantity__c</column>
+                <column>FORMULA1</column>
             </chartSummary>
             <componentType>Bar</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -227,7 +235,7 @@
             <enableHover>true</enableHover>
             <expandOthers>false</expandOthers>
             <groupingColumn>Account.Orders__r.Order_Products__r$UID_Category__c</groupingColumn>
-            <header>Secondary Category Sales Volume (Cases</header>
+            <header>Secondary Category Sales Volume (Cases)</header>
             <legendPosition>Bottom</legendPosition>
             <report>UID_02_Market_View/Secondary_Category_Sales_Volume_CasesPRD</report>
             <showPercentage>false</showPercentage>
@@ -246,7 +254,7 @@
             </chartSummary>
             <componentType>Pie</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -281,7 +289,7 @@
             </chartSummary>
             <componentType>Donut</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -314,7 +322,7 @@
             </chartSummary>
             <componentType>Donut</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -347,7 +355,7 @@
             </chartSummary>
             <componentType>Donut</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -380,7 +388,7 @@
             </chartSummary>
             <componentType>Donut</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -413,7 +421,7 @@
             </chartSummary>
             <componentType>Pie</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -448,7 +456,7 @@
             </chartSummary>
             <componentType>Pie</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -480,7 +488,7 @@
             </chartSummary>
             <componentType>Pie</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -512,7 +520,7 @@
             </chartSummary>
             <componentType>Pie</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>
@@ -544,7 +552,7 @@
             </chartSummary>
             <componentType>Pie</componentType>
             <dashboardFilterColumns>
-                <column>Account.Orders__r$UID_Distributor__c</column>
+                <column>Account$Name</column>
             </dashboardFilterColumns>
             <dashboardFilterColumns>
                 <column>Account.Orders__r.Order_Products__r$UID_Category__c</column>

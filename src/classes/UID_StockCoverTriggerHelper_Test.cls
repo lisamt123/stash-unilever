@@ -28,6 +28,22 @@ public class UID_StockCoverTriggerHelper_Test{
     static Order secondaryOrderPrev2Month;
     static Order secondaryOrderPrev3Month;
     
+    static Id primaryAccountRecordType;
+    static Id secondaryAccountRecordType;
+    
+    static Id primarySalesRecordType;
+    static Id secondarySalesRecordType;
+    
+    static UID_Order_Product__c primarySaleCurrentMonth;
+    static UID_Order_Product__c secondarySaleCurrentMonth;
+    static UID_Order_Product__c secondarySalePrevMonth;
+    static UID_Order_Product__c secondarySalePrev2Month;
+    static UID_Order_Product__c secondarySalePrev3Month;
+    
+    static String STATUS_DRAFT = 'Draft';
+    static final String PRIMARY_SALES_RECORDTYPE_NAME = 'Primary Sales';
+    static final String SECONDARY_SALES_RECORDTYPE_NAME = 'Secondary Sales';
+    
     /******************************************************************* 
     Purpose: test setReportMonthOnInsert
     Parameters: 
@@ -37,32 +53,28 @@ public class UID_StockCoverTriggerHelper_Test{
         prepareData(10);
         Test.startTest();
         
-        UID_Stocked_Product__c testStockedProduct00 = new UID_Stocked_Product__c();
-            testStockedProduct00.UID_Start_Date__c = System.today().AddMonths(0);
-            testStockedProduct00.UID_End_Date__c = System.today().AddMonths(0);
-            testStockedProduct00.UID_Distributor__c = testAccount00.Id;
-            testStockedProduct00.UID_Stock_Cover_Calculation_Flag__c = False;
+        UID_Stocked_Product__c testStockedProduct00 = prepareStockedProduct(0);
         
         database.insert(testStockedProduct00, FALSE);
         
         UID_Stocked_Product_Summary__c testStockedSummary00 = new UID_Stocked_Product_Summary__c();
             testStockedSummary00.UID_Avail_Quantity__c = 100;
+        	testStockedSummary00.UID_Net_Quantity__c = 100;
             testStockedSummary00.UID_Material__c = testProduct00.Id;
             testStockedSummary00.UID_Stocked_Product__c = testStockedProduct00.Id;
+        
+        	testStockedSummary00.UID_In_Quantity__c = 60;
        
        database.insert(testStockedSummary00, FALSE);
        
           
-       UID_Stocked_Product__c testStockedProduct01 = new UID_Stocked_Product__c();
-            testStockedProduct01.UID_Start_Date__c = System.today().AddMonths(-1);
-            testStockedProduct01.UID_End_Date__c = System.today().AddMonths(-1);
-            testStockedProduct01.UID_Distributor__c = testAccount00.Id;
-            testStockedProduct01.UID_Stock_Cover_Calculation_Flag__c = False;
+       UID_Stocked_Product__c testStockedProduct01 = prepareStockedProduct(-1);
         
         database.insert(testStockedProduct01, FALSE);
             
         UID_Stocked_Product_Summary__c testStockedSummary01 = new UID_Stocked_Product_Summary__c();
             testStockedSummary01.UID_Avail_Quantity__c = 200;
+        	testStockedSummary01.UID_Net_Quantity__c = 200;
             testStockedSummary01.UID_Material__c = testProduct00.Id;
             testStockedSummary01.UID_Stocked_Product__c = testStockedProduct01.Id;
             
@@ -85,20 +97,20 @@ public class UID_StockCoverTriggerHelper_Test{
         System.assertEquals(System.today().AddMonths(-1), testStockList2[0].UID_Start_Date__c);
         System.assertEquals(System.today().AddMonths(-1), testStockList2[0].UID_End_Date__c);
         
-        List<UID_Stocked_Product_Summary__c> testStockSummaryList1 = [Select ID, UID_Avail_Quantity__c, UID_Stock_Cover__c
+        List<UID_Stocked_Product_Summary__c> testStockSummaryList1 = [Select ID, UID_Avail_Quantity__c, UID_Net_Quantity__c, UID_Stock_Cover__c
                                                                      	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary00.id];
 		
 		
         //Check Stock Cover
-        System.assertEquals(100, testStockSummaryList1[0].UID_Avail_Quantity__c);
-        System.assertEquals(6000, testStockSummaryList1[0].UID_Stock_Cover__c);
+        System.assertEquals(100, testStockSummaryList1[0].UID_Net_Quantity__c);
+        System.assertEquals(750, testStockSummaryList1[0].UID_Stock_Cover__c);
         
-        List<UID_Stocked_Product_Summary__c> testStockSummaryList2 = [Select ID, UID_Avail_Quantity__c, UID_Stock_Cover__c
+        List<UID_Stocked_Product_Summary__c> testStockSummaryList2 = [Select ID, UID_Avail_Quantity__c, UID_Net_Quantity__c, UID_Stock_Cover__c
                                                                      	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary01.id];
 		
         //Check Stock Cover
-        System.assertEquals(100, testStockSummaryList1[0].UID_Avail_Quantity__c);
-        System.assertEquals(null, testStockSummaryList2[0].UID_Stock_Cover__c);
+        System.assertEquals(100, testStockSummaryList1[0].UID_Net_Quantity__c);
+        System.assertEquals(0, testStockSummaryList2[0].UID_Stock_Cover__c);
                 
     }
     
@@ -110,19 +122,18 @@ public class UID_StockCoverTriggerHelper_Test{
     static testMethod void stockCoverIsNull(){
     	prepareData(5);
         Test.startTest();
-        UID_Stocked_Product__c testStockedProduct00 = new UID_Stocked_Product__c();
-            testStockedProduct00.UID_Start_Date__c = System.today().AddMonths(0);
-            testStockedProduct00.UID_End_Date__c = System.today().AddMonths(0);
-            testStockedProduct00.UID_Distributor__c = testAccount00.Id;
-            testStockedProduct00.UID_Stock_Cover_Calculation_Flag__c = False;
+        UID_Stocked_Product__c testStockedProduct00 = prepareStockedProduct(0);
         
         database.insert(testStockedProduct00, FALSE);
         
         UID_Stocked_Product_Summary__c testStockedSummary00 = new UID_Stocked_Product_Summary__c();
             testStockedSummary00.UID_Avail_Quantity__c = 100;
+        	testStockedSummary00.UID_Net_Quantity__c = 100;
             testStockedSummary00.UID_Material__c = testProduct00.Id;
             testStockedSummary00.UID_Stocked_Product__c = testStockedProduct00.Id;
        
+        	testStockedSummary00.UID_In_Quantity__c = 60;
+        
        database.insert(testStockedSummary00, FALSE);
         
         List <UID_Stocked_Product__c> testStockList = [Select ID, UID_Stock_Cover_Calculation_Flag__c From UID_Stocked_Product__c 
@@ -135,12 +146,12 @@ public class UID_StockCoverTriggerHelper_Test{
         update testStockList;
         Test.stopTest();
         
-        List<UID_Stocked_Product_Summary__c> testStockSummaryList1 = [Select ID, UID_Avail_Quantity__c, UID_Stock_Cover__c
+        List<UID_Stocked_Product_Summary__c> testStockSummaryList1 = [Select ID, UID_Avail_Quantity__c, UID_Net_Quantity__c, UID_Stock_Cover__c
                                                                      	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary00.id];
 		
         //Check Stock Cover
-        System.assertEquals(100, testStockSummaryList1[0].UID_Avail_Quantity__c);
-        System.assertEquals(null, testStockSummaryList1[0].UID_Stock_Cover__c);
+        System.assertEquals(100, testStockSummaryList1[0].UID_Net_Quantity__c);
+        System.assertEquals(0, testStockSummaryList1[0].UID_Stock_Cover__c);
         
     }
     
@@ -152,31 +163,27 @@ public class UID_StockCoverTriggerHelper_Test{
     static testMethod void stockCoverIsNotNull(){
     	prepareData(15);
         Test.startTest();
-        UID_Stocked_Product__c testStockedProduct00 = new UID_Stocked_Product__c();
-            testStockedProduct00.UID_Start_Date__c = System.today().AddMonths(0);
-            testStockedProduct00.UID_End_Date__c = System.today().AddMonths(0);
-            testStockedProduct00.UID_Distributor__c = testAccount00.Id;
-            testStockedProduct00.UID_Stock_Cover_Calculation_Flag__c = False;
+        UID_Stocked_Product__c testStockedProduct00 = prepareStockedProduct(0);
         
         database.insert(testStockedProduct00, FALSE);
         
         UID_Stocked_Product_Summary__c testStockedSummary00 = new UID_Stocked_Product_Summary__c();
             testStockedSummary00.UID_Avail_Quantity__c = 100;
+        	testStockedSummary00.UID_Net_Quantity__c = 100;
             testStockedSummary00.UID_Material__c = testProduct00.Id;
             testStockedSummary00.UID_Stocked_Product__c = testStockedProduct00.Id;
+        
+        	testStockedSummary00.UID_In_Quantity__c = 60;
        
        database.insert(testStockedSummary00, FALSE);
        
-       UID_Stocked_Product__c testStockedProduct01 = new UID_Stocked_Product__c();
-            testStockedProduct01.UID_Start_Date__c = System.today().AddMonths(-1);
-            testStockedProduct01.UID_End_Date__c = System.today().AddMonths(-1);
-            testStockedProduct01.UID_Distributor__c = testAccount00.Id;
-            testStockedProduct01.UID_Stock_Cover_Calculation_Flag__c = False;
+       UID_Stocked_Product__c testStockedProduct01 = prepareStockedProduct(-1);
         
         database.insert(testStockedProduct01, FALSE);
             
         UID_Stocked_Product_Summary__c testStockedSummary01 = new UID_Stocked_Product_Summary__c();
             testStockedSummary01.UID_Avail_Quantity__c = 200;
+        	testStockedSummary01.UID_Net_Quantity__c = 200;
             testStockedSummary01.UID_Material__c = testProduct00.Id;
             testStockedSummary01.UID_Stocked_Product__c = testStockedProduct01.Id;
             
@@ -192,25 +199,20 @@ public class UID_StockCoverTriggerHelper_Test{
         update testStockList;
         Test.stopTest();
         
-        List<UID_Stocked_Product_Summary__c> testStockSummaryList1 = [Select ID, UID_Avail_Quantity__c, UID_Stock_Cover__c
+        List<UID_Stocked_Product_Summary__c> testStockSummaryList1 = [Select ID, UID_Avail_Quantity__c, UID_Net_Quantity__c, UID_Stock_Cover__c
                                                                      	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary00.id];
 		
         //Check Stock Cover
-        System.assertEquals(100, testStockSummaryList1[0].UID_Avail_Quantity__c);
-        System.assertEquals(6000, testStockSummaryList1[0].UID_Stock_Cover__c);
+        System.assertEquals(100, testStockSummaryList1[0].UID_Net_Quantity__c);
+        System.assertEquals(750, testStockSummaryList1[0].UID_Stock_Cover__c);
         
-        List<UID_Stocked_Product_Summary__c> testStockSummaryList2 = [Select ID, UID_Avail_Quantity__c, UID_Stock_Cover__c
+        List<UID_Stocked_Product_Summary__c> testStockSummaryList2 = [Select ID, UID_Avail_Quantity__c, UID_Net_Quantity__c, UID_Stock_Cover__c
                                                                      	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary01.id];
 		
         //Check Stock Cover
-        System.assertEquals(100, testStockSummaryList1[0].UID_Avail_Quantity__c);
-        System.assertEquals(6000, testStockSummaryList1[0].UID_Stock_Cover__c);
-        
-        /*        
-        List <UID_Stocked_Product__c> testStockList1 = [Select ID, UID_Stock_Cover_Calculation_Flag__c, UID_Start_Date__c, UID_End_Date__c 
-                                                        From UID_Stocked_Product__c Where Id =: testStockedProduct00.id];
-        System.assertEquals(FALSE, testStockList1[0].UID_Stock_Cover_Calculation_Flag__c);
-        */
+        System.debug('Test Stock cover: ' + testStockSummaryList2[0].UID_Stock_Cover__c);
+        System.assertEquals(200, testStockSummaryList2[0].UID_Net_Quantity__c);
+        System.assertEquals(0, testStockSummaryList2[0].UID_Stock_Cover__c);
         
     }
     
@@ -236,6 +238,7 @@ public class UID_StockCoverTriggerHelper_Test{
             stockedProduct.UID_End_Date__c = System.today().AddMonths(0);
             stockedProduct.UID_Distributor__c = testAccount00.Id;
             stockedProduct.UID_Stock_Cover_Calculation_Flag__c = false;
+			stockedProduct.UID_Report_Date__c = System.today().AddMonths(0);
             
             stockedProducts.add(stockedProduct);
         }
@@ -245,8 +248,10 @@ public class UID_StockCoverTriggerHelper_Test{
         for(UID_Stocked_Product__c sp: stockedProducts) {
             UID_Stocked_Product_Summary__c stockedProductSummary = new UID_Stocked_Product_Summary__c();
             stockedProductSummary.UID_Avail_Quantity__c = 100;
+            stockedProductSummary.UID_Net_Quantity__c = 100;
             stockedProductSummary.UID_Material__c = testProduct00.Id;
-            stockedProductSummary.UID_Stocked_Product__c = sp.Id;   
+            stockedProductSummary.UID_Stocked_Product__c = sp.Id;
+            stockedProductSummary.UID_In_Quantity__c = 60;
             
             stockedProductSummaries.add(stockedProductSummary);  
             
@@ -281,18 +286,430 @@ public class UID_StockCoverTriggerHelper_Test{
     
     
     /******************************************************************* 
+    Purpose: Normal stock cover calculation. All required fields have values
+    Parameters: 
+    Returns: void
+    ********************************************************************/    
+    static testMethod void normalStockCoverTest(){
+
+        prepareData(15);
+        
+        Test.startTest();
+        List<UID_Stocked_Product__c> stockList = new List<UID_Stocked_Product__c>();
+        List<UID_Stocked_Product_Summary__c> stockSummaryList = new List<UID_Stocked_Product_Summary__c>();
+        
+        UID_Stocked_Product__c testStockedProduct00 = prepareStockedProduct(-1);
+        
+        database.insert(testStockedProduct00, FALSE);
+        stockList.add(testStockedProduct00);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary00 = prepareStockedSummary(100, 60, testStockedProduct00.Id);
+        stockSummaryList.add(testStockedSummary00);
+        
+        UID_Stocked_Product__c testStockedProduct01 = prepareStockedProduct(0);
+        
+        database.insert(testStockedProduct01, FALSE);
+        stockList.add(testStockedProduct01);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary01 = prepareStockedSummary(100, 60, testStockedProduct01.Id);
+        stockSummaryList.add(testStockedSummary01);
+        
+        //Insert stockList;
+        Insert stockSummaryList;
+        
+        for(UID_Stocked_Product__c stock : stockList) {
+            stock.UID_Stock_Cover_Calculation_Flag__c = true;
+        }
+        Update stockList;
+
+       	Test.stopTest();
+        
+        List<UID_Stocked_Product_Summary__c> testStockSummaryList = [Select ID, UID_Avail_Quantity__c, UID_Net_Quantity__c, UID_In_Quantity__c, UID_Stock_Cover__c, UID_Sales_Date__c
+                                                                     	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary01.id];
+		
+        List<UID_Order_Product__c> testOrderProductList = [Select ID, UID_Order_Quantity__c
+                                                                     	From UID_Order_Product__c Where UID_Order__c =: secondaryOrderCurrentMonth.id];
+        
+        //Check Stock Cover
+        System.assertEquals(100, testStockSummaryList[0].UID_Net_Quantity__c);
+        System.assertEquals(60, testStockSummaryList[0].UID_In_Quantity__c);
+        System.assertEquals(450, testStockSummaryList[0].UID_Stock_Cover__c);
+        System.assertEquals(10, testOrderProductList[0].UID_Order_Quantity__c);
+        
+    }
+    
+    
+    
+    //A (Net Quantity) is 0 
+    /******************************************************************* 
+    Purpose: Ensures that Stock Cover calculation is correct even if Net Quantity is 0
+    Parameters: 
+    Returns: void
+    ********************************************************************/   
+    static testMethod void netQuantityisZeroTest(){
+
+        prepareData(15);
+        
+        Test.startTest();
+        List<UID_Stocked_Product__c> stockList = new List<UID_Stocked_Product__c>();
+        List<UID_Stocked_Product_Summary__c> stockSummaryList = new List<UID_Stocked_Product_Summary__c>();
+        
+        UID_Stocked_Product__c testStockedProduct00 = prepareStockedProduct(-1);
+        
+        database.insert(testStockedProduct00, FALSE);
+        stockList.add(testStockedProduct00);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary00 = prepareStockedSummary(0, 60, testStockedProduct00.Id);
+        //database.insert(testStockedSummary00, FALSE);
+        stockSummaryList.add(testStockedSummary00);
+        
+        UID_Stocked_Product__c testStockedProduct01 = prepareStockedProduct(0);
+        
+        database.insert(testStockedProduct01, FALSE);
+        stockList.add(testStockedProduct01);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary01 = prepareStockedSummary(0, 60, testStockedProduct01.Id);
+        //database.insert(testStockedSummary01, FALSE);
+        stockSummaryList.add(testStockedSummary01);
+        
+        //Insert stockList;
+        Insert stockSummaryList;
+        
+        for(UID_Stocked_Product__c stock : stockList) {
+            stock.UID_Stock_Cover_Calculation_Flag__c = true;
+        }
+        Update stockList;
+
+       	Test.stopTest();
+        
+        List<UID_Stocked_Product_Summary__c> testStockSummaryList = [Select ID, UID_Avail_Quantity__c, UID_Net_Quantity__c, UID_In_Quantity__c, UID_Stock_Cover__c, UID_Sales_Date__c
+                                                                     	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary01.id];
+		
+        List<UID_Order_Product__c> testOrderProductList = [Select ID, UID_Order_Quantity__c
+                                                                     	From UID_Order_Product__c Where UID_Order__c =: secondaryOrderCurrentMonth.id];
+        
+        //Check Stock Cover
+        System.assertEquals(0, testStockSummaryList[0].UID_Net_Quantity__c);
+        System.assertEquals(60, testStockSummaryList[0].UID_In_Quantity__c);
+        System.assertEquals(150, testStockSummaryList[0].UID_Stock_Cover__c);
+        System.assertEquals(10, testOrderProductList[0].UID_Order_Quantity__c);
+        
+    }
+    
+    
+    //B (In Quantity) is 0
+    /******************************************************************* 
+    Purpose: Ensures that Stock Cover calculation is correct even if In Quantity is 0
+    Parameters: 
+    Returns: void
+    ********************************************************************/
+    static testMethod void inQuantityIsZeroTest(){
+    
+        prepareData(15);
+        
+        Test.startTest();
+        List<UID_Stocked_Product__c> stockList = new List<UID_Stocked_Product__c>();
+        List<UID_Stocked_Product_Summary__c> stockSummaryList = new List<UID_Stocked_Product_Summary__c>();
+        
+        UID_Stocked_Product__c testStockedProduct00 = prepareStockedProduct(-1);
+        
+        database.insert(testStockedProduct00, FALSE);
+        stockList.add(testStockedProduct00);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary00 = prepareStockedSummary(100, 0, testStockedProduct00.Id);
+        stockSummaryList.add(testStockedSummary00);
+        
+        UID_Stocked_Product__c testStockedProduct01 = prepareStockedProduct(0);
+        
+        database.insert(testStockedProduct01, FALSE);
+        stockList.add(testStockedProduct01);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary01 = prepareStockedSummary(100, 0, testStockedProduct01.Id);
+        stockSummaryList.add(testStockedSummary01);
+        
+        //Insert stockList;
+        Insert stockSummaryList;
+        
+        for(UID_Stocked_Product__c stock : stockList) {
+            stock.UID_Stock_Cover_Calculation_Flag__c = true;
+        }
+        Update stockList;
+
+       	Test.stopTest();
+        
+        List<UID_Stocked_Product_Summary__c> testStockSummaryList = [Select ID, UID_Avail_Quantity__c, UID_Net_Quantity__c, UID_In_Quantity__c, UID_Stock_Cover__c, UID_Sales_Date__c
+                                                                     	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary01.id];
+		
+        List<UID_Order_Product__c> testOrderProductList = [Select ID, UID_Order_Quantity__c
+                                                                     	From UID_Order_Product__c Where UID_Order__c =: secondaryOrderCurrentMonth.id];
+        
+        //Check Stock Cover
+        System.assertEquals(100, testStockSummaryList[0].UID_Net_Quantity__c);
+        System.assertEquals(0, testStockSummaryList[0].UID_In_Quantity__c);
+        System.assertEquals(270, testStockSummaryList[0].UID_Stock_Cover__c);
+        System.assertEquals(10, testOrderProductList[0].UID_Order_Quantity__c);
+        
+    }    
+    
+    //C (Order Quantity) is 0
+    /******************************************************************* 
+    Purpose: Ensures that Stock Cover calculation is correct even if Order Quantity is 0
+    Parameters: 
+    Returns: void
+    ********************************************************************/
+    static testMethod void orderQuantityIsZeroTest(){
+    
+        prepareData(15);
+        
+        Test.startTest();        
+        UID_Order_Product__c orderProduct = [Select UID_Order_Quantity__c 
+                                             	From UID_Order_Product__c 
+                                             	Where UID_Order__c =: secondaryOrderCurrentMonth.Id limit 1];
+        orderProduct.UID_Order_Quantity__c = 0;
+        Update orderProduct;
+        
+        List<UID_Stocked_Product__c> stockList = new List<UID_Stocked_Product__c>();
+        List<UID_Stocked_Product_Summary__c> stockSummaryList = new List<UID_Stocked_Product_Summary__c>();
+        
+        UID_Stocked_Product__c testStockedProduct00 = prepareStockedProduct(-1);
+        
+        database.insert(testStockedProduct00, FALSE);
+        stockList.add(testStockedProduct00);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary00 = prepareStockedSummary(100, 60, testStockedProduct00.Id);
+        stockSummaryList.add(testStockedSummary00);
+        
+        UID_Stocked_Product__c testStockedProduct01 = prepareStockedProduct(0);
+        
+        database.insert(testStockedProduct01, FALSE);
+        stockList.add(testStockedProduct01);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary01 = prepareStockedSummary(100, 60, testStockedProduct01.Id);
+        stockSummaryList.add(testStockedSummary01);
+        
+        //Insert stockList;
+        Insert stockSummaryList;
+        
+        for(UID_Stocked_Product__c stock : stockList) {
+            stock.UID_Stock_Cover_Calculation_Flag__c = true;
+        }
+        Update stockList;
+
+       	Test.stopTest();
+        
+        List<UID_Stocked_Product_Summary__c> testStockSummaryList = [Select ID, UID_Avail_Quantity__c, UID_Net_Quantity__c, UID_In_Quantity__c, UID_Stock_Cover__c, UID_Sales_Date__c
+                                                                     	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary01.id];
+		
+        List<UID_Order_Product__c> testOrderProductList = [Select ID, UID_Order_Quantity__c
+                                                                     	From UID_Order_Product__c Where UID_Order__c =: secondaryOrderCurrentMonth.id];
+        
+        //Check Stock Cover
+        System.assertEquals(100, testStockSummaryList[0].UID_Net_Quantity__c);
+        System.assertEquals(60, testStockSummaryList[0].UID_In_Quantity__c);
+        System.assertEquals(480, testStockSummaryList[0].UID_Stock_Cover__c);
+        System.assertEquals(0, testOrderProductList[0].UID_Order_Quantity__c);
+    }
+    
+    
+    //E (3 month ave) is 0
+    /******************************************************************* 
+    Purpose: Ensures that Stock Cover calculation is correct even if 3 months ave is 0
+    Parameters: 
+    Returns: void
+    ********************************************************************/
+    static testMethod void threeMonthAveIsZeroTest(){
+    	
+        prepareData(15);
+        
+        Test.startTest();
+        List<UID_Order_Product__c> orderProductList = new List<UID_Order_Product__c>();
+        
+        UID_Order_Product__c orderProductPrevMonth = [Select UID_Order_Quantity__c 
+                                             	From UID_Order_Product__c 
+                                             	Where UID_Order__c =: secondaryOrderPrevMonth.Id limit 1];
+        orderProductprevMonth.UID_Order_Quantity__c = 0;
+        orderProductList.add(orderProductprevMonth);
+        
+        UID_Order_Product__c orderProductPrev2Month = [Select UID_Order_Quantity__c 
+                                             	From UID_Order_Product__c 
+                                             	Where UID_Order__c =: secondaryOrderPrev2Month.Id limit 1];
+        orderProductPrev2Month.UID_Order_Quantity__c = 0;
+        orderProductList.add(orderProductPrev2Month);
+        
+        UID_Order_Product__c orderProductPrev3Month = [Select UID_Order_Quantity__c 
+                                             	From UID_Order_Product__c 
+                                             	Where UID_Order__c =: secondaryOrderPrev3Month.Id limit 1];
+        orderProductPrev3Month.UID_Order_Quantity__c = 0;
+        orderProductList.add(orderProductPrev3Month);
+        
+        Update orderProductList;
+   
+        List<UID_Stocked_Product__c> stockList = new List<UID_Stocked_Product__c>();
+        List<UID_Stocked_Product_Summary__c> stockSummaryList = new List<UID_Stocked_Product_Summary__c>();
+        
+        UID_Stocked_Product__c testStockedProduct00 = prepareStockedProduct(-1);
+        
+        database.insert(testStockedProduct00, FALSE);
+        stockList.add(testStockedProduct00);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary00 = prepareStockedSummary(100, 60, testStockedProduct00.Id);
+        stockSummaryList.add(testStockedSummary00);
+        
+        UID_Stocked_Product__c testStockedProduct01 = prepareStockedProduct(0);
+        
+        database.insert(testStockedProduct01, FALSE);
+        stockList.add(testStockedProduct01);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary01 = prepareStockedSummary(100, 60, testStockedProduct01.Id);            
+        stockSummaryList.add(testStockedSummary01);
+        
+        //Insert stockList;
+        Insert stockSummaryList;
+        
+        for(UID_Stocked_Product__c stock : stockList) {
+            stock.UID_Stock_Cover_Calculation_Flag__c = true;
+        }
+        Update stockList;
+
+       	Test.stopTest();
+        
+    
+    	List<UID_Stocked_Product_Summary__c> testStockSummaryList = [Select ID, UID_Avail_Quantity__c, UID_Net_Quantity__c, UID_In_Quantity__c, UID_Stock_Cover__c, UID_Sales_Date__c
+                                                                     	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary01.id];
+		
+        List<UID_Order_Product__c> testOrderProductList = [Select ID, UID_Order_Quantity__c
+                                                                     	From UID_Order_Product__c Where UID_Order__c =: secondaryOrderCurrentMonth.id];
+        
+        //Check Stock Cover
+        System.assertEquals(100, testStockSummaryList[0].UID_Net_Quantity__c);
+        System.assertEquals(60, testStockSummaryList[0].UID_In_Quantity__c);
+        System.assertEquals(150, testStockSummaryList[0].UID_Stock_Cover__c);
+    
+    }
+    
+    
+    //F is 0
+    /******************************************************************* 
+    Purpose: Ensures that Stock Cover calculation is correct even if all fields are 0
+    Parameters: 
+    Returns: void
+    ********************************************************************/
+    static testMethod void stockCoverIsZeroTest(){
+    	prepareData(15);
+        
+        Test.startTest();
+        List<UID_Order_Product__c> orderProductList = new List<UID_Order_Product__c>();
+        
+        UID_Order_Product__c orderProduct = [Select UID_Order_Quantity__c 
+                                             	From UID_Order_Product__c 
+                                             	Where UID_Order__c =: secondaryOrderCurrentMonth.Id limit 1];
+        orderProduct.UID_Order_Quantity__c = 0;
+        orderProductList.add(orderProduct);
+        
+        UID_Order_Product__c orderProductPrevMonth = [Select UID_Order_Quantity__c 
+                                             	From UID_Order_Product__c 
+                                             	Where UID_Order__c =: secondaryOrderPrevMonth.Id limit 1];
+        orderProductprevMonth.UID_Order_Quantity__c = 0;
+        orderProductList.add(orderProductprevMonth);
+        
+        UID_Order_Product__c orderProductPrev2Month = [Select UID_Order_Quantity__c 
+                                             	From UID_Order_Product__c 
+                                             	Where UID_Order__c =: secondaryOrderPrev2Month.Id limit 1];
+        orderProductPrev2Month.UID_Order_Quantity__c = 0;
+        orderProductList.add(orderProductPrev2Month);
+        
+        UID_Order_Product__c orderProductPrev3Month = [Select UID_Order_Quantity__c 
+                                             	From UID_Order_Product__c 
+                                             	Where UID_Order__c =: secondaryOrderPrev3Month.Id limit 1];
+        orderProductPrev3Month.UID_Order_Quantity__c = 0;
+        orderProductList.add(orderProductPrev3Month);
+        
+        Update orderProductList;
+   
+        List<UID_Stocked_Product__c> stockList = new List<UID_Stocked_Product__c>();
+        List<UID_Stocked_Product_Summary__c> stockSummaryList = new List<UID_Stocked_Product_Summary__c>();
+        
+        UID_Stocked_Product__c testStockedProduct00 = prepareStockedProduct(-1);
+        
+        database.insert(testStockedProduct00, FALSE);
+        stockList.add(testStockedProduct00);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary00 = prepareStockedSummary(0, 0, testStockedProduct00.Id);
+        stockSummaryList.add(testStockedSummary00);
+        
+        UID_Stocked_Product__c testStockedProduct01 = prepareStockedProduct(0);
+        
+        database.insert(testStockedProduct01, FALSE);
+        stockList.add(testStockedProduct01);
+        
+        UID_Stocked_Product_Summary__c testStockedSummary01 = prepareStockedSummary(0, 0, testStockedProduct01.Id);
+
+        stockSummaryList.add(testStockedSummary01);
+        
+        //Insert stockList;
+        Insert stockSummaryList;
+        
+        for(UID_Stocked_Product__c stock : stockList) {
+            stock.UID_Stock_Cover_Calculation_Flag__c = true;
+        }
+        Update stockList;
+
+       	Test.stopTest();
+        
+    
+    	List<UID_Stocked_Product_Summary__c> testStockSummaryList = [Select ID, UID_Avail_Quantity__c, UID_Net_Quantity__c, UID_In_Quantity__c, UID_Stock_Cover__c, UID_Sales_Date__c
+                                                                     	From UID_Stocked_Product_Summary__c Where Id =: testStockedSummary01.id];
+		
+        List<UID_Order_Product__c> testOrderProductList = [Select ID, UID_Order_Quantity__c
+                                                                     	From UID_Order_Product__c Where UID_Order__c =: secondaryOrderCurrentMonth.id];
+        
+        //Check Stock Cover
+        System.assertEquals(0, testStockSummaryList[0].UID_Net_Quantity__c);
+        System.assertEquals(0, testStockSummaryList[0].UID_In_Quantity__c);
+        System.assertEquals(0, testStockSummaryList[0].UID_Stock_Cover__c);
+    }
+    
+    
+    static UID_Stocked_Product__c prepareStockedProduct(Integer addMonth) {
+        
+        UID_Stocked_Product__c testStockedProduct = new UID_Stocked_Product__c();
+            testStockedProduct.UID_Start_Date__c = System.today().AddMonths(addMonth);
+            testStockedProduct.UID_End_Date__c = System.today().AddMonths(addMonth);
+            testStockedProduct.UID_Distributor__c = testAccount00.Id;
+            testStockedProduct.UID_Stock_Cover_Calculation_Flag__c = False;
+        	testStockedProduct.UID_Report_Date__c = System.today().AddMonths(addMonth);
+        
+        return testStockedProduct;
+    }
+    
+    static UID_Stocked_Product_Summary__c prepareStockedSummary(Integer netQuantity, Integer inQuantity, Id stockedProductId) {
+
+		UID_Stocked_Product_Summary__c testStockedSummary = new UID_Stocked_Product_Summary__c();
+            testStockedSummary.UID_Avail_Quantity__c = netQuantity;
+        	testStockedSummary.UID_Net_Quantity__c = netQuantity;
+            testStockedSummary.UID_Material__c = testProduct00.Id;
+            testStockedSummary.UID_Stocked_Product__c = stockedProductId;        	
+        	testStockedSummary.UID_In_Quantity__c = inQuantity;
+        
+        return testStockedSummary;
+    }
+    
+    /******************************************************************* 
     Purpose: prepare account and product;create custom settings
     Parameters: 
     Returns: void
     ********************************************************************/  
     static void prepareData(Integer unitPrice){
-        Id primaryAccountRecordType = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Primary Account').getRecordTypeId();
-        Id secondaryAccountRecordType = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Secondary Account').getRecordTypeId();
+        
+        primaryAccountRecordType = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Primary Account').getRecordTypeId();
+        secondaryAccountRecordType = Schema.SObjectType.Account.getRecordTypeInfosByName().get('Secondary Account').getRecordTypeId();
+                
+        primarySalesRecordType = Schema.SObjectType.Order.getRecordTypeInfosByName().get('Primary Sales').getRecordTypeId();
+        secondarySalesRecordType = Schema.SObjectType.Order.getRecordTypeInfosByName().get('Secondary Sales').getRecordTypeId();
+        
         List<Account> newAccounts = new List<Account>();
         List<Order> newOrders = new List<Order>();
         List<UID_Order_Product__c> newOrderItems = new List<UID_Order_Product__c>();
-        
-        String STATUS_DRAFT = 'Draft';
         
         //create trigger switch(custom settings)
         UID_TriggerSwitch__c settingTriggerSwitch = UID_TriggerSwitch__c.getOrgDefaults();
@@ -343,7 +760,7 @@ public class UID_StockCoverTriggerHelper_Test{
             primaryOrderCurrentMonth.EffectiveDate = System.today();
             primaryOrderCurrentMonth.Status = STATUS_DRAFT;
             primaryOrderCurrentMonth.UID_Invoice_Number__c = '920151111';
-            primaryOrderCurrentMonth.RecordTypeId = primaryAccountRecordType;
+            primaryOrderCurrentMonth.RecordTypeId = primarySalesRecordType;
             primaryOrderCurrentMonth.Pricebook2Id =  pricebookId;       
         newOrders.add(primaryOrderCurrentMonth);
         
@@ -353,7 +770,7 @@ public class UID_StockCoverTriggerHelper_Test{
             secondaryOrderCurrentMonth.EffectiveDate = System.today();
             secondaryOrderCurrentMonth.Status = STATUS_DRAFT;
             secondaryOrderCurrentMonth.UID_Invoice_Number__c = '11/18/2015/secondaryOrderCurrentMonth';
-            secondaryOrderCurrentMonth.RecordTypeId = secondaryAccountRecordType;
+            secondaryOrderCurrentMonth.RecordTypeId = secondarySalesRecordType;
             secondaryOrderCurrentMonth.Pricebook2Id =  pricebookId;  
         newOrders.add(secondaryOrderCurrentMonth);
         
@@ -363,7 +780,7 @@ public class UID_StockCoverTriggerHelper_Test{
             secondaryOrderPrevMonth.EffectiveDate = System.today().AddMonths(-1);
             secondaryOrderPrevMonth.Status = STATUS_DRAFT;
             secondaryOrderPrevMonth.UID_Invoice_Number__c = '11/18/2015/secondaryOrderPrevMonth';
-            secondaryOrderPrevMonth.RecordTypeId = secondaryAccountRecordType;
+            secondaryOrderPrevMonth.RecordTypeId = secondarySalesRecordType;
             secondaryOrderPrevMonth.Pricebook2Id =  pricebookId;  
         newOrders.add(secondaryOrderPrevMonth);
         
@@ -373,7 +790,7 @@ public class UID_StockCoverTriggerHelper_Test{
             secondaryOrderPrev2Month.EffectiveDate = System.today().AddMonths(-2);
             secondaryOrderPrev2Month.Status = STATUS_DRAFT;
             secondaryOrderPrev2Month.UID_Invoice_Number__c = '11/18/2015/secondaryOrderPrev2Month';
-            secondaryOrderPrev2Month.RecordTypeId = secondaryAccountRecordType;
+            secondaryOrderPrev2Month.RecordTypeId = secondarySalesRecordType;
             secondaryOrderPrev2Month.Pricebook2Id =  pricebookId;  
         newOrders.add(secondaryOrderPrev2Month);
         
@@ -383,51 +800,45 @@ public class UID_StockCoverTriggerHelper_Test{
             secondaryOrderPrev3Month.EffectiveDate = System.today().AddMonths(-3);
             secondaryOrderPrev3Month.Status = STATUS_DRAFT;
             secondaryOrderPrev3Month.UID_Invoice_Number__c = '11/18/2015/secondaryOrderPrev3Month';
-            secondaryOrderPrev3Month.RecordTypeId = secondaryAccountRecordType;
+            secondaryOrderPrev3Month.RecordTypeId = secondarySalesRecordType;
             secondaryOrderPrev3Month.Pricebook2Id =  pricebookId;
         newOrders.add(secondaryOrderPrev3Month);
         
         database.insert(newOrders, FALSE);
         
         //create primary sales of the month
-        UID_Order_Product__c primarySaleCurrentMonth = new UID_Order_Product__c();
+        primarySaleCurrentMonth = new UID_Order_Product__c();
             primarySaleCurrentMonth.UID_Order_Quantity__c = 60;
             primarySaleCurrentMonth.UID_Order__c = primaryOrderCurrentMonth.Id;
-            //primarySaleCurrentMonth.Quantity = 10;
-            //primarySaleCurrentMonth.PricebookEntryId = productStandardPrice.Id;
-            //primarySaleCurrentMonth.UnitPrice = 1;
+            
         newOrderItems.add(primarySaleCurrentMonth);
         //create secondary sales of the month
-        UID_Order_Product__c secondarySaleCurrentMonth = new UID_Order_Product__c();
+        secondarySaleCurrentMonth = new UID_Order_Product__c();
             secondarySaleCurrentMonth.UID_Order_Quantity__c = 10;
             secondarySaleCurrentMonth.UID_Order__c = secondaryOrderCurrentMonth.Id;
-            //secondarySaleCurrentMonth.Quantity = 10;
-            //secondarySaleCurrentMonth.PricebookEntryId = productStandardPrice.Id;
-            //secondarySaleCurrentMonth.UnitPrice = 160;
+        	secondarySaleCurrentMonth.UID_Product__c = testProduct00.Id;
+            
         newOrderItems.add(secondarySaleCurrentMonth);
         //create secondary sales previous month
-        UID_Order_Product__c secondarySalePrevMonth = new UID_Order_Product__c();
+        secondarySalePrevMonth = new UID_Order_Product__c();
             secondarySalePrevMonth.UID_Order_Quantity__c = 10;
             secondarySalePrevMonth.UID_Order__c = secondaryOrderPrevMonth.Id;
-            //secondarySalePrevMonth.Quantity = 123;
-            //secondarySalePrevMonth.PricebookEntryId = productStandardPrice.Id;
-            //secondarySalePrevMonth.UnitPrice = 154;
+        	secondarySalePrevMonth.UID_Product__c = testProduct00.Id;
+        
         newOrderItems.add(secondarySalePrevMonth);
         //create secondary sales previous 2 month
-        UID_Order_Product__c secondarySalePrev2Month = new UID_Order_Product__c();
+        secondarySalePrev2Month = new UID_Order_Product__c();
             secondarySalePrev2Month.UID_Order_Quantity__c = 10;
             secondarySalePrev2Month.UID_Order__c = secondaryOrderPrev2Month.Id;
-            //secondarySalePrev2Month.Quantity = 13;
-            //secondarySalePrev2Month.PricebookEntryId = productStandardPrice.Id;
-            //secondarySalePrev2Month.UnitPrice = 41;
+        	secondarySalePrev2Month.UID_Product__c = testProduct00.Id;
+            
         newOrderItems.add(secondarySalePrev2Month);
         //create secondary sales previous 3 month
-        UID_Order_Product__c secondarySalePrev3Month = new UID_Order_Product__c();
+        secondarySalePrev3Month = new UID_Order_Product__c();
             secondarySalePrev3Month.UID_Order_Quantity__c = 10;
             secondarySalePrev3Month.UID_Order__c = secondaryOrderPrev3Month.Id;
-            //secondarySalePrev3Month.Quantity = 71;
-            //secondarySalePrev3Month.PricebookEntryId = productStandardPrice.Id;
-            //secondarySalePrev3Month.UnitPrice = 81;
+        	secondarySalePrev3Month.UID_Product__c = testProduct00.Id;
+            
         newOrderItems.add(secondarySalePrev3Month);
         database.insert(newOrderItems,FALSE);
         
