@@ -85,7 +85,6 @@ public User userConnected {get; set;}
     public map<string, ID> mapIdCSSCountryRegion {get; set;}
     public string lstIdCSSSelected {get; set;}
     public List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplitHubs {get; set;}
-    private list<string> lstSelectedCountry ;
     public String lstSelectedCountryJSON { get; set; }
     public String lstSelectedRegionJSON { get; set; }
     public String selectedRegion { get; set; }
@@ -123,14 +122,12 @@ public User userConnected {get; set;}
     public String selectedBrandInnov {get; set;}
     public String selectedBrandBrand {get; set;}
     public boolean isError {get; set;}
-    private static string crossX = ' X ';
     public String mapRelatedCntriesJSON { get; set; }
     public String mapRelatedCntriesJSONMap { get; set; }
     public List<String> mapAllCountries { get; set; }
     public String sowName { get; set; }
     public Marketing_SOW__c selected_sow{get;set;}
     public Integer numberOFSelectedCountries { get; set; }
-    private final String GLOBAL_REGION = 'Global';
     public String selectionCountvar{get;set;}
     public Boolean isFirst {get;set;}
     // **********************************************************************
