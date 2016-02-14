@@ -18,14 +18,22 @@ public with sharing virtual class Oblix_SWOPparentController {
     public Oblix_CampaignStageLogic stage_identifier {get;set;}
     
     public Boolean hasEditAccess { 
-        get{ 
-            return Oblix_PermissionHandler.hasEditAccess();
+        get{
+            if(NULL == selected_sow){
+                return Oblix_PermissionHandler.hasEditAccess(null);
+            } else{
+                return Oblix_PermissionHandler.hasEditAccess(selected_sow.Id);
+            }
         }
     }
 
     public Boolean can_edit { 
         get{ 
-            return Oblix_PermissionHandler.hasEditAccess();
+            if(NULL == selected_sow){
+                return Oblix_PermissionHandler.hasEditAccess(null);
+            } else{
+                return Oblix_PermissionHandler.hasEditAccess(selected_sow.Id);
+            }
         }
     }
 

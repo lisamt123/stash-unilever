@@ -130,7 +130,7 @@
                 <div id="countriesLabel">
                     <div class="countries_multi_select">
                         <div class="campaign_region_picklist">
-                            <p class="create_SOW_form_titles">Countries / Clusters*</p>
+                            <p class="create_SOW_form_titles">Clusters / Countries*</p>
                             <p class="campaign_create_agency_hub_split_table_subtitle">Please indicate which markets your campaign will be developed for. Global OR a whole cluster and/or specify individual countries.</p>      
                         </div> 
                         <div>

@@ -6,7 +6,7 @@
     <letterhead>SWOP_Letterhead</letterhead>
     <name>SOW returned to Marketeer</name>
     <style>freeForm</style>
-    <subject>SOW: {!Marketing_SOW__c.Name}  returned for further amendments</subject>
+    <subject>SOW returned for revisions: {!Marketing_SOW__c.Name}</subject>
     <textOnly>The following SOW has been returned for further amendments.
 
 {!Marketing_SOW__c.Name}

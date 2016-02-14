@@ -200,7 +200,7 @@
                 <leftValueReference>myVariable_current.SOW_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Awaiting Agency Approval (TBC)</stringValue>
+                    <stringValue>Pending Agency Approval</stringValue>
                 </rightValue>
             </conditions>
             <connector>
@@ -336,6 +336,12 @@
             <conditionLogic>and</conditionLogic>
             <conditions>
                 <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
                     <name>operatorDataType</name>
                     <value>
                         <stringValue>String</stringValue>
@@ -353,16 +359,10 @@
                         <stringValue>Picklist</stringValue>
                     </value>
                 </processMetadataValues>
-                <processMetadataValues>
-                    <name>rightHandSideType</name>
-                    <value>
-                        <stringValue>Picklist</stringValue>
-                    </value>
-                </processMetadataValues>
                 <leftValueReference>myVariable_old.SOW_Status__c</leftValueReference>
                 <operator>EqualTo</operator>
                 <rightValue>
-                    <stringValue>Awaiting Agency Approval (TBC)</stringValue>
+                    <stringValue>Pending Agency Approval</stringValue>
                 </rightValue>
             </conditions>
             <label>Previously Met - Prev</label>
@@ -403,7 +403,7 @@ ISPICKVAL(PRIORVALUE({!myVariable_old.SOW_Status__c}),&quot;Awaiting Unilever Ap
 ISPICKVAL(PRIORVALUE({!myVariable_old.SOW_Status__c}),&quot;Draft - with Unilever&quot;)
 )</expression>
     </formulas>
-    <interviewLabel>SOW_Approval_Process_Agency_TBC-2_Marketing_SOW__c</interviewLabel>
+    <interviewLabel>SOW_Approval_Process_Agency_TBC-3_Marketing_SOW__c</interviewLabel>
     <label>SOW Approval Process (Agency TBC)</label>
     <processMetadataValues>
         <name>ObjectType</name>

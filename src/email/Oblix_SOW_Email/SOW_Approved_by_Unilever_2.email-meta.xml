@@ -6,7 +6,7 @@
     <letterhead>SWOP_Letterhead</letterhead>
     <name>SOW Approved by Unilever</name>
     <style>freeForm</style>
-    <subject>SOW : {!Marketing_SOW__c.Name} Approved by Unilever</subject>
+    <subject>{!Marketing_SOW__c.Name} Approved by Unilever</subject>
     <textOnly>The following SOW has been approved by Unilever
 
 SOW Name: {!Marketing_SOW__c.Name}

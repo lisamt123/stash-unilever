@@ -25,8 +25,8 @@
             <apex:outputPanel id="top_right_panel">
                 <table class="SOW_header_value_summary">
                     <tr>
-                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_submit_for_approval}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button></apex:outputPanel></td>
-                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_reject_sow}"><button type="button" class="btn btn-danger btn-xs two_button_header btn_return btn_send_back" data-toggle="modal"  data-target="#sendBack">SEND BACK</button></apex:outputPanel></td>
+                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!show_submit}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_submit_approval" data-toggle="modal"  data-target="#submitApproval">SUBMIT FOR APPROVAL</button></apex:outputPanel></td>
+                        <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_reject_sow}"><button type="button" class="btn btn-danger btn-xs two_button_header btn_return btn_send_back" data-toggle="modal"  data-target="#sendBack">RETURN SOW</button></apex:outputPanel></td>
                         <td class="header_approval_button" rowspan="3"><apex:outputPanel rendered="{!can_approve_sow}"><button type="button" class="btn btn-danger btn-xs create_SOW_button btn_check btn_approve_sow"  data-toggle="modal"  data-target="#sowApprove">APPROVE SOW</button></apex:outputPanel></td>
                         <td class="SOW_header_value_title">SOW total</td>
                         <td class="SOW_header_value">
@@ -64,16 +64,16 @@
                     <div class="modal-content submit_for_approval_modal">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h1 class="modal_window_title" id="gridSystemModalLabel">Submit SOW for approval?</h1>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">Submit for approval</h1>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p>Once you submit [{!selected_sow.Name}] for approval you will no longer be able to make any edits to it or the campaigns within.</p>
-                                    <p class="text-danger"><apex:outputText rendered="{!is_sole_editor == false}" value="There are other users in the system with edit access to this same SOW. Make sure that there isn't anyone else working on the same SOW before submitting."/></p>
-                                    <p class="text-danger"><apex:outputText rendered="{!sow_approvers_defined == false}" value="This SOW cannot be submitted for approval because there is no Unilever and/or Agency approver defined for this brand-category combination."/></p>
+                                    <apex:outputText rendered="{!sow_approvers_defined == true}"><p>Once you submit ( {!selected_sow.Name} ) for approval it will be locked for changes.</p></apex:outputText>
+                                    <!-- <apex:outputText rendered="{!sow_approvers_defined == true && is_sole_editor == false}"><p class="text-danger">There are other users in the system with edit access to this same SOW. Make sure that there isn't anyone else working on the same SOW before submitting.</p></apex:outputText> -->
+                                    <apex:outputText rendered="{!sow_approvers_defined == false}"><p class="text-danger">Warning : This SOW can not be submitted<br/>No approver has been identified for ( {!selected_sow.Name}) please contact the <a class="text-danger" href="mailto:liliya.ivanova@unilever.com?Subject=No%20approver%20has%20been%20identified%20for%20(%20{!selected_sow.Name}%20)" target="_top">administrator</a> for assistance</p></apex:outputText>
                                     <apex:outputText rendered="{!sow_approvers_defined}">
-                                        <p><strong>Optional:</strong> Do you want to add a comment to this?</p>
+                                        <p><strong>Comments:</strong></p>
                                         <apex:inputTextarea rows="4" styleClass="approval_modal_comment_box" value="{!sowSubmitComments}"/>
                                     </apex:outputText>
                                 </div>
@@ -88,44 +88,18 @@
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-            <!--            APPROVAL SUBMITTED modal-->
-            <!-- <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="approvalSubmitted" id="approvalSubmitted">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content submit_for_approval_modal">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h1 class="modal_window_title" id="gridSystemModalLabel">Approval Submitted</h1>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <p>Your approval request for [sow name] has been submitted to [GBVP name].</p>
-                                    <p><strong>Optional:</strong> Do you want to add a comment to this?</p>
-                                    <apex:inputTextarea rows="4" styleClass="approval_modal_comment_box" value="{!sowApproveComments}"/>
-                                </div>   
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="modal_button_align">
-                                <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton styleClass="btn btn-primary btn_quote btn_notify" value="NOTIFY" action="{!submitApprovalRequestComments}"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --><!-- /.modal -->
             <!--            send sow back modal-->
             <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sendBack" id="sendBack">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content submit_for_approval_modal">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h1 class="modal_window_title" id="gridSystemModalLabel">Send [{!selected_sow.Name}] back</h1>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">Return ( {!selected_sow.Name} )</h1>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <p>Reason for returning [{!selected_sow.Name}]</p>
+                                    <p>Comments:*</p>
                                     <apex:inputTextarea id="rejectComments" value="{!sowRejectComments}" rows="4" styleClass="approval_modal_comment_box" onkeyup="$('#rejectButton').prop('disabled', this.value == '' ? true : false);"/>
                                 </div>   
                             </div>
@@ -133,51 +107,25 @@
                         <div class="modal-footer">
                             <div class="modal_button_align">
                                 <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <apex:commandButton action="{!rejectSOW}" id="rejectButton" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn-xs btn_return btn_send_back" value="SEND BACK" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
+                                <apex:commandButton action="{!rejectSOW}" id="rejectButton" reRender="top_right_panel,sow_details" styleClass="btn btn-danger btn-xs btn_return btn_send_back" value="RETURN SOW" html-data-dismiss="modal" onclick="blockme()" oncomplete="$.unblockUI()"/>
                             </div>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
             </div><!-- /.modal -->
-            <!--            send back to name modal-->
-            <!-- <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sendToName" id="sendToName">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content submit_for_approval_modal">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h1 class="modal_window_title" id="gridSystemModalLabel">Send back to [name]</h1>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <p>Your approval request for [sow name] has been submitted to [GBVP name].</p>
-                                    <p><strong>Optional:</strong> Do you want to add a comment to this?</p>
-                                    <textarea rows="4" class="approval_modal_comment_box"></textarea>
-                                </div>   
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="modal_button_align">
-                                <button type="button" class="btn btn_cross btn_cancel" data-dismiss="modal">CANCEL</button>
-                                <button type="button" class="btn btn-primary btn_quote btn_notify">NOTIFY</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --><!-- /.modal -->
             <!--            approve sow modal-->
             <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="sowApprove" id="sowApprove">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content submit_for_approval_modal">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h1 class="modal_window_title" id="gridSystemModalLabel">Approve [{!selected_sow.Name}] SOW?</h1>
+                            <h1 class="modal_window_title" id="gridSystemModalLabel">Approve ( {!selected_sow.Name} )?</h1>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-lg-12">
                                     <!-- <p>You've approved [sow name].</p> -->
-                                    <p><strong>Optional:</strong> Do you want to add a comment to this?</p>
+                                    <p><strong>Comments:</strong></p>
                                     <apex:inputTextarea rows="4" styleClass="approval_modal_comment_box" value="{!sowApproveComments}"/>
                                 </div>   
                             </div>
