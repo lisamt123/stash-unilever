@@ -16,7 +16,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     public Boolean can_delete_sow{
         get{
-            return Oblix_PermissionHandler.canDeleteSOW(selected_sow.SOW_Status__c);
+            return Oblix_PermissionHandler.canDeleteSOW(selected_sow.SOW_Status__c, selected_sow.Id);
         }
     }
 
@@ -34,13 +34,13 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
     public Boolean can_manage_campaign{
         get{
-            return Oblix_PermissionHandler.canManageCampaign(selected_sow.SOW_Status__c);
+            return Oblix_PermissionHandler.canManageCampaign(selected_sow.SOW_Status__c, selected_sow.Id);
         }
     }
 
     public Boolean can_manage_non_campaign{
         get{
-            return Oblix_PermissionHandler.canManageNonCampaign(selected_sow.SOW_Status__c);
+            return Oblix_PermissionHandler.canManageNonCampaign(selected_sow.SOW_Status__c, selected_sow.Id);
         }
     }
 
@@ -72,6 +72,18 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     public Boolean is_sole_editor{
         get{
             return Oblix_PermissionHandler.isOnlyBrandCatEditor(selected_sow.OblixBrand__c, selected_sow.SmallProductCategory__c, UserInfo.getUserId());
+        }
+    }
+
+    public Boolean is_with_ul2{
+        get{
+            return (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_AGENCY) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_REJECTED_BY_UNILEVER) || (selected_sow.SOW_Status__c == Oblix_Utils.SOW_STATUS_DRAFT_WITH_UNILEVER );
+        }
+    }
+
+    public Boolean show_submit{
+        get{
+            return can_submit_for_approval && ( !( Oblix_PermissionHandler.hasUL1permissionSet() && is_with_ul2) || is_sole_editor);
         }
     }
 
@@ -986,7 +998,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     * @date         2016-02-08
     * @description  submit SOW for approval
     ********************************************************************************/
-    public void submitForApproval(){
+    public PageReference submitForApproval(){
 
         // skip unilever approval if creator is approver
         if(UserInfo.getUserId() == selected_sow.Unilever_SOW_Approver_Name__c){
@@ -1033,6 +1045,9 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
 
         }
 
+        PageReference ref = new PageReference('/apex/oblix_sowmain');
+        return ref;
+
     }
 
     /*******************************************************************************
@@ -1040,7 +1055,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     * @date         2016-02-09
     * @description  reject SOW with mandatory comments
     ********************************************************************************/
-    public void rejectSOW(){
+    public PageReference rejectSOW(){
 
         // get sow approval record - there can be only one (?)
         List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :selected_sow.Id];
@@ -1060,12 +1075,17 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                 // reload SOW to get new sow status
                 selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
             }
+
         }
         //} else {
 
         //    // there should be only one work item for a given object.
+        // refactoring: add error message?
 
         //}
+
+        PageReference ref = new PageReference('/apex/oblix_sowmain');
+        return ref;
 
     }
 
@@ -1074,7 +1094,7 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
     * @date         2016-02-09
     * @description  approve SOW with optional comments
     ********************************************************************************/
-    public void approveSOW(){
+    public PageReference approveSOW(){
 
         // get sow approval record - there can be only one (?)
         List<ProcessInstanceWorkitem> workItems = [Select p.Id from ProcessInstanceWorkitem p where p.ProcessInstance.TargetObjectId = :selected_sow.Id];
@@ -1093,12 +1113,16 @@ public with sharing class Oblix_SOWMainDetailController extends Oblix_SWOPparent
                 // reload SOW to get new sow status
                 selected_sow = getSOW(sow_id, Oblix_Utils.getAllFieldsInFieldsSet(OBJECT_SOW_TO_QUERY, FIELD_SET_SOW_MAIN_DETAIL) , null);
             }
+
         }
         //} else {
 
         //    // there should be only one work item for a given object.
+        // refactoring: add error message?
 
         //}
+        PageReference ref = new PageReference('/apex/oblix_sowmain');
+        return ref;
 
     }
 

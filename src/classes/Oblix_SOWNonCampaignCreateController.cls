@@ -2,7 +2,7 @@ public with sharing class Oblix_SOWNonCampaignCreateController extends Oblix_SWO
 
     public Boolean can_manage_non_campaign{
         get{
-            return Oblix_PermissionHandler.canManageNonCampaign(selected_sow.SOW_Status__c);
+            return Oblix_PermissionHandler.canManageNonCampaign(selected_sow.SOW_Status__c, selected_sow.Id);
         }
     }
 

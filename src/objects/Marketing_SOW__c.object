@@ -727,7 +727,7 @@
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Awaiting Agency Approval (TBC)</fullName>
+                <fullName>Pending Agency Approval</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1050,10 +1050,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Awaiting Agency Approval %28TBC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Awaiting Unilever Approval</fullName>
                 <default>false</default>
             </values>
@@ -1064,6 +1060,10 @@
             <values>
                 <fullName>Draft - with Unilever</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Agency Approval</fullName>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Returned by Agency</fullName>
@@ -1182,10 +1182,6 @@
                 <default>false</default>
             </values>
             <values>
-                <fullName>Awaiting Agency Approval %28TBC%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>Awaiting Unilever Approval</fullName>
                 <default>false</default>
             </values>
@@ -1196,6 +1192,10 @@
             <values>
                 <fullName>Draft - with Unilever</fullName>
                 <default>true</default>
+            </values>
+            <values>
+                <fullName>Pending Agency Approval</fullName>
+                <default>false</default>
             </values>
             <values>
                 <fullName>Returned by Agency</fullName>

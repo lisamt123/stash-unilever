@@ -126,7 +126,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="campaign_summary_information_titles">Countries / Clusters</td>
+                                    <td class="campaign_summary_information_titles">Clusters / Countries</td>
                                     <td colspan="2" class="expandMore campaign_summary_countries_cell_width">{!selected_project.Campaign_Countries__c}</td>
                                 </tr>
                                 <tr>
@@ -239,7 +239,7 @@
                 <div class="col-lg-12 ">
                     <p class="page_bold_subheading">Campaign Assets</p>
                     <apex:outputPanel id="addAssetButtonPanel">
-                        <apex:commandButton value="{!If(can_manage_asset,'ADD ASSET','VIEW BASKET')}" action="{!addAssetAction}" styleClass="btn btn-primary btn-xs pull-right  btn_plus btn_campaign_add_asset" onclick="blockme()" />
+                        <apex:commandButton rendered="{!can_edit}" value="{!If(can_manage_asset,'ADD ASSET','VIEW BASKET')}" action="{!addAssetAction}" styleClass="btn btn-primary btn-xs pull-right  btn_plus btn_campaign_add_asset" onclick="blockme()" />
                     </apex:outputPanel>
                         <div class="Oblix_table" id="Oblix_DashId">
                                 <table class="table table-striped" id="sowListTable">
@@ -308,7 +308,7 @@
                 <apex:param name="selected_asset_id" assignTo="{!selected_asset_id}" value="" />
             </apex:actionFunction>
 
-            <apex:actionFunction name="viewAssetFunction" action="{!viewAsset}" rerender="assets_panel">
+            <apex:actionFunction rendered="{!can_edit}" name="viewAssetFunction" action="{!viewAsset}" rerender="assets_panel">
                 <apex:param value="" assignTo="{!selected_asset_id}" name="ids" />
             </apex:actionFunction>
 

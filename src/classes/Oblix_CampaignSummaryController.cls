@@ -17,18 +17,18 @@ public with sharing class Oblix_CampaignSummaryController extends Oblix_SWOPpare
 
     public Boolean can_edit_campaign{
         get{
-            return Oblix_PermissionHandler.canManageCampaign(selected_sow.SOW_Status__c);
+            return Oblix_PermissionHandler.canManageCampaign(selected_sow.SOW_Status__c, selected_sow.Id);
         }
     }
     public Boolean can_adjust_fee{
         get{
-            return Oblix_PermissionHandler.canAdjustFee(selected_sow.SOW_Status__c);
+            return Oblix_PermissionHandler.canAdjustFee(selected_sow.SOW_Status__c, selected_sow.Id);
         }
     }
 
     public Boolean can_manage_asset{
         get{
-            return Oblix_PermissionHandler.canManageAssetBasket(selected_sow.SOW_Status__c);
+            return Oblix_PermissionHandler.canManageAssetBasket(selected_sow.SOW_Status__c, selected_sow.Id);
         }
     }
 

@@ -77,7 +77,7 @@
     <fieldUpdates>
         <fullName>Update_SOW_Status_Awaiting_Agency_tbc</fullName>
         <field>SOW_Status__c</field>
-        <literalValue>Awaiting Agency Approval (TBC)</literalValue>
+        <literalValue>Pending Agency Approval</literalValue>
         <name>Update SOW Status Awaiting Agency tbc</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>

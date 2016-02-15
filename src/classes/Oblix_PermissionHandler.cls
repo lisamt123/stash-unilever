@@ -82,10 +82,12 @@ public with sharing class Oblix_PermissionHandler {
     * @author       Shahin Movahedi
     * @date         2016-02-02
     * @description  If user has UL1, SuperUser permission set or is system admin 
-    				then has edit access
+    				then has edit access. UL1 should not be able to edit if SOW is
+                    locked by approval process.
     ********************************************************************************/
-    public static Boolean hasEditAccess(){
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()){
+    public static Boolean hasEditAccess(Id sow_id){
+        // SS 20160214 - added check if a record is locked. Only system administrator should be able to edit locked records
+        if ( isSystemAdmin() || ( !isLocked(sow_id) && ( hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() ))){
     		return true;
     	}
     	else{
@@ -135,10 +137,11 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and status of SOW
     				determine if the user can delete SOW
     ********************************************************************************/
-    public static Boolean canDeleteSOW(String sow_status){
+    public static Boolean canDeleteSOW(String sow_status, Id sow_id){
     	// only UL1, UL2, SuperUser and Sysadmin can delete SOW and only if
-    	// the sow is not approved
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
+    	// the sow is not approved or locked
+        // SS 20160214 added check if a record is locked
+    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;
@@ -245,10 +248,10 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and sow status
     				allow user to adjust fee
     ********************************************************************************/
-    public static Boolean canAdjustFee(String sow_status){
+    public static Boolean canAdjustFee(String sow_status, Id sow_id){
     	// only UL1, UL2, SuperUser and Sysadmin can adjust fee
     	// if not already approved
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
+    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;
@@ -264,10 +267,10 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and sow status
     				allow user to Add/Update/Delete non campaign items
     ********************************************************************************/
-    public static Boolean canManageNonCampaign(String sow_status){
+    public static Boolean canManageNonCampaign(String sow_status, Id sow_id){
     	// only UL1, UL2, SuperUser and Sysadmin can manage non campaign
     	// if not already approved
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
+    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;
@@ -283,10 +286,10 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and sow status
     				allow user to Add/Update/Delete campaign items
     ********************************************************************************/
-    public static Boolean canManageCampaign(String sow_status){
+    public static Boolean canManageCampaign(String sow_status, Id sow_id){
     	// only UL1, UL2, SuperUser and Sysadmin can manage campaign
     	// if not already approved
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
+    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;
@@ -302,10 +305,10 @@ public with sharing class Oblix_PermissionHandler {
     * @description  Depending on the assigned permission sets and sow status
     				allow user to Add/Update/Delete Asset Basket Items
     ********************************************************************************/
-    public static Boolean canManageAssetBasket(String sow_status){
+    public static Boolean canManageAssetBasket(String sow_status, Id sow_id){
     	// only UL1, UL2, SuperUser and Sysadmin can manage asset basket
     	// if not already approved
-    	if (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() || isSystemAdmin()
+    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;
@@ -404,6 +407,21 @@ public with sharing class Oblix_PermissionHandler {
         Decimal numberOfOtherApprovers = (Decimal) ar[0].get('cnt');
 
         return (numberOfOtherApprovers == 0);
+    }
+
+    /*******************************************************************************
+    * @author       Slavko Skular
+    * @date         2016-02-14
+    * @description  checks if a SOW record is locked.
+    ********************************************************************************/
+    public static Boolean isLocked(Id sow_id){
+
+        if(sow_id == null){
+            return false;
+        } else {
+            return Approval.isLocked(sow_id);
+        }
+
     }
 
     /*******************************************************************************

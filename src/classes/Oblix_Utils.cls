@@ -710,15 +710,16 @@ public with sharing class Oblix_Utils {
     *                                                                               *
     ********************************************************************************/
 
-    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v4';
+    public static final String APPROVAL_PROCESS_NAME = 'Oblix_SOW_Approval_Process_v5';
 
     public static final String SOW_STATUS_APPROVED_BY_UNILEVER = 'Awaiting Agency Approval';
     public static final String SOW_STATUS_APPROVED_BY_AGENCY = 'Approved';
     public static final String SOW_STATUS_AWAITING_UNILEVER_APPROVAL = 'Awaiting Unilever Approval';
     public static final String SOW_STATUS_AWAITING_AGENCY_APPROVAL = 'Awaiting Agency Approval';
-    public static final String SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC = 'Awaiting Agency Approval (TBC)';
-    public static final String SOW_STATUS_REJECTED_BY_UNILEVER = 'Rejected By Unilever';
-    public static final String SOW_STATUS_REJECTED_BY_AGENCY = 'Rejected By Agency';
+    public static final String SOW_STATUS_AWAITING_AGENCY_APPROVAL_TBC = 'Pending Agency Approval';
+    public static final String SOW_STATUS_REJECTED_BY_UNILEVER = 'Returned by Approver';
+    public static final String SOW_STATUS_REJECTED_BY_AGENCY = 'Returned by Agency';
+    public static final String SOW_STATUS_DRAFT_WITH_UNILEVER = 'Draft - with Unilever';
 
 
     /*------------------------------RECORD TYPE IDs---------------------------------*/
