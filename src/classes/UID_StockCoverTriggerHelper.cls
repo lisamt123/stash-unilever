@@ -14,7 +14,6 @@
  ***********************************************************************/
 public with sharing class UID_StockCoverTriggerHelper {
     
-    private static final String PRIMARY_SALES_RECORDTYPE_NAME = 'Primary Sales';
     private static final String SECONDARY_SALES_RECORDTYPE_NAME = 'Secondary Sales';
     
     //private static Set <Id> stockedProdIds; 
