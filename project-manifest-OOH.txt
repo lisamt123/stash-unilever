@@ -1,6 +1,7 @@
 src
 src/objects
 src/objects/Account.object
+src/objects/Asset.object
 src/objects/OOH_SellOutData__c.object
 src/applications
 src/applications/OOH_Wave.app
