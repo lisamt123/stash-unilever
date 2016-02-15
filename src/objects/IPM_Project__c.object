@@ -659,7 +659,7 @@
 
 12, &quot;December&quot;, 
 
-&quot;None&quot;)</formula>
+&quot;&quot;)</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Actual Launch Month</label>
         <required>false</required>
