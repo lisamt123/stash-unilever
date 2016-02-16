@@ -4450,6 +4450,15 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004UQv_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_ECODESIGN15FEB</label>
+        <queue>IPM_a7IE00000004UQv</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>FIN-{0000}</displayFormat>
         <label>Name</label>
