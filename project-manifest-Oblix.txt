@@ -130,6 +130,8 @@ src/classes/Oblix_Utils_Test.cls
 src/classes/Oblix_Utils_Test.cls-meta.xml
 src/classes/Oblix_wrapper_NonCamp.cls
 src/classes/Oblix_wrapper_NonCamp.cls-meta.xml
+src/classes/TriggerFactory.cls
+src/classes/TriggerFactory.cls-meta.xml
 src/pages/Oblix_CampaignAddAsset.page
 src/pages/Oblix_CampaignAddAsset.page-meta.xml
 src/pages/Oblix_CampaignCreate.page
