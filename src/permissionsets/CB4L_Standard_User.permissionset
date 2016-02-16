@@ -40,6 +40,10 @@
         <apexClass>BET_AssetHandlerClsTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BET_AssetDispatcherController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BET_AssetService</apexClass>
         <enabled>true</enabled>
@@ -8618,6 +8622,10 @@
     </objectPermissions>
     <pageAccesses>
         <apexPage>BET</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
+        <apexPage>BET_AssetDispatcher</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>

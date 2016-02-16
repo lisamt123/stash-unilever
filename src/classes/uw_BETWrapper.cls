@@ -147,15 +147,19 @@ public with sharing class uw_BETWrapper {
             this.assetOwner = aOwner;    
             this.displayOrder = (Integer)asset.Order_Of_Display__c;
 
-            if(this.assetDownloadLink != null && this.assetDownloadLink.contains(validLinkPrefix)){ 
-                Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/'); 
-                if(startIdx > -1){
-                    this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, startIdx+25);
+            if(asset.File_Id__c != null){
+                this.assetPreviewLink = '/apex/BET_AssetDispatcher?fileId='+asset.File_Id__c+'&type='+BET_AssetDispatcherController.PREVIEW;
+                this.assetDownloadLink = '/apex/BET_AssetDispatcher?fileId='+asset.File_Id__c+'&type='+BET_AssetDispatcherController.DOWNLOAD+'&downloadLink='+this.assetDownloadLink;
+            } else {
+                if(this.assetDownloadLink != null && this.assetDownloadLink.contains(validLinkPrefix)){ 
+                    Integer startIdx = asset.URL_of_Asset__c.indexOf('/download/'); 
+                    if(startIdx > -1){
+                        this.assetPreviewLink = '/'+this.assetDownloadLink.substring(startIdx+10, startIdx+25);
+                    }
+                } else if(this.assetDownloadLink != null){
+                    this.assetPreviewLink = this.assetDownloadLink;
                 }
-            } else if(this.assetDownloadLink != null){
-                this.assetPreviewLink = this.assetDownloadLink;
             }
-
         }
     }
 
