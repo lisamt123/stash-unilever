@@ -186,7 +186,7 @@ private class Oblix_Utils_Test {
 		User u = Oblix_TestUtils.createTestUser();
         System.runAs(u) {
             Test.startTest();
-            MDO_Geography__c g = new MDO_Geography__c(name='testname');
+            MDO_Geography__c g = new MDO_Geography__c(name='testname', geography_type__c = 'Country');
             insert g;
             Id result = Oblix_Utils.CountrryGetId('testname');
             Test.stopTest();

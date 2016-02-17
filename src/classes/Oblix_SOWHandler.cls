@@ -89,7 +89,7 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
             List<Marketing_SOW__c> newList = (List<Marketing_SOW__c>) Trigger.new;
             for(Marketing_SOW__c sow : newList){
                 Marketing_SOW__c oldSow = (Marketing_SOW__c) Trigger.oldMap.get(sow.Id);
-                if(sow.OblixBrand__c != oldSow.OblixBrand__c || sow.SmallProductCategory__c != oldSow.SmallProductCategory__c){
+                if(sow.OblixBrand__c != oldSow.OblixBrand__c || sow.SmallProductCategory__c != oldSow.SmallProductCategory__c || sow.OwnerId != oldSow.OwnerId){
                     liso_changed_brand_smallc.add(sow);
                 }
             }
@@ -145,7 +145,7 @@ public with sharing class Oblix_SOWHandler implements ITrigger {
         //re-calculate sharing
         Marketing_SOW__c sow = (Marketing_SOW__c) so;
         Marketing_SOW__c oldSow = (Marketing_SOW__c) oldSo;
-        if((sow.OblixBrand__c != oldSow.OblixBrand__c) || (sow.SmallProductCategory__c != oldSow.SmallProductCategory__c)){
+        if((sow.OblixBrand__c != oldSow.OblixBrand__c) || (sow.SmallProductCategory__c != oldSow.SmallProductCategory__c) || (sow.OwnerId != oldSow.OwnerId)){
             List<Marketing_SOW__Share> li_sowShare = Oblix_SOWHandlerLogic.adjustSharing((Marketing_SOW__c) so, brandCatKey_UserPermissions_map);
             li_sharesToInsert.addAll(li_sowShare);
         }

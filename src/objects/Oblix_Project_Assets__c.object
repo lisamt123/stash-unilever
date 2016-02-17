@@ -1168,6 +1168,10 @@ Changed to Campaign on 26/10/2015</description>
                 <default>false</default>
             </values>
             <values>
+                <fullName>OOH</fullName>
+                <default>false</default>
+            </values>
+            <values>
                 <fullName>OOH Adaptation</fullName>
                 <default>false</default>
             </values>
@@ -1344,6 +1348,10 @@ Changed to Campaign on 26/10/2015</description>
             </values>
             <values>
                 <fullName>Static Imagery</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Stimulus Materials - Research requirements</fullName>
                 <default>false</default>
             </values>
         </picklistValues>

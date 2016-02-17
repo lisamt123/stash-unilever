@@ -87,7 +87,7 @@ public with sharing class Oblix_PermissionHandler {
     ********************************************************************************/
     public static Boolean hasEditAccess(Id sow_id){
         // SS 20160214 - added check if a record is locked. Only system administrator should be able to edit locked records
-        if ( isSystemAdmin() || ( !isLocked(sow_id) && ( hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet() ))){
+        if ( !isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin() ){
     		return true;
     	}
     	else{
@@ -141,7 +141,7 @@ public with sharing class Oblix_PermissionHandler {
     	// only UL1, UL2, SuperUser and Sysadmin can delete SOW and only if
     	// the sow is not approved or locked
         // SS 20160214 added check if a record is locked
-    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) || isSystemAdmin())
+    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;
@@ -251,7 +251,7 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canAdjustFee(String sow_status, Id sow_id){
     	// only UL1, UL2, SuperUser and Sysadmin can adjust fee
     	// if not already approved
-    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) || isSystemAdmin())
+    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;
@@ -270,7 +270,7 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canManageNonCampaign(String sow_status, Id sow_id){
     	// only UL1, UL2, SuperUser and Sysadmin can manage non campaign
     	// if not already approved
-    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) || isSystemAdmin())
+    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;
@@ -289,7 +289,7 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canManageCampaign(String sow_status, Id sow_id){
     	// only UL1, UL2, SuperUser and Sysadmin can manage campaign
     	// if not already approved
-    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) || isSystemAdmin())
+    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;
@@ -308,7 +308,7 @@ public with sharing class Oblix_PermissionHandler {
     public static Boolean canManageAssetBasket(String sow_status, Id sow_id){
     	// only UL1, UL2, SuperUser and Sysadmin can manage asset basket
     	// if not already approved
-    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet() || hasSuperUserpermissionSet()) || isSystemAdmin())
+    	if ( (!isLocked(sow_id) && (hasUL1permissionSet() || hasUL2permissionSet()) || hasSuperUserpermissionSet() || isSystemAdmin())
     		&& 
     		(Oblix_Utils.SOW_STATUS_APPROVED_BY_UNILEVER != sow_status)){
     		return true;

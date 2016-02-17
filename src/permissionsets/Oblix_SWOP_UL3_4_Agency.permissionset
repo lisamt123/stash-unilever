@@ -157,6 +157,10 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>Oblix_SWOPredirectController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>Oblix_SowMainController</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -253,6 +257,21 @@
         <enabled>false</enabled>
     </classAccesses>
     <description>Access to the Swop Application for marketer based on brand</description>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset_Scoring__c.Asset_Option_Description__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset_Scoring__c.Asset_Option__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Asset_Scoring__c.Asset_name__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Asset_Scoring__c.Description__c</field>
@@ -376,27 +395,27 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Agency_SOW_Approver_Name_2__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Agency_SOW_Approver_Name_3__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Agency_SOW_Approver_Name_4__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Agency_SOW_Approver_Name_5__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Agency_SOW_Approver_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -406,7 +425,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Approval_Submitter__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -521,7 +540,7 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.SOW_Creator_is_Approver__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -561,27 +580,27 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Unilever_SOW_Approver_Name_2__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Unilever_SOW_Approver_Name_3__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Unilever_SOW_Approver_Name_4__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Unilever_SOW_Approver_Name_5__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>Marketing_SOW__c.Unilever_SOW_Approver_Name__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1115,6 +1134,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Oblix_SOW_Projects__c.Selected_Countries__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Oblix_SOW_Projects__c.Should_legal_review_this_project__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1256,39 +1280,43 @@
     </objectPermissions>
     <pageAccesses>
         <apexPage>Oblix_CampaignAddAsset</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_CampaignCreate</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_CampaignSummary</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_OuterPageTemplate</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_PermissionDenied</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_SOWCreate</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_SOWMain</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_SOWMainDetail</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_SOWNonCampaignCreate</apexPage>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>Oblix_SWOPredirect</apexPage>
+        <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>Oblix_VF01DeepCloneSOW</apexPage>
@@ -1320,7 +1348,7 @@
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Marketing_SOW__c.ChildSowMarketing</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>Marketing_SOW__c.ParentSowMarketing</recordType>

@@ -197,18 +197,31 @@ public User userConnected {get; set;}
         } else {
             campaignHelper.selectedProject.Campaign_Countries__c = campaignHelper.selectedProject.OblixRegion__c;
         }
+
+        if(campaignHelper.selectedProject.Campaign_Countries__c != null && campaignHelper.selectedProject.Campaign_Countries__c.startsWith('/')){
+            campaignHelper.selectedProject.Selected_Countries__c = campaignHelper.selectedProject.Campaign_Countries__c.removeStart('/');
+            campaignHelper.selectedProject.Selected_Countries__c = addSpacesInCSV(campaignHelper.selectedProject.Selected_Countries__c);
+        }else{
+            campaignHelper.selectedProject.Selected_Countries__c = campaignHelper.selectedProject.Campaign_Countries__c;
+            campaignHelper.selectedProject.Selected_Countries__c = addSpacesInCSV(campaignHelper.selectedProject.Selected_Countries__c);
+        }
         System.DEBUG('Set Changes Countries : ' + campaignHelper.selectedProject.Campaign_Countries__c);
         System.DEBUG('Set Changes Region : ' + campaignHelper.selectedProject.OblixRegion__c);
         setCampaignScaleOne(selectedMainRegions, tempCountries);
     }
 
-    public void setCampaignScaleOne(){
-        //System.DEBUG('selectedRegion : ' + selectedRegion);
-        //if(selectedRegion.startsWith(GLOBAL_REGION)){
-        //    project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
-        //    project.OblixRegion__c = selectedRegion;
-        //}
-        System.DEBUG('project.Project_Scale_1__c  : ' + project.Project_Scale_1__c );
+
+    private String addSpacesInCSV(String countriesToAdjust){
+        String adjustedString = '';
+        if(countriesToAdjust != null){
+            for(String toBeAdded : countriesToAdjust.split(',')){
+                adjustedString += toBeAdded + ', ';
+            }
+            adjustedString = adjustedString.trim();
+            adjustedString = adjustedString.removeEnd(',');
+            System.DEBUG(adjustedString);
+        }
+        return adjustedString;
     }
 
     private void setCampaignScaleOne(String selectedMainRegions, String selectedCountriesLoc) {
@@ -248,7 +261,7 @@ public User userConnected {get; set;}
         campaignHelper.selectedProject.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market5;
         campaignHelper.selectedProject.OblixRegion__c = 'Global';
         campaignHelper.selectedProject.Campaign_Countries__c = 'Global';
-
+        campaignHelper.selectedProject.Selected_Countries__c = campaignHelper.selectedProject.Campaign_Countries__c;
     }
 
     public void setCampaignScale() {
