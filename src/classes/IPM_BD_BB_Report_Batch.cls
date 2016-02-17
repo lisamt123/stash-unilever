@@ -27,6 +27,20 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     public static final Id REGIONAL_ROLLOUT_RECTYPE = Schema.SObjectType.IPM_Project_Rollout__c.RecordTypeInfosByName.get('Regional Rollout').RecordTypeId;
     public static final Id LOCAL_ROLLOUT_RECORDTYPE = Schema.SObjectType.IPM_Project_Rollout__c.getRecordTypeInfosByName().get('Local Rollouts').getRecordTypeId();
     public static final Id CONSOLIDATED_RECTYPE = Schema.SObjectType.IPM_Financial__c.getRecordTypeInfosByName().get('Consolidated').getRecordTypeId();  
+    private Map<Integer,String> monthNameIntegerToString = new Map<Integer,String>{
+        1 => 'January',
+        2 => 'February',
+        3 => 'March',
+        4 => 'April',
+        5 => 'May',
+        6 => 'June',
+        7 => 'July',
+        8 => 'August',
+        9 => 'September',
+        10 => 'October',
+        11 => 'November',
+        12 => 'December'
+    };  
 
     //Contructor - @@ Param - query string from schedular class  
     global IPM_BD_BB_Report_Batch(String querystr){
@@ -358,7 +372,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             a.IPM_Consumer_Value_Perception__c = p.IPM_Answer_of_Q2__c;
             a.IPM_Enabling_Technology__c = p.IPM_Answer_of_Q3__c;
             a.IPM_Strategic_Intent__c = p.IPM_Strategic_Intent__c;
-            a.IPM_Project_Start_Date__c = p.CreatedDate.date(); 
+            a.IPM_Project_Start_Date__c = p.IPM_Project_Start_Date__c !=null?p.IPM_Project_Start_Date__c:p.CreatedDate.date();
             a.IPM_Cluster_Project__c = p.IPM_Clusters__c;
             a.IPM_Phase__c = p.IPM_Phase__c;            
             a.IPM_Exempt_from_Threshold__c = p.Exempt_from_Threshold__c; 
@@ -391,9 +405,12 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
             if (String.isNotBlank(p.IPMProject_Span__c) && String.isNotBlank(p.IPM_Project_Type__c) && p.IPMProject_Span__c.equalsignorecase(IPM_Utils.Local) && p.IPM_Project_Type__c.equalsignorecase(IPM_Utils.Rollout)){
                 a.IPM_Target_Launch_Month_BB__c = p.IPM_Target_Launch_Month__c;
                 a.IPM_Target_Launch_Year_BB__c = p.IPM_Target_Launch_Year__c; 
+                if(String.isNotBlank(string.valueof(p.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c))){
+                	a.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(p.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c.month());
+                	a.IPM_Target_Launch_Year_BD__c = string.valueof(p.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c.Year()); 	
+                }                  
             }
 
-            //Copying IPM Financial field values
           
             //Global Project Business Impact Global will be copy to Global,Regional & Local project
             if(projFinmap.containskey(p.Id)){ a.IPM_Business_Impact_BD__c = projFinMap.get(p.id).Business_Impact_Global__c; }  
@@ -577,8 +594,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 upsert analyticreclist;
 
                 //Update the Last Run date time
-                reportcs.Last_Batch_RunDate__c = system.now();
-                update reportcs;
+                //reportcs.Last_Batch_RunDate__c = system.now();
+                //update reportcs;
             }
             catch(Exception ex)
             {

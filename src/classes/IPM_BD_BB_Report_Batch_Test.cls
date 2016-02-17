@@ -13,6 +13,7 @@ private class IPM_BD_BB_Report_Batch_Test {
     public static List<IPM_Milestone__c> ipmMileStoneTestList=new List<IPM_Milestone__c>();
     public static List<IPM_Country__c> ipmcountrylist = new List<IPM_Country__c>();
     public static IPM_Reporting__c reportParameter;
+    public static user systemAdmin;
     public static User testUser;
     public static List<User> userList;
     public static set<id> projidset = new set<id>();
@@ -30,7 +31,7 @@ private class IPM_BD_BB_Report_Batch_Test {
     static void initializeData1(){
         test.startTest(); 
               
-            user systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
+            systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
             system.runAs(systemAdmin){
                 testUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);
                 userList = IPM_TestFactory_Helper.createUserList(); 
@@ -159,7 +160,7 @@ private class IPM_BD_BB_Report_Batch_Test {
     *************************************************************************/
     static void initializeData2(){
         test.startTest();
-        user systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
+        systemAdmin= IPM_TestFactory_Helper.createUserAdmin(false);
             system.runAs(systemAdmin){
                 testUser = IPM_TestFactory_Helper.createIPMPlatformProfileUser(IPM_ConstantUtils.PROJECT_LEADER);
                 userList = IPM_TestFactory_Helper.createUserList(); 
@@ -254,6 +255,7 @@ private class IPM_BD_BB_Report_Batch_Test {
              
             //Insert Financial records for rollouts
             List<IPM_Financial__c> finList = new List<IPM_Financial__c>();
+            //String strRecordTypeId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Default'].Id;
             String strRecordTypeConId=[Select Id From RecordType Where SobjectType='IPM_Financial__c' and Name='Consolidated'].Id;
             
             IPM_Financial__c finRegional = new IPM_Financial__c();      
@@ -348,7 +350,8 @@ private class IPM_BD_BB_Report_Batch_Test {
             IPM_BD_BB_Report_Batch  batchs = new IPM_BD_BB_Report_Batch(query); 
             database.executebatch(batchs,100);
         }   
-        system.assertequals(system.now().day(),reportParameter.Last_Batch_RunDate__c.day(),'Error in Batch Last run date update - initializeData1 Method');            
+        List<IPM_Reporting__c>reportParameterlist1=[SELECT Id, Last_Batch_RunDate__c FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
+        system.assertequals(reportParameterlist1[0].Last_Batch_RunDate__c.day(),reportParameter.Last_Batch_RunDate__c.day(),'Error in Batch Last run date update - initializeData2 Method');            
     }
         static testMethod void testBDBBreport2() { 
         initializeData2();            
@@ -357,7 +360,8 @@ private class IPM_BD_BB_Report_Batch_Test {
             IPM_BD_BB_Report_Batch  batch = new IPM_BD_BB_Report_Batch(query); 
             database.executebatch(batch,100);
         }   
-        system.assertequals(system.now().day(),reportParameter.Last_Batch_RunDate__c.day(),'Error in Batch Last run date update - initializeData2 Method');            
+        List<IPM_Reporting__c>reportParameterlist2=[SELECT Id, Last_Batch_RunDate__c FROM IPM_Reporting__c WHERE Id=:reportParameter.Id limit 1];
+        system.assertequals(reportParameterlist2[0].Last_Batch_RunDate__c.day(),reportParameter.Last_Batch_RunDate__c.day(),'Error in Batch Last run date update - initializeData2 Method');            
     }
     
     
