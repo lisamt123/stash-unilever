@@ -40,6 +40,10 @@
         <apexClass>BET_AssetHandlerClsTest</apexClass>
         <enabled>false</enabled>
     </classAccesses>
+	<classAccesses>
+        <apexClass>BET_AssetDispatcherController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <classAccesses>
         <apexClass>BET_AssetService</apexClass>
         <enabled>true</enabled>
@@ -697,10 +701,6 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>IPM_FinancialTriggerHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>IPM_FinancialValueWrapper</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -1062,10 +1062,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>IPM_UserProfileHandler</apexClass>
-        <enabled>false</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>IPM_UserTriggerHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -8618,6 +8614,10 @@
     </objectPermissions>
     <pageAccesses>
         <apexPage>BET</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+	<pageAccesses>
+        <apexPage>BET_AssetDispatcher</apexPage>
         <enabled>true</enabled>
     </pageAccesses>
     <pageAccesses>
