@@ -132,6 +132,8 @@ src/classes/Oblix_wrapper_NonCamp.cls
 src/classes/Oblix_wrapper_NonCamp.cls-meta.xml
 src/classes/Oblix_SWOPredirectController.cls
 src/classes/Oblix_SWOPredirectController.cls-meta.xml
+src/classes/TestDataFactory.cls
+src/classes/TestDataFactory.cls-meta.xml
 src/pages/Oblix_CampaignAddAsset.page
 src/pages/Oblix_CampaignAddAsset.page-meta.xml
 src/pages/Oblix_CampaignCreate.page
