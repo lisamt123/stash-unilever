@@ -2366,6 +2366,51 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004Uht_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_TEST 12345_EU</label>
+        <queue>IPM_a7IE00000004Uht</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004Ui8_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004Ui8</label>
+        <queue>IPM_a7IE00000004Ui8</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004UiD_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_MILANO 3</label>
+        <queue>IPM_a7IE00000004UiD</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004UiI_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_COCOON</label>
+        <queue>IPM_a7IE00000004UiI</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004UiN_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004UiN</label>
+        <queue>IPM_a7IE00000004UiN</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>
