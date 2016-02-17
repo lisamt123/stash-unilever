@@ -518,14 +518,18 @@ public with sharing class Oblix_Utils {
     }
     
     //VF09 Non Campaign Items
-    public static id CountrryGetId(String Cname) {
-        List <MDO_Geography__c> temp = null;
-        id x = null;
-        temp = [select id from MDO_Geography__c where name = :Cname limit 1];
+    public static id CountrryGetId(String country_name) {
+        List <MDO_Geography__c> country_to_get_id;
+        country_to_get_id = [SELECT id from MDO_Geography__c WHERE name = :country_name AND (geography_type__c = 'Country' OR geography_type__c = 'Country Geography')  limit 1 ];
         // system.debug('===========Cname' + Cname);
         //system.debug('===========temp' + temp);
-        if (temp != null) { return temp[0].id; }
-        else { return null; }
+        if (!country_to_get_id.isEmpty()) 
+        { 
+            return country_to_get_id[0].id; 
+        }
+        else{ 
+            return null; 
+        }
     }
 
     public static set<String> CountriesByFYear(String fYear_loc) {

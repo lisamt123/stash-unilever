@@ -127,7 +127,7 @@
                                 </tr>
                                 <tr>
                                     <td class="campaign_summary_information_titles">Clusters / Countries</td>
-                                    <td colspan="2" class="expandMore campaign_summary_countries_cell_width">{!selected_project.Campaign_Countries__c}</td>
+                                    <td colspan="2" class="expandMore campaign_summary_countries_cell_width">{!selected_project.Selected_Countries__c}</td>
                                 </tr>
                                 <tr>
                                     <td class="campaign_summary_information_titles">Investment Priority</td>

@@ -130,6 +130,8 @@ src/classes/Oblix_Utils_Test.cls
 src/classes/Oblix_Utils_Test.cls-meta.xml
 src/classes/Oblix_wrapper_NonCamp.cls
 src/classes/Oblix_wrapper_NonCamp.cls-meta.xml
+src/classes/Oblix_SWOPredirectController.cls
+src/classes/Oblix_SWOPredirectController.cls-meta.xml
 src/pages/Oblix_CampaignAddAsset.page
 src/pages/Oblix_CampaignAddAsset.page-meta.xml
 src/pages/Oblix_CampaignCreate.page
@@ -156,6 +158,8 @@ src/pages/Oblix_VF03CustomAssetLookup.page
 src/pages/Oblix_VF03CustomAssetLookup.page-meta.xml
 src/pages/Oblix_VF04OverrideProjectNew.page
 src/pages/Oblix_VF04OverrideProjectNew.page-meta.xml
+src/pages/Oblix_SWOPredirect.page
+src/pages/Oblix_SWOPredirect.page-meta.xml
 src/reportTypes/Oblix_Assets.reportType
 src/reportTypes/Oblix_Marketing_SOW.reportType
 src/reportTypes/Oblix_SWOP_Calculator.reportType

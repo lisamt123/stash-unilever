@@ -255,7 +255,7 @@
                                                     <td>{!campaign_and_non_campaign.dynamic_object['Name']}</td>
                                                     <td>{!campaign_and_non_campaign.s_object_type}</td>
                                                     <td>{!campaign_and_non_campaign.dynamic_object['OblixRegion__c']}</td>
-                                                    <td ><div class="countriesSelected"> {!campaign_and_non_campaign.dynamic_object['Campaign_Countries__c']}</div></td>
+                                                    <td ><div class="countriesSelected"> {!campaign_and_non_campaign.dynamic_object['Selected_Countries__c']}</div></td>
                                                     <td class="table_progress_bar_styling">
                                                         <div id="crumbs">
                                                             <p>{!if(campaign_and_non_campaign.dynamic_object['Campaign_Status__c'] == 'Cancelled', 'Project Cancelled','')}</p>
