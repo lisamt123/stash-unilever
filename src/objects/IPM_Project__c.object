@@ -2677,7 +2677,7 @@ OwnerId))</formula>
     <pluralLabel>IPM Projects</pluralLabel>
     <recordTypeTrackFeedHistory>false</recordTypeTrackFeedHistory>
     <recordTypeTrackHistory>false</recordTypeTrackHistory>
-    <recordTypes>
+        <recordTypes>
         <fullName>Clustering</fullName>
         <active>true</active>
         <label>Clustering</label>
@@ -2711,7 +2711,7 @@ OwnerId))</formula>
             <picklist>IPMPlatform__c</picklist>
             <values>
                 <fullName>Sample 1</fullName>
-                <default>true</default>
+                <default>false</default>
             </values>
         </picklistValues>
         <picklistValues>
@@ -3137,7 +3137,7 @@ OwnerId))</formula>
             </values>
         </picklistValues>
     </recordTypes>
-    <recordTypes>
+        <recordTypes>
         <fullName>IPM_Cluster_Layout</fullName>
         <active>true</active>
         <label>IPM Cluster Layout</label>
@@ -3546,7 +3546,7 @@ OwnerId))</formula>
                 <fullName>None</fullName>
                 <default>false</default>
             </values>
-           </picklistValues>
+        </picklistValues>
         <picklistValues>
             <picklist>IPM_Temporary_Phase__c</picklist>
             <values>

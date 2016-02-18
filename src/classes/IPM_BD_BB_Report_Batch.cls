@@ -17,7 +17,9 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
     global map<Id,list<IPM_Project_Rollout__c>> projRolloutMap;
     global map<string,list<IPM_Financial_Year__c>> rolloutFinancialYearmap;  
     global map<id,list<IPM_Financial__c>> rolloutFinancialmap;
-    global list<IPM_Analytics__c> analyticRecList;  
+    global list<IPM_Analytics__c> analyticRecList;
+    global set<id> localRolloutIDSet = new set<id>();
+    global Map<Id, String> ipmCountryMap = new map<Id, String>();
     public static final String BB_BD_REPORT_RUNDATE='BD BB Report'; //To fetch BB BD Report last run date from custom setting
     public static final String TURNOVER ='TO';
     public static final String GROSSPROFIT ='GO';
@@ -177,35 +179,6 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null); 
         } 
 
-        //Fetching country records and creating map
-        Map<Id, String> ipmCountryMap = new map<Id, String>();  
-        try{
-        List<IPM_Country__c> ipmCountryList= new list<IPM_Country__c>([SELECT Country_Code__c,
-                                                                       Country_Name__c,
-                                                                       IPM_Project__r.id,
-                                                                       IPM_Project__r.IPMProject_Span__c,
-                                                                       IPM_Local_Project__r.Id,
-                                                                       IPM_Local_Project__r.IPMProject_Span__c,
-                                                                       IPM_Regional_Project__r.Id,
-                                                                       IPM_Regional_Project__r.IPMProject_Span__c
-                                                                       FROM IPM_Country__c WHERE IPM_Local_Project__r.Id IN : projectIdSet Limit 50000]);
-            
-            for(IPM_Country__c ic:ipmCountryList){
-                if(ic.Country_Name__c != null){ 
-                    if(ipmCountryMap.containsKey(ic.IPM_Local_Project__r.Id)){
-                        string countries = ipmCountryMap.get(ic.IPM_Local_Project__r.Id) + ', ' + ic.Country_Name__c;
-                        ipmCountryMap.put(ic.IPM_Local_Project__r.Id, countries);
-                    }
-                    else{
-                        ipmCountryMap.put(ic.IPM_Local_Project__r.Id, ic.Country_Name__c);                        
-                    }   
-                }
-            }
-        }
-        catch(Exception ex){
-                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null); 
-        } 
-
         //Fetching milestone records and creating map 
         map<Id,list<IPM_Milestone__c>> projMilestoneMap = new map<id,list<IPM_Milestone__c>>();
         try{
@@ -268,9 +241,13 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                     if(pr.RecordTypeId == REGIONAL_ROLLOUT_RECTYPE){
                       regionalRolloutset.add(pr.Id);  
                     }
-                }    
+                    if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE){                      
+                      localRolloutIDSet.add(pr.Id);                        
+                    }
+                 }    
             }
         }
+        
         catch(Exception ex){  
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null); 
         }
@@ -331,13 +308,57 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 }else{
                     List<IPM_Financial_Year__c> finyrList = rolloutFinancialYearmap.get(fiyr.Financial_External_ID__c);
                     finyrList.add(fiyr);
-                    rolloutFinancialYearmap.put(fiyr.Financial_External_ID__c,finyrList);              
+                    rolloutFinancialYearmap.put(fiyr.Financial_External_ID__c,finyrList);               
                 }                
             }                         
         }   
         catch(Exception ex){
                 ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR,null,null,null,null); 
-        } 
+        }
+
+        //Fetching country records and creating map
+          
+        try{
+        List<IPM_Country__c> ipmCountryList= new list<IPM_Country__c>([SELECT Country_Code__c,
+                                                                       Country_Name__c,
+                                                                       IPM_Project__r.id,
+                                                                       IPM_Project__r.IPMProject_Span__c,
+                                                                       IPM_Local_Project__r.Id,
+                                                                       IPM_Local_Project__r.IPMProject_Span__c,
+                                                                       IPM_Regional_Project__r.Id,
+                                                                       IPM_Regional_Project__r.IPMProject_Span__c,
+                                                                       Local_Rollout__r.id
+                                                                       FROM IPM_Country__c WHERE (IPM_Local_Project__r.Id IN : projectIdSet or Local_Rollout__r.id IN: localRolloutIDSet) Limit 50000]);
+            
+            for(IPM_Country__c ic:ipmCountryList){
+                if(ic.Country_Name__c != null){ 
+                        if(ic.IPM_Local_Project__r.Id != null){
+                            if(ipmCountryMap.containsKey(ic.IPM_Local_Project__r.Id)){
+                            string countries = ipmCountryMap.get(ic.IPM_Local_Project__r.Id) + ', ' + ic.Country_Name__c;
+                            ipmCountryMap.put(ic.IPM_Local_Project__r.Id, countries);
+                        }
+                        else{
+                            ipmCountryMap.put(ic.IPM_Local_Project__r.Id, ic.Country_Name__c);                        
+                        }
+                    }
+                    // Process countries for rollouts
+                    if(ic.IPM_Local_Project__r.Id == null && ic.Local_Rollout__r.id != null){
+                        if(ipmCountryMap.containsKey(ic.Local_Rollout__r.id)){
+                            string countries = ipmCountryMap.get(ic.Local_Rollout__r.id) + ', ' + ic.Country_Name__c;
+                            ipmCountryMap.put(ic.Local_Rollout__r.id, countries);
+                        }
+                        else{
+                            ipmCountryMap.put(ic.Local_Rollout__r.id, ic.Country_Name__c);                        
+                        }
+                    }
+                }
+            }
+            
+        }
+        catch(Exception ex){
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),CLASS_NAME,METHOD_NAME,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null,null,null,null); 
+        }
+        
         //End of Map creation logic ***
 
         //Start - Analytics Object Record Insertion 
@@ -406,8 +427,8 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                 a.IPM_Target_Launch_Month_BB__c = p.IPM_Target_Launch_Month__c;
                 a.IPM_Target_Launch_Year_BB__c = p.IPM_Target_Launch_Year__c;
                 if(String.isNotBlank(string.valueof(p.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c))){
-                	a.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(p.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c.month());
-                	a.IPM_Target_Launch_Year_BD__c = string.valueof(p.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c.Year()); 	
+                    a.IPM_Target_Launch_Month_BD__c = monthNameIntegerToString.get(p.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c.month());
+                    a.IPM_Target_Launch_Year_BD__c = string.valueof(p.IPM_Parent_Project__r.IPM_Project_Rollout__r.Target_Launch_Date__c.Year());   
                 }                  
             }
 
@@ -687,7 +708,7 @@ global without sharing class IPM_BD_BB_Report_Batch implements Database.Batchabl
                         r.IPM_Geography__c = pr.Market_Cluster_Name__c;             
                     }else if(pr.RecordTypeId == LOCAL_ROLLOUT_RECORDTYPE ){
                         r.IPM_Project_Span__c = IPM_Utils.Local;
-                        r.IPM_Geography__c = pr.MCO_Name__c;
+                        if(ipmCountryMap.containskey(pr.id)){ r.IPM_Geography__c = ipmCountryMap.get(pr.id);}
                         r.IPM_Market_Cluster__c = pr.Market_Cluster_Name__c;
                     }               
                     //Copy values From Parent project
