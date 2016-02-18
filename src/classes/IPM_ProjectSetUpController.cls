@@ -794,7 +794,12 @@ global with sharing class IPM_ProjectSetUpController extends IPM_ProjectIntermed
 	            if(lstGatekeeper!=null && !lstGatekeeper.isEmpty()){
 	            	project.IPM_Project_Gatekeeper__c=lstGatekeeper[0].IPM_User__c;	
 	            } 
-            }	               
+            }	
+            
+            if(String.isBlank(project.IPM_Approver_of_Charter__c ) )
+                {
+                    project.IPM_Approver_of_Charter__c= projectMetadata.IPM_DefaultCharterQuestionAnswer__c;
+                }                 
             update project;
             
             if(!skipValidation)

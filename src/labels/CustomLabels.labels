@@ -3838,7 +3838,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ABOUT_IN_PROGRESS_STATE</shortDescription>
-        <value>In progress means that you are working on the Gate document and it is not ready to be proposed.</value>
+        <value>“In Progress” means that a gate document is being written in anticipation of a gate proposal. Select “Proposed” to check the completeness of the document; when all requirements have been met, click “Change” to activate the status change. To archive a project, select “Stopped”, then “Change”.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_PROJECT</fullName>
@@ -3852,7 +3852,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ABOUT_PROPOSED_STATE</shortDescription>
-        <value>Proposed means that the Gate document is ready to be submitted for Gate meeting. You won&apos;t be able to update any section after proposing the document.</value>
+        <value>“Proposed” means that the gate document is ready to be presented for a gate decision. If your proposal has met all requirements, click the “Change” button to activate the status change. The document will be sealed from further edits, unless the status changes to “Approved with Edits” or “Postpone Gate&quot;.</value>
     </labels>
     <labels>
         <fullName>IPM_ABOUT_STOPPED_STATE</fullName>
@@ -3943,7 +3943,7 @@ Which Communications team do you represent? You must be associated to one Planne
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ADD_EDIT_ROLLOUTS</shortDescription>
-        <value>Add Rollouts</value>
+        <value>Manage Rollouts</value>
     </labels>
     <labels>
         <fullName>IPM_ADD_MANAGE_SEC</fullName>
@@ -7234,7 +7234,7 @@ as best as you can, using the help text as a guide. (You may come back and make 
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_ExternalToDosMessage</shortDescription>
-        <value>The To-do&apos;s and due dates for this project are being managed externally. Please get in touch With project Leader for more details.</value>
+        <value>The To-do&apos;s and due dates for this project are being managed externally. Please get in touch with the Project Leader for more details</value>
     </labels>
     <labels>
         <fullName>IPM_External_Char_Limit</fullName>
@@ -12112,7 +12112,7 @@ This project has been marked as exempt from BET requirements by the Leadership t
         <language>en_US</language>
         <protected>false</protected>
         <shortDescription>IPM_UPDATE_STATUS</shortDescription>
-        <value>Update Status</value>
+        <value>Click here for options to change the status of the project, e.g. to Proposed, Approved, or Stopped. From here you may check a gate document for completeness and preview next steps before confirming or cancelling a status change.</value>
     </labels>
     <labels>
         <fullName>IPM_UPDATE_YOUR_DUE_DATE</fullName>
