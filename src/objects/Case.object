@@ -3283,13 +3283,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Axe</fullName>
         <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3318,13 +3315,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Axe1</fullName>
         <booleanFilter>1 AND 4 AND 5 AND (2 OR 3 OR 6 OR 7)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3368,13 +3362,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Axe2</fullName>
         <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3403,13 +3394,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Baking_Cooking_Sprea</fullName>
         <booleanFilter>1 AND 4 AND 5 AND (2 OR 3 OR 6 OR 7)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3471,13 +3459,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Coffee_Snacks</fullName>
         <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3511,13 +3496,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Deodorants_Fragrance</fullName>
         <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3551,13 +3533,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Dressings</fullName>
         <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3591,13 +3570,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Food_Solutions</fullName>
         <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3640,13 +3616,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Hair_Care</fullName>
         <booleanFilter>1 AND 4 AND 5 AND (2 OR 3)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3689,13 +3662,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Household_Care</fullName>
         <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3729,13 +3699,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Ice_Cream</fullName>
         <booleanFilter>1 AND 4 AND 5 AND (2 OR 3 OR 6 OR 7)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3788,13 +3755,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Other_Foods</fullName>
         <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3845,13 +3809,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Savoury</fullName>
         <booleanFilter>1 AND 4 AND 5 AND (2 OR 3 OR 6 OR 7)</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3895,13 +3856,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Skin</fullName>
         <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3935,13 +3893,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Suave</fullName>
         <booleanFilter>1 AND (2 OR 3) AND 4 AND 5</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
@@ -3975,13 +3930,10 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
         <fullName>CEC_North_America_Suave1</fullName>
         <booleanFilter>1 AND (2 OR 3) AND 4</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
-        <columns>NAME</columns>
-        <columns>CASES.SUBJECT</columns>
-        <columns>CASES.STATUS</columns>
-        <columns>CASES.PRIORITY</columns>
-        <columns>CASES.CREATED_DATE</columns>
-        <columns>CORE.USERS.ALIAS</columns>
         <columns>Case_Brand__c</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>OWNER_NAME</columns>
         <filterScope>Everything</filterScope>
         <filters>
             <field>Case_Market__c</field>
