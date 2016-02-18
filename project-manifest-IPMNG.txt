@@ -1,7 +1,11 @@
 src
+src/classes
+src/classes/IPM_BD_BB_Report_Batch.cls
+src/objects
+src/objects/IPM_Analytics__c.object
+src/objects/IPM_Project__c.object
+src/reportTypes
+src/reportTypes/BB_BD_Report.reportType
 src/reports
 src/reports/IPM_Reports
-src/reports/IPM_Reports/IPM_Sustainability_Report.report
-src/reports/IPM_Reports/Project_Gate_Document.report
-src/reports/IPM_Reports/Project_Milestones.report
-src/reports/IPM_Reports/Project_Parameters.report
+src/reports/IPM_Reports/BD_BB_Alignment_Report.report
