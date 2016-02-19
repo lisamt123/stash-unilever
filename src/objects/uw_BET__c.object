@@ -705,6 +705,19 @@ DATE(YEAR(Launch_Date__c), MONTH(Launch_Date__c)-6, 1)
         <type>Date</type>
     </fields>
     <fields>
+        <fullName>Final_release_otif__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND( FinalReleaseDate__c &lt;&gt; null, Final_Release_Due_Date__c &lt;&gt; null), 
+IF(FinalReleaseDate__c &gt; Final_Release_Due_Date__c, &apos;Late&apos; , &apos;On Time&apos;) 
+, &apos;&apos;)</formula>
+        <label>Final release otif</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>FirstReleaseDate__c</fullName>
         <externalId>false</externalId>
         <label>First Release Date</label>
@@ -738,6 +751,19 @@ DATE(YEAR(Launch_Date__c)-1, 6, 30)
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Date</type>
+    </fields>
+    <fields>
+        <fullName>First_release_otif__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND( FirstReleaseDate__c &lt;&gt; null,  First_Release_Due_Date__c &lt;&gt; null),
+IF(FirstReleaseDate__c &gt; First_Release_Due_Date__c, &apos;Late&apos; , &apos;On Time&apos;)
+, &apos;&apos;)</formula>
+        <label>First release otif</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Font_Colour__c</fullName>
