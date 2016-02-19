@@ -59,15 +59,15 @@
         <relationshipLabel><!-- Fulfilment --></relationshipLabel>
     </fields>
     <fields>
-        <label><!-- Cheque Number --></label>
+        <label>Check Number</label>
         <name>Cheque_Number__c</name>
     </fields>
     <fields>
-        <label><!-- Cheque Sent --></label>
+        <label>Check Sent</label>
         <name>Cheque_Sent__c</name>
     </fields>
     <fields>
-        <label><!-- Cheque Voided --></label>
+        <label>Check Voided</label>
         <name>Cheque_Voided__c</name>
     </fields>
     <fields>
@@ -506,7 +506,7 @@
     <layouts>
         <layout>Fulfilment Layout</layout>
         <sections>
-            <label><!-- ChequeBook Details --></label>
+            <label>CheckBook Details</label>
             <section>ChequeBook Details</section>
         </sections>
         <sections>
@@ -543,8 +543,16 @@
         <errorMessage><!-- Unable to create Fulfilment with empty &apos;Type&apos; information. Select appropriate &apos;Country&apos; value to proceed. --></errorMessage>
         <name>FulfilmentType_MandatoryCheck</name>
     </validationRules>
+    <validationRules>
+        <errorMessage><!-- Refund value exceeded Max refund value  limit. --></errorMessage>
+        <name>Max_Refund_value_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Refund value cannot be updated as cheque has already been sent. --></errorMessage>
+        <name>RefundValue_Not_Editable_ChequeSent</name>
+    </validationRules>
     <webLinks>
-        <label><!-- Add_Cheque_Details --></label>
+        <label>Add Check Details</label>
         <name>Add_Cheque_Details</name>
     </webLinks>
     <webLinks>

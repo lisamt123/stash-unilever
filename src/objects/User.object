@@ -199,6 +199,17 @@
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>Advisor_Correspondence_Display_Name__c</fullName>
+        <description>CEC: To capture the advisor correspondence display name. This will be used in email and letters,</description>
+        <externalId>false</externalId>
+        <label>Advisor Correspondence Display Name</label>
+        <length>30</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>CEC_User_Reference__c</fullName>
         <description>CEC - This field is used to contain reference text that can be filtered using a view on the user record to simplify the user creation process and reduce errors.</description>
         <externalId>false</externalId>
@@ -1459,6 +1470,66 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Weight Management</fullName>
+                <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Benelux</controllingFieldValues>
+                <controllingFieldValues>Czech Republic</controllingFieldValues>
+                <controllingFieldValues>DACH</controllingFieldValues>
+                <controllingFieldValues>France</controllingFieldValues>
+                <controllingFieldValues>Greece</controllingFieldValues>
+                <controllingFieldValues>Hungary</controllingFieldValues>
+                <controllingFieldValues>India</controllingFieldValues>
+                <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Poland</controllingFieldValues>
+                <controllingFieldValues>Portugal</controllingFieldValues>
+                <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Social Media</fullName>
+                <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Benelux</controllingFieldValues>
+                <controllingFieldValues>Czech Republic</controllingFieldValues>
+                <controllingFieldValues>DACH</controllingFieldValues>
+                <controllingFieldValues>France</controllingFieldValues>
+                <controllingFieldValues>Greece</controllingFieldValues>
+                <controllingFieldValues>Hungary</controllingFieldValues>
+                <controllingFieldValues>India</controllingFieldValues>
+                <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Poland</controllingFieldValues>
+                <controllingFieldValues>Portugal</controllingFieldValues>
+                <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Creative Solutions</fullName>
+                <controllingFieldValues>Baltics</controllingFieldValues>
+                <controllingFieldValues>Benelux</controllingFieldValues>
+                <controllingFieldValues>Czech Republic</controllingFieldValues>
+                <controllingFieldValues>DACH</controllingFieldValues>
+                <controllingFieldValues>France</controllingFieldValues>
+                <controllingFieldValues>Greece</controllingFieldValues>
+                <controllingFieldValues>Hungary</controllingFieldValues>
+                <controllingFieldValues>India</controllingFieldValues>
+                <controllingFieldValues>Italy</controllingFieldValues>
+                <controllingFieldValues>Nordic</controllingFieldValues>
+                <controllingFieldValues>North America</controllingFieldValues>
+                <controllingFieldValues>Poland</controllingFieldValues>
+                <controllingFieldValues>Portugal</controllingFieldValues>
+                <controllingFieldValues>Spain</controllingFieldValues>
+                <controllingFieldValues>Sri Lanka</controllingFieldValues>
+                <controllingFieldValues>United Kingdom</controllingFieldValues>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Food Solutions</fullName>
                 <controllingFieldValues>Baltics</controllingFieldValues>
                 <controllingFieldValues>Benelux</controllingFieldValues>
                 <controllingFieldValues>Czech Republic</controllingFieldValues>

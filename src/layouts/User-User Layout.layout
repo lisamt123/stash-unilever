@@ -78,6 +78,10 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>Advisor_Correspondence_Display_Name__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>Quality_Check_Percentage__c</field>
             </layoutItems>
             <layoutItems>

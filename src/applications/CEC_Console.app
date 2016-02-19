@@ -195,12 +195,13 @@
     <tab>standard-Dashboard</tab>
     <tab>standard-File</tab>
     <tab>mdm_Reason_Code__c</tab>
+    <tab>standard-LiveAgentSupervisor</tab>
     <tab>mdm_Case_Product__c</tab>
     <tab>mdm_Product_Category__c</tab>
     <tab>cec_Store__c</tab>
     <tab>User_Default_Setting__c</tab>
     <tab>CEC_ChequeBook_Detail__c</tab>
-    <tab>standard-LiveAgentSupervisor</tab>
+    <tab>standard-Macro</tab>
     <workspaceMappings>
         <mapping>
             <tab>Article__c</tab>
@@ -255,6 +256,9 @@
         </mapping>
         <mapping>
             <tab>standard-LiveAgentSupervisor</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-Macro</tab>
         </mapping>
         <mapping>
             <tab>standard-report</tab>

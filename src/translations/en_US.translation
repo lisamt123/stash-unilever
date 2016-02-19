@@ -1189,7 +1189,7 @@
         <name>CEC_PhoneSearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PostCode --></label>
+        <label>Zip Code</label>
         <name>CEC_PostCode</name>
     </customLabels>
     <customLabels>
