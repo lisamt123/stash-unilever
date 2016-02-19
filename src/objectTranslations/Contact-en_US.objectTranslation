@@ -628,6 +628,22 @@
         <label><!-- Language Preference --></label>
         <name>Sapient_Language_Preference__c</name>
     </fields>
+    <fields>
+        <label><!-- Facebook Id --></label>
+        <name>hoot2sf_FacebookId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Facebook Username --></label>
+        <name>hoot2sf_FacebookUsername__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Id --></label>
+        <name>hoot2sf_TwitterId__c</name>
+    </fields>
+    <fields>
+        <label><!-- Twitter Username --></label>
+        <name>hoot2sf_TwitterUsername__c</name>
+    </fields>
     <layouts>
         <layout>Pitch Contact Layout</layout>
         <sections>

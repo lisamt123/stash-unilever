@@ -88,6 +88,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CEC_Case_Origin_to_Social_Media</fullName>
+        <description>CEC: Updates the case origin to social media</description>
+        <field>Origin</field>
+        <literalValue>Social</literalValue>
+        <name>CEC Case Origin to Social Media</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CEC_Case_Origin_to_email</fullName>
         <description>CEC: sets the Case Origin to Email</description>
         <field>Origin</field>
@@ -285,6 +295,7 @@
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>
+        <booleanFilter>(1 OR 3) AND 2</booleanFilter>
         <criteriaItems>
             <field>Case.Origin</field>
             <operation>contains</operation>
@@ -293,6 +304,11 @@
         <criteriaItems>
             <field>Case.Country_Name__c</field>
             <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>contains</operation>
+            <value>Email North America CS</value>
         </criteriaItems>
         <description>CEC : To update the Case Origin field.</description>
         <triggerType>onAllChanges</triggerType>
@@ -359,6 +375,21 @@
         </criteriaItems>
         <description>To copy the Description of the cases created.</description>
         <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>CEC Social Media Case Origin Update</fullName>
+        <actions>
+            <name>CEC_Case_Origin_to_Social_Media</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>Social Media North America</value>
+        </criteriaItems>
+        <description>CEC: This workflow is used to update the case origin to social media</description>
+        <triggerType>onAllChanges</triggerType>
     </rules>
     <rules>
         <fullName>CEC_Email_AutoResponse</fullName>

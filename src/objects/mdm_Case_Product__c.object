@@ -257,6 +257,17 @@
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>Product_Tag__c</fullName>
+        <description>CEC : To store the tag related to the product</description>
+        <externalId>false</externalId>
+        <label>Product Tag</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>Variant_Flavour__c</fullName>
         <externalId>false</externalId>
         <label>Variant / Flavour</label>

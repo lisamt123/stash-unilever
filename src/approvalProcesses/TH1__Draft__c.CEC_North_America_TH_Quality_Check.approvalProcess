@@ -53,16 +53,32 @@
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
+            <name>CEC_Draft_Rejection_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+        <action>
             <name>CEC_Thunderhead_Rejected_Template</name>
             <type>Task</type>
         </action>
     </finalRejectionActions>
     <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>CEC_Draft_Approval_Submission_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
     <label>CEC North America TH Quality Check</label>
     <nextAutomatedApprover>
         <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
         <userHierarchyField>Manager</userHierarchyField>
     </nextAutomatedApprover>
+    <recallActions>
+        <action>
+            <name>CEC_Draft_Recall_Status</name>
+            <type>FieldUpdate</type>
+        </action>
+    </recallActions>
     <recordEditability>AdminOrCurrentApprover</recordEditability>
     <showApprovalHistory>true</showApprovalHistory>
 </ApprovalProcess>

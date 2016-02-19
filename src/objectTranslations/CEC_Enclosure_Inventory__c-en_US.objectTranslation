@@ -14,6 +14,10 @@
         <relationshipLabel><!-- Enclosure Inventories --></relationshipLabel>
     </fields>
     <fields>
+        <label><!-- End Date --></label>
+        <name>End_Date__c</name>
+    </fields>
+    <fields>
         <label><!-- Quantity --></label>
         <name>Quantity__c</name>
     </fields>

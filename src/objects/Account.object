@@ -401,6 +401,18 @@
         <visibleLines>3</visibleLines>
     </fields>
     <fields>
+        <fullName>Bazaarvoice_Username__c</fullName>
+        <description>CEC: To capture the bazaar voice user name</description>
+        <externalId>false</externalId>
+        <label>Bazaarvoice Username</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>BillingAddress</fullName>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -989,7 +1001,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             </picklistValues>
             <picklistValues>
                 <fullName>No</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -1186,7 +1198,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             </picklistValues>
             <picklistValues>
                 <fullName>No</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>
@@ -1820,7 +1832,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             </picklistValues>
             <picklistValues>
                 <fullName>No</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Brand</fullName>
@@ -1852,6 +1864,18 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>Ratings_and_Reviews_Username__c</fullName>
+        <description>CEC - Username that consumer uses when logging into communities such as Bazaarvoice</description>
+        <externalId>false</externalId>
+        <label>Ratings and Reviews Username</label>
+        <length>100</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>Registration_Date__c</fullName>
@@ -2030,7 +2054,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             </picklistValues>
             <picklistValues>
                 <fullName>No</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <picklistValues>
                 <fullName>Brand</fullName>
@@ -2449,7 +2473,7 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
             </picklistValues>
             <picklistValues>
                 <fullName>Neutral</fullName>
-                <default>false</default>
+                <default>true</default>
             </picklistValues>
             <sorted>false</sorted>
         </picklist>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Layout xmlns="http://soap.sforce.com/2006/04/metadata">
     <customButtons>Add_Issue</customButtons>
+    <customButtons>Social_Response_URL</customButtons>
     <customConsoleComponents>
         <subtabComponents>
             <containers>
@@ -65,6 +66,10 @@
         <feedFilters>
             <feedFilterType>FeedItemType</feedFilterType>
             <feedItemType>ActivityEvent</feedItemType>
+        </feedFilters>
+        <feedFilters>
+            <feedFilterType>FeedItemType</feedFilterType>
+            <feedItemType>ChatTranscriptPost</feedItemType>
         </feedFilters>
         <fullWidthFeed>true</fullWidthFeed>
         <hideSidebar>false</hideSidebar>
@@ -410,6 +415,14 @@
         </layoutColumns>
         <style>TwoColumnsTopToBottom</style>
     </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Related Contact Roles</label>
+        <layoutColumns/>
+        <style>OneColumn</style>
+    </layoutSections>
     <miniLayout>
         <fields>ContactId</fields>
         <fields>Priority</fields>
@@ -424,10 +437,10 @@
             <quickActionName>FeedItem.TextPost</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Case.Email</quickActionName>
+            <quickActionName>Case.ONE_Correspond_Email</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
-            <quickActionName>Case.ONE_Correspond_Email</quickActionName>
+            <quickActionName>Case.Email</quickActionName>
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.ContentPost</quickActionName>
@@ -437,6 +450,9 @@
         </quickActionListItems>
         <quickActionListItems>
             <quickActionName>FeedItem.LinkPost</quickActionName>
+        </quickActionListItems>
+        <quickActionListItems>
+            <quickActionName>Case.Quick_Code</quickActionName>
         </quickActionListItems>
     </quickActionList>
     <relatedContent>
