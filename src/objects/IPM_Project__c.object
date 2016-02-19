@@ -140,7 +140,7 @@
         </displayedFields>
         <label>IPM_BETProjectLeaders</label>
     </fieldSets>
-    <fieldSets>
+<fieldSets>
         <fullName>IPM_Project_Fields_EcoDesign</fullName>
         <description>Contains fields to sync to EcoDesign from IPM</description>
         <displayedFields>
@@ -170,6 +170,26 @@
         </displayedFields>
         <displayedFields>
             <field>IPM_Phase__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Project_Leader__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Deputy_Project_Leader__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Technical_Project_Leader__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>IPM_Finance_Lead__c</field>
             <isFieldManaged>false</isFieldManaged>
             <isRequired>false</isRequired>
         </displayedFields>
