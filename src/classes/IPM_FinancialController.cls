@@ -2410,19 +2410,19 @@ private Date getProjectMilestoneDate(){
                 }
                 projList = [Select (Select Name, IPM_Target_Launch_Dates__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Projects__r where name like :financialExternalIdString+'%'), (Select Name,Previous_Target_Launch_Date__c , Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c, isActive__c,IPM_Rollout_Span__c From Regional_Project_Rollout__r where name like :financialExternalIdString+'%') From IPM_Project__c   where id=:project.id];
                 if(projList.size()>0 && projList[0].Regional_Project_Rollout__r.size()>0) {
-                        Date earliestTLD;
-                        for(IPM_Project_Rollout__c rollout:projList[0].Regional_Project_Rollout__r) {
+                            Date tempTLD;
+                            for(IPM_Project_Rollout__c rollout:projList[0].Regional_Project_Rollout__r) {
                             String rolloutNonKeyName = rollout.Name.substringBeforeLast('_');
                             //Check if Financial external id ends with '_NONKEY' and Financial external id starts with rollout name and rollout is not key MCO and rollout is active and rollout span is local
                             if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && currentFinancial.Financial_External_ID__c.startsWith(rolloutNonKeyName) && !rollout.KeyMCO__c && rollout.isActive__c && rollout.IPM_Rollout_Span__c == IPM_ConstantUtils.PROJECT_SPAN_LOCAL) {
                                 //Assign the earliest TLD from non key MCOs
-                                if(earliestTLD == null){
-                                    mcoCountryRolloutPlan = rollout;
-                                    earliestTLD = rollout.Target_Launch_Date__c;
-                                } else if (earliestTLD>rollout.Target_Launch_Date__c){
-                                    mcoCountryRolloutPlan = rollout;
-                                    earliestTLD = rollout.Target_Launch_Date__c;
-                                }
+                                if(tempTLD == null){
+                                        mcoCountryRolloutPlan = rollout;
+                                        tempTLD = rollout.Target_Launch_Date__c;
+                                    } else if (tempTLD>rollout.Target_Launch_Date__c){
+                                        mcoCountryRolloutPlan = rollout;
+                                        tempTLD = rollout.Target_Launch_Date__c;
+                                    }
                             } else if(rollout.name==currentFinancial.Financial_External_ID__c) {
                                 mcoCountryRolloutPlan = rollout;
                                 break;
