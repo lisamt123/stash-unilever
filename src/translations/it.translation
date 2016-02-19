@@ -1337,6 +1337,10 @@
         <name>CEC_Product_Hierarchy</name>
     </customLabels>
     <customLabels>
+        <label><!-- CEC_Product_Tag --></label>
+        <name>CEC_Product_Tag</name>
+    </customLabels>
+    <customLabels>
         <label>Si prega di inserire il Country code prima di cambiare il Quick Code</label>
         <name>CEC_Quick_Code_Change_Error</name>
     </customLabels>

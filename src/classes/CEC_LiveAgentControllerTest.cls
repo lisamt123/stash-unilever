@@ -57,39 +57,41 @@ public class CEC_LiveAgentControllerTest{
     }
     
 /**
-Test method for  fetchRecords method
+Positive test for fetchRecords method
 **/  
-    public static testMethod void test_fetchrecords(){
-        
+    public static testMethod void test_fetchrecords_positive(){
         User u = insertUser();
         System.runAs(u){
-            /***** CREATING TEST DATA *****/
-            
-            //Create Account
-            
-            Account accountObj = new Account();
-            accountObj.RecordTypeId = [Select Id From RecordType Where SObjectType = 'Account' And Name = 'Person Account'].Id;
-            accountObj.PersonMailingCity = 'Mumbai';
-            accountObj.PersonMailingPostalCode = '560023';
-            accountObj.LastName = 'TestAccount';        
-            insert accountObj;
-            
-            Case caseObj = new Case();
-            caseObj .Status = 'New';
-            caseObj .Origin = 'Email';
-            caseObj.AccountID =  accountObj.id;
-            insert caseObj;         
                         
-            CEC_LiveAgentController ControllerObj = new CEC_LiveAgentController();            
-            ControllerObj.newcase = caseObj;            
-            ControllerObj.caseId = caseObj.id;            
+            CEC_LiveAgentController ControllerObj = new CEC_LiveAgentController();                    
             ControllerObj.chatKey = 'TestKey';
+            ControllerObj.surveyId = 'ThisIsUnitTestMethodRunning';
             
             Test.startTest();
                 PageReference reference = ControllerObj.takeSurvey();           
-                String referenceURL = reference.getUrl(); 
+                String referenceURL = reference.getUrl();
      
                 System.assert(referenceURL.contains('clicktools'));            
+            Test.stopTest();
+            
+        }         
+    }
+    
+/**
+Negetive test for  fetchRecords method
+**/  
+    public static testMethod void test_fetchrecords_Negetive(){
+        User u = insertUser();
+        System.runAs(u){
+                        
+            CEC_LiveAgentController ControllerObj = new CEC_LiveAgentController();                    
+            ControllerObj.chatKey = 'TestKey';
+            ControllerObj.surveyId = '';
+            
+            Test.startTest();
+                PageReference reference = ControllerObj.takeSurvey();
+     
+                System.assertEquals(null,reference);            
             Test.stopTest();
             
         }         

@@ -2412,6 +2412,33 @@
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004VIk_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004VIk</label>
+        <queue>IPM_a7IE00000004VIk</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004VIu_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004VIu</label>
+        <queue>IPM_a7IE00000004VIu</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004VJ9_IPM_Country</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PRUEBA_LA</label>
+        <queue>IPM_a7IE00000004VJ9</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>C-{0000}</displayFormat>
         <label>IPM Country No</label>

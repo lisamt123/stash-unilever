@@ -152,6 +152,10 @@
         <name>Product_Status__c</name>
     </fields>
     <fields>
+        <label><!-- Product Tag --></label>
+        <name>Product_Tag__c</name>
+    </fields>
+    <fields>
         <label><!-- Variant / Flavour --></label>
         <name>Variant_Flavour__c</name>
     </fields>

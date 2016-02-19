@@ -87,6 +87,10 @@
         <name>Safety_Alert_Email_Id__c</name>
     </fields>
     <fields>
+        <label><!-- Social Response Survey Id --></label>
+        <name>Social_Response_Survey_Id__c</name>
+    </fields>
+    <fields>
         <label><!-- Survey URL --></label>
         <name>Survey_URL__c</name>
     </fields>

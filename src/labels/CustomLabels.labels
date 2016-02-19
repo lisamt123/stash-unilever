@@ -2405,6 +2405,14 @@ This means that they will not have editing rights. You can manage member &lt;br/
         <value>Product Hierarchy</value>
     </labels>
     <labels>
+        <fullName>CEC_Product_Tag</fullName>
+        <categories>CEC: VF Page Global Display</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEC_Product_Tag</shortDescription>
+        <value>Product Tag</value>
+    </labels>
+    <labels>
         <fullName>CEC_Quick_Code_Change_Error</fullName>
         <categories>VF:CEC_QuickCode</categories>
         <language>en_US</language>

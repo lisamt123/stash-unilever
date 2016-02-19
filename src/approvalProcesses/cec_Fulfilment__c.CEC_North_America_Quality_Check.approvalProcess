@@ -36,7 +36,7 @@
             <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
         </assignedApprover>
         <entryCriteria>
-            <formula>( Refund_Value__c &lt;&gt; null  &amp;&amp; Refund_Value__c  &gt;  $User.Max_Refund_Amount__c ) || ( Refund_Value__c  &lt;&gt; null  &amp;&amp; $User.Max_Refund_Amount__c  = null )  || VALUE(MID(TEXT(( CreatedDate - $System.OriginDateTime)),13,2)) &lt; ($User.Letter_Quality_Check_Percentage__c * 100)</formula>
+            <formula>VALUE(MID(TEXT(( CreatedDate - $System.OriginDateTime)),13,2)) &lt; ($User.Letter_Quality_Check_Percentage__c * 100)</formula>
         </entryCriteria>
         <ifCriteriaNotMet>ApproveRecord</ifCriteriaNotMet>
         <label>Step 1</label>
@@ -86,5 +86,5 @@
         </action>
     </recallActions>
     <recordEditability>AdminOnly</recordEditability>
-    <showApprovalHistory>true</showApprovalHistory>
+    <showApprovalHistory>false</showApprovalHistory>
 </ApprovalProcess>

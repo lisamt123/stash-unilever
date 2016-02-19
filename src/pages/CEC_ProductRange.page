@@ -14,17 +14,15 @@
 <!-- VERSION     AUTHOR            DATE            DETAIL                                     RELEASE/CSR     -->
 <!-- 1.0 -   Koti & Goverdhan    Nov-2015          INITIAL DEVELOPMENT                        Sprint II(NA)   -->
 <!-- 2.0 -   Samrin Shaikh       02 Dec -2015    loading Image on Product Category            Sprint III(NA)   -->
+<!-- 3.0 -   Goverdhan S.        03 Feb -2016    Added Tag filter for search                  CSC-3631         -->
 
 <apex:page Controller="CEC_ProductRangeController" showHeader="false" sidebar="false" action="{!pageLoadAction}">
   <apex:stylesheet value="{!URLFOR($Resource.cec_waitingstyles, 'cec_waitingstyles.css')}"/>
 
     <apex:form id="form">
-    
-  
-  
-        <apex:pageBlock title="Product Range" >
-      
-       <apex:actionstatus id="productStatus">
+        <apex:pagemessages />
+        <apex:pageBlock title="Product Range" >     
+        <apex:actionstatus id="productStatus">
             <apex:facet name="start">
             
                   <div class="waitingSearchDiv popupPanel">
@@ -52,14 +50,13 @@
         </apex:actionstatus> 
         
         
-         <apex:pageBlockSection columns="2">  
-            <apex:pageBlockSectionItem >
-           
+         <apex:pageBlockSection columns="3">  
+            <apex:pageBlockSectionItem >           
                     <apex:outputLabel for="productList" value="{!$Label.CEC_ProductCategory}" />
                     <apex:actionRegion >
                         <apex:selectList value="{!Code}" title="Product" size="1" id="productList">
                             <apex:selectOptions value="{!Codes}" />
-                            <apex:actionSupport event="onchange"  status="productStatus" rerender="BrandList" />
+                            <apex:actionSupport event="onchange"  status="productStatus" rerender="TagList,BrandList" />
                         </apex:selectList>
                     </apex:actionRegion>
             </apex:pageBlockSectionItem> 
@@ -68,10 +65,19 @@
                     <apex:outputLabel for="BrandList" value="{!$Label.CEC_Brand}" />
                     <apex:actionRegion >
                         <apex:selectList value="{!brand}" title="Brand" size="1" id="BrandList">
-                            <apex:selectOptions value="{!brands}" />
+                            <apex:selectOptions value="{!Brands}" />
                         </apex:selectList>
                     </apex:actionRegion>
-            </apex:pageBlockSectionItem> 
+            </apex:pageBlockSectionItem>
+            
+            <apex:pageBlockSectionItem >
+                    <apex:outputLabel for="TagList" value="{!$Label.CEC_Product_Tag}" />
+                    <apex:actionRegion >
+                        <apex:selectList value="{!productTag}" title="Tag" size="1" id="TagList">
+                            <apex:selectOptions value="{!Tags}" />
+                        </apex:selectList>
+                    </apex:actionRegion>
+            </apex:pageBlockSectionItem>
             
             <c>
             <apex:pageBlockSectionItem helptext="displays the filtered result">
@@ -84,6 +90,7 @@
             <apex:pageBlockTable value="{!CaseProducts}" var="cp" id="CaseProdtable">
                 <apex:column headerValue="Product Name" value="{!cp.name}"/>
                 <apex:column headerValue="Brand" value="{!cp.Brand__c}"/>
+                <apex:column headerValue="Product Tag" value="{!cp.Product_Tag__c}"/>
                 <apex:column headerValue="ISO Country Code" value="{!cp.ISO_Country_Code__c}"/>
                 <apex:column headerValue="Product Category" value="{!cp.Category_Search__c}"/>
             </apex:pageBlockTable>

@@ -1089,15 +1089,15 @@
         <name>CEC_Category</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_ChequeNo_Already_Added --></label>
+        <label>Check number has already been added to the fulfilment</label>
         <name>CEC_ChequeBook_ChequeNo_Already_Added</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_DetailsMissing --></label>
+        <label>No active check book details present for this Brand &amp; Product Category</label>
         <name>CEC_ChequeBook_DetailsMissing</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_ChequeBook_MaxLimt_reached --></label>
+        <label>Check Book max limit has been reached</label>
         <name>CEC_ChequeBook_MaxLimt_reached</name>
     </customLabels>
     <customLabels>
@@ -1313,7 +1313,7 @@
         <name>CEC_PhoneSearchValidationError</name>
     </customLabels>
     <customLabels>
-        <label><!-- CEC_PostCode --></label>
+        <label>Zip Code</label>
         <name>CEC_PostCode</name>
     </customLabels>
     <customLabels>
@@ -1335,6 +1335,10 @@
     <customLabels>
         <label><!-- CEC_Product_Hierarchy --></label>
         <name>CEC_Product_Hierarchy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CEC_Product_Tag --></label>
+        <name>CEC_Product_Tag</name>
     </customLabels>
     <customLabels>
         <label><!-- CEC Quick Code Change Error --></label>

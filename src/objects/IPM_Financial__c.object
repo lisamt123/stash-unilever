@@ -4504,6 +4504,33 @@ IF(AND(Year_1_iTO_Local__c &lt; (OpCo__c *0.001)),
             <allInternalUsers></allInternalUsers>
         </sharedTo>
     </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004VIk_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004VIk</label>
+        <queue>IPM_a7IE00000004VIk</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004VIu_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_a7IE00000004VIu</label>
+        <queue>IPM_a7IE00000004VIu</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
+    <listViews>
+        <fullName>IPM_a7IE00000004VJ9_IPM_Financial</fullName>
+        <filterScope>Queue</filterScope>
+        <label>IPM_PRUEBA_LA</label>
+        <queue>IPM_a7IE00000004VJ9</queue>
+        <sharedTo>
+            <allInternalUsers></allInternalUsers>
+        </sharedTo>
+    </listViews>
     <nameField>
         <displayFormat>FIN-{0000}</displayFormat>
         <label>Name</label>

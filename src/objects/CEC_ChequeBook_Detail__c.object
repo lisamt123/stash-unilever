@@ -216,14 +216,14 @@
         <type>Number</type>
         <unique>false</unique>
     </fields>
-    <label>ChequeBook Detail</label>
+    <label>CheckBook Detail</label>
     <nameField>
         <displayFormat>CB-{0000000}</displayFormat>
         <label>ChequeBook Details Number</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>ChequeBook Details</pluralLabel>
+    <pluralLabel>CheckBook Details</pluralLabel>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
 </CustomObject>
