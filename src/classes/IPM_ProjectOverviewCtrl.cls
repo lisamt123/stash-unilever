@@ -495,7 +495,6 @@ public with sharing class IPM_ProjectOverviewCtrl {
 			else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
 			{
 				string parentProjectType=project.IPM_Parent_Project__r.IPM_Project_Type__c;
-				IPM_Financial__c finLocal=new IPM_Financial__c();
 				// if local is Child to Regional Original Project
 				if(parentProjectType==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL)
 				{
