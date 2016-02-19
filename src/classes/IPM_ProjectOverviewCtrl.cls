@@ -353,7 +353,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         IPM_Project__c
         FROM Tasks__r 
         WHERE IPM_Assignee__c = :UserInfo.getUserId() AND IPM_Phase__c = :currPhase AND IPM_Active__c=TRUE
-        ORDER BY IPM_Due_Date1__c limit 10000),
+        ORDER BY IPM_Due_Date1__c,IPM_Master_Section_Sequence__c,IPM_Task_Name__c limit 10000),
         (SELECT id,name,IPM_Project__c from IPM_Countries__r limit 10000),
         (SELECT IPM_Project__c ,IPM_Project_Template__r.IPM_Template_Complexity__c,LastModifiedBy.Name,IPM_GateDocuments__c,
         IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,IPM_Approval_Date__c,
@@ -374,14 +374,19 @@ public with sharing class IPM_ProjectOverviewCtrl {
 
 
          projResCompleteList = project.IPM_Project_Resources__r;
+        Set<String> functionalRoleSet = new Set<String>();
          for(IPM_Project_Resource__c res : projResCompleteList){
             if(res.IPM_User__c == UserInfo.getUserId()){
                 projResList.add(res);
                 isAcessDuetoTeam=true;
             }   
-         }
-         //projResList =  project.IPM_Project_Resources__r;      
-           if(project.IPM_Projects__r != NULL && project.IPM_Projects__r.size() > 0){          
+        
+        	functionalRoleSet.add(res.IPM_Role_Type__c); // IPM_Role_Type__c will give functional role 
+        }
+        
+              
+        //projResList =  project.IPM_Project_Resources__r;      
+        if(project.IPM_Projects__r != NULL && project.IPM_Projects__r.size() > 0){          
             rolloutProjectRecentMilestone = [SELECT Id, IPM_Project__c, IPM_Project__r.Name, IPM_Type_of_gate__c, IPM_Due_Date__c 
                                                                   from IPM_Milestone__c
                                                                   where IPM_Project__r.IPM_Parent_Project__c =: projectId 

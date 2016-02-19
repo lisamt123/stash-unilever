@@ -290,6 +290,10 @@ public class IPM_ProjectOverviewCtrl_Test
         }
         update projDocSecList;
         
+       
+        
+        System.assertEquals('CMI', projDocSecList[0].IPM_FunctionalRole__c,'Functional role CMI is created');//cr0347
+        
         for(Integer i=0 ; i<20 ; i++ ){
             tskList[i].IPM_Task_Name__c='Task Name'+i;
         }
