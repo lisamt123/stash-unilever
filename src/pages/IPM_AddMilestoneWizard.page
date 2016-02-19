@@ -28,7 +28,7 @@
                 
         <div class="ipmMilestoneContent" id="selectList">
             <apex:form id="form1">
-            	<apex:actionFunction name="selectMiniMilestones" action="{!selectMiniMs}" rerender="tskPanel">
+            	<apex:actionFunction name="selectMiniMilestones" action="{!selectMiniMs}" rerender="tskPanel" oncomplete="applySelectedRowClass();">
             		<apex:param name="minMsId" value="" /> 
             	</apex:actionFunction> 
             	<apex:pageMessage summary="{!$Label.IPM_MiniMilestone_Msg}" severity="error" id="messages" strength="0" rendered="{!showError}"/>
@@ -119,9 +119,6 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap-datepicker.js')}" type="text/javascript"></script>
         <script type="text/javascript">
-        	function selectMiniMs(miniMs){
-        		selectMiniMilestones(miniMs);
-        	}
           	var IPMAppComp = { projectId:'{!projectId}', ProjectWizard:'{!JSINHTMLENCODE(ProjectWizard)}', pageRefProSetupView:'{!$Label.IPM_ProjectSetUpViewPageRef}', pageRefTask:'{!$Label.IPM_TasklistPageRef}' };    
         </script>    
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_AddMilestone.js')}" type="text/javascript"></script>
