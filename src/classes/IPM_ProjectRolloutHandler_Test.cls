@@ -90,7 +90,7 @@ public class IPM_ProjectRolloutHandler_Test
         User globalProjectLeader = null;
         User regionalProjectLeader = null;
         User financeLeader = null;
-        User financeLeaderSecond = null;
+       
         Test.startTest();
         // Get the list of user's for project leaders.
         List<User> userList = [Select Id,Name,lastName from User where LastName in:USER_LIST];
@@ -112,10 +112,7 @@ public class IPM_ProjectRolloutHandler_Test
             {
                 financeLeader = lUser;
             }
-            if(lUser.lastName == FINANCE2_LASTNAME)
-            {
-                financeLeaderSecond = lUser; 
-            }
+           
         }
         
         System.RunAs(globalProjectLeader)
