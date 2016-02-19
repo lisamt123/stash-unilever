@@ -33,6 +33,7 @@ public with sharing class IPM_Milestone {
     public boolean stndMilestoneFlag{get; set;} // Boolean to check Miestone type
     public boolean adhocMilestoneFlag{get; set;} // Boolean to check Miestone type
     public boolean miniMilestoneFlag{get; set;} // Boolean to check Miestone type
+    public boolean showError{get; set;} // Boolean flag to show error if no MINI Ms is selected
         
     public date duedateValue; // To initialize the due date 
     
@@ -56,7 +57,7 @@ public with sharing class IPM_Milestone {
         IsDateEdit=ApexPages.currentPage().getParameters().get(IPM_Utils.isDateEdit);
         ProjectWizard=ApexPages.currentPage().getParameters().get(IPM_Utils.Wizard);
         milestoneObj = (IPM_Milestone__c)controller.getRecord();
-        
+        showError = false;
         
         if(String.IsNotBlank(ApexPages.currentPage().getParameters().get(IPM_Utils.IPM_NewTaskprojectId)))
         {
@@ -121,6 +122,27 @@ public with sharing class IPM_Milestone {
         getCategories();
         renderCondition();
     }
+
+    // To auto select Mini Milestone on change of Due date
+    public void selectMiniMs()
+    {
+         String miniMSId = Apexpages.currentPage().getParameters().get('minMsId');
+         for(MilestoneWrapper miniMSObj :  milestones)
+         {
+            if(miniMSObj.mile.Id == miniMSId)
+            {
+                if(miniMSObj.mile.IPM_Due_Date__c != null)
+                {
+                    miniMSObj.checked = true;   
+                }
+                else
+                {
+                    miniMSObj.checked = false;
+                }
+            }
+         }
+         
+    }    
     
     /********************************************************************************
     *@Description : .
@@ -249,7 +271,10 @@ public with sharing class IPM_Milestone {
                         msObj.IPM_Active__c            = true;
                         lstmiles.add(msObj);
                     }
-                } 
+                }
+                showError = false;
+            }else{
+                showError = true;
             }
             
             if(!lstmiles.isEmpty())

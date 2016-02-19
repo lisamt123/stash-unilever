@@ -27,7 +27,11 @@
         </ul> 
                 
         <div class="ipmMilestoneContent" id="selectList">
-            <apex:form >
+            <apex:form id="form1">
+            	<apex:actionFunction name="selectMiniMilestones" action="{!selectMiniMs}" rerender="tskPanel">
+            		<apex:param name="minMsId" value="" /> 
+            	</apex:actionFunction> 
+            	<apex:pageMessage summary="{!$Label.IPM_MiniMilestone_Msg}" severity="error" id="messages" strength="0" rendered="{!showError}"/>
                 <apex:dataTable value="{!milestones}" var="p" id="tskPanel" styleClass="ipmTable table table-bordered table-fixed-header addMilestoneList">
                     <apex:column styleClass="col-xs-1">
                         <div class="additionalMstone">
@@ -41,13 +45,13 @@
                         <apex:outputfield value="{!p.mile.IPM_Phase__c}" />
                     </apex:column>
                     <apex:column headerValue="{!$Label.IPM_DUE_DATE}" styleClass="col-xs-3">
-                        <apex:inputField value="{!p.mile.IPM_Due_Date__c}" styleClass="dateInputBox calendar">
+                        <apex:inputField value="{!p.mile.IPM_Due_Date__c}" styleClass="dateInputBox calendar" onchange="selectMiniMs('{!p.mile.Id}');">
                         <apex:pageMessage summary="{!$Label.IPM_Milestone_Due_Date_Error}" severity="error" id="messages" strength="0" rendered="{!p.errorRecord}"/> 
                         </apex:inputField>
                     </apex:column>                         
                 </apex:dataTable>
                 <div class="ipmButtonGroup pull-right">
-                    <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rerender="tskPanel" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};" />   
+                    <apex:commandLink action="{!createMileStones}" value="{!$Label.IPM_ADD}" styleClass="ipmButton green" rerender="form1" onComplete="{!if(validateSuccess,'pagecloseProSetUp()','')};" />   
                 </div>
             </apex:form>
         </div>
@@ -115,7 +119,10 @@
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap.js')}" type="text/javascript"></script>
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/bootstrap-datepicker.js')}" type="text/javascript"></script>
         <script type="text/javascript">
-          var IPMAppComp = { projectId:'{!projectId}', ProjectWizard:'{!JSINHTMLENCODE(ProjectWizard)}', pageRefProSetupView:'{!$Label.IPM_ProjectSetUpViewPageRef}', pageRefTask:'{!$Label.IPM_TasklistPageRef}' };    
+        	function selectMiniMs(miniMs){
+        		selectMiniMilestones(miniMs);
+        	}
+          	var IPMAppComp = { projectId:'{!projectId}', ProjectWizard:'{!JSINHTMLENCODE(ProjectWizard)}', pageRefProSetupView:'{!$Label.IPM_ProjectSetUpViewPageRef}', pageRefTask:'{!$Label.IPM_TasklistPageRef}' };    
         </script>    
     <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_AddMilestone.js')}" type="text/javascript"></script>
 </apex:page>
