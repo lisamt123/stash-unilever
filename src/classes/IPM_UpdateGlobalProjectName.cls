@@ -13,6 +13,13 @@ public with sharing class IPM_UpdateGlobalProjectName {
     *********************************************************************************/
     Public static string className_STR=IPM_UpdateGlobalProjectName.class.getName();
     
+    /*******************************************************************************************************************************
+    @NPath description:This method contains complex business logic.It will be risk to modify the component.
+    if project leader changes global project name then system will change child project name(regional/local),ipm gate document name,ipm gate document section name, ipm rollout name,ipm country name,ipm task external id,ipm milestone external id and ipm financial external id.
+	If global project has regional projects and local projects then these project name will also change.
+	if regional project/local name changed by system then again ipm gate document name,ipm gate document section name, ipm rollout name,ipm country name,ipm task external id,
+	ipm milestone external id and ipm financial external id will change for regional and local projects.To achieve above functionality,we are calling 10 methods inside updateProjectName().
+    *******************************************************************************************************************************/
     public static void updateProjectName(Map<id,String>updatedProNameMap,Map<Id,String>oldprojectnameMap){
         List<IPM_Project__c> projectList = new List<IPM_Project__c>();
         
