@@ -8151,6 +8151,16 @@
         <field>uw_BET__c.First_release_date__c</field>
         <readable>true</readable>
     </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>uw_BET__c.First_release_otif__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+	<fieldPermissions>
+        <editable>false</editable>
+        <field>uw_BET__c.Final_release_otif__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>uw_BET__c.Font_Colour__c</field>
