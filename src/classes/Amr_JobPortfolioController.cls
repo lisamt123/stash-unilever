@@ -1,5 +1,5 @@
 public with sharing class Amr_JobPortfolioController{
-    
+  
         public List<Amr_Alert__c> alert  {get; set;}
         public Amr_Job_Details__c jobDetails {get;set;}
         public Amr_Job_Allocation__c jobAlloc {get;set;}
@@ -199,11 +199,11 @@ public with sharing class Amr_JobPortfolioController{
                     dormant = (dormant * 100)/totalJobsNew;
                     Priority = (Priority * 100)/totalJobsNew;*/
                     
-                    TotalSavingsJobs  = 0;
+                 TotalSavingsJobs  = 0;
                                    
                     
                     //New Dashboard 
-                    
+             
                     totalJobAccepted  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Accepted'];
                     openJobs  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Yes' ];
                     closedJob  = [SELECT count()  FROM  Amr_Job_Allocation__c where ((AM_Job_Detail__r.ownerId =:loggedInUserId and User__c = :loggedInUserId)  or  User__c = :loggedInUserId ) and AM_Job_Detail__c != null and Job_Allocated__c = 'Yes'  and Job_Status__c = 'Cancelled'];
@@ -424,7 +424,7 @@ public with sharing class Amr_JobPortfolioController{
              return listOfCategory;
          } */
          
-         
+     
      public String getCategoryList(){ 
         try{
             System.debug('cATE ->' +  JSON.serialize(categoryString));
@@ -460,7 +460,7 @@ public with sharing class Amr_JobPortfolioController{
             return listOfBrandPosition;
              
          }  */
-         
+       
       public PageReference  brandPositionListData(){    
           try{
              System.debug('BBBBBBRANDDD ->'+ categoryName);  
@@ -524,7 +524,7 @@ public with sharing class Amr_JobPortfolioController{
                  listOfBrand.add(new selectOption(bps,bps));
              return listOfBrand;
          } */
-         
+        
          
           public List<SelectOption> getBrandList(){      
           try{
@@ -566,6 +566,7 @@ public with sharing class Amr_JobPortfolioController{
          }*/
          
          //Method to get list in sort options
+         
         public List<SelectOption> getSortOptions(){  
              
              listOfSortOptions = new List<SelectOption>();
@@ -699,7 +700,7 @@ public with sharing class Amr_JobPortfolioController{
               
          }
          if(String.isNotBlank(jobDetails.Project_Name_Other__c)){
-     	soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
+        soql += ' and AM_Job_Detail__r.Project_Name_Other__c = \''+String.escapeSingleQuotes(jobDetails.Project_Name_Other__c)+'\'';
      
            
      }
@@ -1341,5 +1342,5 @@ public with sharing class Amr_JobPortfolioController{
             update alertHideList;
            }
         }
-    
+   
     }

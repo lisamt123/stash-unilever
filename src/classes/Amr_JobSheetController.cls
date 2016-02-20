@@ -13,6 +13,7 @@ public String docUploaded{get;set;}
     public String saveRecordValueForQuote {get;set;}
     public String saveRecordValueForAccQuote{get;set;}
     public boolean display{get;set;}
+    public String selectedAlert {get;set;}
     public string IdNeedToUpdate{get;set;}
    // public String productionType{get;set;}
     public  boolean DisplayLink{get;set;}
@@ -141,8 +142,8 @@ public String docUploaded{get;set;}
         selectUsername= new list<selectoption>();
         jobIdFromPage = ApexPages.currentPage().getParameters().get('id');
        
-         alert = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND createdDate = today];          
-         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND createdDate = today];
+         alert = [select Id,Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND New_Alert__c = today];          
+         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND New_Alert__c = today];
         getDocuments();
         
         try{
@@ -203,8 +204,7 @@ public String docUploaded{get;set;}
                 jobAlloc = [Select id,User__c, Job_Allocated__c,Reported__c,Started__c,Job_Status__c,Is_Primary__c  from Amr_Job_Allocation__c where AM_Job_Detail__c = :jobId  AND user__c =: userInfo.getUserId() Limit 1 ];
             }
             //Project_Description__c
-            jobList=[select Project_Details__r.name,id,Job_Notes__c,Currency_Conversion_Country_List__c,Lead_Agency_Name_Other__c,OwnerId,Job_Cancelled__c,Job_Status__c,Tv_Moving_Image__c,AdManagerText__c,Brand_Final__c,Brand_Final__r.name, Cinema_Moving_Image__c, Radio_Audio__c, Print_Still_Image__c, Out_Of_Home_Moving_Image__c, Out_Of_Home_Still_Image__c, Out_Of_Home_Audio__c, In_Store_Moving_Image__c, In_Store_Still_Image__c, In_Store_Audio__c, Digital_Moving_Image__c, Digital_Still_Image__c, Digital_Audio__c, Internal_Video_Moving_Image__c, Tv__c,Cinema__c, Radio__c, Print__c, Out_Of_Home__c, In_Store__c, Digital__c, Internal_Video__c, ProductCategory__c,ProductCategory__r.name,Rework_Exisiting_Material__c,BuyoutsTalent__c,BuyoutsMusic__c,New_Original_Master__c,Create_Additional_Material__c,Language_Adaptation_Of_Master__c,Require_Music__c,Require_Celebrity_Talent__c,Stage_of_Production_Activity__c,Check_With_CMI__c,Production_Activity_Type__c,Project_Description__c,Target_Air_Date__c,Execution_Name__c,Campaign_Name__c,Your_Email_Address__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Unilever_Finance_Member_Email__c,Final_Approver_Of_Material_Email__c,Function_You_Are_Part__c,Budget_Responsibility__c,Budget_Allocated_Input_Value__c,Allocated_Budget_euro__c,Brand_Position__c,Brand_Position__r.name,Lead_Creative_Agency_name__c,Lead_Agency_Location_Cluster__c,Lead_Agency_Location_Country__c,Agency_Contact_Account_Director_Email__c,Digital_Agency_Name__c,Any_other_agencies_involved__c,Project_Name__c,Project_Name_Other__c,Project_Location_Cluster__c,Project_Location_Country__c,Project_Details__c,Brodcast_Market__c from Amr_Job_Details__c where id=: jobId];        
-         
+            jobList=[select Project_Details__r.name,id,Job_Notes__c,Currency_Conversion_Country_List__c,Lead_Agency_Name_Other__c,OwnerId,Job_Cancelled__c,Job_Status__c,Tv_Moving_Image__c,AdManagerText__c,Brand_Final__c,Brand_Final__r.name, Cinema_Moving_Image__c, Radio_Audio__c, Print_Still_Image__c, Out_Of_Home_Moving_Image__c, Out_Of_Home_Still_Image__c, Out_Of_Home_Audio__c, In_Store_Moving_Image__c, In_Store_Still_Image__c, In_Store_Audio__c, Digital_Moving_Image__c, Digital_Still_Image__c, Digital_Audio__c, Internal_Video_Moving_Image__c, Tv__c,Cinema__c, Radio__c, Print__c, Out_Of_Home__c, In_Store__c, Digital__c, Internal_Video__c, ProductCategory__c,ProductCategory__r.name,Rework_Exisiting_Material__c,BuyoutsTalent__c,BuyoutsMusic__c,New_Original_Master__c,Create_Additional_Material__c,Language_Adaptation_Of_Master__c,Require_Music__c,Require_Celebrity_Talent__c,Stage_of_Production_Activity__c,Check_With_CMI__c,Production_Activity_Type__c,Project_Description__c,Target_Air_Date__c,Execution_Name__c,Campaign_Name__c,Your_Email_Address__c,Unilever_Project_Leader_Email__c,Project_Leader_Cluster__c,Project_Leader_Country__c,Unilever_Finance_Member_Email__c,Final_Approver_Of_Material_Email__c,Function_You_Are_Part__c,Budget_Responsibility__c,Budget_Allocated_Input_Value__c,Allocated_Budget_euro__c,Brand_Position__c,Brand_Position__r.name,Lead_Creative_Agency_name__c,Lead_Agency_Location_Cluster__c,Lead_Agency_Location_Country__c,Agency_Contact_Account_Director_Email__c,Digital_Agency_Name__c,Any_other_agencies_involved__c,Project_Name__c,Project_Name_Other__c,Project_Location_Cluster__c,Project_Location_Country__c,Project_Details__c,Brodcast_Market__c from Amr_Job_Details__c where id=: jobId];       
             if(jobList != null){
                 system.debug('category---'+jobList.ProductCategory__r.name);
                  system.debug('Brand---'+jobList.Brand_Position__r.name);
@@ -1372,7 +1372,7 @@ public String docUploaded{get;set;}
            else{
                
                ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,Label.Amr_Success_JobAllocated));
-                PageReference landingPage = Page.Am_JobPortfolio;
+                PageReference landingPage = Page.Amr_RAPJobPortfolio;
                 return landingPage;
 
           }
@@ -1567,6 +1567,7 @@ public String docUploaded{get;set;}
        
          PageReference pageRef = new PageReference('/apex/Amr_JobSheet');
          pageRef.getParameters().put('id',jobList.Id);
+         pageRef.getParameters().put('tab','job-details');
          pageRef.getParameters().put('message', 'Successfully updated');
         // ApexPages.AddMessage(new ApexPages.Message(ApexPages.Severity.CONFIRM,'Successfully updated')); 
          pageRef.setRedirect(true);
@@ -1585,6 +1586,12 @@ public String docUploaded{get;set;}
             jobAllocationListUpdate.add(objJobAllocation);
          }
          update jobAllocationListUpdate;
+         PageReference pageRef = new PageReference('/apex/Amr_JobSheet');
+         pageRef.getParameters().put('id',jobList.Id);
+         pageRef.getParameters().put('tab','notes');              
+         pageRef.getParameters().put('message', 'Successfully updated');
+         pageRef.setRedirect(true);
+         return pageRef;
      }
     
      return null;
@@ -1833,11 +1840,12 @@ public String docUploaded{get;set;}
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Execution name : text must be entered'));
       okayToSave =false;
         }
+
          if(String.isBlank(jobList.Brodcast_Market__c)){
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Broadcast market : one option must be selected from the drop down menu'));
       okayToSave =false;
         }
-        
+
         
         if(jobList.Require_Music__c == null){
         ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Do you anticipate that your production will require Music? : a radio button must be selected'));
@@ -1936,11 +1944,31 @@ public String docUploaded{get;set;}
 
          alertObj.Job_Id__c  = jobIdFromPage ;
         System.debug('Alert -> ' + alertObj);
-        insert alertObj;
-         alert = [SELECT Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c FROM Amr_Alert__c where createdDate = today and hide__c = false AND ownerId = :userInfo.getUserID() order by New_Alert__c desc];
+        if(alertObj.New_Alert__c != null && alertObj.Alert_Message__c != null){
+            insert alertObj;
+        }
+         alert = [SELECT Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c FROM Amr_Alert__c where New_Alert__c = today and hide__c = :false AND ownerId = :userInfo.getUserID() order by New_Alert__c desc];
+         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND New_Alert__c = today];
        alertObj = new Amr_Alert__c();   
     //    return null;
     }
+     public void alertHide(){
+            
+            System.debug('Alert Id -> ' + selectedAlert);
+            
+            List<Amr_Alert__c> alertHideList = new List<Amr_Alert__c>();
+            alertHideList = [SELECT Alert_Message__c,Hide__c FROM Amr_Alert__c where id = :selectedAlert];
+           if(!alertHideList.isEmpty()){
+            
+            for(Amr_Alert__c alertObj : alertHideList){
+                alertObj .Hide__c = TRUE;
+            }
+            update alertHideList;
+           }
+           alert = [SELECT Alert_Message__c,job_Id__r.AdManagerText__c,New_Alert__c,Job_Id__c FROM Amr_Alert__c where New_Alert__c = today and hide__c = :false AND ownerId = :userInfo.getUserID() order by New_Alert__c desc];
+         totalAlertCount =  [select count() from Amr_Alert__c where ownerId =:userInfo.getUserId() AND Hide__c =:false AND New_Alert__c = today];
+        }
+
     public PageReference jobSheetPageTransfer(){
           
            PageReference pageRef = new PageReference('/apex/Amr_JobSheet');

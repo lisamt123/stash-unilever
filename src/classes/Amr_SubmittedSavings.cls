@@ -687,7 +687,7 @@ public with sharing class Amr_SubmittedSavings {
                                  Pc_Time_Manage_Star__c,  Pc_Output_Quality_Star__c,     Pc_Proces_Manage_Star__c,Pc_Cost_Manage_Star__c ,Ppc_Time_Manage_Star__c,
                                  Ppc_Output_Quality_Star__c,Ppc_Process_Manage_Star__c,Ppc_Cost_Manage_Star__c,Ca_Time_Manage_Star__c,Ca_Output_Quality_Star__c,
                                  Ca_Process_Manage_Star__c,Ca_Cost_Manage_Star__c
-                                 from Amr_Saving__c where Id =:savingIdFromPage ];
+                                 from Amr_Saving__c where Id =:savingIdFromPage];
         
         System.debug('Pc TIME MANAGEMENT  ->  '+ pcTimeMangCategoryValue);
         System.debug('PC COST MANAGE MENT -> '+ pcCostMangCategoryValue);
@@ -703,6 +703,146 @@ public with sharing class Amr_SubmittedSavings {
         System.debug('CA OUTPUR -> '+ caOutputQualityCategoryValue );
        
         if(savingObj.id != null){
+            
+            // blank Check Pc
+            
+            if(String.isBlank(String.valueOf(pcTimeMangCategoryValue)) || String.isBlank(String.valueOf(pcTimeMangCategoryClass))) {
+                if(!String.isBlank(savingObj.PC_Appraisal_Time_Management__c)){
+                    pcTimeMangCategoryValue = Integer.valueOf(savingObj.PC_Appraisal_Time_Management__c);
+                }
+                else
+                {
+                    pcTimeMangCategoryValue = 0;
+                }
+                pcTimeMangCategoryClass = savingObj.Pc_Time_Manage_Star__c;
+            }
+            if(String.isBlank(String.valueOf(pcOutputQualityCategoryValue)) || String.isBlank(String.valueOf(pcOutputQualityCategoryClass))) {
+                if(!String.isBlank(savingObj.PC_Appraisal_Output_Quality__c)){
+                    pcOutputQualityCategoryValue = Integer.valueOf(savingObj.PC_Appraisal_Output_Quality__c);
+                }
+                else
+                {
+                    pcOutputQualityCategoryValue = 0;
+                }
+                
+                pcOutputQualityCategoryClass = savingObj.Pc_Output_Quality_Star__c;
+            }
+            if(String.isBlank(String.valueOf(pcProcessMangCategoryValue)) || String.isBlank(String.valueOf(pcProcessMangCategoryClass))) {
+                 if(!String.isBlank(savingObj.PC_Appraisal_Process_Management__c)){
+                    pcProcessMangCategoryValue= Integer.valueOf(savingObj.PC_Appraisal_Process_Management__c);
+                }
+                else
+                {
+                    pcProcessMangCategoryValue = 0;
+                }
+                
+                pcProcessMangCategoryClass = savingObj.Pc_Proces_Manage_Star__c;
+            }
+            if(String.isBlank(String.valueOf(pcCostMangCategoryValue)) || String.isBlank(String.valueOf(pcCostMangCategoryClass))) {
+                 if(!String.isBlank(savingObj.PC_Appraisal_Cost_Management__c)){
+                    pcCostMangCategoryValue= Integer.valueOf(savingObj.PC_Appraisal_Cost_Management__c);
+                }
+                else
+                {
+                    pcCostMangCategoryValue = 0;
+                }
+                
+                pcCostMangCategoryClass= savingObj.Pc_Cost_Manage_Star__c ;
+            }
+            
+            // blank Check PPc
+            
+            if(String.isBlank(String.valueOf(pccTimeMangCategoryValue)) || String.isBlank(String.valueOf(pccTimeMangCategoryClass ))) {
+                if(!String.isBlank(savingObj.PPC_Appraisal_Output_Quality__c)){
+                    pccTimeMangCategoryValue = Integer.valueOf(savingObj.PPC_Appraisal_Output_Quality__c);
+                }
+                else
+                {
+                    pccTimeMangCategoryValue = 0;
+                }
+                
+                pccTimeMangCategoryClass = savingObj.Ppc_Time_Manage_Star__c;
+            }
+            if(String.isBlank(String.valueOf(pccOutputQualityCategoryValue)) || String.isBlank(String.valueOf(pccOutputQualityCategoryClass ))) {
+                 if(!String.isBlank(savingObj.PPC_Appraisal_Output_Quality__c )){
+                     pccOutputQualityCategoryValue = Integer.valueOf(savingObj.PPC_Appraisal_Output_Quality__c );
+                }
+                else
+                {
+                    pccOutputQualityCategoryValue = 0;
+                }
+               
+                pccOutputQualityCategoryClass = savingObj.Ppc_Output_Quality_Star__c;
+            }
+            if(String.isBlank(String.valueOf(pccProcessMangCategoryValue)) || String.isBlank(String.valueOf(pccProcessMangCategoryClass))) {
+                if(!String.isBlank(savingObj.PPC_Appraisal_Process_Management__c)){
+                     pccProcessMangCategoryValue= Integer.valueOf(savingObj.PPC_Appraisal_Process_Management__c);
+                }
+                else
+                {
+                    pccProcessMangCategoryValue= 0;
+                }   
+                pccProcessMangCategoryClass= savingObj.Ppc_Process_Manage_Star__c;
+            }
+            if(String.isBlank(String.valueOf(pccCostMangCategoryValue)) || String.isBlank(String.valueOf(pccCostMangCategoryClass ))) {
+                if(!String.isBlank(savingObj.PPC_Appraisal_Cost_Management__c )){
+                     pccCostMangCategoryValue= Integer.valueOf(savingObj.PPC_Appraisal_Cost_Management__c );
+                }
+                else
+                {
+                    pccCostMangCategoryValue = 0;
+                }               
+                pccCostMangCategoryClass = savingObj.Ppc_Cost_Manage_Star__c;
+            }
+            
+             // blank Check CA
+            
+            if(String.isBlank(String.valueOf(caTimeMangCategoryValue)) || String.isBlank(String.valueOf(caTimeMangCategoryClass ))) {
+                if(!String.isBlank(savingObj.CA_Appraisal_Time_Management__c  )){
+                caTimeMangCategoryValue = Integer.valueOf(savingObj.CA_Appraisal_Time_Management__c );
+                }
+                else
+                {
+                    caTimeMangCategoryValue = 0;
+                } 
+                caTimeMangCategoryClass = savingObj.Ca_Time_Manage_Star__c;
+            }
+            if(String.isBlank(String.valueOf(caOutputQualityCategoryValue )) || String.isBlank(String.valueOf(caOutputQualityCategoryClass ))) {
+                if(!String.isBlank(savingObj.CA_Appraisal_Output_Quality__c)){
+                caOutputQualityCategoryValue = Integer.valueOf(savingObj.CA_Appraisal_Output_Quality__c);
+                }
+                else
+                {
+                    caOutputQualityCategoryValue = 0;
+                }
+                
+                caOutputQualityCategoryClass = savingObj.Ca_Output_Quality_Star__c;
+            }
+            if(String.isBlank(String.valueOf(caProcessMangCategoryValue)) || String.isBlank(String.valueOf(caProcessMangCategoryClass))) {
+                if(!String.isBlank(savingObj.CA_Appraisal_Process_Management__c )){
+                caProcessMangCategoryValue= Integer.valueOf(savingObj.CA_Appraisal_Process_Management__c );
+                }
+                else
+                {
+                    caProcessMangCategoryValue = 0;
+                }
+                
+                caProcessMangCategoryClass= savingObj.Ca_Process_Manage_Star__c;
+            }
+            if(String.isBlank(String.valueOf(caCostMangCategoryValue )) || String.isBlank(String.valueOf(caCostMangCategoryClass ))) {
+                if(!String.isBlank(savingObj.PPC_Appraisal_Cost_Management__c )){
+                    caCostMangCategoryValue = Integer.valueOf(savingObj.PPC_Appraisal_Cost_Management__c );
+                }
+                else
+                {
+                    caCostMangCategoryValue = 0;
+                }
+                
+                caCostMangCategoryClass = savingObj.Ca_Cost_Manage_Star__c;
+            }
+
+            
+            
             //pc appraisal
               savingObj.PC_Appraisal_Time_Management__c = String.valueOf(pcTimeMangCategoryValue);
               savingObj.PC_Appraisal_Output_Quality__c = String.valueOf(pcOutputQualityCategoryValue);
@@ -714,10 +854,10 @@ public with sharing class Amr_SubmittedSavings {
               savingObj.PPC_Appraisal_Process_Management__c = String.valueOf(pccProcessMangCategoryValue);
               savingObj.PPC_Appraisal_Cost_Management__c = String.valueOf(pccCostMangCategoryValue);
              //CA Appraisal
-              savingObj.CA_Appraisal_Time_Management__c = String.valueOf(pccTimeMangCategoryValue);
-              savingObj.CA_Appraisal_Output_Quality__c = String.valueOf(pccOutputQualityCategoryValue);
-              savingObj.CA_Appraisal_Process_Management__c = String.valueOf(pccProcessMangCategoryValue);
-              savingObj.CA_Appraisal_Cost_Management__c = String.valueOf(pccCostMangCategoryValue);
+              savingObj.CA_Appraisal_Time_Management__c = String.valueOf(caTimeMangCategoryValue);
+              savingObj.CA_Appraisal_Output_Quality__c = String.valueOf(caOutputQualityCategoryValue );
+              savingObj.CA_Appraisal_Process_Management__c = String.valueOf(caProcessMangCategoryValue);
+              savingObj.CA_Appraisal_Cost_Management__c = String.valueOf(caCostMangCategoryValue );
               
              
               
@@ -737,6 +877,18 @@ public with sharing class Amr_SubmittedSavings {
               savingObj.Ca_Process_Manage_Star__c= String.valueOf(caProcessMangCategoryClass);
               savingObj.Ca_Cost_Manage_Star__c= String.valueOf(caCostMangCategoryClass );
               update savingObj;
+              pcTimeMangCategoryValue = null;
+              pcOutputQualityCategoryValue= null;
+              pcProcessMangCategoryValue= null;
+              pcCostMangCategoryValue= null;
+              pccOutputQualityCategoryValue= null;
+              pccProcessMangCategoryValue= null;
+              pccCostMangCategoryValue= null;
+              caTimeMangCategoryValue= null;
+              caOutputQualityCategoryValue = null;
+              caProcessMangCategoryValue = null;
+              caCostMangCategoryValue = null;
+              
         }
        
     }

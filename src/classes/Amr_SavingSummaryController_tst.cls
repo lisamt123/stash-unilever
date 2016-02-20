@@ -26,10 +26,12 @@ public Class Amr_SavingSummaryController_tst{
         
         MDO_BrandPositions__c brandPosJunction = new MDO_BrandPositions__c(product_category_id__c=category1.id,brand_position_id__c =brandPos.Id,brand_id__c = brand.id);
         insert brandPosJunction;
-        Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',
+       Amr_Job_Details__c jobDetail=new Amr_Job_Details__c(Project_Details__c= projDetail.Id,Job_Cancelled__c = False, Job_Status__c='Priority',Unilever_Project_Leader_Email__c='abc@gmail.com',Broadcast_Market__c='testMarket',Name='testName',Project_Leader_Cluster__c='testCluster',Project_Leader_Country__c='testCountry',
                                         Lead_Creative_Agency_name__c='testAgency',Project_Name__c='testProj',Stage_of_Production_Activity__c='testStage',Job_Started__c='yes',Job_Reported__c='yes',Job_Shared__c='yes',Job_Accepted__c='yes',Your_Email_Address__c='abc@gmail.com',Unilever_Finance_Member_Email__c='abc@gmail.com',
                                         Target_Air_Date__c=date.newInstance(2015, 11, 21),Final_Approver_Of_Material_Email__c='abc@gmail.com',Digital_Agency_Name__c='testAgency',Campaign_Name__c='testCampaign',Budget_Allocated_Input_Value__c= 12.34,AdManagerText__c ='ABC/00001',Agency_Contact_Account_Director_Email__c = 'abc@gmail.com',Any_other_agencies_involved__c='Yes',
-                                        Brodcast_Market__c='broadMarket',ProductCategory__c= category1.Id,Brand_Position__c=brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.Id );
+                                        Brodcast_Market__c='broadMarket', ProductCategory__c= category1.Id,Brand_Position__c=brandPos.Id,Brand_Final__c=brand.Id,ownerId=u.Id );
+      
+      
         insert jobDetail;
         
        

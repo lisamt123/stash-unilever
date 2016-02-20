@@ -277,11 +277,11 @@ public with sharing class Amr_LoggingFormController{
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Execution name : text must be entered'));
             okayToSave =false;
         }
+
         if(String.isBlank(jobDetails.Brodcast_Market__c)){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Broadcast market : one option must be selected from the drop down menu'));
             okayToSave =false;
         }
-
 
         if(jobDetails.Require_Music__c == null){
             ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Do you anticipate that your production will require Music? : a radio button must be selected'));
