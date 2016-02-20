@@ -1655,12 +1655,12 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>UnileverConsumercare.US@unilever.com</fullName>
+                <fullName>unileverconsumercare.usa@unilever.com</fullName>
                 <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>UnileverServicesAuxConsommateurs@unilever.com</fullName>
+                <fullName>unileverservices.auxconsommateurs@unilever.com</fullName>
                 <controllingFieldValues>Canada</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -1670,7 +1670,7 @@ else populate &apos;Default From Address&apos; from Case Market Mapping.</descri
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>UnileverServicioalConsumidor.US@unilever.com</fullName>
+                <fullName>unileverservicioalconsumidor.usa@unilever.com</fullName>
                 <controllingFieldValues>United States</controllingFieldValues>
                 <default>false</default>
             </picklistValues>
@@ -5197,19 +5197,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>UnileverConsumercare%2EUS%40unilever%2Ecom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UnileverServicesAuxConsommateurs%40unilever%2Ecom</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>UnileverServicioalConsumidor%2EMX%40unilever%2Ecom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UnileverServicioalConsumidor%2EUS%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5262,6 +5250,18 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>t2customercare%40t2tea%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>unileverconsumercare%2Eusa%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>unileverservices%2Eauxconsommateurs%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>unileverservicioalconsumidor%2Eusa%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -5581,19 +5581,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
                 <default>false</default>
             </values>
             <values>
-                <fullName>UnileverConsumercare%2EUS%40unilever%2Ecom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UnileverServicesAuxConsommateurs%40unilever%2Ecom</fullName>
-                <default>false</default>
-            </values>
-            <values>
                 <fullName>UnileverServicioalConsumidor%2EMX%40unilever%2Ecom</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>UnileverServicioalConsumidor%2EUS%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -5646,6 +5634,18 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             </values>
             <values>
                 <fullName>t2customercare%40t2tea%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>unileverconsumercare%2Eusa%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>unileverservices%2Eauxconsommateurs%40unilever%2Ecom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>unileverservicioalconsumidor%2Eusa%40unilever%2Ecom</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
