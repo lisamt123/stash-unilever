@@ -94,6 +94,10 @@ public with sharing class Amr_JobPortfolioWorkspaceController{
     }
     
        public PageReference addNewComment(){
+       	if(commentObj.new_Comment__c == null){
+       	 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Add comment'));
+             return null;
+       	}
         if(String.isBlank(jobIdFromPage)){
              ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'JobId not found'));
              return null;
@@ -125,6 +129,10 @@ public with sharing class Amr_JobPortfolioWorkspaceController{
     public PageReference uploadDocument(){
     
             system.debug('inside upload!!'+document+'jobIdFromPage!!'+jobIdFromPage);
+              if(document.body==null){
+                 ApexPages.addmessage(new ApexPages.message(ApexPages.severity.ERROR,'Select atleast one document'));
+             	return null;
+              }
                  
                   if(document.body!=null && jobIdFromPage != null){           
               system.debug(document+'--------document Body'+document.body);
@@ -138,6 +146,7 @@ public with sharing class Amr_JobPortfolioWorkspaceController{
               FI.Body = 'Attachment added';
               FI.ContentData = document.body;
               FI.ContentFileName = document.Name;
+              
               insert FI;
               getDocuments();
               system.debug('====>feed'+FI);

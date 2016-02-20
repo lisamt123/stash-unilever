@@ -1,7 +1,7 @@
 @isTest
 public class Amr_JobSheetPageController_tst{
 
-   /* static testMethod void testMethod1() {
+    static testMethod void testMethod1() {
         
         Amr_Job_Details__c jobDetailsObj = new Amr_Job_Details__c(name = 'test1',Agency_Contact_Account_Director_Email__c = 'test@gmail.com',
                                             Digital_Agency_Name__c = 'test',Target_Air_Date__c = Date.Today(),Your_Email_Address__c = 'abc@gmail.com',
@@ -10,7 +10,7 @@ public class Amr_JobSheetPageController_tst{
                                             );
         insert jobDetailsObj;
         
-        Amr_Saving__c savingObj = new Amr_Saving__c(Duration_of_Additional_Films__c = 12.4,Duration_of_Masters__c = 'abc',Job_Details__c = jobDetailsObj.id,
+        Amr_Saving__c savingObj = new Amr_Saving__c(Duration_of_Additional_Films__c = 12.4,Duration_of_Masters__c = 5,Job_Details__c = jobDetailsObj.id,
                                   Monthly_Submitted__c = 'January' );
                                   
         insert savingObj;
@@ -49,7 +49,7 @@ public class Amr_JobSheetPageController_tst{
                                             );
         insert jobDetailsObj;
         
-        Amr_Saving__c savingObj = new Amr_Saving__c(Duration_of_Additional_Films__c = 'xyz',Duration_of_Masters__c = 'abc',Job_Details__c = jobDetailsObj.id,
+        Amr_Saving__c savingObj = new Amr_Saving__c(Duration_of_Additional_Films__c = 5,Duration_of_Masters__c = 5,Job_Details__c = jobDetailsObj.id,
                                   Monthly_Submitted__c = 'January' );
                                   
         insert savingObj;
@@ -86,7 +86,7 @@ public class Amr_JobSheetPageController_tst{
                                             );
         insert jobDetailsObj;
         
-        Amr_Saving__c savingObj = new Amr_Saving__c(Duration_of_Additional_Films__c = 'xyz',Duration_of_Masters__c = 'abc',Job_Details__c = jobDetailsObj.id,
+        Amr_Saving__c savingObj = new Amr_Saving__c(Duration_of_Additional_Films__c = 6,Duration_of_Masters__c = 5,Job_Details__c = jobDetailsObj.id,
                                   Monthly_Submitted__c = 'January' );
 
         
@@ -105,7 +105,15 @@ public class Amr_JobSheetPageController_tst{
         amrSavinglst.add(savingObj);
         controller.lstQuoteToaddRow = amrSavinglst;
         controller.addRowSavingLine();
+        
+        controller.IdValue = ApexPages.currentPage().getParameters().put('id',jobDetailsObj.id);
+        controller.SaveUpdatedData();
+        controller.SaveNewData();
+        	
+        controller.redirectNewPage();
+        controller.quoteList.add(savingObj);
+        controller.deleteQuote();
         system.assert(controller!= null);
-    }*/
+    }
 
 }

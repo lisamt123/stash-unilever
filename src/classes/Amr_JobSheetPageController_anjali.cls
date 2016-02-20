@@ -60,19 +60,19 @@ public with sharing class Amr_JobSheetPageController_anjali {
                  }
              }
            /* List<Amr_Saving__c> test = [select Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
-                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById
+                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Job_Details__r.AdManagerText__c,CreatedById
                                from Amr_Saving__c where Job_Details__r.id = :jobId];
                                
              system.debug('test==>'+test );*/
             if(jobId != null){
                  if(flag == true){
                       quoteList = [select Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
-                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
+                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
                                Average_Total_Opening_Quotes__c,Percentage_Saving_Average_of_Quote__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c from Amr_Saving__c where Job_Details__r.id = :jobId];
                       system.debug('inside Cap List========>'+quoteList );
                  }else{
                    quoteList = [select Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,LastModifiedById,
-                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Production_Type__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
+                               No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Job_Details__r.AdManagerText__c,CreatedById,Number_Of_Quotes__c,
                                Average_Total_Opening_Quotes__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quote__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c from Amr_Saving__c where Job_Details__r.id = :jobId AND (CreatedById = :userId OR LastModifiedById = :userId )];
                       system.debug('inside Rap List========>'+quoteList );
                  }            
@@ -199,17 +199,17 @@ public with sharing class Amr_JobSheetPageController_anjali {
                  }
              }
              if(flag == true){
-                      lstQuoteToaddRow = [select id,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Production_Type__c,Duration_of_Additional_Films__c,
+                      lstQuoteToaddRow = [select id,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,
                                No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Job_Details__r.AdManagerText__c,
                                 Number_Of_Quotes__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quote__c,Average_Total_Opening_Quotes__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Accepted_Quote__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c
                                from Amr_Saving__c where id in : insertedQuoteIdsList];
                  }else{
-                   lstQuoteToaddRow = [select id,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Production_Type__c,Duration_of_Additional_Films__c,
+                   lstQuoteToaddRow = [select id,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,
                                No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Job_Details__r.AdManagerText__c,
                                 Number_Of_Quotes__c,Euro_Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quote__c,Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Accepted_Quote__c,Saving_Accepted_Quote_Euro__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c
                                from Amr_Saving__c where id in : insertedQuoteIdsList AND (CreatedById = :userId OR LastModifiedById = :userId )];
                  }  
-                /*lstQuoteToaddRow = [select id,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Production_Type__c,Duration_of_Additional_Films__c,
+                /*lstQuoteToaddRow = [select id,Script_Title__c,Scope_re_brief__c,Shoot_Location__c,Job_Details__c,Job_Details__r.id,No_of_Additional_Films__c,Duration_of_Additional_Films__c,
                                No_of_Masters__c,Duration_of_Masters__c,Total_no_of_films__c,No_of_shoot_days__c,Stage_RAP_engaged__c,Job_Details__r.AdManagerText__c,
                                 Number_Of_Quotes__c,Average_Total_Opening_Quotes__c,Saving_Average_of_Quotes__c,Percentage_Saving_Average_of_Quotes__c,Cost_Per_Master__c,Cost_per_master_per_shoot_day__c
                                from Amr_Saving__c where id in : insertedQuoteIdsList];*/
@@ -240,7 +240,7 @@ public with sharing class Amr_JobSheetPageController_anjali {
        for(Amr_Saving__c quoteObj:quoteNeedToValidated){
           if((quoteObj.No_of_Masters__c!= null || quoteObj.Duration_of_Masters__c!= null || quoteObj.No_of_Additional_Films__c!= null
                || quoteObj.Duration_of_Additional_Films__c!= null || quoteObj.No_of_shoot_days__c!=null || quoteObj.Stage_RAP_engaged__c!=null
-               || quoteObj.Production_Type__c!=null || quoteObj.Script_Title__c!=null || quoteObj.Scope_re_brief__c !=null) && document.body!=null) {    
+               || quoteObj.Script_Title__c!=null || quoteObj.Scope_re_brief__c !=null) && document.body!=null) {    
                
                 flag = true;
             }else{
