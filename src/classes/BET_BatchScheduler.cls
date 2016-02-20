@@ -18,11 +18,11 @@ VERSION AUTHOR                  DATE            DETAIL  FEATURES/CSR/TTP
 global class BET_BatchScheduler implements Schedulable {
     
     global void execute(SchedulableContext sc) {
-    	String firstquery='SELECT Id, Name, Status__c, Launch_Date__c, First_Release_Due_Date__c, Owner.Name, Owner.Id, Owner.Email FROM uw_BET__c WHERE First_Release_Due_Date__c=:due';
-     	BET_ReleaseDateEmails batchFirst = new BET_ReleaseDateEmails(firstquery,true);
-     	database.executebatch(batchFirst, 5); 
+    	  String firstquery='SELECT Id, Name, Status__c, Launch_Date__c, First_Release_Due_Date__c, Owner.Name, Owner.Id, Owner.Email FROM uw_BET__c WHERE (IPM_Project__c <> null OR (Inoplan_Project__c <> null and Inoplan_Project__r.name != \'No Inoplan Project\')) and First_Release_Due_Date__c=:due';
+     	  BET_ReleaseDateEmails batchFirst = new BET_ReleaseDateEmails(firstquery,true);
+     	  database.executebatch(batchFirst, 5); 
        	
-       	String finalquery='SELECT Id, Name, Status__c, Launch_Date__c, Final_Release_Due_Date__c, Owner.Name, Owner.Id, Owner.Email FROM uw_BET__c WHERE Final_Release_Due_Date__c=:due';
+       	String finalquery='SELECT Id, Name, Status__c, Launch_Date__c, Final_Release_Due_Date__c, Owner.Name, Owner.Id, Owner.Email FROM uw_BET__c WHERE (IPM_Project__c <> null OR (Inoplan_Project__c <> null and Inoplan_Project__r.name != \'No Inoplan Project\')) and Final_Release_Due_Date__c=:due';
       	BET_ReleaseDateEmails batchFinal= new BET_ReleaseDateEmails(finalquery,false);
        	database.executebatch(batchFinal, 5); 
     }

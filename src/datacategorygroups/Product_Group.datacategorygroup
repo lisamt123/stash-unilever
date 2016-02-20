@@ -112,6 +112,14 @@
         </dataCategory>
         <dataCategory>
             <dataCategory>
+                <label>Country Crock</label>
+                <name>Country_Crock</name>
+            </dataCategory>
+            <dataCategory>
+                <label>House of Caress</label>
+                <name>House_of_Caress</name>
+            </dataCategory>
+            <dataCategory>
                 <label>Vaseline</label>
                 <name>Vaseline</name>
             </dataCategory>

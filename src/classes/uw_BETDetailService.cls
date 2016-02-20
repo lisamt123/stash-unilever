@@ -128,7 +128,7 @@ public with sharing class uw_BETDetailService {
  
         String orderDir = sortAsc ? 'ASC' : 'DESC';
 
-        String finalSoqlQuery = 'SELECT Id, Name, Media_Type__c, Country__c, LastModifiedDate, Description__c, Url_of_asset__c, CreatedById, Order_Of_Display__c FROM uw_Asset__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex ;
+        String finalSoqlQuery = 'SELECT Id, Name, Media_Type__c, Country__c, LastModifiedDate, Description__c, Url_of_asset__c, CreatedById, Order_Of_Display__c, File_Id__c FROM uw_Asset__c ' + whereClauseForBet + ' ORDER BY '+ sortField + ' ' + orderDir +' LIMIT '+pageSize+' OFFSET '+startIndex ;
         List<uw_Asset__c> assetList = new List<uw_Asset__c>();
 
         assetList = Database.query(finalSoqlQuery);        
