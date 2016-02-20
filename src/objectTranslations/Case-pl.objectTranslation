@@ -667,20 +667,8 @@
             <translation><!-- UnileverConsumercare.CA@unilever.com --></translation>
         </picklistValues>
         <picklistValues>
-            <masterLabel>UnileverConsumercare.US@unilever.com</masterLabel>
-            <translation><!-- UnileverConsumercare.US@unilever.com --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>UnileverServicesAuxConsommateurs@unilever.com</masterLabel>
-            <translation><!-- UnileverServicesAuxConsommateurs@unilever.com --></translation>
-        </picklistValues>
-        <picklistValues>
             <masterLabel>UnileverServicioalConsumidor.MX@unilever.com</masterLabel>
             <translation><!-- UnileverServicioalConsumidor.MX@unilever.com --></translation>
-        </picklistValues>
-        <picklistValues>
-            <masterLabel>UnileverServicioalConsumidor.US@unilever.com</masterLabel>
-            <translation><!-- UnileverServicioalConsumidor.US@unilever.com --></translation>
         </picklistValues>
         <picklistValues>
             <masterLabel>bertolli@mizkan.com</masterLabel>
@@ -733,6 +721,18 @@
         <picklistValues>
             <masterLabel>t2customercare@t2tea.com</masterLabel>
             <translation><!-- t2customercare@t2tea.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>unileverconsumercare.usa@unilever.com</masterLabel>
+            <translation><!-- unileverconsumercare.usa@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>unileverservices.auxconsommateurs@unilever.com</masterLabel>
+            <translation><!-- unileverservices.auxconsommateurs@unilever.com --></translation>
+        </picklistValues>
+        <picklistValues>
+            <masterLabel>unileverservicioalconsumidor.usa@unilever.com</masterLabel>
+            <translation><!-- unileverservicioalconsumidor.usa@unilever.com --></translation>
         </picklistValues>
     </fields>
     <fields>

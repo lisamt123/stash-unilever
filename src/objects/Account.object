@@ -2562,16 +2562,11 @@ IF( ISPICKVAL( Known_Consumer__c, &apos;Frequent&apos;), IMAGE(&apos;/resource/C
         <columns>CORE.USERS.ALIAS</columns>
         <columns>CORE.USERS.FIRST_NAME</columns>
         <columns>CORE.USERS.LAST_NAME</columns>
-        <filterScope>Everything</filterScope>
+        <filterScope>Mine</filterScope>
         <filters>
-            <field>ACCOUNT.RECORDTYPE</field>
+            <field>CORE.USERS.FIRST_NAME</field>
             <operation>equals</operation>
-            <value>PersonAccount.PersonAccount</value>
-        </filters>
-        <filters>
-            <field>PC_ADDRESS2_COUNTRY</field>
-            <operation>equals</operation>
-            <value>India</value>
+            <value>Salik</value>
         </filters>
         <label>PM: My view</label>
         <language>en_US</language>

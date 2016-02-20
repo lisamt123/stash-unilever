@@ -578,8 +578,16 @@
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Queue_cec_Enclosure</fullName>
+        <columns>NAME</columns>
+        <columns>Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>Enclosure_Code__c</columns>
+        <columns>Total_Inventory_Quantity__c</columns>
+        <columns>Total_Used_Quantity__c</columns>
+        <columns>Active__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>

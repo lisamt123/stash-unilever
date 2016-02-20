@@ -1005,6 +1005,14 @@
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>BET_AssetDispatcherController</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>BET_AssetDispatcherControllerTest</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>BET_AssetHandler</apexClass>
         <enabled>false</enabled>
     </classAccesses>
@@ -35357,6 +35365,10 @@
     <pageAccesses>
         <apexPage>BET</apexPage>
         <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>BET_AssetDispatcher</apexPage>
+        <enabled>false</enabled>
     </pageAccesses>
     <pageAccesses>
         <apexPage>BET_AssetsOrder</apexPage>
