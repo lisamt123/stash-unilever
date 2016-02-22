@@ -180,6 +180,25 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_PWO_CNF_status_saved</fullName>
+        <field>CNF_Status__c</field>
+        <literalValue>Saved</literalValue>
+        <name>CPA PWO CNF status saved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CPA_PWO_Owner_is_ULPM</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CAP_ULPM</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CPA PWO Owner is ULPM</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_Project_Work_Order_Accepted</fullName>
         <field>pkl_Status__c</field>
         <literalValue>Accepted</literalValue>
@@ -531,6 +550,20 @@
             <field>CPA_project_work_order__c.CNF_Status__c</field>
             <operation>equals</operation>
             <value>Signed</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>CPA PWO Reocrd type PWO CNF</fullName>
+        <actions>
+            <name>CPA_PWO_CNF_status_saved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>CPA_project_work_order__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>PWO CNF</value>
         </criteriaItems>
         <triggerType>onCreateOrTriggeringUpdate</triggerType>
     </rules>

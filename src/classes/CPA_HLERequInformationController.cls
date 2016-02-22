@@ -1,4 +1,4 @@
-global  with sharing class CPA_HLERequInformationController {
+global class CPA_HLERequInformationController {
     Public id hleReqId;
     Public CPA_HLE_Request__c hleRec;
     Public String mandatoryStringFlag {get; set;}
@@ -20,7 +20,7 @@ global  with sharing class CPA_HLERequInformationController {
         RequiredFieldMap = new Map<String,String>();
         mandatoryStringFlag = null;
         estimateFlag = null;
-        hleRec = [SELECT Estimates_Status__c,pkl_Status__c, isValidated__c, dt_Date_raised__c,dt_Planned_end_date__c,dt_Planned_start_date__c,eml_AAL_Email__c,eml_UBPR_Email__c,eml_UIOS_Email__c,Id,mpkl_PFS_If_yes_what_is_the_source__c,Name,OwnerId,PFS_Is_there_approved_funding_for_this__c,ph_AAL_Contact_No__c,ph_UBPR_Contact_No__c,ph_UIOS_Contact_No__c,pkl_Business_area__c,pkl_HLE_type__c,txt_AAL_Name__c,txt_Accenture_skill_types_required__c,txt_Additional_information__c,txt_Assumptions__c,txt_Background__c,txt_Dependencies__c,txt_NA_Notes__c,txt_Project_description_specification__c,txt_Project_type__c,txt_Request_ID__c,txt_Risks_and_issues__c,txt_RQ_Query__c,txt_Software_Licensing_requirements__c,txt_Status__c,txt_Support_impact__c,txt_Technologies__c,txt_Title__c,txt_UBPR_Name__c,txt_UIOS_Name__c,txt_UL_reference__c,Estimate_Type__c,txt_BPE_Accenture_Demand_ID__c ,txt_BPE_Unilever_Demand_ID__c ,txt_BPE_Title__c ,txt_BPE_Accenture_Project_Manager__c,num_BPE_Effort_in_man_days__c,txt_BPE_Key_assumptions__c,txt_HLE_Accenture_estimated_project_char__c,txt_HLE_Accenture_reference__c,txt_HLE_Assumptions_Risks_Qualifying__c,txt_HLE_Commercial_caveats__c,ph_HLE_PB_Contact_No__c,eml_HLE_PB_Email__c,num_HLE_Estimated_man_days__c,txt_HLE_PB_Name__c,dt_HLE_Preparation_date__c,txt_HLE_Project_charging_mechanism__c, HLE_Proposed_high_level_plan_timelines__c,txt_HLE_Scope__c,txt_HLE_Skill_Resources_Blend_rate__c,txt_HLE_Solution_overview_approach__c,recordtypeid  FROM CPA_HLE_Request__c where id =:hleRecId];
+        hleRec = [SELECT Estimates_Status__c,pkl_Status__c, isValidated__c, dt_Date_raised__c,dt_Planned_end_date__c,dt_Planned_start_date__c,eml_AAL_Email__c,eml_UBPR_Email__c,eml_UIOS_Email__c,Id,mpkl_PFS_If_yes_what_is_the_source__c,Name,OwnerId,PFS_Is_there_approved_funding_for_this__c,ph_AAL_Contact_No__c,ph_UBPR_Contact_No__c,ph_UIOS_Contact_No__c,pkl_Business_area__c,pkl_HLE_type__c,txt_AAL_Name__c,txt_Accenture_skill_types_required__c,txt_Additional_information__c,txt_Assumptions__c,txt_Background__c,txt_Dependencies__c,txt_NA_Notes__c,txt_Project_description_specification__c,txt_Project_type__c,txt_Request_ID__c,txt_Risks_and_issues__c,txt_RQ_Query__c,txt_Software_Licensing_requirements__c,txt_Status__c,txt_Support_impact__c,txt_Technologies__c,txt_Title__c,txt_UBPR_Name__c,txt_UIOS_Name__c,txt_UL_reference__c,Estimate_Type__c,txt_BPE_Accenture_Demand_ID__c ,txt_BPE_Unilever_Demand_ID__c ,txt_BPE_Title__c ,txt_BPE_Accenture_Project_Manager__c,num_BPE_Effort_in_man_days__c,txt_BPE_Key_assumptions__c,txt_HLE_Accenture_estimated_project_char__c,txt_HLE_Accenture_reference__c,txt_HLE_Assumptions_Risks_Qualifying__c,txt_HLE_Commercial_caveats__c,ph_HLE_PB_Contact_No__c,eml_HLE_PB_Email__c,num_HLE_Estimated_man_days__c,txt_HLE_PB_Name__c,dt_HLE_Preparation_date__c,txt_HLE_Project_charging_mechanism__c, HLE_Proposed_high_level_plan_timelines__c,txt_HLE_Scope__c,txt_HLE_Skill_Resources_Blend_rate__c,txt_HLE_Solution_overview_approach__c,recordtypeid,txt_Other_Project_funding_Source__c  FROM CPA_HLE_Request__c where id =:hleRecId];
                
         CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(hleRec.pkl_Status__c);
         if(customSettingStatusMsg.HLE_Request_Status_Msg__c != null  && callFromVF){
@@ -37,8 +37,10 @@ global  with sharing class CPA_HLERequInformationController {
                  RequiredFieldMap.put('UIOS Contact Number',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.ph_AAL_Contact_No__c  == null) 
                  RequiredFieldMap.put('AAL Contact Number',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.dt_Date_raised__c == null) 
-                 RequiredFieldMap.put('Date raised',ConstantsForContractingAppClasses.MANDATORY);
+             
+             
+            if(hleRec.dt_Date_raised__c == null || hleRec.dt_Date_raised__c < system.today()) 
+                 RequiredFieldMap.put('Date raised','It is Mandatory and should not be before today date');
             if(hleRec.txt_Dependencies__c  == null) 
                  RequiredFieldMap.put('Dependencies',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.eml_UBPR_Email__c  == null) 
@@ -53,16 +55,18 @@ global  with sharing class CPA_HLERequInformationController {
                  RequiredFieldMap.put('UIOS Name',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_AAL_Name__c  == null) 
                  RequiredFieldMap.put('AAL Name',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.dt_Planned_end_date__c  == null) 
-                 RequiredFieldMap.put('Planned End Date',ConstantsForContractingAppClasses.MANDATORY);
-            if(hleRec.dt_Planned_start_date__c  == null) 
-                 RequiredFieldMap.put('Planned Start Date',ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.dt_Planned_end_date__c  == null || hleRec.dt_Planned_end_date__c < hleRec.dt_Planned_start_date__c) 
+                 RequiredFieldMap.put('Planned End Date','It is Mandatory and should not be before Planned Start Date');
+            if(hleRec.dt_Planned_start_date__c  == null || hleRec.dt_Planned_start_date__c < system.today()) 
+                 RequiredFieldMap.put('Planned Start Date','It is Mandatory and should not be before today date');
             if(hleRec.txt_Project_description_specification__c  == null) 
                  RequiredFieldMap.put('Project Description Specification',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Project_type__c  == null) 
                  RequiredFieldMap.put('Project Type',ConstantsForContractingAppClasses.MANDATORY);
+            /*
             if(hleRec.txt_Request_ID__c  == null) 
                  RequiredFieldMap.put('Request ID',ConstantsForContractingAppClasses.MANDATORY);
+             */
             if(hleRec.txt_Risks_and_issues__c  == null) 
                  RequiredFieldMap.put('Risks And Issues',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_Software_Licensing_requirements__c  == null) 
@@ -75,6 +79,16 @@ global  with sharing class CPA_HLERequInformationController {
                  RequiredFieldMap.put('Title',ConstantsForContractingAppClasses.MANDATORY);
             if(hleRec.txt_UL_reference__c  == null) 
                  RequiredFieldMap.put('UL Reference',ConstantsForContractingAppClasses.MANDATORY);
+             
+            //jp- Adding to check funding 
+            if(hleRec.PFS_Is_there_approved_funding_for_this__c  == null) 
+                 RequiredFieldMap.put('Funding approved?',ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.PFS_Is_there_approved_funding_for_this__c  == 'Yes' && hleRec.mpkl_PFS_If_yes_what_is_the_source__c == null ) 
+                 RequiredFieldMap.put('If yes, what is the source?',ConstantsForContractingAppClasses.MANDATORY);
+            if(hleRec.PFS_Is_there_approved_funding_for_this__c  == 'Yes' && hleRec.mpkl_PFS_If_yes_what_is_the_source__c == 'Other' &&  hleRec.txt_Other_Project_funding_Source__c == null) 
+                 RequiredFieldMap.put('Other Project funding Source',ConstantsForContractingAppClasses.MANDATORY);  
+            
+             
            
         }if(hleRec.pkl_Status__c == ConstantsForContractingAppClasses.ACCEPTED && hleRec.Estimate_Type__c == null && callFromVF){
             estimateFlag = 'Please select Estimate Type, wherther it will be High Level Estimation(HLE)/Ball Park Estimation(BPE) in Estimate Type Section';

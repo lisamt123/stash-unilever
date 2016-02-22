@@ -3,6 +3,10 @@
     <active>true</active>
     <allowRecall>true</allowRecall>
     <allowedSubmitters>
+        <submitter>CAP_SMT_Group</submitter>
+        <type>group</type>
+    </allowedSubmitters>
+    <allowedSubmitters>
         <submitter>CAP_ULPM_group</submitter>
         <type>group</type>
     </allowedSubmitters>

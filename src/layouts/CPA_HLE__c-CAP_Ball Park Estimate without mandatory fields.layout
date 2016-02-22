@@ -13,15 +13,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_Accenture_Demand_ID__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
                 <field>txt_Title__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>txt_Accenture_Demand_ID__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>num_Effort_in_man_days__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Key_assumptions__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
@@ -40,10 +44,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_Accenture_project_manager__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_Key_assumptions__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

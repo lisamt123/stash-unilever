@@ -163,6 +163,16 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_LOI_Accepted_Recordtype</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>LOI_Other</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>CPA LOI Accepted Recordtype</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_LOI_Accepted_Statsu</fullName>
         <field>pkl_Status__c</field>
         <literalValue>Accepted</literalValue>
@@ -311,6 +321,16 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_LOI_Submitted_recordtype</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>LOI_Submitted</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>CPA LOI Submitted recordtype</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_Status_Saved</fullName>
         <field>pkl_Status__c</field>
         <literalValue>Saved</literalValue>
@@ -338,6 +358,10 @@
         <actions>
             <name>CPA_LOI_Accepted_Email_Alert</name>
             <type>Alert</type>
+        </actions>
+        <actions>
+            <name>CPA_LOI_Accepted_Recordtype</name>
+            <type>FieldUpdate</type>
         </actions>
         <actions>
             <name>CPA_LOI_Accepted_date_update</name>
@@ -411,6 +435,10 @@
         <actions>
             <name>CPA_LOI_Returned_Email_Update</name>
             <type>Alert</type>
+        </actions>
+        <actions>
+            <name>CPA_LOI_Accepted_Recordtype</name>
+            <type>FieldUpdate</type>
         </actions>
         <actions>
             <name>CPA_LOI_Returned_Date_Update</name>

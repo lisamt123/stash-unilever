@@ -3,7 +3,7 @@
  * @date 11/01/2016
  * @description - This Class is used to perform operation on before update event of CR  Trigger
  */
-public with sharing class CPA_CR_TriggerUtil{
+public class CPA_CR_TriggerUtil{
     public static boolean isSubmitted=false;
 /*
     * Method Name : recallApproval
@@ -122,7 +122,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
                 setPWO.add(objnewCR.CPA_Project_Work_Order__c);
             }
         }
-        if(setPWO.size()>0 && setPWO !=null){  
+        if(  setPWO !=null && setPWO.size()>0){  
             for(CPA_project_work_order__c objPwo : [select id, txt_Unilever_Reference__c,fml_Unilever_Project_Name_on_PWORF__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,mpkl_Project_Phases__c,pkl_Region__c from CPA_project_work_order__c where ID  IN: setPWO]){
                     mapPWO.put(objPwo.Id,objPwo);
                 }
@@ -272,6 +272,7 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
                 if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c)==null ){
                     if(mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c)!=null){
                         objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c;
+                        
                         system.debug('Inside Loop');
                     }else{
                         objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c ;  
@@ -282,9 +283,11 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
                     if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c)!=null){
                         if(mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).Id == objCRTEmp.Id){
                             objCRTEmp.num_Delta_Efforts__c = objCRTEmp.num_Estimated_Value_of_CR__c - mapPWO.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_PWO__c;
+                            objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Delta_Efforts__c;
                         }
                       else{
                           objCRTEmp.num_Delta_Efforts__c =objCRTEmp.num_Estimated_Value_of_CR__c  - mapPWOIDCR.get(objCRTEmp.CPA_Project_Work_Order__c).num_Estimated_Value_of_CR__c;
+                          objCRTEmp.num_Total_charge_of_CR__c = objCRTEmp.num_Delta_Efforts__c;
                       }  
                         
                     }           
@@ -411,5 +414,54 @@ public static void checklistValueOfCR(List<CPA_CR__c> newCR){
             strCRID = 'CR-' + string.valueof(intIncrementNum);
         return strCRID;
     }*/
+    
+      /**   Method Name : DOntDelete
+    * Parameter   : OldMap
+    * Return type : void
+    * Author      : Shreyas
+    * Description : This method dont allow CR to be deleted
+    */
+    public static void DOntDeleteCR(list<CPA_CR__c> lstCR){
+        
+        for(CPA_CR__c objCr :lstCR ){
+            objCr.addError('CR cant be deleted');
+        }
+    }
+ /**   Method Name : newCR
+    * Parameter   : newmap
+    * Return type : void
+    * Author      : Pooja Kanani
+    * Description : This method is used to update PWO with the latest CR number
+    */
+    public static void newCR(list<CPA_CR__c> newCRList){
+        //system.debug('Pooja testing');
+        List<CPA_project_work_order__c> lstTemp= new List<CPA_project_work_order__c>();
+        set<ID> pwoID = new set<ID>();
+        map<ID,String>pwomap = new map<ID,String>();
+         for(CPA_CR__c obj :newCRList){         
+                    pwoID.add(obj.CPA_Project_Work_Order__c);
+                    pwomap.put(obj.CPA_Project_Work_Order__c,obj.name);     
+        }
+        //system.debug('pwoID>>>'+ pwoID);
+        //system.debug('pwomap>>>'+ pwomap);
+        if(pwoID!=null && pwoID.size()> 0){
+            List<CPA_project_work_order__c> lstPWO  = [Select Id,txt_CNF_CR_number__c from CPA_project_work_order__c where Id IN:pwoID];
+            
+            for(CPA_project_work_order__c obj : lstPWO){
+                Approval.unLockResult lrList = Approval.unlock(obj, false);
+                //CPA_project_work_order__c pwo = pworfmap.get(obj.id);
+                obj.txt_CNF_CR_number__c = pwomap.get(obj.id);
+                //system.debug('obj.LatestPWOID__c>>>pooja'+obj.LatestPWOID__c);
+                lstTemp.add(obj);                    
+            }
+            
+            //system.debug('lstTemp>>>pooja'+lstTemp);
+            if(lstTemp!=null && lstTemp.size()>0){
+                update lstTemp; 
+            }
+            //system.debug('lstTemp>>pooja'+lstTemp);
+        }
+    }
+   
     
 }

@@ -130,6 +130,7 @@
         <description>HLE Request Id Auto number</description>
         <displayFormat>HLEReq-{0000}</displayFormat>
         <externalId>true</externalId>
+        <inlineHelpText>HLE Request Id Auto number</inlineHelpText>
         <label>HLE Request ID</label>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
@@ -206,7 +207,7 @@ null)))</formula>
     </fields>
     <fields>
         <fullName>Unilever_Project_Manager_Name__c</fullName>
-        <description>This filed will be used for Email Template</description>
+        <description>This field will be used for Email Template</description>
         <externalId>false</externalId>
         <formula>lkp_Unilever_project_manager__r.FirstName + &apos; &apos;+lkp_Unilever_project_manager__r.LastName</formula>
         <label>Unilever Project Manager Name</label>
@@ -308,8 +309,10 @@ null)))</formula>
     </fields>
     <fields>
         <fullName>dt_Date_raised__c</fullName>
+        <defaultValue>TODAY()</defaultValue>
         <description>Date when HLE was created</description>
         <externalId>false</externalId>
+        <inlineHelpText>Date when HLE was created</inlineHelpText>
         <label>Date raised</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -338,6 +341,7 @@ null)))</formula>
         <fullName>dt_Planned_end_date__c</fullName>
         <description>Date when the project ends</description>
         <externalId>false</externalId>
+        <inlineHelpText>Date when the project ends</inlineHelpText>
         <label>Planned End Date*</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -348,6 +352,7 @@ null)))</formula>
         <fullName>dt_Planned_start_date__c</fullName>
         <description>Date when the project commences</description>
         <externalId>false</externalId>
+        <inlineHelpText>Date when the project commences</inlineHelpText>
         <label>Planned Start Date*</label>
         <required>false</required>
         <trackHistory>false</trackHistory>
@@ -626,6 +631,7 @@ null)))</formula>
         <fullName>pkl_Status__c</fullName>
         <description>Auto generated based on user actions</description>
         <externalId>false</externalId>
+        <inlineHelpText>Auto generated based on user actions</inlineHelpText>
         <label>Status</label>
         <picklist>
             <picklistValues>
@@ -666,6 +672,7 @@ null)))</formula>
         <fullName>txt_AAL_Name__c</fullName>
         <description>Name/details of area lead</description>
         <externalId>false</externalId>
+        <inlineHelpText>Name/details of area lead</inlineHelpText>
         <label>Name*</label>
         <length>255</length>
         <required>false</required>
@@ -678,6 +685,7 @@ null)))</formula>
         <fullName>txt_Accenture_skill_types_required__c</fullName>
         <description>Only if known</description>
         <externalId>false</externalId>
+        <inlineHelpText>Only if known</inlineHelpText>
         <label>Vendor Skill Types Required</label>
         <length>255</length>
         <required>false</required>
@@ -701,6 +709,7 @@ null)))</formula>
         <fullName>txt_Assumptions__c</fullName>
         <description>Any known assumptions</description>
         <externalId>false</externalId>
+        <inlineHelpText>Any known assumptions</inlineHelpText>
         <label>Assumptions*</label>
         <length>255</length>
         <required>false</required>
@@ -742,7 +751,9 @@ null)))</formula>
     </fields>
     <fields>
         <fullName>txt_BPE_Title__c</fullName>
+        <description>Title/description for the project.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Title/description for the project.</inlineHelpText>
         <label>BPE Title*</label>
         <length>255</length>
         <required>false</required>
@@ -766,6 +777,7 @@ null)))</formula>
         <fullName>txt_Background__c</fullName>
         <description>Relevant background context information on the project, including purpose, objectives, business benefits.</description>
         <externalId>false</externalId>
+        <inlineHelpText>Relevant background context information on the project, including purpose, objectives, business benefits.</inlineHelpText>
         <label>Background*</label>
         <length>255</length>
         <required>false</required>
@@ -778,6 +790,7 @@ null)))</formula>
         <fullName>txt_Dependencies__c</fullName>
         <description>Any dependencies on other IT or non-IT projects or resources</description>
         <externalId>false</externalId>
+        <inlineHelpText>Any dependencies on other IT or non-IT projects or resources</inlineHelpText>
         <label>Dependencies*</label>
         <length>255</length>
         <required>false</required>
@@ -913,9 +926,22 @@ null)))</formula>
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>txt_Other_Project_funding_Source__c</fullName>
+        <description>If selected &apos;Other&apos; in funding source. then this is mandatory.</description>
+        <externalId>false</externalId>
+        <label>Other Project funding Source</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
         <fullName>txt_Project_description_specification__c</fullName>
         <description>Detail regarding scope and scale</description>
         <externalId>false</externalId>
+        <inlineHelpText>Detail regarding scope and scale</inlineHelpText>
         <label>Project Description/Specification*</label>
         <length>255</length>
         <required>false</required>
@@ -928,6 +954,7 @@ null)))</formula>
         <fullName>txt_Project_type__c</fullName>
         <description>Information on type of project to give an initial high level view on size/scale and likely effort</description>
         <externalId>false</externalId>
+        <inlineHelpText>Information on type of project to give an initial high level view on size/scale and likely effort</inlineHelpText>
         <label>Project Type*</label>
         <length>255</length>
         <required>false</required>
@@ -940,6 +967,7 @@ null)))</formula>
         <fullName>txt_RQ_Query__c</fullName>
         <description>Query submitted by any user</description>
         <externalId>false</externalId>
+        <inlineHelpText>Query submitted by any user</inlineHelpText>
         <label>Query</label>
         <length>255</length>
         <required>false</required>
@@ -951,19 +979,19 @@ null)))</formula>
     <fields>
         <fullName>txt_Request_ID__c</fullName>
         <description>Generated by the system</description>
+        <displayFormat>RID-{0000}</displayFormat>
         <externalId>false</externalId>
+        <inlineHelpText>Generated by the system</inlineHelpText>
         <label>Request ID</label>
-        <length>255</length>
-        <required>false</required>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
+        <type>AutoNumber</type>
     </fields>
     <fields>
         <fullName>txt_Risks_and_issues__c</fullName>
         <description>Any known risks and issues</description>
         <externalId>false</externalId>
+        <inlineHelpText>Any known risks and issues</inlineHelpText>
         <label>Risks and Issues*</label>
         <length>255</length>
         <required>false</required>
@@ -976,6 +1004,7 @@ null)))</formula>
         <fullName>txt_Software_Licensing_requirements__c</fullName>
         <description>Indicate whether this project may require the provision of additional software or licenses either by Unilever or by Accenture (or both)</description>
         <externalId>false</externalId>
+        <inlineHelpText>Indicate whether this project may require the provision of additional software or licenses either by Unilever or by Accenture (or both)</inlineHelpText>
         <label>Software / Licensing Requirements*</label>
         <length>255</length>
         <required>false</required>
@@ -988,6 +1017,7 @@ null)))</formula>
         <fullName>txt_Status__c</fullName>
         <description>Auto generated based on user actions</description>
         <externalId>false</externalId>
+        <inlineHelpText>Auto generated based on user actions</inlineHelpText>
         <label>Status</label>
         <length>255</length>
         <required>false</required>
@@ -1000,6 +1030,7 @@ null)))</formula>
         <fullName>txt_Support_impact__c</fullName>
         <description>Will this impact the way Accenture delivers support?  E.g. is it introducing a new service, significantly changing an existing service etc?</description>
         <externalId>false</externalId>
+        <inlineHelpText>Will this impact the way Accenture delivers support?  E.g. is it introducing a new service, significantly changing an existing service etc?</inlineHelpText>
         <label>Support Impact*</label>
         <length>255</length>
         <required>false</required>
@@ -1012,6 +1043,7 @@ null)))</formula>
         <fullName>txt_Technologies__c</fullName>
         <description>Technologies or applications impacted by the project</description>
         <externalId>false</externalId>
+        <inlineHelpText>Technologies or applications impacted by the project</inlineHelpText>
         <label>Technologies*</label>
         <length>255</length>
         <required>false</required>
@@ -1024,6 +1056,7 @@ null)))</formula>
         <fullName>txt_Title__c</fullName>
         <description>Title/description for the project</description>
         <externalId>false</externalId>
+        <inlineHelpText>Title/description for the project</inlineHelpText>
         <label>Title*</label>
         <length>255</length>
         <required>false</required>
@@ -1036,6 +1069,7 @@ null)))</formula>
         <fullName>txt_UBPR_Name__c</fullName>
         <description>Name/details of BP/requestor</description>
         <externalId>false</externalId>
+        <inlineHelpText>Name/details of BP/requestor</inlineHelpText>
         <label>Name*</label>
         <length>255</length>
         <required>false</required>
@@ -1048,6 +1082,7 @@ null)))</formula>
         <fullName>txt_UIOS_Name__c</fullName>
         <description>Name/details of owner/SME</description>
         <externalId>false</externalId>
+        <inlineHelpText>Name/details of owner/SME</inlineHelpText>
         <label>Name*</label>
         <length>255</length>
         <required>false</required>
@@ -1060,6 +1095,7 @@ null)))</formula>
         <fullName>txt_UL_reference__c</fullName>
         <description>Project Clarity ID</description>
         <externalId>false</externalId>
+        <inlineHelpText>Project Clarity ID</inlineHelpText>
         <label>UL Reference*</label>
         <length>255</length>
         <required>false</required>
@@ -1111,12 +1147,15 @@ null)))</formula>
     </listViews>
     <listViews>
         <fullName>CPA_SMT_CPA_HLE_Request</fullName>
+        <columns>NAME</columns>
+        <columns>txt_HLE_PB_Name__c</columns>
+        <columns>CREATEDBY_USER</columns>
         <filterScope>Queue</filterScope>
         <label>SMT</label>
         <language>en_US</language>
         <queue>CPA_SMT</queue>
         <sharedTo>
-            <allInternalUsers></allInternalUsers>
+            <group>CAP_SMT_Group</group>
         </sharedTo>
     </listViews>
     <nameField>
@@ -2307,6 +2346,13 @@ null)))</formula>
     </recordTypes>
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
+    <validationRules>
+        <fullName>HLE_Request_name</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(NOT(ISNEW()) ,NOT(ISPICKVAL(pkl_Status__c ,&apos;Saved&apos;)), ISCHANGED(Name))</errorConditionFormula>
+        <errorDisplayField>Name</errorDisplayField>
+        <errorMessage>Can&apos;t change name of the HLE request</errorMessage>
+    </validationRules>
     <webLinks>
         <fullName>Cancel</fullName>
         <availability>online</availability>
@@ -2333,7 +2379,7 @@ if(permissionSetName == &quot;CPA_ULPM&quot;){
 if(p.pkl_Status__c == &quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; || p.pkl_Status__c == &quot;Saved&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
 window.open(&apos;/apex/CPA_HLE_Cancel_Reason?id=&apos;+&quot;{!CPA_HLE_Request__c.Id}&quot;,&quot;_self&quot;); 
 }else if (p.pkl_Status__c == &quot;Accepted&quot; || p.pkl_Status__c == &quot;Answered&quot;){ 
-alert(&quot;Can not Cancel HLE as it is Accepted/Answered. Please contact Supplier Management Team&quot;); 
+alert(&quot;Can not Cancel HLE as it is already Accepted/Answered. Please contact Supplier Management Team&quot;); 
 }else if (p.pkl_Status__c == &quot;Cancelled&quot;){ 
 alert(&quot;Can not Cancel HLE as it is already cancelled&quot;); 
 } 
@@ -2341,9 +2387,9 @@ alert(&quot;Can not Cancel HLE as it is already cancelled&quot;);
 if(p.pkl_Status__c != &quot;Cancelled&quot;){ 
 window.open(&apos;/apex/CPA_HLE_Cancel_Reason?id=&apos;+&quot;{!CPA_HLE_Request__c.Id}&quot;,&quot;_self&quot;); 
 }else{
-alert(&quot;Can not Cancel HLE as it is already cancelled&quot;); 
+alert(&quot;Can not Cancel HLE as it is already Cancelled&quot;); 
 }
-}else alert(&quot;Insufficient Privilege&quot;); 
+}else alert(&quot;You are not authorized to cancel this request.&quot;); 
 
 }catch (e) { 
 alert( 
@@ -2394,7 +2440,7 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 	}
 } 
 else{ 
-	alert(&quot;Insufficient Privilege&quot;);
+	alert(&quot;You are not authorized to perform this action.&quot;);
 }</url>
     </webLinks>
     <webLinks>
@@ -2452,11 +2498,11 @@ if( permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_
 
 	} 
 	else { 
-	alert(&quot;HLE Request can not be submitted, Due to Required fields are missing&quot;); 
+	alert(&quot;HLE Request cannot be submitted since certain mandatory details are missing.&quot;); 
 
 	} 
 } 
-else{ alert(&quot;Insufficient Privilege&quot;); }</url>
+else{ alert(&quot;You are not authorized to perform this action.&quot;); }</url>
     </webLinks>
     <webLinks>
         <fullName>Submit_Estimates</fullName>
@@ -2466,36 +2512,36 @@ else{ alert(&quot;Insufficient Privilege&quot;); }</url>
         <masterLabel>Submit Estimates</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)} 
-{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)} 
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/31.0/apex.js&quot;)}
 
-var p = new sforce.SObject(&apos;CPA_HLE_Request__c&apos;); 
-p.id = &quot;{!CPA_HLE_Request__c.Id}&quot;; 
-p.Estimates_Status__c = &quot;{!CPA_HLE_Request__c.Estimates_Status__c }&quot;; 
-p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;; 
-var isValidateFlag = sforce.apex.execute(&quot;CPA_HLERequInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id}); 
+var p = new sforce.SObject(&apos;CPA_HLE_Request__c&apos;);
+p.id = &quot;{!CPA_HLE_Request__c.Id}&quot;;
+p.Estimates_Status__c = &quot;{!CPA_HLE_Request__c.Estimates_Status__c }&quot;;
+p.pkl_Status__c = &quot;{!CPA_HLE_Request__c.pkl_Status__c }&quot;;
+var isValidateFlag = sforce.apex.execute(&quot;CPA_HLERequInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id});
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
-var result = sforce.connection.query(soql); 
-var records1 = result.getArray(&apos;records&apos;); 
-var permissionSetName = records1[0].PermissionSet.Name; 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;);
+var permissionSetName = records1[0].PermissionSet.Name;
 //alert(permissionSetName);
 //alert(isValidateFlag);
-if( permissionSetName == &quot;CPA_ADM&quot;){ 
-	if(isValidateFlag == &apos;true&apos;){ 
-		if(p.Estimates_Status__c != &quot;Submitted&quot;){ 
-			p.Estimates_Status__c = &quot;Submitted&quot;; 
-			p.pkl_Status__c = &quot;Answered&quot;;
-			//alert(p.Estimates_Status__c);
-			result = sforce.connection.update([p]); 
-			//alert(result);
-			location.reload(true); 
-		}else {alert(&quot;Estimates are already submitted&quot;); } 
-	}else { 
-	alert(&quot;Estimates can not be submitted, Due to Required fields are missing&quot;); 
-	} 
-} 
-else{ alert(&quot;Insufficient Privilege&quot;); }</url>
+if( permissionSetName == &quot;CPA_ADM&quot;){
+if(isValidateFlag == &apos;true&apos;){
+if(p.Estimates_Status__c != &quot;Submitted&quot;){
+p.Estimates_Status__c = &quot;Submitted&quot;;
+p.pkl_Status__c = &quot;Answered&quot;;
+//alert(p.Estimates_Status__c);
+result = sforce.connection.update([p]);
+//alert(result);
+location.reload(true);
+}else {alert(&quot;Estimates are already submitted&quot;); }
+}else {
+alert(&quot;Estimates can not be submitted, Due to Required fields are missing&quot;);
+}
+}
+else{ alert(&quot;You are not authorized to perform this action.&quot;); }</url>
     </webLinks>
     <webLinks>
         <fullName>Submit_For_Unilever</fullName>

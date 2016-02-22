@@ -35,8 +35,12 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Key Project Details</label>
+        <label>Basic Project Details</label>
         <layoutColumns>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>VDM_Name__c</field>
+            </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
             </layoutItems>
@@ -45,15 +49,24 @@
                 <field>auto_PWORF_ID__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Required</behavior>
+                <field>Name</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Clarity_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>pkl_Status__c</field>
+                <field>pkl_Cost_Centre_Details__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_Cost_Centre__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_ICC_Number__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -61,11 +74,87 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
+                <field>pkl_Project_Scale__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_Pricing_Model__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>dat_Submitted_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>dt_Date_Of_Request__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Latest_PWO_Status__c</field>
+            </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OwnerId</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>lkp_Project_requestor__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
                 <field>txta_Title__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_Sustainability_Objective__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_Request_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txta_Other_Request_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>txt_Project_Repository_Location__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>pkl_Region__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+        </layoutColumns>
+        <style>TwoColumnsLeftToRight</style>
+    </layoutSections>
+    <layoutSections>
+        <customLabel>true</customLabel>
+        <detailHeading>true</detailHeading>
+        <editHeading>true</editHeading>
+        <label>Key Project Details</label>
+        <layoutColumns>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txta_PWO_linked_to_CR__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>dt_Expected_start_date__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -77,30 +166,15 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>pkl_Pricing_Model__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txta_PWO_linked_to_CR__c</field>
+                <field>pkl_Business_Area__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>dt_Expected_start_date__c</field>
+                <field>pkl_Process_Office_Area_E2E__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>pkl_Region__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>txta_Application_infrastructure__c</field>
-            </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txta_HLE_Value__c</field>
+                <field>lkp_Unilever_content_approver__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -115,85 +189,6 @@
                 <field>lkp_Unilever_project_manager__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_SLA1__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>txt_SLA2__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>dat_Expected_SLA1_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>dat_Expected_SLA2_Date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>dt_Date_Of_Request__c</field>
-            </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Name</field>
-            </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_Clarity_ID__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_ICC_Number__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_Cost_Centre_Details__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>pkl_Sustainability_Objective__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_Request_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_Project_Scale__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txta_Other_Request_Type__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>VDM_Name__c</field>
-            </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>dt_Expected_go_live_date__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_Business_Area__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>pkl_Process_Office_Area_E2E__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txt_otherProcessOfficeAreaE2E__c</field>
             </layoutItems>
@@ -203,27 +198,57 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>lkp_Unilever_content_approver__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>lkp_Project_requestor__c</field>
+                <field>txta_Application_infrastructure__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txta_Third_Party_Details__c</field>
             </layoutItems>
+        </layoutColumns>
+        <layoutColumns>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Required</behavior>
+                <field>dt_Expected_go_live_date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>OwnerId</field>
+                <field>txta_HLE_Value__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>dat_SLA1_Accepted_Date__c</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>dat_Submitted_Date__c</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -240,11 +265,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>How_many_man_days_do_you_think_you_requi__c</field>
+                <field>txta_Why_is_Work_at_risk_required__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txta_Why_is_Work_at_risk_required__c</field>
+                <field>How_many_man_days_do_you_think_you_requi__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -254,11 +279,18 @@
                 <behavior>Edit</behavior>
                 <field>pkl_Phases_covered_by_the_WAR__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Which_BP_Innovation_director_has_approve__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Has_W_R_been_discussed_with_Supplier_Per__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -267,13 +299,6 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>txta_What_specific_roles_do_you_require__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Which_BP_Innovation_director_has_approve__c</field>
-            </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -294,11 +319,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Does_this_project_change_Core_Business_M__c</field>
+                <field>Is_this_a_new_or_re_worked_Integration_R__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Required</behavior>
-                <field>Does_this_Project_involve_Unilever_conf__c</field>
+                <behavior>Edit</behavior>
+                <field>Does_this_Project_impact_systems_list__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
@@ -331,15 +356,15 @@
                 <field>Summary_of_requirements_and_deliverables__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Required</behavior>
+                <field>Does_this_project_change_Core_Business_M__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Required</behavior>
-                <field>Is_this_a_new_or_re_worked_Integration_R__c</field>
+                <field>Does_this_Project_involve_Unilever_conf__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>Does_this_Project_impact_systems_list__c</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -443,13 +468,6 @@
                 <behavior>Required</behavior>
                 <field>Project_Dependencies__c</field>
             </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>ltxt_Reason_for_Cancellation__c</field>
-            </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
@@ -457,21 +475,44 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>SLA Breach</label>
+        <label>PWORF Milestone Dates</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_Breach_Applicable__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>dat_Revised_Submission_Date__c</field>
+                <behavior>Readonly</behavior>
+                <field>txt_SLA1__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>txt_SLA2__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>dat_SLA1_Accepted_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>pkl_Penalty_Applicable__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>dat_Expected_SLA1_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>dat_Expected_SLA2_Date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>dat_Revised_Submission_Date__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -494,6 +535,10 @@
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>CreatedById</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Readonly</behavior>
+                <field>ltxt_Reason_for_Cancellation__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>

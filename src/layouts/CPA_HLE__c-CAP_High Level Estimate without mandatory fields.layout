@@ -25,19 +25,19 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_Solution_overview_approach__c</field>
+                <field>txt_Project_charging_mechanism__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Scope__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Assumptions_Risks_Qualifying_informa__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>Proposed_high_level_plan_and_timelines__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_Accentures_estimated_project_charges__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_Next_steps__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -63,11 +63,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_Project_charging_mechanism__c</field>
+                <field>txt_Accentures_estimated_project_charges__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_Scope__c</field>
+                <field>txt_Solution_overview_approach__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -75,7 +75,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Assumptions_Risks_Qualifying_informa__c</field>
+                <field>txt_Next_steps__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>

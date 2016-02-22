@@ -3,7 +3,7 @@
  * @date 11/01/2016
  * @description - This Class is used to perform operation on before update event of LOI Trigger
  */
-public with sharing class CPA_LOI_TriggerUtil{
+public class CPA_LOI_TriggerUtil{
     public static boolean isSubmitted=false;
 /*
     * Method Name : recallApproval
@@ -106,13 +106,18 @@ public with sharing class CPA_LOI_TriggerUtil{
         for(CPA_LOI__c objNewLOI : newLOI){
                 setPWORF.add(objNewLOI.lkp_PWORF__c);
             }
-        for(CPA_PWORF__c objPworf : [select id,RecordTypeId ,mpkl_Project_Phases__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,txt_Clarity_ID__c from CPA_PWORF__c where ID  IN: setPWORF]){
+        for(CPA_PWORF__c objPworf : [select id,txta_Title__c,RecordTypeId ,mpkl_Project_Phases__c,lkp_Unilever_budget_approver__c,lkp_Unilever_content_approver__c,txt_Clarity_ID__c from CPA_PWORF__c where ID  IN: setPWORF]){
                 mapPWORF.put(objPworf.Id,objPworf);
             }
             
         for(CPA_LOI__c objNewLOI : newLOI){
             CPA_PWORF__c objPWORFTemp = mapPWORF.get(objNewLOI.lkp_PWORF__c);
             if(objPWORFTemp !=null){
+                
+                
+                if(objNewLOI.txt_PWO_title__c == null && objPWORFTemp.txta_Title__c !=null) 
+                    objNewLOI.txt_PWO_title__c = objPWORFTemp.txta_Title__c;
+                
                 if(objNewLOI.txt_Unilever_Clarity_ID__c == null && objPWORFTemp.txt_Clarity_ID__c !=null) 
                     objNewLOI.txt_Unilever_Clarity_ID__c = objPWORFTemp.txt_Clarity_ID__c;
                 if(objNewLOI.lkp_Unilever_budget_approver__c == null && objPWORFTemp.lkp_Unilever_budget_approver__c !=null) 
@@ -213,7 +218,27 @@ public with sharing class CPA_LOI_TriggerUtil{
                 system.debug('objLoi.pkl_Status__c >>>>>>>>'+objLoi.pkl_Status__c );
                 ListnewLOI.add(objLoi);
             }
+        if(ListnewLOI.size()>0){
         update ListnewLOI;
+        }
+    }
+    
+    /** Method Name : getInternalPWOIDFromPWORF
+    * Parameter   : newPWO
+    * Return type : None
+    * Author      : Dinesh Girase  
+    * Created on  : 16/02/2016
+    * Description : This method gets internal PWO ID from PWORF and maps it to LOI. Calling from before insert trigger
+    */
+    public static void getInternalPWOIDFromPWORF(List<CPA_LOI__c> newLOI){
+            List<CPA_PWORF__c> pworfs = [SELECT txt_Internal_PWO_ID__c FROM CPA_PWORF__c Where Id =: newLOI[0].lkp_PWORF__c];
+            if(pworfs!=null && pworfs.size()>0 && pworfs[0] !=null && pworfs[0].txt_Internal_PWO_ID__c != null){
+                System.debug('Internal PWO ID present on PWORF @@@@@######## : ' + pworfs[0].txt_Internal_PWO_ID__c);
+                newLOI[0].txt_Internal_PWO_ID__c = pworfs[0].txt_Internal_PWO_ID__c;
+            }else{
+                System.debug('PWO ID not present on PWORF @@@@@######## : ');
+            }
+       // }
     }
     
     /** Method Name : internalLIOID
@@ -282,4 +307,17 @@ public with sharing class CPA_LOI_TriggerUtil{
             strPWOID = idType + '-' + string.valueof(intIncrementNum);
         return strPWOID;
     }*/
+    
+     /**   Method Name : DOntDelete
+    * Parameter   : OldMap
+    * Return type : void
+    * Author      : jp
+    * Description : This method dont allow CR to be deleted
+    */
+    public static void DOntDelete(list<CPA_LOI__c> lstLOI){
+        
+        for(CPA_LOI__c obj :lstLOI ){
+            obj.addError('LOI cant be deleted');
+        }
+    }
 }

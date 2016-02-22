@@ -188,8 +188,9 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <fullName>PWORF_ID__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>PWORF ID</label>
+        <label>PWORF Name</label>
         <referenceTo>CPA_PWORF__c</referenceTo>
+        <relationshipLabel>PWO</relationshipLabel>
         <relationshipName>PWO11</relationshipName>
         <required>false</required>
         <trackTrending>false</trackTrending>
@@ -324,6 +325,14 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <unique>false</unique>
     </fields>
     <fields>
+        <fullName>chk_CNF_Contract_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>CNF_Contract_Attached</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>chk_Excel_Attached__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
@@ -332,10 +341,26 @@ CASE(MOD(  dat_Delivered_Date__c  - DATE(1985,6,24),7),
         <type>Checkbox</type>
     </fields>
     <fields>
+        <fullName>chk_First_PWO__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>First PWO</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
         <fullName>chk_PDF_Attached__c</fullName>
         <defaultValue>false</defaultValue>
         <externalId>false</externalId>
         <label>PDF Attached</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>chk_TNF_Contract_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>TNF_Contract_Attached__c</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
     </fields>
@@ -924,8 +949,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
             <sorted>false</sorted>
         </picklist>
         <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <visibleLines>5</visibleLines>
+        <type>Picklist</type>
     </fields>
     <fields>
         <fullName>mpkl_Project_Phases__c</fullName>
@@ -1162,7 +1186,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
     <fields>
         <fullName>num_CNF_Planned_fees_inclusive_of_discou__c</fullName>
         <externalId>false</externalId>
-        <label>CNF Planned Fees (Inclusive of Discount)</label>
+        <label>CNF Planned Fees (Inclusive of Disct) *</label>
         <precision>14</precision>
         <required>false</required>
         <scale>0</scale>
@@ -1436,7 +1460,7 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <fullName>pkl_Billing_Details__c</fullName>
         <description>Name of UL Legal Entity</description>
         <externalId>false</externalId>
-        <label>Billing Details*</label>
+        <label>Legal Entity To Be Billed*</label>
         <picklist>
             <picklistValues>
                 <fullName>Unilever UK Central Resources (UKCR)</fullName>
@@ -2114,11 +2138,27 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
     </fields>
+    <fields>
+        <fullName>txta_reason_for_additiona_PWO__c</fullName>
+        <description>Reason For Additional PWO is required for creating new PWO under PWORF,Where already one PWO is created</description>
+        <externalId>false</externalId>
+        <label>Reason For Additional PWO</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
     <label>PWO</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>pkl_Status__c</columns>
+        <columns>CNF_Status__c</columns>
+        <columns>TNF_Status__c</columns>
+        <columns>fml_Clarity_ID__c</columns>
+        <columns>CREATEDBY_USER</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>CPA_SMT_PWO</fullName>
@@ -8270,9 +8310,11 @@ IF( INCLUDES(mpkl_Project_Phases__c , &quot;Deploy&quot;), &quot;D&quot;, &quot;
         </picklistValues>
     </recordTypes>
     <searchLayouts>
+        <customTabListAdditionalFields>txt_Accenture_Project_Manager__c</customTabListAdditionalFields>
         <searchResultsAdditionalFields>fml_Pworf_Clarity_ID__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>pkl_Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsCustomButtons>New_PW</searchResultsCustomButtons>
     </searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <validationRules>
@@ -8288,6 +8330,57 @@ ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Rejected&quot;),
 ISPICKVAL(PWORF_ID__r.pkl_Status__c , &quot;Saved&quot;)))</errorConditionFormula>
         <errorMessage>PWO cant be created because, PWORF is not Answered / Accepted / Auto Accepted</errorMessage>
     </validationRules>
+    <validationRules>
+        <fullName>CPA_PWO_can_not_be_create_other_then_PWO</fullName>
+        <active>false</active>
+        <errorConditionFormula>AND(ISNEW() ,AND(RecordType.DeveloperName !=&quot;PWO&quot;,RecordType.DeveloperName !=&quot;Standalone PWO&quot;))</errorConditionFormula>
+        <errorMessage>For new PWO Please , GO back and Select &quot;PWO&quot; record type only</errorMessage>
+    </validationRules>
+    <webLinks>
+        <fullName>New_PW</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New PWO</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/CreatePWO?id={!CPA_PWORF__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_Standard_PWO</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <hasMenubar>false</hasMenubar>
+        <hasScrollbars>true</hasScrollbars>
+        <hasToolbar>false</hasToolbar>
+        <height>600</height>
+        <isResizable>true</isResizable>
+        <linkType>url</linkType>
+        <masterLabel>New Standard PWO</masterLabel>
+        <openType>newWindow</openType>
+        <position>none</position>
+        <protected>false</protected>
+        <showsLocation>false</showsLocation>
+        <showsStatus>false</showsStatus>
+        <url>/a9G/e?RecordType=012180000000AtZAAU&amp;retURL=a00</url>
+    </webLinks>
+    <webLinks>
+        <fullName>Test</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Test</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/a9G/e? CF00N18000000ILBh={!CPA_project_work_order__c.PWORF_ID__c}&amp;CF00N18000000ILBh_lkid ={!CPA_project_work_order__c.PWORF_ID__c}</url>
+    </webLinks>
     <webLinks>
         <fullName>btn_Cancel_CNF</fullName>
         <availability>online</availability>
@@ -8319,7 +8412,7 @@ try {
 			window.open(&apos;/apex/CPA_PwoCnfTnf_Cancel_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
 		} 
 	} else{ 
-		alert(&quot;Insufficient Privilege&quot;); 
+		alert(&quot;You are not authorized to perform this action.&quot;); 
 	}
 
 }catch (e) { 
@@ -8354,16 +8447,16 @@ var permissionSetName = records1[0].PermissionSet.Name;
 
 if( permissionSetName == &quot;CPA_SMT&quot;){ 
 
-	if(p.pkl_Status__c!= &apos;Delivered&apos; &amp;&amp; p.pkl_Status__c != &apos;Cancelled&apos;){ 
+	if(p.pkl_Status__c != &apos;Delivered&apos; &amp;&amp; p.pkl_Status__c != &apos;Cancelled&apos;){ 
 		window.open(&apos;/apex/CPA_PwoCnfTnf_Cancel_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
 	} else{ 
-		alert(&quot;Can not Cancel PWO as it is already Cancelled or Delivered or PWO is submitted&quot;); 
+		alert(&quot;Can not Cancel PWO as it is already Cancelled or Delivered or PWO is Submitted&quot;); 
 	} 
 } 
 else if(permissionSetName == &quot;CPA_ADM&quot;){
-	alert(&quot;Please request SMT to cancel PWO&quot;); 
+	alert(&quot;Please request SMT to cancel the PWO&quot;); 
 }else{ 
-alert(&quot;Insufficient Privilege&quot;); 
+alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -8399,7 +8492,7 @@ try {
 			window.open(&apos;/apex/CPA_PwoCnfTnf_Cancel_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
 		}
 	}else{
-			alert(&quot;Insufficient Privilege&quot;);  
+			alert(&quot;You are not authorized to perform this action.&quot;);  
 	}
 	
 }catch (e) { 
@@ -8442,18 +8535,18 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 				window.open(&quot;/&quot;+&quot;{!CPA_project_work_order__c.Id}&quot;+ &quot;/e?RecordType={!$Label.Lbl_PWO_CNF_RecordTypeId}&amp;retURL=%2F{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
 		}
 		else{
-			alert(&quot;CNF Can&apos;t be created till corresponding all CR are either Delivered OR Cancelled &quot;); 
+			alert(&quot;CNF can&apos;t be created till corresponding all CR are either Delivered OR Cancelled &quot;); 
 		}
 		
 		
 		
 	}else{
-			alert(&quot;To Create CNF PWO should be in Delivered&quot;); 
+			alert(&quot;To create CNF, PWO should be in Delivered&quot;); 
 	}
 	
 	
 }else{
-	alert(&quot;Insufficient Privilege&quot;); 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -8483,18 +8576,21 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 
 
 	if(p.pkl_Status__c != &apos;Delivered&apos;){
+		if(p.pkl_Status__c != &apos;Sent For Termination&apos;){
 		
-		result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c = &apos;Delivered&apos;&quot;); 
-		alert(result);
-		var crRecords = result.getArray(&quot;records&quot;); 
-		if(crRecords.length == 0){
-			window.open(&quot;/&quot;+&quot;{!CPA_project_work_order__c.Id}&quot;+ &quot;/e?RecordType={!$Label.Lbl_PWO_TNF_RecordTypeId}&amp;retURL=%2F{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
+			result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c = &apos;Delivered&apos;&quot;); 
+			//alert(result);
+			var crRecords = result.getArray(&quot;records&quot;); 
+			if(crRecords.length == 0){
+				window.open(&quot;/&quot;+&quot;{!CPA_project_work_order__c.Id}&quot;+ &quot;/e?RecordType={!$Label.Lbl_PWO_TNF_RecordTypeId}&amp;retURL=%2F{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
+			}
+			else{
+				alert(&quot;TNF Can&apos;t be created if any CR is Delivered&quot;); 
+			}
+		
+		}else{
+			alert(&quot;TNF is already created&quot;); 
 		}
-		else{
-			alert(&quot;TNF Can&apos;t be created if any CR is Delivered&quot;); 
-		}
-		
-		
 		
 	}else{
 			alert(&quot;TNF Can&apos;t be created if PWO is Delivered&quot;); 
@@ -8502,7 +8598,7 @@ if( permissionSetName == &quot;CPA_ADM&quot;){
 	
 	
 }else{
-	alert(&quot;Insufficient Privilege&quot;); 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -8537,7 +8633,7 @@ result = sforce.connection.query(&quot;select Id,CPA_Project_Work_Order__c,pkl_S
 var crRecords = result.getArray(&quot;records&quot;); 
 //if( permissionSetName != &quot;CPA_ADM&quot; &amp;&amp; permissionSetName != &quot;CPA_ULPM&quot; ){ 
 if( permissionSetName != &quot;CPA_ADM&quot; ){ 
-alert(&quot;Insufficient Privilege&quot;); 
+alert(&quot;You are not authorized to perform this action.&quot;); 
 } 
 else{ 
 if(p.pkl_Status__c == &quot;Signed&quot; &amp;&amp; crRecords.length == 0){ 
@@ -8555,88 +8651,57 @@ alert(&quot;PWO can not be Delivered,Concern Administrator&quot;);
 }</url>
     </webLinks>
     <webLinks>
-        <fullName>btn_Request_for_Termination_PWO</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <linkType>javascript</linkType>
-        <masterLabel>Request for Termination PWO</masterLabel>
-        <openType>onClickJavaScript</openType>
-        <protected>false</protected>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/33.0/connection.js&quot;)} 
-{!REQUIRESCRIPT(&quot;/soap/ajax/33.0/apex.js&quot;)} 
-
-
-var p = new sforce.SObject(&apos;CPA_project_work_order__c&apos;); 
-p.id = &quot;{!CPA_project_work_order__c.Id}&quot;; 
-p.pkl_Status__c = &quot;{!CPA_project_work_order__c.pkl_Status__c }&quot;; 
-
-if(p.pkl_Status__c == &quot;Signed&quot;){ 
-var CPATR = new sforce.SObject(&quot;CPA_Termination_Requested__c&quot;); 
-//accnt.Id = &apos;{!Account.Id}&apos;; 
-CPATR.Reason_for_Termination__c = &quot;{CPA_Termination_Requested__c.Reason_for_Termination__c}&quot;; 
-CPATR.PWO__c = &quot;{CPA_Termination_Requested__c.PWO__c}&quot;; 
-CPATR.Reason_for_Termination__c= prompt(&apos;Enter Reason for Termination&apos;); 
-CPATR.PWO__c = p.id; 
-
-var result = sforce.connection.create([CPATR]); 
-if(result[0].getBoolean(&quot;success&quot;)) 
-{ 
-
-p.pkl_Status__c = &quot;Request For Termination&quot;; 
-//var result1 = sforce.connection.update([p]); 
-alert(&apos;Request for Termination submitted successfully&apos;); 
-window.location.reload(); 
-} 
-else{ 
-alert(&apos;Error : &apos;+result); 
-} 
-}else if(p.pkl_Status__c == &quot;Request For Termination&quot;){ 
-
-alert(&apos;PWO is alreday Requested for Termination&apos;); 
-} else if(p.pkl_Status__c == &quot;Closed&quot;){ 
-alert(&apos;Request for Termination cannot be raise, Because PWO is Closed&apos;); 
-} 
-else { 
-alert(&apos;PWO is cannot be requested for Termination on this stage, Please raise query for Cancellation&apos;); 
-}</url>
-    </webLinks>
-    <webLinks>
         <fullName>btn_Return_CNF</fullName>
         <availability>online</availability>
         <description>CNf can be return if status is sent for signature</description>
         <displayType>button</displayType>
         <linkType>javascript</linkType>
-        <masterLabel>Return CNF</masterLabel>
+        <masterLabel>Return CNF from DocuSign</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
 
 var p = new sforce.SObject(&apos;CPA_project_work_order__c&apos;); 
 p.id = &quot;{!CPA_project_work_order__c.Id}&quot;; 
-p.pkl_Status__c = &quot;{!CPA_project_work_order__c.pkl_Status__c }&quot;; 
+p.CNF_Status__c = &quot;{!CPA_project_work_order__c.CNF_Status__c }&quot;; 
+
 var recordType = &apos;CNF&apos;; 
 try { 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
-var result = sforce.connection.query(soql); 
-var records1 = result.getArray(&apos;records&apos;); 
-var permissionSetName = records1[0].PermissionSet.Name; 
+	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+	var result = sforce.connection.query(soql); 
+	var records1 = result.getArray(&apos;records&apos;); 
+	var permissionSetName = records1[0].PermissionSet.Name; 
 
-//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+	//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
 
-if( permissionSetName == &quot;CPA_SMT&quot;){ 
+	if( permissionSetName == &quot;CPA_SMT&quot;){ 
 
-if(p.pkl_Status__c== &apos;Sent for Signature&apos;){ 
-window.open(&apos;/apex/CPA_PwoCnfTnf_Return_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
-} else if(p.pkl_Status__c== &apos;Sent for Signature){ 
-alert(&quot;Can not Return CNF as it is already Returned/Signed/Cancelled&quot;); 
-} 
-} else{ 
-alert(&quot;Insufficient Privilege&quot;); 
-} 
+		if(p.CNF_Status__c== &apos;Sent for Signature&apos;){ 
+			window.open(&apos;/apex/CPA_PwoCnfTnf_Return_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
+		}		
+		else if(p.CNF_Status__c==&apos;Saved&apos; || p.CNF_Status__c== &apos;Submitted&apos; || p.CNF_Status__c== &apos;Resubmitted&apos;){ 
+			alert(&quot;Cannot Return CNF as it is in Resubmitted/Submitted/Saved status.It should be in &apos;Sent for Signature&apos; status to get  returned.&quot;); 
+		} 
+
+		else if(p.CNF_Status__c== &apos;Cancelled&apos; || p.CNF_Status__c== &apos;Accepted&apos;){ 
+			alert(&quot;Cannot Return CNF as it is in Cancelled/Accepted status.It should be in &apos;Sent for Signature&apos; status to get  returned.&quot;); 
+		} 
+
+		else if(p.CNF_Status__c== &apos;Signed&apos;|| p.CNF_Status__c== &apos;Delivered&apos;|| p.CNF_Status__c== &apos;Returned&apos;){ 
+			alert(&quot;Cannot Return CNF as it is already Returned/Signed/Delivered&quot;); 
+		} 
+		 else {
+			alert(&quot;CNF cannot be Returned as it is not in &apos;Sent for Signature&apos; status&quot;); 	 
+		 }
+		
+		
+	}
+	else{ 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
+	} 
 
 }catch (e) { 
-alert( 
-&quot;An unexpected Error has Occurred. Error: \r\n&quot; + 
+alert(&quot;An unexpected Error has Occurred. Error: \r\n&quot; + 
 e 
 ); 
 }</url>
@@ -8646,44 +8711,7 @@ e
         <availability>online</availability>
         <displayType>button</displayType>
         <linkType>javascript</linkType>
-        <masterLabel>Return PWO</masterLabel>
-        <openType>onClickJavaScript</openType>
-        <protected>false</protected>
-        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)}
-
-	var p = new sforce.SObject(&apos;CPA_project_work_order__c&apos;); 
-	p.id = &quot;{!CPA_project_work_order__c.Id}&quot;; 
-	p.pkl_Status__c = &quot;{!CPA_project_work_order__c.pkl_Status__c }&quot;; 
-	var recordType = &apos;PWO&apos;;
-
-
-	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
-	var result = sforce.connection.query(soql);
-	var records1 = result.getArray(&apos;records&apos;); 
-	var permissionSetName = records1[0].PermissionSet.Name;
-
-	if( permissionSetName == &quot;CPA_SMT&quot;){ 
-
-		if(p.pkl_Status__c== &apos;Sent for Signature&apos;){ 
-			window.open(&apos;/apex/CPA_PwoCnfTnf_Return_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
-		} else if(p.pkl_Status__c == &apos;Returned&apos;){ 
-			alert(&quot;Can not Return PWO as it is already Returned&quot;); 
-		
-		}else {
-			alert(&quot;Can not Return PWO,Concern Administrator&quot;);
-		} 
-	}	
-	else{ 
-	alert(&quot;Insufficient Privilege&quot;); 
-
-	}</url>
-    </webLinks>
-    <webLinks>
-        <fullName>btn_Return_TNF</fullName>
-        <availability>online</availability>
-        <displayType>button</displayType>
-        <linkType>javascript</linkType>
-        <masterLabel>Return TNF</masterLabel>
+        <masterLabel>Return PWO from DocuSign</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
         <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
@@ -8691,25 +8719,85 @@ e
 var p = new sforce.SObject(&apos;CPA_project_work_order__c&apos;); 
 p.id = &quot;{!CPA_project_work_order__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_project_work_order__c.pkl_Status__c }&quot;; 
-var recordType = &apos;TNF&apos;; 
-try { 
+var recordType = &apos;PWO&apos;; 
+
+
 soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
 var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
 var permissionSetName = records1[0].PermissionSet.Name; 
 
-//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
-
 if( permissionSetName == &quot;CPA_SMT&quot;){ 
 
-if(p.pkl_Status__c== &apos;Sent for Signature&apos;){ 
-window.open(&apos;/apex/CPA_PwoCnfTnf_Return_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
-} else if(p.pkl_Status__c== &apos;Sent for Signature){ 
-alert(&quot;Can not Return TNF as it is already Returned/Signed/Cancelled&quot;); 
-} 
-} else{ 
-alert(&quot;Insufficient Privilege&quot;); 
-} 
+	if(p.pkl_Status__c == &apos;Sent for Signature&apos;){ 
+	window.open(&apos;/apex/CPA_PwoCnfTnf_Return_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
+	} 
+	else if(p.pkl_Status__c==&apos;Saved&apos; || p.pkl_Status__c== &apos;Submitted&apos; || p.pkl_Status__c== &apos;Resubmitted&apos;){ 
+	alert(&quot;Cannot Return PWO as it is in Resubmitted/Submitted/Saved status.It should be in &apos;Sent for Signature&apos; status to get  returned.&quot;); 
+	} 
+
+	else if(p.pkl_Status__c== &apos;Cancelled&apos; || p.pkl_Status__c== &apos;Accepted&apos;){ 
+	alert(&quot;Cannot Return PWO as it is in Cancelled/Accepted status.It should be in &apos;Sent for Signature&apos; status to get  returned.&quot;); 
+	} 
+
+	else if(p.pkl_Status__c== &apos;Signed&apos;|| p.pkl_Status__c== &apos;Delivered&apos;|| p.pkl_Status__c== &apos;Returned&apos;){ 
+	alert(&quot;Cannot Return PWO as it is already Returned/Signed/Delivered&quot;); 
+	} 
+
+	else { 
+	alert(&quot;PWO can be Returned from DocuSign only if PWO is in &apos;Sent for Signature&apos; status&quot;); 
+	} 
+}	
+else{ 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
+
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>btn_Return_TNF</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Return TNF from DocuSign</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&quot;/soap/ajax/32.0/connection.js&quot;)} 
+
+var p = new sforce.SObject(&apos;CPA_project_work_order__c&apos;); 
+p.id = &quot;{!CPA_project_work_order__c.Id}&quot;; 
+p.TNF_Status__c = &quot;{!CPA_project_work_order__c.TNF_Status__c }&quot;; 
+var recordType = &apos;TNF&apos;; 
+try { 
+	soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+	var result = sforce.connection.query(soql); 
+	var records1 = result.getArray(&apos;records&apos;); 
+	var permissionSetName = records1[0].PermissionSet.Name; 
+
+	//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
+
+	if( permissionSetName == &quot;CPA_SMT&quot;){ 
+		if(p.TNF_Status__c== &apos;Sent for Signature&apos;){ 
+		window.open(&apos;/apex/CPA_PwoCnfTnf_Return_Reason?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&amp;recordType=&quot;+recordType,&quot;_self&quot;); 
+		}
+
+		else if(p.TNF_Status__c==&apos;Saved&apos; || p.TNF_Status__c== &apos;Submitted&apos; || p.TNF_Status__c== &apos;Resubmitted&apos;){ 
+			alert(&quot;Cannot Return TNF as it is in Resubmitted/Submitted/Saved status.It should be in &apos;Sent for Signature&apos; status to get  returned.&quot;); 
+		} 
+
+		else if(p.TNF_Status__c== &apos;Cancelled&apos; || p.TNF_Status__c== &apos;Accepted&apos;){ 
+			alert(&quot;Cannot Return TNF as it is in Cancelled/Accepted status.It should be in &apos;Sent for Signature&apos; status to get  returned.&quot;); 
+		} 
+
+		else if(p.TNF_Status__c== &apos;Signed&apos;|| p.TNF_Status__c== &apos;Delivered&apos;|| p.TNF_Status__c== &apos;Returned&apos;){ 
+			alert(&quot;Cannot Return TNF as it is already Returned/Signed/Delivered&quot;); 
+		}
+		else { 
+			alert(&quot;TNF can be Returned from DocuSign only if TNF is in &apos;Sent for Signature&apos; status&quot;); 
+		} 		
+ 
+	} else{ 
+		alert(&quot;You are not authorized to perform this action.&quot;); 
+	} 
 
 }catch (e) { 
 alert( 
@@ -8754,7 +8842,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	alert(&quot;CNF is can not be Signed as it is yet to Sent for Signature&quot;); 
 	}
 }else{ 
-alert(&quot;Insufficient Privilege&quot;); 
+alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -8779,17 +8867,31 @@ var permissionSetName = records1[0].PermissionSet.Name;
 //alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
 
 if( permissionSetName == &quot;CPA_SMT&quot;){ 
-	
+
 	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
-		p.pkl_Status__c = &quot;Sent for Signature&quot;;	
-		result = sforce.connection.update([p]); 
-//alert(result );
-		location.reload(true); 
-	}else{
-		alert(&quot;PWO can not be Sent for Signature, Concern Administrator&quot;); 
-	}
+	p.pkl_Status__c = &quot;Sent for Signature&quot;; 
+	result = sforce.connection.update([p]); 
+	//alert(result ); 
+	location.reload(true); 
+	} 
+	else if(p.pkl_Status__c == &quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; || p.pkl_Status__c == &quot;Saved&quot;){ 
+	alert(&quot;PWO can not be Send for Signature, if it is in Submitted/Resubmitted/Saved. It should be in Accepted status.&quot;); 
+	} 
+	else if(p.pkl_Status__c == &quot;Delivered&quot; || p.pkl_Status__c == &quot;Terminated&quot; || p.pkl_Status__c == &quot;Sent For Termination&quot; || p.pkl_Status__c == &quot;Closed&quot; || p.pkl_Status__c == &quot;Sent For Closure&quot; || p.pkl_Status__c == &quot;Request For Termination&quot;){ 
+	alert(&quot;PWO can not be Send for Signature, if it is Delivered/Terminated/Sent For Termination/Request For Termination/Closed/Sent For Closure. It should be in Accepted status.&quot;); 
+	} 
+	else if(p.pkl_Status__c == &quot;Sent for Signature&quot; || p.pkl_Status__c == &quot;Signed&quot;){ 
+	alert(&quot;PWO can not be Send for Signature, as it is already Sent/Signed.&quot;); 
+	} 
+	else if(p.pkl_Status__c == &quot;Cancelled&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
+	alert(&quot;PWO can not be Send for Signature, if it is Cancelled/Returned. It should be in Accepted status.&quot;); 
+	} 
+	else{ 
+	alert(&quot;PWO can not be Send for Signature, as it is not Accepted.&quot;); 
+	} 
+
 }else{ 
-	alert(&quot;Insufficient Privilege&quot;); 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -8821,7 +8923,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		alert(&quot;TNF Can not be Sent for Signature as it is not yet Accepted&quot;); 
 	} 
 }else{ 
-	alert(&quot;Insufficient Privilege&quot;); 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -8862,7 +8964,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		alert(&quot;CNF is already Delivered&quot;); 
 	}
 }else{ 
-	alert(&quot;Insufficient Privilege&quot;); 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -8894,7 +8996,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		alert(&quot;PWO Can not be Signed as it is not yet Sent for Signature&quot;); 
 	} 
 }else{ 
-	alert(&quot;Insufficient Privilege&quot;); 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -8927,7 +9029,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		alert(&quot;TNF Can not be Signed as it is not yet Sent for Signature&quot;); 
 	}
 }else{
-	alert(&quot;Insufficient Privilege&quot;); 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -8944,43 +9046,57 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 var obj = new sforce.SObject(&apos;CPA_project_work_order__c&apos;); 
 obj.id = &quot;{!CPA_project_work_order__c.Id}&quot;; 
 obj.CNF_Status__c = &quot;{!CPA_project_work_order__c.CNF_Status__c}&quot;;
-var isValidateFlag = sforce.apex.execute(&quot;CPA_ContractInformationController&quot;,&quot;checkIsValidated&quot;,{objId:obj.id}); 
 
 
-if(isValidateFlag == &apos;true&apos;){ 
-if(obj.CNF_Status__c == &quot;Returned&quot;){
-obj.CNF_Status__c = &quot;Resubmitted&quot;; 
-result = sforce.connection.update([obj]); 
-location.reload(true); 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name;
 
-} 
-else if(obj.CNF_Status__c ==&quot;Submitted&quot; || obj.CNF_Status__c == &quot;Resubmitted&quot; ){ 
-alert(&quot;CNF is already submitted&quot;); 
-} 
-else if(obj.CNF_Status__c ==&quot;Cancelled&quot; ){ 
-alert(&quot;CNF is already Cancelled, you can&apos;t submit for Approval&quot;); 
-} 
-else if(obj.CNF_Status__c ==&quot;Accepted&quot; ){ 
-alert(&quot;CNF is already Accepted, you can&apos;t submit for Approval&quot;); 
-} 
-else if(obj.CNF_Status__c ==&quot;Delivered&quot; ){ 
-alert(&quot;CNF is already Delivered, you can&apos;t submit for Approval&quot;); 
-} 
-else if(obj.CNF_Status__c ==&quot;Answered&quot; ){ 
-alert(&quot;CNF is already Answered, you can&apos;t submit for Approval&quot;); 
-} 
-else if(obj.CNF_Status__c ==&quot;Sent for Signature&quot; || obj.CNF_Status__c == &quot;Signed&quot; || obj.CNF_Status__c == &quot;Delivered&quot;){
-		alert(&quot;CNF cant be submitted for Approval as it is Accepted and moved for further processing&quot;); 
+if( permissionSetName == &quot;CPA_ADM&quot;){
+
+
+	var isValidateFlag = sforce.apex.execute(&quot;CPA_ContractInformationController&quot;,&quot;checkIsValidated&quot;,{objId:obj.id}); 
+	if(isValidateFlag == &apos;true&apos;){ 
+	if(obj.CNF_Status__c == &quot;Returned&quot;){
+	obj.CNF_Status__c = &quot;Resubmitted&quot;; 
+	result = sforce.connection.update([obj]); 
+	//alert(result );
+	location.reload(true); 
+
+	} 
+	else if(obj.CNF_Status__c ==&quot;Submitted&quot; || obj.CNF_Status__c == &quot;Resubmitted&quot; ){ 
+	alert(&quot;CNF is already submitted&quot;); 
+	} 
+	else if(obj.CNF_Status__c ==&quot;Cancelled&quot; ){ 
+	alert(&quot;CNF is already Cancelled, you can&apos;t submit for Approval&quot;); 
+	} 
+	else if(obj.CNF_Status__c ==&quot;Accepted&quot; ){ 
+	alert(&quot;CNF is already Accepted, you can&apos;t submit for Approval&quot;); 
+	} 
+	else if(obj.CNF_Status__c ==&quot;Delivered&quot; ){ 
+	alert(&quot;CNF is already Delivered, you can&apos;t submit for Approval&quot;); 
+	} 
+	else if(obj.CNF_Status__c ==&quot;Answered&quot; ){ 
+	alert(&quot;CNF is already Answered, you can&apos;t submit for Approval&quot;); 
+	} 
+	else if(obj.CNF_Status__c ==&quot;Sent for Signature&quot; || obj.CNF_Status__c == &quot;Signed&quot; || obj.CNF_Status__c == &quot;Delivered&quot;){
+			alert(&quot;CNF cant be submitted for Approval as it is Accepted and moved for further processing&quot;); 
+		}
+	else{ 
+	obj.CNF_Status__c = &quot;Submitted&quot;; 
+	result = sforce.connection.update([obj]); 
+	//alret(result );
+	location.reload(true); 
+	} 
+
+	} 
+	else { 
+	alert(&quot;CNF cannot be submitted, Due to Required fields are missing&quot;); 
 	}
-else{ 
-obj.CNF_Status__c = &quot;Submitted&quot;; 
-result = sforce.connection.update([obj]); 
-location.reload(true); 
-} 
-
-} 
-else { 
-alert(&quot;CNF can not be submitted, Due to Required fields are missing&quot;); 
+	
+}else{
+	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -8999,52 +9115,66 @@ p.id = &quot;{!CPA_project_work_order__c.Id}&quot;;
 
 p.pkl_Status__c = &quot;{!CPA_project_work_order__c.pkl_Status__c }&quot;; 
 
-var isValidateFlag = sforce.apex.execute(&quot;CPA_ContractInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id});
 
-if(isValidateFlag == &apos;true&apos;){ 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;);
+var permissionSetName = records1[0].PermissionSet.Name;
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName);
 
-	if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot; || p.pkl_Status__c == &quot;Request For Termination&quot;){ 
-		p.pkl_Status__c = &quot;Resubmitted&quot;; 
-		result = sforce.connection.update([p]); 
-		location.reload(true); 
+if( permissionSetName == &quot;CPA_ADM&quot;){ 
 
-	} 	else if(p.pkl_Status__c ==&quot;Saved&quot;){ 
-		p.pkl_Status__c = &quot;Submitted&quot;; 
-		result = sforce.connection.update([p]); 
-alert(result);
-		location.reload(true); 
+
+	var isValidateFlag = sforce.apex.execute(&quot;CPA_ContractInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id});
+
+	if(isValidateFlag == &apos;true&apos;){ 
+
+		if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot; || p.pkl_Status__c == &quot;Request For Termination&quot;){ 
+			p.pkl_Status__c = &quot;Resubmitted&quot;; 
+			result = sforce.connection.update([p]); 
+			location.reload(true); 
+
+		} 	else if(p.pkl_Status__c ==&quot;Saved&quot;){ 
+			p.pkl_Status__c = &quot;Submitted&quot;; 
+			result = sforce.connection.update([p]); 
+	//alert(result);
+			location.reload(true); 
+		} 
+		else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
+			alert(&quot;PWO is already submitted&quot;); 
+		} 
+		else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
+			alert(&quot;PWO can not be Submitted as it is already Delivered&quot;); 
+		}
+		else if(p.pkl_Status__c == &quot;Termination Requested&quot; || p.pkl_Status__c == &quot;Sent For Termination&quot; || p.pkl_Status__c == &quot;Terminated&quot;){ 
+			alert(&quot;PWO can not be submitted as it is Terminated/Sent For Termination/Termination Requested&quot;); 
+		}
+		else	if(p.pkl_Status__c == &quot;Signed&quot;){ 
+			alert(&quot;PWO can not be submitted as it is already Signed&quot;); 
+		}
+		else	if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
+			alert(&quot;PWO can not be submitted as it is already Sent for Signature&quot;); 
+		}
+		else if(p.pkl_Status__c == &quot;Sent For Closure&quot; || p.pkl_Status__c == &quot;Closed&quot;){ 
+			alert(&quot;PWO can not be submitted as it is already Closed/Sent For Closure&quot;); 
+		}
+		else	if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
+			alert(&quot;PWO can not be submitted as it is already Cancelled&quot;); 
+		}
+		else	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
+			alert(&quot;PWO can not be submitted as it is already Accepted&quot;); 
+		}else{
+			alert(&quot;PWO can not be submitted, Concern Administrator&quot;); 
+		}
+
 	} 
-	else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
-		alert(&quot;PWO is already submitted&quot;); 
-	} 
-	else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
-		alert(&quot;PWO can not be Submitted as it is already Delivered&quot;); 
-	}
-	else if(p.pkl_Status__c == &quot;Termination Requested&quot; || p.pkl_Status__c == &quot;Sent For Termination&quot; || p.pkl_Status__c == &quot;Terminated&quot;){ 
-		alert(&quot;PWO can not be submitted as it is Terminated/Sent For Termination/Termination Requested&quot;); 
-	}
-	else	if(p.pkl_Status__c == &quot;Signed&quot;){ 
-		alert(&quot;PWO can not be submitted as it is already Signed&quot;); 
-	}
-	else	if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
-		alert(&quot;PWO can not be submitted as it is already Sent for Signature&quot;); 
-	}
-	else if(p.pkl_Status__c == &quot;Sent For Closure&quot; || p.pkl_Status__c == &quot;Closed&quot;){ 
-		alert(&quot;PWO can not be submitted as it is already Closed/Sent For Closure&quot;); 
-	}
-	else	if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
-		alert(&quot;PWO can not be submitted as it is already Cancelled&quot;); 
-	}
-	else	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
-		alert(&quot;PWO can not be submitted as it is already Accepted&quot;); 
-	}else{
-		alert(&quot;PWO can not be submitted, Concern Administrator&quot;); 
-	}
+	else { 
+	alert(&quot;PWO can not be submitted, as Required fields are missing.&quot;); 
 
-} 
-else { 
-alert(&quot;PWO can not be submitted, as Required fields are missing.&quot;); 
-
+	}
+	
+}else{
+alert(&quot;You are not authorized to perform this action.&quot;);
 }</url>
     </webLinks>
     <webLinks>
@@ -9065,7 +9195,13 @@ p.TNF_Status__c = &quot;{!CPA_project_work_order__c.TNF_Status__c }&quot;;
 
 var isValidateFlag = sforce.apex.execute(&quot;CPA_ContractInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id}); 
 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
+var records1 = result.getArray(&apos;records&apos;); 
+var permissionSetName = records1[0].PermissionSet.Name; 
+//alert(&quot;permissionSetName -&gt;&quot; + permissionSetName); 
 
+if( permissionSetName == &quot;CPA_ADM&quot;){ 
 
 if(isValidateFlag == &apos;true&apos;){ 
 	if(p.TNF_Status__c == &quot;Withhold&quot; || p.TNF_Status__c == &quot;Returned&quot;){ 
@@ -9092,6 +9228,9 @@ if(isValidateFlag == &apos;true&apos;){
 } 
 else { 
 alert(&quot;TNF can not be submitted, Due to Required fields are missing&quot;); 
+}
+}else {
+	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -9102,34 +9241,47 @@ alert(&quot;TNF can not be submitted, Due to Required fields are missing&quot;);
         <masterLabel>Request Termination</masterLabel>
         <openType>onClickJavaScript</openType>
         <protected>false</protected>
-        <url>var p = new sforce.SObject(&apos;CPA_project_work_order__c&apos;); 
-p.id = &quot;{!CPA_project_work_order__c.Id}&quot;; 
-p.pkl_Status__c = &quot;{!CPA_project_work_order__c.pkl_Status__c }&quot;; 
+        <url>var p = new sforce.SObject(&apos;CPA_project_work_order__c&apos;);
+p.id = &quot;{!CPA_project_work_order__c.Id}&quot;;
+p.pkl_Status__c = &quot;{!CPA_project_work_order__c.pkl_Status__c }&quot;;
 var recordType = &apos;PWO&apos;;
-try {
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
-var result = sforce.connection.query(soql);
-var records1 = result.getArray(&apos;records&apos;); 
-var permissionSetName = records1[0].PermissionSet.Name;
+	try {
+		soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+		var result = sforce.connection.query(soql);
+		var records1 = result.getArray(&apos;records&apos;);
+		var permissionSetName = records1[0].PermissionSet.Name;
 
 
 
-if( permissionSetName == &quot;CPA_SMT&quot; || permissionSetName == &quot;CPA_ULPM&quot; ){ 
+		if( permissionSetName == &quot;CPA_SMT&quot; || permissionSetName == &quot;CPA_ULPM&quot; ){
+				
+				
+				
+				result = sforce.connection.query(&quot;select Id,pkl_Status__c from CPA_CR__c where CPA_Project_Work_Order__c = &apos;&quot;+p.id+&quot;&apos; AND pkl_Status__c = &apos;Delivered&apos;&quot;);
 
-if(p.pkl_Status__c!= &apos;Delivered&apos; &amp;&amp; p.pkl_Status__c != &apos;Cancelled&apos; &amp;&amp; p.pkl_Status__c != &apos;Terminated&apos; &amp;&amp; p.pkl_Status__c != &apos;Request For Termination&apos; &amp;&amp; p.pkl_Status__c != &apos;Closed&apos; &amp;&amp; p.pkl_Status__c != &apos;Sent For Closure&apos;){ 
-window.open(&apos;/apex/CPA_PWO_Request_For_Termination?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;); 
-} else{ 
-alert(&quot;Can not Request for Termination,because of PWO is set for Closed/Termination&quot;); 
-} 
-} else{ 
-alert(&quot;Insufficient Privilege&quot;); 
-}
+				var crRecords = result.getArray(&quot;records&quot;);
 
-}catch (e) {
-alert(
-&quot;An unexpected Error has Occurred. Error: \r\n&quot; +
-e
-);
-}</url>
+				if(p.pkl_Status__c == &quot;Delivered&quot; || crRecords.length &gt;0){
+					alert(&apos;You cannot request for termination since the PWO or its associated CRs may be delivered&apos;);
+				}
+				else if(permissionSetName == &quot;CPA_ULPM&quot; &amp;&amp; (p.pkl_Status__c == &apos;Submitted&apos; || p.pkl_Status__c == &apos;Resubmitted&apos;)){
+					alert(&quot;Please contat Supplier Management Team for Termination Request&quot;);
+				}
+				else if( p.pkl_Status__c != &apos;Cancelled&apos; &amp;&amp; p.pkl_Status__c != &apos;Terminated&apos; &amp;&amp; p.pkl_Status__c != &apos;Request For Termination&apos; &amp;&amp; p.pkl_Status__c != &apos;Closed&apos; &amp;&amp; p.pkl_Status__c != &apos;Sent For Closure&apos;){
+					window.open(&apos;/apex/CPA_PWO_Request_For_Termination?id=&apos;+&quot;{!CPA_project_work_order__c.Id}&quot;,&quot;_self&quot;);
+				}
+				else if(p.pkl_Status__c == &apos;Request For Termination&apos;){
+					alert(&quot;Request for Termination is already is process&quot;);
+				}
+				else{
+					alert(&quot;Cannot Request for Termination, because of PWO is set for Closed/Termination&quot;);
+				}
+			} else{
+				alert(&quot;You are not authorized to perform this action.&quot;);
+			}
+
+	}catch (e) {
+		alert(&quot;An unexpected Error has Occurred. Error: \r\n&quot; +e);
+	}</url>
     </webLinks>
 </CustomObject>

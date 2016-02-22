@@ -1,4 +1,4 @@
-global with sharing class CPA_CRInformationController {
+global class CPA_CRInformationController {
  public id crId;
  public CPA_CR__c crRec;
  public String mandatoryStringFlag {get; set;}   
@@ -22,13 +22,17 @@ global with sharing class CPA_CRInformationController {
         mandatoryStringFlag = null;
         RequiredFieldMap = new Map<String,String>();
 
-        crRec = [select id,txt_Accenture_Project_Manager__c , isValidated__c ,mpkl_Change_Record_history__c ,Region_impacted__c  , txt_Change_Record_number__c , dt_CR_End_date__c , dt_CR_Start_Date__c , pkl_Currency__c , dt_Date_raised__c , num_Estimated_Man_days_of_CR__c , pec_Estimated_Off_shore__c , pec_Estimated_On_shore__c , num_Estimated_Value_of_CR__c , pec_Expense__c , num_Expense_charges_of_CR__c , pkl_Phase_change_record_raised__c , pkl_Project_Phases__c , PWO_number__c , pkl_Status__c , num_Target_Blend_Rate__c , txt_Title_of_change__c , num_Total_charge_of_CR__c , lkp_Unilever_budget_approver__c , lkp_Unilever_content_approver__c , txta_Unilever_Project_Name__c , txt_Unilever_Reference__c , pec_Variance__c , num_Varied_Target_Blend_Rate__c , txt_Other_Currency__c , txt_Other_Phase_change_record_raised__c , txt_Other_Project_Phases__c  from CPA_CR__c where id =:crRecId];
+        crRec = [select id,chk_Contract_Attached__c,chk_Contract_Excel_Attached__c,txt_Accenture_Project_Manager__c , isValidated__c ,mpkl_Change_Record_history__c ,Region_impacted__c  , txt_Change_Record_number__c , dt_CR_End_date__c , dt_CR_Start_Date__c , pkl_Currency__c , dt_Date_raised__c , num_Estimated_Man_days_of_CR__c , pec_Estimated_Off_shore__c , pec_Estimated_On_shore__c , num_Estimated_Value_of_CR__c , pec_Expense__c , num_Expense_charges_of_CR__c , pkl_Phase_change_record_raised__c , pkl_Project_Phases__c , PWO_number__c , pkl_Status__c , num_Target_Blend_Rate__c , txt_Title_of_change__c , num_Total_charge_of_CR__c , lkp_Unilever_budget_approver__c , lkp_Unilever_content_approver__c , txta_Unilever_Project_Name__c , txt_Unilever_Reference__c , pec_Variance__c , num_Varied_Target_Blend_Rate__c , txt_Other_Currency__c , txt_Other_Phase_change_record_raised__c , txt_Other_Project_Phases__c  from CPA_CR__c where id =:crRecId];
                 
         CPA_Status_Msg__c customSettingStatusMsg = CPA_Status_Msg__c.getInstance(crRec.pkl_Status__c);
         if(customSettingStatusMsg.CR_Status_Msg__c != null && callFromVF){
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.CR_Status_Msg__c));
         }
         if((crRec.pkl_Status__c == 'Saved')|| !callFromVF){
+            if(crRec.chk_Contract_Excel_Attached__c  != true)  
+                 RequiredFieldMap.put( 'Please attach Commercial CSV , with filename prefix with Commercial' ,ConstantsForContractingAppClasses.MANDATORY);
+             if(crRec.chk_Contract_Attached__c  != true)
+                 RequiredFieldMap.put( 'Please attach Contract PDF , with filename prefix with CR' ,ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txt_Accenture_Project_Manager__c  == null)  
                  RequiredFieldMap.put( 'Accenture Project Manager' ,ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.mpkl_Change_Record_history__c  == null)  

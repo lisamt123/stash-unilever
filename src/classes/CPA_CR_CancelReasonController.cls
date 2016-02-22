@@ -1,4 +1,4 @@
-Public with sharing Class CPA_CR_CancelReasonController{
+Public Class CPA_CR_CancelReasonController{
     Public Id crId;
     Public CPA_CR__c crRec{set;get;}
     Public String strReason{set;get;}

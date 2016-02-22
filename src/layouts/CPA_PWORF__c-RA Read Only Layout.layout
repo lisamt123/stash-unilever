@@ -30,21 +30,22 @@
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>auto_PWORF_ID__c</field>
+                <field>VDM_Name__c</field>
             </layoutItems>
             <layoutItems>
                 <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
-                <field>pkl_Status__c</field>
+                <field>auto_PWORF_ID__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Required</behavior>
+                <field>Name</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_Clarity_ID__c</field>
+                <field>pkl_Cost_Centre_Details__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -52,15 +53,14 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
+                <field>txt_ICC_Number__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
                 <field>pkl_Landscape__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txta_Title__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>txt_Project_Repository_Location__c</field>
+                <emptySpace>true</emptySpace>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -68,46 +68,37 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txta_Project_Description__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>pkl_Region__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Readonly</behavior>
-                <field>VDM_Name__c</field>
+                <field>txt_Clarity_ID__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>dat_Submitted_Date__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>dt_Date_Of_Request__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Latest_PWO_Status__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Name</field>
-            </layoutItems>
-            <layoutItems>
-                <emptySpace>true</emptySpace>
-            </layoutItems>
             <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>OwnerId</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Edit</behavior>
+                <field>lkp_Project_requestor__c</field>
             </layoutItems>
             <layoutItems>
-                <emptySpace>true</emptySpace>
+                <behavior>Readonly</behavior>
+                <field>pkl_Status__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>txt_ICC_Number__c</field>
-            </layoutItems>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>pkl_Cost_Centre_Details__c</field>
+                <field>txta_Title__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -122,16 +113,26 @@
                 <field>txta_Other_Request_Type__c</field>
             </layoutItems>
             <layoutItems>
-                <behavior>Edit</behavior>
-                <field>pkl_Business_Area__c</field>
-            </layoutItems>
-            <layoutItems>
                 <behavior>Readonly</behavior>
                 <field>RecordTypeId</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>dt_Date_Of_Request__c</field>
+                <field>txt_Project_Repository_Location__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>pkl_Region__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txta_Project_Description__c</field>
+            </layoutItems>
+            <layoutItems>
+                <emptySpace>true</emptySpace>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>
@@ -140,11 +141,15 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>Project Approver</label>
+        <label>Key Project Details</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>lkp_Project_requestor__c</field>
+                <field>pkl_Business_Area__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>lkp_Unilever_content_approver__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -154,17 +159,12 @@
                 <behavior>Edit</behavior>
                 <field>lkp_Unilever_Finance_BP_Contact__c</field>
             </layoutItems>
-        </layoutColumns>
-        <layoutColumns>
-            <layoutItems>
-                <behavior>Edit</behavior>
-                <field>lkp_Unilever_content_approver__c</field>
-            </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>lkp_Unilever_project_manager__c</field>
             </layoutItems>
         </layoutColumns>
+        <layoutColumns/>
         <style>TwoColumnsLeftToRight</style>
     </layoutSections>
     <layoutSections>
@@ -206,7 +206,7 @@
         <customLabel>true</customLabel>
         <detailHeading>true</detailHeading>
         <editHeading>true</editHeading>
-        <label>SLA Breach</label>
+        <label>PWORF Milestone Dates</label>
         <layoutColumns>
             <layoutItems>
                 <behavior>Readonly</behavior>
@@ -256,6 +256,10 @@
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>dat_Indicative_timeline_End_date__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>txt_Internal_PWO_ID__c</field>
             </layoutItems>
         </layoutColumns>
         <style>TwoColumnsLeftToRight</style>

@@ -128,19 +128,6 @@
         <type>Checkbox</type>
     </fields>
     <fields>
-        <fullName>PWO_ID__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <externalId>false</externalId>
-        <label>PWO ID</label>
-        <referenceTo>CPA_PWO__c</referenceTo>
-        <relationshipLabel>CR</relationshipLabel>
-        <relationshipName>CR</relationshipName>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
         <fullName>PWO_number__c</fullName>
         <description>PWO ID</description>
         <externalId>false</externalId>
@@ -183,6 +170,33 @@
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>auto_Internal_CR_ID__c</fullName>
+        <displayFormat>CR-{00000}</displayFormat>
+        <externalId>false</externalId>
+        <label>Internal CR ID</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>chk_Contract_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Contract Attached</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>chk_Contract_Excel_Attached__c</fullName>
+        <defaultValue>false</defaultValue>
+        <externalId>false</externalId>
+        <label>Contract Excel Attached</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
     </fields>
     <fields>
         <fullName>chk_isStandalone_CR__c</fullName>
@@ -936,8 +950,11 @@
     <label>CR</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CPA_Project_Work_Order__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
+        <language>en_US</language>
     </listViews>
     <listViews>
         <fullName>CAP_ULPM_CR</fullName>
@@ -1847,6 +1864,7 @@
         <searchResultsAdditionalFields>fml_Pworf_Clarity_ID__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>pkl_Status__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsCustomButtons>New_CR</searchResultsCustomButtons>
     </searchLayouts>
     <sharingModel>Private</sharingModel>
     <validationRules>
@@ -1855,8 +1873,6 @@
         <errorConditionFormula>AND( ISNEW() ,RecordType.DeveloperName !=&apos;CPA_Standalone_CR&apos; ,OR( 
 
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Cancelled&quot;), 
-ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent for Signature&quot;), 
-ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Signed&quot;), 
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Terminated&quot;), 
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Sent For Termination&quot;), 
 ISPICKVAL(CPA_Project_Work_Order__r.pkl_Status__c , &quot;Closed&quot;),
@@ -1915,25 +1931,39 @@ var permissionSetName = records1[0].PermissionSet.Name;
 
 //alert(p.pkl_Status__c);
 if( permissionSetName == &quot;CPA_ADM&quot;){ 
-alert(&quot;Insufficient Privilege&quot;); 
-} 
-else{ 
-if(p.pkl_Status__c == &quot;Signed&quot; &amp;&amp; (pwoRecords[0].pkl_Status__c != &quot;Terminated&quot; || pwoRecords[0].pkl_Status__c != &quot;Sent For Termination&quot; || pwoRecords[0].pkl_Status__c != &quot;Request For Termination&quot;)){ 
-p.pkl_Status__c = &quot;Delivered&quot;;	
-p.dat_Actual_End_Date__c = today; 
-result = sforce.connection.update([p]); 
-location.reload(true); 
-} 
-else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
-alert(&quot;CR is already Delivered&quot;); 
+ 
+	if(p.pkl_Status__c == &quot;Signed&quot; &amp;&amp; (pwoRecords[0].pkl_Status__c != &quot;Terminated&quot; || pwoRecords[0].pkl_Status__c != &quot;Sent For Termination&quot; || pwoRecords[0].pkl_Status__c != &quot;Request For Termination&quot;)){ 
+	p.pkl_Status__c = &quot;Delivered&quot;;	
+	p.dat_Actual_End_Date__c = today; 
+	result = sforce.connection.update([p]); 
+	location.reload(true); 
+	} 
+	else if(p.pkl_Status__c == &quot;Delivered&quot;){ 
+	alert(&quot;CR is already Delivered&quot;); 
+	}
+	else if(p.pkl_Status__c != &quot;Signed&quot;){ 
+	alert(&quot;CR can not be Delivered as it is not yet signed&quot;); 
+	} 
+	else { 
+	alert(&quot;CR can not be Delivered, Contact Administrator&quot;); 
+	} 
 }
-else if(p.pkl_Status__c != &quot;Signed&quot;){ 
-alert(&quot;CR can not be Delivered as it is not yet signed&quot;); 
-} 
-else { 
-alert(&quot;CR can not be Delivered, Contact Administrator&quot;); 
-} 
+else{
+alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
+    </webLinks>
+    <webLinks>
+        <fullName>New_CR</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New CR</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/CreatePWO?id={!CPA_project_work_order__c.Id}</url>
     </webLinks>
     <webLinks>
         <fullName>Submit_for_Vendor</fullName>
@@ -1980,15 +2010,15 @@ if(permissionSetName == &quot;CPA_ADM&quot;){
 		else{ 
 			p.pkl_Status__c = &quot;Submitted&quot;; 
 			result = sforce.connection.update([p]); 
-	alert(result);
+	//alert(result);
 			location.reload(true); 
 		} 
 	} 
 	else { 
-		alert(&quot;CR can not be submitted, Due to Required fields are missing&quot;); 
+		alert(&quot;CR can not be submitted, as required fields are missing&quot;); 
 	}
 }else{
-	alert(&quot;Insufficient Privilege&quot;);
+	alert(&quot;You are not authorized to perform this action.&quot;);
 }</url>
     </webLinks>
     <webLinks>
@@ -2024,7 +2054,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		window.open(&apos;/apex/CPA_CR_Cancel_Reason?id=&apos;+&quot;{!CPA_CR__c.Id}&quot;,&quot;_self&quot;); 
 	} 
 } else{ 
-alert(&quot;Insufficient Privilege&quot;); 
+alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -2062,7 +2092,7 @@ try {
 			alert(&quot;Can not Return as LOI is already Returned&quot;); 			
 		}
 	}else{
-			alert(&quot;Insufficient Privilege&quot;);  
+			alert(&quot;You are not authorized to perform this action.&quot;);  
 	}
 	
 }catch (e) { 
@@ -2097,7 +2127,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 	if(p.pkl_Status__c == &quot;Accepted&quot;){ 
 		p.pkl_Status__c = &quot;Sent for Signature&quot;;	
 		result = sforce.connection.update([p]); 
-alert(result);
+//alert(result);
 		location.reload(true); 
 	}
 	else if(p.pkl_Status__c == &quot;Sent for Signature&quot;){ 
@@ -2107,7 +2137,7 @@ alert(result);
 		alert(&quot;CR Can not be Sent for Signature, Concern Administrator&quot;); 
 	} 
 }else{ 
-	alert(&quot;Insufficient Privilege&quot;); 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -2145,7 +2175,7 @@ if( permissionSetName == &quot;CPA_SMT&quot;){
 		alert(&quot;CR Can not be Signed, Concern Administrator&quot;); 
 	} 
 }else{ 
-	alert(&quot;Insufficient Privilege&quot;); 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
 </CustomObject>

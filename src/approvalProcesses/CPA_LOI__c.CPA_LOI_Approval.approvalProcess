@@ -88,6 +88,10 @@
             <name>CPA_LOI_Submitted_Date</name>
             <type>FieldUpdate</type>
         </action>
+        <action>
+            <name>CPA_LOI_Submitted_recordtype</name>
+            <type>FieldUpdate</type>
+        </action>
     </initialSubmissionActions>
     <label>CPA LOI Approval</label>
     <recallActions>

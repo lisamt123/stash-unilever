@@ -217,6 +217,16 @@
         <reevaluateOnChange>true</reevaluateOnChange>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CAP_Owner_Update_to_SMT</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CPA_SMT</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CAP Owner Update to SMT</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CAP_Owner_Update_to_ULPM</fullName>
         <field>OwnerId</field>
         <lookupValue>CAP_ULPM</lookupValue>
@@ -332,6 +342,16 @@
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
+        <fullName>CPA_Owner_Update_to_VDM</fullName>
+        <field>OwnerId</field>
+        <lookupValue>CAP_VDM_Queue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>CPA Owner Update to VDM</name>
+        <notifyAssignee>true</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
         <fullName>CPA_Status_Saved</fullName>
         <description>When HLE Request is Cloned/Created, STATUS is kept Saved.</description>
         <field>pkl_Status__c</field>
@@ -339,6 +359,16 @@
         <name>CPA Status Saved</name>
         <notifyAssignee>false</notifyAssignee>
         <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Date_Raised_field_update</fullName>
+        <description>will set Date Raised field with Created date.</description>
+        <field>dt_Date_raised__c</field>
+        <formula>Today()</formula>
+        <name>Date Raised field update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
         <protected>false</protected>
     </fieldUpdates>
     <fieldUpdates>
@@ -495,6 +525,10 @@
         </actions>
         <actions>
             <name>CPA_Status_Saved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Date_Raised_field_update</name>
             <type>FieldUpdate</type>
         </actions>
         <active>true</active>

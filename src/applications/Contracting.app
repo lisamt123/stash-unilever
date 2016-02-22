@@ -10,4 +10,5 @@
     <tab>CPA_CR__c</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
+    <tab>Attendee__c</tab>
 </CustomApplication>

@@ -31,7 +31,7 @@
                 <type>FieldUpdate</type>
             </action>
             <action>
-                <name>CAP_Owner_Update_to_ULPM</name>
+                <name>CAP_Owner_Update_to_SMT</name>
                 <type>FieldUpdate</type>
             </action>
         </approvalActions>
@@ -50,10 +50,6 @@
                 <type>FieldUpdate</type>
             </action>
             <action>
-                <name>CAP_HLE_Request_Owner_Update_to_ULPM</name>
-                <type>FieldUpdate</type>
-            </action>
-            <action>
                 <name>CAP_HLE_Request_returned</name>
                 <type>FieldUpdate</type>
             </action>
@@ -61,10 +57,21 @@
                 <name>CAP_HLE_Request_returned_by_VDM</name>
                 <type>Alert</type>
             </action>
+            <action>
+                <name>CAP_Owner_Update_to_SMT</name>
+                <type>FieldUpdate</type>
+            </action>
         </rejectionActions>
     </approvalStep>
     <emailTemplate>CPA_Email_Template/CPA_HLE_Request_Submitted_by_SMT</emailTemplate>
     <enableMobileDeviceAccess>true</enableMobileDeviceAccess>
+    <entryCriteria>
+        <criteriaItems>
+            <field>CPA_HLE_Request__c.pkl_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted,Resubmitted</value>
+        </criteriaItems>
+    </entryCriteria>
     <finalApprovalRecordLock>false</finalApprovalRecordLock>
     <finalRejectionActions>
         <action>
@@ -79,7 +86,7 @@
             <type>Alert</type>
         </action>
         <action>
-            <name>CAP_HLE_Req_Owner_Update_to_VDM</name>
+            <name>CPA_Owner_Update_to_VDM</name>
             <type>FieldUpdate</type>
         </action>
     </initialSubmissionActions>

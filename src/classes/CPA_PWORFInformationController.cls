@@ -89,8 +89,8 @@ global with sharing class CPA_PWORFInformationController {
                     objectMap.put('Application infrastructure' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.txta_Business_critical_milestones__c ==null)
                     objectMap.put('Business critical milestones' ,ConstantsForContractingAppClasses.MANDATORY);
-                //if(pworfRec.Expected_Business_Go_live_date__c  <= date.Today())
-                    //objectMap.put('Expected Business Go live date' ,ConstantsForContractingAppClasses.MANDATORY);
+                if(pworfRec.Expected_Business_Go_live_date__c  == null)
+                    objectMap.put('Expected Business Go live date' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.dt_Expected_go_live_date__c  == null)
                     objectMap.put('Expected go-live date' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.dt_Expected_start_date__c == null)
@@ -100,7 +100,7 @@ global with sharing class CPA_PWORFInformationController {
                 if(pworfRec.Expected_Start_Date_for_Plan_and_Analyse__c == null)
                     objectMap.put('Expected Start Date for Plan and Analyse' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Impact_if_expected_business_go_live_date__c == null)
-                    objectMap.put('Impact if expected business go live date' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Impact if go live date not met' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Planning_sessions_expected__c ==null)
                     objectMap.put('Planning sessions expected' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Project_Dependencies__c ==null)
@@ -110,7 +110,7 @@ global with sharing class CPA_PWORFInformationController {
                 if(pworfRec.Travel_Arrangements__c ==null)
                     objectMap.put('Travel Arrangements' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Who_will_support_this_service_once_live__c ==null)
-                    objectMap.put('Who will support this service once live?' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Post Go-Live Support Service' ,ConstantsForContractingAppClasses.MANDATORY);
                 if( pworfRec.Does_this_project_change_Core_Business_M__c =='Select' || pworfRec.Does_this_project_change_Core_Business_M__c ==null)   
                     objectMap.put('Does this project change Core Business M' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Does_this_Project_involve_Unilever_conf__c =='Select' || pworfRec.Does_this_Project_involve_Unilever_conf__c ==null) 
@@ -128,13 +128,13 @@ global with sharing class CPA_PWORFInformationController {
                 if(pworfRec.Has_W_R_been_discussed_with_Supplier_Per__c =='Select' || pworfRec.Has_W_R_been_discussed_with_Supplier_Per__c ==null)    
                     objectMap.put('Has W@R been discussed with Supplier Per' ,ConstantsForContractingAppClasses.MANDATORY);        
                 if(pworfRec.Interface_to_the_system__c  =='Select' || pworfRec.Interface_to_the_system__c  ==null)    
-                    objectMap.put('Interface to the system' ,ConstantsForContractingAppClasses.MANDATORY);
+                    objectMap.put('Interface Introduced/Changed?' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.Interface_to_the_system__c  =='Yes' && pworfRec.Interface_to_the_system_Detail__c == null )    
                     objectMap.put('Interface to the system Detail' ,'Mandatory, If there is Interface to the system');
                 if(pworfRec.Is_Project__c  =='Select' || pworfRec.Is_Project__c  ==null)    
-                    objectMap.put('Is Project Require Data Specific Testing' ,ConstantsForContractingAppClasses.MANDATORY);    
+                    objectMap.put('Data-specific testing required?' ,ConstantsForContractingAppClasses.MANDATORY);    
                 if(pworfRec.Is_Project_Require__c   =='Select' || pworfRec.Is_Project_Require__c   == null )   
-                    objectMap.put('Is Project Require Performance Testing' ,ConstantsForContractingAppClasses.MANDATORY);  
+                    objectMap.put('Application Performance Testing Needed' ,ConstantsForContractingAppClasses.MANDATORY);  
                 if(pworfRec.Is_this_a_new_or_re_worked_Integration_R__c =='Select' || pworfRec.Is_this_a_new_or_re_worked_Integration_R__c ==null)   
                     objectMap.put('Is this a new or re-worked Integration R' ,ConstantsForContractingAppClasses.MANDATORY);
                 if(pworfRec.pkl_Is_this_Project_Invasive_in_nature__c  =='Select' || pworfRec.pkl_Is_this_Project_Invasive_in_nature__c  ==null)    
@@ -154,7 +154,7 @@ global with sharing class CPA_PWORFInformationController {
                 if(pworfRec.pkl_Project_Scale__c  =='Select' || pworfRec.pkl_Project_Scale__c  ==null) 
                     objectMap.put('Project Scale' ,ConstantsForContractingAppClasses.MANDATORY);    
                 if(pworfRec.Role_or_System_Authorisation__c =='Select' || pworfRec.Role_or_System_Authorisation__c ==null )   
-                    objectMap.put('Role or System Authorisation' ,ConstantsForContractingAppClasses.MANDATORY);        
+                    objectMap.put('Role/Authorisation Introduced/Changed?' ,ConstantsForContractingAppClasses.MANDATORY);        
                 if(pworfRec.Role_or_System_Authorisation__c  =='Yes'&& pworfRec.txta_Role_or_System_Authorisation_detail__c  == null) 
                     objectMap.put('Role or System Authorisation detail' ,'Mandatory, if the project has Role or System Authorization'); 
                 if(pworfRec.pkl_Is_this_Project_Invasive_in_nature__c =='Yes' && pworfRec.txta_Project_Invasive_in_nature__c == null) 
@@ -164,17 +164,33 @@ global with sharing class CPA_PWORFInformationController {
                 //if(pworfRec.dt_Expected_go_live_date__c <= date.Today()) 
                     //objectMap.put('Expected go-live date', 'Date should be greater than current date');
                 if(pworfRec.Will_this_project_require_an_LOI_for_Wor__c  == 'Yes'){
-                    if(pworfRec.How_many_man_days_do_you_think_you_requi__c  == null) objectMap.put('Man Days' ,'Mandatory,If this Project require LOI');
+                    if(pworfRec.How_many_man_days_do_you_think_you_requi__c  == null) objectMap.put('Man Days required for W@R' ,'Mandatory,If this Project require LOI');
                     if(pworfRec.When_do_you_require_the_Work_at_Risk_to__c  == null) objectMap.put('Work at Risk Start Date' ,'Mandatory,If this Project require LOI');
-                    if(pworfRec.txta_Why_is_Work_at_risk_required__c  == null) objectMap.put('Why is Work at risk required?' ,'Mandatory,If this Project require LOI');
+                    if(pworfRec.txta_Why_is_Work_at_risk_required__c  == null) objectMap.put('Why is Work at Risk required?' ,'Mandatory,If this Project require LOI');
                     if(pworfRec.txta_What_specific_roles_do_you_require__c  == null) objectMap.put('What specific roles do you require?' ,'Mandatory,If this Project require LOI');
                     if(pworfRec.txta_ITC_Resources_Utilisation__c  == null) objectMap.put('ITC Resources Utilisation' ,'Mandatory,If this Project require LOI');
                     if(pworfRec.Which_BP_Innovation_director_has_approve__c  == null) objectMap.put('Which BP/Innovation director has approve' ,'Mandatory,If this Project require LOI');
                     if(pworfRec.pkl_Phases_covered_by_the_WAR__c  == null && pworfRec.pkl_Phases_covered_by_the_WAR__c  == 'Select') objectMap.put('Phases covered by the WAR' ,'Mandatory,If this Project require LOI');
                 }
-                
-                if(pworfRec.dt_Expected_go_live_date__c  < pworfRec.dt_Expected_start_date__c ){
-                   objectMap.put('Expected go-live date','Expected go-live date canot be before Expected start date');
+                if(pworfRec.dt_Expected_go_live_date__c  != null && pworfRec.dt_Expected_go_live_date__c  < pworfRec.dt_Expected_start_date__c )
+                       objectMap.put('Expected go-live date','Expected go-live date canot be before Expected start date');
+                Boolean user_has_permission = false;                
+                List<PermissionSetAssignment> lstcurrentUserPerSet =    [SELECT Id, PermissionSet.Name,AssigneeId FROM PermissionSetAssignment WHERE AssigneeId = :Userinfo.getUserId() ];
+                system.debug('##lstcurrentUserPerSet' + lstcurrentUserPerSet);
+                for ( PermissionSetAssignment psa : lstcurrentUserPerSet ) {
+                    System.debug('##psa.PermissionSet.Name' + psa.PermissionSet.Name);
+                    string permission = psa.PermissionSet.Name;
+                    if (permission.CONTAINS('CPA_SMT')){
+                        user_has_permission = true;
+                        break;
+                    }
+                }
+                System.debug('user_has_permission' +user_has_permission);
+                if(!user_has_permission){                    
+                    if(pworfRec.dt_Expected_start_date__c  != null && pworfRec.dt_Expected_start_date__c  < date.today() )
+                       objectMap.put('Expected start date','Expected start date canot be past date');
+                    if(pworfRec.dt_Expected_go_live_date__c  != null && pworfRec.dt_Expected_go_live_date__c  < date.today() )
+                       objectMap.put('Expected go-live date','Expected go-live date canot be past date');                  
                 }
             }else if(pworfRec.RecordTypeid == customSettingPworfRT.get('RA').Record_type_id__c ){
                 if(pworfRec.txt_Role_Level_1_13__c == null)

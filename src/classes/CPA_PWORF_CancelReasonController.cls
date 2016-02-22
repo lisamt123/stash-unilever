@@ -33,7 +33,7 @@ public with sharing Class CPA_PWORF_CancelReasonController{
             }
         }
         if(pwoIdList.size() > 0){
-            crRec = [select id,ltxta_Reason_for_Cancellation__c,pkl_Status__c,PWO_ID__c  from CPA_CR__c where PWO_ID__c =:pwoIdList];
+            crRec = [select id,ltxta_Reason_for_Cancellation__c,pkl_Status__c,CPA_Project_Work_Order__c  from CPA_CR__c where CPA_Project_Work_Order__c =:pwoIdList];
         }
         
         if(pwoRec!=null && pwoRec.size() > 0)

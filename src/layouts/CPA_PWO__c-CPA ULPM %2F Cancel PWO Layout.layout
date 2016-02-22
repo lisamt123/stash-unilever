@@ -266,16 +266,6 @@
     <relatedLists>
         <excludeButtons>New</excludeButtons>
         <fields>NAME</fields>
-        <fields>ltxta_Comments__c</fields>
-        <fields>dt_CR_Start_Date__c</fields>
-        <fields>dt_CR_End_date__c</fields>
-        <fields>pkl_Status__c</fields>
-        <fields>dat_Submitted_Date__c</fields>
-        <relatedList>CPA_CR__c.PWO_ID__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <excludeButtons>New</excludeButtons>
-        <fields>NAME</fields>
         <fields>Comments__c</fields>
         <fields>pkl_Status__c</fields>
         <fields>dat_Submitted_Date__c</fields>

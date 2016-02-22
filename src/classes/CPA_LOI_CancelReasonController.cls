@@ -1,4 +1,4 @@
-public with sharing class CPA_LOI_CancelReasonController {
+public class CPA_LOI_CancelReasonController {
 
     Public Id loiId;
     Public CPA_LOI__c loiRec{set;get;}

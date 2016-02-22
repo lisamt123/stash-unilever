@@ -30,10 +30,6 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
-        <apexClass>CPA_HLERequestInformationController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
         <apexClass>CPA_HLERequest_TriggerUtil</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -332,11 +328,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>CPA_CR__c.PWO_ID__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>CPA_CR__c.PWO_number__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -344,6 +335,21 @@
         <editable>true</editable>
         <field>CPA_CR__c.Region_impacted__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_CR__c.auto_Internal_CR_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_CR__c.chk_Contract_Attached__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_CR__c.chk_Contract_Excel_Attached__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -941,6 +947,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_HLE_Request__c.txt_Other_Project_funding_Source__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CPA_HLE_Request__c.txt_Project_description_specification__c</field>
         <readable>true</readable>
@@ -956,9 +967,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_Request_ID__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1156,6 +1167,26 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.auto_Internal_LOI_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.chk_Contract_Attached__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.cur_Previously_agreed_amounts_in_Er_val__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.cur_Total_value_in_Euro_being_requested__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CPA_LOI__c.dat_Accepted_Date__c</field>
         <readable>true</readable>
@@ -1241,6 +1272,21 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.num_If_applicable_specify_amt_euro__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.num_Previously_agreed_amounts_in_man_day__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.num_Total_number_of_man_days_requested__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CPA_LOI__c.num_Total_value_in_being_requested_for__c</field>
         <readable>true</readable>
@@ -1281,6 +1327,11 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.txt_Other_Phases_Covered_by_W_R__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CPA_LOI__c.txt_PWO_number__c</field>
         <readable>true</readable>
@@ -1294,6 +1345,11 @@
         <editable>true</editable>
         <field>CPA_LOI__c.txt_Unilever_Clarity_ID__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.txt_Vendor_LOI_ID__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1439,6 +1495,16 @@
         <editable>true</editable>
         <field>CPA_PWORF__c.Key_Contacts__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF__c.LatestPWOID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF__c.Latest_PWO_Status__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -1954,6 +2020,11 @@
         <editable>true</editable>
         <field>CPA_PWORF__c.txta_Project_Require_Performance_Testing__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_PWORF__c.txta_Reason_for_Return__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -2737,12 +2808,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CPA_project_work_order__c.chk_CNF_Contract_Attached__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CPA_project_work_order__c.chk_Excel_Attached__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CPA_project_work_order__c.chk_First_PWO__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CPA_project_work_order__c.chk_PDF_Attached__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_project_work_order__c.chk_TNF_Contract_Attached__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -3460,6 +3546,11 @@
         <field>CPA_project_work_order__c.txta_TNF_Reason_for_Return__c</field>
         <readable>false</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_project_work_order__c.txta_reason_for_additiona_PWO__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
     <layoutAssignments>
         <layout>CAP_User_Defined_Attribute__c-User Defined Attribute Layout</layout>
     </layoutAssignments>
@@ -3510,10 +3601,14 @@
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CPA_LOI__c-ADM LOI without Mandatory fields</layout>
         <recordType>CPA_LOI__c.LOI_Other</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_LOI__c-LOI Layout without mandatory fields</layout>
+        <recordType>CPA_LOI__c.LOI_Submitted</recordType>
     </layoutAssignments>
     <layoutAssignments>
         <layout>CPA_LOI__c-ULPM LOI without Mandatory Fields</layout>
@@ -3871,6 +3966,11 @@
         <personAccountDefault>true</personAccountDefault>
         <recordType>CPA_LOI__c.LOI_Other</recordType>
         <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <default>false</default>
+        <recordType>CPA_LOI__c.LOI_Submitted</recordType>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <default>true</default>

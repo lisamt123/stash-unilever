@@ -1,4 +1,4 @@
-trigger CRTrigger on CPA_CR__c (before insert, after insert, before update, after update) {
+trigger CRTrigger on CPA_CR__c (before insert, after insert, before update, after update, before Delete) {
 
     if(Trigger.isUpdate && Trigger.isBefore){ //for before update trigger
         
@@ -22,8 +22,14 @@ trigger CRTrigger on CPA_CR__c (before insert, after insert, before update, afte
        CPA_CR_TriggerUtil.internalCRID(trigger.new);
 
     }
-    /*if(Trigger.isInsert && Trigger.isAfter){ //for after insert trigger
-
-    }*/
+    if(Trigger.isInsert && Trigger.isAfter){ //for after insert trigger
+        CPA_CR_TriggerUtil.newCR(trigger.new);
+    }
+    
+    if(Trigger.isDelete && Trigger.isBefore){ //for before delete trigger
+        CPA_CR_TriggerUtil.DOntDeleteCR(trigger.old);
+    
+    }
+    
     
 }

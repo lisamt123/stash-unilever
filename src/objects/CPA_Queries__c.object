@@ -70,7 +70,7 @@
         <fullName>CPA_Project_Work_Order__c</fullName>
         <deleteConstraint>SetNull</deleteConstraint>
         <externalId>false</externalId>
-        <label>CPA Project Work Order</label>
+        <label>PWO Query</label>
         <referenceTo>CPA_project_work_order__c</referenceTo>
         <relationshipLabel>Queries</relationshipLabel>
         <relationshipName>Queries</relationshipName>
@@ -193,7 +193,7 @@
         <deleteConstraint>SetNull</deleteConstraint>
         <description>This captures queries related to PWO contract.</description>
         <externalId>false</externalId>
-        <label>PWO Query</label>
+        <label>PWO old Query</label>
         <referenceTo>CPA_PWO__c</referenceTo>
         <relationshipLabel>Queries</relationshipLabel>
         <relationshipName>PWOQueries</relationshipName>
@@ -204,7 +204,7 @@
     <fields>
         <fullName>PWO_ID__c</fullName>
         <externalId>false</externalId>
-        <formula>LookupPWO_Query__r.Name</formula>
+        <formula>CPA_Project_Work_Order__r.Name</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>PWO ID</label>
         <required>false</required>
@@ -280,6 +280,10 @@
             </picklistValues>
             <picklistValues>
                 <fullName>Request for Cancellation</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Request to Withhold</fullName>
                 <default>false</default>
             </picklistValues>
             <sorted>false</sorted>

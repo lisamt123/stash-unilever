@@ -6,7 +6,7 @@
     </applicationVisibilities>
     <classAccesses>
         <apexClass>CAP_SLA1Check</apexClass>
-        <enabled>false</enabled>
+        <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_AttchemntUnit</apexClass>
@@ -26,10 +26,6 @@
     </classAccesses>
     <classAccesses>
         <apexClass>CPA_HLERequInformationController</apexClass>
-        <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
-        <apexClass>CPA_HLERequestInformationController</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
@@ -330,11 +326,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
-        <field>CPA_CR__c.PWO_ID__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>false</editable>
         <field>CPA_CR__c.PWO_number__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -342,6 +333,21 @@
         <editable>false</editable>
         <field>CPA_CR__c.Region_impacted__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_CR__c.auto_Internal_CR_ID__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_CR__c.chk_Contract_Attached__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_CR__c.chk_Contract_Excel_Attached__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -614,7 +620,7 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.Estimate_Type__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -629,7 +635,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.HLE_Proposed_high_level_plan_timelines__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -684,7 +690,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.dat_HLE_Request_Answered_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -709,12 +715,12 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.dt_HLE_Date_PWORF_required__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.dt_HLE_Preparation_date__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -734,7 +740,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.eml_HLE_PB_Email__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -764,17 +770,17 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.num_BPE_Effort_in_man_days__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.num_HLE_Estimated_Accenture_charge__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.num_HLE_Estimated_man_days__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -794,7 +800,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.ph_HLE_PB_Contact_No__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -844,27 +850,27 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_BPE_Accenture_Demand_ID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_BPE_Accenture_Project_Manager__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_BPE_Key_assumptions__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_BPE_Title__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_BPE_Unilever_Demand_ID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -879,57 +885,57 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_HLE_Accenture_Area__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_HLE_Accenture_estimated_project_char__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_HLE_Accenture_reference__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_HLE_Assumptions_Risks_Qualifying__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_HLE_Commercial_caveats__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_HLE_Next_steps__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_HLE_PB_Name__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_HLE_Project_charging_mechanism__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_HLE_Scope__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_HLE_Skill_Resources_Blend_rate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_HLE_Solution_overview_approach__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -937,6 +943,11 @@
         <editable>true</editable>
         <field>CPA_HLE_Request__c.txt_NA_Notes__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_HLE_Request__c.txt_Other_Project_funding_Source__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -954,7 +965,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_HLE_Request__c.txt_Request_ID__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1139,9 +1150,9 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CPA_LOI__c.Comments__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -1151,6 +1162,26 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_LOI__c.Total_Number_of_Man_days_being_requested__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.auto_Internal_LOI_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.chk_Contract_Attached__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.cur_Previously_agreed_amounts_in_Er_val__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.cur_Total_value_in_Euro_being_requested__c</field>
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1239,6 +1270,21 @@
         <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.num_If_applicable_specify_amt_euro__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.num_Previously_agreed_amounts_in_man_day__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_LOI__c.num_Total_number_of_man_days_requested__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>CPA_LOI__c.num_Total_value_in_being_requested_for__c</field>
         <readable>true</readable>
@@ -1280,6 +1326,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CPA_LOI__c.txt_Other_Phases_Covered_by_W_R__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CPA_LOI__c.txt_PWO_number__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -1291,6 +1342,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CPA_LOI__c.txt_Unilever_Clarity_ID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_LOI__c.txt_Vendor_LOI_ID__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1436,6 +1492,16 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CPA_PWORF__c.Key_Contacts__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_PWORF__c.LatestPWOID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_PWORF__c.Latest_PWO_Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1955,6 +2021,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>CPA_PWORF__c.txta_Reason_for_Return__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>CPA_PWORF__c.txta_Risk_Assessment_and_Mitigation__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -2421,52 +2492,52 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Query_comment__c.CNF_ID__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Query_comment__c.CR_ID__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Query_comment__c.HLE_ID__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Query_comment__c.LOI_ID__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Query_comment__c.LookupCPA_Queries__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Query_comment__c.PWO_ID__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Query_comment__c.Pworf_ID__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>false</editable>
+        <editable>true</editable>
         <field>CPA_Query_comment__c.RTXTQuery_Comments__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Query_comment__c.Responded_By__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
         <field>CPA_Query_comment__c.TNF_ID__c</field>
-        <readable>false</readable>
+        <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -2735,13 +2806,28 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CPA_project_work_order__c.chk_CNF_Contract_Attached__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CPA_project_work_order__c.chk_Excel_Attached__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>CPA_project_work_order__c.chk_First_PWO__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>CPA_project_work_order__c.chk_PDF_Attached__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>CPA_project_work_order__c.chk_TNF_Contract_Attached__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
@@ -3458,6 +3544,11 @@
         <field>CPA_project_work_order__c.txta_TNF_Reason_for_Return__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CPA_project_work_order__c.txta_reason_for_additiona_PWO__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
     <label>Contracting Process Automation for Unilever Project Managers/Stakeholders</label>
     <objectPermissions>
         <allowCreate>false</allowCreate>
@@ -3541,6 +3632,15 @@
         <viewAllRecords>false</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>false</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>false</modifyAllRecords>
+        <object>CPA_Query_comment__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
         <allowCreate>false</allowCreate>
         <allowDelete>false</allowDelete>
         <allowEdit>false</allowEdit>
@@ -3569,10 +3669,10 @@
     </objectPermissions>
     <objectPermissions>
         <allowCreate>false</allowCreate>
-        <allowDelete>false</allowDelete>
+        <allowDelete>true</allowDelete>
         <allowEdit>true</allowEdit>
         <allowRead>true</allowRead>
-        <modifyAllRecords>false</modifyAllRecords>
+        <modifyAllRecords>true</modifyAllRecords>
         <object>CPA_project_work_order__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
@@ -3711,6 +3811,10 @@
     <recordTypeVisibilities>
         <recordType>CPA_LOI__c.LOI_Other</recordType>
         <visible>true</visible>
+    </recordTypeVisibilities>
+    <recordTypeVisibilities>
+        <recordType>CPA_LOI__c.LOI_Submitted</recordType>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
         <recordType>CPA_PWORF__c.All</recordType>

@@ -81,7 +81,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <fullName>Breached_By_Days__c</fullName>
         <description>This field created for Work Order Status Report.</description>
         <externalId>false</externalId>
-        <formula>IF((IF(ISNULL(dat_Revised_Submission_Date__c), TODAY()- dat_Expected_SLA2_Date__c, TODAY()- dat_Revised_Submission_Date__c))==0, null, (IF(ISNULL(dat_Revised_Submission_Date__c), TODAY()- dat_Expected_SLA2_Date__c, TODAY()- dat_Revised_Submission_Date__c)))</formula>
+        <formula>IF((IF(ISNULL(dat_Revised_Submission_Date__c), TODAY()- dat_Expected_SLA2_Date__c, TODAY()- dat_Revised_Submission_Date__c))&lt;=0, null, (IF(ISNULL(dat_Revised_Submission_Date__c), TODAY()- dat_Expected_SLA2_Date__c, TODAY()- dat_Revised_Submission_Date__c)))</formula>
         <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
         <label>Breached By Days</label>
         <precision>18</precision>
@@ -356,8 +356,8 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
     <fields>
         <fullName>How_many_man_days_do_you_think_you_requi__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Remember: It may be 35 working days from submission of this PWORF before a PWO will be available and there needs to be some time for review and approval of the PWO once submitted.</inlineHelpText>
-        <label>Man Days*</label>
+        <inlineHelpText>Please note it may take few days from submission of this request to getting of PWO signed.</inlineHelpText>
+        <label>Man Days required for W@R*</label>
         <length>255</length>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -370,7 +370,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <fullName>Impact_if_expected_business_go_live_date__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>Impact if expected business go live date is not met</inlineHelpText>
-        <label>Impact if Expected Business Go Live Dat*</label>
+        <label>Impact if go live date not met*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -416,7 +416,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <description>Does this ‘Project’ introduce or modify any Interface to the system? (For example, modifying XI interfaces to/from SAP R/3)</description>
         <externalId>false</externalId>
         <inlineHelpText>For any type of change or enhancement required, please consider whether any existing interfaces should be amended as part of development, or new interfaces should be created.  If your answer is ‘YES’, please describe the extent</inlineHelpText>
-        <label>Interface to the system*</label>
+        <label>Interface Introduced/Changed?*</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -437,7 +437,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <fullName>Is_Project_Require__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>For any type of change or enhancement required, please consider if it can potentially impact the performance of the system and describe here the extent and nature of the anticipated impact.</inlineHelpText>
-        <label>Is Project Require Performance Testing*</label>
+        <label>Application Performance Testing Needed*</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -458,7 +458,7 @@ It displays PWORF requests received from Project Services / Delivery Teams at Un
         <fullName>Is_Project__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>For any type of change or enhancement required, please consider if data conversion or data upload is required in the system and if there is a need to carry our testing of the Data before P2P.  If ‘Yes’, please describe the data.</inlineHelpText>
-        <label>Is Project Require Data Specific Testin*</label>
+        <label>Data-Specific Testing required?*</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -512,6 +512,32 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>LatestPWOID__c</fullName>
+        <description>This field hold the id of the latest PWO on a PWORF</description>
+        <externalId>false</externalId>
+        <label>LatestPWOID</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Latest_PWO_Status__c</fullName>
+        <description>This field hold the status of the latest PWO</description>
+        <externalId>false</externalId>
+        <label>Latest PWO Status</label>
+        <length>50</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>New_or_re_worked_Integration_Requirement__c</fullName>
@@ -675,7 +701,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>Role_or_System_Authorisation__c</fullName>
         <externalId>false</externalId>
         <inlineHelpText>For any type of change or enhancement required, please consider whether any existing role/authorisation should be amended as part of development, or a new set of role/authorisations should be created.</inlineHelpText>
-        <label>Role or System Authorisation*</label>
+        <label>Role/Authorisation Introduced/Changed?*</label>
         <picklist>
             <picklistValues>
                 <fullName>Yes</fullName>
@@ -853,8 +879,8 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <fullName>Who_will_support_this_service_once_live__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Please state how the change will be supported and by whom.</inlineHelpText>
-        <label>Who will support this service once live*</label>
+        <inlineHelpText>Service support information - Who will support this service once live?</inlineHelpText>
+        <label>Post Go-Live Support Service*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -937,7 +963,8 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>dat_Expected_SLA1_Date__c</fullName>
         <description>This date will be calculated in the background in after insert trigger. Get SLA1 value and add those days in current date to get expected SLA1 date.</description>
         <externalId>false</externalId>
-        <label>Expected SLA1 Date</label>
+        <inlineHelpText>PWORF acceptance date = PWORF submission + SLA1</inlineHelpText>
+        <label>PWORF to be accepted by</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -948,7 +975,8 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>dat_Expected_SLA2_Date__c</fullName>
         <description>This date will be calculated in the background in after insert trigger. Get SLA2 value and add those days in current date to get expected SLA2 date.</description>
         <externalId>false</externalId>
-        <label>Expected SLA2 Date</label>
+        <inlineHelpText>PWO submission date = PWORF submission + SLA2</inlineHelpText>
+        <label>PWO to be submitted by</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -1176,7 +1204,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <deleteConstraint>SetNull</deleteConstraint>
         <description>Finance Person Maybe Contacted To Confirm Budget And Cost Centre Details</description>
         <externalId>false</externalId>
-        <inlineHelpText>IS PERSON MAYBE CONTACTED TO CONFIRM BUDGET AND COST CENTER DETAILS.</inlineHelpText>
+        <inlineHelpText>Finance Person Maybe Contacted To Confirm Budget And Cost Centre Details.</inlineHelpText>
         <label>Unilever Finance BP/Contact*</label>
         <lookupFilter>
             <active>true</active>
@@ -1629,7 +1657,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
                 <default>false</default>
             </picklistValues>
             <picklistValues>
-                <fullName>Low Complexity Project (50 - 100 days)</fullName>
+                <fullName>Low Complexity Project (50 - 500 days)</fullName>
                 <default>false</default>
             </picklistValues>
             <picklistValues>
@@ -1820,7 +1848,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>txt_Clarity_ID__c</fullName>
         <description>Clarity of the project</description>
         <externalId>false</externalId>
-        <inlineHelpText>Enter Clarity ID to avoid delays with your request</inlineHelpText>
+        <inlineHelpText>Please provide clarity ID to which project belongs.</inlineHelpText>
         <label>Clarity ID</label>
         <length>255</length>
         <required>false</required>
@@ -1848,7 +1876,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>txt_ICC_Number__c</fullName>
         <description>ICC Number to which the project belongs</description>
         <externalId>false</externalId>
-        <inlineHelpText>Please provide this information.</inlineHelpText>
+        <inlineHelpText>Please provide Internal Cost Center number.</inlineHelpText>
         <label>ICC Number*</label>
         <length>255</length>
         <required>false</required>
@@ -1963,6 +1991,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <fullName>txt_otherProcessOfficeAreaE2E__c</fullName>
         <externalId>false</externalId>
+        <inlineHelpText>This filed is manditory, if Other is selected in &apos;Process Office Area E2E&apos;.</inlineHelpText>
         <label>Other-Process Office area E2E</label>
         <length>255</length>
         <required>false</required>
@@ -2104,7 +2133,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
     <fields>
         <fullName>txta_Project_Description__c</fullName>
         <externalId>false</externalId>
-        <inlineHelpText>Please write a paragraph describing the project and, if possible, attach the BRD Document.  If this project involves any sensitive intellectual property, then please identify the specific IP involved and explain why it is sensitive.</inlineHelpText>
+        <inlineHelpText>Please Write a Para (Maximum xxx Words)…..</inlineHelpText>
         <label>Project Description*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
@@ -2131,6 +2160,18 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>txta_Reason_for_Return__c</fullName>
+        <externalId>false</externalId>
+        <label>Reason for Return</label>
+        <length>255</length>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>txta_Risk_Assessment_and_Mitigation__c</fullName>
@@ -2220,7 +2261,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <description>Title of the Project</description>
         <externalId>false</externalId>
         <inlineHelpText>Please enter name of Project as it appears in Clarity.</inlineHelpText>
-        <label>Title*</label>
+        <label>PWORF Title*</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2242,7 +2283,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <fullName>txta_Why_is_Work_at_risk_required__c</fullName>
         <description>Period of work commencing before actual PWO is submitted</description>
         <externalId>false</externalId>
-        <label>Why is Work at risk required?</label>
+        <label>Why is Work at Risk required?</label>
         <required>false</required>
         <trackFeedHistory>false</trackFeedHistory>
         <trackHistory>false</trackHistory>
@@ -2678,7 +2719,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
                 <default>false</default>
             </values>
             <values>
-                <fullName>Low Complexity Project %2850 - 100 days%29</fullName>
+                <fullName>Low Complexity Project %2850 - 500 days%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3198,7 +3239,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
                 <default>false</default>
             </values>
             <values>
-                <fullName>Low Complexity Project %2850 - 100 days%29</fullName>
+                <fullName>Low Complexity Project %2850 - 500 days%29</fullName>
                 <default>false</default>
             </values>
             <values>
@@ -3236,27 +3277,7 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <picklistValues>
             <picklist>pkl_Request_Type__c</picklist>
             <values>
-                <fullName>Consultancy</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>New Project</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Other</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Project Scope Change %28CR%29</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Project Work Package</fullName>
-                <default>false</default>
-            </values>
-            <values>
-                <fullName>Service Introduction</fullName>
+                <fullName>Resource Secondment</fullName>
                 <default>false</default>
             </values>
         </picklistValues>
@@ -3359,14 +3380,6 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <errorMessage>Mandatory</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Business_Area</fullName>
-        <active>false</active>
-        <description>Mandatory</description>
-        <errorConditionFormula>AND((OR((ISPICKVAL(   pkl_Status__c , &apos;Submitted&apos;)),(ISPICKVAL(   pkl_Status__c , &apos;Resubmitted&apos;))) ),(ISPICKVAL(  pkl_Business_Area__c , &apos;Select&apos;)))</errorConditionFormula>
-        <errorDisplayField>pkl_Business_Area__c</errorDisplayField>
-        <errorMessage>You must Select a Business Area</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>Business_Case</fullName>
         <active>false</active>
         <description>Mandatory</description>
@@ -3381,6 +3394,12 @@ This section should assess the impact on UPXI, XI, BODI and MQ and includes asse
         <errorConditionFormula>AND(( ISBLANK(txta_Business_critical_milestones__c) ),OR(ISPICKVAL(pkl_Status__c , &apos;Submitted&apos;),ISPICKVAL(pkl_Status__c , &apos;Resubmitted&apos;)))</errorConditionFormula>
         <errorDisplayField>txta_Business_critical_milestones__c</errorDisplayField>
         <errorMessage>Mandatory</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>CPA_PWORF_Name_cant_be_changed</fullName>
+        <active>true</active>
+        <errorConditionFormula>IF(AND(OR(ISPICKVAL( pkl_Status__c , &quot;Answered&quot;),ISPICKVAL( pkl_Status__c , &quot;Accepted&quot;),ISPICKVAL( pkl_Status__c , &quot;Auto Accepted&quot;)), ISCHANGED(Name)),true,false )</errorConditionFormula>
+        <errorMessage>PWORF Name cant be changed after it get Accepted</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Cost_Center_Details</fullName>
@@ -3600,14 +3619,6 @@ Is required</description>
         <errorMessage>Mandatory, If Other is selected in Process Office area E2E.</errorMessage>
     </validationRules>
     <validationRules>
-        <fullName>Other_Project_Phases</fullName>
-        <active>false</active>
-        <description>If Other is selected in Project Phases then Other -Project Phases filed will be required.</description>
-        <errorConditionFormula>AND((OR((ISPICKVAL(   pkl_Status__c , &apos;Submitted&apos;)),(ISPICKVAL(   pkl_Status__c , &apos;Resubmitted&apos;)))), (RecordType.DeveloperName =&apos;All&apos;), (IF(INCLUDES(mpkl_Project_Phases__c, &quot;Other (provide free text to enter)&quot;), True,false)), (ISBLANK( txt_OtherProjectPhases__c )))</errorConditionFormula>
-        <errorDisplayField>txt_OtherProjectPhases__c</errorDisplayField>
-        <errorMessage>Mandatory, If Other is selected in Project Phases.</errorMessage>
-    </validationRules>
-    <validationRules>
         <fullName>Other_Request_Type</fullName>
         <active>false</active>
         <description>If Other is selected in Request Type then Other-Request_Type filed will be required.</description>
@@ -3678,14 +3689,6 @@ Is required</description>
         <errorConditionFormula>AND(( ISBLANK(txta_Project_Description__c) ),OR(ISPICKVAL(pkl_Status__c , &apos;Submitted&apos;),ISPICKVAL(pkl_Status__c , &apos;Resubmitted&apos;)))</errorConditionFormula>
         <errorDisplayField>txta_Project_Description__c</errorDisplayField>
         <errorMessage>Mandatory</errorMessage>
-    </validationRules>
-    <validationRules>
-        <fullName>Project_Phases</fullName>
-        <active>false</active>
-        <description>Mandatory</description>
-        <errorConditionFormula>AND( (OR((ISPICKVAL(   pkl_Status__c , &apos;Submitted&apos;)),(ISPICKVAL(   pkl_Status__c , &apos;Resubmitted&apos;)))),RecordType.DeveloperName =&apos;All&apos;,( ISBLANK(mpkl_Project_Phases__c)))</errorConditionFormula>
-        <errorDisplayField>mpkl_Project_Phases__c</errorDisplayField>
-        <errorMessage>You must Select a Project Phase</errorMessage>
     </validationRules>
     <validationRules>
         <fullName>Project_Repository_Location</fullName>
@@ -3920,42 +3923,50 @@ p.isValidated__c = &quot;{!CPA_PWORF__c.isValidated__c }&quot;;
 
 var isValidateFlag = sforce.apex.execute(&quot;CPA_PWORFInformationController&quot;,&quot;checkIsValidated&quot;,{objId:p.id});
 
-//alert(&quot;isValidateFlag --&gt; &quot;+isValidateFlag);
-
 //if(p.isValidated__c == &quot;1&quot;){ 
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
+var result = sforce.connection.query(soql);
+var records1 = result.getArray(&apos;records&apos;);
+var permissionSetName = records1[0].PermissionSet.Name;
 
-if(isValidateFlag == &apos;true&apos;){ 
+if( permissionSetName == &quot;CPA_SMT&quot; || permissionSetName == &quot;CPA_ULPM&quot;){ 
 
-	if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
-		p.pkl_Status__c = &quot;Resubmitted&quot;; 
+	if(isValidateFlag == &apos;true&apos;){ 
+
+		if(p.pkl_Status__c == &quot;Withhold&quot; || p.pkl_Status__c == &quot;Returned&quot;){ 
+			p.pkl_Status__c = &quot;Resubmitted&quot;; 
+			result = sforce.connection.update([p]); 
+	//alert(result);
+			location.reload(true); 
+
+		} 
+		else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
+			alert(&quot;PWORF has already been submitted&quot;); 
+		} 
+		else if(p.pkl_Status__c ==&quot;Answered&quot; ){ 
+			alert(&quot;PWORF is already Answered, you cant submit for Approval&quot;); 
+		} 
+		else if(p.pkl_Status__c ==&quot;Accepted&quot; || p.pkl_Status__c ==&quot;Auto Accepted&quot;){ 
+			alert(&quot;PWORF has already been accepted by Vendor and you cannot resubmit it&quot;); 
+		}
+		else if(p.pkl_Status__c ==&quot;Cancelled&quot;){ 
+			alert(&quot;PWORF is already Cancelled, you cant submit for Approval&quot;); 
+		}
+		else{ 
+		p.pkl_Status__c = &quot;Submitted&quot;; 
 		result = sforce.connection.update([p]); 
-alert(result);
+		//alert(result);
 		location.reload(true); 
+		} 
 
 	} 
-	else if(p.pkl_Status__c ==&quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; ){ 
-		alert(&quot;PWORF is already submitted&quot;); 
-	} 
-	else if(p.pkl_Status__c ==&quot;Answered&quot; ){ 
-		alert(&quot;PWORF is already Answered, you cant submit for Approval&quot;); 
-	} 
-	else if(p.pkl_Status__c ==&quot;Accepted&quot; || p.pkl_Status__c ==&quot;Auto Accepted&quot;){ 
-		alert(&quot;PWORF is already Accepted, you cant submit for Approval&quot;); 
+	else { 
+	alert(&quot; PWORF cannot be submitted since mandatory data is not present.&quot;); 
+
 	}
-	else if(p.pkl_Status__c ==&quot;Cancelled&quot;){ 
-		alert(&quot;PWORF is already Cancelled, you cant submit for Approval&quot;); 
-	}
-	else{ 
-	p.pkl_Status__c = &quot;Submitted&quot;; 
-	result = sforce.connection.update([p]); 
-	alert(result);
-	location.reload(true); 
-	} 
-
-} 
-else { 
-alert(&quot; PWORF cannot be submitted as all the required fields data is not entered&quot;); 
-
+}else{
+	alert(&quot;You are not authorized to perform this action&quot;);
+	
 }</url>
     </webLinks>
     <webLinks>
@@ -3973,35 +3984,62 @@ var p = new sforce.SObject(&apos;CPA_PWORF__c&apos;);
 p.id = &quot;{!CPA_PWORF__c.Id}&quot;; 
 p.pkl_Status__c = &quot;{!CPA_PWORF__c.pkl_Status__c }&quot;; 
 
-soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;;
-var result = sforce.connection.query(soql);
+soql = &quot;SELECT Id,Assignee.Name, PermissionSet.Name FROM PermissionSetAssignment WHERE AssigneeId = &apos;{!$User.Id}&apos;&quot;; 
+var result = sforce.connection.query(soql); 
 var records1 = result.getArray(&apos;records&apos;); 
-var permissionSetName = records1[0].PermissionSet.Name;
+var permissionSetName = records1[0].PermissionSet.Name; 
 
-if( permissionSetName == &quot;CPA_SMT&quot;){
-	if(p.pkl_Status__c != &quot;Answered&quot; &amp;&amp; p.pkl_Status__c != &quot;Cancelled&quot; &amp;&amp; p.pkl_Status__c != &quot;Withhold&quot;){
-		p.pkl_Status__c = &quot;Withhold&quot;;	
 
-		result = sforce.connection.update([p]); 
-//alert(result);
-		location.reload(true);
-	}else{
-		alert(&quot;PWORF Can not be Withhold as it is already Answered/Cancelled/Withhold&quot;); 
+sql = &quot;select id,pkl_Status__c from CPA_LOI__c where pkl_Status__c !=&apos;Saved&apos; AND  pkl_Status__c !=&apos;Cancelled&apos; AND lkp_PWORF__c =&apos;&quot;+ p.id+&quot;&apos;&quot;;
+var result = sforce.connection.query(sql); 
+var loiRec = result.getArray(&apos;records&apos;); 
+
+
+
+if( permissionSetName == &quot;CPA_SMT&quot;){ 
+	if(p.pkl_Status__c == &quot;Saved&quot;){ 
+	alert(&quot;Record should first be submitted before withholding it.&quot;); 
+	} 
+	else if(loiRec != null &amp;&amp; loiRec.length &gt; 0){
+		alert(&quot;PWORF cannot be Withheld as it has LOI in Process.&quot;); 
 	}
-}
-else if(permissionSetName == &quot;CPA_ULPM&quot;){
-		if(p.pkl_Status__c == &quot;Saved&quot; || p.pkl_Status__c == &quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot; || p.pkl_Status__c == &quot;Returned&quot;){
-			p.pkl_Status__c = &quot;Withhold&quot;;	
-			result = sforce.connection.update([p]); 
-//alert(result);
-			location.reload(true);
-		}else if(p.pkl_Status__c == &quot;Cancelled&quot; || p.pkl_Status__c != &quot;Answered&quot; || p.pkl_Status__c != &quot;Withhold&quot;){
-			alert(&quot;PWORF Can not be Withhold as it is already Answered/Cancelled/Withhold&quot;); 
-		}else{
-			alert(&quot;PWORF Can not be Withhold, Please request SMT to withhold it&quot;); 
-		}
-}else{
-	alert(&quot;Insufficient Privilege&quot;); 
+	else if(p.pkl_Status__c != &quot;Answered&quot; &amp;&amp; p.pkl_Status__c != &quot;Cancelled&quot; &amp;&amp; p.pkl_Status__c != &quot;Withhold&quot;){ 
+	window.open(&apos;/apex/CPA_PWORF_Reason_for_Withhold?id=&apos;+&quot;{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;);	
+	}else{ 
+	alert(&quot;PWORF can not be Withhold as it is already Answered/Cancelled/Withhold.&quot;); 
+	} 
+} 
+else if(permissionSetName == &quot;CPA_ULPM&quot;){ 
+	if(loiRec != null &amp;&amp; loiRec.length &gt; 0){
+		alert(&quot;PWORF cannot be Withheld as it has LOI in Process.&quot;); 
+	}
+	else if(p.pkl_Status__c == &quot;Saved&quot;){ 
+	alert(&quot;Record should first be submitted before withholding it.&quot;); 
+	} 
+	else if(p.pkl_Status__c == &quot;Returned&quot;){ 
+	window.open(&apos;/apex/CPA_PWORF_Reason_for_Withhold?id=&apos;+&quot;{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
+	} 
+	else if(p.pkl_Status__c == &quot;Submitted&quot; || p.pkl_Status__c == &quot;Resubmitted&quot;){ 
+	alert(&quot;PWORF has been submitted to the Vendor for acceptance. Please recall the record to withhold.&quot;); 
+	} 
+	//else if(p.pkl_Status__c == &quot;Cancelled&quot; || p.pkl_Status__c != &quot;Answered&quot; || p.pkl_Status__c != &quot;Withhold&quot;){ 
+	//alert(&quot;PWORF can not be Withhold as it is already Accepted/Auto Accepted/Answered/Cancelled/Withhold.&quot;); 
+	//} 
+	else if(p.pkl_Status__c == &quot;Answered&quot; || p.pkl_Status__c == &quot;Accepted&quot; || p.pkl_Status__c == &quot;Auto Accepted&quot;){ 
+	alert(&quot;You cannot withhold the PWORF since it has been accepted by the vendor. Please request SMT.&quot;); 
+	}
+	else if(p.pkl_Status__c == &quot;Cancelled&quot;){ 
+	alert(&quot;You cannot withhold the PWORF since it has been cancelled&quot;); 
+	}
+	else if(p.pkl_Status__c == &quot;Withhold&quot;){ 
+	alert(&quot;You cannot withhold the PWORF since it is already withhold&quot;); 
+	}
+	else{ 
+	alert(&quot;PWORF cannot be withheld since it has been accepted by the vendor. Please contact SMT.&quot;); 
+	} 
+} 
+else{ 
+	alert(&quot;You are not authorized to perform this action.&quot;); 
 }</url>
     </webLinks>
     <webLinks>
@@ -4065,7 +4103,8 @@ if( permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_
 				// redirect to cancel 
 				window.open(&apos;/apex/CPA_PWORF_Cancel_Reason?id=&apos;+&quot;{!CPA_PWORF__c.Id}&quot;,&quot;_self&quot;); 
 			}else{ 
-				alert(&apos;PWORF is already Accepted/Answered&apos;); 
+				alert(&apos;PWORF has been accepted by the vendor and you cannot cancel it. Please request SMT.&apos;); 
+				
 			} 
 
 		}else{ 
@@ -4078,7 +4117,7 @@ if( permissionSetName == &quot;CPA_ULPM&quot; || permissionSetName == &quot;CPA_
 	} 
 
 }else{ 
-alert(&quot;Insufficient Privilege&quot;); 
+alert(&quot;You are not authorized to perform this action&quot;); 
 }</url>
     </webLinks>
 </CustomObject>

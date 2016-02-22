@@ -12,7 +12,7 @@ Purpose:
  1.0      Shreyas Mangalvedhekar        21/12/2015      INITIAL DEVELOPMENT          CSR: 
  ***********************************************************************/
 
-public with sharing class CPA_AttchemntUnit {
+public class CPA_AttchemntUnit {
 
  /*******************************************************************    
    Purpose:  This static method will return the file type of each attachment                                                            
@@ -26,22 +26,133 @@ public with sharing class CPA_AttchemntUnit {
         map<id,string> mapAttachmentType = new map<id,string> ();        // Variable declaration  
         
         for(Attachment objAttachment:lstAttachment){
-            
-            if(objAttachment.ContentType.contains('spreadsheet') && objAttachment.ContentType.contains('ms-excel'))
+            string srtTemp = objAttachment.ParentId;
+            system.debug('objAttachment.Name.-->'+objAttachment.Name);
+            system.debug('objAttachment.ContentType --> '+objAttachment.ContentType);
+            if(objAttachment.Name.startswith('Commercial') &&( objAttachment.ContentType.contains('spreadsheet') || objAttachment.ContentType.contains('ms-excel')))
             {
                 mapAttachmentType.put(objAttachment.id,'spreadsheet');
-            }else if(objAttachment.ContentType.contains('pdf')){
+                system.debug('mapAttachmentType--->'+mapAttachmentType);
+            }else if(objAttachment.Name.startswith('PWO') && objAttachment.ContentType.contains('pdf') && srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger )){
                 system.debug('objAttachment-->'+objAttachment);
                 mapAttachmentType.put(objAttachment.id,'pdf');
-            }else {
-                mapAttachmentType.put(objAttachment.id,'unkonwn');
+            }else if(objAttachment.Name.startswith('CR') && objAttachment.ContentType.contains('pdf') && srtTemp.startswith(label.CAP_ParentId_For_Attachment_CR)){
+               mapAttachmentType.put(objAttachment.id,'pdf');
+               
                 
-            }       
+            }else {
+             mapAttachmentType.put(objAttachment.id,'unkonwn');
+            }
+                   
             
         }
         return mapAttachmentType;
         
     }
+    
+     /*******************************************************************    
+  Purpose:  This static method will update the respective LOI
+  Parameters: List of attachment and set for Parent ID    
+  Returns: It’s retunes nothing but it’s update the LOI      
+
+  ********************************************************************/  
+    
+     public static void updateLOI(List<Attachment> lstAttachment) {
+         set<ID>setLOI = new set<Id>();
+          for(Attachment objAttachment : lstAttachment){
+                setLOI.add(objAttachment.ParentId);
+            }
+         List<CPA_LOI__c> listLOI = new List<CPA_LOI__c>();
+         for(CPA_LOI__c obj : [Select Id,chk_Contract_Attached__c from CPA_LOI__c where id IN:setLOI]){
+              obj.chk_Contract_Attached__c = true;
+              listLOI.add(obj);
+         }
+         if(listLOI!=null && listLOI.size()>0){
+             update listLOI;
+         }
+     }
+     
+     
+      /*******************************************************************    
+  Purpose:  This static method will update the respective LOI
+  Parameters: List of attachment and set for Parent ID    
+  Returns: It’s retunes nothing but it’s update the LOI      
+
+  ********************************************************************/  
+    
+     public static void DeleteLOI(List<Attachment> lstAttachment) {
+         set<ID>setLOI = new set<Id>();
+          for(Attachment objAttachment : lstAttachment){
+                setLOI.add(objAttachment.ParentId);
+            }
+         List<CPA_LOI__c> listLOI = new List<CPA_LOI__c>();
+         for(CPA_LOI__c obj : [Select Id,chk_Contract_Attached__c from CPA_LOI__c where id IN:setLOI]){
+              obj.chk_Contract_Attached__c = false;
+              listLOI.add(obj);
+         }
+         if(listLOI!=null && listLOI.size()>0){
+             update listLOI;
+         }
+     }
+    
+    
+    /*******************************************************************    
+  Purpose:  This static method will update the respective CR
+  Parameters: List of attachment and set for Parent ID    
+  Returns: It’s retunes nothing but it’s update the CR      
+
+  ********************************************************************/  
+    
+     public static void updateCPACR(List<Attachment> lstAttachment,set<Id>setParentId) {
+        
+        // Variable declaration section 
+        map<id,string> mapAttachmentType = findAttachmentType(lstAttachment);
+        map<Id,list<Attachment>> mapAttachmentIDPWOID = new map<Id,list<Attachment>>();
+        set<CPA_CR__c> lstUpdateCR = new set<CPA_CR__c>();
+        map<Id,CPA_CR__c> mapCR = new map<Id,CPA_CR__c>();
+        // Variable declaration section 
+        
+        for(Id objID : setParentId){
+            List<Attachment> lstTempd = new List<Attachment>();
+            for(Attachment objAttachment : lstAttachment){
+                if(objAttachment.ParentId == objID){
+                    lstTempd.add(objAttachment);
+                }
+            }
+            mapAttachmentIDPWOID.put(objID,lstTempd);
+        }
+       
+        for(CPA_CR__c objCR :[Select Id,chk_Contract_Excel_Attached__c,chk_Contract_Attached__c from CPA_CR__c where ID IN:setParentId]){
+            
+            if((!objCR.chk_Contract_Excel_Attached__c ||  !objCR.chk_Contract_Attached__c) && mapAttachmentIDPWOID.get(objCR.ID)!= null){
+                for(Attachment objAttachment:mapAttachmentIDPWOID.get(objCR.Id)){
+                    system.debug('TEST-->'+mapAttachmentType.get(objAttachment.id));
+                    if(mapAttachmentType.get(objAttachment.id) == 'spreadsheet'){
+                        objCR.chk_Contract_Excel_Attached__c = true;
+                            mapCR.put(objCR.id,objCR);
+                        
+                                            
+                    }
+                    if(mapAttachmentType.get(objAttachment.id) == 'pdf'){
+                        system.debug('objAttachment--->'+objAttachment);
+                        objCR.chk_Contract_Attached__c =true;
+                        system.debug('objpwo --> '+ objCR);
+                        mapCR.put(objCR.id,objCR);                       
+                        
+                    }
+                }
+            }       
+        }
+        system.debug('Updaterecords -->' + mapCR.values());
+        
+        update mapCR.values();
+        
+    }
+    
+    
+    
+    
+    
     
   /*******************************************************************    
   Purpose:  This static method will update the respective PWO
@@ -116,12 +227,98 @@ public with sharing class CPA_AttchemntUnit {
             }
         }
         listComDetail = [Select Id, Name , CR__c,Project_Work_Order__c from CPA_Commercial_Details__c where Project_Work_Order__c IN : setPWOID OR CR__c IN :setCRID];
+        List<CPA_project_work_order__c>lstPWO = [Select chk_Excel_Attached__c,ID,num_Expense_charges_of_work_order__c,pec_Expense__c,pec_Estimated_Off_shore__c,pec_Estimated_On_shore__c,Name,num_Estimated_Man_days_of_PWO__c,num_Estimated_Value_of_PWO__c,num_Target_Blend_Rate__c,num_Total_work_order_charge__c,num_Authorisation_charges__c,num_Authorisation_man_days__c from CPA_project_work_order__c where ID IN :setPWOID];
+        List<CPA_CR__c> lstCR = [Select Id,Name,num_Estimated_Man_days_of_CR__c,num_Estimated_Value_of_CR__c,num_Target_Blend_Rate__c,num_Total_charge_of_CR__c,num_Expense_charges_of_CR__c,pec_Expense__c,num_Authorisation_charges__c,num_Authorisation_man_days__c,num_RMS_value__c  from CPA_CR__c where ID IN:  setCRID];
+        List<CPA_project_work_order__c>  lstTemp = new List<CPA_project_work_order__c>();
+        List<CPA_CR__c> lstTempCR = new List<CPA_CR__c>();
+        
         if(listComDetail!=null && listComDetail.size()>0){
             delete listComDetail;
+            for(CPA_project_work_order__c obj :lstPWO ){
+                obj.num_Expense_charges_of_work_order__c = NULL;
+                obj.pec_Expense__c=NULL;
+                obj.pec_Estimated_Off_shore__c=NULL;
+                obj.pec_Estimated_On_shore__c=NULL;
+                obj.num_Estimated_Man_days_of_PWO__c=NULL;
+                obj.num_Estimated_Value_of_PWO__c=NULL;
+                obj.num_Target_Blend_Rate__c=NULL;
+                obj.num_Total_work_order_charge__c=NULL;
+                obj.num_Authorisation_charges__c =NULL;
+                obj.num_Authorisation_man_days__c =NULL;
+                obj.chk_Excel_Attached__c = false;
+                lstTemp.add(obj);
+            }
+            for(CPA_CR__c obj1 : lstCR){
+                obj1.num_Estimated_Man_days_of_CR__c = NULL;
+                obj1.num_Estimated_Man_days_of_CR__c = NULL;
+                obj1.num_Estimated_Value_of_CR__c = NULL;
+                obj1.num_Target_Blend_Rate__c = NULL;
+                obj1.num_Total_charge_of_CR__c = NULL;
+                obj1.num_Expense_charges_of_CR__c = NULL;
+                obj1.pec_Expense__c = NULL;
+                obj1.num_Authorisation_charges__c = NULL;
+                obj1.num_Authorisation_man_days__c = NULL;
+                obj1.num_RMS_value__c = NULL;
+                obj1.chk_Contract_Excel_Attached__c = false;
+                lstTempCR.add(obj1);
+            }
+            if(lstTemp !=null && lstTemp.size()>0){
+                update lstTemp;
+            }
+            if(lstTempCR !=null && lstTempCR.size()>0){
+                update lstTempCR;
+            }
         }
         
         
     }
+    
+    public static void deleteContract(List<Attachment> lstatt)    {
+        List<CPA_Commercial_Details__c >listComDetail = new List<CPA_Commercial_Details__c>();
+        set<Id> setPWOID = new set<Id>();
+        set<Id> setCRID = new set<Id>();
+        List<CPA_project_work_order__c>  lstTemp = new List<CPA_project_work_order__c>();
+        List<CPA_CR__c> lstTempCR = new List<CPA_CR__c>();
+        
+        for(Attachment objAtta : lstatt){
+            
+            string srtTemp = objAtta.ParentId;
+        
+            if( srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger) && objAtta.Name.startswith('PWO')) {
+                setPWOID.add(objAtta.ParentId);
+            }   
+            else if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_CR) && objAtta.Name.startswith('CR')){
+                setCRID.add(objAtta.ParentId);
+            }
+        
+            
+        }
+       
+        List<CPA_project_work_order__c>lstPWO = [Select chk_Excel_Attached__c,ID, chk_PDF_Attached__c ,Name from CPA_project_work_order__c where ID IN :setPWOID];
+        List<CPA_CR__c> lstCR = [Select Id,Name,chk_Contract_Attached__c,chk_Contract_Excel_Attached__c from CPA_CR__c where ID IN:  setCRID];
+        
+        system.debug('lstCR-->'+lstCR);
+       for(CPA_CR__c objCR : lstCR){
+           
+            objCR.chk_Contract_Attached__c = false;
+            lstTempCR.add(objCR);
+       }
+       for(CPA_project_work_order__c objPWO :lstPWO ){
+           objPWO.chk_PDF_Attached__c = false;
+           lstTemp.add(objPWO);
+       }
+              
+        if(lstCR!=null && lstCR.size()>0){
+            update lstCR;
+        }
+        if(lstTemp !=null && lstTemp.size()>0){
+            update lstTemp;
+        }
+    }
+    
+    
+    
+
     
      /***This function reads the CSV file and inserts records into the CPA_Commercial_Details__c object. ***/
     public static void ReadFile(List<Attachment> lstatt)    {
@@ -314,6 +511,7 @@ public with sharing class CPA_AttchemntUnit {
                             objPWO.pec_Expense__c = 0;
                         }
                         objPWO.chk_Excel_Attached__c = true;
+                        objPWO.num_Total_work_order_charge__c= objPWO.num_Estimated_Value_of_PWO__c;
                         
                         lstUpdatePWO.add(objPWO);
                     }
@@ -403,9 +601,9 @@ public with sharing class CPA_AttchemntUnit {
                         objCR.num_Estimated_Value_of_CR__c = (intCostResource + intRMS + intContingencyCharges + intNonPayroll + intAuthorisation+intOther + intIndicativeExpenses + intPMOTax ) - intDiscounts;
                         objCR.num_Estimated_Man_days_of_CR__c = intTotalmandays;
                         if(intTotalmandays> 0){
-                            objCR.num_Target_Blend_Rate__c = intCostResource / intTotalmandays;
+                          objCR.num_Varied_Target_Blend_Rate__c = objCR.num_Target_Blend_Rate__c = intCostResource / intTotalmandays;
                         }else {
-                            objCR.num_Target_Blend_Rate__c =0;
+                            objCR.num_Varied_Target_Blend_Rate__c = objCR.num_Target_Blend_Rate__c =0;
                         }
                         objCR.num_Authorisation_charges__c = intAuthorisation;
                         objCR.num_Authorisation_man_days__c = intAuthorisationman;
@@ -430,14 +628,7 @@ public with sharing class CPA_AttchemntUnit {
                         update lstUpdateCR;
                         system.debug('pdated CR-->'+lstUpdateCR);
                     }
-                    
-                    
-                    
-                    
                 }
-        
-        
-                
             }
             catch (Exception e)
             {
@@ -445,16 +636,7 @@ public with sharing class CPA_AttchemntUnit {
                 ApexPages.addMessage(errormsg);
                 system.debug('Exception --> '+ e.getMessage());
             } 
-        }   /*else if(objAttachment.ContentType.contains('pdf'){
-                string srtTemp = att.ParentId;
-                set<ID> setPWOID = new set<ID>();
-                if(srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger)){
-                    setPWOID.add(att.ParentId);
-                }
-                List<CPA_>
-            }       */
+        }   
         }
-         
-        
     }   
 }
