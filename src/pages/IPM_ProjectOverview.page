@@ -801,7 +801,7 @@
 </apex:form>
 <script>
 
-var IPMApp = {showSuggestedMembers:'{!showSuggestedMembers}', ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}', DocumentStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}'};
+var IPMApp = {showSuggestedMembers:{!showSuggestedMembers}, ProjectOverviewPage:'{!URLFOR($Page.IPM_ProjectOverview)}', DocumentStatus:'{!JSENCODE(projectDoc.IPM_Document_Status__c)}', projectId:'{!project.Id}'};
 
 </script>
 <script src="{!URLFOR($Resource.IPM_Resource, 'js/IPM_ProjectOverview.js')}" type="text/javascript"></script>   
