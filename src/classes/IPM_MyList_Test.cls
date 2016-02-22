@@ -55,8 +55,10 @@ public class IPM_MyList_Test{
          System.runAs(platformUser)
          {
            insert projectList;
-         }  
-         system.assertEquals(9 , [Select id from IPM_Project__c limit 1000].size(),'Projects are created');
+         }
+         List<IPM_Project__c> projectDBList = [Select id from IPM_Project__c limit 1000];
+           
+         system.assertEquals(9 , projectDBList.size(),'Projects are created');
       }
       
       
