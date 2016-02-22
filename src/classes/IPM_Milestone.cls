@@ -330,9 +330,9 @@ public with sharing class IPM_Milestone {
             {
                 Id mileStoneRecordType = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.IPMMilestones).getRecordTypeId(); 
                 con = new ApexPages.StandardSetController(Database.getQueryLocator([SELECT Id,IPM_Project__c,IPM_Due_Date__c,IPM_Name__c,IPM_Category__c,IPM_Planned_Date__c,
-                        IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_BET__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c 
+                        IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_BET__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c,IPM_Phase_Order__c FROM IPM_Milestone__c 
                         WHERE IPM_Name__c != null And RecordTypeId= : mileStoneRecordType AND IPM_Type_of_Milestone__c=: IPM_ConstantUtils.MINI 
-                        AND IPM_Project_Type__c =: sourceProjectType]));
+                        AND IPM_Project_Type__c =: sourceProjectType order by IPM_Phase_Order__c, IPM_Name__c])); 
                 
                 // sets the number of records in each page set
                 con.setPageSize(20);
@@ -445,7 +445,7 @@ public with sharing class IPM_Milestone {
                             
                 List<IPM_Milestone__c> projectSpecificMilestoneList = [SELECT Id,IPM_Due_Date__c,IPM_Project__c,IPM_Project__r.IPM_Target_Launch_Dates__c,IPM_Category__c,
                 IPM_Completed_On__c,IPM_Milestone__c,IPM_Phase__c,IPM_Type_of_gate__c,IPM_Type_of_Milestone__c FROM IPM_Milestone__c  
-                WHERE  IPM_Type_of_Milestone__c =:stndMileStoneString AND IPM_Project__c =:projectId ];
+                WHERE  IPM_Type_of_Milestone__c =:stndMileStoneString AND IPM_Project__c =:projectId AND IPM_Active__c =: true];
                 
                 
                  

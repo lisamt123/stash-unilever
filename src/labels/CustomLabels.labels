@@ -8932,6 +8932,13 @@ For either option it is possible to add/remove sections and To-do&apos;s later. 
         <value>Milestones and Tasks:</value>
     </labels>
     <labels>
+        <fullName>IPM_MiniMilestone_Msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>IPM MiniMilestone Msg</shortDescription>
+        <value>Please select a mini milestone or cancel.</value>
+    </labels>
+    <labels>
         <fullName>IPM_Mix_Char_Limit</fullName>
         <language>en_US</language>
         <protected>false</protected>
