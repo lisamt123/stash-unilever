@@ -1,8 +1,13 @@
+src
+src/classes
 src/classes/UID_StockCoverTriggerHelper_Test.cls
 src/classes/UID_StockCoverTriggerHelper.cls
+src/dashboards
 src/dashboards/UID_Unilever_Dashboard/X04_Inventory_and_Stock_Cover_View.dashboard
 src/dashboards/UID_Unilever_Dashboard/X02_Market_View_PRD.dashboard
+src/objects
 src/objects/UID_Stocked_Product_Summary__c.object
+src/reports
 src/reports/UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_Q_Q_2_Final.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_Q_Q_3_Final.report
 src/reports/UID_Inventory_and_Stock_Cover_View/Trend_Report_Inventory_Q_V_2_Final.report
