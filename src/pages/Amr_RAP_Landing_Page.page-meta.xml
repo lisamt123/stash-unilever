@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
-    <apiVersion>35.0</apiVersion>
-    <description>This is AM V2 RAP Landing Page.</description>
-    <label>Amr_RAP_Landing_Page</label>
-</ApexPage>

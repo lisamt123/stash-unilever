@@ -1,4 +1,4 @@
-<apex:page controller="Amr_JobPortfolioControllerCAP" sidebar="false" standardStylesheets="false">
+<apex:page controller="Amr_CAPJobPortfolioController" sidebar="false" standardStylesheets="false">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"/>
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
@@ -166,8 +166,8 @@
                <apex:column value="{!job.AM_Job_Detail__r.Stage_of_Production_Activity__c}" headerValue="Stage Of production Activity"/>
                <apex:column value="{!job.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}" headerValue="Project Leader Email"/>
                <apex:column value="{!job.AM_Job_Detail__r.Project_Leader_Country__c}" headerValue="Location of Unilever Project Leader (Country)"/>
-               <apex:column value="{!job.AM_Job_Detail__r.Category__c}" headerValue="Category"/>
-               <apex:column value="{!job.AM_Job_Detail__r.Brand__c}" headerValue="Brand Name"/>
+              <!-- <apex:column value="{!job.AM_Job_Detail__r.Category__c}" headerValue="Category"/>
+               <apex:column value="{!job.AM_Job_Detail__r.Brand__c}" headerValue="Brand Name"/>-->
                <apex:column value="{!job.AM_Job_Detail__r.Project_Details__c}" headerValue="Project Name"/>
                <apex:column value="{!job.AM_Job_Detail__r.Lead_Creative_Agency_name__c}" headerValue="Lead/Creative Agency Name"/>
                <apex:column value="{!job.AM_Job_Detail__r.Allocated_Budget_euro__c}" headerValue="Allocated Budget (Euro)"/>
@@ -215,8 +215,8 @@
                <apex:column value="{!job.sObjRec.AM_Job_Detail__r.Stage_of_Production_Activity__c}" headerValue="Stage Of production Activity"/>
                <apex:column value="{!job.sObjRec.AM_Job_Detail__r.Unilever_Project_Leader_Email__c}" headerValue="Project Leader Email"/>
                <apex:column value="{!job.sObjRec.AM_Job_Detail__r.Project_Leader_Country__c}" headerValue="Location of Unilever Project Leader (Country)"/>
-               <apex:column value="{!job.sObjRec.AM_Job_Detail__r.Category__c}" headerValue="Category"/>
-               <apex:column value="{!job.sObjRec.AM_Job_Detail__r.Brand__c}" headerValue="Brand Name"/>
+               <!--<apex:column value="{!job.sObjRec.AM_Job_Detail__r.Category__c}" headerValue="Category"/>
+               <apex:column value="{!job.sObjRec.AM_Job_Detail__r.Brand__c}" headerValue="Brand Name"/>-->
                <apex:column value="{!job.sObjRec.AM_Job_Detail__r.Project_Details__c}" headerValue="Project Name"/>
                <apex:column value="{!job.sObjRec.AM_Job_Detail__r.Lead_Creative_Agency_name__c}" headerValue="Lead/Creative Agency Name"/>
                <apex:column value="{!job.sObjRec.AM_Job_Detail__r.Allocated_Budget_euro__c}" headerValue="Allocated Budget (Euro)"/>
