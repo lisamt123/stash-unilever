@@ -33,11 +33,11 @@ public class CPA_AttchemntUnit {
             {
                 mapAttachmentType.put(objAttachment.id,'spreadsheet');
                 system.debug('mapAttachmentType--->'+mapAttachmentType);
-            }else if(objAttachment.Name.startswith('PWO') && objAttachment.ContentType.contains('pdf') && srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger )){
+            }else if(objAttachment.Name.startswith('PWO') && objAttachment.ContentType.contains(ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(label.CAP_ParentId_For_Attachment_trigger )){
                 system.debug('objAttachment-->'+objAttachment);
-                mapAttachmentType.put(objAttachment.id,'pdf');
-            }else if(objAttachment.Name.startswith('CR') && objAttachment.ContentType.contains('pdf') && srtTemp.startswith(label.CAP_ParentId_For_Attachment_CR)){
-               mapAttachmentType.put(objAttachment.id,'pdf');
+                mapAttachmentType.put(objAttachment.id,ConstantsForContractingAppClasses.PDF);
+            }else if(objAttachment.Name.startswith('CR') && objAttachment.ContentType.contains(ConstantsForContractingAppClasses.PDF) && srtTemp.startswith(label.CAP_ParentId_For_Attachment_CR)){
+               mapAttachmentType.put(objAttachment.id,ConstantsForContractingAppClasses.PDF);
                
                 
             }else {
@@ -133,7 +133,7 @@ public class CPA_AttchemntUnit {
                         
                                             
                     }
-                    if(mapAttachmentType.get(objAttachment.id) == 'pdf'){
+                    if(mapAttachmentType.get(objAttachment.id) == ConstantsForContractingAppClasses.PDF){
                         system.debug('objAttachment--->'+objAttachment);
                         objCR.chk_Contract_Attached__c =true;
                         system.debug('objpwo --> '+ objCR);
@@ -192,7 +192,7 @@ public class CPA_AttchemntUnit {
                         
                                             
                     }
-                    if(mapAttachmentType.get(objAttachment.id) == 'pdf'){
+                    if(mapAttachmentType.get(objAttachment.id) == ConstantsForContractingAppClasses.PDF){
                         system.debug('objAttachment--->'+objAttachment);
                         objPWO.chk_PDF_Attached__c =true;
                         system.debug('objpwo --> '+ objPWO);
