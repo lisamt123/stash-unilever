@@ -353,7 +353,7 @@ public with sharing class IPM_ProjectOverviewCtrl {
         IPM_Project__c
         FROM Tasks__r 
         WHERE IPM_Assignee__c = :UserInfo.getUserId() AND IPM_Phase__c = :currPhase AND IPM_Active__c=TRUE
-        ORDER BY IPM_Due_Date1__c,IPM_Master_Section_Sequence__c,IPM_Task_Name__c limit 10000),
+        ORDER BY IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c limit 10000),
         (SELECT id,name,IPM_Project__c from IPM_Countries__r limit 10000),
         (SELECT IPM_Project__c ,IPM_Project_Template__r.IPM_Template_Complexity__c,LastModifiedBy.Name,IPM_GateDocuments__c,
         IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,IPM_Approval_Date__c,

@@ -657,7 +657,7 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 IPM_Project_Document_Section__r.IPM_Section_Sequence__c, IPM_Assignee__r.Name, IPM_Project__c,
                 IPM_Completed__c,IPM_Task_Type__c,IPM_Project_Document_Section__r.IPM_Project_Document__r.IPM_GateDocuments__c,LastModifiedBy.Name 
                 FROM IPM_Task__c 
-                WHERE IPM_Project__c=:projectId AND IPM_Project_Document_Section__r.IPM_Section_Name__c=:sectionName AND IPM_Function__c=:Frole AND IPM_Active__c = true order by IPM_Completed__c desc ];
+                WHERE IPM_Project__c=:projectId AND IPM_Project_Document_Section__r.IPM_Section_Name__c=:sectionName AND IPM_Function__c=:Frole AND IPM_Active__c = true order by IPM_Due_Date1__c,IPM_Project_Document_Section__r.IPM_Section_Sequence__c,IPM_Task_Name__c ASC ];
         countOfTask =  [SELECT count() FROM IPM_Task__c WHERE IPM_Project__c=:projectId and IPM_Project_Document_Section__r.IPM_Section_Name__c=:sectionName and IPM_Project_Document_Section__r.IPM_Negotiable__c=true];                                      
     }
 
