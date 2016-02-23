@@ -2876,7 +2876,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </fields>
     <listViews>
         <fullName>All_email</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>Brand__c</columns>
@@ -2907,6 +2907,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>Case_Market__c</field>
             <operation>notContain</operation>
             <value>Bosnia,Hungary,Slovakia,Baltics,Romania,Bulgaria,Serbia,Slovenia,Lanka,Croatia</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notContain</operation>
+            <value>America</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
@@ -3579,17 +3584,32 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Brand_Queue_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>NAME</columns>
+        <columns>Country__c</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.PRIORITY</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>Case_Brand__c</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Brand Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Brand_Queue</queue>
-        <sharedTo>
-            <allInternalUsers></allInternalUsers>
-        </sharedTo>
     </listViews>
     <listViews>
         <fullName>CEC_North_America_Claims_Queue_Case</fullName>
+        <columns>CASES.CASE_NUMBER</columns>
+        <columns>Case_Brand__c</columns>
+        <columns>Country__c</columns>
+        <columns>NAME</columns>
+        <columns>CASES.SUBJECT</columns>
+        <columns>CASES.STATUS</columns>
+        <columns>CASES.CREATED_DATE</columns>
+        <columns>CASES.LAST_UPDATE</columns>
         <filterScope>Queue</filterScope>
         <label>CEC North America Claims Queue</label>
+        <language>en_US</language>
         <queue>CEC_North_America_Claims_Queue</queue>
         <sharedTo>
             <allInternalUsers></allInternalUsers>
@@ -4836,7 +4856,7 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
     </listViews>
     <listViews>
         <fullName>Within_SLA</fullName>
-        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6</booleanFilter>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5 AND 6 AND 7</booleanFilter>
         <columns>CASES.CASE_NUMBER</columns>
         <columns>NAME</columns>
         <columns>Brand__c</columns>
@@ -4865,6 +4885,11 @@ IMAGE(&quot;/resource/WorkIt2__Workit2Resources/img/rainbow_04.png&quot;, &quot;
             <field>Case_Market__c</field>
             <operation>notContain</operation>
             <value>Hungary,Slovakia,Baltics,Romania,Bulgaria,Serbia,Slovenia,Lanka,Croatia,Bosnia</value>
+        </filters>
+        <filters>
+            <field>Case_Market__c</field>
+            <operation>notContain</operation>
+            <value>America</value>
         </filters>
         <filters>
             <field>Case_Market__c</field>
