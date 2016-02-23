@@ -321,11 +321,11 @@ public class CPA_AttchemntUnit {
 
     
      /***This function reads the CSV file and inserts records into the CPA_Commercial_Details__c object. ***/
-    public static void ReadFile(List<Attachment> lstatt)    {
-
-        for(Attachment att : lstatt){
-            if(att.ContentType.contains('ms-excel')){
-                
+    //public static void ReadFile(List<Attachment> lstatt)    {
+public static void ReadFile(Attachment att)    {
+        //for(Attachment att : lstatt)
+        If (att!=null) {
+            if(att.ContentType.contains('ms-excel')){              
             
             string nameFile;
             String[] filelines = new String[]{};

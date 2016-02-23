@@ -25,7 +25,7 @@ trigger CAP_AfterAttachment on Attachment (after insert, before delete) {
             }
             
         }
-        CPA_AttchemntUnit.ReadFile(lstAttachmentRead);
+        CPA_AttchemntUnit.ReadFile(lstAttachmentRead[0]);
         if(lstAttachment!=null && lstAttachment.size()>0){
            CPA_AttchemntUnit.updateCPAPWO(lstAttachment,setParentId);
            system.debug('Update for PWO-->'+ lstAttachment);
