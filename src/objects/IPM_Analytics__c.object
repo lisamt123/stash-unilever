@@ -54,7 +54,7 @@
     <enableReports>true</enableReports>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <externalSharingModel>ReadWrite</externalSharingModel>
+    <externalSharingModel>Private</externalSharingModel>
     <fields>
         <fullName>IPM_1st_Full_Year_Gross_TO_BD__c</fullName>
         <description>1st Full Year Gross TO (BD)</description>
@@ -312,6 +312,17 @@
         <label>IPM Exempt from Threshold</label>
         <trackTrending>false</trackTrending>
         <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>IPM_Exemptfrom_Threshold__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(IPM_Exempt_from_Threshold__c = true, &apos;Yes&apos;, &apos;No&apos;)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>IPM Exempt from Threshold</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>IPM_Expected_Charter_Approval_Date__c</fullName>
@@ -986,5 +997,5 @@
     </nameField>
     <pluralLabel>IPM Analytics</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>
