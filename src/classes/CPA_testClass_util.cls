@@ -76,7 +76,7 @@ public class CPA_testClass_util {
         
         pworfRec.pkl_Process_Office_Area_E2E__c ='Other (provide free text to enter)';
         pworfRec.txt_otherProcessOfficeAreaE2E__c ='Other Process Office area E2E'  ;
-        pworfRec.mpkl_Project_Phases__c ='Plan; Analyse';
+        pworfRec.mpkl_Project_Phases__c =ConstantsForContractingAppClasses.PLAN_ANALYSE;
         pworfRec.txt_OtherProjectPhases__c = 'Other Project Phases'  ;            
         pworfRec.pkl_Process_Office_Area_E2E__c='Process Office Area E2E'  ;
         pworfRec.Is_Project__c  =ConstantsForContractingAppClasses.YES ;
@@ -201,7 +201,7 @@ public class CPA_testClass_util {
         
         pworfRec.pkl_Process_Office_Area_E2E__c ='Other (provide free text to enter)';
         pworfRec.txt_otherProcessOfficeAreaE2E__c ='Other Process Office area E2E'  ;
-        pworfRec.mpkl_Project_Phases__c ='Plan; Analyse';
+        pworfRec.mpkl_Project_Phases__c =ConstantsForContractingAppClasses.PLAN_ANALYSE;
         pworfRec.txt_OtherProjectPhases__c = 'Other Project Phases'  ;            
         pworfRec.pkl_Process_Office_Area_E2E__c='Process Office Area E2E'  ;
         pworfRec.Is_Project__c  =ConstantsForContractingAppClasses.YES ;
@@ -256,7 +256,7 @@ public class CPA_testClass_util {
         
         objLOI.dt_LOI_End_date__c = system.Today()+10;
         objLOI.dt_LOI_Start_Date__c = system.Today();
-        objLOI.mpkl_Phases_covered_by_WAR__c = 'Plan; Analyse';
+        objLOI.mpkl_Phases_covered_by_WAR__c = ConstantsForContractingAppClasses.PLAN_ANALYSE;
         objLOI.txt_PWO_number__c = 'PWO00123';
         objLOI.lkp_PWORF__c = objPWORF.Id;
         objLOI.txt_PWO_title__c = ConstantsForContractingAppClasses.TEST;
@@ -305,7 +305,7 @@ public class CPA_testClass_util {
         objPwo.txt_Previous_Status_Value__c='sdkj';
         objPwo.pkl_Pricing_Model__c = 'Fixed Price';
         objPwo.mpkl_Project_Classification__c = 'Complex';
-        objPwo.mpkl_Project_Phases__c = 'Plan; Analyse';
+        objPwo.mpkl_Project_Phases__c = ConstantsForContractingAppClasses.PLAN_ANALYSE;
         objPwo.txt_PWO_number__c = 'PWO-001';
         objPwo.PWORF_ID__c = objPWORF.Id;
         objPwo.txt_PWO_title__c = 'Titke';
@@ -413,8 +413,49 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         objCR.txt_Other_Project_Phases__c = 'Plan, Analyse';
         objCR.pkl_Phase_change_record_raised__c = 'Plan';
         objCR.txt_Previous_Status_Value__c = ConstantsForContractingAppClasses.TEST;
-        objCR.pkl_Project_Phases__c = 'Plan; Analyse';
-      //  objCR.CPA_Project_Work_Order__c = objPWO.Id;
+        objCR.pkl_Project_Phases__c = ConstantsForContractingAppClasses.PLAN_ANALYSE;
+        objCR.CPA_Project_Work_Order__c = objPWO.Id;
+        objCR.PWO_number__c = ConstantsForContractingAppClasses.TEST;
+        objCR.Region_impacted__c = 'Europe';
+        objCR.num_RMS_value__c =1;
+        objCR.num_Senior_resources_man_days__c =1;
+        objCR.num_Target_Blend_Rate__c =1;
+        objCR.txt_Title_of_change__c =ConstantsForContractingAppClasses.TEST;
+        objCR.num_Total_charge_of_CR__c = 1;
+        objCR.txta_Unilever_Project_Name__c = ConstantsForContractingAppClasses.TEST;
+        objCR.txt_Unilever_Reference__c = ConstantsForContractingAppClasses.TEST;
+        objCR.pec_Variance__c=1;
+        objCR.num_Varied_Target_Blend_Rate__c =1;
+        objCR.chk_isStandalone_CR__c = false;        
+        return objCR;
+        
+    }
+    public static CPA_CR__c standAloneCR(){
+        CPA_CR__c objCR = new CPA_CR__c();
+		objCR.RecordTypeid=label.Lbl_Standalone_CR_RecordTypeId;
+        objCR.txt_Accenture_Project_Manager__c = ConstantsForContractingAppClasses.TEST;
+        objCR.num_Authorisation_charges__c = 1;
+        objCR.num_Authorisation_man_days__c =1;
+        objCR.mpkl_Change_Record_history__c = '2nd Change';
+        objCR.txt_Change_Record_number__c = ConstantsForContractingAppClasses.TEST;
+        objCR.ltxta_Comments__c = 'Test C';
+        objCR.dt_CR_End_date__c = system.Today()+8;
+        objCR.dt_CR_Start_Date__c = system.today();
+        objCR.pkl_Currency__c = 'EUR';
+        objCR.dt_Date_raised__c = system.today();
+        objCR.num_Estimated_Man_days_of_CR__c = 1;
+        objCR.pec_Estimated_Off_shore__c =1;
+        objCR.pec_Estimated_On_shore__c =1;
+        objCR.num_Estimated_Value_of_CR__c =1;
+        objCR.pec_Expense__c =1;
+        objCR.num_Expense_charges_of_CR__c =1;
+        objCR.num_ITC_resources_man_days__c =1;
+        objCR.num_On_shore_senior_resources_man_days__c =1;
+        objCR.txt_Other_Phase_change_record_raised__c = ConstantsForContractingAppClasses.TEST;
+        objCR.txt_Other_Project_Phases__c = 'Plan, Analyse';
+        objCR.pkl_Phase_change_record_raised__c = 'Plan';
+        objCR.txt_Previous_Status_Value__c = ConstantsForContractingAppClasses.TEST;
+        objCR.pkl_Project_Phases__c = ConstantsForContractingAppClasses.PLAN_ANALYSE;
         objCR.PWO_number__c = ConstantsForContractingAppClasses.TEST;
         objCR.Region_impacted__c = 'Europe';
         objCR.num_RMS_value__c =1;
@@ -430,109 +471,12 @@ public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
         return objCR;
         
     }
-    
-    
-    public static CPA_TNF__c CreateTNF(){
-        CPA_PWORF__c objPWORF = createTest_other_PWORF();
-        User testUSer = createTestUser();
-        insert  objPWORF;
+    public static CPA_CR__c blankCR(CPA_project_work_order__c objPWO){
+        CPA_CR__c objCR1 = new CPA_CR__c();
+		objCR1.CPA_Project_Work_Order__c = objPWO.Id;		
+        return objCR1;
         
-        Requirements_and_Deliverables__c objRaD = createRequirementsDeliverables(objPWORF);
-        insert objRaD;
-        Risk_Assessment_and_Mitigation__c objRAM = createRiskAssessment(objPWORF);
-        insert objRAM;
-        PWORFKey_Contacts__c objKCs = CreateKeyContacts(objPWORF);
-        insert objKCs;
-        
-        
-        CPA_project_work_order__c ObjPWO = createPWO(objPWORF);
-        ObjPWO.chk_Excel_Attached__c =true;       
-        objPWO.chk_PDF_Attached__c = true;
-        insert ObjPWO;
-        
-        
-       CPA_TNF__c objTNF = new CPA_TNF__c();
-        objTNF.txt_Accenture_Contact__c = ConstantsForContractingAppClasses.TEST;
-        objTNF.num_Actual_charges__c =1;
-        objTNF.txt_Actual_effort_in_days__c =1;
-        objTNF.txt_Approved_by__c = ConstantsForContractingAppClasses.TEST;
-        objTNF.txt_Comments__c = ConstantsForContractingAppClasses.TEST;
-        objTNF.pkl_Currency__c = 'INR';
-        objTNF.dt_TD_Date_Notified__c = system.Today();
-        objTNF.dt_TD_Effective_Date__c = system.Today();
-        objTNF.txt_TD_Notice_Required__c = ConstantsForContractingAppClasses.TEST;
-        objTNF.num_Planned_charges__c =1;
-        objTNF.num_Planned_effort_in_days__c=1;
-        objTNF.lkp_PWO_ID__c = ObjPWO.Id;
-        objTNF.txt_PWO_number__c = '2';
-        objTNF.txt_PWO_title__c = 'Title';
-        objTNF.txt_Reason_for_termination__c = ConstantsForContractingAppClasses.TEST;
-        objTNF.txt_Relocation_of_resources__c = ConstantsForContractingAppClasses.TEST;
-        objTNF.pkl_Terminated_by__c = 'Unilever';
-        objTNF.txt_TNF_ID__c = '12344';
-        objTNF.txt_Unilever_Clarity_ID__c ='122133';
-        objTNF.lkp_Unilever_Contact__c =testUSer.Id;
-        objTNF.num_Variance_in_charges__c =1;
-        objTNF.num_Variance_in_effort__c =1;
-        return objTNF;
-
-
-    }
-    
-    public static CPA_CNF__c CreateCNF(){
-        CPA_PWORF__c objPWORF = createTest_other_PWORF();
-        User testUSer = createTestUser();
-        insert  objPWORF;
-        objPWORF.pkl_Status__c = 'Accepted';
-        update objPWORF;
-        
-        Requirements_and_Deliverables__c objRaD = createRequirementsDeliverables(objPWORF);
-        insert objRaD;
-        Risk_Assessment_and_Mitigation__c objRAM = createRiskAssessment(objPWORF);
-        insert objRAM;
-        PWORFKey_Contacts__c objKCs = CreateKeyContacts(objPWORF);
-        insert objKCs;
-        
-        
-        CPA_project_work_order__c ObjPWO = createPWO(objPWORF);
-        ObjPWO.chk_Excel_Attached__c =true;       
-        objPWO.chk_PDF_Attached__c = true;
-        insert ObjPWO;
-        ObjPWO.pkl_Status__c = 'Delivered';
-        update ObjPWO;
-        CPA_CNF__c objCNF = new CPA_CNF__c();
-        
-        objCNF.txt_Accenture_Project_Manager__c=ConstantsForContractingAppClasses.TEST;
-        objCNF.num_Actual_Day_rate__c = 1;
-        objCNF.num_Actual_expenses__c =1;
-        objCNF.num_Actual_fees_inclusive_of_discount__c =1;
-        objCNF.num_Actual_Fixed_Price_Contingency__c =1;
-        objCNF.num_Actual_man_days__c =1;
-        objCNF.num_Actual_PMO_tax__c =1;
-        objCNF.dt_Actual_PWO_End_Date__c=system.today();
-        objCNF.num_Actual_total_charges__c =1;
-        objCNF.Comments__c =ConstantsForContractingAppClasses.TEST;
-        objCNF.txt_CR_number__c = ConstantsForContractingAppClasses.TEST;
-        objCNF.mpkl_Currency__c = 'EURO';
-        objCNF.num_Planned_Day_rate__c =1;
-        objCNF.num_Planned_expenses__c =1;
-        objCNF.num_Planned_fees_inclusive_of_discount__c =1;
-        objCNF.num_Planned_Fixed_Price_Contingency__c=1;
-        objCNF.num_Planned_man_days__c=1;
-        objCNF.num_Planned_PMO_tax__c=1;
-        objCNF.dt_Planned_PWO_End_Date__c= system.today();
-        objCNF.num_Planned_total_charges__c =1;
-        objCNF.PWO_ID__c = ObjPWO.Id;
-        objCNF.txt_PWO_number__c =ConstantsForContractingAppClasses.TEST;
-        objCNF.txt_PWO_title__c = ConstantsForContractingAppClasses.TEST;
-        objCNF.lkp_Unilever_budget_approver__c = testUSer.Id;
-        objCNF.lkp_Unilever_content_approver__c = testUSer.Id;
-        objCNF.num_Variance_number_in_man_days__c=1;
-        objCNF.txt_Unilever_Clarity_ID__c ='1234';
-        
-        return objCNF;
-        
-    }
+    }   
     
     
     public static CPA_HLE_Request__c CreateHLERequest(){
