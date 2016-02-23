@@ -50,7 +50,8 @@ boolean callFromVF = false;
                  RequiredFieldMap.put('W@R € spend approved at MC Rates',ConstantsForContractingAppClasses.MANDATORY); 
              if(LoiRec.cur_Total_value_in_Euro_being_requested__c == null)
                  RequiredFieldMap.put('Total value in Euro being requested',ConstantsForContractingAppClasses.MANDATORY);    
-             if(LoiRec.chk_Contract_Attached__c != true)
+             //if(LoiRec.chk_Contract_Attached__c != true)
+             if(!LoiRec.chk_Contract_Attached__c)
                   RequiredFieldMap.put('Contract has not been attached. Attach the contract and append the file name with a prefix - LOI',ConstantsForContractingAppClasses.MANDATORY);
              if(LoiRec.mpkl_Phases_covered_by_WAR__c == null)
                  RequiredFieldMap.put('Phases covered by WAR',ConstantsForContractingAppClasses.MANDATORY);          
