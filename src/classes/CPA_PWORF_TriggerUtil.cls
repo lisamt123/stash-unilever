@@ -45,7 +45,7 @@ public with sharing class CPA_PWORF_TriggerUtil{
     */
      public static void submitforApproval(List<CPA_PWORF__c> oldPWORFList,List<CPA_PWORF__c> newPWORFList)    
     {
-       string subID;
+       //string subID; - commented as not used anywhere
        set<Id> setId = new Set<Id>();
       List<CPA_PWORF__c> WithholdsetId = new List<CPA_PWORF__c>();
        Approval.ProcessWorkitemRequest[] prWkItemsForApproval = New Approval.ProcessWorkItemRequest[]{};
