@@ -1,13 +1,13 @@
 public class CPA_testClass_util {
     
     public static User createTestUser (){
-        User testUser;
+        //User testUser; - commented as this variable not used anywhere, just initialized on line number 7, but returning testUser1
         Profile p = [select id from profile where name='system Administrator'];
         
-        testUser = new User(alias = 'u1', email='u1@unilever.com',
-        emailencodingkey='UTF-8', lastname='Testing', languagelocalekey='en_US',
-        localesidkey='en_US', profileid = p.Id, country='United States',
-        timezonesidkey='America/Los_Angeles', username='u1@unilever.com');
+        //testUser = new User(alias = 'u1', email='u1@unilever.com',
+        //emailencodingkey='UTF-8', lastname='Testing', languagelocalekey='en_US',
+        //localesidkey='en_US', profileid = p.Id, country='United States',
+        //timezonesidkey='America/Los_Angeles', username='u1@unilever.com');
         User testUser1 = [Select Id,profileid,isactive from user where profileid  =: p.Id AND isactive = true limit 1];
         return testUser1;
     
