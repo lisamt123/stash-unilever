@@ -40,7 +40,7 @@ public with sharing class Oblix_TR01SOWMarkingSharing {
             }
         }
         lstBrandUsers = [Select Id, Name, Brand__c, User__c, Level_of_Visibility__c from MDO_BrandUser__c where Brand__c in: setBrandIds];
-        system.debug('###lstBrandUsers  : '+lstBrandUsers );
+        
         List<Marketing_SOW__Share> lstMarketingShare = new List<Marketing_SOW__Share>();
         //Loop over SOW and get the corresponding user according to the brand, to be able to share it    
         for(Marketing_SOW__c marketingSow : lstMarketingSow){
@@ -54,14 +54,12 @@ public with sharing class Oblix_TR01SOWMarkingSharing {
                             marketingSowShare.UserOrGroupId = userSow.User__c;
                             marketingSowShare.RowCause = 'Manual';//Schema.Marketing_SOW__Share.RowCause.SOW_sharing_by_brand__c;
                         lstMarketingShare.add(marketingSowShare);
-                       
                    }
                 }
             }
             }
             
         }
-         system.debug('###lstMarketingShare : '+lstMarketingShare);
        
         return lstMarketingShare;
     }

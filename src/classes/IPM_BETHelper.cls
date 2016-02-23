@@ -5,8 +5,8 @@
 **/
 
 /*
-     This class has been defined as Without Sharing as the methods are invoked via BET Integration service methods which needs 
-     to access all related IPM and MDO data irrespective of sharing.
+    This class is defined as Without as the methods are invoked via BET Integartion service methods which needs to access
+    all related IPM and MDO data irrespective of sharing.
 */
 public without sharing class IPM_BETHelper {
 
@@ -44,8 +44,8 @@ public without sharing class IPM_BETHelper {
 
         for (string pid: mapProjBET.keySet()) {
             if (String.isNotBlank(mapProjBET.get(pid).BET__c)) {
-                lstMS.add(new IPM_Milestone__c(Name = IPM_ConstantUtils.BET_MS_FIRST_RELEASE, IPM_Name__c = IPM_ConstantUtils.BET_MS_FIRST_RELEASE, IPM_Project__c = pid, IPM_Type_of_Milestone__c = IPM_ConstantUtils.STRING_BET, RecordTypeId = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(), IPM_Due_Date__c = mapbetIdWrapper.get(mapProjBET.get(pid).BET__c).firstReleaseDueDate, IPM_Completed_On__c = mapbetIdWrapper.get(mapProjBET.get(pid).BET__c).firstReleaseDate, IPM_Completed__c = mapbetIdWrapper.get(mapProjBET.get(pid).BET__c).firstReleaseDate!=null?true:false, ExternalField__c = pid + IPM_ConstantUtils.BET_MS_FIRST_RELEASE, IPM_Active__c = true));
-                lstMS.add(new IPM_Milestone__c(Name = IPM_ConstantUtils.BET_MS_FINAL_RELEASE, IPM_Name__c = IPM_ConstantUtils.BET_MS_FINAL_RELEASE, IPM_Project__c = pid, IPM_Type_of_Milestone__c = IPM_ConstantUtils.STRING_BET, RecordTypeId = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(), IPM_Due_Date__c = mapbetIdWrapper.get(mapProjBET.get(pid).BET__c).finalReleaseDueDate, IPM_Completed_On__c = mapbetIdWrapper.get(mapProjBET.get(pid).BET__c).finalReleaseDate, IPM_Completed__c = mapbetIdWrapper.get(mapProjBET.get(pid).BET__c).finalReleaseDate!=null?true:false ,IPM_Phase__c = (!mapPidProjectPhase.isEmpty() && mapPidProjectPhase.containsKey(pid)) ? mapPidProjectPhase.get(pid) : null, ExternalField__c = pid + IPM_ConstantUtils.BET_MS_FINAL_RELEASE, IPM_Active__c = true));
+                lstMS.add(new IPM_Milestone__c(Name = IPM_ConstantUtils.BET_MS_FIRST_RELEASE, IPM_Name__c = IPM_ConstantUtils.BET_MS_FIRST_RELEASE, IPM_Project__c = pid, IPM_Type_of_Milestone__c = IPM_ConstantUtils.STRING_BET, RecordTypeId = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(), IPM_Due_Date__c = mapbetIdWrapper.get(mapProjBET.get(pid).BET__c).firstReleaseDueDate, IPM_Completed_On__c = mapbetIdWrapper.get(mapProjBET.get(pid).BET__c).firstReleaseDate, ExternalField__c = pid + IPM_ConstantUtils.BET_MS_FIRST_RELEASE, IPM_Active__c = true));
+                lstMS.add(new IPM_Milestone__c(Name = IPM_ConstantUtils.BET_MS_FINAL_RELEASE, IPM_Name__c = IPM_ConstantUtils.BET_MS_FINAL_RELEASE, IPM_Project__c = pid, IPM_Type_of_Milestone__c = IPM_ConstantUtils.STRING_BET, RecordTypeId = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(), IPM_Due_Date__c = mapbetIdWrapper.get(mapProjBET.get(pid).BET__c).finalReleaseDueDate, IPM_Completed_On__c = mapbetIdWrapper.get(mapProjBET.get(pid).BET__c).finalReleaseDate, IPM_Phase__c = (!mapPidProjectPhase.isEmpty() && mapPidProjectPhase.containsKey(pid)) ? mapPidProjectPhase.get(pid) : null, ExternalField__c = pid + IPM_ConstantUtils.BET_MS_FINAL_RELEASE, IPM_Active__c = true));
             } else {
                 lstMS.add(new IPM_Milestone__c(Name = IPM_ConstantUtils.BET_MS_FIRST_RELEASE, IPM_Name__c = IPM_ConstantUtils.BET_MS_FIRST_RELEASE, IPM_Project__c = pid, IPM_Type_of_Milestone__c = IPM_ConstantUtils.STRING_BET, RecordTypeId = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(), IPM_Due_Date__c = BET_BETService.getFirstReleaseDueDate(mapProjBET.get(pid).IPM_Target_Launch_Dates__c), IPM_Completed_On__c = null, ExternalField__c = pid + IPM_ConstantUtils.BET_MS_FIRST_RELEASE, IPM_Active__c = true));
                 lstMS.add(new IPM_Milestone__c(Name = IPM_ConstantUtils.BET_MS_FINAL_RELEASE, IPM_Name__c = IPM_ConstantUtils.BET_MS_FINAL_RELEASE, IPM_Project__c = pid, IPM_Type_of_Milestone__c = IPM_ConstantUtils.STRING_BET, RecordTypeId = Schema.SObjectType.IPM_Milestone__c.getRecordTypeInfosByName().get(IPM_Utils.milePMRecordType).getRecordTypeId(), IPM_Due_Date__c = BET_BETService.getFinalReleaseDueDate(mapProjBET.get(pid).IPM_Target_Launch_Dates__c), IPM_Completed_On__c = null, ExternalField__c = pid + IPM_ConstantUtils.BET_MS_FINAL_RELEASE, IPM_Active__c = true));
@@ -84,7 +84,7 @@ public without sharing class IPM_BETHelper {
     //Method to reset BET Milestone date missed alert 
     public static void resetMilestoneMissedFlag(Id BETId, BET_BETWrapper BET) {
         list < IPM_Project__c > lstPRoject = new list < IPM_Project__c > ();
-        lstPRoject = [select id, BET_First_Release_Missed__c, BET_Final_Release_Missed__c from IPM_Project__c where bet__c = : BET.betid limit 50000]; 
+        lstPRoject = [select id, BET_First_Release_Missed__c, BET_Final_Release_Missed__c from IPM_Project__c where bet__c = : BET.betid limit 50000]; //LAKHAN ADDED 2 FIL
         for (IPM_Project__c proj: lstPRoject) {
             if (BET.status == IPM_ConstantUtils.BET_FINAL_RELEASE) {
                 proj.BET_First_Release_Missed__c = false;
@@ -100,16 +100,10 @@ public without sharing class IPM_BETHelper {
     //Method to update Phase of BET Final Release Milestone
     public static void updatePhaseBETMSFinalRelease(id betId) {
         list < IPM_Milestone__c > lstMS = new list < IPM_Milestone__c > ();
-        BET_BETWrapper bwrap = new BET_BETWrapper();
-        bwrap = BET_BETService.getBet(betId);
         for (IPM_Project__c prj: [select id, IPM_Phase__c, bet__c, (select id, IPM_Phase__c from IPM_Milestones__r where IPM_Type_of_Milestone__c = : IPM_ConstantUtils.STRING_BET and IPM_Name__c like: (IPM_ConstantUtils.SYMBOL_PERCENTAGE + IPM_ConstantUtils.BET_MS_FINAL_RELEASE + IPM_ConstantUtils.SYMBOL_PERCENTAGE)) from IPM_Project__c where bet__c = : betId limit 50000]) {
             for (IPM_Milestone__c betMSFL: prj.IPM_Milestones__r) {
                 if (string.isBlank(betMSFL.IPM_Phase__c)) {
                     betMSFL.IPM_Phase__c = prj.IPM_Phase__c;
-                    if(bwrap!=null){
-                        betMSFL.IPM_Completed__c = true;
-                        betMSFL.IPM_Completed_On__c = bwrap.finalReleaseDate;
-                    }
                     lstMS.add(betMSFL);
                 }
             }
@@ -140,22 +134,8 @@ public without sharing class IPM_BETHelper {
 
     //Method to send Regional/Local Rollout Leaders' Access Request to BET after BET First Release
     public static void sendBETAccessRequestonFirstRelease(id betId) {
-        //Call helper method to send Access Request per project
         for (IPM_Project__c proj: [select id from IPM_Project__c where bet__c = : betId limit 50000]) {
             sendBETAccessRequestonFirstReleasePerProject(betId, proj.Id);
-        }
-        //Update related BET First Release Milestone
-        BET_BETWrapper bwrap = new BET_BETWrapper();
-        bwrap = BET_BETService.getBet(betId);
-        list <IPM_Milestone__c> lstMS = new list <IPM_Milestone__c> ();
-        for(IPM_Milestone__c betMS: [select id from IPM_Milestone__c where IPM_Type_of_Milestone__c = : IPM_ConstantUtils.STRING_BET and IPM_Name__c like: (IPM_ConstantUtils.SYMBOL_PERCENTAGE + IPM_ConstantUtils.BET_MS_FIRST_RELEASE + IPM_ConstantUtils.SYMBOL_PERCENTAGE) and IPM_Project__r.BET__c=:betid]){
-            betMS.IPM_Completed__c = true;
-            betMS.IPM_Completed_On__c = bwrap.firstReleaseDate;
-            lstMS.add(betMS);
-        }
-        //Update BET First release Milestone with Completed date
-        if(!lstMS.isEmpty()){
-            update lstMS;
         }
     }
     //Method to send Access request to BET per project
@@ -165,23 +145,12 @@ public without sharing class IPM_BETHelper {
         set < string > setLocalRoles = new set < string > ();
         setRegionalRoles.addAll(IPM_ConstantUtils.STRING_REGIONAL_ROLES.SPLIT(';'));
         setLocalRoles.addALl(IPM_ConstantUtils.STRING_LOCAL_ROLES.SPLIT(';'));
-        
-        set<id> setIds = new set<id>();
         //Get All users to be given access
-        for (IPM_Project__c proj: [select IPM_Project_Leader__c, Deputy_Project_Leader__c, (select IPM_User__c from IPM_Project_Resources__r where IPM_User__c != null and((IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_REGIONAL and IPM_Role_Type__c in : setRegionalRoles) OR(IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_LOCAL and IPM_Role_Type__c in : setLocalRoles))) from IPM_Project__c where (IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.BET__c = : betId) OR (IPM_Parent_Project__r.IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.IPM_Parent_Project__r.BET__c = : betId) limit 10000]) {
-            if(setIds.isEmpty() || (!setIds.isEmpty() && !setIds.contains(proj.IPM_Project_Leader__c))){
-                lstMemberRequests.add(generateBETMember(proj.IPM_Project_Leader__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
-                setIds.add(proj.IPM_Project_Leader__c);
-            }
-            if(setIds.isEmpty() || (!setIds.isEmpty() && !setIds.contains(proj.Deputy_Project_Leader__c))){
-                lstMemberRequests.add(generateBETMember(proj.Deputy_Project_Leader__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
-                setIds.add(proj.Deputy_Project_Leader__c);
-            }
+        for (IPM_Project__c proj: [select IPM_Project_Leader__c, Deputy_Project_Leader__c, (select IPM_User__c from IPM_Project_Resources__r where IPM_User__c != null and((IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_REGIONAL and IPM_Role_Type__c in : setRegionalRoles) OR(IPM_Project__r.IPMProject_Span__c = : IPM_ConstantUtils.PROJECT_SPAN_LOCAL and IPM_Role_Type__c in : setLocalRoles))) from IPM_Project__c where BET__c = : betId and(IPM_Parent_Project__c = : projectId OR IPM_Parent_Project__r.IPM_Parent_Project__c = : projectId) limit 10000]) {
+            lstMemberRequests.add(generateBETMember(proj.IPM_Project_Leader__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
+            lstMemberRequests.add(generateBETMember(proj.Deputy_Project_Leader__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
             for (IPM_Project_Resource__c proMember: proj.IPM_Project_Resources__r) {
-                if(setIds.isEmpty() || (!setIds.isEmpty() && !setIds.contains(proMember.IPM_User__c))){
-                    lstMemberRequests.add(generateBETMember(proMember.IPM_User__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
-                    setIds.add(proMember.IPM_User__c);
-                }
+                lstMemberRequests.add(generateBETMember(proMember.IPM_User__c, IPM_ConstantUtils.BET_MANAGER_ACCESS));
             }
         }
         if (!lstMemberRequests.isEmpty()) {
@@ -192,12 +161,8 @@ public without sharing class IPM_BETHelper {
     //Method to Request BET access for eligible new members in IPM
     public static void sendBETAccessRequest(list < id > lstUserId, id betId, id projectId) {
         list < BET_BETWrapper.MemberRequest > lstMemberRequests = new list < BET_BETWrapper.MemberRequest > ();
-        set<id> setIds = new set<Id>();
         for (id usrId: lstUserId) {
-            if(setIds.isEmpty() || (!setIds.isEmpty() && !setIds.contains(usrId))){
-                lstMemberRequests.add(generateBETMember(usrId, IPM_ConstantUtils.BET_MANAGER_ACCESS));
-                setIds.add(usrId);
-            }
+            lstMemberRequests.add(generateBETMember(usrId, IPM_ConstantUtils.BET_MANAGER_ACCESS));
         }
         //Call BET service to send access request
         if (!lstMemberRequests.isEmpty()) {
@@ -211,7 +176,7 @@ public without sharing class IPM_BETHelper {
         member.AccessLevel = role;
         return member;
     }
-                        
+
     public static void sendRolloutMemberBETAccessRequest(map < id, set < IPM_Project_Resource__c >> mapProjResources) {
         map < id, set < id >> mapBETsetProjId = new map < id, set < id >> ();
         map < id, set < id >> mapProjRollouts = new map < id, set < id >> ();
@@ -301,7 +266,7 @@ public without sharing class IPM_BETHelper {
             }
         }
     }
-    
+
     public static void setArchiveBET_IPM(BET_BETWrapper BET) {
         list < IPM_Project__c > lstIPM = new list < IPM_Project__c > ();
         for (IPM_Project__c ipm: [select id from IPM_Project__c where bet__c = : BET.betid limit 50000]) {

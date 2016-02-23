@@ -133,13 +133,10 @@ public with sharing class IPM_GateRiskSection{
                 if(projDocType==IPM_ConstantUtils.CHARTER_GATE){
                     question.IPM_Charter_Comments__c=comments;
                     question.IPM_Contract_Comments__c=comments;
-                    question.IPM_Market_Ready_Comments__c=comments;
-                    question.IPM_Market_Deployment_Comments__c=comments;
                 }
                 else if(projDocType==IPM_ConstantUtils.CONTRACT_GATE){
                     question.IPM_Contract_Comments__c=comments;
                     question.IPM_Market_Ready_Comments__c=comments;
-                    question.IPM_Market_Deployment_Comments__c=comments;
                 }
                 else if(projDocType==IPM_ConstantUtils.MARKET_READY_GATE){
                     question.IPM_Market_Ready_Comments__c=comments;

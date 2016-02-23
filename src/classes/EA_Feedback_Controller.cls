@@ -23,14 +23,36 @@ public with sharing class EA_Feedback_Controller {
         boolean strteamId=EA_Utils.isEmpty(teamId);*/
         // Update Team Member Record with Rating
         integer activity_rating=integer.valueOf(rating );
-        if( activity_rating>0){
+        if( activity_rating>0 && teamId !=null  ){
+           system.debug('***'+ activity_rating);
             EA_Team_Member__c objMember=[Select Id,Rating_By_Participant__c from EA_Team_Member__c where id=:teamId];
             objMember.Rating_By_Participant__c=integer.ValueOf(rating);
             update objMember;
           //  updateActivityRating(activityId);
            // system.debug('&&&'+objMember.Rating_By_Participant__c);
-        }  
-        EA_Utils.postOnChatter(activityId,feedbackText);          
+        } 
+        
+         if( activity_rating>0 && teamId ==null  ){
+           system.debug('coming');
+            List<Everyday_Activity__c> acts = EA_ControllerClass.getactivitydetail(activityId);
+            
+            Decimal points = acts[0].Activity_Points__c;  
+           EA_Team_Member__c newrecord = new EA_Team_Member__c();
+            newrecord.Participant__c = UserInfo.getUserId();
+            newrecord.Invited_By__c = UserInfo.getUserId();   
+            newrecord.Invitation_Status__c = 'Commented';
+            newrecord.Everyday_Activity__c = activityId;
+            newrecord.Activity_Points__c= points;
+            newrecord.Rating_By_Participant__c=activity_rating;
+            
+            insert newrecord;
+         }
+        EA_Utils.postOnChatter(activityId,feedbackText);
+        EA_Team_Member__c objMemberDetail =[Select Id,Rating_By_Participant__c,Latest_Feeditem_Id__c from EA_Team_Member__c where id=:teamId AND Invitation_Status__c =: EA_Constants.INVITATION_STATUS_SELF];
+        if(objMemberDetail.Latest_Feeditem_Id__c == ''){
+                
+           // update objMemberDetail;
+        }          
         updateActivityRating(activityId);
         return true;    
     }    
@@ -81,55 +103,20 @@ public with sharing class EA_Feedback_Controller {
         objActivity.Rating__c=integer.valueof(rating);
         activtyList.add(objActivity);
         return activtyList;
-    }      
-    public static void sendFeedbackReminder(List<EA_Team_Member__c> tmList){    
-        if(tmList != null && tmList.size()>0){          
-            ConnectApi.FeedItemInput feedItemInput = new ConnectApi.FeedItemInput();           
-            Map<ID,String> actIdTOName = new Map<ID,String>();
-            List<Everyday_Activity__c> acts = new List<Everyday_Activity__c>();
-            Set<ID> actIDs = new Set<ID>();                     
-            for(EA_Team_Member__c tmObj : tmList){               
-                actIDs.add(tmObj.Everyday_Activity__c);
-            }           
-            acts = [SELECT id, Name FROM Everyday_Activity__c WHERE ID IN: actIDs];           
-            for(Everyday_Activity__c  eaObj : acts){           
-                actIdTOName.put(eaObj.id,eaObj.Name);
-            }
-            
-            List<FeedItem> feedList = new List<FeedItem>(); 
-            
-			String chatterSupportUserID = '';
-             if(Test.isRunningTest()){
-				 
-					User userObj = [SELECT id, Name FROM User WHERE Name =: 'Chatter Support'];
-					chatterSupportUserID = userObj.id;
-			}
-			else{
-					
-					chatterSupportUserID = EA_ReportingGA__c.getInstance('EA_System_User_ID').Text_Value__c;
-				}
-			
-            for(EA_Team_Member__c tmObj : tmList){            
-                if(tmObj.Invitation_Status__c == EA_Constants.INVITATION_STATUS_SELF){                   
-                    string appUrl=URL.getSalesforceBaseUrl().toExternalForm() + '/' +'c/EverydayAction_App.app';
-                    string actName = actIdTOName.get(tmObj.Everyday_Activity__c);
-                    string userid= tmObj.Participant__c;                   
-                    FeedItem newFeed=new FeedItem();
-                    newFeed.CreatedById = chatterSupportUserID;
-                    newFeed.Body = System.Label.EA_Feedback_Message+'-'+ actName + ' ' + 'Your feedback help others. Please go to Everyday Actions on SF1 app to take action.';
-                    newFeed.ParentId =userid ;
-                    newFeed.Type = 'TextPost';
-                    feedList.add(newFeed);                    
-                }
-                
-            }
-            
-            if(feedList != null && feedList.size()>0){
-            	
-            	insert feedList;
-            }
-        }
-        
-    }
+    } 
     
+ /*******************************************************************************************************
+* @description This method returns  current user recent rating to an activty
+* @param  
+* @return rating. 
+*/
+    
+       @AuraEnabled
+        public static Integer getActivityRating(String ActivityID){
+        
+        EA_Team_Member__c objTeam=[Select Id,Rating_By_Participant__c from EA_Team_Member__c where Participant__c=:Userinfo.getUserId() AND Everyday_Activity__c =:ActivityID order by CreatedDate Desc limit 1];
+        system.debug('***'+Integer.valueOf(objTeam.Rating_By_Participant__c));
+        return Integer.valueOf(objTeam.Rating_By_Participant__c);
+       
+   }
 }

@@ -19,22 +19,12 @@ public with sharing class  IPM_ProjectJob_Queue implements Queueable
     public static Boolean PROJECT_QUEUE_CONTEXT_STARTED = false;
     
     //Actual Processing Records invoked from Trigger to Process Background Process          
-    public Set<Id> projectsIdsToBeProcessed{get;set;}
-    
-    //Actual Processing Rollout Records invoked from Trigger to Process Background Process 
-    public Set<Id> rollOutIdsToBeProcessed{get;set;}
-    
+    public Set<Id> projectsIdsToBeProcessed{get;set;} 
+
     // Invoked from trigger and passing Project Ids for which background process needs to be invoked.             
     public void initializeProjectData(Set<Id> incomingProjectsIds)
     {
         this.projectsIdsToBeProcessed = incomingProjectsIds;
-    }
-    
-    // Invoked from trigger and passing Project Ids && RolloutIds for which background process needs to be invoked.             
-    public void initializeRolloutProjectData(Set<Id> incomingProjectsIds,Set<Id> incomingRolloutIds)
-    {
-        this.projectsIdsToBeProcessed = incomingProjectsIds;
-        this.rollOutIdsToBeProcessed = incomingRolloutIds;
     }
     
     /*********************************************************
@@ -58,7 +48,7 @@ public with sharing class  IPM_ProjectJob_Queue implements Queueable
                 if(projectDetailMap !=null && !projectDetailMap.isEmpty())
                 {
                     // Get newly Created Rollout Projects and insert them into Database.
-                    IPM_ProjectJobHelper.processRollouts(projectDetailMap,rollOutIdsToBeProcessed,qContext);
+                    IPM_ProjectJobHelper.processRollouts(projectDetailMap,qContext);
                     
                     // Again query the Data to get Latest information about the projects which got converted.
                     projectDetailMap.clear();

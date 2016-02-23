@@ -3,7 +3,7 @@
 * @date  15/12/2014
 * @description To Display Gate Document Sections
 */
-public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermediateController { 
+public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermediateController {
 
     public List<IPM_Milestone__c> lstMstn;
     //String to replace duplicate string literals
@@ -119,21 +119,16 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public Boolean showAttach{get;set;}
     
     public Set<String> proSubSectionParentsSequenceList1;//DEF1474 - contains all headers sequence
-    
-    public Static final String ENVIRONMENTAL_IMPACT = 'Environmental_Impact';
-    public Boolean bDocStatusNotStartedOrApproved{get;set;}//Flag to check if document is in Not Started or Approved Status
     /****************************************************************************************************************************************************
     @description Retrieving Project,Project Document,Project Document Section Records Using Page URL Parameters and Initializing the Values for Variables
     */
-    public IPM_GateDocumentController()
-    {
-        super();    
+    public IPM_GateDocumentController(){
+        
         showAttach=false;
         isReadable=true;
         IsUpdateStatus=false;
         isPDFDownload=true;
         isExemptFromThresholdITO=false;
-        bDocStatusNotStartedOrApproved = false;
         //Total filter counts
         NonNegotiableCount=0;
         OptionalCount=0;
@@ -172,8 +167,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         filtersCountList=[SELECT IPM_Section__r.IPM_Section_Sequence__c, IPM_Section_Sequence__c, IPM_Section__r.IPM_Negotiable__c,IPM_Section_Status__c,IPM_FunctionalRole__c, IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c 
                           FROM IPM_Project_Document_Section__c 
                           WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER and 
-                          IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER and IPM_Default_Section__c=true
-                          AND ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c !=:IPM_ConstantUtils.BLG ))]; //to exlude section 5.3 for BLG projects
+                          IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_SUBHEADER and IPM_Default_Section__c=true];
         
         for(IPM_Project_Document_Section__c filterCount:filtersCountList){
             if(filterCount.IPM_Section__c!=null && filterCount.IPM_Section__r.IPM_Negotiable__c!=null && !filterCount.IPM_Section__r.IPM_Negotiable__c){
@@ -192,7 +186,12 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                     DeploNegotiable++;
                 }
                 if(filterCount.IPM_Section__r.IPM_Section_Sequence__c.startsWith(IPM_ConstantUtils.TECHNICAL_HEADER_SEQUENCE)){
-                    TechNegotiable++;
+                    //Not to count section 5.3 if  IPM_Project__r.IPM_Answer_of_Q1__c == 'BLG'
+                    if(!(filterCount.IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c == 'BLG' && filterCount.IPM_Section__r.IPM_Section_Sequence__c == '5.3') ){
+                        TechNegotiable++;
+                    }
+                    //TechNegotiable++;
+                    
                 }
                 if(filterCount.IPM_Section__r.IPM_Section_Sequence__c.startsWith(IPM_ConstantUtils.FINANCE_HEADER_SEQUENCE)){
                     FinNegotiable++;
@@ -275,8 +274,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         getProjectDocumentSection();
         getDocumentSectionMap();
         gateDocumentData(project.Id);
-        If(projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_NOT_STARTED || projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_APPROVED){
-            bDocStatusNotStartedOrApproved = true;
+        If(projectDoc.IPM_Document_Status__c==IPM_ConstantUtils.STATUS_NOT_STARTED){
             //For Storing Filled-In Percentage Calculation in Project Object 
             Integer NonNegotiable=[SELECT count() FROM IPM_Project_Document_Section__c 
                                    WHERE IPM_Default_Section__c=true AND IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Section_Type__c!=:IPM_ConstantUtils.SECTION_TYPE_HEADER AND 
@@ -303,15 +301,43 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         //Retrieving Project Record Using Page URL Parameter Id
         projectId=ApexPages.currentPage().getParameters().get('Id');
         printDoc=ApexPages.currentPage().getParameters().get('printDoc');
-        if(String.IsNotBlank(String.valueOf(projectId)) && String.IsNotBlank(String.valueOf(printDoc))){
-            getIpmuserType();  
-            gateDocument=printDoc;
+        if(String.IsNotBlank(String.valueOf(projectId))){
+            getIpmuserType();   
+            if(String.IsBlank(String.valueOf(printDoc))){
+                
+                if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_IDEAS)
+                    gateDocument=IPM_ConstantUtils.CHARTER_GATE; 
+                
+                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_GCLT)           
+                    gateDocument=IPM_ConstantUtils.CONTRACT_GATE;
+                    
+                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT)
+                    gateDocument=IPM_ConstantUtils.CONTRACT_GATE;
+                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_RCLT)      
+                    gateDocument=IPM_ConstantUtils.CHARTER_GATE;
+                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_FEASIBILITY && project.IPM_GateKeeping_Model__c==IPM_ConstantUtils.GATEKEEPING_MODEL_BOTH)      
+                    gateDocument=IPM_ConstantUtils.CONTRACT_GATE;                       
+                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_CAPABILITY)            
+                    gateDocument=IPM_ConstantUtils.MARKET_READY_GATE;
+                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_READY && (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL || project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL))
+                    gateDocument=IPM_ConstantUtils.MARKET_READY_GATE;
+                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_READY && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+                    gateDocument=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;
+                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_MARKET_DEPLOYMENT && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+                    gateDocument=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;    
+                else if(project.IPM_Phase__c==IPM_ConstantUtils.PHASE_PLE && project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+                    gateDocument=IPM_ConstantUtils.MARKET_DEPLOYMENT_GATE;       
+            }
+            else{
+                gateDocument=printDoc;
+            }
+            
             //Retrieving Project Document Record    
             List<IPM_Project_Document__c> lstProjectDoc = new List<IPM_Project_Document__c>();
-            lstProjectDoc=[SELECT Id,IPM_Contract_GateKeeper_Model__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,IPM_Updated_User_By__r.smallPhotoURL,
-                                  IPM_Approval_Date__c,LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c,LastModifiedBy.Name,IPM_GateDocuments__c,IPM_Updated_User_By__c,IPM_Updated_User_By__r.Name 
-                           FROM IPM_Project_Document__c 
-                           WHERE IPM_Project__c=:project.Id AND IPM_GateDocuments__c=:gateDocument];
+            lstProjectDoc=[SELECT Id,IPM_Contract_GateKeeper_Model__c,IPM_Project_Template__r.IPM_Template_Complexity__c,IPM_Document_Status__c,LastModifiedDate,IPM_Postponement_Date__c,
+                        IPM_Approval_Date__c,LastModifiedBy.smallPhotoURL,IPM_Approved_Comments__c,IPM_Postponed_Comments__c,LastModifiedBy.Name,IPM_GateDocuments__c, 
+                        IPM_Updated_User_By__c,IPM_Updated_User_By__r.Name,IPM_Updated_User_By__r.smallPhotoURL FROM IPM_Project_Document__c 
+                        WHERE IPM_Project__c=:project.Id and IPM_GateDocuments__c=:gateDocument];
             if(!lstProjectDoc.isEmpty()){
                 projectDoc = lstProjectDoc[0];
                 isEditLinkAvailable();
@@ -319,9 +345,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             
             lstMstn=new List<IPM_Milestone__c>();
             IPM_Milestone__c mstn = new IPM_Milestone__c();
-            lstMstn=[SELECT IPM_Due_Date__c,IPM_Type_of_gate__c 
-                     FROM IPM_Milestone__c 
-                     WHERE IPM_Type_of_gate__c=:projectDoc.IPM_GateDocuments__c and IPM_Project__c=:projectId LIMIT 1]; 
+            lstMstn=[select IPM_Due_Date__c,IPM_Type_of_gate__c from IPM_Milestone__c where IPM_Type_of_gate__c=:projectDoc.IPM_GateDocuments__c and IPM_Project__c=:projectId LIMIT 1]; 
             if(!lstMstn.isEmpty()){
                 mstn = lstMstn[0];
                 if(String.IsNotBlank(String.valueOf(mstn.IPM_Due_Date__c))){
@@ -340,9 +364,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public void getIpmuserType(){
         try{
             Integer guestCount=0;
-            guestCount=[SELECT COUNT() FROM IPM_Project_Resource__c 
-                        WHERE IPM_Role_Type__c=:IPM_ConstantUtils.IPM_ROLE_GUEST AND IPM_Project__c=:projectId AND 
-                              IPM_User__c=:userinfo.getuserid()  AND IPM_Project__r.Is_Archieved__c=false LIMIT 1];
+            guestCount=[SELECT COUNT() FROM IPM_Project_Resource__c WHERE IPM_Role_Type__c=:IPM_ConstantUtils.IPM_ROLE_GUEST
+                        AND IPM_Project__c=:projectId AND IPM_User__c=:userinfo.getuserid()  AND IPM_Project__r.Is_Archieved__c=false LIMIT 1];
             if(guestCount>0){
                 isPDFDownload=false;
             }
@@ -404,7 +427,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         getProjectDocumentSection();
         
         //For Getting Sub-Header Sections
-        String Query='SELECT Id,IPM_Master_Section_External_Id__c,IPM_Count_of_Comments__c,IPM_Default_Section__c,IPM_FunctionalRole__c,IPM_GateHistory_Date__c,IPM_GateHistory__c,IPM_Gate_Document_Summary__c,IPM_Is_Excluded__c,IPM_Negotiable__c,IPM_PDPHistoty_Date__c,IPM_PDPHistoty__c,IPM_PDP_Document_Summary__c,IPM_Project_Document__c,IPM_Project_ID__c,IPM_Project_Section__c,IPM_Section_Help_Text_Long__c,IPM_Section_Help_Text__c,IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Sequence_Number__c,IPM_Section_Sequence__c,IPM_Section_Status__c,IPM_Section_Type__c,IPM_Section__c,Name,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Section__r.IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, IPM_Has_Appendix__c FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c= \'' + projectDoc.Id + '\''+' and IPM_Section__r.IPM_Parent_Section__c !=null and IPM_Default_Section__c=true';
+        String Query='SELECT Id,IPM_Master_Section_External_Id__c,IPM_Count_of_Comments__c,IPM_Default_Section__c,IPM_FunctionalRole__c,IPM_GateHistory_Date__c,IPM_GateHistory__c,IPM_Gate_Document_Summary__c,IPM_Is_Excluded__c,IPM_Negotiable__c,IPM_PDPHistoty_Date__c,IPM_PDPHistoty__c,IPM_PDP_Document_Summary__c,IPM_Project_Document__c,IPM_Project_ID__c,IPM_Project_Section__c,IPM_Section_Help_Text_Long__c,IPM_Section_Help_Text__c,IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Sequence_Number__c,IPM_Section_Sequence__c,IPM_Section_Status__c,IPM_Section_Type__c,IPM_Section__c,Name,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Section__r.IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, IPM_Has_Appendix__c FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c=\'' + projectDoc.Id + '\''+' and IPM_Section__r.IPM_Parent_Section__c !=null and IPM_Default_Section__c=true';
         String filterValue='';
         Integer roleCount=0;
         
@@ -418,13 +441,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         }
         else{
             if(String.IsNotBlank(String.valueOf(IsNegotiable)) && IsNegotiable)
-            {
                 filterValue=filterValue+' and IPM_Section__r.IPM_Negotiable__c=false';
-            }
             if(Isoptional != null && Isoptional)
-            {
                 filterValue=filterValue+' and IPM_Section__r.IPM_Negotiable__c=true';
-            }    
         }
         
         /*For Status Filter*/
@@ -433,13 +452,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         }
         else{
             if(String.IsNotBlank(String.valueOf(IsNotstarted)) && IsNotstarted)
-            {
                 filterValue=filterValue+' and IPM_Section_Status__c=\''+IPM_ConstantUtils.STATUS_NOT_STARTED+'\'';
-            }    
             if(IsFilledIn != null && IsFilledIn)
-            {
                 filterValue=filterValue+' and IPM_Section_Status__c=\''+IPM_ConstantUtils.SECTION_STATUS_FILLED+'\'';
-            }    
         }
         
         /*For Functional Role Filter*/
@@ -515,88 +530,85 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                 }
             }
             if(roleCount>zero)
-            {
                 filterValue=filterValue+')';
-            }    
         }
         
         //Retrieving Project Document Section Records Based on Filter Values
         List <IPM_Project_Document_Section__c> secFilterList=new  List <IPM_Project_Document_Section__c>();
         try{
-            
             Query=Query+filterValue+' order by IPM_Section__r.IPM_Section_Sequence__c asc';
             projSubSectionList=Database.query(Query);
             proSubSectionParentsSequenceList = new Set<String>();
+            //system.debug('proSectionParentsSequenceList--> '  +proSectionParentsSequenceList);
             for(IPM_Project_Document_Section__c temp : projSubSectionList){
-                if(temp.IPM_Section__r.IPM_Parent_Section__c != null && 
-                    !proSectionParentsSequenceList.contains(temp.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c) )
-                {
+                //system.debug('temp.IPM_Section__r.IPM_Section_Sequence__c--> '  +temp.IPM_Section__r.IPM_Section_Sequence__c);
+                //system.debug('temp.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c--> '  +temp.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c);
+                if(temp.IPM_Section__r.IPM_Parent_Section__c != null){
+                    if(!proSectionParentsSequenceList.contains(temp.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c)){
                         proSubSectionParentsSequenceList.add(temp.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c);
+                    }
                 }
             }
-            
+            //system.debug('proSubSectionParentsSequenceList--> '  +proSubSectionParentsSequenceList.size());
             for(String tempStr : proSubSectionParentsSequenceList){
                 proSubSectionParentsSequences += ' ' + tempStr;
+                //system.debug('tempStr--> '  +tempStr);  
+                //system.debug('tempStr.IPM_Parent_Section__r.IPM_Section_Sequence__c--> '  +tempStr.IPM_Parent_Section__r.IPM_Section_Sequence__c);
             }
             secFilterList=Database.query(secFilterQuery+filterValue);
-            //Start - DEF2056 - logic to show subheaders on applying filter
+            //system.debug('secFilterList--> '  +secFilterList.size());
+            //DEF1474 - logic to show subheaders on applying filter
             proSubSectionParentsSequenceList1 = new Set<String>();
             for(IPM_Project_Document_Section__c tempProDocSection : projSubSectionList){
-                if(tempProDocSection.IPM_Section__r.IPM_Parent_Section__c != null && 
-                    !proSectionParentsSequenceList.contains(tempProDocSection.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c))
-                {                    
-                    proSubSectionParentsSequenceList1.add(tempProDocSection.IPM_Section__r.IPM_Parent_Section__c);
+                if(tempProDocSection.IPM_Section__r.IPM_Parent_Section__c != null){
+                    if(!proSectionParentsSequenceList.contains(tempProDocSection.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c)){
+                        proSubSectionParentsSequenceList1.add(tempProDocSection.IPM_Section__r.IPM_Parent_Section__c);
+                    }
                 }
             }
-            
+            //system.debug('proSubSectionParentsSequenceList1--> '  +proSubSectionParentsSequenceList1.size());
             List<IPM_Project_Document_Section__c> requiredSubHeadersProDocSectionList;
             if(proSubSectionParentsSequenceList1 != null && !proSubSectionParentsSequenceList1.isEmpty()){
-                requiredSubHeadersProDocSectionList = [Select Id,IPM_Count_of_Comments__c,IPM_Default_Section__c,IPM_FunctionalRole__c,IPM_GateHistory_Date__c,
-                        IPM_GateHistory__c,IPM_Gate_Document_Summary__c,IPM_Is_Excluded__c,IPM_Negotiable__c,IPM_PDPHistoty_Date__c,IPM_PDPHistoty__c,
-                        IPM_PDP_Document_Summary__c,IPM_Project_Document__c,IPM_Project_ID__c,IPM_Project_Section__c,IPM_Section_Help_Text_Long__c,IPM_Section_Help_Text__c,
-                        IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Sequence_Number__c,IPM_Section_Sequence__c,IPM_Section_Status__c,IPM_Section_Type__c,
-                        IPM_Section__c,Name,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Section__r.IPM_Section_Type__c,
-                        IPM_Section__r.IPM_Section_Sequence__c,IPM_Section__r.IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c, 
-                        IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_type__c FROM IPM_Project_Document_Section__c 
-                        where IPM_Project_Document__c =: projectDoc.Id and IPM_Section__c in : proSubSectionParentsSequenceList1];
+                requiredSubHeadersProDocSectionList = [Select Id,IPM_Count_of_Comments__c,IPM_Default_Section__c,IPM_FunctionalRole__c,IPM_GateHistory_Date__c,IPM_GateHistory__c,IPM_Gate_Document_Summary__c,IPM_Is_Excluded__c,IPM_Negotiable__c,IPM_PDPHistoty_Date__c,IPM_PDPHistoty__c,IPM_PDP_Document_Summary__c,IPM_Project_Document__c,IPM_Project_ID__c,IPM_Project_Section__c,IPM_Section_Help_Text_Long__c,IPM_Section_Help_Text__c,IPM_Section_Name__c,IPM_Section_Owner__c,IPM_Section_Sequence_Number__c,IPM_Section_Sequence__c,IPM_Section_Status__c,IPM_Section_Type__c,IPM_Section__c,Name,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Section__r.IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c, IPM_Section__r.IPM_Parent_Section__r.IPM_Section_type__c FROM IPM_Project_Document_Section__c where IPM_Project_Document__c =: projectDoc.Id and IPM_Section__c in : proSubSectionParentsSequenceList1];
             }
-            
+            //system.debug('requiredSubHeadersProDocSectionList--> '  +requiredSubHeadersProDocSectionList.size());
             if(requiredSubHeadersProDocSectionList != null && !requiredSubHeadersProDocSectionList.isEmpty()){
                 projSubSectionList.addAll(requiredSubHeadersProDocSectionList);
+                /*for(IPM_Project_Document_Section__c temp : requiredSubHeadersProDocSectionList){
+                	system.debug('temp.IPM_Section__r.IPM_Section_Sequence__c--> '  +temp.IPM_Section__r.IPM_Section_Sequence__c);
+                	system.debug('temp.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c--> '  +temp.IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Sequence__c);
+                }*/
             }
             
             List<ProjectSubSectionsWrapper> ProjectSubSectionsWrapperList = new List<ProjectSubSectionsWrapper>();
             Set<Id> sectionsIds = new Set<Id>();
             if(projSubSectionList != null && !projSubSectionList.isEmpty()){
                 for(IPM_Project_Document_Section__c tempSection : projSubSectionList){
-                    ProjectSubSectionsWrapperList.add(new ProjectSubSectionsWrapper(tempSection));
+                    //ProjectSubSectionsWrapperList.add(new ProjectSubSectionsWrapper(tempSection));
                     sectionsIds.add(tempSection.IPM_Section__c);
                 }
             }
-            
+            //system.debug('sectionsIds--> '  +sectionsIds); 
+            //system.debug('projectDoc.Id--> '  +projectDoc.Id); 
             if(sectionsIds != null && !sectionsIds.isEmpty()){
-                //Start - DEF2770 
-                String queryForSubLevel = 'SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c, IPM_Section_Sequence__c, '
-                                    + 'IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,'
-                                    + 'IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,'
-                                    + 'IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,'
-                                    + 'IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c' 
-                                    + ' FROM IPM_Project_Document_Section__c WHERE IPM_Project_Document__c= \''+ projectDoc.Id + '\'' +' AND IPM_Section__r.IPM_Parent_Section__r.ID in:sectionsIds AND IPM_Default_Section__c=true';
-                                    
-                queryForSubLevel = queryForSubLevel + filterValue + ' order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000'; 
-                
-                projSubLevelSectionList = Database.query(queryForSubLevel);   
-                //END - DEF2770                  
+                projSubLevelSectionList=[SELECT Id,IPM_Section__c,IPM_Negotiable__c ,IPM_Default_Section__c, IPM_Section_Sequence__c, 
+                                    IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
+                                    IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
+                                    IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
+                                    IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
+                                    FROM IPM_Project_Document_Section__c 
+                                    WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID in:sectionsIds AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
             }
             
-            if(ProjectSubSectionsWrapperList != null && !ProjectSubSectionsWrapperList.isEmpty()){
+            //system.debug('projSubLevelSectionList--> '  +projSubLevelSectionList); 
+            /*if(ProjectSubSectionsWrapperList != null && !ProjectSubSectionsWrapperList.isEmpty()){
                 ProjectSubSectionsWrapperList.sort();
                 projSubSectionList.clear();
                 for(ProjectSubSectionsWrapper tempWrapper : ProjectSubSectionsWrapperList){
                     projSubSectionList.add(tempWrapper.projDocSection);
                 }
-            }
-            //End - DEF2056
+            }*/
+            //system.debug('projSubSectionList--> '  +projSubSectionList.size());
         }
         catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
@@ -697,7 +709,8 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
             }              
         }
         catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
+                'getProjectDocumentSection',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     } 
     
@@ -715,19 +728,18 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                 IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Gate_Document_Summary__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,
                                 IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c,IPM_Master_Section_External_Id__c,IPM_Has_Appendix__c  
                                 FROM IPM_Project_Document_Section__c 
-                                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__c !=null AND IPM_Default_Section__c=true AND (IPM_Section_Sequence__c like '1%' or IPM_Section_Sequence__c like '8%') 
-                                order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
+                                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__c !=null AND IPM_Default_Section__c=true AND (IPM_Section_Sequence__c like '1%' or IPM_Section_Sequence__c like '8%') order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000]; 
         }
         catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+                ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
+                'getDocumentSectionMap',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+
         }
     }
     
     /*************************************************************************************************************************************************************
     @description To Create PDF for Gate Document
     @return URL
-    @Business Rule: This functions is used to Display the data in for the Gate Documetn PDF, i which data needs to be pulled from Various entities, hence it is complex.
-    
     */  
     public PageReference exportToPdf(){ 
         try{
@@ -754,8 +766,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     void gateDocumentData(Final Id pId){
         //For Generating PDF Retrieving Project Rollouts,Finance and Project Document Sections
         try{
-            String nam=project.IPM_Project_Name__c; 
-            globalbusinessImpactStr = IPM_ConstantUtils.BLANK;
+            String nam=project.name;
             country=new IPM_Country__c();
             rollOut=new list<IPM_Project_Rollout__c>();
             rollOut=[SELECT Name,IPM_Status__c,IPM_Rollout_Span__c FROM IPM_Project_Rollout__c WHERE IPM_Project__c=:project.Id];
@@ -765,88 +776,50 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                      WHERE Parent_Project__c=:project.Id AND Financial_External_ID__c=:nam+IPM_ConstantUtils.FINANCIAL_CONSOLIDATE LIMIT 1];
                      
              }
-             
-             
              /*DEF 2248*/
             finProjectPriority = new IPM_Financial__c();
-            if (project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL){
-                //added Year_3_iTO_Local__c for DEF3318
-                finProjectPriority = [Select ipm_cpp_local__c,Year_3_iTO_Local__c from IPM_Financial__c where Financial_External_ID__c =: nam limit 1];
+            if (project.IPMProject_Span__c=='Local'){
+                finProjectPriority = [Select ipm_cpp_local__c from IPM_Financial__c where Financial_External_ID__c =: project.name limit 1];
             }    
             
-             //DEF2103-30/12/15-Reopen for BI not calculated on Global projects-Gate document
-                /*Analysis-IPM_Financials_Consolidated__r is not returning value may be because of recent change in BIG query above or change in formula field.
-                New query is introduced now to fetch BI from IPM financial for global projects.
-                */
-                if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
-                        list<IPM_Financial__c> liFinGlobal = [SELECT Business_Impact_Global__c FROM IPM_Financial__c WHERE parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL and parent_project__c=:project.id and regional_external_id__c=null limit 1];
-                    if (liFinGlobal!=null && liFinGlobal.size()>0){
-                        globalbusinessImpactStr = liFinGlobal[0].Business_Impact_Global__c;
-                    }
-                }
-            //DEF2450 - BI copy to child projects ?? or it should be 2103 where BI to be displayed on gate document
-            //Note: If project is regional or Local fin.Business_Impact_Global__c will not be relevant as BI should be coming from global project
-            //Regional and Local Financial records have their own calculated Business Impact Global which should NOT be used.
-            else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ROLLOUT){
-               list<IPM_Financial__c> liFinParentReg = [select Business_Impact_Global__c from IPM_Financial__c where (Parent_Project__c=:project.IPM_Parent_Project__c OR global_project_id__c=:project.IPM_Parent_Project__c) and parent_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_GLOBAL limit 1];
-               if (!liFinParentReg.isEmpty())
-               {
-                    if (liFinParentReg[0].Business_Impact_Global__c!=null)
-                    {
-                        globalbusinessImpactStr = liFinParentReg[0].Business_Impact_Global__c;
-                    }
+            //DEF2450
+            if(project.IPMProject_Span__c=='Regional'){
+               list<IPM_Financial__c> liFinParentReg = [select Business_Impact_Global__c from IPM_Financial__c where (Parent_Project__c=:project.IPM_Parent_Project__c OR global_project_id__c=:project.IPM_Parent_Project__c) and parent_project__r.IPMProject_Span__c='Global' limit 1];
+               if (liFinParentReg!=null && liFinParentReg.size()>0){
+                   globalbusinessImpactStr += liFinParentReg[0].Business_Impact_Global__c;
                }
            }
-           /*Case: When project is Regional Original*/
-            else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL && project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_ORIGINAL){
-                        string projid=IPM_ConstantUtils.BLANK;//NO SONAR used in line 806
-                        if(project.id!=null){
-                                projid = string.valueof(project.id).substring(0,15);
-                        }
-                        list<IPM_Financial__c> liFinRegOrig = [select Business_Impact_Regional__c from IPM_Financial__c where (regional_external_id__c=:projid OR global_project_id__c=:projid) and regional_project__r.IPMProject_Span__c=:IPM_ConstantUtils.PROJECT_SPAN_REGIONAL limit 1];
-                        globalbusinessImpactStr += liFinRegOrig;
-                    if (liFinRegOrig!=null && liFinRegOrig.size()>0){
-                        globalbusinessImpactStr = liFinRegOrig[0].Business_Impact_Regional__c;
-                    }
-                }
-           else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
-           {
+           else if(project.IPMProject_Span__c=='Local'){
                list<IPM_Financial__c> liFinParentLoc = [select Business_Impact_Global__c from IPM_Financial__c where global_project_id__c=:project.IPM_Global_Project_Id__c and parent_Project__c=:project.IPM_Global_Project_Id__c limit 1];
-               if (!liFinParentLoc.isEmpty())
-               {
-                   globalbusinessImpactStr = liFinParentLoc[0].Business_Impact_Global__c;
+               if (liFinParentLoc!=null && liFinParentLoc.size()>0){
+                   globalbusinessImpactStr += liFinParentLoc[0].Business_Impact_Global__c;
                }
-           }          
-           //DEF3019
-               if (project.IPM_Project_Type__c==IPM_ConstantUtils.PROJECT_TYPE_OPERATIONAL){
-                        globalbusinessImpactStr = IPM_ConstantUtils.BLANK;    
-                        
-                   fin= [Select Year_3_iTO_Global__c,Year_3_iTO_Local__c,Year_3_iTO_Regional__c from IPM_Financial__c where Financial_External_ID__c =: nam limit 1];
-                          
-               }
-            Integer flag=[select count() from IPM_Country__c where Local_Rollout__r.IPM_Status__c=:IPM_ConstantUtils.ROLLOUT_LEADER AND (IPM_Project__c=:projectId 
+           }
+            
+             Integer flag=[select count() from IPM_Country__c where Local_Rollout__r.IPM_Status__c='First' AND (IPM_Project__c=:projectId 
                      OR IPM_Regional_Project__c=:projectId OR IPM_Local_Project__c=:projectId)];
             if(flag>0)
-            {
                 country=[select Country_Name__c,MCO_Name__c,IPM_Project__c,IPM_Regional_Project__c,IPM_Local_Project__c,Local_Rollout__r.IPM_Status__c
-                     from IPM_Country__c where Local_Rollout__r.IPM_Status__c=:IPM_ConstantUtils.ROLLOUT_LEADER AND (IPM_Project__c=:projectId 
+                     from IPM_Country__c where Local_Rollout__r.IPM_Status__c='First' AND (IPM_Project__c=:projectId 
                      OR IPM_Regional_Project__c=:projectId OR IPM_Local_Project__c=:projectId) limit 1];
-            }         
             
                      
-         
+           // if(project.IPM_Complexity__c==IPM_ConstantUtils.COMPLEXITY_FULL)
                 projDocSectionList=[SELECT Id,IPM_Section_Name__c, IPM_Default_Section__c,IPM_Section_Sequence__c,IPM_Section__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.Id,IPM_Section__r.IPM_Section_Name__c,
                                     Name,LastModifiedBy.Name,LastModifiedDate,IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.External_ID__c,IPM_Project_Document__c,IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Gate_Document_Summary__c,IPM_FunctionalRole__c,
                                     IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c,IPM_Has_Appendix__c,IPM_Master_Section_External_Id__c
                                     FROM IPM_Project_Document_Section__c 
-                                    WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Default_Section__c=true 
-                                    AND ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c !=:IPM_ConstantUtils.BLG ))//to exlude section 5.3 for BLG projects
-                                    order by IPM_Section__r.IPM_Section_Sequence__c asc];
+                                    WHERE IPM_Project_Document__c=:projectDoc.Id and IPM_Section_Sequence__c!='8' and IPM_Default_Section__c=true order by IPM_Section__r.IPM_Section_Sequence__c asc];
            
             getAppendixSections();
+            System.debug('------projDocAppdxSectionList--Size-------->'+projDocAppdxSectionList.size());
+            System.debug('------projDocAppdxSectionList---------->'+projDocAppdxSectionList);
         }
         catch(Exception ex){
-            ApexPages.addmessage(new ApexPages.message(ApexPages.severity.INFO,Label.IPM_PLEASE_CONTACT_ADMINISTRATOR));
+            System.debug(ex);
+            ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
+                'gateDocumentData',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null, IPM_ConstantUtils.IPM_NG_APPLICATION);
+           
         }
     } 
     
@@ -880,73 +853,43 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         /*Type Filter*/
         for(Integer i=0;i<types.size();i++){
             if(types[i]==IPM_ConstantUtils.TYPE_ALL)
-            {
                 IsTypeAll=true;
-            }    
             else if(types[i]==IPM_ConstantUtils.TYPE_NON_NEGOTIABLE)
-            {
                 IsNegotiable=true;
-            }    
             else if(types[i]==IPM_ConstantUtils.TYPE_OPTIONAL)
-            {
                 Isoptional=true;
-            }    
         }
         
         /*Status Filter*/
         for(Integer i=0;i<statuses.size();i++){
             if(statuses[i]==IPM_ConstantUtils.STATUS_ALL)
-            {
                 IsStatusAll=true;
-            }    
             else if(statuses[i]==IPM_ConstantUtils.STATUS_NOT_STARTED )
-            {
                 IsNotstarted=true;
-            }    
             else if(statuses[i]==IPM_ConstantUtils.SECTION_STATUS_FILLED)
-            {
                 IsFilledIn=true;
-            }  
         }
         
         /*Functional Role Filter*/
         for(Integer i=0;i<roles.size();i++){
             if(roles[i]==IPM_ConstantUtils.FUNCTIONAL_ROLE_ALL)
-            {
                 IsRoleAll=true;
-            }
             else if(roles[i]==IPM_ConstantUtils.FUNCTIONAL_ROLE_BD)
-            {
                 IsBD=true;
-            }
             else if(roles[i]==IPM_ConstantUtils.FUNCTIONAL_ROLE_CMI)
-            {
                 IsCMI=true;
-            }
             else if(roles[i]==IPM_ConstantUtils.FUNCTIONAL_ROLE_CD)
-            {
                 IsCD=true;
-            }
             else if(roles[i]==IPM_ConstantUtils.FUNCTIONAL_ROLE_RD)
-            {
                 IsRnD=true;
-            }
             else if(roles[i]==IPM_ConstantUtils.FUNCTIONAL_ROLE_Finance)
-            {
                 IsFinance=true;
-            }
             else if(roles[i]==IPM_ConstantUtils.FUNCTIONAL_ROLE_BB)
-            {
                 IsBB=true;
-            }
             else if(roles[i]==IPM_ConstantUtils.FUNCTIONAL_ROLE_SC)
-            {
                 IsSC=true;
-            }
             else if(roles[i]==IPM_ConstantUtils.FUNCTIONAL_ROLE_PL)
-            {
                 IsPL=true;
-            } 
             
        }
          
@@ -975,9 +918,12 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         
         Date dt=date.parse(System.today().format());
         projectDoc.IPM_Approval_Date__c=dt;
+        system.debug(loggingLevel.error, 'project--> ' + project);
         
         IPM_Project_Type__c currentProjectType =  IPM_Utils.retrieveProjectType(project);
         IPM_Project_Type__c nextPhaseProjectType = IPM_Utils.getNextPhase(currentProjectType,false);
+        system.debug(loggingLevel.error, 'currentProjectType--> ' + currentProjectType);
+        system.debug(loggingLevel.error, 'nextPhaseProjectType--> ' + nextPhaseProjectType);
             
         List<IPM_Project_Rollout__c> regionalRolloutList = new List<IPM_Project_Rollout__c>();
         List<IPM_Project_Rollout__c> localRolloutList = new List<IPM_Project_Rollout__c>();
@@ -993,7 +939,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                 {
                     Id currentProjectId = project.Id; // variable used in query below NO SONAR
                     
-                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
+                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
                     String rolloutWhereClause = ' WHERE IPM_Project__c =:currentProjectId  AND recordTypeId = :REGIONAL_ROLLOUT_RECORDTYPE limit 10000';
                     rolloutWhereClause = rolloutQuery + rolloutWhereClause;
                     regionalRolloutList = database.query(rolloutWhereClause);
@@ -1012,7 +958,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                 {
                     Id currentProjectId = project.Id; // variable used in query below NO SONAR
                      
-                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null,true);
+                    String rolloutQuery = IPM_Utils.prepareSOQLQuery('IPM_Project_Rollout__c',false,null);
                     String rolloutWhereClause = ' WHERE Regional_Project__c  =:currentProjectId  AND recordTypeId = :LOCAL_ROLLOUT_RECORDTYPE limit 10000';
                     rolloutWhereClause = rolloutQuery + rolloutWhereClause;
                     localRolloutList = database.query(rolloutWhereClause);
@@ -1074,11 +1020,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                 IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
                                 IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
                                 IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
-                                IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c
+                                IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
                                 FROM IPM_Project_Document_Section__c 
-                                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__c =:parentSectionId AND IPM_Default_Section__c=true  
-                                AND ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c !=:IPM_ConstantUtils.BLG ))//to exlude section 5.3 for BLG projects
-                                order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];                  
+                                WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__c =:parentSectionId AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];                  
         }
         catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
@@ -1101,10 +1045,9 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
                                     IPM_Section__r.IPM_Section_Type__c,IPM_Section__r.IPM_Section_Label_Type__c,IPM_Section__r.IPM_Section_Name__c,Name,
                                     IPM_Section__r.IPM_Parent_Section__c,IPM_Section__r.IPM_Parent_Section__r.IPM_Section_Name__c,IPM_Project_Document__c,
                                     IPM_Section_Status__c,IPM_Section__r.IPM_Section_Sequence__c,IPM_Count_of_Comments__c,IPM_FunctionalRole__c,IPM_Has_Appendix__c,
-                                    IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c 
+                                    IPM_GateHistory__c,IPM_GateHistory_Date__c,IPM_Gate_Document_Summary__c,LastModifiedBy.Name,LastModifiedDate,IPM_Master_Section_External_Id__c 
                                     FROM IPM_Project_Document_Section__c 
-                                    WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID=:parentSectionId AND IPM_Default_Section__c=true  
-                                    order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
+                                    WHERE IPM_Project_Document__c=:projectDoc.Id AND IPM_Section__r.IPM_Parent_Section__r.ID=:parentSectionId AND IPM_Default_Section__c=true  order by IPM_Section__r.IPM_Section_Sequence__c asc limit 50000];
             }
             catch(Exception ex){
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATEDOCUMENTCONTR_STR,
@@ -1121,11 +1064,10 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public void getAppendixSections()
     {
         try{
-            projDocAppdxSectionList=[SELECT ID,IPM_FunctionalRole__c,IPM_Master_Section_External_Id__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section_Sequence__c,IPM_Section_Name__c,IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c
+            projDocAppdxSectionList=[SELECT ID,IPM_FunctionalRole__c,IPM_Master_Section_External_Id__c,IPM_Section__r.IPM_Section_Type__c,IPM_Section_Sequence__c,IPM_Section_Name__c 
                                                          FROM IPM_Project_Document_Section__c 
                                                          WHERE IPM_Project_Document__c=:projectDoc.Id 
                                                          AND IPM_Has_Appendix__c=true AND IPM_Default_Section__c=true 
-                                                         AND ((IPM_Master_Section_External_Id__c !=:ENVIRONMENTAL_IMPACT) OR (IPM_Master_Section_External_Id__c =:ENVIRONMENTAL_IMPACT AND IPM_Project_Document__r.IPM_Project__r.IPM_Answer_of_Q1__c !=:IPM_ConstantUtils.BLG  ))//to exlude section 5.3 for BLG projects
                                                          ORDER BY IPM_Section_Sequence_Number__c asc limit 50000];
         }
         catch(Exception ex){
@@ -1145,7 +1087,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     
     public void showAttchSection()
     {
-        attachmentList=[SELECT Id,Name,ParentId,Description FROM Attachment WHERE ParentId=:sectionId];
+         attachmentList=[SELECT Id,Name,ParentId,Description FROM Attachment WHERE ParentId=:sectionId];
         if(attachmentList.size()>0)
         {
             showAttach=true;
@@ -1162,6 +1104,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
         IPM_Project_Document_Section__c projDocSection = new IPM_Project_Document_Section__c();
         
         public ProjectSubSectionsWrapper(IPM_Project_Document_Section__c incomingprojDocSection){
+            //system.debug('in constructor---> ' + passedprojDocSection);
             projDocSection = incomingprojDocSection.clone(true,true,true,true);
         }
         

@@ -10,7 +10,6 @@ public with sharing class IPM_GateCMIController{
     public static final String IPM_GATECMICONTORLLER_STR = 'ipm_gatecmicontorller';
     public static final String COPY_CMI_SECTIONS = 'copyCMISections';
     public static final String GET_COUNTRIES_STR='getCountries';
-    public static final String UPDATERESULTTIMING_STR='updateResultTiming';
     public String[] cmiNameList; //Contains List of Selected CMI Names
     public SObject ipmCMIGate; //Contains Gate CMI Object
     public String selectedCountryName; //Contains Country Names of Gate CMI
@@ -97,13 +96,12 @@ public with sharing class IPM_GateCMIController{
     public List<selectOption> getCountries() { 
         countryList=new List<IPM_Country__c>();
         String soql  =  'SELECT Id,Country_Name__c,IPM_Project__c,IPM_Regional_Project__c FROM IPM_Country__c';
-        if((gateType==IPM_ConstantUtils.CHARTER_GATE && projDocSec.IPM_Project_Document__r.IPM_Project_Span__c!=IPM_ConstantUtils.PROJECT_SPAN_REGIONAL) || projDocSec.IPM_Project_Document__r.IPM_Project_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL){
+        if(gateType==IPM_ConstantUtils.CHARTER_GATE || projDocSec.IPM_Project_Document__r.IPM_Project_Span__c=='Global'){
             soql += ' WHERE IPM_Project__c = \'' + projectId + '\'';
         }
         else{
             soql += ' WHERE IPM_Regional_Project__c = \'' + projectId + '\'';
         }
-        soql+= ' AND isActive__c=true';
         try{
             countryList=Database.query(soql);   
         }
@@ -213,19 +211,15 @@ public with sharing class IPM_GateCMIController{
     public void getSectionCMIList(){
         try{
             Set<String> restrictCountry=new Set<String>();  
-            resList=new List<IPM_Project_Document_Section_Content__c>();   
-            string Query='SELECT Id,IPM_CMI_Added_At__c,Gate__c,IPM_CMI_Overall_Colour_Score_Method__c,Element__c,Test__c,KPI__c,Input__c,Results__c,Country__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c FROM IPM_Gate_CMI__c WHERE IPM_Project__c=:projectId';    
-            if(gateType=='Charter'){
-                Query=Query+' AND IPM_CMI_Added_At__c=\'Charter\'';
-            }
-            else if(gateType=='Contract'){
-                Query=Query+' AND (IPM_CMI_Added_At__c=\'Charter\' OR IPM_CMI_Added_At__c=\'Contract\')';
-            }
-            cmiList=Database.Query(Query);
+            resList=new List<IPM_Project_Document_Section_Content__c>();       
+            cmiList=[SELECT Id,Gate__c,IPM_CMI_Overall_Colour_Score_Method__c,Element__c,Test__c,KPI__c,Input__c,Results__c,Country__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
+                     FROM IPM_Gate_CMI__c 
+                     WHERE IPM_Project__c=:projectId];   
             sectionList=[SELECT Id,IPM_CMI_Overall_Colour_Achieved__c,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Color_Score_Achieved__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Score_Label__c,IPM_CMI_Free_Text__c,IPM_CMI_Overall_Comments__c,IPM_CMI_Is_Free_Text__c,IPM_CMI_Result_Timing__c,IPM_CMI_Country__c,IPM_Gate_CMI__c,IPM_CMI_Input__c,IPM_CMI_Comments__c,IPM_CMI_Result__c,
                                 IPM_Project_Document_Section__c,IPM_CMI_Outcome_Color_Achieved__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Outcome_Color__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
                          FROM IPM_Project_Document_Section_Content__c 
                          WHERE IPM_Project_Document_Section__c=:projDocSecId];
+            System.debug(sectionList+'***sectionList***');             
             for(IPM_Project_Document_Section_Content__c pdsc:sectionList){
                 if(restrictCountry==null){
                     resList.add(pdsc);
@@ -288,10 +282,13 @@ public with sharing class IPM_GateCMIController{
                     }
                 }
             }
+            System.debug(selectedCountryName+'***selectedCountryName***');
+            System.debug(projDocSec.IPM_CMI_Selected_Countries__c+'***projDocSec.IPM_CMI_Selected_Countries__c***');             
             if(projDocSec.IPM_CMI_Selected_Countries__c!=selectedCountryName){
                 projDocSec.IPM_CMI_Selected_Countries__c=selectedCountryName;
                 update projDocSec;
             }
+            System.debug(projDocSec.IPM_CMI_Selected_Countries__c+'***projDocSec.IPM_CMI_Selected_Countries__c***'); 
             if(!String.isBlank(selectedCountryName)){
                 countryNameList=selectedCountryName.split(IPM_ConstantUtils.SEMICOLON);
             }
@@ -376,7 +373,6 @@ public with sharing class IPM_GateCMIController{
             gateCMI.gate__c=testValues[0];
             gateCMI.Element__c=testValues[1];
             gateCMI.Test__c=testValues[2];
-            gateCMI.IPM_CMI_Added_At__c=gateType;
             if(testKPIMap.get(gateCMI.Test__c)!=null){
                 gateCMI.KPI__c = testKPIMap.get(gateCMI.Test__c).IPM_KPI__c;
                 gateCMI.IPM_CMI_Overall_Colour_Score_Method__c= testKPIMap.get(gateCMI.Test__c).IPM_Overall_Colour_Score_Method__c;
@@ -421,7 +417,7 @@ public with sharing class IPM_GateCMIController{
         //countryNameList=countryName.replaceAll( '\\s+', '').split(','); //Contains Selected Countries
         countryNameList=countryName.split(',');
         //Getting Gate CMI      
-        gateCMI=[SELECT id,IPM_CMI_Added_At__c,Gate__c,Country__c,Element__c,Test__c,KPI__c,Input__c,Results__c,IPM_CMI_Overall_Colour_Score_Method__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
+        gateCMI=[SELECT id,Gate__c,Country__c,Element__c,Test__c,KPI__c,Input__c,Results__c,IPM_CMI_Overall_Colour_Score_Method__c,Approx_Results_Timing__c,IPM_Skip_Test__c,IPM_Skip_Test_Reason__c 
                  FROM IPM_Gate_CMI__c 
                  WHERE Id=:gateCMIId];    
                  
@@ -546,7 +542,7 @@ public with sharing class IPM_GateCMIController{
                 }    
                 update secCon;
                 if(String.isNotBlank(secCon.IPM_CMI_Overall_Colour_Coding_Method__c) && secCon.IPM_CMI_Overall_Colour_Coding_Method__c=='System'){
-                    overallScoreColor(secCon.IPM_CMI_Country__c,secCon.IPM_Gate_CMI__c,isEditActionStandard,secCon.IPM_Project_Document_Section__c);
+                    overallScoreColor(secCon.IPM_CMI_Country__c,secCon.IPM_Gate_CMI__c,isEditActionStandard);
                 }
             }
         }
@@ -564,12 +560,12 @@ public with sharing class IPM_GateCMIController{
         }    
     }
     
-    public void overallScoreColor(String country,String gateCMIId,Boolean isActiveStandard,String secId){
+    public void overallScoreColor(String country,String gateCMIId,Boolean isActiveStandard){
         List<IPM_Project_Document_Section_Content__c> secColorList=new List<IPM_Project_Document_Section_Content__c>();
         String cmiInput='';
         secColorList=[SELECT Id,IPM_CMI_Overall_Colour_Achieved__c,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Color_Score_Achieved__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Score_Label__c,IPM_CMI_Result__c,IPM_CMI_Country__c,IPM_CMI_Results_Acheived__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Gate_Test__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c 
                       FROM IPM_Project_Document_Section_Content__c 
-                      WHERE IPM_Gate_CMI__c=:gateCMIId and IPM_Project_Document_Section__c=:secId and IPM_CMI_Country__c=:country];
+                      WHERE IPM_Gate_CMI__c=:gateCMIId and IPM_CMI_Country__c=:country];
         for(IPM_Project_Document_Section_Content__c ipdsc:secColorList){
             if(String.isBlank(cmiInput)){
                 if(gateType==IPM_ConstantUtils.CHARTER_GATE || !isEditActionStandard){
@@ -617,14 +613,9 @@ public with sharing class IPM_GateCMIController{
         try{
             String availableCMI='';
             String deletedCMI='';
-            List<IPM_Project_Document_Section_Content__c> delContent=new List<IPM_Project_Document_Section_Content__c>();
             gateCMI=new IPM_Gate_CMI__c();
             if(!String.isBlank(gateCMIId)){
-                gateCMI=[SELECT Id,IPM_CMI_Added_At__c,Gate__c,Element__c,Test__c,IPM_CMI_Overall_Colour_Score_Method__c FROM IPM_Gate_CMI__c WHERE Id=:gateCMIId];
-                delContent=[SELECT Id FROM IPM_Project_Document_Section_Content__c WHERE IPM_Gate_CMI__c=:gateCMIId];
-                if(delContent!=null && !delContent.isEmpty()){
-                    delete delContent;
-                }
+                gateCMI=[SELECT Id,Gate__c,Element__c,Test__c,IPM_CMI_Overall_Colour_Score_Method__c FROM IPM_Gate_CMI__c WHERE Id=:gateCMIId];
                 deletedCMI=gateCMI.Gate__c+'/'+gateCMI.Element__c+'/'+gateCMI.Test__c;
                 delete gateCMI;
                 
@@ -665,7 +656,7 @@ public with sharing class IPM_GateCMIController{
             Integer countryCount;
             countrydelList=[SELECT Id FROM IPM_Project_Document_Section_Content__c
                             WHERE IPM_Gate_CMI__c=:gateCMIId AND IPM_CMI_Country__c=:countryNameStr LIMIT 1000];
-            gateCMI=[SELECT Id,Country__c,IPM_CMI_Added_At__c FROM IPM_Gate_CMI__c WHERE Id=:gateCMIId LIMIT 1];                
+            gateCMI=[SELECT Id,Country__c FROM IPM_Gate_CMI__c WHERE Id=:gateCMIId LIMIT 1];                
             if(countrydelList!=null && !countrydelList.isEmpty()){
                 delete countrydelList; 
                 
@@ -798,7 +789,7 @@ public with sharing class IPM_GateCMIController{
                 updateOverallScore=[SELECT id,IPM_CMI_Color_Score_Value_Achieved__c,IPM_CMI_Overall_Colour_Achieved__c,IPM_CMI_Color_Score_Value__c,IPM_CMI_Overall_Score_Achieved__c,IPM_CMI_Overall_Color_Score_Achieved__c,IPM_CMI_Overall_Score_Label__c,IPM_CMI_Result_Timing__c,IPM_Gate_CMI__c,IPM_CMI_Overall_Comments__c,IPM_CMI_Overall_Colour__c,IPM_CMI_Overall_Colour_Coding_Method__c,IPM_CMI_Overall_Score__c FROM IPM_Project_Document_Section_Content__c 
                                         WHERE IPM_Gate_CMI__c=:gateCMIId and IPM_CMI_Country__c=:countryNameStr];
                 for(IPM_Project_Document_Section_Content__c pdsc:updateOverallScore){
-                        if(gateType==IPM_ConstantUtils.CHARTER_GATE || !isEditActionStandard){
+                        if(!isEditActionStandard){
                             pdsc.IPM_CMI_Overall_Score__c=overallScore;
                             if(colorMapping.get(overallScore).IPM_CMI_Color__c!=null){
                                 pdsc.IPM_CMI_Overall_Colour__c=colorMapping.get(overallScore).IPM_CMI_Color__c;
@@ -834,7 +825,7 @@ public with sharing class IPM_GateCMIController{
         }       
         catch(Exception ex){ 
             ExceptionLoggingHelper.createErrorLog(UserInfo.getUserId(),IPM_GATECMICONTORLLER_STR,
-            	UPDATERESULTTIMING_STR,ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
+                            'updateResultTiming',ex.getMessage(),ex, IPM_ConstantUtils.ERROR, null, null, null,IPM_ConstantUtils.IPM_NG_APPLICATION);
         }
     } 
 }

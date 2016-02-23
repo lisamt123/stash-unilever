@@ -63,7 +63,7 @@ public with sharing class IPM_Milestone {
             projectId = ApexPages.currentPage().getParameters().get(IPM_Utils.IPM_NewTaskprojectId);
             sObjName = projectId.getSObjectType().getDescribe().getName();
             
-            String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null,true);
+            String projectQuery = IPM_Utils.prepareSOQLQuery('IPM_Project__c',false,null);
             String projectWhereClause = ' WHERE Id =: projectId limit 1';
             projectQuery = projectQuery + projectWhereClause;
             
@@ -72,9 +72,7 @@ public with sharing class IPM_Milestone {
             // Reterive the project type 
             IPM_Project_Type__c projectType = IPM_Utils.retrieveProjectType(projectObject);
             if(projectType!=null)
-            {
-            	sourceProjectType = projectType.Source_Project_Type__c; // Get the source Project type
-            }	
+            sourceProjectType = projectType.Source_Project_Type__c; // Get the source Project type
             
             if(String.IsNotBlank(ApexPages.currentPage().getParameters().get(IPM_Utils.taskId)))
             {
@@ -477,46 +475,36 @@ public with sharing class IPM_Milestone {
                             return false; 
                         }
                         
-                        Set<String> previousPhases = new Set<String>();
-                        
-                    	for(String phase : IPM_ConstantUtils.phaseSequence.KeySet()){
-                    		if(phase == milestonePhase)
-                    		{
-                    			break;
-                    		}
-                    		previousPhases.add(phase);		
-                		}
-                        
-                        for(IPM_Milestone__c milestone : projectSpecificMilestoneList)
+                        Integer incomingPhaseSeq = 0;
+                        // Get the Phase sequence for the Current Phase.
+                        if(milestonePhase!=null && IPM_ConstantUtils.phaseSequence.containsKey(milestonePhase))
                         {
-                        	if(milestone.IPM_Phase__c != milestonePhase)
-                        	{
-                        		// Due date validation check with previous milestones 
-	                        	if(previousPhases.contains(milestone.IPM_Phase__c))
-	                        	{
-	                        		if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c > milestoneDueDate)
-	                        		{
-	                        			String errorMessage = Label.IPM_Milestone_DueDate_Validation;
-			                            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
-			                            ApexPages.addMessage(myMsg);
-			                            return false;
-	                        		}
-	                        		
-	                        	}
-	                        	else
-	                        	{
-	                        		// Due date validation check with next milestones 
-	                        		if(milestone.IPM_Due_Date__c != null && milestone.IPM_Due_Date__c < milestoneDueDate)
-	                        		{
-	                        			String errorMessage = Label.IPM_Milestone_FutureDueDate_Validation;
-			                            ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
-			                            ApexPages.addMessage(myMsg);
-			                            return false;
-	                        		}
-	                        	}
-                        	}
+                            incomingPhaseSeq = IPM_ConstantUtils.phaseSequence.get(milestonePhase);
                         }
                         
+                        for(String phase : IPM_ConstantUtils.phaseSequence.KeySet())
+                        {
+                            Integer phasecounter = IPM_ConstantUtils.phaseSequence.get(phase);
+                            
+                            if(phaseCounter < incomingPhaseSeq)
+                            {
+                                if( phasetoMilestoneMap.containsKey(phase) && phasetoMilestoneMap.get(phase)!=null )
+                                {
+                                    List<IPM_Milestone__c> milestoneList = phasetoMilestoneMap.get(phase);
+                                    for(IPM_Milestone__c milestone : milestoneList)
+                                    {
+                                        if(milestone.IPM_Due_Date__c > milestoneDueDate)
+                                        {
+                                             // Added generic error message for all the milestones.
+                                             String errorMessage = Label.IPM_Milestone_DueDate_Validation;
+                                             ApexPages.Message myMsg = new  ApexPages.Message(ApexPages.Severity.ERROR,errorMessage);
+                                             ApexPages.addMessage(myMsg); 
+                                             return false;       
+                                        }    
+                                    }
+                                }  
+                            }
+                        }
                     }
                 }
             }
@@ -546,20 +534,6 @@ public with sharing class IPM_Milestone {
        // If milestone phase is same as Project Phase, then only display Pop up for task  update.  
         if(!String.isBlank(milestoneObj.IPM_Type_of_Milestone__c) && milestoneObj.IPM_Type_of_Milestone__c == IPM_ConstantUtils.STANDARD && milestoneObj.IPM_Phase__c == projectObject.IPM_Phase__c && projectObject.IPM_PM_Approach__c == IPM_ConstantUtils.IPM_APPROACH_INTERNAL && !associatedPhaseTaskList.isEmpty() )
         {
-
-        	Integer taskCount = 0;
-        	// Check if related tasks have blank due date
-        	for(IPM_Task__c ipmTask : associatedPhaseTaskList){
-        		if(ipmTask.IPM_Due_Date1__c == null){
-        			taskCount++;
-        		}
-        	}
-        	// If no task has due date then Save Milestone and Update the Tasks, Promt will not be shown
-        	if(taskCount == associatedPhaseTaskList.size())
-        	{
-        		return saveMilestoneAndTasks();
-        	}
-        	
             validateSuccess = validateMilestone();
             if(validateSuccess)
             {

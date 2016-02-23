@@ -26,10 +26,10 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
     *    @return : List<Oblix_SOW_Projects__c>
     */
     public static List<Oblix_SOW_Projects__c> retrieveProject(List<Oblix_SOW_Projects__c> lstProjTrig){
-        return [Select o.Total_Value_Driver__c, o.ProjectTotalAssetScore__c, o.Innovation_Projects__c, o.Brand_Led_Growth__c, o.Total_Project_Score__c, o.Total_Fees_for_Project__c, o.Project_Stage__c, o.Project_Scale_2__c, o.Project_Scale_1__c, o.Oblix_ProjectBoxNumber__c, o.Campaign_Countries__c, o.Name, o.Id, o.Campaign_Total_Fees__c, o.Campaign_Total_Adjustment__c, o.Campaign_Status__c, o.Campaign_Idea__c, o.Campaign_Fees_Total__c From Oblix_SOW_Projects__c o  where id in :lstProjTrig];
+        return [Select o.Total_Value_Driver__c, o.ProjectTotalAssetScore__c, o.Innovation_Projects__c, o.Brand_Led_Growth__c, o.Total_Project_Score__c, o.Total_Fees_for_Project__c, o.Project_Stage__c, o.Project_Scale_2__c, o.Project_Scale_1__c, o.Oblix_ProjectBoxNumber__c, o.OblixCountries__c, o.Name, o.Id, o.Campaign_Total_Fees__c, o.Campaign_Total_Adjustment__c, o.Campaign_Status__c, o.Campaign_Idea__c, o.Campaign_Fees_Total__c From Oblix_SOW_Projects__c o  where id in :lstProjTrig];
     }
     
-   
+    
     /*
     *   @Description : Method used to get Innovation Score for project
     *   @param  : project Id
@@ -161,20 +161,19 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
     *   @param  : List<Oblix_Marketing_SOW_Project_Splits__c>
     *   @return : Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>
     */    
-    //private Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> getProjectToSplits(List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplits_Loc){
-    //    Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> mapProjectToSplits_Loc = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
-    //    if(!lstProjectSplits_Loc.isEmpty()){
-    //            for(Oblix_Marketing_SOW_Project_Splits__c projSplit : lstProjectSplits_Loc){
-    //                if(!mapProjectToSplits_Loc.containsKey(projSplit.Project_Splits__c)){
-    //                    mapProjectToSplits_Loc.put(projSplit.Project_Splits__c, new List<Oblix_Marketing_SOW_Project_Splits__c>());
-    //                }
-    //                mapProjectToSplits_Loc.get(projSplit.Project_Splits__c).add(projSplit);
-    //            }
-    //    }
-    //    return mapProjectToSplits_Loc;
-    //}
+    private Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> getProjectToSplits(List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplits_Loc){
+        Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> MapProjectToSplits_Loc = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
+        if(!lstProjectSplits_Loc.isEmpty()){
+                for(Oblix_Marketing_SOW_Project_Splits__c projSplit : lstProjectSplits_Loc){
+                    if(!MapProjectToSplits_Loc.containsKey(projSplit.Project_Splits__c)){
+                        MapProjectToSplits_Loc.put(projSplit.Project_Splits__c, new List<Oblix_Marketing_SOW_Project_Splits__c>());
+                    }
+                    MapProjectToSplits_Loc.get(projSplit.Project_Splits__c).add(projSplit);
+                }
+        }
+        return MapProjectToSplits_Loc;
+    }
     
-
     /*
     *   @Description : Method used to get set of Countries 
     *   @param  : List<Oblix_Marketing_SOW_Project_Splits__c>
@@ -190,216 +189,111 @@ public with sharing class Oblix_TR04ProjectBusinessDriverScore {
         return setCountries_Loc;
     }
     
-     /*
-    *    @Description : List of  Campaigns with More quiery fields.
-    *    @Param :  lstProjectTrigger
-    *    @return :  List<Oblix_SOW_Projects__c>
-    */
-     public static List<Oblix_SOW_Projects__c> getCampaignsByIds(List<Oblix_SOW_Projects__c> lstProjectTrigger) {
-        return [Select Id, Name, Financial_Year__c, Financial_Year__r.Financial_Year__c from Oblix_SOW_Projects__c where id in: lstProjectTrigger];
-    }
-     /*
-    *    @Description : List of Split by Campaign
-    *    @Param :  lstProjectTrigger
-    *    @return :  List<Oblix_Marketing_SOW_Project_Splits__c>
-    */
-    public static List<Oblix_Marketing_SOW_Project_Splits__c> getSplitsByProjects(List<Oblix_SOW_Projects__c> lstProjectTrigger){
-        return [Select Id, Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c in : lstProjectTrigger and Project_Splits__c != null];
-    }
-     /*
-    *    @Description : List of Oblix Calculator with these Countries and RT  = Country_Box_Number // For every Calculator associate its related Split Project.
-    *    @Param : projectTrig, lstProjectSplits 
-    *    @return :  List<Oblix_Calculator__c>
-    */
-    public static List<Oblix_Calculator__c> getOblixCalculators(List<Oblix_SOW_Projects__c> lstProjectTrigger, List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplits ){
-         Oblix_TR04ProjectBusinessDriverScore instanceTR04 = new Oblix_TR04ProjectBusinessDriverScore();
-        //List<Oblix_Marketing_SOW_Project_Splits__c>  lstProjectSplits = [Select Id, Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c in : lstProjectTrigger and Project_Splits__c != null];
-        Set<String> setCountries = instanceTR04.getSetCountriesNames(lstProjectSplits);
-        return   [Select Id, Name, Points_Low__c, Points_HigH__c, Box_Range__c, Financial_Year__c
-            ,Box_9__c, Box_8__c, Box_7__c, Box_6__c, Box_5__c, Box_4__c, Box_3__c, Box_2__c, Box_20__c, Box_1__c, Box_19__c, Box_18__c, Box_17__c, Box_16__c, Box_15__c, Box_14__c, Box_13__c, Box_12__c, Box_11__c, Box_10__c
-            FROM Oblix_Calculator__c WHERE RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Country_Box_Number') and  Name in: setCountries
-            ];
-    }
     
-    /*
-    *    @Description : This method returns the list of calculator records used for campaign total fees
-    *    @Param : --
-    *    @return : the list of calculator records with record type of Box_Range - List<Oblix_Calculator__c>
-    */
-    public static List<Oblix_Calculator__c> getCalculatorBoxRange(){
-        return [Select Id, Name, Points_Low__c, Points_HigH__c, Box_Range__c, Financial_Year__c,
-                     Box_9__c, Box_8__c, Box_7__c, Box_6__c, Box_5__c, Box_4__c, Box_3__c, Box_2__c, Box_20__c, Box_1__c, Box_19__c, Box_18__c, Box_17__c, Box_16__c, Box_15__c, Box_14__c, Box_13__c, Box_12__c, Box_11__c, Box_10__c 
-                     from Oblix_Calculator__c where RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Box_Range')];
-    }
-
-    
-     /*
-    *   @Description : Get a map of Project Id and the related project split records
-    *   @param  : List<Oblix_SOW_Projects__c>
-    *   @return : Map<Id, List<Oblix_Marketing_SOW_Project_Splits__c>>
-    */    
-    public static Map<Id, List<Oblix_Marketing_SOW_Project_Splits__c>> getProjectAndTheRelatedProjectSplits(List<Oblix_SOW_Projects__c> li_projects){
-        
-        Set<Id> sid_project_ids = new Set<Id>();
-
-        // get the project ids in scope
-        for (Oblix_SOW_Projects__c project: li_projects){
-            sid_project_ids.add(project.Id);
-        }
-
-        // build a map of project id and the related project splits
-        Map<Id,List<Oblix_Marketing_SOW_Project_Splits__c>> mid_liso_projects_ids_with_related_project_splits = new Map<Id,List<Oblix_Marketing_SOW_Project_Splits__c>>();
-        
-        for (Oblix_Marketing_SOW_Project_Splits__c project_splits: [Select Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c 
-            FROM Oblix_Marketing_SOW_Project_Splits__c WHERE Project_Splits__c in : sid_project_ids AND Project_Splits__c != NULL]){
-
-            if (!mid_liso_projects_ids_with_related_project_splits.containsKey(project_splits.Project_Splits__c)){
-                mid_liso_projects_ids_with_related_project_splits.put(project_splits.Project_Splits__c, new List<Oblix_Marketing_SOW_Project_Splits__c>());
-            }
-
-            mid_liso_projects_ids_with_related_project_splits.get(project_splits.Project_Splits__c).add(project_splits);
-        }
-
-        return mid_liso_projects_ids_with_related_project_splits;
-    }
-
     /*
     *    @Description : This method is used to calculate : Total Calculated Fee in a campaign
     *    @Param : projectTrig, lstProjTrig from Trigger
     *    @return : void
     */
-    public static void updateProjectCalculatorFees(Oblix_SOW_Projects__c projectTrig, List<Oblix_SOW_Projects__c> lstProjectTrigger, List<Oblix_SOW_Projects__c> lstProjectsQueried
-        , List<Oblix_Calculator__c> lstCalculatorCountryRange, List<Oblix_Calculator__c> lstCalculatorBoxRange, Map<Id, List<Oblix_Marketing_SOW_Project_Splits__c>> mapProjectToSplits ){
+    public static void updateProjectCalculatorFees(Oblix_SOW_Projects__c projectTrig, List<Oblix_SOW_Projects__c> lstProjectTrigger){
              //List of Oblix Calculator
         Oblix_TR04ProjectBusinessDriverScore instanceTR04 = new Oblix_TR04ProjectBusinessDriverScore();
-
-        Set<Id> setProjectIds = getProjectIds(lstProjectTrigger, projectTrig);
-
-        // S.M. 20160121 - commenting out below lines as is causing too many soql query error!
-        //List<Oblix_Marketing_SOW_Project_Splits__c>  lstProjectSplits = [Select Id, Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c in : setProjectIds and Project_Splits__c != null];
-        //Map<Id,List<Oblix_Marketing_SOW_Project_Splits__c>> mapProjectToSplits = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
+        List<Oblix_Calculator__c> lstCalculatorBoxRange = [Select Id, Name, Points_Low__c, Points_HigH__c, Box_Range__c, Financial_Year__c,
+                     Box_9__c, Box_8__c, Box_7__c, Box_6__c, Box_5__c, Box_4__c, Box_3__c, Box_2__c, Box_20__c, Box_1__c, Box_19__c, Box_18__c, Box_17__c, Box_16__c, Box_15__c, Box_14__c, Box_13__c, Box_12__c, Box_11__c, Box_10__c 
+                     from Oblix_Calculator__c where RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Box_Range')];
         
-       // Set<String> setCountries = instanceTR04.getSetCountriesNames(lstProjectSplits);
-
-        //mapProjectToSplits = instanceTR04.getProjectToSplits(lstProjectSplits);
-        
-        //system.Debug('###setCountries : '+setCountries);
-        
-        Map<Id,String> mapProjectToFinancialYear = getMapOfProjectToFinancialYear(lstProjectTrigger, projectTrig, setProjectIds, lstProjectsQueried);
-        //List of Oblix Calculator with these Countries and RT  = Country_Box_Number // For very Calculator associate its related Split Project.
-        //Loop Over Project for the Initial requirement : calculating Score
-        for(Oblix_SOW_Projects__c project : lstProjectTrigger){
-            
-            setProjectAttributes(project, projectTrig,lstCalculatorBoxRange, lstCalculatorCountryRange, mapProjectToFinancialYear, instanceTR04, mapProjectToSplits);
-        }
-    }
-
-    private static Set<Id> getProjectIds(List<Oblix_SOW_Projects__c> lstProjectTrigger, Oblix_SOW_Projects__c projectTrig){
-        Set<Id> setProjectIds = new set<Id>();
+        set<Id> setProjectIds = new set<Id>();
         
         for(Oblix_SOW_Projects__c project : lstProjectTrigger){
             if(project.Id == projectTrig.Id){
                 setProjectIds.add(project.Id);
             }
         }
-
-        return setProjectIds;
-    }
-
-
-    private static Map<Id,String> getMapOfProjectToFinancialYear(List<Oblix_SOW_Projects__c> lstProjectTrigger, Oblix_SOW_Projects__c projectTrig, Set<Id> setProjectIds, List<Oblix_SOW_Projects__c> lstProjectTriggerTmp){
-       
-        Map<Id,String> mapProjectToFinancialYear = new Map<Id, String>();
-
+        List<Oblix_Marketing_SOW_Project_Splits__c>  lstProjectSplits = [Select Id, Name, Project_Splits__c, OblixCountry__c, OblixCountry__r.Name, Percentage__c from Oblix_Marketing_SOW_Project_Splits__c where Project_Splits__c in : setProjectIds and Project_Splits__c != null];
+        Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>> MapProjectToSplits = new Map <Id, List<Oblix_Marketing_SOW_Project_Splits__c>>();
+         set<String> setCountries= instanceTR04.getSetCountriesNames(lstProjectSplits);
+            MapProjectToSplits = instanceTR04.getProjectToSplits(lstProjectSplits);
+        
+        system.Debug('###setCountries : '+setCountries);
+        //List of Oblix Calculator with these Countries and RT  = Country_Box_Number // For very Calculator associate its related Split Project.
+        List<Oblix_Calculator__c> lstCalculatorCountryRange = [Select Id, Name, Points_Low__c, Points_HigH__c, Box_Range__c, Financial_Year__c,
+                 Box_9__c, Box_8__c, Box_7__c, Box_6__c, Box_5__c, Box_4__c, Box_3__c, Box_2__c, Box_20__c, Box_1__c, Box_19__c, Box_18__c, Box_17__c, Box_16__c, Box_15__c, Box_14__c, Box_13__c, Box_12__c, Box_11__c, Box_10__c
+         from Oblix_Calculator__c where RecordTypeId =: Oblix_Utils.MapRecordType('Oblix_Calculator__c').get('Country_Box_Number') and  Name in:setCountries];
+        List<Oblix_SOW_Projects__c> lstProjectTriggerTmp = [Select Id, Name, Financial_Year__c, Financial_Year__r.Financial_Year__c from Oblix_SOW_Projects__c where id in: setProjectIds];
+        Map<Id,String> MapProjToFinancialYear = new Map<Id, String>();
         for(Oblix_SOW_Projects__c projTmp : lstProjectTriggerTmp){
-            if(!mapProjectToFinancialYear.containsKey(projTmp.Id)){
-                mapProjectToFinancialYear.put(projTmp.Id, projTmp.Financial_Year__r.Financial_Year__c);
+            if(!MapProjToFinancialYear.containsKey(projTmp.Id)){
+                MapProjToFinancialYear.put(projTmp.Id, projTmp.Financial_Year__r.Financial_Year__c);
             }
         }
-
-        return mapProjectToFinancialYear;
-    }
-
-    private static void setProjectAttributes(Oblix_SOW_Projects__c project, Oblix_SOW_Projects__c projectTrig, List<Oblix_Calculator__c> lstCalculatorBoxRange
-        , List<Oblix_Calculator__c> lstCalculatorCountryRange, Map<Id,String> mapProjectToFinancialYear, Oblix_TR04ProjectBusinessDriverScore instanceTR04
-        , Map<Id,List<Oblix_Marketing_SOW_Project_Splits__c>> mapProjectToSplits ){
-            
-        if(project.Id == projectTrig.Id){
-            Decimal score_innonvation = 0;
-            Decimal score_brandLedGrowth = 0;
-            Decimal score_market = 0;
-            Decimal score_hubPartner =0;
-            Decimal score_campaignIdea =0;
-            Decimal TotalBusinessvaluedriverScore = 0;
-            Decimal TotalProjectScore = 0;
-            Decimal tmp_projectFee = 0;
-            
-            String Calculator_BoxRange = '';
-
-            //Business Value Creation == INNOVATION
-            if(project.Innovation_Projects__c != null){
-                score_innonvation = instanceTR04.getScoreInnovation(project);
+        //Loop Over Project for the Initial requirement : calculating Score
+        for(Oblix_SOW_Projects__c project : lstProjectTrigger){
+            if(project.Id == projectTrig.Id){
+                Decimal score_innonvation = 0;
+                Decimal score_brandLedGrowth = 0;
+                Decimal score_market = 0;
+                Decimal score_hubPartner =0;
+                Decimal score_campaignIdea =0;
+                Decimal TotalBusinessvaluedriverScore = 0;
+                Decimal TotalProjectScore = 0;
+                Decimal tmp_projectFee = 0;
+                
+                String Calculator_BoxRange = '';
+                //Business Value Creation == INNOVATION
+                if(project.Innovation_Projects__c != null){
+                    score_innonvation = instanceTR04.getScoreInnovation(project);
                 //Business Value Creation BrandLedGrowth
-                score_brandLedGrowth = instanceTR04.getScoreBrandLedGrowth(project);
-            }
-
-            //Business Value    Number of markets  
-            score_market = instanceTR04.getScoreMarket(project);
-
-            //System.debug('###score_market : '+score_market );
-            //Business Value Number of hubs or partners
-        
-            score_hubPartner = instanceTR04.getScoreHubs(project);
-            //System.debug('###score_hubPartner : '+score_hubPartner);
-            //Business Value Campaign Idea
-            score_campaignIdea = instanceTR04.getScoreCampaign(project);
-
-            //System.debug('###score_campaignIdea : '+score_campaignIdea );
-
-
-            //Calculate TotalBusinessvaluedriverScore
-            TotalBusinessvaluedriverScore = score_innonvation+score_brandLedGrowth+score_market+score_hubPartner+score_campaignIdea+TotalBusinessvaluedriverScore;
-
-            project.Total_Value_Driver__c = TotalBusinessvaluedriverScore;
-            //System.debug('###project.Total_Value_Driver__c : '+project.Total_Value_Driver__c);
-            //System.debug('###project.ProjectTotalAssetScore__c : '+project.ProjectTotalAssetScore__c );
-
-            if(project.ProjectTotalAssetScore__c != null){ TotalProjectScore = (project.ProjectTotalAssetScore__c/100)*TotalBusinessvaluedriverScore; }
-
-            project.Total_Project_Score__c = TotalProjectScore ;
- 
-            if(!lstCalculatorBoxRange.isEmpty()){
-                for(Oblix_Calculator__c calculatorRange : lstCalculatorBoxRange){
-                    
-                    if(TotalProjectScore >= calculatorRange.Points_Low__c && TotalProjectScore <= calculatorRange.Points_HigH__c 
-                        && calculatorRange.Financial_Year__c == mapProjectToFinancialYear.get(project.Id)){
-
-                        //Create Field Project Box Number
-                        Calculator_BoxRange =  calculatorRange.Box_Range__c;
-                        project.Oblix_ProjectBoxNumber__c = calculatorRange.Box_Range__c;
+                    score_brandLedGrowth = instanceTR04.getScoreBrandLedGrowth(project);
+                }
+                //Business Value    Number of markets  
+                    score_market = instanceTR04.getScoreMarket(project);
+                System.debug('###score_market : '+score_market );
+                //Business Value Number of hubs or partners
+                    score_hubPartner = instanceTR04.getScoreHubs(project);
+                System.debug('###score_hubPartner : '+score_hubPartner);
+                //Business Value Campaign Idea
+                    score_campaignIdea = instanceTR04.getScoreCampaign(project);
+                System.debug('###score_campaignIdea : '+score_campaignIdea );
+                //Calculate TotalBusinessvaluedriverScore
+                TotalBusinessvaluedriverScore = score_innonvation+score_brandLedGrowth+score_market+score_hubPartner+score_campaignIdea+TotalBusinessvaluedriverScore;
+                project.Total_Value_Driver__c = TotalBusinessvaluedriverScore;
+                 System.debug('###project.Total_Value_Driver__c : '+project.Total_Value_Driver__c);
+                 System.debug('###project.ProjectTotalAssetScore__c : '+project.ProjectTotalAssetScore__c );
+                if(project.ProjectTotalAssetScore__c != null){ TotalProjectScore = (project.ProjectTotalAssetScore__c/100)*TotalBusinessvaluedriverScore; }
+                project.Total_Project_Score__c = TotalProjectScore ;
+                System.debug('###project.Total_Project_Score__c : '+project.Total_Project_Score__c);
+                if(!lstCalculatorBoxRange.isEmpty()){
+                    for(Oblix_Calculator__c calculatorRange : lstCalculatorBoxRange){
                         
+                        if(TotalProjectScore >= calculatorRange.Points_Low__c && TotalProjectScore <= calculatorRange.Points_HigH__c && calculatorRange.Financial_Year__c == MapProjToFinancialYear.get(project.Id)){
+                            //Create Field Project Box Number
+                           System.debug('###TotalProjectScore : '+TotalProjectScore);
+                           System.debug('###calculatorRange.Points_Low__c : '+calculatorRange.Points_Low__c);
+                           System.debug('###calculatorRange.Points_HigH__c : '+calculatorRange.Points_HigH__c);
+                            Calculator_BoxRange =  calculatorRange.Box_Range__c;
+                            project.Oblix_ProjectBoxNumber__c = calculatorRange.Box_Range__c;
+                            
+                        }
                     }
                 }
+                Calculator_BoxRange = Calculator_BoxRange.replace(' ', '_');
+                Calculator_BoxRange += '__c';
+                System.debug('###Calculator_BoxRange : '+Calculator_BoxRange);
+                // A project has multi project splits, for every split we need to have a Calculator By Country
+                //For every project look over Splits and for every split get with a Map the Correct Calculator Country.
+                if(MapProjectToSplits.get(project.Id) != null){
+                   system.debug('###lstCalculatorCountryRange :'+lstCalculatorCountryRange);
+                   tmp_projectFee = TotalCalculatedFee(MapProjToFinancialYear.get(project.Id),Calculator_BoxRange,MapProjectToSplits.get(project.Id),lstCalculatorCountryRange);
+                   System.debug('###tmp_projectFee : '+tmp_projectFee);
+                }
+                if(tmp_projectFee != 0){
+                    project.Total_Fees_for_Project__c = tmp_projectFee; 
+                }
             }
-
-            Calculator_BoxRange = Calculator_BoxRange.replace(' ', '_');
-            Calculator_BoxRange += '__c';
-
-            //System.debug('###Calculator_BoxRange : '+Calculator_BoxRange);
-            // A project has multi project splits, for every split we need to have a Calculator By Country
-            //For every project look over Splits and for every split get with a Map the Correct Calculator Country.
             
-            if(mapProjectToSplits.get(project.Id) != null){
-               //system.debug('###lstCalculatorCountryRange :'+lstCalculatorCountryRange);
-               
-               tmp_projectFee = TotalCalculatedFee(mapProjectToFinancialYear.get(project.Id),Calculator_BoxRange,mapProjectToSplits.get(project.Id),lstCalculatorCountryRange);
-               //System.debug('###tmp_projectFee : '+tmp_projectFee);
-            }
-
-            project.Total_Fees_for_Project__c = tmp_projectFee; 
-        }
+         }
     }
-
+   
     private static Decimal TotalCalculatedFee(String  myprojectFinancial, String Calculator_BoxRange, List<Oblix_Marketing_SOW_Project_Splits__c> lstProjectSplitsTmp, List<Oblix_Calculator__c> lstCalculatorCountrRange){
              Decimal tmp_fee = 0;
              system.debug('###lstProjectSplitsTmp : '+lstProjectSplitsTmp);

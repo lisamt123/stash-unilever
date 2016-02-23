@@ -1,6 +1,6 @@
 /**********************************************************************
-Name:  CEC_ProductRangeControllerTest()
-Copyright@: 2015  Unilever
+ Name:  CEC_ProductRangeControllerTest()
+ Copyright@: 2015  Unilever
 =======================================================================
 =======================================================================
 Purpose: This is the Test class for CEC_ProductRangeController Apex class                                                                                                    
@@ -10,7 +10,7 @@ Purpose: This is the Test class for CEC_ProductRangeController Apex class
 History                                                            
 -------                                                            
 VERSION    AUTHOR            DATE            DETAIL                   
-1.0      Koti           Nov-2015      INITIAL DEVELOPMENT   
+  1.0      Koti           Nov-2015      INITIAL DEVELOPMENT   
 
 ***********************************************************************/
 
@@ -21,16 +21,16 @@ public class CEC_ProductRangeControllerTest {
     public static User insertUser() {
         Profile p = [SELECT Id FROM Profile WHERE Name='Unilever - Salesforce MultiApp Standard'];
         User u = new User(LastName = 'Testing', 
-                          Username = 'cectestuser@test00DE0000000bbLj.org', 
-                          Email = 'cectestuser@test00DE0000000bbLj.org', 
-                          Alias = 'utest', 
-                          TimeZoneSidKey = 'Europe/London', 
-                          LocaleSidKey = 'en_GB', 
-                          EmailEncodingKey = 'UTF-8', 
-                          ProfileId = p.Id, 
-                          LanguageLocaleKey = 'en_US',
-                          UserPermissionsKnowledgeUser = true);  
-        
+                        Username = 'cectestuser@test00DE0000000bbLj.org', 
+                        Email = 'cectestuser@test00DE0000000bbLj.org', 
+                        Alias = 'utest', 
+                        TimeZoneSidKey = 'Europe/London', 
+                        LocaleSidKey = 'en_GB', 
+                        EmailEncodingKey = 'UTF-8', 
+                        ProfileId = p.Id, 
+                        LanguageLocaleKey = 'en_US',
+                        UserPermissionsKnowledgeUser = true);  
+                             
         insert u;
         
         List<PermissionSet> pslist = [SELECT Id FROM PermissionSet WHERE Name IN ('CEC_User','CEC_Manager','CEC_CRUD','CEC_Business_Admin','CEC_Knowledge_Manager','CEC_Automated_User')];
@@ -42,7 +42,7 @@ public class CEC_ProductRangeControllerTest {
             psa.PermissionSetId = ps.Id;
             
             psalist.add(psa);
-            
+        
         }
         
         insert psalist;
@@ -57,17 +57,17 @@ public class CEC_ProductRangeControllerTest {
     }
     
     /**
-Test method for  fetchRecords method
-**/  
+    Test method for  fetchRecords method
+    **/  
     public static testMethod void test_fetchrecords(){
-        
+  
         User u = insertUser();
         System.runAs(u){
             /***** CREATING TEST DATA *****/
             // create category list 
             List<mdm_Product_Category__c> catogoryList = new List<mdm_Product_Category__c>();
             for(Integer i=0; i<5; i++){
-                mdm_Product_Category__c categoryObj = new mdm_Product_Category__c(name='Test Category'+i, Corp_Prod_Grouping_Name__c='Group1', L2_Product_Category__c = 'L2 Category', L7_Product_Category__c = 'Test Category'+i);
+                mdm_Product_Category__c categoryObj = new mdm_Product_Category__c(name='Test Category'+i, Corp_Prod_Grouping_Name__c='Group1', L2_Product_Category__c = 'L2 Category');
                 catogoryList.add(categoryObj);
             }
             insert catogoryList;
@@ -75,11 +75,11 @@ Test method for  fetchRecords method
             // Create case product list
             list <mdm_Case_Product__c> caseprodlist = new list<mdm_Case_Product__c>();
             for(Integer i=0; i<10; i++){
-                mdm_Case_Product__c caseprod = new mdm_Case_Product__c(name='Test Case Product'+i, Global_CPG_Code__c = catogoryList[0].Id, ISO_Country_Code__c = 'GB', brand__c= 'Dove'+i, Active_for_CEC__c = True);
-                caseprodlist.add(caseprod);
-            }
+                    mdm_Case_Product__c caseprod = new mdm_Case_Product__c(name='Test Case Product'+i, Global_CPG_Code__c = catogoryList[0].Id, ISO_Country_Code__c = 'GB', brand__c= 'Dove'+i, Active_for_CEC__c = True);
+                    caseprodlist.add(caseprod);
+                }
             insert caseprodlist;
-            
+
             // Create case
             Case caseObj = new Case(); 
             caseObj.CEC_Product__c = caseprodlist[0].id;
@@ -87,29 +87,28 @@ Test method for  fetchRecords method
             
             case caseRec = [Select Id, CEC_Product__c, Product_Code__c, Product_ISO_Country_Code__c, Product_CPG_Code__c, CEC_Product__r.Global_CPG_Code__r.Name,
                             CEC_Product__r.Brand__c FROM case WHERE id =:caseObj.Id]; 
-            
+                            
             Test.setCurrentPage(Page.CEC_ProductRange);
             ApexPages.currentPage().getParameters().put('Id', caseRec.id);
             
             Test.startTest();
             
-            CEC_ProductRangeController ControllerObj = new CEC_ProductRangeController();
-            ControllerObj.pageLoadAction();
-            System.assertEquals(ControllerObj.CaseProducts.size(),9);
-
-            // particular brand search
-            ControllerObj.code = '-None-';
-            ControllerObj.brand = 'Dove1';
-            ControllerObj.getBrands();
-            ControllerObj.filteredCaseProducts();
-            System.assertEquals(ControllerObj.CaseProducts.size(),1);
-            // blank search
-            ControllerObj.brand = '-None-';
-            ControllerObj.code = '-None-';
-            ControllerObj.filteredCaseProducts();
-            System.assertEquals(ControllerObj.CaseProducts.size(),0);
+                CEC_ProductRangeController ControllerObj = new CEC_ProductRangeController();
+                List<mdm_Case_Product__c> cplist = ControllerObj.CaseProducts;
+                // particular cpg code and brand search
+                ControllerObj.filteredCaseProducts();
+                // particular brand search
+                ControllerObj.code = '-None-';
+                ControllerObj.brand = 'Dove1';
+                ControllerObj.getBrands();
+                ControllerObj.filteredCaseProducts();
+                // blank search
+                ControllerObj.brand = '-None-';
+                ControllerObj.code = '-None-';
+                ControllerObj.filteredCaseProducts();
+                                
             Test.stopTest();
         }
     }
-    
+
 }

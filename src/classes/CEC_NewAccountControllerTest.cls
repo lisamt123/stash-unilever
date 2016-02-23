@@ -142,7 +142,7 @@ dsr6.CRMfusionDBR101__Scenario__c = dsc5.id;
         Id rtId = [select Id, name from RecordType where name = 'Person Account' and SObjectType = 'Account' limit 1].Id;
         
         // Create Account
-        Account accObj = new Account(lastname='Test Account', Phone = '0991236785', PersonMailingPostalCode = 'TA10 0AB', PersonEmail='account_test@test00DE0000000bbLj.com');
+        Account accObj = new Account(lastname='Test Account', Phone = '0991236785', PersonMailingPostalCode = 'TA10 0AB', PersonEmail='test@test.com');
         accObj.RecordTypeId = rtId;
         insert accObj;
 
@@ -202,7 +202,7 @@ dsr6.CRMfusionDBR101__Scenario__c = dsc5.id;
         testController.newConsumer.Phone = '0991236785';
         testController.newConsumer.PersonMailingPostalCode = 'TA10 0AB';
         testController.newConsumer.PersonMailingStreet = 'George Street';
-        testController.newConsumer.PersonEmail = 'account_test@test00DE0000000bbLj.com';
+        testController.newConsumer.PersonEmail = 'test@test.com';
         
         pageReference pr = testController.searchConsumer();
     

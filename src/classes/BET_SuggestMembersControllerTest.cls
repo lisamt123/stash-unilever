@@ -236,7 +236,6 @@ private class BET_SuggestMembersControllerTest {
     @isTest static void addExternalMemberTest(){
         Test.startTest();
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
-        componentController.externalMembers = new List<BET_SuggestMembersController.ExternalAgencyMemberWrapper>();
         componentController.externalMemberEmail = 'm.bluj@polsource.com';
         componentController.addExternalMember();
         System.assertEquals(componentController.externalMembers.size(),1,'There should be one external member added');
@@ -248,9 +247,6 @@ private class BET_SuggestMembersControllerTest {
         Test.startTest();
         BET_SuggestMembersController componentController = new BET_SuggestMembersController();
         componentController.externalMemberEmail = 'm.bluj@polsource.com';
-        BET_SuggestMembersController.ExternalAgencyMemberWrapper wrapp = new BET_SuggestMembersController.ExternalAgencyMemberWrapper();
-        wrapp.email = componentController.externalMemberEmail;
-        componentController.externalMembers = new List<BET_SuggestMembersController.ExternalAgencyMemberWrapper>{wrapp};
         componentController.addExternalMember();
         System.assertEquals(componentController.externalMembers.size(),1,'There should be one external member added');
         componentController.delExternalMemeber();
@@ -280,13 +276,6 @@ private class BET_SuggestMembersControllerTest {
         componentController.betIdCtrl = bet.id;
         componentController.projectIdCtrl = project.id;
         System.assertEquals(componentController.getManagers().size(),1,'There should be only one manager');
-        Test.stopTest();
-    }
-
-    @isTest static void goToCallbackTest(){
-        BET_SuggestMembersController componentController = new BET_SuggestMembersController();
-        Test.startTest();
-        System.assert(componentController.goToCallback('/apex/Bet') != null,'Page reference should not be null');
         Test.stopTest();
     }
 

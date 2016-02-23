@@ -1,4 +1,4 @@
-public Class NewsArticleCommentCount{
+public with sharing Class NewsArticleCommentCount{
   
    public static void newsArticleCount (Id newsArticleid){
     

@@ -63,10 +63,10 @@ public class IPM_NewTask_Test{
       @throws: none
     ***********************************/
     public static void initializedData(){
-        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8','TestComments9','TestComments10'};
         
         set<string> projIdSet = new set<string>();
-
+        Set<String> projectNameSet = new Set<String>{'TestComments1','TestComments2','TestComments3','TestComments4','TestComments5','TestComments6','TestComments7','TestComments8','TestComments9','TestComments10'};
+        
         projectDetailList = [Select Id,IPM_Phase__c,Name,IPM_Complexity__c,
                             (Select Id from Project_Documents__r),
                             (Select Id from IPM_Financials_Consolidated__r ),
@@ -123,9 +123,7 @@ public class IPM_NewTask_Test{
         list<IPM_Project_Resource__c> projResList = [SELECT Id,IPM_User__c,IPM_Project__c FROM IPM_Project_Resource__c WHERE IPM_User__c=:userId];
         system.assertEquals(projResList[0].IPM_Project__c,projectId);
             
-        //project record was not shared with the project resource user, 
-        //so adding the project resource explicitly in the group,
-        //for which the project record is shared.    
+        //project record was not shared with the project resource user, so adding the project resource expecitly in the goup for which the project record is shared.    
         list<IPM_Project__Share> projectShare = [SELECT Id,ParentID,UserOrGroupId FROM IPM_Project__Share WHERE  ParentID=:projectId];
             
         System.runAs(IPM_TestFactory_Helper.createUserAdmin(true)){
@@ -275,6 +273,9 @@ public class IPM_NewTask_Test{
             taskview.showPopup();
             system.assert(taskview.displayPopup != null && taskview.displayPopup, 'displayPopup will be true');
             taskview.doSaveTasks();
+            system.assert(string.isBlank(taskview.dateFormat) , true);
+            system.assert(string.isBlank(taskview.errorMessage), true);
+            system.assert(taskview.options == null, true);
             system.assert(string.isBlank(taskview.roleList), true);
             system.assert(string.isBlank(taskview.roleValue), true);
             
@@ -308,11 +309,10 @@ public class IPM_NewTask_Test{
              IPM_NewTask taskview =new IPM_NewTask(sc);
              taskview.tasks = task;
              List<SelectOption> optionSectionList = taskview.getSectionlist();
-             system.assertEquals(optionSectionList.size()>0,true,'Task List not populated as expected');
+             system.assertEquals(optionSectionList.size()>0,true );
              taskview.doSaveTasks();
         
-             list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c 
-                                            WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
+             list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
              system.assertEquals(taskResult.size(),0 , 'Record Size Not Matched');
         }
         Test.stopTest();
@@ -347,6 +347,7 @@ public class IPM_NewTask_Test{
              
              list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
              system.assertEquals(taskResult.size(),0, 'Record Size Is More than expected' );
+             system.assertEquals(taskview.displayError , true, 'Display Error Is Not Matched' );
         }
         Test.stopTest();
     } 
@@ -441,16 +442,14 @@ public class IPM_NewTask_Test{
         Test.stopTest();
         }
     } 
-    
     /***********************************
       @name: createTaskWithFunctionalOwner
       @Description: Functional owner should be able to insert task in system at milestone and todos tab
     ***********************************/
-    /*
     public static TestMethod void createTaskWithFunctionalOwner(){
         Test.startTest();
         //Assert 475 Failing in Production commented to relook at the code
-            User userBD = [Select Id,LastName from User where LastName=:USER_NAME limit 1]; 
+           /* User userBD = [Select Id,LastName from User where LastName=:USER_NAME limit 1]; 
             
             initializedData();
             
@@ -481,10 +480,9 @@ public class IPM_NewTask_Test{
                 {
                     system.assertEquals(tsk.IPM_Function__c,IPM_ConstantUtils.FUNCTIONAL_ROLE_BD, 'IPM_Function__c Not Matched');
                 }
-            }
+            }*/
         Test.stopTest();
     } 
-    */
     /***********************************
       @name: createTaskFromAssociatedToDosTabByFO
       @Description: Functional owner should be able to insert task in system at associated todos tab. should have default values

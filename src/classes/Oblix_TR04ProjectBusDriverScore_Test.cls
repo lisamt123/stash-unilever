@@ -1,7 +1,7 @@
 @isTest 
 private class Oblix_TR04ProjectBusDriverScore_Test {
 
-   static testMethod void myUnitTest() {
+    static testMethod void myUnitTest() {
         // TO DO: implement unit test
         Profile p=[Select Id from Profile where Name='System Administrator' or Name='Système Administrateur'];       
      
@@ -39,11 +39,11 @@ private class Oblix_TR04ProjectBusDriverScore_Test {
                 geography.geography_type__c = 'Country Cluste';
                 insert geography;
                 
-            
+            Test.startTest();
             
             Oblix_SOW_Projects__c project = new Oblix_SOW_Projects__c();
                 project.Name = 'Project #2';
-                project.Campaign_Countries__c = 'France';
+                project.OblixCountries__c = 'France';
                 project.Financial_Year__c = marketingSow.Id;
                 project.Innovation_Projects__c = Oblix_Constants.Innovation_Projects_Innovation;
                 project.Brand_Led_Growth__c    = Oblix_Constants.BrandLedGrowth_IncremTurnoverLess10;
@@ -63,7 +63,6 @@ private class Oblix_TR04ProjectBusDriverScore_Test {
                 projectSplit.OblixCountry__c = geography.Id;
                 insert projectSplit;
                 
-                Test.startTest();
                 project.Project_Scale_1__c = Oblix_Constants.Innovation_Projects_Market2;
                 project.Innovation_Projects__c = Oblix_Constants.Innovation_Projects_BrandLedGrowth;
                 project.Brand_Led_Growth__c    = Oblix_Constants.BrandLedGrowth_IncremTurnoverLess2030;
@@ -118,10 +117,8 @@ private class Oblix_TR04ProjectBusDriverScore_Test {
                 project.Innovation_Projects__c = Oblix_Constants.Innovation_Projects_BrandLedGrowth;
                 project.Brand_Led_Growth__c    = Oblix_Constants.BrandLedGrowth_IncremTurnoverLessAbove400;
                 update project;
-               
+                
                Test.stopTest(); 
          }
     }
-    
-   
 }

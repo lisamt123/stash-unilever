@@ -5,11 +5,15 @@
  *********************************************/@isTest
 private with sharing class IPM_CoreParameters_Test {
     //*@Description: Object Variable decleration 
-    private static IPM_Project__c projectWithOutBoss;
+   /* private static IPM_Project__c projectWithOutBoss;
     private static IPM_Project__c testProject;
     private static User userInitialize;
     private static IPM_CoreParameters sic;
-    private static MDO_Category__c mdmCategory;
+    private static List < IPM_CoreParameter_Configration__c > coreConfigList;
+    private static List < IPM_CoreParameter_Questions__c > allQuestionsList;
+    private static List < IPM_InnovationRenovation__c > innovationRenoList;
+    private static List < IPM_Category__c > cateList;
+    private static mdm_Product_Category__c mdmCategory;
     private static mdm_Brand_Position__c mdmPosition;
     private static user u4;
     private static user u5;
@@ -36,13 +40,11 @@ private with sharing class IPM_CoreParameters_Test {
     private static string common_STR = 'answer values should be';
     private static string readAccess = 'Current logged in user should have read access';
     private static string editAccess = 'Current logged in user should have edit access';
-    private static string Laundry_STR = 'Laundry';
-    
+    private static string Laundry_STR = 'Laundry';*/
     /**************************************************
      * @description : Master data 
      ***************************************************/
-    
-    static void initializedData() {
+    /*static void initializedData() {
 
         //insert users
         List < User > userList = new List < User > ();
@@ -74,29 +76,16 @@ private with sharing class IPM_CoreParameters_Test {
         System.assertEquals(userAllList[0].LastName, userLastName, sameName); //positive test
         //we need to create project as admin because after inserting resource in project then we are using subscription
         system.runAs(newAdminUser){
-            
-            IPM_TestFactory_Helper.createIPMCoreParameterInnoReno();
-            IPM_TestFactory_Helper.createIPMCoreParameterAllQuestions();
-            mdmCategory=new MDO_Category__c();
-            mdmCategory.Name=Laundry_STR;
-            insert mdmCategory;
-            MDO_Category__c marketMDO=new MDO_Category__c();
-            marketMDO.name=Laundry_STR;
-            marketMDO.parent_id__c=mdmCategory.id;
-            marketMDO.category_type__c=IPM_ConstantUtils.IPM_MARKET;
-            insert marketMDO;
-            MDO_Category__c suSectorMDO=new MDO_Category__c();
-            suSectorMDO.name=Laundry_STR;
-            suSectorMDO.parent_L3__c=mdmCategory.id;
-            suSectorMDO.category_type__c=IPM_ConstantUtils.IPM_SUBSECTOR;
-            insert suSectorMDO;
-            System.assertEquals(mdmCategory.Name, Laundry_STR, 'name should be'+ mdmCategory.Name); //positive test
+            innovationRenoList = IPM_TestFactory_Helper.createIPMCoreParameterInnoReno();
+            allQuestionsList = IPM_TestFactory_Helper.createIPMCoreParameterAllQuestions();
+            mdmCategory = IPM_TestFactory_Helper.createMDMCategory(true);
+            System.assertEquals(mdmCategory.Name, 'Test Brand P', 'name should be Test Brand P'); //positive test
            
             mdmPosition = IPM_TestFactory_Helper.createMDMBrandPosition(true);
             System.assertEquals(mdmPosition.Category_Name__c, Laundry_STR, 'category should be ' + space_STR + Laundry_STR); //positive test
-            IPM_TestFactory_Helper.createIPMCategory();
+            cateList = IPM_TestFactory_Helper.createIPMCategory();
             //get coreparameter configuration
-            IPM_TestFactory_Helper.createIPMCoreParameterConfig();
+            coreConfigList = IPM_TestFactory_Helper.createIPMCoreParameterConfig();
             //insert coreparameter help text
             List < IPM_CorePara_helps_example__c > corehelpsList = new List < IPM_CorePara_helps_example__c > ();
             IPM_CorePara_helps_example__c coreParamHelp = IPM_TestFactory_Helper.createCoreParamHelpExapmle(false);
@@ -114,7 +103,7 @@ private with sharing class IPM_CoreParameters_Test {
             insert corehelpsList;
             List < IPM_CorePara_helps_example__c > coreParamHelpList = [SELECT id, IPM_Answer__c FROM IPM_CorePara_helps_example__c WHERE IPM_Answer__c = : IPM_ConstantUtils.IMPROVEMENT LIMIT 1];
             system.assertEquals(coreParamHelpList[0].IPM_Answer__c, IPM_ConstantUtils.IMPROVEMENT, common_STR + space_STR + IPM_ConstantUtils.IMPROVEMENT);
-            IPM_Coreparameters corPrm=new IPM_Coreparameters();
+    
             List < IPM_Company_Card__c > companyCardList = new List < IPM_Company_Card__c > ();
             IPM_Company_Card__c globalCompanyCard = IPM_TestFactory_Helper.createGlobalCompanyCard(false);
             companyCardList.add(globalCompanyCard);
@@ -130,7 +119,7 @@ private with sharing class IPM_CoreParameters_Test {
             ProjectWithOutBoss.IPM_Project_Leader__c = userInitialize.id;
             ProjectWithOutBoss.Name = 'ProjectWithOutBoss';
             ProjectWithOutBoss.IPM_ProjectSubType__c = 'Innovation/Renovation';
-            ProjectWithOutBoss.IPM_Category_Text__c = Laundry_STR;
+            ProjectWithOutBoss.IPM_Category_Text__c = 'TestCategory';
             ProjectWithOutBoss.IPM_Phase__c = 'Ideas';
             ProjectWithOutBoss.IPMProject_Span__c = 'Global';
             ProjectWithOutBoss.IPM_CompanyCardText__c = 'Global Company Card';
@@ -199,17 +188,15 @@ private with sharing class IPM_CoreParameters_Test {
             sic = new IPM_CoreParameters();
         }
 
-    }
+    }*/
     /**************************************************************
      *@Description :executes the core logic and asserts for coreparameter.
      ***************************************************************/
-    static testmethod void testinitiateCoreParameter() {
+    /*static testmethod void testinitiateCoreParameter() {
         initializedData();
 
         system.RunAs(userInitialize) {
             Test.startTest();
-            sic.editMarketActivityByPL=false;
-            sic.extraEditable=false;
             sic.IPM_Coreparameter.IPM_ProjectSubType__c = 'Operational';
             sic.IPM_Coreparameter.IPM_Answer_of_Q2__c = IPM_ConstantUtils.NOCHANGE;
             sic.IPM_Coreparameter.BET__c = null; 
@@ -220,7 +207,6 @@ private with sharing class IPM_CoreParameters_Test {
             sic.IPM_Coreparameter.IPM_Answer_of_Q3__c = IPM_ConstantUtils.BASE;
             sic.getCoreparameterConfig();
             sic.getAllQuestions();
-            sic.showMessage();
             system.assertEquals(sic.IPM_Coreparameter.IPM_Answer_of_Q3__c, null, 'answer number three should be null');
             sic.answerone_STR = IPM_ConstantUtils.IMPROVEMENT;
             sic.answertwo_STR = IPM_ConstantUtils.NOCHANGE;
@@ -253,29 +239,11 @@ private with sharing class IPM_CoreParameters_Test {
 
         }
 
-    }
+    }*/
     /**************************************************************
      *@Description :executes the core logic and asserts for coreparameter.
      ***************************************************************/
-    static testmethod void  testgetCoreStrategicIntent(){
-         initializedData();
-         system.RunAs(userInitialize) {
-             sic.answerone_STR=IPM_ConstantUtils.IMPROVEMENT;
-             sic.answertwo_STR=IPM_ConstantUtils.NOCHANGE;
-             sic.answerthree_STR=IPM_ConstantUtils.BASE;
-             sic.getCoreStrategicIntent();
-             sic.getcoreparameterHelps(); 
-             
-             sic.IPM_Coreparameter.IPM_ProjectSubType__c = IPM_ConstantUtils.IPM_BLG;
-             sic.getCoreStrategicIntent();
-            system.assertEquals(sic.IPM_Coreparameter.IPM_ProjectSubType__c,IPM_ConstantUtils.IPM_BLG,'Load Strategic Intent For BLG Project'); 
-         }
-    }
-        
-    /**************************************************************
-     *@Description :executes the core logic and asserts for coreparameter.
-     ***************************************************************/
-    static testmethod void testAnswerone() {
+    /*static testmethod void testAnswerone() {
         initializedData();
 
         system.RunAs(userInitialize) {
@@ -286,11 +254,11 @@ private with sharing class IPM_CoreParameters_Test {
             Test.stopTest();
         }
 
-    }
+    }*/
     /**************************************************************
      *@Description :executes the core logic and asserts for coreparameter.
      ***************************************************************/
-    static testmethod void testAnswerTwo() {
+    /*static testmethod void testAnswerTwo() {
         initializedData();
         system.RunAs(userInitialize) {
             Test.startTest();
@@ -300,11 +268,11 @@ private with sharing class IPM_CoreParameters_Test {
             Test.stopTest();
         }
 
-    }
+    }*/
     /**************************************************************
      *@Description :executes the core logic and asserts for coreparameter.
      ***************************************************************/
-    static testmethod void testAnswerThree() {
+    /*static testmethod void testAnswerThree() {
         initializedData();
         Test.startTest();
         system.RunAs(userInitialize) {
@@ -313,11 +281,11 @@ private with sharing class IPM_CoreParameters_Test {
             system.assertEquals(sic.answerthree_STR, Base, common_STR + space_STR + Base);
         }
         Test.stopTest();
-    }
+    }*/
     /**************************************************************
      *@Description :executes the core logic and asserts for coreparameter.
      ***************************************************************/
-    static testmethod void testanswerAnswer() {
+    /*static testmethod void testanswerAnswer() {
         initializedData();
         system.RunAs(userInitialize) {
             Test.startTest();
@@ -326,8 +294,6 @@ private with sharing class IPM_CoreParameters_Test {
             sic.answerAnswer();//save answer
             List<IPM_Project__c>projectList=[SELECT IPM_Answer_of_Q2__c FROM IPM_Project__c WHERE ID=:ProjectWithOutBoss.id LIMIT 1];
             system.assertEquals(projectList[0].IPM_Answer_of_Q2__c, Variant, common_STR + space_STR + Variant);
-            sic.IPM_Coreparameter.Name='InvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectnameInvalidaprojectname';
-            sic.answerAnswer();//save answer
             Test.stopTest();
         }
 
@@ -336,7 +302,6 @@ private with sharing class IPM_CoreParameters_Test {
         initializedData();
         system.RunAs(userInitialize) {
             Test.startTest();
-            
             sic.market_STR = 'test';
             sic.subSector_STR = 'testsub';
             sic.betValue_STR = IPM_ConstantUtils.NO_TOOLKIT;
@@ -347,11 +312,11 @@ private with sharing class IPM_CoreParameters_Test {
             Test.stopTest();
         }
 
-    }
+    }*/
     /**************************************************************
      *@Description :executes the core logic and asserts for coreparameter.
      ***************************************************************/
-    static testmethod void testBetValue() {
+    /*static testmethod void testBetValue() {
         initializedData();
         system.RunAs(userInitialize) {
             Test.startTest();
@@ -363,11 +328,11 @@ private with sharing class IPM_CoreParameters_Test {
         }
 
     }
-       
+       */
     /******************************************** 
      *@Description :testmethod to get BET toolkit options
      *********************************************/
-    static testmethod void testGetBETToolkit() {
+    /*static testmethod void testGetBETToolkit() {
         initializedData();
         system.runAs(userInitialize) {
             Test.startTest();
@@ -375,12 +340,12 @@ private with sharing class IPM_CoreParameters_Test {
             system.assertNotEquals(betToolList[0], null, 'BET list should not be empty');//getting values from actual controller
             Test.stopTest();
         }
-    }
+    }*/
     /**************************************************************
     *@Description :testmethod to get logged in user type
     Pratyusha<10/01> Need to revamp this method
     */
-    static testmethod void testgetMilesTaskIpmuserType() {
+    /*static testmethod void testgetMilesTaskIpmuserType() {
         initializedData();
         test.startTest();
         system.runAs(u4) {
@@ -422,15 +387,13 @@ private with sharing class IPM_CoreParameters_Test {
 
         }
         Test.stopTest();
-    }
+    }*/
     /**************************************************************
      *@Description :To cover code for Search BET
      ***************************************************************/
-    
-    static testmethod void testSearchBET() {
+    /*static testmethod void testSearchBET() {
         initializedData();
         //Handled mix dml
-        
         system.runAs(newAdminUser){
         //Initialize BET data
         uw_bet__c bet = BET_TestUtils.getTestBet();
@@ -462,7 +425,6 @@ private with sharing class IPM_CoreParameters_Test {
             sic.checkLabel();
 
             Test.startTest();
-            sic.projbetlink = 'testProjectName';
             sic.searchstring = 'Axe';
             sic.searchBET();
             List < IPM_Coreparameters.IPM_BET_BETWrapper > lstWrapper = sic.searchresultBet;
@@ -470,12 +432,12 @@ private with sharing class IPM_CoreParameters_Test {
             
             system.assertEquals(1, lstWrapper.size(), 'Wrapper size not as expected');
         }
-    }
+    }*/
 
     /**************************************************************
      *@Description :To cover code for Unlink BET
      ***************************************************************/
-    static testmethod  void testUnlinkBET() {
+    /*static testmethod  void testUnlinkBET() {
         initializedData();
         //handled mix dml
         system.runAs(newAdminUser){
@@ -488,7 +450,6 @@ private with sharing class IPM_CoreParameters_Test {
         ProjectWithOutBoss.BET_Link_Requested__c = bet.id;
         ProjectWithOutBoss.bet__c = bet.id;
         update ProjectWithOutBoss;
-
         List < IPM_Project__c > BDProjectList = [SELECT Id, bet__c FROM IPM_Project__c WHERE id=: ProjectWithOutBoss.id 
                                                     LIMIT 1];
         system.assertEquals(BDProjectList[0].bet__c, ProjectWithOutBoss.bet__c, 'project bet should be' + BDProjectList[0].bet__c);
@@ -533,8 +494,9 @@ private with sharing class IPM_CoreParameters_Test {
             testProject.bet__c = bet1.id;
 
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, testProject.id);
-            Test.startTest();
             sic.initialise();
+
+            Test.startTest();
             sic.Replace();
             ProjectWithOutBoss.BET_Link_Requested__c = '';
             //update ProjectWithOutBoss;
@@ -546,14 +508,10 @@ private with sharing class IPM_CoreParameters_Test {
             ApexPages.CurrentPage().getparameters().put(IPM_ConstantUtils.SF_ID, testProject.id);
             IPM_CoreParameters sic2 = new IPM_CoreParameters();
             sic2.Replace();
-            sic2.projbetlink = 'testProjectName';
             string proBET = [select bet__c from IPM_Project__c where id = : testProject.id].bet__c;
             Test.stopTest();
             system.assertEquals(null, proBET, 'BET not unlinked from IPM Project!');
-            apexpages.currentpage().getparameters().put(IPM_ConstantUtils.SF_ID,''); 
-            
-           
         }
-    }
+    }*/
 
 }

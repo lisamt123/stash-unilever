@@ -17,15 +17,15 @@ private class AA_AgentAppServiceController_Test {
         Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
         
         
-       aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name='Dove',RecordTypeId=recTypeId1);
+       aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
        insert uniBrand;
-       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
+       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
        insert retailerData;
-       aa_Cluster__c clusterData = new aa_Cluster__c(Name = 'South Asia');
+       aa_Cluster__c clusterData = new aa_Cluster__c(Name = AA_Constants.ClusterSample);
        insert clusterData;
-       aa_Country__c countryData = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
+       aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = 'Unilever Report 1',Report_Description__c = 'This is a test description',Country__c = countryData.id,Reporting_on__c = 'Look-a-like',Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
+       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Report_Description__c = 'This is a test description',Country__c = countryData.id,Reporting_on__c = AA_Constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
        insert unileverReport;
        
        AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
@@ -34,10 +34,10 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.ReportName = unileverReport.Report_Title__c;
        objAgentApp.ReportDesc = unileverReport.Report_Description__c;
        objAgentApp.Retailer = retailerData.Id;
-       objAgentApp.ReportingOn = 'Look-a-like';
-       objAgentApp.Town = 'Pune';
-       objAgentApp.Latitude = '18.5203° N';
-       objAgentApp.Longitude = '73.8567° E';
+       objAgentApp.ReportingOn = AA_constants.ReportingOnSample;
+       objAgentApp.Town = AA_Constants.TownSample;
+       objAgentApp.Latitude = AA_Constants.LatSample;
+       objAgentApp.Longitude = AA_Constants.LongSample;
        objAgentApp.RecordTypeId = recTypeId;
        
        obj.convertRequestAgentReport(objAgentApp);
@@ -73,13 +73,13 @@ private class AA_AgentAppServiceController_Test {
        insert compCategory;
        aa_Topic__c topic = new aa_Topic__c(Name = 'Campaign');
        insert topic;
-       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
+       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
        insert retailerData;
-       aa_Cluster__c clusterData = new aa_Cluster__c(Name = 'South Asia');
+       aa_Cluster__c clusterData = new aa_Cluster__c(Name = AA_Constants.ClusterSample);
        insert clusterData;
-       aa_Country__c countryData = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
+       aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+       aa_Agent_Report__c competitorReport = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
        insert competitorReport;
        
        aa_Topic__c newtopic=new aa_Topic__c(Name='topic name');
@@ -93,11 +93,11 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.CodeOfConduct = 'true';
        objAgentApp.Source = competitorReport.Source__c;
        objAgentApp.Retailer = retailerData.Id;
-       objAgentApp.ReportingOn = 'Look-a-like';
+       objAgentApp.ReportingOn = AA_constants.ReportingOnSample;
        objAgentApp.CountryId = countryData.id;
-       objAgentApp.Town = 'Pune';
-       objAgentApp.Latitude = '18.5203° N';
-       objAgentApp.Longitude = '73.8567° E';
+       objAgentApp.Town = AA_Constants.TownSample;
+       objAgentApp.Latitude = AA_Constants.LatSample;
+       objAgentApp.Longitude = AA_Constants.LongSample;
        objAgentApp.RecordTypeId = recTypeId;
        objAgentApp.TopicId=newtopic.Id;
       // objAgentApp.CodeOfConduct='true';
@@ -108,13 +108,13 @@ private class AA_AgentAppServiceController_Test {
        obj.insertAgentApp_Competitor(obj1);
        obj.getCompetitorNameAndCategory_CompetitorReport(obj1);
        
-       aa_Agent_App_Competitor_Brand__c uniBrand1 = new aa_Agent_App_Competitor_Brand__c(Name='Dove',RecordTypeId=recTypeId1);
+       aa_Agent_App_Competitor_Brand__c uniBrand1 = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
        insert uniBrand1;
-       aa_Agent_Retailer__c retailerData1 = new aa_Agent_Retailer__c(Name = '7-Eleven');
+       aa_Agent_Retailer__c retailerData1 = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
        insert retailerData1;
-       aa_Cluster__c clusterData1 = new aa_Cluster__c(Name = 'South Asia');
+       aa_Cluster__c clusterData1 = new aa_Cluster__c(Name =AA_Constants.ClusterSample);
        insert clusterData1;
-       aa_Country__c countryData1 = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
+       aa_Country__c countryData1 = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData1;
        aa_Topic__c topic1=new aa_Topic__c();
        insert topic1;
@@ -194,38 +194,38 @@ private class AA_AgentAppServiceController_Test {
         Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
         
         
-       aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name='Dove',RecordTypeId=recTypeId1);
+       aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
        insert uniBrand;
-       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
+       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name =AA_Constants.RetailerSample);
        insert retailerData;
-       aa_Cluster__c clusterData = new aa_Cluster__c(Name = 'South Asia');
+       aa_Cluster__c clusterData = new aa_Cluster__c(Name = AA_Constants.ClusterSample);
        insert clusterData;
-       aa_Country__c countryData = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
+       aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = 'Unilever Report 1',Country__c = countryData.id,Reporting_on__c = 'Look-a-like',Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
+       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
        insert unileverReport;
         AA_WrapperUtility.AgentAppDataRequest objAgentApp = new AA_WrapperUtility.AgentAppDataRequest();
         objAgentApp.UnileverBrandId = uniBrand.id;
         objAgentApp.CountryId = countryData.id;
         objAgentApp.ReportName = unileverReport.Report_Title__c;
         objAgentApp.Retailer = retailerData.Id;
-        objAgentApp.ReportingOn = 'Look-a-like';
-        objAgentApp.Town = 'Pune';
-        objAgentApp.Latitude = '18.5203° N';
-        objAgentApp.Longitude = '73.8567° E';
+        objAgentApp.ReportingOn = AA_constants.ReportingOnSample;
+        objAgentApp.Town = AA_Constants.TownSample;
+        objAgentApp.Latitude = AA_Constants.LatSample;
+        objAgentApp.Longitude = AA_Constants.LongSample;
         objAgentApp.RecordTypeId = recTypeId;
         objAgentApp.AgentReportId=unileverReport.id;
         obj.convertRequestAgentReport(objAgentApp);
         AA_ApplicationWrapperObj obj1 = new AA_ApplicationWrapperObj();
         obj1.objAgentAppDataRequest = objAgentApp;
         
-         aa_Agent_App_Competitor_Brand__c uniBrand1 = new aa_Agent_App_Competitor_Brand__c(Name='Dove',RecordTypeId=recTypeId1);
+         aa_Agent_App_Competitor_Brand__c uniBrand1 = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
        insert uniBrand1;
-       aa_Agent_Retailer__c retailerData2 = new aa_Agent_Retailer__c(Name = '7-Eleven');
+       aa_Agent_Retailer__c retailerData2 = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
        insert retailerData2;
-       aa_Cluster__c clusterData2 = new aa_Cluster__c(Name = 'South Asia');
+       aa_Cluster__c clusterData2 = new aa_Cluster__c(Name = AA_Constants.ClusterSample);
        insert clusterData2;
-       aa_Country__c countryData3 = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
+       aa_Country__c countryData3 = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData3;
        aa_Topic__c topic=new aa_Topic__c();
        insert topic;
@@ -258,17 +258,17 @@ private class AA_AgentAppServiceController_Test {
         Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
              
     
-        aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name='Dove',RecordTypeId=recTypeId1);
+        aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
         insert uniBrand;
-        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
+        aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
         insert retailerData;
-        aa_Cluster__c clusterData = new aa_Cluster__c(Name = 'South Asia');
+        aa_Cluster__c clusterData = new aa_Cluster__c(Name = AA_Constants.ClusterSample);
         insert clusterData;
-        aa_Country__c countryData = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
+        aa_Country__c countryData = new aa_Country__c(Name =AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
         insert countryData;
-        aa_Agent_Report__c unileverReport1 = new aa_Agent_Report__c(Report_Title__c = 'Unilever Report 1',Country__c = countryData.id,Reporting_on__c = 'Look-a-like',Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id,Status__c = 'Published (Public)');
+        aa_Agent_Report__c unileverReport1 = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id,Status__c = 'Published (Public)');
         insert unileverReport1;
-        aa_Agent_Report__c unileverReport2 = new aa_Agent_Report__c(Report_Title__c = 'Unilever Report 1',Country__c = countryData.id,Reporting_on__c = 'Look-a-like',Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id,Status__c = 'Published (Public)');
+        aa_Agent_Report__c unileverReport2 = new aa_Agent_Report__c(Report_Title__c =AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id,Status__c = 'Published (Public)');
         insert unileverReport2;
         
         List<aa_Agent_Report__c> unileverReport = new List<aa_Agent_Report__c>();
@@ -283,10 +283,10 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.ReportName = unileverReport1.Report_Title__c;
        objAgentApp.ReportDesc = unileverReport1.Report_Description__c;
        objAgentApp.Retailer = retailerData.Id;
-       objAgentApp.ReportingOn = 'Look-a-like';
-       objAgentApp.Town = 'Pune';
-       objAgentApp.Latitude = '18.5203° N';
-       objAgentApp.Longitude = '73.8567° E';
+       objAgentApp.ReportingOn = AA_constants.ReportingOnSample;
+       objAgentApp.Town = AA_Constants.TownSample;
+       objAgentApp.Latitude = AA_Constants.LatSample;
+       objAgentApp.Longitude = AA_Constants.LongSample;
        objAgentApp.RecordTypeId = recTypeId;
        //.FilterType=='filterReports'
        objAgentApp.ClusterId = clusterData.id;
@@ -338,15 +338,15 @@ private class AA_AgentAppServiceController_Test {
        insert compCategory;
        aa_Topic__c topic = new aa_Topic__c(Name = 'Campaign');
        insert topic;
-       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
+       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = AA_Constants.RetailerSample);
        insert retailerData;
-       aa_Cluster__c clusterData = new aa_Cluster__c(Name = 'South Asia');
+       aa_Cluster__c clusterData = new aa_Cluster__c(Name =AA_Constants.ClusterSample);
        insert clusterData;
-       aa_Country__c countryData = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
+       aa_Country__c countryData = new aa_Country__c(Name =AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
-       aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+       aa_Agent_Report__c competitorReport1 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
        insert competitorReport1;
-        aa_Agent_Report__c competitorReport2 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = 'Pune',Retailer__c = retailerData.id);
+        aa_Agent_Report__c competitorReport2 = new aa_Agent_Report__c(Report_Title__c = 'Competitor Report 1',Report_Description__c = 'this a test comp report',Competitor_Name__c = compName.id,Competitor_Brand__c = compBrand.id,Is_Accepted_Code_of_Conduct__c = true,Category__c = compCategory.id,Topic__c = topic.Id,Sub_Topics__c = 'Marketing is a subtopic of Campaign',Source__c = 'Overheard from 3rd parties, Unsolicited',Country__c = countryData.id,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id);
        insert competitorReport2;
        aa_Agent_Report__Feed agentFeed = new aa_Agent_Report__Feed();
       
@@ -360,11 +360,11 @@ private class AA_AgentAppServiceController_Test {
        objAgentApp.CodeOfConduct = 'false';
        objAgentApp.Source = competitorReport1.Source__c;
        objAgentApp.Retailer = retailerData.Id;
-       objAgentApp.ReportingOn = 'Look-a-like';
+       objAgentApp.ReportingOn = AA_constants.ReportingOnSample;
        objAgentApp.CountryId = countryData.id;
-       objAgentApp.Town = 'Pune';
-       objAgentApp.Latitude = '18.5203° N';
-       objAgentApp.Longitude = '73.8567° E';
+       objAgentApp.Town =AA_Constants.TownSample;
+       objAgentApp.Latitude = AA_Constants.LatSample;
+       objAgentApp.Longitude = AA_Constants.LongSample;
        objAgentApp.RecordTypeId = recTypeId;
        objAgentApp.ClusterId = clusterData.id;
        objAgentApp.FilterType = 'filterReports';
@@ -415,16 +415,16 @@ private class AA_AgentAppServiceController_Test {
         Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
         
         
-       aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name='Dove',RecordTypeId=recTypeId1);
+       aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
        insert uniBrand;
-       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
+       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name =AA_Constants.RetailerSample);
        insert retailerData;
-       aa_Cluster__c clusterData = new aa_Cluster__c(Name = 'South Asia');
+       aa_Cluster__c clusterData = new aa_Cluster__c(Name =AA_Constants.ClusterSample);
        insert clusterData;
-       aa_Country__c countryData = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
+       aa_Country__c countryData = new aa_Country__c(Name =AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
         
-       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = 'Unilever Report 1',Country__c = countryData.id,Reporting_on__c = 'Look-a-like',Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
+       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
        insert unileverReport;
                 
        FeedItem fi2 = new FeedItem();
@@ -465,13 +465,13 @@ private class AA_AgentAppServiceController_Test {
        
         
         
-         aa_Agent_App_Competitor_Brand__c uniBrand2 = new aa_Agent_App_Competitor_Brand__c(Name='Dove',RecordTypeId=recTypeId1);
+         aa_Agent_App_Competitor_Brand__c uniBrand2 = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
        insert uniBrand2;
-       aa_Agent_Retailer__c retailerData4 = new aa_Agent_Retailer__c(Name = '7-Eleven');
+       aa_Agent_Retailer__c retailerData4 = new aa_Agent_Retailer__c(Name =AA_Constants.RetailerSample);
        insert retailerData4;
-       aa_Cluster__c clusterData3 = new aa_Cluster__c(Name = 'South Asia');
+       aa_Cluster__c clusterData3 = new aa_Cluster__c(Name = AA_Constants.ClusterSample);
        insert clusterData3;
-       aa_Country__c countryData4 = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
+       aa_Country__c countryData4 = new aa_Country__c(Name =AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData4;
        aa_Topic__c topic=new aa_Topic__c();
        insert topic;
@@ -494,24 +494,24 @@ private class AA_AgentAppServiceController_Test {
         contentVersionObj.ContentURL='http://www.google.com/';
         contentVersionObj.Title = 'test';           
         insert contentVersionObj;
-    objAgentApp.ContentDocumentId=contentVersionObj.id;
-    Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
+        objAgentApp.ContentDocumentId=contentVersionObj.id;
+        Schema.DescribeSObjectResult R = aa_Agent_Report__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT = R.getRecordTypeInfosByName();
         Id recTypeId = (RT.get('Unilever Agent Report')).getRecordTypeId();
         Schema.DescribeSObjectResult R1 = aa_Agent_App_Competitor_Brand__c.SObjectType.getDescribe();
         Map<String,Schema.RecordTypeInfo> RT1 = R1.getRecordTypeInfosByName();
         Id recTypeId1 = (RT1.get('Unilever Brand')).getRecordTypeId();
         
-       aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name='Dove',RecordTypeId=recTypeId1);
+       aa_Agent_App_Competitor_Brand__c uniBrand = new aa_Agent_App_Competitor_Brand__c(Name=AA_Constants.CompetitorSampleBrand,RecordTypeId=recTypeId1);
        insert uniBrand;
-       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name = '7-Eleven');
+       aa_Agent_Retailer__c retailerData = new aa_Agent_Retailer__c(Name =AA_Constants.RetailerSample);
        insert retailerData;
-       aa_Cluster__c clusterData = new aa_Cluster__c(Name = 'South Asia');
+       aa_Cluster__c clusterData = new aa_Cluster__c(Name = AA_Constants.ClusterSample);
        insert clusterData;
-       aa_Country__c countryData = new aa_Country__c(Name = 'India',Cluster_Id__c = clusterData.id);
+       aa_Country__c countryData = new aa_Country__c(Name = AA_Constants.CountrySample,Cluster_Id__c = clusterData.id);
        insert countryData;
         
-       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = 'Unilever Report 1',Country__c = countryData.id,Reporting_on__c = 'Look-a-like',Town__c = 'Pune',Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
+       aa_Agent_Report__c unileverReport = new aa_Agent_Report__c(Report_Title__c = AA_Constants.ReportNameSample,Country__c = countryData.id,Reporting_on__c = AA_constants.ReportingOnSample,Town__c = AA_Constants.TownSample,Retailer__c = retailerData.id,Agent_App_Unilever_Brand__c = uniBrand.id);
        insert unileverReport;
        list<String> agentAPPIDInserted=new List<String>();
        agentAPPIDInserted.add(unileverReport.ID);

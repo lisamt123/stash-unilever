@@ -60,7 +60,7 @@ public with sharing class Oblix_Ctrl04OverrideProjectNew {
             o.Number_of_Previews__c, o.Number_of_Markets_for_Preview__c, o.Name, o.List_Preview_Markets__c, 
             o.Jobs_to_be_Done__c, o.Is_type_of_item_usually_poduced_by_this__c, o.Is_this_High_Risk__c, 
             o.Innovation_Projects__c, o.Id, o.First_Air_Date__c, o.Financial_Year__c, o.Description__c, 
-            o.Date_for_Assets_to_be_in_BET__c, o.Campaign_Idea__c, o.Budget_Burnt_to_date__c, o.Brand_Led_Growth__c, o.OblixRegion__c, o.Campaign_Countries__c,
+            o.Date_for_Assets_to_be_in_BET__c, o.Campaign_Idea__c, o.Budget_Burnt_to_date__c, o.Brand_Led_Growth__c, o.OblixRegion__c, o.OblixCountries__c,
             o.Agency_Percentage_of_Fees_to_this_FY__c, o.Campaign_Total_Adjustment__c From Oblix_SOW_Projects__c o
                 where Id =: projId   
                         ]; 
@@ -112,7 +112,7 @@ public with sharing class Oblix_Ctrl04OverrideProjectNew {
             for(String reg : setRegionsName){
                 RegionsName += reg + ',';
             }
-            project.Campaign_Countries__c = selectedCountries.removeEnd(',');//.substring(0,selectedCountries.length()-1);
+            project.OblixCountries__c = selectedCountries.removeEnd(',');//.substring(0,selectedCountries.length()-1);
             project.OblixRegion__c = RegionsName.removeEnd(',');
             
     }
@@ -132,8 +132,8 @@ public with sharing class Oblix_Ctrl04OverrideProjectNew {
     }
     
     public PageReference Save(){
-            /*if((selectedCountries == null || selectedCountries == '') && project.Campaign_Countries__c != null){
-                 ValueDriversProject(project.Campaign_Countries__c);    
+            /*if((selectedCountries == null || selectedCountries == '') && project.OblixCountries__c != null){
+                 ValueDriversProject(project.OblixCountries__c);    
             }*/
            
             try{

@@ -15,12 +15,14 @@ private class Oblix_TR05SOWSplitProjectAvoid_Test {
                 geography.Name = 'France';
                 geography.geography_type__c = 'Country Cluste';
                 insert geography;
+                
             Oblix_SOW_Projects__c project = new Oblix_SOW_Projects__c();
                 project.Name = 'Project #2';
-                project.Campaign_Countries__c = 'France';
+                project.OblixCountries__c = 'France';
                 project.Financial_Year__c = marketingSow.Id;
                 insert project;     
- 				
+               
+                Test.startTest();
                       
                 List<Oblix_Marketing_SOW_Project_Splits__c> lstSplit = new List<Oblix_Marketing_SOW_Project_Splits__c>();
                 for(Integer i=0;i<5;i++){
@@ -41,11 +43,9 @@ private class Oblix_TR05SOWSplitProjectAvoid_Test {
                     for(Oblix_Marketing_SOW_Project_Splits__c split : lstSplit){
                         split.Percentage__c = 60;
                     }
-                
                     update lstSplit;
                     System.assertequals(projectRetrieve.OblixProjectSplitPercentage_Comment__c, 'Total Percentage for that project is below 100%, please raise it');
                     delete lstSplit[4];
-                    Test.startTest();
                     delete lstSplit[3];
                     delete lstSplit[2];
                     delete lstSplit[1];

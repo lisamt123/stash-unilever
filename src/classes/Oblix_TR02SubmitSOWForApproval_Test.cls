@@ -27,12 +27,10 @@ private class Oblix_TR02SubmitSOWForApproval_Test {
                     insert marketingSow;
                     marketingSow.SOW_Status__c = Oblix_Constants.Lbl_SOWSTATUS_AWAITINGAPPROVAL;
                     update marketingSow;
-
                     // ensure that the opp was submitted for approval
-                    //List<ProcessInstance> processInstances = [select Id, Status from ProcessInstance where TargetObjectId = :marketingSow.id];
-                    //System.assertEquals(processInstances.size(),1); 
+                    List<ProcessInstance> processInstances = [select Id, Status from ProcessInstance where TargetObjectId = :marketingSow.id];
+                System.assertEquals(processInstances.size(),1); 
             Test.stopTest();
-                System.assertNotEquals(marketingSow,null);
          } 
     }
 }

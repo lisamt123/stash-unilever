@@ -51,11 +51,7 @@ public with sharing class BET_UpsertBETController {
 			String name = BET_MasterDataService.getCategoryName(cat);
 			//FabricConditioner begin
 			fabricConditionerCategory = fbEnabled ? BET_MasterDataService.isFabricConditionersCategory(cat) : false;
-			if(fbEnabled && fabricConditionerCategory){
-				betobject.Is_Fabric_Conditioners__c = true;
-			} else {
-				betobject.Is_Fabric_Conditioners__c = fabricConditionerCategory;
-			}
+			betobject.Is_Fabric_Conditioners__c = fabricConditionerCategory;
 			//FabricConditioner end
 			Boolean isRelationValid = true;
 			if(name != null){
@@ -162,30 +158,21 @@ public with sharing class BET_UpsertBETController {
 			uw_Bet__c newBET = buildBETObject();
 			Boolean betNameExists = BET_COmmonService.checkIfBetExists(newBET);
 			if(betNameExists){
-				return addErrorMessage(Label.BET_NameExists);
+				ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, Label.BET_NameExists));
+				return null;
 			} else {
 				upsert newBET;
 				pageRef = new PageReference(cback+newBET.id);
 			}
 		}catch(Exception e){
-			return addErrorMessage('Exception Saving BET record'+e);
+			ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, 'Exception Saving BET record'+e));
+			return null;
 		}
 		System.debug('Exit upsertBet : ' + pageRef);
 		if(pageRef != null) {
 			pageRef.setRedirect(true);
 		}
 		return pageRef;
-	}
-
-	/************************************************************
-        Purpose: method adds erroe message
-        Parameters: String message
-        Returns: PageReference
-        Throws: -
-    *************************************************************/
-	public PageReference addErrorMessage(String msg){
-		ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.ERROR, msg));
-		return null;
 	}
 
 	/************************************************************
@@ -206,7 +193,6 @@ public with sharing class BET_UpsertBETController {
 		newBet.Brand_Position__c = brandPosition;
 		newBet.Product_Brand__c = selectedBrand;
 		newBet.Description__c = betobject.Description__C;
-		newBet.Is_Fabric_Conditioners__c = betobject.Is_Fabric_Conditioners__c;
 		System.debug('Exit buildBETObject ' + newBet);
 		return newBET;
 	}

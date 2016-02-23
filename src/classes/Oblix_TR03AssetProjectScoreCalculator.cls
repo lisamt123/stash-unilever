@@ -49,11 +49,6 @@ public with sharing class Oblix_TR03AssetProjectScoreCalculator {
                     project.ProjectTotalAssetScore__c = tmp_totalassetScoringNumber;
                     System.debug('###project.ProjectTotalAssetScore__c : '+project.ProjectTotalAssetScore__c);
                 }
-                else
-                {
-                    // S.M. If the basket is empty, set ProjectTotalAssetScore__c to 0
-                    project.ProjectTotalAssetScore__c = 0;
-                }
             }   
         //update lstProjectAgencies;
         }

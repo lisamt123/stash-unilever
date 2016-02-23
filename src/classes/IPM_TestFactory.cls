@@ -8,7 +8,6 @@
     This class would be running in without sharing mode. 
     The sharing and profile access has to be ensured by invoking class using System.RunAs
 */
-@isTest
 public without sharing class IPM_TestFactory {
     
     public static final String EMPTY_STRING = ''; 
@@ -396,10 +395,10 @@ public without sharing class IPM_TestFactory {
         Object finalValue = null;
         
         if (!isExcludedField(fieldDescObj) && !isExcludedField(obj, fieldDescObj) && !fieldDescObj.isAutoNumber() && !fieldDescObj.isCalculated() && 
-	            ( 
-	                fieldDescObj.isCustom() || 
-	                ( !fieldDescObj.isCustom() && ( fieldDescObj.isCreateable() || fieldDescObj.isUpdateable() ) )  
-	            )  
+              ( 
+                  fieldDescObj.isCustom() || 
+                  ( !fieldDescObj.isCustom() && ( fieldDescObj.isCreateable() || fieldDescObj.isUpdateable() ) )  
+              )  
             )
         {
             if(providedFieldValue != null)

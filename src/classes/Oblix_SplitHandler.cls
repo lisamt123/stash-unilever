@@ -2,7 +2,7 @@ public with sharing class Oblix_SplitHandler implements ITrigger {
     
     public Oblix_SplitHandler() {    
     }
-    public static boolean b_initiated_from_vf_page = false;
+    
     List<Oblix_SOW_Projects__c> lstProjectSplits = new List<Oblix_SOW_Projects__c>();
     List<Oblix_SOW_Projects__c> lstProjectSplitsOld =  new List<Oblix_SOW_Projects__c>();
     @testVisible
@@ -53,22 +53,19 @@ public with sharing class Oblix_SplitHandler implements ITrigger {
     
     public void afterInsert(SObject so) 
     {
-        if (!b_initiated_from_vf_page)
-            Oblix_TR05SOWSplitProjectAvoid.SOWSplitProjectAvoid((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits);
+        Oblix_TR05SOWSplitProjectAvoid.SOWSplitProjectAvoid((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits);
         //Oblix_TR05SOWSplitProjectAvoid.UpdateProjectWhenisChanged((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits, Trigger.Old, lstProjectSplitsOld);
     }
     
     public void afterUpdate(SObject oldSo, SObject so)
     {
-        if (!b_initiated_from_vf_page)
-            Oblix_TR05SOWSplitProjectAvoid.SOWSplitProjectAvoid((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits);
-            //Oblix_TR05SOWSplitProjectAvoid.UpdateProjectWhenisChanged((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits, Trigger.Old, lstProjectSplitsOld);
+        
+        Oblix_TR05SOWSplitProjectAvoid.UpdateProjectWhenisChanged((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits, Trigger.Old, lstProjectSplitsOld);
     }
     
     public void afterDelete(SObject so)
     {
-        if (!b_initiated_from_vf_page)
-            Oblix_TR05SOWSplitProjectAvoid.SOWSplitProjectAvoid((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.Old, lstProjectSplits);
+        Oblix_TR05SOWSplitProjectAvoid.SOWSplitProjectAvoid((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.Old, lstProjectSplits);
         //Oblix_TR05SOWSplitProjectAvoid.UpdateProjectWhenisChanged((Oblix_Marketing_SOW_Project_Splits__c) so, Trigger.New, lstProjectSplits, Trigger.Old, lstProjectSplitsOld);   
     }
     
@@ -81,7 +78,7 @@ public with sharing class Oblix_SplitHandler implements ITrigger {
     public void andFinally()
     {
         System.debug('Entering FAU_ProgramHandler.andFinally');
-        if(triggerShouldExecute && !b_initiated_from_vf_page){
+        if(triggerShouldExecute){
             upsert lstProjectSplits;
             if(trigger.isUpdate){
                 upsert lstProjectSplitsOld;

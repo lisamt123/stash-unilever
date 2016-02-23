@@ -120,22 +120,18 @@ public with sharing class TriggerFactory
             return new FAU_ProgramHandler();
         }       
 
-        if (soType == Oblix_SOW_Projects__c.sObjectType){
-            return new Oblix_ProjectHandler();
-
-        }if (soType == Oblix_Marketing_SOW_Project_Splits__c.sObjectType){
-            return new Oblix_SplitHandler(); 
-
-        }if (soType == Marketing_SOW__c.sObjectType){
-            return new Oblix_SOWHandler(); 
-
-        }if (soType == Oblix_Project_Assets__c.sObjectType){
-            return new Oblix_AssetHandler(); 
-
-        }if (soType == Oblix_User_Permission__c.sObjectType){
-            return new Oblix_UserPermissionHandler();
-            
-        }
+		if (soType == Oblix_SOW_Projects__c.sObjectType){
+			return new Oblix_ProjectHandler();
+		}
+        if (soType == Oblix_Marketing_SOW_Project_Splits__c.sObjectType){
+			return new Oblix_SplitHandler(); 
+		}
+        if (soType == Marketing_SOW__c.sObjectType){
+			return new Oblix_SOWHandler(); 
+		}
+        if (soType == Oblix_Project_Assets__c.sObjectType){
+			return new Oblix_AssetHandler(); 
+		}
 		
         if (soType == FAU_Webinar_Participant__c.sObjectType)
         {
@@ -171,10 +167,11 @@ public with sharing class TriggerFactory
         if (soType == IPM_Project_Document__c.sObjectType){
             return new IPM_ProjectDocumentHandler();
         }
-         if (soType == IPM_Project_Document_Section_Content__c.sObjectType){
-            return new IPM_ProjectDocumentSectionContentHandler();
-        }        
-       if (soType == IPM_Milestone__c.sObjectType){
+        
+        if (soType == IPM_Questionnaire__c.sObjectType){
+            return new IPM_QuestionnaireHandler();
+        }
+        if (soType == IPM_Milestone__c.sObjectType){
             return new IPM_MilestoneHandler();
         }
         if (soType == IPM_Task__c.sObjectType){

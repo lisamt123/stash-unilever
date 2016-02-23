@@ -14,8 +14,6 @@ VERSION  AUTHOR       DATE             DETAIL                  Description
 2.0 - Nagesh       14/1/2014        UPDATION                Send Email Functionality
 3.0 - Samrin       16/11/2015       CSC-2845                US-097 Personal data not included in Pulse
 4.0 - Mahendra     17/11/2015       CSC-2910                Personal Data Retention
-5.0 - Goverdhan S. 9/12/2015        CSC-2850                Added method to implement CSAT functionality
-6.0 - Masood       16/12/2015       CSC-2986                Added flag for picking account according to retention date
 ****************************************************************************/
 public class CEC_CaseTriggerHelper{
     
@@ -607,7 +605,6 @@ This method identifies date of manufacture from the daycode
                     objAcc.Retention_Date__c=caseRecord.Manual_Retention_Override__c;
                     objAcc.Retention_Reason__c=caseRecord.Manual_Override_Reason__c;
                     objAcc.Retention_Record_Id__c = caseRecord.id;
-                    objAcc.Anonymise_check__c = true;
                     acctoUpdatelst.add(objAcc);
                 }
             }
@@ -640,33 +637,5 @@ This method identifies date of manufacture from the daycode
         }Catch(Exception e ){
             System.debug('An exception occurred: ' + e.getMessage());  
         }        
-    }
-    
-    public void setWorkflowFlag(Map<id,Case> newMap , Map<id,Case> oldMap){
-        List<Case> caseLstUpdate = new List<Case>();
-        list<id> caseIds = new list<id>();
-        
-        for(Case newCase: newMap.values()){
-            // fetch caseIds of closed cases
-            if(newCase.Status == 'Closed' && oldMap.get(newCase.id).status != 'Closed'){                
-                caseIds.add(newCase.id);
-            }
-            // if cases are reopened, set Surveyworkflow flag to false
-            if(newCase.Status != 'Closed' && oldMap.get(newCase.id).status == 'Closed'){
-                newCase.ExecuteCaseSurveyWorkflow__c = false;
-            }
-        }
-        // query cases that are closed along with related account fields
-        caseLstUpdate = [SELECT id, ExecuteCaseSurveyWorkflow__c, account.PersonEmail, account.Known_Consumer__c
-                        FROM Case
-                        WHERE id IN :caseIds
-                        LIMIT 10000];
-        for(Case c :caseLstUpdate){
-        // for all closed cases that fulfill the Survey criteria set survey flag to true
-            if(c.account.PersonEmail != Null && c.account.PersonEmail != '' && c.account.Known_Consumer__c != 'Frequent'){
-                newMap.get(c.id).ExecuteCaseSurveyWorkflow__c = true;
-            }
-        }
-    }
-    /* End US CSC-2910 Personal Data Retention */ 
+    }  /* End US CSC-2910 Personal Data Retention */ 
 }
