@@ -479,43 +479,6 @@
             </div>
         </div>
     </div>
-<script>
-    function deleteRcountries() {
-        var title = jq('.delrout').attr('value');
-        jq('#deleteRcountry').modal({
-            show: true,
-            keyboard: false,
-            backdrop: 'static'
-        });
-        jq('#deleteRcountry .modal-title').html(title);
-        <!--jq('#deleteRcountry .confirmdelrollout').attr('data-result', str);-->
-        jq('#deleteRcountry .modal-dialog').width('600px');
-        jq('#deleteRcountry .modal-dialog').height('170px');
-        jq('#deleteRcountry .modal-dialog').css({
-            'margin-top': '10%',
-            'z-index': '999'
-        });
-        jq(".confirmdelrollout").addClass("removerollout");
-    }
-    function TLDDateCheck(param){
-        var newTLDValue = param.value;
-        tldOrignalValue = param.defaultValue;
-        selectedDateField = param;
-        if(newTLDValue != tldOrignalValue){
-            jq('#tldWarningDialog').modal('show'); 
-            return false;
-        }
-        return true;
-    }
-    function revertTLDValue(){
-        selectedDateField.value = tldOrignalValue;
-    }
-    function hideTldWarningDialog(){
-        jq('#tldWarningDialog').modal('hide'); 
-    }
-    var tldOrignalValue = "";
-    var selectedDateField = "";
  
   
-</script>
 </apex:component>
