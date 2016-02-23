@@ -19,7 +19,7 @@ public class CPA_testClass_util {
         Map<string,CPA_PWORF_Record_type__c> customSettingPworfRT = CPA_PWORF_Record_type__c.getAll();  
         CPA_PWORF__c pworfRec = new CPA_PWORF__c();
         pworfRec.Name = 'Test->' + system.Now()+' 1';
-       
+       pworfRec.txt_Clarity_ID__c ='123456' ;
        pworfRec.pkl_Status__c ='Saved' ;
        pworfRec.RecordTypeid = customSettingPworfRT.get('All').Record_type_id__c ;
         pworfRec.pkl_Business_Area__c ='Supply Chain' ;        
@@ -159,7 +159,7 @@ public class CPA_testClass_util {
         pworfRec.Overall_purpose_or_function_of_the_proje__c='Overall purpose/function of the project' ;      
         pworfRec.Stakeholder_Expectations__c = 'Stakeholder Expectations' ;
         pworfRec.txta_Title__c ='Title' ;
-      
+        pworfRec.txt_Clarity_ID__c ='123456' ;
         pworfRec.pkl_Business_Area__c ='Business Area' ;        
         pworfRec.pkl_Cost_Centre_Details__c ='Cost Centre Details' ;          
         pworfRec.txt_Cost_Centre__c ='Cost Centre' ;
@@ -201,14 +201,14 @@ public class CPA_testClass_util {
         
         pworfRec.pkl_Process_Office_Area_E2E__c ='Other (provide free text to enter)';
         pworfRec.txt_otherProcessOfficeAreaE2E__c ='Other Process Office area E2E'  ;
-        pworfRec.mpkl_Project_Phases__c ='Other (provide free text to enter)';
+        pworfRec.mpkl_Project_Phases__c ='Plan; Analyse';
         pworfRec.txt_OtherProjectPhases__c = 'Other Project Phases'  ;            
         pworfRec.pkl_Process_Office_Area_E2E__c='Process Office Area E2E'  ;
         pworfRec.Is_Project__c  =ConstantsForContractingAppClasses.YES ;
         pworfRec.Project_Require_Data_Specific_Testing__c ='Project Require Data Specific Testing'  ;                   
         pworfRec.Is_Project_Require__c  =ConstantsForContractingAppClasses.YES ;
         pworfRec.txta_Project_Require_Performance_Testing__c  = 'Project Require Performance Testing'  ;     
-        pworfRec.pkl_Project_Scale__c  ='Project Scale';    
+        pworfRec.pkl_Project_Scale__c  ='Low Complexity Project (50 - 500 days)';    
         pworfRec.Role_or_System_Authorisation__c  =ConstantsForContractingAppClasses.YES;
         pworfRec.txta_Role_or_System_Authorisation_detail__c  ='Role or System Authorisation detail'  ; 
         pworfRec.pkl_Is_this_Project_Invasive_in_nature__c =ConstantsForContractingAppClasses.YES ;
@@ -222,7 +222,7 @@ public class CPA_testClass_util {
         pworfRec.txta_What_specific_roles_do_you_require__c  = 'What specific roles do you require?'  ;
         pworfRec.txta_ITC_Resources_Utilisation__c  = 'ITC Resources Utilisation'  ;
         pworfRec.Which_BP_Innovation_director_has_approve__c  =  'Which BP/Innovation director has approve'  ;
-        
+         pworfRec.dat_SLA1_Accepted_Date__c = system.today() ;
         User testUSer = createTestUser();
         pworfRec.lkp_Unilever_budget_approver__c = testUSer.id;
         pworfRec.lkp_Unilever_content_approver__c = testUSer.id;
@@ -329,7 +329,66 @@ public class CPA_testClass_util {
         return objPwo;
         
     }
-
+public static CPA_project_work_order__c createotherPWO(CPA_PWORF__c objPWORF){
+        CPA_project_work_order__c objPwo = new CPA_project_work_order__c();
+        User testUSer = createTestUser();
+        
+        Requirements_and_Deliverables__c objRaD = createRequirementsDeliverables(objPWORF);
+        insert objRaD;
+        Risk_Assessment_and_Mitigation__c objRAM = createRiskAssessment(objPWORF);
+        insert objRAM;
+        PWORFKey_Contacts__c objKCs = CreateKeyContacts(objPWORF);
+        insert objKCs;
+        
+        /*objPWORF.pkl_Status__c = 'Submitted';
+        update  objPWORF;*/
+        objPWORF.pkl_Status__c = 'Auto Accepted';
+        update  objPWORF;
+        
+        
+        
+        objPwo.txt_Accenture_Project_Manager__c = ConstantsForContractingAppClasses.TEST;
+        objPwo.num_Authorisation_charges__c = 100;
+        objPwo.num_Authorisation_man_days__c = 100;
+        objPwo.pkl_Billing_Details__c = 'Unilever Europe';
+        objPwo.Comments__c = ConstantsForContractingAppClasses.TEST;
+        objPwo.Currency__c = 'EUR';
+        objPwo.num_Estimated_Man_days_of_PWO__c = 10;
+        objPwo.pec_Estimated_Off_shore__c = 1;
+        objPwo.pec_Estimated_On_shore__c=1;
+        objPwo.num_Estimated_Value_of_PWO__c =10;
+        objPwo.pec_Expense__c =1;
+        objPwo.num_Expense_charges_of_work_order__c=10;
+        
+        objPwo.num_ITC_resources_man_days__c = 10;
+        objPwo.num_On_shore_senior_resources_man_days__c  =10;
+        objPwo.txt_Previous_Status_Value__c='sdkj';
+        objPwo.pkl_Pricing_Model__c = 'Fixed Price';
+        objPwo.mpkl_Project_Classification__c = null;
+        objPwo.mpkl_Project_Phases__c = null;
+        objPwo.txt_PWO_number__c = 'PWO-001';
+        objPwo.PWORF_ID__c = objPWORF.Id;
+        objPwo.txt_PWO_title__c = null;
+        objPwo.pkl_Region__c = null;
+        objPwo.num_RMS_value__c = 1;
+        objPwo.num_Senior_resources_man_days__c=1;
+        objPwo.num_Target_Blend_Rate__c = 1;
+        objPwo.num_Total_work_order_charge__c =1;
+        objPwo.mpkl_Unilever_Innovation_Area__c = null;
+        objPwo.txt_Unilever_Project_Name__c = null;
+        objPwo.txt_Unilever_Reference__c = null;
+        objPwo.pec_Variance__c =1;
+        objPwo.num_Varied_Target_Blend_Rate__c = 1;
+        objPwo.dt_Date_PWORF_accepted__c = null;
+        objPwo.dt_Project_Initiation_Date__c = system.today();
+        objPwo.dt_Expected_Start_Date__c = system.today();
+        objPwo.dt_Expected_End_date__c = system.today();
+        objPWO.lkp_Unilever_budget_approver__c = null;
+        objPWO.lkp_Unilever_content_approver__c =null;
+        objPWO.lkp_Unilever_Finance_BP_Contact__c = null;
+        return objPwo;
+        
+    }
     public static CPA_CR__c createCR(CPA_project_work_order__c objPWO){
         CPA_CR__c objCR = new CPA_CR__c();
         objCR.txt_Accenture_Project_Manager__c = ConstantsForContractingAppClasses.TEST;
