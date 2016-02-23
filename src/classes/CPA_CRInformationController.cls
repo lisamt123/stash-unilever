@@ -29,9 +29,11 @@ global class CPA_CRInformationController {
             ApexPages.addMessage(new ApexPages.Message(ApexPages.Severity.INFO, customSettingStatusMsg.CR_Status_Msg__c));
         }
         if((crRec.pkl_Status__c == 'Saved')|| !callFromVF){
-            if(crRec.chk_Contract_Excel_Attached__c  != true)  
+            //if(crRec.chk_Contract_Excel_Attached__c  != true)  
+            if(!crRec.chk_Contract_Excel_Attached__c)
                  RequiredFieldMap.put( 'Please attach Commercial CSV , with filename prefix with Commercial' ,ConstantsForContractingAppClasses.MANDATORY);
-             if(crRec.chk_Contract_Attached__c  != true)
+             //if(crRec.chk_Contract_Attached__c  != true)
+             if(!crRec.chk_Contract_Attached__c)
                  RequiredFieldMap.put( 'Please attach Contract PDF , with filename prefix with CR' ,ConstantsForContractingAppClasses.MANDATORY);
             if(crRec.txt_Accenture_Project_Manager__c  == null)  
                  RequiredFieldMap.put( 'Accenture Project Manager' ,ConstantsForContractingAppClasses.MANDATORY);
