@@ -170,7 +170,7 @@ public class  IPM_BCCController_Test {
             ipmBcc.finance.id=null;
             ipmBcc.changeStatus();
             List<IPM_Financial__c> finConLists=[select IPM_Business_Case_Confirmed__c from IPM_Financial__c where id=:fin.Id ];
-            system.assertNotEquals(finConLists.size()>0,true,'status should not be changed for financial');//negative test
+            system.assertNotEquals(!finConLists.isEmpty(),true,'status should not be changed for financial');//negative test
            
             Test.stopTest();
         }

@@ -126,7 +126,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                             tld = currentFinancial.Target_Launch_Date__c;
                         } else {
                             IPM_Project__c proj = [Select (Select Target_Launch_Date__c From Regional_Project_Rollout__r where name=:currentFinancial.Financial_External_ID__c) From IPM_Project__c where id=:project.id];
-                            if(proj.Regional_Project_Rollout__r.size()>0) {
+                            if(!proj.Regional_Project_Rollout__r.isEmpty()) {
                                 tld = proj.Regional_Project_Rollout__r[0].Target_Launch_Date__c;
                             }
                         }
@@ -137,7 +137,7 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
                             tld = project.IPM_Target_Launch_Dates__c;
                         } else {
                             IPM_Project__c proj = [Select (Select Name, Target_Launch_Date__c From IPM_Project_Rollout__r) From IPM_Project__c where id=:project.id];
-                            if(proj.IPM_Project_Rollout__r.size()>0) {
+                            if(!proj.IPM_Project_Rollout__r.isEmpty()) {
                                 for(IPM_Project_Rollout__c rollout:proj.IPM_Project_Rollout__r) {
                                     if(currentFinancial.Financial_External_ID__c.endsWith(IPM_ConstantUtils.FINANCIAL_NONKEY) && (rollout.name+IPM_ConstantUtils.FINANCIAL_NONKEY)==currentFinancial.Financial_External_ID__c){
                                         tld = currentFinancial.Target_Launch_Date__c;
@@ -225,7 +225,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
         isITOgrtGTOCal = false;
         BI = project.BI__c;
         if(BI == null || BI == '')
+        {
         	BI = IPM_ConstantUtils.smallBI;
+        }
         validationErrorMessage = IPM_ConstantUtils.BLANK;
         localrollout = new IPM_Project_Rollout__c(); 
         associatedCountryList = new List<IPM_Country__c>();
@@ -1637,7 +1639,9 @@ public with sharing class IPM_FinancialController extends IPM_ProjectIntermediat
             Boolean isInnovationValidationFailed = false;
              BI = [Select BI__c from IPM_Project__c where Id=: project.Id].BI__c;
              if(BI == null || BI == '')
+            {
         		BI = IPM_ConstantUtils.smallBI;
+            }
             isValidationError = false;
             isEditMode = false;
             isy0TurnoverInvalid = false;
@@ -2391,7 +2395,7 @@ private Date getProjectMilestoneDate(){
 		    //Fetch Project Rollout list
                     projRolloutList = [Select Target_Launch_Date__c, Previous_Target_Launch_Date__c ,MisAligned_Confirmed_By_Finance_Leader__c from IPM_Project_Rollout__c where id=:project.IPM_Project_Rollout__c];
 		    //Check if project list has rollout or not 
-                    if(projRolloutList.size()>0) {
+                if(!projRolloutList.isEmpty()) {
 			//Assign Rollout Target Launch Date
                         localProjectRolloutTLD = projRolloutList[0].Target_Launch_Date__c.format();
 			//Assign Rollout Target Launch Year
@@ -2409,7 +2413,7 @@ private Date getProjectMilestoneDate(){
                         financialExternalIdString = currentFinancial.Financial_External_ID__c;
                     }
                     projList = [Select (Select Name, IPM_Target_Launch_Dates__c,MisAligned_Confirmed_By_Finance_Leader__c From IPM_Projects__r where name like :financialExternalIdString+'%'), (Select Name,Previous_Target_Launch_Date__c , Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c, isActive__c,IPM_Rollout_Span__c From Regional_Project_Rollout__r where name like :financialExternalIdString+'%') From IPM_Project__c   where id=:project.id];
-                    if(projList.size()>0 && projList[0].Regional_Project_Rollout__r.size()>0) {
+                    if(!projList.isEmpty() && !projList[0].Regional_Project_Rollout__r.isEmpty()) {
                             Date tempTLD = null;
                             for(IPM_Project_Rollout__c rollout:projList[0].Regional_Project_Rollout__r) {
                                 String rolloutNonKeyName = rollout.Name.substringBeforeLast('_');
@@ -2433,7 +2437,7 @@ private Date getProjectMilestoneDate(){
                     //Assign local project rollout TLD year
                         localProjectRolloutTLDYear = mcoCountryRolloutPlan.Target_Launch_Date__c.year();                                               
                     }
-                    if(projList.size()>0 && projList[0].IPM_Projects__r.size()>0) {
+                    if(!projList.isEmpty() && !projList[0].IPM_Projects__r.isEmpty()) {
                         localProjectTLD = projList[0].IPM_Projects__r[0].IPM_Target_Launch_Dates__c.format();
                         localProjectTLDYear = projList[0].IPM_Projects__r[0].IPM_Target_Launch_Dates__c.year();
                         localProjectName = projList[0].IPM_Projects__r[0].Name;
@@ -2461,11 +2465,14 @@ private Date getProjectMilestoneDate(){
             	showMisalignedConfirmbtn = project.MisAligned_Confirmed_By_Finance_Leader__c;
             	currentTargetLaunchDate = project.IPM_Target_Launch_Dates__c.format();
             	if(project.Previous_Target_Launch_Date__c!=null)
+            	{
             	  previousTargetLaunchDate = project.Previous_Target_Launch_Date__c.format();
-            } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) {//Check if project type is global and phase is 'Ideas'
+            	}
+            } else if(project.IPMProject_Span__c == IPM_ConstantUtils.PROJECT_SPAN_GLOBAL && project.IPM_Phase__c == IPM_ConstantUtils.PHASE_IDEAS) {
                 if(currentFinancial != null){
                         IPM_Project__c proj = [Select (Select Name, Target_Launch_Date__c,Previous_Target_Launch_Date__c,MisAligned_Confirmed_By_Finance_Leader__c,KeyMCO__c,isActive__c,IPM_Rollout_Span__c From IPM_Project_Rollout__r) From IPM_Project__c where id=:project.id];                    
-                        if(proj.IPM_Project_Rollout__r.size()>0) {
+                        if(!proj.IPM_Project_Rollout__r.isEmpty()) 
+                        {
                             Date earliestTLD = null;
                             for(IPM_Project_Rollout__c rollout:proj.IPM_Project_Rollout__r) {
                                 String rolloutNonKeyName = rollout.Name.substringBeforeLast('_');

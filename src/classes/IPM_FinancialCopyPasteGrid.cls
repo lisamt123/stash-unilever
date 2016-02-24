@@ -72,7 +72,9 @@ global with sharing class IPM_FinancialCopyPasteGrid extends IPM_ProjectIntermed
                 projectType = ipmProject.IPM_Project_Type__c;
                 BI = ipmProject.BI__c;
                 if(BI == null || BI == '')
+                {
                     BI = IPM_ConstantUtils.smallBI;
+                }
                 String soql = 'Select Id, RecordTypeId, Global_Project_Id__c, Financial_External_ID__c, Display_Name__c From IPM_Financial__c  where RecordType.Name = \'Default\'  and isActive__c = true ';
                 if(span == IPM_ConstantUtils.SpanGlobal){
                         soql = soql +' and Global_Project_Id__c = \''+String.escapeSingleQuotes(projectId)+'\'';

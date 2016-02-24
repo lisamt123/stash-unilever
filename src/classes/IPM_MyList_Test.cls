@@ -290,7 +290,7 @@ public class IPM_MyList_Test{
             { 
                 insertTask = getTaskList();
                 
-                system.assertEquals(insertTask.size()>0,true,'tasks inserted');
+                system.assertEquals(!insertTask.isEmpty(),true,'tasks inserted');
          		
          			
                 list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
@@ -397,7 +397,7 @@ public class IPM_MyList_Test{
             { 
                 insertTask = getTaskList();
                 
-                system.assertEquals(insertTask.size()>0,true,'tasks inserted');
+                system.assertEquals(!insertTask.isEmpty(),true,'tasks inserted');
          		
                 list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
                                         FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet];
@@ -465,7 +465,7 @@ public class IPM_MyList_Test{
             { 
                 insertTask = getTaskList();
                 
-                system.assertEquals(insertTask.size()>0,true,'tasks inserted');
+                system.assertEquals(!insertTask.isEmpty(),true,'tasks inserted');
          		
                 list<IPM_Project_Document_Section__c> sectionList = [SELECT id,IPM_Gate_Document__c,IPM_FunctionalRole__c,IPM_Section__c,IPM_Project_ID__c 
                                         FROM IPM_Project_Document_Section__c where IPM_Project_Document__r.IPM_Project__c in:projIdSet];

@@ -136,7 +136,9 @@ public with sharing class IPM_Coreparameters extends IPM_ProjectIntermediateCont
     Public List<IPM_BET_BETWrapper> searchresultBet{
         get{
             if(searchresultBet==null)
+            {
                 searchresultBet=new List<IPM_BET_BETWrapper>();
+            }
                 return searchresultBet;
         } 
         set;    

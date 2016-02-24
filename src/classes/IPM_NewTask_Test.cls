@@ -308,7 +308,7 @@ public class IPM_NewTask_Test{
              IPM_NewTask taskview =new IPM_NewTask(sc);
              taskview.tasks = task;
              List<SelectOption> optionSectionList = taskview.getSectionlist();
-             system.assertEquals(optionSectionList.size()>0,true,'Task List not populated as expected');
+             system.assertEquals(!optionSectionList.isEmpty(),true,'Task List not populated as expected');
              taskview.doSaveTasks();
         
              list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c 
@@ -436,7 +436,7 @@ public class IPM_NewTask_Test{
             system.assert(b,true);
             
             list<IPM_Task__c> taskResult =[SELECT Id,IPM_Task_Name__c,IPM_Project__c FROM IPM_Task__c WHERE IPM_Project__c =:projectDetailList[0].Id AND IsSystemGenerated__c=false];
-            system.assertEquals(taskResult.size(),0 );
+            system.assertEquals(taskResult.isEmpty(),true);
              
         Test.stopTest();
         }

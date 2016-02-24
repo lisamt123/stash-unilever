@@ -731,7 +731,7 @@ public class IPM_ProjectOverviewCtrl_Test
         
         IPM_ProjDocumentSectionHstryController hstryControl=new IPM_ProjDocumentSectionHstryController();
         IPM_ProjectOverviewCtrl overCtrl1=new IPM_ProjectOverviewCtrl(hstryControl);
-        System.assert(overCtrl1.lstFinTLDAlertMessage.size() > 0);
+        System.assert(!overCtrl1.lstFinTLDAlertMessage.isEmpty(),true);
         Test.stopTest();
         }
     }

@@ -216,11 +216,17 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
         projSectionList=new list<IPM_Project_Document_Section__c>();
         
         if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_GLOBAL)
+        {
             countOfCountries=[SELECT count() FROM IPM_Country__c WHERE isActive__c=true AND IPM_Project__c=:project.id];
+        }
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_REGIONAL)
+        {
             countOfCountries=[SELECT count() FROM IPM_Country__c WHERE isActive__c=true AND IPM_Regional_Project__c=:project.id];
+        }
         else if(project.IPMProject_Span__c==IPM_ConstantUtils.PROJECT_SPAN_LOCAL)
+        {
             countOfCountries=0;
+        }
         
         charcterCount();
         /* Added for Eco Design */
@@ -536,7 +542,9 @@ public with sharing class IPM_ProjectDocumentSectionController extends IPM_Proje
                 }
             }
             if(String.IsNotBlank(projDocSec.IPM_PDP_Document_Summary__c) && projDocSec.IPM_PDP_Document_Summary__c.length() >=15)
+            {
                 projDocSec.IPM_Functional_Input_Status__c=IPM_ConstantUtils.STATUS_STARTED;
+            }
             
             update projDocSec;
             IPM_Project_Document_Section__c testSection1 = [Select id, IPM_Gate_Document_Summary__c from IPM_Project_Document_Section__c where id =: projDocSec.Id];

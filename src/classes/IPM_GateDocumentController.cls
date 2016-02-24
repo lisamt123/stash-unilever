@@ -1274,7 +1274,7 @@ public with sharing class IPM_GateDocumentController extends IPM_ProjectIntermed
     public void showAttchSection()
     {
         attachmentList=[SELECT Id,Name,ParentId,Description FROM Attachment WHERE ParentId=:sectionId];
-        if(attachmentList.size()>0)
+        if(!attachmentList.isEmpty())
         {
             showAttach=true;
         }

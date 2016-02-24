@@ -78,11 +78,11 @@ public class IPM_Milestone_Test
                 
         List<IPM_Milestone__c> miniMSList = [Select Id, Name, IPM_Name__c, IPM_Phase__c, IPM_Project__c from IPM_Milestone__c WHERE IPM_Type_of_Milestone__c =: IPM_ConstantUtils.MINI];
         
-        System.assert(miniMSList.size() > 0);
+        System.assertEquals(!miniMSList.isEmpty(),true);
         
         System.runAs(stdUserForMilestone)
         {
-            System.assert(miniMSList.size() > 0);
+            System.assertEquals(!miniMSList.isEmpty(),true);
             insert projectList;
             
         } 
@@ -102,7 +102,7 @@ public class IPM_Milestone_Test
         User globalUser = [Select Id, LastName from User where LastName = 'PLATFORM_USER' limit 1];  
        
         List<IPM_Milestone__c> miniMSList = [Select Id, Name, IPM_Name__c, IPM_Phase__c, IPM_Milestone__c, IPM_Project__c, IPM_Due_Date__c, IPM_phase_order__c from IPM_Milestone__c WHERE IPM_Type_of_Milestone__c =: IPM_ConstantUtils.MINI];
-        System.assert(miniMSList.size() > 0);
+        System.assertEquals(!miniMSList.isEmpty(),true);
         
         List<IPM_Milestone__c> miniMSList1 = [Select Id, Name, IPM_Name__c, IPM_Phase__c, IPM_Milestone__c, IPM_Project__c, IPM_Due_Date__c from IPM_Milestone__c WHERE IPM_Type_of_Milestone__c =: IPM_ConstantUtils.MINI AND IPM_Due_Date__c =: null];
         System.assert(miniMSList1.size() > 0);
@@ -255,7 +255,7 @@ public class IPM_Milestone_Test
             
             List<IPM_Milestone__c> msList = [Select Id, Name, IPM_Name__c, IPM_Phase__c, IPM_Project__c from IPM_Milestone__c WHERE IPM_Project__c =: project.Id AND IPM_Type_of_Milestone__c =: IPM_ConstantUtils.STANDARD];
             
-            System.assert(msList.size() > 0);
+            System.assertEquals(!msList.isEmpty(),true);
             
             for(IPM_Milestone__c msObj : msList){
                 ipmMilestoneMap.put(msObj.Name, msObj);

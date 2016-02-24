@@ -168,7 +168,9 @@ public with sharing class IPM_EcoDesignSection {
                     }
 					else if(countryAssessmentMap.get(countryName).isEmpty() && project.IPM_Phase__c == IPM_ConstantUtils.FEASIBILITY_PHASE && !nonEICountryWithIdeasPhase.isEmpty()) {
 						if( nonEICountryWithIdeasPhase.contains(countryName))
+						{
 						countryAssessmentWrapListNonEICountries.add(new CountryAssessmentWrap(countryName,countryAssessmentMap.get(countryName),true,++noOfNonEICountries,hasLeadSKU));
+						}
                     }
                 } 
             }
